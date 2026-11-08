@@ -530,7 +530,8 @@ namespace Decennium.Foundation
                 || s.ExpeditionBeneficialRests.Select(x => x.RestIntervalId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionBeneficialRests.Length
                 || s.ExpeditionBeneficialRests.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
-                    || x.CompletedAt > s.RuleClock))
+                    || x.CompletedAt > s.RuleClock || x.RecoveryOfferId == null
+                    || x.RecoveryOfferId != "" && !Validation.ValidId(x.RecoveryOfferId)))
                 throw new ArgumentException("Invalid beneficial Long Rest history.");
             foreach (var group in s.ExpeditionBeneficialRests.GroupBy(x => x.ActorId, StringComparer.Ordinal))
             {
@@ -539,19 +540,24 @@ namespace Decennium.Foundation
                 {
                     var benefit = ordered[i];
                     var interval = s.RestIntervals.SingleOrDefault(x => x.Id == benefit.RestIntervalId);
-                    var offer = s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x => x.Id == benefit.RecoveryOfferId);
                     if (interval == null || interval.ActorId != benefit.ActorId || interval.Status != RestIntervalStatus.Completed
                         || interval.EndedAt != benefit.CompletedAt || benefit.Revision < interval.Revision
-                        || offer == null || offer.Pending || offer.ActorId != benefit.ActorId
-                        || offer.RestIntervalId != benefit.RestIntervalId || offer.CompletedAt != benefit.CompletedAt
-                        || offer.ResolvedRevision != benefit.Revision)
+                        || interval.SiteId == "" || interval.ScheduledEnd != benefit.CompletedAt)
                         throw new ArgumentException("Beneficial Long Rest has no exact completed interval.");
                     if (i > 0 && benefit.CompletedAt < ordered[i - 1].CompletedAt.AddSeconds(24 * 60 * 60))
                         throw new ArgumentException("Beneficial Long Rest limit is less than 24 elapsed hours.");
+                    var linkedOffer = s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x =>
+                        x.RestIntervalId == benefit.RestIntervalId);
+                    if (benefit.RecoveryOfferId == "" ? linkedOffer != null
+                        : linkedOffer == null || linkedOffer.Id != benefit.RecoveryOfferId
+                            || linkedOffer.ActorId != benefit.ActorId || linkedOffer.CompletedAt != benefit.CompletedAt)
+                        throw new ArgumentException("Beneficial Long Rest offer link is invalid.");
                 }
             }
 
             if (s.ExpeditionStrainRecoveryOffers.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionStrainRecoveryOffers.Length
+                || s.ExpeditionStrainRecoveryOffers.Select(x => x.RestIntervalId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionStrainRecoveryOffers.Length
                 || s.ExpeditionStrainRecoveryOffers.Where(x => x.Pending).Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionStrainRecoveryOffers.Count(x => x.Pending)
@@ -566,10 +572,12 @@ namespace Decennium.Foundation
                 if (interval == null || interval.ActorId != offer.ActorId || interval.Status != RestIntervalStatus.Completed
                     || interval.EndedAt != offer.CompletedAt)
                     throw new ArgumentException("Recovery offer has no exact completed Rest.");
-                var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RecoveryOfferId == offer.Id);
-                if (offer.Pending ? benefit != null : benefit == null || benefit.RestIntervalId != offer.RestIntervalId
-                    || benefit.ActorId != offer.ActorId || benefit.CompletedAt != offer.CompletedAt)
-                    throw new ArgumentException("Recovery offer resolution does not match its Rest benefit.");
+                var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == offer.RestIntervalId);
+                bool legacyPending = offer.Pending && benefit == null;
+                if (!legacyPending && (benefit == null || benefit.RecoveryOfferId != offer.Id || benefit.ActorId != offer.ActorId
+                    || benefit.CompletedAt != offer.CompletedAt
+                    || benefit.Revision != offer.Revision && benefit.Revision != offer.ResolvedRevision))
+                    throw new ArgumentException("Recovery offer has no matching beneficial Rest record.");
                 var latestSettlement = s.DailyProvisioningSettlements.Where(x => x.ActorId == offer.ActorId && x.End <= offer.CompletedAt)
                     .OrderByDescending(x => x.End).FirstOrDefault();
                 if (offer.Pending && latestSettlement != null && latestSettlement.HasShortfall)
@@ -590,6 +598,9 @@ namespace Decennium.Foundation
                         && !s.ExpeditionStrainRemovals.Any(x => x.BeneficialRestId == benefit.Id && x.PointId == pointId))
                         throw new ArgumentException("Chosen recovery point has no matching removal event.");
                 }
+                if (offer.Pending && benefit != null
+                    && s.ExpeditionStrainRemovals.Any(x => x.BeneficialRestId == benefit.Id))
+                    throw new ArgumentException("Pending recovery offer already removed a Strain point.");
             }
 
             if (s.ExpeditionStrainRemovals.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
@@ -605,14 +616,16 @@ namespace Decennium.Foundation
             {
                 var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == removal.GainId);
                 var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.Id == removal.BeneficialRestId);
+                var offer = benefit == null ? null : s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x =>
+                    x.RestIntervalId == benefit.RestIntervalId);
                 if (gain == null || gain.ActorId != removal.ActorId || gain.PointId != removal.PointId
                     || gain.AddedAmount != 1 || gain.OrdinaryRemovable != true || benefit == null
                     || benefit.ActorId != removal.ActorId || benefit.CompletedAt != removal.At
-                    || benefit.Revision > removal.Revision)
+                    || benefit.Revision > removal.Revision || offer == null || offer.Pending
+                    || benefit.RecoveryOfferId != offer.Id || offer.ChosenPointId != removal.PointId
+                    || offer.ResolvedRevision != removal.Revision)
                     throw new ArgumentException("Strain removal is not linked to one eligible point and its Rest.");
             }
-            if (s.ExpeditionStrainRemovals.Length != s.ExpeditionBeneficialRests.Length)
-                throw new ArgumentException("Each beneficial Rest in this slice must record exactly one Strain removal.");
 
             // Schema64 orders gains and removals in one actor-local event stream. Gain records
             // retain their original causes; removal events only change whether a point is active.

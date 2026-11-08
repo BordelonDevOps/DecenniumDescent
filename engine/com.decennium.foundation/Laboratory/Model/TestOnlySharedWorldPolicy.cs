@@ -568,14 +568,14 @@ namespace Decennium.Foundation.Laboratory
                 ExpireReadyActionsAtStart(s,initiating);
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
-                if(ManufacturingChoicePending(s)){
+                if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     s.ManufacturingAdvance=continuation??new ManufacturingAdvanceRecord(target,exitAfterSlot,initiating.Id,s.Revision+1,
                         initiating.Kind==CommandKind.EndRegularTurn||initiating.Kind==CommandKind.EndFixedEncounter?initiating.Target:"");
                     if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}return null;
                 }
-                if(HasPendingRecoveryOffer(s)){
+                if(legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
                     if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}return null;

@@ -11,8 +11,10 @@ namespace Decennium.Foundation
     {
         public RuleTime Target { get; } public bool ExitAfterSlot { get; }
         public string CommandId { get; } public long CommandRevision { get; } public string OutgoingSlotId { get; }
-        // All due automatic work/expiry/recovery/life and completion checks at the current
-        // timestamp have finished. Only settlement and the remaining authorized advance are next.
+        // Compatibility name retained for existing saves and callers. This is the shared-world
+        // advance continuation while any persisted manufacturing or schema64 recovery choice blocks it.
+        // All due automatic work/expiry/recovery/life and completion checks at the current timestamp
+        // have finished. Only settlement and the remaining authorized advance are next.
         public int NextPhase => 1;
         public ManufacturingAdvanceRecord(RuleTime target,bool exitAfterSlot,string command,long revision,string outgoingSlot)
         {
@@ -87,7 +89,13 @@ namespace Decennium.Foundation
             if(s.ManufacturingOrders==null||s.Trades==null||s.AlchemyDoses==null||s.ManufacturingOrders.Length>MaxOrders||s.Trades.Length>MaxTrades||s.AlchemyDoses.Length>MaxDoses
                 ||s.ManufacturingOrders.Any(x=>x==null)||s.Trades.Any(x=>x==null)||s.AlchemyDoses.Any(x=>x==null)
                 ||s.SchemaVersion<Snapshot.ManufacturingSchema&&(s.ManufacturingOrders.Length!=0||s.Trades.Length!=0||s.AlchemyDoses.Length!=0||s.ManufacturingAdvance!=null))throw new ArgumentException("Invalid manufacturing collection.");
-            if(s.ManufacturingAdvance!=null&&(s.ManufacturingAdvance.Target<s.RuleClock||s.ManufacturingAdvance.CommandRevision>s.Revision||!s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice)))throw new ArgumentException("Invalid suspended world advance.");
+            bool pendingRecoveryChoice=s.SchemaVersion>=Snapshot.ExpeditionStrainRecoverySchema
+                &&s.ExpeditionStrainRecoveryOffers!=null
+                &&s.ExpeditionStrainRecoveryOffers.Any(x=>x.Pending);
+            if(s.ManufacturingAdvance!=null&&(s.ManufacturingAdvance.Target<s.RuleClock
+                ||s.ManufacturingAdvance.CommandRevision>s.Revision
+                ||!s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice)&&!pendingRecoveryChoice))
+                throw new ArgumentException("Invalid suspended world advance.");
             if(s.ManufacturingOrders.Select(x=>x.Id).Distinct().Count()!=s.ManufacturingOrders.Length||s.AlchemyDoses.Select(x=>x.Id).Distinct().Count()!=s.AlchemyDoses.Length
                 ||s.Trades.Select(x=>x.WorkerId+"|"+x.TradeId).Distinct().Count()!=s.Trades.Length)throw new ArgumentException("Duplicate manufacturing identity.");
             foreach(var job in s.ManufacturingOrders)if(!s.Actors.Any(x=>x.Id==job.WorkerId)||job.UpdatedAt>s.RuleClock)throw new ArgumentException("Invalid manufacturing reference.");

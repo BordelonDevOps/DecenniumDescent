@@ -24,7 +24,8 @@ namespace Decennium.Foundation
         }
     }
 
-    /// <summary>One completed, beneficial secure Long Rest awarded by this bounded recovery profile.</summary>
+    /// <summary>One completed, beneficial secure Long Rest. A recovery offer is optional when the
+    /// source's 24-hour limit applies or a separate removal gate prevents point reduction.</summary>
     public sealed class ExpeditionBeneficialRestRecord
     {
         public string Id { get; }
@@ -37,7 +38,8 @@ namespace Decennium.Foundation
         public ExpeditionBeneficialRestRecord(string id, string actorId, string recoveryOfferId,
             string restIntervalId, RuleTime completedAt, long revision)
         {
-            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || !Validation.ValidId(recoveryOfferId)
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || recoveryOfferId == null
+                || recoveryOfferId != "" && !Validation.ValidId(recoveryOfferId)
                 || !Validation.ValidId(restIntervalId) || revision < 1)
                 throw new ArgumentException("Invalid beneficial Long Rest record.");
             Id = id; ActorId = actorId; RecoveryOfferId = recoveryOfferId; RestIntervalId = restIntervalId;

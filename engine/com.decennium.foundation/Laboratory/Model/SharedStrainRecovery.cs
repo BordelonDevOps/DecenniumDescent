@@ -29,9 +29,15 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Secure Rest requires an explicit finite TEST_ONLY site list.");
         }
 
-        internal string CanonicalKey => "expedition-strain-recovery-v1|source=" + SourceId + "|track=" + TrackId
+        internal string LegacyCanonicalKey => "expedition-strain-recovery-v1|source=" + SourceId + "|track=" + TrackId
             + "|book=" + ExpeditionBookBlob + "|strain=" + StrainBlob + "|revision=" + SourceRevision
             + "|long-rest=28800|max-beneficial-per-24h=1|secure-sites=" + string.Join(";", secureRestSiteIds)
+            + "|legacy-base-vessel-handover=1|unlinked-carried-mass=1";
+
+        internal string CanonicalKey => "expedition-strain-recovery-v2|source=" + SourceId + "|track=" + TrackId
+            + "|book=" + ExpeditionBookBlob + "|strain=" + StrainBlob + "|revision=" + SourceRevision
+            + "|long-rest=28800|max-beneficial-per-24h=1|beneficial-rest-recorded-at-completion=1"
+            + "|clock-continuation-through-recovery-choice=1|secure-sites=" + string.Join(";", secureRestSiteIds)
             + "|legacy-base-vessel-handover=1|unlinked-carried-mass=1";
 
         internal bool IsSecure(string siteId) => secureRestSiteIds.Contains(siteId, StringComparer.Ordinal);
@@ -40,11 +46,11 @@ namespace Decennium.Foundation.Laboratory
             => restProfile != null && secureRestSiteIds.All(id => restProfile.Sites.Any(site => site.Id == id
                 && site.SafeBerth && site.QualifyingRestEligible)) ? null : "StrainRecoverySecureSiteNotQualified";
 
-        internal static string BindFingerprint(string prior, TestOnlyExpeditionStrainRecoveryProfile profile)
+        internal static string BindFingerprint(string prior, TestOnlyExpeditionStrainRecoveryProfile profile, bool legacy = false)
         {
             using (var sha = SHA256.Create())
-                return "TEST_ONLY.strain-recovery-v1-" + string.Concat(sha.ComputeHash(
-                    Encoding.UTF8.GetBytes(prior + "|" + profile.CanonicalKey))
+                return (legacy ? "TEST_ONLY.strain-recovery-v1-" : "TEST_ONLY.strain-recovery-v2-") + string.Concat(sha.ComputeHash(
+                    Encoding.UTF8.GetBytes(prior + "|" + (legacy ? profile.LegacyCanonicalKey : profile.CanonicalKey)))
                     .Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
         }
     }
@@ -52,6 +58,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private TestOnlyExpeditionStrainRecoveryProfile strainRecoveryProfile;
+        private bool legacyStrainRecoverySemantics;
 
         /// <summary>Selects schema64's bounded source-bound Expedition Strain recovery slice.
         /// Must follow daily provisioning and Rest Debt profile selection before Initial().</summary>
@@ -65,6 +72,24 @@ namespace Decennium.Foundation.Laboratory
             string error = strainRecoveryProfile.ValidateBindings(restDebtProfile);
             if (error != null) throw new ArgumentException(error, nameof(profile));
             ContentFingerprint = TestOnlyExpeditionStrainRecoveryProfile.BindFingerprint(ContentFingerprint, strainRecoveryProfile);
+            return this;
+        }
+
+        /// <summary>Selects the prior schema64 recovery behavior and fingerprint so an already
+        /// supported schema64 save can be loaded and replayed without applying newer Rest timing.
+        /// Use only when opening a save created by the v1 profile.</summary>
+        public TestOnlySharedWorldPolicy EnableLegacyExpeditionStrainRecovery(
+            TestOnlyExpeditionStrainRecoveryProfile profile = null)
+        {
+            if (initializationStarted) throw new InvalidOperationException("Strain recovery profile must be selected before Initial().");
+            if (restDebtProfile == null) throw new InvalidOperationException("Strain recovery requires the Rest Debt profile.");
+            if (strainRecoveryProfile != null) throw new InvalidOperationException("Strain recovery profile is already selected.");
+            strainRecoveryProfile = profile ?? new TestOnlyExpeditionStrainRecoveryProfile();
+            string error = strainRecoveryProfile.ValidateBindings(restDebtProfile);
+            if (error != null) throw new ArgumentException(error, nameof(profile));
+            legacyStrainRecoverySemantics = true;
+            ContentFingerprint = TestOnlyExpeditionStrainRecoveryProfile.BindFingerprint(
+                ContentFingerprint, strainRecoveryProfile, legacy: true);
             return this;
         }
 
@@ -140,9 +165,11 @@ namespace Decennium.Foundation.Laboratory
             return owed;
         }
 
-        private RuleTime? LastBeneficialRest(Snapshot s, string actorId, RuleTime at, long revision)
+        private RuleTime? LastBeneficialRest(Snapshot s, string actorId, RuleTime at, long revision,
+            string excludeRestIntervalId = "")
             => s.ExpeditionBeneficialRests.Where(x => x.ActorId == actorId
-                    && x.CompletedAt <= at && x.Revision <= revision)
+                    && x.CompletedAt <= at && x.Revision <= revision
+                    && x.RestIntervalId != excludeRestIntervalId)
                 .Select(x => (RuleTime?)x.CompletedAt).OrderByDescending(x => x).FirstOrDefault();
 
         private string[] EligibleRecoveryPoints(Snapshot s, string actorId, RuleTime at, long revision)
@@ -169,16 +196,47 @@ namespace Decennium.Foundation.Laboratory
                     || s.ExpeditionStrainRecoveryOffers.Any(x => x.RestIntervalId == interval.Id)) continue;
                 var last = LastBeneficialRest(s, interval.ActorId, interval.EndedAt.Value, s.Revision + 1);
                 if (last.HasValue && interval.EndedAt.Value < last.Value.AddSeconds(24 * 60 * 60)) continue;
+
+                // The source's once-per-24-hours limit applies to this beneficial Rest even when
+                // a persistent provisioning block or the absence of removable points prevents a
+                // Strain reduction. Rest Debt remains a separate eligibility requirement.
+                if (RestDebtOwedAt(s, interval.ActorId, interval.EndedAt.Value, s.Revision + 1)) continue;
                 string[] points = EligibleRecoveryPoints(s, interval.ActorId, s.RuleClock, s.Revision + 1);
-                if (points.Length == 0) continue;
-                if (initiating == null) return "StrainRecoveryInitiatingCommandMissing";
-                if (s.ExpeditionStrainRecoveryOffers.Length >= ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)
-                    return "ExpeditionStrainRecoveryOfferHistoryCapacityReached";
-                string id = "strain.recovery.offer.r" + (s.Revision + 1).ToString(CultureInfo.InvariantCulture)
-                    + ".n" + s.ExpeditionStrainRecoveryOffers.Length.ToString(CultureInfo.InvariantCulture);
-                var offer = new ExpeditionStrainRecoveryOfferRecord(id, interval.ActorId, interval.Id,
-                    initiating.Id, interval.EndedAt.Value, s.Revision + 1, points);
-                s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Concat(new[] { offer }).ToArray();
+                if (legacyStrainRecoverySemantics)
+                {
+                    if (points.Length == 0) continue;
+                    if (initiating == null) return "StrainRecoveryInitiatingCommandMissing";
+                    if (s.ExpeditionStrainRecoveryOffers.Length >= ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)
+                        return "ExpeditionStrainRecoveryOfferHistoryCapacityReached";
+                    string legacyOfferId = "strain.recovery.offer.r" + (s.Revision + 1).ToString(CultureInfo.InvariantCulture)
+                        + ".n" + s.ExpeditionStrainRecoveryOffers.Length.ToString(CultureInfo.InvariantCulture);
+                    var legacyOffer = new ExpeditionStrainRecoveryOfferRecord(legacyOfferId, interval.ActorId, interval.Id,
+                        initiating.Id, interval.EndedAt.Value, s.Revision + 1, points);
+                    s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Concat(new[] { legacyOffer }).ToArray();
+                    continue;
+                }
+                if (s.ExpeditionBeneficialRests.Length >= ExpeditionProvisioningValidation.MaxBeneficialRests)
+                    return "ExpeditionBeneficialRestHistoryCapacityReached";
+                string offerId = "";
+                if (points.Length != 0)
+                {
+                    if (initiating == null) return "StrainRecoveryInitiatingCommandMissing";
+                    if (s.ExpeditionStrainRecoveryOffers.Length >= ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)
+                        return "ExpeditionStrainRecoveryOfferHistoryCapacityReached";
+                    offerId = "strain.recovery.offer.r" + (s.Revision + 1).ToString(CultureInfo.InvariantCulture)
+                        + ".n" + s.ExpeditionStrainRecoveryOffers.Length.ToString(CultureInfo.InvariantCulture);
+                }
+                string benefitId = "strain.benefit.r" + (s.Revision + 1).ToString(CultureInfo.InvariantCulture)
+                    + ".n" + s.ExpeditionBeneficialRests.Length.ToString(CultureInfo.InvariantCulture);
+                var benefit = new ExpeditionBeneficialRestRecord(benefitId, interval.ActorId, offerId,
+                    interval.Id, interval.EndedAt.Value, s.Revision + 1);
+                s.ExpeditionBeneficialRests = s.ExpeditionBeneficialRests.Concat(new[] { benefit }).ToArray();
+                if (offerId != "")
+                {
+                    var offer = new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId, interval.Id,
+                        initiating.Id, interval.EndedAt.Value, s.Revision + 1, points);
+                    s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Concat(new[] { offer }).ToArray();
+                }
             }
             return null;
         }
@@ -207,7 +265,14 @@ namespace Decennium.Foundation.Laboratory
             if (s.RuleClock != selectedOffer.CompletedAt) return "StrainRecoveryOfferClockChanged";
             if (RestDebtOwedAt(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1)) return "RestDebtPreventsStrainRecovery";
             if (ProvisioningBlockActive(s, c.Actor, selectedOffer.CompletedAt)) return "ProvisioningBlockPreventsStrainRecovery";
-            var last = LastBeneficialRest(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1);
+            var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == selectedOffer.RestIntervalId
+                && x.ActorId == c.Actor && x.CompletedAt == selectedOffer.CompletedAt
+                && x.RecoveryOfferId == selectedOffer.Id);
+            // Older schema64 pending-choice saves recorded a benefit only when the player
+            // resolved the offer. Keep those already-supported saves playable.
+            if (benefit == null && !selectedOffer.Pending) return "StrainRecoveryBenefitMissing";
+            var last = LastBeneficialRest(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1,
+                selectedOffer.RestIntervalId);
             if (last.HasValue && selectedOffer.CompletedAt < last.Value.AddSeconds(24 * 60 * 60))
                 return "BeneficialLongRestLimitNotElapsed";
             gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.ActorId == c.Actor && x.PointId == c.Target);
@@ -222,21 +287,27 @@ namespace Decennium.Foundation.Laboratory
         {
             string failure = AssessStrainRecoveryChoice(s, c, out var offer, out var gain);
             if (failure != null) return failure;
-            if (s.ExpeditionBeneficialRests.Length >= ExpeditionProvisioningValidation.MaxBeneficialRests
-                || s.ExpeditionStrainRemovals.Length >= ExpeditionProvisioningValidation.MaxStrainRemovals)
+            if (s.ExpeditionStrainRemovals.Length >= ExpeditionProvisioningValidation.MaxStrainRemovals)
                 return "ExpeditionStrainRecoveryHistoryCapacityReached";
             long revision = s.Revision + 1;
-            string benefitId = "strain.benefit.r" + revision.ToString(CultureInfo.InvariantCulture)
-                + ".n" + s.ExpeditionBeneficialRests.Length.ToString(CultureInfo.InvariantCulture);
-            var benefit = new ExpeditionBeneficialRestRecord(benefitId, c.Actor, offer.Id,
-                offer.RestIntervalId, offer.CompletedAt, revision);
+            var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == offer.RestIntervalId
+                && x.ActorId == c.Actor && x.RecoveryOfferId == offer.Id);
+            if (benefit == null)
+            {
+                if (s.ExpeditionBeneficialRests.Length >= ExpeditionProvisioningValidation.MaxBeneficialRests)
+                    return "ExpeditionBeneficialRestHistoryCapacityReached";
+                string benefitId = "strain.benefit.r" + revision.ToString(CultureInfo.InvariantCulture)
+                    + ".n" + s.ExpeditionBeneficialRests.Length.ToString(CultureInfo.InvariantCulture);
+                benefit = new ExpeditionBeneficialRestRecord(benefitId, c.Actor, offer.Id,
+                    offer.RestIntervalId, offer.CompletedAt, revision);
+                s.ExpeditionBeneficialRests = s.ExpeditionBeneficialRests.Concat(new[] { benefit }).ToArray();
+            }
             int sequence = ExpeditionStrainRules.NextGainSequence(s, c.Actor, revision);
             string removalId = "strain.removal.r" + revision.ToString(CultureInfo.InvariantCulture)
                 + ".n" + s.ExpeditionStrainRemovals.Length.ToString(CultureInfo.InvariantCulture);
             var removal = new ExpeditionStrainRemovalRecord(removalId, c.Actor, gain.PointId, gain.Id,
                 benefit.Id, offer.CompletedAt, revision, sequence);
             var previous = ExpeditionStrainRules.Current(s, c.Actor);
-            s.ExpeditionBeneficialRests = s.ExpeditionBeneficialRests.Concat(new[] { benefit }).ToArray();
             s.ExpeditionStrainRemovals = s.ExpeditionStrainRemovals.Concat(new[] { removal }).ToArray();
             s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Select(x => x.Id == offer.Id
                 ? new ExpeditionStrainRecoveryOfferRecord(x.Id, x.ActorId, x.RestIntervalId, x.InitiatingCommandId,
@@ -246,7 +317,8 @@ namespace Decennium.Foundation.Laboratory
             if (previous.Level >= 3 && current.Level < 3)
                 s.ExpeditionDashLocks = s.ExpeditionDashLocks.Where(x => x.ActorId != c.Actor).ToArray();
             // Effective maximum HP may rise, but this recovery never heals or revives.
-            return null;
+            return legacyStrainRecoverySemantics || HasPendingRecoveryOffer(s) || ManufacturingChoicePending(s)
+                ? null : ResumeManufacturingAdvance(s, c);
         }
 
         private CommandQueryResult QueryStrainRecoveryChoice(Snapshot s, Command c)
@@ -283,7 +355,17 @@ namespace Decennium.Foundation.Laboratory
                     || EligibleRecoveryPointsWithoutDebt(s, offer.ActorId, offer.CompletedAt, offer.Revision)
                         .Except(offer.PointIds, StringComparer.Ordinal).Any())
                     return "StrainRecoveryOfferProfileMismatch";
-                var prior = LastBeneficialRest(s, offer.ActorId, offer.CompletedAt, offer.Revision);
+                var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == offer.RestIntervalId
+                    && x.ActorId == offer.ActorId && x.CompletedAt == offer.CompletedAt
+                    && x.RecoveryOfferId == offer.Id);
+                if (benefit == null && !offer.Pending) return "StrainRecoveryOfferHasNoBeneficialRest";
+                if (benefit != null && benefit.Revision != offer.Revision && benefit.Revision != offer.ResolvedRevision)
+                    return "StrainRecoveryOfferBenefitRevisionMismatch";
+                if (legacyStrainRecoverySemantics && (offer.Pending ? benefit != null
+                    : benefit == null || benefit.Revision != offer.ResolvedRevision))
+                    return "LegacyStrainRecoveryRecordMismatch";
+                var prior = LastBeneficialRest(s, offer.ActorId, offer.CompletedAt, offer.Revision,
+                    offer.RestIntervalId);
                 if (prior.HasValue && offer.CompletedAt < prior.Value.AddSeconds(24 * 60 * 60))
                     return "StrainRecoveryOfferExceedsBeneficialRestLimit";
                 foreach (string pointId in offer.PointIds)
@@ -293,15 +375,26 @@ namespace Decennium.Foundation.Laboratory
             foreach (var benefit in s.ExpeditionBeneficialRests)
             {
                 var interval = s.RestIntervals.Single(x => x.Id == benefit.RestIntervalId);
-                if (!strainRecoveryProfile.IsSecure(interval.SiteId) || RestDebtOwedAt(s, benefit.ActorId,
-                        benefit.CompletedAt, benefit.Revision)
-                    || ProvisioningBlockActive(s, benefit.ActorId, benefit.CompletedAt))
+                if (!strainRecoveryProfile.IsSecure(interval.SiteId) || !restDebtProfile.IncludesActor(benefit.ActorId)
+                    || RestDebtOwedAt(s, benefit.ActorId, benefit.CompletedAt, benefit.Revision)
+                    || legacyStrainRecoverySemantics && ProvisioningBlockActive(s, benefit.ActorId, benefit.CompletedAt))
                     return "StrainRecoveryBenefitProfileMismatch";
-                var selected = s.ExpeditionStrainRemovals.SingleOrDefault(x => x.BeneficialRestId == benefit.Id);
-                var gain = selected == null ? null : s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == selected.GainId);
-                if (selected == null || gain == null
-                    || !ExpeditionStrainRules.RecoveryGateMet(s, gain, benefit.CompletedAt, benefit.Revision))
-                    return "StrainRecoveryBenefitHasNoEligibleRemoval";
+                var linkedOffer = s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x => x.RestIntervalId == benefit.RestIntervalId);
+                if (benefit.RecoveryOfferId == "" ? linkedOffer != null
+                    : linkedOffer == null || linkedOffer.Id != benefit.RecoveryOfferId)
+                    return "StrainRecoveryBenefitOfferLinkMismatch";
+                var prior = LastBeneficialRest(s, benefit.ActorId, benefit.CompletedAt, benefit.Revision,
+                    benefit.RestIntervalId);
+                if (prior.HasValue && benefit.CompletedAt < prior.Value.AddSeconds(24 * 60 * 60))
+                    return "StrainRecoveryBenefitExceedsBeneficialRestLimit";
+                if (legacyStrainRecoverySemantics)
+                {
+                    var removal = s.ExpeditionStrainRemovals.SingleOrDefault(x => x.BeneficialRestId == benefit.Id);
+                    var gain = removal == null ? null : s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == removal.GainId);
+                    if (removal == null || gain == null
+                        || !ExpeditionStrainRules.RecoveryGateMet(s, gain, benefit.CompletedAt, benefit.Revision))
+                        return "LegacyStrainRecoveryBenefitHasNoEligibleRemoval";
+                }
             }
             return null;
         }

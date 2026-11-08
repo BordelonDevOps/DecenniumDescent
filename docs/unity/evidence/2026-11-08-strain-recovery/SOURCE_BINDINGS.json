@@ -131,6 +131,7 @@
       "code": [
         "Runtime/Core/ExpeditionProvisioningRecords.cs",
         "Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+        "Runtime/Core/ManufacturingRecords.cs",
         "Runtime/Core/Simulation.cs",
         "Runtime/Persistence/ExpeditionProvisioningCodec.cs",
         "Runtime/Persistence/SnapshotCodec.cs",
@@ -150,8 +151,9 @@
       ],
       "implemented": [
         "Schema64 appends causal provisioning-gate updates, completed-benefit records, pending exact-point offers, and append-only Strain removals after schema63 bytes; historical codec branches remain version-gated.",
-        "A closed, fully supported real-intake day can unblock only prior ordinary-removable daily-provisioning Strain points; a completed eight-hour Rest at an explicitly fingerprinted secure and qualifying site offers an exact point choice, at most one beneficial Rest per 24 hours.",
-        "The explicit patient choice is persisted, query-discoverable, and freezes unrelated mutations until resolution. Resolution revalidates the original completed Rest, site, clock, debt, provisioning status, and active point; it removes one point without rewriting gain history or healing/reviving.",
+        "A closed, fully supported real-intake day can unblock only prior ordinary-removable daily-provisioning Strain points. Qualifying Rest completion is recorded independently of point eligibility; the one-beneficial-Rest-per-24-hours limit still applies while the provisioning block is active.",
+        "The exact point choice is persisted, query-discoverable, and freezes unrelated mutations until resolution. Resolution revalidates the original completed Rest, site, clock, debt, provisioning status, and active point; it removes one point without rewriting gain history or healing/reviving.",
+        "An accepted clock target remains in the existing ManufacturingAdvance continuation while choices are pending, and resumes once after the final choice; the legacy v1 fingerprint/profile preserves prior schema64 replay semantics. Snapshot and codec layout remain unchanged.",
         "The connected scenario uses existing intake, WorkLedger, clock, daily settlement, Rest Debt, Rest interval, exploration, vessel handling, carrying projection, command receipt, codec, save/restore and deterministic replay authorities."
       ],
       "notImplemented": [
