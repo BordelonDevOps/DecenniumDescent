@@ -280,7 +280,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
-                var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
+                var result=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
                     critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
                 damage=DamageRecord(dice,total,words,next,result);next=result.NextRandomState;pending=result.Pending!=null;
                 if(pending&&s.Receipts.Length>=511)return "ContinuationCapacityReached";
@@ -315,7 +315,7 @@ namespace Decennium.Foundation.Laboratory
             int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON")
                 +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
-            var prior=PlaytestDamageDice.Resolve(ActorLifeRules.Read(before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
+            var prior=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
                 critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);
             if(prior.Pending==null||!d.SameAs(DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,prior))||s.RandomState!=prior.NextRandomState)return "InvalidPendingKnockout";
             var result=prior.Pending.Complete(r.Choice);s.RandomState=result.NextRandomState;ApplyLife(s,before,result.Outcome.State);
@@ -328,7 +328,7 @@ namespace Decennium.Foundation.Laboratory
             bool newlyUnconscious=!after.Dead&&after.Hp==0&&before.Hp>0;
             // The initial HP/Wound facts and bounded Club damage exclude death while still holding equipment.
             bool dropEquipment=newlyUnconscious||after.Dead;
-            var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious&&!WithConditions(s),dropEquipment?Array.Empty<string>():before.HeldItems);
+            var record=ActorLifeRules.RecordFromResolution(before,after,before.Prone||newlyUnconscious&&!WithConditions(s),dropEquipment?Array.Empty<string>():before.HeldItems);
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
             ExpeditionStrainRules.ClampLife(s, before.ActorId, s.RuleClock, s.Revision + 1);
             if(newlyUnconscious) {

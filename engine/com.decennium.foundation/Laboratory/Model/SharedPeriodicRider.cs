@@ -103,7 +103,8 @@ namespace Decennium.Foundation.Laboratory
                 var before=s.Lives.Single(x=>x.ActorId==fact.TargetId);var view=View(s,fact.TargetId);
                 long potential=view.HealingPotential(fact.Potential),gain=0;bool healingOccurred=potential>0&&!before.Dead;
                 if(healingOccurred) {
-                    var after=PlaytestLife.Heal(ActorLifeRules.Read(before),potential);gain=Math.Max(0,after.Hp-before.Hp);
+                    var lifeBefore=ActorLifeRules.ReadForResolution(s,before);
+                    var after=PlaytestLife.Heal(lifeBefore,potential);gain=Math.Max(0,after.Hp-lifeBefore.Hp);
                     TestOnlyClubAttackPolicy.ApplyLife(s,before,after);
                     foreach(var rider in s.PeriodicRiders.Where(x=>x.TargetId==fact.TargetId&&x.ProfileId==PeriodicRiderFixture.ProfileId&&x.Present).ToArray())
                         s.PeriodicRiders=s.PeriodicRiders.Select(x=>x.Id==rider.Id?x.End(s.RuleClock,"healing"):x).ToArray();
@@ -150,7 +151,7 @@ namespace Decennium.Foundation.Laboratory
                         int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                             +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON")
                             +ExpeditionStrainRules.Current(s,rider.TargetId).SavingThrowModifier);
-                        var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),damage,s.RuleClock,afterRandom,
+                        var result=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,target),damage,s.RuleClock,afterRandom,
                             constitutionSaveModifier:constitutionSave,melee:false);
                         s.RandomState=result.NextRandomState;afterRandom=s.RandomState;words=checked(words+result.WordsConsumed);
                         TestOnlyClubAttackPolicy.ApplyLife(s,target,result.Outcome.State);

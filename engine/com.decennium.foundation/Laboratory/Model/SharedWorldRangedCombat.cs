@@ -428,7 +428,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON")
                     +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
-                var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,lifeBefore,
+                var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),afterDefense,s.RuleClock,lifeBefore,
                     constitutionSaveModifier:constitutionSave,critical:false,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 s.RandomState=rolledDamage.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,rolledDamage.Outcome.State);
                 results.Add(new SuppressionFireTargetResult(targetId,actor.X,actor.Y,natural,modifier,total,success,targetDamage,afterDefense,
@@ -628,7 +628,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
-                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,effectsSeed,
+                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),afterDefense,s.RuleClock,effectsSeed,
                     constitutionSaveModifier:constitutionSave,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
             } else {dice=Array.Empty<int>();}

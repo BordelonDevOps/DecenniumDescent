@@ -11,9 +11,30 @@ namespace Decennium.Foundation.Laboratory
     {
         public static LifeState Read(ActorLifeRecord r)=>new LifeState(r.MaximumHp,r.Hp,r.TemporaryHp,r.LinkedInjuries.Select(i=>(Injury)i),
             r.Stable,r.Dead,r.DeathSuccesses,r.DeathFailures,r.UsesDeathSaves,lastDeathTurn:r.LastDeathTurn,stableUntil:r.StableUntil);
+        /// <summary>Projects the active, source-qualified effective HP ceiling for a life resolution.
+        /// The persisted ActorLifeRecord.MaximumHp remains the base character authority.</summary>
+        public static LifeState ReadForResolution(Snapshot s,ActorLifeRecord record)
+        {
+            if(s==null||record==null)throw new ArgumentNullException(s==null?nameof(s):nameof(record));
+            var baseLife=Read(record);
+            long maximum=ExpeditionStrainRules.Current(s,record.ActorId).EffectiveMaximumHp(record.MaximumHp);
+            long hp=Math.Min(baseLife.Hp,maximum);
+            if(maximum==baseLife.MaximumHp&&hp==baseLife.Hp)return baseLife;
+            return new LifeState(maximum,hp,baseLife.TemporaryHp,baseLife.Wounds,baseLife.Stable,baseLife.Dead,
+                baseLife.DeathSuccesses,baseLife.DeathFailures,baseLife.UsesDeathSaves,lastDeathTurn:baseLife.LastDeathTurn,
+                stableUntil:baseLife.StableUntil);
+        }
         internal static ActorLifeRecord Record(string actor,LifeState state,bool prone,System.Collections.Generic.IEnumerable<string> held=null)=>new ActorLifeRecord(actor,state.MaximumHp,state.Hp,state.TemporaryHp,
             state.Wounds.Select(i=>(int)i),state.Stable,state.Dead,state.UsesDeathSaves,state.DeathSuccesses,state.DeathFailures,state.StableUntil,
             state.LastDeathTurn,prone,held??Array.Empty<string>());
+        internal static ActorLifeRecord RecordFromResolution(ActorLifeRecord authority,LifeState state,bool prone,
+            System.Collections.Generic.IEnumerable<string> held=null)
+        {
+            if(authority==null||state==null)throw new ArgumentNullException(authority==null?nameof(authority):nameof(state));
+            return new ActorLifeRecord(authority.ActorId,authority.MaximumHp,state.Hp,state.TemporaryHp,
+                state.Wounds.Select(i=>(int)i),state.Stable,state.Dead,state.UsesDeathSaves,state.DeathSuccesses,
+                state.DeathFailures,state.StableUntil,state.LastDeathTurn,prone,held??Array.Empty<string>());
+        }
         public static bool CanAct(Snapshot s,string actor){var l=s.Lives.Single(x=>x.ActorId==actor);return !l.Dead&&l.Hp>0;}
         public static bool ZeroHpUnconscious(Snapshot s,string actor){var l=s.Lives.Single(x=>x.ActorId==actor);return !l.Dead&&l.Hp==0;}
         private static void Set(Snapshot s,ActorLifeRecord record)=>s.Lives=s.Lives.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
@@ -28,8 +49,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if(s.SchemaVersion<Snapshot.ActorLifeSchema)return;
             foreach(var before in s.Lives.Where(x=>x.Stable&&x.StableUntil<=s.RuleClock).OrderBy(x=>x.StableUntil).ThenBy(x=>x.ActorId,StringComparer.Ordinal).ToArray()) {
-                var after=PlaytestLife.StableRecoveryAt(Read(before),s.RuleClock);
-                Set(s,Record(before.ActorId,after,before.Prone,before.HeldItems));
+                var after=PlaytestLife.StableRecoveryAt(ReadForResolution(s,before),s.RuleClock);
+                Set(s,RecordFromResolution(before,after,before.Prone,before.HeldItems));
                 Event(s,new ActorLifeEvent(before.ActorId,s.Revision+1,s.RuleClock,LifeEventKind.StableRecovery,-1,0,0,s.RandomState,s.RandomState,0));
             }
         }
@@ -39,15 +60,15 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static void SaveAtMarker(Snapshot s,string actor,int ordinal,long marker)
         {
-            RecoverDue(s);var before=s.Lives.Single(x=>x.ActorId==actor);var life=Read(before);
+            RecoverDue(s);var before=s.Lives.Single(x=>x.ActorId==actor);var life=ReadForResolution(s,before);
             if(life.Dead||life.Stable||life.Hp!=0||!life.UsesDeathSaves)return;
             uint initial=s.RandomState;var d20=PlaytestDice.RollD20(initial);uint next=d20.NextRandomState;long words=d20.WordsConsumed;int? d4=null;
-            if(d20.Natural!=20&&d20.Natural>=10&&life.DeathSuccesses==2) {
+            int modifier=ExpeditionStrainRules.Current(s,actor).SavingThrowModifier;
+            if(d20.Natural!=20&&d20.Natural!=1&&d20.Natural+modifier>=10&&life.DeathSuccesses==2) {
                 var recovery=DiceStream.Draw(next,4);d4=recovery.Value+1;next=recovery.NextState;words=checked(words+recovery.WordsConsumed);
             }
-            int modifier=ExpeditionStrainRules.Current(s,actor).SavingThrowModifier;
             var after=PlaytestLife.DeathSaveAt(life,d20.Natural,marker,s.RuleClock,modifier:modifier,stableD4:d4);
-            Set(s,Record(actor,after,before.Prone,before.HeldItems));s.RandomState=next;
+            Set(s,RecordFromResolution(before,after,before.Prone,before.HeldItems));s.RandomState=next;
             Event(s,new ActorLifeEvent(actor,s.Revision+1,s.RuleClock,LifeEventKind.DeathSave,ordinal,d20.Natural,d4??0,initial,next,words));
         }
         internal static string Key(ActorLifeRecord r)=>r.ActorId+"|"+r.MaximumHp.ToString(CultureInfo.InvariantCulture)+"|"+r.Hp.ToString(CultureInfo.InvariantCulture)

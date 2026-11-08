@@ -200,7 +200,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,"CON")
                     +ExpeditionStrainRules.Current(s,fact.LeadId).SavingThrowModifier);
-                var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, constitutionSave);
+                var result = PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,before), damage, s.RuleClock, draw.NextState, constitutionSave);
                 s.RandomState = result.NextRandomState; words = checked(draw.WordsConsumed + result.WordsConsumed); wound = result.WoundRoll?.Natural ?? 0; injury = result.InjuryD6 ?? 0;
                 TestOnlyClubAttackPolicy.ApplyLife(s, before, result.Outcome.State);
             }

@@ -221,7 +221,7 @@ namespace Decennium.Foundation.Laboratory
                 int con=checked(CharacterRuleFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON")
                     +ExpeditionStrainRules.Current(s,offer.TargetId).SavingThrowModifier);
-                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(facts.TargetLife),afterDefense,s.RuleClock,next,
+                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,facts.TargetLife),afterDefense,s.RuleClock,next,
                     constitutionSaveModifier:con,critical:shot.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
                 TestOnlyClubAttackPolicy.ApplyLife(s,facts.TargetLife,rolled.Outcome.State);

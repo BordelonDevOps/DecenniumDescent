@@ -424,9 +424,11 @@ namespace Decennium.Foundation.Laboratory
             SetInterval(s,Interval(s,c.Actor).PayAction());
             var first=DiceStream.Draw(s.RandomState,4);var second=DiceStream.Draw(first.NextState,4);s.RandomState=second.NextState;
             long potential=View(s,recipient.Id).HealingPotential(first.Value+second.Value+4);
-            var healed=PlaytestLife.Heal(ActorLifeRules.Read(before),potential);TestOnlyClubAttackPolicy.ApplyLife(s,before,healed);
+            var lifeBefore=ActorLifeRules.ReadForResolution(s,before);
+            var healed=PlaytestLife.Heal(lifeBefore,potential);long actualHealing=Math.Max(0,healed.Hp-lifeBefore.Hp);
+            TestOnlyClubAttackPolicy.ApplyLife(s,before,healed);
             s.AlchemyDoses=s.AlchemyDoses.Select(x=>x.Id==dose.Id?new AlchemyDoseRecord(x.Id,x.OrderId,x.RecipeId,x.MakerId,x.OwnerId,x.CustodianId,x.LocationId,x.CreatedAt,x.MaximumHp,x.Hp,
-                s.RuleClock,c.Actor,recipient.Id,first.Value+1,second.Value+1,potential,healed.Hp-before.Hp):x).ToArray();
+                s.RuleClock,c.Actor,recipient.Id,first.Value+1,second.Value+1,potential,actualHealing):x).ToArray();
             ReconcileDyingCadences(s);PauseIncompatibleWork(s);return null;
         }
     }

@@ -26,10 +26,70 @@ namespace Decennium.Foundation.Tests
             return "inventory." + simulation.Capture().Revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".lot";
         }
 
+        private static uint StrainedDeathSaveSequenceSeed(int woundSaveModifier)
+        {
+            const long mishapAt = 172800;
+            for (uint seed = 1; seed < 1000000; seed++) {
+                var damage = DiceStream.Draw(seed, 4);
+                var hit = PlaytestDamageDice.Resolve(new LifeState(26, 1), damage.Value + 1,
+                    new RuleTime(mishapAt), damage.NextState, constitutionSaveModifier: woundSaveModifier);
+                if (hit.Outcome.State.Hp != 0 || hit.Outcome.State.Dead || hit.Outcome.State.Stable) continue;
+                uint next = hit.NextRandomState;
+                var first = PlaytestDice.RollD20(next); next = first.NextRandomState;
+                var second = PlaytestDice.RollD20(next); next = second.NextRandomState;
+                var third = PlaytestDice.RollD20(next); next = third.NextRandomState;
+                var fourth = PlaytestDice.RollD20(next);
+                if (first.Natural + -1 >= 10 && second.Natural + -1 >= 10
+                    && third.Natural == 10 && fourth.Natural == 11) return seed;
+            }
+            throw new Exception("No deterministic Strain death-save sequence fixture seed.");
+        }
+
         private static void AddDailyProvisioningCases(Dictionary<string, Action> cases, string directory)
         {
             var codec = new SnapshotCodec();
             var host = TestOnlySharedWorldPolicy.Host();
+            void AdvanceTo(Simulation simulation, long targetSeconds)
+            {
+                var now = simulation.Capture().RuleClock;
+                long remaining = checked(targetSeconds * now.Denominator - now.Numerator);
+                if (remaining < 0) throw new ArgumentOutOfRangeException(nameof(targetSeconds));
+                if (remaining != 0) WorldAdvance(simulation, checked((int)remaining), checked((int)now.Denominator));
+            }
+            void RunOneLegalStep(Simulation simulation, string actor)
+            {
+                var rejected = new List<string>();
+                foreach (var direction in new[] { (1, 0), (0, 1), (-1, 0), (0, -1) }) {
+                    var command = IC(simulation, CommandKind.BeginWorldStep, "run", actor: actor,
+                        x: direction.Item1, y: direction.Item2);
+                    var query = simulation.QueryCommand(host, command);
+                    if (query.Supported && query.Admissible) {
+                        WorldCommit(simulation, command);
+                        return;
+                    }
+                    rejected.Add(direction.Item1 + "," + direction.Item2 + ":" + query.Code + "/" + query.Admissible);
+                }
+                var state = simulation.Capture();
+                var body = state.Actors.Single(x => x.Id == actor);
+                throw new Exception("No legal exploration Dash step was available for " + actor + " at " + body.X + "," + body.Y
+                    + " (clock=" + state.RuleClock + ", combat=" + state.InventoryCombat + ", speed="
+                    + TestOnlyClubAttackPolicy.WalkingSpeed(state, actor) + ", queries=" + string.Join(";", rejected) + ").");
+            }
+            void WaitForNextDashAllowance(Simulation simulation, string actor)
+            {
+                var state = simulation.Capture();
+                if (state.WorldSchedule.Order.Contains(actor)) {
+                    long priorStart = state.WorldIntervals.Single(x => x.ActorId == actor).LastStart;
+                    for (int interval = 0; interval < 4
+                        && simulation.Capture().WorldIntervals.Single(x => x.ActorId == actor).LastStart == priorStart; interval++)
+                        WorldAdvance(simulation, 6);
+                } else {
+                    long priorIndex = state.WorldActivityIntervals.Single(x => x.ActorId == actor).IntervalIndex;
+                    for (int interval = 0; interval < 2
+                        && simulation.Capture().WorldActivityIntervals.Single(x => x.ActorId == actor).IntervalIndex == priorIndex; interval++)
+                        WorldAdvance(simulation, 6);
+                }
+            }
 
             cases.Add("daily_provisioning_profile_is_test_only_fingerprinted_and_restorable", () => {
                 var policy = ProvisioningPolicy();
@@ -109,6 +169,286 @@ namespace Decennium.Foundation.Tests
                 simulation = RestoreProvisioning(simulation);
                 Require(Bytes(simulation).SequenceEqual(Bytes(RestoreProvisioning(simulation))),
                     "Continued daily profile changed across a second save/restore.");
+            });
+
+            cases.Add("daily_provisioning_one_intake_is_attributed_across_both_midnight_intervals", () => {
+                var policy = ProvisioningPolicy();
+                var simulation = World(policy);
+                foreach (var step in new[] { new[] { 1, 0 }, new[] { 1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, 1 } }) {
+                    WorldStep(simulation, step[0], step[1]);
+                    WorldAdvance(simulation, 1);
+                }
+                string meal = ProvisioningHandle(simulation, TestOnlyInventoryPolicy.FoodId, new RuleQuantity(2),
+                    HandlingKind.Handover, destination: TestOnlyPolicy.CompanionId);
+                AdvanceTo(simulation, 85500);
+                WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, meal,
+                    new InventoryRequest(new RuleQuantity(2)), TestOnlyPolicy.CompanionId));
+                WorldAdvance(simulation, 899);
+                Require(simulation.Capture().RuleClock == T(86399)
+                    && simulation.Capture().Intakes.Single().Status == IntakeStatus.Working,
+                    "The two-pound intake did not remain active one second before midnight.");
+
+                byte[] checkpoint = Bytes(simulation);
+                simulation = new Simulation(policy, codec.Decode(checkpoint), ExecutionProfile.Laboratory);
+                var replay = new Simulation(policy, codec.Decode(checkpoint), ExecutionProfile.Laboratory);
+                WorldAdvance(simulation, 1); WorldAdvance(replay, 1);
+                WorldAdvance(simulation, 900); WorldAdvance(replay, 900);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)),
+                    "The same saved intake diverged across the midnight split.");
+                var dayZero = simulation.Capture();
+                var firstSettlement = dayZero.DailyProvisioningSettlements.Single(x => x.DayOrdinal == 0
+                    && x.ActorId == TestOnlyPolicy.CompanionId);
+                var firstEvidence = dayZero.DailyProvisioningConsumption.Where(x => x.SettlementId == firstSettlement.Id).ToArray();
+                Require(dayZero.RuleClock == T(87300) && dayZero.Intakes.Single().Status == IntakeStatus.Complete
+                    && firstSettlement.FoodConsumed == new RuleQuantity(1)
+                    && firstEvidence.Length == 1 && firstEvidence[0].IntakeId == dayZero.Intakes.Single().Id
+                    && firstEvidence[0].LotId == meal && firstEvidence[0].ReservationId == dayZero.Intakes.Single().ReservationId
+                    && firstEvidence[0].Amount == new RuleQuantity(1),
+                    "The first half-open day did not receive exactly the intake's pre-midnight pound.");
+
+                byte[] completedIntake = Bytes(simulation);
+                simulation = new Simulation(policy, codec.Decode(completedIntake), ExecutionProfile.Laboratory);
+                replay = new Simulation(policy, codec.Decode(completedIntake), ExecutionProfile.Laboratory);
+                AdvanceTo(simulation, 172800); AdvanceTo(replay, 172800);
+                var final = simulation.Capture();
+                var secondSettlement = final.DailyProvisioningSettlements.Single(x => x.DayOrdinal == 1
+                    && x.ActorId == TestOnlyPolicy.CompanionId);
+                var secondEvidence = final.DailyProvisioningConsumption.Where(x => x.SettlementId == secondSettlement.Id).ToArray();
+                var reservation = final.Work.Reservations.Single(x => x.Id == final.Intakes.Single().ReservationId);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)) && final.Intakes.Single().Status == IntakeStatus.Complete
+                    && secondSettlement.FoodConsumed == new RuleQuantity(1) && secondEvidence.Length == 1
+                    && secondEvidence[0].IntakeId == final.Intakes.Single().Id && secondEvidence[0].LotId == meal
+                    && secondEvidence[0].ReservationId == reservation.Id && secondEvidence[0].Amount == new RuleQuantity(1)
+                    && reservation.ConsumedAmount == new RuleQuantity(2),
+                    "The second half-open day lost attribution or save/restore replay diverged.");
+            });
+
+            cases.Add("daily_provisioning_candidate_strain_changes_route_pace_across_one_transaction", () => {
+                var routes = RouteTravelFixture(ExpeditionRouteQuality.Secured, risk: 0,
+                    mapping: ExpeditionRouteMapping.Mapped);
+                var wholePolicy = RouteTravelPolicy(routes).EnableDailyProvisioning();
+                var whole = World(wholePolicy);
+                RouteTravelReachSource(whole);
+                AdvanceTo(whole, 171900);
+                WorldCommit(whole, RouteTravelCommand(whole, CommandKind.StartRouteTravel, "provisioning.route.whole"));
+                WorldAdvance(whole, 4500);
+
+                var splitPolicy = RouteTravelPolicy(RouteTravelFixture(ExpeditionRouteQuality.Secured, risk: 0,
+                    mapping: ExpeditionRouteMapping.Mapped)).EnableDailyProvisioning();
+                var split = World(splitPolicy);
+                RouteTravelReachSource(split);
+                AdvanceTo(split, 171900);
+                WorldCommit(split, RouteTravelCommand(split, CommandKind.StartRouteTravel, "provisioning.route.split"));
+                WorldAdvance(split, 900);
+                var boundaryView = split.Capture();
+                int boundaryLevel = ExpeditionStrainRules.Current(boundaryView, TestOnlyPolicy.ActorId).Level;
+                var boundaryEffort = boundaryView.RouteTravels.Single().NominalEffort;
+                Require(boundaryLevel == 2 && boundaryEffort == T(800),
+                    "The boundary did not settle the second Strain level after the first 900 seconds of route effort. Clock="
+                    + boundaryView.RuleClock + ", level=" + boundaryLevel + ", effort=" + boundaryEffort + ", speed="
+                    + TestOnlyClubAttackPolicy.WalkingSpeed(boundaryView, TestOnlyPolicy.ActorId) + ".");
+                byte[] afterBoundary = Bytes(split);
+                split = new Simulation(splitPolicy, codec.Decode(afterBoundary), ExecutionProfile.Laboratory);
+                var restored = new Simulation(splitPolicy, codec.Decode(afterBoundary), ExecutionProfile.Laboratory);
+                WorldAdvance(split, 3600); WorldAdvance(restored, 3600);
+                var wholeEffort = whole.Capture().RouteTravels.Single().NominalEffort;
+                var splitEffort = split.Capture().RouteTravels.Single().NominalEffort;
+                Require(wholeEffort == T(2400) && splitEffort == wholeEffort
+                    && Bytes(split).SequenceEqual(Bytes(restored)),
+                    "A whole boundary-crossing route advance used stale candidate Strain, or restored continuation diverged. Whole="
+                    + wholeEffort + ", split=" + splitEffort + ".");
+            });
+
+            cases.Add("daily_provisioning_candidate_strain_interrupts_work_inside_boundary_transaction", () => {
+                var workPolicy = ProvisioningPolicy();
+                var work = World(workPolicy);
+                foreach (var step in new[] { new[] { 1, 0 }, new[] { 1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, 1 } }) {
+                    WorldStep(work, step[0], step[1]);
+                    WorldAdvance(work, 1);
+                }
+                string meal = ProvisioningHandle(work, TestOnlyInventoryPolicy.FoodId, new RuleQuantity(2),
+                    HandlingKind.Handover, destination: TestOnlyPolicy.CompanionId);
+                AdvanceTo(work, 431100);
+                Require(ExpeditionStrainRules.Current(work.Capture(), TestOnlyPolicy.CompanionId).Level == 4,
+                    "The work fixture did not reach the pre-incapacitation Strain level.");
+                WorldCommit(work, IC(work, CommandKind.StartIntake, meal,
+                    new InventoryRequest(new RuleQuantity(2)), TestOnlyPolicy.CompanionId));
+                WorldAdvance(work, 899);
+                byte[] beforeIncapacitation = Bytes(work);
+                work = new Simulation(workPolicy, codec.Decode(beforeIncapacitation), ExecutionProfile.Laboratory);
+                var workReplay = new Simulation(workPolicy, codec.Decode(beforeIncapacitation), ExecutionProfile.Laboratory);
+                WorldAdvance(work, 1); WorldAdvance(workReplay, 1);
+                var interrupted = work.Capture();
+                var intake = interrupted.Intakes.Single();
+                var claim = interrupted.Work.Reservations.Single(x => x.Id == intake.ReservationId);
+                Require(Bytes(work).SequenceEqual(Bytes(workReplay)) && intake.Status == IntakeStatus.Interrupted
+                    && ExpeditionStrainRules.Current(interrupted, TestOnlyPolicy.CompanionId).Level == 5
+                    && claim.ConsumedAmount == new RuleQuantity(1) && claim.ReleasedAmount == new RuleQuantity(1),
+                    "The exact fifth-day Strain transaction did not interrupt active food work after preserving consumed labor and stock. Status="
+                    + intake.Status + ", level=" + ExpeditionStrainRules.Current(interrupted, TestOnlyPolicy.CompanionId).Level
+                    + ", consumed=" + claim.ConsumedAmount + ", released=" + claim.ReleasedAmount + ", clock=" + interrupted.RuleClock + ".");
+            });
+
+            cases.Add("daily_provisioning_effective_maximum_bounds_healing_and_dose_attribution", () => {
+                var policy = ManufacturePolicy(TacticalSeed(6, 4, 3),
+                    crafting: new SharedCraftingFixture(heroHp: 17)).EnableDailyProvisioning();
+                var simulation = World(policy);
+                LearnManufacturing(simulation);
+                ManufactureStart(simulation);
+                WorldAdvance(simulation, 14400);
+                AdvanceTo(simulation, 4 * 86400);
+                var beforeWork = simulation.Capture();
+                Require(ExpeditionStrainRules.Current(beforeWork, TestOnlyPolicy.ActorId).Level == 4
+                    && beforeWork.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).MaximumHp == 26
+                    && beforeWork.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).Hp == 17,
+                    "The life fixture did not retain base HP 26 and current HP 17 at Strain level four.");
+                var criticalAuthority = new ActorLifeRecord(TestOnlyPolicy.ActorId, 26, 17, 0,
+                    new[] { 0, 1, 2 }, false, false, true, 0, 0, null, 0, false, Array.Empty<string>());
+                var criticalLife = ActorLifeRules.ReadForResolution(beforeWork, criticalAuthority);
+                var criticalHeal = PlaytestLife.Heal(criticalLife, 12);
+                var thresholdDamage = PlaytestLife.DamageAt(new LifeState(criticalLife.MaximumHp, 1), 20, T(345600));
+                Require(criticalLife.MaximumHp == 19 && criticalHeal.Hp == 18 && thresholdDamage.State.Dead
+                    && criticalAuthority.MaximumHp == 26,
+                    "Critical healing ceiling or instant-death damage threshold did not use effective maximum HP while preserving base authority.");
+
+                foreach (var step in new[] { (0, 1), (0, 1), (0, 1), (1, 0), (1, 0) }) {
+                    WorldStep(simulation, step.Item1, step.Item2);
+                    WorldAdvance(simulation, 2);
+                }
+                WorldAdvance(simulation, 1);
+                BeginEncounter(simulation);
+                byte[] readyToHeal = Bytes(simulation);
+                simulation = new Simulation(policy, codec.Decode(readyToHeal), ExecutionProfile.Laboratory);
+                var replay = new Simulation(policy, codec.Decode(readyToHeal), ExecutionProfile.Laboratory);
+                for (int turn = 0; simulation.Capture().Encounter.CurrentActor != TestOnlyPolicy.ActorId; turn++) {
+                    Require(turn < 4, "The saved encounter never returned control to the injured lead.");
+                    var current = simulation.Capture();
+                    if (!current.Stances.Any(x => x.TurnOrdinal == current.Encounter.TurnOrdinal)) {
+                        WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                            stance: (int)CombatStance.Aggressive));
+                        WorldCommit(replay, Tac(replay, CommandKind.SelectCombatStance,
+                            stance: (int)CombatStance.Aggressive));
+                    }
+                    WorldCommit(simulation, Tac(simulation, CommandKind.EndRegularTurn));
+                    WorldCommit(replay, Tac(replay, CommandKind.EndRegularTurn));
+                }
+                string dose = simulation.Capture().AlchemyDoses[0].Id;
+                WorldCommit(simulation, DoseCommand(simulation, dose));
+                WorldCommit(replay, DoseCommand(replay, dose));
+                var view = simulation.Capture();
+                var spent = view.AlchemyDoses.Single(x => x.Id == dose);
+                var life = view.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)) && spent.Spent
+                    && spent.PotentialHealing >= 2 && spent.ActualHealing == 2
+                    && life.MaximumHp == 26 && life.Hp == 19,
+                    "Strain's effective HP ceiling did not bound real dose healing and its recorded actual healing. Potential="
+                    + spent.PotentialHealing + ", actual=" + spent.ActualHealing + ", HP=" + life.Hp
+                    + ", base maximum=" + life.MaximumHp + ".");
+            });
+
+            cases.Add("daily_provisioning_dash_deadline_uses_exploration_after_encounter_exit", () => {
+                var policy = ConnectedPolicy(1, SeedForD20(20)).EnableDailyProvisioning();
+                var simulation = World(policy);
+                WorldAdvance(simulation, 3 * 86400);
+                for (int step = 0; step < 3 && !simulation.Capture().InventoryCombat; step++) {
+                    WorldStep(simulation, 1, 0);
+                    if (!simulation.Capture().InventoryCombat) WorldAdvance(simulation, 2);
+                }
+                Require(simulation.Capture().InventoryCombat
+                    && ExpeditionStrainRules.Current(simulation.Capture(), TestOnlyPolicy.ActorId).Level == 3,
+                    "The Strain-three approach did not enter the authored connected encounter.");
+                for (int turn = 0; simulation.Capture().Encounter.CurrentActor != TestOnlyPolicy.ActorId; turn++) {
+                    Require(turn < 4, "The connected encounter never offered the lead a turn.");
+                    ConnectedEnd(simulation);
+                }
+                WorldCommit(simulation, Tac(simulation, CommandKind.SelectCombatStance,
+                    stance: (int)CombatStance.Aggressive));
+                TacStep(simulation, 3, 0);
+                DefeatConnectedEnemy(simulation);
+                WorldCommit(simulation, Tac(simulation, CommandKind.EndFixedEncounter));
+                var exited = simulation.Capture();
+                Require(!exited.InventoryCombat && exited.Encounter != null
+                    && !exited.Encounter.Order.Contains(TestOnlyPolicy.CompanionId),
+                    "The fixture did not retain encounter history with the companion off initiative after exit.");
+
+                WaitForNextDashAllowance(simulation, TestOnlyPolicy.ActorId);
+                RunOneLegalStep(simulation, TestOnlyPolicy.ActorId);
+                var heroLock = simulation.Capture().ExpeditionDashLocks.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                bool heroDeadlineCorrect = !heroLock.InitiativeAnchored
+                    && heroLock.Deadline == heroLock.AppliedAt.AddSeconds(6);
+                WorldAdvance(simulation, 2);
+                string companionFailure = "";
+                try { RunOneLegalStep(simulation, TestOnlyPolicy.CompanionId); }
+                catch (Exception error) { companionFailure = error.Message; }
+                var companionLock = simulation.Capture().ExpeditionDashLocks.SingleOrDefault(x => x.ActorId == TestOnlyPolicy.CompanionId);
+                bool companionDeadlineCorrect = companionLock != null && !companionLock.InitiativeAnchored
+                    && companionLock.Deadline == companionLock.AppliedAt.AddSeconds(6);
+                byte[] bytes = Bytes(simulation);
+                var restored = new Simulation(policy, codec.Decode(bytes), ExecutionProfile.Laboratory);
+                Require(heroDeadlineCorrect && companionFailure == "" && companionDeadlineCorrect
+                    && Bytes(restored).SequenceEqual(bytes),
+                    "Post-exit Dash used retained initiative or failed for an off-calendar actor. Hero lock="
+                    + (heroLock == null ? "missing" : heroLock.InitiativeAnchored + "/" + heroLock.Deadline)
+                    + ", companion failure=" + companionFailure + ", companion lock="
+                    + (companionLock == null ? "missing" : companionLock.InitiativeAnchored + "/" + companionLock.Deadline) + ".");
+            });
+
+            cases.Add("daily_provisioning_modified_death_save_gates_d4_and_restores_rng", () => {
+                var facts = new SharedCraftingFixture(heroHp: 1,
+                    events: new[] { new CraftingMishapFact("strained-death-save", 4,
+                        lead: TestOnlyPolicy.ActorId, at: T(172800)) });
+                var seedPolicy = CraftPolicy(facts).EnableDailyProvisioning();
+                var initial = seedPolicy.Initial();
+                var loadout = initial.InitialCharacterLoadouts.SingleOrDefault(x => x.ActorId == TestOnlyPolicy.ActorId);
+                int conProficiency = loadout != null && loadout.SavingThrowProficiencyIds.Contains("CON", StringComparer.Ordinal)
+                    ? CharacterRuleFacts.ForActor(initial, TestOnlyPolicy.ActorId).ProficiencyBonus : 0;
+                int woundSaveModifier = checked(CharacterRuleFacts.ForActor(initial, TestOnlyPolicy.ActorId)
+                    .AbilityModifier(CharacterAbility.Constitution)
+                    + conProficiency - 1);
+                uint seed = StrainedDeathSaveSequenceSeed(woundSaveModifier);
+                var policy = CraftPolicy(facts, seed).EnableDailyProvisioning();
+                var simulation = World(policy);
+                WorldAdvance(simulation, 172800);
+                CraftEvent(simulation, "strained-death-save", TestOnlyPolicy.ActorId);
+                Require(simulation.Capture().Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).Hp == 0
+                    && ExpeditionStrainRules.Current(simulation.Capture(), TestOnlyPolicy.ActorId).Level == 2,
+                    "The fixture did not create a living, dying actor under Strain level two.");
+
+                void AdvanceUntilSaves(Simulation value, int saveCount)
+                {
+                    for (int step = 0; value.Capture().LifeEvents.Count(x => x.ActorId == TestOnlyPolicy.ActorId
+                        && x.Kind == LifeEventKind.DeathSave) < saveCount; step++) {
+                        Require(step < 16, "The world clock did not reach the requested lead death-save marker.");
+                        WorldAdvance(value, 6);
+                    }
+                }
+                AdvanceUntilSaves(simulation, 2);
+                var afterTwo = simulation.Capture();
+                Require(afterTwo.Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).DeathSuccesses == 2,
+                    "The natural-11 fixture rolls did not establish two modified successes.");
+                byte[] checkpoint = Bytes(simulation);
+                simulation = new Simulation(policy, codec.Decode(checkpoint), ExecutionProfile.Laboratory);
+                var replay = new Simulation(policy, codec.Decode(checkpoint), ExecutionProfile.Laboratory);
+                AdvanceUntilSaves(simulation, 3); AdvanceUntilSaves(replay, 3);
+                var third = simulation.Capture().LifeEvents.Where(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.Kind == LifeEventKind.DeathSave).OrderBy(x => x.Revision).ElementAt(2);
+                var d20 = PlaytestDice.RollD20(third.RandomBefore);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)) && third.Natural == 10
+                    && third.RecoveryD4 == 0 && third.WordsConsumed == 1
+                    && third.RandomAfter == d20.NextRandomState
+                    && simulation.Capture().Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).DeathFailures == 1,
+                    "Natural 10 with Strain's -1 modifier incorrectly drew stable-recovery d4 or advanced RNG. Natural="
+                    + third.Natural + ", d4=" + third.RecoveryD4 + ", words=" + third.WordsConsumed + ".");
+
+                byte[] afterFailedSave = Bytes(simulation);
+                simulation = new Simulation(policy, codec.Decode(afterFailedSave), ExecutionProfile.Laboratory);
+                replay = new Simulation(policy, codec.Decode(afterFailedSave), ExecutionProfile.Laboratory);
+                AdvanceUntilSaves(simulation, 4); AdvanceUntilSaves(replay, 4);
+                var fourth = simulation.Capture().LifeEvents.Where(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.Kind == LifeEventKind.DeathSave).OrderBy(x => x.Revision).ElementAt(3);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)) && fourth.Natural == 11
+                    && fourth.RecoveryD4 >= 1 && simulation.Capture().Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).Stable,
+                    "Natural 11 did not use the corrected stream, succeed under -1, and draw its required recovery d4.");
             });
 
             cases.Add("daily_provisioning_full_food_and_water_uses_real_shared_lots", () => {

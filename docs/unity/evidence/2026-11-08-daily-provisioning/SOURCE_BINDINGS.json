@@ -56,23 +56,31 @@
         "Laboratory/Model/SharedMining.cs",
         "Laboratory/Model/SharedCraftingConsequences.cs",
         "Tests/EditMode/DailyProvisioningCases.cs",
-        "Tests/EditMode/FoundationCases.cs"
+        "Tests/EditMode/FoundationCases.cs",
+        "Laboratory/Model/SharedManufacturing.cs"
       ],
       "tests": [
-        "daily_provisioning_profile_is_test_only_fingerprinted_and_restorable",
+        "daily_provisioning_candidate_strain_changes_route_pace_across_one_transaction",
+        "daily_provisioning_candidate_strain_interrupts_work_inside_boundary_transaction",
+        "daily_provisioning_dash_deadline_uses_exploration_after_encounter_exit",
+        "daily_provisioning_effective_maximum_bounds_healing_and_dose_attribution",
         "daily_provisioning_exploration_intake_boundary_restore_and_replay",
         "daily_provisioning_full_food_and_water_uses_real_shared_lots",
-        "daily_provisioning_single_advance_settles_every_crossed_day",
-        "daily_provisioning_map_route_and_reconnaissance_checks_use_strain",
         "daily_provisioning_level_two_reaches_shared_tactical_attack",
-        "daily_provisioning_multiday_catchup_projects_strain_and_death"
+        "daily_provisioning_map_route_and_reconnaissance_checks_use_strain",
+        "daily_provisioning_modified_death_save_gates_d4_and_restores_rng",
+        "daily_provisioning_multiday_catchup_projects_strain_and_death",
+        "daily_provisioning_one_intake_is_attributed_across_both_midnight_intervals",
+        "daily_provisioning_profile_is_test_only_fingerprinted_and_restorable",
+        "daily_provisioning_single_advance_settles_every_crossed_day"
       ],
       "implemented": [
         "Bind the canonical day epoch, fixed roster, ordinary food/water demands, source references, registry version, and exactly two admitted Expedition-check IDs into the immutable TEST_ONLY content fingerprint.",
         "Attribute daily quantities only from actual IntakeRecord intervals and consumed WorkLedger reservations, intersect freshness and half-open day boundaries, preserve settled days against later same-time intake, and settle every crossed endpoint once.",
         "Persist causal daily settlements, per-lot/per-intake consumption evidence, and Expedition Strain gain history using the schema62 codec while preserving historical codec branches.",
         "Project the adopted Strain effects through existing tactical attack/save, movement, permission, maximum-HP, death-save, ranged, reaction, and physical-work consumers without consuming RNG or rewriting authored initiative order.",
-        "Add current-source schema compatibility for the shared route-travel validator so the two explicitly registered route checks compose with daily settlement."
+        "Add current-source schema compatibility for the shared route-travel validator so the two explicitly registered route checks compose with daily settlement.",
+        "Candidate-revision, effective HP, post-encounter Dash scheduling, and modified death-save recovery now resolve through the existing shared authorities with save/replay regressions."
       ],
       "notImplemented": [
         "Production authority; non-fixed or mid-expedition roster changes; special diets, magical meals, needs modifiers, starvation remedies, Strain recovery, and day/watch profiles other than the approved epoch-zero daily profile.",

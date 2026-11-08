@@ -92,7 +92,10 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public static ExpeditionStrainEffectProjection Current(Snapshot s, string actorId)
-            => Project(s, actorId, s.RuleClock, s.Revision);
+            // Command-policy resolution operates on a detached candidate whose revision is still
+            // the committed revision. Boundary effects written by that candidate are stamped for
+            // the revision that Simulation will commit after policy resolution.
+            => Project(s, actorId, s.RuleClock, checked(s.Revision + 1));
 
         public static long EffectiveMaximumHp(Snapshot s, string actorId, RuleTime at, long revision)
         {
@@ -149,7 +152,9 @@ namespace Decennium.Foundation.Laboratory
             if (projection.Level < 3) return null;
             if (projection.DashProhibited) throw new InvalidOperationException("ExpeditionStrainPreventsDash");
             var encounter = s.Encounter;
-            if (encounter == null)
+            // Retained encounter history is not active tactical control. Off-calendar actors also
+            // have no initiative marker, even while a tactical encounter is active.
+            if (!s.InventoryCombat || encounter == null || !encounter.Order.Contains(actor))
                 return new ExpeditionDashLockRecord(actor, revision, s.RuleClock, CampGreens.Add(s.RuleClock, new RuleTime(6)));
 
             RuleTime phase = InitiativeMarkerPhase(encounter, actor);

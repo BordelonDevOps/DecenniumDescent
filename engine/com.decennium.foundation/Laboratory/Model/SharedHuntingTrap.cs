@@ -339,7 +339,7 @@ namespace Decennium.Foundation.Laboratory
             int con=checked(CharacterRuleFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
-            var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
+            var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
             s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
             words=checked(words+hurt.WordsConsumed);after=s.RandomState;
             return action.Resolve(s.RuleClock,HuntingTrapActionStatus.Failed,deployment.Id,false,natural,modifier,13,total,false,1,before,after,words);
@@ -453,7 +453,7 @@ namespace Decennium.Foundation.Laboratory
                 int con=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                     +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
-                var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),applied,s.RuleClock,s.RandomState,
+                var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),applied,s.RuleClock,s.RandomState,
                     constitutionSaveModifier:con,melee:false);
                 s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
                 words=checked(words+hurt.WordsConsumed);

@@ -277,7 +277,7 @@ namespace Decennium.Foundation.Laboratory
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON")
                     +ExpeditionStrainRules.Current(s,prior.WorkerId).SavingThrowModifier);
                 var life=actorFacts.Life;
-                var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,draw.NextState,constitution);
+                var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),damage,s.RuleClock,draw.NextState,constitution);
                 s.RandomState=injuryResult.NextRandomState;words=checked(words+draw.WordsConsumed+injuryResult.WordsConsumed);
                 wound=injuryResult.WoundRoll?.Natural??0;injuryRoll=injuryResult.InjuryD6??0;
                 TestOnlyClubAttackPolicy.ApplyLife(s,life,injuryResult.Outcome.State);
