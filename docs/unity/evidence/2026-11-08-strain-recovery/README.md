@@ -1,6 +1,6 @@
 # Secure Rest Expedition Strain recovery (schema64, TEST_ONLY)
 
-**Review status:** GPT reviewed initial commit `ff98d7d4e527258523f6833409012af9c9f28ce4` and held acceptance for two concrete defects. The focused correction is implemented and local validation passes; GPT's re-review of the corrected pushed commit is pending. This is one bounded MGT-03 gameplay increment, not engine completion. Code, reports, compiled assemblies, pinned-source bindings, the first review, and failed development attempts are retained in this folder.
+**Review status:** GPT accepted corrected commit `279b2412c545fa32e51120a9ef5149c84f6437a9` for this bounded TEST_ONLY MGT-03 increment, confirmed both prior blockers closed, and found no remaining concrete blocker. Its actual review, inspected evidence and unrun checks are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). GPT agreed that the next mapped dependency is Morale Rest; its reviewed-candidate status and source gaps must be respected. This increment is not engine completion. Code, reports, compiled assemblies, pinned-source bindings, review history and failed development attempts are retained here.
 
 ## Responsibilities and source requirements
 
