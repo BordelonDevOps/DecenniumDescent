@@ -29,3 +29,27 @@ GPT's result:
 > The current handoff explicitly leaves successor selection gated on this review; it does not name an approved next module. The immediate next step is therefore these two corrections, targeted regressions and refreshed evidence for review—not moving to another dependency yet.
 
 This response is the actual implementation-review result. It is distinct from the earlier pre-implementation design consensus in `REST_DEBT_CONSENSUS.md`.
+
+## Review of correction commit `3e9128786953f2beefb0d63d1c6f2c73660037d3`
+
+GPT's actual response:
+
+> Both blockers are closed. I accept commit `3e9128786953f2beefb0d63d1c6f2c73660037d3` as satisfying the agreed bounded schema63 MGT-03 acceptance. I found no remaining concrete acceptance blocker in the correction.
+>
+> Physical-position admission: `BeginRest` now uses `WorldPositionResolver` and rejects every pending traversal, including suspended traversal. The regression checks unchanged-state rejection before and after save/restore, then successful admission after physically returning to the berth.
+>
+> Query/execution parity: both paths now use `RestingActorCommandFailure`. Rest controls and `AdvanceClock` retain their exceptions. The regression verifies identical movement rejection during Rest and successful movement after explicit interruption.
+>
+> These are focused admission corrections. The commit changes no codec layout, schema, Strain accounting, or adopted gameplay policy. The guard remains inactive when the Rest profile is absent.
+>
+> I inspected the four-file C# diff, regression logic, evidence README, full/focused/module reports, source-binding manifest and audit, package report, trace and handoff. The retained reports record 1,259/1,259, both focused 1/1 passes, 18/18 package checks, and 17 named binding tests. I also compared the focused reports' recorded source-hash lists against the full report: all 250 entries match. This comparison does not independently verify the hashes against source bytes.
+>
+> I did not compile or execute C# tests, package validation, the binding audit, or Unity checks.
+>
+> Optional hardening remains the authentic pre-change schema62 save containing Strain gains, with byte-identical roundtrip and archived continuation comparison. It is not required to accept this correction.
+>
+> The current handoff does not select a successor dependency. It still contains pre-push/re-review status text. Codex should record this acceptance and update that stale status, then obtain an explicit Codex/GPT selection from the existing implementation map before starting the next module. This review clears the current implementation gate; it does not establish a new roadmap choice.
+>
+> The module remains TEST_ONLY, the engine remains unfinished, and Unity integration stays deferred.
+
+GPT personally ran no C# compilation/tests, package validation, binding audit or Unity checks. Its acceptance is an independent review of the pushed diff and retained evidence, not an independent execution result. The optional schema62 historical-save continuation is not an acceptance blocker.
