@@ -85,11 +85,33 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Invalid Expedition Strain projection request.");
             if (s.SchemaVersion < Snapshot.DailyProvisioningSchema)
                 return new ExpeditionStrainEffectProjection(0);
-            int level = s.ExpeditionStrainGains.Where(x => x.ActorId == actorId && x.Revision <= revision && x.At <= at)
-                .Sum(x => x.AddedAmount);
+            int level = OrderedGains(s, actorId).Where(x => x.Revision <= revision && x.At <= at).Sum(x => x.AddedAmount);
             if (level < 0 || level > 6) throw new InvalidOperationException("Invalid Expedition Strain point total.");
             return new ExpeditionStrainEffectProjection(level);
         }
+
+        internal static ExpeditionStrainGainRecord[] OrderedGains(Snapshot s, string actorId)
+            => s.SchemaVersion >= Snapshot.RestDebtSchema
+                ? s.ExpeditionStrainGains.Where(x => x.ActorId == actorId).OrderBy(x => x.At).ThenBy(x => x.Revision)
+                    .ThenBy(x => x.GainSequence).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray()
+                : s.ExpeditionStrainGains.Where(x => x.ActorId == actorId).OrderBy(x => x.At).ThenBy(x => x.Revision)
+                    .ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
+
+        internal static int PriorLevel(Snapshot s, ExpeditionStrainGainRecord target)
+        {
+            int level = 0;
+            foreach (var gain in OrderedGains(s, target.ActorId))
+            {
+                if (gain.Id == target.Id) return level;
+                level = checked(level + gain.AddedAmount);
+            }
+            throw new InvalidOperationException("Strain gain is absent from its actor history.");
+        }
+
+        internal static int NextGainSequence(Snapshot s, string actorId, long revision)
+            => s.SchemaVersion < Snapshot.RestDebtSchema ? 0
+                : s.ExpeditionStrainGains.Where(x => x.ActorId == actorId && x.Revision == revision)
+                    .Select(x => x.GainSequence).DefaultIfEmpty(-1).Max() + 1;
 
         public static ExpeditionStrainEffectProjection Current(Snapshot s, string actorId)
             // Command-policy resolution operates on a detached candidate whose revision is still
@@ -200,24 +222,34 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null) return;
             string error = dailyProvisioning.ValidateBindings(s);
             if (error != null) throw new InvalidOperationException(error);
-            if (s.SchemaVersion != Snapshot.DailyProvisioningSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
+            int expectedSchema = restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
+            if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
                 throw new InvalidOperationException("DailyProvisioningRequiresCanonicalInitialProfile");
             s.DailyProvisioningSettlements = Array.Empty<DailyProvisioningSettlementRecord>();
             s.DailyProvisioningConsumption = Array.Empty<DailyProvisioningConsumptionRecord>();
             s.ExpeditionStrainGains = Array.Empty<ExpeditionStrainGainRecord>();
             s.ExpeditionDashLocks = Array.Empty<ExpeditionDashLockRecord>();
+            s.RestWatchSchedules = Array.Empty<RestWatchScheduleRecord>();
+            s.RestIntervals = Array.Empty<RestIntervalRecord>();
+            s.RestWatchOutcomes = Array.Empty<RestWatchOutcomeRecord>();
+            s.RestDebtEvents = Array.Empty<RestDebtEventRecord>();
         }
 
         private string ValidateDailyProvisioningState(Snapshot s)
         {
             if (dailyProvisioning == null)
-                return s.SchemaVersion != Snapshot.DailyProvisioningSchema && s.DailyProvisioningSettlements.Length == 0
+                return s.SchemaVersion != Snapshot.DailyProvisioningSchema && s.SchemaVersion != Snapshot.RestDebtSchema
+                    && s.DailyProvisioningSettlements.Length == 0
                     && s.DailyProvisioningConsumption.Length == 0 && s.ExpeditionStrainGains.Length == 0
-                    && s.ExpeditionDashLocks.Length == 0 ? null : "DailyProvisioningProfileMissing";
-            if (s.SchemaVersion != Snapshot.DailyProvisioningSchema || !s.TestOnly
+                    && s.ExpeditionDashLocks.Length == 0 && s.RestWatchSchedules.Length == 0 && s.RestIntervals.Length == 0
+                    && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0 ? null : "DailyProvisioningProfileMissing";
+            int expectedSchema = restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
+            if (s.SchemaVersion != expectedSchema || !s.TestOnly
                 || s.ContentFingerprint != ContentFingerprint || dailyProvisioning.ValidateBindings(s) != null)
                 return "DailyProvisioningProfileMismatch";
-            return ValidateDailyProvisioningHistory(s);
+            string dailyError = ValidateDailyProvisioningHistory(s);
+            if (dailyError != null) return dailyError;
+            return ValidateRestDebtState(s);
         }
 
         private string ValidateDailyProvisioningHistory(Snapshot s)
@@ -258,6 +290,7 @@ namespace Decennium.Foundation.Laboratory
 
             foreach (var gain in s.ExpeditionStrainGains)
             {
+                if (gain.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning) continue;
                 var settlement = s.DailyProvisioningSettlements.SingleOrDefault(x => x.Id == gain.SettlementId);
                 if (settlement == null || settlement.StrainGainId != gain.Id || gain.SourceId != TestOnlyDailyProvisioningProfile.SourceId
                     || gain.TrackId != TestOnlyDailyProvisioningProfile.TrackId || gain.AttemptedAmount != 1
@@ -266,9 +299,7 @@ namespace Decennium.Foundation.Laboratory
                 // Several crossed day boundaries can settle in one accepted clock command, so
                 // earlier same-command gains have the same revision as this record. Historical
                 // Strain is ordered by its canonical elapsed-time endpoint, not command revision.
-                int priorLevel = s.ExpeditionStrainGains.Where(x => x.ActorId == gain.ActorId
-                    && (x.At < gain.At || x.At == gain.At && x.Revision < gain.Revision))
-                    .Sum(x => x.AddedAmount);
+                int priorLevel = ExpeditionStrainRules.PriorLevel(s, gain);
                 int added = Math.Min(1, 6 - priorLevel);
                 var expectedEndpoint = priorLevel >= 5 ? ExpeditionStrainEndpoint.OrdinaryDeath : ExpeditionStrainEndpoint.None;
                 if (gain.LevelBefore != priorLevel || gain.AddedAmount != added || gain.Endpoint != expectedEndpoint)
@@ -358,8 +389,10 @@ namespace Decennium.Foundation.Laboratory
                         int level = ExpeditionStrainRules.Project(s, actor, end, s.Revision + 1).Level;
                         int added = Math.Min(1, 6 - level);
                         var endpoint = level >= 5 ? ExpeditionStrainEndpoint.OrdinaryDeath : ExpeditionStrainEndpoint.None;
-                        var gain = new ExpeditionStrainGainRecord(gainId, added > 0 ? gainId + ".point" : "", id,
-                            actor, TestOnlyDailyProvisioningProfile.SourceId, TestOnlyDailyProvisioningProfile.TrackId,
+                        var gain = new ExpeditionStrainGainRecord(gainId, added > 0 ? gainId + ".point" : "",
+                            ExpeditionStrainCauseKind.DailyProvisioning, id,
+                            ExpeditionStrainRules.NextGainSequence(s, actor, s.Revision + 1), actor,
+                            TestOnlyDailyProvisioningProfile.SourceId, TestOnlyDailyProvisioningProfile.TrackId,
                             end, s.Revision + 1, level, 1, added, true, false, endpoint);
                         s.ExpeditionStrainGains = s.ExpeditionStrainGains.Concat(new[] { gain }).ToArray();
                         if (endpoint == ExpeditionStrainEndpoint.OrdinaryDeath && living)

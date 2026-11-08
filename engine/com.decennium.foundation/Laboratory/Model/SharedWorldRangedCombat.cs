@@ -96,6 +96,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartMiningAssay||kind==CommandKind.PauseMiningAssay||kind==CommandKind.ResumeMiningAssay
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
+            ||kind==CommandKind.ScheduleRestWatch||kind==CommandKind.BeginRest||kind==CommandKind.InterruptRest
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
@@ -237,6 +238,7 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if(IsRestDebtCommand(c.Kind))return QueryRestDebtCommand(s,c);
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
             if((c.Kind==CommandKind.Ready||c.Kind==CommandKind.RespondReady)&&readyActionEnabled) {

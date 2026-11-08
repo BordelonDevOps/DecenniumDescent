@@ -179,6 +179,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRouteMappingWork(s);
             InitializeRouteReconnaissance(s);
             InitializeDailyProvisioning(s);
+            InitializeRestDebt(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -427,6 +428,7 @@ namespace Decennium.Foundation.Laboratory
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<next)next=routeMappingWorkBoundary.Value;
                 var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<next)next=routeReconnaissanceBoundary.Value;
                 var provisioningBoundary=NextProvisioningBoundary(s);if(provisioningBoundary.HasValue&&provisioningBoundary.Value<next)next=provisioningBoundary.Value;
+                var restDebtBoundary=NextRestDebtBoundary(s);if(restDebtBoundary.HasValue&&restDebtBoundary.Value<next)next=restDebtBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -543,6 +545,7 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyMiningAssays(s);
                 ResolveReadyMineralPreparations(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
+                string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -577,6 +580,8 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
+            if (IsActorResting(s, c.Actor) && c.Kind != CommandKind.AdvanceClock) return "ActorCurrentlyResting";
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
@@ -721,6 +726,8 @@ namespace Decennium.Foundation.Laboratory
                 if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);
                 if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var restDebtBoundary=NextRestDebtBoundary(s);
+                if(restDebtBoundary.HasValue&&restDebtBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock; string failure = inventory.Resolve(s, c);
             if (failure != null) return failure;
@@ -742,6 +749,7 @@ namespace Decennium.Foundation.Laboratory
                 RefreshIntervals(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
+                string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
             }
             return null;
         }

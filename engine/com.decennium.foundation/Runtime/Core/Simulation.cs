@@ -28,7 +28,8 @@ namespace Decennium.Foundation
         StartRouteTravel, PauseRouteTravel, ResumeRouteTravel, ConsumeTestOnlyRouteMappingResult, Dodge,
         PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady,
         StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork,
-        StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance }
+        StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance,
+        ScheduleRestWatch, BeginRest, InterruptRest }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -115,6 +116,7 @@ namespace Decennium.Foundation
         public const int RouteReconnaissanceSchema = 60;
         public const int SharedCharacterAdvancementSchema = 61;
         public const int DailyProvisioningSchema = 62;
+        public const int RestDebtSchema = 63;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -264,6 +266,10 @@ namespace Decennium.Foundation
         public DailyProvisioningConsumptionRecord[] DailyProvisioningConsumption = Array.Empty<DailyProvisioningConsumptionRecord>();
         public ExpeditionStrainGainRecord[] ExpeditionStrainGains = Array.Empty<ExpeditionStrainGainRecord>();
         public ExpeditionDashLockRecord[] ExpeditionDashLocks = Array.Empty<ExpeditionDashLockRecord>();
+        public RestWatchScheduleRecord[] RestWatchSchedules = Array.Empty<RestWatchScheduleRecord>();
+        public RestIntervalRecord[] RestIntervals = Array.Empty<RestIntervalRecord>();
+        public RestWatchOutcomeRecord[] RestWatchOutcomes = Array.Empty<RestWatchOutcomeRecord>();
+        public RestDebtEventRecord[] RestDebtEvents = Array.Empty<RestDebtEventRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -329,6 +335,8 @@ namespace Decennium.Foundation
             DailyProvisioningSettlements = DailyProvisioningSettlements.ToArray(),
             DailyProvisioningConsumption = DailyProvisioningConsumption.ToArray(),
             ExpeditionStrainGains = ExpeditionStrainGains.ToArray(), ExpeditionDashLocks = ExpeditionDashLocks.ToArray(),
+            RestWatchSchedules = RestWatchSchedules.ToArray(), RestIntervals = RestIntervals.ToArray(),
+            RestWatchOutcomes = RestWatchOutcomes.ToArray(), RestDebtEvents = RestDebtEvents.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -648,7 +656,8 @@ namespace Decennium.Foundation
             if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteReconnaissanceSchema
-                || s.SchemaVersion == Foundation.Snapshot.DailyProvisioningSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.DailyProvisioningSchema
+                || s.SchemaVersion == Foundation.Snapshot.RestDebtSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema

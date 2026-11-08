@@ -90,6 +90,44 @@ namespace Decennium.Foundation.Tests
                         WorldAdvance(simulation, 6);
                 }
             }
+            TestOnlySharedWorldPolicy RestDebtPolicy(TestOnlyRestDebtProfile restProfile = null)
+                => new TestOnlySharedWorldPolicy().EnableCampGreensAssignments()
+                    .EnableDailyProvisioning().EnableRestDebt(restProfile);
+            Simulation RestoreRestDebt(Simulation simulation, TestOnlySharedWorldPolicy policy)
+                => new Simulation(policy, codec.Decode(Bytes(simulation)), ExecutionProfile.Laboratory);
+            void ScheduleRest(Simulation simulation, long day, RestWatchSlot slot, string actor = TestOnlyPolicy.ActorId)
+                => WorldCommit(simulation, IC(simulation, CommandKind.ScheduleRestWatch,
+                    "day." + day.ToString(System.Globalization.CultureInfo.InvariantCulture), actor: actor, x: (int)slot));
+            void AdvanceRestDebt(Simulation simulation, int seconds)
+            {
+                var command = IC(simulation, CommandKind.AdvanceClock, actor: TestOnlyPolicy.ActorId,
+                    x: seconds, y: 1, id: "rest.clock." + simulation.Capture().Revision.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                var result = simulation.Execute(TestOnlySharedWorldPolicy.Host(), command);
+                Require(result.Outcome == Outcome.Committed, command.Id + " (" + command.Kind + "): " + result.Code
+                    + " [target=" + command.Target + ", x=" + command.X + ", y=" + command.Y + ", inventory="
+                    + (command.Inventory == null) + ", clock=" + simulation.Capture().RuleClock + "]");
+            }
+            void StartAssignedPlanting(Simulation simulation, string cropId)
+            {
+                var request = new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.CropPlanting, cropId);
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                    request: request, actor: TestOnlyPolicy.CompanionId));
+                var assignment = simulation.Capture().ExpeditionAssignments.Single(x => x.WorkerId == TestOnlyPolicy.CompanionId);
+                Require(assignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "Companion was not already at the registered Camp Greens work site.");
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.StartExpeditionWork,
+                    assignment.Id, actor: TestOnlyPolicy.CompanionId));
+            }
+            string[] StrainSemantics(Snapshot s) => s.ExpeditionStrainGains
+                .Where(x => x.ActorId == TestOnlyPolicy.ActorId)
+                .OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.GainSequence).ThenBy(x => x.Id, StringComparer.Ordinal)
+                .Select(x => x.CauseKind + "|" + x.At + "|" + x.GainSequence + "|" + x.LevelBefore + "|"
+                    + x.AttemptedAmount + "|" + x.AddedAmount + "|" + x.OrdinaryRemovable + "|"
+                    + x.RemovalGateMet + "|" + x.Endpoint).ToArray();
+            string[] DebtSemantics(Snapshot s) => s.RestDebtEvents.Where(x => x.ActorId == TestOnlyPolicy.ActorId)
+                .OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.EventSequence)
+                .Select(x => x.Kind + "|" + x.At + "|" + x.DeadlineBefore + "|" + x.DeadlineAfter + "|"
+                    + (x.StrainGainId != "") + "|" + x.EventSequence).ToArray();
 
             cases.Add("daily_provisioning_profile_is_test_only_fingerprinted_and_restorable", () => {
                 var policy = ProvisioningPolicy();
@@ -646,6 +684,180 @@ namespace Decennium.Foundation.Tests
                 WorldCommit(deterministic, repeatedAdvance);
                 Require(Bytes(simulation).SequenceEqual(Bytes(deterministic)),
                     "Post-restore command replay diverged after multi-day settlement.");
+            });
+
+            cases.Add("rest_debt_connects_companion_work_safe_rest_deadline_and_replay", () => {
+                const string cropId = "TEST_ONLY.rest-debt-assigned-crop";
+                var policy = RestDebtPolicy();
+                var simulation = World(policy);
+                Require(simulation.Capture().SchemaVersion == Snapshot.RestDebtSchema
+                    && simulation.Capture().TestOnly,
+                    "Rest Debt did not select its isolated schema63 TEST_ONLY profile.");
+                var restOptions = simulation.DiscoverCommands(host, TestOnlyPolicy.ActorId);
+                var beginRestOption = restOptions.SingleOrDefault(x => x.Command.Kind == CommandKind.BeginRest);
+                var scheduleOption = restOptions.FirstOrDefault(x => x.Command.Kind == CommandKind.ScheduleRestWatch);
+                Require(beginRestOption != null && beginRestOption.Query.Supported && beginRestOption.Query.Admissible
+                    && beginRestOption.Query.Costs.Single().Kind == "rest-seconds"
+                    && scheduleOption != null && scheduleOption.Query.Supported && scheduleOption.Query.Admissible,
+                    "The active safe-rest and prospective Rest Watch controls were not discoverable through the shared command query.");
+                var encounterPolicy = new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed: 39))
+                    .EnableDailyProvisioning().EnableRestDebt();
+                var restingCombat = World(encounterPolicy);
+                WorldCommit(restingCombat, IC(restingCombat, CommandKind.BeginRest, "TEST_ONLY.safe-berth"));
+                byte[] beforeUnsupportedEmergency = Bytes(restingCombat);
+                var emergency = restingCombat.Execute(host, IC(restingCombat, CommandKind.BeginFixedEncounter,
+                    actor: AdditionalTacticalActor.Id));
+                Require(emergency.Outcome == Outcome.Rejected && emergency.Code == "RestInterruptionAuthorityUnsupported"
+                    && beforeUnsupportedEmergency.SequenceEqual(Bytes(restingCombat)),
+                    "A tactical interruption without an authoritative emergency event changed an active Rest (outcome="
+                    + emergency.Outcome + ", code=" + emergency.Code + ", rest="
+                    + restingCombat.Capture().RestIntervals.Single().Status + ").");
+                ScheduleRest(simulation, 1, RestWatchSlot.Afternoon);
+                AdvanceRestDebt(simulation, 16 * 3600);
+                StartAssignedPlanting(simulation, cropId);
+                var plant = simulation.Capture().Crops.Single(x => x.Id == cropId).Tasks.Single();
+                Require(plant.Status == CropWorkStatus.Working && plant.StartedAt == T(16 * 3600),
+                    "Companion crop work did not start on the shared Rest Watch clock.");
+
+                AdvanceRestDebt(simulation, 8 * 3600);
+                var atMiss = simulation.Capture();
+                var missedEvening = atMiss.RestWatchOutcomes.Single(x => x.ActorId == TestOnlyPolicy.ActorId && x.DayOrdinal == 0);
+                var opened = atMiss.RestDebtEvents.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                var companionPlant = atMiss.Crops.Single(x => x.Id == cropId).Tasks.Single();
+                var workInterval = atMiss.Work.WorkerIntervals.Single(x => x.JobId == companionPlant.Id);
+                Require(atMiss.RuleClock == T(24 * 3600) && missedEvening.Slot == RestWatchSlot.Evening
+                    && missedEvening.Outcome == RestWatchOutcomeKind.Missed && opened.Kind == RestDebtEventKind.Opened
+                    && opened.At == T(24 * 3600) && opened.DeadlineAfter == T(40 * 3600)
+                    && companionPlant.Status == CropWorkStatus.Complete
+                    && workInterval.Start == T(16 * 3600) && workInterval.End == T(17 * 3600),
+                    "Evening Rest miss, 40-hour deadline, or real companion work interval did not settle together.");
+
+                string beforeDeadlinePath = Path.Combine(directory, "rest-debt-before-deadline.ddsave");
+                new FileSaveStore().Save(beforeDeadlinePath, atMiss);
+                simulation = new Simulation(policy, new FileSaveStore().Load(beforeDeadlinePath), ExecutionProfile.Laboratory);
+                byte[] preDeadline = Bytes(simulation);
+                var restored = RestoreRestDebt(simulation, policy);
+                Require(preDeadline.SequenceEqual(Bytes(restored)), "Schema63 Rest Debt state changed through save/restore.");
+
+                var clearBranch = RestoreRestDebt(simulation, policy);
+                int strainBeforeClear = ExpeditionStrainRules.Current(clearBranch.Capture(), TestOnlyPolicy.ActorId).Level;
+                WorldCommit(clearBranch, IC(clearBranch, CommandKind.BeginRest, "TEST_ONLY.safe-berth"));
+                string activeRestPath = Path.Combine(directory, "rest-debt-active-safe-rest.ddsave");
+                new FileSaveStore().Save(activeRestPath, clearBranch.Capture());
+                clearBranch = new Simulation(policy, new FileSaveStore().Load(activeRestPath), ExecutionProfile.Laboratory);
+                AdvanceRestDebt(clearBranch, 8 * 3600);
+                var cleared = clearBranch.Capture();
+                Require(cleared.RestIntervals.Single(x => x.ActorId == TestOnlyPolicy.ActorId).Status == RestIntervalStatus.Completed
+                    && cleared.RestDebtEvents.Last(x => x.ActorId == TestOnlyPolicy.ActorId).Kind == RestDebtEventKind.Cleared
+                    && cleared.RestDebtEvents.Last(x => x.ActorId == TestOnlyPolicy.ActorId).At == T(32 * 3600)
+                    && ExpeditionStrainRules.Current(cleared, TestOnlyPolicy.ActorId).Level == strainBeforeClear,
+                    "A qualifying safe Rest did not clear debt at hour32 without removing Strain.");
+
+                var unsafeProfile = new TestOnlyRestDebtProfile(sites: new[] {
+                    new TestOnlyRestSiteFact("TEST_ONLY.safe-berth", 0, 0, true, true),
+                    new TestOnlyRestSiteFact("TEST_ONLY.exposed-berth", 1, 0, false, true)
+                });
+                var unsafePolicy = RestDebtPolicy(unsafeProfile);
+                var unsafeSimulation = World(unsafePolicy);
+                AdvanceRestDebt(unsafeSimulation, 24 * 3600);
+                WorldCommit(unsafeSimulation, IC(unsafeSimulation, CommandKind.BeginRest, "TEST_ONLY.safe-berth"));
+                AdvanceRestDebt(unsafeSimulation, 8 * 3600);
+                var forgedUnsafeClear = unsafeSimulation.Capture().Copy();
+                forgedUnsafeClear.RestIntervals = forgedUnsafeClear.RestIntervals.Select(x => x.ActorId == TestOnlyPolicy.ActorId
+                    ? new RestIntervalRecord(x.Id, x.ActorId, "TEST_ONLY.exposed-berth", x.StartedAt, x.ScheduledEnd,
+                        x.EndedAt, x.Status, x.Revision) : x).ToArray();
+                Throws<ArgumentException>(() => new Simulation(unsafePolicy, forgedUnsafeClear, ExecutionProfile.Laboratory));
+
+                // Whole versus split clock advancement, with a restore before the hour40 boundary.
+                var whole = RestoreRestDebt(simulation, policy);
+                AdvanceRestDebt(whole, 16 * 3600);
+                var split = RestoreRestDebt(simulation, policy);
+                AdvanceRestDebt(split, 8 * 3600);
+                string beforeDuePath = Path.Combine(directory, "rest-debt-before-hour40.ddsave");
+                new FileSaveStore().Save(beforeDuePath, split.Capture());
+                split = new Simulation(policy, new FileSaveStore().Load(beforeDuePath), ExecutionProfile.Laboratory);
+                AdvanceRestDebt(split, 8 * 3600);
+                var wholeState = whole.Capture(); var splitState = split.Capture();
+                var dueAndMiss = wholeState.RestDebtEvents.Where(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.At == T(40 * 3600)).OrderBy(x => x.EventSequence).ToArray();
+                var linkedGains = wholeState.ExpeditionStrainGains.Where(x => dueAndMiss.Any(e => e.StrainGainId == x.Id))
+                    .OrderBy(x => x.GainSequence).ToArray();
+                Require(wholeState.RuleClock == T(40 * 3600) && splitState.RuleClock == wholeState.RuleClock
+                    && dueAndMiss.Select(x => x.Kind).SequenceEqual(new[] { RestDebtEventKind.UnpaidDeadline, RestDebtEventKind.MissedWhileIndebted })
+                    && dueAndMiss[1].DeadlineAfter == T(56 * 3600)
+                    && linkedGains.Length == 2 && linkedGains[0].CauseKind == ExpeditionStrainCauseKind.RestDebtDeadline
+                    && linkedGains[1].CauseKind == ExpeditionStrainCauseKind.RestMissedWhileIndebted
+                    && linkedGains[0].LevelBefore + linkedGains[0].AddedAmount == linkedGains[1].LevelBefore
+                    && StrainSemantics(wholeState).SequenceEqual(StrainSemantics(splitState))
+                    && DebtSemantics(wholeState).SequenceEqual(DebtSemantics(splitState)),
+                    "Hour40 deadline and same-time missed Rest did not produce two ordered gains/reset or partition equivalence.");
+                var duplicateDue = wholeState.Copy();
+                var originalDue = dueAndMiss.Single(x => x.Kind == RestDebtEventKind.UnpaidDeadline);
+                int nextEventSequence = duplicateDue.RestDebtEvents.Where(x => x.ActorId == originalDue.ActorId
+                    && x.Revision == originalDue.Revision).Max(x => x.EventSequence) + 1;
+                duplicateDue.RestDebtEvents = duplicateDue.RestDebtEvents.Concat(new[] { new RestDebtEventRecord(
+                    "rest.debt.duplicate-due", originalDue.ActorId, originalDue.Kind, originalDue.At,
+                    originalDue.Revision, nextEventSequence, originalDue.EpisodeId, originalDue.EvidenceId,
+                    originalDue.DeadlineBefore, originalDue.DeadlineAfter, originalDue.StrainGainId) }).ToArray();
+                Throws<ArgumentException>(() => Validation.Snapshot(duplicateDue));
+                var wrongActor = wholeState.Copy();
+                wrongActor.RestDebtEvents = wrongActor.RestDebtEvents.Select(x => x.Id != originalDue.Id ? x
+                    : new RestDebtEventRecord(x.Id, TestOnlyPolicy.CompanionId, x.Kind, x.At, x.Revision,
+                        x.EventSequence, x.EpisodeId, x.EvidenceId, x.DeadlineBefore, x.DeadlineAfter,
+                        x.StrainGainId)).ToArray();
+                Throws<ArgumentException>(() => Validation.Snapshot(wrongActor));
+                AdvanceRestDebt(whole, 1);
+                Require(whole.Capture().RestDebtEvents.Count(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.Kind == RestDebtEventKind.UnpaidDeadline) == 1,
+                    "Rest Debt produced a repeated deadline gain merely because time continued.");
+
+                var replayA = RestoreRestDebt(simulation, policy);
+                var replayB = RestoreRestDebt(simulation, policy);
+                var replayCommand = IC(replayA, CommandKind.AdvanceClock, x: 16 * 3600, y: 1,
+                    id: "rest.replay." + replayA.Capture().Revision.ToString(System.Globalization.CultureInfo.InvariantCulture));
+                WorldCommit(replayA, replayCommand); WorldCommit(replayB, replayCommand);
+                byte[] replayed = Bytes(replayA);
+                Require(replayed.SequenceEqual(Bytes(replayB))
+                    && replayA.Execute(TestOnlySharedWorldPolicy.Host(), replayCommand).Outcome == Outcome.Duplicate
+                    && replayed.SequenceEqual(Bytes(replayA)),
+                    "Rest Debt due/missed events diverged on deterministic save/restore replay or duplicate submission.");
+            });
+
+            cases.Add("rest_debt_and_daily_provisioning_share_same_time_strain_order", () => {
+                const string cropId = "TEST_ONLY.rest-debt-morning-crop";
+                var policy = RestDebtPolicy(); var simulation = World(policy);
+                ScheduleRest(simulation, 0, RestWatchSlot.Morning);
+                StartAssignedPlanting(simulation, cropId);
+                AdvanceRestDebt(simulation, 8 * 3600);
+                var opened = simulation.Capture().RestDebtEvents.Single(x => x.ActorId == TestOnlyPolicy.ActorId);
+                Require(opened.At == T(8 * 3600) && opened.DeadlineAfter == T(24 * 3600),
+                    "Morning miss did not open the second-following-Watch deadline at hour24.");
+                AdvanceRestDebt(simulation, 16 * 3600);
+                var state = simulation.Capture();
+                var sameTime = state.ExpeditionStrainGains.Where(x => x.ActorId == TestOnlyPolicy.ActorId
+                    && x.At == T(24 * 3600)).OrderBy(x => x.GainSequence).ToArray();
+                Require(sameTime.Length == 2 && sameTime[0].CauseKind == ExpeditionStrainCauseKind.DailyProvisioning
+                    && sameTime[1].CauseKind == ExpeditionStrainCauseKind.RestDebtDeadline
+                    && sameTime[0].GainSequence == 0 && sameTime[1].GainSequence == 1
+                    && sameTime[0].LevelBefore == 0 && sameTime[1].LevelBefore == sameTime[0].LevelAfter
+                    && sameTime[1].OrdinaryRemovable == null && sameTime[1].RemovalGateMet == null
+                    && ExpeditionStrainRules.Current(state, TestOnlyPolicy.ActorId).Level == 2,
+                    "Shared timestamp/command Strain gains did not preserve their ordered cumulative source history.");
+
+                var forged = state.Copy();
+                var target = forged.ExpeditionStrainGains.Single(x => x.CauseKind == ExpeditionStrainCauseKind.RestDebtDeadline);
+                var forgedKind = state.Copy();
+                forgedKind.ExpeditionStrainGains = forgedKind.ExpeditionStrainGains.Select(x => x.Id != target.Id ? x
+                    : new ExpeditionStrainGainRecord(x.Id, x.PointId, ExpeditionStrainCauseKind.RestMissedWhileIndebted,
+                        x.CauseId, x.GainSequence, x.ActorId, x.SourceId, x.TrackId, x.At, x.Revision,
+                        x.LevelBefore, x.AttemptedAmount, x.AddedAmount, x.OrdinaryRemovable,
+                        x.RemovalGateMet, x.Endpoint)).ToArray();
+                Throws<ArgumentException>(() => Validation.Snapshot(forgedKind));
+                forged.ExpeditionStrainGains = forged.ExpeditionStrainGains.Select(x => x.Id != target.Id ? x
+                    : new ExpeditionStrainGainRecord(x.Id, x.PointId, x.CauseKind, "rest.debt.forged", x.GainSequence,
+                        x.ActorId, x.SourceId, x.TrackId, x.At, x.Revision, x.LevelBefore, x.AttemptedAmount,
+                        x.AddedAmount, x.OrdinaryRemovable, x.RemovalGateMet, x.Endpoint)).ToArray();
+                Throws<ArgumentException>(() => Validation.Snapshot(forged));
             });
         }
     }

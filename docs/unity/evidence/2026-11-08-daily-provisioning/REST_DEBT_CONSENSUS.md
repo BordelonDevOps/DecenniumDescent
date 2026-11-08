@@ -32,6 +32,14 @@ Codex asked GPT whether FL-03 or the pinned Expedition Strain recovery text clas
 
 GPT inspected the pinned Player Book, Strain reference and bindings, and ran no code or tests. It said these bounded representations can proceed without owner escalation. Recovery classification, Rest benefits and Strain removal remain outside this slice.
 
+## Follow-up boundary ruling — coincident deadline and missed Rest
+
+Codex asked GPT how to order two FL-03 causes when an unpaid Rest Debt deadline and another missed scheduled Rest occur at the same shared-clock instant. FL-03 specifies each trigger but not their relative order. GPT's recommendation was to retain **two separately caused gains** because both independently apply: one for the unpaid due event and one for missing a Rest while already indebted.
+
+The bounded TEST_ONLY completion is: at the shared boundary, first settle a still-owed prior deadline for +1 Strain, then resolve the newly missed Rest for +1 Strain and reset its deadline to two following Watches. Each event has its own cause/event ID, shares the boundary timestamp and command revision, and receives the next durable per-actor event/gain sequence. Both use the common cap and endpoint projection; duplicate reprocessing must not add another gain. Example: debt due at hour40 and another Rest miss at hour40 produces two ordered gains and a new hour56 deadline.
+
+GPT said this is a source-bound completion rather than an owner-level choice; it found no need to revise the already selected module scope. GPT did not run C# checks. The schema63 resolver and acceptance now encode the order, including a regression for the hour40 coincidence. This order is an explicit TEST_ONLY policy where the source is silent; it does not claim FL-03 defines priority between these causes.
+
 ## GPT inspection record
 
 GPT inspected the `e399a214` handoff, gain record, codec, validators, pinned bindings, and source clauses. It ran no tests or builds. It agreed that this representation is within the existing MGT-03 scope and requires no owner decision. The review is in the Unity Rules Engine Development chat; this file records its specific implementation guidance for the next slice.

@@ -26,10 +26,18 @@ namespace Decennium.Foundation
                 Text(w, x.ReservationId); w.Write((int)x.Nutrition); Quantity(w, x.Amount);
             }
             w.Write(s.ExpeditionStrainGains.Length);
-            foreach (var x in s.ExpeditionStrainGains.OrderBy(x => x.At).ThenBy(x => x.Revision)
-                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            var gains = s.SchemaVersion >= Snapshot.RestDebtSchema
+                ? s.ExpeditionStrainGains.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                    .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.GainSequence).ThenBy(x => x.Id, StringComparer.Ordinal)
+                : s.ExpeditionStrainGains.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                    .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal);
+            foreach (var x in gains)
             {
-                Text(w, x.Id); Text(w, x.PointId); Text(w, x.SettlementId); Text(w, x.ActorId);
+                Text(w, x.Id); Text(w, x.PointId);
+                if (s.SchemaVersion >= Snapshot.RestDebtSchema)
+                { w.Write((int)x.CauseKind); Text(w, x.CauseId); w.Write(x.GainSequence); }
+                else Text(w, x.SettlementId);
+                Text(w, x.ActorId);
                 Text(w, x.SourceId); Text(w, x.TrackId); Time(w, x.At); w.Write(x.Revision);
                 w.Write(x.LevelBefore); w.Write(x.AttemptedAmount); w.Write(x.AddedAmount);
                 OptionalBool(w, x.OrdinaryRemovable); OptionalBool(w, x.RemovalGateMet); w.Write((int)x.Endpoint);
@@ -40,6 +48,7 @@ namespace Decennium.Foundation
                 Text(w, x.ActorId); w.Write(x.AppliedRevision); Time(w, x.AppliedAt); Time(w, x.Deadline);
                 Text(w, x.EncounterId); Time(w, x.MarkerPhase);
             }
+            if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Write(w, s);
         }
 
         public static void Read(BinaryReader r, Snapshot s)
@@ -54,12 +63,22 @@ namespace Decennium.Foundation
                     Text(r), Text(r), (NutritionKind)r.ReadInt32(), Quantity(r));
             s.ExpeditionStrainGains = new ExpeditionStrainGainRecord[Count(r, ExpeditionProvisioningValidation.MaxStrainGains)];
             for (int i = 0; i < s.ExpeditionStrainGains.Length; i++)
-                s.ExpeditionStrainGains[i] = new ExpeditionStrainGainRecord(Text(r), Text(r), Text(r), Text(r), Text(r),
-                    Text(r), Time(r), r.ReadInt64(), r.ReadInt32(), r.ReadInt32(), r.ReadInt32(), OptionalBool(r),
-                    OptionalBool(r), (ExpeditionStrainEndpoint)r.ReadInt32());
+            {
+                string id = Text(r), pointId = Text(r);
+                if (s.SchemaVersion >= Snapshot.RestDebtSchema)
+                    s.ExpeditionStrainGains[i] = new ExpeditionStrainGainRecord(id, pointId,
+                        (ExpeditionStrainCauseKind)r.ReadInt32(), Text(r), r.ReadInt32(), Text(r), Text(r),
+                        Text(r), Time(r), r.ReadInt64(), r.ReadInt32(), r.ReadInt32(), r.ReadInt32(),
+                        OptionalBool(r), OptionalBool(r), (ExpeditionStrainEndpoint)r.ReadInt32());
+                else
+                    s.ExpeditionStrainGains[i] = new ExpeditionStrainGainRecord(id, pointId, Text(r), Text(r), Text(r),
+                        Text(r), Time(r), r.ReadInt64(), r.ReadInt32(), r.ReadInt32(), r.ReadInt32(), OptionalBool(r),
+                        OptionalBool(r), (ExpeditionStrainEndpoint)r.ReadInt32());
+            }
             s.ExpeditionDashLocks = new ExpeditionDashLockRecord[Count(r, ExpeditionProvisioningValidation.MaxDashLocks)];
             for (int i = 0; i < s.ExpeditionDashLocks.Length; i++)
                 s.ExpeditionDashLocks[i] = new ExpeditionDashLockRecord(Text(r), r.ReadInt64(), Time(r), Time(r), Text(r), Time(r));
+            if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s);
         }
 
         private static int Count(BinaryReader r, int maximum)
@@ -74,5 +93,75 @@ namespace Decennium.Foundation
         private static void OptionalBool(BinaryWriter w, bool? value)
         { w.Write(value.HasValue); if (value.HasValue) w.Write(value.Value); }
         private static bool? OptionalBool(BinaryReader r) => Bool(r) ? (bool?)Bool(r) : null;
+    }
+
+    internal static class RestDebtStateCodec
+    {
+        private static void Text(BinaryWriter w, string value) => SnapshotCodec.WriteText(w, value);
+        private static string Text(BinaryReader r) => SnapshotCodec.ReadText(r);
+        private static void Time(BinaryWriter w, RuleTime value) { w.Write(value.Numerator); w.Write(value.Denominator); }
+        private static RuleTime Time(BinaryReader r) => new RuleTime(r.ReadInt64(), r.ReadInt64());
+        private static int Count(BinaryReader r, int maximum) => SnapshotCodec.ReadCount(r, maximum);
+
+        public static void Write(BinaryWriter w, Snapshot s)
+        {
+            w.Write(s.RestWatchSchedules.Length);
+            foreach (var x in s.RestWatchSchedules.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.DayOrdinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); w.Write(x.DayOrdinal); w.Write((int)x.Slot);
+                Time(w, x.At); w.Write(x.Revision);
+            }
+            w.Write(s.RestIntervals.Length);
+            foreach (var x in s.RestIntervals.OrderBy(x => x.StartedAt).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.SiteId); Time(w, x.StartedAt); Time(w, x.ScheduledEnd);
+                w.Write(x.EndedAt.HasValue); if (x.EndedAt.HasValue) Time(w, x.EndedAt.Value);
+                w.Write((int)x.Status); w.Write(x.Revision);
+            }
+            w.Write(s.RestWatchOutcomes.Length);
+            foreach (var x in s.RestWatchOutcomes.OrderBy(x => x.End).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.DayOrdinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); w.Write(x.DayOrdinal); w.Write((int)x.Slot);
+                Time(w, x.Start); Time(w, x.End); w.Write((int)x.Outcome); Text(w, x.RestIntervalId); w.Write(x.Revision);
+            }
+            w.Write(s.RestDebtEvents.Length);
+            foreach (var x in s.RestDebtEvents.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.EventSequence)
+                .ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); w.Write((int)x.Kind); Time(w, x.At); w.Write(x.Revision);
+                w.Write(x.EventSequence);
+                Text(w, x.EpisodeId); Text(w, x.EvidenceId); Time(w, x.DeadlineBefore); Time(w, x.DeadlineAfter);
+                Text(w, x.StrainGainId);
+            }
+        }
+
+        public static void Read(BinaryReader r, Snapshot s)
+        {
+            s.RestWatchSchedules = new RestWatchScheduleRecord[Count(r, ExpeditionProvisioningValidation.MaxRestWatchSchedules)];
+            for (int i = 0; i < s.RestWatchSchedules.Length; i++)
+                s.RestWatchSchedules[i] = new RestWatchScheduleRecord(Text(r), Text(r), r.ReadInt64(),
+                    (RestWatchSlot)r.ReadInt32(), Time(r), r.ReadInt64());
+            s.RestIntervals = new RestIntervalRecord[Count(r, ExpeditionProvisioningValidation.MaxRestIntervals)];
+            for (int i = 0; i < s.RestIntervals.Length; i++)
+            {
+                string id = Text(r), actorId = Text(r), siteId = Text(r);
+                RuleTime start = Time(r), end = Time(r);
+                RuleTime? endedAt = SnapshotCodec.ReadBool(r) ? (RuleTime?)Time(r) : null;
+                s.RestIntervals[i] = new RestIntervalRecord(id, actorId, siteId, start, end, endedAt,
+                    (RestIntervalStatus)r.ReadInt32(), r.ReadInt64());
+            }
+            s.RestWatchOutcomes = new RestWatchOutcomeRecord[Count(r, ExpeditionProvisioningValidation.MaxRestWatchOutcomes)];
+            for (int i = 0; i < s.RestWatchOutcomes.Length; i++)
+                s.RestWatchOutcomes[i] = new RestWatchOutcomeRecord(Text(r), Text(r), r.ReadInt64(),
+                    (RestWatchSlot)r.ReadInt32(), Time(r), Time(r), (RestWatchOutcomeKind)r.ReadInt32(), Text(r), r.ReadInt64());
+            s.RestDebtEvents = new RestDebtEventRecord[Count(r, ExpeditionProvisioningValidation.MaxRestDebtEvents)];
+            for (int i = 0; i < s.RestDebtEvents.Length; i++)
+                s.RestDebtEvents[i] = new RestDebtEventRecord(Text(r), Text(r), (RestDebtEventKind)r.ReadInt32(),
+                    Time(r), r.ReadInt64(), r.ReadInt32(), Text(r), Text(r), Time(r), Time(r), Text(r));
+        }
     }
 }

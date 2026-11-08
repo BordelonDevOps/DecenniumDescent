@@ -90,6 +90,8 @@ namespace Decennium.Foundation.Laboratory
                     return WorldSpatialQueries.WithinRange(actor.X, actor.Y, enemy.X, enemy.Y, 1)
                         || WorldSpatialQueries.WithinRange(toX, toY, enemy.X, enemy.Y, 1);
                 });
+            if (startsEncounter && s.RestIntervals.Any(x => x.Status == RestIntervalStatus.Active))
+                return "RestInterruptionAuthorityUnsupported";
             if (startsEncounter && connectedCombat == null) return "TacticalTransitionRequired";
             bool dashPaid = false;
             if (c.Target == "run")
@@ -222,6 +224,38 @@ namespace Decennium.Foundation.Laboratory
         private IEnumerable<Command> DiscoverSharedWorldCommands(Snapshot s, Authority authority, string actor)
         {
             var options = new List<Command>(); int index = 0;
+            if (restDebtProfile != null && restDebtProfile.IncludesActor(actor))
+            {
+                var activeRest = s.RestIntervals.SingleOrDefault(x => x.ActorId == actor && x.Status == RestIntervalStatus.Active);
+                if (activeRest != null)
+                    yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".rest.interrupt",
+                        actor, s.Revision, CommandKind.InterruptRest, activeRest.Id);
+                else
+                {
+                    int restSiteIndex = 0;
+                    var actorBody = s.Actors.Single(x => x.Id == actor);
+                    foreach (var site in restDebtProfile.Sites.Where(x => x.SafeBerth && x.QualifyingRestEligible
+                        && actorBody.X == x.X && actorBody.Y == x.Y).OrderBy(x => x.Id, StringComparer.Ordinal))
+                        yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".rest.begin."
+                            + (restSiteIndex++).ToString(CultureInfo.InvariantCulture), actor, s.Revision,
+                            CommandKind.BeginRest, site.Id);
+                }
+
+                long currentDay = checked((long)(s.RuleClock.Numerator
+                    / ((System.Numerics.BigInteger)s.RuleClock.Denominator * 86400)));
+                foreach (long day in new[] { currentDay, checked(currentDay + 1) })
+                {
+                    if (s.RestWatchSchedules.Length >= ExpeditionProvisioningValidation.MaxRestWatchSchedules) break;
+                    for (int slot = 0; slot <= (int)RestWatchSlot.Evening; slot++)
+                    {
+                        if (WatchStart(day, (RestWatchSlot)slot) < s.RuleClock) continue;
+                        yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".rest.schedule."
+                            + day.ToString(CultureInfo.InvariantCulture) + "." + slot.ToString(CultureInfo.InvariantCulture),
+                            actor, s.Revision, CommandKind.ScheduleRestWatch,
+                            "day." + day.ToString(CultureInfo.InvariantCulture), slot);
+                    }
+                }
+            }
             foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);

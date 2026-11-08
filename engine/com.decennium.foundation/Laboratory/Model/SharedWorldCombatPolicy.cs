@@ -237,6 +237,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private string EnterCalendarCombat(Snapshot s,Command c)
         {
+            if(s.RestIntervals.Any(x=>x.Status==RestIntervalStatus.Active))return "RestInterruptionAuthorityUnsupported";
             if(c.Inventory!=null||c.Combat!=null||c.Target!=""||c.X!=0||c.Y!=0||!s.WorldSchedule.Order.Contains(c.Actor))return "InvalidSharedCombatEntry";
             if(s.InventoryCombat)return "AlreadyInTacticalControl";
             if(s.WorldTraversals.Length!=0)return "OffGridCombatEntryUnsupported";

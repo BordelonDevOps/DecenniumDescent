@@ -4,6 +4,7 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public enum ExpeditionStrainEndpoint { None, OrdinaryDeath }
+    public enum ExpeditionStrainCauseKind { DailyProvisioning, RestDebtDeadline, RestMissedWhileIndebted }
 
     /// <summary>Actual consumption attribution for one recipient's closed provisioning day.
     /// It references physical inventory and consumption reservations; it creates no stock.</summary>
@@ -72,7 +73,11 @@ namespace Decennium.Foundation
     {
         public string Id { get; }
         public string PointId { get; }
-        public string SettlementId { get; }
+        public ExpeditionStrainCauseKind CauseKind { get; }
+        public string CauseId { get; }
+        public int GainSequence { get; }
+        /// <summary>Schema62 compatibility view. Non-daily causes have no settlement identity.</summary>
+        public string SettlementId => CauseKind == ExpeditionStrainCauseKind.DailyProvisioning ? CauseId : "";
         public string ActorId { get; }
         public string SourceId { get; }
         public string TrackId { get; }
@@ -89,19 +94,151 @@ namespace Decennium.Foundation
         public ExpeditionStrainGainRecord(string id, string pointId, string settlementId, string actorId,
             string sourceId, string trackId, RuleTime at, long revision, int levelBefore, int attemptedAmount,
             int addedAmount, bool? ordinaryRemovable, bool? removalGateMet, ExpeditionStrainEndpoint endpoint)
+            : this(id, pointId, ExpeditionStrainCauseKind.DailyProvisioning, settlementId, 0, actorId,
+                sourceId, trackId, at, revision, levelBefore, attemptedAmount, addedAmount,
+                ordinaryRemovable, removalGateMet, endpoint)
+        { }
+
+        public ExpeditionStrainGainRecord(string id, string pointId, ExpeditionStrainCauseKind causeKind,
+            string causeId, int gainSequence, string actorId, string sourceId, string trackId, RuleTime at,
+            long revision, int levelBefore, int attemptedAmount, int addedAmount, bool? ordinaryRemovable,
+            bool? removalGateMet, ExpeditionStrainEndpoint endpoint)
         {
             if (!Validation.ValidId(id) || (pointId != "" && !Validation.ValidId(pointId))
-                || !Validation.ValidId(settlementId) || !Validation.ValidId(actorId)
+                || !Enum.IsDefined(typeof(ExpeditionStrainCauseKind), causeKind) || !Validation.ValidId(causeId)
+                || gainSequence < 0 || !Validation.ValidId(actorId)
                 || !Validation.ValidId(sourceId) || trackId != "expedition.strain"
                 || revision < 1 || levelBefore < 0 || levelBefore > 6 || attemptedAmount < 1 || attemptedAmount > 6
                 || addedAmount < 0 || addedAmount > 6 || levelBefore + addedAmount > 6
                 || (addedAmount > 0) != (pointId != "")
                 || !Enum.IsDefined(typeof(ExpeditionStrainEndpoint), endpoint))
                 throw new ArgumentException("Invalid Expedition Strain gain history.");
-            Id = id; PointId = pointId; SettlementId = settlementId; ActorId = actorId; SourceId = sourceId;
+            Id = id; PointId = pointId; CauseKind = causeKind; CauseId = causeId; GainSequence = gainSequence;
+            ActorId = actorId; SourceId = sourceId;
             TrackId = trackId; At = at; Revision = revision; LevelBefore = levelBefore;
             AttemptedAmount = attemptedAmount; AddedAmount = addedAmount;
             OrdinaryRemovable = ordinaryRemovable; RemovalGateMet = removalGateMet; Endpoint = endpoint;
+        }
+    }
+
+    public enum RestWatchSlot { Morning, Afternoon, Evening }
+    public enum RestIntervalStatus { Active, Completed, Interrupted, Unqualified }
+    public enum RestWatchOutcomeKind { Rested, Missed }
+    public enum RestDebtEventKind { Opened, UnpaidDeadline, MissedWhileIndebted, Cleared }
+
+    /// <summary>Prospective per-actor schedule change. Absence of a row means the sourced Evening default.</summary>
+    public sealed class RestWatchScheduleRecord
+    {
+        public string Id { get; }
+        public string ActorId { get; }
+        public long DayOrdinal { get; }
+        public RestWatchSlot Slot { get; }
+        public RuleTime At { get; }
+        public long Revision { get; }
+
+        public RestWatchScheduleRecord(string id, string actorId, long dayOrdinal, RestWatchSlot slot,
+            RuleTime at, long revision)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || dayOrdinal < 0
+                || !Enum.IsDefined(typeof(RestWatchSlot), slot) || revision < 1)
+                throw new ArgumentException("Invalid Rest Watch schedule change.");
+            Id = id; ActorId = actorId; DayOrdinal = dayOrdinal; Slot = slot; At = at; Revision = revision;
+        }
+    }
+
+    /// <summary>One actual attempt at a continuous eight-hour Rest. Site eligibility is bound by the
+    /// TEST_ONLY host profile; worker reservations and shared travel remain the activity authorities.</summary>
+    public sealed class RestIntervalRecord
+    {
+        public string Id { get; }
+        public string ActorId { get; }
+        public string SiteId { get; }
+        public RuleTime StartedAt { get; }
+        public RuleTime ScheduledEnd { get; }
+        public RuleTime? EndedAt { get; }
+        public RestIntervalStatus Status { get; }
+        public long Revision { get; }
+
+        public RestIntervalRecord(string id, string actorId, string siteId, RuleTime startedAt,
+            RuleTime scheduledEnd, RuleTime? endedAt, RestIntervalStatus status, long revision)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || !Validation.ValidId(siteId)
+                || scheduledEnd != startedAt.AddSeconds(8 * 60 * 60)
+                || !Enum.IsDefined(typeof(RestIntervalStatus), status) || revision < 1
+                || status == RestIntervalStatus.Active && endedAt.HasValue
+                || status != RestIntervalStatus.Active && !endedAt.HasValue
+                || endedAt.HasValue && (endedAt.Value < startedAt || endedAt.Value > scheduledEnd)
+                || status == RestIntervalStatus.Completed && endedAt.Value != scheduledEnd
+                || status == RestIntervalStatus.Interrupted && endedAt.Value >= scheduledEnd)
+                throw new ArgumentException("Invalid actual Rest interval.");
+            Id = id; ActorId = actorId; SiteId = siteId; StartedAt = startedAt; ScheduledEnd = scheduledEnd;
+            EndedAt = endedAt; Status = status; Revision = revision;
+        }
+    }
+
+    /// <summary>Once-only outcome for one actor's scheduled Watch. A completed Rest interval is
+    /// linked only when it spans the entire canonical Rest Watch.</summary>
+    public sealed class RestWatchOutcomeRecord
+    {
+        public string Id { get; }
+        public string ActorId { get; }
+        public long DayOrdinal { get; }
+        public RestWatchSlot Slot { get; }
+        public RuleTime Start { get; }
+        public RuleTime End { get; }
+        public RestWatchOutcomeKind Outcome { get; }
+        public string RestIntervalId { get; }
+        public long Revision { get; }
+
+        public RestWatchOutcomeRecord(string id, string actorId, long dayOrdinal, RestWatchSlot slot,
+            RuleTime start, RuleTime end, RestWatchOutcomeKind outcome, string restIntervalId, long revision)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || dayOrdinal < 0
+                || !Enum.IsDefined(typeof(RestWatchSlot), slot) || end <= start
+                || !Enum.IsDefined(typeof(RestWatchOutcomeKind), outcome) || restIntervalId == null
+                || (restIntervalId != "" && !Validation.ValidId(restIntervalId))
+                || (outcome == RestWatchOutcomeKind.Rested) != (restIntervalId != "") || revision < 1)
+                throw new ArgumentException("Invalid Rest Watch outcome.");
+            Id = id; ActorId = actorId; DayOrdinal = dayOrdinal; Slot = slot; Start = start; End = end;
+            Outcome = outcome; RestIntervalId = restIntervalId; Revision = revision;
+        }
+    }
+
+    /// <summary>Append-only Rest Debt transition. Current debt is projected from this one history.
+    /// Strain gains link to the exact UnpaidDeadline or MissedWhileIndebted event.</summary>
+    public sealed class RestDebtEventRecord
+    {
+        public string Id { get; }
+        public string ActorId { get; }
+        public RestDebtEventKind Kind { get; }
+        public RuleTime At { get; }
+        public long Revision { get; }
+        public int EventSequence { get; }
+        public string EpisodeId { get; }
+        public string EvidenceId { get; }
+        public RuleTime DeadlineBefore { get; }
+        public RuleTime DeadlineAfter { get; }
+        public string StrainGainId { get; }
+
+        public RestDebtEventRecord(string id, string actorId, RestDebtEventKind kind, RuleTime at,
+            long revision, int eventSequence, string episodeId, string evidenceId, RuleTime deadlineBefore,
+            RuleTime deadlineAfter, string strainGainId)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId)
+                || !Enum.IsDefined(typeof(RestDebtEventKind), kind) || revision < 1
+                || eventSequence < 0
+                || !Validation.ValidId(episodeId) || !Validation.ValidId(evidenceId)
+                || strainGainId == null || (strainGainId != "" && !Validation.ValidId(strainGainId)))
+                throw new ArgumentException("Invalid Rest Debt event.");
+            if (kind == RestDebtEventKind.Opened && (deadlineBefore != default(RuleTime)
+                    || deadlineAfter != at.AddSeconds(16 * 60 * 60) || strainGainId != "")
+                || kind == RestDebtEventKind.UnpaidDeadline && (deadlineBefore != at || deadlineAfter != at || strainGainId == "")
+                || kind == RestDebtEventKind.MissedWhileIndebted && (deadlineAfter != at.AddSeconds(16 * 60 * 60) || strainGainId == "")
+                || kind == RestDebtEventKind.Cleared && (deadlineAfter != default(RuleTime) || strainGainId != ""))
+                throw new ArgumentException("Invalid Rest Debt event transition.");
+            Id = id; ActorId = actorId; Kind = kind; At = at; Revision = revision; EventSequence = eventSequence;
+            EpisodeId = episodeId; EvidenceId = evidenceId; DeadlineBefore = deadlineBefore;
+            DeadlineAfter = deadlineAfter; StrainGainId = strainGainId;
         }
     }
 
@@ -136,6 +273,10 @@ namespace Decennium.Foundation
         public const int MaxConsumptionEvidence = 65536;
         public const int MaxStrainGains = 8192;
         public const int MaxDashLocks = 64;
+        public const int MaxRestWatchSchedules = 4096;
+        public const int MaxRestIntervals = 4096;
+        public const int MaxRestWatchOutcomes = 16384;
+        public const int MaxRestDebtEvents = 16384;
 
         public static void Validate(Snapshot s)
         {
@@ -145,19 +286,32 @@ namespace Decennium.Foundation
                 || s.DailyProvisioningConsumption.Length > MaxConsumptionEvidence
                 || s.ExpeditionStrainGains.Length > MaxStrainGains
                 || s.ExpeditionDashLocks.Length > MaxDashLocks
+                || s.RestWatchSchedules == null || s.RestWatchSchedules.Length > MaxRestWatchSchedules
+                || s.RestIntervals == null || s.RestIntervals.Length > MaxRestIntervals
+                || s.RestWatchOutcomes == null || s.RestWatchOutcomes.Length > MaxRestWatchOutcomes
+                || s.RestDebtEvents == null || s.RestDebtEvents.Length > MaxRestDebtEvents
                 || s.DailyProvisioningSettlements.Any(x => x == null)
                 || s.DailyProvisioningConsumption.Any(x => x == null)
                 || s.ExpeditionStrainGains.Any(x => x == null)
-                || s.ExpeditionDashLocks.Any(x => x == null))
+                || s.ExpeditionDashLocks.Any(x => x == null)
+                || s.RestWatchSchedules.Any(x => x == null) || s.RestIntervals.Any(x => x == null)
+                || s.RestWatchOutcomes.Any(x => x == null) || s.RestDebtEvents.Any(x => x == null))
                 throw new ArgumentException("Invalid Expedition provisioning or Strain collections.");
 
             if (s.SchemaVersion < Snapshot.DailyProvisioningSchema)
             {
                 if (s.DailyProvisioningSettlements.Length != 0 || s.DailyProvisioningConsumption.Length != 0
-                    || s.ExpeditionStrainGains.Length != 0 || s.ExpeditionDashLocks.Length != 0)
+                    || s.ExpeditionStrainGains.Length != 0 || s.ExpeditionDashLocks.Length != 0
+                    || s.RestWatchSchedules.Length != 0 || s.RestIntervals.Length != 0
+                    || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0)
                     throw new ArgumentException("Daily provisioning state requires schema62.");
                 return;
             }
+            if (s.SchemaVersion < Snapshot.RestDebtSchema
+                && (s.RestWatchSchedules.Length != 0 || s.RestIntervals.Length != 0
+                    || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0
+                    || s.ExpeditionStrainGains.Any(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning || x.GainSequence != 0)))
+                throw new ArgumentException("Rest Debt state requires schema63.");
             if (!s.TestOnly) throw new ArgumentException("Expedition provisioning is TEST_ONLY.");
 
             bool Actor(string id) => s.Actors.Any(x => x.Id == id);
@@ -189,7 +343,8 @@ namespace Decennium.Foundation
                 if (settlement.StrainGainId != "")
                 {
                     var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == settlement.StrainGainId);
-                    if (gain == null || gain.SettlementId != settlement.Id || gain.ActorId != settlement.ActorId
+                    if (gain == null || gain.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning
+                        || gain.CauseId != settlement.Id || gain.ActorId != settlement.ActorId
                         || gain.At != settlement.End || gain.Revision != settlement.Revision)
                         throw new ArgumentException("Daily settlement has no matching Strain gain.");
                 }
@@ -199,13 +354,21 @@ namespace Decennium.Foundation
                 || s.ExpeditionStrainGains.Select(x => x.PointId).Where(x => x != "").Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionStrainGains.Count(x => x.PointId != "")
                 || s.ExpeditionStrainGains.Any(x => !Actor(x.ActorId) || x.Revision > s.Revision || x.At > s.RuleClock
-                    || !Settlement(x.SettlementId) || x.AddedAmount == 0 && (x.LevelBefore < 6 || x.Endpoint != ExpeditionStrainEndpoint.OrdinaryDeath)
+                    || x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning && !Settlement(x.CauseId)
+                    || x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning && s.SchemaVersion < Snapshot.RestDebtSchema
+                    || x.AddedAmount == 0 && (x.LevelBefore < 6 || x.Endpoint != ExpeditionStrainEndpoint.OrdinaryDeath)
                     || x.AddedAmount > 0 && x.LevelAfter == 6 && x.Endpoint != ExpeditionStrainEndpoint.OrdinaryDeath
                     || x.LevelAfter < 6 && x.Endpoint != ExpeditionStrainEndpoint.None))
                 throw new ArgumentException("Invalid source-qualified Expedition Strain history.");
             foreach (var group in s.ExpeditionStrainGains.GroupBy(x => x.ActorId, StringComparer.Ordinal))
             {
-                var ordered = group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
+                if (s.SchemaVersion >= Snapshot.RestDebtSchema
+                    && group.GroupBy(x => x.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + "|"
+                        + x.GainSequence.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparer.Ordinal).Any(x => x.Count() > 1))
+                    throw new ArgumentException("Expedition Strain gain sequence is not unique within the command.");
+                var ordered = s.SchemaVersion >= Snapshot.RestDebtSchema
+                    ? group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.GainSequence).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray()
+                    : group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
                 int level = 0;
                 foreach (var gain in ordered)
                 {
@@ -216,11 +379,106 @@ namespace Decennium.Foundation
                 }
             }
 
+            if (s.SchemaVersion >= Snapshot.RestDebtSchema)
+                ValidateRestDebtReferences(s, Actor);
+
             if (s.ExpeditionDashLocks.Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionDashLocks.Length
                 || s.ExpeditionDashLocks.Any(x => !Actor(x.ActorId) || x.AppliedRevision > s.Revision
                     || x.AppliedAt > s.RuleClock || x.Deadline <= x.AppliedAt))
                 throw new ArgumentException("Invalid current Expedition Dash lock.");
+        }
+
+        private static void ValidateRestDebtReferences(Snapshot s, Func<string, bool> actorExists)
+        {
+            if (s.RestWatchSchedules.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.RestWatchSchedules.Length
+                || s.RestWatchSchedules.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision || x.At > s.RuleClock))
+                throw new ArgumentException("Invalid Rest Watch schedule history.");
+            if (s.RestIntervals.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.RestIntervals.Length
+                || s.RestIntervals.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.StartedAt > s.RuleClock || x.EndedAt.HasValue && x.EndedAt.Value > s.RuleClock
+                    || x.Status == RestIntervalStatus.Active && x.ScheduledEnd <= s.RuleClock))
+                throw new ArgumentException("Invalid actual Rest interval history.");
+            if (s.RestWatchOutcomes.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.RestWatchOutcomes.Length
+                || s.RestWatchOutcomes.Select(x => x.ActorId + "|" + x.DayOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture))
+                    .Distinct(StringComparer.Ordinal).Count() != s.RestWatchOutcomes.Length
+                || s.RestWatchOutcomes.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision || x.End > s.RuleClock
+                    || x.RestIntervalId != "" && !s.RestIntervals.Any(r => r.Id == x.RestIntervalId && r.ActorId == x.ActorId
+                        && r.Status == RestIntervalStatus.Completed && r.StartedAt == x.Start && r.ScheduledEnd == x.End)))
+                throw new ArgumentException("Invalid Rest Watch outcome references.");
+            if (s.RestDebtEvents.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.RestDebtEvents.Length
+                || s.RestDebtEvents.GroupBy(x => x.ActorId + "|" + x.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + "|" + x.EventSequence.ToString(System.Globalization.CultureInfo.InvariantCulture), StringComparer.Ordinal).Any(x => x.Count() > 1)
+                || s.RestDebtEvents.Where(x => x.Kind == RestDebtEventKind.Opened)
+                    .Select(x => x.ActorId + "|" + x.EpisodeId).Distinct(StringComparer.Ordinal).Count()
+                    != s.RestDebtEvents.Count(x => x.Kind == RestDebtEventKind.Opened)
+                || s.RestDebtEvents.Where(x => x.Kind == RestDebtEventKind.UnpaidDeadline)
+                    .Select(x => x.ActorId + "|" + x.EpisodeId + "|" + x.At.Numerator.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                        + "/" + x.At.Denominator.ToString(System.Globalization.CultureInfo.InvariantCulture))
+                    .Distinct(StringComparer.Ordinal).Count() != s.RestDebtEvents.Count(x => x.Kind == RestDebtEventKind.UnpaidDeadline)
+                || s.RestDebtEvents.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision || x.At > s.RuleClock))
+                throw new ArgumentException("Invalid Rest Debt event history.");
+
+            foreach (var group in s.RestDebtEvents.GroupBy(x => x.ActorId, StringComparer.Ordinal))
+            {
+                string episode = "";
+                RuleTime deadline = default;
+                var orderedEvents = group.OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.EventSequence)
+                    .ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
+                foreach (var debtEvent in orderedEvents)
+                {
+                    if (debtEvent.Kind == RestDebtEventKind.Opened || debtEvent.Kind == RestDebtEventKind.MissedWhileIndebted)
+                    {
+                        var outcome = s.RestWatchOutcomes.SingleOrDefault(x => x.Id == debtEvent.EvidenceId);
+                        if (outcome == null || outcome.ActorId != debtEvent.ActorId || outcome.Outcome != RestWatchOutcomeKind.Missed
+                            || outcome.End != debtEvent.At)
+                            throw new ArgumentException("Rest Debt miss has no matching missed Watch outcome.");
+                    }
+                    if (debtEvent.Kind == RestDebtEventKind.Cleared)
+                    {
+                        var interval = s.RestIntervals.SingleOrDefault(x => x.Id == debtEvent.EvidenceId);
+                        if (interval == null || interval.ActorId != debtEvent.ActorId
+                            || interval.Status != RestIntervalStatus.Completed || interval.EndedAt != debtEvent.At)
+                            throw new ArgumentException("Rest Debt clearance has no matching completed Rest interval.");
+                    }
+                    if (debtEvent.Kind == RestDebtEventKind.UnpaidDeadline || debtEvent.Kind == RestDebtEventKind.MissedWhileIndebted)
+                    {
+                        var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == debtEvent.StrainGainId);
+                        var expectedKind = debtEvent.Kind == RestDebtEventKind.UnpaidDeadline
+                            ? ExpeditionStrainCauseKind.RestDebtDeadline : ExpeditionStrainCauseKind.RestMissedWhileIndebted;
+                        if (gain == null || gain.CauseKind != expectedKind || gain.CauseId != debtEvent.Id
+                            || gain.ActorId != debtEvent.ActorId || gain.At != debtEvent.At || gain.Revision != debtEvent.Revision)
+                            throw new ArgumentException("Rest Debt Strain gain is not linked to its exact cause event.");
+                    }
+
+                    switch (debtEvent.Kind)
+                    {
+                        case RestDebtEventKind.Opened:
+                            if (episode != "" || debtEvent.DeadlineBefore != default(RuleTime))
+                                throw new ArgumentException("Rest Debt opened while an episode was already owed.");
+                            episode = debtEvent.EpisodeId; deadline = debtEvent.DeadlineAfter;
+                            break;
+                        case RestDebtEventKind.UnpaidDeadline:
+                            if (episode == "" || debtEvent.EpisodeId != episode || debtEvent.DeadlineBefore != deadline
+                                || debtEvent.At != deadline || debtEvent.EvidenceId != episode)
+                                throw new ArgumentException("Rest Debt deadline does not match the current episode.");
+                            break;
+                        case RestDebtEventKind.MissedWhileIndebted:
+                            if (episode == "" || debtEvent.EpisodeId != episode || debtEvent.DeadlineBefore != deadline)
+                                throw new ArgumentException("Rest Debt miss does not match the current episode.");
+                            deadline = debtEvent.DeadlineAfter;
+                            break;
+                        case RestDebtEventKind.Cleared:
+                            if (episode == "" || debtEvent.EpisodeId != episode || debtEvent.DeadlineBefore != deadline)
+                                throw new ArgumentException("Rest Debt clearance does not match the current episode.");
+                            episode = ""; deadline = default;
+                            break;
+                    }
+                }
+            }
+            if (s.ExpeditionStrainGains.Any(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning
+                && !s.RestDebtEvents.Any(e => e.Id == x.CauseId && e.StrainGainId == x.Id)))
+                throw new ArgumentException("Rest Debt Strain gain has no unique causal event.");
         }
     }
 }
