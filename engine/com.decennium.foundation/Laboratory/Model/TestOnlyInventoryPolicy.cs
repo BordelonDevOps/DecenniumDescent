@@ -15,9 +15,9 @@ namespace Decennium.Foundation.Laboratory
         public const string FoodId="TEST_ONLY.ready-rations",WaterId="TEST_ONLY.ready-water";
         public const string FoodUnit="TEST_ONLY.ration-pound",WaterUnit="prototype.potable-water.pint";
         private readonly long freshSeconds;
-        private readonly TestOnlyCropPolicy crops=new TestOnlyCropPolicy();
-        public TestOnlyInventoryPolicy(long remainingFoodFreshness=2592000)
-        {if(remainingFoodFreshness<0)throw new ArgumentOutOfRangeException(nameof(remainingFoodFreshness));freshSeconds=remainingFoodFreshness;}
+        private readonly TestOnlyCropPolicy crops;
+        public TestOnlyInventoryPolicy(long remainingFoodFreshness=2592000,TestOnlyCropPolicy cropPolicy=null)
+        {if(remainingFoodFreshness<0)throw new ArgumentOutOfRangeException(nameof(remainingFoodFreshness));freshSeconds=remainingFoodFreshness;crops=cropPolicy??new TestOnlyCropPolicy();}
         public bool TestOnly=>true;
         public string ContentFingerprint=>"TEST_ONLY.inventory-v1-f"+freshSeconds.ToString(CultureInfo.InvariantCulture);
         public static Authority Host()=>new Authority("TEST_ONLY.host",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId},true,true,

@@ -12,7 +12,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy : ICommandPolicy, ICommandInventoryClaims
     {
         private readonly TestOnlyClubAttackPolicy bodies;
-        private readonly TestOnlyFillingPolicy inventory = new TestOnlyFillingPolicy(movableVessels: true);
+        private TestOnlyFillingPolicy inventory = new TestOnlyFillingPolicy(movableVessels: true);
         private readonly TacticalCombatFixture terrain;
         private readonly ConditionCombatFixture conditions;
         private readonly SharedCombatFixture connectedCombat;
@@ -734,6 +734,8 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                string assignmentBindingsError = ValidateExpeditionAssignmentBindings(s);
+                if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
@@ -794,7 +796,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 var miningSkills=s.SkillTraining.Where(x=>x.SkillId=="mining-tools").ToArray();
                 if(miningFixture!=null) {
-                    int expectedMiningSkills=miningFixture.Trained?MiningWorkerIds.Length:0;
+                    var expectedMiningWorkers=MiningTrainingWorkerIds;
                     var authoredDeposits=miningFixture.Deposits.Select(x=>x.Deposit).ToArray();
                     var authoredCategories=miningFixture.Deposits.SelectMany(x=>x.Categories).ToArray();
                     var authoredUnits=miningFixture.Deposits.SelectMany(x=>x.Units).ToArray();
@@ -827,8 +829,8 @@ namespace Decennium.Foundation.Laboratory
                         ||s.MineralPreparationProfiles.Length!=preparationProfiles.Length
                         ||!s.MineralPreparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
                             .Zip(preparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal),(a,b)=>a.HasSameContent(b)).All(x=>x)
-                        ||miningSkills.Length!=expectedMiningSkills
-                        ||miningSkills.Any(x=>!MiningWorkerIds.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
+                        ||miningSkills.Length!=expectedMiningWorkers.Length
+                        ||miningSkills.Any(x=>!expectedMiningWorkers.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
                         ||s.PortableEquipment.Where(x=>groundItems.ContainsKey(x.Id)&&x.Placement==PortablePlacement.Ground)
                             .Any(x=>x.GroundX!=groundItems[x.Id].GroundX||x.GroundY!=groundItems[x.Id].GroundY))
                         return "InvalidMiningFixture";

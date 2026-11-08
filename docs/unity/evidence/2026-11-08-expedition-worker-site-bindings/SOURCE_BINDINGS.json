@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "snapshot": "sources/character_foundation.json",
+      "scope": "Required class-profile projection anchor for the shared source-binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "sources/EXPEDITION_PLAYER_BOOK.md",
+      "scope": "Pinned source revision 46a4d52, FL-02/FL-03 worker, incompatible activity, shared clock and travel authority."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/MINING_CANDIDATE_GUIDE.md",
+      "scope": "Pinned mining procedure and physical-work constraints delegated to the existing mining handler.",
+      "sha256": "726cb84a1104901f5b05b412039b458af5bb5168e4482fb9e9844b1b42b697c3",
+      "snapshot": "sources/MINING_CANDIDATE_GUIDE.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-03-camp-greens/OWNER_DECISIONS.md",
+      "sha256": "57d0e2d692bb0587ff3f1a3ef380ee727da6d1a70071ec7a6625588a696d2eea",
+      "snapshot": "sources/CAMP_GREENS_OWNER_DECISIONS.md",
+      "scope": "Owner-approved provisional Camp Greens policy; assignment registration adds no new crop mechanics."
+    }
+  ],
+  "implementations": [
+    {
+      "code": [
+        "Laboratory/Model/SharedExpeditionAssignments.cs",
+        "Laboratory/Model/SharedMining.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Laboratory/Model/TestOnlyCropPolicy.cs",
+        "Laboratory/Model/TestOnlyInventoryPolicy.cs",
+        "Laboratory/Model/TestOnlyFillingPolicy.cs",
+        "Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "Tests/EditMode/ExpeditionAssignmentCases.cs"
+      ],
+      "name": "TEST_ONLY worker/site assignment registration over existing Camp Greens and mining procedures",
+      "notImplemented": [
+        "Autonomous route selection, roster acquisition, general scheduler, arbitrary crop geometry, worker handoff for started work, production authority, and generic bindings for repair/trap/cache procedures."
+      ],
+      "tests": [
+        "registered_workers_and_physical_sites_compose_crop_mining_exploration_and_replay"
+      ],
+      "implemented": [
+        "Bind explicitly registered workers to existing procedure/site identities; derive physical sites from crop/mining records; require exact worker/procedure/site binding at assignment and start; delegate all work outcomes to current handlers; preserve explicit mining training and physical access separately."
+      ]
+    }
+  ],
+  "validation": {
+    "headless": "FULL_TEST_RESULTS.json",
+    "compile": "FULL_TEST_RESULTS.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json",
+    "packageStatic": "PACKAGE_RESULTS.json"
+  }
+}

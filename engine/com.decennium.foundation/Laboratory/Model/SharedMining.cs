@@ -172,6 +172,9 @@ namespace Decennium.Foundation.Laboratory
         public ObjectStructureRecord[] MiningToolStructures=>miningToolStructures.ToArray();
         public PortableEquipmentRecord[] MiningToolItems=>miningToolItems.ToArray();
         public readonly int? Intelligence,Wisdom;
+        private readonly string[] trainedWorkerIds;
+        public bool HasExplicitTrainingRoster => trainedWorkerIds != null;
+        public string[] TrainedWorkerIds => trainedWorkerIds?.ToArray();
         public SharedMiningFixture(bool trained=true,bool hasMiningTools=true,bool hasPick=true,bool hasReceiver=true,
             bool hasWorkSurface=true,bool hurryFeasible=false,int siteX=3,int siteY=3,
             MiningUnitCondition unitBCondition=MiningUnitCondition.Intact,int? intelligence=null,int? wisdom=null,
@@ -180,14 +183,16 @@ namespace Decennium.Foundation.Laboratory
             MineralPreparationProfileRecord[] mineralPreparationProfiles=null,
             MiningToolCandidateProfileRecord[] miningToolCandidateProfiles=null,
             MiningToolInstanceStateRecord[] miningToolInstanceStates=null,ObjectStructureRecord[] miningToolStructures=null,
-            PortableEquipmentRecord[] miningToolItems=null)
+            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null)
         {
             if(siteX<0||siteY<0||!Enum.IsDefined(typeof(MiningUnitCondition),unitBCondition)
                 ||intelligence.HasValue&&(intelligence.Value<1||intelligence.Value>30)
-                ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30))throw new ArgumentOutOfRangeException(nameof(siteX));
+                ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30)
+                ||trainedWorkerIds!=null&&(!trained||trainedWorkerIds.Any(x=>!Validation.ValidId(x))
+                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length))throw new ArgumentOutOfRangeException(nameof(siteX));
             Trained=trained;HasMiningTools=hasMiningTools;HasPick=hasPick;HasReceiver=hasReceiver;
             HasWorkSurface=hasWorkSurface;HurryFeasible=hurryFeasible;SiteX=siteX;SiteY=siteY;UnitBCondition=unitBCondition;
-            Intelligence=intelligence;Wisdom=wisdom;
+            Intelligence=intelligence;Wisdom=wisdom;this.trainedWorkerIds=trainedWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
             deposits=new[]{DefaultContent(siteX,siteY,hasMiningTools,hasPick,hasReceiver,hasWorkSurface,hurryFeasible,unitBCondition)};
             this.assayProfiles=ValidateAssayProfiles(assayProfiles);
             this.assaySamples=ValidateAssaySamples(assaySamples);
@@ -205,7 +210,7 @@ namespace Decennium.Foundation.Laboratory
             MineralPreparationProfileRecord[] mineralPreparationProfiles=null,
             MiningToolCandidateProfileRecord[] miningToolCandidateProfiles=null,
             MiningToolInstanceStateRecord[] miningToolInstanceStates=null,ObjectStructureRecord[] miningToolStructures=null,
-            PortableEquipmentRecord[] miningToolItems=null)
+            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null)
         {
             if(deposits==null)throw new ArgumentNullException(nameof(deposits));
             var authored=deposits.ToArray();
@@ -215,7 +220,9 @@ namespace Decennium.Foundation.Laboratory
                 ||authored.SelectMany(x=>x.PhysicalItems).Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=authored.SelectMany(x=>x.PhysicalItems).Count()
                 ||authored.SelectMany(x=>x.WorkSurfaces).Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=authored.SelectMany(x=>x.WorkSurfaces).Count()
                 ||intelligence.HasValue&&(intelligence.Value<1||intelligence.Value>30)
-                ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30))throw new ArgumentException("Invalid authored mining fixture set.",nameof(deposits));
+                ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30)
+                ||trainedWorkerIds!=null&&(!trained||trainedWorkerIds.Any(x=>!Validation.ValidId(x))
+                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length))throw new ArgumentException("Invalid authored mining fixture set.",nameof(deposits));
             this.deposits=authored;
             Trained=trained;HasMiningTools=authored.All(x=>x.PhysicalItems.Any(i=>i.Id==x.Deposit.MiningToolsId));
             HasPick=authored.All(x=>x.PhysicalItems.Any(i=>i.Id==x.Deposit.PickId));
@@ -224,7 +231,7 @@ namespace Decennium.Foundation.Laboratory
             HurryFeasible=authored.Any(x=>x.Deposit.HurryFeasible);UnitBCondition=authored.SelectMany(x=>x.Units)
                 .SingleOrDefault(x=>x.Id==UnitB)?.Condition??MiningUnitCondition.Intact;
             SiteX=authored[0].Deposit.SiteX;SiteY=authored[0].Deposit.SiteY;
-            Intelligence=intelligence;Wisdom=wisdom;
+            Intelligence=intelligence;Wisdom=wisdom;this.trainedWorkerIds=trainedWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
             this.assayProfiles=ValidateAssayProfiles(assayProfiles);
             this.assaySamples=ValidateAssaySamples(assaySamples);
             this.destructiveAssayProfiles=ValidateDestructiveAssayProfiles(destructiveAssayProfiles);
@@ -256,7 +263,8 @@ namespace Decennium.Foundation.Laboratory
             +(miningToolItems.Length==0?"":"|mining-tool-item|"+string.Join("||",miningToolItems.OrderBy(x=>x.Id,StringComparer.Ordinal)
                 .Select(x=>x.Id+"|"+x.ProfileId+"|"+x.OwnerId+"|"+x.CustodianId+"|"+x.GroundX.ToString(CultureInfo.InvariantCulture)
                     +"|"+x.GroundY.ToString(CultureInfo.InvariantCulture)+"|"+Q(x.SourceWeightLb)+"|"+Q(x.OperationalWeightLb))))
-            +(assayProfiles.Length+assaySamples.Length+destructiveAssayProfiles.Length==0?"":"|assay-source-policy|"+MiningAssayContentBinding.Identity);
+            +(assayProfiles.Length+assaySamples.Length+destructiveAssayProfiles.Length==0?"":"|assay-source-policy|"+MiningAssayContentBinding.Identity)
+            +(trainedWorkerIds==null?"":"|trained-workers|"+string.Join(";",trainedWorkerIds));
         private static string Q(RuleQuantity? value)=>value.HasValue?value.Value.ToString():"-";
 
         private void ValidateAssayProfileIdentity()
@@ -429,7 +437,11 @@ namespace Decennium.Foundation.Laboratory
         private SharedMiningFixture miningFixture;
         private string MiningOwnerId=>OffCalendarWorkerId;
         private string[] MiningWorkerIds=>worldConfiguration?.Actors.Select(x=>x.Id).ToArray()??new[]{TestOnlyPolicy.CompanionId};
-        private bool IsMiningWorker(string id)=>worldConfiguration==null?id==TestOnlyPolicy.CompanionId:worldConfiguration.Actors.Any(x=>x.Id==id);
+        private string[] MiningTrainingWorkerIds=>miningFixture==null||!miningFixture.Trained?Array.Empty<string>()
+            :miningFixture.HasExplicitTrainingRoster?miningFixture.TrainedWorkerIds:MiningWorkerIds;
+        private bool IsMiningWorker(string id)=>assignmentBindingProfile!=null
+            ?assignmentBindingProfile.WorkerIds.Contains(id,StringComparer.Ordinal)
+            :worldConfiguration==null?id==TestOnlyPolicy.CompanionId:worldConfiguration.Actors.Any(x=>x.Id==id);
 
         public static TestOnlySharedWorldPolicy WithMining(SharedMiningFixture fixture,uint seed=1,long enemyHp=26)
         {
@@ -461,7 +473,9 @@ namespace Decennium.Foundation.Laboratory
                     return new ActorCharacterRecord(x.ActorId,x.ProfileId,scores,x.Levels);
                 }).ToArray();
             }
-            if(miningFixture.Trained)s.SkillTraining=s.SkillTraining.Concat(MiningWorkerIds
+            var trainedWorkers=MiningTrainingWorkerIds;
+            if(trainedWorkers.Any(id=>!s.Actors.Any(a=>a.Id==id)))throw new InvalidOperationException("MiningTrainingWorkerNotControlled");
+            s.SkillTraining=s.SkillTraining.Concat(trainedWorkers
                 .Where(id=>!s.SkillTraining.Any(x=>x.ActorId==id&&x.SkillId=="mining-tools"))
                 .Select(id=>new SkillTrainingRecord(id,"mining-tools",1))).ToArray();
             var authored=miningFixture.Deposits;

@@ -20,7 +20,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly TestOnlyEncounterPolicy encounter;
         private readonly TacticalCombatFixture tactical;
         private readonly HashSet<string> deferredConditionTargets;
-        private readonly TestOnlyFillingPolicy inventory=new TestOnlyFillingPolicy(movableVessels:true);
+        private TestOnlyFillingPolicy inventory=new TestOnlyFillingPolicy(movableVessels:true);
         private readonly int companionX,companionY;
         private readonly int? actorBaseSpeed,companionBaseSpeed;
         private bool Posture=>actorBaseSpeed.HasValue;
@@ -51,6 +51,11 @@ namespace Decennium.Foundation.Laboratory
             using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.club-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
         }
         private static string N(long n)=>n.ToString(CultureInfo.InvariantCulture);
+        internal void ConfigureCropWorkers(string[] workerIds)
+        {
+            if(workerIds==null||workerIds.Length==0)throw new ArgumentException("At least one crop worker is required.",nameof(workerIds));
+            inventory=new TestOnlyFillingPolicy(movableVessels:true,cropPolicy:new TestOnlyCropPolicy(workerIds:workerIds));
+        }
         public Snapshot Initial()
         {
             var s=life.Initial();s.SchemaVersion=Snapshot.ClubAttackSchema;s.ContentFingerprint=ContentFingerprint;

@@ -16,10 +16,11 @@ namespace Decennium.Foundation.Laboratory
         private readonly TestOnlyInventoryPolicy inventory;
         private readonly int actorHands,companionHands;
         private readonly bool movable;
-        public TestOnlyFillingPolicy(int actorUsableHands=2,int companionUsableHands=2,long remainingFoodFreshness=2592000,bool movableVessels=false)
+        public TestOnlyFillingPolicy(int actorUsableHands=2,int companionUsableHands=2,long remainingFoodFreshness=2592000,
+            bool movableVessels=false,TestOnlyCropPolicy cropPolicy=null)
         {
             if(actorUsableHands<0||actorUsableHands>2||companionUsableHands<0||companionUsableHands>2)throw new ArgumentOutOfRangeException(nameof(actorUsableHands));
-            movable=movableVessels;actorHands=actorUsableHands;companionHands=companionUsableHands;inventory=new TestOnlyInventoryPolicy(remainingFoodFreshness);
+            movable=movableVessels;actorHands=actorUsableHands;companionHands=companionUsableHands;inventory=new TestOnlyInventoryPolicy(remainingFoodFreshness,cropPolicy);
         }
         public bool TestOnly=>true;
         public string ContentFingerprint=>(movable?"TEST_ONLY.movable-v1-":"TEST_ONLY.filling-v1-")+actorHands.ToString(CultureInfo.InvariantCulture)+"-"+companionHands.ToString(CultureInfo.InvariantCulture)

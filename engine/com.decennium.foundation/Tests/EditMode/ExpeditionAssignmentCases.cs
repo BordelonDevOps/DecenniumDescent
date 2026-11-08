@@ -507,6 +507,159 @@ namespace Decennium.Foundation.Tests
                         + replayEqual + ", stage=" + finalCrop.Stage + ", crop yield=" + cropYield + ", edible=" + edible + ", assignmentWork="
                         + linkedWork + ", cropWork=" + finalCrop.Tasks.Last().Id + ", clock=" + finalA.RuleClock);
             });
+
+            cases.Add("registered_workers_and_physical_sites_compose_crop_mining_exploration_and_replay", () => {
+                const string cropId = "TEST_ONLY.binding-profile-crop";
+                const string planter = AdditionalTacticalActor.Id;
+                const string miner = TestOnlyPolicy.CompanionId;
+                var fixture = new SharedMiningFixture(siteX: 4, siteY: 3, trainedWorkerIds: new[] { miner });
+                var profile = new SharedExpeditionAssignmentProfile("TEST_ONLY.assignment-roster-sites-v1", new[] {
+                    new ExpeditionAssignmentBinding(planter, ExpeditionWorkProcedure.CropPlanting, TestOnlyCropPolicy.PlotId, 3, 3),
+                    new ExpeditionAssignmentBinding(planter, ExpeditionWorkProcedure.CropTending, TestOnlyCropPolicy.PlotId, 3, 3),
+                    new ExpeditionAssignmentBinding(planter, ExpeditionWorkProcedure.CropHarvesting, TestOnlyCropPolicy.PlotId, 3, 3),
+                    new ExpeditionAssignmentBinding(miner, ExpeditionWorkProcedure.MiningExtraction, SharedMiningFixture.SiteId, 4, 3),
+                    // Registration permits asking the existing handler; it does not supply the
+                    // planter's missing mining-tools training or physical mining access.
+                    new ExpeditionAssignmentBinding(planter, ExpeditionWorkProcedure.MiningExtraction, SharedMiningFixture.SiteId, 4, 3)
+                });
+                var unseeded = TestOnlySharedWorldPolicy.WithMining(fixture)
+                    .EnableCampGreensAssignments().EnableExpeditionAssignmentBindings(profile);
+                var initial = unseeded.Initial();
+                var minerCharacter = initial.Characters.Single(x => x.ActorId == miner);
+                int minerModifier = PlaytestCharacters.AbilityModifier(minerCharacter.Abilities[4])
+                    + PlaytestCharacters.ProficiencyBonus(minerCharacter.Levels.Count);
+                Require(initial.SkillTraining.Where(x => x.SkillId == "mining-tools").Select(x => x.ActorId)
+                    .SequenceEqual(new[] { miner })
+                    && !initial.SkillTraining.Any(x => x.ActorId == planter && x.SkillId == "mining-tools")
+                    && initial.MiningDeposits.Single().SiteX == 4
+                    && initial.CropPlots.Single().Id == TestOnlyCropPolicy.PlotId,
+                    "The authored worker/site profile changed qualification, ownership, or the existing physical targets.");
+
+                uint seed = MiningSeedFor(TaskDegree.Success, minerModifier);
+                var policy = TestOnlySharedWorldPolicy.WithMining(fixture, seed)
+                    .EnableCampGreensAssignments().EnableExpeditionAssignmentBindings(profile);
+                var sim = World(policy);
+                var host = policy.HostAuthority();
+                var mineSelection = MiningSelection(SharedMiningFixture.CategoryA);
+                var mineRequest = new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
+                    SharedMiningFixture.DepositId, miningSelection: mineSelection);
+
+                RejectUnchanged(sim, host, ExpeditionCommand(sim, CommandKind.AssignExpeditionWork,
+                    request: mineRequest, actor: TestOnlyPolicy.ActorId), "ExpeditionAssignmentWorkerNotRegistered");
+
+                // The registered planter reaches the mine first. Registration permits the
+                // existing procedure to be requested; it grants neither skill nor free hands.
+                WorldCommit(sim, ExpeditionCommand(sim, CommandKind.AssignExpeditionWork,
+                    request: mineRequest, actor: planter));
+                var unqualifiedAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.WorkerId == planter && x.Open);
+                foreach (var step in new[] { new[] { 0, 1 }, new[] { 0, 1 }, new[] { 0, 1 } }) {
+                    WorldStep(sim, step[0], step[1], actor: planter); WorldAdvance(sim, 1);
+                }
+                unqualifiedAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.Id == unqualifiedAssignment.Id);
+                Require(unqualifiedAssignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "The registered unqualified worker did not reach the mine for handler revalidation.");
+                RejectUnchanged(sim, host, ExpeditionCommand(sim, CommandKind.StartExpeditionWork,
+                    unqualifiedAssignment.Id, actor: planter), "TwoHandsRequired");
+                Require(sim.Capture().MiningAttempts.Length == 0
+                    && sim.Capture().Work.Lots.Single(x => x.Id == SharedMiningFixture.UnitA).Amount == new RuleQuantity(1),
+                    "An unqualified registered worker created an attempt or consumed mineral stock.");
+                WorldCommit(sim, ExpeditionCommand(sim, CommandKind.CancelExpeditionWork,
+                    unqualifiedAssignment.Id, actor: planter));
+                WorldStep(sim, 0, -1, actor: planter); WorldAdvance(sim, 1);
+                WorldStep(sim, 0, -1, actor: planter); WorldAdvance(sim, 1);
+
+                WorldCommit(sim, ExpeditionCommand(sim, CommandKind.AssignExpeditionWork,
+                    request: mineRequest, actor: miner));
+                var mineAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.WorkerId == miner && x.Open);
+                Require(mineAssignment.SiteX == 4 && mineAssignment.SiteY == 3
+                    && mineAssignment.Status == ExpeditionAssignmentStatus.Travelling,
+                    "Mining assignment did not resolve the separately registered deposit site.");
+                WorldStep(sim, 1, 0, actor: miner); WorldAdvance(sim, 1);
+                mineAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.Id == mineAssignment.Id);
+                Require(mineAssignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "The registered miner did not become ready at the physical deposit.");
+                var startMine = ExpeditionCommand(sim, CommandKind.StartExpeditionWork, mineAssignment.Id, actor: miner);
+                WorldCommit(sim, startMine);
+
+                var seedBefore = sim.Capture().Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.SeedLotId).Amount;
+                var waterBefore = sim.Capture().Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.WaterLotId).Amount;
+                WorldCommit(sim, ExpeditionCommand(sim, CommandKind.AssignExpeditionWork,
+                    request: new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.CropPlanting, cropId), actor: planter));
+                var plantAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.WorkerId == planter && x.Open);
+                Require(plantAssignment.SiteX == 3 && plantAssignment.SiteY == 3
+                    && plantAssignment.Status == ExpeditionAssignmentStatus.Travelling,
+                    "Crop assignment did not resolve its registered prepared-plot identity and location.");
+                foreach (var step in new[] { new[] { 0, 1 }, new[] { -1, 0 }, new[] { 0, 1 } }) {
+                    WorldStep(sim, step[0], step[1], actor: planter); WorldAdvance(sim, 1);
+                }
+                plantAssignment = sim.Capture().ExpeditionAssignments.Single(x => x.Id == plantAssignment.Id);
+                Require(plantAssignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "The registered planter did not arrive at the prepared plot.");
+                var startPlant = ExpeditionCommand(sim, CommandKind.StartExpeditionWork, plantAssignment.Id, actor: planter);
+                WorldCommit(sim, startPlant);
+                var plantTask = sim.Capture().Crops.Single(x => x.Id == cropId).Tasks.Single();
+                // Keep lead exploration live while the registered workers occupy different sites.
+                WorldStep(sim, 0, 1, actor: TestOnlyPolicy.ActorId); WorldAdvance(sim, 1);
+                WorldAdvance(sim, 600);
+                WorldCommit(sim, IC(sim, CommandKind.PauseCrop, cropId, actor: planter));
+                var paused = sim.Capture();
+                Require(paused.ExpeditionAssignments.Single(x => x.Id == plantAssignment.Id).WorkId == plantTask.Id
+                    && paused.Crops.Single(x => x.Id == cropId).Tasks.Single().Progress == new RuleTime(601)
+                    && paused.Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.SeedLotId).Amount == new RuleQuantity(7)
+                    && paused.Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.WaterLotId).Amount == new RuleQuantity(504),
+                    "Planting did not retain its authoritative work link and exactly-once input debit at pause.");
+
+                var started = sim.Capture();
+                var attempt = started.MiningAttempts.Single();
+                Require(mineAssignment.WorkerId == miner && attempt.WorkerId == miner && attempt.Status == MiningAttemptStatus.Working
+                    && started.ExpeditionAssignments.Single(x => x.Id == mineAssignment.Id).WorkId == attempt.Id
+                    && started.ExpeditionAssignments.Single(x => x.Id == plantAssignment.Id).WorkId == plantTask.Id,
+                    "The two existing work handlers did not retain distinct authoritative worker/job links.");
+
+                byte[] inProgress = Bytes(sim);
+                var forgedWork = new SnapshotCodec().Decode(inProgress);
+                forgedWork.ExpeditionAssignments = forgedWork.ExpeditionAssignments.Select(x => x.Id == mineAssignment.Id
+                    ? new ExpeditionWorkAssignmentRecord(x.Id, x.WorkerId, x.Procedure, x.TargetId, x.DestinationId,
+                        x.SiteX, x.SiteY, x.AssignedAt, x.UpdatedAt, x.Status, "forged.mining-work", x.MiningSelection) : x).ToArray();
+                Throws<ArgumentException>(() => new Simulation(policy, forgedWork, ExecutionProfile.Laboratory));
+                var forgedWorker = new SnapshotCodec().Decode(inProgress);
+                forgedWorker.ExpeditionAssignments = forgedWorker.ExpeditionAssignments.Select(x => x.Id == mineAssignment.Id
+                    ? new ExpeditionWorkAssignmentRecord(x.Id, planter, x.Procedure, x.TargetId, x.DestinationId,
+                        x.SiteX, x.SiteY, x.AssignedAt, x.UpdatedAt, x.Status, x.WorkId, x.MiningSelection) : x).ToArray();
+                Throws<ArgumentException>(() => new Simulation(policy, forgedWorker, ExecutionProfile.Laboratory));
+                var forgedProcedure = new SnapshotCodec().Decode(inProgress);
+                forgedProcedure.ExpeditionAssignments = forgedProcedure.ExpeditionAssignments.Select(x => x.Id == mineAssignment.Id
+                    ? new ExpeditionWorkAssignmentRecord(x.Id, x.WorkerId, ExpeditionWorkProcedure.CacheExcavation,
+                        x.TargetId, "", x.SiteX, x.SiteY, x.AssignedAt, x.UpdatedAt, x.Status, x.WorkId) : x).ToArray();
+                Throws<ArgumentException>(() => new Simulation(policy, forgedProcedure, ExecutionProfile.Laboratory));
+
+                var replayA = new Simulation(policy, new SnapshotCodec().Decode(inProgress), ExecutionProfile.Laboratory);
+                var replayB = new Simulation(policy, new SnapshotCodec().Decode(inProgress), ExecutionProfile.Laboratory);
+                WorldCommit(replayA, IC(replayA, CommandKind.PlantCrop, cropId, actor: planter));
+                WorldCommit(replayB, IC(replayB, CommandKind.PlantCrop, cropId, actor: planter));
+                WorldAdvance(replayA, 1196); WorldAdvance(replayB, 1196);
+                WorldAdvance(replayA, 1803); WorldAdvance(replayB, 1803);
+                var resultA = replayA.Capture(); var resultB = replayB.Capture();
+                var extracted = resultA.MiningUnits.Single(x => x.Id == SharedMiningFixture.UnitA);
+                var received = resultA.Work.Lots.Single(x => x.Id == extracted.ReceivedLotId);
+                Require(Bytes(replayA).SequenceEqual(Bytes(replayB)) && resultA.RandomState == resultB.RandomState
+                    && resultA.MiningAttempts.Single().Status == MiningAttemptStatus.Success
+                    && extracted.Status == MiningUnitStatus.Extracted && extracted.ReceivedContainerId == SharedMiningFixture.ReceiverId
+                    && received.LocationId == SharedMiningFixture.ReceiverId && received.CustodianId == SharedMiningFixture.OwnerId
+                    && resultA.ExpeditionAssignments.Single(x => x.Id == mineAssignment.Id).WorkId == resultA.MiningAttempts.Single().Id
+                    && resultA.ExpeditionAssignments.Single(x => x.Id == plantAssignment.Id).WorkId == plantTask.Id
+                    && resultA.Crops.Single(x => x.Id == cropId).Stage == CropStage.Growing
+                    && resultA.Crops.Single(x => x.Id == cropId).Tasks.Single().Progress == new RuleTime(3600)
+                    && resultA.Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.SeedLotId).Amount == new RuleQuantity(7)
+                    && resultA.Work.Lots.Single(x => x.Id == TestOnlyCropPolicy.WaterLotId).Amount == new RuleQuantity(504)
+                    && resultA.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 0
+                    && resultA.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 1,
+                    "Restored exploration, crop labor, extraction, custody, RNG, or receipts diverged.");
+                Require(replayA.Execute(host, startMine).Outcome == Outcome.Duplicate
+                    && Bytes(replayA).SequenceEqual(Bytes(replayB)),
+                    "Duplicate mining assignment replay changed the settled shared world.");
+
+            });
         }
     }
 }

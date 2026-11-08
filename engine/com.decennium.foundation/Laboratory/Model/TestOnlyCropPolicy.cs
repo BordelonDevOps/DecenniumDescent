@@ -16,10 +16,16 @@ namespace Decennium.Foundation.Laboratory
         public const string PlotId="TEST_ONLY.prepared-plot",SeedLotId="TEST_ONLY.seed-packets",WaterLotId="TEST_ONLY.water-pints";
         public const int PlotWidthFeet=10,PlotLengthFeet=10;
         private readonly long seeds,water;
+        private readonly string[] workers;
         private readonly TestOnlyPolicy world=new TestOnlyPolicy();
-        public TestOnlyCropPolicy(long seedPackets=8,long waterPints=512)
-        {if(seedPackets<0||waterPints<0)throw new ArgumentOutOfRangeException(nameof(seedPackets));seeds=seedPackets;water=waterPints;}
-        public string ContentFingerprint=>"TEST_ONLY.camp-greens-v1-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture);
+        public TestOnlyCropPolicy(long seedPackets=8,long waterPints=512,string[] workerIds=null)
+        {
+            if(seedPackets<0||waterPints<0||workerIds!=null&&(workerIds.Any(x=>!Validation.ValidId(x))
+                ||workerIds.Distinct(StringComparer.Ordinal).Count()!=workerIds.Length))throw new ArgumentOutOfRangeException(nameof(seedPackets));
+            seeds=seedPackets;water=waterPints;workers=(workerIds??new[]{TestOnlyPolicy.CompanionId}).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+        }
+        public string ContentFingerprint=>"TEST_ONLY.camp-greens-v1-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture)
+            +(workers.SequenceEqual(new[]{TestOnlyPolicy.CompanionId})?"":"-workers-"+string.Join("-",workers));
         public bool TestOnly=>true;
         public static Authority Host()=>new Authority("TEST_ONLY.host",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId},true,true);
         public Snapshot Initial()
@@ -45,7 +51,7 @@ namespace Decennium.Foundation.Laboratory
                 if(s.Crops.SelectMany(crop=>crop.Tasks).Any(t=>t.WorkerId==c.Actor&&t.Status==CropWorkStatus.Working))return "WorkerBusy";
                 return world.Resolve(s,c);
             }
-            if(c.Actor!=TestOnlyPolicy.CompanionId)return "WrongWorker";
+            if(!workers.Contains(c.Actor,StringComparer.Ordinal))return "WrongWorker";
             if(c.X!=0||c.Y!=0||!AtPlot(s.Actors.Single(a=>a.Id==c.Actor)))return "InvalidCropWorkAccess";
             switch(c.Kind) {
                 case CommandKind.PlantCrop:CampGreens.Plant(s,c.Target,PlotId,SeedLotId,WaterLotId,c.Actor);return null;
@@ -124,7 +130,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 if(crop.MaturedAt.HasValue&&CampGreens.CompareOffset(crop.MaturedAt.Value,plant.EndedAt.Value,CampGreens.GrowthSeconds)<0)return "EarlyMaturity";
                 foreach(var task in crop.Tasks) {
-                    if(task.WorkerId!=TestOnlyPolicy.CompanionId||task.Progress>new RuleTime(CampGreens.Duration(task.Kind)))return "InvalidLabor";
+                    if(!workers.Contains(task.WorkerId,StringComparer.Ordinal)||task.Progress>new RuleTime(CampGreens.Duration(task.Kind)))return "InvalidLabor";
                     bool complete=task.Status==CropWorkStatus.Complete;
                     if((task.Kind==CropWorkKind.Tend&&(!planted||task.StartedAt<plant.EndedAt.Value))
                         ||(task.Kind==CropWorkKind.Harvest&&(!crop.MaturedAt.HasValue||task.StartedAt<crop.MaturedAt.Value))
@@ -132,7 +138,7 @@ namespace Decennium.Foundation.Laboratory
                         ||(task.Kind==CropWorkKind.Tend&&crop.MaturedAt.HasValue&&task.EndedAt.HasValue&&task.EndedAt.Value>crop.MaturedAt.Value))return "InvalidPhaseChronology";
                     if(complete&&task.Progress!=new RuleTime(CampGreens.Duration(task.Kind)))return "IncompleteTask";
                     if((task.Status==CropWorkStatus.Working||task.Status==CropWorkStatus.Paused)&&task.Progress>=new RuleTime(CampGreens.Duration(task.Kind)))return "UnresolvedTask";
-                    if(task.Status==CropWorkStatus.Working) {
+                if(task.Status==CropWorkStatus.Working) {
                         if(!AtPlot(s.Actors.Single(a=>a.Id==task.WorkerId)))return "WorkerLeftPlot";
                         if((task.Kind==CropWorkKind.Plant&&crop.Stage!=CropStage.Planting)
                             ||(task.Kind==CropWorkKind.Tend&&crop.Stage!=CropStage.Growing)
