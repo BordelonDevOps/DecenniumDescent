@@ -20,6 +20,7 @@ namespace Decennium.Foundation.Laboratory
         public bool CommandStepSchemaEnabled { get; }
         public bool SuppressionFireSchemaEnabled { get; }
         public bool DefensiveFormationSchemaEnabled { get; }
+        public bool LevelFourAdvancementEnabled { get; }
         public System.Collections.Generic.IReadOnlyList<TacticalCoverRecord> Covers { get; }
         public CharacterAdvancementFixture(ActorLifeRecord heroLife=null,params TacticalCoverRecord[] covers)
             :this(heroLife,false,covers)
@@ -57,17 +58,26 @@ namespace Decennium.Foundation.Laboratory
         public CharacterAdvancementFixture(ActorLifeRecord heroLife,bool startingHitDieSpent,bool historySchemaEnabled,
             bool tacticalAssessmentSchemaEnabled,bool commandStepSchemaEnabled,bool suppressionFireSchemaEnabled,
             bool defensiveFormationSchemaEnabled,params TacticalCoverRecord[] covers)
+            :this(heroLife,startingHitDieSpent,historySchemaEnabled,tacticalAssessmentSchemaEnabled,commandStepSchemaEnabled,
+                suppressionFireSchemaEnabled,defensiveFormationSchemaEnabled,false,covers)
+        { }
+        public CharacterAdvancementFixture(ActorLifeRecord heroLife,bool startingHitDieSpent,bool historySchemaEnabled,
+            bool tacticalAssessmentSchemaEnabled,bool commandStepSchemaEnabled,bool suppressionFireSchemaEnabled,
+            bool defensiveFormationSchemaEnabled,bool levelFourAdvancementEnabled,params TacticalCoverRecord[] covers)
             :this(heroLife,startingHitDieSpent,historySchemaEnabled,tacticalAssessmentSchemaEnabled,commandStepSchemaEnabled,suppressionFireSchemaEnabled,covers)
         {
             DefensiveFormationSchemaEnabled=defensiveFormationSchemaEnabled;
+            LevelFourAdvancementEnabled=levelFourAdvancementEnabled;
             if(defensiveFormationSchemaEnabled)HistorySchemaEnabled=true;
+            if(levelFourAdvancementEnabled)HistorySchemaEnabled=true;
         }
         internal string Key=>"soldier-1-to-2-v1|milestone-only|fixed-average-d10-base-6|prior-hit-die-spent="+(StartingHitDieSpent?"1":"0")
             +"|advancement-history-schema30="+(HistorySchemaEnabled?"1":"0")
             +(TacticalAssessmentSchemaEnabled?"|tactical-assessment-schema31=1":"")
             +(CommandStepSchemaEnabled?"|command-step-schema32=1":"")
             +(SuppressionFireSchemaEnabled?"|suppression-fire-schema33=1":"")
-            +(DefensiveFormationSchemaEnabled?"|defensive-formation-schema34=1":"")+"|"+string.Join("|",new[]{HeroLife.ActorId,
+            +(DefensiveFormationSchemaEnabled?"|defensive-formation-schema34=1":"")
+            +(LevelFourAdvancementEnabled?"|shared-character-advancement-schema61=1":"")+"|"+string.Join("|",new[]{HeroLife.ActorId,
             HeroLife.MaximumHp.ToString(CultureInfo.InvariantCulture),HeroLife.Hp.ToString(CultureInfo.InvariantCulture),HeroLife.TemporaryHp.ToString(CultureInfo.InvariantCulture),
             string.Join(",",HeroLife.LinkedInjuries),HeroLife.Stable?"1":"0",HeroLife.Dead?"1":"0",HeroLife.UsesDeathSaves?"1":"0",
             HeroLife.DeathSuccesses.ToString(CultureInfo.InvariantCulture),HeroLife.DeathFailures.ToString(CultureInfo.InvariantCulture),HeroLife.StableUntil?.ToString()??"none",
@@ -162,6 +172,23 @@ namespace Decennium.Foundation.Laboratory
 
     public static class CharacterAdvancementRules
     {
+        private sealed class AdvancementAssessment
+        {
+            public bool AwardMilestone;
+            public ActorCharacterRecord Character;
+            public string MilestoneId;
+            public int NewClassLevel;
+            public string[] Features;
+            public CharacterAbility[] AbilityIncreases;
+            public int[] AbilitiesBefore;
+            public int[] AbilitiesAfter;
+            public ActorLifeRecord Life;
+            public long MaximumHpBefore;
+            public long MaximumHpAfter;
+            public long CurrentHpAfter;
+            public int LastRegularStart;
+            public CharacterFeatureRuntimeRecord PriorRuntime;
+        }
         private static bool EmptyCommand(Command c)=>c.Inventory==null&&c.Combat==null&&c.X==0&&c.Y==0;
         private static string FeatureOne(string a,string b)=>string.CompareOrdinal(a,b)<0?a:b;
         private static string FeatureTwo(string a,string b)=>string.CompareOrdinal(a,b)<0?b:a;
@@ -248,6 +275,10 @@ namespace Decennium.Foundation.Laboratory
                 &&s.PortableEquipment.Any(x=>x.Id==loadout.ShieldId&&x.CustodianId==actor&&x.ParentId==""
                     &&x.Placement==PortablePlacement.Worn&&x.ProfileId=="armor-and-shields.shield");
         }
+        internal static bool OwnsDefensiveFormation(Snapshot s,string actor)
+            =>s.CharacterFeatureGrants.Any(x=>x.ActorId==actor&&x.FeatureId==CharacterFeatureIds.DefensiveFormation
+                &&x.ClassName=="Soldier"&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard
+                &&(x.ClassLevel==3||x.ClassLevel==4&&s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema));
         internal static int SaveProficiencyBonus(Snapshot s,string actor,string abilityId)
         {
             var loadout=s.InitialCharacterLoadouts.SingleOrDefault(x=>x.ActorId==actor);
@@ -315,8 +346,74 @@ namespace Decennium.Foundation.Laboratory
             var body=s.Actors.Single(x=>x.Id==actor);
             return s.TacticalCovers.Any(x=>PlanarCombatGeometry.DistanceFeet(new CombatCell(body.X,body.Y),new CombatCell(x.X,x.Y))==5)?1:0;
         }
-        public static string Resolve(Snapshot s,Command c)
+        private static bool ActiveOption(ClassAdvancementOption option)
+            =>(option.KindProperty=="sourceKind"&&option.Kind=="active")
+                ||option.Activation.StartsWith("Action",StringComparison.Ordinal)
+                ||option.Activation.StartsWith("Bonus Action",StringComparison.Ordinal)
+                ||option.Activation.StartsWith("Reaction",StringComparison.Ordinal)
+                ||option.Activation.StartsWith("Ritual",StringComparison.Ordinal);
+
+        private static bool HasExecutableSoldierFeatureHandler(string featureId)
+            =>featureId==CharacterFeatureIds.DefensiveFormation;
+
+        private static string AssessRowChoices(Snapshot s,ActorCharacterRecord character,CharacterAdvancementRequest request,
+            int classLevel,System.Collections.Generic.IEnumerable<string> previouslySelectedAdvancementFeatures,out string[] features)
         {
+            features=Array.Empty<string>();
+            var schedule=ClassAdvancementScheduleCatalog.Get("Soldier",classLevel);
+            if(schedule==null)return "ClassScheduleUnavailable";
+            if(schedule.Kind==ClassAdvancementScheduleKind.NarrativeException)return "ClassScheduleNeedsBinding";
+            if(!schedule.RequiredSelections.HasValue||!schedule.MinimumActiveSelections.HasValue||!schedule.HasAsiOrFeatOpportunity.HasValue)
+                return "ClassScheduleNeedsBinding";
+            var automatic=ClassAdvancementOptionCatalog.Options.Where(x=>x.ClassName=="Soldier"
+                &&x.Acquisition=="automatic"&&x.MinimumClassLevel==classLevel).ToArray();
+            if(automatic.Length!=0)return "ClassRowOperationsUnbound";
+            if(classLevel==4&&s.SchemaVersion<Snapshot.SharedCharacterAdvancementSchema)return "ClassRowOperationsUnbound";
+            if(request.FeatureIds.Count!=schedule.RequiredSelections.Value
+                ||request.FeatureIds.Any(x=>x=="")||request.FeatureIds.Distinct(StringComparer.Ordinal).Count()!=request.FeatureIds.Count)
+                return "IncompleteFeatureSelection";
+            var requestedFeatures=request.FeatureIds.ToArray();
+            features=requestedFeatures.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            var candidates=ClassAdvancementOptionCatalog.Candidates(schedule);
+            var options=features.Select(x=>ClassAdvancementOptionCatalog.Get("Soldier",x)).ToArray();
+            if(options.Any(x=>x==null||!candidates.Contains(x)))return "FeatureOutsideClassSchedule";
+            if(options.Any(x=>x.HasPathConstraint||x.HasDeclaredPrerequisite))return "FeaturePrerequisiteBindingRequired";
+            int activeSelections=options.Count(ActiveOption);
+            if(activeSelections<schedule.MinimumActiveSelections)return "ActiveSelectionRequirementNotMet";
+            if(features.Any(feature=>previouslySelectedAdvancementFeatures.Contains(feature,StringComparer.Ordinal)))return "FeatureAlreadyOwned";
+            if(classLevel==4&&features.Any(feature=>!HasExecutableSoldierFeatureHandler(feature)))return "ClassRowOperationUnbound";
+            bool hasAsi=schedule.HasAsiOrFeatOpportunity.Value;
+            if(request.FeatId!="")return hasAsi?"ClassRowOperationUnbound":"UnexpectedAdvancementOperation";
+            if(hasAsi&&request.AsiAbilityIncreases.Count!=2)return "IncompleteAbilityScoreIncrease";
+            if(!hasAsi&&request.AsiAbilityIncreases.Count!=0)return "UnexpectedAdvancementOperation";
+            if(!hasAsi&&request.FeatId!="")return "UnexpectedAdvancementOperation";
+            bool levelTwo=classLevel==2&&character.Levels.Count==1&&schedule.RequiredSelections==2
+                &&schedule.Bands.SequenceEqual(new[]{"Base"},StringComparer.Ordinal)
+                &&features.SequenceEqual(new[]{CharacterAdvancementFixture.DefensivePositioning,CharacterAdvancementFixture.TacticalReposition}
+                    .OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal);
+            bool levelThreeFirst=classLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.CommandStepSchema
+                &&schedule.Bands.SequenceEqual(new[]{"Arch"},StringComparer.Ordinal)
+                &&features.SequenceEqual(new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.TacticalAssessment}
+                    .OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal);
+            bool levelThreeSecond=classLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.SuppressionFireSchema
+                &&schedule.Bands.SequenceEqual(new[]{"Arch"},StringComparer.Ordinal)
+                &&features.SequenceEqual(new[]{CharacterFeatureIds.SuppressionFire,CharacterFeatureIds.TacticalAssessment}
+                    .OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal);
+            bool levelThreeThird=classLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.DefensiveFormationSchema
+                &&schedule.Bands.SequenceEqual(new[]{"Arch"},StringComparer.Ordinal)
+                &&features.SequenceEqual(new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.DefensiveFormation}
+                    .OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal);
+            bool levelFour=classLevel==4&&s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema
+                &&schedule.RequiredSelections==1&&schedule.Bands.SequenceEqual(new[]{"Base","Arch"},StringComparer.Ordinal)
+                &&schedule.HasAsiOrFeatOpportunity==true;
+            if(!levelTwo&&!levelThreeFirst&&!levelThreeSecond&&!levelThreeThird&&!levelFour)
+                return "LegalFeatureChoiceNotImplemented";
+            return null;
+        }
+
+        private static string Assess(Snapshot s,Command c,out AdvancementAssessment assessment)
+        {
+            assessment=null;
             if(s.SchemaVersion!=Snapshot.CharacterAdvancementSchema&&s.SchemaVersion<Snapshot.SharedBonusActionSchema)return "CharacterAdvancementUnsupported";
             if(!EmptyCommand(c))return "InvalidAdvancementCommand";
             var character=s.Characters.SingleOrDefault(x=>x.ActorId==c.Actor);
@@ -329,7 +426,7 @@ namespace Decennium.Foundation.Laboratory
                 if(c.Advancement!=null||c.Target=="")return "InvalidMilestoneAward";
                 if(s.CharacterMilestones.Any(x=>x.ActorId==c.Actor&&x.MilestoneId==c.Target))return "MilestoneAlreadyAwarded";
                 if(s.CharacterMilestones.Length>=256)return "MilestoneCapacityReached";
-                s.CharacterMilestones=s.CharacterMilestones.Concat(new[]{new CharacterMilestoneRecord(c.Target,c.Actor,s.Revision+1)}).ToArray();
+                assessment=new AdvancementAssessment{AwardMilestone=true,Character=character,MilestoneId=c.Target};
                 return null;
             }
             if(c.Kind!=CommandKind.AdvanceCharacterLevel||c.Advancement==null||c.Target=="")return "CharacterAdvancementCommandNotImplemented";
@@ -341,69 +438,181 @@ namespace Decennium.Foundation.Laboratory
             if(s.ManufacturingAdvance!=null)return "ManufacturingChoicePending";
             if(Busy(s,c.Actor))return "CharacterBusy";
             int nextClassLevel=character.Levels.Count+1;
-            var request=c.Advancement;var requestedFeatures=request.FeatureIds.ToArray();
-            if(requestedFeatures.Length!=2||requestedFeatures.Any(x=>x=="")||requestedFeatures.Distinct(StringComparer.Ordinal).Count()!=2)
-                return "IncompleteFeatureSelection";
-            string first=FeatureOne(requestedFeatures[0],requestedFeatures[1]),second=FeatureTwo(requestedFeatures[0],requestedFeatures[1]);
-            var schedule=ClassAdvancementScheduleCatalog.Get("Soldier",nextClassLevel);
-            if(schedule==null)return "ClassScheduleUnavailable";
-            if(schedule.Kind==ClassAdvancementScheduleKind.NarrativeException)return "ClassScheduleNeedsBinding";
-            if(schedule.RequiredSelections!=2)return "AdvancementRequestShapeUnsupported";
-            if(schedule.HasAsiOrFeatOpportunity==true)return "ClassRowOperationsUnbound";
-            var candidates=ClassAdvancementOptionCatalog.Candidates(schedule);
-            var firstOption=ClassAdvancementOptionCatalog.Get("Soldier",first);
-            var secondOption=ClassAdvancementOptionCatalog.Get("Soldier",second);
-            if(firstOption==null||secondOption==null||!candidates.Contains(firstOption)||!candidates.Contains(secondOption))return "FeatureOutsideClassSchedule";
-            if(firstOption.HasPathConstraint||secondOption.HasPathConstraint||firstOption.HasDeclaredPrerequisite||secondOption.HasDeclaredPrerequisite)
-                return "FeaturePrerequisiteBindingRequired";
-            int activeSelections=new[]{firstOption,secondOption}.Count(x=>(x.KindProperty=="sourceKind"&&x.Kind=="active")
-                ||x.Activation.StartsWith("Action",StringComparison.Ordinal)||x.Activation.StartsWith("Bonus Action",StringComparison.Ordinal)
-                ||x.Activation.StartsWith("Reaction",StringComparison.Ordinal)||x.Activation.StartsWith("Ritual",StringComparison.Ordinal));
-            if(activeSelections<schedule.MinimumActiveSelections)return "ActiveSelectionRequirementNotMet";
-            bool levelTwo=nextClassLevel==2&&character.Levels.Count==1&&schedule.Bands.Count==1&&schedule.Bands[0]=="Base"
-                &&first==CharacterAdvancementFixture.DefensivePositioning&&second==CharacterAdvancementFixture.TacticalReposition;
-            bool levelThreeFirst=nextClassLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.CommandStepSchema
-                &&schedule.Bands.Count==1&&schedule.Bands[0]=="Arch"
-                &&first==CharacterFeatureIds.CommandStep&&second==CharacterFeatureIds.TacticalAssessment;
-            bool levelThreeSecond=nextClassLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.SuppressionFireSchema
-                &&schedule.Bands.Count==1&&schedule.Bands[0]=="Arch"
-                &&first==CharacterFeatureIds.SuppressionFire&&second==CharacterFeatureIds.TacticalAssessment;
-            bool levelThreeThird=nextClassLevel==3&&character.Levels.Count==2&&s.SchemaVersion>=Snapshot.DefensiveFormationSchema
-                &&schedule.Bands.Count==1&&schedule.Bands[0]=="Arch"
-                &&first==CharacterFeatureIds.CommandStep&&second==CharacterFeatureIds.DefensiveFormation;
-            if(!levelTwo&&!levelThreeFirst&&!levelThreeSecond&&!levelThreeThird)
-                return "LegalFeatureChoiceNotImplemented";
-            if(s.CharacterAdvancements.Length>=128||s.CharacterFeatureGrants.Length>254||s.CharacterHitDice.Length>=1280)return "AdvancementCapacityReached";
+            var request=c.Advancement;
+            string rowError=AssessRowChoices(s,character,request,nextClassLevel,
+                s.CharacterAdvancements.Where(x=>x.ActorId==c.Actor).SelectMany(x=>x.SelectedFeatureIds),out var features);
+            if(rowError!=null)return rowError;
+            if(s.CharacterAdvancements.Length>=128||s.CharacterFeatureGrants.Length+features.Length>256||s.CharacterHitDice.Length>=1280)return "AdvancementCapacityReached";
             var dice=s.CharacterHitDice.Where(x=>x.ActorId==c.Actor).OrderBy(x=>x.LevelOrdinal).ToArray();
             if(dice.Length!=nextClassLevel-1||dice.Where((x,i)=>x.LevelOrdinal!=i+1||x.ClassName!="Soldier"||x.DieSize!=10).Any())
                 return "HitDieLedgerMismatch";
             var life=s.Lives.Single(x=>x.ActorId==c.Actor);
-            long expectedMaximum=checked(10L+6L*(nextClassLevel-2));
-            if(life.MaximumHp!=expectedMaximum)return "AdvancementHealthBasisMismatch";
+            int[] abilitiesBefore=character.Abilities.ToArray();int[] abilitiesAfter=abilitiesBefore.ToArray();
+            foreach(var ability in request.AsiAbilityIncreases) {
+                int index=(int)ability;
+                if(abilitiesAfter[index]>=20)return "AbilityScoreCapExceeded";
+                abilitiesAfter[index]=checked(abilitiesAfter[index]+1);
+            }
+            var previousLevels=character.Levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray();
+            var levels=character.Levels.Concat(new[]{new CharacterLevelFact("Soldier",6)}).ToArray();
+            long maximumBefore=PlaytestCharacters.BaseMaximumHp(previousLevels,abilitiesBefore[(int)CharacterAbility.Constitution]).BaseMaximum;
+            if(life.MaximumHp!=maximumBefore)return "AdvancementHealthBasisMismatch";
+            long maximumAfter=PlaytestCharacters.BaseMaximumHp(levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),
+                abilitiesAfter[(int)CharacterAbility.Constitution]).BaseMaximum;
+            long currentAfter=PlaytestCharacters.ClampAfterCapacityChange(life.Hp,maximumAfter);
             var priorRuntime=Runtime(s,c.Actor);
             int lastStart=checked((int)s.WorldIntervals.Single(x=>x.ActorId==c.Actor).LastStart);
             if(priorRuntime!=null&&priorRuntime.LastRegularStart!=lastStart)return "FeatureRuntimeStartMismatch";
+            assessment=new AdvancementAssessment{Character=character,MilestoneId=c.Target,NewClassLevel=nextClassLevel,Features=features,
+                AbilityIncreases=request.AsiAbilityIncreases.ToArray(),AbilitiesBefore=abilitiesBefore,AbilitiesAfter=abilitiesAfter,Life=life,
+                MaximumHpBefore=maximumBefore,MaximumHpAfter=maximumAfter,CurrentHpAfter=currentAfter,LastRegularStart=lastStart,PriorRuntime=priorRuntime};
+            return null;
+        }
+
+        internal static string Assess(Snapshot s,Command c)=>Assess(s,c,out _);
+
+        internal static ActorCharacterRecord AtRevision(Snapshot s,string actorId,long revision)
+        {
+            if(s==null)throw new ArgumentNullException(nameof(s));
+            if(revision<0||revision>s.Revision)throw new ArgumentOutOfRangeException(nameof(revision));
+            var character=s.Characters.SingleOrDefault(x=>x.ActorId==actorId)
+                ??throw new ArgumentException("CharacterNotFound",nameof(actorId));
+            var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderByDescending(x=>x.Revision).ToArray();
+            int[] scores=character.Abilities.ToArray();
+            foreach(var advancement in events.Where(x=>x.Revision>revision&&x.AsiAbilityIncreases.Count!=0)) {
+                if(!advancement.AbilityScoresAfter.SequenceEqual(scores))throw new ArgumentException("InvalidAbilityHistory",nameof(s));
+                scores=advancement.AbilityScoresBefore.ToArray();
+            }
+            int totalLevel=1+s.CharacterAdvancements.Count(x=>x.ActorId==actorId&&x.Revision<=revision);
+            if(totalLevel>character.Levels.Count)throw new ArgumentException("InvalidAdvancementHistory",nameof(s));
+            return new ActorCharacterRecord(character.ActorId,character.ProfileId,scores,character.Levels.Take(totalLevel));
+        }
+
+        internal static string ValidateHistorical(Snapshot s)
+        {
+            if(s.SchemaVersion<Snapshot.SharedCharacterAdvancementSchema)return null;
+            foreach(string actorId in s.CharacterAdvancements.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal)) {
+                var actor=s.Characters.SingleOrDefault(x=>x.ActorId==actorId);
+                var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderBy(x=>x.Revision).ToArray();
+                if(actor==null||events.Length==0)return "InvalidAdvancementHistory";
+                int[] scores={10,10,10,10,10,10};
+                int level=1;
+                foreach(var advancement in events) {
+                    var receipt=s.Receipts.SingleOrDefault(x=>x.Revision==advancement.Revision);
+                    if(receipt==null)return "AdvancementReceiptMissing";
+                    Command command;
+                    try { command=CommandHistory.Read(receipt); }
+                    catch(ArgumentException) { return "InvalidAdvancementReceipt"; }
+                    if(command.Kind!=CommandKind.AdvanceCharacterLevel||command.Actor!=actorId||command.Target!=advancement.MilestoneId
+                        ||command.Advancement==null||command.Advancement.FeatId!=""
+                        ||!command.Advancement.FeatureIds.SequenceEqual(advancement.SelectedFeatureIds)
+                        ||!command.Advancement.AsiAbilityIncreases.SequenceEqual(advancement.AsiAbilityIncreases))
+                        return "AdvancementReceiptMismatch";
+                    if(advancement.PreviousTotalLevel!=level||advancement.NewTotalLevel!=level+1
+                        ||advancement.ClassName!="Soldier"||advancement.ClassLevel!=level+1
+                        ||actor.Levels.Count<=level||actor.Levels[level].ClassName!="Soldier"
+                        ||actor.Levels[level].BaseHp!=6)return "InvalidAdvancementChronology";
+                    if(advancement.AsiAbilityIncreases.Count!=0&&!advancement.AbilityScoresBefore.SequenceEqual(scores))
+                        return "InvalidAbilityScoreHistory";
+                    var nextScores=scores.ToArray();
+                    foreach(var ability in advancement.AsiAbilityIncreases) {
+                        int index=(int)ability;
+                        if(nextScores[index]>=20)return "AbilityScoreCapExceeded";
+                        nextScores[index]++;
+                    }
+                    if(advancement.AsiAbilityIncreases.Count!=0&&!advancement.AbilityScoresAfter.SequenceEqual(nextScores))
+                        return "InvalidAbilityScoreHistory";
+                    var priorSelections=s.CharacterAdvancements.Where(x=>x.ActorId==actorId&&x.Revision<advancement.Revision)
+                        .SelectMany(x=>x.SelectedFeatureIds).ToArray();
+                    var historicalCharacter=new ActorCharacterRecord(actorId,actor.ProfileId,scores,
+                        actor.Levels.Take(level));
+                    var request=new CharacterAdvancementRequest(advancement.SelectedFeatureIds.ToArray(),
+                        advancement.AsiAbilityIncreases.ToArray());
+                    string rowError=AssessRowChoices(s,historicalCharacter,request,level+1,priorSelections,out var selected);
+                    if(rowError!=null||!selected.SequenceEqual(advancement.SelectedFeatureIds))return "InvalidAdvancementSourceRow";
+                    var priorLevels=actor.Levels.Take(level).Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray();
+                    var nextLevels=actor.Levels.Take(level+1).Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray();
+                    long expectedBefore=PlaytestCharacters.BaseMaximumHp(priorLevels,scores[(int)CharacterAbility.Constitution]).BaseMaximum;
+                    long expectedAfter=PlaytestCharacters.BaseMaximumHp(nextLevels,nextScores[(int)CharacterAbility.Constitution]).BaseMaximum;
+                    if(advancement.MaximumHpBefore!=expectedBefore||advancement.MaximumHpAfter!=expectedAfter
+                        ||advancement.CurrentHpBefore>expectedBefore
+                        ||advancement.CurrentHpAfter!=PlaytestCharacters.ClampAfterCapacityChange(advancement.CurrentHpBefore,expectedAfter))
+                        return "InvalidAdvancementHealthHistory";
+                    scores=nextScores;level++;
+                }
+                if(level!=actor.Levels.Count||!scores.SequenceEqual(actor.Abilities))return "InvalidAbilityScoreHistory";
+                long expectedMaximum=PlaytestCharacters.BaseMaximumHp(actor.Levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),
+                    actor.Abilities[(int)CharacterAbility.Constitution]).BaseMaximum;
+                if(s.Lives.Single(x=>x.ActorId==actorId).MaximumHp!=expectedMaximum)return "InvalidAdvancementHealthHistory";
+            }
+            return null;
+        }
+
+        internal static System.Collections.Generic.IEnumerable<Command> Discover(Snapshot s,string actor)
+        {
+            if(s==null||!Validation.ValidId(actor))yield break;
+            var character=s.Characters.SingleOrDefault(x=>x.ActorId==actor);
+            if(character==null||character.Levels.Count<1||character.Levels.Count>=20)yield break;
+            int next=character.Levels.Count+1;
+            var milestones=s.CharacterMilestones.Where(x=>x.ActorId==actor&&x.ConsumedRevision==0)
+                .OrderBy(x=>x.AwardedRevision).ThenBy(x=>x.MilestoneId,StringComparer.Ordinal).ToArray();
+            if(milestones.Length==0)yield break;
+            string[][] boundSelections=next==2
+                ?new[]{new[]{CharacterAdvancementFixture.DefensivePositioning,CharacterAdvancementFixture.TacticalReposition}}
+                :next==3
+                    ?new[]{new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.TacticalAssessment},
+                        new[]{CharacterFeatureIds.SuppressionFire,CharacterFeatureIds.TacticalAssessment},
+                        new[]{CharacterFeatureIds.CommandStep,CharacterFeatureIds.DefensiveFormation}}
+                    :next==4?ClassAdvancementOptionCatalog.Candidates(ClassAdvancementScheduleCatalog.Get("Soldier",4))
+                        .Where(x=>HasExecutableSoldierFeatureHandler(x.Id)).Select(x=>new[]{x.Id}).ToArray():Array.Empty<string[]>();
+            int index=0;
+            foreach(var milestone in milestones)
+                foreach(var features in boundSelections)
+                    if(next==4) {
+                        for(int first=0;first<6;first++)for(int second=first;second<6;second++) {
+                            var increases=new[]{(CharacterAbility)first,(CharacterAbility)second};
+                            var request=new CharacterAdvancementRequest(features,increases);
+                            var command=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".advancement."+
+                                (index++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.AdvanceCharacterLevel,
+                                milestone.MilestoneId,advancement:request);
+                            if(Assess(s,command)==null)yield return command;
+                        }
+                    } else {
+                        var request=new CharacterAdvancementRequest(features);
+                        var command=new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".advancement."+
+                            (index++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.AdvanceCharacterLevel,
+                            milestone.MilestoneId,advancement:request);
+                        if(Assess(s,command)==null)yield return command;
+                    }
+        }
+
+        public static string Resolve(Snapshot s,Command c)
+        {
+            string failure=Assess(s,c,out var assessment);if(failure!=null)return failure;
+            if(assessment.AwardMilestone) {
+                s.CharacterMilestones=s.CharacterMilestones.Concat(new[]{new CharacterMilestoneRecord(assessment.MilestoneId,c.Actor,s.Revision+1)}).ToArray();
+                return null;
+            }
+            var character=assessment.Character;int level=assessment.NewClassLevel;var life=assessment.Life;
             var levels=character.Levels.Concat(new[]{new CharacterLevelFact("Soldier",6)}).ToArray();
-            var hp=PlaytestCharacters.BaseMaximumHp(levels.Select(x=>new CharacterLevelRecord(x.ClassName,x.BaseHp)).ToArray(),
-                CharacterRuleFacts.From(character).AbilityScore(CharacterAbility.Constitution));
-            long newHp=PlaytestCharacters.ClampAfterCapacityChange(life.Hp,hp.BaseMaximum);
             // No resource or life transition is attached to a capacity increase.
-            s.Characters=s.Characters.Select(x=>x.ActorId==c.Actor?new ActorCharacterRecord(x.ActorId,x.ProfileId,x.Abilities,levels):x).ToArray();
-            s.Lives=s.Lives.Select(x=>x.ActorId==c.Actor?new ActorLifeRecord(x.ActorId,hp.BaseMaximum,newHp,x.TemporaryHp,x.LinkedInjuries,
+            s.Characters=s.Characters.Select(x=>x.ActorId==c.Actor?new ActorCharacterRecord(x.ActorId,x.ProfileId,assessment.AbilitiesAfter,levels):x).ToArray();
+            s.Lives=s.Lives.Select(x=>x.ActorId==c.Actor?new ActorLifeRecord(x.ActorId,assessment.MaximumHpAfter,assessment.CurrentHpAfter,x.TemporaryHp,x.LinkedInjuries,
                 x.Stable,x.Dead,x.UsesDeathSaves,x.DeathSuccesses,x.DeathFailures,x.StableUntil,x.LastDeathTurn,x.Prone,x.HeldItems):x).ToArray();
             s.CharacterMilestones=s.CharacterMilestones.Select(x=>x.ActorId==c.Actor&&x.MilestoneId==c.Target?x.Consume(s.Revision+1):x).ToArray();
-            s.CharacterHitDice=s.CharacterHitDice.Concat(new[]{new CharacterHitDieRecord(c.Actor,nextClassLevel,"Soldier",10,false)}).ToArray();
-            s.CharacterFeatureGrants=s.CharacterFeatureGrants.Concat(new[]{
-                new CharacterFeatureGrantRecord(c.Actor,first,"Soldier",nextClassLevel,c.Target,s.Revision+1),
-                new CharacterFeatureGrantRecord(c.Actor,second,"Soldier",nextClassLevel,c.Target,s.Revision+1)
-            }).ToArray();
+            s.CharacterHitDice=s.CharacterHitDice.Concat(new[]{new CharacterHitDieRecord(c.Actor,level,"Soldier",10,false)}).ToArray();
+            s.CharacterFeatureGrants=s.CharacterFeatureGrants.Concat(assessment.Features.Select(feature=>
+                new CharacterFeatureGrantRecord(c.Actor,feature,"Soldier",level,c.Target,s.Revision+1))).ToArray();
             bool bonusActionAvailable=s.SchemaVersion>=Snapshot.SharedBonusActionSchema?BonusActionAvailable(s,c.Actor):true;
-            var refreshedRuntime=priorRuntime==null?new CharacterFeatureRuntimeRecord(c.Actor,lastStart,bonusActionAvailable)
-                :priorRuntime.WithBonusActionAvailable(bonusActionAvailable);
-            if(priorRuntime==null)s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Concat(new[]{refreshedRuntime}).ToArray();
+            var refreshedRuntime=assessment.PriorRuntime==null?new CharacterFeatureRuntimeRecord(c.Actor,assessment.LastRegularStart,bonusActionAvailable)
+                :assessment.PriorRuntime.WithBonusActionAvailable(bonusActionAvailable);
+            if(assessment.PriorRuntime==null)s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Concat(new[]{refreshedRuntime}).ToArray();
             else s.CharacterFeatureRuntime=s.CharacterFeatureRuntime.Select(x=>x.ActorId==c.Actor?refreshedRuntime:x).ToArray();
-            s.CharacterAdvancements=s.CharacterAdvancements.Concat(new[]{new CharacterAdvancementRecord(c.Actor,c.Target,s.Revision+1,nextClassLevel-1,nextClassLevel,"Soldier",nextClassLevel,6,
-                HitPointGainMethod.FixedAverage,life.MaximumHp,hp.BaseMaximum,life.Hp,newHp,first,second)}).ToArray();
+            s.CharacterAdvancements=s.CharacterAdvancements.Concat(new[]{new CharacterAdvancementRecord(c.Actor,c.Target,s.Revision+1,level-1,level,"Soldier",level,6,
+                HitPointGainMethod.FixedAverage,assessment.MaximumHpBefore,assessment.MaximumHpAfter,life.Hp,assessment.CurrentHpAfter,
+                assessment.Features,assessment.AbilityIncreases,
+                assessment.AbilityIncreases.Length==0?Array.Empty<int>():assessment.AbilitiesBefore,
+                assessment.AbilityIncreases.Length==0?Array.Empty<int>():assessment.AbilitiesAfter)}).ToArray();
             return null;
         }
     }
@@ -449,6 +658,8 @@ namespace Decennium.Foundation.Laboratory
                 &&s.SchemaVersion!=Snapshot.SoldierTacticalTechniquesSchema&&s.SchemaVersion!=Snapshot.CharacterAdvancementHistorySchema
                 &&s.SchemaVersion!=Snapshot.TacticalAssessmentSchema&&s.SchemaVersion!=Snapshot.CommandStepSchema
                 &&s.SchemaVersion!=Snapshot.SuppressionFireSchema&&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
+                &&!(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
+                    &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema)
                 &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
                 &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))
                 ||characterAdvancement==null||overwatchFoundation==null
@@ -468,7 +679,8 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeSoldierCharacterBuild(Snapshot s)
         {
             if(soldierCharacterBuild==null)return;
-            int expectedSchema=characterAdvancement.DefensiveFormationSchemaEnabled?Snapshot.DefensiveFormationSchema
+            int expectedSchema=characterAdvancement.LevelFourAdvancementEnabled?Snapshot.SharedCharacterAdvancementSchema
+                :characterAdvancement.DefensiveFormationSchemaEnabled?Snapshot.DefensiveFormationSchema
                 :characterAdvancement.SuppressionFireSchemaEnabled?Snapshot.SuppressionFireSchema
                 :characterAdvancement.CommandStepSchemaEnabled?Snapshot.CommandStepSchema
                 :characterAdvancement.TacticalAssessmentSchemaEnabled?Snapshot.TacticalAssessmentSchema

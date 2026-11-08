@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||kind==CommandKind.AwardCharacterMilestone||kind==CommandKind.AdvanceCharacterLevel
             ||kind==CommandKind.DoffPortableShield||kind==CommandKind.WarningShot||kind==CommandKind.CoveringFire
             ||kind==CommandKind.TacticalAssessment||kind==CommandKind.OfferCommandStep||kind==CommandKind.RespondCommandStep
             ||kind==CommandKind.SuppressionFire||kind==CommandKind.ActivateDefensiveFormation||kind==CommandKind.RespondDefensiveFormation

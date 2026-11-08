@@ -32,8 +32,7 @@ namespace Decennium.Foundation.Laboratory
             if(PendingCalendarChoice(s))return "TacticalChoicePending";
             var request=c.DefensiveFormation;
             if(request==null||request.TurnId!=s.Encounter.CurrentTurnId||c.Actor!=s.Encounter.CurrentActor)return "WrongRegularTurn";
-            if(!s.CharacterFeatureGrants.Any(x=>x.ActorId==c.Actor&&x.FeatureId==CharacterFeatureIds.DefensiveFormation
-                &&x.ClassName=="Soldier"&&x.ClassLevel==3&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard))return "FeatureNotOwned";
+            if(!CharacterAdvancementRules.OwnsDefensiveFormation(s,c.Actor))return "FeatureNotOwned";
             if(s.DefensiveFormations.Any(x=>x.SourceActorId==c.Actor&&x.EncounterId==s.Encounter.Id))return "DefensiveFormationAlreadyUsed";
             if(!CharacterAdvancementRules.BonusActionAvailable(s,c.Actor))return "BonusActionUnavailable";
             if(!CapableWorker(s,c.Actor)||!Permissions(s,c.Actor).BonusAction)return "ConditionPreventsBonusAction";
@@ -179,8 +178,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if(actor!=s.Encounter.CurrentActor||s.DefensiveFormations.Any(x=>x.SourceActorId==actor&&x.EncounterId==s.Encounter.Id))
                 yield break;
-            if(!s.CharacterFeatureGrants.Any(x=>x.ActorId==actor&&x.FeatureId==CharacterFeatureIds.DefensiveFormation
-                &&x.ClassLevel==3&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard))yield break;
+            if(!CharacterAdvancementRules.OwnsDefensiveFormation(s,actor))yield break;
             var eligible=s.Actors.Where(x=>s.WorldSchedule.Order.Contains(x.Id)&&FormationAlly(s,actor,x.Id)
                 &&PlanarCombatGeometry.DistanceFeet(new CombatCell(s.Actors.Single(a=>a.Id==actor).X,s.Actors.Single(a=>a.Id==actor).Y),
                     new CombatCell(x.X,x.Y))<=15).Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal).ToArray();

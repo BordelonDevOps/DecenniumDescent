@@ -31,6 +31,13 @@ namespace Decennium.Foundation
                 if(s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema) {
                     w.Write(a.SelectedFeatureIds.Count);foreach(var feature in a.SelectedFeatureIds)Text(w,feature);
                 } else { Text(w,a.FeatureOne);Text(w,a.FeatureTwo); }
+                if(s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema) {
+                    w.Write(a.AsiAbilityIncreases.Count);foreach(var ability in a.AsiAbilityIncreases)w.Write((int)ability);
+                    if(a.AsiAbilityIncreases.Count==2) {
+                        foreach(int score in a.AbilityScoresBefore)w.Write(score);
+                        foreach(int score in a.AbilityScoresAfter)w.Write(score);
+                    }
+                }
             }
             w.Write(s.CharacterFeatureRuntime.Length);
             foreach(var f in s.CharacterFeatureRuntime.OrderBy(x=>x.ActorId,StringComparer.Ordinal)) {
@@ -74,7 +81,13 @@ namespace Decennium.Foundation
                 long maximumBefore=r.ReadInt64(),maximumAfter=r.ReadInt64(),currentBefore=r.ReadInt64(),currentAfter=r.ReadInt64();
                 if(s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema) {
                     var selected=new string[Count(r,4)];for(int j=0;j<selected.Length;j++)selected[j]=Text(r);
-                    s.CharacterAdvancements[i]=new CharacterAdvancementRecord(actor,milestone,revision,previous,next,className,classLevel,gain,method,
+                    if(s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema) {
+                        var increases=new CharacterAbility[Count(r,4)];for(int j=0;j<increases.Length;j++)increases[j]=(CharacterAbility)r.ReadInt32();
+                        int[] before=Array.Empty<int>(),after=Array.Empty<int>();
+                        if(increases.Length==2) { before=new int[6];after=new int[6];for(int j=0;j<6;j++)before[j]=r.ReadInt32();for(int j=0;j<6;j++)after[j]=r.ReadInt32(); }
+                        s.CharacterAdvancements[i]=new CharacterAdvancementRecord(actor,milestone,revision,previous,next,className,classLevel,gain,method,
+                            maximumBefore,maximumAfter,currentBefore,currentAfter,selected,increases,before,after);
+                    } else s.CharacterAdvancements[i]=new CharacterAdvancementRecord(actor,milestone,revision,previous,next,className,classLevel,gain,method,
                         maximumBefore,maximumAfter,currentBefore,currentAfter,selected);
                 } else s.CharacterAdvancements[i]=new CharacterAdvancementRecord(actor,milestone,revision,previous,next,className,classLevel,gain,method,
                     maximumBefore,maximumAfter,currentBefore,currentAfter,Text(r),Text(r));

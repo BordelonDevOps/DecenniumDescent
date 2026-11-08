@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "implementationId": "TEST_ONLY.soldier-level-four-source-row-advancement-and-permanent-asi-schema61",
+  "baseCommit": "5b4eb92b8e27199ddf79f7e9001a1dd1f9814e45",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sourceStatus": "Pinned provisional class and character playtest rules; no release approval or general rule promotion",
+  "snapshotCompatibility": "Schema61 append-only advancement ASI and Map Route check injury fields; schemas60 and earlier keep existing codec branches.",
+  "row": {
+    "sourcePath": "DescentReviewChanges/ReviewBible/data/public/class_playtests/soldier.json",
+    "gitBlobId": "c414a1d9ba2ce37cde89d0ef73265821bb74ac2d",
+    "sha256": "ab9cd3bd64355166dceb5a09e1ddab98443a957bb4bcdce813f1ad294ec048f0",
+    "jsonPointer": "/schedule/3",
+    "classLevel": 4,
+    "choose": 1,
+    "bands": [
+      "Base",
+      "Arch"
+    ],
+    "minimumActives": 0,
+    "asiOrFeat": true,
+    "implementation": "ASI branch implemented; one supported Defensive Formation selected-card grant; feat branch and other L4 handlers fail closed."
+  },
+  "catalogManifest": {
+    "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/manifest.json",
+    "gitBlobId": "c7f68a17b5b38cfc6ab7ce6022eae80ae635b890",
+    "sourceProjectionValidator": "PASS: 17 classes, 340 schedule rows, 1,223 card options"
+  },
+  "ruleSources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CHARACTER_CREATION_PLAYTEST.md",
+      "gitBlobId": "04c77b3ddff460219600df2f28bac27d854647af",
+      "sections": [
+        "Gain a level",
+        "ASI milestones"
+      ]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "gitBlobId": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "sections": [
+        "Reading a class card",
+        "Ordinary-class schedule"
+      ]
+    }
+  ],
+  "changedSourceHashes": [
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCharacterAdvancement.cs",
+      "sha256": "05f3337e7d24967398fc11740ef246373cca9f001aad4050b7a9ac4981a22a38"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCraftingConsequences.cs",
+      "sha256": "b29f52302040a76f916b9a6095b15f5377ca242d9c062cb5f86e999df4d9d6b5"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedDefensiveFormation.cs",
+      "sha256": "82a71ce6a40deb796191f96f223e7c2c242b2db1bb8df83f45558cf0dde40fb4"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteMappingWork.cs",
+      "sha256": "9beb355c6a614415272fa5709ab34bc2d08051e5bcad147aa505fa200e8e5341"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteTravel.cs",
+      "sha256": "8348d97c1d46cf328e95b94db22164c206e5577f986b16784eed824cd1c3011e"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldCommandQueries.cs",
+      "sha256": "cdef4ed316c7005b336f27280a1bebae81f07beb5536144df01a4f0f2725c671"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldRangedCombat.cs",
+      "sha256": "d31493845d3f9b601b4c7034b644b3bcdf6a612ab29fa7cd96b7f3862280edf7"
+    },
+    {
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+      "sha256": "a2ab0ca34ab61e4793fcd14efe5707cfaec57e21dba8d5a2348b3c8c0d27614f"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Core\\CharacterAdvancementRecords.cs",
+      "sha256": "2d9d39cd5d920581fd8ae662b83eb0b288910ef0dfb2975932ea691324f1186d"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Core\\CommandHistory.cs",
+      "sha256": "a71bf9ecb687ad54a72036e17e24bf5b3edef9c18ee0d15d4056b71eec0d5995"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteMappingWorkRecord.cs",
+      "sha256": "3846d5ff34bafafe0e30555d0dc6289f4b7c0f9ebdea6131b1970cf9f8db1bf8"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Core\\Simulation.cs",
+      "sha256": "d4f37605b384c05510110635d7940cb263e4af4a025e70e3be37c3bf74beb36c"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Core\\SoldierDefensiveFormationRecords.cs",
+      "sha256": "146d1459db11189772784ee6f4d6db94fe6fcaf32789eda4f3a8e050f24dd6f8"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CharacterAdvancementCodec.cs",
+      "sha256": "21f3e6f2f617afe84b0a1a89c3e968abd05fe72f17d878151baf76ea330044a4"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteMappingWorkCodec.cs",
+      "sha256": "0728ad906059c018a25149c7c952843fc80b3c16699accb3ae7f91d45bdae9e4"
+    },
+    {
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SnapshotCodec.cs",
+      "sha256": "44f3a43fe737cb7d553e1ec5f699ba6aadd50a5a6de5d0482a1cce576f006d5a"
+    },
+    {
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterAdvancementCases.cs",
+      "sha256": "cba91e358a2696938f61defbc66358ca86c5d194f9eb6e6c7963746cd0a2e722"
+    }
+  ],
+  "validation": {
+    "fullRun": "engine/artifacts/run-20261108T000340274Z-1db11079/results.json",
+    "focusedCases": [
+      "soldier_level_four_asi_is_source_row_driven_and_reuses_historical_character_facts",
+      "soldier_level_four_constitution_asi_recomputes_all_level_hp_without_healing_or_spending_dice"
+    ],
+    "package": "engine/artifacts/static-20261108T000340269Z-a4f679ee/results.json",
+    "schedule": "engine/artifacts/class-advancement-20261108T000340097Z-40b7e45e/results.json",
+    "focusedResults": "docs/unity/evidence/2026-11-07-soldier-level-four-asi/FOCUSED_RESULTS.json"
+  }
+}

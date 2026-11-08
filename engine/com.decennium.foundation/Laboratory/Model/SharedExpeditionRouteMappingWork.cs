@@ -147,7 +147,9 @@ namespace Decennium.Foundation.Laboratory
                 || kind == CommandKind.ResumeRouteMappingWork;
 
         private bool RouteMappingWorkSelected(Snapshot s)
-            => routeMappingWorkFixture != null && s.SchemaVersion == Snapshot.RouteMappingWorkSchema;
+            => routeMappingWorkFixture != null && (s.SchemaVersion == Snapshot.RouteMappingWorkSchema
+                || characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
+                    &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema);
 
         private void InitializeRouteMappingWork(Snapshot s)
         {
@@ -398,7 +400,8 @@ namespace Decennium.Foundation.Laboratory
                 conditionOperationCount,
                 disadvantage, roll.First, roll.Second ?? 0, roll.Natural, outcome.Total, degree,
                 before, roll.NextRandomState, roll.WordsConsumed, knowledge.Mapping, updated.Mapping,
-                knowledge.UnspentMarks, marksGranted, updated.UnspentMarks);
+                knowledge.UnspentMarks, marksGranted, updated.UnspentMarks,
+                s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema?actorFacts.Life.LinkedInjuries.ToArray():null);
             PutRouteMappingWork(s, attempt.Resolve(s.RuleClock, check));
         }
 
@@ -465,8 +468,15 @@ namespace Decennium.Foundation.Laboratory
                         || replayedRoll.WordsConsumed != check.WordsConsumed)
                         return "InvalidRouteMappingWorkRandomEvidence";
                     var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
-                    var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
-                    int leadModifier = modifier.TotalWithInjury(actorFacts);
+                    var historicalCharacter=s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema
+                        ?CharacterAdvancementRules.AtRevision(s,attempt.LeadId,check.AppliedRevision-1):actorFacts.Character;
+                    var training=actorFacts.Training;
+                    var modifier=AbilityCheckRules.Derive(historicalCharacter,training,CharacterAbility.Wisdom);
+                    int injuryPenalty=s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema
+                        ?PlaytestLife.AbilityCheckInjuryPenalty(new LifeState(1,1,
+                            wounds:check.LinkedInjuriesAtCheck.Select(x=>(Injury)x)),(int)CharacterAbility.Wisdom)
+                        :actorFacts.InjuryPenalty(CharacterAbility.Wisdom);
+                    int leadModifier=checked(modifier.Total+injuryPenalty);
                     var expected = RuleResolution.TaskCheck(check.Natural, checked(leadModifier + attempt.AssistantIds.Length), task.Dc);
                     ExpeditionRouteMappingResultDegree degree = expected.Degree == RuleTaskDegree.CriticalFailure
                         ? ExpeditionRouteMappingResultDegree.CriticalFailure
@@ -478,6 +488,8 @@ namespace Decennium.Foundation.Laboratory
                     var knowledge = prior == null ? new ExpeditionRouteMappingKnowledge(route.Mapping, 0)
                         : new ExpeditionRouteMappingKnowledge(prior.Check.MappingAfter, prior.Check.MarksAfter);
                     var result = ExpeditionRouteMappingRules.Apply(knowledge, route.Risk, degree, out int marks);
+                    if (s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema&&check.LinkedInjuriesAtCheck.Count>3)
+                        return "InvalidRouteMappingWorkInjuryEvidence";
                     if (check.LeadModifier != leadModifier || check.ProficiencyRank != modifier.ProficiencyRank
                         || check.ProficiencyBonus != modifier.ProficiencyBonus || check.AssistantBonus != attempt.AssistantIds.Length
                         || check.Dc != task.Dc || check.Total != expected.Total || check.Degree != degree

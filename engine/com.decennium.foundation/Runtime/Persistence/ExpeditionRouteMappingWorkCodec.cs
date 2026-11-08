@@ -1,9 +1,10 @@
+using System;
 using System.IO;
 using System.Linq;
 
 namespace Decennium.Foundation
 {
-    /// <summary>Append-only schema59 persistence for real TEST_ONLY Map Route work/check history.</summary>
+    /// <summary>Append-only persistence for real TEST_ONLY Map Route work/check history.</summary>
     internal static class ExpeditionRouteMappingWorkCodec
     {
         public static void Write(BinaryWriter writer, Snapshot snapshot)
@@ -25,7 +26,7 @@ namespace Decennium.Foundation
                 WriteTime(writer, attempt.WorkRequired);
                 writer.Write((int)attempt.Status);
                 writer.Write(attempt.Check != null);
-                if (attempt.Check != null) WriteCheck(writer, attempt.Check);
+                if (attempt.Check != null) WriteCheck(writer, attempt.Check,snapshot.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema);
             }
         }
 
@@ -44,14 +45,14 @@ namespace Decennium.Foundation
                 long startedRevision = reader.ReadInt64();
                 RuleTime startedAt = ReadTime(reader), updatedAt = ReadTime(reader), workDone = ReadTime(reader), workRequired = ReadTime(reader);
                 var status = (ExpeditionRouteMappingWorkStatus)reader.ReadInt32();
-                var check = SnapshotCodec.ReadBool(reader) ? ReadCheck(reader) : null;
+                var check = SnapshotCodec.ReadBool(reader) ? ReadCheck(reader,snapshot.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema) : null;
                 attempts[i] = new ExpeditionRouteMappingWorkAttemptRecord(id, route, lead, assistants,
                     startedRevision, startedAt, updatedAt, workDone, workRequired, status, check);
             }
             snapshot.RouteMappingWorkAttempts = attempts;
         }
 
-        private static void WriteCheck(BinaryWriter writer, ExpeditionRouteMappingWorkCheckRecord check)
+        private static void WriteCheck(BinaryWriter writer, ExpeditionRouteMappingWorkCheckRecord check,bool includeCausalInjuries)
         {
             SnapshotCodec.WriteText(writer, check.CommandId);
             writer.Write(check.AppliedRevision);
@@ -76,15 +77,25 @@ namespace Decennium.Foundation
             writer.Write(check.MarksBefore);
             writer.Write(check.MarksGranted);
             writer.Write(check.MarksAfter);
+            if(includeCausalInjuries) {
+                writer.Write(check.LinkedInjuriesAtCheck.Count);
+                foreach(int injury in check.LinkedInjuriesAtCheck)writer.Write(injury);
+            }
         }
 
-        private static ExpeditionRouteMappingWorkCheckRecord ReadCheck(BinaryReader reader)
-            => new ExpeditionRouteMappingWorkCheckRecord(SnapshotCodec.ReadText(reader), reader.ReadInt64(), ReadTime(reader),
-                reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
-                SnapshotCodec.ReadBool(reader), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt64(),
-                (ExpeditionRouteMappingResultDegree)reader.ReadInt32(),
-                reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadInt64(), (ExpeditionRouteMapping)reader.ReadInt32(),
-                (ExpeditionRouteMapping)reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+        private static ExpeditionRouteMappingWorkCheckRecord ReadCheck(BinaryReader reader,bool includeCausalInjuries)
+        {
+            string command=SnapshotCodec.ReadText(reader);long revision=reader.ReadInt64();RuleTime at=ReadTime(reader);
+            int lead=reader.ReadInt32(),rank=reader.ReadInt32(),proficiency=reader.ReadInt32(),assistant=reader.ReadInt32(),dc=reader.ReadInt32(),conditionCount=reader.ReadInt32();
+            bool disadvantage=SnapshotCodec.ReadBool(reader);int first=reader.ReadInt32(),second=reader.ReadInt32(),natural=reader.ReadInt32();long total=reader.ReadInt64();
+            var degree=(ExpeditionRouteMappingResultDegree)reader.ReadInt32();uint before=reader.ReadUInt32(),after=reader.ReadUInt32();long words=reader.ReadInt64();
+            var mappingBefore=(ExpeditionRouteMapping)reader.ReadInt32();var mappingAfter=(ExpeditionRouteMapping)reader.ReadInt32();
+            int marksBefore=reader.ReadInt32(),marksGranted=reader.ReadInt32(),marksAfter=reader.ReadInt32();
+            int[] injuries=Array.Empty<int>();
+            if(includeCausalInjuries) { injuries=new int[SnapshotCodec.ReadCount(reader,3)];for(int i=0;i<injuries.Length;i++)injuries[i]=reader.ReadInt32(); }
+            return new ExpeditionRouteMappingWorkCheckRecord(command,revision,at,lead,rank,proficiency,assistant,dc,conditionCount,
+                disadvantage,first,second,natural,total,degree,before,after,words,mappingBefore,mappingAfter,marksBefore,marksGranted,marksAfter,injuries);
+        }
 
         private static void WriteTime(BinaryWriter writer, RuleTime value)
         { writer.Write(value.Numerator); writer.Write(value.Denominator); }

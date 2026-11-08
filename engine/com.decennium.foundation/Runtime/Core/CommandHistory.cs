@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Decennium.Foundation
 {
@@ -39,6 +40,13 @@ namespace Decennium.Foundation
                 if(kind!=CommandKind.AdvanceCharacterLevel)throw new ArgumentException("Invalid advancement choice-list receipt.");
                 string[] choices=p[7].Length==0?Array.Empty<string>():p[7].Split(',');
                 advancement=new CharacterAdvancementRequest(choices);
+            }
+            if(p.Length==10&&p[6]=="character-level-v3") {
+                if(kind!=CommandKind.AdvanceCharacterLevel)throw new ArgumentException("Invalid advancement operation receipt.");
+                string[] choices=p[7].Length==0?Array.Empty<string>():p[7].Split(',');
+                CharacterAbility[] increases=p[8].Length==0?Array.Empty<CharacterAbility>()
+                    :p[8].Split(',').Select(value=>(CharacterAbility)Int(value)).ToArray();
+                advancement=new CharacterAdvancementRequest(choices,increases,p[9]);
             }
             if(p.Length==9&&p[6]=="defensive-formation-v1") {
                 if(kind!=CommandKind.ActivateDefensiveFormation)throw new ArgumentException("Defensive Formation payload has the wrong command kind.");

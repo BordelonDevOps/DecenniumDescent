@@ -161,7 +161,8 @@ namespace Decennium.Foundation
             bool Actor(string id)=>s.Actors.Any(x=>x.Id==id);
             foreach(var activation in s.DefensiveFormations) {
                 var grant=s.CharacterFeatureGrants.SingleOrDefault(x=>x.ActorId==activation.SourceActorId&&x.FeatureId==CharacterFeatureIds.DefensiveFormation
-                    &&x.ClassName=="Soldier"&&x.ClassLevel==3&&x.Origin==CharacterFeatureGrantOrigin.SelectedCard);
+                    &&x.ClassName=="Soldier"&&(x.ClassLevel==3||x.ClassLevel==4&&s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema)
+                    &&x.Origin==CharacterFeatureGrantOrigin.SelectedCard);
                 if(!Actor(activation.SourceActorId)||grant==null||!s.WorldSchedule.Order.Contains(activation.SourceActorId)
                     ||activation.CreatedRevision>s.Revision||activation.UpdatedRevision>s.Revision||activation.ExpirySlot>long.MaxValue-1
                     ||activation.At>s.RuleClock

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Decennium.Foundation
@@ -49,13 +50,15 @@ namespace Decennium.Foundation
         public int MarksBefore { get; }
         public int MarksGranted { get; }
         public int MarksAfter { get; }
+        public ReadOnlyCollection<int> LinkedInjuriesAtCheck { get; }
 
         public ExpeditionRouteMappingWorkCheckRecord(string commandId, long appliedRevision, RuleTime at,
             int leadModifier, int proficiencyRank, int proficiencyBonus, int assistantBonus, int dc,
             int conditionOperationCount, bool disadvantage, int firstRoll, int secondRoll, int natural, long total,
             ExpeditionRouteMappingResultDegree degree, uint randomBefore, uint randomAfter, long wordsConsumed, ExpeditionRouteMapping mappingBefore,
-            ExpeditionRouteMapping mappingAfter, int marksBefore, int marksGranted, int marksAfter)
+            ExpeditionRouteMapping mappingAfter, int marksBefore, int marksGranted, int marksAfter,int[] linkedInjuriesAtCheck=null)
         {
+            var injuries=linkedInjuriesAtCheck??Array.Empty<int>();
             if (!Validation.ValidId(commandId) || appliedRevision < 1 || at < default(RuleTime)
                 || proficiencyRank < 0 || proficiencyRank > 2 || proficiencyBonus < 0
                 || assistantBonus < 0 || assistantBonus > 3 || dc < 1 || conditionOperationCount < 0
@@ -68,7 +71,8 @@ namespace Decennium.Foundation
                 || randomBefore == 0 || randomAfter == 0 || wordsConsumed != (disadvantage ? 2 : 1)
                 || !Enum.IsDefined(typeof(ExpeditionRouteMapping), mappingBefore)
                 || !Enum.IsDefined(typeof(ExpeditionRouteMapping), mappingAfter)
-                || marksBefore < 0 || marksGranted < 0 || marksGranted > 2 || marksAfter < 0)
+                || marksBefore < 0 || marksGranted < 0 || marksGranted > 2 || marksAfter < 0
+                || injuries.Length>3||injuries.Any(x=>x<0||x>6))
                 throw new ArgumentException("Invalid Map Route check evidence.");
             CommandId = commandId; AppliedRevision = appliedRevision; At = at; LeadModifier = leadModifier;
             ProficiencyRank = proficiencyRank; ProficiencyBonus = proficiencyBonus; AssistantBonus = assistantBonus;
@@ -77,6 +81,7 @@ namespace Decennium.Foundation
             Natural = natural; Total = total; Degree = degree; RandomBefore = randomBefore;
             RandomAfter = randomAfter; WordsConsumed = wordsConsumed; MappingBefore = mappingBefore;
             MappingAfter = mappingAfter; MarksBefore = marksBefore; MarksGranted = marksGranted; MarksAfter = marksAfter;
+            LinkedInjuriesAtCheck=Array.AsReadOnly(injuries.ToArray());
         }
     }
 

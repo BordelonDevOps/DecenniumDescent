@@ -733,6 +733,7 @@ namespace Decennium.Foundation.Laboratory
         {
             try {
                 if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
@@ -770,6 +771,8 @@ namespace Decennium.Foundation.Laboratory
                     &&s.SchemaVersion!=Snapshot.TacticalAssessmentSchema
                     &&s.SchemaVersion!=Snapshot.CommandStepSchema&&s.SchemaVersion!=Snapshot.SuppressionFireSchema
                     &&s.SchemaVersion!=Snapshot.DefensiveFormationSchema
+                    &&!(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
+                        &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema)
                     &&!(huntingTrapFixture!=null&&s.SchemaVersion==Snapshot.HuntingTrapSchema)
                     &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
                     &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema)

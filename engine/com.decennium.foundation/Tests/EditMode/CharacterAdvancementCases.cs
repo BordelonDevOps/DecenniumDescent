@@ -20,6 +20,41 @@ namespace Decennium.Foundation.Tests
             string two=CharacterAdvancementFixture.TacticalReposition,string id="character.advance")
             =>new Command(id,TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,milestone,
                 advancement:new CharacterAdvancementRequest(one,two));
+        private static void AdvanceSoldierToLevelThree(Simulation s,string prefix)
+        {
+            WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-2",id:prefix+".milestone.2"));
+            WorldCommit(s,AdvanceLevel(s,id:prefix+".advance.2"));
+            WorldCommit(s,AwardMilestone(s,"opening.milestone.soldier-3",id:prefix+".milestone.3"));
+            WorldCommit(s,new Command(prefix+".advance.3",TestOnlyPolicy.ActorId,s.Capture().Revision,CommandKind.AdvanceCharacterLevel,
+                "opening.milestone.soldier-3",advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.SuppressionFire,
+                    CharacterFeatureIds.TacticalAssessment})));
+        }
+        private static uint SeedForD20Pair(int firstNatural,int secondNatural)
+        {
+            for(uint seed=1;seed<100000;seed++) {
+                var first=RuleDice.RollD20(seed);
+                if(first.Natural==firstNatural&&RuleDice.RollD20(first.NextRandomState).Natural==secondNatural)return seed;
+            }
+            throw new InvalidOperationException("No bounded deterministic seed produces the requested two-roll sequence.");
+        }
+        private static void AdvanceCharacterFixtureStep(Simulation s,int dx,int dy)
+        {
+            bool started=false;
+            for(int elapsed=0;elapsed<120;elapsed++) {
+                var pending=s.Capture().WorldTraversals.Any(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                if(pending) { WorldAdvance(s,1); continue; }
+                if(started)return;
+                var command=IC(s,CommandKind.BeginWorldStep,"walk",actor:TestOnlyPolicy.ActorId,x:dx,y:dy);
+                var query=s.QueryCommand(TestOnlySharedWorldPolicy.Host(),command);
+                if(query.Admissible) { WorldCommit(s,command);started=true;continue; }
+                if(query.Code!="InsufficientMovement")
+                    throw new InvalidOperationException("Connected advancement route step "+s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X+","+
+                        s.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).Y+" -> "+dx+","+dy+" was rejected: "+query.Code+
+                        " at "+s.Capture().RuleClock+".");
+                WorldAdvance(s,1);
+            }
+            throw new InvalidOperationException("Connected advancement route step did not finish within the bounded 120-second fixture window.");
+        }
         private static void AddCharacterAdvancementCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlySharedWorldPolicy.Host();
@@ -601,6 +636,294 @@ namespace Decennium.Foundation.Tests
                     "The previous zone survived the next regular start or the new interval did not refresh its shot and Bonus Action.");
                 var bytes=Bytes(s);Require(bytes.SequenceEqual(Bytes(new Simulation(p,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
                     "Schema25 interval refresh did not survive command-history replay.");
+            });
+            cases.Add("soldier_level_four_asi_is_source_row_driven_and_reuses_historical_character_facts",()=>{
+                var characterFixture=new CharacterAdvancementFixture(null,false,false,true,true,true,true,true);
+                var routes=RouteTravelFixture(ExpeditionRouteQuality.Secured,0,ExpeditionRouteMapping.Unknown);
+                var policy=new TestOnlySharedWorldPolicy(SoldierCharacterBuildFixture.ForTacticalTechniques(initialCurrentHp:4),
+                    new OverwatchFoundationFixture(),characterFixture,
+                    new SharedCombatFixture(enemyHp:1,seed:SeedForD20Pair(20,20),enemyMaximumHp:1))
+                    .EnableExpeditionRouteTravel(routes)
+                    .EnableRouteMappingWork(RouteMappingWorkProfile(routes,1,
+                        new TestOnlyRouteMappingSkillFact(TestOnlyPolicy.ActorId,1)));
+                var simulation=World(policy);var initialBytes=Bytes(simulation);var state=simulation.Capture();
+                Require(state.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema,"The explicit schema61 Soldier fixture was not selected.");
+                AdvanceSoldierToLevelThree(simulation,"asi.connected");
+                foreach(var step in new[]{new[]{0,1},new[]{1,0},new[]{0,1}})
+                    AdvanceCharacterFixtureStep(simulation,step[0],step[1]);
+                var start=RouteMappingWorkCommand(simulation,CommandKind.StartRouteMappingWork,RouteTravelId,"asi.map.before.start");
+                var beforeStartQuery=Bytes(simulation);var startQuery=simulation.QueryCommand(host,start);
+                Require(startQuery.Supported&&startQuery.Admissible&&Bytes(simulation).SequenceEqual(beforeStartQuery),
+                    "The source-bound Map Route work command was not queryable before advancement.");
+                WorldCommit(simulation,start);WorldAdvance(simulation,TestOnlyExpeditionRouteMappingWorkFixture.RequiredWorkSeconds);
+                var firstState=simulation.Capture();var firstCheck=firstState.RouteMappingWorkAttempts.Single().Check;
+                var preAsiCharacter=firstState.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var skill=CharacterSkillTrainingFacts.Find(firstState,TestOnlyPolicy.ActorId,TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
+                var preAsiModifier=AbilityCheckRules.Derive(preAsiCharacter,skill,CharacterAbility.Wisdom);
+                Require(firstState.RouteMappingWorkAttempts.Single().Status==ExpeditionRouteMappingWorkStatus.Resolved
+                    &&preAsiCharacter.Abilities[(int)CharacterAbility.Wisdom]==10&&firstCheck.LeadModifier==preAsiModifier.Total
+                    &&firstCheck.ProficiencyRank==1&&firstCheck.LinkedInjuriesAtCheck.Count==0,
+                    "The first Map Route check did not consume the Soldier's current Wisdom and training records.");
+                var codec=new SnapshotCodec();var firstSave=Bytes(simulation);
+                simulation=new Simulation(policy,codec.Decode(firstSave),ExecutionProfile.Laboratory);
+                Require(firstSave.SequenceEqual(Bytes(simulation)),"The pre-ASI Map Route check did not survive save/restore and replay.");
+
+                WorldCommit(simulation,AwardMilestone(simulation,"opening.milestone.soldier-4",id:"asi.connected.milestone.4"));
+                var incomplete=new Command("asi.connected.incomplete",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.DefensiveFormation},new[]{CharacterAbility.Wisdom}));
+                var incompleteQuery=simulation.QueryCommand(host,incomplete);
+                Require(incompleteQuery.Supported&&!incompleteQuery.Admissible&&incompleteQuery.Code=="IncompleteAbilityScoreIncrease",
+                    "The level-four query did not reject an incomplete ASI choice.");
+                RejectUnchanged(simulation,host,incomplete,"IncompleteAbilityScoreIncrease");
+                var featRequest=new Command("asi.connected.unsupported-feat",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.DefensiveFormation},Array.Empty<CharacterAbility>(),"feat.unsupported"));
+                RejectUnchanged(simulation,host,featRequest,"ClassRowOperationUnbound");
+                foreach(string unsupportedFeature in new[]{CharacterFeatureIds.WarningShot,CharacterFeatureIds.CommandStep}) {
+                    var unsupported=new Command("asi.connected.unsupported-feature."+unsupportedFeature,TestOnlyPolicy.ActorId,
+                        simulation.Capture().Revision,CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                        advancement:new CharacterAdvancementRequest(new[]{unsupportedFeature},
+                            new[]{CharacterAbility.Wisdom,CharacterAbility.Wisdom}));
+                    Require(CharacterAdvancementRules.Resolve(simulation.Capture(),unsupported)=="ClassRowOperationUnbound",
+                        "A level-four feature candidate without a compatible grant handler was not rejected: "+unsupportedFeature);
+                }
+                var cappedFacts=simulation.Capture();var cappedCharacter=cappedFacts.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var cappedScores=cappedCharacter.Abilities.ToArray();cappedScores[(int)CharacterAbility.Wisdom]=20;
+                cappedFacts.Characters=cappedFacts.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                    ?new ActorCharacterRecord(x.ActorId,x.ProfileId,cappedScores,x.Levels):x).ToArray();
+                var cappedRequest=new Command("asi.connected.overcap.probe",TestOnlyPolicy.ActorId,cappedFacts.Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.DefensiveFormation},
+                        new[]{CharacterAbility.Wisdom,CharacterAbility.Wisdom}));
+                Require(CharacterAdvancementRules.Resolve(cappedFacts,cappedRequest)=="AbilityScoreCapExceeded",
+                    "The shared advancement resolver allowed a permanent ASI to exceed the cap of 20.");
+
+                var allAdvancementOptions=simulation.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.AdvanceCharacterLevel
+                    &&x.Command.Advancement.AsiAbilityIncreases.SequenceEqual(new[]{CharacterAbility.Wisdom,CharacterAbility.Wisdom})).ToArray();
+                Require(allAdvancementOptions.Any(x=>x.Command.Advancement.FeatureIds.SequenceEqual(new[]{CharacterFeatureIds.DefensiveFormation}))
+                    &&allAdvancementOptions.All(x=>x.Command.Advancement.FeatureIds.SequenceEqual(new[]{CharacterFeatureIds.DefensiveFormation})),
+                    "Discovery offered a level-four selection whose grant handler is not bound for that level.");
+                var discovery=allAdvancementOptions.Where(x=>x.Command.Kind==CommandKind.AdvanceCharacterLevel
+                    &&x.Command.Advancement.FeatureIds.SequenceEqual(new[]{CharacterFeatureIds.DefensiveFormation})
+                    ).ToArray();
+                var splitIncrease=simulation.DiscoverCommands(host,TestOnlyPolicy.ActorId).SingleOrDefault(x=>
+                    x.Command.Kind==CommandKind.AdvanceCharacterLevel
+                    &&x.Command.Advancement.FeatureIds.SequenceEqual(new[]{CharacterFeatureIds.DefensiveFormation})
+                    &&x.Command.Advancement.AsiAbilityIncreases.SequenceEqual(new[]{CharacterAbility.Dexterity,CharacterAbility.Wisdom}));
+                Require(discovery.Length==1&&discovery[0].Query.Admissible&&splitIncrease?.Query.Admissible==true,
+                    "Discovery omitted the source-row feature candidate and permanent Wisdom +2 option.");
+                var advance=discovery[0].Command;var preQuery=Bytes(simulation);var replay=new Simulation(policy,codec.Decode(preQuery),ExecutionProfile.Laboratory);
+                var query=simulation.QueryCommand(host,advance);
+                Require(query.Supported&&query.Admissible&&Bytes(simulation).SequenceEqual(preQuery),
+                    "Level-four query was not pure or did not use the same source-row assessment as execution.");
+                WorldCommit(simulation,advance);WorldCommit(replay,advance);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)),
+                    "The same level-four command history produced different bytes from identical restored state.");
+                state=simulation.Capture();var character=state.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var life=state.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var levelFour=state.CharacterAdvancements.Single(x=>x.ClassLevel==4);
+                Require(character.Abilities[(int)CharacterAbility.Wisdom]==12&&life.MaximumHp==28&&life.Hp==4
+                    &&levelFour.AsiAbilityIncreases.SequenceEqual(new[]{CharacterAbility.Wisdom,CharacterAbility.Wisdom})
+                    &&levelFour.AbilityScoresBefore.SequenceEqual(new[]{10,10,10,10,10,10})
+                    &&levelFour.AbilityScoresAfter.SequenceEqual(character.Abilities)
+                    &&state.CharacterFeatureGrants.Any(x=>x.ActorId==TestOnlyPolicy.ActorId&&x.ClassLevel==4
+                        &&x.FeatureId==CharacterFeatureIds.DefensiveFormation)
+                    &&state.CharacterHitDice.OrderBy(x=>x.LevelOrdinal).Select(x=>x.Spent).SequenceEqual(new[]{false,false,false,false}),
+                    "The ASI failed to update the authoritative character, feature, HP or Hit Die records atomically: wis="
+                    +character.Abilities[(int)CharacterAbility.Wisdom]+", hp="+life.Hp+"/"+life.MaximumHp+", scores="
+                    +string.Join(",",levelFour.AbilityScoresBefore)+">"+string.Join(",",levelFour.AbilityScoresAfter)
+                    +", current="+string.Join(",",character.Abilities)+", df="
+                    +state.CharacterFeatureGrants.Any(x=>x.ActorId==TestOnlyPolicy.ActorId&&x.ClassLevel==4
+                        &&x.FeatureId==CharacterFeatureIds.DefensiveFormation)+", dice="
+                    +string.Join(",",state.CharacterHitDice.OrderBy(x=>x.LevelOrdinal).Select(x=>x.Spent)));
+                var afterAsiBytes=Bytes(simulation);simulation=new Simulation(policy,codec.Decode(afterAsiBytes),ExecutionProfile.Laboratory);
+                Require(afterAsiBytes.SequenceEqual(Bytes(simulation))
+                    &&simulation.Capture().RouteMappingWorkAttempts.Single().Check.LeadModifier==firstCheck.LeadModifier,
+                    "The level-four ability increase rewrote the earlier Map Route check or failed to persist.");
+                var duplicateConsumption=new Command("asi.connected.duplicate.consume",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.DefensiveFormation},
+                        new[]{CharacterAbility.Wisdom,CharacterAbility.Wisdom}));
+                RejectUnchanged(simulation,host,duplicateConsumption,"MilestoneAlreadyConsumed");
+
+                WorldCommit(simulation,AwardMilestone(simulation,"opening.milestone.soldier-5",id:"asi.connected.milestone.5"));
+                var levelFive=new Command("asi.connected.advance.5",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-5",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.WarningShot}));
+                RejectUnchanged(simulation,host,levelFive,"ClassRowOperationsUnbound");
+
+                WorldCommit(simulation,new Command("asi.connected.begin-tactical",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.BeginFixedEncounter));
+                for(int i=0;i<simulation.Capture().Encounter.Order.Count
+                    &&simulation.Capture().Encounter.CurrentActor!=TestOnlyPolicy.ActorId;i++) {
+                    string currentActor=simulation.Capture().Encounter.CurrentActor;
+                    WorldCommit(simulation,Tac(simulation,CommandKind.SelectCombatStance,actor:currentActor,
+                        stance:(int)CombatStance.Aggressive));
+                    WorldCommit(simulation,Tac(simulation,CommandKind.EndRegularTurn,actor:currentActor));
+                }
+                WorldCommit(simulation,Tac(simulation,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                var formation=simulation.DiscoverCommands(host,TestOnlyPolicy.ActorId).Where(x=>x.Command.Kind==CommandKind.ActivateDefensiveFormation
+                    &&x.Command.DefensiveFormation.RecipientIds.SequenceEqual(new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId})).ToArray();
+                var encounter=simulation.Capture().Encounter;
+                var directFormation=new Command("asi.connected.formation.direct",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.ActivateDefensiveFormation,defensiveFormation:new DefensiveFormationRequest(encounter.CurrentTurnId,
+                        new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId}));
+                var directFormationQuery=simulation.QueryCommand(host,directFormation);
+                Require(formation.Length==1&&formation[0].Query.Admissible,
+                    "The level-four feature grant was not discovered by the tactical Defensive Formation resolver: options="+formation.Length
+                    +", actor="+encounter.CurrentActor+", direct="+directFormationQuery.Code+".");
+                var beforeFormation=simulation.Capture();var beforeMovement=beforeFormation.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).MovementSpent;
+                var beforeActorMovement=beforeFormation.ActorMovement.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Spent;
+                Require(directFormationQuery.Costs.Count==1&&directFormationQuery.Costs[0].Kind=="bonus-action"
+                    &&directFormationQuery.Costs[0].Amount==1,"The level-four Defensive Formation query did not expose its Bonus Action cost.");
+                WorldCommit(simulation,formation[0].Command);
+                var pending=simulation.Capture().DefensiveFormations.Single().Shifts.Single(x=>x.RecipientActorId==TestOnlyPolicy.ActorId);
+                Require(pending.Status==DefensiveFormationShiftStatus.AwaitingResponse
+                    &&!simulation.Capture().BonusActions.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Available,
+                    "Defensive Formation did not spend its Bonus Action and create its persisted tactical choice.");
+                var pendingBytes=Bytes(simulation);simulation=new Simulation(policy,codec.Decode(pendingBytes),ExecutionProfile.Laboratory);
+                Require(pendingBytes.SequenceEqual(Bytes(simulation)),"Pending level-four Defensive Formation response changed on restore.");
+                var actorBody=simulation.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                var shiftResponse=Tac(simulation,CommandKind.RespondDefensiveFormation,simulation.Capture().DefensiveFormations.Single().Id,TestOnlyPolicy.ActorId,
+                    x:actorBody.X+1,y:actorBody.Y,choice:true);
+                var samePending=new Simulation(policy,codec.Decode(pendingBytes),ExecutionProfile.Laboratory);
+                WorldCommit(simulation,shiftResponse);WorldCommit(samePending,shiftResponse);
+                Require(Bytes(simulation).SequenceEqual(Bytes(samePending)),
+                    "The same pending tactical choice produced different bytes from identical restored state.");
+                var betweenShiftBytes=Bytes(simulation);simulation=new Simulation(policy,codec.Decode(betweenShiftBytes),ExecutionProfile.Laboratory);
+                var pendingCompanion=simulation.Capture().DefensiveFormations.Single().Shifts.Single(x=>x.Status==DefensiveFormationShiftStatus.AwaitingResponse);
+                Require(pendingCompanion.RecipientActorId==TestOnlyPolicy.CompanionId,
+                    "The saved second Defensive Formation choice did not advance to the selected companion.");
+                var companionBody=simulation.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId);
+                var companionResponse=Tac(simulation,CommandKind.RespondDefensiveFormation,simulation.Capture().DefensiveFormations.Single().Id,
+                    TestOnlyPolicy.CompanionId,x:companionBody.X-1,y:companionBody.Y,choice:true);
+                var sameBetweenShift=new Simulation(policy,codec.Decode(betweenShiftBytes),ExecutionProfile.Laboratory);
+                WorldCommit(simulation,companionResponse);WorldCommit(sameBetweenShift,companionResponse);
+                Require(Bytes(simulation).SequenceEqual(Bytes(sameBetweenShift)),
+                    "The same second tactical choice produced different bytes from an identical restored continuation.");
+                state=simulation.Capture();var completedFormation=state.DefensiveFormations.Single();
+                var completedShift=completedFormation.Shifts.Single(x=>x.RecipientActorId==TestOnlyPolicy.ActorId);
+                var completedCompanionShift=completedFormation.Shifts.Single(x=>x.RecipientActorId==TestOnlyPolicy.CompanionId);
+                var recordedMove=state.TacticalMoves.Single(x=>x.Id==completedShift.MoveId);
+                var companionMove=state.TacticalMoves.Single(x=>x.Id==completedCompanionShift.MoveId);
+                int reducedDamage=(int)CharacterAdvancementRules.ReduceIncomingDamage(state,TestOnlyPolicy.ActorId,10);
+                Require(completedShift.Status==DefensiveFormationShiftStatus.Moved&&completedCompanionShift.Status==DefensiveFormationShiftStatus.Moved
+                    &&recordedMove.Kind==TacticalMoveKind.DefensiveFormationShift&&companionMove.Kind==TacticalMoveKind.DefensiveFormationShift
+                    &&recordedMove.CostPaid==5&&recordedMove.Reactors.Count==0
+                    &&companionMove.CostPaid==5&&companionMove.Reactors.Count==0
+                    &&state.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X==actorBody.X+1
+                    &&state.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).Y==actorBody.Y
+                    &&state.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).X==companionBody.X-1
+                    &&state.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).Y==companionBody.Y
+                    &&state.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).MovementSpent==beforeMovement
+                    &&state.ActorMovement.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Spent==beforeActorMovement
+                    &&reducedDamage==9,
+                    "The level-four feature did not use its existing free 5-foot shift and adjacent-ally damage reduction: status="
+                    +completedShift.Status+", kind="+recordedMove.Kind+", cost="+recordedMove.CostPaid+", reactors="+recordedMove.Reactors.Count
+                    +", actor="+state.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).X+","+state.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId).Y
+                    +", companion="+state.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).X+","+state.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId).Y
+                    +", interval="+state.WorldIntervals.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).MovementSpent+"/"+beforeMovement
+                    +", actionMovement="+state.ActorMovement.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Spent+"/"+beforeActorMovement+", damage="+reducedDamage);
+                var completedBytes=Bytes(simulation);simulation=new Simulation(policy,codec.Decode(completedBytes),ExecutionProfile.Laboratory);
+                state=simulation.Capture();
+                Require(completedBytes.SequenceEqual(Bytes(simulation))
+                    &&state.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Abilities[(int)CharacterAbility.Wisdom]==12
+                    &&state.CharacterAdvancements.Single(x=>x.ClassLevel==4).SelectedFeatureIds.Single()==CharacterFeatureIds.DefensiveFormation
+                    &&state.RouteMappingWorkAttempts.Count(x=>x.Check!=null)==1,
+                    "The connected exploration, advancement and tactical feature state did not restore/replay as one shared state.");
+                for(int turn=0;turn<simulation.Capture().Encounter.Order.Count
+                    &&simulation.Capture().Encounter.CurrentActor!=AdditionalTacticalActor.Id;turn++)ConnectedEnd(simulation);
+                var enemyTurn=simulation.Capture();
+                Require(enemyTurn.Encounter.CurrentActor==AdditionalTacticalActor.Id,
+                    "The connected combat fixture did not advance from its formation choice to its hostile actor: current="
+                    +enemyTurn.Encounter.CurrentActor+", order="+string.Join(",",enemyTurn.Encounter.Order)+".");
+                if(!enemyTurn.Stances.Any(x=>x.TurnOrdinal==enemyTurn.Encounter.TurnOrdinal))
+                    WorldCommit(simulation,Tac(simulation,CommandKind.SelectCombatStance,actor:AdditionalTacticalActor.Id,
+                        stance:(int)CombatStance.Aggressive));
+                TacStep(simulation,3,1);
+                var beforeIncoming=simulation.Capture();
+                var heroBeforeIncoming=beforeIncoming.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var heroPosition=beforeIncoming.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                var companionPosition=beforeIncoming.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId);
+                var shieldState=beforeIncoming.ShieldStationarity.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                long rawIncoming=PrototypeUnarmed.Damage(CharacterRuleFacts.ForActor(beforeIncoming,AdditionalTacticalActor.Id)
+                    .AbilityScore(CharacterAbility.Strength),2);
+                long expectedIncoming=CharacterAdvancementRules.ReduceIncomingDamage(beforeIncoming,TestOnlyPolicy.ActorId,rawIncoming);
+                Require(beforeIncoming.Encounter.CurrentActor==AdditionalTacticalActor.Id
+                    &&PlanarCombatGeometry.DistanceFeet(new CombatCell(heroPosition.X,heroPosition.Y),
+                        new CombatCell(companionPosition.X,companionPosition.Y))==5
+                    &&shieldState.MovedSinceRegularStart&&rawIncoming>expectedIncoming
+                    &&RuleDice.RollD20(beforeIncoming.RandomState).Natural==20,
+                    "The deterministic enemy hit fixture did not establish an adjacent, mobile Defensive Formation recipient with a guaranteed attack roll.");
+                WorldCommit(simulation,Tac(simulation,CommandKind.AttackUnarmed,TestOnlyPolicy.ActorId,
+                    actor:AdditionalTacticalActor.Id,press:PressHitInstruction.KeepExisting));
+                var incomingState=simulation.Capture();
+                var incomingAttack=incomingState.MeleeAttacks.Last();
+                long actualHpLoss=heroBeforeIncoming.Hp-incomingState.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Hp;
+                Require(incomingAttack.AttackerId==AdditionalTacticalActor.Id&&incomingAttack.TargetId==TestOnlyPolicy.ActorId
+                    &&incomingAttack.Attack.Hit&&incomingAttack.Damage.Total==expectedIncoming&&actualHpLoss==expectedIncoming,
+                    "The actual hostile attack failed to apply Defensive Formation through the shared damage-resolution path: raw="
+                    +rawIncoming+", expected="+expectedIncoming+", recorded="+incomingAttack.Damage.Total+", hp-loss="+actualHpLoss+".");
+                for(int count=0;!simulation.Capture().Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead;count++) {
+                    Require(count<20,"The bounded tactical encounter did not resolve after the level-four feature activation.");
+                    if(simulation.Capture().Encounter.CurrentActor==TestOnlyPolicy.ActorId) {
+                        if(!simulation.Capture().Stances.Any(x=>x.TurnOrdinal==simulation.Capture().Encounter.TurnOrdinal))
+                            WorldCommit(simulation,Tac(simulation,CommandKind.SelectCombatStance,stance:(int)CombatStance.Aggressive));
+                        WorldCommit(simulation,Tac(simulation,CommandKind.AttackUnarmed,AdditionalTacticalActor.Id));
+                    }
+                    if(!simulation.Capture().Lives.Single(x=>x.ActorId==AdditionalTacticalActor.Id).Dead)ConnectedEnd(simulation);
+                }
+                WorldCommit(simulation,Tac(simulation,CommandKind.EndFixedEncounter));
+                Require(!simulation.Capture().InventoryCombat,"The encounter did not return to management before continuing route work.");
+                var returnedHero=simulation.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                while(returnedHero.Y!=actorBody.Y) {
+                    AdvanceCharacterFixtureStep(simulation,0,Math.Sign(actorBody.Y-returnedHero.Y));
+                    returnedHero=simulation.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                }
+                while(returnedHero.X!=actorBody.X) {
+                    AdvanceCharacterFixtureStep(simulation,Math.Sign(actorBody.X-returnedHero.X),0);
+                    returnedHero=simulation.Capture().Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                }
+                var secondStart=RouteMappingWorkCommand(simulation,CommandKind.StartRouteMappingWork,RouteTravelId,"asi.map.after.start");
+                WorldCommit(simulation,secondStart);WorldAdvance(simulation,TestOnlyExpeditionRouteMappingWorkFixture.RequiredWorkSeconds);
+                var laterState=simulation.Capture();var laterCheck=laterState.RouteMappingWorkAttempts.OrderBy(x=>x.StartedRevision).Last().Check;
+                Require(laterState.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Abilities[(int)CharacterAbility.Wisdom]==12
+                    &&laterCheck.LeadModifier==firstCheck.LeadModifier+1,
+                    "A post-combat Map Route check did not use the increased Wisdom through the shared character authority.");
+                var forged=state.Copy();var forgedCharacter=forged.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var forgedScores=forgedCharacter.Abilities.ToArray();forgedScores[(int)CharacterAbility.Charisma]++;
+                forged.Characters=forged.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId
+                    ?new ActorCharacterRecord(x.ActorId,x.ProfileId,forgedScores,x.Levels):x).ToArray();
+                Require(policy.ValidateState(forged)!=null,"A forged current ability score escaped advancement-history validation.");
+                RejectUnchanged(simulation,host,AwardMilestone(simulation,"opening.milestone.soldier-4",
+                    id:"asi.connected.duplicate.milestone"),"MilestoneAlreadyAwarded");
+            });
+            cases.Add("soldier_level_four_constitution_asi_recomputes_all_level_hp_without_healing_or_spending_dice",()=>{
+                var initialLife=new ActorLifeRecord(TestOnlyPolicy.ActorId,10,4,5,Array.Empty<int>(),false,false,true,0,0,null,0,false,
+                    new[]{TestOnlyClubAttackPolicy.ActorClub});
+                var fixture=new CharacterAdvancementFixture(initialLife,true,false,true,true,true,true,true);
+                var policy=new TestOnlySharedWorldPolicy(new OverwatchFoundationFixture(),fixture,new SharedCombatFixture());
+                var simulation=World(policy);AdvanceSoldierToLevelThree(simulation,"asi.constitution");
+                WorldCommit(simulation,AwardMilestone(simulation,"opening.milestone.soldier-4",id:"asi.constitution.milestone.4"));
+                var command=new Command("asi.constitution.advance",TestOnlyPolicy.ActorId,simulation.Capture().Revision,
+                    CommandKind.AdvanceCharacterLevel,"opening.milestone.soldier-4",
+                    advancement:new CharacterAdvancementRequest(new[]{CharacterFeatureIds.DefensiveFormation},
+                        new[]{CharacterAbility.Constitution,CharacterAbility.Constitution}));
+                var beforeLife=simulation.Capture().Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                Require(beforeLife.TemporaryHp==5,"The Constitution scenario did not seed the temporary HP preservation case.");
+                WorldCommit(simulation,command);var state=simulation.Capture();var life=state.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId);
+                var expectedLife=new ActorLifeRecord(beforeLife.ActorId,32,beforeLife.Hp,beforeLife.TemporaryHp,beforeLife.LinkedInjuries,
+                    beforeLife.Stable,beforeLife.Dead,beforeLife.UsesDeathSaves,beforeLife.DeathSuccesses,beforeLife.DeathFailures,
+                    beforeLife.StableUntil,beforeLife.LastDeathTurn,beforeLife.Prone,beforeLife.HeldItems);
+                Require(state.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Abilities[(int)CharacterAbility.Constitution]==12
+                    &&state.CharacterAdvancements.Single(x=>x.ClassLevel==4).MaximumHpBefore==22
+                    &&state.CharacterAdvancements.Single(x=>x.ClassLevel==4).MaximumHpAfter==32
+                    &&life.SameAs(expectedLife)&&life.TemporaryHp==5&&life.Hp==4
+                    &&state.CharacterHitDice.OrderBy(x=>x.LevelOrdinal).Select(x=>x.Spent).SequenceEqual(new[]{true,false,false,false}),
+                    "Constitution +2 did not recompute all four Soldier level HP contributions while preserving HP and spent Hit Dice.");
+                var bytes=Bytes(simulation);Require(bytes.SequenceEqual(Bytes(new Simulation(policy,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
+                    "The Constitution advancement and recalculated life capacity did not survive save/restore and deterministic replay.");
             });
         }
     }

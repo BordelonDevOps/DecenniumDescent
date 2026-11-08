@@ -222,6 +222,7 @@ namespace Decennium.Foundation.Laboratory
         private IEnumerable<Command> DiscoverSharedWorldCommands(Snapshot s, Authority authority, string actor)
         {
             var options = new List<Command>(); int index = 0;
+            foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);
             if (pending != null)
@@ -464,6 +465,10 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel) {
+                string failure=CharacterAdvancementRules.Assess(s,c);
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
+            }
             if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return QueryRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return QueryRouteReconnaissance(s, c);
