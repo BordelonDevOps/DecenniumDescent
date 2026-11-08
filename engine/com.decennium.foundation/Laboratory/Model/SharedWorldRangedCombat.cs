@@ -412,7 +412,8 @@ namespace Decennium.Foundation.Laboratory
             foreach(string targetId in facts.TargetIds.OrderBy(x=>x,StringComparer.Ordinal)) {
                 var actor=s.Actors.Single(x=>x.Id==targetId);var life=s.Lives.Single(x=>x.ActorId==targetId);
                 var character=CharacterRuleFacts.ForActor(s,targetId);
-                int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX"));
+                int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX")
+                    +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
                 uint saveBefore=s.RandomState,saveAfter=saveBefore;long saveWords=0;int natural=0;long total=0;bool success=false;
                 bool automaticFailure=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
                 if(!automaticFailure) {
@@ -425,7 +426,8 @@ namespace Decennium.Foundation.Laboratory
                     afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
                 uint lifeBefore=s.RandomState;
                 int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON")
+                    +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
                 var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,lifeBefore,
                     constitutionSaveModifier:constitutionSave,critical:false,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 s.RandomState=rolledDamage.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,rolledDamage.Outcome.State);
@@ -568,7 +570,7 @@ namespace Decennium.Foundation.Laboratory
             var attackerLife=s.Lives.Single(x=>x.ActorId==c.Actor);
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             int flatAttack=checked((attackerLife.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
-                +incomingEffects.TacticalAssessmentBonus);
+                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier);
             var rangedFacts=new RangedAttackRequest(distance,
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
                 attackerFacts.AbilityModifier(CharacterAbility.Dexterity),attackerFacts.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
@@ -624,7 +626,8 @@ namespace Decennium.Foundation.Laboratory
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))
                     afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
+                    +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
                 rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),afterDefense,s.RuleClock,effectsSeed,
                     constitutionSaveModifier:constitutionSave,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;

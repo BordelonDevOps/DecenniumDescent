@@ -107,8 +107,10 @@ namespace Decennium.Foundation.Laboratory
         public static long WalkingSpeed(Snapshot s,string actor)
         {
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
+            var strain=ExpeditionStrainRules.Current(s,actor);
             long flat=(ActiveStance(s,actor)?.Kind==CombatStance.Guarded?-5:0)-(l.LinkedInjuries.Contains((int)Injury.MobilityTrauma)?5:0)
-                -(l.LinkedInjuries.Count==3?10:0)-CharacterAdvancementRules.ArmorStrengthSpeedPenalty(s,actor);
+                -(l.LinkedInjuries.Count==3?10:0)-CharacterAdvancementRules.ArmorStrengthSpeedPenalty(s,actor)
+                +strain.FlatSpeedModifier;
             long speed=l.Dead||l.Hp==0?0:WithConditions(s)?PlaytestConditions.EffectiveSpeed(m.BaseWalkingSpeed,flat,CombatConditions(s,actor)):Math.Max(0,m.BaseWalkingSpeed+flat);
             if(s.SchemaVersion>=Snapshot.OverwatchExecutionSchema&&s.OverwatchRiderChoices.Any(x=>x.TargetId==actor
                 &&x.Choice==OverwatchRider.Snare&&x.Status==OverwatchRiderChoiceStatus.Resolved&&s.Encounter!=null
@@ -117,6 +119,7 @@ namespace Decennium.Foundation.Laboratory
                 &&x.Status==SuppressionSlowStatus.Active&&s.WorldSchedule.ProcessedSlot<=x.ExpirySlot))speed=Math.Max(0,speed-10);
             if(s.SchemaVersion>=Snapshot.PortableEquipmentSchema&&speed>0&&PortableEquipmentRules.IsBurdened(s,actor))
                 speed=PlaytestCarrying.SpeedWithBurden(new RuleQuantity(speed),true).Numerator;
+            if(!s.InventoryCombat&&speed>0&&strain.SlowTravel)speed/=2;
             return speed;
         }
         public static MovementLedger WalkingLedger(Snapshot s)
@@ -256,7 +259,7 @@ namespace Decennium.Foundation.Laboratory
             int strengthModifier=attackerFacts.AbilityModifier(CharacterAbility.Strength);
             int modifier=checked(strengthModifier
                 +(attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
-                +incomingEffects.TacticalAssessmentBonus); // STR10, explicitly no Club proficiency grant.
+                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier); // STR10, explicitly no Club proficiency grant.
             var defense=ActiveStance(s,c.Target);int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
             int ac=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,dexterity)+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
                 +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
@@ -275,7 +278,8 @@ namespace Decennium.Foundation.Laboratory
                 total=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,total);
                 if(WithConditions(s)&&ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))total=PlaytestConditions.PetrifiedDamage(total);
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
+                    +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
                 var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
                     critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
                 damage=DamageRecord(dice,total,words,next,result);next=result.NextRandomState;pending=result.Pending!=null;
@@ -309,7 +313,8 @@ namespace Decennium.Foundation.Laboratory
             // Reconstruct the immutable continuation from its retained seed and unchanged target facts.
             // The prior rolls are verified, never applied to the world random stream a second time.
             int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
-                +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON"));
+                +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON")
+                +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
             var prior=PlaytestDamageDice.Resolve(ActorLifeRules.Read(before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
                 critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);
             if(prior.Pending==null||!d.SameAs(DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,prior))||s.RandomState!=prior.NextRandomState)return "InvalidPendingKnockout";
@@ -325,6 +330,7 @@ namespace Decennium.Foundation.Laboratory
             bool dropEquipment=newlyUnconscious||after.Dead;
             var record=ActorLifeRules.Record(before.ActorId,after,before.Prone||newlyUnconscious&&!WithConditions(s),dropEquipment?Array.Empty<string>():before.HeldItems);
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
+            ExpeditionStrainRules.ClampLife(s, before.ActorId, s.RuleClock, s.Revision + 1);
             if(newlyUnconscious) {
                 if(WithConditions(s))AddPhysicalProne(s,before.ActorId,"zero-hp");
             }

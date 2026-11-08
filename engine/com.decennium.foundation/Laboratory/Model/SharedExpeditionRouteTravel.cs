@@ -678,7 +678,9 @@ namespace Decennium.Foundation.Laboratory
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema&&routeSchema<Snapshot.SharedCharacterAdvancementSchema)
                 && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
                     && routeSchema < Snapshot.HuntingTrapSchema)
-                && !(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema&&routeSchema<Snapshot.DodgeSchema))
+                && !(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema&&routeSchema<Snapshot.DodgeSchema)
+                && !(dailyProvisioning!=null&&s.SchemaVersion==Snapshot.DailyProvisioningSchema
+                    &&routeSchema<Snapshot.DailyProvisioningSchema))
                 return "RouteTravelSchemaMismatch";
             if (routeMotionFixture == null && ObservationRules.Enabled(s)) return "RouteObservationIntegrationUnsupported";
             string bindingError = routeMotionFixture == null

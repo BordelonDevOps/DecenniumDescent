@@ -72,7 +72,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled ? Snapshot.SharedCharacterAdvancementSchema
+        private int SelectedSchema => dailyProvisioning!=null ? Snapshot.DailyProvisioningSchema
+            : characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled ? Snapshot.SharedCharacterAdvancementSchema
             : routeReconnaissanceFixture!=null ? Snapshot.RouteReconnaissanceSchema
             : routeMappingWorkFixture!=null ? Snapshot.RouteMappingWorkSchema
             : readyActionEnabled ? Snapshot.ReadyActionSchema : cacheExcavationEnabled ? Snapshot.BuriedCacheSchema : dodgeActionEnabled ? Snapshot.DodgeSchema : huntingTrapFixture!=null ? Snapshot.HuntingTrapSchema
@@ -197,7 +198,8 @@ namespace Decennium.Foundation.Laboratory
                 if (View(s, fact.LeadId).Has(ConditionKind.Petrified)) damage = PlaytestConditions.PetrifiedDamage(damage);
                 var character = s.Characters.Single(x => x.ActorId == fact.LeadId);
                 int constitutionSave=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,"CON")
+                    +ExpeditionStrainRules.Current(s,fact.LeadId).SavingThrowModifier);
                 var result = PlaytestDamageDice.Resolve(ActorLifeRules.Read(before), damage, s.RuleClock, draw.NextState, constitutionSave);
                 s.RandomState = result.NextRandomState; words = checked(draw.WordsConsumed + result.WordsConsumed); wound = result.WoundRoll?.Natural ?? 0; injury = result.InjuryD6 ?? 0;
                 TestOnlyClubAttackPolicy.ApplyLife(s, before, result.Outcome.State);

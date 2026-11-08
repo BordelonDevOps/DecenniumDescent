@@ -337,7 +337,8 @@ namespace Decennium.Foundation.Laboratory
             }
             var life=s.Lives.Single(x=>x.ActorId==target.Id);long damage=CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,1);
             int con=checked(CharacterRuleFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)
-                +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON"));
+                +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
+                +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
             var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
             s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
             words=checked(words+hurt.WordsConsumed);after=s.RandomState;
@@ -437,7 +438,8 @@ namespace Decennium.Foundation.Laboratory
             var deployment=s.HuntingTrapDeployments.Single(x=>x.Id==trigger.DeploymentId);
             var target=s.Actors.Single(x=>x.Id==trigger.EntrantId);var life=s.Lives.Single(x=>x.ActorId==trigger.EntrantId);
             var character=CharacterRuleFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)
-                +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"DEX"));
+                +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"DEX")
+                +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
             bool automatic=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,target.Id).View().AutomaticStrengthDexterityFailure;
             uint before=s.RandomState,after=before;long words=0;int natural=0;long total=0;bool success=false;
             if(!automatic) {
@@ -449,7 +451,8 @@ namespace Decennium.Foundation.Laboratory
                 var d4=DiceStream.Draw(s.RandomState,4);rolled=d4.Value+1;s.RandomState=d4.NextState;words=checked(words+d4.WordsConsumed);
                 applied=CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,rolled);
                 int con=checked(character.AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
+                    +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
                 var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),applied,s.RuleClock,s.RandomState,
                     constitutionSaveModifier:con,melee:false);
                 s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);

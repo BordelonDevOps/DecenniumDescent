@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "blob": "88fad6737419c7053d262bdf747fad80fd20f1c4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "snapshot": "sources/character_foundation.json",
+      "scope": "Required class-profile projection anchor for the shared source-binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "sources/EXPEDITION_PLAYER_BOOK.md",
+      "scope": "Pinned FL-03/FL-04 daily consumption, ordinary food and water demands, endpoint settlement, and Expedition Strain trigger."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "blob": "7005aaf9558f0ce4f445ffe982dfa9b6f36c8ee4",
+      "sha256": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+      "snapshot": "sources/STRAIN_PLAYTEST.md",
+      "scope": "Pinned playtest Strain levels and their numerical, movement, life, and endpoint effects."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json",
+      "blob": "2be335369152191d3aaf47a558f6c5344b18bb4a",
+      "sha256": "41e1d20301713d6eb2c7bbc6f6f5b41f98da398e48e479a4c62fe7c1e4c5a5dd",
+      "snapshot": "sources/strain_bindings.json",
+      "scope": "Pinned identity boundary separating expedition.strain from serum strain and unrelated fatigue tracks."
+    }
+  ],
+  "implementations": [
+    {
+      "name": "Schema62 TEST_ONLY daily provisioning and source-qualified Expedition Strain over the shared simulation",
+      "code": [
+        "Runtime/Core/ExpeditionProvisioningRecords.cs",
+        "Runtime/Core/Simulation.cs",
+        "Runtime/Persistence/ExpeditionProvisioningCodec.cs",
+        "Runtime/Persistence/SnapshotCodec.cs",
+        "Laboratory/Model/SharedDailyProvisioning.cs",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "Laboratory/Model/SharedExpeditionRouteTravel.cs",
+        "Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+        "Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+        "Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "Laboratory/Model/ActorLifeRules.cs",
+        "Laboratory/Model/ConditionCombatPolicy.cs",
+        "Laboratory/Model/SharedWorldRangedCombat.cs",
+        "Laboratory/Model/SharedOverwatchExecution.cs",
+        "Laboratory/Model/SharedPeriodicRider.cs",
+        "Laboratory/Model/SharedHarvest.cs",
+        "Laboratory/Model/SharedHuntingTrap.cs",
+        "Laboratory/Model/SharedMining.cs",
+        "Laboratory/Model/SharedCraftingConsequences.cs",
+        "Tests/EditMode/DailyProvisioningCases.cs",
+        "Tests/EditMode/FoundationCases.cs"
+      ],
+      "tests": [
+        "daily_provisioning_profile_is_test_only_fingerprinted_and_restorable",
+        "daily_provisioning_exploration_intake_boundary_restore_and_replay",
+        "daily_provisioning_full_food_and_water_uses_real_shared_lots",
+        "daily_provisioning_single_advance_settles_every_crossed_day",
+        "daily_provisioning_map_route_and_reconnaissance_checks_use_strain",
+        "daily_provisioning_level_two_reaches_shared_tactical_attack",
+        "daily_provisioning_multiday_catchup_projects_strain_and_death"
+      ],
+      "implemented": [
+        "Bind the canonical day epoch, fixed roster, ordinary food/water demands, source references, registry version, and exactly two admitted Expedition-check IDs into the immutable TEST_ONLY content fingerprint.",
+        "Attribute daily quantities only from actual IntakeRecord intervals and consumed WorkLedger reservations, intersect freshness and half-open day boundaries, preserve settled days against later same-time intake, and settle every crossed endpoint once.",
+        "Persist causal daily settlements, per-lot/per-intake consumption evidence, and Expedition Strain gain history using the schema62 codec while preserving historical codec branches.",
+        "Project the adopted Strain effects through existing tactical attack/save, movement, permission, maximum-HP, death-save, ranged, reaction, and physical-work consumers without consuming RNG or rewriting authored initiative order.",
+        "Add current-source schema compatibility for the shared route-travel validator so the two explicitly registered route checks compose with daily settlement."
+      ],
+      "notImplemented": [
+        "Production authority; non-fixed or mid-expedition roster changes; special diets, magical meals, needs modifiers, starvation remedies, Strain recovery, and day/watch profiles other than the approved epoch-zero daily profile.",
+        "Additional Expedition-check registrations, rest/recovery, offline progress, tactical intake, and historical back-assessment before the profile epoch.",
+        "Full production exploration, combat, content, AI, and management behavior beyond the procedures already represented by their bounded TEST_ONLY hosts."
+      ]
+    }
+  ],
+  "validation": {
+    "headless": "FULL_TEST_RESULTS.json",
+    "compile": "FULL_TEST_RESULTS.json",
+    "ruleBindings": "RULE_BINDINGS_VALIDATION.json",
+    "packageStatic": "PACKAGE_RESULTS.json"
+  }
+}

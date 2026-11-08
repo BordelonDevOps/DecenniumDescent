@@ -148,7 +148,8 @@ namespace Decennium.Foundation.Laboratory
                         if(View(s,rider.TargetId).Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
                         var character=CharacterRuleFacts.ForActor(s,rider.TargetId);
                         int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
-                            +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON"));
+                            +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON")
+                            +ExpeditionStrainRules.Current(s,rider.TargetId).SavingThrowModifier);
                         var result=PlaytestDamageDice.Resolve(ActorLifeRules.Read(target),damage,s.RuleClock,afterRandom,
                             constitutionSaveModifier:constitutionSave,melee:false);
                         s.RandomState=result.NextRandomState;afterRandom=s.RandomState;words=checked(words+result.WordsConsumed);

@@ -45,7 +45,8 @@ namespace Decennium.Foundation.Laboratory
             if(d20.Natural!=20&&d20.Natural>=10&&life.DeathSuccesses==2) {
                 var recovery=DiceStream.Draw(next,4);d4=recovery.Value+1;next=recovery.NextState;words=checked(words+recovery.WordsConsumed);
             }
-            var after=PlaytestLife.DeathSaveAt(life,d20.Natural,marker,s.RuleClock,stableD4:d4);
+            int modifier=ExpeditionStrainRules.Current(s,actor).SavingThrowModifier;
+            var after=PlaytestLife.DeathSaveAt(life,d20.Natural,marker,s.RuleClock,modifier:modifier,stableD4:d4);
             Set(s,Record(actor,after,before.Prone,before.HeldItems));s.RandomState=next;
             Event(s,new ActorLifeEvent(actor,s.Revision+1,s.RuleClock,LifeEventKind.DeathSave,ordinal,d20.Natural,d4??0,initial,next,words));
         }

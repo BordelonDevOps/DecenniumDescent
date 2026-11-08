@@ -114,6 +114,7 @@ namespace Decennium.Foundation
         public const int RouteMappingWorkSchema = 59;
         public const int RouteReconnaissanceSchema = 60;
         public const int SharedCharacterAdvancementSchema = 61;
+        public const int DailyProvisioningSchema = 62;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -259,6 +260,10 @@ namespace Decennium.Foundation
         public ExpeditionRouteMappingWorkAttemptRecord[] RouteMappingWorkAttempts = Array.Empty<ExpeditionRouteMappingWorkAttemptRecord>();
         public ExpeditionRouteSegmentRecord[] RouteSegments = Array.Empty<ExpeditionRouteSegmentRecord>();
         public ExpeditionRouteReconnaissanceAttemptRecord[] RouteReconnaissanceAttempts = Array.Empty<ExpeditionRouteReconnaissanceAttemptRecord>();
+        public DailyProvisioningSettlementRecord[] DailyProvisioningSettlements = Array.Empty<DailyProvisioningSettlementRecord>();
+        public DailyProvisioningConsumptionRecord[] DailyProvisioningConsumption = Array.Empty<DailyProvisioningConsumptionRecord>();
+        public ExpeditionStrainGainRecord[] ExpeditionStrainGains = Array.Empty<ExpeditionStrainGainRecord>();
+        public ExpeditionDashLockRecord[] ExpeditionDashLocks = Array.Empty<ExpeditionDashLockRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -321,6 +326,9 @@ namespace Decennium.Foundation
             RouteMappingResults = RouteMappingResults.ToArray(),
             RouteMappingWorkAttempts = RouteMappingWorkAttempts.ToArray(),
             RouteSegments = RouteSegments.ToArray(), RouteReconnaissanceAttempts = RouteReconnaissanceAttempts.ToArray(),
+            DailyProvisioningSettlements = DailyProvisioningSettlements.ToArray(),
+            DailyProvisioningConsumption = DailyProvisioningConsumption.ToArray(),
+            ExpeditionStrainGains = ExpeditionStrainGains.ToArray(), ExpeditionDashLocks = ExpeditionDashLocks.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -639,7 +647,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema
                 || s.SchemaVersion == Foundation.Snapshot.RouteMappingWorkSchema
-                || s.SchemaVersion == Foundation.Snapshot.RouteReconnaissanceSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.RouteReconnaissanceSchema
+                || s.SchemaVersion == Foundation.Snapshot.DailyProvisioningSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -746,6 +755,7 @@ namespace Decennium.Foundation
             ExpeditionRouteMappingValidation.Validate(s);
             ExpeditionRouteMappingWorkValidation.Validate(s);
             ExpeditionRouteReconnaissanceValidation.Validate(s);
+            ExpeditionProvisioningValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }

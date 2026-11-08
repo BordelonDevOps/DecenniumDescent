@@ -131,6 +131,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (initializationStarted) throw new InvalidOperationException("World initialization has already started.");
             if (routeTravelFixture == null || fixture == null || routeMappingFixture != null || routeMappingWorkFixture != null
+                || routeReconnaissanceFixture != null && dailyProvisioning == null
                 || readyActionEnabled || cacheExcavationEnabled || dodgeActionEnabled || huntingTrapFixture != null)
                 throw new ArgumentException("Map Route work requires one route profile and an unlayered route-work TEST_ONLY profile.");
             string error = fixture.ValidateRoutes(routeTravelFixture);
@@ -148,6 +149,7 @@ namespace Decennium.Foundation.Laboratory
 
         private bool RouteMappingWorkSelected(Snapshot s)
             => routeMappingWorkFixture != null && (s.SchemaVersion == Snapshot.RouteMappingWorkSchema
+                || dailyProvisioning != null && s.SchemaVersion == Snapshot.DailyProvisioningSchema
                 || characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema);
 
@@ -350,7 +352,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static bool RouteMappingCheckDisadvantage(Snapshot s, string actorId, RuleTime at,
-            int conditionOperationCount)
+            long revision, int conditionOperationCount)
         {
             var journal = s.Conditions.Single(x => x.Target == actorId);
             var stamp = new ConditionStamp(at);
@@ -364,7 +366,8 @@ namespace Decennium.Foundation.Laboratory
             var ledger = ConditionHistory.Restore(historicalJournal).Ledger;
             var marker = new EffectClockMarker(at);
             if (ledger.Now.CompareTo(marker) < 0) ledger = ledger.AdvanceTo(marker).State;
-            return ledger.View().Has(ConditionKind.Poisoned);
+            return ledger.View().Has(ConditionKind.Poisoned)
+                || ExpeditionStrainRules.Project(s, actorId, at, revision).ExpeditionCheckDisadvantage;
         }
 
         private void FinishRouteMappingWorkCheck(Snapshot s, ExpeditionRouteMappingWorkAttemptRecord attempt,
@@ -380,10 +383,11 @@ namespace Decennium.Foundation.Laboratory
             if (task == null || leadFailure != null) throw new InvalidOperationException(leadFailure ?? "RouteMappingDefinitionMissing");
             var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);
             var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
-            int leadModifier = modifier.TotalWithInjury(actorFacts);
+            int leadModifier = checked(modifier.TotalWithInjury(actorFacts)
+                + ExpeditionStrainRules.Project(s, attempt.LeadId, s.RuleClock, appliedRevision).ExpeditionCheckModifier);
             int assistantBonus = attempt.AssistantIds.Length;
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
-            bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, conditionOperationCount);
+            bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, appliedRevision, conditionOperationCount);
             uint before = s.RandomState;
             RuleD20Roll roll = RuleDice.RollD20(before, disadvantageSources: disadvantage ? 1 : 0);
             var outcome = RuleResolution.TaskCheck(roll.Natural, checked(leadModifier + assistantBonus), task.Dc);
@@ -457,7 +461,7 @@ namespace Decennium.Foundation.Laboratory
                             .Any(x => x.At.CompareTo(new ConditionStamp(check.At)) > 0))
                         return "InvalidRouteMappingWorkConditionEvidence";
                     bool expectedDisadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, check.At,
-                        check.ConditionOperationCount);
+                        check.AppliedRevision, check.ConditionOperationCount);
                     RuleD20Roll replayedRoll = RuleDice.RollD20(check.RandomBefore,
                         disadvantageSources: check.Disadvantage ? 1 : 0);
                     if (checkReceipt.Id != check.CommandId || checkCommand.ExpectedRevision + 1 != check.AppliedRevision
@@ -476,7 +480,8 @@ namespace Decennium.Foundation.Laboratory
                         ?PlaytestLife.AbilityCheckInjuryPenalty(new LifeState(1,1,
                             wounds:check.LinkedInjuriesAtCheck.Select(x=>(Injury)x)),(int)CharacterAbility.Wisdom)
                         :actorFacts.InjuryPenalty(CharacterAbility.Wisdom);
-                    int leadModifier=checked(modifier.Total+injuryPenalty);
+                    int leadModifier=checked(modifier.Total+injuryPenalty
+                        +ExpeditionStrainRules.Project(s,attempt.LeadId,check.At,check.AppliedRevision).ExpeditionCheckModifier);
                     var expected = RuleResolution.TaskCheck(check.Natural, checked(leadModifier + attempt.AssistantIds.Length), task.Dc);
                     ExpeditionRouteMappingResultDegree degree = expected.Degree == RuleTaskDegree.CriticalFailure
                         ? ExpeditionRouteMappingResultDegree.CriticalFailure

@@ -194,7 +194,7 @@ namespace Decennium.Foundation.Laboratory
             if (initializationStarted) throw new InvalidOperationException("World initialization has already started.");
             if (routeTravelFixture == null || routeMotionFixture == null || observationFixture == null
                 || fixture == null || routeReconnaissanceFixture != null
-                || routeMappingFixture != null || routeMappingWorkFixture != null || readyActionEnabled
+                || routeMappingFixture != null || routeMappingWorkFixture != null && dailyProvisioning == null || readyActionEnabled
                 || cacheExcavationEnabled || dodgeActionEnabled || huntingTrapFixture != null)
                 throw new ArgumentException("Route reconnaissance requires one unlayered route-travel TEST_ONLY profile.");
             string error = fixture.ValidateRoutes(routeTravelFixture);
@@ -211,7 +211,8 @@ namespace Decennium.Foundation.Laboratory
                 || kind == CommandKind.ResumeRouteReconnaissance;
 
         private bool RouteReconnaissanceSelected(Snapshot s)
-            => routeReconnaissanceFixture != null && s.SchemaVersion == Snapshot.RouteReconnaissanceSchema;
+            => routeReconnaissanceFixture != null && (s.SchemaVersion == Snapshot.RouteReconnaissanceSchema
+                || dailyProvisioning != null && s.SchemaVersion == Snapshot.DailyProvisioningSchema);
 
         private static ExpeditionRouteSegmentRecord RouteSegment(Snapshot s, string routeId, string travelerId,
             RuleQuantity startingProgress)
@@ -463,9 +464,10 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException(workerFailure ?? "RouteReconnaissanceDefinitionMissing");
             var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
             var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
-            int leadModifier = modifier.TotalWithInjury(actorFacts);
+            int leadModifier = checked(modifier.TotalWithInjury(actorFacts)
+                + ExpeditionStrainRules.Project(s, attempt.LeadId, s.RuleClock, appliedRevision).ExpeditionCheckModifier);
             int conditionOperationCount = s.Conditions.Single(x => x.Target == attempt.LeadId).Operations.Count;
-            bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, conditionOperationCount);
+            bool disadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId, s.RuleClock, appliedRevision, conditionOperationCount);
             uint before = s.RandomState;
             RuleD20Roll roll = RuleDice.RollD20(before, disadvantageSources: disadvantage ? 1 : 0);
             var outcome = RuleResolution.TaskCheck(roll.Natural, leadModifier, task.Dc);
@@ -547,7 +549,7 @@ namespace Decennium.Foundation.Laboratory
                             .Any(x => x.At.CompareTo(new ConditionStamp(check.At)) > 0))
                         return "InvalidRouteReconnaissanceConditionEvidence";
                     bool expectedDisadvantage = RouteMappingCheckDisadvantage(s, attempt.LeadId,
-                        check.At, check.ConditionOperationCount);
+                        check.At, check.AppliedRevision, check.ConditionOperationCount);
                     RuleD20Roll replayedRoll = RuleDice.RollD20(check.RandomBefore,
                         disadvantageSources: check.Disadvantage ? 1 : 0);
                     if (checkReceipt.Id != check.CommandId || checkCommand.ExpectedRevision + 1 != check.AppliedRevision
@@ -559,7 +561,8 @@ namespace Decennium.Foundation.Laboratory
                         return "InvalidRouteReconnaissanceRandomEvidence";
                     var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);
                     var modifier = actorFacts.DeriveCheck(CharacterAbility.Wisdom);
-                    int leadModifier = modifier.TotalWithInjury(actorFacts);
+                    int leadModifier = checked(modifier.TotalWithInjury(actorFacts)
+                        + ExpeditionStrainRules.Project(s, attempt.LeadId, check.At, check.AppliedRevision).ExpeditionCheckModifier);
                     var expected = RuleResolution.TaskCheck(check.Natural, leadModifier, task.Dc);
                     var expectedDegree = expected.Degree == RuleTaskDegree.CriticalFailure ? ExpeditionRouteReconnaissanceDegree.CriticalFailure
                         : expected.Degree == RuleTaskDegree.Failure ? ExpeditionRouteReconnaissanceDegree.Failure

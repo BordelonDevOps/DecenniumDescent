@@ -178,6 +178,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeExpeditionRouteTravel(s);
             InitializeRouteMappingWork(s);
             InitializeRouteReconnaissance(s);
+            InitializeDailyProvisioning(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -262,8 +263,9 @@ namespace Decennium.Foundation.Laboratory
         {
             var a = s.WorldIntervals.SingleOrDefault(x => x.ActorId == actor);
             // Permission projection asks whether any movement occurred, not its rounded foot count.
-            return View(s, actor).PermissionsForLife(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor)),
+            var permissions = View(s, actor).PermissionsForLife(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor)),
                 a != null && a.ActionSpent ? 1 : 0, a == null || a.MovementSpent == default ? 0 : 1);
+            return ExpeditionStrainRules.RestrictPermissions(s, actor, permissions);
         }
         private static long Speed(Snapshot s, string actor) => TestOnlyClubAttackPolicy.WalkingSpeed(s, actor);
         private static RuleQuantity Remaining(Snapshot s, string actor)
@@ -278,7 +280,8 @@ namespace Decennium.Foundation.Laboratory
             var view = View(s, actor);
             // Supplied ordinary labor requires deliberate bodily activity. No blanket test for
             // "has a condition": poison, invisibility and unrelated sensory clauses do not stop it.
-            return ActorLifeRules.CanAct(s, actor) && !view.Unaware && !view.Clauses.Incapacitated && !view.Clauses.Immobile;
+            return ActorLifeRules.CanAct(s, actor) && !ExpeditionStrainRules.Current(s, actor).Incapacitated
+                && !view.Unaware && !view.Clauses.Incapacitated && !view.Clauses.Immobile;
         }
         private static int AvailableHands(Snapshot s, string actor) => 2 - s.Clubs.Where(c => c.HeldBy == actor).Count()
             - s.RepeatingCrossbows.Where(c => c.HeldBy == actor).Sum(c => c.GripHands)
@@ -322,19 +325,28 @@ namespace Decennium.Foundation.Laboratory
         }
         private static string PayRun(Snapshot s, string actor)
         {
-            if (Interval(s, actor).DashPaid) return null;
+            var strain = ExpeditionStrainRules.Current(s, actor);
+            if (Interval(s, actor).DashPaid) return strain.DashProhibited ? "ExpeditionStrainPreventsDash" : null;
             if (Interval(s, actor).ActionSpent) return "ActionAlreadySpent";
+            if (ExpeditionStrainRules.DashLocked(s, actor)) return "ExpeditionStrainDashLocked";
+            if (strain.DashProhibited) return "ExpeditionStrainPreventsDash";
             if (!Permissions(s, actor).Dash) return "ConditionPreventsDash";
-            SetInterval(s, Interval(s, actor).PayDash()); return null;
+            SetInterval(s, Interval(s, actor).PayDash());
+            ExpeditionStrainRules.RecordDash(s, actor, s.Revision + 1);
+            return null;
         }
         private static string PayActivityDash(Snapshot s, string actor, string commandId, long commandRevision)
         {
             var activity = ActivityInterval(s, actor);
-            if (activity.DashPaid) return null;
+            var strain = ExpeditionStrainRules.Current(s, actor);
+            if (activity.DashPaid) return strain.DashProhibited ? "ExpeditionStrainPreventsDash" : null;
             if (ActivityHasLabor(s, actor)) return "OffCalendarLaborOverlapsActivity";
             if (activity.Action != WorldActionCommitment.None) return "ActionAlreadySpent";
+            if (ExpeditionStrainRules.DashLocked(s, actor)) return "ExpeditionStrainDashLocked";
+            if (strain.DashProhibited) return "ExpeditionStrainPreventsDash";
             if (!Permissions(s, actor).Dash) return "ConditionPreventsDash";
             SetActivityInterval(s, activity.PayDash(commandId, commandRevision));
+            ExpeditionStrainRules.RecordDash(s, actor, commandRevision);
             return null;
         }
         private static CommandReceipt TraversalInstructionReceipt(Snapshot s, WorldTraversalRecord edge)
@@ -414,6 +426,7 @@ namespace Decennium.Foundation.Laboratory
                 var routeBoundary=NextRouteTravelBoundary(s);if(routeBoundary.HasValue&&routeBoundary.Value<next)next=routeBoundary.Value;
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<next)next=routeMappingWorkBoundary.Value;
                 var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<next)next=routeReconnaissanceBoundary.Value;
+                var provisioningBoundary=NextProvisioningBoundary(s);if(provisioningBoundary.HasValue&&provisioningBoundary.Value<next)next=provisioningBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -529,6 +542,7 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
                 ResolveReadyMineralPreparations(s);
+                string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -727,6 +741,7 @@ namespace Decennium.Foundation.Laboratory
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
                 RefreshIntervals(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
+                string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
             }
             return null;
         }
@@ -741,6 +756,7 @@ namespace Decennium.Foundation.Laboratory
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
                 string routeReconnaissanceError=ValidateRouteReconnaissanceState(s);if(routeReconnaissanceError!=null)return routeReconnaissanceError;
+                string dailyProvisioningError=ValidateDailyProvisioningState(s);if(dailyProvisioningError!=null)return dailyProvisioningError;
                 string huntingTrapError=ValidateHuntingTrapFixtureState(s);if(huntingTrapError!=null)return huntingTrapError;
                 if(s.SchemaVersion>=Snapshot.ExpeditionRouteSchema&&TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s))
                     return "UnprocessedConditionDeadline";

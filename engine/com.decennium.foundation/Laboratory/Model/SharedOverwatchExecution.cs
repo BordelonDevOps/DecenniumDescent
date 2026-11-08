@@ -154,7 +154,8 @@ namespace Decennium.Foundation.Laboratory
             });
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,offer.OwnerId,offer.TargetId);
             int flatAttack=checked((s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)
-                -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus);
+                -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus
+                +ExpeditionStrainRules.Current(s,offer.OwnerId).AttackModifier);
             bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.TargetId,offer.OwnerId);
             bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.OwnerId,offer.TargetId);
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId);
@@ -218,7 +219,8 @@ namespace Decennium.Foundation.Laboratory
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,offer.TargetId).View().Has(ConditionKind.Petrified))
                     afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
                 int con=checked(CharacterRuleFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON")
+                    +ExpeditionStrainRules.Current(s,offer.TargetId).SavingThrowModifier);
                 rolled=PlaytestDamageDice.Resolve(ActorLifeRules.Read(facts.TargetLife),afterDefense,s.RuleClock,next,
                     constitutionSaveModifier:con,critical:shot.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
@@ -276,7 +278,8 @@ namespace Decennium.Foundation.Laboratory
                     dc=checked(8+ownerFacts.ProficiencyBonus+ownerFacts.AbilityModifier(CharacterAbility.Constitution));
                     modifier=checked(targetFacts.AbilityModifier(CharacterAbility.Strength)
                         +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"STR")
-                        +overwatchExecution.AdditionalStrengthSaveModifier);
+                        +overwatchExecution.AdditionalStrengthSaveModifier
+                        +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
                     bool automaticFailure=AutomaticPushStrengthSaveFailure(s,pending.TargetId);
                     if(automaticFailure) {success=false;}
                     else {

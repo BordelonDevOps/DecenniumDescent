@@ -736,7 +736,8 @@ namespace Decennium.Foundation.Laboratory
                 damage=CharacterAdvancementRules.ReduceIncomingDamage(s,prior.WorkerId,damage);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
                 int constitution=checked(actorFacts.Rules.AbilityModifier(CharacterAbility.Constitution)
-                    +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON"));
+                    +CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,"CON")
+                    +ExpeditionStrainRules.Current(s,prior.WorkerId).SavingThrowModifier);
                 var life=actorFacts.Life;
                 var injuryResult=PlaytestDamageDice.Resolve(ActorLifeRules.Read(life),damage,s.RuleClock,draw.NextState,constitution);
                 s.RandomState=injuryResult.NextRandomState;words=checked(words+draw.WordsConsumed+injuryResult.WordsConsumed);
