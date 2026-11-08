@@ -2,7 +2,7 @@
 
 ## Module checkpoint
 
-This is a bounded C# simulation increment on `Engine`, built on the current schema61 checkpoint. GPT reviewed and accepted correction commit `e4e12fb651fd029cec469e34ebf07214ce55194c`; it found no remaining concrete acceptance blocker. The exact review and its limits are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). The next mapped increment is selected: qualifying Rest Watch and Rest Debt accounting within MGT-03, using the pinned FL-03 and Expedition Strain recovery ordering.
+This is a bounded C# simulation increment on `Engine`, built on the current schema61 checkpoint. GPT reviewed and accepted correction commit `e4e12fb651fd029cec469e34ebf07214ce55194c`; it found no remaining concrete acceptance blocker. The exact review and its limits are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). The next mapped increment is selected: qualifying Rest Watch and Rest Debt accounting within MGT-03, using the pinned FL-03 and Expedition Strain recovery ordering. The source-bound cause, watch-epoch, and recovery-metadata consensus is recorded in [REST_DEBT_CONSENSUS.md](REST_DEBT_CONSENSUS.md); GPT found no owner decision necessary.
 
 The increment executes the adopted fixed-profile daily rules over the existing shared world. It is not production authority and does not complete Decennium's engine.
 
