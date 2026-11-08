@@ -28,6 +28,18 @@ namespace Decennium.Foundation.Tests
         private static void AddInventoryCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlyInventoryPolicy.Host();var codec=new SnapshotCodec();
+            cases.Add("custom_crop_policy_fingerprint_fits_header_and_roundtrips",()=>{
+                var defaults=new TestOnlyCropPolicy();
+                Require(defaults.ContentFingerprint=="TEST_ONLY.camp-greens-v1-s8-w512","Default crop identity changed.");
+                var crop=new TestOnlyCropPolicy(workerIds:new[]{TestOnlyPolicy.ActorId});
+                var simulation=new Simulation(crop,crop.Initial(),ExecutionProfile.Laboratory);
+                byte[] bytes=codec.Encode(simulation.Capture());
+                var restored=new Simulation(crop,codec.Decode(bytes),ExecutionProfile.Laboratory);
+                var differentSeeds=new TestOnlyCropPolicy(seedPackets:9,workerIds:new[]{TestOnlyPolicy.ActorId});
+                var differentWater=new TestOnlyCropPolicy(waterPints:513,workerIds:new[]{TestOnlyPolicy.ActorId});
+                Require(crop.ContentFingerprint.Length<=96&&bytes.SequenceEqual(codec.Encode(restored.Capture())
+                    )&&crop.ContentFingerprint!=differentSeeds.ContentFingerprint&&crop.ContentFingerprint!=differentWater.ContentFingerprint,
+                    "Custom crop identity exceeded the snapshot header, changed on codec roundtrip, or omitted seed/water quantities."); });
             cases.Add("inventory_crop_worker_profiles_bind_fingerprint_and_preserve_default_save",()=>{
                 var legacy=new TestOnlyInventoryPolicy();var legacyBytes=codec.Encode(legacy.Initial());string hash;
                 using(var sha=SHA256.Create())hash=string.Concat(sha.ComputeHash(legacyBytes).Select(b=>b.ToString("x2")));

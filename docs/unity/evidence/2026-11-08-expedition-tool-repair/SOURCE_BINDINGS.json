@@ -52,7 +52,7 @@
       ],
       "implemented": [
         "Validate registered worker, procedure, actual target/toolkit/material location, and repair-site coordinates.",
-        "Dispatch through the existing repair transaction; retain existing carpenter qualification, material, labor, clock, check/RNG, save, and receipt authorities."
+        "Dispatch through the existing repair transaction; RepairAccess still requires IsRepairWorker actor eligibility and the explicit SharedRepairFixture.Trained fact, neither of which assignment registration changes; retain material, labor, clock, check/RNG, save, and receipt authorities."
       ],
       "notImplemented": [
         "Recruitment, automatic travel, scheduling, general repair jobs, started-work reassignment, and generic repair-site geometry."
@@ -70,12 +70,13 @@
         "Tests/EditMode/InventoryCases.cs"
       ],
       "implemented": [
-        "Length-prefix custom worker lists before hashing; retain exact default and previously used actor/companion profile identities; reject cross-profile restore for the delimiter-collision pair."
+        "Hash the complete custom configuration (seed/water quantities plus count/length-prefixed workers) behind a fixed short prefix within the 96-character snapshot limit; retain exact default and established actor/companion identities; reject cross-profile restore for the delimiter-collision pair."
       ],
       "notImplemented": [
         "No production profile authority or general save migration for arbitrary custom TEST_ONLY rosters."
       ],
       "tests": [
+        "custom_crop_policy_fingerprint_fits_header_and_roundtrips",
         "crop_worker_profile_delimiter_collision_is_rejected",
         "inventory_crop_worker_profiles_bind_fingerprint_and_preserve_default_save"
       ]

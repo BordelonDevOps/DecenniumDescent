@@ -33,16 +33,17 @@ namespace Decennium.Foundation.Laboratory
                 string prefix="TEST_ONLY.camp-greens-v1-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture);
                 if(workers.SequenceEqual(new[]{TestOnlyPolicy.CompanionId}))return prefix;
                 // Preserve the only preexisting custom roster used by the crop, inventory and club fixtures.
-                // Other custom rosters use a length-prefixed identity so IDs containing '-' cannot alias a list.
+                // Other custom profiles hash quantities and a length-prefixed roster behind a fixed, short identity.
                 if(workers.SequenceEqual(new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId}))
                     return prefix+"-workers-"+string.Join("-",workers);
-                var canonical=new StringBuilder().Append(workers.Length.ToString(CultureInfo.InvariantCulture)).Append(':');
+                var canonical=new StringBuilder().Append(seeds.ToString(CultureInfo.InvariantCulture)).Append(':')
+                    .Append(water.ToString(CultureInfo.InvariantCulture)).Append(':')
+                    .Append(workers.Length.ToString(CultureInfo.InvariantCulture)).Append(':');
                 foreach(string worker in workers)
                     canonical.Append(worker.Length.ToString(CultureInfo.InvariantCulture)).Append(':').Append(worker);
                 byte[] input=Encoding.UTF8.GetBytes(canonical.ToString());
                 using(var hash=SHA256.Create())
-                    return "TEST_ONLY.camp-greens-v2-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture)
-                        +"-workers-"+string.Concat(hash.ComputeHash(input).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+                    return "TEST_ONLY.camp-greens-v2-"+string.Concat(hash.ComputeHash(input).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
             }
         }
         public bool TestOnly=>true;
