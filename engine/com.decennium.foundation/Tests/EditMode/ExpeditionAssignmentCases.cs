@@ -660,6 +660,151 @@ namespace Decennium.Foundation.Tests
                     "Duplicate mining assignment replay changed the settled shared world.");
 
             });
+
+            cases.Add("registered_tool_repair_composes_crop_exploration_save_and_replay", () => {
+                const string cropId = "TEST_ONLY.repair-binding-crop";
+                const string repairWorker = TestOnlyPolicy.CompanionId;
+                const string cropWorker = AdditionalTacticalActor.Id;
+                SharedExpeditionAssignmentProfile Profile() => new SharedExpeditionAssignmentProfile(
+                    "TEST_ONLY.assignment-repair-crop-v1", new[] {
+                        new ExpeditionAssignmentBinding(repairWorker, ExpeditionWorkProcedure.ToolRepair,
+                            TestOnlyCropPolicy.PlotId, 1, 3),
+                        new ExpeditionAssignmentBinding(cropWorker, ExpeditionWorkProcedure.CropPlanting,
+                            TestOnlyCropPolicy.PlotId, 3, 3)
+                    });
+                TestOnlySharedWorldPolicy BoundPolicy(uint seed, bool trained) => RepairPolicy(seed,
+                    new SharedRepairFixture(trained: trained, siteX: 1, siteY: 3),
+                    new SharedCraftingFixture(toolHp: 0))
+                    .EnableCampGreensAssignments().EnableExpeditionAssignmentBindings(Profile());
+                void TravelTo(Simulation simulation, string actorId, int x, int y)
+                {
+                    for (int step = 0; step < 10; step++)
+                    {
+                        var actor = simulation.Capture().Actors.Single(a => a.Id == actorId);
+                        if (actor.X == x && actor.Y == y) return;
+                        int dx = actor.X == x ? 0 : Math.Sign(x - actor.X);
+                        int dy = dx == 0 ? Math.Sign(y - actor.Y) : 0;
+                        WorldStep(simulation, dx, dy, actor: actorId);
+                        WorldAdvance(simulation, 1);
+                    }
+                    var arrived = simulation.Capture().Actors.Single(a => a.Id == actorId);
+                    Require(arrived.X == x && arrived.Y == y, actorId + " did not reach its registered work site.");
+                }
+
+                uint seed = 0;
+                for (uint candidate = 1; candidate < 10000 && seed == 0; candidate++)
+                {
+                    var probePolicy = BoundPolicy(candidate, true);
+                    var initial = probePolicy.Initial();
+                    var actorFacts = CharacterStateFacts.ForActor(initial, repairWorker);
+                    int modifier = actorFacts.Rules.AbilityModifier(CharacterAbility.Dexterity) + actorFacts.Rules.ProficiencyBonus;
+                    if (ObjectStructureRules.RepairSucceeds(PlaytestDice.RollD20(initial.RandomState).Natural, modifier)) seed = candidate;
+                }
+                Require(seed != 0, "Could not select a deterministic repair success seed.");
+
+                var host = TestOnlySharedWorldPolicy.Host();
+                var repairRequest = new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.ToolRepair, SharedCraftingFixture.ToolId);
+                var untrained = World(BoundPolicy(seed, false));
+                WorldCommit(untrained, ExpeditionCommand(untrained, CommandKind.AssignExpeditionWork,
+                    request: repairRequest, actor: repairWorker));
+                var untrainedAssignment = untrained.Capture().ExpeditionAssignments.Single();
+                Require(untrainedAssignment.SiteX == 1 && untrainedAssignment.SiteY == 3,
+                    "Repair assignment did not retain the registered physical site.");
+                TravelTo(untrained, repairWorker, 1, 3);
+                var untrainedStart = ExpeditionCommand(untrained, CommandKind.StartExpeditionWork,
+                    untrainedAssignment.Id, actor: repairWorker);
+                RejectUnchanged(untrained, host, untrainedStart, "RepairTrainingMissing");
+                Require(untrained.Capture().RepairWork.Length == 0
+                    && RepairStock(untrained) == new RuleQuantity(2)
+                    && untrained.Capture().Work.Reservations.Count == 0,
+                    "Registration granted repair qualification or consumed materials.");
+
+                var policy = BoundPolicy(seed, true);
+                var simulation = World(policy);
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                    request: repairRequest, actor: repairWorker));
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.AssignExpeditionWork,
+                    request: new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.CropPlanting, cropId), actor: cropWorker));
+                var repairAssignment = simulation.Capture().ExpeditionAssignments.Single(x => x.WorkerId == repairWorker);
+                var cropAssignment = simulation.Capture().ExpeditionAssignments.Single(x => x.WorkerId == cropWorker);
+                Require(repairAssignment.Status == ExpeditionAssignmentStatus.Travelling && repairAssignment.SiteX == 1
+                    && repairAssignment.SiteY == 3 && cropAssignment.Status == ExpeditionAssignmentStatus.Travelling
+                    && cropAssignment.SiteX == 3 && cropAssignment.SiteY == 3,
+                    "Registered repair/crop assignments did not derive their physical sites.");
+
+                TravelTo(simulation, repairWorker, 1, 3);
+                TravelTo(simulation, cropWorker, 3, 3);
+                repairAssignment = simulation.Capture().ExpeditionAssignments.Single(x => x.Id == repairAssignment.Id);
+                cropAssignment = simulation.Capture().ExpeditionAssignments.Single(x => x.Id == cropAssignment.Id);
+                Require(repairAssignment.Status == ExpeditionAssignmentStatus.Ready
+                    && cropAssignment.Status == ExpeditionAssignmentStatus.Ready,
+                    "A registered worker was not made ready on arrival at the actual site.");
+
+                WorldCommit(simulation, ExpeditionCommand(simulation, CommandKind.StartExpeditionWork,
+                    cropAssignment.Id, actor: cropWorker));
+                var cropWork = simulation.Capture().Crops.Single(x => x.Id == cropId).Tasks.Single();
+                var startRepair = ExpeditionCommand(simulation, CommandKind.StartExpeditionWork,
+                    repairAssignment.Id, actor: repairWorker);
+                WorldCommit(simulation, startRepair);
+                var repairWork = simulation.Capture().RepairWork.Single();
+                Require(simulation.Capture().ExpeditionAssignments.Single(x => x.Id == repairAssignment.Id).WorkId == repairWork.Id
+                    && repairWork.WorkerId == repairWorker && repairWork.TargetId == SharedCraftingFixture.ToolId,
+                    "Registered repair did not link to the existing repair job and worker.");
+
+                // The lead continues direct exploration while crop planting and repair share the clock.
+                WorldStep(simulation, 0, 1, actor: TestOnlyPolicy.ActorId);
+                WorldAdvance(simulation, 1);
+                WorldAdvance(simulation, 299);
+                WorldCommit(simulation, RepairCommand(simulation, CommandKind.PauseToolRepair, repairWork.Id, repairWorker));
+                var paused = simulation.Capture();
+                repairWork = paused.RepairWork.Single();
+                cropWork = paused.Crops.Single(x => x.Id == cropId).Tasks.Single();
+                var materialClaim = paused.Work.Reservations.Single(x => x.JobId == repairWork.Id);
+                Require(repairWork.Status == RepairWorkStatus.Paused && repairWork.Work.Labor == T(300)
+                    && materialClaim.Status == ReservationStatus.Consumed && materialClaim.ConsumedAmount == new RuleQuantity(1)
+                    && RepairStock(simulation) == new RuleQuantity(1)
+                    && cropWork.Status == CropWorkStatus.Working && cropWork.Progress == T(300)
+                    && paused.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 0,
+                    "Pause did not retain partial repair, one-time materials, crop labor and lead exploration.");
+
+                byte[] pausedBytes = Bytes(simulation);
+                var codec = new SnapshotCodec();
+                var replayA = new Simulation(policy, codec.Decode(pausedBytes), ExecutionProfile.Laboratory);
+                var replayB = new Simulation(policy, codec.Decode(pausedBytes), ExecutionProfile.Laboratory);
+                Require(pausedBytes.SequenceEqual(Bytes(replayA)) && pausedBytes.SequenceEqual(Bytes(replayB)),
+                    "Partial repair/crop work changed across save and restore.");
+
+                var wrongWorkerResume = RepairCommand(replayA, CommandKind.ResumeToolRepair, repairWork.Id, cropWorker);
+                RejectUnchanged(replayA, host, wrongWorkerResume, "UnknownRepairWork");
+                var resumeRepair = RepairCommand(replayA, CommandKind.ResumeToolRepair, repairWork.Id, repairWorker);
+                WorldCommit(replayA, resumeRepair);
+                WorldCommit(replayB, resumeRepair);
+                WorldAdvance(replayA, 3300);
+                WorldAdvance(replayB, 3300);
+                byte[] finishedBytes = Bytes(replayA);
+                var finalA = replayA.Capture();
+                var finalB = replayB.Capture();
+                var settledClaim = finalA.Work.Reservations.Single(x => x.JobId == repairWork.Id);
+                var restoredFinal = new Simulation(policy, codec.Decode(finishedBytes), ExecutionProfile.Laboratory);
+                Require(finishedBytes.SequenceEqual(Bytes(replayB)) && finishedBytes.SequenceEqual(Bytes(restoredFinal))
+                    && finalA.RandomState == finalB.RandomState
+                    && finalA.RepairWork.Single().Status == RepairWorkStatus.Success
+                    && finalA.RepairWork.Single().Work.Labor == T(3600)
+                    && finalA.RepairWork.Single().WorkerId == repairWorker
+                    && finalA.Structures.Single(x => x.Id == SharedCraftingFixture.ToolId).Hp
+                        == finalA.Structures.Single(x => x.Id == SharedCraftingFixture.ToolId).MaximumHp
+                    && RepairStock(replayA) == new RuleQuantity(1)
+                    && settledClaim.Status == ReservationStatus.Consumed && settledClaim.ConsumedAmount == new RuleQuantity(1)
+                    && finalA.ExpeditionAssignments.Single(x => x.Id == repairAssignment.Id).WorkId == repairWork.Id
+                    && finalA.ExpeditionAssignments.Single(x => x.Id == cropAssignment.Id).WorkId == cropWork.Id
+                    && finalA.Crops.Single(x => x.Id == cropId).Tasks.Single().Status == CropWorkStatus.Complete,
+                    "Repair completion, crop work, material settlement, assignment links or deterministic replay diverged.");
+                Require(replayA.Execute(host, resumeRepair).Outcome == Outcome.Duplicate
+                    && finishedBytes.SequenceEqual(Bytes(replayA))
+                    && replayA.Execute(host, startRepair).Outcome == Outcome.Duplicate
+                    && finishedBytes.SequenceEqual(Bytes(replayA)),
+                    "Duplicate repair work/start receipts changed the settled shared simulation.");
+            });
         }
     }
 }

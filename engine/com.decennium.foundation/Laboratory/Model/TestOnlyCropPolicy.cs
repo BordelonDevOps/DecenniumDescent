@@ -3,6 +3,8 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
@@ -24,8 +26,25 @@ namespace Decennium.Foundation.Laboratory
                 ||workerIds.Distinct(StringComparer.Ordinal).Count()!=workerIds.Length))throw new ArgumentOutOfRangeException(nameof(seedPackets));
             seeds=seedPackets;water=waterPints;workers=(workerIds??new[]{TestOnlyPolicy.CompanionId}).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
         }
-        public string ContentFingerprint=>"TEST_ONLY.camp-greens-v1-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture)
-            +(workers.SequenceEqual(new[]{TestOnlyPolicy.CompanionId})?"":"-workers-"+string.Join("-",workers));
+        public string ContentFingerprint
+        {
+            get
+            {
+                string prefix="TEST_ONLY.camp-greens-v1-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture);
+                if(workers.SequenceEqual(new[]{TestOnlyPolicy.CompanionId}))return prefix;
+                // Preserve the only preexisting custom roster used by the crop, inventory and club fixtures.
+                // Other custom rosters use a length-prefixed identity so IDs containing '-' cannot alias a list.
+                if(workers.SequenceEqual(new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId}))
+                    return prefix+"-workers-"+string.Join("-",workers);
+                var canonical=new StringBuilder().Append(workers.Length.ToString(CultureInfo.InvariantCulture)).Append(':');
+                foreach(string worker in workers)
+                    canonical.Append(worker.Length.ToString(CultureInfo.InvariantCulture)).Append(':').Append(worker);
+                byte[] input=Encoding.UTF8.GetBytes(canonical.ToString());
+                using(var hash=SHA256.Create())
+                    return "TEST_ONLY.camp-greens-v2-s"+seeds.ToString(CultureInfo.InvariantCulture)+"-w"+water.ToString(CultureInfo.InvariantCulture)
+                        +"-workers-"+string.Concat(hash.ComputeHash(input).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            }
+        }
         public bool TestOnly=>true;
         public static Authority Host()=>new Authority("TEST_ONLY.host",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId},true,true);
         public Snapshot Initial()

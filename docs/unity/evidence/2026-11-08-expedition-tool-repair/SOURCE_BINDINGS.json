@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "scope": "TEST_ONLY registered physical tool-repair assignment binding; no schema-layout change",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/character_foundation.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "21e12af81f191abe52d1e3272ed1f57c6446ed3d4487cafbd5609dff08e56a77",
+      "snapshot": "sources/character_foundation.json",
+      "scope": "Pinned projection anchor used by the source-binding validator."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "sources/EXPEDITION_PLAYER_BOOK.md",
+      "scope": "FL-01–03 shared work, actual workers, locations, incompatible intervals, shared clock and travel."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "sha256": "d93f9cb0ec8a8398560511f23029d38d9b9a8b901e816373579c8f72b0bec1f3",
+      "snapshot": "sources/BODY_EQUIPMENT_PLAYTEST.md",
+      "scope": "Pinned physical repair procedure and tool/task requirements."
+    },
+    {
+      "path": "docs/unity/TOOL_REPAIR_RULE_DECISIONS.md",
+      "sha256": "d3147beed9dddf61236c62922cc713413c88e29bb25b4eb48bb06943ce14179e",
+      "snapshot": "sources/TOOL_REPAIR_RULE_DECISIONS.md",
+      "sourceKind": "Codex/GPT consensus with owner-adopted prototype completion; preserves the existing narrow repair profile."
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-03-camp-greens/OWNER_DECISIONS.md",
+      "sha256": "57d0e2d692bb0587ff3f1a3ef380ee727da6d1a70071ec7a6625588a696d2eea",
+      "snapshot": "sources/CAMP_GREENS_OWNER_DECISIONS.md",
+      "sourceKind": "Owner-approved provisional Camp Greens profile; the assignment adds no crop rule."
+    }
+  ],
+  "implementations": [
+    {
+      "name": "TEST_ONLY registered repair worker/site binding through existing repair handler",
+      "code": [
+        "Laboratory/Model/SharedExpeditionAssignments.cs",
+        "Laboratory/Model/SharedToolRepair.cs",
+        "Runtime/Core/ExpeditionAssignmentRecords.cs",
+        "Runtime/Core/RepairWorkRecord.cs",
+        "Runtime/Persistence/RepairWorkCodec.cs",
+        "Tests/EditMode/ExpeditionAssignmentCases.cs",
+        "Tests/EditMode/ToolRepairCases.cs"
+      ],
+      "implemented": [
+        "Validate registered worker, procedure, actual target/toolkit/material location, and repair-site coordinates.",
+        "Dispatch through the existing repair transaction; retain existing carpenter qualification, material, labor, clock, check/RNG, save, and receipt authorities."
+      ],
+      "notImplemented": [
+        "Recruitment, automatic travel, scheduling, general repair jobs, started-work reassignment, and generic repair-site geometry."
+      ],
+      "tests": [
+        "registered_tool_repair_composes_crop_exploration_save_and_replay"
+      ]
+    },
+    {
+      "name": "Unambiguous TEST_ONLY crop-worker profile identity with known-profile compatibility",
+      "code": [
+        "Laboratory/Model/TestOnlyCropPolicy.cs",
+        "Laboratory/Model/TestOnlyInventoryPolicy.cs",
+        "Laboratory/Model/TestOnlyFillingPolicy.cs",
+        "Tests/EditMode/InventoryCases.cs"
+      ],
+      "implemented": [
+        "Length-prefix custom worker lists before hashing; retain exact default and previously used actor/companion profile identities; reject cross-profile restore for the delimiter-collision pair."
+      ],
+      "notImplemented": [
+        "No production profile authority or general save migration for arbitrary custom TEST_ONLY rosters."
+      ],
+      "tests": [
+        "crop_worker_profile_delimiter_collision_is_rejected",
+        "inventory_crop_worker_profiles_bind_fingerprint_and_preserve_default_save"
+      ]
+    }
+  ],
+  "validation": {
+    "headless": "HEADLESS_RESULTS.json",
+    "compile": "HEADLESS_RESULTS.json",
+    "packageStatic": "PACKAGE_RESULTS.json"
+  }
+}

@@ -49,6 +49,21 @@ namespace Decennium.Foundation.Tests
                 byte[] configuredFillBytes=codec.Encode(configuredFilling.Initial());
                 Throws<ArgumentException>(()=>new Simulation(configuredFilling,codec.Decode(legacyFillBytes),ExecutionProfile.Laboratory));
                 Throws<ArgumentException>(()=>new Simulation(legacyFilling,codec.Decode(configuredFillBytes),ExecutionProfile.Laboratory)); });
+            cases.Add("crop_worker_profile_delimiter_collision_is_rejected",()=>{
+                string actor=TestOnlyPolicy.ActorId,companion=TestOnlyPolicy.CompanionId;
+                var split=new TestOnlyCropPolicy(workerIds:new[]{actor,companion});
+                var joined=new TestOnlyCropPolicy(workerIds:new[]{actor+"-"+companion});
+                Require(split.ContentFingerprint=="TEST_ONLY.camp-greens-v1-s8-w512-workers-"+actor+"-"+companion
+                    &&split.ContentFingerprint!=joined.ContentFingerprint,"Legacy custom identity changed or distinct crop worker profiles still share a fingerprint.");
+                var splitInventory=new TestOnlyInventoryPolicy(cropPolicy:split);var joinedInventory=new TestOnlyInventoryPolicy(cropPolicy:joined);
+                byte[] splitBytes=codec.Encode(splitInventory.Initial()),joinedBytes=codec.Encode(joinedInventory.Initial());
+                Throws<ArgumentException>(()=>new Simulation(joinedInventory,codec.Decode(splitBytes),ExecutionProfile.Laboratory));
+                Throws<ArgumentException>(()=>new Simulation(splitInventory,codec.Decode(joinedBytes),ExecutionProfile.Laboratory));
+                var splitFilling=new TestOnlyFillingPolicy(cropPolicy:split);var joinedFilling=new TestOnlyFillingPolicy(cropPolicy:joined);
+                byte[] splitFillBytes=codec.Encode(splitFilling.Initial()),joinedFillBytes=codec.Encode(joinedFilling.Initial());
+                Require(splitFilling.ContentFingerprint!=joinedFilling.ContentFingerprint,"Filling inherited a crop worker fingerprint collision.");
+                Throws<ArgumentException>(()=>new Simulation(joinedFilling,codec.Decode(splitFillBytes),ExecutionProfile.Laboratory));
+                Throws<ArgumentException>(()=>new Simulation(splitFilling,codec.Decode(joinedFillBytes),ExecutionProfile.Laboratory)); });
             cases.Add("inventory_fractional_portion_is_timeless_and_retains_history",()=>{
                 var s=Inventory();string child=Portion(s,Q(1,3));var v=s.Capture();var meta=v.InventoryLots.Single(x=>x.LotId==child);
                 Require(IL(s,TestOnlyInventoryPolicy.FoodId).Amount==Q(5,3)&&IL(s,child).Amount==Q(1,3)&&v.RuleClock==T(0)

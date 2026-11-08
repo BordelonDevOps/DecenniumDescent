@@ -296,6 +296,16 @@ namespace Decennium.Foundation.Laboratory
                     physical = miningFixture != null && miningFixture.Deposits.Any(x => x.Deposit.SiteId == binding.SiteId
                         && x.Deposit.SiteX == binding.X && x.Deposit.SiteY == binding.Y)
                         && s.MiningDeposits.Any(x => x.SiteId == binding.SiteId && x.SiteX == binding.X && x.SiteY == binding.Y);
+                else if (binding.Procedure == ExpeditionWorkProcedure.ToolRepair)
+                {
+                    var target = s.Structures.SingleOrDefault(x => x.Id == SharedCraftingFixture.ToolId);
+                    var toolkit = s.Structures.SingleOrDefault(x => x.Id == SharedRepairFixture.Toolkit);
+                    var materials = s.Work.Lots.SingleOrDefault(x => x.Id == RepairMaterialsLotId);
+                    physical = repair != null && binding.SiteId == RepairSiteLocationId
+                        && binding.X == RepairSiteX && binding.Y == RepairSiteY
+                        && target?.LocationId == binding.SiteId && toolkit?.LocationId == binding.SiteId
+                        && materials?.LocationId == binding.SiteId;
+                }
                 else
                     return "ExpeditionAssignmentProcedureBindingUnsupported";
                 if (!physical) return "ExpeditionAssignmentSiteNotRegistered";
@@ -306,6 +316,13 @@ namespace Decennium.Foundation.Laboratory
                 if (ExpeditionWorkProcedureRules.TryGetCropWork(assignment.Procedure, out _)) siteId = TestOnlyCropPolicy.PlotId;
                 else if (assignment.Procedure == ExpeditionWorkProcedure.MiningExtraction)
                     siteId = s.MiningDeposits.SingleOrDefault(x => x.Id == assignment.TargetId)?.SiteId ?? "";
+                else if (assignment.Procedure == ExpeditionWorkProcedure.ToolRepair)
+                {
+                    var target = s.Structures.SingleOrDefault(x => x.Id == assignment.TargetId);
+                    if (repair == null || assignment.TargetId != SharedCraftingFixture.ToolId || assignment.DestinationId != ""
+                        || target?.LocationId != RepairSiteLocationId) return "ExpeditionAssignmentBindingMismatch";
+                    siteId = target.LocationId;
+                }
                 else return "ExpeditionAssignmentProcedureBindingUnsupported";
                 if (siteId == "" || !assignmentBindingProfile.Allows(assignment.WorkerId, assignment.Procedure,
                     siteId, assignment.SiteX, assignment.SiteY)) return "ExpeditionAssignmentBindingMismatch";
