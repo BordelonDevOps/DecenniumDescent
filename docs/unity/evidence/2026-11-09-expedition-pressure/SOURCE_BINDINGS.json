@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "../2026-11-08-daily-provisioning/sources/EXPEDITION_PLAYER_BOOK.md",
+      "scope": "FL-08 pressure state, once-per-Watch source categories and two-credit reduction cap, Risk floor, safe-Haven settlement and no reset; FL-09 no-roll endpoints, d6 classification and bounded complications; FL-10 actual route identity, mapping, quality, Risk and Capacity authorities; TR-13 route-quality check modifier."
+    }
+  ],
+  "implementation": {
+    "name": "Schema67 TEST_ONLY Expedition Pressure and Watch-end consequences",
+    "responsibilities": [
+      "Persist one fixed cohort's pressure provenance, route exposures, source-linked category changes and immutable Watch checkpoints.",
+      "Settle pressure through the shared RuleClock and deterministic RNG, using actual route profile facts and attack receipts.",
+      "Apply the reviewed TEST_ONLY route obstruction, route closure and existing-path retreat outcomes."
+    ],
+    "authorities": [
+      "ExpeditionRouteTravelRecord and the selected TestOnlyExpeditionRouteFixture own route progress, geometry, mapping, physical quality, Risk and Capacity.",
+      "MeleeAttackRecord and RangedAttackRecord plus canonical command receipts own attack evidence.",
+      "RuleClock, shared DiceStream, SnapshotCodec and command history own timing, randomness, persistence and deterministic replay.",
+      "Camp Greens work and the existing WorkLedger remain independent shared-clock work authorities during obstruction."
+    ],
+    "code": [
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs",
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteSpatialRecord.cs",
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteTravelRecord.cs",
+      "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionPressureCodec.cs",
+      "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionPressure.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "engine/com.decennium.foundation/Tests/EditMode/ExpeditionPressureCases.cs",
+      "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs"
+    ],
+    "tests": [
+      "expedition_pressure_settlement_and_fl09_classifier_are_exact",
+      "expedition_pressure_actual_combat_watch_save_replay_and_standard_obstruction",
+      "expedition_pressure_automatic_severe_closes_route_and_allows_physical_retreat",
+      "expedition_pressure_zero_boundary_guard_and_no_roll_are_exact",
+      "expedition_pressure_early_haven_settles_once_and_blocks_same_watch_reentry",
+      "expedition_pressure_haven_at_watch_end_settles_once_and_survives_restore"
+    ],
+    "notImplemented": [
+      "Capacity-exceeded, missing/captured members, pursuit, abort triggers, exposed camps and Attention cargo pressure producers.",
+      "Counter-Ambush, concealed-camp, pursuit-ending and reconnaissance pressure reductions.",
+      "Minor complications in runtime: the source gate requires an applied modifier or reroll, which this bounded profile does not provide.",
+      "Production expedition roster, Pressure persistence beyond this TEST_ONLY fixed cohort, arbitrary route/camp/Haven content, extraction, enemy encounters, damage, evacuation and cargo/casualty consequences.",
+      "The pressure fixture explicitly treats TEST_ONLY PlotId as a safe-Haven endpoint for boundary tests; this grants no Haven service or production safe-site authority."
+    ]
+  }
+}

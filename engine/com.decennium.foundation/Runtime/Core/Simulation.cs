@@ -121,6 +121,7 @@ namespace Decennium.Foundation
         public const int ExpeditionStrainRecoverySchema = 64;
         public const int MoraleRestSchema = 65;
         public const int HavenCareSchema = 66;
+        public const int ExpeditionPressureSchema = 67;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -282,6 +283,10 @@ namespace Decennium.Foundation
         public ExpeditionMoraleRestBenefitRecord[] ExpeditionMoraleRestBenefits = Array.Empty<ExpeditionMoraleRestBenefitRecord>();
         public ExpeditionHavenCareIntervalRecord[] ExpeditionHavenCareIntervals = Array.Empty<ExpeditionHavenCareIntervalRecord>();
         public ExpeditionHavenCareAssessmentRecord[] ExpeditionHavenCareAssessments = Array.Empty<ExpeditionHavenCareAssessmentRecord>();
+        public ExpeditionPressureCohortRecord[] ExpeditionPressureCohorts = Array.Empty<ExpeditionPressureCohortRecord>();
+        public ExpeditionPressureExposureRecord[] ExpeditionPressureExposures = Array.Empty<ExpeditionPressureExposureRecord>();
+        public ExpeditionPressureChangeRecord[] ExpeditionPressureChanges = Array.Empty<ExpeditionPressureChangeRecord>();
+        public ExpeditionPressureCheckpointRecord[] ExpeditionPressureCheckpoints = Array.Empty<ExpeditionPressureCheckpointRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -357,6 +362,10 @@ namespace Decennium.Foundation
             ExpeditionMoraleRestBenefits = ExpeditionMoraleRestBenefits.ToArray(),
             ExpeditionHavenCareIntervals = ExpeditionHavenCareIntervals.ToArray(),
             ExpeditionHavenCareAssessments = ExpeditionHavenCareAssessments.ToArray(),
+            ExpeditionPressureCohorts = ExpeditionPressureCohorts.ToArray(),
+            ExpeditionPressureExposures = ExpeditionPressureExposures.ToArray(),
+            ExpeditionPressureChanges = ExpeditionPressureChanges.ToArray(),
+            ExpeditionPressureCheckpoints = ExpeditionPressureCheckpoints.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -680,7 +689,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.RestDebtSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionStrainRecoverySchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.MoraleRestSchema
-                || s.SchemaVersion == Foundation.Snapshot.HavenCareSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HavenCareSchema
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -788,6 +798,7 @@ namespace Decennium.Foundation
             ExpeditionRouteMappingWorkValidation.Validate(s);
             ExpeditionRouteReconnaissanceValidation.Validate(s);
             ExpeditionProvisioningValidation.Validate(s);
+            ExpeditionPressureValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }

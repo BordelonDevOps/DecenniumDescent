@@ -8,7 +8,7 @@ namespace Decennium.Foundation
     public enum ExpeditionRouteQuality { Secured, Known, Contested, Collapsed }
     /// <summary>Recorded knowledge of a route; it does not imply its physical condition.</summary>
     public enum ExpeditionRouteMapping { Unknown, Sketched, Mapped, Secured }
-    public enum ExpeditionRouteTravelStatus { Moving, Paused, SegmentComplete }
+    public enum ExpeditionRouteTravelStatus { Moving, Paused, SegmentComplete, Terminated }
 
     /// <summary>Exact shared travel-rate arithmetic. Speed is current otherwise-lawful walking
     /// Speed in feet per six-second round; route profiles supply the physical-quality fraction.</summary>
@@ -109,7 +109,10 @@ namespace Decennium.Foundation
                 || !Enum.IsDefined(typeof(ExpeditionRouteMapping), startingMapping)
                 || startingMapping == ExpeditionRouteMapping.Unknown && !reconnaissanceAuthorized
                 || !Enum.IsDefined(typeof(ExpeditionRouteTravelStatus), status)
-                || (status == ExpeditionRouteTravelStatus.SegmentComplete) != (nominalEffort == new RuleTime(ExpeditionRouteTravelRules.NominalSegmentSeconds))
+                || status == ExpeditionRouteTravelStatus.SegmentComplete
+                    && nominalEffort != new RuleTime(ExpeditionRouteTravelRules.NominalSegmentSeconds)
+                || status != ExpeditionRouteTravelStatus.SegmentComplete && status != ExpeditionRouteTravelStatus.Terminated
+                    && nominalEffort == new RuleTime(ExpeditionRouteTravelRules.NominalSegmentSeconds)
                 || ExpeditionRouteTravelRules.ProgressAtEffort(segmentStartProgress, segmentProgressAward, nominalEffort) != progress)
                 throw new ArgumentException("Invalid expedition route travel record.");
             RouteId = routeId; TravelerId = travelerId; StartedRevision = startedRevision;
@@ -138,8 +141,9 @@ namespace Decennium.Foundation
             }
             if (s.RouteTravels.Select(x => x.StartedRevision).Distinct().Count() != s.RouteTravels.Length
                 || s.RouteTravels.Any(x => !s.Actors.Any(a => a.Id == x.TravelerId)
-                    || x.StartedRevision > s.Revision || x.Progress > x.SegmentStartProgress + x.SegmentProgressAward)
-                || s.RouteTravels.Where(x => x.Status != ExpeditionRouteTravelStatus.SegmentComplete)
+                    || x.StartedRevision > s.Revision || x.Progress > x.SegmentStartProgress + x.SegmentProgressAward
+                    || x.Status == ExpeditionRouteTravelStatus.Terminated && s.SchemaVersion < Snapshot.ExpeditionPressureSchema)
+                || s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving || x.Status == ExpeditionRouteTravelStatus.Paused)
                     .GroupBy(x => x.TravelerId, StringComparer.Ordinal).Any(g => g.Count() > 1))
                 throw new ArgumentException("Invalid expedition route travel references.");
         }

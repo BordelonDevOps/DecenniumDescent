@@ -1,0 +1,414 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+
+namespace Decennium.Foundation
+{
+    public enum ExpeditionPressureChangeKind { OpenCombat = 1, SecuredRouteEntry = 2 }
+    public enum ExpeditionPressureExposureEndKind { RouteTransition = 1, SafeHavenArrival = 2, SevereClosure = 3 }
+    public enum ExpeditionPressureSettlementReason { WatchEnd = 1, HavenArrival = 2, HavenArrivalAtWatchEnd = 3 }
+    public enum ExpeditionPressureOutcome { None = 0, Minor = 1, Standard = 2, Severe = 3 }
+    public enum ExpeditionPressureConsequenceKind { None = 0, TimedRouteObstruction = 1, RouteClosure = 2 }
+
+    /// <summary>Immutable fixed-cohort TEST_ONLY authority. Current Pressure is derived from this
+    /// starting fact and checkpoint history; this record is not a second mutable pressure counter.</summary>
+    public sealed class ExpeditionPressureCohortRecord
+    {
+        private readonly string[] members;
+        public string Id { get; }
+        public string ProfileFingerprint { get; }
+        public string RouteFingerprint { get; }
+        public int InitialPressure { get; }
+        public IReadOnlyList<string> Members { get; }
+
+        public ExpeditionPressureCohortRecord(string id, string profileFingerprint, string routeFingerprint,
+            int initialPressure, IEnumerable<string> members)
+        {
+            this.members = (members ?? Array.Empty<string>()).ToArray();
+            if (!Validation.ValidId(id) || string.IsNullOrEmpty(profileFingerprint) || profileFingerprint.Length > 96
+                || string.IsNullOrEmpty(routeFingerprint) || routeFingerprint.Length > 96
+                || initialPressure < 0 || initialPressure > 6 || this.members.Length != 1
+                || this.members.Any(x => !Validation.ValidId(x))
+                || this.members.Distinct(StringComparer.Ordinal).Count() != this.members.Length)
+                throw new ArgumentException("Invalid fixed expedition-pressure cohort.");
+            Id = id; ProfileFingerprint = profileFingerprint; RouteFingerprint = routeFingerprint;
+            InitialPressure = initialPressure; Members = Array.AsReadOnly(this.members);
+        }
+
+        public bool SameAs(ExpeditionPressureCohortRecord other) => other != null && Id == other.Id
+            && ProfileFingerprint == other.ProfileFingerprint && RouteFingerprint == other.RouteFingerprint
+            && InitialPressure == other.InitialPressure && members.SequenceEqual(other.members, StringComparer.Ordinal);
+    }
+
+    /// <summary>One interval in which the fixed cohort is actually exposed on an authored route.
+    /// Ended intervals remain persisted as causal history.</summary>
+    public sealed class ExpeditionPressureExposureRecord
+    {
+        public string Id { get; }
+        public string CohortId { get; }
+        public string RouteId { get; }
+        public long StartedRevision { get; }
+        public RuleTime StartedAt { get; }
+        public RuleTime? EndedAt { get; }
+        public long EndRevision { get; }
+        public ExpeditionPressureExposureEndKind EndKind { get; }
+
+        public ExpeditionPressureExposureRecord(string id, string cohortId, string routeId, long startedRevision,
+            RuleTime startedAt, RuleTime? endedAt = null, long endRevision = 0,
+            ExpeditionPressureExposureEndKind endKind = 0)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(cohortId) || !Validation.ValidId(routeId)
+                || startedRevision < 1 || endRevision < 0 || endedAt.HasValue != (endRevision > 0)
+                || endedAt.HasValue != Enum.IsDefined(typeof(ExpeditionPressureExposureEndKind), endKind)
+                || endedAt.HasValue && endedAt.Value < startedAt)
+                throw new ArgumentException("Invalid expedition-pressure exposure interval.");
+            Id = id; CohortId = cohortId; RouteId = routeId; StartedRevision = startedRevision;
+            StartedAt = startedAt; EndedAt = endedAt; EndRevision = endRevision; EndKind = endKind;
+        }
+
+        public ExpeditionPressureExposureRecord End(RuleTime at, long revision, ExpeditionPressureExposureEndKind kind)
+            => new ExpeditionPressureExposureRecord(Id, CohortId, RouteId, StartedRevision, StartedAt, at, revision, kind);
+        public bool SameAs(ExpeditionPressureExposureRecord x) => x != null && Id == x.Id && CohortId == x.CohortId
+            && RouteId == x.RouteId && StartedRevision == x.StartedRevision && StartedAt == x.StartedAt
+            && EndedAt == x.EndedAt && EndRevision == x.EndRevision && EndKind == x.EndKind;
+    }
+
+    /// <summary>A single source-evidenced Pressure cause or reduction. Multiple actual attacks can
+    /// be recorded independently; checkpoint aggregation applies the OpenCombat category once per Watch.</summary>
+    public sealed class ExpeditionPressureChangeRecord
+    {
+        public string Id { get; }
+        public string CohortId { get; }
+        public string ExposureId { get; }
+        public string RouteId { get; }
+        public long WatchIndex { get; }
+        public ExpeditionPressureChangeKind Kind { get; }
+        public string SourceId { get; }
+        public long SourceRevision { get; }
+        public RuleTime At { get; }
+
+        public ExpeditionPressureChangeRecord(string id, string cohortId, string exposureId, string routeId,
+            long watchIndex, ExpeditionPressureChangeKind kind, string sourceId, long sourceRevision, RuleTime at)
+        {
+            if (!Validation.ValidId(id) || !Validation.ValidId(cohortId) || !Validation.ValidId(exposureId)
+                || !Validation.ValidId(routeId) || watchIndex < 0 || !Enum.IsDefined(typeof(ExpeditionPressureChangeKind), kind)
+                || !Validation.ValidId(sourceId) || sourceRevision < 1)
+                throw new ArgumentException("Invalid expedition-pressure change evidence.");
+            Id = id; CohortId = cohortId; ExposureId = exposureId; RouteId = routeId;
+            WatchIndex = watchIndex; Kind = kind; SourceId = sourceId; SourceRevision = sourceRevision; At = at;
+        }
+
+        public bool SameAs(ExpeditionPressureChangeRecord x) => x != null && Id == x.Id && CohortId == x.CohortId
+            && ExposureId == x.ExposureId && RouteId == x.RouteId && WatchIndex == x.WatchIndex && Kind == x.Kind
+            && SourceId == x.SourceId && SourceRevision == x.SourceRevision && At == x.At;
+    }
+
+    /// <summary>Exactly-once settlement for one fixed cohort and Watch. It carries stored Pressure,
+    /// the source-adjusted check value, causal evidence, shared RNG evidence and the chosen finite consequence.</summary>
+    public sealed class ExpeditionPressureCheckpointRecord
+    {
+        private readonly string[] causeIds;
+        private readonly string[] reductionIds;
+        public string Id { get; }
+        public string CohortId { get; }
+        public long WatchIndex { get; }
+        public RuleTime At { get; }
+        public ExpeditionPressureSettlementReason Reason { get; }
+        public string RouteId { get; }
+        public string RouteFingerprint { get; }
+        public string ProfileFingerprint { get; }
+        public ExpeditionRouteQuality RouteQuality { get; }
+        public int RiskFloor { get; }
+        public int PressureBefore { get; }
+        public int StoredPressure { get; }
+        public int EffectivePressure { get; }
+        public IReadOnlyList<string> CauseIds { get; }
+        public IReadOnlyList<string> ReductionIds { get; }
+        public int Natural { get; }
+        public int ModifiedTotal { get; }
+        public bool RollWasModifiedOrRerolled { get; }
+        public uint RandomBefore { get; }
+        public uint RandomAfter { get; }
+        public long WordsConsumed { get; }
+        public ExpeditionPressureOutcome Outcome { get; }
+        public ExpeditionPressureConsequenceKind Consequence { get; }
+        public string AffectedRouteId { get; }
+        public string RetreatRouteId { get; }
+        public RuleQuantity RouteProgress { get; }
+        public RuleTime? ConsequenceEndsAt { get; }
+        public string CommandId { get; }
+        public long AppliedRevision { get; }
+
+        public ExpeditionPressureCheckpointRecord(string id, string cohortId, long watchIndex, RuleTime at,
+            ExpeditionPressureSettlementReason reason, string routeId, string routeFingerprint, string profileFingerprint,
+            ExpeditionRouteQuality routeQuality, int riskFloor, int pressureBefore, int storedPressure, int effectivePressure,
+            IEnumerable<string> causeIds, IEnumerable<string> reductionIds, int natural, int modifiedTotal,
+            bool rollWasModifiedOrRerolled, uint randomBefore, uint randomAfter, long wordsConsumed,
+            ExpeditionPressureOutcome outcome, ExpeditionPressureConsequenceKind consequence,
+            string affectedRouteId, string retreatRouteId, RuleQuantity routeProgress, RuleTime? consequenceEndsAt,
+            string commandId, long appliedRevision)
+        {
+            this.causeIds = (causeIds ?? Array.Empty<string>()).ToArray();
+            this.reductionIds = (reductionIds ?? Array.Empty<string>()).ToArray();
+            if (!Validation.ValidId(id) || !Validation.ValidId(cohortId) || watchIndex < 0
+                || !Enum.IsDefined(typeof(ExpeditionPressureSettlementReason), reason) || !Validation.ValidId(routeId)
+                || string.IsNullOrEmpty(routeFingerprint) || routeFingerprint.Length > 96
+                || string.IsNullOrEmpty(profileFingerprint) || profileFingerprint.Length > 96
+                || !Enum.IsDefined(typeof(ExpeditionRouteQuality), routeQuality)
+                || riskFloor < 0 || riskFloor > 6 || pressureBefore < 0 || pressureBefore > 6
+                || storedPressure < riskFloor || storedPressure > 6 || effectivePressure < 0 || effectivePressure > 6
+                || this.causeIds.Length > 128 || this.reductionIds.Length > 128
+                || this.causeIds.Any(x => !Validation.ValidId(x)) || this.reductionIds.Any(x => !Validation.ValidId(x))
+                || this.causeIds.Distinct(StringComparer.Ordinal).Count() != this.causeIds.Length
+                || this.reductionIds.Distinct(StringComparer.Ordinal).Count() != this.reductionIds.Length
+                || !Enum.IsDefined(typeof(ExpeditionPressureOutcome), outcome)
+                || !Enum.IsDefined(typeof(ExpeditionPressureConsequenceKind), consequence)
+                || affectedRouteId == null || affectedRouteId != "" && !Validation.ValidId(affectedRouteId)
+                || retreatRouteId == null || retreatRouteId != "" && !Validation.ValidId(retreatRouteId)
+                || routeProgress < default(RuleQuantity)
+                || commandId == null || commandId != "" && !Validation.ValidId(commandId) || appliedRevision < 1
+                || randomBefore == 0 || randomAfter == 0 || wordsConsumed < 0
+                || (natural == 0) != (wordsConsumed == 0) || natural < 0 || natural > 6
+                || natural == 0 && modifiedTotal != 0 || natural != 0 && (modifiedTotal < -100 || modifiedTotal > 106)
+                || natural == 0 && (randomBefore != randomAfter || rollWasModifiedOrRerolled)
+                || consequence == ExpeditionPressureConsequenceKind.None
+                    && (affectedRouteId != "" || retreatRouteId != "" || consequenceEndsAt.HasValue)
+                || consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                    && (affectedRouteId != routeId || retreatRouteId != "" || !consequenceEndsAt.HasValue
+                        || consequenceEndsAt.Value <= at || outcome != ExpeditionPressureOutcome.Minor
+                            && outcome != ExpeditionPressureOutcome.Standard)
+                || consequence == ExpeditionPressureConsequenceKind.RouteClosure
+                    && (affectedRouteId != routeId || retreatRouteId == "" || consequenceEndsAt.HasValue
+                        || outcome != ExpeditionPressureOutcome.Severe)
+                || outcome == ExpeditionPressureOutcome.None && consequence != ExpeditionPressureConsequenceKind.None
+                || outcome == ExpeditionPressureOutcome.Minor && consequence != ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                || outcome == ExpeditionPressureOutcome.Standard && consequence != ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                || outcome == ExpeditionPressureOutcome.Severe && consequence != ExpeditionPressureConsequenceKind.RouteClosure)
+                throw new ArgumentException("Invalid expedition-pressure checkpoint.");
+            Id = id; CohortId = cohortId; WatchIndex = watchIndex; At = at; Reason = reason; RouteId = routeId;
+            RouteFingerprint = routeFingerprint; ProfileFingerprint = profileFingerprint; RouteQuality = routeQuality; RiskFloor = riskFloor;
+            PressureBefore = pressureBefore; StoredPressure = storedPressure; EffectivePressure = effectivePressure;
+            CauseIds = Array.AsReadOnly(this.causeIds); ReductionIds = Array.AsReadOnly(this.reductionIds);
+            Natural = natural; ModifiedTotal = modifiedTotal; RollWasModifiedOrRerolled = rollWasModifiedOrRerolled;
+            RandomBefore = randomBefore; RandomAfter = randomAfter; WordsConsumed = wordsConsumed; Outcome = outcome;
+            Consequence = consequence; AffectedRouteId = affectedRouteId; RetreatRouteId = retreatRouteId;
+            RouteProgress = routeProgress;
+            ConsequenceEndsAt = consequenceEndsAt; CommandId = commandId; AppliedRevision = appliedRevision;
+            if (natural != 0)
+            {
+                var draw = DiceStream.Draw(randomBefore, 6);
+                if (draw.Value + 1 != natural || draw.NextState != randomAfter || draw.WordsConsumed != wordsConsumed)
+                    throw new ArgumentException("Pressure check RNG evidence does not match the shared stream.");
+            }
+        }
+
+        public bool SameAs(ExpeditionPressureCheckpointRecord x) => x != null && Id == x.Id && CohortId == x.CohortId
+            && WatchIndex == x.WatchIndex && At == x.At && Reason == x.Reason && RouteId == x.RouteId
+            && RouteFingerprint == x.RouteFingerprint && ProfileFingerprint == x.ProfileFingerprint && RouteQuality == x.RouteQuality && RiskFloor == x.RiskFloor
+            && PressureBefore == x.PressureBefore && StoredPressure == x.StoredPressure && EffectivePressure == x.EffectivePressure
+            && causeIds.SequenceEqual(x.causeIds, StringComparer.Ordinal) && reductionIds.SequenceEqual(x.reductionIds, StringComparer.Ordinal)
+            && Natural == x.Natural && ModifiedTotal == x.ModifiedTotal && RollWasModifiedOrRerolled == x.RollWasModifiedOrRerolled
+            && RandomBefore == x.RandomBefore && RandomAfter == x.RandomAfter && WordsConsumed == x.WordsConsumed
+            && Outcome == x.Outcome && Consequence == x.Consequence && AffectedRouteId == x.AffectedRouteId
+            && RetreatRouteId == x.RetreatRouteId && RouteProgress == x.RouteProgress && ConsequenceEndsAt == x.ConsequenceEndsAt
+            && CommandId == x.CommandId && AppliedRevision == x.AppliedRevision;
+    }
+
+    public static class ExpeditionPressureRules
+    {
+        public const long WatchSeconds = 28_800;
+
+        /// <summary>Apply source categories and the shared two-credit limit to one Watch value.</summary>
+        public static int Settle(int pressureBefore, bool openCombatCategory, int qualifyingReductionCredits, int riskFloor)
+        {
+            if (pressureBefore < 0 || pressureBefore > 6 || qualifyingReductionCredits < 0
+                || riskFloor < 0 || riskFloor > 6)
+                throw new ArgumentOutOfRangeException(nameof(pressureBefore));
+            int increase = openCombatCategory ? 1 : 0;
+            int reductions = Math.Min(2, qualifyingReductionCredits);
+            return Math.Max(riskFloor, Math.Min(6, pressureBefore + increase - reductions));
+        }
+
+        public static int Current(Snapshot snapshot, string cohortId)
+        {
+            if (snapshot == null || !Validation.ValidId(cohortId)) throw new ArgumentException("Invalid pressure query.");
+            var cohort = snapshot.ExpeditionPressureCohorts.SingleOrDefault(x => x.Id == cohortId);
+            if (cohort == null) throw new ArgumentException("Unknown pressure cohort.");
+            var latest = snapshot.ExpeditionPressureCheckpoints.Where(x => x.CohortId == cohortId)
+                .OrderBy(x => x.WatchIndex).LastOrDefault();
+            return latest?.StoredPressure ?? cohort.InitialPressure;
+        }
+
+        public static int EffectiveForRouteCheck(int storedPressure, ExpeditionRouteQuality quality)
+        {
+            if (storedPressure < 0 || storedPressure > 6 || !Enum.IsDefined(typeof(ExpeditionRouteQuality), quality))
+                throw new ArgumentOutOfRangeException(nameof(storedPressure));
+            if (storedPressure == 0 || storedPressure == 6) return storedPressure;
+            int modifier = quality == ExpeditionRouteQuality.Secured ? -1
+                : quality == ExpeditionRouteQuality.Contested ? 1 : 0;
+            return Math.Max(0, Math.Min(6, storedPressure + modifier));
+        }
+
+        public static ExpeditionPressureOutcome Classify(int effectivePressure, int natural, int modifiedTotal,
+            bool rollWasModifiedOrRerolled)
+        {
+            if (effectivePressure < 0 || effectivePressure > 6) throw new ArgumentOutOfRangeException(nameof(effectivePressure));
+            if (effectivePressure == 0) return ExpeditionPressureOutcome.None;
+            if (effectivePressure == 6) return ExpeditionPressureOutcome.Severe;
+            if (natural < 1 || natural > 6 || modifiedTotal < -100 || modifiedTotal > 106)
+                throw new ArgumentOutOfRangeException(nameof(natural));
+            if (modifiedTotal > effectivePressure) return ExpeditionPressureOutcome.None;
+            if (natural == 1) return ExpeditionPressureOutcome.Severe;
+            if (modifiedTotal == effectivePressure && rollWasModifiedOrRerolled) return ExpeditionPressureOutcome.Minor;
+            return ExpeditionPressureOutcome.Standard;
+        }
+    }
+
+    public static class ExpeditionPressureValidation
+    {
+        public const int MaxCohorts = 8;
+        public const int MaxExposures = 256;
+        public const int MaxChanges = 1024;
+        public const int MaxCheckpoints = 512;
+
+        public static void Validate(Snapshot s)
+        {
+            if (s.ExpeditionPressureCohorts == null || s.ExpeditionPressureExposures == null
+                || s.ExpeditionPressureChanges == null || s.ExpeditionPressureCheckpoints == null
+                || s.ExpeditionPressureCohorts.Length > MaxCohorts || s.ExpeditionPressureExposures.Length > MaxExposures
+                || s.ExpeditionPressureChanges.Length > MaxChanges || s.ExpeditionPressureCheckpoints.Length > MaxCheckpoints
+                || s.ExpeditionPressureCohorts.Any(x => x == null) || s.ExpeditionPressureExposures.Any(x => x == null)
+                || s.ExpeditionPressureChanges.Any(x => x == null) || s.ExpeditionPressureCheckpoints.Any(x => x == null))
+                throw new ArgumentException("Invalid expedition-pressure collections.");
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureSchema)
+            {
+                if (s.ExpeditionPressureCohorts.Length + s.ExpeditionPressureExposures.Length
+                    + s.ExpeditionPressureChanges.Length + s.ExpeditionPressureCheckpoints.Length != 0)
+                    throw new ArgumentException("Expedition pressure requires schema67.");
+                return;
+            }
+            if (s.ExpeditionPressureCohorts.Length != 1
+                || s.ExpeditionPressureCohorts.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureCohorts.Length
+                || s.ExpeditionPressureCohorts.Any(x => x.Members.Any(id => !s.Actors.Any(a => a.Id == id))
+                    || x.ProfileFingerprint != s.ContentFingerprint)
+                || s.ExpeditionPressureExposures.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureExposures.Length
+                || s.ExpeditionPressureChanges.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureChanges.Length
+                || s.ExpeditionPressureCheckpoints.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureCheckpoints.Length
+                || s.ExpeditionPressureCheckpoints.GroupBy(x => x.CohortId + "|" + x.WatchIndex, StringComparer.Ordinal).Any(g => g.Count() > 1)
+                || s.ExpeditionPressureExposures.Any(x => x.StartedRevision > s.Revision || x.EndRevision > s.Revision
+                    || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
+                    || !s.RouteTravels.Any(t => t.RouteId == x.RouteId && t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
+                        && t.StartedRevision == x.StartedRevision)
+                    || !s.Receipts.Any(r => r.Revision == x.StartedRevision)
+                    || x.EndedAt.HasValue && (x.EndedAt.Value > s.RuleClock || x.EndRevision < x.StartedRevision
+                        || !s.Receipts.Any(r => r.Revision == x.EndRevision)))
+                || s.ExpeditionPressureChanges.Any(x => x.SourceRevision > s.Revision
+                    || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
+                    || !s.ExpeditionPressureExposures.Any(e => e.Id == x.ExposureId && e.CohortId == x.CohortId
+                        && e.RouteId == x.RouteId && e.StartedAt <= x.At && (!e.EndedAt.HasValue || x.At < e.EndedAt.Value))
+                    || EventWatchIndex(x.At) != x.WatchIndex || !SourceExists(s, x))
+                || s.ExpeditionPressureCheckpoints.Any(x => x.AppliedRevision > s.Revision
+                    || x.At > s.RuleClock || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
+                    || x.CauseIds.Any(id => !s.ExpeditionPressureChanges.Any(c => c.Id == id && c.CohortId == x.CohortId
+                        && c.WatchIndex == x.WatchIndex && c.Kind == ExpeditionPressureChangeKind.OpenCombat))
+                    || x.ReductionIds.Any(id => !s.ExpeditionPressureChanges.Any(c => c.Id == id && c.CohortId == x.CohortId
+                        && c.WatchIndex == x.WatchIndex && c.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry))
+                    || !s.Receipts.Any(r => r.Revision == x.AppliedRevision && r.Id == x.CommandId)
+                    || x.ProfileFingerprint != s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).ProfileFingerprint
+                    || x.RouteFingerprint != s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).RouteFingerprint
+                    || x.EffectivePressure != ExpeditionPressureRules.EffectiveForRouteCheck(x.StoredPressure, x.RouteQuality)
+                    || ExpeditionPressureRules.Classify(x.EffectivePressure, x.Natural, x.ModifiedTotal,
+                        x.RollWasModifiedOrRerolled) != x.Outcome
+                    || !ValidCheckpointTime(x) || !ValidCheckpointRoll(x)
+                    || !s.RouteTravels.Any(t => t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
+                        && t.RouteId == x.RouteId && t.StartedRevision <= x.AppliedRevision)))
+                throw new ArgumentException("Invalid expedition-pressure references or checkpoints.");
+
+            foreach (var c in s.ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex))
+            {
+                int before = s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == c.CohortId && x.WatchIndex < c.WatchIndex)
+                    .OrderBy(x => x.WatchIndex).Select(x => (int?)x.StoredPressure).LastOrDefault()
+                    ?? s.ExpeditionPressureCohorts.Single(x => x.Id == c.CohortId).InitialPressure;
+                int computed = ExpeditionPressureRules.Settle(before, c.CauseIds.Count > 0,
+                    c.ReductionIds.Count, c.RiskFloor);
+                if (before != c.PressureBefore || computed != c.StoredPressure
+                    || c.CauseIds.Count != s.ExpeditionPressureChanges.Count(x => x.CohortId == c.CohortId
+                        && x.WatchIndex == c.WatchIndex && x.Kind == ExpeditionPressureChangeKind.OpenCombat)
+                    || c.ReductionIds.Count != s.ExpeditionPressureChanges.Count(x => x.CohortId == c.CohortId
+                        && x.WatchIndex == c.WatchIndex && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry))
+                    throw new ArgumentException("Expedition-pressure checkpoint does not derive from its source history.");
+            }
+        }
+
+        private static long EventWatchIndex(RuleTime at)
+            => checked((long)(new BigInteger(at.Numerator) / at.Denominator / ExpeditionPressureRules.WatchSeconds));
+
+        private static long SettlementWatchIndex(RuleTime at, bool atWatchEnd)
+        {
+            BigInteger denominator = new BigInteger(at.Denominator);
+            BigInteger watchUnits = denominator * ExpeditionPressureRules.WatchSeconds;
+            BigInteger numerator = new BigInteger(at.Numerator);
+            bool exact = numerator % watchUnits == 0;
+            if (exact != atWatchEnd) return -1;
+            BigInteger index = numerator / watchUnits;
+            if (atWatchEnd) index -= BigInteger.One;
+            return index < BigInteger.Zero || index > long.MaxValue ? -1 : (long)index;
+        }
+
+        private static bool ValidCheckpointTime(ExpeditionPressureCheckpointRecord x)
+        {
+            bool watchEnd = x.Reason == ExpeditionPressureSettlementReason.WatchEnd
+                || x.Reason == ExpeditionPressureSettlementReason.HavenArrivalAtWatchEnd;
+            if (!Enum.IsDefined(typeof(ExpeditionPressureSettlementReason), x.Reason)) return false;
+            if (x.Reason == ExpeditionPressureSettlementReason.WatchEnd && !watchEnd) return false;
+            return SettlementWatchIndex(x.At, watchEnd) == x.WatchIndex;
+        }
+
+        private static bool ValidCheckpointRoll(ExpeditionPressureCheckpointRecord x)
+        {
+            if (x.EffectivePressure == 0 || x.EffectivePressure == 6)
+                return x.Natural == 0 && x.WordsConsumed == 0 && x.RandomBefore == x.RandomAfter
+                    && !x.RollWasModifiedOrRerolled && x.ModifiedTotal == 0;
+            return x.Natural >= 1 && x.Natural <= 6 && x.WordsConsumed > 0
+                && x.ModifiedTotal == x.Natural && !x.RollWasModifiedOrRerolled;
+        }
+
+        private static bool SourceExists(Snapshot s, ExpeditionPressureChangeRecord change)
+        {
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == change.ExposureId
+                && x.CohortId == change.CohortId && x.RouteId == change.RouteId);
+            if (exposure == null) return false;
+            if (change.Kind == ExpeditionPressureChangeKind.OpenCombat)
+            {
+                var melee = s.MeleeAttacks.SingleOrDefault(x => x.Id == change.SourceId);
+                if (melee != null) return melee.Revision == change.SourceRevision && melee.At == change.At
+                    && AttackWithinExposure(exposure, melee.Revision, melee.At)
+                    && (s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(melee.AttackerId)
+                        || s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(melee.TargetId));
+                var ranged = s.RangedAttacks.SingleOrDefault(x => x.Id == change.SourceId);
+                return ranged != null && ranged.Revision == change.SourceRevision && ranged.At == change.At
+                    && AttackWithinExposure(exposure, ranged.Revision, ranged.At)
+                    && (s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(ranged.AttackerId)
+                        || s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(ranged.TargetId));
+            }
+            if (change.SourceRevision != exposure.StartedRevision || change.At != exposure.StartedAt) return false;
+            var travel = s.RouteTravels.SingleOrDefault(x => x.StartedRevision == change.SourceRevision
+                && x.RouteId == change.RouteId
+                && x.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members[0]);
+            var receipt = s.Receipts.SingleOrDefault(x => x.Revision == change.SourceRevision);
+            if (travel == null || receipt == null || change.SourceId != receipt.Id) return false;
+            try
+            {
+                var command = CommandHistory.Read(receipt);
+                return command.Kind == CommandKind.StartRouteTravel && command.Actor == travel.TravelerId
+                    && command.Target == travel.RouteId;
+            }
+            catch (ArgumentException) { return false; }
+        }
+
+        private static bool AttackWithinExposure(ExpeditionPressureExposureRecord exposure, long revision, RuleTime at)
+            => revision > exposure.StartedRevision && exposure.StartedAt <= at
+                && (!exposure.EndedAt.HasValue || at < exposure.EndedAt.Value && revision < exposure.EndRevision);
+    }
+}

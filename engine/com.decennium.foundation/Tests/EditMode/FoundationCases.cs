@@ -257,6 +257,7 @@ namespace Decennium.Foundation.Tests
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);
             AddExpeditionRouteTravelCases(cases,directory);
+            AddExpeditionPressureCases(cases,directory);
             AddRouteMappingWorkCases(cases,directory);
             AddRouteReconnaissanceCases(cases,directory);
             AddMiningAssayCases(cases,directory);

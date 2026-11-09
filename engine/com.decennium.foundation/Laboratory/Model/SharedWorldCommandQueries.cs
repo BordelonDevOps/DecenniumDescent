@@ -48,6 +48,8 @@ namespace Decennium.Foundation.Laboratory
             int toX, toY;
             try { toX = checked(actor.X + c.X); toY = checked(actor.Y + c.Y); }
             catch (OverflowException) { return "InvalidWorldStep"; }
+            string pressurePathFailure=AssessExpeditionPressureWorldStep(s,c.Actor,toX,toY);
+            if(pressurePathFailure!=null)return pressurePathFailure;
             if(HuntingTrapValidation.BlocksGridMove(s,c.Actor,toX,toY))return "HuntingTrapTetherPreventsMovement";
             RuleQuantity initialDistance = default;
             bool detachesRoute = false;
@@ -280,7 +282,8 @@ namespace Decennium.Foundation.Laboratory
                 yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route."+(index++).ToString(CultureInfo.InvariantCulture),
                     actor,s.Revision,routeTravel.Status==ExpeditionRouteTravelStatus.Moving?CommandKind.PauseRouteTravel:CommandKind.ResumeRouteTravel,
                     routeTravel.RouteId);
-            else if(routeTravelFixture!=null&&!s.RouteTravels.Any(x=>x.TravelerId==actor&&x.Status!=ExpeditionRouteTravelStatus.SegmentComplete))
+            else if(routeTravelFixture!=null&&!s.RouteTravels.Any(x=>x.TravelerId==actor
+                &&(x.Status==ExpeditionRouteTravelStatus.Moving||x.Status==ExpeditionRouteTravelStatus.Paused)))
                 foreach(var route in routeTravelFixture.Routes.OrderBy(x=>x.Id,StringComparer.Ordinal))
                     yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".route."+(index++).ToString(CultureInfo.InvariantCulture),
                         actor,s.Revision,CommandKind.StartRouteTravel,route.Id);

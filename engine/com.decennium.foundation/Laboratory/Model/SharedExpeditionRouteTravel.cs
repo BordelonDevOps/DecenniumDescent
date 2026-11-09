@@ -318,7 +318,8 @@ namespace Decennium.Foundation.Laboratory
             => kind == CommandKind.StartRouteTravel || kind == CommandKind.PauseRouteTravel || kind == CommandKind.ResumeRouteTravel;
 
         private static ExpeditionRouteTravelRecord OpenRouteTravel(Snapshot s, string actor)
-            => s.RouteTravels.Where(x => x.TravelerId == actor && x.Status != ExpeditionRouteTravelStatus.SegmentComplete)
+            => s.RouteTravels.Where(x => x.TravelerId == actor
+                && (x.Status == ExpeditionRouteTravelStatus.Moving || x.Status == ExpeditionRouteTravelStatus.Paused))
                 .SingleOrDefault();
 
         private static ExpeditionRouteTravelRecord LatestRouteTravel(Snapshot s, string routeId, string actor)
@@ -343,6 +344,19 @@ namespace Decennium.Foundation.Laboratory
                 || c.Target == "" || c.X != 0 || c.Y != 0 || !Validation.ValidId(c.Target)) return "InvalidRouteTravelRequest";
             route = routeTravelFixture.Find(c.Target);
             if (route == null) return "UnknownRoute";
+            if (expeditionPressureProfile != null)
+            {
+                if (c.Actor != expeditionPressureProfile.MemberId) return "PressureCohortTravelActorRequired";
+                if (route.Quality == ExpeditionRouteQuality.Collapsed || route.Risk > 6)
+                    return "PressureRouteProfileUnsupported";
+                string pressureAccessFailure = PressureRouteAccessFailure(s, route);
+                if (pressureAccessFailure != null) return pressureAccessFailure;
+                if (c.Kind == CommandKind.StartRouteTravel)
+                {
+                    string reentryFailure = PressureRouteStartFailure(s, route);
+                    if (reentryFailure != null) return reentryFailure;
+                }
+            }
             // Route commands are dispatched ahead of the shared manufacturing continuation
             // guard. Keep their query and execution path aligned with that guard explicitly.
             // This is schema53-only so schema52 command admission remains byte-for-byte in
@@ -361,11 +375,14 @@ namespace Decennium.Foundation.Laboratory
                 string controlFailure = RouteTravelControlFailure(s);
                 if (controlFailure != null) return controlFailure;
                 if (s.WorldTraversals.Length != 0) return "RouteTravelConflictsWithGridTraversal";
-                if (s.RouteTravels.Count(x => x.Status == ExpeditionRouteTravelStatus.SegmentComplete) >= ExpeditionRouteTravelValidation.MaxRecords)
+                if (s.RouteTravels.Length >= ExpeditionRouteTravelValidation.MaxRecords)
                     return "RouteTravelHistoryCapacityReached";
                 if (s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving)) return "ConcurrentRouteTravelUnsupported";
-                if (route.Risk != 0) return "RouteRiskResolutionUnsupported";
-                if (route.Quality != ExpeditionRouteQuality.Secured) return "RouteQualityConsequenceUnsupported";
+                if (expeditionPressureProfile == null)
+                {
+                    if (route.Risk != 0) return "RouteRiskResolutionUnsupported";
+                    if (route.Quality != ExpeditionRouteQuality.Secured) return "RouteQualityConsequenceUnsupported";
+                }
                 if (OrdinaryInventory.Busy(s, c.Actor) || WorldActivityValidation.HasActiveLabor(s, c.Actor, s.RuleClock, s.RuleClock.AddSeconds(1)))
                     return "RouteTravelerBusy";
                 if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) <= 0) return "ConditionPreventsRouteTravel";
@@ -473,11 +490,14 @@ namespace Decennium.Foundation.Laboratory
 
         private string RouteTravelControlFailure(Snapshot s)
         {
-            if (routeMotionFixture == null)
+            // Preserve the original base-route rule for historical profiles. Schema 67's
+            // pressure path may resume after a resolved encounter because combat pauses the
+            // same route and the encounter record remains as canonical history.
+            if (routeMotionFixture == null && s.SchemaVersion < Snapshot.ExpeditionPressureSchema)
                 return s.InventoryCombat || s.Encounter != null ? "RouteTravelDuringTacticalControl" : null;
             // A completed conflict stays in the snapshot as history. Tactical control ends
             // only after the existing exit command has committed and the canonical conflict
-            // record is resolved; retaining that record must not strand the expedition.
+            // record is resolved; retaining that record must not strand an admitted route.
             if (s.InventoryCombat || (s.Encounter != null && !ResolvedConflict(s)))
                 return "RouteTravelDuringTacticalControl";
             return null;
@@ -510,6 +530,7 @@ namespace Decennium.Foundation.Laboratory
                     s.RouteTravelSpatial = s.RouteTravelSpatial.Concat(new[] { new ExpeditionRouteSpatialRecord(
                         route.Id, c.Actor, s.Revision + 1, poseX, poseY, false) }).ToArray();
                 }
+                RecordPressureRouteStart(s, route, c);
                 return null;
             }
             if (c.Kind == CommandKind.ResumeRouteTravel && routeMotionFixture != null)
@@ -546,8 +567,10 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach (var travel in s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving).ToArray())
             {
+                bool preserveEncounterBlock = routeMotionFixture == null
+                    && s.SchemaVersion < Snapshot.ExpeditionPressureSchema;
                 bool unresolvedTacticalControl = s.InventoryCombat
-                    || (s.Encounter != null && (routeMotionFixture == null || !ResolvedConflict(s)));
+                    || (s.Encounter != null && (preserveEncounterBlock || !ResolvedConflict(s)));
                 if (unresolvedTacticalControl || !Permissions(s, travel.TravelerId).VoluntarySpeed
                     || Speed(s, travel.TravelerId) <= 0)
                     SetRouteTravel(s, travel.With(travel.NominalEffort, ExpeditionRouteTravelStatus.Paused));
@@ -674,6 +697,8 @@ namespace Decennium.Foundation.Laboratory
                 : routeMappingFixture != null ? Snapshot.RouteMappingSchema
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
+                && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema
+                    && routeSchema == Snapshot.ExpeditionRouteSchema)
                 && !(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema&&routeSchema<Snapshot.SharedCharacterAdvancementSchema)
                 && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
@@ -719,7 +744,8 @@ namespace Decennium.Foundation.Laboratory
                         return "InvalidRouteTravelHistory";
                 }
             }
-            foreach (var travel in s.RouteTravels.Where(x => x.Status != ExpeditionRouteTravelStatus.SegmentComplete))
+            foreach (var travel in s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving
+                || x.Status == ExpeditionRouteTravelStatus.Paused))
             {
                 var route = routeTravelFixture.Find(travel.RouteId);
                 var binding = route?.PositionAt(travel.Progress);
