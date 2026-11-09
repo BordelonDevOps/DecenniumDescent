@@ -1,6 +1,6 @@
 # Schema 70 Temporary Camp construction evidence
 
-**Status:** the three original review findings and GPT's residual pre-attempt fixture-movement case are corrected locally; focused regressions and full C# validations pass. GPT re-review is pending. This bounded profile remains `TEST_ONLY`; it does not complete MGT-03 or the C# gameplay simulation.
+**Status:** GPT accepted commit `2553c738ed17262b222d296458e6694ed1304ce8` with no confirmed acceptance blocker for this bounded `TEST_ONLY` profile. The pre-attempt fixture-movement case and the three original review findings are closed. The full C# validations and focused connected scenarios pass as recorded below. No post-construction successor is named by the current map; it must be selected with GPT before implementation. This module does not complete MGT-03 or the C# gameplay simulation.
 
 ## Scope, authorities, and acceptance
 
@@ -40,4 +40,4 @@ The independent reviewer noted one optional integration gap: construction progre
 
 This is one authored two-person TEST_ONLY profile. It does not provide production crew qualification, a general site-authoring system, arbitrary purchases/currency, other camp tiers, general storage transfer, dismantling, multiple camps, off-route construction, general guard scheduling, or higher-tier mark spending. The three storage limits are derived facts only; no storage contents or transfer handler are created. The 2 gp source references do not debit currency. Existing site exposure/concealment facts remain authoritative. The complete MGT-03 subsystem and engine are unfinished.
 
-**GPT implementation re-review:** pending for the pre-attempt movement correction. The actual hold and its limits are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). The next module remains gated; no claim of schema70 acceptance or successor-module agreement has been made.
+**GPT implementation re-review:** GPT accepted exact commit `2553c738ed17262b222d296458e6694ed1304ce8`; see [GPT_REVIEW.md](GPT_REVIEW.md) for the full actual verdict and limits. GPT inspected the exact diff, tests, review packet, evidence and handoff, and compared shared report hash entries; it did not independently compile, execute tests/save roundtrips, recompute hashes, or run Unity. GPT confirmed `WorldActivityProjection.OpenProcedures` is optional under this contract. It also confirmed no post-construction successor is currently selected, and directed that one be selected and agreed from the existing map before implementation. Schema70 is accepted; successor implementation remains gated, and the full engine remains incomplete.

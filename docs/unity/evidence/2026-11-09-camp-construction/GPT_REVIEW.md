@@ -20,4 +20,14 @@ The missing generic `WorldActivityProjection.OpenProcedures` display remained op
 
 The current map/handoff does not name a post-construction successor. GPT directed that the residual item-movement case be fixed before successor work; no successor was added while acceptance remained open.
 
-**Current state:** the requested pre-attempt movement correction and regression are implemented and validated locally in the follow-up evidence under [development attempts](development-attempts/gpt-review-fixes-pre-attempt-pickup/). GPT re-review of that follow-up is pending. This file will record the actual verdict and any successor only after GPT returns it.
+## Re-review of `2553c738ed17262b222d296458e6694ed1304ce8`
+
+**Verdict:** accepted. GPT stated: “commit `2553c738` closes the remaining blocker. I find no confirmed acceptance blocker in this bounded schema70 TEST_ONLY module.”
+
+GPT confirmed the pre-attempt pickup defect is closed: coherent existing portable-equipment movement is allowed while a fixture is neither actively claimed nor installed; identity, provenance, quantity, mass, ownership, and custody/location checks remain. Construction admission still requires both actual lots at the authored site, and active claims and installations remain protected. The new regression covers pickup before any attempt, file save/restore, construction rejection while carried, return, and a fresh claim on the same lot. The retained before report fails with `InvalidResult`; the after report passes.
+
+GPT also confirmed the other two findings from its review of `ae61cd16` remain closed: synchronous handling credits construction and enforces the completion boundary, and fractional resume duration is no longer truncated. It accepted the bounded construction/save/resume/replay/Pressure scenario, found no new historical schema or codec conflict, and confirmed the `TEST_ONLY` boundary remains intact. The missing generic `WorldActivityProjection.OpenProcedures` display is optional integration work, not an acceptance blocker under the agreed contract.
+
+GPT inspected the exact commit diff, fixture validation/admission, regression and connected-test assertions, review packet, evidence overview, before/after and final reports, and handoff/map. It compared shared recorded source-hash entries and found no mismatches. GPT did **not** independently compile, run tests, execute save roundtrips, recompute hashes, or run Unity; it made no repository changes. The retained reports show the C# 9 warnings-as-errors suite at 1,298/1,298, Core/Persistence/LabModel compilation passing, and static package checks at 18/18 (294 assets/GUIDs).
+
+**Successor:** the current map/handoff names no post-construction dependency. GPT directed that this acceptance be recorded, then a next dependency be selected and agreed from the existing map before implementation. No successor has yet been selected or authorized. The full engine remains incomplete; Unity remains deferred.
