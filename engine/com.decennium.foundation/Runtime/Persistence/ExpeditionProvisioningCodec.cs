@@ -50,6 +50,7 @@ namespace Decennium.Foundation
             }
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Write(w, s);
             if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Write(w, s);
+            if (s.SchemaVersion >= Snapshot.MoraleRestSchema) MoraleRestStateCodec.Write(w, s);
         }
 
         public static void Read(BinaryReader r, Snapshot s)
@@ -81,6 +82,7 @@ namespace Decennium.Foundation
                 s.ExpeditionDashLocks[i] = new ExpeditionDashLockRecord(Text(r), r.ReadInt64(), Time(r), Time(r), Text(r), Time(r));
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s);
             if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Read(r, s);
+            if (s.SchemaVersion >= Snapshot.MoraleRestSchema) MoraleRestStateCodec.Read(r, s);
         }
 
         private static int Count(BinaryReader r, int maximum)
@@ -194,7 +196,13 @@ namespace Decennium.Foundation
             w.Write(s.ExpeditionStrainRecoveryOffers.Length);
             foreach (var x in s.ExpeditionStrainRecoveryOffers.OrderBy(x => x.CompletedAt).ThenBy(x => x.ActorId, StringComparer.Ordinal))
             {
-                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.RestIntervalId); Text(w, x.InitiatingCommandId);
+                Text(w, x.Id); Text(w, x.ActorId);
+                if (s.SchemaVersion >= Snapshot.MoraleRestSchema)
+                {
+                    w.Write((int)x.RecoveryKind); Text(w, x.RecoveryCompletionId); Text(w, x.ActivityIntervalId);
+                }
+                else Text(w, x.RestIntervalId);
+                Text(w, x.InitiatingCommandId);
                 Time(w, x.CompletedAt); w.Write(x.Revision); w.Write(x.PointIds.Length);
                 foreach (string pointId in x.PointIds) Text(w, pointId);
                 Text(w, x.ChosenPointId); w.Write(x.ResolvedRevision);
@@ -203,7 +211,10 @@ namespace Decennium.Foundation
             foreach (var x in s.ExpeditionStrainRemovals.OrderBy(x => x.At).ThenBy(x => x.Revision)
                 .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.MutationSequence))
             {
-                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.PointId); Text(w, x.GainId); Text(w, x.BeneficialRestId);
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.PointId); Text(w, x.GainId);
+                if (s.SchemaVersion >= Snapshot.MoraleRestSchema)
+                { w.Write((int)x.RecoveryKind); Text(w, x.RecoveryCompletionId); }
+                else Text(w, x.BeneficialRestId);
                 Time(w, x.At); w.Write(x.Revision); w.Write(x.MutationSequence);
             }
         }
@@ -224,20 +235,88 @@ namespace Decennium.Foundation
                 Count(r, ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)];
             for (int i = 0; i < s.ExpeditionStrainRecoveryOffers.Length; i++)
             {
-                string id = Text(r), actor = Text(r), rest = Text(r), initiating = Text(r);
+                string id = Text(r), actor = Text(r);
+                ExpeditionRecoveryKind kind = ExpeditionRecoveryKind.SecureLongRest;
+                string completionId = "";
+                string activityIntervalId;
+                if (s.SchemaVersion >= Snapshot.MoraleRestSchema)
+                {
+                    kind = (ExpeditionRecoveryKind)r.ReadInt32(); completionId = Text(r); activityIntervalId = Text(r);
+                }
+                else activityIntervalId = Text(r);
+                string initiating = Text(r);
                 RuleTime completedAt = Time(r); long revision = r.ReadInt64();
                 int pointCount = Count(r, 6); if (pointCount == 0) throw new InvalidDataException("Empty Strain recovery offer.");
                 var points = new string[pointCount];
                 for (int point = 0; point < pointCount; point++) points[point] = Text(r);
                 string chosenPointId = Text(r); long resolvedRevision = r.ReadInt64();
-                s.ExpeditionStrainRecoveryOffers[i] = new ExpeditionStrainRecoveryOfferRecord(
-                    id, actor, rest, initiating, completedAt, revision, points, chosenPointId, resolvedRevision);
+                s.ExpeditionStrainRecoveryOffers[i] = s.SchemaVersion >= Snapshot.MoraleRestSchema
+                    ? new ExpeditionStrainRecoveryOfferRecord(id, actor, kind, completionId, activityIntervalId,
+                        initiating, completedAt, revision, points, chosenPointId, resolvedRevision)
+                    : new ExpeditionStrainRecoveryOfferRecord(id, actor, activityIntervalId, initiating,
+                        completedAt, revision, points, chosenPointId, resolvedRevision);
             }
             s.ExpeditionStrainRemovals = new ExpeditionStrainRemovalRecord[
                 Count(r, ExpeditionProvisioningValidation.MaxStrainRemovals)];
             for (int i = 0; i < s.ExpeditionStrainRemovals.Length; i++)
-                s.ExpeditionStrainRemovals[i] = new ExpeditionStrainRemovalRecord(Text(r), Text(r), Text(r), Text(r),
+            {
+                string id = Text(r), actor = Text(r), point = Text(r), gain = Text(r);
+                if (s.SchemaVersion >= Snapshot.MoraleRestSchema)
+                    s.ExpeditionStrainRemovals[i] = new ExpeditionStrainRemovalRecord(id, actor, point, gain,
+                        (ExpeditionRecoveryKind)r.ReadInt32(), Text(r), Time(r), r.ReadInt64(), r.ReadInt32());
+                else s.ExpeditionStrainRemovals[i] = new ExpeditionStrainRemovalRecord(id, actor, point, gain,
                     Text(r), Time(r), r.ReadInt64(), r.ReadInt32());
+            }
+        }
+    }
+
+    internal static class MoraleRestStateCodec
+    {
+        private static void Text(BinaryWriter w, string value) => SnapshotCodec.WriteText(w, value);
+        private static string Text(BinaryReader r) => SnapshotCodec.ReadText(r);
+        private static void Time(BinaryWriter w, RuleTime value) { w.Write(value.Numerator); w.Write(value.Denominator); }
+        private static RuleTime Time(BinaryReader r) => new RuleTime(r.ReadInt64(), r.ReadInt64());
+        private static int Count(BinaryReader r, int maximum) => SnapshotCodec.ReadCount(r, maximum);
+
+        public static void Write(BinaryWriter w, Snapshot s)
+        {
+            w.Write(s.ExpeditionMoraleRestIntervals.Length);
+            foreach (var x in s.ExpeditionMoraleRestIntervals.OrderBy(x => x.StartedAt).ThenBy(x => x.StartRevision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.SiteId); Text(w, x.ActivityId);
+                Time(w, x.StartedAt); Time(w, x.ScheduledEnd); w.Write(x.EndedAt.HasValue);
+                if (x.EndedAt.HasValue) Time(w, x.EndedAt.Value);
+                w.Write((int)x.Status); Text(w, x.StartCommandId); w.Write(x.StartRevision);
+                Text(w, x.EndCommandId); w.Write(x.EndRevision);
+            }
+            w.Write(s.ExpeditionMoraleRestBenefits.Length);
+            foreach (var x in s.ExpeditionMoraleRestBenefits.OrderBy(x => x.CompletedAt).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.IntervalId); Text(w, x.RecoveryOfferId);
+                Time(w, x.CompletedAt); w.Write(x.Revision);
+            }
+        }
+
+        public static void Read(BinaryReader r, Snapshot s)
+        {
+            s.ExpeditionMoraleRestIntervals = new ExpeditionMoraleRestIntervalRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxMoraleRestIntervals)];
+            for (int i = 0; i < s.ExpeditionMoraleRestIntervals.Length; i++)
+            {
+                string id = Text(r), actor = Text(r), site = Text(r), activity = Text(r);
+                RuleTime started = Time(r), end = Time(r);
+                RuleTime? ended = SnapshotCodec.ReadBool(r) ? (RuleTime?)Time(r) : null;
+                s.ExpeditionMoraleRestIntervals[i] = new ExpeditionMoraleRestIntervalRecord(id, actor, site, activity,
+                    started, end, ended, (MoraleRestIntervalStatus)r.ReadInt32(), Text(r), r.ReadInt64(),
+                    Text(r), r.ReadInt64());
+            }
+            s.ExpeditionMoraleRestBenefits = new ExpeditionMoraleRestBenefitRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxMoraleRestBenefits)];
+            for (int i = 0; i < s.ExpeditionMoraleRestBenefits.Length; i++)
+                s.ExpeditionMoraleRestBenefits[i] = new ExpeditionMoraleRestBenefitRecord(
+                    Text(r), Text(r), Text(r), Text(r), Time(r), r.ReadInt64());
         }
     }
 }

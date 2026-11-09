@@ -97,6 +97,8 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
             ||kind==CommandKind.ScheduleRestWatch||kind==CommandKind.BeginRest||kind==CommandKind.InterruptRest
+            ||kind==CommandKind.BeginMoraleRest&&moraleRestProfile!=null
+            ||kind==CommandKind.InterruptMoraleRest&&moraleRestProfile!=null
             ||kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
@@ -245,10 +247,14 @@ namespace Decennium.Foundation.Laboratory
             if(pendingRecoveryFailure!=null)
                 return new CommandQueryResult(true,false,pendingRecoveryFailure,s.Revision);
             if(IsStrainRecoveryCommand(c.Kind))return QueryStrainRecoveryChoice(s,c);
+            if(IsMoraleRestCommand(c.Kind))return QueryMoraleRestCommand(s,c);
             string restingActorFailure=RestingActorCommandFailure(s,c);
             if(restingActorFailure!=null)
                 return new CommandQueryResult(true,false,restingActorFailure,s.Revision);
             if(IsRestDebtCommand(c.Kind))return QueryRestDebtCommand(s,c);
+            string moraleRestingActorFailure=MoraleRestingActorCommandFailure(s,c);
+            if(moraleRestingActorFailure!=null)
+                return new CommandQueryResult(true,false,moraleRestingActorFailure,s.Revision);
             if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
                 string clockFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);

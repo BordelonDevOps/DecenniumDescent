@@ -181,6 +181,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeDailyProvisioning(s);
             InitializeRestDebt(s);
             InitializeStrainRecovery(s);
+            InitializeMoraleRest(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -430,6 +431,7 @@ namespace Decennium.Foundation.Laboratory
                 var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<next)next=routeReconnaissanceBoundary.Value;
                 var provisioningBoundary=NextProvisioningBoundary(s);if(provisioningBoundary.HasValue&&provisioningBoundary.Value<next)next=provisioningBoundary.Value;
                 var restDebtBoundary=NextRestDebtBoundary(s);if(restDebtBoundary.HasValue&&restDebtBoundary.Value<next)next=restDebtBoundary.Value;
+                var moraleRestBoundary=NextMoraleRestBoundary(s);if(moraleRestBoundary.HasValue&&moraleRestBoundary.Value<next)next=moraleRestBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -566,6 +568,9 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyRouteReconnaissanceChecks(s, routeReconnaissanceReady, initiating);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 ExpireReadyActionsAtStart(s,initiating);
+                string moraleInterruptionError=InterruptMoraleRestOnIncapacity(s,initiating);
+                if(moraleInterruptionError!=null)return moraleInterruptionError;
+                string moraleRestError=ProcessMoraleRestBoundary(s,initiating);if(moraleRestError!=null)return moraleRestError;
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
@@ -593,8 +598,13 @@ namespace Decennium.Foundation.Laboratory
             if (pendingRecoveryFailure != null) return pendingRecoveryFailure;
             if (IsStrainRecoveryCommand(c.Kind)) return ResolveStrainRecoveryChoice(s, c);
             if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
+            if (IsMoraleRestCommand(c.Kind)) return ResolveMoraleRestCommand(s, c);
+            string moraleRestingActorFailure = MoraleRestingActorCommandFailure(s, c);
+            if (moraleRestingActorFailure != null) return moraleRestingActorFailure;
             string restingActorFailure = RestingActorCommandFailure(s, c);
             if (restingActorFailure != null) return restingActorFailure;
+            if(c.Kind==CommandKind.EnterInventoryCombat&&HasActiveMoraleRest(s))
+                return "MoraleRestInterruptionAuthorityUnsupported";
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
@@ -645,7 +655,8 @@ namespace Decennium.Foundation.Laboratory
             if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);
             if(connectedCombat!=null) {
-                if(c.Kind==CommandKind.BeginFixedEncounter)return EnterCalendarCombat(s,c);
+                if(c.Kind==CommandKind.BeginFixedEncounter)return HasActiveMoraleRest(s)
+                    ?"MoraleRestInterruptionAuthorityUnsupported":EnterCalendarCombat(s,c);
                 if(s.InventoryCombat)return ResolveCalendarCombat(s,c);
             }
             if(c.Kind==CommandKind.TacticalAssessment)return "TacticalAssessmentRequiresEncounter";
@@ -667,7 +678,10 @@ namespace Decennium.Foundation.Laboratory
                 bool offCalendarActivity=facts.OffCalendar&&IsOffCalendarActivity(s,c.Actor);
                 // No implicit combat is fabricated. Entering/leaving a hostile engagement requires
                 // the upcoming tactical continuation host before the departure can be admitted.
-                if (facts.StartsEncounter) return EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
+                if (facts.StartsEncounter) {
+                    if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";
+                    return EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
+                }
                 if (c.Target == "run") {
                     if(scheduled) { string error = PayRun(s, c.Actor); if (error != null) return error; }
                     else { string error=PayActivityDash(s,c.Actor,c.Id,s.Revision+1);if(error!=null)return error; }

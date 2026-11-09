@@ -29,7 +29,8 @@ namespace Decennium.Foundation
         PauseCacheExcavation, ResumeCacheExcavation, Ready, RespondReady,
         StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork,
         StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance,
-        ScheduleRestWatch, BeginRest, InterruptRest, ResolveExpeditionStrainRecovery }
+        ScheduleRestWatch, BeginRest, InterruptRest, ResolveExpeditionStrainRecovery,
+        BeginMoraleRest, InterruptMoraleRest }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -118,6 +119,7 @@ namespace Decennium.Foundation
         public const int DailyProvisioningSchema = 62;
         public const int RestDebtSchema = 63;
         public const int ExpeditionStrainRecoverySchema = 64;
+        public const int MoraleRestSchema = 65;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -275,6 +277,8 @@ namespace Decennium.Foundation
         public ExpeditionBeneficialRestRecord[] ExpeditionBeneficialRests = Array.Empty<ExpeditionBeneficialRestRecord>();
         public ExpeditionStrainRecoveryOfferRecord[] ExpeditionStrainRecoveryOffers = Array.Empty<ExpeditionStrainRecoveryOfferRecord>();
         public ExpeditionStrainRemovalRecord[] ExpeditionStrainRemovals = Array.Empty<ExpeditionStrainRemovalRecord>();
+        public ExpeditionMoraleRestIntervalRecord[] ExpeditionMoraleRestIntervals = Array.Empty<ExpeditionMoraleRestIntervalRecord>();
+        public ExpeditionMoraleRestBenefitRecord[] ExpeditionMoraleRestBenefits = Array.Empty<ExpeditionMoraleRestBenefitRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -346,6 +350,8 @@ namespace Decennium.Foundation
             ExpeditionBeneficialRests = ExpeditionBeneficialRests.ToArray(),
             ExpeditionStrainRecoveryOffers = ExpeditionStrainRecoveryOffers.ToArray(),
             ExpeditionStrainRemovals = ExpeditionStrainRemovals.ToArray(),
+            ExpeditionMoraleRestIntervals = ExpeditionMoraleRestIntervals.ToArray(),
+            ExpeditionMoraleRestBenefits = ExpeditionMoraleRestBenefits.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -668,6 +674,7 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.DailyProvisioningSchema
                 || s.SchemaVersion == Foundation.Snapshot.RestDebtSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionStrainRecoverySchema) { }
+            else if (s.SchemaVersion == Foundation.Snapshot.MoraleRestSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema

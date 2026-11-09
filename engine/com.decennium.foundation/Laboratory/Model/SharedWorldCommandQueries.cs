@@ -256,6 +256,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
+            foreach (var moraleCommand in DiscoverMoraleRestCommands(s, actor)) yield return moraleCommand;
             foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);

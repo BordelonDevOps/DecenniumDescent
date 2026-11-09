@@ -9,8 +9,8 @@ using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
-    /// <summary>Immutable first TEST_ONLY provisioning profile. It enrolls the ordinary hero and
-    /// companion from RuleTime zero, with the pinned Small/Medium daily food and water quantities.</summary>
+    /// <summary>Immutable TEST_ONLY provisioning profile. Its finite actor roster is enrolled
+    /// from RuleTime zero with the pinned Small/Medium daily food and water quantities.</summary>
     public sealed class TestOnlyDailyProvisioningProfile
     {
         public const string SourceId = "campaign.unsupported-supply";
@@ -30,8 +30,16 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyList<string> Roster => Array.AsReadOnly(roster);
 
         public TestOnlyDailyProvisioningProfile()
+            : this(new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId })
+        { }
+
+        public TestOnlyDailyProvisioningProfile(string[] actors)
         {
-            roster = new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId }
+            if (actors == null || actors.Length < 1 || actors.Length > 2
+                || actors.Any(x => x != TestOnlyPolicy.ActorId && x != TestOnlyPolicy.CompanionId)
+                || actors.Distinct(StringComparer.Ordinal).Count() != actors.Length)
+                throw new ArgumentException("Invalid TEST_ONLY daily provisioning roster.", nameof(actors));
+            roster = actors
                 .OrderBy(x => x, StringComparer.Ordinal).ToArray();
         }
 
@@ -272,7 +280,8 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null) return;
             string error = dailyProvisioning.ValidateBindings(s);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+                : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
                 : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
                 throw new InvalidOperationException("DailyProvisioningRequiresCanonicalInitialProfile");
@@ -295,6 +304,7 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null)
                 return s.SchemaVersion != Snapshot.DailyProvisioningSchema && s.SchemaVersion != Snapshot.RestDebtSchema
                     && s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema
+                    && s.SchemaVersion != Snapshot.MoraleRestSchema
                     && s.DailyProvisioningSettlements.Length == 0
                     && s.DailyProvisioningConsumption.Length == 0 && s.ExpeditionStrainGains.Length == 0
                     && s.ExpeditionDashLocks.Length == 0 && s.RestWatchSchedules.Length == 0 && s.RestIntervals.Length == 0
@@ -302,7 +312,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
                     && s.ExpeditionStrainRecoveryOffers.Length == 0 && s.ExpeditionStrainRemovals.Length == 0
                     ? null : "DailyProvisioningProfileMissing";
-            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+                : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
                 : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || !s.TestOnly
                 || s.ContentFingerprint != ContentFingerprint || dailyProvisioning.ValidateBindings(s) != null)
@@ -310,7 +321,9 @@ namespace Decennium.Foundation.Laboratory
             string dailyError = ValidateDailyProvisioningHistory(s);
             if (dailyError != null) return dailyError;
             string restDebtError = ValidateRestDebtState(s);
-            return restDebtError ?? ValidateStrainRecoveryState(s);
+            if (restDebtError != null) return restDebtError;
+            string recoveryError = ValidateStrainRecoveryState(s);
+            return recoveryError ?? ValidateMoraleRestState(s);
         }
 
         private string ValidateDailyProvisioningHistory(Snapshot s)

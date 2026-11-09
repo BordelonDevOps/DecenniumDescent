@@ -102,7 +102,8 @@ namespace Decennium.Foundation.Laboratory
             if (restDebtProfile == null) return;
             string error = restDebtProfile.ValidateBindings(s, dailyProvisioning);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+                : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
                 throw new InvalidOperationException("RestDebtRequiresCanonicalInitialProfile");
             s.RestWatchSchedules = Array.Empty<RestWatchScheduleRecord>();
@@ -175,7 +176,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveRestDebtCommand(Snapshot s, Command c)
         {
-            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+                : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (restDebtProfile == null || s.SchemaVersion != expectedSchema) return "RestDebtNotSelected";
             if (!restDebtProfile.IncludesActor(c.Actor)) return "RestDebtActorNotRegistered";
             if (c.Inventory != null || c.Combat != null || c.Advancement != null || c.Ranged != null
@@ -210,6 +212,7 @@ namespace Decennium.Foundation.Laboratory
             if (s.InventoryCombat) return "RestUnavailableDuringTacticalCombat";
             if (c.Kind == CommandKind.BeginRest)
             {
+                if (ActiveMoraleRest(s, c.Actor) != null) return "MoraleRestConflictsWithLongRest";
                 if (c.Target == null) return "InvalidRestSite";
                 var site = restDebtProfile.Site(c.Target);
                 if (site == null || !site.SafeBerth || !site.QualifyingRestEligible) return "RestSiteNotQualified";
@@ -392,7 +395,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
                     && s.ExpeditionStrainGains.All(x => x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning)
                     ? null : "RestDebtProfileMissing";
-            int expectedSchema = strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+                : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.ContentFingerprint != ContentFingerprint
                 || restDebtProfile.ValidateBindings(s, dailyProvisioning) != null)
                 return "RestDebtProfileMismatch";

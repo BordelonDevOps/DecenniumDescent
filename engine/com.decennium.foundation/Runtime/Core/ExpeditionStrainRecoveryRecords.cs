@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
+    public enum ExpeditionRecoveryKind { SecureLongRest, MoraleRest }
+
     /// <summary>Append-only point metadata update supported by a later complete daily provisioning
     /// settlement. The original gain record remains unchanged for source history.</summary>
     public sealed class ExpeditionStrainRecoveryGateUpdateRecord
@@ -55,6 +57,9 @@ namespace Decennium.Foundation
         public string Id { get; }
         public string ActorId { get; }
         public string RestIntervalId { get; }
+        public string ActivityIntervalId { get; }
+        public ExpeditionRecoveryKind RecoveryKind { get; }
+        public string RecoveryCompletionId { get; }
         public string InitiatingCommandId { get; }
         public RuleTime CompletedAt { get; }
         public long Revision { get; }
@@ -66,8 +71,20 @@ namespace Decennium.Foundation
         public ExpeditionStrainRecoveryOfferRecord(string id, string actorId, string restIntervalId,
             string initiatingCommandId, RuleTime completedAt, long revision, string[] pointIds,
             string chosenPointId = "", long resolvedRevision = 0)
+            : this(id, actorId, ExpeditionRecoveryKind.SecureLongRest, "", restIntervalId, initiatingCommandId,
+                completedAt, revision, pointIds, chosenPointId, resolvedRevision)
+        { }
+
+        public ExpeditionStrainRecoveryOfferRecord(string id, string actorId, ExpeditionRecoveryKind recoveryKind,
+            string recoveryCompletionId, string activityIntervalId, string initiatingCommandId,
+            RuleTime completedAt, long revision, string[] pointIds, string chosenPointId = "", long resolvedRevision = 0)
         {
-            if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || !Validation.ValidId(restIntervalId)
+            string restIntervalId = recoveryKind == ExpeditionRecoveryKind.SecureLongRest ? activityIntervalId : "";
+            if (!Validation.ValidId(id) || !Validation.ValidId(actorId)
+                || !Enum.IsDefined(typeof(ExpeditionRecoveryKind), recoveryKind)
+                || !Validation.ValidId(activityIntervalId)
+                || recoveryCompletionId != "" && !Validation.ValidId(recoveryCompletionId)
+                || recoveryKind == ExpeditionRecoveryKind.MoraleRest && !Validation.ValidId(recoveryCompletionId)
                 || !Validation.ValidId(initiatingCommandId) || revision < 1 || pointIds == null
                 || chosenPointId == null || chosenPointId != "" && !Validation.ValidId(chosenPointId)
                 || chosenPointId == "" && resolvedRevision != 0
@@ -79,7 +96,8 @@ namespace Decennium.Foundation
                 || !selected.SequenceEqual(selected.OrderBy(x => x, StringComparer.Ordinal))
                 || chosenPointId != "" && !selected.Contains(chosenPointId, StringComparer.Ordinal))
                 throw new ArgumentException("Recovery offer requires a canonical non-empty point list.");
-            Id = id; ActorId = actorId; RestIntervalId = restIntervalId; InitiatingCommandId = initiatingCommandId;
+            Id = id; ActorId = actorId; RestIntervalId = restIntervalId; ActivityIntervalId = activityIntervalId;
+            RecoveryKind = recoveryKind; RecoveryCompletionId = recoveryCompletionId; InitiatingCommandId = initiatingCommandId;
             CompletedAt = completedAt; Revision = revision; this.pointIds = selected;
             ChosenPointId = chosenPointId; ResolvedRevision = resolvedRevision;
         }
@@ -94,18 +112,29 @@ namespace Decennium.Foundation
         public string PointId { get; }
         public string GainId { get; }
         public string BeneficialRestId { get; }
+        public ExpeditionRecoveryKind RecoveryKind { get; }
+        public string RecoveryCompletionId { get; }
         public RuleTime At { get; }
         public long Revision { get; }
         public int MutationSequence { get; }
 
         public ExpeditionStrainRemovalRecord(string id, string actorId, string pointId, string gainId,
             string beneficialRestId, RuleTime at, long revision, int mutationSequence)
+            : this(id, actorId, pointId, gainId, ExpeditionRecoveryKind.SecureLongRest, beneficialRestId,
+                at, revision, mutationSequence)
+        { }
+
+        public ExpeditionStrainRemovalRecord(string id, string actorId, string pointId, string gainId,
+            ExpeditionRecoveryKind recoveryKind, string recoveryCompletionId, RuleTime at, long revision, int mutationSequence)
         {
             if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || !Validation.ValidId(pointId)
-                || !Validation.ValidId(gainId) || !Validation.ValidId(beneficialRestId)
+                || !Validation.ValidId(gainId) || !Enum.IsDefined(typeof(ExpeditionRecoveryKind), recoveryKind)
+                || !Validation.ValidId(recoveryCompletionId)
                 || revision < 1 || mutationSequence < 0)
                 throw new ArgumentException("Invalid Expedition Strain point removal.");
-            Id = id; ActorId = actorId; PointId = pointId; GainId = gainId; BeneficialRestId = beneficialRestId;
+            Id = id; ActorId = actorId; PointId = pointId; GainId = gainId; RecoveryKind = recoveryKind;
+            RecoveryCompletionId = recoveryCompletionId;
+            BeneficialRestId = recoveryKind == ExpeditionRecoveryKind.SecureLongRest ? recoveryCompletionId : "";
             At = at; Revision = revision; MutationSequence = mutationSequence;
         }
     }

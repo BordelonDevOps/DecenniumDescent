@@ -96,8 +96,9 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeStrainRecovery(Snapshot s)
         {
             if (strainRecoveryProfile == null) return;
-            if (s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema)
-                throw new InvalidOperationException("StrainRecoveryRequiresSchema64");
+            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema : Snapshot.ExpeditionStrainRecoverySchema;
+            if (s.SchemaVersion != expectedSchema)
+                throw new InvalidOperationException("StrainRecoveryRequiresSelectedSchema");
             s.ExpeditionStrainRecoveryGateUpdates = Array.Empty<ExpeditionStrainRecoveryGateUpdateRecord>();
             s.ExpeditionBeneficialRests = Array.Empty<ExpeditionBeneficialRestRecord>();
             s.ExpeditionStrainRecoveryOffers = Array.Empty<ExpeditionStrainRecoveryOfferRecord>();
@@ -187,6 +188,7 @@ namespace Decennium.Foundation.Laboratory
         private string OpenStrainRecoveryOffers(Snapshot s, Command initiating)
         {
             if (strainRecoveryProfile == null) return null;
+            if (moraleRestProfile != null) return OpenSchema65SecureRestOffers(s, initiating);
             var completed = s.RestIntervals.Where(x => x.Status == RestIntervalStatus.Completed
                     && x.EndedAt == s.RuleClock && strainRecoveryProfile.IsSecure(x.SiteId))
                 .OrderBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
@@ -245,6 +247,8 @@ namespace Decennium.Foundation.Laboratory
             out ExpeditionStrainGainRecord gain)
         {
             offer = null; gain = null;
+            if (moraleRestProfile != null && s.SchemaVersion == Snapshot.MoraleRestSchema)
+                return AssessSchema65RecoveryChoice(s, c, out offer, out gain);
             if (strainRecoveryProfile == null || s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema)
                 return "StrainRecoveryNotSelected";
             if (c.X != 0 || c.Y != 0 || c.Target == "" || c.Inventory != null || c.Combat != null
@@ -285,6 +289,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveStrainRecoveryChoice(Snapshot s, Command c)
         {
+            if (moraleRestProfile != null && s.SchemaVersion == Snapshot.MoraleRestSchema)
+                return ResolveSchema65RecoveryChoice(s, c);
             string failure = AssessStrainRecoveryChoice(s, c, out var offer, out var gain);
             if (failure != null) return failure;
             if (s.ExpeditionStrainRemovals.Length >= ExpeditionProvisioningValidation.MaxStrainRemovals)
@@ -338,6 +344,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ValidateStrainRecoveryState(Snapshot s)
         {
+            if (moraleRestProfile != null) return ValidateSchema65StrainRecoveryState(s);
             if (strainRecoveryProfile == null)
                 return s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
