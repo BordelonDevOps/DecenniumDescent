@@ -1,0 +1,152 @@
+{
+  "status": "PASS",
+  "baselineCommit": "f37617dcf57f044a63ec4d6e576364dd01ee43ff",
+  "description": "Each GPT first-review blocker reproduced against the schema66 implementation, then the corresponding regression passed after correction. The current full suite is the condition-event after-check; the focused combat and connected acceptance reports are separately retained.",
+  "runs": {
+    "conditionClear": {
+      "before": {
+        "report": "development-attempts\\gpt-review-reproduction\\failure-before-fix\\case-1\\run-20261109T043239646Z-f158c2cc\\results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "FAIL",
+        "case": "haven_care_benign_condition_event_preserves_active_interval",
+        "passed": false,
+        "error": "System.Exception: A benign condition clear canceled an otherwise eligible Haven-care interval.\r\n   at Decennium.Foundation.Tests.FoundationCases.Require(Boolean condition, String message)\r\n   at Decennium.Foundation.Tests.FoundationCases.<>c__DisplayClass150_0.<AddHavenCareCases>b__0()\r\n   at Decennium.Foundation.Tests.FoundationCases.Run(String name, String directory)",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "b95f00f0e0587b0a913ab75defd441c89fa4dfacfe9233468753084fedcb4673"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "2300d698cb42075178c6d47c8143fda7b13ee4f0a34b5b92754d7ab910988ae0"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "d66f759aab2069780ba23f832401a8fd351bd2482e6bb6b9461aa66c64d3a7ab"
+          }
+        ]
+      },
+      "after": {
+        "report": "FULL_TEST_RESULTS.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "PASS",
+        "case": "haven_care_benign_condition_event_preserves_active_interval",
+        "passed": true,
+        "error": "",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "7c5f8931bdf16cbc3a422b1571f1f42d64048104550433d77937ab3955a627ab"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "92dcdff698ca0a4ad52719a1bd253e88b54fffa742150124bfa69f3fe0510bc3"
+          }
+        ]
+      }
+    },
+    "externalCombat": {
+      "before": {
+        "report": "development-attempts\\gpt-review-reproduction\\failure-before-fix\\case-2\\run-20261109T043239671Z-c87c5996\\results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "FAIL",
+        "case": "haven_care_rejects_external_combat_transition_without_mutation",
+        "passed": false,
+        "error": "System.Exception: An external combat transition changed or interrupted an active Haven-care interval.\r\n   at Decennium.Foundation.Tests.FoundationCases.Require(Boolean condition, String message)\r\n   at Decennium.Foundation.Tests.FoundationCases.<>c__DisplayClass150_0.<AddHavenCareCases>b__1()\r\n   at Decennium.Foundation.Tests.FoundationCases.Run(String name, String directory)",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "b95f00f0e0587b0a913ab75defd441c89fa4dfacfe9233468753084fedcb4673"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "2300d698cb42075178c6d47c8143fda7b13ee4f0a34b5b92754d7ab910988ae0"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "d66f759aab2069780ba23f832401a8fd351bd2482e6bb6b9461aa66c64d3a7ab"
+          }
+        ]
+      },
+      "after": {
+        "report": "final\\focused\\movement-combat\\run-20261109T044932108Z-9d32c1e8\\results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "PASS",
+        "case": "haven_care_rejects_external_combat_transition_without_mutation",
+        "passed": true,
+        "error": "",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "7c5f8931bdf16cbc3a422b1571f1f42d64048104550433d77937ab3955a627ab"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "92dcdff698ca0a4ad52719a1bd253e88b54fffa742150124bfa69f3fe0510bc3"
+          }
+        ]
+      }
+    },
+    "laterDeath": {
+      "before": {
+        "report": "development-attempts\\gpt-review-reproduction\\failure-before-fix\\case-3\\run-20261109T043239654Z-eae44651\\results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "FAIL",
+        "case": "haven_care_batches_supported_strain_after_real_provisioning_and_replays",
+        "passed": false,
+        "error": "System.Exception: Haven-care scenario failed at later ordinary death and historical care replay.\r\n ---> System.Exception: i-33 (AdvanceClock): InvalidResult\r\n   at Decennium.Foundation.Tests.FoundationCases.Require(Boolean condition, String message)\r\n   at Decennium.Foundation.Tests.FoundationCases.WorldCommit(Simulation s, Command c)\r\n   at Decennium.Foundation.Tests.FoundationCases.WorldAdvance(Simulation s, Int32 seconds, Int32 denominator)\r\n   at Decennium.Foundation.Tests.FoundationCases.<>c__DisplayClass150_0.<AddHavenCareCases>b__2()\r\n   --- End of inner exception stack trace ---\r\n   at Decennium.Foundation.Tests.FoundationCases.<>c__DisplayClass150_0.<AddHavenCareCases>b__2()\r\n   at Decennium.Foundation.Tests.FoundationCases.Run(String name, String directory)",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "b95f00f0e0587b0a913ab75defd441c89fa4dfacfe9233468753084fedcb4673"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "2300d698cb42075178c6d47c8143fda7b13ee4f0a34b5b92754d7ab910988ae0"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "d66f759aab2069780ba23f832401a8fd351bd2482e6bb6b9461aa66c64d3a7ab"
+          }
+        ]
+      },
+      "after": {
+        "report": "MODULE_CASE_RESULTS.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "PASS",
+        "case": "haven_care_batches_supported_strain_after_real_provisioning_and_replays",
+        "passed": true,
+        "error": "",
+        "coreCompilation": "PASS",
+        "relevantSourceHashes": [
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs",
+            "sha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242"
+          },
+          {
+            "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs",
+            "sha256": "7c5f8931bdf16cbc3a422b1571f1f42d64048104550433d77937ab3955a627ab"
+          },
+          {
+            "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs",
+            "sha256": "92dcdff698ca0a4ad52719a1bd253e88b54fffa742150124bfa69f3fe0510bc3"
+          }
+        ]
+      }
+    }
+  },
+  "fullSuite": "FULL_TEST_RESULTS.json"
+}

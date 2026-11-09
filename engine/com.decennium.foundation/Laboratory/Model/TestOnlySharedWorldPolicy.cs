@@ -607,18 +607,17 @@ namespace Decennium.Foundation.Laboratory
             if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
             if (IsMoraleRestCommand(c.Kind)) return ResolveMoraleRestCommand(s, c);
             if (IsHavenCareCommand(c.Kind)) return ResolveHavenCareCommand(s, c);
+            if (HasActiveHavenCare(s) && (c.Kind == CommandKind.EnterInventoryCombat
+                || c.Kind == CommandKind.BeginFixedEncounter))
+                return "HavenCareCombatTransitionUnsupported";
             string havenCareActorFailure=HavenCareActorCommandFailure(s,c);
             if(havenCareActorFailure!=null)return havenCareActorFailure;
-            if (c.Kind == CommandKind.DispatchConditionEvent && ActiveHavenCare(s, c.Actor) != null)
-                InterruptActiveHavenCare(s, c.Id, s.Revision + 1, s.Revision + 1, c.Actor);
             string moraleRestingActorFailure = MoraleRestingActorCommandFailure(s, c);
             if (moraleRestingActorFailure != null) return moraleRestingActorFailure;
             string restingActorFailure = RestingActorCommandFailure(s, c);
             if (restingActorFailure != null) return restingActorFailure;
             if(c.Kind==CommandKind.EnterInventoryCombat&&HasActiveMoraleRest(s))
                 return "MoraleRestInterruptionAuthorityUnsupported";
-            if (c.Kind == CommandKind.EnterInventoryCombat && HasActiveHavenCare(s))
-                InterruptActiveHavenCare(s, c.Id, s.Revision + 1, s.Revision + 1);
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
@@ -697,7 +696,7 @@ namespace Decennium.Foundation.Laboratory
                 // the upcoming tactical continuation host before the departure can be admitted.
                 if (facts.StartsEncounter) {
                     if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";
-                    if(HasActiveHavenCare(s))InterruptActiveHavenCare(s,c.Id,s.Revision+1,s.Revision+1);
+                    if(HasActiveHavenCare(s))return "HavenCareCombatTransitionUnsupported";
                     return EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
                 }
                 if (c.Target == "run") {

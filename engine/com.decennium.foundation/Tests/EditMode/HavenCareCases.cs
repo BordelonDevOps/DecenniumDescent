@@ -9,18 +9,19 @@ namespace Decennium.Foundation.Tests
 {
     public static partial class FoundationCases
     {
-        private static TestOnlySharedWorldPolicy HavenCarePolicy()
+        private static TestOnlySharedWorldPolicy HavenCarePolicy(SharedCombatFixture combat = null,
+            ConditionCombatFixture conditions = null, int siteX = 3, int siteY = 2, string[] patients = null)
         {
-            var actors = new[] { TestOnlyPolicy.ActorId };
+            var actors = patients ?? new[] { TestOnlyPolicy.ActorId };
             var restSite = new TestOnlyRestSiteFact("TEST_ONLY.safe-berth", 3, 2, true, true);
             var moraleSite = new TestOnlyMoraleRestSiteFact("TEST_ONLY.haven-recreation",
                 "TEST_ONLY.campfire-recreation", 3, 2, true, true);
-            return new TestOnlySharedWorldPolicy().EnableCampGreensAssignments()
+            return new TestOnlySharedWorldPolicy(combat, conditions: conditions).EnableCampGreensAssignments()
                 .EnableDailyProvisioning(new TestOnlyDailyProvisioningProfile(actors))
                 .EnableRestDebt(new TestOnlyRestDebtProfile(actors, new[] { restSite }))
                 .EnableExpeditionStrainRecovery()
                 .EnableMoraleRest(new TestOnlyMoraleRestProfile(actors, new[] { moraleSite }))
-                .EnableHavenCare(new TestOnlyHavenCareProfile(actors, siteX: 3, siteY: 2));
+                .EnableHavenCare(new TestOnlyHavenCareProfile(actors, siteX: siteX, siteY: siteY));
         }
 
         private static void HavenCareIntake(Simulation s, string lotId, RuleQuantity amount,
@@ -57,6 +58,79 @@ namespace Decennium.Foundation.Tests
         private static void AddHavenCareCases(Dictionary<string, Action> cases, string directory)
         {
             var host = TestOnlySharedWorldPolicy.Host();
+            cases.Add("haven_care_benign_condition_event_preserves_active_interval", () =>
+            {
+                var benignClear = new ConditionFixtureEvent(TestOnlyPolicy.ActorId,
+                    ConditionOperation.Cure("event.haven-care.noop", new ConditionStamp(T(0)), "Blinded"));
+                var policy = HavenCarePolicy(conditions: new ConditionCombatFixture(benignClear), siteX: 0, siteY: 0);
+                var simulation = World(policy);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginHavenCare, "TEST_ONLY.haven-care-service"));
+                var active = simulation.Capture().ExpeditionHavenCareIntervals.Single();
+                WorldCommit(simulation, CCCommand(simulation, "haven-care.noop"));
+                Require(simulation.Capture().ExpeditionHavenCareIntervals.Single(x => x.Id == active.Id).Status
+                        == HavenCareIntervalStatus.Active,
+                    "A benign condition clear canceled an otherwise eligible Haven-care interval.");
+
+                byte[] activeBytes = Bytes(simulation);
+                var store = new FileSaveStore();
+                string path = Path.Combine(directory, "haven-care-benign-condition.ddsave");
+                store.Save(path, simulation.Capture());
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                Require(activeBytes.SequenceEqual(Bytes(restored)),
+                    "A benign condition event or active care interval changed through save/restore.");
+                WorldAdvance(simulation, 24 * 60 * 60);
+                WorldAdvance(restored, 24 * 60 * 60);
+                Require(Bytes(simulation).SequenceEqual(Bytes(restored))
+                    && simulation.Capture().ExpeditionHavenCareIntervals.Single(x => x.Id == active.Id).Status
+                        == HavenCareIntervalStatus.Completed,
+                    "The benign condition clear did not preserve deterministic care completion after restore.");
+            });
+
+            cases.Add("haven_care_rejects_external_combat_transition_without_mutation", () =>
+            {
+                var policy = HavenCarePolicy(new SharedCombatFixture(), siteX: 0, siteY: 0);
+                var simulation = World(policy);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginHavenCare, "TEST_ONLY.haven-care-service"));
+                var before = simulation.Capture();
+                Require(before.WorldSchedule.Order.Contains(AdditionalTacticalActor.Id),
+                    "Combat-transition test actor is not part of the authored schedule.");
+                byte[] beforeBytes = Bytes(simulation);
+                var result = simulation.Execute(host, IC(simulation, CommandKind.BeginFixedEncounter,
+                    actor: AdditionalTacticalActor.Id));
+                var after = simulation.Capture();
+                Require(result.Outcome == Outcome.Rejected && result.Code == "HavenCareCombatTransitionUnsupported"
+                    && after.RuleClock == before.RuleClock && after.Receipts.Length == before.Receipts.Length
+                    && after.ExpeditionHavenCareIntervals.Single().Status == HavenCareIntervalStatus.Active
+                    && beforeBytes.SequenceEqual(Bytes(simulation)),
+                    "An external combat transition changed or interrupted an active Haven-care interval.");
+                var inventoryCombat = simulation.Execute(host, IC(simulation, CommandKind.EnterInventoryCombat,
+                    actor: AdditionalTacticalActor.Id));
+                Require(inventoryCombat.Outcome == Outcome.Rejected
+                    && inventoryCombat.Code == "HavenCareCombatTransitionUnsupported"
+                    && beforeBytes.SequenceEqual(Bytes(simulation)),
+                    "Inventory-combat entry changed or interrupted an active Haven-care interval.");
+
+                var movementPolicy = HavenCarePolicy(new SharedCombatFixture(), siteX: 3, siteY: 3,
+                    patients: new[] { TestOnlyPolicy.CompanionId });
+                var movement = World(movementPolicy);
+                WorldCommit(movement, IC(movement, CommandKind.BeginHavenCare,
+                    "TEST_ONLY.haven-care-service", actor: TestOnlyPolicy.CompanionId));
+                WorldStep(movement, 1, 0, actor: TestOnlyPolicy.ActorId);
+                WorldAdvance(movement, 1);
+                WorldStep(movement, 1, 0, actor: TestOnlyPolicy.ActorId);
+                WorldAdvance(movement, 1);
+                var beforeApproach = movement.Capture();
+                byte[] beforeApproachBytes = Bytes(movement);
+                var approach = movement.Execute(host, IC(movement, CommandKind.BeginWorldStep, "walk",
+                    actor: TestOnlyPolicy.ActorId, x: 1, y: 0));
+                Require(approach.Outcome == Outcome.Rejected
+                    && approach.Code == "HavenCareCombatTransitionUnsupported"
+                    && movement.Capture().RuleClock == beforeApproach.RuleClock
+                    && movement.Capture().ExpeditionHavenCareIntervals.Single().Status == HavenCareIntervalStatus.Active
+                    && beforeApproachBytes.SequenceEqual(Bytes(movement)),
+                    "Movement-triggered combat changed or interrupted another actor's active Haven care.");
+            });
+
             cases.Add("haven_care_batches_supported_strain_after_real_provisioning_and_replays", () =>
             {
                 string milestone = "initialization";
@@ -290,6 +364,22 @@ namespace Decennium.Foundation.Tests
                 var replayed = new Simulation(policy, new SnapshotCodec().Decode(finalBytes), ExecutionProfile.Laboratory);
                 Require(finalBytes.SequenceEqual(Bytes(replayed)),
                     "The completed care scenario did not reproduce byte-for-byte from its saved command history.");
+
+                milestone = "later ordinary death and historical care replay";
+                bool dead = false;
+                for (int day = 0; day < 10 && !dead; day++)
+                {
+                    WorldAdvance(simulation, 24 * 60 * 60);
+                    dead = simulation.Capture().Lives.Single(x => x.ActorId == TestOnlyPolicy.ActorId).Dead;
+                }
+                Require(dead && simulation.Capture().ExpeditionHavenCareAssessments.Any(x => x.IntervalId == active.Id),
+                    "The shared provisioning/Strain authorities did not reach ordinary death after completed care.");
+                byte[] deathBytes = Bytes(simulation);
+                string deathPath = Path.Combine(directory, "haven-care-later-death.ddsave");
+                store.Save(deathPath, simulation.Capture());
+                var deathRestored = new Simulation(policy, store.Load(deathPath), ExecutionProfile.Laboratory);
+                Require(deathBytes.SequenceEqual(Bytes(deathRestored)),
+                    "A later ordinary death rejected or changed the earlier care assessment during save/replay.");
                 }
                 catch (Exception ex)
                 {

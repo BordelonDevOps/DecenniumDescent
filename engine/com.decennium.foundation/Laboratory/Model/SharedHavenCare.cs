@@ -388,11 +388,11 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private ExpeditionStrainGainRecord[] EligibleHavenCarePoints(Snapshot s, string actorId,
-            RuleTime at, long revision)
+            RuleTime at, long revision, bool requireLivingPatient = true)
         {
             if (strainRecoveryProfile == null || !havenCareProfile.IncludesPatient(actorId)
                 || ProvisioningBlockActive(s, actorId, at)
-                || s.Lives.Single(x => x.ActorId == actorId).Dead
+                || requireLivingPatient && s.Lives.Single(x => x.ActorId == actorId).Dead
                 || ExpeditionStrainRules.Project(s, actorId, at, revision).Level >= 6)
                 return Array.Empty<ExpeditionStrainGainRecord>();
             return s.ExpeditionStrainGains.Where(g => g.ActorId == actorId && g.PointId != ""
@@ -443,9 +443,13 @@ namespace Decennium.Foundation.Laboratory
                 var beforeAssessmentBatch = s.Copy();
                 beforeAssessmentBatch.ExpeditionStrainRemovals = s.ExpeditionStrainRemovals
                     .Where(x => x.RecoveryCompletionId != assessment.Id).ToArray();
+                // This is a historical assessment. The live-life predicate was enforced when
+                // the completion command created it; deterministic receipt replay below this
+                // validator re-executes that command at its causal boundary and proves the
+                // patient was alive then. Do not substitute the snapshot's later life state.
                 string[] eligible = qualified && !blocked
                     ? EligibleHavenCarePoints(beforeAssessmentBatch, interval.ActorId,
-                        interval.ScheduledEnd, assessment.Revision)
+                        interval.ScheduledEnd, assessment.Revision, requireLivingPatient: false)
                         .Select(x => x.PointId).OrderBy(x => x, StringComparer.Ordinal).ToArray()
                     : Array.Empty<string>();
                 if (support.Food != assessment.FoodConsumed || support.Water != assessment.WaterConsumed
