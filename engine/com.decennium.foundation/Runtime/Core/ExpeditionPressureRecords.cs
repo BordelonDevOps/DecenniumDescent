@@ -235,9 +235,55 @@ namespace Decennium.Foundation
             if (snapshot == null || !Validation.ValidId(cohortId)) throw new ArgumentException("Invalid pressure query.");
             var cohort = snapshot.ExpeditionPressureCohorts.SingleOrDefault(x => x.Id == cohortId);
             if (cohort == null) throw new ArgumentException("Unknown pressure cohort.");
-            var latest = snapshot.ExpeditionPressureCheckpoints.Where(x => x.CohortId == cohortId)
+            return At(snapshot, cohort, snapshot.Revision, snapshot.RuleClock);
+        }
+
+        /// <summary>Resolve the Pressure value visible at one causal point from immutable checkpoints and
+        /// source history. Schema68's late same-Watch reconciliation is derived from the existing records.</summary>
+        internal static int At(Snapshot snapshot, ExpeditionPressureCohortRecord cohort, long revision, RuleTime at)
+        {
+            var latest = snapshot.ExpeditionPressureCheckpoints.Where(x => x.CohortId == cohort.Id
+                    && x.AppliedRevision <= revision && x.At <= at)
                 .OrderBy(x => x.WatchIndex).LastOrDefault();
-            return latest?.StoredPressure ?? cohort.InitialPressure;
+            return latest == null ? cohort.InitialPressure : AfterCheckpoint(snapshot, latest, revision, at);
+        }
+
+        internal static int AfterCheckpoint(Snapshot snapshot, ExpeditionPressureCheckpointRecord checkpoint,
+            long revision, RuleTime at)
+        {
+            if (snapshot.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema) return checkpoint.StoredPressure;
+            BigInteger watchEnd = (new BigInteger(checkpoint.WatchIndex) + BigInteger.One) * WatchSeconds;
+            bool watchClosed = new BigInteger(at.Numerator) >= watchEnd * at.Denominator;
+            bool admittedAfterCheckpoint = snapshot.ExpeditionPressureExposures.Any(x => x.CohortId == checkpoint.CohortId
+                && x.RouteId == checkpoint.RouteId && x.StartedRevision <= checkpoint.AppliedRevision
+                && x.StartedAt <= checkpoint.At && x.EndKind == ExpeditionPressureExposureEndKind.SafeHavenArrival
+                && x.EndedAt.HasValue && x.EndedAt.Value > checkpoint.At && x.EndRevision > checkpoint.AppliedRevision
+                && x.EndRevision <= revision && x.EndedAt.Value <= at);
+            if (!watchClosed && !admittedAfterCheckpoint) return checkpoint.StoredPressure;
+
+            var changes = snapshot.ExpeditionPressureChanges.Where(x => x.CohortId == checkpoint.CohortId
+                    && x.WatchIndex == checkpoint.WatchIndex && x.SourceRevision <= revision && x.At <= at).ToArray();
+            int reconciled = Settle(checkpoint.PressureBefore,
+                changes.Any(x => x.Kind == ExpeditionPressureChangeKind.OpenCombat),
+                changes.Count(x => x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry), checkpoint.RiskFloor);
+            return checkpoint.StoredPressure + (reconciled - checkpoint.StoredPressure);
+        }
+
+        /// <summary>Tests attack membership against the exposure's causal end. A same-receipt opportunity
+        /// attack is included only when the completed movement record proves it interrupted that departure.</summary>
+        public static bool AttackWithinExposure(Snapshot snapshot, ExpeditionPressureExposureRecord exposure,
+            string attackerId, string targetId, long revision, RuleTime at, bool opportunity)
+        {
+            if (snapshot == null || exposure == null || !Validation.ValidId(attackerId) || !Validation.ValidId(targetId)
+                || revision <= exposure.StartedRevision || at < exposure.StartedAt) return false;
+            if (!exposure.EndedAt.HasValue) return true;
+            if (at > exposure.EndedAt.Value) return false;
+            if (revision < exposure.EndRevision) return true;
+            if (revision != exposure.EndRevision || at != exposure.EndedAt.Value || !opportunity
+                || exposure.EndKind != ExpeditionPressureExposureEndKind.RetreatCompleted) return false;
+            return snapshot.TacticalMoves.Any(move => move.ActorId == targetId
+                && move.Status == TacticalMoveStatus.Completed && move.ResolvedRevision == exposure.EndRevision
+                && move.Reactors.Contains(attackerId));
         }
 
         public static int EffectiveForRouteCheck(int storedPressure, ExpeditionRouteQuality quality)
@@ -308,8 +354,6 @@ namespace Decennium.Foundation
                         || !s.Receipts.Any(r => r.Revision == x.EndRevision)))
                 || s.ExpeditionPressureChanges.Any(x => x.SourceRevision > s.Revision
                     || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
-                    || !s.ExpeditionPressureExposures.Any(e => e.Id == x.ExposureId && e.CohortId == x.CohortId
-                        && e.RouteId == x.RouteId && e.StartedAt <= x.At && (!e.EndedAt.HasValue || x.At < e.EndedAt.Value))
                     || EventWatchIndex(x.At) != x.WatchIndex || !SourceExists(s, x))
                 || s.ExpeditionPressureCheckpoints.Any(x => x.AppliedRevision > s.Revision
                     || x.At > s.RuleClock || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
@@ -330,16 +374,21 @@ namespace Decennium.Foundation
 
             foreach (var c in s.ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex))
             {
+                var cohort = s.ExpeditionPressureCohorts.Single(x => x.Id == c.CohortId);
                 int before = s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == c.CohortId && x.WatchIndex < c.WatchIndex)
-                    .OrderBy(x => x.WatchIndex).Select(x => (int?)x.StoredPressure).LastOrDefault()
-                    ?? s.ExpeditionPressureCohorts.Single(x => x.Id == c.CohortId).InitialPressure;
+                    .OrderBy(x => x.WatchIndex).LastOrDefault() is ExpeditionPressureCheckpointRecord previous
+                    ? ExpeditionPressureRules.AfterCheckpoint(s, previous, c.AppliedRevision, c.At) : cohort.InitialPressure;
+                var available = s.ExpeditionPressureChanges.Where(x => x.CohortId == c.CohortId
+                    && x.WatchIndex == c.WatchIndex && x.SourceRevision <= c.AppliedRevision && x.At <= c.At).ToArray();
+                var causes = available.Where(x => x.Kind == ExpeditionPressureChangeKind.OpenCombat)
+                    .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).Select(x => x.Id);
+                var reductions = available.Where(x => x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry)
+                    .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).Take(2).Select(x => x.Id);
                 int computed = ExpeditionPressureRules.Settle(before, c.CauseIds.Count > 0,
                     c.ReductionIds.Count, c.RiskFloor);
                 if (before != c.PressureBefore || computed != c.StoredPressure
-                    || c.CauseIds.Count != s.ExpeditionPressureChanges.Count(x => x.CohortId == c.CohortId
-                        && x.WatchIndex == c.WatchIndex && x.Kind == ExpeditionPressureChangeKind.OpenCombat)
-                    || c.ReductionIds.Count != s.ExpeditionPressureChanges.Count(x => x.CohortId == c.CohortId
-                        && x.WatchIndex == c.WatchIndex && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry))
+                    || !c.CauseIds.SequenceEqual(causes, StringComparer.Ordinal)
+                    || !c.ReductionIds.SequenceEqual(reductions, StringComparer.Ordinal))
                     throw new ArgumentException("Expedition-pressure checkpoint does not derive from its source history.");
             }
         }
@@ -386,12 +435,14 @@ namespace Decennium.Foundation
             {
                 var melee = s.MeleeAttacks.SingleOrDefault(x => x.Id == change.SourceId);
                 if (melee != null) return melee.Revision == change.SourceRevision && melee.At == change.At
-                    && AttackWithinExposure(exposure, melee.Revision, melee.At)
+                    && ExpeditionPressureRules.AttackWithinExposure(s, exposure, melee.AttackerId, melee.TargetId,
+                        melee.Revision, melee.At, melee.Opportunity)
                     && (s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(melee.AttackerId)
                         || s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(melee.TargetId));
                 var ranged = s.RangedAttacks.SingleOrDefault(x => x.Id == change.SourceId);
                 return ranged != null && ranged.Revision == change.SourceRevision && ranged.At == change.At
-                    && AttackWithinExposure(exposure, ranged.Revision, ranged.At)
+                    && ExpeditionPressureRules.AttackWithinExposure(s, exposure, ranged.AttackerId, ranged.TargetId,
+                        ranged.Revision, ranged.At, false)
                     && (s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(ranged.AttackerId)
                         || s.ExpeditionPressureCohorts.Single(c => c.Id == change.CohortId).Members.Contains(ranged.TargetId));
             }
@@ -410,8 +461,5 @@ namespace Decennium.Foundation
             catch (ArgumentException) { return false; }
         }
 
-        private static bool AttackWithinExposure(ExpeditionPressureExposureRecord exposure, long revision, RuleTime at)
-            => revision > exposure.StartedRevision && exposure.StartedAt <= at
-                && (!exposure.EndedAt.HasValue || at < exposure.EndedAt.Value && revision < exposure.EndRevision);
     }
 }

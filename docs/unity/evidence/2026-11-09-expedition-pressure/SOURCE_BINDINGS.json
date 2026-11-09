@@ -12,11 +12,13 @@
     }
   ],
   "implementation": {
-    "name": "Schema67 TEST_ONLY Expedition Pressure and Watch-end consequences",
+    "name": "Schema68 TEST_ONLY Expedition Pressure lifecycle and causal-history correction (no save-layout change)",
     "responsibilities": [
       "Persist one fixed cohort's pressure provenance, route exposures, source-linked category changes and immutable Watch checkpoints.",
       "Settle pressure through the shared RuleClock and deterministic RNG, using actual route profile facts and attack receipts.",
-      "Apply the reviewed TEST_ONLY route obstruction, route closure and existing-path retreat outcomes."
+      "Apply the reviewed TEST_ONLY route obstruction, route closure and existing-path retreat outcomes.",
+      "Validate each immutable checkpoint against source history available at its causal revision and derive late same-Watch category carry-forward without a second checkpoint or roll.",
+      "Resolve attack exposure membership by receipt order, including a committed departure opportunity attack."
     ],
     "authorities": [
       "ExpeditionRouteTravelRecord and the selected TestOnlyExpeditionRouteFixture own route progress, geometry, mapping, physical quality, Risk and Capacity.",
@@ -46,7 +48,10 @@
       "expedition_pressure_automatic_severe_closes_route_and_allows_physical_retreat",
       "expedition_pressure_zero_boundary_guard_and_no_roll_are_exact",
       "expedition_pressure_early_haven_settles_once_and_blocks_same_watch_reentry",
-      "expedition_pressure_haven_at_watch_end_settles_once_and_survives_restore"
+      "expedition_pressure_haven_at_watch_end_settles_once_and_survives_restore",
+      "expedition_pressure_late_watch_attack_reconciles_at_haven_admission_and_next_checkpoint",
+      "expedition_pressure_same_time_attack_and_opportunity_survive_tactical_retreat",
+      "expedition_pressure_schema67_exact_watch_haven_retains_legacy_reason_on_restore"
     ],
     "notImplemented": [
       "Capacity-exceeded, missing/captured members, pursuit, abort triggers, exposed camps and Attention cargo pressure producers.",

@@ -237,21 +237,24 @@ namespace Decennium.Foundation.Laboratory
         {
             if (expeditionPressureProfile == null) return;
             var members = new HashSet<string>(new[] { expeditionPressureProfile.MemberId }, StringComparer.Ordinal);
-            var open = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
-                && !x.EndedAt.HasValue);
-            if (open == null) return;
+            long resolvingRevision = s.Revision + 1;
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                && (!x.EndedAt.HasValue || x.EndRevision == resolvingRevision && x.EndedAt.Value == s.RuleClock
+                    && x.EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted));
+            if (exposure == null) return;
             var attacks = s.MeleeAttacks.Where(x => !oldMelee.Contains(x.Id, StringComparer.Ordinal))
-                .Select(x => new { x.Id, x.Revision, x.AttackerId, x.TargetId, x.At })
+                .Select(x => new { x.Id, x.Revision, x.AttackerId, x.TargetId, x.At, x.Opportunity })
                 .Concat(s.RangedAttacks.Where(x => !oldRanged.Contains(x.Id, StringComparer.Ordinal))
-                    .Select(x => new { x.Id, x.Revision, x.AttackerId, x.TargetId, x.At }))
+                    .Select(x => new { x.Id, x.Revision, x.AttackerId, x.TargetId, x.At, Opportunity = false }))
                 .OrderBy(x => x.Revision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
             foreach (var attack in attacks)
             {
                 if (!members.Contains(attack.AttackerId) && !members.Contains(attack.TargetId)) continue;
-                if (attack.At < open.StartedAt || open.EndedAt.HasValue && attack.At >= open.EndedAt.Value) continue;
+                if (!ExpeditionPressureRules.AttackWithinExposure(s, exposure, attack.AttackerId,
+                    attack.TargetId, attack.Revision, attack.At, attack.Opportunity)) continue;
                 if (s.ExpeditionPressureChanges.Any(x => x.Kind == ExpeditionPressureChangeKind.OpenCombat
                     && x.SourceId == attack.Id)) continue;
-                AddPressureChange(s, open, ExpeditionPressureChangeKind.OpenCombat, attack.Id,
+                AddPressureChange(s, exposure, ExpeditionPressureChangeKind.OpenCombat, attack.Id,
                     attack.Revision, attack.At, EventWatchIndex(attack.At));
             }
         }
@@ -397,7 +400,9 @@ namespace Decennium.Foundation.Laboratory
                     && !s.ExpeditionPressureCheckpoints.Any(x => x.CohortId == exposure.CohortId
                     && x.WatchIndex == watch))
                 {
-                    var reason = stagedHavenArrival
+                    bool havenArrivalSettlement = stagedHavenArrival
+                        || s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema && safeArrival;
+                    var reason = havenArrivalSettlement
                         ? watchEnd ? ExpeditionPressureSettlementReason.HavenArrivalAtWatchEnd
                             : ExpeditionPressureSettlementReason.HavenArrival
                         : watchEnd ? ExpeditionPressureSettlementReason.WatchEnd
@@ -444,10 +449,12 @@ namespace Decennium.Foundation.Laboratory
             if (travel == null) return "PressureRouteProgressMissing";
             int before = ExpeditionPressureRules.Current(s, exposure.CohortId);
             var causes = s.ExpeditionPressureChanges.Where(x => x.CohortId == exposure.CohortId
-                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.OpenCombat)
+                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.OpenCombat
+                && x.SourceRevision <= s.Revision + 1 && x.At <= at)
                 .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
             var reductions = s.ExpeditionPressureChanges.Where(x => x.CohortId == exposure.CohortId
-                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry)
+                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry
+                && x.SourceRevision <= s.Revision + 1 && x.At <= at)
                 .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).Take(2).ToArray();
             int floor = route.Quality == ExpeditionRouteQuality.Secured ? 0 : route.Risk;
             int stored = ExpeditionPressureRules.Settle(before, causes.Length > 0, reductions.Length, floor);
