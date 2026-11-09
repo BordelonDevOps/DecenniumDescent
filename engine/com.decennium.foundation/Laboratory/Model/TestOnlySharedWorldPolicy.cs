@@ -182,6 +182,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRestDebt(s);
             InitializeStrainRecovery(s);
             InitializeMoraleRest(s);
+            InitializeHavenCare(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -432,6 +433,7 @@ namespace Decennium.Foundation.Laboratory
                 var provisioningBoundary=NextProvisioningBoundary(s);if(provisioningBoundary.HasValue&&provisioningBoundary.Value<next)next=provisioningBoundary.Value;
                 var restDebtBoundary=NextRestDebtBoundary(s);if(restDebtBoundary.HasValue&&restDebtBoundary.Value<next)next=restDebtBoundary.Value;
                 var moraleRestBoundary=NextMoraleRestBoundary(s);if(moraleRestBoundary.HasValue&&moraleRestBoundary.Value<next)next=moraleRestBoundary.Value;
+                var havenCareBoundary=NextHavenCareBoundary(s);if(havenCareBoundary.HasValue&&havenCareBoundary.Value<next)next=havenCareBoundary.Value;
                 var active = s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray();
                 // Stationary, living actors have no per-Start event here. The arithmetic cursor
                 // skips empty intervals; active movement must visit its real budget boundaries.
@@ -570,7 +572,12 @@ namespace Decennium.Foundation.Laboratory
                 ExpireReadyActionsAtStart(s,initiating);
                 string moraleInterruptionError=InterruptMoraleRestOnIncapacity(s,initiating,continuation);
                 if(moraleInterruptionError!=null)return moraleInterruptionError;
-                string moraleRestError=ProcessMoraleRestBoundary(s,initiating,continuation);if(moraleRestError!=null)return moraleRestError;
+                var deferredMoraleRestOfferIntervals = new System.Collections.Generic.List<string>();
+                string moraleRestError=ProcessMoraleRestBoundary(s,initiating,continuation,
+                    deferredMoraleRestOfferIntervals);if(moraleRestError!=null)return moraleRestError;
+                string havenCareError=ProcessHavenCareBoundary(s,initiating,continuation);if(havenCareError!=null)return havenCareError;
+                string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
+                    deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
@@ -599,12 +606,19 @@ namespace Decennium.Foundation.Laboratory
             if (IsStrainRecoveryCommand(c.Kind)) return ResolveStrainRecoveryChoice(s, c);
             if (IsRestDebtCommand(c.Kind)) return ResolveRestDebtCommand(s, c);
             if (IsMoraleRestCommand(c.Kind)) return ResolveMoraleRestCommand(s, c);
+            if (IsHavenCareCommand(c.Kind)) return ResolveHavenCareCommand(s, c);
+            string havenCareActorFailure=HavenCareActorCommandFailure(s,c);
+            if(havenCareActorFailure!=null)return havenCareActorFailure;
+            if (c.Kind == CommandKind.DispatchConditionEvent && ActiveHavenCare(s, c.Actor) != null)
+                InterruptActiveHavenCare(s, c.Id, s.Revision + 1, s.Revision + 1, c.Actor);
             string moraleRestingActorFailure = MoraleRestingActorCommandFailure(s, c);
             if (moraleRestingActorFailure != null) return moraleRestingActorFailure;
             string restingActorFailure = RestingActorCommandFailure(s, c);
             if (restingActorFailure != null) return restingActorFailure;
             if(c.Kind==CommandKind.EnterInventoryCombat&&HasActiveMoraleRest(s))
                 return "MoraleRestInterruptionAuthorityUnsupported";
+            if (c.Kind == CommandKind.EnterInventoryCombat && HasActiveHavenCare(s))
+                InterruptActiveHavenCare(s, c.Id, s.Revision + 1, s.Revision + 1);
             if (RouteMappingResultCommand(c.Kind)) return ResolveRouteMappingResultCommand(s, c);
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
@@ -655,8 +669,11 @@ namespace Decennium.Foundation.Laboratory
             if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);
             if(connectedCombat!=null) {
-                if(c.Kind==CommandKind.BeginFixedEncounter)return HasActiveMoraleRest(s)
-                    ?"MoraleRestInterruptionAuthorityUnsupported":EnterCalendarCombat(s,c);
+                if(c.Kind==CommandKind.BeginFixedEncounter) {
+                    if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";
+                    if(HasActiveHavenCare(s))InterruptActiveHavenCare(s,c.Id,s.Revision+1,s.Revision+1);
+                    return EnterCalendarCombat(s,c);
+                }
                 if(s.InventoryCombat)return ResolveCalendarCombat(s,c);
             }
             if(c.Kind==CommandKind.TacticalAssessment)return "TacticalAssessmentRequiresEncounter";
@@ -680,6 +697,7 @@ namespace Decennium.Foundation.Laboratory
                 // the upcoming tactical continuation host before the departure can be admitted.
                 if (facts.StartsEncounter) {
                     if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";
+                    if(HasActiveHavenCare(s))InterruptActiveHavenCare(s,c.Id,s.Revision+1,s.Revision+1);
                     return EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
                 }
                 if (c.Target == "run") {
@@ -757,6 +775,8 @@ namespace Decennium.Foundation.Laboratory
                 if(restDebtBoundary.HasValue&&restDebtBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var moraleRestBoundary=NextMoraleRestBoundary(s);
                 if(moraleRestBoundary.HasValue&&moraleRestBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var havenCareBoundary=NextHavenCareBoundary(s);
+                if(havenCareBoundary.HasValue&&havenCareBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock;
             string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null

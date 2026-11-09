@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
-    public enum ExpeditionRecoveryKind { SecureLongRest, MoraleRest }
+    public enum ExpeditionRecoveryKind { SecureLongRest, MoraleRest, HavenCare }
 
     /// <summary>Append-only point metadata update supported by a later complete daily provisioning
     /// settlement. The original gain record remains unchanged for source history.</summary>

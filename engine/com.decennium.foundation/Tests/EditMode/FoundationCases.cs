@@ -264,6 +264,7 @@ namespace Decennium.Foundation.Tests
             AddOverwatchExecutionCases(cases,directory);
             AddHuntingTrapCases(cases,directory);
             AddDailyProvisioningCases(cases,directory);
+            AddHavenCareCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

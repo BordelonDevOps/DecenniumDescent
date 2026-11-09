@@ -96,7 +96,8 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeStrainRecovery(Snapshot s)
         {
             if (strainRecoveryProfile == null) return;
-            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema : Snapshot.ExpeditionStrainRecoverySchema;
+            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+                : moraleRestProfile != null ? Snapshot.MoraleRestSchema : Snapshot.ExpeditionStrainRecoverySchema;
             if (s.SchemaVersion != expectedSchema)
                 throw new InvalidOperationException("StrainRecoveryRequiresSelectedSchema");
             s.ExpeditionStrainRecoveryGateUpdates = Array.Empty<ExpeditionStrainRecoveryGateUpdateRecord>();
@@ -247,7 +248,7 @@ namespace Decennium.Foundation.Laboratory
             out ExpeditionStrainGainRecord gain)
         {
             offer = null; gain = null;
-            if (moraleRestProfile != null && s.SchemaVersion == Snapshot.MoraleRestSchema)
+            if (moraleRestProfile != null && s.SchemaVersion >= Snapshot.MoraleRestSchema)
                 return AssessSchema65RecoveryChoice(s, c, out offer, out gain);
             if (strainRecoveryProfile == null || s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema)
                 return "StrainRecoveryNotSelected";
@@ -289,7 +290,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveStrainRecoveryChoice(Snapshot s, Command c)
         {
-            if (moraleRestProfile != null && s.SchemaVersion == Snapshot.MoraleRestSchema)
+            if (moraleRestProfile != null && s.SchemaVersion >= Snapshot.MoraleRestSchema)
                 return ResolveSchema65RecoveryChoice(s, c);
             string failure = AssessStrainRecoveryChoice(s, c, out var offer, out var gain);
             if (failure != null) return failure;

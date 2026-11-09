@@ -115,7 +115,7 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeMoraleRest(Snapshot s)
         {
             if (moraleRestProfile == null) return;
-            if (s.SchemaVersion != Snapshot.MoraleRestSchema)
+            if (s.SchemaVersion != (havenCareProfile != null ? Snapshot.HavenCareSchema : Snapshot.MoraleRestSchema))
                 throw new InvalidOperationException("MoraleRestRequiresSchema65");
             string error = moraleRestProfile.ValidateBindings(s, restDebtProfile);
             if (error != null) throw new InvalidOperationException(error);
@@ -141,7 +141,7 @@ namespace Decennium.Foundation.Laboratory
             out ExpeditionMoraleRestIntervalRecord active)
         {
             site = null; active = null;
-            if (moraleRestProfile == null || s.SchemaVersion != Snapshot.MoraleRestSchema)
+            if (moraleRestProfile == null || s.SchemaVersion < Snapshot.MoraleRestSchema)
                 return "MoraleRestNotSelected";
             if (!moraleRestProfile.IncludesActor(c.Actor)) return "MoraleRestActorNotRegistered";
             if (c.X != 0 || c.Y != 0 || c.Inventory != null || c.Combat != null || c.Advancement != null
@@ -268,7 +268,8 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ProcessMoraleRestBoundary(Snapshot s, Command initiating,
-            ManufacturingAdvanceRecord continuation = null)
+            ManufacturingAdvanceRecord continuation = null,
+            System.Collections.Generic.ICollection<string> deferredHavenCareOfferIntervals = null)
         {
             if (moraleRestProfile == null) return null;
             var due = s.ExpeditionMoraleRestIntervals.Where(x => x.Status == MoraleRestIntervalStatus.Active
@@ -300,8 +301,9 @@ namespace Decennium.Foundation.Laboratory
                     return "MoraleRestBenefitHistoryCapacityReached";
 
                 string[] points = EligibleRecoveryPointsWithoutDebt(s, interval.ActorId, interval.ScheduledEnd, revision);
+                bool deferOfferUntilAfterHavenCare = s.SchemaVersion >= Snapshot.HavenCareSchema;
                 string offerId = "";
-                if (points.Length != 0)
+                if (points.Length != 0 && !deferOfferUntilAfterHavenCare)
                 {
                     if (s.ExpeditionStrainRecoveryOffers.Length >= ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)
                         return "ExpeditionStrainRecoveryOfferHistoryCapacityReached";
@@ -313,7 +315,13 @@ namespace Decennium.Foundation.Laboratory
                 var benefit = new ExpeditionMoraleRestBenefitRecord(benefitId, interval.ActorId,
                     interval.Id, offerId, interval.ScheduledEnd, revision);
                 s.ExpeditionMoraleRestBenefits = s.ExpeditionMoraleRestBenefits.Concat(new[] { benefit }).ToArray();
-                if (offerId != "")
+                if (deferOfferUntilAfterHavenCare)
+                {
+                    if (deferredHavenCareOfferIntervals == null)
+                        return "MoraleRestHavenCareBoundaryOrderUnavailable";
+                    deferredHavenCareOfferIntervals.Add(interval.Id);
+                }
+                else if (offerId != "")
                 {
                     var offer = new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId,
                         ExpeditionRecoveryKind.MoraleRest, benefitId, interval.Id, initiating.Id,
@@ -324,12 +332,44 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
 
+        private string OpenMoraleRestRecoveryOffers(Snapshot s, Command initiating,
+            System.Collections.Generic.IEnumerable<string> completedIntervalIds)
+        {
+            if (s.SchemaVersion < Snapshot.HavenCareSchema || moraleRestProfile == null) return null;
+            foreach (string intervalId in completedIntervalIds ?? Array.Empty<string>())
+            {
+                var interval = s.ExpeditionMoraleRestIntervals.SingleOrDefault(x => x.Id == intervalId
+                    && x.Status == MoraleRestIntervalStatus.Completed && x.EndedAt == s.RuleClock);
+                var benefit = s.ExpeditionMoraleRestBenefits.SingleOrDefault(x => x.IntervalId == intervalId);
+                if (interval == null || benefit == null || benefit.RecoveryOfferId != "")
+                    return "MoraleRestDeferredBenefitMismatch";
+                string[] points = EligibleRecoveryPointsWithoutDebt(s, interval.ActorId,
+                    interval.ScheduledEnd, s.Revision + 1);
+                if (points.Length == 0) continue;
+                if (initiating == null) return "StrainRecoveryInitiatingCommandMissing";
+                if (s.ExpeditionStrainRecoveryOffers.Length >= ExpeditionProvisioningValidation.MaxStrainRecoveryOffers)
+                    return "ExpeditionStrainRecoveryOfferHistoryCapacityReached";
+                long revision = s.Revision + 1;
+                string offerId = "strain.recovery.offer.r" + revision.ToString(CultureInfo.InvariantCulture)
+                    + ".n" + s.ExpeditionStrainRecoveryOffers.Length.ToString(CultureInfo.InvariantCulture);
+                var updated = benefit.WithOffer(offerId, revision);
+                s.ExpeditionMoraleRestBenefits = s.ExpeditionMoraleRestBenefits.Select(x =>
+                    x.Id == benefit.Id ? updated : x).ToArray();
+                var offer = new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId,
+                    ExpeditionRecoveryKind.MoraleRest, benefit.Id, interval.Id, initiating.Id,
+                    interval.ScheduledEnd, revision, points);
+                s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Concat(new[] { offer }).ToArray();
+            }
+            return null;
+        }
+
         private string ValidateMoraleRestState(Snapshot s)
         {
             if (moraleRestProfile == null)
-                return s.SchemaVersion != Snapshot.MoraleRestSchema && s.ExpeditionMoraleRestIntervals.Length == 0
+                return s.SchemaVersion != Snapshot.MoraleRestSchema && s.SchemaVersion != Snapshot.HavenCareSchema
+                    && s.ExpeditionMoraleRestIntervals.Length == 0
                     && s.ExpeditionMoraleRestBenefits.Length == 0 ? null : "MoraleRestProfileMissing";
-            if (s.SchemaVersion != Snapshot.MoraleRestSchema || !s.TestOnly || s.ContentFingerprint != ContentFingerprint
+            if (s.SchemaVersion < Snapshot.MoraleRestSchema || !s.TestOnly || s.ContentFingerprint != ContentFingerprint
                 || moraleRestProfile.ValidateBindings(s, restDebtProfile) != null)
                 return "MoraleRestProfileMismatch";
 
@@ -564,7 +604,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ValidateSchema65StrainRecoveryState(Snapshot s)
         {
-            if (strainRecoveryProfile == null || s.SchemaVersion != Snapshot.MoraleRestSchema || !s.TestOnly
+            if (strainRecoveryProfile == null || s.SchemaVersion < Snapshot.MoraleRestSchema || !s.TestOnly
                 || s.ContentFingerprint != ContentFingerprint || strainRecoveryProfile.ValidateBindings(restDebtProfile) != null)
                 return "StrainRecoveryProfileMismatch";
             foreach (var benefit in s.ExpeditionBeneficialRests)

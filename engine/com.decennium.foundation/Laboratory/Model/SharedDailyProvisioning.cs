@@ -280,7 +280,8 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null) return;
             string error = dailyProvisioning.ValidateBindings(s);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+                : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
                 : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
@@ -305,6 +306,7 @@ namespace Decennium.Foundation.Laboratory
                 return s.SchemaVersion != Snapshot.DailyProvisioningSchema && s.SchemaVersion != Snapshot.RestDebtSchema
                     && s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema
                     && s.SchemaVersion != Snapshot.MoraleRestSchema
+                    && s.SchemaVersion != Snapshot.HavenCareSchema
                     && s.DailyProvisioningSettlements.Length == 0
                     && s.DailyProvisioningConsumption.Length == 0 && s.ExpeditionStrainGains.Length == 0
                     && s.ExpeditionDashLocks.Length == 0 && s.RestWatchSchedules.Length == 0 && s.RestIntervals.Length == 0
@@ -312,7 +314,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
                     && s.ExpeditionStrainRecoveryOffers.Length == 0 && s.ExpeditionStrainRemovals.Length == 0
                     ? null : "DailyProvisioningProfileMissing";
-            int expectedSchema = moraleRestProfile != null ? Snapshot.MoraleRestSchema
+            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+                : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
                 : restDebtProfile == null ? Snapshot.DailyProvisioningSchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || !s.TestOnly
@@ -323,7 +326,8 @@ namespace Decennium.Foundation.Laboratory
             string restDebtError = ValidateRestDebtState(s);
             if (restDebtError != null) return restDebtError;
             string recoveryError = ValidateStrainRecoveryState(s);
-            return recoveryError ?? ValidateMoraleRestState(s);
+            string moraleError = recoveryError ?? ValidateMoraleRestState(s);
+            return moraleError ?? ValidateHavenCareState(s);
         }
 
         private string ValidateDailyProvisioningHistory(Snapshot s)

@@ -51,6 +51,7 @@ namespace Decennium.Foundation
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Write(w, s);
             if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Write(w, s);
             if (s.SchemaVersion >= Snapshot.MoraleRestSchema) MoraleRestStateCodec.Write(w, s);
+            if (s.SchemaVersion >= Snapshot.HavenCareSchema) HavenCareStateCodec.Write(w, s);
         }
 
         public static void Read(BinaryReader r, Snapshot s)
@@ -83,6 +84,7 @@ namespace Decennium.Foundation
             if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s);
             if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Read(r, s);
             if (s.SchemaVersion >= Snapshot.MoraleRestSchema) MoraleRestStateCodec.Read(r, s);
+            if (s.SchemaVersion >= Snapshot.HavenCareSchema) HavenCareStateCodec.Read(r, s);
         }
 
         private static int Count(BinaryReader r, int maximum)
@@ -317,6 +319,71 @@ namespace Decennium.Foundation
             for (int i = 0; i < s.ExpeditionMoraleRestBenefits.Length; i++)
                 s.ExpeditionMoraleRestBenefits[i] = new ExpeditionMoraleRestBenefitRecord(
                     Text(r), Text(r), Text(r), Text(r), Time(r), r.ReadInt64());
+        }
+    }
+
+    internal static class HavenCareStateCodec
+    {
+        private static void Text(BinaryWriter w, string value) => SnapshotCodec.WriteText(w, value);
+        private static string Text(BinaryReader r) => SnapshotCodec.ReadText(r);
+        private static void Time(BinaryWriter w, RuleTime value) { w.Write(value.Numerator); w.Write(value.Denominator); }
+        private static RuleTime Time(BinaryReader r) => new RuleTime(r.ReadInt64(), r.ReadInt64());
+        private static void Quantity(BinaryWriter w, RuleQuantity value) { w.Write(value.Numerator); w.Write(value.Denominator); }
+        private static RuleQuantity Quantity(BinaryReader r) => new RuleQuantity(r.ReadInt64(), r.ReadInt64());
+        private static int Count(BinaryReader r, int maximum) => SnapshotCodec.ReadCount(r, maximum);
+
+        public static void Write(BinaryWriter w, Snapshot s)
+        {
+            w.Write(s.ExpeditionHavenCareIntervals.Length);
+            foreach (var x in s.ExpeditionHavenCareIntervals.OrderBy(x => x.StartedAt).ThenBy(x => x.StartRevision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.ActorId); Text(w, x.ProviderId); Text(w, x.ServiceId); Text(w, x.SiteId);
+                Time(w, x.StartedAt); Time(w, x.ScheduledEnd); w.Write(x.EndedAt.HasValue);
+                if (x.EndedAt.HasValue) Time(w, x.EndedAt.Value);
+                w.Write((int)x.Status); Text(w, x.StartCommandId); w.Write(x.StartRevision);
+                Text(w, x.EndCommandId); w.Write(x.EndCommandRevision); w.Write(x.EndRevision);
+            }
+            w.Write(s.ExpeditionHavenCareAssessments.Length);
+            foreach (var x in s.ExpeditionHavenCareAssessments.OrderBy(x => x.CompletedAt).ThenBy(x => x.Revision)
+                .ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal))
+            {
+                Text(w, x.Id); Text(w, x.IntervalId); Text(w, x.ActorId); Time(w, x.CompletedAt); w.Write(x.Revision);
+                Quantity(w, x.FoodConsumed); Quantity(w, x.WaterConsumed); w.Write(x.SupportQualified);
+                w.Write(x.ProvisioningBlockActive); w.Write(x.IntakeIds.Length);
+                foreach (string intakeId in x.IntakeIds) Text(w, intakeId);
+                w.Write(x.EligiblePointIds.Length);
+                foreach (string pointId in x.EligiblePointIds) Text(w, pointId);
+            }
+        }
+
+        public static void Read(BinaryReader r, Snapshot s)
+        {
+            s.ExpeditionHavenCareIntervals = new ExpeditionHavenCareIntervalRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxHavenCareIntervals)];
+            for (int i = 0; i < s.ExpeditionHavenCareIntervals.Length; i++)
+            {
+                string id = Text(r), actor = Text(r), provider = Text(r), service = Text(r), site = Text(r);
+                RuleTime started = Time(r), scheduled = Time(r);
+                RuleTime? ended = SnapshotCodec.ReadBool(r) ? (RuleTime?)Time(r) : null;
+                s.ExpeditionHavenCareIntervals[i] = new ExpeditionHavenCareIntervalRecord(id, actor, provider,
+                    service, site, started, scheduled, ended, (HavenCareIntervalStatus)r.ReadInt32(),
+                    Text(r), r.ReadInt64(), Text(r), r.ReadInt64(), r.ReadInt64());
+            }
+            s.ExpeditionHavenCareAssessments = new ExpeditionHavenCareAssessmentRecord[
+                Count(r, ExpeditionProvisioningValidation.MaxHavenCareAssessments)];
+            for (int i = 0; i < s.ExpeditionHavenCareAssessments.Length; i++)
+            {
+                string id = Text(r), interval = Text(r), actor = Text(r); RuleTime completed = Time(r);
+                long revision = r.ReadInt64(); RuleQuantity food = Quantity(r), water = Quantity(r);
+                bool support = SnapshotCodec.ReadBool(r), provisioningBlock = SnapshotCodec.ReadBool(r);
+                var intakes = new string[Count(r, ExpeditionProvisioningValidation.MaxConsumptionEvidence)];
+                for (int j = 0; j < intakes.Length; j++) intakes[j] = Text(r);
+                var points = new string[Count(r, 6)];
+                for (int j = 0; j < points.Length; j++) points[j] = Text(r);
+                s.ExpeditionHavenCareAssessments[i] = new ExpeditionHavenCareAssessmentRecord(id, interval, actor,
+                    completed, revision, food, water, support, provisioningBlock, intakes, points);
+            }
         }
     }
 }

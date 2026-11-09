@@ -99,6 +99,8 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.ScheduleRestWatch||kind==CommandKind.BeginRest||kind==CommandKind.InterruptRest
             ||kind==CommandKind.BeginMoraleRest&&moraleRestProfile!=null
             ||kind==CommandKind.InterruptMoraleRest&&moraleRestProfile!=null
+            ||kind==CommandKind.BeginHavenCare&&havenCareProfile!=null
+            ||kind==CommandKind.InterruptHavenCare&&havenCareProfile!=null
             ||kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
@@ -248,6 +250,10 @@ namespace Decennium.Foundation.Laboratory
                 return new CommandQueryResult(true,false,pendingRecoveryFailure,s.Revision);
             if(IsStrainRecoveryCommand(c.Kind))return QueryStrainRecoveryChoice(s,c);
             if(IsMoraleRestCommand(c.Kind))return QueryMoraleRestCommand(s,c);
+            if(IsHavenCareCommand(c.Kind))return QueryHavenCareCommand(s,c);
+            string havenCareActorFailure=HavenCareActorCommandFailure(s,c);
+            if(havenCareActorFailure!=null)
+                return new CommandQueryResult(true,false,havenCareActorFailure,s.Revision);
             string restingActorFailure=RestingActorCommandFailure(s,c);
             if(restingActorFailure!=null)
                 return new CommandQueryResult(true,false,restingActorFailure,s.Revision);

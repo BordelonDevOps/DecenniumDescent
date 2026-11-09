@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "implementationBranch": "Engine",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "blob": "7005aaf9558f0ce4f445ffe982dfa9b6f36c8ee4",
+      "sha256": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+      "snapshot": "../2026-11-08-daily-provisioning/sources/STRAIN_PLAYTEST.md",
+      "scope": "24-hour qualifying Haven-care procedure, actual care/provisions, exact eligible ordinary Expedition Strain batch; preserves blocked points and distinguishes the NEW level-six Collapse behavior."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "snapshot": "../2026-11-08-daily-provisioning/sources/EXPEDITION_PLAYER_BOOK.md",
+      "scope": "Pinned FL-03 actual daily food/water quantity and consumption; FL-24 Haven service and compatible patient-rest requirements."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/strain_bindings.json",
+      "blob": "2be335369152191d3aaf47a558f6c5344b18bb4a",
+      "sha256": "41e1d20301713d6eb2c7bbc6f6f5b41f98da398e48e479a4c62fe7c1e4c5a5dd",
+      "snapshot": "../2026-11-08-daily-provisioning/sources/strain_bindings.json",
+      "scope": "Keeps expedition.strain distinct from Warrior serum Strain and unrelated tracks."
+    }
+  ],
+  "implementation": {
+    "name": "Schema66 TEST_ONLY Haven care and exact shared Expedition Strain recovery",
+    "code": [
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionHavenCareRecords.cs",
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionProvisioningCodec.cs",
+      "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "engine/com.decennium.foundation/Tests/EditMode/HavenCareCases.cs"
+    ],
+    "tests": [
+      "haven_care_batches_supported_strain_after_real_provisioning_and_replays"
+    ],
+    "notImplemented": [
+      "Nonlethal Expedition Collapse, its condition lifecycle, and care recovery from Collapse.",
+      "Production provider qualification, staffing/scheduling, service pricing, arbitrary Haven content, and dynamic capacity.",
+      "Wound treatment, HP healing, resurrection, combat care, and generic emergency service rules."
+    ]
+  }
+}

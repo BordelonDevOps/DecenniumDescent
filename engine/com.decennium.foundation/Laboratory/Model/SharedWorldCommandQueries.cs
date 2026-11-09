@@ -257,6 +257,7 @@ namespace Decennium.Foundation.Laboratory
                 }
             }
             foreach (var moraleCommand in DiscoverMoraleRestCommands(s, actor)) yield return moraleCommand;
+            foreach (var havenCommand in DiscoverHavenCareCommands(s, actor)) yield return havenCommand;
             foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);
@@ -500,6 +501,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel) {
                 string failure=CharacterAdvancementRules.Assess(s,c);
                 return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);

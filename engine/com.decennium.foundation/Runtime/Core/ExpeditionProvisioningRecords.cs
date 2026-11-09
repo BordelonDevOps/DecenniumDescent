@@ -283,6 +283,8 @@ namespace Decennium.Foundation
         public const int MaxStrainRemovals = 8192;
         public const int MaxMoraleRestIntervals = 4096;
         public const int MaxMoraleRestBenefits = 4096;
+        public const int MaxHavenCareIntervals = 4096;
+        public const int MaxHavenCareAssessments = 4096;
 
         public static void Validate(Snapshot s)
         {
@@ -302,6 +304,8 @@ namespace Decennium.Foundation
                 || s.ExpeditionStrainRemovals == null || s.ExpeditionStrainRemovals.Length > MaxStrainRemovals
                 || s.ExpeditionMoraleRestIntervals == null || s.ExpeditionMoraleRestIntervals.Length > MaxMoraleRestIntervals
                 || s.ExpeditionMoraleRestBenefits == null || s.ExpeditionMoraleRestBenefits.Length > MaxMoraleRestBenefits
+                || s.ExpeditionHavenCareIntervals == null || s.ExpeditionHavenCareIntervals.Length > MaxHavenCareIntervals
+                || s.ExpeditionHavenCareAssessments == null || s.ExpeditionHavenCareAssessments.Length > MaxHavenCareAssessments
                 || s.DailyProvisioningSettlements.Any(x => x == null)
                 || s.DailyProvisioningConsumption.Any(x => x == null)
                 || s.ExpeditionStrainGains.Any(x => x == null)
@@ -310,7 +314,8 @@ namespace Decennium.Foundation
                 || s.RestWatchOutcomes.Any(x => x == null) || s.RestDebtEvents.Any(x => x == null)
                 || s.ExpeditionStrainRecoveryGateUpdates.Any(x => x == null) || s.ExpeditionBeneficialRests.Any(x => x == null)
                 || s.ExpeditionStrainRecoveryOffers.Any(x => x == null) || s.ExpeditionStrainRemovals.Any(x => x == null)
-                || s.ExpeditionMoraleRestIntervals.Any(x => x == null) || s.ExpeditionMoraleRestBenefits.Any(x => x == null))
+                || s.ExpeditionMoraleRestIntervals.Any(x => x == null) || s.ExpeditionMoraleRestBenefits.Any(x => x == null)
+                || s.ExpeditionHavenCareIntervals.Any(x => x == null) || s.ExpeditionHavenCareAssessments.Any(x => x == null))
                 throw new ArgumentException("Invalid Expedition provisioning or Strain collections.");
 
             if (s.SchemaVersion < Snapshot.DailyProvisioningSchema)
@@ -321,7 +326,8 @@ namespace Decennium.Foundation
                     || s.RestWatchOutcomes.Length != 0 || s.RestDebtEvents.Length != 0
                     || s.ExpeditionStrainRecoveryGateUpdates.Length != 0 || s.ExpeditionBeneficialRests.Length != 0
                     || s.ExpeditionStrainRecoveryOffers.Length != 0 || s.ExpeditionStrainRemovals.Length != 0
-                    || s.ExpeditionMoraleRestIntervals.Length != 0 || s.ExpeditionMoraleRestBenefits.Length != 0)
+                    || s.ExpeditionMoraleRestIntervals.Length != 0 || s.ExpeditionMoraleRestBenefits.Length != 0
+                    || s.ExpeditionHavenCareIntervals.Length != 0 || s.ExpeditionHavenCareAssessments.Length != 0)
                     throw new ArgumentException("Daily provisioning state requires schema62.");
                 return;
             }
@@ -337,6 +343,10 @@ namespace Decennium.Foundation
             if (s.SchemaVersion < Snapshot.MoraleRestSchema
                 && (s.ExpeditionMoraleRestIntervals.Length != 0 || s.ExpeditionMoraleRestBenefits.Length != 0))
                 throw new ArgumentException("Morale Rest state requires schema65.");
+            if (s.SchemaVersion < Snapshot.HavenCareSchema
+                && (s.ExpeditionHavenCareIntervals.Length != 0 || s.ExpeditionHavenCareAssessments.Length != 0
+                    || s.ExpeditionStrainRemovals.Any(x => x.RecoveryKind == ExpeditionRecoveryKind.HavenCare)))
+                throw new ArgumentException("Haven-care state requires schema66.");
             if (!s.TestOnly) throw new ArgumentException("Expedition provisioning is TEST_ONLY.");
 
             bool Actor(string id) => s.Actors.Any(x => x.Id == id);
@@ -870,9 +880,10 @@ namespace Decennium.Foundation
                     != s.ExpeditionStrainRemovals.Length
                 || s.ExpeditionStrainRemovals.Select(x => x.PointId).Distinct(StringComparer.Ordinal).Count()
                     != s.ExpeditionStrainRemovals.Length
-                || s.ExpeditionStrainRemovals.Select(x => ((int)x.RecoveryKind).ToString(
-                    System.Globalization.CultureInfo.InvariantCulture) + "|" + x.RecoveryCompletionId)
-                    .Distinct(StringComparer.Ordinal).Count() != s.ExpeditionStrainRemovals.Length
+                || s.ExpeditionStrainRemovals.GroupBy(x => ((int)x.RecoveryKind).ToString(
+                    System.Globalization.CultureInfo.InvariantCulture) + "|" + x.RecoveryCompletionId,
+                    StringComparer.Ordinal).Any(x => x.Count() > 1
+                        && x.First().RecoveryKind != ExpeditionRecoveryKind.HavenCare)
                 || s.ExpeditionStrainRemovals.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
                     || x.At > s.RuleClock || !Validation.ValidId(x.RecoveryCompletionId)))
                 throw new ArgumentException("Invalid typed Expedition Strain point-removal history.");
@@ -881,21 +892,100 @@ namespace Decennium.Foundation
                 var gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.Id == removal.GainId);
                 var offer = s.ExpeditionStrainRecoveryOffers.SingleOrDefault(x =>
                     x.RecoveryKind == removal.RecoveryKind && x.RecoveryCompletionId == removal.RecoveryCompletionId);
+                var havenAssessment = removal.RecoveryKind == ExpeditionRecoveryKind.HavenCare
+                    ? s.ExpeditionHavenCareAssessments.SingleOrDefault(x => x.Id == removal.RecoveryCompletionId) : null;
                 bool completionMatches = removal.RecoveryKind == ExpeditionRecoveryKind.SecureLongRest
                     ? s.ExpeditionBeneficialRests.Any(x => x.Id == removal.RecoveryCompletionId
                         && x.ActorId == removal.ActorId && x.CompletedAt == removal.At && x.Revision <= removal.Revision)
                     : removal.RecoveryKind == ExpeditionRecoveryKind.MoraleRest
                         && s.ExpeditionMoraleRestBenefits.Any(x => x.Id == removal.RecoveryCompletionId
-                            && x.ActorId == removal.ActorId && x.CompletedAt == removal.At && x.Revision <= removal.Revision);
+                            && x.ActorId == removal.ActorId && x.CompletedAt == removal.At && x.Revision <= removal.Revision)
+                        || removal.RecoveryKind == ExpeditionRecoveryKind.HavenCare
+                            && havenAssessment != null && havenAssessment.ActorId == removal.ActorId
+                            && havenAssessment.CompletedAt == removal.At && havenAssessment.Revision == removal.Revision
+                            && havenAssessment.EligiblePointIds.Contains(removal.PointId, StringComparer.Ordinal);
+                bool offerMatches = removal.RecoveryKind == ExpeditionRecoveryKind.HavenCare
+                    ? offer == null
+                    : offer != null && !offer.Pending && offer.ChosenPointId == removal.PointId
+                        && offer.ResolvedRevision == removal.Revision && offer.ActorId == removal.ActorId
+                        && offer.CompletedAt == removal.At;
                 if (gain == null || gain.ActorId != removal.ActorId || gain.PointId != removal.PointId
                     || gain.AddedAmount != 1 || gain.OrdinaryRemovable != true || !completionMatches
-                    || offer == null || offer.Pending || offer.ChosenPointId != removal.PointId
-                    || offer.ResolvedRevision != removal.Revision || offer.ActorId != removal.ActorId
-                    || offer.CompletedAt != removal.At)
+                    || !offerMatches)
                     throw new ArgumentException("Strain removal is not linked to one eligible point and typed completion.");
             }
 
+            ValidateHavenCareHistory(s, actorExists);
+
             ValidateStrainMutationOrder(s);
+        }
+
+        private static void ValidateHavenCareHistory(Snapshot s, Func<string, bool> actorExists)
+        {
+            if (s.SchemaVersion < Snapshot.HavenCareSchema)
+            {
+                if (s.ExpeditionHavenCareIntervals.Length != 0 || s.ExpeditionHavenCareAssessments.Length != 0
+                    || s.ExpeditionStrainRemovals.Any(x => x.RecoveryKind == ExpeditionRecoveryKind.HavenCare))
+                    throw new ArgumentException("Haven-care history requires schema66.");
+                return;
+            }
+
+            if (s.ExpeditionHavenCareIntervals.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionHavenCareIntervals.Length
+                || s.ExpeditionHavenCareAssessments.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionHavenCareAssessments.Length
+                || s.ExpeditionHavenCareAssessments.Select(x => x.IntervalId).Distinct(StringComparer.Ordinal).Count()
+                    != s.ExpeditionHavenCareAssessments.Length
+                || s.ExpeditionHavenCareIntervals.Count(x => x.Status == HavenCareIntervalStatus.Active) > 1
+                || s.ExpeditionHavenCareIntervals.Any(x => !actorExists(x.ActorId) || x.StartRevision > s.Revision
+                    || x.StartedAt > s.RuleClock || x.ScheduledEnd != x.StartedAt.AddSeconds(86400)
+                    || !s.Receipts.Any(r => r.Id == x.StartCommandId && r.Revision == x.StartRevision
+                        && CommandHistory.Read(r).Kind == CommandKind.BeginHavenCare)
+                    || x.Status == HavenCareIntervalStatus.Active && (x.ScheduledEnd <= s.RuleClock
+                        || x.EndedAt.HasValue || x.EndCommandId != ""
+                        || x.EndCommandRevision != 0 || x.EndRevision != 0)
+                    || x.Status == HavenCareIntervalStatus.Completed && x.EndedAt != x.ScheduledEnd
+                    || x.EndedAt.HasValue && (x.EndedAt.Value > s.RuleClock || x.EndRevision > s.Revision
+                        || x.EndCommandRevision > x.EndRevision
+                        || !s.Receipts.Any(r => r.Id == x.EndCommandId && r.Revision == x.EndCommandRevision
+                            && (CommandHistory.Read(r).Kind == CommandKind.AdvanceClock
+                                || CommandHistory.Read(r).Kind == CommandKind.InterruptHavenCare
+                                || CommandHistory.Read(r).Kind == CommandKind.BeginFixedEncounter
+                                || CommandHistory.Read(r).Kind == CommandKind.BeginWorldStep
+                                || CommandHistory.Read(r).Kind == CommandKind.EnterInventoryCombat
+                                || CommandHistory.Read(r).Kind == CommandKind.DispatchConditionEvent)))))
+                throw new ArgumentException("Invalid Haven-care interval history.");
+
+            foreach (var interval in s.ExpeditionHavenCareIntervals)
+            {
+                bool hasAssessment = s.ExpeditionHavenCareAssessments.Any(x => x.IntervalId == interval.Id);
+                if ((interval.Status == HavenCareIntervalStatus.Completed) != hasAssessment
+                    || interval.Status == HavenCareIntervalStatus.Active && hasAssessment)
+                    throw new ArgumentException("Haven-care completion assessment does not match its interval status.");
+                if (s.ExpeditionHavenCareIntervals.Any(x => x.Id != interval.Id
+                    && x.StartedAt < (interval.EndedAt ?? interval.ScheduledEnd)
+                    && interval.StartedAt < (x.EndedAt ?? x.ScheduledEnd)))
+                    throw new ArgumentException("The single Haven-care patient slot overlaps two intervals.");
+            }
+
+            foreach (var assessment in s.ExpeditionHavenCareAssessments)
+            {
+                var interval = s.ExpeditionHavenCareIntervals.SingleOrDefault(x => x.Id == assessment.IntervalId);
+                if (interval == null || interval.Status != HavenCareIntervalStatus.Completed
+                    || interval.ActorId != assessment.ActorId || interval.EndedAt != assessment.CompletedAt
+                    || interval.EndCommandId == "" || interval.EndRevision != assessment.Revision
+                    || assessment.Revision > s.Revision || assessment.CompletedAt > s.RuleClock
+                    || assessment.IntakeIds.Any(id => !s.Intakes.Any(x => x.Id == id && x.ActorId == assessment.ActorId)))
+                    throw new ArgumentException("Haven-care assessment has no exact completed interval or support evidence.");
+
+                string[] removals = s.ExpeditionStrainRemovals.Where(x =>
+                        x.RecoveryKind == ExpeditionRecoveryKind.HavenCare
+                        && x.RecoveryCompletionId == assessment.Id && x.ActorId == assessment.ActorId
+                        && x.At == assessment.CompletedAt && x.Revision == assessment.Revision)
+                    .OrderBy(x => x.MutationSequence).Select(x => x.PointId).ToArray();
+                if (!removals.SequenceEqual(assessment.EligiblePointIds, StringComparer.Ordinal))
+                    throw new ArgumentException("Haven-care Strain removals do not match the complete eligible batch.");
+            }
         }
 
         private static void ValidateStrainMutationOrder(Snapshot s)
