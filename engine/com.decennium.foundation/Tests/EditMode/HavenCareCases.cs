@@ -121,8 +121,14 @@ namespace Decennium.Foundation.Tests
                 WorldAdvance(movement, 1);
                 var beforeApproach = movement.Capture();
                 byte[] beforeApproachBytes = Bytes(movement);
-                var approach = movement.Execute(host, IC(movement, CommandKind.BeginWorldStep, "walk",
-                    actor: TestOnlyPolicy.ActorId, x: 1, y: 0));
+                var approachCommand = IC(movement, CommandKind.BeginWorldStep, "walk",
+                    actor: TestOnlyPolicy.ActorId, x: 1, y: 0);
+                var approachQuery = movement.QueryCommand(host, approachCommand);
+                Require(approachQuery.Supported && !approachQuery.Admissible
+                    && approachQuery.Code == "HavenCareCombatTransitionUnsupported"
+                    && beforeApproachBytes.SequenceEqual(Bytes(movement)),
+                    "Movement query advertised a combat transition that active Haven care rejects.");
+                var approach = movement.Execute(host, approachCommand);
                 Require(approach.Outcome == Outcome.Rejected
                     && approach.Code == "HavenCareCombatTransitionUnsupported"
                     && movement.Capture().RuleClock == beforeApproach.RuleClock

@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "baselineCommit": "f37617dcf57f044a63ec4d6e576364dd01ee43ff",
-  "description": "Each GPT first-review blocker reproduced against the schema66 implementation, then the corresponding regression passed after correction. The current full suite is the condition-event after-check; the focused combat and connected acceptance reports are separately retained.",
+  "description": "Each of GPT's three first-review blockers was reproduced and corrected. GPT's second review of c70fb682 found one remaining movement query/execution mismatch; Codex reproduced it against that commit, moved the restriction into shared AssessWorldStep, and the current focused regression passes. The correction awaits GPT follow-up review.",
   "runs": {
     "conditionClear": {
       "before": {
@@ -76,7 +76,7 @@
         ]
       },
       "after": {
-        "report": "final\\focused\\movement-combat\\run-20261109T044932108Z-9d32c1e8\\results.json",
+        "report": "final/focused/combat-query/run-20261109T050747956Z-814d9c53/results.json",
         "runner": "PowerShell Roslyn shared-source regression",
         "status": "PASS",
         "case": "haven_care_rejects_external_combat_transition_without_mutation",
@@ -146,7 +146,43 @@
           }
         ]
       }
+    },
+    "movementQuery": {
+      "before": {
+        "report": "development-attempts/gpt-review-reproduction/failure-before-query-fix/run-20261109T050655149Z-a33406f1/results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "FAIL",
+        "case": "haven_care_rejects_external_combat_transition_without_mutation",
+        "passed": false,
+        "error": "Movement query advertised a combat transition that active Haven care rejects.",
+        "reviewedCommit": "c70fb682dbeea8a3f6ffa9b1face7037130b5ba0"
+      },
+      "after": {
+        "report": "final/focused/combat-query/run-20261109T050747956Z-814d9c53/results.json",
+        "runner": "PowerShell Roslyn shared-source regression",
+        "status": "PASS",
+        "case": "haven_care_rejects_external_combat_transition_without_mutation",
+        "passed": true,
+        "error": "",
+        "assertion": "The same movement command query is supported but inadmissible with HavenCareCombatTransitionUnsupported; execution rejects with the same code and leaves state unchanged."
+      }
     }
   },
-  "fullSuite": "FULL_TEST_RESULTS.json"
+  "fullSuite": "FULL_TEST_RESULTS.json",
+  "gptSecondReview": {
+    "reviewedCommit": "c70fb682dbeea8a3f6ffa9b1face7037130b5ba0",
+    "verdict": "HELD",
+    "actualVerdict": "The three execution defects are corrected, but one query/execution mismatch still blocks acceptance of c70fb682. It is a small gap in the existing combat-entry correction—not a new rule or expanded scope.",
+    "closedFindings": [
+      "Historical-death validation",
+      "Benign condition-event interruption"
+    ],
+    "remainingBlocker": "Movement query advertised an encounter transition while a different actor was in active Haven care, although execution rejected the command.",
+    "requestedCorrection": "Enforce active-care combat restriction in shared AssessWorldStep and query/execute the same command in the regression; require the same rejection and unchanged snapshot bytes.",
+    "reviewerRanCompilationTestsValidatorsOrUnity": false,
+    "reviewerIndependentlyRecomputedHashes": false,
+    "acceptance": "Held until the movement query/execution mismatch is corrected and reviewed.",
+    "record": "GPT_REVIEW.md"
+  },
+  "currentCorrectionReviewStatus": "AWAITING_GPT_FOLLOW_UP"
 }

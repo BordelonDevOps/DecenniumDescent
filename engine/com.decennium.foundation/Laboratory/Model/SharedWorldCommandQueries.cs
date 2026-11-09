@@ -92,6 +92,7 @@ namespace Decennium.Foundation.Laboratory
                 });
             if (startsEncounter && s.RestIntervals.Any(x => x.Status == RestIntervalStatus.Active))
                 return "RestInterruptionAuthorityUnsupported";
+            if (startsEncounter && HasActiveHavenCare(s)) return "HavenCareCombatTransitionUnsupported";
             if (startsEncounter && connectedCombat == null) return "TacticalTransitionRequired";
             bool dashPaid = false;
             if (c.Target == "run")
