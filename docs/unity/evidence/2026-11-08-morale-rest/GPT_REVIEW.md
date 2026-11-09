@@ -18,8 +18,23 @@ This was a design consultation, not an implementation review or acceptance.
 
 These were implementation blockers, not source-rule disagreements. GPT did not request a schema change or new gameplay rule.
 
-## Corrected implementation review
+## Corrected implementation review — commit `dcb8e689c092b9398e60ab73f9f3c3186f824fca`
 
-**Status: awaiting GPT's second review.** All three findings have focused regressions and now pass the complete C# 9 warnings-as-errors suite (**1,264/1,264**), a fresh Core/Persistence/LabModel Roslyn compilation (**185 source hashes**), package validation (**18/18; 280 assets / 280 unique GUIDs**), and fresh rule binding audit (**4 source snapshots / 17 profiles / 340 RP cells / 22 named tests**). Retained evidence and current limitations are in [README.md](README.md); the targeted result files are in [review-corrections](development-attempts/review-corrections/).
+**Result: accepted for the agreed bounded TEST_ONLY scope.** GPT's actual response in **Unity Rules Engine Development** states that all three prior blockers are closed and it found no remaining acceptance blocker.
 
-No follow-up acceptance is claimed yet. The exact correction commit, changed-file inventory and reports must be sent to **Unity Rules Engine Development**. The next mapped dependency remains on hold until GPT has actually reviewed this corrected evidence, concrete blockers are resolved, and Codex/GPT agree the module meets its acceptance criteria and the next dependency follows the map.
+> “Accepted for the agreed bounded TEST_ONLY scope at dcb8e689. All three prior blockers are closed; I found no remaining acceptance blocker.”
+
+- **Continuation interruption provenance — closed.** Morale boundary processing receives the existing `ManufacturingAdvanceRecord` and records its original command ID and revision. Validators remain unchanged. The regression verifies the saved hour121 target, interruption at hour120, exact receipt linkage, replay and duplicate protection.
+- **Resolved encounter history — closed.** Admission rejects active tactical control or unresolved retained conflict. Resolved encounter history remains intact; physical-position and site checks still apply. The regression covers real combat, tactical exit, restore, physical return and Morale completion.
+- **One-second handling boundary — closed.** Shared inventory/vessel preflight rejects when a Morale endpoint falls within the handling second. The regression proves byte-identical state after rejection and exactly-once completion through the remaining half-second. Generic handling query support remains accurately scoped as unsupported.
+
+GPT found no new Morale rule, validator relaxation or save-layout change. Schema64 and earlier codec branches remain unchanged. The original connected scenario still uses the existing provisioning, concurrent assigned crop work, Rest Debt, independent Morale/Long Rest allowances, exact choice, retained clock continuation and deterministic restoration authorities.
+
+**Nonblocking qualifications recorded by GPT:**
+
+1. The focused continuation report predates a later `DailyProvisioningCases.cs` edit and therefore has an earlier test-file hash than the final full report. Its runtime hashes agree; the final **1,264/1,264** full report includes the regression against final sources. The focused JSON is retained as a point-in-time development check, not final-source hash evidence.
+2. The patch changes successful Morale-completion provenance during a resumed advance. Do not claim replay compatibility for every pre-correction schema65 history without an archived replay check or versioned behavior. The historical compatibility guarantee for this increment is schemas through64; their encoded branches remain unchanged.
+
+**GPT inspection and checks:** GPT inspected the correction diff, changed handlers, continuation authority, Core/Laboratory validation, codec branches, original scenario and three regressions, pinned source passages, consensus, source bindings, reports, trace and handoff. It compared retained report hash lists; final full, compile, package and principal focused reports agreed on their common entries except for the focused-test qualification above. GPT did not run compilation, tests, validators or Unity checks, and did not independently recompute source hashes.
+
+**Next-dependency alignment:** GPT confirms MGT-03 remains partial and recommends the already-mapped **Haven-care recovery** dependency next, beginning with a source-bound contract over the existing clock, provisioning and Strain history. Haven care is already listed as unfinished in the MGT-03 implementation-map row; this does not add a roadmap item. The post-Morale handoff must record this alignment. No implementation or production promotion was authorized by GPT's review; the project goal continues under the owner's standing implementation authorization.

@@ -1,8 +1,8 @@
 # Morale Rest over shared Expedition Strain (schema65, TEST_ONLY)
 
-**Implementation status:** the original implementation review found three concrete blockers. The focused corrections below are implemented and validated; GPT's follow-up implementation review is pending. The source labels Morale Rest `NEW`, so it remains candidate/TEST_ONLY behavior. This does not complete MGT-03, the C# engine, or a playable three-layer game. Unity gameplay integration remains deferred.
+**Implementation status:** GPT accepted correction commit `dcb8e689c092b9398e60ab73f9f3c3186f824fca` for the bounded TEST_ONLY scope, closed all three first-review blockers, and found no remaining acceptance blocker. The source labels Morale Rest `NEW`, so it remains candidate/TEST_ONLY behavior. This does not complete MGT-03, the C# engine, or a playable three-layer game. Unity gameplay integration remains deferred.
 
-The pre-implementation contract, including GPT's actual design consensus, is in [MORALE_REST_CONSENSUS.md](MORALE_REST_CONSENSUS.md). The exact source snapshots, profiles and named-test bindings are in [SOURCE_BINDINGS.json](SOURCE_BINDINGS.json). The actual GPT implementation review will be recorded in [GPT_REVIEW.md](GPT_REVIEW.md) after it is received.
+The pre-implementation contract, including GPT's actual design consensus, is in [MORALE_REST_CONSENSUS.md](MORALE_REST_CONSENSUS.md). The exact source snapshots, profiles and named-test bindings are in [SOURCE_BINDINGS.json](SOURCE_BINDINGS.json). GPT's actual first and corrected implementation reviews, its inspection scope and checks it did not run are recorded in [GPT_REVIEW.md](GPT_REVIEW.md).
 
 ## Responsibilities and source requirements
 
@@ -42,7 +42,7 @@ For this bounded scenario, the fingerprinted provisioning/Rest Debt roster enrol
 
 ## Validation results
 
-- Original connected module case: **1/1 PASS**; three GPT-finding regressions: **3/3 PASS**; retained named-case results are under [review-corrections](development-attempts/review-corrections/).
+- Original connected module case: **1/1 PASS**; three GPT-finding regressions: **3/3 PASS**; retained named-case results are under [review-corrections](development-attempts/review-corrections/). The focused continuation JSON is a point-in-time development run before a later edit to the shared test file; its runtime hashes match, and final-source coverage is established by the full report, which includes the case.
 - Full C# 9 warnings-as-errors regression suite: **1,264/1,264 PASS**, 254 tested-source hashes; [FULL_TEST_RESULTS.json](FULL_TEST_RESULTS.json).
 - Fresh explicit Roslyn compile: **Core, Persistence and LabModel PASS**, 185 C# source hashes; [COMPILE_RESULTS.json](COMPILE_RESULTS.json). Build assemblies and generated save bundles remain local and are omitted from the repository commit.
 - Fresh static package validation: **18/18 PASS**, **280 package assets / 280 unique GUIDs**; [PACKAGE_RESULTS.json](PACKAGE_RESULTS.json). This is not Unity import or Editor compilation.
@@ -63,6 +63,6 @@ The attempt reports also preserve their exact compiler/test/package diagnostics.
 
 ## Limits and review gate
 
-This is not production Morale authority. General recreation activities, dynamic safety, other Strain-source recovery, Haven care, unrepresented emergency interruption, complete MGT-03, combat-specific recovery, Unity integration, and human gameplay qualification remain unsupported or outside scope. `QueryCommand` does not expose the generic one-second `HandleInventory` operation in this fixture (`UnsupportedOperation`), so the exact-boundary regression proves read-only query non-mutation and the execution rejection, not query admissibility parity. Unity import/compilation, Edit Mode, Play Mode, player builds and observed gameplay were not run.
+This is not production Morale authority. General recreation activities, dynamic safety, other Strain-source recovery, Haven care, unrepresented emergency interruption, complete MGT-03, combat-specific recovery, Unity integration, and human gameplay qualification remain unsupported or outside scope. `QueryCommand` does not expose the generic one-second `HandleInventory` operation in this fixture (`UnsupportedOperation`), so the exact-boundary regression proves read-only query non-mutation and the execution rejection, not query admissibility parity. Schema65 layout is unchanged by the corrections, but byte-identical replay compatibility for every pre-correction schema65 history is not claimed without an archived replay check or versioned behavior; the historical compatibility guarantee here covers schemas through64. Unity import/compilation, Edit Mode, Play Mode, player builds and observed gameplay were not run.
 
-GPT must review the exact implementation commit and this evidence before the next mapped increment begins. Passing tests or package validation alone do not establish acceptance or engine completion.
+GPT accepted the corrected implementation and aligned the next mapped dependency as Haven-care recovery, already listed as unfinished in the MGT-03 map row. The next increment still requires its source-bound contract before code changes. Passing tests, package validation, or this bounded acceptance do not establish full MGT-03 or engine completion.
