@@ -1,6 +1,6 @@
 # MGT-03 camp use and Pressure — schema69 evidence
 
-**Status:** GPT reviewed implementation commit `706a129808443c028d1d063f59f1911c1c164473` and held acceptance on three integration defects. The corrections below are implemented and validated; GPT's review of the correction commit is pending. No successor module starts before that review accepts the module. This does not establish completion of all MGT-03 or the engine.
+**Status:** GPT accepted correction commit `af0954bf90b94032709380477ff5d142a88c1cca` for this bounded schema69 TEST_ONLY module, closing the three integration findings from its review of `706a129808443c028d1d063f59f1911c1c164473`. GPT found no remaining concrete acceptance blocker. Its actual findings, evidence limits and selected next mapped dependency are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). FL-07 Temporary Camp construction is next for source-contract review; its bounded scope and acceptance scenario are not yet agreed. This does not establish completion of all MGT-03 or the engine.
 
 ## Agreed scope and authorities
 

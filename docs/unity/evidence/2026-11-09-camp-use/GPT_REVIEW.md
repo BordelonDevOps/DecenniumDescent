@@ -28,4 +28,20 @@ Final validation on the correction source passes **1,289/1,289** C# 9 warnings-a
 
 The tactical-turn regression initially exposed one additional interface gap: the resolver committed `EndRegularTurn`, but the shared combat host returned `UnsupportedOperation` from its supported-command gate. Codex added `EndRegularTurn`/`EndFixedEncounter` to that gate when connected combat is active and evaluates the query through the existing detached-copy resolver path. The final regression now requires the query to be supported/admissible and verifies the same turn commits, closes against the exact Pressure checkpoint and replays after save/restore.
 
-**Correction-commit review:** pending. The current implementation is not accepted until GPT reviews the exact correction commit and evidence and confirms the three blockers are closed and the next mapped dependency remains aligned.
+## Correction-commit review — `af0954bf90b94032709380477ff5d142a88c1cca`
+
+**Actual verdict:** “Accepted: `af0954bf90b94032709380477ff5d142a88c1cca` closes all three prior blockers for the bounded schema69 TEST_ONLY module. I found no remaining concrete acceptance blocker in this correction.”
+
+GPT reviewed the exact GitHub diff, changed runtime and validation paths, encounter-history lookup, tactical clock and query paths, regression code, baseline failures, final reports, review record, trace and handoff. It confirmed:
+
+1. **Unrelated companion traversal — closed.** Admission and active-camp validation scope traversal to the singleton Pressure cohort member. The regression covers the companion movement, preserved camp/lying-low state, restore/replay and duplicate handling.
+2. **Tactical-clock Severe closure — closed.** Supported clock-command kinds are admitted while validation still requires exact receipt ID/revision and matching checkpoint time, cohort, route and closure consequence. `EndRegularTurn` exercises the previously failing boundary.
+3. **Movement-triggered combat — closed.** The transition recognizes the `BeginWorldStep` revision in encounter history, ends lying-low against that receipt, preserves camp use, and validates encounter evidence.
+
+GPT found the `EndRegularTurn`/`EndFixedEncounter` query-gate addition consistent with the existing architecture: it uses the established resolver on a detached snapshot while tactical control is active. It introduces no second rules authority and changes no save layout; the focused regression requires query/execution agreement.
+
+GPT accepted the bounded module. Guard-duty scheduling remains a disclosed, non-blocking unsupported capability. GPT found no new schema67/68 save/replay compatibility issue. It compared the retained manifests (193 compile entries against the full report's 193; 264 full-report entries against the package manifest; focused report consistency). GPT did **not** independently compile, execute tests, decode save artifacts, recompute source-file hashes, or perform Unity checks, and made no repository changes.
+
+An authentic pre-schema69 save with archived continuation remains optional hardening, not an acceptance requirement.
+
+**Next mapped dependency:** FL-07 Temporary Camp construction. GPT recommends starting with a source-contract review covering shared labor, material reservation and installation, build checks and marks, and required physical fixtures. This is the next mapped item; its bounded scope and runnable acceptance scenario must be agreed before implementation. MGT-03 and the complete engine remain unfinished; Unity stays deferred.
