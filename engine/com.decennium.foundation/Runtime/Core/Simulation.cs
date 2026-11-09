@@ -30,7 +30,8 @@ namespace Decennium.Foundation
         StartRouteMappingWork, PauseRouteMappingWork, ResumeRouteMappingWork,
         StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance,
         ScheduleRestWatch, BeginRest, InterruptRest, ResolveExpeditionStrainRecovery,
-        BeginMoraleRest, InterruptMoraleRest, BeginHavenCare, InterruptHavenCare }
+        BeginMoraleRest, InterruptMoraleRest, BeginHavenCare, InterruptHavenCare,
+        BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -123,6 +124,7 @@ namespace Decennium.Foundation
         public const int HavenCareSchema = 66;
         public const int ExpeditionPressureSchema = 67;
         public const int ExpeditionPressureLifecycleSchema = 68;
+        public const int ExpeditionCampUseSchema = 69;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -288,6 +290,8 @@ namespace Decennium.Foundation
         public ExpeditionPressureExposureRecord[] ExpeditionPressureExposures = Array.Empty<ExpeditionPressureExposureRecord>();
         public ExpeditionPressureChangeRecord[] ExpeditionPressureChanges = Array.Empty<ExpeditionPressureChangeRecord>();
         public ExpeditionPressureCheckpointRecord[] ExpeditionPressureCheckpoints = Array.Empty<ExpeditionPressureCheckpointRecord>();
+        public ExpeditionCampSiteRecord[] ExpeditionCampSites = Array.Empty<ExpeditionCampSiteRecord>();
+        public ExpeditionCampActivityRecord[] ExpeditionCampActivities = Array.Empty<ExpeditionCampActivityRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -367,6 +371,8 @@ namespace Decennium.Foundation
             ExpeditionPressureExposures = ExpeditionPressureExposures.ToArray(),
             ExpeditionPressureChanges = ExpeditionPressureChanges.ToArray(),
             ExpeditionPressureCheckpoints = ExpeditionPressureCheckpoints.ToArray(),
+            ExpeditionCampSites = ExpeditionCampSites.ToArray(),
+            ExpeditionCampActivities = ExpeditionCampActivities.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -692,7 +698,8 @@ namespace Decennium.Foundation
             else if (s.SchemaVersion == Foundation.Snapshot.MoraleRestSchema
                 || s.SchemaVersion == Foundation.Snapshot.HavenCareSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema
-                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -801,6 +808,7 @@ namespace Decennium.Foundation
             ExpeditionRouteReconnaissanceValidation.Validate(s);
             ExpeditionProvisioningValidation.Validate(s);
             ExpeditionPressureValidation.Validate(s);
+            ExpeditionCampValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }

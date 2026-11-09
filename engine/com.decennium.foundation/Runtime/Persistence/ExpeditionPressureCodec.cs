@@ -54,6 +54,7 @@ namespace Decennium.Foundation
                 WriteQuantity(w, x.RouteProgress);
                 w.Write(x.ConsequenceEndsAt.HasValue); if (x.ConsequenceEndsAt.HasValue) WriteTime(w, x.ConsequenceEndsAt.Value);
                 SnapshotCodec.WriteText(w, x.CommandId); w.Write(x.AppliedRevision);
+                if (s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema) w.Write((int)x.Context);
             }
         }
 
@@ -104,10 +105,13 @@ namespace Decennium.Foundation
                 RuleQuantity routeProgress = ReadQuantity(r);
                 RuleTime? ends = SnapshotCodec.ReadBool(r) ? ReadTime(r) : (RuleTime?)null;
                 string command = SnapshotCodec.ReadText(r); long revision = r.ReadInt64();
+                var context = s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema
+                    ? (ExpeditionPressureCheckpointContext)r.ReadInt32()
+                    : ExpeditionPressureCheckpointContext.Route;
                 checkpoints[i] = new ExpeditionPressureCheckpointRecord(id, cohort, watch, at, reason, route,
                     routeFingerprint, profileFingerprint, quality, floor, before, stored, effective, causes, reductions,
                     natural, total, modified, randomBefore, randomAfter, words, outcome, consequence, affected, retreat,
-                    routeProgress, ends, command, revision);
+                    routeProgress, ends, command, revision, context);
             }
 
             s.ExpeditionPressureCohorts = cohorts; s.ExpeditionPressureExposures = exposures;

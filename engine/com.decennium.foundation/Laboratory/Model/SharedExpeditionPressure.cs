@@ -104,7 +104,8 @@ namespace Decennium.Foundation.Laboratory
                     + s.ExpeditionPressureChanges.Length + s.ExpeditionPressureCheckpoints.Length == 0
                     ? null : "PressureFixtureMissing";
             if ((s.SchemaVersion != Snapshot.ExpeditionPressureSchema
-                    && s.SchemaVersion != Snapshot.ExpeditionPressureLifecycleSchema)
+                    && s.SchemaVersion != Snapshot.ExpeditionPressureLifecycleSchema
+                    && s.SchemaVersion != Snapshot.ExpeditionCampUseSchema)
                 || s.ExpeditionPressureCohorts.Length != 1
                 || !s.ExpeditionPressureCohorts[0].SameAs(new ExpeditionPressureCohortRecord(
                     expeditionPressureProfile.CohortId, s.ContentFingerprint, routeTravelFixture.Fingerprint,
@@ -447,18 +448,34 @@ namespace Decennium.Foundation.Laboratory
             if (initiating == null || route == null) return "PressureCheckpointContextUnsupported";
             var travel = LatestRouteTravel(s, route.Id, expeditionPressureProfile.MemberId);
             if (travel == null) return "PressureRouteProgressMissing";
+            string campEvidenceError = RecordCampPressureEvidence(s, exposure, watch, at);
+            if (campEvidenceError != null) return campEvidenceError;
             int before = ExpeditionPressureRules.CurrentAt(s, exposure.CohortId, s.Revision + 1, at);
             var causes = s.ExpeditionPressureChanges.Where(x => x.CohortId == exposure.CohortId
-                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.OpenCombat
+                && x.WatchIndex == watch && (x.Kind == ExpeditionPressureChangeKind.OpenCombat
+                    || s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema
+                        && x.Kind == ExpeditionPressureChangeKind.ExposedCampUse)
                 && x.SourceRevision <= s.Revision + 1 && x.At <= at)
                 .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
             var reductions = s.ExpeditionPressureChanges.Where(x => x.CohortId == exposure.CohortId
-                && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry
+                && x.WatchIndex == watch && (x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry
+                    || s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema
+                        && x.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow)
                 && x.SourceRevision <= s.Revision + 1 && x.At <= at)
                 .OrderBy(x => x.SourceRevision).ThenBy(x => x.Id, StringComparer.Ordinal).Take(2).ToArray();
             int floor = route.Quality == ExpeditionRouteQuality.Secured ? 0 : route.Risk;
-            int stored = ExpeditionPressureRules.Settle(before, causes.Length > 0, reductions.Length, floor);
-            int effective = ExpeditionPressureRules.EffectiveForRouteCheck(stored, route.Quality);
+            int stored = ExpeditionPressureRules.Settle(before,
+                ExpeditionPressureRules.IncreaseCategoryCount(causes), reductions.Length, floor);
+            bool watchEnd = IsPressureWatchEnd(at);
+            bool campCheckpoint = s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema && watchEnd
+                && s.ExpeditionCampActivities.Any(x => x.CohortId == exposure.CohortId
+                    && x.Kind == ExpeditionCampActivityKind.Use && x.StartedAt < at
+                    && (!x.EndedAt.HasValue || x.EndedAt.Value >= at)
+                    && x.ExposureId == exposure.Id && x.CampId == expeditionCampSiteProfile.Id
+                    && (!exposure.EndedAt.HasValue || exposure.EndedAt.Value >= at));
+            var context = campCheckpoint ? ExpeditionPressureCheckpointContext.Camp
+                : ExpeditionPressureCheckpointContext.Route;
+            int effective = ExpeditionPressureRules.EffectiveForCheckpoint(stored, route.Quality, context);
             uint randomBefore = s.RandomState, randomAfter = randomBefore;
             long words = 0; int natural = 0, total = 0;
             if (effective > 0 && effective < 6)
@@ -479,7 +496,7 @@ namespace Decennium.Foundation.Laboratory
                 natural, total, false, randomBefore, randomAfter, words, outcome, consequence,
                 consequence == ExpeditionPressureConsequenceKind.None ? "" : route.Id,
                 consequence == ExpeditionPressureConsequenceKind.RouteClosure ? route.Id : "",
-                travel.Progress, ends, initiating.Id, s.Revision + 1);
+                travel.Progress, ends, initiating.Id, s.Revision + 1, context);
             s.ExpeditionPressureCheckpoints = s.ExpeditionPressureCheckpoints.Concat(new[] { checkpoint }).ToArray();
             if (consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction)
             {

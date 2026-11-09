@@ -184,6 +184,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeMoraleRest(s);
             InitializeHavenCare(s);
             InitializeExpeditionPressure(s);
+            InitializeExpeditionCampUse(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -430,6 +431,7 @@ namespace Decennium.Foundation.Laboratory
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<next)next=tacticalFeatureBoundary.Value;
                 var routeBoundary=NextRouteTravelBoundary(s);if(routeBoundary.HasValue&&routeBoundary.Value<next)next=routeBoundary.Value;
                 var pressureBoundary=NextExpeditionPressureBoundary(s);if(pressureBoundary.HasValue&&pressureBoundary.Value<next)next=pressureBoundary.Value;
+                var campUseBoundary=NextCampUseBoundary(s);if(campUseBoundary.HasValue&&campUseBoundary.Value<next)next=campUseBoundary.Value;
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<next)next=routeMappingWorkBoundary.Value;
                 var routeReconnaissanceBoundary=NextRouteReconnaissanceBoundary(s);if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<next)next=routeReconnaissanceBoundary.Value;
                 var provisioningBoundary=NextProvisioningBoundary(s);if(provisioningBoundary.HasValue&&provisioningBoundary.Value<next)next=provisioningBoundary.Value;
@@ -588,6 +590,7 @@ namespace Decennium.Foundation.Laboratory
                 string havenCareError=ProcessHavenCareBoundary(s,initiating,continuation);if(havenCareError!=null)return havenCareError;
                 string pressureCheckpointError=ProcessExpeditionPressureBoundary(s,s.RuleClock,initiating,
                     stagedPressureArrival,completedPressureRetreat);if(pressureCheckpointError!=null)return pressureCheckpointError;
+                ProcessCampUseBoundary(s,initiating);
                 string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
                     deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
@@ -613,6 +616,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (IsExpeditionCampUseCommand(c.Kind)) return ResolveExpeditionCampUse(s, c);
             string pendingRecoveryFailure = PendingRecoveryChoiceFailure(s, c);
             if (pendingRecoveryFailure != null) return pendingRecoveryFailure;
             if (IsStrainRecoveryCommand(c.Kind)) return ResolveStrainRecoveryChoice(s, c);
@@ -838,6 +842,7 @@ namespace Decennium.Foundation.Laboratory
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
                 string pressureError=ValidateExpeditionPressureFixtureState(s);if(pressureError!=null)return pressureError;
+                string campUseError=ValidateExpeditionCampFixtureState(s);if(campUseError!=null)return campUseError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
                 string routeReconnaissanceError=ValidateRouteReconnaissanceState(s);if(routeReconnaissanceError!=null)return routeReconnaissanceError;

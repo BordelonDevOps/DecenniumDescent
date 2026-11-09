@@ -12,6 +12,7 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private const string PressureCohortId = "TEST_ONLY.pressure.cohort";
+        private const string PressureCampId = "TEST_ONLY.pressure.camp";
 
         private static TestOnlySharedWorldPolicy PressurePolicy(int initialPressure = 5, uint seed = 1,
             TestOnlyExpeditionRouteFixture routes = null, long enemyHp = 1)
@@ -22,6 +23,44 @@ namespace Decennium.Foundation.Tests
                 .EnableExpeditionPressure(new TestOnlyExpeditionPressureFixture(PressureCohortId,
                     TestOnlyPolicy.ActorId, initialPressure, new[] { TestOnlyCropPolicy.PlotId }));
         }
+
+        private static TestOnlySharedWorldPolicy PressureCampPolicy(TestOnlyExpeditionCampSiteFixture camp,
+            int initialPressure = 5, uint seed = 1, TestOnlyExpeditionRouteFixture routes = null, long enemyHp = 1)
+            => PressurePolicy(initialPressure, seed, routes, enemyHp).EnableExpeditionCampUse(camp);
+
+        private static Simulation PressurePrepareCampAtCheckpoint(TestOnlySharedWorldPolicy policy)
+        {
+            var simulation = World(policy);
+            WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
+            WorldAdvance(simulation, 1);
+            PortableCommit(simulation, Portable(simulation, CommandKind.RemovePortableItem, PortableKitFixture.Pack));
+            PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
+                PortableKitFixture.Pack, handling: HandlingKind.Drop));
+            RouteTravelReachSource(simulation);
+            WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel,
+                "pressure.camp.route.start"));
+            WorldAdvance(simulation, 10800);
+            PressurePauseActiveRouteIfMoving(simulation, "pressure.camp.route.pause");
+            var state = simulation.Capture();
+            Require(state.RouteTravels.Single().Progress == new RuleQuantity(1)
+                && state.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
+                && state.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                && state.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                && state.ExpeditionCampSites.Single().Id == PressureCampId,
+                "The camp fixture did not reach its exact paused physical route checkpoint: route="
+                + state.RouteTravels.Single().Status + "/" + state.RouteTravels.Single().Progress
+                + "; actor=" + state.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X + ","
+                + state.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y + "; siteCount="
+                + state.ExpeditionCampSites.Length + "; clock=" + state.RuleClock + ".");
+            return simulation;
+        }
+
+        private static Command PressureCampCommand(Simulation simulation, CommandKind kind, string suffix)
+            => new Command("pressure.camp." + suffix + "." + simulation.Capture().Revision.ToString(CultureInfo.InvariantCulture),
+                TestOnlyPolicy.ActorId, simulation.Capture().Revision, kind, PressureCampId);
+
+        private static void PressureCampCommit(Simulation simulation, CommandKind kind, string suffix)
+            => WorldCommit(simulation, PressureCampCommand(simulation, kind, suffix));
 
         private static TestOnlyExpeditionRouteFixture PressureHavenRouteFixture(
             ExpeditionRouteQuality quality = ExpeditionRouteQuality.Secured)
@@ -771,6 +810,281 @@ namespace Decennium.Foundation.Tests
                         && Bytes(split).SequenceEqual(Bytes(restored)),
                         "Whole-command replay or split/restored replay did not remain canonical for schema " + schema + ".");
                 }
+            });
+
+            cases.Add("expedition_camp_known_use_and_actual_combat_are_distinct_pressure_categories", () => {
+                var blockedSite = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), legalAccess: false, knownToEnemies: true);
+                var blockedPolicy = PressureCampPolicy(blockedSite, initialPressure: 6);
+                var blocked = PressurePrepareCampAtCheckpoint(blockedPolicy);
+                var blockedCommand = PressureCampCommand(blocked, CommandKind.BeginCampUse, "blocked");
+                byte[] beforeBlocked = Bytes(blocked);
+                var blockedQuery = blocked.QueryCommand(TestOnlySharedWorldPolicy.Host(), blockedCommand);
+                var blockedResult = blocked.Execute(TestOnlySharedWorldPolicy.Host(), blockedCommand);
+                Require(blockedQuery.Supported && !blockedQuery.Admissible
+                    && blockedQuery.Code == "CampSiteAccessBlockedOrUnsuitable"
+                    && blockedResult.Outcome == Outcome.Rejected && blockedResult.Code == blockedQuery.Code
+                    && beforeBlocked.SequenceEqual(Bytes(blocked)),
+                    "An explicitly inaccessible camp profile passed preflight or changed state: query="
+                    + blockedQuery.Supported + "/" + blockedQuery.Admissible + "/" + blockedQuery.Code
+                    + "; result=" + blockedResult.Outcome + "/" + blockedResult.Code
+                    + "; bytesEqual=" + beforeBlocked.SequenceEqual(Bytes(blocked)) + ".");
+
+                var campSite = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), knownToEnemies: true);
+                var policy = PressureCampPolicy(campSite, initialPressure: 6, enemyHp: 1);
+                var simulation = PressurePrepareCampAtCheckpoint(policy);
+                var firstBegin = PressureCampCommand(simulation, CommandKind.BeginCampUse, "known.begin.first");
+                var beginQuery = simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(), firstBegin);
+                Require(beginQuery.Supported && beginQuery.Admissible,
+                    "An accessible exact-checkpoint camp did not pass command preflight: " + beginQuery.Code);
+                WorldCommit(simulation, firstBegin);
+                byte[] afterFirstBegin = Bytes(simulation);
+                var duplicate = simulation.Execute(TestOnlySharedWorldPolicy.Host(), firstBegin);
+                Require(duplicate.Outcome == Outcome.Duplicate && afterFirstBegin.SequenceEqual(Bytes(simulation)),
+                    "Repeated camp-use command replay changed the committed activity or its receipt.");
+                WorldAdvance(simulation, 1);
+                PressureCampCommit(simulation, CommandKind.EndCampUse, "known.end.first");
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "known.begin.second");
+                WorldAdvance(simulation, 1);
+                BeginEncounter(simulation);
+                PressureMoveHostileAdjacent(simulation);
+                DefeatConnectedEnemy(simulation);
+                WorldCommit(simulation, Tac(simulation, CommandKind.EndFixedEncounter));
+                Require(simulation.Capture().ExpeditionCampActivities.Any(x => x.Kind == ExpeditionCampActivityKind.Use
+                    && x.Active) && simulation.Capture().RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused,
+                    "Combat incorrectly ended physical camp occupancy or moved the paused expedition route.");
+
+                PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                var state = simulation.Capture();
+                var checkpoint = state.ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 0);
+                var campEvidence = state.ExpeditionPressureChanges.Where(x => x.WatchIndex == 0
+                    && x.Kind == ExpeditionPressureChangeKind.ExposedCampUse).ToArray();
+                var combatEvidence = state.ExpeditionPressureChanges.Where(x => x.WatchIndex == 0
+                    && x.Kind == ExpeditionPressureChangeKind.OpenCombat).ToArray();
+                var pressureKinds = state.ExpeditionPressureChanges.Where(x => x.WatchIndex == 0
+                    && (x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        || x.Kind == ExpeditionPressureChangeKind.OpenCombat)).Select(x => x.Kind).Distinct().ToArray();
+                Require(campEvidence.Length == 2 && combatEvidence.Length >= 2 && pressureKinds.Length == 2
+                    && campEvidence.All(x => checkpoint.CauseIds.Contains(x.Id))
+                    && combatEvidence.All(x => checkpoint.CauseIds.Contains(x.Id))
+                    && checkpoint.PressureBefore == 6 && checkpoint.StoredPressure == 6
+                    && checkpoint.Context == ExpeditionPressureCheckpointContext.Camp
+                    && checkpoint.EffectivePressure == 6 && checkpoint.Outcome == ExpeditionPressureOutcome.Severe
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.RouteClosure
+                    && state.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use
+                        && x.Active == false && x.EndReason == ExpeditionCampActivityEndReason.PressureClosure).EndedAt
+                        == checkpoint.At,
+                    "Repeated known-site use and separate actual combat did not settle as two source categories, clamp to Severe, and close occupancy at the exact checkpoint.");
+                WorldStep(simulation, 0, -1);
+                WorldAdvance(simulation, 3, 2);
+                WorldStep(simulation, 0, -1);
+                WorldAdvance(simulation, 1);
+                var retreated = simulation.Capture();
+                Require(retreated.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1
+                    && retreated.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 1
+                    && retreated.ExpeditionPressureExposures.Single().EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted
+                    && retreated.ExpeditionPressureCheckpoints.Length == 1
+                    && retreated.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        && x.WatchIndex == 0) == 2,
+                    "Severe camp Pressure did not preserve physical retreat on the existing path without duplicating its checkpoint or camp category: actor="
+                    + retreated.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X + ","
+                    + retreated.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y + "; exposure="
+                    + retreated.ExpeditionPressureExposures.Single().EndKind + "; checkpoints="
+                    + retreated.ExpeditionPressureCheckpoints.Length + "; campRows="
+                    + retreated.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        && x.WatchIndex == 0) + "; traversal="
+                    + string.Join(",", retreated.WorldTraversals.Select(x => x.Status + ":" + x.DistanceFeet)) + ".");
+            });
+
+            cases.Add("expedition_camp_exposed_pressure_context_and_companion_farming_connect", () => {
+                var campSite = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), exposed: true);
+                var policy = PressureCampPolicy(campSite, initialPressure: 5, seed: 1);
+                var simulation = PressurePrepareCampAtCheckpoint(policy);
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "exposed.begin");
+                PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                var checkpoint = simulation.Capture().ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 0);
+                Require(checkpoint.PressureBefore == 5 && checkpoint.StoredPressure == 5
+                    && checkpoint.Context == ExpeditionPressureCheckpointContext.Camp
+                    && checkpoint.EffectivePressure == 5
+                    && checkpoint.EffectivePressure != ExpeditionPressureRules.EffectiveForRouteCheck(
+                        checkpoint.StoredPressure, checkpoint.RouteQuality)
+                    && checkpoint.Outcome == ExpeditionPressureOutcome.Standard
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                    && checkpoint.CauseIds.Count == 1 && checkpoint.ReductionIds.Count == 1
+                    && simulation.Capture().ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use).Active,
+                    "Exposed camp use did not raise one category or use the camp Pressure context at Watch-end.");
+                FarmWork(simulation, CommandKind.PlantCrop);
+                PressureAdvanceTo(simulation, checkpoint.ConsequenceEndsAt.Value);
+                var completed = simulation.Capture();
+                Require(Crop(simulation).Stage == CropStage.Growing
+                    && completed.Work.WorkerIntervals.Any(x => x.WorkerId == TestOnlyPolicy.CompanionId
+                        && x.Start == checkpoint.At && x.End <= checkpoint.ConsequenceEndsAt.Value)
+                    && completed.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
+                    && completed.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use).Active,
+                    "The companion did not finish farming during the timed route obstruction while camp occupancy and the exploration position persisted.");
+            });
+
+            cases.Add("expedition_camp_early_haven_uses_route_context_and_does_not_settle_twice", () => {
+                var routes = PressureHavenRouteFixture();
+                var campSite = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), exposed: true);
+                var policy = PressureCampPolicy(campSite, initialPressure: 5, seed: 1, routes: routes);
+                var simulation = PressurePrepareCampAtCheckpoint(policy);
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "haven.use.begin");
+                WorldAdvance(simulation, 1);
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.ResumeRouteTravel,
+                    "camp.haven.route.resume"));
+                var afterLeaving = simulation.Capture().ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use);
+                Require(afterLeaving.EndedAt == simulation.Capture().RuleClock
+                    && afterLeaving.EndReason == ExpeditionCampActivityEndReason.Travel,
+                    "Leaving the authored camp did not end actual use on the route-resume receipt.");
+                WorldAdvance(simulation, 10800);
+                Require(simulation.Capture().RouteTravels.Single().Progress == new RuleQuantity(2),
+                    "The Haven scenario did not reach the authored route endpoint.");
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 1);
+                var early = simulation.Capture();
+                var checkpoint = early.ExpeditionPressureCheckpoints.Single();
+                Require(early.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 2
+                    && early.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && checkpoint.WatchIndex == 0 && checkpoint.Reason == ExpeditionPressureSettlementReason.HavenArrival
+                    && checkpoint.Context == ExpeditionPressureCheckpointContext.Route
+                    && checkpoint.PressureBefore == 5 && checkpoint.StoredPressure == 5
+                    && checkpoint.EffectivePressure == 4 && checkpoint.CauseIds.Count == 1
+                    && checkpoint.ReductionIds.Count == 1
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                    && early.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        && x.WatchIndex == 0) == 1
+                    && !early.ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                    "Early Haven settlement did not preserve route context, one real camp-use source, and its single pending Standard consequence: actor="
+                    + early.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X + ","
+                    + early.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y + "; watch/context="
+                    + checkpoint.WatchIndex + "/" + checkpoint.Context + "; pressure=" + checkpoint.PressureBefore
+                    + "/" + checkpoint.StoredPressure + "/" + checkpoint.EffectivePressure + "; causes/reductions="
+                    + checkpoint.CauseIds.Count + "/" + checkpoint.ReductionIds.Count + "; outcome/consequence="
+                    + checkpoint.Outcome + "/" + checkpoint.Consequence + "; campRows="
+                    + early.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        && x.WatchIndex == 0) + "; exposureEnd=" + early.ExpeditionPressureExposures.Single().EndedAt
+                    + "; clock=" + early.RuleClock + "; routeStatus=" + early.RouteTravels.Single().Status
+                    + "; traversal=" + string.Join(",", early.WorldTraversals.Select(x => x.Status + ":" + x.DistanceFeet)) + ".");
+                PressureAdvanceTo(simulation, checkpoint.ConsequenceEndsAt.Value);
+                var admitted = simulation.Capture();
+                Require(checkpoint.SameAs(admitted.ExpeditionPressureCheckpoints.Single())
+                    && admitted.ExpeditionPressureCheckpoints.Length == 1
+                    && admitted.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.ExposedCampUse
+                        && x.WatchIndex == 0) == 1
+                    && admitted.ExpeditionPressureExposures.Single().EndKind == ExpeditionPressureExposureEndKind.SafeHavenArrival
+                    && admitted.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 3
+                    && admitted.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && ExpeditionPressureRules.Current(admitted, PressureCohortId) == checkpoint.StoredPressure,
+                    "The actual Haven admission duplicated its earlier checkpoint/source or changed its Pressure settlement.");
+            });
+
+            cases.Add("expedition_camp_concealed_full_watch_lie_low_saves_replays_and_requires_unbroken_coverage", () => {
+                var campSite = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), concealed: true);
+                var policy = PressureCampPolicy(campSite, initialPressure: 2, seed: 1);
+                Simulation StartConcealedCamp()
+                {
+                    var simulation = PressurePrepareCampAtCheckpoint(policy);
+                    PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                    PressureCampCommit(simulation, CommandKind.BeginCampUse, "concealed.use.begin");
+                    PressureCampCommit(simulation, CommandKind.BeginLyingLow, "concealed.low.begin");
+                    FarmWork(simulation, CommandKind.PlantCrop);
+                    return simulation;
+                }
+
+                var whole = StartConcealedCamp();
+                var split = StartConcealedCamp();
+                var startOfSecondWatch = new RuleTime(ExpeditionPressureRules.WatchSeconds);
+                var endOfSecondWatch = new RuleTime(ExpeditionPressureRules.WatchSeconds * 2);
+                PressureAdvanceTo(split, new RuleTime(ExpeditionPressureRules.WatchSeconds * 3 / 2));
+                string path = Path.Combine(directory, "pressure-concealed-camp-mid-watch.ddsave");
+                var store = new FileSaveStore();
+                store.Save(path, split.Capture());
+                byte[] midSave = File.ReadAllBytes(path);
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                Require(midSave.SequenceEqual(Bytes(restored))
+                    && restored.Capture().ExpeditionCampActivities.Count(x => x.Active) == 2,
+                    "Active camp use and lying-low did not round-trip as authoritative intervals.");
+
+                PressureAdvanceTo(whole, endOfSecondWatch);
+                PressureAdvanceTo(split, endOfSecondWatch);
+                PressureAdvanceTo(restored, endOfSecondWatch);
+                var wholeState = whole.Capture();
+                var a = wholeState.ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 1);
+                var b = split.Capture().ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 1);
+                var c = restored.Capture().ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 1);
+                bool SameSettlement(ExpeditionPressureCheckpointRecord x, ExpeditionPressureCheckpointRecord y)
+                    => x.At == y.At && x.WatchIndex == y.WatchIndex && x.PressureBefore == y.PressureBefore
+                        && x.StoredPressure == y.StoredPressure && x.EffectivePressure == y.EffectivePressure
+                        && x.Context == y.Context && x.RandomBefore == y.RandomBefore && x.RandomAfter == y.RandomAfter
+                        && x.WordsConsumed == y.WordsConsumed && x.Natural == y.Natural
+                        && x.Outcome == y.Outcome && x.Consequence == y.Consequence
+                        && x.CauseIds.SequenceEqual(y.CauseIds, StringComparer.Ordinal)
+                        && x.ReductionIds.SequenceEqual(y.ReductionIds, StringComparer.Ordinal);
+                Require(SameSettlement(a, b) && SameSettlement(a, c)
+                    && a.PressureBefore == 1 && a.StoredPressure == 0
+                    && a.Context == ExpeditionPressureCheckpointContext.Camp
+                    && a.ReductionIds.Count == 1
+                    && wholeState.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow
+                        && x.WatchIndex == 1) == 1
+                    && wholeState.ExpeditionCampActivities.Where(x => x.Kind == ExpeditionCampActivityKind.LyingLow)
+                        .Single().Active
+                    && wholeState.RestIntervals.Length == 0
+                    && Crop(whole).Stage == CropStage.Growing
+                    && wholeState.RandomState == split.Capture().RandomState
+                    && wholeState.RandomState == restored.Capture().RandomState
+                    && Bytes(split).SequenceEqual(Bytes(restored)),
+                    "A full concealed Watch did not grant exactly one credit or deterministic whole/split/restored replay.");
+
+                var crossingPolicy = PressureCampPolicy(campSite, initialPressure: 0, seed: 1);
+                var crossing = PressurePrepareCampAtCheckpoint(crossingPolicy);
+                PressureCampCommit(crossing, CommandKind.BeginCampUse, "crossing.use.begin");
+                PressureCampCommit(crossing, CommandKind.BeginLyingLow, "crossing.low.begin");
+                PressureAdvanceTo(crossing, endOfSecondWatch);
+                var crossed = crossing.Capture();
+                var crossedFirst = crossed.ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 0);
+                var crossedSecond = crossed.ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 1);
+                Require(crossed.ExpeditionPressureCheckpoints.Length == 2
+                    && crossedFirst.Context == ExpeditionPressureCheckpointContext.Camp
+                    && crossedSecond.Context == ExpeditionPressureCheckpointContext.Camp
+                    && crossedFirst.ReductionIds.Count == 1
+                    && crossedSecond.ReductionIds.Count == 1
+                    && !crossed.ExpeditionPressureChanges.Any(x => x.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow
+                        && x.WatchIndex == 0)
+                    && crossed.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow
+                        && x.WatchIndex == 1) == 1
+                    && crossed.RuleClock == endOfSecondWatch,
+                    "One command spanning two Watches did not settle each boundary once, count only the fully covered lying-low Watch, and accept the exact closing endpoint.");
+
+                var interrupted = PressurePrepareCampAtCheckpoint(policy);
+                PressureAdvanceTo(interrupted, startOfSecondWatch);
+                PressureCampCommit(interrupted, CommandKind.BeginCampUse, "interrupted.use.begin");
+                PressureCampCommit(interrupted, CommandKind.BeginLyingLow, "interrupted.low.begin");
+                BeginEncounter(interrupted);
+                var afterCombatEntry = interrupted.Capture();
+                Require(afterCombatEntry.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.LyingLow)
+                        .EndReason == ExpeditionCampActivityEndReason.Combat
+                    && afterCombatEntry.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use).Active,
+                    "Combat did not interrupt lying-low independently of physical camp occupancy.");
+                PressureMoveHostileAdjacent(interrupted);
+                DefeatConnectedEnemy(interrupted);
+                WorldCommit(interrupted, Tac(interrupted, CommandKind.EndFixedEncounter));
+                PressureCampCommit(interrupted, CommandKind.BeginLyingLow, "interrupted.low.restart");
+                PressureAdvanceTo(interrupted, new RuleTime(ExpeditionPressureRules.WatchSeconds * 2 - 1));
+                PressureCampCommit(interrupted, CommandKind.EndLyingLow, "interrupted.low.end");
+                PressureAdvanceTo(interrupted, endOfSecondWatch);
+                var interruptedState = interrupted.Capture();
+                var interruptedCheckpoint = interruptedState.ExpeditionPressureCheckpoints.Single(x => x.WatchIndex == 1);
+                Require(interruptedCheckpoint.Context == ExpeditionPressureCheckpointContext.Camp
+                    && !interruptedState.ExpeditionPressureChanges.Any(x => x.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow
+                        && x.WatchIndex == 1)
+                    && interruptedState.ExpeditionCampActivities.Where(x => x.Kind == ExpeditionCampActivityKind.LyingLow)
+                        .All(x => x.EndedAt.HasValue && x.EndReason != ExpeditionCampActivityEndReason.PressureClosure),
+                    "Combat-interrupted and restarted partial lying-low intervals incorrectly combined into a full-Watch credit.");
             });
 
             cases.Add("expedition_pressure_schema67_save_continues_with_legacy_arrival_semantics", () => {

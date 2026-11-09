@@ -279,6 +279,8 @@ namespace Decennium.Foundation
                 case CommandKind.PauseMineralPreparation: case CommandKind.ResumeMineralPreparation:
                 case CommandKind.PauseCacheExcavation: case CommandKind.ResumeCacheExcavation:
                 case CommandKind.PauseRouteMappingWork: case CommandKind.ResumeRouteMappingWork:
+                case CommandKind.BeginCampUse: case CommandKind.EndCampUse:
+                case CommandKind.BeginLyingLow: case CommandKind.EndLyingLow:
                     return true;
                 default:
                     return false;
