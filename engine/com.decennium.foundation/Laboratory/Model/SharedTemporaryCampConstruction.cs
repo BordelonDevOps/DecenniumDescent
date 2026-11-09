@@ -144,13 +144,7 @@ namespace Decennium.Foundation.Laboratory
                 var item = s.PortableEquipment.SingleOrDefault(x => x.Id == id);
                 bool installed = s.TemporaryCampInstallations.Any(x => x.LotId == id);
                 bool activelyClaimed = s.Work.Reservations.Any(x => x.LotId == id && x.RemainingAmount != default);
-                bool releasedByFailure = s.TemporaryCampConstructionAttempts.Any(attempt =>
-                    attempt.Status == TemporaryCampConstructionStatus.Resolved && attempt.Check != null
-                    && attempt.Check.Result < TemporaryCampConstructionResult.Success
-                    && (attempt.TentLotId == id || attempt.PackLotId == id)
-                    && s.Work.Reservations.Any(x => x.JobId == attempt.Id && x.LotId == id
-                        && x.RemainingAmount == default && x.ReleasedAmount == x.Amount));
-                bool mayMoveAfterFailure = releasedByFailure && !activelyClaimed && !installed;
+                bool mayMoveUnclaimed = !activelyClaimed && !installed;
                 bool atAuthoredSite = lot != null && item != null
                     && lot.LocationId == GroundSiteLocation(site.RouteX, site.RouteY)
                     && lot.CustodianId == profile.LeadId
@@ -166,7 +160,7 @@ namespace Decennium.Foundation.Laboratory
                 if (lot == null || lot.UnitId != "mass-pound" || lot.Amount != new RuleQuantity(20)
                     || provenance == null || provenance.ParentId != "" || provenance.OwnerId != profile.LeadId
                     || provenance.CreatedAmount != new RuleQuantity(20) || provenance.Nutrition != NutritionKind.None
-                    || !(atAuthoredSite || mayMoveAfterFailure)
+                    || !(atAuthoredSite || mayMoveUnclaimed)
                     || lot.LocationId != expectedLocation || item == null || lot.CustodianId != item.CustodianId
                     || item == null || item.LinkKind != PortableLinkKind.InventoryLot || item.LinkedId != id
                     || item.ProfileId != expectedProfile || item.OwnerId != profile.LeadId

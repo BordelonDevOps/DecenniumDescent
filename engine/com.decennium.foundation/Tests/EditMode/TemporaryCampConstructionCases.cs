@@ -385,6 +385,47 @@ namespace Decennium.Foundation.Tests
                     "Integral remaining construction work was not reported exactly in integer active-work seconds.");
             });
 
+            cases.Add("temporary_camp_construction_unclaimed_fixture_can_move_before_attempt", () => {
+                var seed = CampConstructionSeed(success: true);
+                var simulation = CampConstructionAtCheckpoint(seed, assistants: Array.Empty<string>());
+                string tentId = TestOnlyExpeditionCampConstructionFixture.TentLotId;
+                PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
+                    tentId, handling: HandlingKind.Pickup));
+                string savePath = Path.Combine(directory, "camp-construction-unclaimed-tent.ddsave");
+                var store = new FileSaveStore();
+                store.Save(savePath, simulation.Capture());
+                byte[] saved = File.ReadAllBytes(savePath);
+                var restoredPolicy = CampConstructionPolicy(seed, assistants: Array.Empty<string>());
+                var restored = new Simulation(restoredPolicy, store.Load(savePath), ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(restored))
+                    && restored.Capture().PortableEquipment.Single(x => x.Id == tentId).CustodianId == TestOnlyPolicy.ActorId
+                    && restored.Capture().Work.Lots.Single(x => x.Id == tentId).LocationId == TestOnlyPolicy.ActorId,
+                    "An unclaimed tent's ordinary pickup did not preserve coherent custody through file save/restore.");
+
+                var startWhileCarried = CampConstructionCommand(restored, CommandKind.StartTemporaryCampConstruction,
+                    PressureCampId, "unclaimed-away.start");
+                var unavailable = restored.QueryCommand(host, startWhileCarried);
+                Require(unavailable.Supported && !unavailable.Admissible && unavailable.Code == "TemporaryCampFixtureUnavailable",
+                    "Construction was not rejected while the unclaimed physical tent was carried.");
+                RejectUnchanged(restored, host, startWhileCarried, "TemporaryCampFixtureUnavailable");
+
+                PortableCommit(restored, Portable(restored, CommandKind.HandlePortableEquipment,
+                    tentId, handling: HandlingKind.Drop));
+                var returnedStart = CampConstructionCommand(restored, CommandKind.StartTemporaryCampConstruction,
+                    PressureCampId, "unclaimed-returned.start");
+                Require(restored.QueryCommand(host, returnedStart).Supported
+                    && restored.QueryCommand(host, returnedStart).Admissible,
+                    "Returning the unclaimed tent to its authored site did not restore construction eligibility.");
+                WorldCommit(restored, returnedStart);
+                var started = restored.Capture();
+                var attempt = started.TemporaryCampConstructionAttempts.Single();
+                Require(attempt.TentLotId == tentId && attempt.WorkDone == default(RuleTime)
+                    && attempt.Status == TemporaryCampConstructionStatus.Working
+                    && started.Work.Reservations.Any(x => x.JobId == attempt.Id && x.LotId == tentId
+                        && x.RemainingAmount == new RuleQuantity(20)),
+                    "Construction did not start with a fresh claim on the same returned physical tent lot.");
+            });
+
             cases.Add("temporary_camp_construction_failure_releases_claims_and_retries_fresh", () => {
                 uint seed = CampConstructionSeed(success: false);
                 var simulation = CampConstructionAtCheckpoint(seed);
