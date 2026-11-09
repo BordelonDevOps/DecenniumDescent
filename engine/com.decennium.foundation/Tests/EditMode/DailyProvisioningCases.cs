@@ -1766,6 +1766,248 @@ namespace Decennium.Foundation.Tests
                     throw new InvalidOperationException("Morale Rest acceptance failed during " + milestone + ".", exception);
                 }
             });
+
+            cases.Add("morale_rest_resolved_encounter_history_allows_physical_return_and_replay", () => {
+                var site = new TestOnlyMoraleRestSiteFact("TEST_ONLY.review-recreation", "TEST_ONLY.campfire-recreation",
+                    1, 1, true, true);
+                var safeBerth = new TestOnlyRestSiteFact("TEST_ONLY.review-berth", 1, 1, true, true);
+                var actors = new[] { TestOnlyPolicy.ActorId };
+                var policy = ConnectedPolicy(1, SeedForD20(20))
+                    .EnableDailyProvisioning(new TestOnlyDailyProvisioningProfile(actors))
+                    .EnableRestDebt(new TestOnlyRestDebtProfile(actors, new[] { safeBerth }))
+                    .EnableExpeditionStrainRecovery(new TestOnlyExpeditionStrainRecoveryProfile(
+                        new[] { safeBerth.Id }))
+                    .EnableMoraleRest(new TestOnlyMoraleRestProfile(actors, new[] { site }));
+                var original = ConnectedArena(policy);
+                DefeatConnectedEnemy(original);
+                WorldCommit(original, Tac(original, CommandKind.EndFixedEncounter));
+                var exited = original.Capture();
+                Require(!exited.InventoryCombat && exited.Encounter != null
+                    && exited.Lives.Single(x => x.ActorId == AdditionalTacticalActor.Id).Dead
+                    && (WorldPositionResolver.Position(exited, TestOnlyPolicy.ActorId).X != new RuleQuantity(1)
+                        || WorldPositionResolver.Position(exited, TestOnlyPolicy.ActorId).Y != new RuleQuantity(1)),
+                    "The fixture did not preserve resolved encounter history after tactical exit.");
+
+                string exitSave = Path.Combine(directory, "morale-resolved-encounter-exit.ddsave");
+                new FileSaveStore().Save(exitSave, exited);
+                var left = RestoreRestDebt(original, policy);
+                var right = RestoreRestDebt(original, policy);
+                Require(Bytes(left).SequenceEqual(Bytes(right)),
+                    "Resolved encounter history changed through save/restore.");
+                void WalkOne(Simulation value, int dx, int dy)
+                {
+                    for (int attempt = 0; attempt < 4; attempt++) {
+                        var command = IC(value, CommandKind.BeginWorldStep, "walk", actor: TestOnlyPolicy.ActorId,
+                            x: dx, y: dy);
+                        var query = value.QueryCommand(host, command);
+                        if (!query.Admissible && attempt < 3) { WorldAdvance(value, 6); continue; }
+                        Require(query.Supported && query.Admissible,
+                            "The restored actor could not physically traverse back to the recreation site: " + query.Code);
+                        WorldCommit(value, command);
+                        for (int second = 0; second < 30
+                            && value.Capture().WorldTraversals.Any(x => x.ActorId == TestOnlyPolicy.ActorId); second++)
+                            WorldAdvance(value, 1);
+                        return;
+                    }
+                    throw new Exception("The movement allowance did not refresh for the physical return.");
+                }
+                foreach (var value in new[] { left, right }) {
+                    var current = value.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                    while (current.X != 1) {
+                        WalkOne(value, current.X < 1 ? 1 : -1, 0);
+                        current = value.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                    }
+                    while (current.Y != 1) {
+                        WalkOne(value, 0, current.Y < 1 ? 1 : -1);
+                        current = value.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                    }
+                    var position = WorldPositionResolver.Position(value.Capture(), TestOnlyPolicy.ActorId);
+                    Require(position.X == new RuleQuantity(1) && position.Y == new RuleQuantity(1),
+                        "The actor did not physically return to the authored recreation site.");
+                    var begin = value.DiscoverCommands(host, TestOnlyPolicy.ActorId)
+                        .Single(x => x.Command.Kind == CommandKind.BeginMoraleRest);
+                    Require(begin.Query.Supported && begin.Query.Admissible,
+                        "A resolved historical encounter still blocked a Morale Rest at the returned site: " + begin.Query.Code);
+                    WorldCommit(value, begin.Command);
+                    AdvanceRestDebt(value, 4 * 3600);
+                }
+                Require(Bytes(left).SequenceEqual(Bytes(right))
+                    && left.Capture().ExpeditionMoraleRestIntervals.Single().Status == MoraleRestIntervalStatus.Completed
+                    && left.Capture().RuleClock == right.Capture().RuleClock,
+                    "Resolved-encounter return, Morale completion, save/restore and deterministic replay diverged.");
+            });
+
+            cases.Add("morale_rest_recovery_continuation_uses_authorized_clock_receipt_for_incapacity", () => {
+                var actors = new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId };
+                var heroRestSite = new TestOnlyRestSiteFact("TEST_ONLY.review-hero-berth", 0, 0, true, true);
+                var companionRestSite = new TestOnlyRestSiteFact("TEST_ONLY.review-companion-berth", 3, 3, true, true);
+                var heroMoraleSite = new TestOnlyMoraleRestSiteFact("TEST_ONLY.review-hero-recreation",
+                    "TEST_ONLY.campfire-recreation", 0, 0, true, true);
+                var policy = new TestOnlySharedWorldPolicy()
+                    .EnableDailyProvisioning(new TestOnlyDailyProvisioningProfile(actors))
+                    .EnableRestDebt(new TestOnlyRestDebtProfile(actors, new[] { heroRestSite, companionRestSite }))
+                    .EnableExpeditionStrainRecovery(new TestOnlyExpeditionStrainRecoveryProfile(
+                        new[] { heroRestSite.Id, companionRestSite.Id }))
+                    .EnableMoraleRest(new TestOnlyMoraleRestProfile(new[] { TestOnlyPolicy.ActorId }, new[] { heroMoraleSite }));
+                var simulation = World(policy);
+                ScheduleRest(simulation, 3, RestWatchSlot.Morning, TestOnlyPolicy.CompanionId);
+
+                // Keep both actors capable without Rest Debt gains through hour 72, then use
+                // real lot-backed food and two actual pool fills to clear the companion's
+                // provisioning block at hour 96. The hero remains unsupported and reaches
+                // exactly Strain level four before beginning Morale Rest.
+                AdvanceTo(simulation, 16 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-hero-berth"));
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-companion-berth",
+                    actor: TestOnlyPolicy.CompanionId));
+                AdvanceRestDebt(simulation, 8 * 3600);
+                AdvanceTo(simulation, 40 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-hero-berth"));
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-companion-berth",
+                    actor: TestOnlyPolicy.CompanionId));
+                AdvanceRestDebt(simulation, 8 * 3600);
+                AdvanceTo(simulation, 64 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-hero-berth"));
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-companion-berth",
+                    actor: TestOnlyPolicy.CompanionId));
+                AdvanceRestDebt(simulation, 8 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-companion-berth",
+                    actor: TestOnlyPolicy.CompanionId));
+                AdvanceRestDebt(simulation, 8 * 3600);
+
+                void StepAndWait(int dx, int dy)
+                {
+                    WorldStep(simulation, dx, dy);
+                    for (int second = 0; second < 30
+                        && simulation.Capture().WorldTraversals.Any(x => x.ActorId == TestOnlyPolicy.ActorId); second++)
+                        WorldAdvance(simulation, 1);
+                }
+                foreach (var step in new[] { new[] { 1, 0 }, new[] { 1, 0 }, new[] { 1, 0 }, new[] { 0, 1 }, new[] { 0, 1 } })
+                    StepAndWait(step[0], step[1]);
+                string meal = ProvisioningHandle(simulation, TestOnlyInventoryPolicy.FoodId, new RuleQuantity(2),
+                    HandlingKind.Handover, TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId);
+                WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, meal,
+                    new InventoryRequest(new RuleQuantity(2)), TestOnlyPolicy.CompanionId));
+                WorldAdvance(simulation, 1800);
+                for (int portion = 0; portion < 2; portion++) {
+                    WorldCommit(simulation, IC(simulation, CommandKind.StartWaterFill, TestOnlyFillingPolicy.SupplyId,
+                        new InventoryRequest(new RuleQuantity(4), TestOnlyFillingPolicy.CompanionSkinId),
+                        TestOnlyPolicy.CompanionId));
+                    WorldAdvance(simulation, 60);
+                    string water = simulation.Capture().WaterFills.OrderBy(x => x.StartedAt).Last().OutputLotId;
+                    WorldCommit(simulation, IC(simulation, CommandKind.StartIntake, water,
+                        new InventoryRequest(new RuleQuantity(4)), TestOnlyPolicy.CompanionId));
+                    WorldAdvance(simulation, 240);
+                }
+                foreach (var step in new[] { new[] { -1, 0 }, new[] { -1, 0 }, new[] { -1, 0 }, new[] { 0, -1 }, new[] { 0, -1 } })
+                    StepAndWait(step[0], step[1]);
+                AdvanceTo(simulation, 88 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-hero-berth"));
+                AdvanceRestDebt(simulation, 8 * 3600);
+                var dayThree = simulation.Capture().DailyProvisioningSettlements.Single(x => x.ActorId == TestOnlyPolicy.CompanionId
+                    && x.DayOrdinal == 3);
+                Require(!dayThree.HasShortfall && ExpeditionStrainRules.Current(simulation.Capture(), TestOnlyPolicy.ActorId).Level == 4,
+                    "The real supported-day settlement or the hero's pre-incapacity level-four fixture was not established.");
+
+                AdvanceTo(simulation, 110 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginRest, "TEST_ONLY.review-companion-berth",
+                    actor: TestOnlyPolicy.CompanionId));
+                AdvanceTo(simulation, 116 * 3600);
+                WorldCommit(simulation, IC(simulation, CommandKind.BeginMoraleRest, "TEST_ONLY.review-hero-recreation"));
+                string intervalId = simulation.Capture().ExpeditionMoraleRestIntervals
+                    .Single(x => x.Status == MoraleRestIntervalStatus.Active).Id;
+                var acceptedClock = IC(simulation, CommandKind.AdvanceClock, actor: TestOnlyPolicy.ActorId,
+                    x: 5 * 3600, y: 1, id: "morale.review.original-clock-continuation");
+                var advanceResult = simulation.Execute(host, acceptedClock);
+                var pending = simulation.Capture();
+                Require(advanceResult.Outcome == Outcome.Committed && advanceResult.IsSuspended
+                    && pending.RuleClock == T(118 * 3600) && pending.ManufacturingAdvance != null
+                    && pending.ManufacturingAdvance.Target == T(121 * 3600)
+                    && pending.ManufacturingAdvance.CommandId == acceptedClock.Id
+                    && pending.ManufacturingAdvance.CommandRevision == advanceResult.Revision
+                    && pending.ExpeditionStrainRecoveryOffers.Any(x => x.ActorId == TestOnlyPolicy.CompanionId
+                        && x.RecoveryKind == ExpeditionRecoveryKind.SecureLongRest && x.Pending),
+                    "The companion's secure Long Rest did not suspend the accepted clock at its actual offer boundary.");
+
+                string pendingPath = Path.Combine(directory, "morale-recovery-continuation-before-incapacity.ddsave");
+                new FileSaveStore().Save(pendingPath, pending);
+                var replayA = new Simulation(policy, new FileSaveStore().Load(pendingPath), ExecutionProfile.Laboratory);
+                var replayB = RestoreRestDebt(replayA, policy);
+                Require(Bytes(replayA).SequenceEqual(Bytes(replayB)),
+                    "The suspended authorized clock continuation changed through save/restore.");
+                var choiceA = replayA.DiscoverCommands(host, TestOnlyPolicy.CompanionId)
+                    .Where(x => x.Command.Kind == CommandKind.ResolveExpeditionStrainRecovery)
+                    .OrderBy(x => x.Command.Target, StringComparer.Ordinal).First().Command;
+                var choiceB = replayB.DiscoverCommands(host, TestOnlyPolicy.CompanionId)
+                    .Single(x => x.Command.Kind == CommandKind.ResolveExpeditionStrainRecovery
+                        && x.Command.Target == choiceA.Target).Command;
+                var resultA = replayA.Execute(host, choiceA);
+                var resultB = replayB.Execute(host, choiceB);
+                var after = replayA.Capture();
+                var interrupted = after.ExpeditionMoraleRestIntervals.Single(x => x.Id == intervalId);
+                var sourceReceipt = after.Receipts.Single(x => x.Id == acceptedClock.Id
+                    && x.Revision == pending.ManufacturingAdvance.CommandRevision);
+                Require(resultA.Outcome == Outcome.Committed && resultB.Outcome == Outcome.Committed
+                    && Bytes(replayA).SequenceEqual(Bytes(replayB)) && after.RuleClock == T(121 * 3600)
+                    && after.ManufacturingAdvance == null && interrupted.Status == MoraleRestIntervalStatus.Interrupted
+                    && interrupted.EndedAt == T(120 * 3600) && interrupted.EndCommandId == acceptedClock.Id
+                    && interrupted.EndRevision == sourceReceipt.Revision
+                    && CommandHistory.Read(sourceReceipt).Kind == CommandKind.AdvanceClock
+                    && ExpeditionStrainRules.Current(after, TestOnlyPolicy.ActorId).Level >= 5,
+                    "The resumed original advance failed to interrupt the hero at incapacity using its exact authorized receipt.");
+                byte[] completed = Bytes(replayA);
+                var restored = RestoreRestDebt(replayA, policy);
+                var duplicateChoice = replayA.Execute(host, choiceA);
+                Require(completed.SequenceEqual(Bytes(restored)) && duplicateChoice.Outcome == Outcome.Duplicate
+                    && completed.SequenceEqual(Bytes(replayA)),
+                    "The interrupted interval, exact receipt, or completed deterministic replay changed after save/restore or duplication.");
+            });
+
+            cases.Add("morale_rest_rejects_one_second_handling_across_exact_completion_boundary", () => {
+                var actor = new[] { TestOnlyPolicy.ActorId };
+                var site = new TestOnlyMoraleRestSiteFact("TEST_ONLY.review-handling-recreation",
+                    "TEST_ONLY.campfire-recreation", 0, 0, true, true);
+                var restSite = new TestOnlyRestSiteFact("TEST_ONLY.review-handling-berth", 0, 0, true, true);
+                var policy = new TestOnlySharedWorldPolicy()
+                    .EnableDailyProvisioning(new TestOnlyDailyProvisioningProfile(actor))
+                    .EnableRestDebt(new TestOnlyRestDebtProfile(actor, new[] { restSite }))
+                    .EnableExpeditionStrainRecovery(new TestOnlyExpeditionStrainRecoveryProfile(
+                        new[] { restSite.Id }))
+                    .EnableMoraleRest(new TestOnlyMoraleRestProfile(actor, new[] { site }));
+                var original = World(policy);
+                WorldCommit(original, IC(original, CommandKind.BeginMoraleRest, "TEST_ONLY.review-handling-recreation"));
+                WorldAdvance(original, 28799, 2);
+                Require(original.Capture().RuleClock == T(28799, 2)
+                    && original.Capture().ExpeditionMoraleRestIntervals.Single().ScheduledEnd == T(14400),
+                    "The handling boundary fixture did not land exactly one-half second before completion.");
+                var left = RestoreRestDebt(original, policy);
+                var right = RestoreRestDebt(original, policy);
+                var handling = IC(left, CommandKind.HandleInventory, TestOnlyFillingPolicy.SupplyId,
+                    new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Pickup), TestOnlyPolicy.CompanionId);
+                byte[] beforeHandling = Bytes(left);
+                var query = left.QueryCommand(host, handling);
+                Require(beforeHandling.SequenceEqual(Bytes(left)),
+                    "The read-only handling query mutated the active Morale interval.");
+                var result = left.Execute(host, handling);
+                Require(result.Outcome == Outcome.Rejected && result.Code == "TimedHandlingBoundaryUnsupported"
+                    && beforeHandling.SequenceEqual(Bytes(left)),
+                    "One-second inventory handling crossed the active Morale endpoint or mutated state before rejection."
+                    + " Query capability=" + query.Supported + "/" + query.Code + ".");
+
+                var finishA = IC(left, CommandKind.AdvanceClock, actor: TestOnlyPolicy.ActorId,
+                    x: 1, y: 2, id: "morale.review.finish-half-second");
+                var finishB = IC(right, CommandKind.AdvanceClock, actor: TestOnlyPolicy.ActorId,
+                    x: 1, y: 2, id: "morale.review.finish-half-second");
+                WorldCommit(left, finishA);
+                WorldCommit(right, finishB);
+                Require(Bytes(left).SequenceEqual(Bytes(right)) && left.Capture().RuleClock == T(14400)
+                    && left.Capture().ExpeditionMoraleRestIntervals.Single().Status == MoraleRestIntervalStatus.Completed
+                    && left.Capture().ExpeditionMoraleRestBenefits.Single().CompletedAt == T(14400),
+                    "Exact half-second advancement did not complete Morale once or replay deterministically.");
+                var restored = RestoreRestDebt(left, policy);
+                Require(Bytes(left).SequenceEqual(Bytes(restored)),
+                    "Completed Morale state changed through save/restore after a boundary-adjacent handling rejection.");
+            });
         }
     }
 }

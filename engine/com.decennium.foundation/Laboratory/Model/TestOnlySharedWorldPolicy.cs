@@ -568,9 +568,9 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyRouteReconnaissanceChecks(s, routeReconnaissanceReady, initiating);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
                 ExpireReadyActionsAtStart(s,initiating);
-                string moraleInterruptionError=InterruptMoraleRestOnIncapacity(s,initiating);
+                string moraleInterruptionError=InterruptMoraleRestOnIncapacity(s,initiating,continuation);
                 if(moraleInterruptionError!=null)return moraleInterruptionError;
-                string moraleRestError=ProcessMoraleRestBoundary(s,initiating);if(moraleRestError!=null)return moraleRestError;
+                string moraleRestError=ProcessMoraleRestBoundary(s,initiating,continuation);if(moraleRestError!=null)return moraleRestError;
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
@@ -755,6 +755,8 @@ namespace Decennium.Foundation.Laboratory
                 if(routeReconnaissanceBoundary.HasValue&&routeReconnaissanceBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var restDebtBoundary=NextRestDebtBoundary(s);
                 if(restDebtBoundary.HasValue&&restDebtBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var moraleRestBoundary=NextMoraleRestBoundary(s);
+                if(moraleRestBoundary.HasValue&&moraleRestBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock;
             string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null

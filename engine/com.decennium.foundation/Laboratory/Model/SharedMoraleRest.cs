@@ -149,7 +149,10 @@ namespace Decennium.Foundation.Laboratory
                 || c.DefensiveFormation != null || c.ExpeditionAssignment != null || c.HarvestSelection != null
                 || c.MiningSelection != null || c.ProspectingExposure != null || c.RouteMappingWork != null)
                 return "InvalidMoraleRestCommandPayload";
-            if (s.InventoryCombat || s.Encounter != null) return "MoraleRestUnavailableDuringCombat";
+            // Keep active tactical control blocked while allowing a physically reached recreation
+            // site after a resolved encounter. Encounter remains append-only history.
+            if (s.InventoryCombat || s.Encounter != null && !ResolvedConflict(s))
+                return "MoraleRestUnavailableDuringCombat";
             if (c.Kind == CommandKind.BeginMoraleRest)
             {
                 if (!CanVoluntarilyRecreate(s, c.Actor)) return "MoraleRestParticipantCannotChoose";
@@ -246,7 +249,8 @@ namespace Decennium.Foundation.Laboratory
                 && !TestOnlyClubAttackPolicy.ConditionsFor(s, actorId).View().Has(ConditionKind.Incapacitated);
         }
 
-        private string InterruptMoraleRestOnIncapacity(Snapshot s, Command initiating)
+        private string InterruptMoraleRestOnIncapacity(Snapshot s, Command initiating,
+            ManufacturingAdvanceRecord continuation = null)
         {
             if (moraleRestProfile == null) return null;
             var incapable = s.ExpeditionMoraleRestIntervals.Where(x => x.Status == MoraleRestIntervalStatus.Active
@@ -255,13 +259,16 @@ namespace Decennium.Foundation.Laboratory
             foreach (var interval in incapable)
             {
                 if (initiating == null) return "MoraleRestInterruptionCommandMissing";
+                string commandId = continuation?.CommandId ?? initiating.Id;
+                long commandRevision = continuation?.CommandRevision ?? s.Revision + 1;
                 s.ExpeditionMoraleRestIntervals = s.ExpeditionMoraleRestIntervals.Select(x => x.Id == interval.Id
-                    ? x.With(s.RuleClock, MoraleRestIntervalStatus.Interrupted, initiating.Id, s.Revision + 1) : x).ToArray();
+                    ? x.With(s.RuleClock, MoraleRestIntervalStatus.Interrupted, commandId, commandRevision) : x).ToArray();
             }
             return null;
         }
 
-        private string ProcessMoraleRestBoundary(Snapshot s, Command initiating)
+        private string ProcessMoraleRestBoundary(Snapshot s, Command initiating,
+            ManufacturingAdvanceRecord continuation = null)
         {
             if (moraleRestProfile == null) return null;
             var due = s.ExpeditionMoraleRestIntervals.Where(x => x.Status == MoraleRestIntervalStatus.Active
@@ -272,13 +279,17 @@ namespace Decennium.Foundation.Laboratory
                 if (initiating == null) return "MoraleRestCompletionCommandMissing";
                 if (!CanVoluntarilyRecreate(s, interval.ActorId))
                 {
+                    string commandId = continuation?.CommandId ?? initiating.Id;
+                    long commandRevision = continuation?.CommandRevision ?? s.Revision + 1;
                     s.ExpeditionMoraleRestIntervals = s.ExpeditionMoraleRestIntervals.Select(x => x.Id == interval.Id
-                        ? x.With(s.RuleClock, MoraleRestIntervalStatus.Interrupted, initiating.Id, s.Revision + 1) : x).ToArray();
+                        ? x.With(s.RuleClock, MoraleRestIntervalStatus.Interrupted, commandId, commandRevision) : x).ToArray();
                     continue;
                 }
                 long revision = s.Revision + 1;
+                string completionCommandId = continuation?.CommandId ?? initiating.Id;
+                long completionCommandRevision = continuation?.CommandRevision ?? revision;
                 var completed = interval.With(interval.ScheduledEnd, MoraleRestIntervalStatus.Completed,
-                    initiating.Id, revision);
+                    completionCommandId, completionCommandRevision);
                 s.ExpeditionMoraleRestIntervals = s.ExpeditionMoraleRestIntervals.Select(x => x.Id == interval.Id
                     ? completed : x).ToArray();
                 var lastBenefit = s.ExpeditionMoraleRestBenefits.Where(x => x.ActorId == interval.ActorId)

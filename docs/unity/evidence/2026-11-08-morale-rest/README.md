@@ -1,6 +1,6 @@
 # Morale Rest over shared Expedition Strain (schema65, TEST_ONLY)
 
-**Implementation status:** C# implementation and validation are complete for this bounded increment; GPT implementation review is pending. The source labels Morale Rest `NEW`, so it remains candidate/TEST_ONLY behavior. This does not complete MGT-03, the C# engine, or a playable three-layer game. Unity gameplay integration remains deferred.
+**Implementation status:** the original implementation review found three concrete blockers. The focused corrections below are implemented and validated; GPT's follow-up implementation review is pending. The source labels Morale Rest `NEW`, so it remains candidate/TEST_ONLY behavior. This does not complete MGT-03, the C# engine, or a playable three-layer game. Unity gameplay integration remains deferred.
 
 The pre-implementation contract, including GPT's actual design consensus, is in [MORALE_REST_CONSENSUS.md](MORALE_REST_CONSENSUS.md). The exact source snapshots, profiles and named-test bindings are in [SOURCE_BINDINGS.json](SOURCE_BINDINGS.json). The actual GPT implementation review will be recorded in [GPT_REVIEW.md](GPT_REVIEW.md) after it is received.
 
@@ -32,15 +32,21 @@ The schema65 codec appends Morale interval/benefit arrays and typed recovery pro
 6. At the qualifying Morale boundary, the accepted clock command targets hour73 and suspends at hour72 for exact patient choice. A pending save/restore preserves that continuation; unrelated clock advancement is rejected identically by query and execution; resolving the exact point resumes to hour73. Two same-trace branches remain byte-identical and a separate split trace reaches the same gameplay state.
 7. Duplicate choice submission is inert. Strain gain history, Rest Debt, HP and death state are preserved; only the selected point is removed. A distinct secure Long Rest later removes the second source-qualified point.
 
+The original GPT implementation review found three defects. Each now has a separate regression:
+
+- `morale_rest_recovery_continuation_uses_authorized_clock_receipt_for_incapacity` starts the companion's actual secure-Long-Rest offer while the hero is recreating. The accepted hour121 `AdvanceClock` suspends at hour118, survives save/restore, and resumes after the exact point choice. Hero incapacity interrupts Morale at hour120, attributed to the original accepted clock command ID and revision held in `ManufacturingAdvanceRecord`, not to the later choice command. Both restored branches match byte-for-byte; duplicate choice is inert. No schema or validator relaxation was needed.
+- `morale_rest_resolved_encounter_history_allows_physical_return_and_replay` defeats an actual encounter, exits tactical control while retaining resolved encounter history, saves/restores, physically returns to the authored recreation site, then starts and completes Morale. The retained encounter is historical; unresolved conflict and active tactical combat remain blocked.
+- `morale_rest_rejects_one_second_handling_across_exact_completion-boundary` starts Morale and reaches one-half second before completion. A one-second inventory pickup is rejected as `TimedHandlingBoundaryUnsupported` without mutation; an exact half-second clock advance completes the interval once and replays identically after save/restore.
+
 For this bounded scenario, the fingerprinted provisioning/Rest Debt roster enrolls the hero while the companion is the assigned worker. The default schema62 profile still enrolls both existing actors with its unchanged canonical roster/fingerprint. This fixture distinction prevents an unrelated companion provisioning shortfall from incapacitating the worker before the concurrent-work proof.
 
 ## Validation results
 
-- Focused module case: **1/1 PASS**; [MODULE_CASE_RESULTS.json](MODULE_CASE_RESULTS.json).
-- Full C# 9 warnings-as-errors regression suite: **1,261/1,261 PASS**, 254 tested-source hashes; [FULL_TEST_RESULTS.json](FULL_TEST_RESULTS.json).
-- Explicit Roslyn compile: **Core, Persistence and LabModel PASS**, 185 C# source hashes; compiler results and source hashes are in [COMPILE_RESULTS.json](COMPILE_RESULTS.json). Build assemblies and generated save bundles remain local and are omitted from the repository commit.
-- Static package validation: **18/18 PASS**, **280 package assets / 280 unique GUIDs**; [PACKAGE_RESULTS.json](PACKAGE_RESULTS.json). This is not Unity import or Editor compilation.
-- Fresh source/profile/test binding: **4 pinned source snapshots / 17 profiles / 340 RP cells / 19 named tests PASS**; [RULE_BINDINGS_VALIDATION.json](RULE_BINDINGS_VALIDATION.json).
+- Original connected module case: **1/1 PASS**; three GPT-finding regressions: **3/3 PASS**; retained named-case results are under [review-corrections](development-attempts/review-corrections/).
+- Full C# 9 warnings-as-errors regression suite: **1,264/1,264 PASS**, 254 tested-source hashes; [FULL_TEST_RESULTS.json](FULL_TEST_RESULTS.json).
+- Fresh explicit Roslyn compile: **Core, Persistence and LabModel PASS**, 185 C# source hashes; [COMPILE_RESULTS.json](COMPILE_RESULTS.json). Build assemblies and generated save bundles remain local and are omitted from the repository commit.
+- Fresh static package validation: **18/18 PASS**, **280 package assets / 280 unique GUIDs**; [PACKAGE_RESULTS.json](PACKAGE_RESULTS.json). This is not Unity import or Editor compilation.
+- Fresh source/profile/test binding: **4 pinned source snapshots / 17 profiles / 340 RP cells / 22 named implementation tests PASS**; [RULE_BINDINGS_VALIDATION.json](RULE_BINDINGS_VALIDATION.json). The schema65 Morale entry directly binds all four Morale scenarios.
 - `git -c core.whitespace=cr-at-eol diff --check`: PASS.
 
 All final reports bind the exact tested C# source hashes. Failed development attempts are retained under [development-attempts](development-attempts/).
@@ -57,6 +63,6 @@ The attempt reports also preserve their exact compiler/test/package diagnostics.
 
 ## Limits and review gate
 
-This is not production Morale authority. General recreation activities, dynamic safety, other Strain-source recovery, Haven care, unrepresented emergency interruption, complete MGT-03, combat-specific recovery, Unity integration, and human gameplay qualification remain unsupported or outside scope. Unity import/compilation, Edit Mode, Play Mode, player builds and observed gameplay were not run.
+This is not production Morale authority. General recreation activities, dynamic safety, other Strain-source recovery, Haven care, unrepresented emergency interruption, complete MGT-03, combat-specific recovery, Unity integration, and human gameplay qualification remain unsupported or outside scope. `QueryCommand` does not expose the generic one-second `HandleInventory` operation in this fixture (`UnsupportedOperation`), so the exact-boundary regression proves read-only query non-mutation and the execution rejection, not query admissibility parity. Unity import/compilation, Edit Mode, Play Mode, player builds and observed gameplay were not run.
 
 GPT must review the exact implementation commit and this evidence before the next mapped increment begins. Passing tests or package validation alone do not establish acceptance or engine completion.
