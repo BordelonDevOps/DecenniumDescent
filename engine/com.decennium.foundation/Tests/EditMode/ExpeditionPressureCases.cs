@@ -28,7 +28,8 @@ namespace Decennium.Foundation.Tests
             int initialPressure = 5, uint seed = 1, TestOnlyExpeditionRouteFixture routes = null, long enemyHp = 1)
             => PressurePolicy(initialPressure, seed, routes, enemyHp).EnableExpeditionCampUse(camp);
 
-        private static Simulation PressurePrepareCampAtCheckpoint(TestOnlySharedWorldPolicy policy)
+        private static Simulation PressurePrepareCampAtCheckpoint(TestOnlySharedWorldPolicy policy,
+            Action<Simulation> afterRouteCheckpoint = null)
         {
             var simulation = World(policy);
             WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
@@ -41,6 +42,7 @@ namespace Decennium.Foundation.Tests
                 "pressure.camp.route.start"));
             WorldAdvance(simulation, 10800);
             PressurePauseActiveRouteIfMoving(simulation, "pressure.camp.route.pause");
+            if (afterRouteCheckpoint != null) afterRouteCheckpoint(simulation);
             var state = simulation.Capture();
             Require(state.RouteTravels.Single().Progress == new RuleQuantity(1)
                 && state.RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Paused
@@ -810,6 +812,129 @@ namespace Decennium.Foundation.Tests
                         && Bytes(split).SequenceEqual(Bytes(restored)),
                         "Whole-command replay or split/restored replay did not remain canonical for schema " + schema + ".");
                 }
+            });
+
+            cases.Add("expedition_camp_unrelated_companion_traversal_preserves_active_use_and_low_restore", () => {
+                var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), concealed: true);
+                var policy = PressureCampPolicy(site, initialPressure: 2);
+                var simulation = PressurePrepareCampAtCheckpoint(policy);
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "companion-traversal.use");
+                PressureCampCommit(simulation, CommandKind.BeginLyingLow, "companion-traversal.low");
+                string path = Path.Combine(directory, "camp-companion-traversal-before.ddsave");
+                var store = new FileSaveStore();
+                store.Save(path, simulation.Capture());
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                var step = IC(simulation, CommandKind.BeginWorldStep, "walk", actor: TestOnlyPolicy.CompanionId, x: 1);
+                var query = simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(), step);
+                var result = simulation.Execute(TestOnlySharedWorldPolicy.Host(), step);
+                bool companionTraversalStarted = simulation.Capture().WorldTraversals.Any(x =>
+                    x.ActorId == TestOnlyPolicy.CompanionId);
+                Require(query.Supported && query.Admissible && result.Outcome == Outcome.Committed,
+                    "A non-cohort companion traversal was rejected while the expedition remained at camp: query="
+                    + query.Code + "; result=" + result.Outcome + "/" + result.Code + ".");
+                Require(companionTraversalStarted,
+                    "The accepted companion step did not persist an active traversal while camp use remained active.");
+                WorldAdvance(simulation, 1);
+                var replay = restored.Execute(TestOnlySharedWorldPolicy.Host(), step);
+                Require(replay.Outcome == Outcome.Committed, "Restored companion traversal did not replay: " + replay.Code);
+                WorldAdvance(restored, 1);
+                byte[] afterTraversal = Bytes(simulation);
+                var duplicate = simulation.Execute(TestOnlySharedWorldPolicy.Host(), step);
+                Require(duplicate.Outcome == Outcome.Duplicate && afterTraversal.SequenceEqual(Bytes(simulation))
+                    && Bytes(simulation).SequenceEqual(Bytes(restored))
+                    && simulation.Capture().ExpeditionCampActivities.Where(x => x.Kind == ExpeditionCampActivityKind.Use
+                        || x.Kind == ExpeditionCampActivityKind.LyingLow).All(x => x.Active),
+                    "Companion movement changed cohort camp use/lying-low or diverged after save/restore and command replay: duplicate="
+                    + duplicate.Outcome + "; mainPos=" + simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.CompanionId).X
+                    + "," + simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.CompanionId).Y
+                    + "; activity=" + string.Join(",", simulation.Capture().ExpeditionCampActivities.Where(x =>
+                        x.Kind == ExpeditionCampActivityKind.Use || x.Kind == ExpeditionCampActivityKind.LyingLow)
+                        .Select(x => x.Kind + "/" + x.Active + "/" + x.EndReason))
+                    + "; duplicateStable=" + afterTraversal.SequenceEqual(Bytes(simulation))
+                    + "; restoredEqual=" + Bytes(simulation).SequenceEqual(Bytes(restored)) + ".");
+            });
+
+            cases.Add("expedition_camp_severe_closure_accepts_tactical_turn_clock_receipt", () => {
+                var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), exposed: true);
+                var policy = PressureCampPolicy(site, initialPressure: 6, seed: 1);
+                var simulation = PressurePrepareCampAtCheckpoint(policy);
+                var boundary = new RuleTime(ExpeditionPressureRules.WatchSeconds);
+                PressureAdvanceTo(simulation, new RuleTime(boundary.Numerator - 2));
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "turn-closure.use");
+                BeginEncounter(simulation);
+                PressureEnsureStance(simulation, simulation.Capture().Encounter.CurrentActor);
+                string path = Path.Combine(directory, "camp-tactical-closure-before.ddsave");
+                var store = new FileSaveStore();
+                store.Save(path, simulation.Capture());
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                var turn = Tac(simulation, CommandKind.EndRegularTurn);
+                var query = simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(), turn);
+                var first = simulation.Execute(TestOnlySharedWorldPolicy.Host(), turn);
+                var second = restored.Execute(TestOnlySharedWorldPolicy.Host(), turn);
+                var state = simulation.Capture();
+                Require(state.ExpeditionPressureCheckpoints.Length == 1,
+                    "Tactical turn did not reach the expected Severe Watch checkpoint: query=" + query.Code
+                    + "; result=" + first.Outcome + "/" + first.Code + "; clock=" + state.RuleClock
+                    + "; slot=" + state.WorldSchedule.ProcessedSlot + "; checkpointCount="
+                    + state.ExpeditionPressureCheckpoints.Length + ".");
+                var checkpoint = state.ExpeditionPressureCheckpoints.Single();
+                var use = state.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use);
+                Require(query.Supported && query.Admissible && first.Outcome == Outcome.Committed
+                    && second.Outcome == Outcome.Committed && state.RuleClock == boundary
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.RouteClosure
+                    && use.EndReason == ExpeditionCampActivityEndReason.PressureClosure
+                    && use.EndCommandId == turn.Id && use.EndedAt == boundary
+                    && Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "A tactical turn ending at the Severe Watch boundary did not close camp use against its exact clock receipt: query="
+                    + query.Code + "; result=" + first.Outcome + "/" + first.Code + "; consequence="
+                    + checkpoint.Consequence + "; end=" + use.EndReason + "/" + use.EndCommandId + ".");
+                var duplicate = restored.Execute(TestOnlySharedWorldPolicy.Host(), turn);
+                Require(duplicate.Outcome == Outcome.Duplicate && Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "Tactical turn receipt replay changed the persisted camp closure.");
+            });
+
+            cases.Add("expedition_camp_movement_encounter_entry_interrupts_low_and_replays", () => {
+                var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
+                    new RuleQuantity(1), concealed: true);
+                var policy = PressureCampPolicy(site, initialPressure: 2);
+                var simulation = PressurePrepareCampAtCheckpoint(policy, world => {
+                    foreach (var step in new[] { new[] { -1, 0 }, new[] { -1, 0 }, new[] { -1, 0 }, new[] { 0, 1 } })
+                    {
+                        WorldStep(world, step[0], step[1], actor: AdditionalTacticalActor.Id);
+                        Require(!world.Capture().InventoryCombat,
+                            "Test fixture entered tactical control while positioning the hostile at "
+                            + world.Capture().Actors.Single(x => x.Id == AdditionalTacticalActor.Id).X + ","
+                            + world.Capture().Actors.Single(x => x.Id == AdditionalTacticalActor.Id).Y + ".");
+                        WorldAdvance(world, 1);
+                    }
+                    var hostile = world.Capture().Actors.Single(x => x.Id == AdditionalTacticalActor.Id);
+                    Require(hostile.X == 1 && hostile.Y == 1,
+                        "Hostile was not staged two cells from the party before the encounter trigger: "
+                        + hostile.X + "," + hostile.Y + ".");
+                });
+                PressureCampCommit(simulation, CommandKind.BeginCampUse, "world-entry.use");
+                PressureCampCommit(simulation, CommandKind.BeginLyingLow, "world-entry.low");
+                string path = Path.Combine(directory, "camp-world-entry-before.ddsave");
+                var store = new FileSaveStore();
+                store.Save(path, simulation.Capture());
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                var step = IC(simulation, CommandKind.BeginWorldStep, "walk", actor: AdditionalTacticalActor.Id, y: 1);
+                var query = simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(), step);
+                var result = simulation.Execute(TestOnlySharedWorldPolicy.Host(), step);
+                var state = simulation.Capture();
+                var use = state.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.Use);
+                var low = state.ExpeditionCampActivities.Single(x => x.Kind == ExpeditionCampActivityKind.LyingLow);
+                Require(query.Supported && query.Admissible && query.Code == "EncounterTransition"
+                    && result.Outcome == Outcome.Committed && state.InventoryCombat
+                    && use.Active && low.EndReason == ExpeditionCampActivityEndReason.Combat
+                    && low.EndCommandId == step.Id && low.EndedAt == state.RuleClock,
+                    "Movement-triggered combat did not interrupt lying-low while preserving camp occupancy: query="
+                    + query.Code + "; result=" + result.Outcome + "/" + result.Code + "; low=" + low.EndReason + ".");
+                var replay = restored.Execute(TestOnlySharedWorldPolicy.Host(), step);
+                Require(replay.Outcome == Outcome.Committed && Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "Movement-triggered camp interruption did not restore/replay deterministically: " + replay.Code + ".");
             });
 
             cases.Add("expedition_camp_known_use_and_actual_combat_are_distinct_pressure_categories", () => {

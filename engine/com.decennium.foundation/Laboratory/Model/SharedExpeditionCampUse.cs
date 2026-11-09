@@ -225,7 +225,7 @@ namespace Decennium.Foundation.Laboratory
         private string CampCheckpointFailure(Snapshot s, ExpeditionCampSiteRecord site)
         {
             string member = expeditionPressureProfile.MemberId;
-            if (s.WorldTraversals.Length != 0) return "CampUseBlockedByPendingTraversal";
+            if (s.WorldTraversals.Any(x => x.ActorId == member)) return "CampUseBlockedByPendingTraversal";
             var travel = s.RouteTravels.SingleOrDefault(x => x.RouteId == site.RouteId && x.TravelerId == member
                 && (x.Status == ExpeditionRouteTravelStatus.Moving || x.Status == ExpeditionRouteTravelStatus.Paused));
             if (travel == null || travel.Status != ExpeditionRouteTravelStatus.Paused
@@ -254,7 +254,9 @@ namespace Decennium.Foundation.Laboratory
             string member = expeditionPressureProfile.MemberId;
             ExpeditionCampActivityEndReason? interruption = null;
             bool endUse = false;
-            if (c.Kind == CommandKind.BeginFixedEncounter || c.Kind == CommandKind.EnterInventoryCombat)
+            if (c.Kind == CommandKind.BeginFixedEncounter || c.Kind == CommandKind.EnterInventoryCombat
+                || c.Kind == CommandKind.BeginWorldStep && s.InventoryCombat
+                    && EncounterHistory.AtRevision(s, s.Revision + 1)?.StartRevisions.Contains(s.Revision + 1) == true)
                 interruption = ExpeditionCampActivityEndReason.Combat;
             if (c.Actor == member && (c.Kind == CommandKind.BeginWorldStep || c.Kind == CommandKind.ResumeWorldStep
                 || c.Kind == CommandKind.StartRouteTravel || c.Kind == CommandKind.ResumeRouteTravel)

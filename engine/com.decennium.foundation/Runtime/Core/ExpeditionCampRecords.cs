@@ -221,7 +221,7 @@ namespace Decennium.Foundation
                         || position.Y != new RuleQuantity(site.RouteY))
                     || s.Actors.Single(x => x.Id == member).X != site.RouteX
                     || s.Actors.Single(x => x.Id == member).Y != site.RouteY
-                    || s.WorldTraversals.Length != 0)
+                    || s.WorldTraversals.Any(x => x.ActorId == member))
                     throw new ArgumentException("Active camp use requires paused route travel at its bound checkpoint.");
             }
 
@@ -246,7 +246,8 @@ namespace Decennium.Foundation
                     return activity.Kind == ExpeditionCampActivityKind.Use ? kind == CommandKind.EndCampUse
                         : kind == CommandKind.EndLyingLow || kind == CommandKind.EndCampUse;
                 case ExpeditionCampActivityEndReason.Combat:
-                    return kind == CommandKind.BeginFixedEncounter || kind == CommandKind.EnterInventoryCombat;
+                    return kind == CommandKind.BeginFixedEncounter || kind == CommandKind.EnterInventoryCombat
+                        || kind == CommandKind.BeginWorldStep;
                 case ExpeditionCampActivityEndReason.Travel:
                     return kind == CommandKind.BeginWorldStep || kind == CommandKind.ResumeWorldStep
                         || kind == CommandKind.StartRouteTravel || kind == CommandKind.ResumeRouteTravel
@@ -254,7 +255,7 @@ namespace Decennium.Foundation
                 case ExpeditionCampActivityEndReason.Work:
                     return true;
                 case ExpeditionCampActivityEndReason.PressureClosure:
-                    return kind == CommandKind.AdvanceClock;
+                    return CanAdvanceSharedClock(kind);
                 default: return false;
             }
         }
@@ -262,6 +263,15 @@ namespace Decennium.Foundation
         private static bool RequiresMemberEndActor(ExpeditionCampActivityEndReason reason)
             => reason == ExpeditionCampActivityEndReason.Command
                 || reason == ExpeditionCampActivityEndReason.Travel;
+
+        private static bool CanAdvanceSharedClock(CommandKind kind)
+            => kind == CommandKind.AdvanceClock || kind == CommandKind.EndRegularTurn
+                || kind == CommandKind.EndFixedEncounter || kind == CommandKind.Interact
+                || kind == CommandKind.HandlePortableEquipment || kind == CommandKind.EquipPortableItem
+                || kind == CommandKind.RemovePortableItem || kind == CommandKind.DoffPortableShield
+                || kind == CommandKind.OpenPortableContainer || kind == CommandKind.ClosePortableContainer
+                || kind == CommandKind.ResolveManufacturingQuality
+                || kind == CommandKind.ResolveExpeditionStrainRecovery;
 
         private static bool EndEvidenceExists(Snapshot s, ExpeditionCampActivityRecord activity)
         {
@@ -275,7 +285,14 @@ namespace Decennium.Foundation
                 case ExpeditionCampActivityEndReason.Command:
                     return command.Target == activity.CampId;
                 case ExpeditionCampActivityEndReason.Combat:
-                    return command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EnterInventoryCombat;
+                    if (command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EnterInventoryCombat)
+                        return true;
+                    if (command.Kind == CommandKind.BeginWorldStep)
+                    {
+                        var encounter = EncounterHistory.AtRevision(s, activity.EndRevision);
+                        return encounter != null && encounter.StartRevisions.Contains(activity.EndRevision);
+                    }
+                    return false;
                 case ExpeditionCampActivityEndReason.Travel:
                     return command.Kind == CommandKind.BeginWorldStep || command.Kind == CommandKind.ResumeWorldStep
                         || command.Kind == CommandKind.StartRouteTravel || command.Kind == CommandKind.ResumeRouteTravel
@@ -285,7 +302,7 @@ namespace Decennium.Foundation
                         && x.End > x.Start);
                 case ExpeditionCampActivityEndReason.PressureClosure:
                     var site = s.ExpeditionCampSites.Single(x => x.Id == activity.CampId);
-                    return command.Kind == CommandKind.AdvanceClock && s.ExpeditionPressureCheckpoints.Any(x =>
+                    return s.ExpeditionPressureCheckpoints.Any(x =>
                         x.CohortId == activity.CohortId && x.RouteId == site.RouteId
                         && x.At == activity.EndedAt.Value && x.CommandId == activity.EndCommandId
                         && x.AppliedRevision == activity.EndRevision

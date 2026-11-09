@@ -109,6 +109,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
             ||kind==CommandKind.Search
+            ||connectedCombat!=null&&(kind==CommandKind.EndRegularTurn||kind==CommandKind.EndFixedEncounter)
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
             ||kind==CommandKind.PauseCacheExcavation||kind==CommandKind.ResumeCacheExcavation;
@@ -266,6 +267,11 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
                 string clockFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);
+            }
+            if((c.Kind==CommandKind.EndRegularTurn||c.Kind==CommandKind.EndFixedEncounter)
+                &&connectedCombat!=null&&s.InventoryCombat) {
+                string turnFailure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,turnFailure==null,turnFailure??"Available",s.Revision);
             }
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;

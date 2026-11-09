@@ -1,6 +1,6 @@
 # MGT-03 camp use and Pressure — schema69 evidence
 
-**Status:** implementation is complete for the agreed bounded TEST_ONLY slice. This packet is awaiting GPT's post-implementation review. Do not treat it as acceptance of all MGT-03 or engine completion.
+**Status:** GPT reviewed implementation commit `706a129808443c028d1d063f59f1911c1c164473` and held acceptance on three integration defects. The corrections below are implemented and validated; GPT's review of the correction commit is pending. No successor module starts before that review accepts the module. This does not establish completion of all MGT-03 or the engine.
 
 ## Agreed scope and authorities
 
@@ -10,26 +10,38 @@ Codex/GPT's pre-implementation contract and pinned source references are in [CAM
 
 ## Connected acceptance
 
-The full suite's four camp-specific cases all pass:
+The full suite's seven camp-specific cases all pass. The three correction regressions directly cover the held findings:
+
+- `expedition_camp_unrelated_companion_traversal_preserves_active_use_and_low_restore`: a valid companion traversal can start while the cohort remains at its route checkpoint with active use and lying-low; save/restore, replay and duplicate receipt remain canonical.
+- `expedition_camp_severe_closure_accepts_tactical_turn_clock_receipt`: a tactical regular turn ends exactly at the Severe Watch boundary; query and execution both admit the turn, and camp use closes against that exact clock receipt and checkpoint across save/restore and duplicate replay.
+- `expedition_camp_movement_encounter_entry_interrupts_low_and_replays`: a hostile world step enters tactical control; lying-low ends with the same `BeginWorldStep` receipt while camp use remains active, and save/restore replay matches.
+
+The four original camp cases also pass:
 
 - `expedition_camp_known_use_and_actual_combat_are_distinct_pressure_categories`: repeated camp use deduplicates within the category; actual combat is separately counted; Severe closure uses actual retreat.
 - `expedition_camp_exposed_pressure_context_and_companion_farming_connect`: exposed camp creates the agreed Pressure/context; companion Camp Greens work progresses independently during obstruction.
 - `expedition_camp_early_haven_uses_route_context_and_does_not_settle_twice`: an earlier Haven checkpoint retains its established context and does not reroll or settle twice.
 - `expedition_camp_concealed_full_watch_lie_low_saves_replays_and_requires_unbroken_coverage`: full concealed Watch grants one shared-cap reduction; an exact closing boundary is credited to the just-completed Watch; interrupted/partial intervals grant none; mid-Watch save/restore and command replay match; one clock command crossing multiple Watches remains deterministic; lying-low grants no Rest record.
 
-## Validation (exact candidate source)
+## Validation (exact correction source)
 
-- Full C# 9 warnings-as-errors suite: **PASS, 1,286/1,286**, zero failures; 264 source hashes; `coreCompilation=PASS`.
-- Standalone C# compilation: **PASS**, Core, Persistence and LabModel, warnings as errors.
-- Static package structure validation: **PASS, 18/18** checks. This is not Unity import/compilation.
+- Full C# 9 warnings-as-errors suite: **PASS, 1,289/1,289**, zero failures; 264 source hashes. The runner compiled Core, Persistence, LabModel and HeadlessTests.
+- Standalone C# compilation: **PASS**, Core, Persistence and LabModel with warnings as errors; 193 source hashes.
+- Static package structure validation: **PASS, 18/18** checks; 290 package assets and 290 unique GUIDs. This is not Unity import/compilation.
 - Unity Editor import/compile, Edit Mode, Play Mode, standalone/player build and observed gameplay: **NOT RUN** (outside this increment and Unity integration remains deferred).
 
-Retained reports and the scenario save:
+Retained before/after evidence:
 
-- [Full suite report](development-attempts/commit-candidate/full-suite/run-20261109T135821463Z-f573c206/results.json)
-- [Standalone compile report](development-attempts/commit-candidate/compile/compile-20261109T135821582Z-419c6af1/results.json)
-- [Static package report](development-attempts/commit-candidate/package-validation/static-20261109T140441540Z-d66b9cff/results.json)
-- [Concealed camp mid-Watch save](development-attempts/commit-candidate/full-suite/run-20261109T135821463Z-f573c206/saves/expedition_camp_concealed_full_watch_lie_low_saves_replays_and_requires_unbroken_coverage/pressure-concealed-camp-mid-watch.ddsave)
+- [Baseline companion traversal failure](development-attempts/gpt-review-fixes-706a129/reproduced-before-final/companion-traversal/run-20261109T150444052Z-f4e7601f/results.json): query was Available, execution rejected with `InvalidResult`.
+- [Baseline tactical turn closure failure](development-attempts/gpt-review-fixes-706a129/reproduced-before-final/tactical-pressure-closure/run-20261109T150529809Z-3312e07b/results.json): `EndRegularTurn` rejected with `InvalidResult` at clock 28,798 before it could create the Severe checkpoint.
+- [Baseline movement-triggered combat failure](development-attempts/gpt-review-fixes-706a129/reproduced-before-final/movement-combat/run-20261109T150609731Z-c2dbbd2a/results.json): query reported `EncounterTransition`, execution rejected with `InvalidResult`.
+- [Final full suite report](development-attempts/gpt-review-fixes-706a129/final-validation/suite/run-20261109T151653653Z-0f4ce744/results.json)
+- [Final standalone compile report](development-attempts/gpt-review-fixes-706a129/final-validation/compile/compile-20261109T151935633Z-baf8cb97/results.json)
+- [Final static package report](development-attempts/gpt-review-fixes-706a129/final-validation/package/static-20261109T151935696Z-63bc9597/results.json)
+- [Companion traversal pre-command save](development-attempts/gpt-review-fixes-706a129/final-validation/suite/run-20261109T151653653Z-0f4ce744/saves/expedition_camp_unrelated_companion_traversal_preserves_active_use_and_low_restore/camp-companion-traversal-before.ddsave)
+- [Tactical closure pre-turn save](development-attempts/gpt-review-fixes-706a129/final-validation/suite/run-20261109T151653653Z-0f4ce744/saves/expedition_camp_severe_closure_accepts_tactical_turn_clock_receipt/camp-tactical-closure-before.ddsave)
+- [Movement-combat pre-step save](development-attempts/gpt-review-fixes-706a129/final-validation/suite/run-20261109T151653653Z-0f4ce744/saves/expedition_camp_movement_encounter_entry_interrupts_low_and_replays/camp-world-entry-before.ddsave)
+- [Concealed camp mid-Watch save](development-attempts/gpt-review-fixes-706a129/final-validation/suite/run-20261109T151653653Z-0f4ce744/saves/expedition_camp_concealed_full_watch_lie_low_saves_replays_and_requires_unbroken_coverage/pressure-concealed-camp-mid-watch.ddsave)
 
 The runner retained compiled assemblies alongside the report in its local run directory; committed acceptance evidence is the reproducible source-hash report, test results, package report and representative save.
 
@@ -53,6 +65,17 @@ The runner retained compiled assemblies alongside the report in its local run di
 - `engine/com.decennium.foundation/Tests/EditMode/ExpeditionPressureCases.cs`
 
 The exact commit SHA and push URL are added to this packet after commit. The actual GPT response will be recorded separately after review; attempted contact does not count as review.
+
+## Correction source changes
+
+- `engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs`
+- `engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs`
+- `engine/com.decennium.foundation/Runtime/Core/ExpeditionCampRecords.cs`
+- `engine/com.decennium.foundation/Tests/EditMode/ExpeditionPressureCases.cs`
+
+The original GPT hold and its scope are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). It reviewed source and reports but did not run compilation or tests, decode saves, or recompute source hashes. The new baseline reports above independently reproduce each reported failure against reviewed commit `706a1298` using the corrected regression scenarios. The follow-up review of the correction commit is still required.
+
+The tactical-turn scenario also exposed that the shared combat host did not advertise or query `EndRegularTurn`, although its resolver accepted the command. The same revision adds it to the supported-command gate and evaluates it through the existing detached-copy resolver path; the regression now asserts query/execution agreement.
 
 ## Remaining limitations and unresolved capability
 
