@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "baselineCommit": "f37617dcf57f044a63ec4d6e576364dd01ee43ff",
-  "description": "Each of GPT's three first-review blockers was reproduced and corrected. GPT's second review of c70fb682 found one remaining movement query/execution mismatch; Codex reproduced it against that commit, moved the restriction into shared AssessWorldStep, and the current focused regression passes. The correction awaits GPT follow-up review.",
+  "description": "Three first-review blockers were reproduced and corrected. GPT's second review of c70fb682 found one movement query/execution mismatch; Codex reproduced it, fixed it in 808ff151, and GPT accepted the bounded schema66 increment after reviewing the correction. The current focused regression and full C# suite pass.",
   "runs": {
     "conditionClear": {
       "before": {
@@ -184,5 +184,31 @@
     "acceptance": "Held until the movement query/execution mismatch is corrected and reviewed.",
     "record": "GPT_REVIEW.md"
   },
-  "currentCorrectionReviewStatus": "AWAITING_GPT_FOLLOW_UP"
+  "currentCorrectionReviewStatus": "ACCEPTED_BY_GPT",
+  "gptThirdReview": {
+    "reviewedCommit": "808ff151253b7b1168d1625d64b6f74d8bb815e2",
+    "verdict": "ACCEPTED",
+    "actualVerdict": "Yes. 808ff151253b7b1168d1625d64b6f74d8bb815e2 closes my sole remaining blocker. I accept the bounded schema66 TEST_ONLY Haven-care increment against the agreed scope.",
+    "findingsClosed": [
+      "Historical care assessments survive later ordinary death",
+      "Benign condition events preserve care",
+      "Unsupported combat transitions reject without interrupting care",
+      "Movement query and execution agree on the combat-transition rejection"
+    ],
+    "remainingAcceptanceBlockers": [],
+    "nextMappedDependency": "MGT-03 expedition Pressure and Watch-end complication processing",
+    "pinnedRules": [
+      "FL-08",
+      "FL-09"
+    ],
+    "recommendation": "Resolve a bounded source-bound contract covering authored group/route, actual exposure causes and predeclared complication stakes; reuse shared clock, RNG and receipt history.",
+    "reviewerIndependentlyRanCompilationTestsValidatorsOrUnity": false,
+    "reviewerIndependentlyRecomputedSourceHashes": false,
+    "optionalHardening": [
+      "Forged-batch regression",
+      "Fractional-endpoint regression",
+      "Independently partitioned-clock regression"
+    ],
+    "record": "GPT_REVIEW.md"
+  }
 }

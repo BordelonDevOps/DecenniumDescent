@@ -21,4 +21,16 @@ GPT reviewed the exact diff, code paths, public query, replay validation, regres
 
 The exact combat-transition test was extended to call `QueryCommand` on the same movement command before execution. Against `c70fb682`, that regression failed with `Movement query advertised a combat transition that active Haven care rejects.` The result is retained under `development-attempts/gpt-review-reproduction/failure-before-query-fix/`.
 
-`AssessWorldStep` now returns `HavenCareCombatTransitionUnsupported` when an encounter-triggering step occurs during any active Haven-care interval. The existing execution resolver and public query share this assessment. The same-command query and execution regression passes in [the focused result](final/focused/combat-query/run-20261109T050747956Z-814d9c53/results.json). The new correction is awaiting GPT follow-up review; this review did not accept the module.
+`AssessWorldStep` now returns `HavenCareCombatTransitionUnsupported` when an encounter-triggering step occurs during any active Haven-care interval. The existing execution resolver and public query share this assessment. The same-command query and execution regression passes in [the focused result](final/focused/combat-query/run-20261109T050747956Z-814d9c53/results.json). GPT's follow-up review accepted correction commit `808ff151253b7b1168d1625d64b6f74d8bb815e2` and found no remaining concrete blocker.
+
+## GPT follow-up review 3 — accepted
+
+**Target reviewed:** `808ff151253b7b1168d1625d64b6f74d8bb815e2` on `Engine`.
+
+> “Yes. `808ff151253b7b1168d1625d64b6f74d8bb815e2` closes my sole remaining blocker. I accept the bounded schema66 TEST_ONLY Haven-care increment against the agreed scope.”
+
+GPT confirmed all findings closed: historical care assessments survive later ordinary death; benign condition events preserve care; unsupported combat transitions reject without interrupting care; and movement query and execution agree on that rejection. GPT found no remaining concrete acceptance blocker and confirmed no records, codec layout or gameplay rule changed.
+
+GPT inspected the exact diff, shared admission callers, regression, retained before/after evidence, compile/package/source-binding reports, compatibility result, trace and handoff. GPT **did not independently compile, execute tests or validators, recompute source hashes, or perform Unity checks**. The generic binding audit remains a disclosed pre-test failure; the schema65 evidence establishes codec roundtrip, not an archived continuation comparison. Forged-batch, fractional-endpoint and independently partitioned-clock regressions were classified as optional hardening, not acceptance conditions.
+
+**Next mapped dependency recommended by GPT:** MGT-03 expedition Pressure and Watch-end complication processing, already present in [the implementation map](../../IMPLEMENTATION_TRACE.md#L651) and governed by pinned FL-08/FL-09. GPT recommends beginning with a bounded authored group/route, actual exposure causes, and predeclared complication stakes, reusing shared clock, RNG and receipt history. Resolve its precise source-bound contract before implementation. MGT-03 remains partial; the engine remains unfinished and Unity remains deferred.
