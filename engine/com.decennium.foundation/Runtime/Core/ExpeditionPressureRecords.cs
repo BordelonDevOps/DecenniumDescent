@@ -233,9 +233,21 @@ namespace Decennium.Foundation
         public static int Current(Snapshot snapshot, string cohortId)
         {
             if (snapshot == null || !Validation.ValidId(cohortId)) throw new ArgumentException("Invalid pressure query.");
+            return CurrentAt(snapshot, cohortId, snapshot.Revision, snapshot.RuleClock);
+        }
+
+        /// <summary>Resolve Pressure at an explicit causal cutoff. The command resolver may include its
+        /// pending revision while advancing across multiple checkpoints before the receipt is committed.</summary>
+        public static int CurrentAt(Snapshot snapshot, string cohortId, long revision, RuleTime at)
+        {
+            if (snapshot == null || !Validation.ValidId(cohortId) || revision < 0
+                || snapshot.Revision < long.MaxValue && revision > snapshot.Revision + 1
+                || revision > snapshot.Revision && snapshot.Revision == long.MaxValue
+                || at < default(RuleTime) || at > snapshot.RuleClock)
+                throw new ArgumentException("Invalid causal pressure query.");
             var cohort = snapshot.ExpeditionPressureCohorts.SingleOrDefault(x => x.Id == cohortId);
             if (cohort == null) throw new ArgumentException("Unknown pressure cohort.");
-            return At(snapshot, cohort, snapshot.Revision, snapshot.RuleClock);
+            return At(snapshot, cohort, revision, at);
         }
 
         /// <summary>Resolve the Pressure value visible at one causal point from immutable checkpoints and

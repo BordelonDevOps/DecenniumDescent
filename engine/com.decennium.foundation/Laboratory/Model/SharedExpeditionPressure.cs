@@ -447,7 +447,7 @@ namespace Decennium.Foundation.Laboratory
             if (initiating == null || route == null) return "PressureCheckpointContextUnsupported";
             var travel = LatestRouteTravel(s, route.Id, expeditionPressureProfile.MemberId);
             if (travel == null) return "PressureRouteProgressMissing";
-            int before = ExpeditionPressureRules.Current(s, exposure.CohortId);
+            int before = ExpeditionPressureRules.CurrentAt(s, exposure.CohortId, s.Revision + 1, at);
             var causes = s.ExpeditionPressureChanges.Where(x => x.CohortId == exposure.CohortId
                 && x.WatchIndex == watch && x.Kind == ExpeditionPressureChangeKind.OpenCombat
                 && x.SourceRevision <= s.Revision + 1 && x.At <= at)

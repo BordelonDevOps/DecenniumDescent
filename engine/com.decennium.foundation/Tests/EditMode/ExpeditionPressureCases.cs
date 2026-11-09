@@ -1,6 +1,7 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || HEADLESS_TESTS)
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -33,10 +34,13 @@ namespace Decennium.Foundation.Tests
                 }));
 
         private static Simulation PressurePrepareHavenRoute(int initialPressure = 2, uint seed = 1,
-            TestOnlyExpeditionRouteFixture routes = null, long enemyHp = 1)
+            TestOnlyExpeditionRouteFixture routes = null, long enemyHp = 1,
+            int schemaVersion = Snapshot.ExpeditionPressureLifecycleSchema)
         {
             routes = routes ?? PressureHavenRouteFixture();
-            var simulation = World(PressurePolicy(initialPressure, seed, routes, enemyHp));
+            var policy = PressurePolicy(initialPressure, seed, routes, enemyHp);
+            var initial = policy.Initial(); initial.SchemaVersion = schemaVersion;
+            var simulation = new Simulation(policy, initial, ExecutionProfile.Laboratory);
             WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
             WorldAdvance(simulation, 1);
             PortableCommit(simulation, Portable(simulation, CommandKind.RemovePortableItem, PortableKitFixture.Pack));
@@ -686,6 +690,87 @@ namespace Decennium.Foundation.Tests
                 var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
                 Require(saved.SequenceEqual(Bytes(restored)),
                     "Same-time tactical retreat attack history failed canonical save/restore replay.");
+            });
+
+            cases.Add("expedition_pressure_multi_watch_single_command_partition_and_restore", () => {
+                foreach (var schema in new[] { Snapshot.ExpeditionPressureSchema,
+                    Snapshot.ExpeditionPressureLifecycleSchema })
+                {
+                    var routes = PressureHavenRouteFixture();
+                    var policy = PressurePolicy(initialPressure: 5, seed: 1, routes: routes);
+                    var whole = PressurePrepareHavenRoute(initialPressure: 5, seed: 1, routes: routes,
+                        schemaVersion: schema);
+                    var split = PressurePrepareHavenRoute(initialPressure: 5, seed: 1, routes: routes,
+                        schemaVersion: schema);
+                    PressurePauseActiveRouteIfMoving(whole, "pressure.inflight.whole.pause");
+                    PressurePauseActiveRouteIfMoving(split, "pressure.inflight.split.pause");
+                    foreach (var branch in new[] { whole, split })
+                    {
+                        var before = branch.Capture();
+                        Require(before.ExpeditionPressureChanges.Count(x => x.WatchIndex == 0
+                            && x.Kind == ExpeditionPressureChangeKind.SecuredRouteEntry) == 1
+                            && !before.ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                            "The partition-invariance fixture needs one secured-entry reduction and an open exposure.");
+                    }
+
+                    var twoWatches = new RuleTime(ExpeditionPressureRules.WatchSeconds * 2);
+                    PressureAdvanceTo(whole, twoWatches);
+                    PressureAdvanceTo(split, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                    var firstBoundary = split.Capture();
+                    var firstCheckpoint = firstBoundary.ExpeditionPressureCheckpoints.Single();
+                    Require(firstCheckpoint.StoredPressure == 4,
+                        "The first Watch did not preserve the one secured-entry reduction.");
+
+                    string path = Path.Combine(directory, "pressure-inflight-schema-" + schema.ToString(CultureInfo.InvariantCulture) + ".ddsave");
+                    var store = new FileSaveStore(); store.Save(path, firstBoundary);
+                    var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                    Require(File.ReadAllBytes(path).SequenceEqual(Bytes(restored)),
+                        "Split first-Watch checkpoint did not restore canonically.");
+                    PressureAdvanceTo(split, twoWatches);
+                    PressureAdvanceTo(restored, twoWatches);
+
+                    var wholeState = whole.Capture();
+                    var wholeCheckpoints = wholeState.ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex).ToArray();
+                    var splitCheckpoints = split.Capture().ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex).ToArray();
+                    var restoredCheckpoints = restored.Capture().ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex).ToArray();
+                    Require(wholeCheckpoints.Length == 2 && splitCheckpoints.Length == 2 && restoredCheckpoints.Length == 2,
+                        "A single or split advancement did not settle both Watch boundaries.");
+                    for (int i = 0; i < 2; i++)
+                    {
+                        var a = wholeCheckpoints[i]; var b = splitCheckpoints[i]; var c = restoredCheckpoints[i];
+                        Require(a.WatchIndex == i && b.WatchIndex == i && c.WatchIndex == i
+                            && a.At == b.At && a.At == c.At && a.PressureBefore == b.PressureBefore
+                            && a.PressureBefore == c.PressureBefore && a.StoredPressure == b.StoredPressure
+                            && a.StoredPressure == c.StoredPressure && a.EffectivePressure == b.EffectivePressure
+                            && a.EffectivePressure == c.EffectivePressure && a.RandomBefore == b.RandomBefore
+                            && a.RandomBefore == c.RandomBefore && a.RandomAfter == b.RandomAfter
+                            && a.RandomAfter == c.RandomAfter && a.WordsConsumed == b.WordsConsumed
+                            && a.WordsConsumed == c.WordsConsumed && a.Natural == b.Natural && a.Natural == c.Natural
+                            && a.Outcome == b.Outcome && a.Outcome == c.Outcome && a.Consequence == b.Consequence
+                            && a.Consequence == c.Consequence
+                            && a.CauseIds.SequenceEqual(b.CauseIds, StringComparer.Ordinal)
+                            && a.CauseIds.SequenceEqual(c.CauseIds, StringComparer.Ordinal)
+                            && a.ReductionIds.SequenceEqual(b.ReductionIds, StringComparer.Ordinal)
+                            && a.ReductionIds.SequenceEqual(c.ReductionIds, StringComparer.Ordinal),
+                            "Whole, split and restored Watch checkpoint history diverged for schema " + schema + ".");
+                    }
+                    Require(wholeCheckpoints[1].PressureBefore == wholeCheckpoints[0].StoredPressure
+                        && splitCheckpoints[1].PressureBefore == splitCheckpoints[0].StoredPressure
+                        && restoredCheckpoints[1].PressureBefore == restoredCheckpoints[0].StoredPressure
+                        && wholeState.RuleClock == twoWatches && split.Capture().RuleClock == twoWatches
+                        && restored.Capture().RuleClock == twoWatches
+                        && wholeState.RandomState == split.Capture().RandomState
+                        && wholeState.RandomState == restored.Capture().RandomState,
+                        "The prior in-flight checkpoint was not carried once with matching RNG and clock state.");
+
+                    string wholePath = Path.Combine(directory, "pressure-inflight-whole-schema-"
+                        + schema.ToString(CultureInfo.InvariantCulture) + ".ddsave");
+                    store.Save(wholePath, wholeState);
+                    var wholeRestored = new Simulation(policy, store.Load(wholePath), ExecutionProfile.Laboratory);
+                    Require(File.ReadAllBytes(wholePath).SequenceEqual(Bytes(wholeRestored))
+                        && Bytes(split).SequenceEqual(Bytes(restored)),
+                        "Whole-command replay or split/restored replay did not remain canonical for schema " + schema + ".");
+                }
             });
 
             cases.Add("expedition_pressure_schema67_save_continues_with_legacy_arrival_semantics", () => {

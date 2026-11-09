@@ -1,6 +1,6 @@
 # Expedition Pressure and Watch-end consequences (schema68 lifecycle and causal-history correction, TEST_ONLY)
 
-**Status:** GPT reviewed pushed commit `3d00c97457682f7fdac9eaef7bf82a83c24845a1`, confirmed the original lifecycle blockers were corrected, and identified three follow-up replay/causal-history blockers. GPT resolved late same-Watch cause accounting as an explicit TEST_ONLY completion; both actual responses and the bounded rule are recorded in [GPT_REVIEW.md](GPT_REVIEW.md). Codex has corrected all three findings in the current C# change set and completed the focused and full validation below. GPT's review of the exact correction commit is still pending, so this module is not yet accepted and no successor has started. This remains the same bounded MGT-03 slice, not a new module or completion of MGT-03/the engine. Unity remains deferred.
+**Status:** GPT reviewed `3d00c97457682f7fdac9eaef7bf82a83c24845a1` and `3a8db64bf37a51e94b4af90cd6b2bb1219adcfac`. It confirmed the three earlier findings were corrected and held the latter commit on a fourth defect: a long `AdvanceClock` could cross multiple Watches while `Current` excluded an earlier checkpoint assigned to that same in-flight command revision. GPT asked for an explicit cutoff and schema67/schema68 partition/save-restore regression. Codex reproduced `InvalidResult` on the reviewed runtime and implemented the explicit revision/time cutoff. The focused regression, full suite, dedicated assemblies and package checks now pass; the next exact correction commit still needs GPT review before module acceptance or a successor. This remains the same bounded TEST_ONLY MGT-03 slice, not a new module or completion of MGT-03/the engine. Unity remains deferred.
 
 ## Scope and authorities
 
@@ -48,6 +48,21 @@ Attack membership uses the exposure's start/end receipts. Earlier attacks at the
 Baseline results reproduce all three findings on the reviewed `3d00c974` runtime. Full and focused reports retain source hashes. The dedicated compile report records Core, Persistence and LabModel separately; the full suite additionally emits the headless test assembly. Existing schema66 historical evidence remains a 4,929-byte byte-identical decode/encode result. Unity Editor compilation, Edit/Play Mode, player builds and observed runtime gameplay were not run.
 
 The scoped runnable scenario uses the selected TEST_ONLY route and combat fixture. It does not add production Haven authority, new enemy/content rules or other FL-08 causes/reductions. The source-silent late-cause timing remains TEST_ONLY per the actual Codex/GPT ruling. The complete engine, MGT-03 and Unity gameplay integration remain unfinished.
+
+## In-flight checkpoint revision follow-up (schema67 and schema68; GPT review pending)
+
+GPT's review of `3a8db64bf37a51e94b4af90cd6b2bb1219adcfac` confirmed the previous three fixes and found that a single clock command spanning two Watch boundaries omitted its first, in-flight checkpoint from the next Pressure calculation. The committed-state `Current` query filtered with `snapshot.Revision`, while the same resolving command assigned `AppliedRevision = s.Revision + 1`; final validation therefore rejected the computed later checkpoint as `InvalidResult`. This applied to schema67 too because the revision filter ran before the schema-specific projection.
+
+Codex added a source-bound reproduction against the reviewed runtime: Pressure 5, one secured-route reduction, no combat, open exposure, and one command advancing across 28,800 and 57,600 seconds. The first checkpoint stored 4, but resolution of the next Watch returned `InvalidResult`. The failure report is [retained here](development-attempts/gpt-review-fixes-3a8db64/reproduction/inflight-multiwatch/results.json). The correction adds `ExpeditionPressureRules.CurrentAt(snapshot, cohortId, causalRevision, at)`; checkpoint resolution includes the current command revision and exact boundary time. Committed-state queries continue to use committed revision, and validation keeps checkpoint-specific causal cutoffs. No schema, payload, or early revision mutation was added.
+
+| Acceptance | Result |
+| --- | --- |
+| Same secured-entry history, one command across two Watches, schema67 and schema68; split branch saves at Watch one and restores; compare both checkpoint results, RNG, consequences and final RuleClock; canonical save replay | [Focused 1/1 PASS](development-attempts/gpt-review-fixes-3a8db64/validation/focused/inflight-multiwatch/results.json) |
+| Full C# 9 warnings-as-errors suite and Core/Persistence/LabModel/headless test compilation | [1,282/1,282 PASS; 261 source hashes](development-attempts/gpt-review-fixes-3a8db64/validation/full-suite/results.json) |
+| Dedicated Core/Persistence/LabModel C# 9 warnings-as-errors compilation | [PASS; 190 source hashes and three assemblies](development-attempts/gpt-review-fixes-3a8db64/validation/assembly-compile/results.json) |
+| Static package validation | [18/18 PASS; 287 assets / 287 unique GUIDs](development-attempts/gpt-review-fixes-3a8db64/validation/package/results.json) |
+
+The focused regression's `ExpeditionPressureCases.cs` hash matches the full-suite report. Eleven pressure/in-flight save files plus compiled assemblies and all reports are retained in the evidence folder. The current exact correction commit still awaits GPT review. Unity Editor import/compile, Edit/Play Mode, standalone/game builds and observed runtime play were not run; MGT-03, the full engine and Unity gameplay integration remain incomplete.
 
 ## Original schema67 module acceptance and baseline results
 
