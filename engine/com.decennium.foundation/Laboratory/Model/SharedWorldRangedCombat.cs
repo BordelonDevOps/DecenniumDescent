@@ -81,6 +81,7 @@ namespace Decennium.Foundation.Laboratory
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
                 ||kind==CommandKind.ResolveTemporaryCampConstruction)
+            ||portableStorageFixture!=null&&PortableCommand(kind)
             ||expeditionCampSiteProfile!=null&&(kind==CommandKind.BeginCampUse||kind==CommandKind.EndCampUse
                 ||kind==CommandKind.BeginLyingLow||kind==CommandKind.EndLyingLow)
             ||kind==CommandKind.AwardCharacterMilestone||kind==CommandKind.AdvanceCharacterLevel

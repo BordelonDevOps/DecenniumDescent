@@ -180,12 +180,24 @@ namespace Decennium.Foundation.Laboratory
             }
         }
         internal static bool HasPendingClaim(Snapshot s,PortableEquipmentRecord item)
+            =>HasPendingClaim(s,item,false);
+        internal static bool HasPendingClaim(Snapshot s,PortableEquipmentRecord item,bool ignoreExactInstalledCampAnchor)
         {
             var ids=Descendants(s,item.Id).Select(x=>x.Id).Append(item.Id).ToHashSet(StringComparer.Ordinal);
             var lots=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.InventoryLot).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
             var vessels=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.WaterVessel).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
             var tools=s.PortableEquipment.Where(x=>ids.Contains(x.Id)&&x.LinkKind==PortableLinkKind.SupplyEquipment).Select(x=>x.LinkedId).ToHashSet(StringComparer.Ordinal);
-            return s.Work.Reservations.Any(x=>lots.Contains(x.LotId)&&x.RemainingAmount!=default)
+            bool IsExactInstalledCampAnchor(ResourceReservation reservation)
+            {
+                if(!ignoreExactInstalledCampAnchor||reservation.LotId!=item.Id)return false;
+                var installation=s.TemporaryCampInstallations.SingleOrDefault(x=>x.AttemptId==reservation.JobId
+                    &&x.LotId==item.Id&&x.Kind==TemporaryCampFixtureKind.FittingPack);
+                if(installation==null)return false;
+                var attempt=s.TemporaryCampConstructionAttempts.SingleOrDefault(x=>x.Id==installation.AttemptId);
+                return attempt!=null&&attempt.Status==TemporaryCampConstructionStatus.Resolved
+                    &&attempt.Check!=null&&attempt.Check.Result>=TemporaryCampConstructionResult.Success;
+            }
+            return s.Work.Reservations.Any(x=>lots.Contains(x.LotId)&&x.RemainingAmount!=default&&!IsExactInstalledCampAnchor(x))
                 ||s.Intakes.Any(x=>lots.Contains(x.LotId)&&x.Status==IntakeStatus.Working)
                 ||s.WaterFills.Any(x=>x.Pending&&(vessels.Contains(x.DestinationId)||vessels.Contains(WaterFilling.SourceVessel(s,x.SourceLotId))))
                 ||s.SupplyCacheAttempts.Any(x=>x.Status==SupplyCacheAttemptStatus.Working&&tools.Contains(x.EquipmentId))

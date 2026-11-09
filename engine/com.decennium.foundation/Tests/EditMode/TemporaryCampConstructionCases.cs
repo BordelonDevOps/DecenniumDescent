@@ -10,7 +10,7 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private static TestOnlySharedWorldPolicy CampConstructionPolicy(uint seed, bool concealed = false,
-            HuntingTrapFixture traps = null, string[] assistants = null)
+            HuntingTrapFixture traps = null, string[] assistants = null, bool storage = false)
         {
             var routes = RouteTravelCheckpointFixture();
             var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
@@ -24,14 +24,15 @@ namespace Decennium.Foundation.Tests
                 .EnableExpeditionCampUse(site)
                 .EnableExpeditionCampConstruction(new TestOnlyExpeditionCampConstructionFixture(1,
                     TestOnlyPolicy.ActorId, assistants ?? new[] { TestOnlyPolicy.CompanionId }, CharacterAbility.Strength));
+            if(storage)policy.EnablePortableStorage(new TestOnlyPortableStorageFixture());
             if (traps != null) policy.EnableHuntingTraps(traps);
             return policy;
         }
 
         private static Simulation CampConstructionAtCheckpoint(uint seed, bool concealed = false,
-            string[] assistants = null)
+            string[] assistants = null, bool storage = false)
         {
-            var policy = CampConstructionPolicy(seed, concealed, assistants: assistants);
+            var policy = CampConstructionPolicy(seed, concealed, assistants: assistants,storage:storage);
             var initial = policy.Initial();
             Require(CharacterSkillTrainingFacts.IsTrained(initial, TestOnlyPolicy.ActorId,
                     TestOnlyExpeditionCampConstructionFixture.SkillId)
@@ -51,6 +52,8 @@ namespace Decennium.Foundation.Tests
                 PortableKitFixture.Pack, handling: HandlingKind.Drop));
             PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
                 PortableKitFixture.Tools, handling: HandlingKind.Retrieve));
+            if(storage)PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,
+                PortableKitFixture.MessKit,handling:HandlingKind.Retrieve));
             WorldStep(simulation, 0, -1);
             WorldAdvance(simulation, 2);
             RouteTravelReachSource(simulation);
@@ -74,7 +77,7 @@ namespace Decennium.Foundation.Tests
             return simulation;
         }
 
-        private static string CampConstructionPrepareCompanionFood(Simulation simulation)
+        private static string CampConstructionPrepareCompanionFood(Simulation simulation,RuleQuantity? quantity=null)
         {
             // The existing cache and food records supply an idle companion's actual handheld lot.
             // Move the authored tools out of the staged pack, unlock/open the cache, then hand over
@@ -90,12 +93,14 @@ namespace Decennium.Foundation.Tests
                 "The existing trained tools fixture did not unlock the cache within 32 source-timed attempts.");
             SupplyCommit(simulation, SupplyCommand(simulation, SupplyCacheInteraction.Open,
                 id: "camp-build.cache-open." + simulation.Capture().Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+            var amount=quantity??new RuleQuantity(1);
             WorldCommit(simulation, IC(simulation, CommandKind.HandleInventory, TestOnlyInventoryPolicy.FoodId,
-                new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Pickup)));
-            string pickedLot = simulation.Capture().InventoryLots.Single(x => x.ParentId == TestOnlyInventoryPolicy.FoodId).LotId;
+                new InventoryRequest(amount, handling: HandlingKind.Pickup)));
+            string pickedLot = simulation.Capture().InventoryLots.SingleOrDefault(x => x.ParentId == TestOnlyInventoryPolicy.FoodId
+                && x.CreatedAmount == amount)?.LotId ?? TestOnlyInventoryPolicy.FoodId;
             WorldCommit(simulation, IC(simulation, CommandKind.HandleInventory, pickedLot,
-                new InventoryRequest(new RuleQuantity(1), TestOnlyPolicy.CompanionId, HandlingKind.Handover)));
-            return simulation.Capture().InventoryLots.Single(x => x.ParentId == pickedLot).LotId;
+                new InventoryRequest(amount, TestOnlyPolicy.CompanionId, HandlingKind.Handover)));
+            return simulation.Capture().InventoryLots.SingleOrDefault(x => x.ParentId == pickedLot)?.LotId ?? pickedLot;
         }
 
         private static Command CampConstructionCommand(Simulation simulation, CommandKind kind, string target,

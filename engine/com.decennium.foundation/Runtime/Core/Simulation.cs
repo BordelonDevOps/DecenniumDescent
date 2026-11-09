@@ -128,6 +128,7 @@ namespace Decennium.Foundation
         public const int ExpeditionPressureLifecycleSchema = 68;
         public const int ExpeditionCampUseSchema = 69;
         public const int TemporaryCampConstructionSchema = 70;
+        public const int PortableStorageSchema = 71;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -196,6 +197,7 @@ namespace Decennium.Foundation
         public CacheExcavationRecord[] CacheExcavations = Array.Empty<CacheExcavationRecord>();
         public PortableEquipmentRecord[] PortableEquipment = Array.Empty<PortableEquipmentRecord>();
         public PortableHandlingRecord[] PortableHandling = Array.Empty<PortableHandlingRecord>();
+        public PortableStorageProfileRecord[] PortableStorageProfiles = Array.Empty<PortableStorageProfileRecord>();
         public EncounterDashRecord[] EncounterDashes = Array.Empty<EncounterDashRecord>();
         public CharacterMilestoneRecord[] CharacterMilestones = Array.Empty<CharacterMilestoneRecord>();
         public CharacterHitDieRecord[] CharacterHitDice = Array.Empty<CharacterHitDieRecord>();
@@ -308,6 +310,7 @@ namespace Decennium.Foundation
             SupplyCaches = SupplyCaches.ToArray(), SupplyCacheAttempts = SupplyCacheAttempts.ToArray(), SupplyCacheEquipment = SupplyCacheEquipment.ToArray(),
             BuriedCacheSites = BuriedCacheSites.ToArray(), CacheExcavations = CacheExcavations.ToArray(),
             PortableEquipment = PortableEquipment.ToArray(), PortableHandling = PortableHandling.ToArray(),
+            PortableStorageProfiles = PortableStorageProfiles.ToArray(),
             CharacterMilestones = CharacterMilestones.ToArray(), CharacterHitDice = CharacterHitDice.ToArray(),
             CharacterFeatureGrants = CharacterFeatureGrants.ToArray(), CharacterAdvancements = CharacterAdvancements.ToArray(),
             CharacterFeatureRuntime = CharacterFeatureRuntime.ToArray(), TacticalCovers = TacticalCovers.ToArray(),
@@ -707,7 +710,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema
-                || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema
+                || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema

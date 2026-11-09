@@ -43,6 +43,25 @@ namespace Decennium.Foundation
             for(int i=0;i<s.PortableHandling.Length;i++)s.PortableHandling[i]=new PortableHandlingRecord(Text(r),r.ReadInt64(),Text(r),Text(r),Text(r),Text(r),Text(r),
                 (PortableOperation)r.ReadInt32(),(PortablePlacement)r.ReadInt32(),(PortablePlacement)r.ReadInt32(),Time(r),Time(r),Bool(r));
         }
+        public static void WriteStorageProfiles(BinaryWriter w,Snapshot s)
+        {
+            w.Write(s.PortableStorageProfiles.Length);
+            foreach(var x in s.PortableStorageProfiles.OrderBy(x=>x.ProfileId,StringComparer.Ordinal)) {
+                Text(w,x.ProfileId);Text(w,x.QuantityUnitId);Optional(w,x.PackedVolumePerUnitCubicFeet);
+                w.Write(x.AllowedContainedProfileIds.Count);
+                foreach(string id in x.AllowedContainedProfileIds.OrderBy(v=>v,StringComparer.Ordinal))Text(w,id);
+                w.Write(x.RequiresInstalledTemporaryCamp);
+            }
+        }
+        public static void ReadStorageProfiles(BinaryReader r,Snapshot s)
+        {
+            s.PortableStorageProfiles=new PortableStorageProfileRecord[Count(r,PortableStorageProfileValidation.MaxProfiles)];
+            for(int i=0;i<s.PortableStorageProfiles.Length;i++) {
+                string profile=Text(r),unit=Text(r);var volume=Optional(r);string[] allowed=new string[Count(r,64)];
+                for(int j=0;j<allowed.Length;j++)allowed[j]=Text(r);
+                s.PortableStorageProfiles[i]=new PortableStorageProfileRecord(profile,unit,volume,allowed,Bool(r));
+            }
+        }
         private static int Count(BinaryReader r,int max){int n=r.ReadInt32();if(n<0||n>max)throw new InvalidDataException("Invalid portable record length.");return n;}
         private static void Text(BinaryWriter w,string value){byte[] b=Utf8.GetBytes(value);w.Write(b.Length);w.Write(b);}
         private static string Text(BinaryReader r){int n=Count(r,512);byte[] b=r.ReadBytes(n);if(b.Length!=n)throw new EndOfStreamException();return Utf8.GetString(b);}

@@ -186,6 +186,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeExpeditionPressure(s);
             InitializeExpeditionCampUse(s);
             InitializeExpeditionCampConstruction(s);
+            InitializePortableStorage(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -853,6 +854,7 @@ namespace Decennium.Foundation.Laboratory
                 string pressureError=ValidateExpeditionPressureFixtureState(s);if(pressureError!=null)return pressureError;
                 string campUseError=ValidateExpeditionCampFixtureState(s);if(campUseError!=null)return campUseError;
                 string campConstructionError=ValidateTemporaryCampConstructionFixtureState(s);if(campConstructionError!=null)return campConstructionError;
+                string portableStorageError=ValidatePortableStorageState(s);if(portableStorageError!=null)return portableStorageError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
                 string routeReconnaissanceError=ValidateRouteReconnaissanceState(s);if(routeReconnaissanceError!=null)return routeReconnaissanceError;

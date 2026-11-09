@@ -94,7 +94,29 @@ namespace Decennium.Foundation.Laboratory
                 var lot=c.Kind==CommandKind.ReloadRepeatingCrossbow?s.AmmunitionLots.FirstOrDefault(x=>x.Id==c.Ranged?.AmmoLotId):null;
                 return new[]{weapon?.OwnerId,lot?.OwnerId}.Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
             }
-            if(PortableCommand(c.Kind))return PortableEquipmentRules.Owners(s,c.Target);
+            if(PortableCommand(c.Kind)) {
+                var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);
+                var owners=PortableEquipmentRules.Owners(s,c.Target).ToList();
+                var ancestors=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+                while(item!=null&&item.ParentId!="") {
+                    if(!ancestors.Add(item.ParentId))break;
+                    item=s.PortableEquipment.SingleOrDefault(x=>x.Id==item.ParentId);
+                    if(item!=null)owners.Add(item.OwnerId);
+                }
+                if(c.Kind==CommandKind.HandlePortableEquipment&&c.Inventory?.Handling==HandlingKind.Stow) {
+                    var destination=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Inventory.Destination);
+                    if(destination!=null) {
+                        owners.AddRange(PortableEquipmentRules.Owners(s,destination.Id));
+                        var parent=destination;
+                        var seen=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+                        while(parent.ParentId!=""&&seen.Add(parent.ParentId)) {
+                            parent=s.PortableEquipment.SingleOrDefault(x=>x.Id==parent.ParentId);
+                            if(parent!=null)owners.Add(parent.OwnerId);else break;
+                        }
+                    }
+                }
+                return owners.Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(IsSupplyCacheCommand(c)) {
                 var cache=s.SupplyCaches.SingleOrDefault(x=>x.Id==c.Target);
                 if(cache==null)return Array.Empty<string>();

@@ -1,6 +1,6 @@
 # MGT-01 physical storage and transfer contract
 
-**Status:** selected mapped dependency; Codex/GPT design consensus reached on 2026-11-09. Implementation is authorized on `Engine`; it has not yet been implemented or validated. The planned additive save branch is schema71. This is a bounded TEST_ONLY completion, not production content authority.
+**Status:** implemented on `Engine` as additive schema71 TEST_ONLY content; Codex validation is complete and the exact implementation commit is awaiting GPT’s post-implementation review. This is a bounded increment, not production content authority or engine completion.
 
 ## Map position and goal
 
@@ -87,3 +87,19 @@ GPT’s actual design response was:
 > Consensus reached on this representation. The table, custody transition and validation integration are implementation prerequisites for the new module; no owner escalation is needed.
 
 GPT inspected the exact current construction, portable records/resolver, link synchronization, capacity derivation, Simulation validation and codec paths at `2049d2c4`. It made no repository changes and ran no compilation or tests. This record reflects its actual design response, not an independent verification of implementation.
+
+## GPT Load clarification — 2026-11-09
+
+In the follow-up source-bound review, GPT confirmed that the pinned BODY_EQUIPMENT_PLAYTEST rule gives printed Load precedence; only when printed Load is absent and physical weight is known does this prototype use known pounds divided by ten. Unknown pounds and Load remain unknown, and the two quantities remain distinct. Existing `PlaytestCarrying.Total` already applies this fallback for ordinary carried burden. The new Core helper is used for storage capacity checks; Core remains independent of LabModel.
+
+GPT’s required arithmetic regression was two pounds of food plus a full waterskin with one-pound tare and four pints of water: seven pounds total, and 0.7 Load when no separate Load is printed. Each physical item and contained liquid counts once. The Temporary Camp’s three limits are checked independently at 20 Load, 200 lb and 20 ft³. The connected case includes that exact total, exact Load-20 acceptance, an above-Load rejection with weight and volume still fitting, and independent weight/volume overflow cases.
+
+## Implementation status — 2026-11-09
+
+Schema71 adds immutable Core-readable `PortableStorageProfileRecord` facts to `Snapshot`, validates and serializes them in the additive persistence branch, and binds the exact selected TEST_ONLY definitions into the policy fingerprint. The shared profile resolver handles explicit compatibility, quantity-based packed volume, full nested subtree pounds/Load, per-container volume and the installed camp’s derived Load/weight/volume limits. Unknown dimensions remain unsupported. Legacy `FitRuleId`/`FitMemberIds` stowing remains on its prior exact-member path.
+
+The LabModel uses the installed fitting-pack record as the camp root and the ordinary portable record as a second destination. Existing parent links, lots, vessels, vessel contents, owner/custodian facts, reservations, handling costs, query/execution transaction, command receipts and `RuleClock` remain authoritative. Deposits update the destination actor’s custody through the item subtree and synchronize existing links; they preserve owner, freshness and provenance. The installed storage root remains anchored while stationarily openable/closable; its durable successful construction claim is the only claim exempted for close. Other installation claims and active work claims retain their prior rejection behavior. Schemas 70 and earlier retain their codec branches.
+
+The connected acceptance covers route exploration, the existing tactical encounter, actual cache acquisition, Temporary Camp construction, ordinary handling/open/close, filled-water and food deposits, portioning, retrieval and handover, ordinary crate storage, query/execution agreement, duplicate idempotence, uninstalled/closed/out-of-reach/incompatible rejection, containment/capacity validation, historical schema70 roundtrip, schema71 save/restore, and restored branch replay through intake and route continuation. A separate active-fill comparison checks uninterrupted 60 seconds against a 30-second save/restore plus 30 seconds, including remaining reservation, work-lot settlement, output identity, clock and RNG state.
+
+Codex’s exact commit, changed-file list, reports, source hashes, scenario saves, failed full-suite reproduction and non-performed Unity checks are indexed in [MGT-01 evidence](evidence/2026-11-09-mgt01/README.md). GPT’s final implementation verdict is pending and recorded separately after its response. No successor dependency begins before that review.

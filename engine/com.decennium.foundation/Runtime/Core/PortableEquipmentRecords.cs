@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Numerics;
 
 namespace Decennium.Foundation
 {
@@ -107,6 +108,165 @@ namespace Decennium.Foundation
         }
     }
 
+    /// <summary>Immutable selected-content facts for profile-based portable storage. A null
+    /// packed volume means exterior volume is not established and cannot be stored directly in a
+    /// profile-governed container.</summary>
+    public sealed class PortableStorageProfileRecord
+    {
+        private readonly string[] allowedContainedProfileIds;
+        public string ProfileId { get; }
+        public string QuantityUnitId { get; }
+        public RuleQuantity? PackedVolumePerUnitCubicFeet { get; }
+        public ReadOnlyCollection<string> AllowedContainedProfileIds { get; }
+        public bool RequiresInstalledTemporaryCamp { get; }
+
+        public PortableStorageProfileRecord(string profileId,string quantityUnitId,RuleQuantity? packedVolumePerUnitCubicFeet,
+            string[] allowedContainedProfileIds=null,bool requiresInstalledTemporaryCamp=false)
+        {
+            if(!Validation.ValidId(profileId)||!Validation.ValidId(quantityUnitId)
+                ||packedVolumePerUnitCubicFeet.HasValue&&packedVolumePerUnitCubicFeet.Value<default(RuleQuantity))
+                throw new ArgumentException("Invalid portable storage profile.");
+            var allowed=allowedContainedProfileIds??Array.Empty<string>();
+            if(allowed.Length>64||allowed.Any(x=>!Validation.ValidId(x))
+                ||allowed.Distinct(StringComparer.Ordinal).Count()!=allowed.Length
+                ||requiresInstalledTemporaryCamp&&allowed.Length==0)
+                throw new ArgumentException("Invalid portable storage profile admissions.");
+            ProfileId=profileId;QuantityUnitId=quantityUnitId;PackedVolumePerUnitCubicFeet=packedVolumePerUnitCubicFeet;
+            this.allowedContainedProfileIds=allowed.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            AllowedContainedProfileIds=Array.AsReadOnly(this.allowedContainedProfileIds);
+            RequiresInstalledTemporaryCamp=requiresInstalledTemporaryCamp;
+        }
+    }
+
+    /// <summary>Provisional source rule for Load when an item has no separate printed Load.
+    /// Known physical pounds divide by ten; this rule never derives volume.</summary>
+    public static class CarryingLoadRules
+    {
+        public static RuleQuantity? FromPrintedLoadOrKnownWeight(RuleQuantity? printedLoad,RuleQuantity? knownPounds,
+            bool allowWeightFallback=true)
+            =>printedLoad??(allowWeightFallback?knownPounds?.Scale(1,10):(RuleQuantity?)null);
+    }
+
+    /// <summary>Pure profile admission and capacity checks shared by Core validation and the
+    /// selected TEST_ONLY handling resolver.</summary>
+    public static class PortableStorageProfileValidation
+    {
+        public const int MaxProfiles=64;
+        private const string ItemUnit="item";
+        public static PortableStorageProfileRecord Find(Snapshot s,string profileId)
+            =>s?.PortableStorageProfiles?.SingleOrDefault(x=>x.ProfileId==profileId);
+        public static bool CanContain(Snapshot s,PortableEquipmentRecord container,PortableEquipmentRecord child)
+        {
+            if(s==null||container==null||child==null)return false;
+            var profile=Find(s,container.ProfileId);var childProfile=Find(s,child.ProfileId);
+            if(profile==null||profile.AllowedContainedProfileIds.Count==0||childProfile==null
+                ||!profile.AllowedContainedProfileIds.Contains(child.ProfileId,StringComparer.Ordinal))return false;
+            try { PackedVolume(s,child,childProfile);return true; }
+            catch(ArgumentException) { return false; }
+        }
+        public static RuleQuantity PackedVolume(Snapshot s,PortableEquipmentRecord item)
+        {
+            var profile=Find(s,item?.ProfileId);
+            if(profile==null)throw new ArgumentException("Portable storage profile is not established.");
+            return PackedVolume(s,item,profile);
+        }
+        private static RuleQuantity PackedVolume(Snapshot s,PortableEquipmentRecord item,PortableStorageProfileRecord profile)
+        {
+            if(!profile.PackedVolumePerUnitCubicFeet.HasValue)
+                throw new ArgumentException("Portable packed volume is not established.");
+            RuleQuantity quantity;string unit;
+            if(item.LinkKind==PortableLinkKind.InventoryLot) {
+                var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==item.LinkedId);
+                if(lot==null)throw new ArgumentException("Portable storage quantity is not established.");
+                unit=lot.UnitId;quantity=lot.Amount;
+            } else { unit=ItemUnit;quantity=new RuleQuantity(1); }
+            if(unit!=profile.QuantityUnitId)throw new ArgumentException("Portable storage quantity unit is not established.");
+            var perUnit=profile.PackedVolumePerUnitCubicFeet.Value;
+            return RuleQuantity.FromFraction((BigInteger)perUnit.Numerator*quantity.Numerator,
+                (BigInteger)perUnit.Denominator*quantity.Denominator);
+        }
+        public static RuleQuantity Load(Snapshot s,PortableEquipmentRecord item)
+        {
+            if(item.MassBasis==PortableMassBasis.Unmodeled)
+                throw new ArgumentException("Portable item Load is not established.");
+            var load=CarryingLoadRules.FromPrintedLoadOrKnownWeight(item.PrintedLoad,
+                PortableEquipmentValidation.Mass(s,item));
+            if(!load.HasValue)throw new ArgumentException("Portable item Load is not established.");
+            return load.Value;
+        }
+        public static string StorageDestinationFailure(Snapshot s,PortableEquipmentRecord container,PortableEquipmentRecord child)
+        {
+            var profile=Find(s,container?.ProfileId);
+            if(profile==null||profile.AllowedContainedProfileIds.Count==0)return "ContainerFitNotEstablished";
+            if(profile.RequiresInstalledTemporaryCamp) {
+                var installations=s.TemporaryCampInstallations.Where(x=>x.LotId==container.Id
+                    &&x.Kind==TemporaryCampFixtureKind.FittingPack).ToArray();
+                if(installations.Length>1)return "TemporaryCampStorageInstallationInvalid";
+                var installation=installations.SingleOrDefault();
+                if(installation==null||!TemporaryCampConstructionValidation.HasTemporaryCamp(s,installation.SiteId))
+                    return "TemporaryCampStorageNotInstalled";
+                var capacity=TemporaryCampConstructionValidation.StorageCapacity(s,installation.SiteId);
+                if(container.CapacityPounds!=capacity.Pounds||container.CapacityCubicFeet!=capacity.CubicFeet)
+                    return "TemporaryCampStorageCapacityMismatch";
+            }
+            return CanContain(s,container,child)?null:"ContainerFitNotEstablished";
+        }
+        public static RuleQuantity ContentsVolume(Snapshot s,PortableEquipmentRecord container)
+        {
+            var direct=s.PortableEquipment.Where(x=>x.ParentId==container.Id&&x.Placement==PortablePlacement.Contained).ToArray();
+            return RuleQuantity.Sum(direct.Select(x=>PackedVolume(s,x)));
+        }
+        public static void ValidateSnapshot(Snapshot s)
+        {
+            if(s.PortableStorageProfiles==null||s.PortableStorageProfiles.Length>MaxProfiles
+                ||s.PortableStorageProfiles.Any(x=>x==null))throw new ArgumentException("Invalid portable storage profile collection.");
+            if(s.SchemaVersion<Snapshot.PortableStorageSchema) {
+                if(s.PortableStorageProfiles.Length!=0)throw new ArgumentException("Portable storage profiles require schema71.");
+                return;
+            }
+            if(!s.TestOnly||s.PortableStorageProfiles.Length==0)
+                throw new ArgumentException("Schema71 portable storage facts require a selected TEST_ONLY profile.");
+            var profiles=s.PortableStorageProfiles;
+            if(profiles.Select(x=>x.ProfileId).Distinct(StringComparer.Ordinal).Count()!=profiles.Length
+                ||profiles.Any(x=>x.AllowedContainedProfileIds.Any(id=>!profiles.Any(p=>p.ProfileId==id))))
+                throw new ArgumentException("Duplicate or unresolved portable storage profile.");
+            foreach(var item in s.PortableEquipment) {
+                if(item.ParentId==""||item.Placement!=PortablePlacement.Contained)continue;
+                var parent=s.PortableEquipment.Single(x=>x.Id==item.ParentId);
+                var parentProfile=Find(s,parent.ProfileId);
+                if(parentProfile==null||parentProfile.AllowedContainedProfileIds.Count==0)continue;
+                if(!CanContain(s,parent,item))throw new ArgumentException("Portable container profile fit is not established.");
+            }
+        }
+        internal static void ValidateContainer(Snapshot s,PortableEquipmentRecord container,PortableEquipmentRecord[] placed)
+        {
+            var profile=Find(s,container.ProfileId);
+            if(profile==null||profile.AllowedContainedProfileIds.Count==0)return;
+            if(profile.RequiresInstalledTemporaryCamp) {
+                var installations=s.TemporaryCampInstallations.Where(x=>x.LotId==container.Id
+                    &&x.Kind==TemporaryCampFixtureKind.FittingPack).ToArray();
+                if(installations.Length>1)throw new ArgumentException("Temporary Camp storage installation is duplicated.");
+                var installation=installations.SingleOrDefault();
+                if(installation==null) {
+                    if(placed.Length!=0)throw new ArgumentException("Temporary Camp storage is not installed.");
+                } else {
+                    if(!TemporaryCampConstructionValidation.HasTemporaryCamp(s,installation.SiteId))
+                        throw new ArgumentException("Temporary Camp storage is not installed.");
+                    var capacity=TemporaryCampConstructionValidation.StorageCapacity(s,installation.SiteId);
+                    if(container.CapacityPounds!=capacity.Pounds||container.CapacityCubicFeet!=capacity.CubicFeet)
+                        throw new ArgumentException("Temporary Camp derived storage capacity mismatch.");
+                    var load=RuleQuantity.Sum(placed.Select(x=>Load(s,x)));
+                    if(load>new RuleQuantity(capacity.Load))throw new ArgumentException("Temporary Camp Load capacity exceeded.");
+                }
+            }
+            var direct=s.PortableEquipment.Where(x=>x.ParentId==container.Id&&x.Placement==PortablePlacement.Contained).ToArray();
+            if(direct.Any(x=>!CanContain(s,container,x)))throw new ArgumentException("Portable container profile fit is not established.");
+            var volume=RuleQuantity.Sum(direct.Select(x=>PackedVolume(s,x)));
+            if(!container.CapacityCubicFeet.HasValue||volume>container.CapacityCubicFeet.Value)
+                throw new ArgumentException("Portable container volume capacity exceeded.");
+        }
+    }
+
     public static class PortableEquipmentValidation
     {
         public const int MaxItems=128,MaxHandling=256;
@@ -114,6 +274,7 @@ namespace Decennium.Foundation
         {
             if(s.PortableEquipment==null||s.PortableHandling==null||s.PortableEquipment.Length>MaxItems||s.PortableHandling.Length>MaxHandling
                 ||s.PortableEquipment.Any(x=>x==null)||s.PortableHandling.Any(x=>x==null))throw new ArgumentException("Invalid portable equipment collections.");
+            PortableStorageProfileValidation.ValidateSnapshot(s);
             if(s.SchemaVersion<Snapshot.PortableEquipmentSchema) {
                 if(s.PortableEquipment.Length!=0||s.PortableHandling.Length!=0)throw new ArgumentException("Portable equipment requires schema20.");
                 return;
@@ -179,11 +340,16 @@ namespace Decennium.Foundation
             foreach(var container in items.Where(x=>x.CapacityPounds.HasValue)) {
                 var contents=Descendants(items,container.Id).Where(x=>Inside(container.Id,x.Id,items)).ToArray();
                 var placed=contents.Where(x=>EntirePathContained(container.Id,x,items)).ToArray();
-                if(placed.Length!=0&&container.FitRuleId=="")throw new ArgumentException("Container fit is not established.");
-                if(placed.Any(x=>!FitsAuthoredMember(s,container,x,items))&&container.FitRuleId!="")
-                    throw new ArgumentException("Container fit is not established for every contained item.");
+                var storageProfile=PortableStorageProfileValidation.Find(s,container.ProfileId);
+                bool profileContainer=storageProfile!=null&&storageProfile.AllowedContainedProfileIds.Count!=0;
+                if(!profileContainer) {
+                    if(placed.Length!=0&&container.FitRuleId=="")throw new ArgumentException("Container fit is not established.");
+                    if(placed.Any(x=>!FitsAuthoredMember(s,container,x,items))&&container.FitRuleId!="")
+                        throw new ArgumentException("Container fit is not established for every contained item.");
+                }
                 var mass=RuleQuantity.Sum(placed.Select(x=>Mass(s,x)));
                 if(mass>container.CapacityPounds.Value)throw new ArgumentException("Container weight capacity exceeded.");
+                PortableStorageProfileValidation.ValidateContainer(s,container,placed);
             }
             foreach(var eventRecord in s.PortableHandling) {
                 var item=items.SingleOrDefault(x=>x.Id==eventRecord.ItemId);

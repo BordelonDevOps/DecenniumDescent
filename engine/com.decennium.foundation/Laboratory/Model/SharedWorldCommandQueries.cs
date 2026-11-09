@@ -508,6 +508,14 @@ namespace Decennium.Foundation.Laboratory
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
+            if(portableStorageFixture!=null&&PortableCommand(c.Kind)) {
+                string failure=ResolveCore(s.Copy(),c);
+                var costs=failure==null
+                    ?s.InventoryCombat?new[]{new CommandCost("interaction","",1)}
+                        :new[]{new CommandCost("work-seconds","",1)}
+                    :Array.Empty<CommandCost>();
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
             if (IsTemporaryCampConstructionCommand(c.Kind)) return QueryTemporaryCampConstruction(s,c);
             if (IsExpeditionCampUseCommand(c.Kind)) return QueryExpeditionCampUse(s, c);
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel) {

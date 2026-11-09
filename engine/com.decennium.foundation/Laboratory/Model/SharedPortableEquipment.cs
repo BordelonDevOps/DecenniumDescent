@@ -130,6 +130,9 @@ namespace Decennium.Foundation.Laboratory
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return "UnknownPortableItem";
+            bool installedCampStorageRoot=portableStorageFixture!=null
+                &&item.Id==TestOnlyExpeditionCampConstructionFixture.PackLotId
+                &&s.TemporaryCampInstallations.Any(x=>x.LotId==item.Id&&x.Kind==TemporaryCampFixtureKind.FittingPack);
             if(huntingTrapFixture?.Find(item.Id)!=null&&s.HuntingTrapDeployments.Any(x=>x.TrapItemId==item.Id)
                 ||huntingTrapFixture?.Find(item.Id)!=null&&s.HuntingTrapActions.Any(x=>x.TrapItemId==item.Id&&x.Status==HuntingTrapActionStatus.Working))
                 return "HuntingTrapDeviceInUse";
@@ -160,12 +163,16 @@ namespace Decennium.Foundation.Laboratory
                             after=PortablePlacement.Carried;to="";break;
                         case HandlingKind.Stow:
                             operation=PortableOperation.Stow;to=c.Inventory.Destination;
-                            string expectedPack=soldierCharacterBuild==null?PortableKitFixture.Pack:SoldierInitialEquipmentIds.Pack;
-                            if(item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Carried||to!=expectedPack)
+                            if(item.ParentId!=""||item.CustodianId!=c.Actor||item.Placement!=PortablePlacement.Carried
+                                ||to==""||!s.PortableEquipment.Any(x=>x.Id==to))
                                 return "InvalidPortableStow";
                             var pack=s.PortableEquipment.Single(x=>x.Id==to);
                             if(!PortableEquipmentRules.Accessible(s,c.Actor,pack)||!pack.Open)return "PortableContainerOutOfReach";
-                            if(!PortableEquipmentValidation.FitsAuthoredMember(s,pack,item))return "ContainerFitNotEstablished";
+                            var destinationProfile=PortableStorageProfileValidation.Find(s,pack.ProfileId);
+                            if(destinationProfile!=null&&destinationProfile.AllowedContainedProfileIds.Count!=0) {
+                                string destinationFailure=PortableStorageProfileValidation.StorageDestinationFailure(s,pack,item);
+                                if(destinationFailure!=null)return destinationFailure;
+                            } else if(!PortableEquipmentValidation.FitsAuthoredMember(s,pack,item))return "ContainerFitNotEstablished";
                             if(PortableEquipmentRules.HasPendingClaim(s,item))return "PortableItemHasPendingWork";
                             after=PortablePlacement.Contained;break;
                         case HandlingKind.Handover:
@@ -174,7 +181,7 @@ namespace Decennium.Foundation.Laboratory
                                 ||!s.Actors.Any(a=>a.Id==recipient)||!NearPortable(s.Actors.Single(a=>a.Id==c.Actor),s.Actors.Single(a=>a.Id==recipient)))return "InvalidPortableHandover";
                             if(AvailableHands(s,recipient)<1||OrdinaryInventory.Busy(s,recipient))return "RecipientHandsUnavailable";
                             if(s.WorldTraversals.Any(x=>x.ActorId==recipient))return "RecipientTraversalInProgress";
-                            if(PortableEquipmentRules.HasPendingClaim(s,item))return "PortableItemHasPendingWork";
+                            if(PortableEquipmentRules.HasPendingClaim(s,item,installedCampStorageRoot))return "PortableItemHasPendingWork";
                             after=PortablePlacement.Carried;break;
                         default:return "InvalidPortableHandling";
                     }
@@ -206,16 +213,19 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.ClosePortableContainer:
                     operation=PortableOperation.Close;
                     if(c.Inventory!=null||!item.CapacityPounds.HasValue||!item.Open)return "PortableContainerNotOpen";
-                    if(PortableEquipmentRules.HasPendingClaim(s,item))return "PortableItemHasPendingWork";
                     break;
                 default:return "PortableEquipmentNotImplemented";
             }
-            if((operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Retrieve||operation==PortableOperation.Stow
-                ||operation==PortableOperation.Handover||operation==PortableOperation.Remove||operation==PortableOperation.Close)
-                &&PortableEquipmentRules.HasPendingClaim(s,item))return "PortableItemHasPendingWork";
+            bool physicalMove=operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Retrieve
+                ||operation==PortableOperation.Stow||operation==PortableOperation.Handover||operation==PortableOperation.Remove;
+            if((physicalMove||operation==PortableOperation.Close)
+                &&PortableEquipmentRules.HasPendingClaim(s,item,installedCampStorageRoot&&(physicalMove||operation==PortableOperation.Close)))
+                return "PortableItemHasPendingWork";
+            if(installedCampStorageRoot&&physicalMove)return "InstalledTemporaryCampCannotMove";
             Snapshot projected=s.Copy();var projectedItem=projected.PortableEquipment.Single(x=>x.Id==item.Id);
             bool ground=after==PortablePlacement.Ground;
             string newCustodian=operation==PortableOperation.Handover?recipient
+                :operation==PortableOperation.Stow?projected.PortableEquipment.Single(x=>x.Id==to).CustodianId
                 :operation==PortableOperation.Pickup||operation==PortableOperation.Retrieve?c.Actor:projectedItem.CustodianId;
             string newParent=operation==PortableOperation.Stow?to
                 :operation==PortableOperation.Retrieve||operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Handover?"":projectedItem.ParentId;

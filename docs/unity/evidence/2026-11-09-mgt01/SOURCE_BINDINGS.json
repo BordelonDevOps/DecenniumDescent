@@ -1,0 +1,41 @@
+{
+  "module": "MGT-01 physical storage and transfer",
+  "status": "TEST_ONLY; implementation review pending",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "authoritativeSources": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/EQUIPMENT_ACQUISITION_PLAYTEST.md",
+      "blob": "789e905552aba2ee9a4bbad1ae73aa314b77af10",
+      "requirements": ["Preserve physical identity, quantities, owner, custodian, location, known dimensions and access", "Enforce known weight and volume independently", "Do not treat missing catalog facts as zero"]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/BODY_EQUIPMENT_PLAYTEST.md",
+      "blob": "60f81c5706857c5528d9d19e3da9ac15dcd7fb85",
+      "requirements": ["Printed Load takes precedence", "Known physical pounds provide the adopted provisional fallback of pounds divided by ten when Load is absent", "Pounds and Load remain distinct", "Count nested physical contents once"]
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "blob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "rows": ["FL-05", "FL-07"],
+      "requirements": ["Repacking does not renew freshness or duplicate water mass", "A completed Temporary Camp supplies 20 Load, 200 lb and 20 ft3 storage", "An unbuilt bivouac has no certified storage"]
+    }
+  ],
+  "implementationBoundary": {
+    "reusedAuthorities": ["PortableEquipmentRecord parent links", "ResourceLot", "InventoryLotRecord", "VesselContentRecord", "WorkLedger reservations", "TemporaryCampInstallationRecord", "RuleClock", "Command receipts", "SnapshotCodec"],
+    "newPersistedFacts": "Immutable bounded PortableStorageProfileRecord table in additive schema71 snapshot branch",
+    "testOnlyAuthoredFacts": {
+      "camp": "20 Load / 200 lb / 20 ft3",
+      "ordinaryCrate": "50 lb / 2 ft3",
+      "food": "0.01 ft3 per pound",
+      "fullWaterskin": "1 lb tare; 0.2 ft3 per item",
+      "water": "0.01 ft3 per pint",
+      "loadFallback": "Known pounds / 10 only where printed Load is absent"
+    },
+    "notSourceFacts": "TEST_ONLY packed volumes and finite profile compatibility are explicitly authored and fingerprinted; they are not inferred from the pinned source or physical mass."
+  },
+  "agreement": {
+    "preImplementationGPTSelection": "Existing mapped MGT-01 dependency; installed fitting-pack record remains the physical storage root; no duplicate inventory/capacity ledger.",
+    "loadClarification": "Printed Load wins; otherwise known weight / 10 is the provisional fallback; unknown values remain unknown; camp Load, pounds and volume are enforced separately.",
+    "implementationVerdict": "Pending GPT review of the exact committed implementation and evidence."
+  }
+}
