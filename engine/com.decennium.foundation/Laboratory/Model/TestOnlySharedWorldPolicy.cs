@@ -806,6 +806,8 @@ namespace Decennium.Foundation.Laboratory
                 if(havenCareBoundary.HasValue&&havenCareBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var pressureBoundary=NextExpeditionPressureBoundary(s);
                 if(pressureBoundary.HasValue&&pressureBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var campConstructionBoundary=NextTemporaryCampConstructionBoundary(s);
+                if(campConstructionBoundary.HasValue&&campConstructionBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
             var before = s.RuleClock;
             string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null
@@ -825,6 +827,7 @@ namespace Decennium.Foundation.Laboratory
                 CreditCacheExcavationWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRouteMappingWork(s,CampGreens.Subtract(s.RuleClock,before),c);
                 CreditRouteReconnaissance(s,CampGreens.Subtract(s.RuleClock,before));
+                CreditTemporaryCampConstruction(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));

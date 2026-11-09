@@ -10,7 +10,7 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private static TestOnlySharedWorldPolicy CampConstructionPolicy(uint seed, bool concealed = false,
-            HuntingTrapFixture traps = null)
+            HuntingTrapFixture traps = null, string[] assistants = null)
         {
             var routes = RouteTravelCheckpointFixture();
             var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
@@ -23,14 +23,15 @@ namespace Decennium.Foundation.Tests
                 .EnableRouteMappingWork(skillFacts)
                 .EnableExpeditionCampUse(site)
                 .EnableExpeditionCampConstruction(new TestOnlyExpeditionCampConstructionFixture(1,
-                    TestOnlyPolicy.ActorId, new[] { TestOnlyPolicy.CompanionId }, CharacterAbility.Strength));
+                    TestOnlyPolicy.ActorId, assistants ?? new[] { TestOnlyPolicy.CompanionId }, CharacterAbility.Strength));
             if (traps != null) policy.EnableHuntingTraps(traps);
             return policy;
         }
 
-        private static Simulation CampConstructionAtCheckpoint(uint seed, bool concealed = false)
+        private static Simulation CampConstructionAtCheckpoint(uint seed, bool concealed = false,
+            string[] assistants = null)
         {
-            var policy = CampConstructionPolicy(seed, concealed);
+            var policy = CampConstructionPolicy(seed, concealed, assistants: assistants);
             var initial = policy.Initial();
             Require(CharacterSkillTrainingFacts.IsTrained(initial, TestOnlyPolicy.ActorId,
                     TestOnlyExpeditionCampConstructionFixture.SkillId)
@@ -41,9 +42,17 @@ namespace Decennium.Foundation.Tests
             var simulation = new Simulation(policy, initial, ExecutionProfile.Laboratory);
             WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
             WorldAdvance(simulation, 1);
+            // Stage the shared tools one tile from the later camp checkpoint. This is useful to
+            // the scoped timed-handling regression below and remains ordinary portable equipment.
+            WorldStep(simulation, 0, 1);
+            WorldAdvance(simulation, 2);
             PortableCommit(simulation, Portable(simulation, CommandKind.RemovePortableItem, PortableKitFixture.Pack));
             PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
                 PortableKitFixture.Pack, handling: HandlingKind.Drop));
+            PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
+                PortableKitFixture.Tools, handling: HandlingKind.Retrieve));
+            WorldStep(simulation, 0, -1);
+            WorldAdvance(simulation, 2);
             RouteTravelReachSource(simulation);
             WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel,
                 "camp-build.route.start"));
@@ -63,6 +72,30 @@ namespace Decennium.Foundation.Tests
                 && state.Actors.Single(x => x.Id == TestOnlyPolicy.CompanionId).Y == 3,
                 "Construction preparation failed to preserve the paused exploration checkpoint and adjacent assistant.");
             return simulation;
+        }
+
+        private static string CampConstructionPrepareCompanionFood(Simulation simulation)
+        {
+            // The existing cache and food records supply an idle companion's actual handheld lot.
+            // Move the authored tools out of the staged pack, unlock/open the cache, then hand over
+            // one pound through the existing ordinary inventory handler before construction starts.
+            int attempt = 0;
+            while (simulation.Capture().SupplyCaches.Single().Locked && attempt++ < 32)
+            {
+                SupplyCommit(simulation, SupplyCommand(simulation, SupplyCacheInteraction.PickWithTools,
+                    id: "camp-build.cache-pick." + attempt.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+                WorldAdvance(simulation, 6);
+            }
+            Require(!simulation.Capture().SupplyCaches.Single().Locked,
+                "The existing trained tools fixture did not unlock the cache within 32 source-timed attempts.");
+            SupplyCommit(simulation, SupplyCommand(simulation, SupplyCacheInteraction.Open,
+                id: "camp-build.cache-open." + simulation.Capture().Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)));
+            WorldCommit(simulation, IC(simulation, CommandKind.HandleInventory, TestOnlyInventoryPolicy.FoodId,
+                new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Pickup)));
+            string pickedLot = simulation.Capture().InventoryLots.Single(x => x.ParentId == TestOnlyInventoryPolicy.FoodId).LotId;
+            WorldCommit(simulation, IC(simulation, CommandKind.HandleInventory, pickedLot,
+                new InventoryRequest(new RuleQuantity(1), TestOnlyPolicy.CompanionId, HandlingKind.Handover)));
+            return simulation.Capture().InventoryLots.Single(x => x.ParentId == pickedLot).LotId;
         }
 
         private static Command CampConstructionCommand(Simulation simulation, CommandKind kind, string target,
@@ -180,7 +213,13 @@ namespace Decennium.Foundation.Tests
                 var store = new FileSaveStore(); store.Save(path, simulation.Capture());
                 byte[] saved = File.ReadAllBytes(path);
                 var restoredSnapshot = store.Load(path);
-                var restored = new Simulation(CampConstructionPolicy(seed), restoredSnapshot, ExecutionProfile.Laboratory);
+                var restoredPolicy = CampConstructionPolicy(seed);
+                Require(restoredSnapshot.ContentFingerprint == restoredPolicy.ContentFingerprint
+                    && restoredSnapshot.TestOnly == restoredPolicy.TestOnly,
+                    "Paused save content scope changed across the same authored camp policy: snapshot="
+                    + restoredSnapshot.ContentFingerprint + "/" + restoredSnapshot.TestOnly
+                    + "; policy=" + restoredPolicy.ContentFingerprint + "/" + restoredPolicy.TestOnly + ".");
+                var restored = new Simulation(restoredPolicy, restoredSnapshot, ExecutionProfile.Laboratory);
                 Require(saved.SequenceEqual(Bytes(restored))
                     && codec.Encode(codec.Decode(saved)).SequenceEqual(saved),
                     "Paused schema70 construction did not survive canonical save/restore.");
@@ -257,6 +296,93 @@ namespace Decennium.Foundation.Tests
                         .SequenceEqual(split.TemporaryCampInstallations.Select(x => new { x.Kind, x.SiteId, x.LotId })
                             .OrderBy(x => x.Kind).ThenBy(x => x.LotId, StringComparer.Ordinal)),
                     "Uninterrupted and paused/resumed construction did not produce semantically equivalent work and installations.");
+
+                var installedPickup = Portable(left, CommandKind.HandlePortableEquipment,
+                    attempt.TentLotId, handling: HandlingKind.Pickup);
+                RejectUnchanged(left, host, installedPickup, "PortableItemHasPendingWork");
+            });
+
+            cases.Add("temporary_camp_construction_credits_idle_companion_handling", () => {
+                var seed = CampConstructionSeed(success: true);
+                var simulation = CampConstructionAtCheckpoint(seed, assistants: Array.Empty<string>());
+                string companionFood = CampConstructionPrepareCompanionFood(simulation);
+                CampConstructionCommit(simulation, CommandKind.StartTemporaryCampConstruction, PressureCampId,
+                    "handling-credit.start");
+                var started = simulation.Capture();
+                var attempt = started.TemporaryCampConstructionAttempts.Single();
+                var handling = IC(simulation, CommandKind.HandleInventory, companionFood,
+                    new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Drop), TestOnlyPolicy.CompanionId);
+                var committed = simulation.Execute(host, handling);
+                var after = simulation.Capture();
+                Require(committed.Outcome == Outcome.Committed
+                    && after.RuleClock == started.RuleClock.AddSeconds(1)
+                    && after.TemporaryCampConstructionAttempts.Single().WorkDone == new RuleTime(1)
+                    && after.TemporaryCampConstructionAttempts.Single().Status == TemporaryCampConstructionStatus.Working
+                    && after.Work.WorkerIntervals.Single(x => x.JobId == attempt.Id && x.WorkerId == TestOnlyPolicy.ActorId).End
+                        == started.RuleClock.AddSeconds(TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds)
+                    && !after.Work.WorkerIntervals.Any(x => x.WorkerId == TestOnlyPolicy.CompanionId
+                        && x.Start <= after.RuleClock && x.End > after.RuleClock),
+                    "A legal idle-companion handling second did not credit only the lead's concurrently booked construction interval: "
+                    + committed.Outcome + "/" + committed.Code + "; clock=" + after.RuleClock
+                    + "; companion intervals=" + string.Join("|", after.Work.WorkerIntervals.Where(x => x.WorkerId == TestOnlyPolicy.CompanionId
+                        && x.Start <= after.RuleClock && x.End > after.RuleClock).Select(x => x.JobId + ":" + x.Start + "-" + x.End))
+                    + "; companion activities=" + string.Join("|", WorldActivityProjection.CurrentWork(after)
+                        .Where(x => x.ActorId == TestOnlyPolicy.CompanionId).Select(x => x.Id)) + ".");
+            });
+
+            cases.Add("temporary_camp_construction_handling_cannot_cross_its_completion_boundary", () => {
+                var simulation = CampConstructionAtCheckpoint(CampConstructionSeed(success: true), assistants: Array.Empty<string>());
+                string companionFood = CampConstructionPrepareCompanionFood(simulation);
+                CampConstructionCommit(simulation, CommandKind.StartTemporaryCampConstruction, PressureCampId,
+                    "handling-boundary.start");
+                WorldAdvance(simulation, checked((int)(TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds * 2 - 1)), 2);
+                var before = simulation.Capture();
+                Require(before.TemporaryCampConstructionAttempts.Single().WorkDone
+                        == new RuleTime(TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds * 2 - 1, 2),
+                    "The shared clock did not retain exact half-second construction progress before the completion boundary.");
+                var handling = IC(simulation, CommandKind.HandleInventory, companionFood,
+                    new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Drop), TestOnlyPolicy.CompanionId);
+                RejectUnchanged(simulation, host, handling, "TimedHandlingBoundaryUnsupported");
+                WorldAdvance(simulation, 1, 2);
+                var completed = simulation.Capture();
+                var attempt = completed.TemporaryCampConstructionAttempts.Single();
+                Require(attempt.Status == TemporaryCampConstructionStatus.Resolved
+                    && attempt.WorkDone == new RuleTime(TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds)
+                    && attempt.Check != null
+                    && completed.TemporaryCampConstructionAttempts.Count(x => x.Check != null) == 1,
+                    "An explicit exact-endpoint advance did not settle construction and its check exactly once.");
+            });
+
+            cases.Add("temporary_camp_construction_fractional_resume_query_preserves_duration", () => {
+                var seed = CampConstructionSeed(success: true);
+                var policy = CampConstructionPolicy(seed, assistants: Array.Empty<string>());
+                var simulation = CampConstructionAtCheckpoint(seed, assistants: Array.Empty<string>());
+                CampConstructionCommit(simulation, CommandKind.StartTemporaryCampConstruction, PressureCampId,
+                    "fractional-query.start");
+                WorldAdvance(simulation, 1, 2);
+                var attempt = simulation.Capture().TemporaryCampConstructionAttempts.Single();
+                CampConstructionCommit(simulation, CommandKind.PauseTemporaryCampConstruction, attempt.Id,
+                    "fractional-query.pause");
+                var codec = new SnapshotCodec();
+                byte[] saved = codec.Encode(simulation.Capture());
+                var restored = new Simulation(policy, codec.Decode(saved), ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(restored)),
+                    "The fractional paused construction state did not survive canonical save/restore.");
+                var resume = CampConstructionCommand(restored, CommandKind.ResumeTemporaryCampConstruction,
+                    attempt.Id, "fractional-query.resume");
+                var query = restored.QueryCommand(host, resume);
+                Require(query.Supported && query.Admissible && query.Costs.Count == 0,
+                    "Integer-only CommandCost reported a truncated numerator for fractional remaining construction time.");
+                WorldCommit(restored, resume);
+                WorldAdvance(restored, 1, 2);
+                CampConstructionCommit(restored, CommandKind.PauseTemporaryCampConstruction, attempt.Id,
+                    "fractional-query.pause-again");
+                resume = CampConstructionCommand(restored, CommandKind.ResumeTemporaryCampConstruction,
+                    attempt.Id, "fractional-query.integral-resume");
+                query = restored.QueryCommand(host, resume);
+                Require(query.Supported && query.Admissible && query.Costs.Count == 1
+                    && query.Costs[0].Amount == TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds - 1,
+                    "Integral remaining construction work was not reported exactly in integer active-work seconds.");
             });
 
             cases.Add("temporary_camp_construction_failure_releases_claims_and_retries_fresh", () => {
@@ -280,6 +406,27 @@ namespace Decennium.Foundation.Tests
                 var duplicate = simulation.Execute(host, finish);
                 Require(duplicate.Outcome == Outcome.Duplicate && Bytes(simulation).SequenceEqual(resolved),
                     "Duplicated failure completion rerolled or settled claims twice.");
+                var releasedPickup = Portable(simulation, CommandKind.HandlePortableEquipment,
+                    attempt.TentLotId, handling: HandlingKind.Pickup);
+                var pickupResult = simulation.Execute(host, releasedPickup);
+                Require(pickupResult.Outcome == Outcome.Committed,
+                    "An undamaged fixture whose failed-attempt claim was released could not be picked up: "
+                    + pickupResult.Outcome + "/" + pickupResult.Code + ".");
+                byte[] movedGoods = codec.Encode(simulation.Capture());
+                var restoredMovedGoods = new Simulation(CampConstructionPolicy(seed), codec.Decode(movedGoods),
+                    ExecutionProfile.Laboratory);
+                Require(movedGoods.SequenceEqual(Bytes(restoredMovedGoods))
+                    && restoredMovedGoods.Capture().Work.Lots.Single(x => x.Id == attempt.TentLotId).Amount == new RuleQuantity(20)
+                    && restoredMovedGoods.Capture().InventoryLots.Single(x => x.LotId == attempt.TentLotId).OwnerId == TestOnlyPolicy.ActorId,
+                    "A failed-attempt fixture pickup lost its physical identity, owner or save/restore state.");
+                var movedRetry = CampConstructionCommand(simulation, CommandKind.StartTemporaryCampConstruction,
+                    PressureCampId, "retry-away");
+                var movedRetryQuery = simulation.QueryCommand(host, movedRetry);
+                Require(movedRetryQuery.Supported && !movedRetryQuery.Admissible
+                    && movedRetryQuery.Code == "TemporaryCampFixtureUnavailable",
+                    "A new attempt was admitted while its released tent was away from the authored site.");
+                PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
+                    attempt.TentLotId, handling: HandlingKind.Drop));
                 var retry = CampConstructionCommand(simulation, CommandKind.StartTemporaryCampConstruction,
                     PressureCampId, "retry");
                 Require(simulation.QueryCommand(host, retry).Admissible,

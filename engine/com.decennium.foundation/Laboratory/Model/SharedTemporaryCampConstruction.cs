@@ -142,13 +142,34 @@ namespace Decennium.Foundation.Laboratory
                 var lot = s.Work.Lots.SingleOrDefault(x => x.Id == id);
                 var provenance = s.InventoryLots.SingleOrDefault(x => x.LotId == id);
                 var item = s.PortableEquipment.SingleOrDefault(x => x.Id == id);
+                bool installed = s.TemporaryCampInstallations.Any(x => x.LotId == id);
+                bool activelyClaimed = s.Work.Reservations.Any(x => x.LotId == id && x.RemainingAmount != default);
+                bool releasedByFailure = s.TemporaryCampConstructionAttempts.Any(attempt =>
+                    attempt.Status == TemporaryCampConstructionStatus.Resolved && attempt.Check != null
+                    && attempt.Check.Result < TemporaryCampConstructionResult.Success
+                    && (attempt.TentLotId == id || attempt.PackLotId == id)
+                    && s.Work.Reservations.Any(x => x.JobId == attempt.Id && x.LotId == id
+                        && x.RemainingAmount == default && x.ReleasedAmount == x.Amount));
+                bool mayMoveAfterFailure = releasedByFailure && !activelyClaimed && !installed;
+                bool atAuthoredSite = lot != null && item != null
+                    && lot.LocationId == GroundSiteLocation(site.RouteX, site.RouteY)
+                    && lot.CustodianId == profile.LeadId
+                    && item.Placement == PortablePlacement.Ground
+                    && item.GroundX == site.RouteX && item.GroundY == site.RouteY
+                    && item.CustodianId == profile.LeadId;
+                string expectedLocation = item == null ? "" : item.ParentId != "" ? item.ParentId
+                    : item.Placement == PortablePlacement.Ground ? PortableEquipmentValidation.GroundLocation(item)
+                    : item.CustodianId;
+                string expectedProfile = id == TestOnlyExpeditionCampConstructionFixture.TentLotId
+                    ? TestOnlyExpeditionCampConstructionFixture.TentProfileId
+                    : TestOnlyExpeditionCampConstructionFixture.PackProfileId;
                 if (lot == null || lot.UnitId != "mass-pound" || lot.Amount != new RuleQuantity(20)
-                    || lot.LocationId != GroundSiteLocation(site.RouteX, site.RouteY)
-                    || lot.CustodianId != profile.LeadId || provenance == null || provenance.OwnerId != profile.LeadId
+                    || provenance == null || provenance.ParentId != "" || provenance.OwnerId != profile.LeadId
                     || provenance.CreatedAmount != new RuleQuantity(20) || provenance.Nutrition != NutritionKind.None
+                    || !(atAuthoredSite || mayMoveAfterFailure)
+                    || lot.LocationId != expectedLocation || item == null || lot.CustodianId != item.CustodianId
                     || item == null || item.LinkKind != PortableLinkKind.InventoryLot || item.LinkedId != id
-                    || item.Placement != PortablePlacement.Ground || item.GroundX != site.RouteX || item.GroundY != site.RouteY
-                    || item.OwnerId != profile.LeadId || item.CustodianId != profile.LeadId
+                    || item.ProfileId != expectedProfile || item.OwnerId != profile.LeadId
                     || item.MassBasis != PortableMassBasis.GenericPounds || item.SourceWeightLb != new RuleQuantity(20)
                     || item.OperationalWeightLb.HasValue) return "TemporaryCampFixtureLotMismatch";
             }
@@ -514,10 +535,12 @@ namespace Decennium.Foundation.Laboratory
         private CommandQueryResult QueryTemporaryCampConstruction(Snapshot s, Command c)
         {
             string error = AssessTemporaryCampConstruction(s.Copy(), c, out var attempt);
+            RuleTime remaining = error == null && attempt != null
+                ? CampGreens.Subtract(attempt.WorkRequired, attempt.WorkDone) : default;
             long cost = error != null || c.Kind == CommandKind.PauseTemporaryCampConstruction
                 || c.Kind == CommandKind.ResolveTemporaryCampConstruction ? 0
                 : c.Kind == CommandKind.StartTemporaryCampConstruction ? TestOnlyExpeditionCampConstructionFixture.RequiredWorkSeconds
-                : CampGreens.Subtract(attempt.WorkRequired, attempt.WorkDone).Numerator;
+                : remaining.Denominator == 1 ? remaining.Numerator : 0;
             var costs = error == null && cost > 0
                 ? new[] { new CommandCost("active-work-seconds", c.Target, cost) }
                 : Array.Empty<CommandCost>();
