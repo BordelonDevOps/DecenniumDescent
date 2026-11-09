@@ -1,6 +1,6 @@
 {
   "module": "MGT-01 physical storage and transfer",
-  "status": "TEST_ONLY; implementation review pending",
+  "status": "TEST_ONLY; initial implementation held by GPT; corrected implementation review pending",
   "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
   "authoritativeSources": [
     {
@@ -36,6 +36,30 @@
   "agreement": {
     "preImplementationGPTSelection": "Existing mapped MGT-01 dependency; installed fitting-pack record remains the physical storage root; no duplicate inventory/capacity ledger.",
     "loadClarification": "Printed Load wins; otherwise known weight / 10 is the provisional fallback; unknown values remain unknown; camp Load, pounds and volume are enforced separately.",
-    "implementationVerdict": "Pending GPT review of the exact committed implementation and evidence."
+    "initialImplementationVerdict": "GPT reviewed bb4832e23b26a3f71b41bc14be627e22c390ad17 and held acceptance on crate placement/custody validation, stationary ground-container Open/Close coordinates, and authentic pre-change schema70 continuation evidence.",
+    "correctionStatus": "Codex corrections and final validation are complete; exact corrected candidate commit is pending. GPT review is pending."
+  },
+  "historicalSchema70Fixture": {
+    "sourceCommit": "ae61cd16bc1c5ec88bc1a558696f71f7245e2188",
+    "preStorageCommit": "37846f90e824128c4a96380dcc0969ac6edaf32d",
+    "sourcePath": "docs/unity/evidence/2026-11-09-camp-construction/saves/temporary-camp-construction-paused.ddsave",
+    "gitBlob": "fd8b7d94d9061736dd40f760a4356d4828836e7e",
+    "sha256": "5ef2f86460fd7af4daf8faf0d4651ec85bf6ca102e1b22081862dd748bc71214",
+    "test": "Current code decodes, canonically re-encodes, restores, resumes and completes construction through two deterministic branches; resulting saves are retained with the final full-suite report."
+  },
+  "initialGptReview": {
+    "commit": "bb4832e23b26a3f71b41bc14be627e22c390ad17",
+    "verdict": "HOLD; two concrete handling defects and one authentic historical-save evidence gap",
+    "findings": [
+      "Ordinary crate fixture validation fixed placement and custodian, allowing query to advertise pickup that execution rejected.",
+      "Open/Close of an adjacent ground container overwrote its ground coordinates with the acting character's coordinates.",
+      "The schema70 check generated fresh schema70 bytes instead of testing authentic pre-change save bytes and continuation."
+    ],
+    "independentChecksNotRunByGpt": [
+      "Compilation and C# tests",
+      "Save decode or replay",
+      "Source-hash recomputation",
+      "Unity import or runtime checks"
+    ]
   }
 }

@@ -224,6 +224,8 @@ namespace Decennium.Foundation.Laboratory
             if(installedCampStorageRoot&&physicalMove)return "InstalledTemporaryCampCannotMove";
             Snapshot projected=s.Copy();var projectedItem=projected.PortableEquipment.Single(x=>x.Id==item.Id);
             bool ground=after==PortablePlacement.Ground;
+            bool stationaryProfileAccess=(operation==PortableOperation.Open||operation==PortableOperation.Close)
+                &&PortableStorageProfileValidation.Find(s,item.ProfileId)!=null;
             string newCustodian=operation==PortableOperation.Handover?recipient
                 :operation==PortableOperation.Stow?projected.PortableEquipment.Single(x=>x.Id==to).CustodianId
                 :operation==PortableOperation.Pickup||operation==PortableOperation.Retrieve?c.Actor:projectedItem.CustodianId;
@@ -231,7 +233,8 @@ namespace Decennium.Foundation.Laboratory
                 :operation==PortableOperation.Retrieve||operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Handover?"":projectedItem.ParentId;
             var changed=projectedItem.With(custodianId:newCustodian,
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
-                groundX:ground?projected.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?projected.Actors.Single(x=>x.Id==c.Actor).Y:0,
+                groundX:ground?(stationaryProfileAccess?projectedItem.GroundX:projected.Actors.Single(x=>x.Id==c.Actor).X):0,
+                groundY:ground?(stationaryProfileAccess?projectedItem.GroundY:projected.Actors.Single(x=>x.Id==c.Actor).Y):0,
                 heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?projectedItem.HeldHands:0);
             SetPortable(projected,changed);
             if(operation==PortableOperation.ShieldDoff) {
@@ -274,7 +277,8 @@ namespace Decennium.Foundation.Laboratory
                 :operation==PortableOperation.Retrieve||operation==PortableOperation.Pickup||operation==PortableOperation.Drop||operation==PortableOperation.Handover?"":item.ParentId;
             changed=item.With(custodianId:newCustodian,
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
-                groundX:ground?s.Actors.Single(x=>x.Id==c.Actor).X:0,groundY:ground?s.Actors.Single(x=>x.Id==c.Actor).Y:0,
+                groundX:ground?(stationaryProfileAccess?item.GroundX:s.Actors.Single(x=>x.Id==c.Actor).X):0,
+                groundY:ground?(stationaryProfileAccess?item.GroundY:s.Actors.Single(x=>x.Id==c.Actor).Y):0,
                 heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?item.HeldHands:0);
             SetPortable(s,changed);
             if(operation==PortableOperation.ShieldDoff) {

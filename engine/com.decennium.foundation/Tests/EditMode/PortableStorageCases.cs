@@ -124,6 +124,37 @@ namespace Decennium.Foundation.Tests
                     &&installed.TemporaryCampInstallations.Any(x=>x.LotId==TestOnlyExpeditionCampConstructionFixture.PackLotId),
                     "Camp storage was not derived from the actual installed fitting-pack claim.");
 
+                // An adjacent companion can operate the stationary installed container without moving its anchor.
+                var installedPack=installed.PortableEquipment.Single(x=>x.Id==TestOnlyExpeditionCampConstructionFixture.PackLotId);
+                var companionPosition=installed.Actors.Single(x=>x.Id==TestOnlyPolicy.CompanionId);
+                int anchoredX=installedPack.GroundX,anchoredY=installedPack.GroundY;
+                Require(Math.Abs((long)companionPosition.X-anchoredX)+Math.Abs((long)companionPosition.Y-anchoredY)==1,
+                    "The storage fixture no longer places its companion adjacent to the installed container.");
+                var adjacentStorage=new Simulation(CampConstructionPolicy(seed,storage:true),codec.Decode(Bytes(simulation)),
+                    ExecutionProfile.Laboratory);
+                var adjacentOpen=Portable(adjacentStorage,CommandKind.OpenPortableContainer,installedPack.Id,actor:TestOnlyPolicy.CompanionId);
+                var adjacentOpenQuery=adjacentStorage.QueryCommand(host,adjacentOpen);
+                Require(adjacentOpenQuery.Supported&&adjacentOpenQuery.Admissible,
+                    "An adjacent companion could not query opening the installed camp container.");
+                PortableCommit(adjacentStorage,adjacentOpen);
+                var adjacentOpened=adjacentStorage.Capture();
+                var openedPack=adjacentOpened.PortableEquipment.Single(x=>x.Id==installedPack.Id);
+                Require(openedPack.Open&&openedPack.GroundX==anchoredX&&openedPack.GroundY==anchoredY
+                    &&PortableEquipmentValidation.GroundLocation(openedPack)==adjacentOpened.Work.Lots.Single(x=>x.Id==installedPack.Id).LocationId
+                    &&adjacentOpened.TemporaryCampInstallations.Any(x=>x.LotId==installedPack.Id&&x.SiteId==PressureCampId),
+                    "Adjacent schema71 Open relocated the installed container or desynchronized its anchored lot.");
+                var adjacentClose=Portable(adjacentStorage,CommandKind.ClosePortableContainer,installedPack.Id,actor:TestOnlyPolicy.CompanionId);
+                var adjacentCloseQuery=adjacentStorage.QueryCommand(host,adjacentClose);
+                Require(adjacentCloseQuery.Supported&&adjacentCloseQuery.Admissible,
+                    "An adjacent companion could not query closing the installed camp container.");
+                PortableCommit(adjacentStorage,adjacentClose);
+                var adjacentClosed=adjacentStorage.Capture();
+                var closedPack=adjacentClosed.PortableEquipment.Single(x=>x.Id==installedPack.Id);
+                Require(!closedPack.Open&&closedPack.GroundX==anchoredX&&closedPack.GroundY==anchoredY
+                    &&PortableEquipmentValidation.GroundLocation(closedPack)==adjacentClosed.Work.Lots.Single(x=>x.Id==installedPack.Id).LocationId
+                    &&adjacentClosed.TemporaryCampInstallations.Any(x=>x.LotId==installedPack.Id&&x.SiteId==PressureCampId),
+                    "Adjacent schema71 Close relocated the installed container or desynchronized its anchored lot.");
+
                 // Independent exact capacity checks: exact Load succeeds; weight, Load, and volume fail separately.
                 var exactLoad=AddContainedTestItems(installed,1,new RuleQuantity(1),new RuleQuantity(20));
                 PortableEquipmentValidation.Validate(exactLoad);
@@ -157,7 +188,7 @@ namespace Decennium.Foundation.Tests
                 var skinStow=Portable(simulation,CommandKind.HandlePortableEquipment,fullSkin,
                     TestOnlyExpeditionCampConstructionFixture.PackLotId,HandlingKind.Stow,TestOnlyPolicy.CompanionId);
                 var skinQuery=simulation.QueryCommand(host,skinStow);
-                Require(skinQuery.Supported&&skinQuery.Admissible,"The camp pack did not admit its authored full waterskin profile.");
+                Require(skinQuery.Supported&&skinQuery.Admissible,"The camp pack did not admit its authored full waterskin profile: "+skinQuery.Code+".");
                 PortableCommit(simulation,skinStow);
                 var incompatible=Portable(simulation,CommandKind.HandlePortableEquipment,PortableKitFixture.MessKit,
                     TestOnlyExpeditionCampConstructionFixture.PackLotId,HandlingKind.Stow);
@@ -226,6 +257,91 @@ namespace Decennium.Foundation.Tests
                     &&afterStow.SequenceEqual(Bytes(simulation))&&beforeCrateStow.SequenceEqual(afterStow)==false
                     &&simulation.Capture().PortableEquipment.Single(x=>x.Id==portion.LotId).ParentId==TestOnlyPortableStorageFixture.CrateId,
                     "Crate deposit was not an idempotent one-second physical custody transaction.");
+
+                // The TEST_ONLY crate remains an ordinary movable container: custody and ground placement are
+                // mutable handling state, while its authored identity, mass, capacity and contents are preserved.
+                byte[] crateStartBytes=Bytes(simulation);
+                var cratePolicy=CampConstructionPolicy(seed,storage:true);
+                var crateLeft=new Simulation(cratePolicy,codec.Decode(crateStartBytes),ExecutionProfile.Laboratory);
+                var crateRight=new Simulation(cratePolicy,codec.Decode(crateStartBytes),ExecutionProfile.Laboratory);
+                var crateStart=crateLeft.Capture();
+                var crateItem=crateStart.PortableEquipment.Single(x=>x.Id==TestOnlyPortableStorageFixture.CrateId);
+                var crateContents=PortableStorageDescendants(crateStart,crateItem.Id);
+                var crateMass=RuleQuantity.Sum(new[]{PortableEquipmentValidation.Mass(crateStart,crateItem)}
+                    .Concat(crateContents.Select(x=>PortableEquipmentValidation.Mass(crateStart,x))));
+                var crateLoad=RuleQuantity.Sum(new[]{PortableStorageProfileValidation.Load(crateStart,crateItem)}
+                    .Concat(crateContents.Select(x=>PortableStorageProfileValidation.Load(crateStart,x))));
+                var actorBurdenBefore=PortableEquipmentRules.CarriedBurden(crateStart,TestOnlyPolicy.ActorId);
+                var companionBurdenBefore=PortableEquipmentRules.CarriedBurden(crateStart,TestOnlyPolicy.CompanionId);
+                Require(actorBurdenBefore.Pounds.HasValue&&actorBurdenBefore.Load.HasValue
+                    &&companionBurdenBefore.Pounds.HasValue&&companionBurdenBefore.Load.HasValue,
+                    "The admitted TEST_ONLY roster did not have known baseline carrying totals.");
+                var cratePickup=Portable(crateLeft,CommandKind.HandlePortableEquipment,crateItem.Id,
+                    handling:HandlingKind.Pickup,actor:TestOnlyPolicy.ActorId);
+                var cratePickupQuery=crateLeft.QueryCommand(host,cratePickup);
+                Require(cratePickupQuery.Supported&&cratePickupQuery.Admissible,
+                    "The shared portable query rejected pickup of the admitted ordinary crate.");
+                PortableCommit(crateLeft,cratePickup);
+                var pickedCrate=crateLeft.Capture();
+                var pickedRoot=pickedCrate.PortableEquipment.Single(x=>x.Id==crateItem.Id);
+                var pickedContents=PortableStorageDescendants(pickedCrate,crateItem.Id);
+                var actorBurdenWithCrate=PortableEquipmentRules.CarriedBurden(pickedCrate,TestOnlyPolicy.ActorId);
+                Require(actorBurdenWithCrate.Pounds.HasValue&&actorBurdenWithCrate.Load.HasValue
+                    &&pickedRoot.Placement==PortablePlacement.Carried&&pickedRoot.CustodianId==TestOnlyPolicy.ActorId
+                    &&pickedContents.Length==crateContents.Length&&pickedContents.All(x=>x.CustodianId==TestOnlyPolicy.ActorId)
+                    &&pickedContents.All(x=>crateContents.Single(y=>y.Id==x.Id).OwnerId==x.OwnerId)
+                    &&actorBurdenWithCrate.Pounds.Value==RuleQuantity.Sum(new[]{actorBurdenBefore.Pounds.Value,crateMass})
+                    &&actorBurdenWithCrate.Load.Value==RuleQuantity.Sum(new[]{actorBurdenBefore.Load.Value,crateLoad}),
+                    "Crate pickup changed its contents/ownership or failed to add the whole nested burden exactly once.");
+                var crateHandover=Portable(crateLeft,CommandKind.HandlePortableEquipment,crateItem.Id,
+                    TestOnlyPolicy.CompanionId,HandlingKind.Handover,TestOnlyPolicy.ActorId);
+                var crateHandoverQuery=crateLeft.QueryCommand(host,crateHandover);
+                Require(crateHandoverQuery.Supported&&crateHandoverQuery.Admissible,
+                    "The shared portable query rejected handover of the carried crate to the adjacent companion.");
+                PortableCommit(crateLeft,crateHandover);
+                var handoverState=crateLeft.Capture();
+                var handedRoot=handoverState.PortableEquipment.Single(x=>x.Id==crateItem.Id);
+                var handedContents=PortableStorageDescendants(handoverState,crateItem.Id);
+                var companionBurdenWithCrate=PortableEquipmentRules.CarriedBurden(handoverState,TestOnlyPolicy.CompanionId);
+                var actorBurdenAfterHandover=PortableEquipmentRules.CarriedBurden(handoverState,TestOnlyPolicy.ActorId);
+                Require(companionBurdenWithCrate.Pounds.HasValue&&companionBurdenWithCrate.Load.HasValue
+                    &&actorBurdenAfterHandover.Pounds==actorBurdenBefore.Pounds&&actorBurdenAfterHandover.Load==actorBurdenBefore.Load
+                    &&handedRoot.Placement==PortablePlacement.Carried&&handedRoot.CustodianId==TestOnlyPolicy.CompanionId
+                    &&handedRoot.OwnerId==crateItem.OwnerId&&handedContents.All(x=>x.CustodianId==TestOnlyPolicy.CompanionId)
+                    &&handedContents.All(x=>crateContents.Single(y=>y.Id==x.Id).OwnerId==x.OwnerId)
+                    &&companionBurdenWithCrate.Pounds.Value==RuleQuantity.Sum(new[]{companionBurdenBefore.Pounds.Value,crateMass})
+                    &&companionBurdenWithCrate.Load.Value==RuleQuantity.Sum(new[]{companionBurdenBefore.Load.Value,crateLoad}),
+                    "Crate handover lost custody/ownership/contents or failed to transfer the nested carrying burden.");
+                Directory.CreateDirectory(directory);
+                byte[] crateHandoverBytes=Bytes(crateLeft);
+                File.WriteAllBytes(Path.Combine(directory,"mgt01_crate_handover_checkpoint.sav"),crateHandoverBytes);
+                crateLeft=new Simulation(cratePolicy,codec.Decode(crateHandoverBytes),ExecutionProfile.Laboratory);
+                crateRight=new Simulation(cratePolicy,codec.Decode(crateHandoverBytes),ExecutionProfile.Laboratory);
+                Require(crateHandoverBytes.SequenceEqual(Bytes(crateLeft))&&crateHandoverBytes.SequenceEqual(Bytes(crateRight))
+                    &&codec.Encode(codec.Decode(crateHandoverBytes)).SequenceEqual(crateHandoverBytes),
+                    "The handed-over crate and its nested contents did not survive canonical save/restore.");
+                var crateDropLeft=Portable(crateLeft,CommandKind.HandlePortableEquipment,crateItem.Id,
+                    handling:HandlingKind.Drop,actor:TestOnlyPolicy.CompanionId);
+                var crateDropRight=Portable(crateRight,CommandKind.HandlePortableEquipment,crateItem.Id,
+                    handling:HandlingKind.Drop,actor:TestOnlyPolicy.CompanionId);
+                var crateDropQuery=crateLeft.QueryCommand(host,crateDropLeft);
+                Require(crateDropQuery.Supported&&crateDropQuery.Admissible,
+                    "The shared portable query rejected dropping the restored crate.");
+                Require(crateRight.QueryCommand(host,crateDropRight).Admissible,
+                    "An identical restored crate branch disagreed about drop admissibility.");
+                PortableCommit(crateLeft,crateDropLeft);PortableCommit(crateRight,crateDropRight);
+                var droppedCrate=crateLeft.Capture();
+                var droppedRoot=droppedCrate.PortableEquipment.Single(x=>x.Id==crateItem.Id);
+                var droppedContents=PortableStorageDescendants(droppedCrate,crateItem.Id);
+                var companionBurdenAfterDrop=PortableEquipmentRules.CarriedBurden(droppedCrate,TestOnlyPolicy.CompanionId);
+                Require(companionBurdenAfterDrop.Pounds==companionBurdenBefore.Pounds
+                    &&companionBurdenAfterDrop.Load==companionBurdenBefore.Load
+                    &&Bytes(crateLeft).SequenceEqual(Bytes(crateRight))&&droppedRoot.Placement==PortablePlacement.Ground
+                    &&droppedRoot.CustodianId==TestOnlyPolicy.CompanionId&&droppedRoot.GroundX==companionPosition.X
+                    &&droppedRoot.GroundY==companionPosition.Y&&droppedContents.Length==crateContents.Length
+                    &&droppedContents.All(x=>x.ParentId==crateItem.Id&&x.CustodianId==TestOnlyPolicy.CompanionId)
+                    &&droppedContents.All(x=>crateContents.Single(y=>y.Id==x.Id).OwnerId==x.OwnerId),
+                    "Restored crate drop changed its nested goods/owner, position or deterministic carrying burden.");
 
                 // Active companion work is independent of these nested goods and survives save/restore.
                 WorldAdvance(simulation,6); // Roll into a fresh off-calendar activity interval after prior handling work.
@@ -332,14 +448,40 @@ namespace Decennium.Foundation.Tests
                     +(finalLeft.InventoryLots.Single(x=>x.LotId==foodLot).FreshUntil==foodBefore.FreshUntil)
                     +", installations="+finalLeft.TemporaryCampInstallations.Length+"/"+finalRight.TemporaryCampInstallations.Length);
 
-                // The schema70 content profile remains independently loadable with its original fingerprint and layout.
+                // Decode bytes retained in the accepted pre-storage schema70 tree, then continue the paused work
+                // through two identical current-code restore branches. This proves actual historical compatibility.
+                byte[] historicalBytes=PortableStorageHistoricalSchema70Fixture.Read();
+                var historicalSnapshot=codec.Decode(historicalBytes);
                 var historicalPolicy=CampConstructionPolicy(CampConstructionSeed(success:true));
-                var historical=historicalPolicy.Initial();var historicalBytes=codec.Encode(historical);
-                Require(historical.SchemaVersion==Snapshot.TemporaryCampConstructionSchema
-                    &&historicalBytes.SequenceEqual(codec.Encode(codec.Decode(historicalBytes)))
-                    &&Bytes(new Simulation(historicalPolicy,codec.Decode(historicalBytes),ExecutionProfile.Laboratory))
-                        .SequenceEqual(historicalBytes),
-                    "Adding schema71 changed historical schema70 save bytes or restore behavior.");
+                var historicalRestored=new Simulation(historicalPolicy,historicalSnapshot,ExecutionProfile.Laboratory);
+                Require(historicalSnapshot.SchemaVersion==Snapshot.TemporaryCampConstructionSchema
+                    &&historicalSnapshot.PortableStorageProfiles.Length==0
+                    &&historicalBytes.SequenceEqual(codec.Encode(historicalSnapshot))
+                    &&historicalBytes.SequenceEqual(Bytes(historicalRestored)),
+                    "Authentic pre-MGT-01 schema70 bytes did not decode, re-encode and restore exactly.");
+                Directory.CreateDirectory(directory);
+                File.WriteAllBytes(Path.Combine(directory,"mgt01_schema70_pre_storage_source.sav"),historicalBytes);
+                File.WriteAllBytes(Path.Combine(directory,"mgt01_schema70_current_reencoded.sav"),codec.Encode(historicalRestored.Capture()));
+                var historicalLeft=new Simulation(historicalPolicy,codec.Decode(historicalBytes),ExecutionProfile.Laboratory);
+                var historicalRight=new Simulation(historicalPolicy,codec.Decode(historicalBytes),ExecutionProfile.Laboratory);
+                string historicalAttempt=historicalLeft.Capture().TemporaryCampConstructionAttempts.Single().Id;
+                var historicalResume=CampConstructionCommand(historicalLeft,CommandKind.ResumeTemporaryCampConstruction,
+                    historicalAttempt,"mgt01.schema70.resume");
+                Require(historicalLeft.QueryCommand(host,historicalResume).Admissible,
+                    "The current code could not query continuation of the authentic paused schema70 save.");
+                WorldCommit(historicalLeft,historicalResume);
+                WorldCommit(historicalRight,CampConstructionCommand(historicalRight,CommandKind.ResumeTemporaryCampConstruction,
+                    historicalAttempt,"mgt01.schema70.resume"));
+                WorldCommit(historicalLeft,IC(historicalLeft,CommandKind.AdvanceClock,x:14400,y:1,id:"mgt01.schema70.finish"));
+                WorldCommit(historicalRight,IC(historicalRight,CommandKind.AdvanceClock,x:14400,y:1,id:"mgt01.schema70.finish"));
+                var historicalContinued=historicalLeft.Capture();
+                Require(Bytes(historicalLeft).SequenceEqual(Bytes(historicalRight))
+                    &&historicalContinued.SchemaVersion==Snapshot.TemporaryCampConstructionSchema
+                    &&historicalContinued.PortableStorageProfiles.Length==0
+                    &&historicalContinued.TemporaryCampConstructionAttempts.Single().Status==TemporaryCampConstructionStatus.Resolved
+                    &&TemporaryCampConstructionValidation.HasTemporaryCamp(historicalContinued,PressureCampId),
+                    "The authentic schema70 save did not continue deterministically through camp installation under current code.");
+                File.WriteAllBytes(Path.Combine(directory,"mgt01_schema70_current_continuation.sav"),Bytes(historicalLeft));
             });
         }
     }

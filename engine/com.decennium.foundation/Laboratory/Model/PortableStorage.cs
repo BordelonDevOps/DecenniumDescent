@@ -67,12 +67,13 @@ namespace Decennium.Foundation.Laboratory
                 return "PortableStorageProfileMismatch";
             var site=s.ExpeditionCampSites.SingleOrDefault();
             var crate=s.PortableEquipment.SingleOrDefault(x=>x.Id==CrateId);
+            var crateCustodians=new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId};
             if(site==null||crate==null||crate.ProfileId!=CrateProfileId||crate.OwnerId!=TestOnlyPolicy.ActorId
-                ||crate.CustodianId!=TestOnlyPolicy.ActorId||crate.ParentId!=""||crate.Placement!=PortablePlacement.Ground
+                ||!crateCustodians.Contains(crate.CustodianId,StringComparer.Ordinal)||crate.ParentId!=""
+                ||crate.Placement!=PortablePlacement.Ground&&crate.Placement!=PortablePlacement.Carried
                 ||crate.LinkKind!=PortableLinkKind.None||crate.MassBasis!=PortableMassBasis.Fixed
                 ||crate.SourceWeightLb!=new RuleQuantity(5)||crate.OperationalWeightLb!=new RuleQuantity(5)
-                ||crate.CapacityPounds!=new RuleQuantity(50)||crate.CapacityCubicFeet!=new RuleQuantity(2)
-                ||crate.GroundX!=site.RouteX||crate.GroundY!=site.RouteY)
+                ||crate.CapacityPounds!=new RuleQuantity(50)||crate.CapacityCubicFeet!=new RuleQuantity(2))
                 return "PortableStorageCrateFixtureMismatch";
             return null;
         }
