@@ -1,6 +1,6 @@
 # MGT-01 physical storage and transfer — schema71
 
-**Status:** bounded TEST_ONLY implementation corrections are validated; GPT held the initial implementation commit and has not reviewed the corrected exact commit. Do not begin a successor until GPT agrees acceptance. This slice does not complete MGT-01 or the engine.
+**Status:** GPT accepted corrected exact commit `bac0969ab2a376638c4cfc56e3fe3fa93953ead4` with no remaining concrete blocker. The bounded TEST_ONLY slice does not complete MGT-01 or the engine. GPT recommends MGT-04 next, beginning with source-contract review; the handoff records the verified mapped dependencies.
 
 ## Scope and authorities
 
@@ -27,7 +27,7 @@ The case now verifies:
 
 GPT reviewed initial commit `bb4832e23b26a3f71b41bc14be627e22c390ad17` and **held acceptance** for three concrete gaps: the crate validator rejected valid pickup/handover after query admission; adjacent Open/Close could relocate a ground container to the actor; and the historical test generated fresh schema70 bytes instead of testing a real pre-change save. GPT found the source-bound capacity and schema layout otherwise consistent. Its actual response, exact requests and checks it did not independently perform are in [GPT_REVIEW.md](GPT_REVIEW.md).
 
-Corrections are implemented and validated in the working tree. A new exact commit will be sent to GPT for a second implementation review; that review is the active acceptance gate.
+Corrections were committed and pushed as `bac0969ab2a376638c4cfc56e3fe3fa93953ead4`. GPT reviewed that exact commit and accepted the bounded module. Its actual verdict, inspected paths and unrun checks are recorded in [GPT_REVIEW.md](GPT_REVIEW.md).
 
 ## Historical schema70 evidence
 
@@ -64,4 +64,4 @@ All are under `final/review-fixes-final/full-suite/run-20261109T223711542Z-34c7f
 
 Only the selected TEST_ONLY camp pack, crate, food, waterskin and water profiles have explicit fit/volume facts. Unknown profiles and dimensions remain unsupported. Currency, purchases, general equipment catalog/acquisition, arbitrary multi-container authoring, upgrades/dismantling, autonomous hauling and production storage remain incomplete. MGT-01 and the full engine are not complete.
 
-Unity import/compilation, Editor tests, Play Mode, standalone game build and observed game runtime were **not run**; Unity gameplay integration remains deferred. GPT did not independently compile, execute C# tests, decode/replay saves, recompute source hashes or run Unity. The corrected exact commit is awaiting GPT re-review; no successor dependency has started.
+Unity import/compilation, Editor tests, Play Mode, standalone game build and observed game runtime were **not run**; Unity gameplay integration remains deferred. GPT did not independently compile, execute C# tests, decode/replay saves, recompute source hashes or run Unity. GPT accepted the corrected exact commit; its next-dependency recommendation is MGT-04 source-contract review, not engine completion.
