@@ -149,6 +149,8 @@ namespace Decennium.Foundation.Laboratory
 
         private bool RouteMappingWorkSelected(Snapshot s)
             => routeMappingWorkFixture != null && (s.SchemaVersion == Snapshot.RouteMappingWorkSchema
+                || expeditionCampConstructionProfile != null
+                    && s.SchemaVersion == Snapshot.TemporaryCampConstructionSchema
                 || dailyProvisioning != null && s.SchemaVersion == Snapshot.DailyProvisioningSchema
                 || characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema);

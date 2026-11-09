@@ -116,7 +116,7 @@ namespace Decennium.Foundation.Laboratory
                 return s.ExpeditionCampSites.Length + s.ExpeditionCampActivities.Length == 0
                     ? null : "CampSiteFixtureMissing";
             if (expeditionPressureProfile == null || routeTravelFixture == null
-                || s.SchemaVersion != Snapshot.ExpeditionCampUseSchema || s.ExpeditionCampSites.Length != 1)
+                || s.SchemaVersion < Snapshot.ExpeditionCampUseSchema || s.ExpeditionCampSites.Length != 1)
                 return "CampSiteProfileMismatch";
             string error = expeditionCampSiteProfile.ValidateRoute(routeTravelFixture);
             if (error != null) return error;
@@ -148,7 +148,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveExpeditionCampUse(Snapshot s, Command c)
         {
-            if (expeditionCampSiteProfile == null || s.SchemaVersion != Snapshot.ExpeditionCampUseSchema)
+            if (expeditionCampSiteProfile == null || s.SchemaVersion < Snapshot.ExpeditionCampUseSchema)
                 return "CampUseNotSelected";
             if (c.Inventory != null || c.Combat != null || c.Advancement != null || c.Ranged != null
                 || c.SuppressionFire != null || c.DefensiveFormation != null || c.ExpeditionAssignment != null

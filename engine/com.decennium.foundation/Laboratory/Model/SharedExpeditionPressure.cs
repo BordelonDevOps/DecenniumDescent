@@ -105,7 +105,8 @@ namespace Decennium.Foundation.Laboratory
                     ? null : "PressureFixtureMissing";
             if ((s.SchemaVersion != Snapshot.ExpeditionPressureSchema
                     && s.SchemaVersion != Snapshot.ExpeditionPressureLifecycleSchema
-                    && s.SchemaVersion != Snapshot.ExpeditionCampUseSchema)
+                    && s.SchemaVersion != Snapshot.ExpeditionCampUseSchema
+                    && s.SchemaVersion != Snapshot.TemporaryCampConstructionSchema)
                 || s.ExpeditionPressureCohorts.Length != 1
                 || !s.ExpeditionPressureCohorts[0].SameAs(new ExpeditionPressureCohortRecord(
                     expeditionPressureProfile.CohortId, s.ContentFingerprint, routeTravelFixture.Fingerprint,

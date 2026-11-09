@@ -213,6 +213,7 @@ namespace Decennium.Foundation
                 &&!s.OrdinaryReceptacleAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.HuntingTrapActions.Any(j=>j.Id==w.JobId)
                 &&!s.CacheExcavations.Any(j=>j.Id==w.JobId)
+                &&!s.TemporaryCampConstructionAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.RouteMappingWorkAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.RouteReconnaissanceAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))

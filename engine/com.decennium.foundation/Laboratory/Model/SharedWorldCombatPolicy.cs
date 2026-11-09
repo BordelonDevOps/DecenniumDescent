@@ -227,6 +227,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void PauseParticipantWork(Snapshot s,string actor)
         {
+            PauseTemporaryCampConstructionForActor(s,actor);
             PauseFishingTrapForActor(s,actor);
             foreach(var job in s.FormulaWork.Where(x=>x.WorkerId==actor&&x.Status==FormulaWorkStatus.Working).ToArray())PauseFormula(s,job);
             foreach(var crop in s.Crops.Where(x=>x.Tasks.Any(t=>t.WorkerId==actor&&t.Status==CropWorkStatus.Working)).ToArray())CampGreens.Pause(s,crop.Id,actor);
@@ -254,6 +255,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
+            PauseIncompatibleTemporaryCampConstruction(s);
             PauseIncompatibleCacheExcavation(s);
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);
             PauseIncompatibleHarvesting(s);return null;

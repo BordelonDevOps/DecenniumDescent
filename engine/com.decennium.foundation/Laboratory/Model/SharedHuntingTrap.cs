@@ -107,7 +107,9 @@ namespace Decennium.Foundation.Laboratory
             if(huntingTrapFixture==null)
                 return registered.Length==0&&s.HuntingTrapDeployments.Length==0&&s.HuntingTrapActions.Length==0
                     &&s.HuntingTrapTriggers.Length==0&&s.HuntingTrapTethers.Length==0?null:"HuntingTrapFixtureNotSelected";
-            if((s.SchemaVersion!=Snapshot.HuntingTrapSchema&&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
+            if((s.SchemaVersion!=Snapshot.HuntingTrapSchema
+                &&!(expeditionCampConstructionProfile!=null&&s.SchemaVersion==Snapshot.TemporaryCampConstructionSchema)
+                &&!(dodgeActionEnabled&&s.SchemaVersion==Snapshot.DodgeSchema)
                 &&!(readyActionEnabled&&s.SchemaVersion==Snapshot.ReadyActionSchema))
                 ||registered.Length!=huntingTrapFixture.Devices.Count)
                 return "InvalidHuntingTrapFixture";

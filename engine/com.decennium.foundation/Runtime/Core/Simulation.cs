@@ -31,7 +31,9 @@ namespace Decennium.Foundation
         StartRouteReconnaissance, PauseRouteReconnaissance, ResumeRouteReconnaissance,
         ScheduleRestWatch, BeginRest, InterruptRest, ResolveExpeditionStrainRecovery,
         BeginMoraleRest, InterruptMoraleRest, BeginHavenCare, InterruptHavenCare,
-        BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow }
+        BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow,
+        StartTemporaryCampConstruction, PauseTemporaryCampConstruction,
+        ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -125,6 +127,7 @@ namespace Decennium.Foundation
         public const int ExpeditionPressureSchema = 67;
         public const int ExpeditionPressureLifecycleSchema = 68;
         public const int ExpeditionCampUseSchema = 69;
+        public const int TemporaryCampConstructionSchema = 70;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -292,6 +295,8 @@ namespace Decennium.Foundation
         public ExpeditionPressureCheckpointRecord[] ExpeditionPressureCheckpoints = Array.Empty<ExpeditionPressureCheckpointRecord>();
         public ExpeditionCampSiteRecord[] ExpeditionCampSites = Array.Empty<ExpeditionCampSiteRecord>();
         public ExpeditionCampActivityRecord[] ExpeditionCampActivities = Array.Empty<ExpeditionCampActivityRecord>();
+        public TemporaryCampConstructionAttemptRecord[] TemporaryCampConstructionAttempts = Array.Empty<TemporaryCampConstructionAttemptRecord>();
+        public TemporaryCampInstallationRecord[] TemporaryCampInstallations = Array.Empty<TemporaryCampInstallationRecord>();
         public HuntingTrapDeploymentRecord[] HuntingTrapDeployments = Array.Empty<HuntingTrapDeploymentRecord>();
         public HuntingTrapActionRecord[] HuntingTrapActions = Array.Empty<HuntingTrapActionRecord>();
         public HuntingTrapTriggerRecord[] HuntingTrapTriggers = Array.Empty<HuntingTrapTriggerRecord>();
@@ -373,6 +378,8 @@ namespace Decennium.Foundation
             ExpeditionPressureCheckpoints = ExpeditionPressureCheckpoints.ToArray(),
             ExpeditionCampSites = ExpeditionCampSites.ToArray(),
             ExpeditionCampActivities = ExpeditionCampActivities.ToArray(),
+            TemporaryCampConstructionAttempts = TemporaryCampConstructionAttempts.ToArray(),
+            TemporaryCampInstallations = TemporaryCampInstallations.ToArray(),
             HuntingTrapDeployments = HuntingTrapDeployments.ToArray(), HuntingTrapActions = HuntingTrapActions.ToArray(),
             HuntingTrapTriggers = HuntingTrapTriggers.ToArray(), HuntingTrapTethers = HuntingTrapTethers.ToArray(),
             FormulaWork = FormulaWork.ToArray(),
@@ -699,7 +706,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HavenCareSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema
-                || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema
+                || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -809,6 +817,7 @@ namespace Decennium.Foundation
             ExpeditionProvisioningValidation.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
+            TemporaryCampConstructionValidation.Validate(s);
             HuntingTrapValidation.Validate(s);
             CacheExcavationValidation.Validate(s);
         }

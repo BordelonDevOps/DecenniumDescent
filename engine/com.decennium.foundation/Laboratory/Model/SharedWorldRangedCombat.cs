@@ -78,6 +78,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
+                ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
+                ||kind==CommandKind.ResolveTemporaryCampConstruction)
             ||expeditionCampSiteProfile!=null&&(kind==CommandKind.BeginCampUse||kind==CommandKind.EndCampUse
                 ||kind==CommandKind.BeginLyingLow||kind==CommandKind.EndLyingLow)
             ||kind==CommandKind.AwardCharacterMilestone||kind==CommandKind.AdvanceCharacterLevel

@@ -698,8 +698,11 @@ namespace Decennium.Foundation.Laboratory
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
                 && !(expeditionPressureProfile != null && s.SchemaVersion >= Snapshot.ExpeditionPressureSchema
-                    && s.SchemaVersion <= Snapshot.ExpeditionCampUseSchema
+                    && s.SchemaVersion <= Snapshot.TemporaryCampConstructionSchema
                     && routeSchema == Snapshot.ExpeditionRouteSchema)
+                && !(expeditionCampConstructionProfile != null
+                    && s.SchemaVersion == Snapshot.TemporaryCampConstructionSchema
+                    && routeSchema == Snapshot.RouteMappingWorkSchema)
                 && !(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema&&routeSchema<Snapshot.SharedCharacterAdvancementSchema)
                 && !(huntingTrapFixture != null && s.SchemaVersion == Snapshot.HuntingTrapSchema
