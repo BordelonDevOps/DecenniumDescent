@@ -22,18 +22,20 @@ namespace Decennium.Foundation.Tests
                     TestOnlyPolicy.ActorId, initialPressure, new[] { TestOnlyCropPolicy.PlotId }));
         }
 
-        private static TestOnlyExpeditionRouteFixture PressureHavenRouteFixture()
+        private static TestOnlyExpeditionRouteFixture PressureHavenRouteFixture(
+            ExpeditionRouteQuality quality = ExpeditionRouteQuality.Secured)
             => new TestOnlyExpeditionRouteFixture(new TestOnlyExpeditionRoute(RouteTravelId,
                 TestOnlyPolicy.ContainerId, TestOnlyCropPolicy.PlotId, 1, 2, 3, 3, new RuleQuantity(2),
-                ExpeditionRouteQuality.Secured, 0, ExpeditionRouteMapping.Mapped, new RuleQuantity(10), new[] {
+                quality, 0, ExpeditionRouteMapping.Mapped, new RuleQuantity(10), new[] {
                     new TestOnlyRoutePositionBinding(default, 1, 2),
                     new TestOnlyRoutePositionBinding(new RuleQuantity(1), 1, 3),
                     new TestOnlyRoutePositionBinding(new RuleQuantity(2), 2, 3)
                 }));
 
-        private static Simulation PressurePrepareHavenRoute(int initialPressure = 2, uint seed = 1)
+        private static Simulation PressurePrepareHavenRoute(int initialPressure = 2, uint seed = 1,
+            TestOnlyExpeditionRouteFixture routes = null)
         {
-            var routes = PressureHavenRouteFixture();
+            routes = routes ?? PressureHavenRouteFixture();
             var simulation = World(PressurePolicy(initialPressure, seed, routes));
             WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
             WorldAdvance(simulation, 1);
@@ -43,6 +45,12 @@ namespace Decennium.Foundation.Tests
             RouteTravelReachSource(simulation);
             WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel, "pressure.haven.route.start"));
             return simulation;
+        }
+
+        private static void PressurePauseActiveRouteIfMoving(Simulation simulation, string commandId)
+        {
+            if (simulation.Capture().RouteTravels.Single().Status == ExpeditionRouteTravelStatus.Moving)
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.PauseRouteTravel, commandId));
         }
 
         private static void PressureAdvanceTo(Simulation simulation, RuleTime target)
@@ -394,6 +402,172 @@ namespace Decennium.Foundation.Tests
                     && ExpeditionPressureRules.Current(restored.Capture(), PressureCohortId) == 1
                     && Bytes(simulation).SequenceEqual(Bytes(restored)),
                     "Restored exact-boundary Haven arrival settled twice or changed stored pressure.");
+            });
+
+            cases.Add("expedition_pressure_haven_standard_resolves_before_admission_and_restores", () => {
+                var routes = PressureHavenRouteFixture();
+                var policy = PressurePolicy(initialPressure: 5, seed: 1, routes: routes);
+                var simulation = PressurePrepareHavenRoute(initialPressure: 5, seed: 1, routes: routes);
+                WorldAdvance(simulation, 21600);
+                PressurePauseActiveRouteIfMoving(simulation, "pressure.haven.standard.pause");
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 1);
+                var pending = simulation.Capture();
+                var checkpoint = pending.ExpeditionPressureCheckpoints.Single();
+                var actor = pending.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                Require(actor.X == 2 && actor.Y == 3
+                    && checkpoint.Reason == ExpeditionPressureSettlementReason.HavenArrival
+                    && checkpoint.Outcome == ExpeditionPressureOutcome.Standard
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                    && checkpoint.ConsequenceEndsAt == pending.RuleClock.AddSeconds(3600)
+                    && !pending.ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                    "A Standard Haven checkpoint admitted the traveler before its 60-minute obstruction: actor="
+                    + actor.X + "," + actor.Y + " outcome=" + checkpoint.Outcome + " consequence=" + checkpoint.Consequence
+                    + " until=" + checkpoint.ConsequenceEndsAt + " clock=" + pending.RuleClock + " end="
+                    + pending.ExpeditionPressureExposures.Single().EndedAt + ".");
+                string path = Path.Combine(directory, "pressure-haven-standard-pending.ddsave");
+                var store = new FileSaveStore(); store.Save(path, pending);
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                Require(Bytes(restored).SequenceEqual(Bytes(simulation)),
+                    "Pending Haven admission did not survive save/restore byte-identically.");
+                byte[] pendingBytes = Bytes(simulation);
+                var repeatedEntry = IC(simulation, CommandKind.BeginWorldStep, "walk", x: 1, y: 0);
+                var repeatedQuery = simulation.QueryCommand(host, repeatedEntry);
+                var repeatedResult = simulation.Execute(host, repeatedEntry);
+                Require(repeatedQuery.Supported && !repeatedQuery.Admissible
+                    && repeatedQuery.Code == "PressureHavenAdmissionPending"
+                    && repeatedResult.Outcome == Outcome.Rejected && repeatedResult.Code == repeatedQuery.Code
+                    && pendingBytes.SequenceEqual(Bytes(simulation)),
+                    "A pending Haven arrival could be duplicated or changed the snapshot on rejection.");
+                FarmWork(simulation, CommandKind.PlantCrop);
+                FarmWork(restored, CommandKind.PlantCrop);
+                PressureAdvanceTo(simulation, checkpoint.ConsequenceEndsAt.Value);
+                PressureAdvanceTo(restored, checkpoint.ConsequenceEndsAt.Value);
+                var completed = simulation.Capture();
+                Require(completed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 3
+                    && completed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && completed.ExpeditionPressureExposures.Single().EndedAt == checkpoint.ConsequenceEndsAt
+                    && Crop(simulation).Stage == CropStage.Growing
+                    && Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "Haven admission failed at the exact obstruction deadline or diverged after restore.");
+            });
+
+            cases.Add("expedition_pressure_haven_severe_keeps_gate_cell_for_physical_retreat", () => {
+                var routes = PressureHavenRouteFixture();
+                var simulation = PressurePrepareHavenRoute(initialPressure: 6, seed: 97, routes: routes);
+                WorldAdvance(simulation, 21600);
+                PressurePauseActiveRouteIfMoving(simulation, "pressure.haven.severe.pause");
+                WorldStep(simulation, 1, 0);
+                WorldAdvance(simulation, 1);
+                var snapshot = simulation.Capture();
+                var checkpoint = snapshot.ExpeditionPressureCheckpoints.Single();
+                var actor = snapshot.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                Require(actor.X == 2 && actor.Y == 3
+                    && checkpoint.Outcome == ExpeditionPressureOutcome.Severe
+                    && checkpoint.Consequence == ExpeditionPressureConsequenceKind.RouteClosure
+                    && !snapshot.ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                    "A Severe Haven checkpoint finalized arrival or ended exposure before physical retreat.");
+                var retreat = IC(simulation, CommandKind.BeginWorldStep, "walk", x: -1, y: 0);
+                var retreatQuery = simulation.QueryCommand(host, retreat);
+                Require(retreatQuery.Admissible, "Severe gate retreat was rejected: " + retreatQuery.Code
+                    + "; actor=" + actor.X + "," + actor.Y + "; routes=" + string.Join(",", snapshot.RouteTravels.Select(x => x.Status))
+                    + "; exposureEnd=" + snapshot.ExpeditionPressureExposures.Single().EndedAt + ".");
+                WorldCommit(simulation, retreat); WorldAdvance(simulation, 1);
+                Require(simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 1,
+                    "Severe gate closure did not permit retreat along the existing route.");
+            });
+
+            cases.Add("expedition_pressure_severe_closure_blocks_tactical_forward_movement", () => {
+                var routes = PressureHavenRouteFixture(ExpeditionRouteQuality.Contested);
+                var simulation = PressurePrepareHavenRoute(initialPressure: 6, seed: 1, routes: routes);
+                PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                BeginEncounter(simulation);
+                PressureEnsureStance(simulation, TestOnlyPolicy.ActorId);
+                var forward = Tac(simulation, CommandKind.TacticalStep, actor: TestOnlyPolicy.ActorId, x: 3, y: 3);
+                var query = simulation.QueryCommand(host, forward);
+                Require(query.Supported && !query.Admissible && query.Code == "PressureRetreatMustFollowClosedRoute",
+                    "Tactical movement bypassed the Severe closure: " + query.Code + ".");
+                byte[] before = Bytes(simulation);
+                var rejected = simulation.Execute(host, forward);
+                Require(rejected.Outcome == Outcome.Rejected && rejected.Code == query.Code
+                    && before.SequenceEqual(Bytes(simulation)),
+                    "Tactical execution did not share the closure query or changed state after rejection.");
+            });
+
+            cases.Add("expedition_pressure_retreat_exposure_crosses_watch_and_releases_after_departure", () => {
+                var routes = PressureHavenRouteFixture(ExpeditionRouteQuality.Contested);
+                var simulation = PressurePrepareHavenRoute(initialPressure: 6, seed: 1, routes: routes);
+                PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds));
+                Require(!simulation.Capture().ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                    "Severe closure ended route exposure before physical withdrawal.");
+                PressureAdvanceTo(simulation, new RuleTime(ExpeditionPressureRules.WatchSeconds * 4 - 1, 2));
+                var route = routes.Routes.Single();
+                var actorBeforeRetreat = simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                var routePosition = route.Positions.SingleOrDefault(x => x.X == actorBeforeRetreat.X && x.Y == actorBeforeRetreat.Y);
+                var previousPosition = routePosition == null ? null
+                    : route.Positions.Where(x => x.Progress < routePosition.Progress).OrderBy(x => x.Progress).LastOrDefault();
+                Require(previousPosition != null, "The Watch crossing fixture must begin at a retreatable route position.");
+                WorldStep(simulation, previousPosition.X - actorBeforeRetreat.X, previousPosition.Y - actorBeforeRetreat.Y);
+                WorldAdvance(simulation, 1);
+                var crossed = simulation.Capture();
+                Require(crossed.ExpeditionPressureCheckpoints.Select(x => x.WatchIndex).OrderBy(x => x)
+                    .SequenceEqual(new long[] { 0, 1 })
+                    && !crossed.ExpeditionPressureExposures.Single().EndedAt.HasValue,
+                    "Pressure exposure/checkpoint was not retained across the retreating Watch boundary.");
+                var retreatingActor = crossed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                while (retreatingActor.X != route.FromX || retreatingActor.Y != route.FromY)
+                {
+                    routePosition = route.Positions.SingleOrDefault(x => x.X == retreatingActor.X && x.Y == retreatingActor.Y);
+                    previousPosition = routePosition == null ? null
+                        : route.Positions.Where(x => x.Progress < routePosition.Progress).OrderBy(x => x.Progress).LastOrDefault();
+                    Require(previousPosition != null, "Retreat did not reach the existing route origin.");
+                    WorldStep(simulation, previousPosition.X - retreatingActor.X, previousPosition.Y - retreatingActor.Y);
+                    WorldAdvance(simulation, 1);
+                    retreatingActor = simulation.Capture().Actors.Single(x => x.Id == TestOnlyPolicy.ActorId);
+                }
+                WorldStep(simulation, -1, 0); WorldAdvance(simulation, 1);
+                var retreated = simulation.Capture();
+                Require(retreated.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 0
+                    && retreated.ExpeditionPressureExposures.Single().EndedAt.HasValue
+                    && (int)retreated.ExpeditionPressureExposures.Single().EndKind == 4,
+                    "Exposure did not end when the traveler physically departed the closed route.");
+                var next = IC(simulation, CommandKind.BeginWorldStep, "walk", x: 0, y: -1);
+                var query = simulation.QueryCommand(host, next);
+                Require(query.Supported && query.Admissible,
+                    "A completed retreat left ordinary movement stranded: " + query.Code + ".");
+                WorldCommit(simulation, next); WorldAdvance(simulation, 1);
+            });
+
+            cases.Add("expedition_pressure_schema67_save_continues_with_legacy_arrival_semantics", () => {
+                var routes = PressureHavenRouteFixture();
+                var policy = PressurePolicy(initialPressure: 5, seed: 1, routes: routes);
+                var legacyInitial = policy.Initial();
+                legacyInitial.SchemaVersion = Snapshot.ExpeditionPressureSchema;
+                var simulation = new Simulation(policy, legacyInitial, ExecutionProfile.Laboratory);
+                WorldStep(simulation, 0, -1, actor: TestOnlyPolicy.CompanionId);
+                WorldAdvance(simulation, 1);
+                PortableCommit(simulation, Portable(simulation, CommandKind.RemovePortableItem, PortableKitFixture.Pack));
+                PortableCommit(simulation, Portable(simulation, CommandKind.HandlePortableEquipment,
+                    PortableKitFixture.Pack, handling: HandlingKind.Drop));
+                RouteTravelReachSource(simulation);
+                WorldCommit(simulation, RouteTravelCommand(simulation, CommandKind.StartRouteTravel,
+                    "pressure.schema67.route.start"));
+                WorldAdvance(simulation, 21600);
+                PressurePauseActiveRouteIfMoving(simulation, "pressure.schema67.route.pause");
+                string path = Path.Combine(directory, "pressure-schema67-before-haven.ddsave");
+                var store = new FileSaveStore(); store.Save(path, simulation.Capture());
+                var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                Require(restored.Capture().SchemaVersion == Snapshot.ExpeditionPressureSchema
+                    && Bytes(restored).SequenceEqual(Bytes(simulation)),
+                    "Schema67 pressure save did not retain its supported wire form after restore.");
+                WorldStep(simulation, 1, 0); WorldAdvance(simulation, 1);
+                WorldStep(restored, 1, 0); WorldAdvance(restored, 1);
+                var completed = simulation.Capture();
+                Require(completed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).X == 3
+                    && completed.Actors.Single(x => x.Id == TestOnlyPolicy.ActorId).Y == 3
+                    && completed.ExpeditionPressureExposures.Single().EndKind == ExpeditionPressureExposureEndKind.SafeHavenArrival
+                    && Bytes(simulation).SequenceEqual(Bytes(restored)),
+                    "Historical schema67 continuation changed arrival ordering or deterministic state.");
             });
         }
     }

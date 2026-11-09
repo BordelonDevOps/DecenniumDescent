@@ -697,7 +697,8 @@ namespace Decennium.Foundation.Laboratory
                 : routeMappingFixture != null ? Snapshot.RouteMappingSchema
                 : routeMotionFixture == null ? Snapshot.ExpeditionRouteSchema : Snapshot.RouteObservationSchema;
             if (s.SchemaVersion != routeSchema
-                && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema
+                && !(expeditionPressureProfile != null && s.SchemaVersion >= Snapshot.ExpeditionPressureSchema
+                    && s.SchemaVersion <= Snapshot.ExpeditionPressureLifecycleSchema
                     && routeSchema == Snapshot.ExpeditionRouteSchema)
                 && !(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema&&routeSchema<Snapshot.SharedCharacterAdvancementSchema)

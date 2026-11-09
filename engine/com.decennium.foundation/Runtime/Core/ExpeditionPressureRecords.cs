@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum ExpeditionPressureChangeKind { OpenCombat = 1, SecuredRouteEntry = 2 }
-    public enum ExpeditionPressureExposureEndKind { RouteTransition = 1, SafeHavenArrival = 2, SevereClosure = 3 }
+    public enum ExpeditionPressureExposureEndKind { RouteTransition = 1, SafeHavenArrival = 2, SevereClosure = 3, RetreatCompleted = 4 }
     public enum ExpeditionPressureSettlementReason { WatchEnd = 1, HavenArrival = 2, HavenArrivalAtWatchEnd = 3 }
     public enum ExpeditionPressureOutcome { None = 0, Minor = 1, Standard = 2, Severe = 3 }
     public enum ExpeditionPressureConsequenceKind { None = 0, TimedRouteObstruction = 1, RouteClosure = 2 }
@@ -288,6 +288,9 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Expedition pressure requires schema67.");
                 return;
             }
+            if (s.SchemaVersion == Snapshot.ExpeditionPressureSchema
+                && s.ExpeditionPressureExposures.Any(x => x.EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted))
+                throw new ArgumentException("Retreat completion requires the pressure lifecycle schema.");
             if (s.ExpeditionPressureCohorts.Length != 1
                 || s.ExpeditionPressureCohorts.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureCohorts.Length
                 || s.ExpeditionPressureCohorts.Any(x => x.Members.Any(id => !s.Actors.Any(a => a.Id == id))

@@ -1,6 +1,6 @@
-# Expedition Pressure and Watch-end consequences (schema67, TEST_ONLY)
+# Expedition Pressure and Watch-end consequences (schema68 lifecycle correction, TEST_ONLY)
 
-**Status:** Implementation candidate complete; GPT review of the exact commit is pending. This is a bounded slice of MGT-03, not completion of the engine or MGT-03. Unity remains deferred.
+**Status:** GPT reviewed the schema67 implementation commit and held acceptance on three concrete lifecycle blockers. The corrections below implement schema68 behavior and await GPT's review of the exact correction commit. This remains the same bounded MGT-03 slice, not a new module or completion of MGT-03/the engine. Unity remains deferred.
 
 ## Scope and authorities
 
@@ -10,7 +10,27 @@ The implementation reuses `ExpeditionRouteTravelRecord` and its route fixture fo
 
 Exact schema records, consumer files, source rows and deliberately unsupported producers are listed in [SOURCE_BINDINGS.json](SOURCE_BINDINGS.json). The pre-implementation agreement is in [GPT_CONSENSUS.md](GPT_CONSENSUS.md). Source scope is the pinned player-book FL-08, FL-09, FL-10 and TR-13 text at ReviewBible revision `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`.
 
-## Acceptance scenario and actual results
+## Schema68 correction responding to GPT's first review
+
+GPT's review of schema67 identified three blockers: a Standard timed Haven obstruction did not delay physical Haven admission; tactical steps could bypass a Severe route closure; and Severe closure ended the Pressure exposure before the traveler physically withdrew, so retreating through a later Watch lost a checkpoint. Each finding was reproduced against the earlier code: [Standard admission](results/schema68-gpt-follow-up/BASELINE_FAIL_STANDARD_ADMISSION.json), [tactical closure](results/schema68-gpt-follow-up/BASELINE_FAIL_TACTICAL_CLOSURE.json), and [retreat exposure](results/schema68-gpt-follow-up/BASELINE_FAIL_RETREAT_EXPOSURE.json).
+
+The lifecycle correction uses the existing checkpoint, exposure, route-position, movement receipt, shared RuleClock, and command-history authorities. It does not add a second mutable pending-arrival ledger or serialized fields. The existing timed Haven checkpoint plus the active exposure and gate-side position derive pending admission. A Standard obstruction therefore holds the traveler at the route gate until its deadline; save/restore reconstructs the same pending state. A Severe checkpoint leaves the traveler at the gate, keeps exposure active, and routes both exploration and tactical movement through the same closure/retreat assessment. The traveler can retreat only along the existing route path; Watch boundaries still process during retreat, and exposure ends only on a completed physical step off the route. The accepted-clock target remains the shared command target. Schema67 save continuation deliberately keeps the historical admission/closure behavior; no serializer layout change was made.
+
+| Correction acceptance | Result |
+| --- | --- |
+| Standard Haven obstruction resolves before admission; companion Camp Greens work advances the same clock; pending save/restore and byte-identical continuation | [1/1 PASS](results/schema68-gpt-follow-up/HAVEN_STANDARD_SAVE_RESTORE.json) |
+| Severe Haven checkpoint keeps the traveler gate-side and permits physical route retreat | [1/1 PASS](results/schema68-gpt-follow-up/HAVEN_SEVERE_RETREAT.json) |
+| Shared query and execution reject a tactical forward step through a Severe closure without changing snapshot bytes | [1/1 PASS](results/schema68-gpt-follow-up/TACTICAL_CLOSURE_GATE.json) |
+| Severe retreat crosses a Watch, retains exposure/checkpoints, ends exposure after off-route departure, then permits normal movement | [1/1 PASS](results/schema68-gpt-follow-up/RETREAT_WATCH_RELEASE.json) |
+| Generated schema67 save restores and continues with its legacy semantics and byte-identical branch state | [1/1 PASS](results/schema68-gpt-follow-up/SCHEMA67_COMPATIBILITY.json) |
+| Full C# 9 warnings-as-errors regression run; Core, Persistence, LabModel and headless test compilation | [1,278/1,278 PASS; 261 source hashes](results/schema68-gpt-follow-up/FULL_SUITE_RESULTS.json) |
+| Static Unity package structure validation | [18/18 PASS; 287 assets / 287 unique GUIDs](results/schema68-gpt-follow-up/PACKAGE_RESULTS.json) |
+
+The full-run report records Unity Editor compilation, Edit Mode, Play Mode, standalone build and runtime gameplay as **NOT RUN**. One earlier run during correction returned 1,277/1,278 because a new retreat regression used the second Watch timestamp while asserting the first. The fixture timestamp was corrected, the affected case passed focused rerun, and the final full run passed 1,278/1,278. The validation attempt and final reports remain under `development-attempts/`.
+
+The earlier schema67 acceptance and arithmetic/source results below remain the module's original baseline; the table above is the final schema68 correction validation. GPT has not yet reviewed this correction commit. No successor module may start before GPT confirms blocker closure, module acceptance, and alignment of the next dependency.
+
+## Original schema67 module acceptance and baseline results
 
 The scenarios run with C# 9 Roslyn compilation and warnings-as-errors. Full results preserve source hashes.
 

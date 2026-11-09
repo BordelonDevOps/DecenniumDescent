@@ -6,6 +6,17 @@ namespace Decennium.Foundation.Laboratory
 {
     public sealed partial class TestOnlyClubAttackPolicy
     {
+        private Func<Snapshot,string,int,int,int,int,bool,string> pressureMovementAssessment;
+        private Func<Snapshot,string,int,int,int,int,bool> pressureRetreatDeparture;
+        private Action<Snapshot,string,RuleTime,long> pressureRetreatCompletion;
+        internal void ConfigurePressureMovement(Func<Snapshot,string,int,int,int,int,bool,string> assessment,
+            Func<Snapshot,string,int,int,int,int,bool> departure, Action<Snapshot,string,RuleTime,long> completion)
+        {
+            if (assessment == null || departure == null || completion == null || pressureMovementAssessment != null)
+                throw new ArgumentException("Configure one explicit shared pressure movement authority.");
+            pressureMovementAssessment = assessment; pressureRetreatDeparture = departure;
+            pressureRetreatCompletion = completion;
+        }
         private static ActorTacticalRecord TacticalActor(Snapshot s,string actor)=>s.TacticalActors.Single(x=>x.ActorId==actor);
         private static void SetTactical(Snapshot s,ActorTacticalRecord record) {
             s.TacticalActors=s.TacticalActors.Select(x=>x.ActorId==record.ActorId?record:x).ToArray();
@@ -34,6 +45,8 @@ namespace Decennium.Foundation.Laboratory
             var body=s.Actors.Single(a=>a.Id==actor);
             if(body.X!=fromX||body.Y!=fromY)return "MovementOriginChanged";
             if(HuntingTrapValidation.BlocksGridMove(s,actor,x,y))return "HuntingTrapTetherPreventsMovement";
+            string pressureFailure=pressureMovementAssessment?.Invoke(s,actor,fromX,fromY,x,y,true);
+            if(pressureFailure!=null)return pressureFailure;
             var spatial=WorldSpatialQueries.Step(s,actor,fromX,fromY,x,y,true,true,
                 (px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));
             if(spatial==SpatialStepFailure.NotNeighbor)return "InvalidTacticalStep";
@@ -207,6 +220,8 @@ namespace Decennium.Foundation.Laboratory
                     }
                     else if(move.Kind==TacticalMoveKind.TacticalReposition)CharacterAdvancementRules.SpendReposition(s,move.ActorId,cost);
                     var actor=s.Actors.Single(a=>a.Id==move.ActorId);actor.X=move.ToX;actor.Y=move.ToY;
+                    if(pressureRetreatDeparture?.Invoke(s,move.ActorId,move.FromX,move.FromY,move.ToX,move.ToY)==true)
+                        pressureRetreatCompletion(s,move.ActorId,s.RuleClock,s.Revision+1);
                     if(ObservationRules.Enabled(s))ObservationRules.Refresh(s,s.RuleClock,s.Revision+1);
                     if(cost>0)CharacterAdvancementRules.MarkMoved(s,move.ActorId);
                     s.Clubs=s.Clubs.Select(w=>w.HeldBy==actor.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,w.HeldBy,actor.X,actor.Y):w).ToArray();

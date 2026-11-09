@@ -78,6 +78,8 @@ namespace Decennium.Foundation.Laboratory
             string error = fixture.ValidateRoutes(routeTravelFixture);
             if (error != null) throw new InvalidOperationException(error);
             expeditionPressureProfile = fixture;
+            bodies.ConfigurePressureMovement(AssessExpeditionPressureMovement,
+                IsPressureRetreatDeparture, CompletePressureRetreat);
             ContentFingerprint = fixture.BindFingerprint(ContentFingerprint, routeTravelFixture);
             return this;
         }
@@ -101,7 +103,8 @@ namespace Decennium.Foundation.Laboratory
                 return s.ExpeditionPressureCohorts.Length + s.ExpeditionPressureExposures.Length
                     + s.ExpeditionPressureChanges.Length + s.ExpeditionPressureCheckpoints.Length == 0
                     ? null : "PressureFixtureMissing";
-            if (s.SchemaVersion != Snapshot.ExpeditionPressureSchema
+            if ((s.SchemaVersion != Snapshot.ExpeditionPressureSchema
+                    && s.SchemaVersion != Snapshot.ExpeditionPressureLifecycleSchema)
                 || s.ExpeditionPressureCohorts.Length != 1
                 || !s.ExpeditionPressureCohorts[0].SameAs(new ExpeditionPressureCohortRecord(
                     expeditionPressureProfile.CohortId, s.ContentFingerprint, routeTravelFixture.Fingerprint,
@@ -127,6 +130,47 @@ namespace Decennium.Foundation.Laboratory
                     || checkpoint.Consequence == ExpeditionPressureConsequenceKind.RouteClosure
                         && checkpoint.RetreatRouteId != route.Id)
                     return "InvalidPressureCheckpointRouteBinding";
+            }
+            if (s.SchemaVersion == Snapshot.ExpeditionPressureSchema
+                && s.ExpeditionPressureExposures.Any(x => x.EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted))
+                return "RetreatCompletionRequiresPressureLifecycleSchema";
+
+            if (s.SchemaVersion >= Snapshot.ExpeditionPressureLifecycleSchema)
+            {
+                var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                    && !x.EndedAt.HasValue);
+                if (exposure != null)
+                {
+                    var route = routeTravelFixture.Find(exposure.RouteId);
+                    var actor = s.Actors.Single(x => x.Id == expeditionPressureProfile.MemberId);
+                    var closure = ActivePressureRouteClosure(s, exposure);
+                    if (closure != null && (!route.Positions.Any(x => x.Progress <= closure.RouteProgress
+                        && x.X == actor.X && x.Y == actor.Y)
+                        || actor.X == route.ToSiteX && actor.Y == route.ToSiteY))
+                        return "InvalidPressureRetreatPosition";
+                    var pending = PendingPressureHavenArrival(s, exposure);
+                    if (pending != null)
+                    {
+                        RuleTime? deadline = PendingPressureHavenAdmissionAt(s, exposure);
+                        var gate = route.PositionAt(pending.RouteProgress);
+                        bool movementSource = gate != null && s.Receipts.Where(r => r.Revision < pending.AppliedRevision)
+                            .Any(r => {
+                                try {
+                                    var command = CommandHistory.Read(r);
+                                    return command.Kind == CommandKind.BeginWorldStep
+                                        && command.Actor == expeditionPressureProfile.MemberId
+                                        && (command.Target == "walk" || command.Target == "run")
+                                        && gate.X + command.X == route.ToSiteX && gate.Y + command.Y == route.ToSiteY;
+                                } catch (ArgumentException) { return false; }
+                            });
+                        if (!deadline.HasValue || deadline.Value <= s.RuleClock || gate == null
+                            || actor.X != gate.X || actor.Y != gate.Y || !movementSource)
+                            return "InvalidPendingPressureHavenArrival";
+                    }
+                    else if (expeditionPressureProfile.IsSafeHaven(route)
+                        && actor.X == route.ToSiteX && actor.Y == route.ToSiteY)
+                        return "PressureArrivalMustCloseExposure";
+                }
             }
 
             foreach (var routeGroup in s.RouteTravels.GroupBy(x => x.RouteId, StringComparer.Ordinal))
@@ -235,16 +279,89 @@ namespace Decennium.Foundation.Laboratory
         private static void SetPressureExposure(Snapshot s, ExpeditionPressureExposureRecord value)
             => s.ExpeditionPressureExposures = s.ExpeditionPressureExposures.Select(x => x.Id == value.Id ? value : x).ToArray();
 
+        private ExpeditionPressureCheckpointRecord PendingPressureHavenArrival(Snapshot s,
+            ExpeditionPressureExposureRecord exposure)
+        {
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema || exposure == null) return null;
+            var arrival = s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == exposure.CohortId
+                && x.RouteId == exposure.RouteId
+                && (x.Reason == ExpeditionPressureSettlementReason.HavenArrival
+                    || x.Reason == ExpeditionPressureSettlementReason.HavenArrivalAtWatchEnd)
+                && x.Consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction)
+                .OrderByDescending(x => x.AppliedRevision).FirstOrDefault();
+            if (arrival == null || s.ExpeditionPressureCheckpoints.Any(x => x.CohortId == exposure.CohortId
+                && x.RouteId == exposure.RouteId && x.AppliedRevision > arrival.AppliedRevision
+                && x.Consequence == ExpeditionPressureConsequenceKind.RouteClosure)) return null;
+            return arrival;
+        }
+
+        private RuleTime? PendingPressureHavenAdmissionAt(Snapshot s, ExpeditionPressureExposureRecord exposure)
+        {
+            var arrival = PendingPressureHavenArrival(s, exposure);
+            if (arrival == null) return null;
+            return s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == exposure.CohortId
+                    && x.RouteId == exposure.RouteId && x.AppliedRevision >= arrival.AppliedRevision
+                    && x.Consequence == ExpeditionPressureConsequenceKind.TimedRouteObstruction
+                    && x.ConsequenceEndsAt.HasValue)
+                .OrderByDescending(x => x.ConsequenceEndsAt.Value).Select(x => x.ConsequenceEndsAt).First();
+        }
+
+        private ExpeditionPressureCheckpointRecord ActivePressureRouteClosure(Snapshot s,
+            ExpeditionPressureExposureRecord exposure)
+            => exposure == null ? null : s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == exposure.CohortId
+                && x.RouteId == exposure.RouteId && x.AppliedRevision >= exposure.StartedRevision
+                && x.Consequence == ExpeditionPressureConsequenceKind.RouteClosure)
+                .OrderByDescending(x => x.AppliedRevision).FirstOrDefault();
+
+        private bool IsPressureHavenArrival(Snapshot s, WorldTraversalRecord edge)
+        {
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema || expeditionPressureProfile == null
+                || edge == null || edge.ActorId != expeditionPressureProfile.MemberId) return false;
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                && !x.EndedAt.HasValue);
+            var route = exposure == null ? null : routeTravelFixture.Find(exposure.RouteId);
+            return route != null && expeditionPressureProfile.IsSafeHaven(route)
+                && edge.ToX == route.ToSiteX && edge.ToY == route.ToSiteY;
+        }
+
+        private bool IsPressureRetreatDeparture(Snapshot s, string actorId, int fromX, int fromY, int toX, int toY)
+        {
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema || expeditionPressureProfile == null
+                || actorId != expeditionPressureProfile.MemberId) return false;
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                && !x.EndedAt.HasValue);
+            var closure = ActivePressureRouteClosure(s, exposure);
+            var route = closure == null ? null : routeTravelFixture.Find(closure.RouteId);
+            return route != null && fromX == route.FromX && fromY == route.FromY
+                && !route.Positions.Any(x => x.X == toX && x.Y == toY)
+                && !(toX == route.ToSiteX && toY == route.ToSiteY);
+        }
+
+        private void CompletePressureRetreat(Snapshot s, string actorId, RuleTime at, long revision)
+        {
+            if (expeditionPressureProfile == null || actorId != expeditionPressureProfile.MemberId
+                || s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema) return;
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                && !x.EndedAt.HasValue);
+            if (exposure != null)
+                SetPressureExposure(s, exposure.End(at, revision, ExpeditionPressureExposureEndKind.RetreatCompleted));
+        }
+
         private RuleTime? NextExpeditionPressureBoundary(Snapshot s)
         {
-            if (expeditionPressureProfile == null || !s.ExpeditionPressureExposures.Any(x => x.CohortId == expeditionPressureProfile.CohortId
-                && !x.EndedAt.HasValue)) return null;
+            var exposure = expeditionPressureProfile == null ? null
+                : s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                    && !x.EndedAt.HasValue);
+            if (exposure == null) return null;
             BigInteger denominator = new BigInteger(s.RuleClock.Denominator);
             BigInteger watchUnits = denominator * ExpeditionPressureRules.WatchSeconds;
             BigInteger index = new BigInteger(s.RuleClock.Numerator) / watchUnits;
             BigInteger boundaryNumerator = (index + BigInteger.One) * watchUnits;
             if (boundaryNumerator > long.MaxValue) throw new OverflowException("Expedition pressure Watch boundary overflowed.");
-            return new RuleTime((long)boundaryNumerator, s.RuleClock.Denominator);
+            RuleTime boundary = new RuleTime((long)boundaryNumerator, s.RuleClock.Denominator);
+            var admission = PendingPressureHavenAdmissionAt(s, exposure);
+            return admission.HasValue && admission.Value > s.RuleClock && admission.Value < boundary
+                ? admission : boundary;
         }
 
         private static bool IsPressureWatchEnd(RuleTime at)
@@ -256,7 +373,8 @@ namespace Decennium.Foundation.Laboratory
             return checked((long)(units - BigInteger.One));
         }
 
-        private string ProcessExpeditionPressureBoundary(Snapshot s, RuleTime at, Command initiating)
+        private string ProcessExpeditionPressureBoundary(Snapshot s, RuleTime at, Command initiating,
+            WorldTraversalRecord stagedArrival = null, bool completedRetreat = false)
         {
             if (expeditionPressureProfile == null) return null;
             if (s.RuleClock != at) throw new InvalidOperationException("PressureBoundaryMustUseSharedClock.");
@@ -265,29 +383,55 @@ namespace Decennium.Foundation.Laboratory
             if (exposure == null) return null;
             var route = routeTravelFixture.Find(exposure.RouteId);
             var actor = s.Actors.Single(x => x.Id == expeditionPressureProfile.MemberId);
-            bool safeArrival = expeditionPressureProfile.IsSafeHaven(route)
+            bool stagedHavenArrival = IsPressureHavenArrival(s, stagedArrival);
+            bool safeArrival = stagedHavenArrival || expeditionPressureProfile.IsSafeHaven(route)
                 && actor.X == route.ToSiteX && actor.Y == route.ToSiteY;
+            var pendingAdmission = PendingPressureHavenAdmissionAt(s, exposure);
+            bool pendingAdmissionDue = s.SchemaVersion >= Snapshot.ExpeditionPressureLifecycleSchema
+                && pendingAdmission.HasValue && pendingAdmission.Value <= at;
             bool watchEnd = IsPressureWatchEnd(at);
             long watch = watchEnd ? PressureWatchAtEnd(at) : EventWatchIndex(at);
             if (safeArrival || watchEnd)
             {
-                if (exposure.StartedAt < at && !s.ExpeditionPressureCheckpoints.Any(x => x.CohortId == exposure.CohortId
+                if (exposure.StartedAt < at && (stagedHavenArrival || watchEnd || s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema)
+                    && !s.ExpeditionPressureCheckpoints.Any(x => x.CohortId == exposure.CohortId
                     && x.WatchIndex == watch))
                 {
-                    var reason = safeArrival
+                    var reason = stagedHavenArrival
                         ? watchEnd ? ExpeditionPressureSettlementReason.HavenArrivalAtWatchEnd
                             : ExpeditionPressureSettlementReason.HavenArrival
-                        : ExpeditionPressureSettlementReason.WatchEnd;
+                        : watchEnd ? ExpeditionPressureSettlementReason.WatchEnd
+                            : ExpeditionPressureSettlementReason.HavenArrival;
                     string error = ResolveExpeditionPressureCheckpoint(s, exposure, route, watch, at, reason, initiating);
                     if (error != null) return error;
                 }
-                if (safeArrival)
+                if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema && safeArrival)
                 {
                     var current = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == exposure.Id);
                     if (current != null && !current.EndedAt.HasValue)
                         SetPressureExposure(s, current.End(at, s.Revision + 1,
                             ExpeditionPressureExposureEndKind.SafeHavenArrival));
                 }
+            }
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema) return null;
+            exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == exposure.Id && !x.EndedAt.HasValue);
+            if (exposure == null) return null;
+            if (completedRetreat)
+            {
+                CompletePressureRetreat(s, expeditionPressureProfile.MemberId, at, s.Revision + 1);
+                return null;
+            }
+            if (!safeArrival && !pendingAdmissionDue) return null;
+            if (ActivePressureRouteClosure(s, exposure) != null) return null;
+            pendingAdmission = PendingPressureHavenAdmissionAt(s, exposure);
+            if (pendingAdmission.HasValue && pendingAdmission.Value > at) return null;
+            if (safeArrival || pendingAdmissionDue)
+            {
+                actor.X = route.ToSiteX; actor.Y = route.ToSiteY;
+                s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id
+                    ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
+                SetPressureExposure(s, exposure.End(at, s.Revision + 1,
+                    ExpeditionPressureExposureEndKind.SafeHavenArrival));
             }
             return null;
         }
@@ -346,14 +490,17 @@ namespace Decennium.Foundation.Laboratory
                     SetRouteTravel(s, activeTravel.With(activeTravel.NominalEffort, ExpeditionRouteTravelStatus.Terminated));
                     s.RouteTravelSpatial = s.RouteTravelSpatial.Where(x => x.TravelStartedRevision != activeTravel.StartedRevision).ToArray();
                 }
-                var current = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == exposure.Id);
-                if (current != null && !current.EndedAt.HasValue)
-                    SetPressureExposure(s, current.End(at, s.Revision + 1, ExpeditionPressureExposureEndKind.SevereClosure));
+                if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema)
+                {
+                    var current = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == exposure.Id);
+                    if (current != null && !current.EndedAt.HasValue)
+                        SetPressureExposure(s, current.End(at, s.Revision + 1, ExpeditionPressureExposureEndKind.SevereClosure));
+                }
             }
             return null;
         }
 
-        private string AssessExpeditionPressureWorldStep(Snapshot s, string actorId, int toX, int toY)
+        private string AssessLegacyExpeditionPressureWorldStep(Snapshot s, string actorId, int toX, int toY)
         {
             if (expeditionPressureProfile == null || actorId != expeditionPressureProfile.MemberId) return null;
             var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
@@ -378,6 +525,41 @@ namespace Decennium.Foundation.Laboratory
             var previous = closedRoute.Positions.Where(x => x.Progress < current.Progress).OrderBy(x => x.Progress).LastOrDefault();
             if (previous == null) return "PressureRetreatPositionUnsupported";
             return toX == previous.X && toY == previous.Y ? null : "PressureRetreatMustFollowClosedRoute";
+        }
+
+        private bool IsClosedPressureRouteCell(TestOnlyExpeditionRoute route, int x, int y)
+            => route.Positions.Any(p => p.X == x && p.Y == y) || route.ToSiteX == x && route.ToSiteY == y;
+
+        private string AssessExpeditionPressureMovement(Snapshot s, string actorId, int fromX, int fromY,
+            int toX, int toY, bool tactical)
+        {
+            if (expeditionPressureProfile == null || actorId != expeditionPressureProfile.MemberId) return null;
+            if (s.SchemaVersion < Snapshot.ExpeditionPressureLifecycleSchema)
+                return tactical ? null : AssessLegacyExpeditionPressureWorldStep(s, actorId, toX, toY);
+            var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.CohortId == expeditionPressureProfile.CohortId
+                && !x.EndedAt.HasValue);
+            if (exposure == null) return null;
+            var route = routeTravelFixture.Find(exposure.RouteId);
+            var closure = ActivePressureRouteClosure(s, exposure);
+            if (closure != null)
+            {
+                var closedRoute = routeTravelFixture.Find(closure.RouteId);
+                if (closedRoute == null) return "PressureRetreatRouteMissing";
+                if (fromX == closedRoute.FromX && fromY == closedRoute.FromY)
+                    return IsClosedPressureRouteCell(closedRoute, toX, toY)
+                        ? "PressureRetreatMustFollowClosedRoute" : null;
+                var current = closedRoute.Positions.Where(x => x.Progress <= closure.RouteProgress
+                    && x.X == fromX && x.Y == fromY).OrderBy(x => x.Progress).LastOrDefault();
+                if (current == null) return "PressureRetreatPositionUnsupported";
+                var previous = closedRoute.Positions.Where(x => x.Progress < current.Progress)
+                    .OrderBy(x => x.Progress).LastOrDefault();
+                if (previous == null) return "PressureRetreatPositionUnsupported";
+                return toX == previous.X && toY == previous.Y ? null : "PressureRetreatMustFollowClosedRoute";
+            }
+            if (tactical) return "PressureTacticalMovementUnsupported";
+            if (!expeditionPressureProfile.IsSafeHaven(route) || toX != route.ToSiteX || toY != route.ToSiteY)
+                return "ExpeditionPressureRouteDepartureUnsupported";
+            return PendingPressureHavenArrival(s, exposure) == null ? null : "PressureHavenAdmissionPending";
         }
     }
 

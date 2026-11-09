@@ -122,6 +122,7 @@ namespace Decennium.Foundation
         public const int MoraleRestSchema = 65;
         public const int HavenCareSchema = 66;
         public const int ExpeditionPressureSchema = 67;
+        public const int ExpeditionPressureLifecycleSchema = 68;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -690,7 +691,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionStrainRecoverySchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.MoraleRestSchema
                 || s.SchemaVersion == Foundation.Snapshot.HavenCareSchema
-                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureSchema
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema

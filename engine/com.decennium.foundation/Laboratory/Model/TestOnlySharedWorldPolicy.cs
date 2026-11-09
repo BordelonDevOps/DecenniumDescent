@@ -460,6 +460,8 @@ namespace Decennium.Foundation.Laboratory
                 var activityLabor = s.WorldActivityIntervals.ToDictionary(x => x.ActorId,
                     x => WorldActivityValidation.ActiveLaborReference(s, x.ActorId, segmentStart, next), StringComparer.Ordinal);
                 var observationSegments = new System.Collections.Generic.List<ObservationMovementSegment>();
+                WorldTraversalRecord stagedPressureArrival = null;
+                bool completedPressureRetreat = false;
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;
                     bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
@@ -482,12 +484,18 @@ namespace Decennium.Foundation.Laboratory
                     if (distance > default(RuleQuantity)) observationSegments.Add(new ObservationMovementSegment(edge, priorDistance, progress));
                     if(distance>default(RuleQuantity))CharacterAdvancementRules.MarkMoved(s,edge.ActorId);
                     if (progress == new RuleQuantity(5)) {
-                        var actor = s.Actors.Single(a => a.Id == edge.ActorId); actor.X = edge.ToX; actor.Y = edge.ToY;
-                        s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
-                        string trapError=QueueHuntingTrapEntry(s,actor.Id,"world."+Number(edge.StartedRevision),HuntingTrapEntryKind.ExplorationStep,
+                        bool pressureArrival = IsPressureHavenArrival(s, edge);
+                        if (pressureArrival) stagedPressureArrival = edge;
+                        else {
+                            var actor = s.Actors.Single(a => a.Id == edge.ActorId); actor.X = edge.ToX; actor.Y = edge.ToY;
+                            s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
+                            completedPressureRetreat |= IsPressureRetreatDeparture(s, edge.ActorId,
+                                edge.FromX, edge.FromY, edge.ToX, edge.ToY);
+                        }
+                        string trapError=QueueHuntingTrapEntry(s,edge.ActorId,"world."+Number(edge.StartedRevision),HuntingTrapEntryKind.ExplorationStep,
                             edge.ToX,edge.ToY,s.Revision+1,next);
                         if(trapError!=null)return trapError;
-                        s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != actor.Id).ToArray();
+                        s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != edge.ActorId).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
@@ -578,7 +586,8 @@ namespace Decennium.Foundation.Laboratory
                 string moraleRestError=ProcessMoraleRestBoundary(s,initiating,continuation,
                     deferredMoraleRestOfferIntervals);if(moraleRestError!=null)return moraleRestError;
                 string havenCareError=ProcessHavenCareBoundary(s,initiating,continuation);if(havenCareError!=null)return havenCareError;
-                string pressureCheckpointError=ProcessExpeditionPressureBoundary(s,s.RuleClock,initiating);if(pressureCheckpointError!=null)return pressureCheckpointError;
+                string pressureCheckpointError=ProcessExpeditionPressureBoundary(s,s.RuleClock,initiating,
+                    stagedPressureArrival,completedPressureRetreat);if(pressureCheckpointError!=null)return pressureCheckpointError;
                 string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
                     deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
@@ -821,7 +830,9 @@ namespace Decennium.Foundation.Laboratory
         public string ValidateState(Snapshot s)
         {
             try {
-                if (s.SchemaVersion != SelectedSchema || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if ((s.SchemaVersion != SelectedSchema
+                    && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema))
+                    || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 string assignmentBindingsError = ValidateExpeditionAssignmentBindings(s);
                 if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;
@@ -1016,7 +1027,7 @@ namespace Decennium.Foundation.Laboratory
                     return "InvalidFishingTrapFixture";
                 string prospectingError=ValidateProspectingFixtureState(s);
                 if(prospectingError!=null)return prospectingError;
-                var replay = Initial();
+                var replay = Initial(); replay.SchemaVersion = s.SchemaVersion;
                 foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
                     var command = CommandHistory.Read(receipt);
                     if (command.ExpectedRevision != replay.Revision || Resolve(replay, command) != null) return "InvalidSharedWorldHistory";
