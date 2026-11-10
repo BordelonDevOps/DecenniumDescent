@@ -353,7 +353,9 @@ namespace Decennium.Foundation.Laboratory
         private string AssessHarvestCommand(Snapshot s,Command c,out HarvestAssessment facts)
         {
             facts=null;
-            if(harvestFixture==null||s.SchemaVersion!=(harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture.SchemaVersion))return "HarvestingNotSelected";
+            int harvestSchema=harvestPreservationTreatmentEnabled?Snapshot.HarvestPreservationTreatmentSchema
+                :harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture?.SchemaVersion??0;
+            if(harvestFixture==null||s.SchemaVersion!=harvestSchema)return "HarvestingNotSelected";
             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.OverwatchRider!=OverwatchRider.None
                 ||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null||c.X!=0||c.Y!=0)
                 return "InvalidHarvestCommand";

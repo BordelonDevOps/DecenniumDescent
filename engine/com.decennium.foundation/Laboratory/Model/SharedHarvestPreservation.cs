@@ -10,6 +10,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private bool harvestPreservationEnabled;
+        private bool harvestPreservationTreatmentEnabled;
 
         /// <summary>Build the explicit schema74 TEST_ONLY witness over the existing finite harvest fixture.
         /// The two-interval workload is harness scaffolding so it remains unfinished at the first
@@ -22,6 +23,22 @@ namespace Decennium.Foundation.Laboratory
                 +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(policy.ContentFingerprint
                     +"|harvest-preservation-derived-v1|fresh-only-reservation-work-adapter-v1|fixture-work=two-age-intervals"
                     +"|portable-identities=TEST_ONLY.harvest-tray:item,prototype.generic-pound-lot:mass-pound;volume=unknown"))
+                    .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            return policy;
+        }
+
+        /// <summary>Builds the explicitly separate schema75 TEST_ONLY closed-container treatment profile.
+        /// Schema74 remains byte/fingerprint/behavior compatible and retains its own adapter.</summary>
+        public static TestOnlySharedWorldPolicy WithHarvestPreservationTreatment(SharedHarvestFixture harvest=null,uint seed=1)
+        {
+            var selected=harvest??new SharedHarvestFixture();
+            if(selected.SmallFinitePool)throw new ArgumentException("MGT-05B admits only the single existing generic fish-meat unit.",nameof(harvest));
+            var policy=WithHarvestPreservation(selected,seed);
+            policy.harvestPreservationTreatmentEnabled=true;
+            using(var sha=SHA256.Create())policy.ContentFingerprint="TEST_ONLY.mgt05b-v1-"
+                +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(policy.ContentFingerprint
+                    +"|schema75|closed-container|generic.ordinary-fish-meat|fresh-or-degraded|whole-available-lot<=10lb"
+                    +"|work=1800s|supply=1/2lb|cooking-wisdom-dc10|protection=86400s|terminal-seal"))
                     .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
             return policy;
         }
@@ -49,6 +66,30 @@ namespace Decennium.Foundation.Laboratory
                 ||pounds.QuantityUnitId!=SharedHarvestFixture.MaterialUnit||pounds.PackedVolumePerUnitCubicFeet.HasValue
                 ||pounds.MassPerUnitLb.HasValue||pounds.AllowedContainedProfileIds.Count!=0)
                 return "HarvestPreservationPortableProfileMismatch";
+            return null;
+        }
+
+        internal static PortableStorageProfileRecord[] HarvestPreservationTreatmentPortableProfiles()=>PreservationPortableProfiles()
+            .Concat(new[]{new PortableStorageProfileRecord(HarvestPreservationTreatmentFixture.ContainerProfileId,"item",null)}).ToArray();
+
+        internal static void InitializeHarvestPreservationTreatmentPortableProfiles(Snapshot s)
+        {
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema)
+                throw new ArgumentException("Harvest treatment portable profiles require schema75.");
+            s.PortableStorageProfiles=HarvestPreservationTreatmentPortableProfiles();
+        }
+
+        internal static string ValidateHarvestPreservationTreatmentPortableProfiles(Snapshot s)
+        {
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema||!s.TestOnly||s.PortableStorageProfiles==null
+                ||s.PortableStorageProfiles.Length!=3)return "HarvestTreatmentPortableProfileMismatch";
+            string[] priorIds={"TEST_ONLY.harvest-tray","prototype.generic-pound-lot"};
+            string prior=ValidatePreservationPortableProfiles(new Snapshot{SchemaVersion=Snapshot.HarvestPreservationSchema,
+                TestOnly=true,PortableStorageProfiles=s.PortableStorageProfiles.Where(x=>priorIds.Contains(x.ProfileId,StringComparer.Ordinal)).ToArray()});
+            var container=s.PortableStorageProfiles.SingleOrDefault(x=>x.ProfileId==HarvestPreservationTreatmentFixture.ContainerProfileId);
+            if(prior!=null||container==null||container.QuantityUnitId!="item"||container.PackedVolumePerUnitCubicFeet.HasValue
+                ||container.MassPerUnitLb.HasValue||container.AllowedContainedProfileIds.Count!=0)
+                return "HarvestTreatmentPortableProfileMismatch";
             return null;
         }
 

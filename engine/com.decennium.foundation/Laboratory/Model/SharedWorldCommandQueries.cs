@@ -402,7 +402,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
-            if(harvestPreservationEnabled) {
+            if(harvestPreservationEnabled&&!harvestPreservationTreatmentEnabled) {
                 var work=s.HarvestRequirementWorks.SingleOrDefault(x=>x.WorkerId==actor
                     &&(x.Status==HarvestRequirementWorkStatus.Working||x.Status==HarvestRequirementWorkStatus.Paused));
                 if(work!=null) {
@@ -418,6 +418,18 @@ namespace Decennium.Foundation.Laboratory
                             actor,s.Revision,CommandKind.StartHarvestRequirementWork,lot.LotId,
                             inventory:new InventoryRequest(available,"",HandlingKind.Pickup));
                     }
+                }
+            }
+            if(harvestPreservationTreatmentEnabled&&actor==TestOnlyPolicy.ActorId
+                &&s.WorldSchedule.Order.Contains(actor)&&!OrdinaryInventory.Busy(s,actor)) {
+                foreach(var lot in s.InventoryLots.OrderBy(x=>x.LotId,StringComparer.Ordinal)) {
+                    if(!HarvestPreservationRules.TryProject(s,lot.LotId,out var view)
+                        ||view.State==HarvestPreservationState.Spoiled)continue;
+                    RuleQuantity available=s.Work.AvailableAmount(lot.LotId);if(available==default)continue;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)
+                        +".harvest-treatment."+(index++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
+                        CommandKind.StartHarvestPreservationTreatment,lot.LotId,
+                        inventory:new InventoryRequest(available,"",HandlingKind.Pickup));
                 }
             }
             if(miningFixture!=null&&IsMiningWorker(actor)) {
@@ -600,6 +612,12 @@ namespace Decennium.Foundation.Laboratory
                     if (remaining.Denominator == 1) costs.Add(new CommandCost("work-seconds", "", remaining.Numerator));
                 }
                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+            }
+            if(HarvestPreservationTreatmentCommand(c.Kind)) {
+                string failure=AssessHarvestPreservationTreatment(s,c,out _,out _);
+                var costs=new List<CommandCost>();
+                if(failure==null)costs.Add(new CommandCost("work-seconds","",HarvestPreservationTreatmentValidation.WorkSeconds));
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
             }
             if(HarvestRequirementWorkCommand(c.Kind)) {
                 string failure=AssessHarvestRequirementWork(s,c,out var current,out _);

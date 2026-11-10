@@ -39,6 +39,13 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(HarvestPreservationTreatmentCommand(c.Kind)) {
+                var treatedLot=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
+                string[] physicalIds={c.Target,HarvestPreservationTreatmentFixture.SupplyLotId,
+                    HarvestPreservationTreatmentFixture.ContainerId,HarvestPreservationTreatmentFixture.ToolId};
+                return new[]{treatedLot?.OwnerId}.Concat(physicalIds.SelectMany(id=>PortableEquipmentRules.Owners(s,id)))
+                    .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(HarvestRequirementWorkCommand(c.Kind)) {
                 string lotId=c.Kind==CommandKind.StartHarvestRequirementWork?c.Target
                     :s.HarvestRequirementWorks.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor)?.InventoryLotId;

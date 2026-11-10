@@ -635,6 +635,7 @@ namespace Decennium.Foundation.Tests
                     &&state.FishingCreatures.Single().MassPounds==RuleQuantity.FromFraction(1,2),
                     "Critical success did not add exactly one preselected eligible damaged unit to the baseline extraction.");
             });
+            AddHarvestPreservationTreatmentCases(cases,directory);
         }
     }
 }

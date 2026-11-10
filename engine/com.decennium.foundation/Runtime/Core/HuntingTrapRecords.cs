@@ -324,6 +324,7 @@ namespace Decennium.Foundation
                 &&s.FormulaWork.All(j=>j.Id!=w.JobId)&&s.RepairWork.All(j=>j.Id!=w.JobId)&&s.ManufacturingOrders.All(j=>j.Id!=w.JobId)
                 &&s.Recipe347WorkOrders.All(j=>j.Id!=w.JobId)
                 &&s.HarvestRequirementWorks.All(j=>j.Id!=w.JobId)
+                &&s.HarvestPreservationTreatmentAttempts.All(j=>j.Id!=w.JobId)
                 &&s.FishingTrapAttempts.All(j=>j.Id!=w.JobId)&&s.FishingTrapRetrievals.All(j=>j.Id!=w.JobId)
                 &&s.HarvestAttempts.All(j=>j.Id!=w.JobId)&&s.MiningAttempts.All(j=>j.Id!=w.JobId)
                 &&s.ProspectingAttempts.All(j=>j.Id!=w.JobId)&&s.MiningAssayAttempts.All(j=>j.Id!=w.JobId)

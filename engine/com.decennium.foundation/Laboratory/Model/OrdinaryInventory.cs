@@ -115,8 +115,11 @@ namespace Decennium.Foundation.Laboratory
             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id)
                     &&!s.HarvestRequirementWorks.Any(j=>j.ReservationId==r.Id&&j.Id==r.JobId&&j.InventoryLotId==r.LotId)
+                    &&!s.HarvestPreservationTreatmentAttempts.Any(j=>j.Id==r.JobId
+                        &&(j.TargetReservationId==r.Id&&j.InventoryLotId==r.LotId
+                            ||j.SupplyReservationId==r.Id&&j.SupplyLotId==r.LotId))
                     &&!s.MiningAttempts.Any(j=>j.Id==r.JobId&&j.SelectedUnitIds.Contains(r.LotId,StringComparer.Ordinal)))
-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)&&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestRequirementWorks.Any(j=>j.Id==w.JobId)&&!s.MiningAttempts.Any(j=>j.Id==w.JobId)&&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)))
+                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)&&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestRequirementWorks.Any(j=>j.Id==w.JobId)&&!s.HarvestPreservationTreatmentAttempts.Any(j=>j.Id==w.JobId)&&!s.MiningAttempts.Any(j=>j.Id==w.JobId)&&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)))
                 return "UnattributedInventoryLedger";
             foreach(var job in s.Intakes) {
                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);

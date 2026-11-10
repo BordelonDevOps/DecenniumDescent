@@ -383,6 +383,7 @@ namespace Decennium.Foundation
                 || s.SupplyCacheAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor)
                 || s.HarvestRequirementWorks.Any(x=>x.Id==id&&x.WorkerId==actor)
+                || s.HarvestPreservationTreatmentAttempts.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.MiningAttempts.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)

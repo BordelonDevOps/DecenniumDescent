@@ -1,0 +1,68 @@
+{
+  "module": "MGT-05B",
+  "status": "implementation-authorized-not-yet-accepted",
+  "schema": 75,
+  "scope": "closed-container preservation treatment; TEST_ONLY",
+  "sourceAuthority": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+    "sections": "Preservation and spoilage, source lines 152-166",
+    "facts": [
+      "state changes after one and two unprotected preservation intervals",
+      "reservations do not suspend aging",
+      "maximum treated lot 10 lb",
+      "30 active minutes and suitable trade kit",
+      "suitable sealable fitting container",
+      "1 gp worth of supply per 0.5 lb",
+      "one DC 10 check",
+      "success pauses decay for 24 elapsed hours",
+      "failure grants no extension; already Spoiled cannot be rescued"
+    ]
+  },
+  "candidateFixtureAuthority": {
+    "path": "DescentReviewChanges/ReviewBible/data/playtest/crafting_engine_candidate.json",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "6aa9b36a53bfac8c927ef2e3689c0475aaeadf8e26ce4c9acbcb1eba08076ff4",
+    "classification": "candidate fixture data, not preservation-rule text",
+    "bindings": [
+      "10 lb maximum",
+      "30 minutes",
+      "0.5 lb supplies",
+      "24 hours",
+      "Cooking with Cook's utensils"
+    ],
+    "embeddedSourceHashVerifiesMarkdown": false
+  },
+  "testOnlyMaterial": {
+    "materialId": "generic.ordinary-fish-meat",
+    "origin": "existing harvested river fish meat lot",
+    "massPounds": "1/4",
+    "preservationIntervalSeconds": 28800,
+    "nutrition": "None",
+    "attemptsPerFixtureRun": 1
+  },
+  "sharedAuthorities": [
+    "Snapshot schema and validation",
+    "SnapshotCodec and deterministic command receipts",
+    "RuleClock",
+    "WorkLedger reservations and WorkerIntervals",
+    "ActiveWorkProgress",
+    "InventoryLot ancestry and Work.Lots",
+    "PortableEquipment and existing storage/handling resolver",
+    "selected character and SkillTrainingRecord",
+    "AbilityCheckRules and RuleResolution",
+    "shared deterministic RNG/DiceStream"
+  ],
+  "deferred": [
+    "treatment exposure-event system",
+    "clean-tool opening exception",
+    "active-protection content splitting, repacking, removal",
+    "re-treatment",
+    "interruption or cancellation settlement",
+    "other materials",
+    "cooked/edible output or production recipe integration",
+    "currency debit for already-owned supply stock",
+    "assistants, quality tables, or general catalogue"
+  ]
+}
