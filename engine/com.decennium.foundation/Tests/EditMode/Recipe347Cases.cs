@@ -226,10 +226,11 @@ namespace Decennium.Foundation.Tests
         }
 
         private static void Recipe347PolicyForQuality(CraftQuality target,int requiredMishapResult,
-            out TestOnlySharedWorldPolicy policy,out Snapshot initial,out int modifier,out int natural)
+            out TestOnlySharedWorldPolicy policy,out Snapshot initial,out int modifier,out int natural,
+            int siteX=3,int siteY=3)
         {
             for(int wisdom=1;wisdom<=30;wisdom++) {
-                var mining=new SharedMiningFixture(wisdom:wisdom);
+                var mining=new SharedMiningFixture(wisdom:wisdom,siteX:siteX,siteY:siteY);
                 var probe=Recipe347Policy(1,mining);var probeState=probe.Initial();
                 int candidateModifier=checked(AbilityCheckRules.Derive(probeState,TestOnlyPolicy.CompanionId,
                     "mining-tools",CharacterAbility.Wisdom).Total
@@ -433,10 +434,7 @@ namespace Decennium.Foundation.Tests
                         var start=Recipe347Start(simulation,"recipe347.watch.order.recipe-first");
                         var query=simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(),start);
                         Require(query.Supported&&query.Admissible,"Recipe-first Watch booking failed admission at its exact boundary.");
-                        Recipe347Commit(simulation,start,policy);WorldAdvance(simulation,1);
-                        var order=simulation.Capture().Recipe347WorkOrders.Single();
-                        Recipe347Commit(simulation,new Command("recipe347.watch.order.pause-recipe",TestOnlyPolicy.CompanionId,
-                            simulation.Capture().Revision,CommandKind.PauseRecipe347,order.Id),policy);
+                        Recipe347Commit(simulation,start,policy);
                     } else {
                         var start=MiningCommand(simulation,CommandKind.StartMining,SharedMiningFixture.DepositId,
                             new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,new[]{SharedMiningFixture.CategoryA},MiningAbilityChoice.Wisdom),
@@ -463,13 +461,19 @@ namespace Decennium.Foundation.Tests
                         Recipe347Commit(simulation,start,policy);
                     }
                     var state=simulation.Capture();
-                    var prior=state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
-                        &&x.Start==new RuleTime(24*3600));
                     var following=state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
                         &&x.Start==new RuleTime(32*3600));
+                    var prior=recipeFirst
+                        ?state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
+                            &&x.JobId==state.Recipe347WorkOrders.Single().Id&&x.End==following.Start)
+                        :state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
+                            &&x.JobId==state.MiningAttempts.Single().Id&&x.Start==new RuleTime(24*3600));
                     Require(state.Recipe347WorkOrders.Length==1&&state.MiningAttempts.Length==1
-                        &&prior.End==new RuleTime(32*3600)&&following.Start==prior.End,
-                        "Half-open Watch booking must admit the next job exactly when the prior interval ends.");
+                        &&following.Start==new RuleTime(32*3600)
+                        &&(recipeFirst?prior.End==following.Start:prior.End==new RuleTime(24*3600+1)&&prior.End<following.Start),
+                        "The two booking orders must preserve actual active intervals: recipe-first must touch at the half-open hour-32 endpoint,"
+                        +" while mining-first pauses at its recorded one-second endpoint. Prior end="+prior.End.ToString()
+                        +" following start="+following.Start.ToString()+".");
                 }
             });
             cases.Add("recipe347_source_access_gates_and_workshop_claim_have_query_commit_parity",()=>{
@@ -727,6 +731,67 @@ namespace Decennium.Foundation.Tests
                             "The post-recipe Mining remedy did not settle against the actual Miner’s-tools target.");
                     }
                 }
+            });
+            cases.Add("recipe347_fouled_apparatus_cleanup_accepts_untrained_concurrent_workers_and_replays",()=>{
+                Recipe347PolicyForQuality(CraftQuality.Mishap,5,out var policy,out var initial,out _,out _,siteX:1,siteY:0);
+                var simulation=new Simulation(policy,initial,ExecutionProfile.Laboratory);
+                PrepareRecipe347Workshop(simulation);var workshop=simulation.Capture().Recipe347Workshops.Single();
+                var order=CompleteRecipe347Order(simulation,policy,allowNonComplete:true);var state=simulation.Capture();
+                var incident=state.CraftingIncidents.Single(x=>x.Id==order.IncidentId);
+                var cleaner=state.Actors.Single(x=>x.Id==TestOnlyPolicy.ActorId);
+                var kit=state.PortableEquipment.Single(x=>x.Id==TestOnlyRecipe347Fixture.MiningToolsItemId);
+                Require(order.Status==Recipe347OrderStatus.Mishap&&order.MishapResult==5&&incident.Result==5
+                    &&incident.RequiredLabor==new RuleTime(3600)&&state.Recipe347Outputs.Length==0
+                    &&WorldSpatialQueries.WithinCardinalRange(cleaner.X,cleaner.Y,workshop.SiteX,workshop.SiteY,1)
+                    &&kit.CustodianId!=cleaner.Id
+                    &&!state.SkillTraining.Any(x=>x.ActorId==cleaner.Id&&x.SkillId=="mining-tools"&&x.ProficiencyRank>0),
+                    "The seeded Fouled apparatus case must leave a station-cleanup obligation for an untrained, non-custodian worker at the actual workshop."
+                    +" order="+order.Status.ToString()+" mishap="+order.MishapResult.ToString()+" incident="+incident.Result.ToString()
+                    +" labor="+incident.RequiredLabor.ToString()+" outputs="+state.Recipe347Outputs.Length.ToString()
+                    +" cleaner="+cleaner.X.ToString()+","+cleaner.Y.ToString()+" site="+workshop.SiteX.ToString()+","+workshop.SiteY.ToString()
+                    +" custodian="+kit.CustodianId+" training="+state.SkillTraining.Any(x=>x.ActorId==cleaner.Id
+                        &&x.SkillId=="mining-tools"&&x.ProficiencyRank>0).ToString());
+                var command=new Command("recipe347.mishap5.cleanup.untrained",TestOnlyPolicy.ActorId,state.Revision,
+                    CommandKind.StartCraftRemedy,incident.Id);
+                var query=simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(),command);
+                if(query.Supported&&!query.Admissible&&(query.Code=="Recipe347WorkMustStartAtWatchBoundary"
+                    ||query.Code=="Recipe347ScheduledRestWatch")) {
+                    Recipe347WaitForNextWorkWatch(simulation);state=simulation.Capture();incident=state.CraftingIncidents.Single(x=>x.Id==order.IncidentId);
+                    command=new Command("recipe347.mishap5.cleanup.untrained."+state.Revision,TestOnlyPolicy.ActorId,
+                        state.Revision,CommandKind.StartCraftRemedy,incident.Id);
+                    query=simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(),command);
+                }
+                Require(query.Supported&&query.Admissible&&query.Costs.Count==0,
+                    "A capable worker at the Mining station must be able to clean Fouled apparatus without Mining training or custody of the kit; query="+query.Code+".");
+                Recipe347Commit(simulation,command,policy);
+                var second=new Command("recipe347.mishap5.cleanup.second",TestOnlyPolicy.CompanionId,simulation.Capture().Revision,
+                    CommandKind.StartCraftRemedy,incident.Id);
+                var secondQuery=simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(),second);
+                Require(secondQuery.Supported&&secondQuery.Admissible,
+                    "A second capable worker must be able to contribute to source-qualified station cleanup; query="+secondQuery.Code+".");
+                Recipe347Commit(simulation,second,policy);var started=Bytes(simulation);
+                var left=new Simulation(policy,new SnapshotCodec().Decode(started),ExecutionProfile.Laboratory);
+                var right=new Simulation(policy,new SnapshotCodec().Decode(started),ExecutionProfile.Laboratory);
+                var half=IC(left,CommandKind.AdvanceClock,x:900,y:1);
+                var replayHalf=new Command(half.Id,half.Actor,right.Capture().Revision,half.Kind,half.Target,half.X,half.Y,half.Inventory);
+                Recipe347Commit(left,half,policy);Recipe347Commit(right,replayHalf,policy);
+                var halfway=left.Capture().CraftingIncidents.Single(x=>x.Id==incident.Id);
+                Require(Bytes(left).SequenceEqual(Bytes(right))&&halfway.Labor==new RuleTime(1800)
+                    &&halfway.Workers.Count==2&&!halfway.Remedied,
+                    "Two-worker cleanup must credit both workers deterministically while retaining an unfinished saveable obligation.");
+                byte[] midpoint=Bytes(left);var restored=new Simulation(policy,new SnapshotCodec().Decode(midpoint),ExecutionProfile.Laboratory);
+                var finish=IC(left,CommandKind.AdvanceClock,x:900,y:1);
+                var restoredFinish=new Command(finish.Id,finish.Actor,restored.Capture().Revision,finish.Kind,finish.Target,
+                    finish.X,finish.Y,finish.Inventory);
+                Recipe347Commit(left,finish,policy);Recipe347Commit(restored,restoredFinish,policy);
+                var settled=left.Capture().CraftingIncidents.Single(x=>x.Id==incident.Id);
+                Require(Bytes(left).SequenceEqual(Bytes(restored))&&settled.Remedied
+                    &&settled.Labor==settled.RequiredLabor&&settled.RequiredLabor==new RuleTime(3600)
+                    &&settled.Workers.Count==0&&!CraftingRestrictions.StationUseBlocked(left.Capture(),incident.StationId),
+                    "Restored concurrent cleanup must settle the exact source labor once and unblock the actual station.");
+                Require(restored.Execute(TestOnlySharedWorldPolicy.Host(),finish).Outcome==Outcome.Duplicate
+                    &&Bytes(restored).SequenceEqual(Bytes(left)),
+                    "Replaying the restored cleanup completion must not repeat labor or station settlement.");
             });
             cases.Add("recipe347_pending_quality_choice_queries_for_free_and_restores_clock_continuation",()=>{
                 Recipe347PolicyForQuality(CraftQuality.Masterwork,0,out var policy,out var initial,
