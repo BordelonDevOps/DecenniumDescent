@@ -1,6 +1,6 @@
 # MGT-04 recipe-347 implementation evidence
 
-**Status:** The bounded C# implementation and its validation are ready for GPT's implementation review. GPT has agreed to the source/API contract, but has not reviewed this implementation evidence yet. This does not mark MGT-04 or the engine complete.
+**Historical candidate:** This evidence is for the pre-correction source commit `fd561c5e8b08e915b3d79ca952a16db04da3e36e`. GPT reviewed it and held acceptance on six findings. The current correction candidate, its exact changed files, updated validations and pending review are in [the correction packet](../2026-11-10-mgt04-gpt-corrections/README.md). The full-suite result below applies only to this historical candidate. Neither this historical packet nor the correction packet marks MGT-04 or the engine complete.
 
 **Implementation commit:** `fd561c5e8b08e915b3d79ca952a16db04da3e36e` on `Engine`. The exact parent and 45-file change list are in [IMPLEMENTATION_COMMIT.md](IMPLEMENTATION_COMMIT.md).
 
