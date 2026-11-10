@@ -2,6 +2,8 @@
 
 Review the exact Engine implementation commit supplied with this packet. The pinned source/API contract in `MGT04_RECIPE347_RULE_DECISIONS.md` was already agreed. Review implementation and evidence against that contract; do not reopen settled source decisions.
 
+**Implementation commit:** `fd561c5e8b08e915b3d79ca952a16db04da3e36e`. Its exact parent and changed-file list are in [IMPLEMENTATION_COMMIT.md](IMPLEMENTATION_COMMIT.md).
+
 ## Scope and source requirements
 
 This is one `TEST_ONLY` recipe-347 work order connected to the existing physical Mining Tool body and mining path. Reuse `WorkLedger`, `ActiveWorkProgress`, shared clock and continuation, character/check facts, RNG, inventory and physical body/structure, command receipts, existing mining attempts/stock, persistence and replay. Recipe records are gated at schema72; the composed counted-lot simulation selects schema73. Preserve Alchemy schema18/20 and legacy deposit-bound mining schema49 behavior.

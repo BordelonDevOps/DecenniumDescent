@@ -2,7 +2,7 @@
 
 ## 2026-11-10 — Recipe-347 craft-to-mining integration (recipe records schema72, composed counted-lot state schema73, TEST_ONLY)
 
-**Status:** The bounded implementation is executable and awaiting GPT's implementation review. GPT's earlier approval was a source/API contract review only. Do not mark MGT-04 or the engine complete, and do not start a successor dependency until GPT has reviewed the exact commit and evidence, concrete findings are resolved, and the next mapped dependency is agreed.
+**Status:** The bounded implementation is executable at commit `fd561c5e8b08e915b3d79ca952a16db04da3e36e` and awaiting GPT's implementation review. GPT's earlier approval was a source/API contract review only. Do not mark MGT-04 or the engine complete, and do not start a successor dependency until GPT has reviewed the exact commit and evidence, concrete findings are resolved, and the next mapped dependency is agreed.
 
 **Responsibilities and authorities:** The recipe work order, output provenance, reusable mining-tool profile, per-attempt use evidence and measured work segments bind one TEST_ONLY recipe-347 order to the existing `WorkLedger`, `ActiveWorkProgress`, `RuleClock`, character/check facts, shared RNG, inventory lots and physical body/structure. Existing mining attempts, finite deposit stock, receivers, command receipts and snapshot persistence remain authoritative. Recipe records are introduced at schema72; the full counted-lot simulation uses schema73. No duplicate inventory, clock, RNG or mutable Watch counter is added.
 

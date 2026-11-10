@@ -2,6 +2,8 @@
 
 **Status:** The bounded C# implementation and its validation are ready for GPT's implementation review. GPT has agreed to the source/API contract, but has not reviewed this implementation evidence yet. This does not mark MGT-04 or the engine complete.
 
+**Implementation commit:** `fd561c5e8b08e915b3d79ca952a16db04da3e36e` on `Engine`. The exact parent and 45-file change list are in [IMPLEMENTATION_COMMIT.md](IMPLEMENTATION_COMMIT.md).
+
 ## Responsibilities and authoritative records
 
 This increment connects the reviewed recipe-347 card to one real, reusable physical Mining Tool body.
