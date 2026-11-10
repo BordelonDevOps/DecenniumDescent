@@ -208,9 +208,15 @@ namespace Decennium.Foundation.Laboratory
                         return deposit!=null&&(ids.Contains(deposit.MiningToolsId)||ids.Contains(deposit.PickId)||ids.Contains(deposit.ReceiverId)
                             ||x.SelectedUnitIds.Any(ids.Contains));
                     })
-                ||s.SchemaVersion>=Snapshot.MiningToolCandidateSchema&&s.MiningToolUses.Where(x=>s.MiningAttempts.Any(a=>a.Id==x.MiningAttemptId
-                    &&a.Status==MiningAttemptStatus.Working))
-                    .Any(x=>s.MiningToolCandidateProfiles.Any(p=>p.Id==x.ProfileId&&ids.Contains(p.ToolItemId)))
+                ||s.SchemaVersion>=Snapshot.MiningToolCandidateSchema&&s.MiningToolUses.Any(use=>{
+                    var profile=s.MiningToolCandidateProfiles.SingleOrDefault(p=>p.Id==use.ProfileId);
+                    var attempt=s.MiningAttempts.SingleOrDefault(a=>a.Id==use.MiningAttemptId);
+                    bool recipeProduced=profile!=null&&s.SchemaVersion>=Snapshot.Recipe347Schema
+                        &&s.Recipe347MiningToolProfiles.Any(x=>x.ItemId==profile.ToolItemId);
+                    return profile!=null&&attempt!=null&&ids.Contains(profile.ToolItemId)
+                        &&(attempt.Status==MiningAttemptStatus.Working||!recipeProduced
+                            &&(attempt.Status==MiningAttemptStatus.Paused||attempt.Status==MiningAttemptStatus.AwaitingCheck));
+                })
                 ||s.CacheExcavations.Any(x=>(x.Status==CacheExcavationStatus.Working||x.Status==CacheExcavationStatus.Paused)&&ids.Contains(x.ShovelId))
                 ||s.MineralPreparationAttempts.Where(x=>x.Status==MineralPreparationStatus.Working||x.Status==MineralPreparationStatus.Paused
                     ||x.Status==MineralPreparationStatus.AwaitingCompletion).Any(x=>{

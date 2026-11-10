@@ -1052,8 +1052,13 @@ namespace Decennium.Foundation
                 ||attempt.Status==MiningAttemptStatus.Failure||attempt.Status==MiningAttemptStatus.CriticalFailure;
             // An unresolved use preserves measured work but is requalified against the tool's
             // current physical state when its check is actually resolved. Paused work may legally
-            // release and relocate the body before that check.
-            bool toolQualified=resolved&&use.CheckBonusApplied;
+            // release and relocate the recipe-produced body before that check. Only that versioned
+            // recipe path may retain its completed result after later relocation; legacy schema49
+            // candidate validation continues to derive qualification from its current body state.
+            bool recipeProduced=s.SchemaVersion>=Snapshot.Recipe347Schema
+                &&s.Recipe347MiningToolProfiles.Any(x=>x.ItemId==profile.ToolItemId);
+            bool toolQualified=recipeProduced?resolved&&use.CheckBonusApplied
+                :MiningToolCandidateRules.Qualifies(s,profile,instance,use,attempt.WorkerId,attempt.SelectedUnitIds);
             if(resolved&&use.CheckBonusApplied&&use.ToolWorkDone<new RuleTime(60))
                 throw new ArgumentException("Mining-tool check bonus lacks the required actual participation.");
             bool expectedReserve=resolved&&attempt.Status==MiningAttemptStatus.CriticalSuccess&&toolQualified&&use.ReservedUnitId!="";

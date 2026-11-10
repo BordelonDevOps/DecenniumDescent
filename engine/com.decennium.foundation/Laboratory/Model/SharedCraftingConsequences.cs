@@ -255,10 +255,28 @@ namespace Decennium.Foundation.Laboratory
             if (incident.Result == 2 && TargetInActiveRepair(s, incident.ToolId)) return false;
             if (!CapableWorker(s, actor) || AvailableHands(s, actor) < 1 || s.WorldTraversals.Any(x => x.ActorId == actor)
                 || s.InventoryCombat && s.WorldSchedule.Order.Contains(actor)) return false;
-            var body = s.Actors.Single(x => x.Id == actor);
-            if (Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return false;
+            bool recipeMining=recipe347Fixture!=null&&incident.TradeId=="Mining";
+            if(recipeMining) {
+                var workshop=s.Recipe347Workshops.SingleOrDefault(x=>x.StationId==incident.StationId);
+                var worker=s.Actors.SingleOrDefault(x=>x.Id==actor);
+                var structure=s.Structures.SingleOrDefault(x=>x.Id==incident.ToolId);
+                var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==TestOnlyRecipe347Fixture.MiningToolsItemId);
+                var station=workshop==null?null:s.Structures.SingleOrDefault(x=>x.Id==workshop.StationStructureId
+                    &&x.LocationId==workshop.SiteId&&!x.Broken);
+                if(incident.ToolId!=TestOnlyRecipe347Fixture.MiningToolsStructureId
+                    ||workshop==null||worker==null||structure==null||item==null||station==null
+                    ||structure.LocationId!=PortableEquipmentValidation.GroundLocation(item)||item.CustodianId!=actor
+                    ||item.Placement!=PortablePlacement.Ground||item.GroundX!=workshop.SiteX||item.GroundY!=workshop.SiteY
+                    ||!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,workshop.SiteX,workshop.SiteY,1)
+                    ||!PortableEquipmentRules.Accessible(s,actor,item)
+                    ||!s.SkillTraining.Any(x=>x.ActorId==actor&&x.SkillId=="mining-tools"&&x.ProficiencyRank>0))return false;
+            } else {
+                var body = s.Actors.Single(x => x.Id == actor);
+                if (Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return false;
+            }
             if (incident.Result == 6 && actor != incident.LeadId) return false;
-            if (incident.Result == 2 && actor != TestOnlyPolicy.CompanionId && !(actor == TestOnlyPolicy.ActorId && crafting.HeroProficient)) return false;
+            if (incident.Result == 2 && !recipeMining&&actor != TestOnlyPolicy.CompanionId
+                && !(actor == TestOnlyPolicy.ActorId && crafting.HeroProficient)) return false;
             return true;
         }
         private void BookRemedy(Snapshot s, CraftingIncidentRecord incident)

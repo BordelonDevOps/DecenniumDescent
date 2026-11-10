@@ -463,11 +463,13 @@ namespace Decennium.Foundation.Tests
                         Recipe347Commit(simulation,start,policy);
                     }
                     var state=simulation.Capture();
+                    var prior=state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
+                        &&x.Start==new RuleTime(24*3600));
+                    var following=state.Work.WorkerIntervals.Single(x=>x.WorkerId==TestOnlyPolicy.CompanionId
+                        &&x.Start==new RuleTime(32*3600));
                     Require(state.Recipe347WorkOrders.Length==1&&state.MiningAttempts.Length==1
-                        &&state.Work.WorkerIntervals.Any(x=>x.WorkerId==TestOnlyPolicy.CompanionId
-                            &&x.Start>=new RuleTime(24*3600)&&x.Start<new RuleTime(32*3600))
-                        &&state.Work.WorkerIntervals.Any(x=>x.WorkerId==TestOnlyPolicy.CompanionId&&x.Start==new RuleTime(32*3600)),
-                        "The two source-qualified jobs did not book distinct Morning/Afternoon Watches in the tested order.");
+                        &&prior.End==new RuleTime(32*3600)&&following.Start==prior.End,
+                        "Half-open Watch booking must admit the next job exactly when the prior interval ends.");
                 }
             });
             cases.Add("recipe347_source_access_gates_and_workshop_claim_have_query_commit_parity",()=>{
@@ -681,6 +683,28 @@ namespace Decennium.Foundation.Tests
                             &&incident.RequiredLabor==new RuleTime(7200)&&incident.At>new RuleTime(57600)
                             &&CraftingRestrictions.CraftingCheckBlocked(state,TestOnlyRecipe347Fixture.MiningToolsStructureId),
                             "The late recipe Mishap did not bind Mining's primary Miner’s-tools target and its two-hour recalibration remedy.");
+                        var inaccessible=new Simulation(policy,state,ExecutionProfile.Laboratory);
+                        var workshop=inaccessible.Capture().Recipe347Workshops.Single();
+                        Recipe347PortableCommit(inaccessible,Portable(inaccessible,CommandKind.HandlePortableEquipment,
+                            TestOnlyRecipe347Fixture.MiningToolsItemId,handling:HandlingKind.Pickup,
+                            actor:TestOnlyPolicy.CompanionId));
+                        Recipe347MoveCompanionTo(inaccessible,workshop.SiteX+1,workshop.SiteY);
+                        Recipe347PortableCommit(inaccessible,Portable(inaccessible,CommandKind.HandlePortableEquipment,
+                            TestOnlyRecipe347Fixture.MiningToolsItemId,handling:HandlingKind.Drop,
+                            actor:TestOnlyPolicy.CompanionId));
+                        var movedKit=inaccessible.Capture();
+                        var movedMiningKit=movedKit.PortableEquipment.Single(x=>x.Id==TestOnlyRecipe347Fixture.MiningToolsItemId);
+                        Require(movedMiningKit.Placement==PortablePlacement.Ground&&movedMiningKit.GroundX==workshop.SiteX+1
+                            &&movedMiningKit.GroundY==workshop.SiteY,
+                            "The source-backed relocation branch did not move the mining kit away from its workshop site.");
+                        var inaccessibleCommand=new Command("recipe347.mishap.remedy.inaccessible."+movedKit.Revision,
+                            TestOnlyPolicy.CompanionId,movedKit.Revision,CommandKind.StartCraftRemedy,incident.Id);
+                        byte[] beforeInaccessible=Bytes(inaccessible);
+                        var inaccessibleQuery=inaccessible.QueryCommand(TestOnlySharedWorldPolicy.Host(),inaccessibleCommand);
+                        Require(inaccessibleQuery.Supported&&!inaccessibleQuery.Admissible
+                            &&inaccessibleQuery.Code=="CraftRemedyWorkerIneligible"
+                            &&Bytes(inaccessible).SequenceEqual(beforeInaccessible),
+                            "A trained worker at the workshop must not recalibrate a Miner’s kit physically away from that workshop.");
                         var remedy=new Command("recipe347.mishap.remedy."+state.Revision,TestOnlyPolicy.CompanionId,
                             state.Revision,CommandKind.StartCraftRemedy,incident.Id);
                         var query=simulation.QueryCommand(TestOnlySharedWorldPolicy.Host(),remedy);
@@ -731,6 +755,76 @@ namespace Decennium.Foundation.Tests
                     &&restored.Execute(TestOnlySharedWorldPolicy.Host(),command).Outcome==Outcome.Duplicate
                     &&Bytes(restored).SequenceEqual(settled),
                     "Resolving the restored pending choice lost its clock continuation, repeated settlement, or failed duplicate receipt handling.");
+            });
+            cases.Add("recipe347_mishap_three_commits_tool_damage_and_replays",()=>{
+                Recipe347PolicyForQuality(CraftQuality.Mishap,3,out var policy,out var initial,out _,out int natural);
+                var simulation=new Simulation(policy,initial,ExecutionProfile.Laboratory);
+                PrepareRecipe347Workshop(simulation);Recipe347WaitForNextWorkWatch(simulation);
+                var start=Recipe347Start(simulation,"recipe347.mishap3.start");Recipe347Commit(simulation,start,policy);
+                const long laborBeforeCheck=143999;
+                Recipe347WorkOrderRecord order=null;byte[] checkpoint=null;
+                for(int step=0;step<24;step++) {
+                    var workingState=simulation.Capture();order=workingState.Recipe347WorkOrders.Single();
+                    if(order.Work.Labor==new RuleTime(laborBeforeCheck)) {checkpoint=Bytes(simulation);break;}
+                    if(order.Status==Recipe347OrderStatus.Working) {
+                        var interval=workingState.Work.WorkerIntervals.Single(x=>x.JobId==order.Id
+                            &&x.Start<=workingState.RuleClock&&x.End>workingState.RuleClock);
+                        Require(workingState.RuleClock.Denominator==1&&interval.End.Denominator==1
+                            &&order.Work.Labor.Denominator==1,
+                            "The seeded whole-second recipe fixture unexpectedly acquired a fractional work boundary.");
+                        long activeSeconds=checked(interval.End.Numerator-workingState.RuleClock.Numerator);
+                        long remaining=checked(laborBeforeCheck-order.Work.Labor.Numerator);
+                        long advance=Math.Min(activeSeconds,remaining);
+                        Require(advance>0,"Mishap-3 replay checkpoint made no active work progress.");
+                        WorldAdvance(simulation,checked((int)advance));
+                    } else if(order.Status==Recipe347OrderStatus.Paused) {
+                        Recipe347WaitForNextWorkWatch(simulation);
+                        order=simulation.Capture().Recipe347WorkOrders.Single();
+                        Recipe347Commit(simulation,new Command("recipe347.mishap3.resume."+simulation.Capture().Revision,
+                            TestOnlyPolicy.CompanionId,simulation.Capture().Revision,CommandKind.ResumeRecipe347,order.Id),policy);
+                    } else throw new Exception("Mishap-3 scenario reached unexpected pre-check status: "+order.Status.ToString());
+                }
+                Require(checkpoint!=null&&order!=null&&order.Work.Labor==new RuleTime(laborBeforeCheck)
+                    &&(order.Status==Recipe347OrderStatus.Working||order.Status==Recipe347OrderStatus.Paused),
+                    "Mishap-3 case did not retain exactly one second before its automatic result check.");
+                var left=new Simulation(policy,new SnapshotCodec().Decode(checkpoint),ExecutionProfile.Laboratory);
+                var right=new Simulation(policy,new SnapshotCodec().Decode(checkpoint),ExecutionProfile.Laboratory);
+                if(order.Status==Recipe347OrderStatus.Paused) {
+                    Recipe347WaitForNextWorkWatch(left);Recipe347WaitForNextWorkWatch(right);
+                    var leftOrder=left.Capture().Recipe347WorkOrders.Single();var rightOrder=right.Capture().Recipe347WorkOrders.Single();
+                    var leftResume=new Command("recipe347.mishap3.resume.replay",TestOnlyPolicy.CompanionId,left.Capture().Revision,
+                        CommandKind.ResumeRecipe347,leftOrder.Id);
+                    var rightResume=new Command(leftResume.Id,TestOnlyPolicy.CompanionId,right.Capture().Revision,
+                        CommandKind.ResumeRecipe347,rightOrder.Id);
+                    Recipe347Commit(left,leftResume,policy);Recipe347Commit(right,rightResume,policy);
+                }
+                var check=IC(left,CommandKind.AdvanceClock,x:1,y:1);
+                var replayCheck=new Command(check.Id,check.Actor,right.Capture().Revision,check.Kind,check.Target,
+                    check.X,check.Y,check.Inventory);
+                Recipe347Commit(left,check,policy);Recipe347Commit(right,replayCheck,policy);
+                var state=left.Capture();order=state.Recipe347WorkOrders.Single();
+                var incident=state.CraftingIncidents.Single(x=>x.Id==order.IncidentId);
+                var kit=state.Structures.Single(x=>x.Id==TestOnlyRecipe347Fixture.MiningToolsStructureId);
+                Require(Bytes(left).SequenceEqual(Bytes(right))&&order.Status==Recipe347OrderStatus.Mishap
+                    &&order.Quality==CraftQuality.Mishap&&order.Natural==natural&&order.MishapResult==3
+                    &&incident.Result==3&&incident.Damage==1&&incident.ToolId==kit.Id
+                    &&kit.MaximumHp==5&&kit.Hp==4&&kit.Material==ObjectMaterial.WoodLeather
+                    &&kit.MassPounds==new RuleQuantity(10)&&state.Recipe347Outputs.Length==0
+                    &&state.Recipe347MiningToolProfiles.Length==0
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.ComponentLotIds[0]).Amount==default(RuleQuantity)
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.ComponentLotIds[1]).Amount==default(RuleQuantity)
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.ComponentLotIds[2]).Amount==new RuleQuantity(1)
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.ComponentLotIds[3]).Amount==default(RuleQuantity)
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.ComponentLotIds[4]).Amount==default(RuleQuantity)
+                    &&state.Work.Lots.Single(x=>x.Id==TestOnlyRecipe347Fixture.BodyLotId).Amount==new RuleQuantity(3),
+                    "Seeded Mishap 3 must commit one authoritative kit damage, consume the correct lots, retain the extraction tools/body, and create no output.");
+                byte[] saved=Bytes(left);var restored=new Simulation(policy,new SnapshotCodec().Decode(saved),ExecutionProfile.Laboratory);
+                Require(saved.SequenceEqual(Bytes(restored))&&restored.Capture().Structures.Single(x=>x.Id==kit.Id).Hp==4
+                    &&restored.Capture().CraftingIncidents.Single(x=>x.Id==incident.Id).Damage==1,
+                    "Mishap-3 damage or incident history changed through save/restore.");
+                Require(restored.Execute(TestOnlySharedWorldPolicy.Host(),check).Outcome==Outcome.Duplicate
+                    &&saved.SequenceEqual(Bytes(restored)),
+                    "Duplicate restored Mishap-3 resolution repeated damage or material settlement.");
             });
             cases.Add("recipe347_portable_handling_cannot_cross_a_phase_boundary_and_next_phase_continues",()=>{
                 var policy=Recipe347Policy(1,new SharedMiningFixture(siteX:1,siteY:0));
@@ -833,6 +927,52 @@ namespace Decennium.Foundation.Tests
                     &&!excludedUse.CheckBonusApplied&&excludedUse.CriticalReserveAwardedUnitId=="",
                     "Moving the body after measured work but before the unresolved check must remove all recipe-tool effects.");
             });
+            cases.Add("mining_schema49_candidate_claim_and_historical_result_preserve_legacy_rules",()=>{
+                var scenario=Recipe347MiningScenario();
+                TestOnlySharedWorldPolicy LegacyPolicy(uint seed)
+                    =>new TestOnlySharedWorldPolicy(new PortableKitFixture(),new SharedCombatFixture(seed:seed),
+                        new SharedCraftingFixture(),new SupplyCacheFixture()).EnableMining(scenario.Fixture);
+                var unseeded=LegacyPolicy(1);
+                var initial=unseeded.Initial();
+                Require(initial.SchemaVersion==Snapshot.MiningToolCandidateSchema,
+                    "Legacy candidate regression must exercise the authenticated schema49 policy.");
+                var selection=new MiningSelectionRequest(scenario.Content.Deposit.VersionId,
+                    new[]{scenario.TargetCategoryId},MiningAbilityChoice.Wisdom);
+                var paused=new Simulation(unseeded,initial,ExecutionProfile.Laboratory);
+                MiningCommit(paused,MiningCommand(paused,CommandKind.StartMining,scenario.Content.Deposit.Id,selection));
+                var pending=paused.Capture().MiningAttempts.Single();
+                MiningCommit(paused,MiningCommand(paused,CommandKind.PauseMining,pending.Id));
+                var pickup=Portable(paused,CommandKind.HandlePortableEquipment,scenario.ToolItemId,
+                    handling:HandlingKind.Pickup,actor:MiningWorker);
+                byte[] beforePickup=Bytes(paused);
+                var blocked=paused.Execute(TestOnlySharedWorldPolicy.Host(),pickup);
+                Require(blocked.Outcome==Outcome.Rejected&&blocked.Code=="PortableItemHasPendingWork"
+                    &&beforePickup.SequenceEqual(Bytes(paused)),
+                    "A paused schema49 extraction must retain its historical pending claim on the candidate tool; result="
+                    +blocked.Outcome.ToString()+"/"+(blocked.Code??"null"));
+                byte[] pausedSave=Bytes(paused);
+                var restoredPaused=new Simulation(unseeded,new SnapshotCodec().Decode(pausedSave),ExecutionProfile.Laboratory);
+                Require(pausedSave.SequenceEqual(Bytes(restoredPaused)),
+                    "The schema49 paused candidate claim changed through save and restore.");
+
+                int baseModifier=MiningModifier(initial);
+                uint seed=MiningSeedFor(TaskDegree.CriticalSuccess,
+                    baseModifier+MiningToolCandidateProfileRecord.CheckBonus,dc:12);
+                var completedPolicy=LegacyPolicy(seed);
+                var completed=new Simulation(completedPolicy,completedPolicy.Initial(),ExecutionProfile.Laboratory);
+                MiningCommit(completed,MiningCommand(completed,CommandKind.StartMining,scenario.Content.Deposit.Id,selection));
+                WorldAdvance(completed,completed.Capture().MiningAttempts.Single().DurationSeconds);
+                var result=completed.Capture();var use=result.MiningToolUses.Single();
+                Require(result.SchemaVersion==Snapshot.MiningToolCandidateSchema&&use.CheckBonusApplied
+                    &&result.MiningAttempts.Single().Status==MiningAttemptStatus.CriticalSuccess,
+                    "Legacy historical relocation regression did not first establish a resolved, bonus-qualified use.");
+                var relocated=result.Copy();
+                relocated.PortableEquipment=relocated.PortableEquipment.Select(x=>x.Id==scenario.ToolItemId
+                    ?x.With(groundX:5,groundY:3):x).ToArray();
+                relocated.Structures=relocated.Structures.Select(x=>x.Id==scenario.Profile.StructureId
+                    ?x.WithLocation("ground.5.3"):x).ToArray();
+                Throws<ArgumentException>(()=>Validation.Snapshot(relocated));
+            });
             cases.Add("recipe347_same_tool_works_at_two_deposits_and_only_when_physically_deployed",()=>{
                 Recipe347StandardPolicy(out var policy,out var initial,out _,TwoDepositRecipe347Mining());
                 var simulation=new Simulation(policy,initial,ExecutionProfile.Laboratory);
@@ -919,6 +1059,119 @@ namespace Decennium.Foundation.Tests
                     +" sharedUses="+sharedUses.ToString()+" replay="+replayMatches.ToString()
                     +" finiteStockIdsPreserved="+secondStockIds.SequenceEqual(finalSecondStockIds).ToString());
             });
+            cases.Add("recipe347_connected_exploration_encounter_cache_storage_crafting_two_deposits_and_continue",()=>{
+                uint selectedSeed=1;var mining=TwoDepositRecipe347Mining();
+                var policy=Recipe347Policy(selectedSeed,mining);
+                var prepared=CampConstructionAtCheckpoint(policy,storage:true);
+                ResolveStorageCheckpointCombat(prepared);
+                string acquiredFood=CampConstructionPrepareCompanionFood(prepared,new RuleQuantity(2));
+                var acquired=prepared.Capture();
+                var routeFacts=acquired.RouteTravels;var cacheFacts=acquired.SupplyCaches;
+                var enemyFacts=acquired.Lives.Where(x=>x.ActorId==AdditionalTacticalActor.Id).ToArray();
+                var foodFacts=acquired.InventoryLots.Where(x=>x.LotId==acquiredFood).ToArray();
+                var foodWorkFacts=acquired.Work.Lots.Where(x=>x.Id==acquiredFood).ToArray();
+                var workerFacts=CharacterStateFacts.ForActor(acquired,TestOnlyPolicy.CompanionId,"mining-tools");
+                int craftModifier=checked(AbilityCheckRules.Derive(acquired,TestOnlyPolicy.CompanionId,
+                    "mining-tools",CharacterAbility.Wisdom).Total
+                    +workerFacts.InjuryPenalty(CharacterAbility.Wisdom,toolCheck:true)+1);
+                var predictedRoll=PlaytestDice.RollD20(acquired.RandomState);
+                CraftQuality predicted=ManufacturingRules.Quality(predictedRoll.Natural,craftModifier,20);
+                Require(routeFacts.Length==1&&routeFacts[0].Status==ExpeditionRouteTravelStatus.Paused
+                    &&!acquired.InventoryCombat&&acquired.MeleeAttacks.Length>0
+                    &&enemyFacts.Length==1&&enemyFacts[0].Dead&&cacheFacts.Length>0&&cacheFacts.All(x=>!x.Locked)
+                    &&foodFacts.Length==1&&foodFacts[0].OwnerId==TestOnlyPolicy.ActorId&&foodFacts[0].FreshUntil.HasValue
+                    &&foodWorkFacts.Length==1&&foodWorkFacts[0].Amount==new RuleQuantity(2)
+                    &&(predicted==CraftQuality.Standard||predicted==CraftQuality.Exceptional||predicted==CraftQuality.Masterwork),
+                    "Exploration checkpoint combat and the unlocked physical cache did not yield the same fresh two-pound inventory lot; route="
+                    +(routeFacts.FirstOrDefault()?.Status.ToString()??"missing")+"; attacks="+acquired.MeleeAttacks.Length.ToString()
+                    +"; enemyRecords="+enemyFacts.Length.ToString()+"; caches="+cacheFacts.Length.ToString()
+                    +"; foodRecords="+foodFacts.Length.ToString()+"; workLots="+foodWorkFacts.Length.ToString()
+                    +"; craft="+predicted.ToString()+"; natural="+predictedRoll.Natural.ToString()+"; modifier="+craftModifier.ToString());
+                PrepareRecipe347Workshop(prepared);
+                var crate=prepared.Capture().PortableEquipment.Single(x=>x.Id==TestOnlyPortableStorageFixture.CrateId);
+                Recipe347PortableCommit(prepared,Portable(prepared,CommandKind.HandlePortableEquipment,acquiredFood,crate.Id,
+                    HandlingKind.Stow,TestOnlyPolicy.CompanionId));
+                var managed=prepared.Capture();
+                var foodLotIds=managed.InventoryLots.Where(x=>x.LotId==acquiredFood||x.ParentId==acquiredFood)
+                    .Select(x=>x.LotId).ToHashSet(StringComparer.Ordinal);
+                var storedFoodItems=managed.PortableEquipment.Where(x=>x.ParentId==crate.Id
+                    &&x.LinkKind==PortableLinkKind.InventoryLot&&foodLotIds.Contains(x.LinkedId)).ToArray();
+                var storedFoodLots=managed.Work.Lots.Where(x=>storedFoodItems.Any(item=>item.LinkedId==x.Id)).ToArray();
+                Require(storedFoodItems.Length==1&&storedFoodLots.Length==1&&storedFoodLots[0].Amount==new RuleQuantity(2)
+                    &&managed.PortableEquipment.Single(x=>x.Id==TestOnlyRecipe347Fixture.BodyItemId).Placement==PortablePlacement.Ground,
+                    "The actual cache food was not portion-stored in the physical crate beside the staged recipe implements; items="
+                    +storedFoodItems.Length.ToString()+" lots="+storedFoodLots.Length.ToString());
+
+                var codec=new SnapshotCodec();byte[] preparationSave=Bytes(prepared);
+                var crafting=new Simulation(policy,codec.Decode(preparationSave),ExecutionProfile.Laboratory);
+                var leftOrder=CompleteRecipe347Order(crafting,policy);
+                Require(leftOrder.Status==Recipe347OrderStatus.Complete&&leftOrder.Quality==predicted,
+                    "The connected source roll did not settle to the predicted reusable recipe output; seed="+selectedSeed.ToString());
+                byte[] craftedSave=Bytes(crafting);
+                var left=new Simulation(policy,codec.Decode(craftedSave),ExecutionProfile.Laboratory);
+                var right=new Simulation(policy,codec.Decode(craftedSave),ExecutionProfile.Laboratory);
+                Require(craftedSave.SequenceEqual(Bytes(left))&&craftedSave.SequenceEqual(Bytes(right)),
+                    "The completed reusable output changed through save and restore before deterministic deposit replay.");
+                string outputItem=leftOrder.BodyItemId;
+                Simulation MineAtBothDeposits(Simulation simulation)
+                {
+                    var output=simulation.Capture().Recipe347MiningToolProfiles.Single(x=>x.ItemId==outputItem);
+                    int baseModifier=MiningModifier(simulation.Capture());
+                    var firstSelection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
+                        new[]{SharedMiningFixture.CategoryA},MiningAbilityChoice.Wisdom);
+                    Recipe347WaitForNextWorkWatch(simulation);
+                    MiningCommit(simulation,MiningCommand(simulation,CommandKind.StartMining,SharedMiningFixture.DepositId,
+                        firstSelection,commandId:"mgt04.connected.first."+selectedSeed.ToString()));
+                    WorldAdvance(simulation,simulation.Capture().MiningAttempts.Single().DurationSeconds);
+                    var first=simulation.Capture().MiningAttempts.Single();
+                    Require(first.CheckModifier==baseModifier+2&&simulation.Capture().MiningToolUses.Single(x=>x.MiningAttemptId==first.Id).CheckBonusApplied,
+                        "The crafted physical tool failed to qualify at the first source deposit.");
+                    Recipe347WaitForActivityWindow(simulation);
+                    PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,output.ItemId,
+                        handling:HandlingKind.Pickup,actor:TestOnlyPolicy.CompanionId));
+                    WorldStep(simulation,1,0,actor:TestOnlyPolicy.CompanionId);WorldAdvance(simulation,1);
+                    Recipe347WaitForActivityWindow(simulation);
+                    PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,output.ItemId,
+                        handling:HandlingKind.Drop,actor:TestOnlyPolicy.CompanionId));
+                    var secondDeposit=simulation.Capture().MiningDeposits.Single(x=>x.Id=="TEST_ONLY.mining.deposit.second");
+                    var relocated=simulation.Capture().PortableEquipment.Single(x=>x.Id==output.ItemId);
+                    Require(relocated.GroundX==secondDeposit.SiteX&&relocated.GroundY==secondDeposit.SiteY,
+                        "Ordinary pickup, exploration movement and drop did not deploy the same output at the second deposit.");
+                    byte[] atSecond=Bytes(simulation);
+                    simulation=new Simulation(policy,codec.Decode(atSecond),ExecutionProfile.Laboratory);
+                    var secondSelection=new MiningSelectionRequest(secondDeposit.VersionId,
+                        new[]{"TEST_ONLY.mining.category.second"},MiningAbilityChoice.Wisdom);
+                    Recipe347WaitForNextWorkWatch(simulation);
+                    int secondBase=MiningModifier(simulation.Capture());
+                    MiningCommit(simulation,MiningCommand(simulation,CommandKind.StartMining,secondDeposit.Id,secondSelection,
+                        commandId:"mgt04.connected.second."+selectedSeed.ToString()));
+                    var second=simulation.Capture().MiningAttempts.Single(x=>x.DepositId==secondDeposit.Id);
+                    byte[] pending=Bytes(simulation);
+                    var replay=new Simulation(policy,codec.Decode(pending),ExecutionProfile.Laboratory);
+                    WorldAdvance(simulation,second.DurationSeconds);WorldAdvance(replay,second.DurationSeconds);
+                    var completed=simulation.Capture().MiningAttempts.Single(x=>x.Id==second.Id);
+                    Require(completed.CheckModifier==secondBase+2
+                        &&simulation.Capture().MiningToolUses.Count(x=>simulation.Capture().MiningToolCandidateProfiles
+                            .Any(p=>p.Id==x.ProfileId&&p.ToolItemId==outputItem))==2
+                        &&Bytes(simulation).SequenceEqual(Bytes(replay)),
+                        "The same recipe output did not resolve mining at both deposits with deterministic save/restore replay.");
+                    byte[] finalSave=Bytes(simulation);
+                    return new Simulation(policy,codec.Decode(finalSave),ExecutionProfile.Laboratory);
+                }
+                left=MineAtBothDeposits(left);right=MineAtBothDeposits(right);
+                Require(Bytes(left).SequenceEqual(Bytes(right)),
+                    "Two continuations from the same exploration/cache save diverged across recipe and deposit work.");
+                foreach(var branch in new[]{left,right}) {
+                    Recipe347MoveCompanionTo(branch,2,2);
+                    WorldCommit(branch,RouteTravelCommand(branch,CommandKind.ResumeRouteTravel,
+                        "mgt04.connected.route.continue."+selectedSeed.ToString()));
+                    WorldAdvance(branch,10800);
+                }
+                byte[] continued=Bytes(left);var restoredContinue=new Simulation(policy,codec.Decode(continued),ExecutionProfile.Laboratory);
+                Require(continued.SequenceEqual(Bytes(right))&&continued.SequenceEqual(Bytes(restoredContinue))
+                    &&restoredContinue.Capture().RouteTravels.Single().Progress>acquired.RouteTravels.Single().Progress,
+                    "The connected expedition did not continue beyond its encounter checkpoint deterministically after shared-world restore.");
+            });
             cases.Add("recipe347_counted_lot_split_transfer_store_conserves_mass_volume_and_replays",()=>{
                 var policy=Recipe347Policy(23);var simulation=World(policy);PrepareRecipe347Workshop(simulation);
                 var before=simulation.Capture();string lotId=TestOnlyRecipe347Fixture.ComponentLotIds[0];
@@ -930,6 +1183,15 @@ namespace Decennium.Foundation.Tests
                 Require(original.MassBasis==PortableMassBasis.CountedQuantity&&originalMass==new RuleQuantity(1,2)
                     &&originalVolume==new RuleQuantity(1,10)&&originalContents<=crate.CapacityCubicFeet.Value,
                     "The five source handles must have exactly 0.5 lb and 0.1 ft3 and fit once inside the actual storage crate.");
+                var halfHandle=new Command("recipe347.counted.half-handle."+before.Revision,
+                    TestOnlyPolicy.CompanionId,before.Revision,CommandKind.PortionInventory,lotId,
+                    inventory:new InventoryRequest(new RuleQuantity(1,2)));
+                RejectUnchanged(simulation,TestOnlySharedWorldPolicy.Host(),halfHandle,"CountedInventoryMustBeWhole");
+                var fractionalCount=before.Copy();
+                fractionalCount.Work=new WorkLedger(fractionalCount.Work.Lots.Select(x=>x.Id==lotId
+                    ?new ResourceLot(x.Id,x.UnitId,new RuleQuantity(9,2),x.LocationId,x.CustodianId):x),
+                    fractionalCount.Work.WorkerIntervals,fractionalCount.Work.Reservations);
+                Throws<ArgumentException>(()=>Validation.Snapshot(fractionalCount));
                 string childId="inventory."+(before.Revision+1).ToString(System.Globalization.CultureInfo.InvariantCulture)+".lot";
                 var split=new Command("recipe347.counted.split."+before.Revision,TestOnlyPolicy.CompanionId,before.Revision,
                     CommandKind.PortionInventory,lotId,inventory:new InventoryRequest(new RuleQuantity(2)));

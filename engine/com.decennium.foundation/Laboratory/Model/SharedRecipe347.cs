@@ -55,6 +55,15 @@ namespace Decennium.Foundation.Laboratory
                 +"/"+x.Denominator.ToString(CultureInfo.InvariantCulture)))+"|body=1/25ft3-per-lb|miners=1/2ft3|assay=1/5ft3|pick=3/10ft3|"
             +string.Join(",",ComponentLotIds);
 
+        private static long ExpectedMiningToolsHp(Snapshot s)
+        {
+            long hp=5;
+            foreach(var incident in s.CraftingIncidents.Where(x=>x.ToolId==MiningToolsStructureId
+                &&x.TradeId=="Mining"&&x.Result==3).OrderBy(x=>x.At).ThenBy(x=>x.Revision))
+                hp=incident.Damage>=hp?0:hp-incident.Damage;
+            return hp;
+        }
+
         internal void Initialize(Snapshot s)
         {
             if(s.SchemaVersion!=Snapshot.PortableCountedLotSchema||s.MiningDeposits.Length==0
@@ -135,7 +144,7 @@ namespace Decennium.Foundation.Laboratory
             if(miningKit.ProfileId!="tools.miners-supplies"||miningKit.SourceWeightLb!=new RuleQuantity(10)
                 ||miningKit.OperationalWeightLb!=new RuleQuantity(10)
                 ||miningKitStructure.ProfileId!=miningKit.ProfileId||miningKitStructure.MaximumHp!=5
-                ||miningKitStructure.Hp!=5||miningKitStructure.MassPounds!=new RuleQuantity(10)
+                ||miningKitStructure.Hp!=ExpectedMiningToolsHp(s)||miningKitStructure.MassPounds!=new RuleQuantity(10)
                 ||miningKitStructure.Material!=ObjectMaterial.WoodLeather
                 ||storedPick==null||storedPick.ProfileId!="TEST_ONLY.mining-pick"
                 ||!workshop.ImplementIds.SequenceEqual(new[]{MiningToolsItemId,deposit.PickId,AssayKitId},StringComparer.Ordinal))

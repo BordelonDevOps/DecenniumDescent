@@ -332,6 +332,7 @@ namespace Decennium.Foundation
                                     ||PortableStorageProfileValidation.Find(s,item.ProfileId) is not PortableStorageProfileRecord countedProfile
                                     ||countedProfile.QuantityUnitId!=lot.UnitId||!countedProfile.MassPerUnitLb.HasValue
                                     ||!countedProfile.PackedVolumePerUnitCubicFeet.HasValue
+                                    ||lot.Amount.Denominator!=1
                                     ||countedProfile.PackedVolumePerUnitCubicFeet.Value<=default(RuleQuantity)))
                                 throw new ArgumentException("Portable inventory link does not match its physical lot.");
                             break;

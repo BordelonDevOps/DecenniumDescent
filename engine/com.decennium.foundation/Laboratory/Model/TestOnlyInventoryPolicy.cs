@@ -125,6 +125,7 @@ namespace Decennium.Foundation.Laboratory
                     ||!profile.PackedVolumePerUnitCubicFeet.HasValue)
                     return "UnsupportedInventoryProfile";
                 if(!PortableEquipmentRules.Accessible(s,c.Actor,physical))return "InventoryOutOfReach";
+                if(c.Inventory.Amount.Denominator!=1)return "CountedInventoryMustBeWhole";
                 if(c.Inventory.Amount>s.Work.AvailableAmount(lot.Id))return "InventoryQuantityUnavailable";
                 OrdinaryInventory.Descendant(s,lot.Id,OrdinaryInventory.Identity(s,"lot"),c.Inventory.Amount,
                     lot.LocationId,lot.CustodianId,item.Access);
