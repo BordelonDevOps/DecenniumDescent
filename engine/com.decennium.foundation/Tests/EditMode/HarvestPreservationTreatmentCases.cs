@@ -28,7 +28,7 @@ namespace Decennium.Foundation.Tests
         }
 
         private static Simulation PreparedHarvestTreatment(uint seed,bool portionFirst,out TestOnlySharedWorldPolicy policy,
-            out string treatedLotId,out string untreatedSiblingId)
+            out string treatedLotId,out string untreatedSiblingId,bool splitTreatedLotBeforeTreatment=false)
         {
             policy=TestOnlySharedWorldPolicy.WithHarvestPreservationTreatment(new SharedHarvestFixture(),seed);
             var simulation=World(policy);
@@ -52,6 +52,9 @@ namespace Decennium.Foundation.Tests
                 HarvestCommit(simulation,IC(simulation,CommandKind.PortionInventory,sourceLotId,
                     new InventoryRequest(RuleQuantity.FromFraction(1,8),"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
                 treatedLotId=simulation.Capture().InventoryLots.Single(x=>x.ParentId==sourceLotId).LotId;
+                if(splitTreatedLotBeforeTreatment)
+                    WorldCommit(simulation,IC(simulation,CommandKind.PortionInventory,treatedLotId,
+                        new InventoryRequest(RuleQuantity.FromFraction(1,16),"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
             }
 
             PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,treatedLotId,
@@ -305,6 +308,132 @@ namespace Decennium.Foundation.Tests
                 Require(spoiled.HarvestPreservationTreatmentAttempts.Length==0
                     &&spoiled.Work.Lots.Single(x=>x.Id==Mgt05bSupply).Amount==HarvestPreservationTreatmentValidation.SupplyAmount,
                     "An exact-deadline or already-Spoiled rejection reserved work or spent preservation stock.");
+            });
+
+            cases.Add("mgt05b_lineage_cutoff_save_restore_and_replay",()=>{
+                uint seed=HarvestTreatmentSeed(true);
+                var a=PreparedHarvestTreatment(seed,true,out var policyA,out string treated,out _,true);
+                var b=PreparedHarvestTreatment(seed,true,out var policyB,out string replayTreated,out _,true);
+                var preTreatmentChild=a.Capture().InventoryLots.Single(x=>x.ParentId==treated).LotId;
+                Require(treated==replayTreated&&Bytes(a).SequenceEqual(Bytes(b)),
+                    "The two actual harvest and pre-treatment subdivision runs did not begin identically.");
+                WorldCommit(a,StartHarvestTreatment(a,treated));WorldCommit(b,StartHarvestTreatment(b,replayTreated));
+                WorldAdvance(a,900);WorldAdvance(b,900);
+                byte[] midWork=Bytes(a);
+                var restored=new Simulation(policyA,new SnapshotCodec().Decode(midWork),ExecutionProfile.Laboratory);
+                Require(midWork.SequenceEqual(Bytes(restored))&&midWork.SequenceEqual(Bytes(b)),
+                    "The active treatment and pre-existing child did not round-trip or replay identically.");
+                WorldAdvance(restored,900);WorldAdvance(b,900);
+                var completed=restored.Capture();var attempt=completed.HarvestPreservationTreatmentAttempts.Single();
+                var originLot=completed.InventoryLots.Single(x=>x.LotId==treated);
+                while(originLot.ParentId!="")originLot=completed.InventoryLots.Single(x=>x.LotId==originLot.ParentId);
+                var harvest=completed.HarvestUnits.Single(x=>x.Id==originLot.LotId);
+                RuleQuantity expectedAge=new RuleQuantity(attempt.CompletedAt.Value.Numerator,attempt.CompletedAt.Value.Denominator)
+                    -new RuleQuantity(harvest.OriginAt.Numerator,harvest.OriginAt.Denominator);
+                Require(attempt.Status==HarvestPreservationTreatmentStatus.Success
+                    &&HarvestPreservationRules.TryProjectAt(completed,preTreatmentChild,attempt.CompletedAt.Value,out var childAtCompletion)
+                    &&childAtCompletion.UnprotectedAge==new RuleTime(expectedAge.Numerator,expectedAge.Denominator),
+                    "A child separated before treatment did not retain its full unprotected age at successful completion.");
+                Require(Bytes(restored).SequenceEqual(Bytes(b)),"Treatment completion diverged after restoring the active-work save.");
+                var completionSave=Bytes(restored);
+                var completedRestore=new Simulation(policyA,new SnapshotCodec().Decode(completionSave),ExecutionProfile.Laboratory);
+                Require(completionSave.SequenceEqual(Bytes(completedRestore)),"The terminal treatment and lineage did not round-trip canonically.");
+
+                WorldAdvance(completedRestore,HarvestPreservationTreatmentValidation.ProtectionSeconds);
+                WorldAdvance(b,HarvestPreservationTreatmentValidation.ProtectionSeconds);
+                Require(Bytes(completedRestore).SequenceEqual(Bytes(b)),"Protection expiry diverged across restored and uninterrupted runs.");
+                var expired=completedRestore.Capture();
+                Require(expired.RuleClock==attempt.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds)
+                    &&HarvestPreservationRules.TryProject(expired,preTreatmentChild,out var oldBranch)
+                    &&oldBranch.State==HarvestPreservationState.Spoiled,
+                    "A pre-treatment branch did not age continuously while the remaining target was protected.");
+                WorldCommit(completedRestore,IC(completedRestore,CommandKind.PortionInventory,preTreatmentChild,
+                    new InventoryRequest(RuleQuantity.FromFraction(1,32),"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
+                WorldCommit(b,IC(b,CommandKind.PortionInventory,preTreatmentChild,
+                    new InventoryRequest(RuleQuantity.FromFraction(1,32),"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
+                var afterBranchSplit=completedRestore.Capture();
+                string laterChild=afterBranchSplit.InventoryLots.Single(x=>x.ParentId==preTreatmentChild).LotId;
+                Require(Bytes(completedRestore).SequenceEqual(Bytes(b))
+                    &&HarvestPreservationRules.TryProject(afterBranchSplit,preTreatmentChild,out var oldAfterSplit)
+                    &&HarvestPreservationRules.TryProject(afterBranchSplit,laterChild,out var laterBranch)
+                    &&oldAfterSplit.UnprotectedAge==laterBranch.UnprotectedAge
+                    &&oldAfterSplit.State==laterBranch.State&&laterBranch.State==HarvestPreservationState.Spoiled,
+                    "A descendant created after protection expired incorrectly inherited the treated ancestor's earlier protection.");
+
+                foreach(var run in new[]{completedRestore,b}) {
+                    PortableCommit(run,Portable(run,CommandKind.OpenPortableContainer,Mgt05bVessel,actor:TestOnlyPolicy.ActorId));
+                    PortableCommit(run,Portable(run,CommandKind.HandlePortableEquipment,treated,
+                        handling:HandlingKind.Retrieve,actor:TestOnlyPolicy.ActorId));
+                    WorldCommit(run,IC(run,CommandKind.PortionInventory,treated,
+                        new InventoryRequest(RuleQuantity.FromFraction(1,32),"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
+                }
+                var completeLineage=completedRestore.Capture();
+                string postTreatmentChild=completeLineage.InventoryLots.Single(x=>x.ParentId==treated
+                    &&x.CreatedAt>=attempt.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds)).LotId;
+                Require(Bytes(completedRestore).SequenceEqual(Bytes(b))
+                    &&HarvestPreservationRules.TryProject(completeLineage,treated,out var preservedParent)
+                    &&HarvestPreservationRules.TryProject(completeLineage,postTreatmentChild,out var postTreatmentBranch)
+                    &&preservedParent.UnprotectedAge==postTreatmentBranch.UnprotectedAge
+                    &&postTreatmentBranch.State==HarvestPreservationState.Fresh,
+                    "A descendant separated from the treated target after expiry did not inherit the protection actually experienced by that target.");
+                byte[] finalSave=Bytes(completedRestore);
+                var finalRestore=new Simulation(policyA,new SnapshotCodec().Decode(finalSave),ExecutionProfile.Laboratory);
+                Require(finalSave.SequenceEqual(Bytes(finalRestore)),"The split-before-treatment and split-after-expiry lineage did not round-trip.");
+            });
+
+            cases.Add("mgt05b_closed_vessel_handover_preserves_treatment_and_ownership",()=>{
+                uint seed=HarvestTreatmentSeed(true);
+                var a=PreparedHarvestTreatment(seed,false,out var policyA,out string target,out _);
+                var b=PreparedHarvestTreatment(seed,false,out var policyB,out string replayTarget,out _);
+                WorldCommit(a,StartHarvestTreatment(a,target));WorldCommit(b,StartHarvestTreatment(b,replayTarget));
+                WorldAdvance(a,HarvestPreservationTreatmentValidation.WorkSeconds);
+                WorldAdvance(b,HarvestPreservationTreatmentValidation.WorkSeconds);
+                var before=a.Capture();var prior=before.HarvestPreservationTreatmentAttempts.Single();
+                string targetOwner=before.PortableEquipment.Single(x=>x.Id==target).OwnerId;
+                Require(Bytes(a).SequenceEqual(Bytes(b))&&prior.Status==HarvestPreservationTreatmentStatus.Success
+                    &&!before.PortableEquipment.Single(x=>x.Id==Mgt05bVessel).Open,
+                    "The replay pair did not reach the same successfully sealed vessel state.");
+                foreach(var run in new[]{a,b}) {
+                    PortableCommit(run,Portable(run,CommandKind.HandlePortableEquipment,Mgt05bVessel,
+                        handling:HandlingKind.Pickup,actor:TestOnlyPolicy.ActorId));
+                    PortableCommit(run,Portable(run,CommandKind.HandlePortableEquipment,Mgt05bVessel,
+                        destination:TestOnlyPolicy.CompanionId,handling:HandlingKind.Handover,actor:TestOnlyPolicy.ActorId));
+                }
+                var state=a.Capture();var attempt=state.HarvestPreservationTreatmentAttempts.Single();
+                var vessel=state.PortableEquipment.Single(x=>x.Id==Mgt05bVessel);
+                var targetItem=state.PortableEquipment.Single(x=>x.Id==target);
+                var supplyItem=state.PortableEquipment.Single(x=>x.Id==Mgt05bSupply);
+                var supplyLot=state.InventoryLots.Single(x=>x.LotId==Mgt05bSupply);
+                var supplyLedger=state.Work.Lots.Single(x=>x.Id==Mgt05bSupply);
+                Require(Bytes(a).SequenceEqual(Bytes(b))&&vessel.CustodianId==TestOnlyPolicy.CompanionId
+                    &&targetItem.CustodianId==TestOnlyPolicy.CompanionId&&supplyItem.CustodianId==TestOnlyPolicy.CompanionId
+                    &&vessel.OwnerId==TestOnlyPolicy.ActorId&&targetItem.OwnerId==targetOwner
+                    &&supplyItem.OwnerId==TestOnlyPolicy.ActorId&&supplyLot.OwnerId==TestOnlyPolicy.ActorId
+                    &&supplyLedger.CustodianId==TestOnlyPolicy.CompanionId&&supplyLedger.Amount==default(RuleQuantity)
+                    &&attempt.WorkerId==prior.WorkerId&&attempt.InventoryLotId==prior.InventoryLotId
+                    &&attempt.TreatedAmount==prior.TreatedAmount&&attempt.CompletedAt==prior.CompletedAt
+                    &&attempt.SealedAt==prior.SealedAt&&attempt.Status==prior.Status
+                    &&HarvestPreservationRules.IsProtectedAt(state,target,state.RuleClock)
+                    &&HarvestPreservationRules.TryProject(state,target,out var afterHandover)
+                    &&HarvestPreservationRules.TryProject(before,target,out var beforeHandover)
+                    &&afterHandover.UnprotectedAge==beforeHandover.UnprotectedAge,
+                    "Legal closed-vessel custody transfer changed ownership, treatment history, resources, protection or elapsed protected age. "
+                    +"custody="+vessel.CustodianId+"/"+targetItem.CustodianId+"/"+supplyItem.CustodianId+"/"+supplyLedger.CustodianId
+                    +" owners="+vessel.OwnerId+"/"+targetItem.OwnerId+"/"+supplyItem.OwnerId+"/"+supplyLot.OwnerId
+                    +" supply="+supplyLedger.Amount+" worker="+attempt.WorkerId+" target="+attempt.InventoryLotId
+                    +" duration="+attempt.CompletedAt+"/"+attempt.SealedAt+" status="+attempt.Status+"/"+prior.Status
+                    +" protected="+HarvestPreservationRules.IsProtectedAt(state,target,state.RuleClock)
+                    +" age="+(HarvestPreservationRules.TryProject(state,target,out var afterView)?afterView.UnprotectedAge.ToString():"missing")
+                    +"/"+(HarvestPreservationRules.TryProject(before,target,out var beforeView)?beforeView.UnprotectedAge.ToString():"missing")
+                    +" bytes="+Bytes(a).SequenceEqual(Bytes(b)));
+                byte[] handedOverSave=Bytes(a);
+                var restored=new Simulation(policyA,new SnapshotCodec().Decode(handedOverSave),ExecutionProfile.Laboratory);
+                Require(handedOverSave.SequenceEqual(Bytes(restored))&&handedOverSave.SequenceEqual(Bytes(b)),
+                    "Closed-vessel handover custody did not survive canonical save/restore and deterministic replay.");
+                RejectUnchanged(restored,TestOnlySharedWorldPolicy.Host(),Portable(restored,CommandKind.OpenPortableContainer,
+                    Mgt05bVessel,actor:TestOnlyPolicy.CompanionId),"HarvestTreatmentProtectionActive");
+                RejectUnchanged(restored,TestOnlySharedWorldPolicy.Host(),Portable(restored,CommandKind.HandlePortableEquipment,
+                    target,handling:HandlingKind.Retrieve,actor:TestOnlyPolicy.CompanionId),"HarvestTreatmentProtectionActive");
             });
         }
     }

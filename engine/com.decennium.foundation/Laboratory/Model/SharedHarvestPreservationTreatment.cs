@@ -63,10 +63,18 @@ namespace Decennium.Foundation.Laboratory
                 &&x.LinkKind==PortableLinkKind.InventoryLot&&x.MassBasis==PortableMassBasis.GenericPounds);
             var tool=s.PortableEquipment.SingleOrDefault(x=>x.Id==ToolId);
             var container=s.PortableEquipment.SingleOrDefault(x=>x.Id==ContainerId);
+            bool supplyInsideTreatmentVessel=physicalSupply!=null&&physicalSupply.ParentId==ContainerId;
+            bool supplyCustodyMatchesPhysical=physicalSupply!=null&&supplyLot!=null
+                &&supplyLot.CustodianId==physicalSupply.CustodianId
+                &&(supplyInsideTreatmentVessel
+                    ?container!=null&&physicalSupply.Placement==PortablePlacement.Contained
+                        &&physicalSupply.CustodianId==container.CustodianId
+                    :physicalSupply.ParentId==""&&physicalSupply.CustodianId==worker);
             if(supply==null||supplyLot==null||physicalSupply==null||supply.OwnerId!=worker
+                ||physicalSupply.OwnerId!=worker||!supplyCustodyMatchesPhysical
                 ||supply.CreatedAmount!=HarvestPreservationTreatmentValidation.SupplyAmount||supply.Nutrition!=NutritionKind.None
                 ||supply.FreshUntil.HasValue||supplyLot.UnitId!=SharedHarvestFixture.MaterialUnit
-                ||supplyLot.CustodianId!=worker||supplyLot.Amount>HarvestPreservationTreatmentValidation.SupplyAmount
+                ||supplyLot.Amount>HarvestPreservationTreatmentValidation.SupplyAmount
                 ||tool==null||tool.ProfileId!=ToolProfileId||tool.OwnerId!=worker||tool.MassBasis!=PortableMassBasis.Unmodeled
                 ||tool.SourceWeightLb.HasValue||tool.OperationalWeightLb.HasValue
                 ||container==null||container.ProfileId!=ContainerProfileId||container.OwnerId!=worker

@@ -100,21 +100,23 @@ namespace Decennium.Foundation
         private static RuleTime UnprotectedAgeAt(Snapshot s,InventoryLotRecord lot,InventoryLotRecord root,
             HarvestMaterialUnitRecord unit,RuleTime at)
         {
-            var ancestors=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);
+            var lineage=new System.Collections.Generic.List<InventoryLotRecord>();
+            var lineageIndex=new System.Collections.Generic.Dictionary<string,int>(StringComparer.Ordinal);
             var current=lot;
             while(true) {
-                ancestors.Add(current.LotId);
+                lineageIndex.Add(current.LotId,lineage.Count);
+                lineage.Add(current);
                 if(current.ParentId=="")break;
                 current=s.InventoryLots.Single(x=>x.LotId==current.ParentId);
             }
             var intervals=new System.Collections.Generic.List<(RuleTime Start,RuleTime End)>();
             foreach(var attempt in s.HarvestPreservationTreatmentAttempts??Array.Empty<HarvestPreservationTreatmentAttemptRecord>()) {
                 if(attempt.Status!=HarvestPreservationTreatmentStatus.Success||!attempt.CompletedAt.HasValue
-                    ||!ancestors.Contains(attempt.InventoryLotId)||attempt.CompletedAt.Value>=at)continue;
+                    ||!lineageIndex.TryGetValue(attempt.InventoryLotId,out int treatedIndex)||attempt.CompletedAt.Value>=at)continue;
                 RuleTime protectionEnd=attempt.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds);
-                if(lot.LotId!=attempt.InventoryLotId&&lot.CreatedAt<protectionEnd)continue;
+                RuleTime branchEnd=treatedIndex==0?at:Min(at,lineage[treatedIndex-1].CreatedAt);
                 RuleTime start=Max(unit.OriginAt,attempt.CompletedAt.Value);
-                RuleTime end=Min(at,protectionEnd);
+                RuleTime end=Min(Min(at,protectionEnd),branchEnd);
                 if(end>start)intervals.Add((start,end));
             }
             intervals.Sort((a,b)=>a.Start.CompareTo(b.Start));
@@ -449,6 +451,7 @@ namespace Decennium.Foundation
                         if(container.Open||targetItem.ParentId!=container.Id)
                             throw new ArgumentException("Protected material must remain inside its closed treatment container.");
                         if(s.InventoryLots.Any(x=>x.ParentId==attempt.InventoryLotId
+                            &&x.CreatedAt>=attempt.CompletedAt.Value
                             &&x.CreatedAt<attempt.CompletedAt.Value.AddSeconds(ProtectionSeconds)))
                             throw new ArgumentException("Protected contents cannot be separated before protection expires.");
                     }
