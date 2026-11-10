@@ -27,6 +27,10 @@ The retained reports show full C# 9 regression PASS 1,321/1,321; focused connect
 
 GPT observed that the test local named atB2 is evaluated at B2+1 second, so that assertion demonstrates post-B2 spoilage rather than a new exact-B2 endpoint assertion. GPT found this is **not** an acceptance blocker: the underlying PreservationAt boundary logic is unchanged, the exact B2 endpoint was exercised in the previously inspected witness, and renaming the local or landing exactly on B2 is optional test precision.
 
-## Next mapped step
+## Contemporaneous next-step recommendation
 
 Record acceptance against exact commit 1e0bbc1168808686cec20a1d52ffa33284550646. The next task is MGT-05B source/API review only. Keep MGT-05B implementation deferred until its source contract and genuine gaps are reviewed and agreed. The engine remains incomplete; Unity stays deferred.
+
+## Later GPT clarification
+
+In a subsequent exchange, GPT clarified that the source/API-only wording described that review prompt and did not conflict with the owner's standing implementation authorization. GPT authorized implementation under the bounded schema75 MGT-05B contract; the actual response is retained in [the MGT-05B review record](../2026-11-10-mgt05b/GPT_REVIEW.md). This did not accept the resulting implementation. MGT-05B remains under implementation review, while MGT-05A remains accepted.

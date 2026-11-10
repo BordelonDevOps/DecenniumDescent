@@ -1,0 +1,284 @@
+{
+  "module": "MGT-05B",
+  "status": "implementation-authorized-not-yet-accepted",
+  "schema": 75,
+  "scope": "closed-container preservation treatment; TEST_ONLY",
+  "sourceAuthority": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+    "sections": "Preservation and spoilage, source lines 152-166",
+    "facts": [
+      "state changes after one and two unprotected preservation intervals",
+      "reservations do not suspend aging",
+      "maximum treated lot 10 lb",
+      "30 active minutes and suitable trade kit",
+      "suitable sealable fitting container",
+      "1 gp worth of supply per 0.5 lb",
+      "one DC 10 check",
+      "success pauses decay for 24 elapsed hours",
+      "failure grants no extension; already Spoiled cannot be rescued"
+    ]
+  },
+  "candidateFixtureAuthority": {
+    "path": "DescentReviewChanges/ReviewBible/data/playtest/crafting_engine_candidate.json",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "6aa9b36a53bfac8c927ef2e3689c0475aaeadf8e26ce4c9acbcb1eba08076ff4",
+    "classification": "candidate fixture data, not preservation-rule text",
+    "bindings": [
+      "10 lb maximum",
+      "30 minutes",
+      "0.5 lb supplies",
+      "24 hours",
+      "Cooking with Cook's utensils"
+    ],
+    "embeddedSourceHashVerifiesMarkdown": false
+  },
+  "testOnlyMaterial": {
+    "materialId": "generic.ordinary-fish-meat",
+    "origin": "existing harvested river fish meat lot",
+    "massPounds": "1/4",
+    "preservationIntervalSeconds": 28800,
+    "nutrition": "None",
+    "attemptsPerFixtureRun": 1
+  },
+  "sharedAuthorities": [
+    "Snapshot schema and validation",
+    "SnapshotCodec and deterministic command receipts",
+    "RuleClock",
+    "WorkLedger reservations and WorkerIntervals",
+    "ActiveWorkProgress",
+    "InventoryLot ancestry and Work.Lots",
+    "PortableEquipment and existing storage/handling resolver",
+    "selected character and SkillTrainingRecord",
+    "AbilityCheckRules and RuleResolution",
+    "shared deterministic RNG/DiceStream"
+  ],
+  "deferred": [
+    "treatment exposure-event system",
+    "clean-tool opening exception",
+    "active-protection content splitting, repacking, removal",
+    "re-treatment",
+    "interruption or cancellation settlement",
+    "other materials",
+    "cooked/edible output or production recipe integration",
+    "currency debit for already-owned supply stock",
+    "assistants, quality tables, or general catalogue"
+  ],
+  "implementation": {
+    "commit": "4d11fdceb25fb6a9f86b419484f3cca70a615211",
+    "baselineCommit": "e4c8e540ed70081f0ee0e3b4d516261d5e6a9d72",
+    "codeDiffPath": "docs/unity/evidence/2026-11-10-mgt05b/MGT05B_CODE_DIFF.patch",
+    "changedFilesPath": "docs/unity/evidence/2026-11-10-mgt05b/CHANGED_FILES.txt",
+    "changedFileCount": 39,
+    "changedCSharpSources": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+        "sha256": "33b3f05599751c462552e7a05ebb0b9aa831ec41299cfcc98fe49f5e5b58d136"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/PortableStorage.cs",
+        "sha256": "8ac7bb20561a869fb30179f270074e558eb4894004143d772a59e87a7d807337"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+        "sha256": "0a026441c4e1db666de407fa97d5e83a0b1e592b2cd091b68fbce4dab41ef19d"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+        "sha256": "34cb412655450bebe7b7da19b3df6dfd04a33e38111c9da192ea63ef6b428765"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs",
+        "sha256": "cf2af69de2fc103278fe6fedce07a1ae9008d82e7cdfcb7e35ce284f016cbf7e"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs",
+        "sha256": "d70a0bfcf6cb3f99f83a2510485d79417efd9ac6cb61cb55f6ef07d012513d9e"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+        "sha256": "7c90a8f3ce14e5d4d38fea34dec333b7848404858da54a696cef3c00742ba5be"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "sha256": "4faa05d4dd3bc90b93e358735fff9bb826e66e976b277de14d127a4f2f4297dd"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+        "sha256": "5e971dbba60cb38d954a64ec177e72780c5c30f5e2f6b8a5488d13d96051bc4d"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+        "sha256": "7ea1abfd8b6279133c8fcf13f2f866631509bfda33670959b6860d87c4dc80ea"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+        "sha256": "3c36f5abc720f5bfde63d6e12dcc7d6ef712aa4e56d8ecf7ed24c520b029bc22"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "sha256": "40cc2e1eb3a9b8e43d5cf6f55abd435888a08aaa35bc82890bff126889023b9f"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs",
+        "sha256": "6d943ab3b5d9a8b9e922ba53e20eec2b3814d24353e5bcbace0ef2d429686f47"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+        "sha256": "c94f09e054e18b431a7bcff21b42a0bc2d44fa70fca49b62f0a399b8bfae2162"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs",
+        "sha256": "f3ed891457706d3b33defc6761d16b79999d11648480714d2a038405cf3d731e"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/PeriodicRiderRecords.cs",
+        "sha256": "691461e14aeafcccfd499de39b564e8728d2e05c39614ef522abbffd25b6fbe5"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+        "sha256": "ad97fd3a433fdedaffaeb1a44ced86ec4ff0cfef35d0662ece59fc988b8a839f"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+        "sha256": "194d0b4f9cc6664f05de67a4cf34610491fc27b33d8ba1e072d207e24f5b2c75"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+        "sha256": "7f5f3815959081e5b696cc05dc30f3fe7e6a6314e6bedf998d8b2ead90a44dd0"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestPreservationTreatmentCodec.cs",
+        "sha256": "2d792ed67b3e01028b82692eb76776272cc7c0ee906133c32a30d6ccb326b2b4"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+        "sha256": "d264592712b8897e870bee9d084a1d453a5b1b2907988aacc88dc6333cb86392"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/HarvestCases.cs",
+        "sha256": "c6c6ccfdfe2779598c535b360e887993e4e4d62f66272de2f12dc52eea44f2a0"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs",
+        "sha256": "91d514ca86622a04d1810a7573ff207290bdaf24ae2a9d5b492f25ff0bfc11d7"
+      }
+    ],
+    "changedUnityMetadata": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs.meta",
+        "sha256": "ffcdf42b5980edbcb8b1fb051dfa0c5c4fb467078d932364fc5b406f786a296a"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestPreservationTreatmentCodec.cs.meta",
+        "sha256": "50c20b478b9ed8ad4a4d716f59a150ecd8b4af7906520f7ef153029b9196091d"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs.meta",
+        "sha256": "22258d8a0b5581d40255cbd9832b93448dd5a924f28f19f47c563d9a4ae3465c"
+      }
+    ],
+    "allChangedCSharpSourcesMatchFullSuite": true,
+    "matchedCSharpSourceCount": 23,
+    "fullSuite": {
+      "status": "PASS",
+      "language": "C# 9",
+      "runner": "PowerShell Roslyn shared-source regression",
+      "runtime": ".NET 10.0.14",
+      "startedUtc": "2026-11-10T18:49:06.5524072Z",
+      "finishedUtc": "2026-11-10T19:13:23.5670936Z",
+      "testsDiscovered": 1324,
+      "passed": 1324,
+      "failed": 0,
+      "coreCompilation": "PASS",
+      "sourceHashCount": 282,
+      "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/full-suite/results.json",
+      "reportSha256": "ba61e5be7a194a90f75936b31c76de2db38d122816b2eed228b97efad8ede649",
+      "assemblies": [
+        {
+          "path": "docs/unity/evidence/2026-11-10-mgt05b/full-suite/Decennium.Foundation.Core.dll",
+          "sha256": "abde1e3f2d2096299af73c8e57aaace6a0178e4530620092a3f297414fa5bfa2",
+          "bytes": 954368
+        },
+        {
+          "path": "docs/unity/evidence/2026-11-10-mgt05b/full-suite/Decennium.Foundation.HeadlessTests.dll",
+          "sha256": "644080c03967e354efea49cb03a4e9a61e429dfb9695dd7643b64f8fb0c1b4fc",
+          "bytes": 2068480
+        },
+        {
+          "path": "docs/unity/evidence/2026-11-10-mgt05b/full-suite/Decennium.Foundation.LabModel.dll",
+          "sha256": "e6f8286dc22b57c0a7d59f7a3e4ee2af00740d971abd274b937ad2b1ea2c4706",
+          "bytes": 2417152
+        },
+        {
+          "path": "docs/unity/evidence/2026-11-10-mgt05b/full-suite/Decennium.Foundation.Persistence.dll",
+          "sha256": "37a50309143410e9a284b8d18ccf7ac6f317e635e2e62970d83169c4ac78f6f2",
+          "bytes": 217600
+        }
+      ]
+    },
+    "focusedCases": [
+      {
+        "name": "mgt05b_closed_vessel_treatment_lineage_save_restore_and_replay",
+        "status": "PASS",
+        "passed": 1,
+        "failed": 0,
+        "sourceHashCount": 282,
+        "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/focused/connected/results.json",
+        "reportSha256": "f760443c3b9740d303ae45103f9b2ae74ea05f4aef4a8f1d5064df623fd77601",
+        "changedCSharpSourcesMatched": 23,
+        "changedCSharpSourceCount": 23
+      },
+      {
+        "name": "mgt05b_degraded_treatment_retains_half_value_and_spoilage_deadlines_reject",
+        "status": "PASS",
+        "passed": 1,
+        "failed": 0,
+        "sourceHashCount": 282,
+        "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/focused/degraded/results.json",
+        "reportSha256": "c1d9400b84b633c3658b505c8e443d01d108921a827eb843fdfe969f98efe031",
+        "changedCSharpSourcesMatched": 23,
+        "changedCSharpSourceCount": 23
+      },
+      {
+        "name": "mgt05b_failed_treatment_spends_supply_once_without_protection",
+        "status": "PASS",
+        "passed": 1,
+        "failed": 0,
+        "sourceHashCount": 282,
+        "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/focused/failure/results.json",
+        "reportSha256": "b48feea1037131781985050a5976f1dc56846aafc392e7ea5c49a6ad10898b57",
+        "changedCSharpSourcesMatched": 23,
+        "changedCSharpSourceCount": 23
+      }
+    ],
+    "packageValidation": {
+      "status": "PASS",
+      "passedChecks": 18,
+      "totalChecks": 18,
+      "packageAssets": 308,
+      "uniqueGuids": 308,
+      "sourceHashCount": 605,
+      "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/package-validation/passed/results.json",
+      "reportSha256": "1fbef54052e4ef1f2f2afc54770b0c515978445618ebc0bda9861d6d19c116f0",
+      "priorFailure": {
+        "status": "FAIL",
+        "cause": "Two new C# package assets lacked adjacent Unity .meta sidecars.",
+        "reportPath": "docs/unity/evidence/2026-11-10-mgt05b/package-validation/failed-metadata/results.json",
+        "reportSha256": "c568e2e52b20529070aea1c8649b04d7cb47de1298b93aa2d054094486b25a99",
+        "correction": "Added unique standard MonoImporter metadata for SharedHarvestPreservationTreatment.cs and HarvestPreservationTreatmentCodec.cs; reran and passed."
+      }
+    },
+    "checks": {
+      "gitDiffCheck": "PASS",
+      "changedCSharpSourcesMatchedFullSuite": true,
+      "changedCSharpSourceCount": 23,
+      "changedCSharpSourcesMatched": 23,
+      "unityImportCompilation": "NOT RUN",
+      "unityEditorTests": "NOT RUN",
+      "playMode": "NOT RUN",
+      "playerBuild": "NOT RUN"
+    }
+  }
+}

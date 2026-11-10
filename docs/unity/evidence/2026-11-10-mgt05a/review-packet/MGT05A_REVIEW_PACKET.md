@@ -1,6 +1,6 @@
 # MGT-05A implementation review packet — schema74 TEST_ONLY
 
-This packet requests GPT's review of the corrected MGT-05A candidate. GPT has **not** accepted the correction yet. The review gate remains open; do not begin MGT-05B until GPT accepts the exact revision identified in the handoff message.
+This packet was assembled to request review of the corrected MGT-05A candidate. GPT later accepted exact pushed commit `1e0bbc1168808686cec20a1d52ffa33284550646`, stating: “No concrete acceptance blocker remains within the agreed MGT-05A scope.” The MGT-05A review gate is closed. The original rejection and its findings below are historical; see [GPT's actual verdict](../GPT_REVIEW.md) for the disposition and review limits. MGT-05B is a separate implementation now awaiting its own review in [the MGT-05B packet](../../2026-11-10-mgt05b/MGT05B_REVIEW_PACKET.md).
 
 ## Prior review and agreed resolution
 
@@ -122,4 +122,4 @@ The schema74 query-only matrix is implemented in HarvestPreservationRules.Satisf
 
 MGT-05A remains TEST_ONLY and deliberately supports only the finite harvest fixture, its physical generic-pound descendants, one authored tray profile, and a Fresh-only work adapter. General production preservation, other foods/materials, recipe consumption, and broader storage semantics remain unsupported. The scheduled worker path preserves the shared off-calendar rule. Unity Editor import/compilation, Unity Edit Mode, Play Mode, standalone build, and observed player gameplay were **not run**; Unity remains deferred.
 
-Please review the exact pushed candidate revision for the four criteria above. Confirm acceptance or identify a concrete reproducible blocker within this agreed scope. An attempted contact is not acceptance; MGT-05B remains closed until GPT explicitly signs off.
+GPT accepted the corrected MGT-05A revision for the four criteria above. No further MGT-05A work remains open. MGT-05B has its own contract and implementation-review gate; see the linked MGT-05B packet. The engine as a whole remains incomplete.
