@@ -92,9 +92,11 @@ namespace Decennium.Foundation
             bool pendingRecoveryChoice=s.SchemaVersion>=Snapshot.ExpeditionStrainRecoverySchema
                 &&s.ExpeditionStrainRecoveryOffers!=null
                 &&s.ExpeditionStrainRecoveryOffers.Any(x=>x.Pending);
+            bool pendingRecipeChoice=s.SchemaVersion>=Snapshot.Recipe347Schema&&s.Recipe347WorkOrders!=null
+                &&s.Recipe347WorkOrders.Any(x=>x.Status==Recipe347OrderStatus.AwaitingChoice);
             if(s.ManufacturingAdvance!=null&&(s.ManufacturingAdvance.Target<s.RuleClock
                 ||s.ManufacturingAdvance.CommandRevision>s.Revision
-                ||!s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice)&&!pendingRecoveryChoice))
+                ||!s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice)&&!pendingRecoveryChoice&&!pendingRecipeChoice))
                 throw new ArgumentException("Invalid suspended world advance.");
             if(s.ManufacturingOrders.Select(x=>x.Id).Distinct().Count()!=s.ManufacturingOrders.Length||s.AlchemyDoses.Select(x=>x.Id).Distinct().Count()!=s.AlchemyDoses.Length
                 ||s.Trades.Select(x=>x.WorkerId+"|"+x.TradeId).Distinct().Count()!=s.Trades.Length)throw new ArgumentException("Duplicate manufacturing identity.");

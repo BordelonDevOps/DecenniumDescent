@@ -255,6 +255,7 @@ namespace Decennium.Foundation.Tests
             AddCacheExcavationCases(cases,directory);
             AddHarvestCases(cases,directory);
             AddMiningCases(cases,directory);
+            AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);
             AddExpeditionRouteTravelCases(cases,directory);

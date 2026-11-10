@@ -370,6 +370,7 @@ namespace Decennium.Foundation
                 &&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)
                 &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)
                 &&!s.FormulaWork.Any(j=>j.Id==w.JobId)&&!s.RepairWork.Any(j=>j.Id==w.JobId)&&!s.ManufacturingOrders.Any(j=>j.Id==w.JobId)
+                &&!s.Recipe347WorkOrders.Any(j=>j.Id==w.JobId)
                 &&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.FishingTrapRetrievals.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.MiningAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.ProspectingAttempts.Any(j=>j.Id==w.JobId)

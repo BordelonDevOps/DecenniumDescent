@@ -107,7 +107,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.SchemaVersion != Snapshot.ExpeditionPressureLifecycleSchema
                     && s.SchemaVersion != Snapshot.ExpeditionCampUseSchema
                     && s.SchemaVersion != Snapshot.TemporaryCampConstructionSchema
-                    && !(portableStorageFixture != null && s.SchemaVersion == Snapshot.PortableStorageSchema))
+                    && !(portableStorageFixture != null && s.SchemaVersion == Snapshot.PortableStorageSchema)
+                    && !(recipe347Fixture != null && s.SchemaVersion == Snapshot.Recipe347Schema))
                 || s.ExpeditionPressureCohorts.Length != 1
                 || !s.ExpeditionPressureCohorts[0].SameAs(new ExpeditionPressureCohortRecord(
                     expeditionPressureProfile.CohortId, s.ContentFingerprint, routeTravelFixture.Fingerprint,

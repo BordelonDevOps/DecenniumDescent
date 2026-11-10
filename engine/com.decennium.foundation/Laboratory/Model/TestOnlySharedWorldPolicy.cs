@@ -85,6 +85,18 @@ namespace Decennium.Foundation.Laboratory
                 throw new ArgumentException("Portable kit requires the selected cache and tools, and rejects an unsourced-mass key fixture.");
             ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
         }
+        /// <summary>Composed TEST_ONLY profile for shared inventory, physical-cache exploration,
+        /// crafting consequences and portable equipment. Existing constructor profiles remain unchanged.</summary>
+        public TestOnlySharedWorldPolicy(PortableKitFixture portableKit,SharedCombatFixture combat,
+            SharedCraftingFixture crafting,SupplyCacheFixture supplyCache,int walkingSpeed=30,
+            ConditionCombatFixture conditions=null,params TacticalTerrainCell[] terrain)
+            :this(combat,null,crafting,null,null,supplyCache,walkingSpeed,conditions,terrain)
+        {
+            this.portableKit=portableKit??throw new ArgumentNullException(nameof(portableKit));
+            if(combat==null||crafting==null||supplyCache==null||!supplyCache.HasTools||supplyCache.HasKey)
+                throw new ArgumentException("Composed portable crafting profile requires its explicit host, consequence and cache fixtures.");
+            ContentFingerprint=PortableEquipmentRules.Fingerprint(ContentFingerprint,portableKit);
+        }
         /// <summary>Source-resolved opt-in profile. The legacy schema20 constructor above retains
         /// its original content fingerprint and saved-profile compatibility.</summary>
         public TestOnlySharedWorldPolicy(TestOnlyContentManifest manifest,PortableKitFixture portableKit,SharedCombatFixture combat,SupplyCacheFixture supplyCache,
@@ -187,6 +199,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeExpeditionCampUse(s);
             InitializeExpeditionCampConstruction(s);
             InitializePortableStorage(s);
+            InitializeRecipe347(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -245,6 +258,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StartFormulaResearch: case CommandKind.StartFormulaCopy: case CommandKind.ResumeFormulaWork:
                 case CommandKind.StartCraftRemedy: case CommandKind.StartToolRepair: case CommandKind.ResumeToolRepair:
                 case CommandKind.StartManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.UseAlchemyDose:
+                case CommandKind.StartRecipe347: case CommandKind.ResumeRecipe347:
                 case CommandKind.StartExpeditionWork: case CommandKind.HandlePortableEquipment: case CommandKind.EquipPortableItem:
                 case CommandKind.ResumeCacheExcavation:
                 case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:
@@ -308,6 +322,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleRemedies(s);
             PauseIncompatibleRepairs(s);
             PauseIncompatibleManufacturing(s);
+            PauseIncompatibleRecipe347(s);
             InterruptSupplyCacheAttempts(s);
             InterruptIncompatibleOrdinaryAttempts(s);
             InterruptIncompatibleHuntingTrapActions(s);
@@ -421,6 +436,7 @@ namespace Decennium.Foundation.Laboratory
                 var remedy = NextRemedyBoundary(s); if(remedy.HasValue&&remedy.Value<next)next=remedy.Value;
                 var repairBoundary = NextRepairBoundary(s); if(repairBoundary.HasValue&&repairBoundary.Value<next)next=repairBoundary.Value;
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<next)next=manufacturingBoundary.Value;
+                var recipe347Boundary=NextRecipe347Boundary(s);if(recipe347Boundary.HasValue&&recipe347Boundary.Value<next)next=recipe347Boundary.Value;
                 var cacheBoundary=NextSupplyCacheBoundary(s);if(cacheBoundary.HasValue&&cacheBoundary.Value<next)next=cacheBoundary.Value;
                 var excavationBoundary=NextCacheExcavationBoundary(s);if(excavationBoundary.HasValue&&excavationBoundary.Value<next)next=excavationBoundary.Value;
                 var receptacleBoundary=NextOrdinaryReceptacleBoundary(s);if(receptacleBoundary.HasValue&&receptacleBoundary.Value<next)next=receptacleBoundary.Value;
@@ -519,6 +535,7 @@ namespace Decennium.Foundation.Laboratory
                 var repairsReady = new System.Collections.Generic.List<string>();
                 var campConstructionReady = new System.Collections.Generic.List<string>();
                 var manufacturingReady = new System.Collections.Generic.List<string>();
+                var recipe347Ready = new System.Collections.Generic.List<string>();
                 if(connectedCombat==null) {
                     if(harvestFixture!=null||miningFixture!=null||prospectingFixture!=null||routeMappingWorkFixture!=null||routeReconnaissanceFixture!=null||expeditionCampConstructionProfile!=null)OrdinaryInventory.AdvanceTo(s,next,world=>{
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
@@ -535,7 +552,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
                 RefreshActivityIntervals(s);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -580,6 +597,10 @@ namespace Decennium.Foundation.Laboratory
                 foreach(string id in manufacturingReady){
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
                     if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job);
+                }
+                foreach(string id in recipe347Ready){
+                    var job=s.Recipe347WorkOrders.Single(x=>x.Id==id);
+                    if(Recipe347Access(s,job.WorkerId,job.Ability)==null){string checkError=FinishRecipe347Check(s,job);if(checkError!=null)return checkError;}
                 }
                 PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s);
                 ResolveReadyTemporaryCampChecks(s,campConstructionReady,initiating);
@@ -672,7 +693,9 @@ namespace Decennium.Foundation.Laboratory
                 string contentError=contentManifest.ValidateCommand(s,c);
                 if(contentError!=null)return contentError;
             }
-            if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality)return "ManufacturingChoicePending";
+            string recipeWatchFailure=Recipe347WorkWatchCommandFailure(s,c);if(recipeWatchFailure!=null)return recipeWatchFailure;
+            if(ManufacturingChoicePending(s)&&c.Kind!=CommandKind.ResolveManufacturingQuality
+                &&c.Kind!=CommandKind.ResolveRecipe347Quality)return "ManufacturingChoicePending";
             if(c.Kind==CommandKind.AssignExpeditionWork||c.Kind==CommandKind.CancelExpeditionWork||c.Kind==CommandKind.StartExpeditionWork)
                 return ResolveExpeditionAssignment(s,c);
             if(CacheExcavationCommand(c))return ResolveCacheExcavationControl(s,c);
@@ -683,6 +706,7 @@ namespace Decennium.Foundation.Laboratory
             if(IsMiningAssayCommand(c))return ResolveMiningAssay(s,c);
             if(IsMineralPreparationCommand(c))return ResolveMineralPreparation(s,c);
             if(IsMiningCommand(c))return ResolveMining(s,c);
+            if(Recipe347Command(c.Kind))return ResolveRecipe347(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);

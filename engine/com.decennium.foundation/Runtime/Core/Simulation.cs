@@ -33,7 +33,8 @@ namespace Decennium.Foundation
         BeginMoraleRest, InterruptMoraleRest, BeginHavenCare, InterruptHavenCare,
         BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow,
         StartTemporaryCampConstruction, PauseTemporaryCampConstruction,
-        ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction }
+        ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
+        StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -129,6 +130,7 @@ namespace Decennium.Foundation
         public const int ExpeditionCampUseSchema = 69;
         public const int TemporaryCampConstructionSchema = 70;
         public const int PortableStorageSchema = 71;
+        public const int Recipe347Schema = 72;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -261,6 +263,14 @@ namespace Decennium.Foundation
         public MiningToolCandidateProfileRecord[] MiningToolCandidateProfiles = Array.Empty<MiningToolCandidateProfileRecord>();
         public MiningToolInstanceStateRecord[] MiningToolInstanceStates = Array.Empty<MiningToolInstanceStateRecord>();
         public MiningToolUseRecord[] MiningToolUses = Array.Empty<MiningToolUseRecord>();
+        public TestOnlyRecipe347FormulaAccessRecord[] Recipe347FormulaAccess = Array.Empty<TestOnlyRecipe347FormulaAccessRecord>();
+        public TestOnlyTradeSpecialtyRecord[] Recipe347TradeSpecialties = Array.Empty<TestOnlyTradeSpecialtyRecord>();
+        public TestOnlyRecipe347WorkshopRecord[] Recipe347Workshops = Array.Empty<TestOnlyRecipe347WorkshopRecord>();
+        public Recipe347WorkOrderRecord[] Recipe347WorkOrders = Array.Empty<Recipe347WorkOrderRecord>();
+        public Recipe347OutputProvenanceRecord[] Recipe347Outputs = Array.Empty<Recipe347OutputProvenanceRecord>();
+        public Recipe347MiningToolProfileRecord[] Recipe347MiningToolProfiles = Array.Empty<Recipe347MiningToolProfileRecord>();
+        public Recipe347MiningToolUseEvidenceRecord[] Recipe347MiningToolUseEvidence = Array.Empty<Recipe347MiningToolUseEvidenceRecord>();
+        public Recipe347MiningToolWorkSegmentRecord[] Recipe347MiningToolWorkSegments = Array.Empty<Recipe347MiningToolWorkSegmentRecord>();
         public OrdinaryReceptacleLockRecord[] OrdinaryReceptacleLocks = Array.Empty<OrdinaryReceptacleLockRecord>();
         public OrdinaryReceptacleAttemptRecord[] OrdinaryReceptacleAttempts = Array.Empty<OrdinaryReceptacleAttemptRecord>();
         public int ObservationMapWidth, ObservationMapHeight;
@@ -352,6 +362,10 @@ namespace Decennium.Foundation
             MiningToolCandidateProfiles = MiningToolCandidateProfiles.ToArray(),
             MiningToolInstanceStates = MiningToolInstanceStates.ToArray(),
             MiningToolUses = MiningToolUses.ToArray(),
+            Recipe347FormulaAccess = Recipe347FormulaAccess.ToArray(), Recipe347TradeSpecialties = Recipe347TradeSpecialties.ToArray(),
+            Recipe347Workshops = Recipe347Workshops.ToArray(), Recipe347WorkOrders = Recipe347WorkOrders.ToArray(),
+            Recipe347Outputs = Recipe347Outputs.ToArray(), Recipe347MiningToolProfiles = Recipe347MiningToolProfiles.ToArray(),
+            Recipe347MiningToolUseEvidence = Recipe347MiningToolUseEvidence.ToArray(), Recipe347MiningToolWorkSegments = Recipe347MiningToolWorkSegments.ToArray(),
             OrdinaryReceptacleLocks = OrdinaryReceptacleLocks.ToArray(), OrdinaryReceptacleAttempts = OrdinaryReceptacleAttempts.ToArray(),
             ObservationMapWidth = ObservationMapWidth, ObservationMapHeight = ObservationMapHeight,
             ObservationCells = ObservationCells.ToArray(), ObservationProfiles = ObservationProfiles.ToArray(),
@@ -711,7 +725,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionPressureLifecycleSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema
                 || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema
-                || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema
+                || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -794,6 +809,7 @@ namespace Decennium.Foundation
             CraftingConsequenceValidation.Validate(s);
             RepairWorkValidation.Validate(s);
             ManufacturingValidation.Validate(s);
+            Recipe347Validation.Validate(s);
             SupplyCacheValidation.Validate(s);
             PortableEquipmentValidation.Validate(s);
             CharacterAdvancementValidation.Validate(s);

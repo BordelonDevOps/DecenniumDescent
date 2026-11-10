@@ -10,7 +10,8 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private static TestOnlySharedWorldPolicy CampConstructionPolicy(uint seed, bool concealed = false,
-            HuntingTrapFixture traps = null, string[] assistants = null, bool storage = false)
+            HuntingTrapFixture traps = null, string[] assistants = null, bool storage = false,
+            SharedMiningFixture mining = null,SharedCraftingFixture crafting = null,bool recipe347 = false)
         {
             var routes = RouteTravelCheckpointFixture();
             var site = new TestOnlyExpeditionCampSiteFixture(PressureCampId, RouteTravelId,
@@ -24,7 +25,10 @@ namespace Decennium.Foundation.Tests
                 .EnableExpeditionCampUse(site)
                 .EnableExpeditionCampConstruction(new TestOnlyExpeditionCampConstructionFixture(1,
                     TestOnlyPolicy.ActorId, assistants ?? new[] { TestOnlyPolicy.CompanionId }, CharacterAbility.Strength));
+            if(crafting!=null)policy.EnableCraftingConsequences(crafting);
             if(storage)policy.EnablePortableStorage(new TestOnlyPortableStorageFixture());
+            if(mining!=null)policy.EnableMining(mining);
+            if(recipe347)policy.EnableRecipe347(new TestOnlyRecipe347Fixture());
             if (traps != null) policy.EnableHuntingTraps(traps);
             return policy;
         }

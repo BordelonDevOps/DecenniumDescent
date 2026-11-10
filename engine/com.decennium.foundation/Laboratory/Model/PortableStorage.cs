@@ -47,7 +47,7 @@ namespace Decennium.Foundation.Laboratory
 
         internal void Initialize(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.PortableStorageSchema||s.ExpeditionCampSites.Length!=1
+            if((s.SchemaVersion!=Snapshot.PortableStorageSchema&&s.SchemaVersion!=Snapshot.Recipe347Schema)||s.ExpeditionCampSites.Length!=1
                 ||s.PortableEquipment.Any(x=>x.Id==CrateId))
                 throw new ArgumentException("Portable storage requires the selected schema71 camp fixture.");
             var site=s.ExpeditionCampSites.Single();
@@ -61,7 +61,7 @@ namespace Decennium.Foundation.Laboratory
 
         internal string ValidateSnapshot(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.PortableStorageSchema||!s.TestOnly
+            if((s.SchemaVersion!=Snapshot.PortableStorageSchema&&s.SchemaVersion!=Snapshot.Recipe347Schema)||!s.TestOnly
                 ||!s.PortableStorageProfiles.Select(ProfileKey).OrderBy(x=>x,StringComparer.Ordinal)
                     .SequenceEqual(Definitions().Select(ProfileKey).OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal))
                 return "PortableStorageProfileMismatch";

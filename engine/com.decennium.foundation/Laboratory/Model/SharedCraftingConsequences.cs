@@ -33,16 +33,23 @@ namespace Decennium.Foundation.Laboratory
         public string LeadId { get; }
         public RuleTime At { get; }
         public int Result { get; }
+        public string ToolId { get; }
+        public string StationId { get; }
+        public string TradeId { get; }
         public IReadOnlyList<string> Participants { get; }
-        public CraftingMishapFact(string id, int result, string lead = TestOnlyPolicy.CompanionId, RuleTime at = default, string[] participants = null)
+        public CraftingMishapFact(string id, int result, string lead = TestOnlyPolicy.CompanionId, RuleTime at = default,
+            string[] participants = null,string toolId=SharedCraftingFixture.ToolId,string stationId=SharedCraftingFixture.StationId,
+            string tradeId=SharedCraftingFixture.TradeId)
         {
             if (!Validation.ValidId(id) || result < 1 || result > 6
-                || lead != TestOnlyPolicy.ActorId && lead != TestOnlyPolicy.CompanionId) throw new ArgumentException("Invalid supplied mishap fact.");
+                || lead != TestOnlyPolicy.ActorId && lead != TestOnlyPolicy.CompanionId
+                ||!Validation.ValidId(toolId)||!Validation.ValidId(stationId)||!Validation.ValidId(tradeId)) throw new ArgumentException("Invalid supplied mishap fact.");
             var people = participants ?? new[] { lead };
             if (people.Length < 1 || people.Length > 3 || !people.Contains(lead) || people.Distinct().Count() != people.Length || people.Any(x => x != TestOnlyPolicy.ActorId && x != TestOnlyPolicy.CompanionId && x != AdditionalTacticalActor.Id)) throw new ArgumentException("Invalid participating workers.");
-            Id = id; LeadId = lead; At = at; Result = result; Participants = Array.AsReadOnly(people.ToArray());
+            Id = id; LeadId = lead; At = at; Result = result; ToolId=toolId;StationId=stationId;TradeId=tradeId;
+            Participants = Array.AsReadOnly(people.ToArray());
         }
-        internal string Key => Id + "|" + LeadId + "|" + At + "|" + Result + "|" + string.Join(",", Participants);
+        internal string Key => Id + "|" + LeadId + "|" + At + "|" + Result + "|" + ToolId+"|"+StationId+"|"+TradeId+"|"+string.Join(",", Participants);
     }
     public sealed class SharedCraftingFixture
     {
@@ -71,8 +78,9 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private readonly SharedCraftingFixture crafting;
-        private int SelectedSchema => portableStorageFixture != null ? Snapshot.PortableStorageSchema
+        private SharedCraftingFixture crafting;
+        private int SelectedSchema => recipe347Fixture != null ? Snapshot.Recipe347Schema
+            : portableStorageFixture != null ? Snapshot.PortableStorageSchema
             : expeditionCampConstructionProfile != null ? Snapshot.TemporaryCampConstructionSchema
             : expeditionCampSiteProfile != null ? Snapshot.ExpeditionCampUseSchema
             : expeditionPressureProfile != null ? Snapshot.ExpeditionPressureLifecycleSchema
@@ -127,6 +135,19 @@ namespace Decennium.Foundation.Laboratory
         private static string CraftingFingerprint(string prior, SharedCraftingFixture facts)
         {
             using (var sha = SHA256.Create()) return "TEST_ONLY.crafting-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior + "|" + facts.Key)).Select(b => b.ToString("x2", CultureInfo.InvariantCulture)));
+        }
+        /// <summary>Adds the existing TEST_ONLY crafting-incident authority to a composed connected
+        /// world before initialization. Non-default actor HP must be selected by the root constructor.</summary>
+        public TestOnlySharedWorldPolicy EnableCraftingConsequences(SharedCraftingFixture fixture)
+        {
+            if(initializationStarted)throw new InvalidOperationException("World initialization has already started.");
+            if(fixture==null||crafting!=null)throw new ArgumentException("Supply one explicit crafting-consequence fixture.");
+            if(connectedCombat==null)throw new InvalidOperationException("CraftingConsequencesRequireConnectedCombat");
+            if(fixture.HeroHp!=26||fixture.CompanionHp!=26)
+                throw new InvalidOperationException("Non-default fixture HP requires selecting crafting in the root constructor.");
+            crafting=fixture;
+            ContentFingerprint=CraftingFingerprint(ContentFingerprint,fixture);
+            return this;
         }
         private void InitializeCrafting(Snapshot s)
         {
@@ -196,7 +217,7 @@ namespace Decennium.Foundation.Laboratory
             if (fact.Result == 4 && !TestOnlyClubAttackPolicy.DamageConditionCapacity(s, fact.LeadId)) return "ConditionHistoryCapacityReached";
             uint initial = s.RandomState; int d4 = 0, wound = 0, injury = 0; long damage = 0, words = 0;
             if (fact.Result == 3) {
-                var kit = s.Structures.Single(x => x.Id == SharedCraftingFixture.ToolId);
+                var kit = s.Structures.Single(x => x.Id == fact.ToolId);
                 var after = ObjectStructureRules.Damage(kit, 1, StructuralDamageKind.Bludgeoning, true);
                 s.Structures = s.Structures.Select(x => x.Id == kit.Id ? after : x).ToArray(); damage = kit.Hp - after.Hp;
             }
@@ -213,8 +234,8 @@ namespace Decennium.Foundation.Laboratory
                 TestOnlyClubAttackPolicy.ApplyLife(s, before, result.Outcome.State);
             }
             var required = new RuleTime(fact.Result == 1 || fact.Result == 6 ? 3600 : fact.Result == 2 ? 7200 : fact.Result == 5 ? 3600 * fact.Participants.Count : 0);
-            s.CraftingIncidents = s.CraftingIncidents.Concat(new[] { new CraftingIncidentRecord(fact.Id, fact.LeadId, SharedCraftingFixture.ToolId, SharedCraftingFixture.StationId,
-                SharedCraftingFixture.TradeId, fact.Result, fact.Participants, s.Revision + 1, s.RuleClock, s.RuleClock, required, default, Array.Empty<string>(), d4, damage, wound, injury, initial, s.RandomState, words) }).ToArray();
+            s.CraftingIncidents = s.CraftingIncidents.Concat(new[] { new CraftingIncidentRecord(fact.Id, fact.LeadId, fact.ToolId, fact.StationId,
+                fact.TradeId, fact.Result, fact.Participants, s.Revision + 1, s.RuleClock, s.RuleClock, required, default, Array.Empty<string>(), d4, damage, wound, injury, initial, s.RandomState, words) }).ToArray();
             ReconcileDyingCadences(s); PauseIncompatibleWork(s); ReconcileTraversal(s); return null;
         }
         private static void PutIncident(Snapshot s, CraftingIncidentRecord incident) => s.CraftingIncidents = s.CraftingIncidents.Select(x => x.Id == incident.Id ? incident : x).ToArray();

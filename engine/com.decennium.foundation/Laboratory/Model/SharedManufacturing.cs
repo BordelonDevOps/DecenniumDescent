@@ -75,9 +75,14 @@ namespace Decennium.Foundation.Laboratory
         }
         private string ValidateManufacturingProfile(Snapshot s)
         {
-            if(manufacturing==null)return s.ManufacturingOrders.Length==0&&s.Trades.Length==0&&s.AlchemyDoses.Length==0?null:"ManufacturingFixtureNotSelected";
+            if(manufacturing==null)return s.ManufacturingOrders.Length==0&&s.AlchemyDoses.Length==0
+                &&(recipe347Fixture==null?s.Trades.Length==0:s.Trades.Count(x=>x.TradeId=="Mining")==1
+                    &&s.Trades.All(x=>x.TradeId=="Mining"))?null:"ManufacturingFixtureNotSelected";
             var recipes=manufacturing.RecipeIds.Select(ManufacturingRules.Recipe).ToArray();
-            if(recipes.Length==0||recipes.Any(x=>x==null)||s.Trades.Length!=1||s.Trades[0].WorkerId!=TestOnlyPolicy.CompanionId||s.Trades[0].TradeId!=SharedCraftingFixture.TradeId
+            int expectedTrades=recipe347Fixture==null?1:2;
+            if(recipes.Length==0||recipes.Any(x=>x==null)||s.Trades.Length!=expectedTrades
+                ||!s.Trades.Any(x=>x.WorkerId==TestOnlyPolicy.CompanionId&&x.TradeId==SharedCraftingFixture.TradeId)
+                ||recipe347Fixture!=null&&!s.Trades.Any(x=>x.WorkerId==TestOnlyPolicy.CompanionId&&x.TradeId=="Mining"&&x.Level>=10)
                 ||s.ManufacturingOrders.Any(x=>!manufacturing.SupportsRecipe(x.RecipeId)||x.MaterialSet<0||x.MaterialSet>1
                     ||x.ExtraVials<ManufacturingRules.Recipe(x.RecipeId).MinimumSupplementaryVials||x.ExtraVials>ManufacturingRules.Recipe(x.RecipeId).MaximumSupplementaryVials)
                 ||s.AlchemyDoses.Any(x=>!manufacturing.SupportsRecipe(x.RecipeId)))return "ManufacturingFixtureMismatch";
@@ -106,11 +111,12 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
         private static bool ManufacturingCommand(CommandKind k)=>k==CommandKind.StartManufacturing||k==CommandKind.PauseManufacturing||k==CommandKind.ResumeManufacturing||k==CommandKind.CancelManufacturing||k==CommandKind.ResolveManufacturingQuality||k==CommandKind.UseAlchemyDose;
-        private static bool ManufacturingChoicePending(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice);
+        private static bool ManufacturingChoicePending(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.AwaitingChoice)
+            ||s.Recipe347WorkOrders.Any(x=>x.Status==Recipe347OrderStatus.AwaitingChoice);
         private static bool ActiveManufacturing(Snapshot s)=>s.ManufacturingOrders.Any(x=>x.Status==ManufacturingStatus.Working);
         private IEnumerable<Command> DiscoverManufacturingCommands(Snapshot s,string actor)
         {
-            if(manufacturing==null||PendingCalendarChoice(s))yield break;
+            if(manufacturing==null&&recipe347Fixture==null||PendingCalendarChoice(s))yield break;
             int actorIndex=Array.FindIndex(s.Actors,x=>x.Id==actor);
             if(actorIndex<0)yield break;
             int controlIndex=0,qualityIndex=0;
@@ -138,6 +144,22 @@ namespace Decennium.Foundation.Laboratory
                         yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
                                 +".manufacturing-quality."+(qualityIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
                             CommandKind.ResolveManufacturingQuality,order.Id,(int)choice,catalyst+1);
+            }
+            if(recipe347Fixture!=null)foreach(var order in s.Recipe347WorkOrders.Where(x=>x.WorkerId==actor&&x.Open)
+                .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                if(order.Status==Recipe347OrderStatus.Working||order.Status==Recipe347OrderStatus.Paused
+                    ||order.Status==Recipe347OrderStatus.AwaitingCheck) {
+                    CommandKind control=order.Status==Recipe347OrderStatus.Working?CommandKind.PauseRecipe347:CommandKind.ResumeRecipe347;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".recipe347-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,control,order.Id);
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                        +".recipe347-control."+(controlIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.CancelRecipe347,order.Id);
+                } else if(order.Status==Recipe347OrderStatus.AwaitingChoice) {
+                    foreach(var choice in new[]{CraftQualityChoice.Durability,CraftQualityChoice.FullYield})
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+"."+actorIndex.ToString(CultureInfo.InvariantCulture)
+                            +".recipe347-quality."+(qualityIndex++).ToString(CultureInfo.InvariantCulture),actor,s.Revision,
+                            CommandKind.ResolveRecipe347Quality,order.Id,(int)choice);
+                }
             }
         }
         private CommandQueryResult QueryManufacturingQualityChoice(Snapshot s,Command c)

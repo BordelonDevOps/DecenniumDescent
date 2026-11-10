@@ -508,6 +508,16 @@ namespace Decennium.Foundation.Laboratory
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
+            if(recipe347Fixture!=null&&Recipe347Command(c.Kind)) {
+                string failure=AssessRecipe347(s,c,out var order);var costs=new List<CommandCost>();
+                if(failure==null&&(c.Kind==CommandKind.StartRecipe347||c.Kind==CommandKind.ResumeRecipe347)) {
+                    RuleTime duration=Recipe347Subtract(Recipe347NextBookingEnd(s,order),s.RuleClock);
+                    if(duration.Denominator==1)costs.Add(new CommandCost("work-seconds",order.Id,duration.Numerator));
+                }
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
+            string workWatchFailure=Recipe347WorkWatchCommandFailure(s,c);
+            if(workWatchFailure!=null)return new CommandQueryResult(true,false,workWatchFailure,s.Revision,Array.Empty<CommandCost>());
             if(portableStorageFixture!=null&&PortableCommand(c.Kind)) {
                 string failure=ResolveCore(s.Copy(),c);
                 var costs=failure==null

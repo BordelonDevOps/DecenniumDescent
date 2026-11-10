@@ -153,6 +153,7 @@ namespace Decennium.Foundation.Laboratory
                     && s.SchemaVersion == Snapshot.TemporaryCampConstructionSchema
                 || portableStorageFixture != null && expeditionCampConstructionProfile != null
                     && s.SchemaVersion == Snapshot.PortableStorageSchema
+                || recipe347Fixture != null && s.SchemaVersion == Snapshot.Recipe347Schema
                 || dailyProvisioning != null && s.SchemaVersion == Snapshot.DailyProvisioningSchema
                 || characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema);

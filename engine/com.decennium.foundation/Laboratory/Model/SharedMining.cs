@@ -454,6 +454,20 @@ namespace Decennium.Foundation.Laboratory
             return policy;
         }
 
+        /// <summary>Extends an already composed TEST_ONLY shared world with the existing Mining
+        /// authority. This preserves the current world fixture and binds the added deposit facts
+        /// into its content fingerprint.</summary>
+        public TestOnlySharedWorldPolicy EnableMining(SharedMiningFixture fixture)
+        {
+            if(initializationStarted)throw new InvalidOperationException("World initialization has already started.");
+            if(fixture==null||miningFixture!=null)throw new ArgumentException("Supply one explicit Mining fixture.");
+            miningFixture=fixture;
+            using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.mining-composed-v1-"+string.Concat(sha.ComputeHash(
+                Encoding.UTF8.GetBytes(ContentFingerprint+"|"+fixture.Key))
+                    .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            return this;
+        }
+
         private void InitializeMining(Snapshot s)
         {
             if(miningFixture==null)return;
@@ -574,6 +588,80 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
 
+        private bool Recipe347MiningToolPhysicallyEligible(Snapshot s,Recipe347MiningToolProfileRecord profile,
+            string actor,MiningDepositRecord deposit,string exceptAttemptId="")
+        {
+            if(s.SchemaVersion<Snapshot.Recipe347Schema||profile==null||deposit==null)return false;
+            if(s.Recipe347MiningToolUseEvidence.Any(e=>e.ItemId==profile.ItemId&&e.AttemptId!=exceptAttemptId&&s.MiningAttempts.Any(a=>a.Id==e.AttemptId
+                &&(a.Status==MiningAttemptStatus.Working||a.Status==MiningAttemptStatus.Paused
+                    ||a.Status==MiningAttemptStatus.AwaitingCheck))))return false;
+            var worker=s.Actors.SingleOrDefault(x=>x.Id==actor);
+            var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==profile.ItemId);
+            var structure=s.Structures.SingleOrDefault(x=>x.Id==profile.StructureId);
+            var surface=s.Structures.SingleOrDefault(x=>x.Id==deposit.WorkSurfaceId);
+            var receiver=s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.ReceiverId);
+            return worker!=null&&item!=null&&structure!=null&&surface!=null&&receiver!=null
+                &&item.OwnerId==deposit.OwnerId&&item.CustodianId==deposit.OwnerId
+                &&item.Placement==PortablePlacement.Ground&&item.GroundX==deposit.SiteX&&item.GroundY==deposit.SiteY
+                &&item.SourceWeightLb==new RuleQuantity(3)&&!item.OperationalWeightLb.HasValue
+                &&structure.Material==ObjectMaterial.WoodLeather
+                &&structure.MaximumHp==profile.MaximumHp&&structure.Hp>0
+                &&!surface.Broken&&surface.LocationId==deposit.SiteId
+                &&receiver.Placement==PortablePlacement.Ground&&receiver.GroundX==deposit.SiteX&&receiver.GroundY==deposit.SiteY
+                &&receiver.Open&&PortableEquipmentRules.Accessible(s,actor,item)
+                &&Math.Abs((long)worker.X-deposit.SiteX)+Math.Abs((long)worker.Y-deposit.SiteY)<=1
+                &&CapableWorker(s,actor)&&AvailableHands(s,actor)>=2;
+        }
+
+        private static Recipe347MiningToolUseEvidenceRecord CaptureRecipe347MiningToolUse(Snapshot s,
+            MiningAttemptRecord attempt,Recipe347MiningToolProfileRecord profile)
+        {
+            var deposit=s.MiningDeposits.Single(x=>x.Id==attempt.DepositId);
+            var worker=s.Actors.Single(x=>x.Id==attempt.WorkerId);
+            var item=s.PortableEquipment.Single(x=>x.Id==profile.ItemId);
+            var structure=s.Structures.Single(x=>x.Id==profile.StructureId);
+            var surface=s.Structures.Single(x=>x.Id==deposit.WorkSurfaceId);
+            var receiver=s.PortableEquipment.Single(x=>x.Id==deposit.ReceiverId);
+            return new Recipe347MiningToolUseEvidenceRecord(attempt.Id+".recipe347-tool",attempt.Id,profile.Id,
+                profile.ItemId,deposit.Id,deposit.VersionId,attempt.WorkerId,attempt.StartedAt,worker.X,worker.Y,
+                item.OwnerId,item.CustodianId,item.Placement,item.GroundX,item.GroundY,structure.Hp,structure.MaximumHp,
+                structure.LocationId,surface.Id,surface.Broken,receiver.Id,receiver.Open,AvailableHands(s,attempt.WorkerId),
+                attempt.SelectedUnitIds);
+        }
+
+        private static RuleTime SegmentLength(Recipe347MiningToolWorkSegmentRecord segment)
+            =>SubtractMiningTime(segment.End,segment.Start);
+
+        private static RuleTime Recipe347MiningToolWork(Snapshot s,string attemptId)
+        {
+            RuleTime total=default;
+            foreach(var segment in s.Recipe347MiningToolWorkSegments.Where(x=>x.AttemptId==attemptId))
+                total=AddMiningTime(total,SegmentLength(segment));
+            return total;
+        }
+
+        private void RecordRecipe347MiningToolWork(Snapshot s,MiningAttemptRecord attempt,
+            Recipe347MiningToolProfileRecord profile,RuleTime fromWork,RuleTime toWork)
+        {
+            if(profile==null||toWork<=fromWork)return;
+            var evidence=s.Recipe347MiningToolUseEvidence.SingleOrDefault(x=>x.AttemptId==attempt.Id);
+            var deposit=s.MiningDeposits.Single(x=>x.Id==attempt.DepositId);
+            if(evidence==null||!Recipe347MiningToolPhysicallyEligible(s,profile,attempt.WorkerId,deposit,attempt.Id))return;
+            RuleTime stageStart=new RuleTime(attempt.SetupSeconds);
+            RuleTime stageEnd=new RuleTime(checked(attempt.SetupSeconds+attempt.RemovalSeconds));
+            RuleTime overlapStart=fromWork>stageStart?fromWork:stageStart;
+            RuleTime overlapEnd=toWork<stageEnd?toWork:stageEnd;
+            if(overlapEnd<=overlapStart)return;
+            RuleTime wallStart=AddMiningTime(attempt.UpdatedAt,SubtractMiningTime(overlapStart,fromWork));
+            RuleTime wallEnd=AddMiningTime(wallStart,SubtractMiningTime(overlapEnd,overlapStart));
+            var segments=s.Recipe347MiningToolWorkSegments.ToList();
+            int previous=segments.FindLastIndex(x=>x.AttemptId==attempt.Id);
+            if(previous>=0&&segments[previous].End==wallStart) {
+                var prior=segments[previous];segments[previous]=new Recipe347MiningToolWorkSegmentRecord(attempt.Id,prior.Start,wallEnd);
+            } else segments.Add(new Recipe347MiningToolWorkSegmentRecord(attempt.Id,wallStart,wallEnd));
+            s.Recipe347MiningToolWorkSegments=segments.ToArray();
+        }
+
         private void BookMining(Snapshot s,MiningAttemptRecord attempt)
         {
             RuleTime remaining=SubtractMiningTime(new RuleTime(attempt.DurationSeconds),attempt.WorkDone);
@@ -640,6 +728,12 @@ namespace Decennium.Foundation.Laboratory
                 }
                 if(work>=new RuleTime(attempt.DurationSeconds))PutMiningAttempt(s,attempt.WithWork(s.RuleClock,new RuleTime(attempt.DurationSeconds),MiningAttemptStatus.AwaitingCheck,committedAt));
                 else PutMiningAttempt(s,attempt.WithWork(s.RuleClock,work,MiningAttemptStatus.Working,committedAt));
+                if(s.SchemaVersion>=Snapshot.Recipe347Schema) {
+                    var evidence=s.Recipe347MiningToolUseEvidence.SingleOrDefault(x=>x.AttemptId==attempt.Id);
+                    var profile=evidence==null?null:s.Recipe347MiningToolProfiles.Single(x=>x.Id==evidence.ProfileId);
+                    RecordRecipe347MiningToolWork(s,attempt,profile,attempt.WorkDone,
+                        work<new RuleTime(attempt.DurationSeconds)?work:new RuleTime(attempt.DurationSeconds));
+                }
                 if(s.SchemaVersion>=Snapshot.MiningToolCandidateSchema) {
                     var use=s.MiningToolUses.SingleOrDefault(x=>x.MiningAttemptId==attempt.Id);
                     if(use!=null) {
@@ -718,9 +812,16 @@ namespace Decennium.Foundation.Laboratory
             var toolInstance=toolProfile==null?null:s.MiningToolInstanceStates.SingleOrDefault(x=>x.ProfileId==toolProfile.Id);
             bool toolQualified=toolUse!=null&&MiningToolCandidateRules.Qualifies(s,toolProfile,toolInstance,toolUse,
                 prior.WorkerId,prior.SelectedUnitIds);
+            var recipeToolEvidence=s.SchemaVersion>=Snapshot.Recipe347Schema
+                ?s.Recipe347MiningToolUseEvidence.SingleOrDefault(x=>x.AttemptId==prior.Id):null;
+            bool recipeToolQualified=recipeToolEvidence!=null
+                &&Recipe347MiningToolWork(s,prior.Id)>=new RuleTime(60);
+            int recipeToolBonus=recipeToolQualified
+                ?s.Recipe347MiningToolProfiles.Single(x=>x.Id==recipeToolEvidence.ProfileId).CheckBonus:0;
             CharacterAbility ability=prior.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
             int injury=actorFacts.InjuryPenalty(ability,toolCheck:true);
-            int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury+(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:0));
+            int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury
+                +(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:recipeToolBonus));
             int disadvantage=(prior.ProficiencyRank==0?1:0)+(prior.Hurried?1:0)
                 +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)?1:0);
             uint randomBefore=s.RandomState;
@@ -868,6 +969,7 @@ namespace Decennium.Foundation.Laboratory
             public MiningMaterialUnitRecord[] Units;
             public MiningAttemptRecord Current;
             public MiningToolCandidateProfileRecord ToolProfile;
+            public Recipe347MiningToolProfileRecord Recipe347ToolProfile;
             public string ToolPreparedUnitId,ToolReservedUnitId;
             public string[] CategoryIds,UnitIds;
             public string FailurePreference,CriticalPreference;
@@ -947,9 +1049,15 @@ namespace Decennium.Foundation.Laboratory
                         }
                     }
                 }
+                Recipe347MiningToolProfileRecord recipeToolProfile=null;
+                if(s.SchemaVersion>=Snapshot.Recipe347Schema&&toolProfile==null) {
+                    recipeToolProfile=s.Recipe347MiningToolProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
+                        .FirstOrDefault(x=>Recipe347MiningToolPhysicallyEligible(s,x,c.Actor,deposit));
+                }
                 facts=new MiningAssessment { Deposit=deposit,Categories=categories,Units=units,CategoryIds=categoryIds,UnitIds=unitIds,
                     FailurePreference=failurePreference,CriticalPreference=criticalPreference,
                     Duration=duration,ToolProfile=toolProfile,ToolPreparedUnitId=preparedUnitId,ToolReservedUnitId=reservedUnitId,
+                    Recipe347ToolProfile=recipeToolProfile,
                     AbilityModifier=check.AbilityModifier,ProficiencyRank=check.ProficiencyRank,
                     ProficiencyBonus=check.ProficiencyBonus,CheckDc=dc };
                 return null;
@@ -984,6 +1092,9 @@ namespace Decennium.Foundation.Laboratory
                     s.MiningToolUses=s.MiningToolUses.Concat(new[]{new MiningToolUseRecord(id+".tool-use",id,facts.ToolProfile.Id,
                         c.Actor,facts.ToolPreparedUnitId,facts.ToolReservedUnitId,default,default,null,"","",false,"",false)}).ToArray();
                 }
+                if(facts.Recipe347ToolProfile!=null)
+                    s.Recipe347MiningToolUseEvidence=s.Recipe347MiningToolUseEvidence.Concat(new[]{
+                        CaptureRecipe347MiningToolUse(s,attempt,facts.Recipe347ToolProfile)}).ToArray();
                 BookMining(s,attempt);s.MiningAttempts=s.MiningAttempts.Concat(new[]{attempt}).ToArray();return null;
             }
             var current=facts.Current;

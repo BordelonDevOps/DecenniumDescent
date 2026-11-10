@@ -257,7 +257,7 @@ namespace Decennium.Foundation.Laboratory
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
             PauseIncompatibleTemporaryCampConstruction(s);
             PauseIncompatibleCacheExcavation(s);
-            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);
+            PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);PauseIncompatibleRecipe347(s);
             PauseIncompatibleHarvesting(s);return null;
         }
         internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
