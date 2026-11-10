@@ -18,7 +18,10 @@ namespace Decennium.Foundation.Laboratory
         public const string StationId="TEST_ONLY.recipe347.mine-face";
         public const string BodyItemId="TEST_ONLY.recipe347.mundane-body";
         public const string BodyStructureId="TEST_ONLY.recipe347.mundane-body.structure";
+        public const string BodyProfileId="TEST_ONLY.mundane-mining-tool-body";
         public const string BodyLotId="TEST_ONLY.recipe347.mundane-body.lot";
+        public const string MiningToolsItemId="TEST_ONLY.recipe347.mining-tools";
+        public const string MiningToolsStructureId="TEST_ONLY.recipe347.mining-tools.structure";
         public const string AssayKitId="TEST_ONLY.recipe347.assay-kit";
         public const string AssayKitStructureId="TEST_ONLY.recipe347.assay-kit.structure";
         public const string FormulaAccessId="TEST_ONLY.recipe347.formula-access";
@@ -37,48 +40,75 @@ namespace Decennium.Foundation.Laboratory
         public static readonly int[] ComponentAmounts={5,3,1,1,1};
         public static readonly RuleQuantity[] ComponentMasses={
             new RuleQuantity(1,10),new RuleQuantity(1),new RuleQuantity(1),new RuleQuantity(1,10),new RuleQuantity(49,100)};
+        public static readonly RuleQuantity[] ComponentVolumes={
+            new RuleQuantity(1,50),new RuleQuantity(1,100),new RuleQuantity(1,20),new RuleQuantity(1,1000),new RuleQuantity(1,20)};
         public static readonly bool[] ComponentConsumed={true,true,false,true,true};
         private readonly RuleTime[] phases={new RuleTime(900),new RuleTime(27900),new RuleTime(28800),new RuleTime(28800),new RuleTime(28800),new RuleTime(28800)};
 
         internal string Canonical=>"recipe347-test-only-v2|source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|"
             +"worker=companion|level=10|specialty=Mining:recipe-347:+1|formula=explicit-access|DC20|STR-or-WIS|"
             +"components=5x0.1+3x1+1x1-retained+1x0.1+1x0.49|body=mundane-3lb-HP5|"
-            +"phases=900,27900,28800,28800,28800,28800|workshop=proper-mine-face|two-watches-excluding-rest|"
+            +"miners-tools=25gp-10lb-HP5-WoodLeather_TEST_ONLY|phases=900,27900,28800,28800,28800,28800|"
+            +"workshop=proper-mine-face|two-watches-excluding-rest|shared-mining-candidate-v1|"
+            +"default-preparation=unitA:600s:0.1lb-gangue_TEST_ONLY|default-reserve=unitB|"
+            +"portable-counted-lots=schema73|volumes="+string.Join(",",ComponentVolumes.Select(x=>x.Numerator.ToString(CultureInfo.InvariantCulture)
+                +"/"+x.Denominator.ToString(CultureInfo.InvariantCulture)))+"|body=1/25ft3-per-lb|miners=1/2ft3|assay=1/5ft3|pick=3/10ft3|"
             +string.Join(",",ComponentLotIds);
 
         internal void Initialize(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.Recipe347Schema||s.MiningDeposits.Length==0
+            if(s.SchemaVersion!=Snapshot.PortableCountedLotSchema||s.MiningDeposits.Length==0
                 ||s.Recipe347Workshops.Length!=0||s.PortableEquipment.Any(x=>x.Id==BodyItemId||x.Id==AssayKitId)
-                ||s.Structures.Any(x=>x.Id==BodyStructureId||x.Id==AssayKitStructureId))
-                throw new ArgumentException("Recipe-347 requires schema72, the selected Mining worksite and fresh fixture identities.");
+                ||s.Structures.Any(x=>x.Id==BodyStructureId||x.Id==AssayKitStructureId||x.Id==MiningToolsStructureId)
+                ||s.PortableEquipment.Any(x=>x.Id==MiningToolsItemId))
+                throw new ArgumentException("Recipe-347 counted stock requires schema73, the selected Mining worksite and fresh fixture identities.");
             var deposit=s.MiningDeposits.OrderBy(x=>x.Id,StringComparer.Ordinal).First();
-            string owner=deposit.OwnerId,ground="ground."+deposit.SiteX.ToString(CultureInfo.InvariantCulture)+"."+deposit.SiteY.ToString(CultureInfo.InvariantCulture);
+            string owner=deposit.OwnerId;
+            var crate=s.PortableEquipment.SingleOrDefault(x=>x.Id==TestOnlyPortableStorageFixture.CrateId);
+            if(crate==null||crate.Placement!=PortablePlacement.Ground
+                ||crate.CapacityPounds!=new RuleQuantity(50)||crate.CapacityCubicFeet!=new RuleQuantity(2))
+                throw new ArgumentException("Recipe-347 counted stock requires the authored physical storage crate.");
+            crate=crate.With(custodianId:owner);
+            s.PortableEquipment=s.PortableEquipment.Select(x=>x.Id==crate.Id?crate:x).ToArray();
+            TestOnlyPortableStorageFixture.AppendRecipe347Profiles(s);
+            string custodian=crate.CustodianId,storage=crate.Id;
             var lots=s.Work.Lots.ToList();var inventory=s.InventoryLots.ToList();
+            var componentItems=new List<PortableEquipmentRecord>();
             for(int i=0;i<ComponentLotIds.Length;i++) {
-                lots.Add(new ResourceLot(ComponentLotIds[i],ComponentUnitIds[i],ComponentAmounts[i],ground,owner));
+                lots.Add(new ResourceLot(ComponentLotIds[i],ComponentUnitIds[i],ComponentAmounts[i],storage,custodian));
                 inventory.Add(new InventoryLotRecord(ComponentLotIds[i],"",owner,new RuleQuantity(ComponentAmounts[i]),s.RuleClock,
-                    NutritionKind.None,null,InventoryAccess.Ground));
+                    NutritionKind.None,null,InventoryAccess.Stowed));
+                componentItems.Add(new PortableEquipmentRecord(ComponentLotIds[i],TestOnlyPortableStorageFixture.CountedProfileId(ComponentUnitIds[i]),
+                    owner,custodian,storage,PortablePlacement.Contained,PortableLinkKind.InventoryLot,ComponentLotIds[i],
+                    PortableMassBasis.CountedQuantity,null,null));
             }
-            lots.Add(new ResourceLot(BodyLotId,"mass-pound",new RuleQuantity(3),ground,owner));
+            lots.Add(new ResourceLot(BodyLotId,"mass-pound",new RuleQuantity(3),storage,custodian));
             inventory.Add(new InventoryLotRecord(BodyLotId,"",owner,new RuleQuantity(3),s.RuleClock,
-                NutritionKind.None,null,InventoryAccess.Ground));
+                NutritionKind.None,null,InventoryAccess.Stowed));
             s.Work=new WorkLedger(lots,s.Work.WorkerIntervals,s.Work.Reservations);s.InventoryLots=inventory.ToArray();
-            var body=new PortableEquipmentRecord(BodyItemId,"TEST_ONLY.mundane-mining-tool-body",owner,owner,"",
-                PortablePlacement.Ground,PortableLinkKind.InventoryLot,BodyLotId,PortableMassBasis.GenericPounds,
-                new RuleQuantity(3),null,groundX:deposit.SiteX,groundY:deposit.SiteY);
-            var assayKit=new PortableEquipmentRecord(AssayKitId,"tools.assayers-supplies",owner,owner,"",
-                PortablePlacement.Ground,PortableLinkKind.None,"",PortableMassBasis.Fixed,new RuleQuantity(3),new RuleQuantity(3),
-                groundX:deposit.SiteX,groundY:deposit.SiteY);
-            s.PortableEquipment=s.PortableEquipment.Concat(new[]{body,assayKit}).ToArray();
+            var body=new PortableEquipmentRecord(BodyItemId,BodyProfileId,owner,custodian,storage,
+                PortablePlacement.Contained,PortableLinkKind.InventoryLot,BodyLotId,PortableMassBasis.GenericPounds,
+                new RuleQuantity(3),null);
+            var assayKit=new PortableEquipmentRecord(AssayKitId,"tools.assayers-supplies",owner,custodian,storage,
+                PortablePlacement.Contained,PortableLinkKind.None,"",PortableMassBasis.Fixed,new RuleQuantity(3),new RuleQuantity(3));
+            var miningTools=new PortableEquipmentRecord(MiningToolsItemId,"tools.miners-supplies",owner,custodian,storage,
+                PortablePlacement.Contained,PortableLinkKind.None,"",PortableMassBasis.Fixed,new RuleQuantity(10),new RuleQuantity(10));
+            var pick=s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.PickId);
+            if(pick==null||pick.ProfileId!="TEST_ONLY.mining-pick"||pick.MassBasis!=PortableMassBasis.Fixed)
+                throw new ArgumentException("Recipe-347 workshop requires the authored physical pick.");
+            var storedPick=pick.With(custodianId:custodian,parentId:storage,placement:PortablePlacement.Contained,groundX:0,groundY:0);
+            s.PortableEquipment=s.PortableEquipment.Select(x=>x.Id==deposit.PickId?storedPick:x)
+                .Concat(componentItems).Concat(new[]{body,assayKit,miningTools}).ToArray();
             s.Structures=s.Structures.Concat(new[]{
-                new ObjectStructureRecord(BodyStructureId,"TEST_ONLY.mundane-mining-tool-body",owner,owner,deposit.SiteId,
+                new ObjectStructureRecord(BodyStructureId,"TEST_ONLY.mundane-mining-tool-body",owner,custodian,storage,
                     ObjectMaterial.WoodLeather,5,5,500,new RuleQuantity(3)),
-                new ObjectStructureRecord(AssayKitStructureId,"TEST_ONLY.assay-kit-structure",owner,owner,deposit.SiteId,
-                    ObjectMaterial.WoodLeather,5,5,0,new RuleQuantity(3))}).ToArray();
+                new ObjectStructureRecord(AssayKitStructureId,"TEST_ONLY.assay-kit-structure",owner,custodian,storage,
+                    ObjectMaterial.WoodLeather,5,5,0,new RuleQuantity(3)),
+                new ObjectStructureRecord(MiningToolsStructureId,"tools.miners-supplies",owner,custodian,storage,
+                    ObjectMaterial.WoodLeather,5,5,2500,new RuleQuantity(10))}).ToArray();
             s.Trades=s.Trades.Where(x=>x.WorkerId!=TestOnlyPolicy.CompanionId||x.TradeId!="Mining")
                 .Concat(new[]{new TradeProgressRecord(TestOnlyPolicy.CompanionId,"Mining",10,0)}).ToArray();
-            string[] implements={deposit.MiningToolsId,deposit.PickId,AssayKitId};
+            string[] implements={MiningToolsItemId,deposit.PickId,AssayKitId};
             s.Recipe347FormulaAccess=new[]{new TestOnlyRecipe347FormulaAccessRecord(FormulaAccessId,TestOnlyPolicy.CompanionId,RecipeId,FormulaSourceId)};
             s.Recipe347TradeSpecialties=new[]{new TestOnlyTradeSpecialtyRecord(SpecialtyId,TestOnlyPolicy.CompanionId,"Mining",RecipeId,SpecialtySourceId)};
             s.Recipe347Workshops=new[]{new TestOnlyRecipe347WorkshopRecord(WorkshopId,deposit.SiteId,deposit.SiteX,deposit.SiteY,
@@ -87,19 +117,70 @@ namespace Decennium.Foundation.Laboratory
 
         internal string ValidateSnapshot(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.Recipe347Schema||s.Recipe347FormulaAccess.Length!=1
+            if(s.SchemaVersion!=Snapshot.PortableCountedLotSchema||s.Recipe347FormulaAccess.Length!=1
                 ||s.Recipe347FormulaAccess[0].Id!=FormulaAccessId||s.Recipe347FormulaAccess[0].ActorId!=TestOnlyPolicy.CompanionId
                 ||s.Recipe347TradeSpecialties.Length!=1||s.Recipe347TradeSpecialties[0].Id!=SpecialtyId
                 ||s.Recipe347Workshops.Length!=1||s.Recipe347Workshops[0].Id!=WorkshopId
                 ||s.Trades.Count(x=>x.TradeId=="Mining")!=1
                 ||s.PortableEquipment.Count(x=>x.Id==BodyItemId)!=1||s.PortableEquipment.Count(x=>x.Id==AssayKitId)!=1
-                ||s.Structures.Count(x=>x.Id==BodyStructureId)!=1||s.Structures.Count(x=>x.Id==AssayKitStructureId)!=1)
+                ||s.PortableEquipment.Count(x=>x.Id==MiningToolsItemId)!=1
+                ||s.Structures.Count(x=>x.Id==BodyStructureId)!=1||s.Structures.Count(x=>x.Id==AssayKitStructureId)!=1
+                ||s.Structures.Count(x=>x.Id==MiningToolsStructureId)!=1)
                 return "Recipe347FixtureMismatch";
+            var miningKit=s.PortableEquipment.Single(x=>x.Id==MiningToolsItemId);
+            var miningKitStructure=s.Structures.Single(x=>x.Id==MiningToolsStructureId);
+            var deposit=s.MiningDeposits.OrderBy(x=>x.Id,StringComparer.Ordinal).First();
+            var workshop=s.Recipe347Workshops.Single();
+            var storedPick=s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.PickId);
+            if(miningKit.ProfileId!="tools.miners-supplies"||miningKit.SourceWeightLb!=new RuleQuantity(10)
+                ||miningKit.OperationalWeightLb!=new RuleQuantity(10)
+                ||miningKitStructure.ProfileId!=miningKit.ProfileId||miningKitStructure.MaximumHp!=5
+                ||miningKitStructure.Hp!=5||miningKitStructure.MassPounds!=new RuleQuantity(10)
+                ||miningKitStructure.Material!=ObjectMaterial.WoodLeather
+                ||storedPick==null||storedPick.ProfileId!="TEST_ONLY.mining-pick"
+                ||!workshop.ImplementIds.SequenceEqual(new[]{MiningToolsItemId,deposit.PickId,AssayKitId},StringComparer.Ordinal))
+                return "Recipe347MinerToolsFixtureMismatch";
             for(int i=0;i<ComponentLotIds.Length;i++) {
                 var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==ComponentLotIds[i]);
-                if(lot==null||lot.UnitId!=ComponentUnitIds[i])return "Recipe347StockFixtureMismatch";
+                var inventory=s.InventoryLots.SingleOrDefault(x=>x.LotId==ComponentLotIds[i]);
+                var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==ComponentLotIds[i]);
+                var profile=PortableStorageProfileValidation.Find(s,TestOnlyPortableStorageFixture.CountedProfileId(ComponentUnitIds[i]));
+                if(lot==null||lot.UnitId!=ComponentUnitIds[i]||inventory==null
+                    ||inventory.CreatedAmount!=new RuleQuantity(ComponentAmounts[i])
+                    ||item==null||inventory.OwnerId!=item.OwnerId||item.CustodianId!=lot.CustodianId
+                    ||item.LinkedId!=lot.Id||item.LinkKind!=PortableLinkKind.InventoryLot
+                    ||item.MassBasis!=PortableMassBasis.CountedQuantity||item.SourceWeightLb.HasValue||item.OperationalWeightLb.HasValue
+                    ||profile==null||profile.QuantityUnitId!=ComponentUnitIds[i]
+                    ||profile.MassPerUnitLb!=ComponentMasses[i]||profile.PackedVolumePerUnitCubicFeet!=ComponentVolumes[i])
+                    return "Recipe347CountedStockFixtureMismatch";
             }
             return null;
+        }
+
+        internal void BindMiningCandidates(Snapshot s,Recipe347MiningToolProfileRecord recipeProfile)
+        {
+            var profiles=s.MiningToolCandidateProfiles.ToList();
+            var states=s.MiningToolInstanceStates.ToList();
+            int index=0;
+            foreach(var deposit in s.MiningDeposits.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+                var existing=profiles.SingleOrDefault(x=>x.DepositId==deposit.Id);
+                if(existing!=null) {
+                    if(existing.ToolItemId==recipeProfile.ItemId&&existing.StructureId==recipeProfile.StructureId
+                        &&!states.Any(x=>x.ProfileId==existing.Id))
+                        states.Add(new MiningToolInstanceStateRecord(existing.Id,existing.ToolItemId));
+                    index++;continue;
+                }
+                var target=s.MiningUnits.SingleOrDefault(x=>x.Id==SharedMiningFixture.UnitA&&x.DepositId==deposit.Id
+                    &&x.Condition==MiningUnitCondition.Intact&&x.MassPounds<=new RuleQuantity(1));
+                var preparation=target==null?null:s.MineralPreparationProfiles.SingleOrDefault(x=>x.UnitId==target.Id);
+                var reserve=s.MiningUnits.SingleOrDefault(x=>x.Id==SharedMiningFixture.UnitB&&x.DepositId==deposit.Id
+                    &&x.Condition==MiningUnitCondition.Intact);
+                string id=recipeProfile.Id+".candidate."+index.ToString(CultureInfo.InvariantCulture);
+                var profile=new MiningToolCandidateProfileRecord(id,deposit.Id,recipeProfile.ItemId,BodyProfileId,
+                    recipeProfile.StructureId,BodyProfileId,preparation?.Id??"",preparation?.UnitId??"",reserve?.Id??"");
+                profiles.Add(profile);states.Add(new MiningToolInstanceStateRecord(id,recipeProfile.ItemId));index++;
+            }
+            s.MiningToolCandidateProfiles=profiles.ToArray();s.MiningToolInstanceStates=states.ToArray();
         }
     }
 
@@ -113,6 +194,13 @@ namespace Decennium.Foundation.Laboratory
             if(fixture==null||recipe347Fixture!=null)throw new ArgumentException("Supply one explicit recipe-347 fixture.");
             if(miningFixture==null||portableStorageFixture==null||crafting==null)
                 throw new InvalidOperationException("Recipe347RequiresMiningPortableStorageAndCraftingConsequences");
+            var dressingTarget=miningFixture.Deposits.SelectMany(x=>x.Units)
+                .SingleOrDefault(x=>x.Id==SharedMiningFixture.UnitA&&x.Condition==MiningUnitCondition.Intact
+                    &&x.MassPounds>new RuleQuantity(1,10)&&x.MassPounds<=new RuleQuantity(1));
+            if(dressingTarget!=null&&!miningFixture.MineralPreparationProfiles.Any(x=>x.UnitId==dressingTarget.Id))
+                miningFixture=miningFixture.WithMineralPreparationProfile(new MineralPreparationProfileRecord(
+                    "TEST_ONLY.recipe347.mineral-preparation",dressingTarget.Id,new RuleQuantity(1,10),
+                    "TEST_ONLY.recipe347.dressed-mineral","TEST_ONLY.recipe347.gangue"));
             recipe347Fixture=fixture;
             using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.recipe347-v1-"
                 +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(ContentFingerprint+"|"+fixture.Canonical))
@@ -159,8 +247,10 @@ namespace Decennium.Foundation.Laboratory
             =>s.Recipe347WorkOrders.Any(x=>x.Id==jobId)
                 ||s.FormulaWork.Any(x=>x.Id==jobId)
                 ||s.ManufacturingOrders.Any(x=>x.Id==jobId)
+                ||s.MiningAttempts.Any(x=>x.Id==jobId)
                 ||s.HarvestAttempts.Any(x=>x.Id==jobId)
-                ||s.Crops.SelectMany(x=>x.Tasks).Any(x=>x.Id==jobId);
+                ||s.Crops.SelectMany(x=>x.Tasks).Any(x=>x.Id==jobId)
+                ||s.CraftingIncidents.Any(x=>RemedyJobId(x)==jobId);
         private static bool Recipe347SourceQualifiedWorkInWatch(Snapshot s,string actor,long day,int watch)
         {
             var start=Recipe347WatchStart(day,watch);var end=Recipe347WatchStart(day,watch+1);
@@ -168,7 +258,30 @@ namespace Decennium.Foundation.Laboratory
                 &&x.Start<end&&x.End>start);
         }
         private static int Recipe347UsedWatches(Snapshot s,string actor,long day)
-            =>Enumerable.Range(0,3).Count(w=>Recipe347SourceQualifiedWorkInWatch(s,actor,day,w));
+            =>Enumerable.Range(0,3).Count(w=>(int)Recipe347Watch(s,actor,day)!=w
+                &&Recipe347SourceQualifiedWorkInWatch(s,actor,day,w));
+        private string Recipe347ProjectedWorkWatchFailure(Snapshot before,Snapshot after,Command command)
+        {
+            if(recipe347Fixture==null||!Recipe347WorkStartCommand(command))return null;
+            var priorIds=new HashSet<string>(before.Work.WorkerIntervals.Select(x=>x.Id),StringComparer.Ordinal);
+            var newlyBooked=after.Work.WorkerIntervals.Where(x=>!priorIds.Contains(x.Id)
+                &&Recipe347SourceQualifiedJob(after,x.JobId)).ToArray();
+            foreach(var interval in newlyBooked) {
+                long firstDay=Recipe347Day(interval.Start),lastDay=Recipe347Day(interval.End);
+                for(long day=firstDay;day<=lastDay;day++) {
+                    bool overlaps=Enumerable.Range(0,3).Any(w=>interval.Start<Recipe347WatchStart(day,w+1)
+                        &&interval.End>Recipe347WatchStart(day,w));
+                    int restWatch=(int)Recipe347Watch(after,interval.WorkerId,day);
+                    if(restWatch>=0&&restWatch<3&&interval.Start<Recipe347WatchStart(day,restWatch+1)
+                        &&interval.End>Recipe347WatchStart(day,restWatch))return "Recipe347ScheduledRestWatch";
+                    if(overlaps&&Recipe347UsedWatches(before,interval.WorkerId,day)<=2
+                        &&Recipe347UsedWatches(after,interval.WorkerId,day)>2)
+                        return "Recipe347TwoWorkWatchesExceeded";
+                    if(day==long.MaxValue)break;
+                }
+            }
+            return null;
+        }
         private string Recipe347WatchAdmission(Snapshot s,string actor)
         {
             if(recipe347Fixture==null)return null;
@@ -184,32 +297,26 @@ namespace Decennium.Foundation.Laboratory
             switch(c.Kind) {
                 case CommandKind.StartRecipe347: case CommandKind.StartManufacturing: case CommandKind.StartFormulaResearch:
                 case CommandKind.StartFormulaCopy: case CommandKind.StartHarvest: case CommandKind.PlantCrop:
-                case CommandKind.TendCrop: case CommandKind.HarvestCrop:return true;
+                case CommandKind.TendCrop: case CommandKind.HarvestCrop: case CommandKind.StartCraftRemedy:
+                case CommandKind.StartExpeditionWork: case CommandKind.StartMining:return true;
                 case CommandKind.ResumeRecipe347: case CommandKind.ResumeManufacturing: case CommandKind.ResumeFormulaWork:
-                case CommandKind.ResumeHarvest:return true;
+                case CommandKind.ResumeHarvest: case CommandKind.ResumeMining:return true;
                 default:return false;
             }
         }
         private string Recipe347WorkWatchCommandFailure(Snapshot s,Command c)
         {
             if(recipe347Fixture==null||!Recipe347WorkStartCommand(c))return null;
+            if(c.Kind==CommandKind.StartRecipe347)return Recipe347WatchAdmission(s,c.Actor);
             if(c.Kind==CommandKind.ResumeRecipe347) {
                 var order=s.Recipe347WorkOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-                if(order==null||order.Status!=Recipe347OrderStatus.Paused)return null;
+                return order!=null&&order.Status==Recipe347OrderStatus.Paused
+                    ?Recipe347WatchAdmission(s,c.Actor):null;
             }
-            if(c.Kind==CommandKind.ResumeManufacturing) {
-                var order=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-                if(order==null||order.Status!=ManufacturingStatus.Paused)return null;
-            }
-            if(c.Kind==CommandKind.ResumeFormulaWork) {
-                var order=s.FormulaWork.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-                if(order==null||order.Status!=FormulaWorkStatus.Paused)return null;
-            }
-            if(c.Kind==CommandKind.ResumeHarvest) {
-                var order=s.HarvestAttempts.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-                if(order==null||order.Status!=HarvestAttemptStatus.Paused)return null;
-            }
-            return Recipe347WatchAdmission(s,c.Actor);
+            // The exact-Watch-start rule belongs to this recipe profile only. Other source-bound
+            // procedures are admitted at their own legal times, then their booked intervals are
+            // checked against the shared two-Work-Watch ceiling after the command books them.
+            return null;
         }
 
         private void InitializeRecipe347(Snapshot s)
@@ -237,7 +344,7 @@ namespace Decennium.Foundation.Laboratory
             if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,workshop.SiteX,workshop.SiteY,1))return "Recipe347WorkshopOutOfReach";
             var station=s.Structures.SingleOrDefault(x=>x.Id==workshop.StationStructureId&&x.LocationId==workshop.SiteId&&!x.Broken);
             if(station==null||!workshop.ProperWorkshop||CraftingRestrictions.NewOrderBlocked(s,actor,workshop.StationId,"Mining")
-                ||CraftingRestrictions.CraftingCheckBlocked(s,TestOnlyRecipe347Fixture.AssayKitStructureId))
+                ||CraftingRestrictions.CraftingCheckBlocked(s,TestOnlyRecipe347Fixture.MiningToolsStructureId))
                 return "Recipe347WorkshopUnavailable";
             var access=s.Recipe347FormulaAccess.SingleOrDefault(x=>x.ActorId==actor&&x.RecipeId==TestOnlyRecipe347Fixture.RecipeId);
             if(access==null)return "Recipe347FormulaUnavailable";
@@ -246,6 +353,13 @@ namespace Decennium.Foundation.Laboratory
                 &&x.ScopeId==TestOnlyRecipe347Fixture.RecipeId);
             if(trade==null||trade.Level<10||specialty==null)return "Recipe347MiningSpecialtyRequired";
             if(!s.SkillTraining.Any(x=>x.ActorId==actor&&x.SkillId=="mining-tools"&&x.ProficiencyRank>0))return "Recipe347MiningToolsTrainingRequired";
+            for(int i=0;i<TestOnlyRecipe347Fixture.ComponentLotIds.Length;i++) {
+                string lotId=TestOnlyRecipe347Fixture.ComponentLotIds[i];
+                var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==lotId);
+                var physical=s.PortableEquipment.SingleOrDefault(x=>x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==lotId);
+                if(lot==null||lot.UnitId!=TestOnlyRecipe347Fixture.ComponentUnitIds[i]||physical==null
+                    ||!PortableEquipmentRules.Accessible(s,actor,physical))return "Recipe347ComponentsUnavailable";
+            }
             var implements=workshop.ImplementIds.Select(id=>s.PortableEquipment.SingleOrDefault(x=>x.Id==id)).ToArray();
             if(implements.Length!=3||implements.Any(x=>x==null||x.CustodianId!=actor||x.Placement!=PortablePlacement.Ground
                 ||x.GroundX!=workshop.SiteX||x.GroundY!=workshop.SiteY||!PortableEquipmentRules.Accessible(s,actor,x)))
@@ -271,6 +385,14 @@ namespace Decennium.Foundation.Laboratory
             RuleTime watchEnd=Recipe347WatchStart(day,watch+1);
             RuleTime phaseEnd=Recipe347Add(s.RuleClock,Recipe347Subtract(order.Work.Phases[order.Work.CompletedPhases],order.Work.Partial));
             return phaseEnd<watchEnd?phaseEnd:watchEnd;
+        }
+        private bool Recipe347NextPhaseFitsCurrentWatch(Snapshot s,Recipe347WorkOrderRecord order)
+        {
+            if(order.Work.CompletedPhases>=order.Work.Phases.Count)return false;
+            RuleTime watchEnd=Recipe347WatchStart(Recipe347Day(s.RuleClock),Recipe347WatchIndex(s.RuleClock)+1);
+            RuleTime remaining=Recipe347Subtract(watchEnd,s.RuleClock);
+            RuleTime phaseRemaining=Recipe347Subtract(order.Work.Phases[order.Work.CompletedPhases],order.Work.Partial);
+            return phaseRemaining<=remaining;
         }
         private void BookRecipe347(Snapshot s,Recipe347WorkOrderRecord order,bool claims)
         {
@@ -302,7 +424,7 @@ namespace Decennium.Foundation.Laboratory
                 bool phaseEnded=work.CompletedPhases>order.Work.CompletedPhases;
                 bool watchEnded=Recipe347AtWatchStart(s.RuleClock);
                 bool intervalEnded=!s.Work.WorkerIntervals.Any(x=>x.JobId==order.Id&&x.Start<=s.RuleClock&&x.End>s.RuleClock);
-                if(intervalEnded&&phaseEnded&&!watchEnded) {
+                if(intervalEnded&&phaseEnded&&!watchEnded&&Recipe347NextPhaseFitsCurrentWatch(s,current)) {
                     PutRecipe347Order(s,current);BookRecipe347(s,current,false);continue;
                 }
                 if(intervalEnded||watchEnded) {
@@ -331,7 +453,8 @@ namespace Decennium.Foundation.Laboratory
                     TestOnlyRecipe347Fixture.RecipeId,(CharacterAbility)c.X,TestOnlyRecipe347Fixture.FormulaAccessId,
                     TestOnlyRecipe347Fixture.SpecialtyId,TestOnlyRecipe347Fixture.WorkshopId,TestOnlyRecipe347Fixture.BodyItemId,
                     TestOnlyRecipe347Fixture.BodyStructureId,TestOnlyRecipe347Fixture.BodyLotId,
-                    TestOnlyRecipe347Fixture.ComponentLotIds,new[]{"TEST_ONLY.mining.tools","TEST_ONLY.mining.pick",TestOnlyRecipe347Fixture.AssayKitId},
+                    TestOnlyRecipe347Fixture.ComponentLotIds,new[]{TestOnlyRecipe347Fixture.MiningToolsItemId,
+                        s.MiningDeposits.OrderBy(x=>x.Id,StringComparer.Ordinal).First().PickId,TestOnlyRecipe347Fixture.AssayKitId},
                     Recipe347OrderStatus.Working,new ActiveWorkProgress(new[]{new RuleTime(900),new RuleTime(27900),new RuleTime(28800),
                         new RuleTime(28800),new RuleTime(28800),new RuleTime(28800)}),s.RuleClock,s.RuleClock);
                 return null;
@@ -397,6 +520,8 @@ namespace Decennium.Foundation.Laboratory
                     structure.Hp,maximum,hp)}).ToArray();
                 s.Recipe347MiningToolProfiles=s.Recipe347MiningToolProfiles.Concat(new[]{new Recipe347MiningToolProfileRecord(
                     order.Id+".mining-profile",outputId,order.BodyItemId,order.BodyStructureId,maximum)}).ToArray();
+                recipe347Fixture.BindMiningCandidates(s,s.Recipe347MiningToolProfiles.Single(x=>x.ProvenanceId==outputId));
+                SynchronizeMiningToolStructureLocation(s,s.PortableEquipment.Single(x=>x.Id==order.BodyItemId));
             }
             PutRecipe347Order(s,order.WithSettlement(s.RuleClock,status,choice,mishap,xp,incidentId,outputId));
         }
@@ -418,7 +543,7 @@ namespace Decennium.Foundation.Laboratory
                 var d6=DiceStream.Draw(s.RandomState,6);s.RandomState=d6.NextState;mishap=d6.Value+1;
                 incident=order.Id+".mishap";
                 var fact=new CraftingMishapFact(incident,mishap,order.WorkerId,s.RuleClock,new[]{order.WorkerId},
-                    TestOnlyRecipe347Fixture.AssayKitStructureId,TestOnlyRecipe347Fixture.StationId,"Mining");
+                    TestOnlyRecipe347Fixture.MiningToolsStructureId,TestOnlyRecipe347Fixture.StationId,"Mining");
                 string consequence=ApplyCraftingMishap(s,fact);if(consequence!=null)return consequence;
             }
             SettleRecipe347(s,order,CraftQualityChoice.StandardQuantity,mishap,incident);return null;

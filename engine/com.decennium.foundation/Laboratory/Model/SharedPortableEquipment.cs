@@ -1,5 +1,6 @@
 #if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
 using System;
+using System.Globalization;
 using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
@@ -242,6 +243,7 @@ namespace Decennium.Foundation.Laboratory
                 projected.RepeatingCrossbows=projected.RepeatingCrossbows.Select(x=>x.Id==loadout.CrossbowId?x.WithGrip(1):x).ToArray();
             }
             if(newCustodian!=item.CustodianId)foreach(var child in PortableEquipmentRules.Descendants(projected,item.Id))SetPortable(projected,child.With(custodianId:newCustodian));
+            SynchronizeMiningToolStructureLocation(projected,projected.PortableEquipment.Single(x=>x.Id==item.Id));
             PortableEquipmentRules.SynchronizeLinks(projected);
             string projectionError=CheckPortableProjectedState(projected);if(projectionError!=null)return projectionError;
             bool tactical=s.InventoryCombat;
@@ -266,6 +268,7 @@ namespace Decennium.Foundation.Laboratory
                 var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
+                var recipe347Boundary=NextRecipe347Boundary(s);if(recipe347Boundary.HasValue&&recipe347Boundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 var pressureBoundary=NextExpeditionPressureBoundary(s);if(pressureBoundary.HasValue&&pressureBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
                 string id=OrdinaryInventory.Identity(s,"portable");
                 s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,start,end)},Array.Empty<ResourceReservation>());
@@ -286,12 +289,39 @@ namespace Decennium.Foundation.Laboratory
                 s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==loadout.CrossbowId?x.WithGrip(1):x).ToArray();
             }
             if(newCustodian!=item.CustodianId)foreach(var child in PortableEquipmentRules.Descendants(s,item.Id))SetPortable(s,child.With(custodianId:newCustodian));
+            SynchronizeMiningToolStructureLocation(s,s.PortableEquipment.Single(x=>x.Id==item.Id));
             PortableEquipmentRules.SynchronizeLinks(s);
             string eventId=OrdinaryInventory.Identity(s,"portable");
             var record=new PortableHandlingRecord(eventId,s.Revision+1,c.Actor,item.Id,from,operation==PortableOperation.Stow?to:"",recipient,
                 operation,before,after,operationStart,s.RuleClock,tactical);
             s.PortableHandling=s.PortableHandling.Concat(new[]{record}).ToArray();
             return null;
+        }
+
+        private void SynchronizeMiningToolStructureLocation(Snapshot s,PortableEquipmentRecord item)
+        {
+            if(s.SchemaVersion<Snapshot.MiningToolCandidateSchema)return;
+            var profiles=s.MiningToolCandidateProfiles.Where(x=>x.ToolItemId==item.Id).ToArray();
+            var structureIds=profiles.Select(x=>x.StructureId).ToList();
+            if(recipe347Fixture!=null) {
+                if(item.Id==TestOnlyRecipe347Fixture.BodyItemId)structureIds.Add(TestOnlyRecipe347Fixture.BodyStructureId);
+                if(item.Id==TestOnlyRecipe347Fixture.MiningToolsItemId)structureIds.Add(TestOnlyRecipe347Fixture.MiningToolsStructureId);
+                if(item.Id==TestOnlyRecipe347Fixture.AssayKitId)structureIds.Add(TestOnlyRecipe347Fixture.AssayKitStructureId);
+            }
+            structureIds=structureIds.Distinct(StringComparer.Ordinal).ToList();
+            if(structureIds.Count==0)return;
+            string location;
+            if(item.Placement==PortablePlacement.Ground) {
+                var deposit=s.MiningDeposits.SingleOrDefault(x=>x.SiteX==item.GroundX&&x.SiteY==item.GroundY
+                    &&profiles.Any(p=>p.DepositId==x.Id));
+                location=deposit?.SiteId??"ground."+item.GroundX.ToString(CultureInfo.InvariantCulture)
+                    +"."+item.GroundY.ToString(CultureInfo.InvariantCulture);
+            } else location=item.ParentId!=""?item.ParentId:item.CustodianId;
+            foreach(string structureId in structureIds) {
+                var structure=s.Structures.SingleOrDefault(x=>x.Id==structureId);
+                if(structure!=null&&(structure.LocationId!=location||structure.CustodianId!=item.CustodianId))
+                    s.Structures=s.Structures.Select(x=>x.Id==structureId?x.WithLocationAndCustodian(location,item.CustodianId):x).ToArray();
+            }
         }
     }
 }

@@ -509,12 +509,24 @@ namespace Decennium.Foundation.Laboratory
         {
             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
             if(recipe347Fixture!=null&&Recipe347Command(c.Kind)) {
-                string failure=AssessRecipe347(s,c,out var order);var costs=new List<CommandCost>();
-                if(failure==null&&(c.Kind==CommandKind.StartRecipe347||c.Kind==CommandKind.ResumeRecipe347)) {
+                string failure=AssessRecipe347(s,c,out var order);
+                if(failure==null)failure=Recipe347WorkWatchCommandFailure(s,c);
+                var costs=new List<CommandCost>();
+                if(failure==null&&(c.Kind==CommandKind.StartRecipe347
+                    ||c.Kind==CommandKind.ResumeRecipe347&&order.Status==Recipe347OrderStatus.Paused)) {
                     RuleTime duration=Recipe347Subtract(Recipe347NextBookingEnd(s,order),s.RuleClock);
                     if(duration.Denominator==1)costs.Add(new CommandCost("work-seconds",order.Id,duration.Numerator));
                 }
                 return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
+            }
+            if(recipe347Fixture!=null&&c.Kind==CommandKind.PortionInventory) {
+                string failure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,Array.Empty<CommandCost>());
+            }
+            if(recipe347Fixture!=null&&Recipe347WorkStartCommand(c)) {
+                var preview=s.Copy();string failure=ResolveCore(preview,c);
+                if(failure==null)failure=Recipe347ProjectedWorkWatchFailure(s,preview,c);
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,Array.Empty<CommandCost>());
             }
             string workWatchFailure=Recipe347WorkWatchCommandFailure(s,c);
             if(workWatchFailure!=null)return new CommandQueryResult(true,false,workWatchFailure,s.Revision,Array.Empty<CommandCost>());

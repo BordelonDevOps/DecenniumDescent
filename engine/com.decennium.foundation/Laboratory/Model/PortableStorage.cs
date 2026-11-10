@@ -31,6 +31,38 @@ namespace Decennium.Foundation.Laboratory
                 new RuleQuantity(1,100))
         };
 
+        private static PortableStorageProfileRecord[] Recipe347Definitions()
+        {
+            var baseProfiles=Definitions();
+            var componentProfiles=Enumerable.Range(0,TestOnlyRecipe347Fixture.ComponentLotIds.Length).Select(i=>
+                new PortableStorageProfileRecord(CountedProfileId(TestOnlyRecipe347Fixture.ComponentUnitIds[i]),
+                    TestOnlyRecipe347Fixture.ComponentUnitIds[i],TestOnlyRecipe347Fixture.ComponentVolumes[i],
+                    massPerUnitLb:TestOnlyRecipe347Fixture.ComponentMasses[i]));
+            var fixedAndBodyProfiles=new[]{
+                new PortableStorageProfileRecord(TestOnlyRecipe347Fixture.BodyProfileId,"mass-pound",new RuleQuantity(1,25)),
+                new PortableStorageProfileRecord("tools.miners-supplies","item",new RuleQuantity(1,2)),
+                new PortableStorageProfileRecord("tools.assayers-supplies","item",new RuleQuantity(1,5)),
+                new PortableStorageProfileRecord("TEST_ONLY.mining-pick","item",new RuleQuantity(3,10))
+            };
+            string[] additions=componentProfiles.Select(x=>x.ProfileId).Concat(fixedAndBodyProfiles.Select(x=>x.ProfileId)).ToArray();
+            var crate=baseProfiles.Single(x=>x.ProfileId==CrateProfileId);
+            var expandedCrate=new PortableStorageProfileRecord(crate.ProfileId,crate.QuantityUnitId,crate.PackedVolumePerUnitCubicFeet,
+                crate.AllowedContainedProfileIds.Concat(additions).ToArray(),crate.RequiresInstalledTemporaryCamp);
+            return baseProfiles.Select(x=>x.ProfileId==CrateProfileId?expandedCrate:x)
+                .Concat(componentProfiles).Concat(fixedAndBodyProfiles).ToArray();
+        }
+
+        internal static string CountedProfileId(string unitId)=>"TEST_ONLY.recipe347.profile."+unitId;
+
+        internal static void AppendRecipe347Profiles(Snapshot s)
+        {
+            if(s.SchemaVersion!=Snapshot.PortableCountedLotSchema)
+                throw new ArgumentException("Counted portable stock requires schema73.");
+            if(s.PortableStorageProfiles.Any(x=>x.MassPerUnitLb.HasValue))
+                throw new ArgumentException("Counted portable profiles are already installed.");
+            s.PortableStorageProfiles=Recipe347Definitions();
+        }
+
         internal string Canonical => "MGT-01|schema71|source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|"
             + "FL-05|FL-07|BODY_EQUIPMENT_PLAYTEST|EQUIPMENT_ACQUISITION_PLAYTEST|"
             + "explicit-test-only-profile-volumes|camp=20-load-200lb-20ft3|"
@@ -47,7 +79,7 @@ namespace Decennium.Foundation.Laboratory
 
         internal void Initialize(Snapshot s)
         {
-            if((s.SchemaVersion!=Snapshot.PortableStorageSchema&&s.SchemaVersion!=Snapshot.Recipe347Schema)||s.ExpeditionCampSites.Length!=1
+            if((s.SchemaVersion<Snapshot.PortableStorageSchema||s.SchemaVersion>Snapshot.PortableCountedLotSchema)||s.ExpeditionCampSites.Length!=1
                 ||s.PortableEquipment.Any(x=>x.Id==CrateId))
                 throw new ArgumentException("Portable storage requires the selected schema71 camp fixture.");
             var site=s.ExpeditionCampSites.Single();
@@ -61,9 +93,10 @@ namespace Decennium.Foundation.Laboratory
 
         internal string ValidateSnapshot(Snapshot s)
         {
-            if((s.SchemaVersion!=Snapshot.PortableStorageSchema&&s.SchemaVersion!=Snapshot.Recipe347Schema)||!s.TestOnly
+            var definitions=s.SchemaVersion>=Snapshot.PortableCountedLotSchema?Recipe347Definitions():Definitions();
+            if((s.SchemaVersion<Snapshot.PortableStorageSchema||s.SchemaVersion>Snapshot.PortableCountedLotSchema)||!s.TestOnly
                 ||!s.PortableStorageProfiles.Select(ProfileKey).OrderBy(x=>x,StringComparer.Ordinal)
-                    .SequenceEqual(Definitions().Select(ProfileKey).OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal))
+                    .SequenceEqual(definitions.Select(ProfileKey).OrderBy(x=>x,StringComparer.Ordinal),StringComparer.Ordinal))
                 return "PortableStorageProfileMismatch";
             var site=s.ExpeditionCampSites.SingleOrDefault();
             var crate=s.PortableEquipment.SingleOrDefault(x=>x.Id==CrateId);
@@ -82,7 +115,9 @@ namespace Decennium.Foundation.Laboratory
             =>x.ProfileId+"|"+x.QuantityUnitId+"|"+(x.PackedVolumePerUnitCubicFeet.HasValue
                     ?x.PackedVolumePerUnitCubicFeet.Value.Numerator.ToString(CultureInfo.InvariantCulture)+"/"
                         +x.PackedVolumePerUnitCubicFeet.Value.Denominator.ToString(CultureInfo.InvariantCulture):"?")+"|"
-                +string.Join(",",x.AllowedContainedProfileIds.OrderBy(id=>id,StringComparer.Ordinal))+"|"+x.RequiresInstalledTemporaryCamp;
+                +string.Join(",",x.AllowedContainedProfileIds.OrderBy(id=>id,StringComparer.Ordinal))+"|"+x.RequiresInstalledTemporaryCamp
+                +(x.MassPerUnitLb.HasValue?"|mass="+x.MassPerUnitLb.Value.Numerator.ToString(CultureInfo.InvariantCulture)+"/"
+                    +x.MassPerUnitLb.Value.Denominator.ToString(CultureInfo.InvariantCulture):"");
     }
 
     public sealed partial class TestOnlySharedWorldPolicy

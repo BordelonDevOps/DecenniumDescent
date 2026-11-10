@@ -706,7 +706,8 @@ namespace Decennium.Foundation.Laboratory
                     && routeSchema == Snapshot.RouteMappingWorkSchema)
                 && !(portableStorageFixture != null && expeditionCampConstructionProfile != null
                     && s.SchemaVersion == Snapshot.PortableStorageSchema && routeSchema == Snapshot.RouteMappingWorkSchema)
-                && !(recipe347Fixture != null && s.SchemaVersion == Snapshot.Recipe347Schema
+                    && !(recipe347Fixture != null && s.SchemaVersion >= Snapshot.Recipe347Schema
+                        && s.SchemaVersion <= Snapshot.PortableCountedLotSchema
                     && routeSchema == Snapshot.RouteMappingWorkSchema)
                 && !(characterAdvancement!=null&&characterAdvancement.LevelFourAdvancementEnabled
                     &&s.SchemaVersion==Snapshot.SharedCharacterAdvancementSchema&&routeSchema<Snapshot.SharedCharacterAdvancementSchema)

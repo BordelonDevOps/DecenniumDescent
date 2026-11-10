@@ -10,7 +10,10 @@ namespace Decennium.Foundation.Laboratory
     {
         public string Resolve(Snapshot s, Command c)
         {
+            Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             string error = ResolveCore(s, c);
+            if(error==null&&workWatchBefore!=null)
+                error=Recipe347ProjectedWorkWatchFailure(workWatchBefore,s,c);
             if(error==null)ApplyExpeditionCampTransitions(s,c);
             if(error==null)ExpireReadyActionsAtStart(s,c);
             if(error==null&&s.InventoryCombat) {

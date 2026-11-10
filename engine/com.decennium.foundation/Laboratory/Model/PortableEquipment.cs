@@ -209,7 +209,7 @@ namespace Decennium.Foundation.Laboratory
                             ||x.SelectedUnitIds.Any(ids.Contains));
                     })
                 ||s.SchemaVersion>=Snapshot.MiningToolCandidateSchema&&s.MiningToolUses.Where(x=>s.MiningAttempts.Any(a=>a.Id==x.MiningAttemptId
-                    &&(a.Status==MiningAttemptStatus.Working||a.Status==MiningAttemptStatus.Paused||a.Status==MiningAttemptStatus.AwaitingCheck)))
+                    &&a.Status==MiningAttemptStatus.Working))
                     .Any(x=>s.MiningToolCandidateProfiles.Any(p=>p.Id==x.ProfileId&&ids.Contains(p.ToolItemId)))
                 ||s.CacheExcavations.Any(x=>(x.Status==CacheExcavationStatus.Working||x.Status==CacheExcavationStatus.Paused)&&ids.Contains(x.ShovelId))
                 ||s.MineralPreparationAttempts.Where(x=>x.Status==MineralPreparationStatus.Working||x.Status==MineralPreparationStatus.Paused
@@ -272,14 +272,19 @@ namespace Decennium.Foundation.Laboratory
             if(s.SchemaVersion<Snapshot.PortableEquipmentSchema||s.PortableEquipment.Any(x=>x.LinkedId==lotId))return;
             var item=s.InventoryLots.Single(x=>x.LotId==lotId);var lot=s.Work.Lots.Single(x=>x.Id==lotId);
             bool genericPounds=item.Nutrition==NutritionKind.None&&lot.UnitId=="mass-pound";
-            if(item.Nutrition==NutritionKind.None&&!genericPounds)return;
+            var countedProfiles=item.Nutrition==NutritionKind.None
+                ?s.PortableStorageProfiles.Where(x=>x.QuantityUnitId==lot.UnitId&&x.MassPerUnitLb.HasValue).ToArray()
+                :Array.Empty<PortableStorageProfileRecord>();
+            if(countedProfiles.Length>1)throw new ArgumentException("Counted lot unit has ambiguous physical profiles.");
+            bool counted=countedProfiles.Length==1;
+            if(item.Nutrition==NutritionKind.None&&!genericPounds&&!counted)return;
             string parent="";PortablePlacement placement=PortablePlacement.Carried;
             if(location!=custodian) {
                 var holder=s.PortableEquipment.SingleOrDefault(x=>x.Id==location&&(x.CapacityPounds.HasValue||x.LinkKind==PortableLinkKind.WaterVessel));
                 if(holder==null)return;
                 parent=holder.Id;placement=PortablePlacement.Contained;
             }
-            var basis=genericPounds?PortableMassBasis.GenericPounds:item.Nutrition==NutritionKind.FoodPounds
+            var basis=counted?PortableMassBasis.CountedQuantity:genericPounds?PortableMassBasis.GenericPounds:item.Nutrition==NutritionKind.FoodPounds
                 ?PortableMassBasis.FoodPounds:PortableMassBasis.WaterPints;
             string root=item.LotId;var lineage=new HashSet<string>(StringComparer.Ordinal);
             while(true) {
@@ -288,10 +293,10 @@ namespace Decennium.Foundation.Laboratory
                 if(!lineage.Add(current.ParentId))throw new ArgumentException("Inventory portion cycle.");
                 root=current.ParentId;
             }
-            string profile=genericPounds?"prototype.generic-pound-lot":item.Nutrition==NutritionKind.WaterPints?"prototype.potable-water.pint"
+            string profile=counted?countedProfiles[0].ProfileId:genericPounds?"prototype.generic-pound-lot":item.Nutrition==NutritionKind.WaterPints?"prototype.potable-water.pint"
                 :root==PortableKitFixture.Rations?"adventuring-gear.rations-1-day":"prototype.food-lot";
             var physical=new PortableEquipmentRecord(lotId,profile,item.OwnerId,custodian,parent,placement,PortableLinkKind.InventoryLot,lotId,basis,
-                lot.Amount,null);
+                counted?null:lot.Amount,null);
             s.PortableEquipment=s.PortableEquipment.Concat(new[]{physical}).ToArray();
         }
     }

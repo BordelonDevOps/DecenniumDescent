@@ -37,6 +37,12 @@ namespace Decennium.Foundation.Tests
             string[] assistants = null, bool storage = false)
         {
             var policy = CampConstructionPolicy(seed, concealed, assistants: assistants,storage:storage);
+            return CampConstructionAtCheckpoint(policy,assistants,storage);
+        }
+
+        private static Simulation CampConstructionAtCheckpoint(TestOnlySharedWorldPolicy policy,
+            string[] assistants=null,bool storage=false)
+        {
             var initial = policy.Initial();
             Require(CharacterSkillTrainingFacts.IsTrained(initial, TestOnlyPolicy.ActorId,
                     TestOnlyExpeditionCampConstructionFixture.SkillId)

@@ -131,6 +131,7 @@ namespace Decennium.Foundation
         public const int TemporaryCampConstructionSchema = 70;
         public const int PortableStorageSchema = 71;
         public const int Recipe347Schema = 72;
+        public const int PortableCountedLotSchema = 73;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -726,7 +727,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionCampUseSchema
                 || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema
                 || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema
-                || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema) { }
+                || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema
+                || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema

@@ -49,7 +49,16 @@ namespace Decennium.Foundation.Laboratory
             Id = id; LeadId = lead; At = at; Result = result; ToolId=toolId;StationId=stationId;TradeId=tradeId;
             Participants = Array.AsReadOnly(people.ToArray());
         }
-        internal string Key => Id + "|" + LeadId + "|" + At + "|" + Result + "|" + ToolId+"|"+StationId+"|"+TradeId+"|"+string.Join(",", Participants);
+        internal string Key
+        {
+            get
+            {
+                string legacy=Id+"|"+LeadId+"|"+At+"|"+Result+"|"+string.Join(",",Participants);
+                if(ToolId==SharedCraftingFixture.ToolId&&StationId==SharedCraftingFixture.StationId
+                    &&TradeId==SharedCraftingFixture.TradeId)return legacy;
+                return legacy+"|"+ToolId+"|"+StationId+"|"+TradeId+"|custom-target-v1";
+            }
+        }
     }
     public sealed class SharedCraftingFixture
     {
@@ -79,7 +88,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedCraftingFixture crafting;
-        private int SelectedSchema => recipe347Fixture != null ? Snapshot.Recipe347Schema
+        private int SelectedSchema => recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
             : portableStorageFixture != null ? Snapshot.PortableStorageSchema
             : expeditionCampConstructionProfile != null ? Snapshot.TemporaryCampConstructionSchema
             : expeditionCampSiteProfile != null ? Snapshot.ExpeditionCampUseSchema
@@ -252,14 +261,17 @@ namespace Decennium.Foundation.Laboratory
             if (incident.Result == 2 && actor != TestOnlyPolicy.CompanionId && !(actor == TestOnlyPolicy.ActorId && crafting.HeroProficient)) return false;
             return true;
         }
-        private static void BookRemedy(Snapshot s, CraftingIncidentRecord incident)
+        private void BookRemedy(Snapshot s, CraftingIncidentRecord incident)
         {
             string job = RemedyJobId(incident);
             s.Work = s.Work.CancelFutureWork(job, s.RuleClock);
             if (incident.Workers.Count == 0) return;
             var left = CampGreens.Subtract(incident.RequiredLabor, incident.Labor);
             var duration = new RuleTime(left.Numerator, checked(left.Denominator * incident.Workers.Count));
-            var end = CampGreens.Add(s.RuleClock, duration); var window = ResearchWindowEnd(s.RuleClock).Value; if (window < end) end = window;
+            var end=CampGreens.Add(s.RuleClock,duration);
+            RuleTime window=incident.TradeId=="Mining"&&recipe347Fixture!=null
+                ?Recipe347WatchEnd(s.RuleClock):ResearchWindowEnd(s.RuleClock).Value;
+            if(window<end)end=window;
             foreach (string worker in incident.Workers.OrderBy(x => x, StringComparer.Ordinal)) {
                 string id = "remedy." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture) + "." + worker;
                 // A single command may stop several workers; the old interval is truncated first.
@@ -278,7 +290,8 @@ namespace Decennium.Foundation.Laboratory
             } else {
                 if (workers.Contains(c.Actor)) return "CraftRemedyAlreadyWorking";
                 if (!RemedyCapable(s, incident, c.Actor)) return "CraftRemedyWorkerIneligible";
-                if (!ResearchWindowEnd(s.RuleClock).HasValue) return "CraftWorkWindowClosed";
+                if(!(incident.TradeId=="Mining"&&recipe347Fixture!=null)
+                    &&!ResearchWindowEnd(s.RuleClock).HasValue)return "CraftWorkWindowClosed";
                 if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
                 if (incident.Result != 5 && workers.Count != 0) return "CraftRemedySingleWorker";
                 workers.Add(c.Actor);

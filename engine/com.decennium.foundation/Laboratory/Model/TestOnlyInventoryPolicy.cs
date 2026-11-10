@@ -114,7 +114,22 @@ namespace Decennium.Foundation.Laboratory
             var item=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
             if(item==null)return "UnknownInventoryLot";
             var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
-            if(item.Nutrition==NutritionKind.None)return "UnsupportedInventoryProfile";
+            if(item.Nutrition==NutritionKind.None) {
+                if(c.Kind!=CommandKind.PortionInventory||s.SchemaVersion<Snapshot.PortableCountedLotSchema
+                    ||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup)
+                    return "UnsupportedInventoryProfile";
+                var physical=s.PortableEquipment.SingleOrDefault(x=>x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==item.LotId);
+                if(physical==null||physical.MassBasis!=PortableMassBasis.CountedQuantity
+                    ||PortableStorageProfileValidation.Find(s,physical.ProfileId) is not PortableStorageProfileRecord profile
+                    ||profile.QuantityUnitId!=lot.UnitId||!profile.MassPerUnitLb.HasValue
+                    ||!profile.PackedVolumePerUnitCubicFeet.HasValue)
+                    return "UnsupportedInventoryProfile";
+                if(!PortableEquipmentRules.Accessible(s,c.Actor,physical))return "InventoryOutOfReach";
+                if(c.Inventory.Amount>s.Work.AvailableAmount(lot.Id))return "InventoryQuantityUnavailable";
+                OrdinaryInventory.Descendant(s,lot.Id,OrdinaryInventory.Identity(s,"lot"),c.Inventory.Amount,
+                    lot.LocationId,lot.CustodianId,item.Access);
+                return null;
+            }
             if(!Accessible(s,c.Actor,item,lot))return "InventoryOutOfReach";
             if(c.Inventory.Amount>s.Work.AvailableAmount(lot.Id))return "InventoryQuantityUnavailable";
             if(c.Kind==CommandKind.PortionInventory) {

@@ -884,17 +884,29 @@ namespace Decennium.Foundation
             var structure=s.Structures.SingleOrDefault(x=>x.Id==profile.StructureId);
             var surface=deposit==null?null:s.Structures.SingleOrDefault(x=>x.Id==deposit.WorkSurfaceId);
             var receiver=deposit==null?null:s.PortableEquipment.SingleOrDefault(x=>x.Id==deposit.ReceiverId);
+            var recipeTool=s.SchemaVersion>=Snapshot.Recipe347Schema
+                ?s.Recipe347MiningToolProfiles.SingleOrDefault(x=>x.ItemId==profile.ToolItemId&&x.StructureId==profile.StructureId):null;
+            bool recipeBody=recipeTool!=null&&structure!=null&&recipeTool.MaximumHp==structure.MaximumHp;
+            bool validMass=recipeBody
+                ?item!=null&&item.MassBasis==PortableMassBasis.GenericPounds&&item.SourceWeightLb==new RuleQuantity(3)
+                    &&!item.OperationalWeightLb.HasValue
+                :item!=null&&item.MassBasis==PortableMassBasis.Fixed
+                    &&item.SourceWeightLb==MiningToolCandidateProfileRecord.EmptyMassPounds
+                    &&item.OperationalWeightLb==MiningToolCandidateProfileRecord.EmptyMassPounds;
+            bool validStructure=recipeBody
+                ?structure!=null&&structure.ProfileId==profile.StructureProfileId&&structure.MaximumHp==recipeTool.MaximumHp
+                    &&structure.MassPounds==new RuleQuantity(3)
+                :structure!=null&&structure.ProfileId==profile.StructureProfileId
+                    &&structure.MaximumHp==MiningToolCandidateProfileRecord.MaximumHp
+                    &&structure.MassPounds==MiningToolCandidateProfileRecord.EmptyMassPounds;
             if(deposit==null||worker==null||item==null||structure==null||surface==null||receiver==null
                 ||item.ProfileId!=profile.ToolItemProfileId
                 ||item.OwnerId!=deposit.OwnerId||item.CustodianId!=deposit.OwnerId||item.Placement!=PortablePlacement.Ground
                 ||item.GroundX!=deposit.SiteX||item.GroundY!=deposit.SiteY
                 ||Math.Abs((long)worker.X-deposit.SiteX)+Math.Abs((long)worker.Y-deposit.SiteY)>1
-                ||item.MassBasis!=PortableMassBasis.Fixed||item.SourceWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds
-                ||item.OperationalWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds
-                ||structure.ProfileId!=profile.StructureProfileId||structure.OwnerId!=deposit.OwnerId
+                ||!validMass||structure.OwnerId!=deposit.OwnerId
                 ||structure.CustodianId!=deposit.OwnerId||structure.LocationId!=deposit.SiteId
-                ||structure.MassPounds!=MiningToolCandidateProfileRecord.EmptyMassPounds
-                ||structure.MaximumHp!=MiningToolCandidateProfileRecord.MaximumHp||structure.Hp<=0
+                ||!validStructure||structure.Hp<=0
                 ||structure.Material!=ObjectMaterial.WoodLeather||surface.Broken||surface.LocationId!=deposit.SiteId
                 ||receiver.Placement!=PortablePlacement.Ground||receiver.GroundX!=deposit.SiteX||receiver.GroundY!=deposit.SiteY
                 ||!receiver.Open||!receiver.CapacityPounds.HasValue||!receiver.CapacityCubicFeet.HasValue||receiver.FitRuleId=="")return false;
@@ -958,12 +970,24 @@ namespace Decennium.Foundation
                     ??throw new ArgumentException("Mining-tool profile references an unknown deposit.");
                 var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==profile.ToolItemId);
                 var structure=s.Structures.SingleOrDefault(x=>x.Id==profile.StructureId);
-                if(item!=null&&(item.OwnerId!=deposit.OwnerId||item.CustodianId!=deposit.OwnerId
-                    ||item.ProfileId!=profile.ToolItemProfileId||item.SourceWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds
-                    ||item.OperationalWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds)
-                    ||structure!=null&&(structure.OwnerId!=deposit.OwnerId||structure.CustodianId!=deposit.OwnerId
-                        ||structure.ProfileId!=profile.StructureProfileId||structure.MaximumHp!=MiningToolCandidateProfileRecord.MaximumHp
-                        ||structure.Material!=ObjectMaterial.WoodLeather||structure.MassPounds!=MiningToolCandidateProfileRecord.EmptyMassPounds))
+                var recipeTool=s.SchemaVersion>=Snapshot.Recipe347Schema
+                    ?s.Recipe347MiningToolProfiles.SingleOrDefault(x=>x.ItemId==profile.ToolItemId&&x.StructureId==profile.StructureId):null;
+                bool recipeBody=recipeTool!=null&&structure!=null&&recipeTool.MaximumHp==structure.MaximumHp;
+                bool itemMismatch=item!=null&&(item.OwnerId!=deposit.OwnerId||item.CustodianId!=deposit.OwnerId
+                    ||item.ProfileId!=profile.ToolItemProfileId
+                    ||(recipeBody
+                        ?item.MassBasis!=PortableMassBasis.GenericPounds||item.SourceWeightLb!=new RuleQuantity(3)
+                            ||item.OperationalWeightLb.HasValue
+                        :item.MassBasis!=PortableMassBasis.Fixed||item.SourceWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds
+                            ||item.OperationalWeightLb!=MiningToolCandidateProfileRecord.EmptyMassPounds));
+                bool structureMismatch=structure!=null&&(structure.OwnerId!=deposit.OwnerId||structure.CustodianId!=deposit.OwnerId
+                    ||structure.ProfileId!=profile.StructureProfileId
+                    ||(recipeBody
+                        ?structure.MaximumHp!=recipeTool.MaximumHp||structure.MassPounds!=new RuleQuantity(3)
+                        :structure.MaximumHp!=MiningToolCandidateProfileRecord.MaximumHp
+                            ||structure.MassPounds!=MiningToolCandidateProfileRecord.EmptyMassPounds)
+                    ||structure.Material!=ObjectMaterial.WoodLeather);
+                if(itemMismatch||structureMismatch)
                     throw new ArgumentException("Mining-tool physical records disagree with the reviewed body profile.");
                 if(profile.ReserveUnitId!="") {
                     var reserve=s.MiningUnits.SingleOrDefault(x=>x.Id==profile.ReserveUnitId);
@@ -1026,7 +1050,12 @@ namespace Decennium.Foundation
             }
             bool resolved=attempt.Status==MiningAttemptStatus.Success||attempt.Status==MiningAttemptStatus.CriticalSuccess
                 ||attempt.Status==MiningAttemptStatus.Failure||attempt.Status==MiningAttemptStatus.CriticalFailure;
-            bool toolQualified=MiningToolCandidateRules.Qualifies(s,profile,instance,use,attempt.WorkerId,attempt.SelectedUnitIds);
+            // An unresolved use preserves measured work but is requalified against the tool's
+            // current physical state when its check is actually resolved. Paused work may legally
+            // release and relocate the body before that check.
+            bool toolQualified=resolved&&use.CheckBonusApplied;
+            if(resolved&&use.CheckBonusApplied&&use.ToolWorkDone<new RuleTime(60))
+                throw new ArgumentException("Mining-tool check bonus lacks the required actual participation.");
             bool expectedReserve=resolved&&attempt.Status==MiningAttemptStatus.CriticalSuccess&&toolQualified&&use.ReservedUnitId!="";
             bool successful=attempt.Status==MiningAttemptStatus.Success||attempt.Status==MiningAttemptStatus.CriticalSuccess;
             bool expectedDressed=successful&&toolQualified&&use.PreparedUnitId!=""&&use.PreparationCompletedAt.HasValue;

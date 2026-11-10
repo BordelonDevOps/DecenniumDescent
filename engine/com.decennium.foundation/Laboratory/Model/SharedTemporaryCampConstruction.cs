@@ -124,7 +124,8 @@ namespace Decennium.Foundation.Laboratory
                     ? null : "TemporaryCampConstructionFixtureMissing";
             if ((s.SchemaVersion != Snapshot.TemporaryCampConstructionSchema
                     && !(portableStorageFixture != null && s.SchemaVersion == Snapshot.PortableStorageSchema)
-                    && !(recipe347Fixture != null && s.SchemaVersion == Snapshot.Recipe347Schema))
+                    && !(recipe347Fixture != null && s.SchemaVersion >= Snapshot.Recipe347Schema
+                        && s.SchemaVersion <= Snapshot.PortableCountedLotSchema))
                 || s.ExpeditionCampSites.Length != 1 || expeditionCampSiteProfile == null
                 || expeditionCampSiteProfile.Id != s.ExpeditionCampSites[0].Id)
                 return "TemporaryCampConstructionProfileMismatch";
@@ -245,7 +246,8 @@ namespace Decennium.Foundation.Laboratory
             if (expeditionCampConstructionProfile == null
                 || s.SchemaVersion != Snapshot.TemporaryCampConstructionSchema
                     && !(portableStorageFixture != null && s.SchemaVersion == Snapshot.PortableStorageSchema)
-                    && !(recipe347Fixture != null && s.SchemaVersion == Snapshot.Recipe347Schema))
+                    && !(recipe347Fixture != null && s.SchemaVersion >= Snapshot.Recipe347Schema
+                        && s.SchemaVersion <= Snapshot.PortableCountedLotSchema))
                 return "TemporaryCampConstructionNotSelected";
             if (c.Inventory != null || c.Combat != null || c.Advancement != null || c.Ranged != null
                 || c.SuppressionFire != null || c.DefensiveFormation != null || c.ExpeditionAssignment != null

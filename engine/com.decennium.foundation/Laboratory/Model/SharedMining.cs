@@ -175,6 +175,14 @@ namespace Decennium.Foundation.Laboratory
         private readonly string[] trainedWorkerIds;
         public bool HasExplicitTrainingRoster => trainedWorkerIds != null;
         public string[] TrainedWorkerIds => trainedWorkerIds?.ToArray();
+        internal SharedMiningFixture WithMineralPreparationProfile(MineralPreparationProfileRecord profile)
+        {
+            if(profile==null)throw new ArgumentNullException(nameof(profile));
+            if(mineralPreparationProfiles.Any(x=>x.Id==profile.Id))return this;
+            return new SharedMiningFixture(deposits,Trained,Intelligence,Wisdom,assayProfiles,assaySamples,
+                destructiveAssayProfiles,mineralPreparationProfiles.Concat(new[]{profile}).ToArray(),
+                miningToolCandidateProfiles,miningToolInstanceStates,miningToolStructures,miningToolItems,trainedWorkerIds);
+        }
         public SharedMiningFixture(bool trained=true,bool hasMiningTools=true,bool hasPick=true,bool hasReceiver=true,
             bool hasWorkSurface=true,bool hurryFeasible=false,int siteX=3,int siteY=3,
             MiningUnitCondition unitBCondition=MiningUnitCondition.Intact,int? intelligence=null,int? wisdom=null,
@@ -814,10 +822,14 @@ namespace Decennium.Foundation.Laboratory
                 prior.WorkerId,prior.SelectedUnitIds);
             var recipeToolEvidence=s.SchemaVersion>=Snapshot.Recipe347Schema
                 ?s.Recipe347MiningToolUseEvidence.SingleOrDefault(x=>x.AttemptId==prior.Id):null;
-            bool recipeToolQualified=recipeToolEvidence!=null
-                &&Recipe347MiningToolWork(s,prior.Id)>=new RuleTime(60);
+            var recipeToolProfile=recipeToolEvidence==null?null
+                :s.Recipe347MiningToolProfiles.Single(x=>x.Id==recipeToolEvidence.ProfileId);
+            var deposit=s.MiningDeposits.Single(x=>x.Id==prior.DepositId);
+            bool recipeToolQualified=toolUse==null&&recipeToolEvidence!=null
+                &&Recipe347MiningToolWork(s,prior.Id)>=new RuleTime(60)
+                &&Recipe347MiningToolPhysicallyEligible(s,recipeToolProfile,prior.WorkerId,deposit,prior.Id);
             int recipeToolBonus=recipeToolQualified
-                ?s.Recipe347MiningToolProfiles.Single(x=>x.Id==recipeToolEvidence.ProfileId).CheckBonus:0;
+                ?recipeToolProfile.CheckBonus:0;
             CharacterAbility ability=prior.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
             int injury=actorFacts.InjuryPenalty(ability,toolCheck:true);
             int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury

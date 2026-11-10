@@ -154,7 +154,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static bool TargetInActiveRepair(Snapshot s, string target) => s.RepairWork.Any(x => x.TargetId == target && x.Status == RepairWorkStatus.Working);
         private static bool ResearchUsesRepairTarget(FormulaWorkRecord job, string target) => target == SharedCraftingFixture.ToolId && job.Kind == FormulaWorkKind.Research && job.Status == FormulaWorkStatus.Working;
-        private static void AcquireRepairAccess(Snapshot s, string target)
+        private void AcquireRepairAccess(Snapshot s, string target)
         {
             foreach(var job in s.ManufacturingOrders.Where(x=>x.Status==ManufacturingStatus.Working).ToArray())PauseManufacturing(s,job);
             foreach (var job in s.FormulaWork.Where(x => ResearchUsesRepairTarget(x,target)).ToArray()) PauseFormula(s, job);

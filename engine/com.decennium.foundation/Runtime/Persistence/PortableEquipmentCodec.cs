@@ -51,6 +51,7 @@ namespace Decennium.Foundation
                 w.Write(x.AllowedContainedProfileIds.Count);
                 foreach(string id in x.AllowedContainedProfileIds.OrderBy(v=>v,StringComparer.Ordinal))Text(w,id);
                 w.Write(x.RequiresInstalledTemporaryCamp);
+                if(s.SchemaVersion>=Snapshot.PortableCountedLotSchema)Optional(w,x.MassPerUnitLb);
             }
         }
         public static void ReadStorageProfiles(BinaryReader r,Snapshot s)
@@ -59,7 +60,8 @@ namespace Decennium.Foundation
             for(int i=0;i<s.PortableStorageProfiles.Length;i++) {
                 string profile=Text(r),unit=Text(r);var volume=Optional(r);string[] allowed=new string[Count(r,64)];
                 for(int j=0;j<allowed.Length;j++)allowed[j]=Text(r);
-                s.PortableStorageProfiles[i]=new PortableStorageProfileRecord(profile,unit,volume,allowed,Bool(r));
+                bool requiresCamp=Bool(r);var mass=s.SchemaVersion>=Snapshot.PortableCountedLotSchema?Optional(r):(RuleQuantity?)null;
+                s.PortableStorageProfiles[i]=new PortableStorageProfileRecord(profile,unit,volume,allowed,requiresCamp,mass);
             }
         }
         private static int Count(BinaryReader r,int max){int n=r.ReadInt32();if(n<0||n>max)throw new InvalidDataException("Invalid portable record length.");return n;}

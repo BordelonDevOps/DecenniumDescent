@@ -102,6 +102,9 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartMiningAssay||kind==CommandKind.PauseMiningAssay||kind==CommandKind.ResumeMiningAssay
             ||kind==CommandKind.CancelMiningAssay
             ||kind==CommandKind.StartMineralPreparation||kind==CommandKind.PauseMineralPreparation||kind==CommandKind.ResumeMineralPreparation
+            ||recipe347Fixture!=null&&Recipe347Command(kind)
+            ||recipe347Fixture!=null&&kind==CommandKind.PortionInventory
+            ||recipe347Fixture!=null&&kind==CommandKind.StartCraftRemedy
             ||kind==CommandKind.ScheduleRestWatch||kind==CommandKind.BeginRest||kind==CommandKind.InterruptRest
             ||kind==CommandKind.BeginMoraleRest&&moraleRestProfile!=null
             ||kind==CommandKind.InterruptMoraleRest&&moraleRestProfile!=null

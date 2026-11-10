@@ -213,9 +213,8 @@ namespace Decennium.Foundation
             var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==evidence.DepositId);
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==evidence.ItemId);
             var structure=s.Structures.SingleOrDefault(x=>x.Id==profile?.StructureId);
-            var oldCandidate=s.MiningToolCandidateProfiles.SingleOrDefault(x=>x.ToolItemId==evidence.ItemId);
             bool selectedMatches=attempt!=null&&attempt.SelectedUnitIds.SequenceEqual(evidence.SelectedUnitIds,StringComparer.Ordinal);
-            if(attempt==null||profile==null||deposit==null||item==null||structure==null||oldCandidate!=null
+            if(attempt==null||profile==null||deposit==null||item==null||structure==null
                 ||attempt.DepositId!=evidence.DepositId||attempt.DepositVersionId!=evidence.DepositVersionId
                 ||attempt.WorkerId!=evidence.WorkerId||attempt.StartedAt!=evidence.CapturedAt||profile.ItemId!=evidence.ItemId
                 ||!selectedMatches||evidence.Placement!=PortablePlacement.Ground||evidence.GroundX!=deposit.SiteX

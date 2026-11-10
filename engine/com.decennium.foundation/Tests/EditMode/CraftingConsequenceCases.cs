@@ -144,6 +144,32 @@ namespace Decennium.Foundation.Tests
                 Require(Incident(s, "spill").Labor == T(1, 3) && Incident(s, "spill").Workers.Count == 0, "Paused cleanup earned time or lost fractions.");
                 Remedy(s, "spill"); WorldAdvance(s, 10799, 3); Require(Incident(s, "spill").Remedied && Incident(s, "spill").Labor == T(3600), "Resumed cleanup failed exact completion.");
             });
+#if HEADLESS_TESTS
+            cases.Add("crafting_default_fingerprint_restores_and_continues_authentic_schema16_save", () => {
+                var root=new DirectoryInfo(Environment.CurrentDirectory);
+                while(root!=null&&!Directory.Exists(Path.Combine(root.FullName,"docs","unity","evidence")))root=root.Parent;
+                Require(root!=null,"Could not locate the repository root for the pinned historical fixture.");
+                var path=Path.Combine(root.FullName,"docs","unity","evidence","2026-11-09-mgt04-recipe347",
+                    "historical-schema16","craft-remedy.bin");
+                byte[] bytes=File.ReadAllBytes(path);var codec=new SnapshotCodec();var saved=codec.Decode(bytes);
+                var policy=CraftPolicy(new SharedCraftingFixture(events:new[]{new CraftingMishapFact("spill",1)}));
+                Require(saved.SchemaVersion==Snapshot.CraftingConsequenceSchema
+                    &&saved.ContentFingerprint==policy.Initial().ContentFingerprint,
+                    "The authentic pre-increment schema16 save lost its supported default content fingerprint. saved="
+                    +saved.ContentFingerprint+" current="+policy.Initial().ContentFingerprint);
+                var customPolicy=CraftPolicy(new SharedCraftingFixture(events:new[]{new CraftingMishapFact("spill",1,
+                    toolId:"TEST_ONLY.custom.tool",stationId:"TEST_ONLY.custom.station",tradeId:"Mining")}));
+                Require(saved.ContentFingerprint!=customPolicy.Initial().ContentFingerprint,
+                    "Versioned custom mishap targets must produce distinct content fingerprints.");
+                var simulation=new Simulation(policy,saved,ExecutionProfile.Laboratory);
+                Require(bytes.SequenceEqual(Bytes(simulation))&&Incident(simulation,"spill").Labor==T(1,3)
+                    &&Incident(simulation,"spill").Workers.Count==0,
+                    "The authentic paused schema16 cleanup did not restore byte-identically with exact retained labor.");
+                Remedy(simulation,"spill");WorldAdvance(simulation,10799,3);
+                Require(Incident(simulation,"spill").Remedied&&Incident(simulation,"spill").Labor==T(3600),
+                    "The historical schema16 cleanup could not continue to its original exact completion.");
+            });
+#endif
             cases.Add("crafting_remediation_incapacity_pauses_without_automatic_resume", () => {
                 var p = CraftPolicy(new SharedCraftingFixture(events: new[] { new CraftingMishapFact("spill", 1) }), conditions: new ConditionCombatFixture(CCApply("stun", "Stunned", worker, new ConditionStamp(T(20)), new ConditionStamp(T(10)))));
                 var s = World(p); CraftEvent(s, "spill"); Remedy(s, "spill"); WorldAdvance(s, 10); CCDispatch(s, "stun", worker); WorldAdvance(s, 10);

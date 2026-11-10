@@ -812,6 +812,7 @@ namespace Decennium.Foundation.Laboratory
                 var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var recipe347Boundary=NextRecipe347Boundary(s);if(recipe347Boundary.HasValue&&recipe347Boundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
@@ -845,6 +846,7 @@ namespace Decennium.Foundation.Laboratory
                 CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRepairWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditManufacturing(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
+                CreditRecipe347(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditMiningWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditProspectingWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditMiningAssayWork(s,CampGreens.Subtract(s.RuleClock,before));

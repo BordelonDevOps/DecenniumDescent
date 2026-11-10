@@ -7,7 +7,7 @@ namespace Decennium.Foundation
 {
     public enum PortablePlacement { Carried, Worn, Contained, Attached, Ground }
     public enum PortableLinkKind { None, InventoryLot, WaterVessel, SupplyEquipment }
-    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds, Unmodeled }
+    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds, Unmodeled, CountedQuantity }
     public enum PortableOperation { Pickup, Drop, Retrieve, Stow, Handover, Wear, Remove, Open, Close, ShieldDoff }
 
     /// <summary>One actual test-fixture item or quantity already tracked in another component.
@@ -49,8 +49,10 @@ namespace Decennium.Foundation
                 ||parentId==null||(parentId!=""&&!Validation.ValidId(parentId))||!Enum.IsDefined(typeof(PortablePlacement),placement)
                 ||!Enum.IsDefined(typeof(PortableLinkKind),linkKind)||!Enum.IsDefined(typeof(PortableMassBasis),massBasis)
                 ||linkedId==null||(linkedId!=""&&!Validation.ValidId(linkedId))||((linkKind==PortableLinkKind.None)!=(linkedId==""))
-                ||(linkKind==PortableLinkKind.InventoryLot)!=(massBasis==PortableMassBasis.FoodPounds||massBasis==PortableMassBasis.WaterPints||massBasis==PortableMassBasis.GenericPounds)
+                ||(linkKind==PortableLinkKind.InventoryLot)!=(massBasis==PortableMassBasis.FoodPounds||massBasis==PortableMassBasis.WaterPints
+                    ||massBasis==PortableMassBasis.GenericPounds||massBasis==PortableMassBasis.CountedQuantity)
                 ||(massBasis==PortableMassBasis.Fixed)!=operationalWeightLb.HasValue
+                ||massBasis==PortableMassBasis.CountedQuantity&&(sourceWeightLb.HasValue||operationalWeightLb.HasValue)
                 ||massBasis==PortableMassBasis.Unmodeled&&(sourceWeightLb.HasValue||operationalWeightLb.HasValue||linkKind!=PortableLinkKind.None)
                 ||(sourceWeightLb.HasValue&&sourceWeightLb.Value<default(RuleQuantity))||(operationalWeightLb.HasValue&&operationalWeightLb.Value<default(RuleQuantity))
                 ||(printedLoad.HasValue&&printedLoad.Value<default(RuleQuantity))||(capacityPounds.HasValue&&capacityPounds.Value<default(RuleQuantity))
@@ -117,21 +119,23 @@ namespace Decennium.Foundation
         public string ProfileId { get; }
         public string QuantityUnitId { get; }
         public RuleQuantity? PackedVolumePerUnitCubicFeet { get; }
+        public RuleQuantity? MassPerUnitLb { get; }
         public ReadOnlyCollection<string> AllowedContainedProfileIds { get; }
         public bool RequiresInstalledTemporaryCamp { get; }
 
         public PortableStorageProfileRecord(string profileId,string quantityUnitId,RuleQuantity? packedVolumePerUnitCubicFeet,
-            string[] allowedContainedProfileIds=null,bool requiresInstalledTemporaryCamp=false)
+            string[] allowedContainedProfileIds=null,bool requiresInstalledTemporaryCamp=false,RuleQuantity? massPerUnitLb=null)
         {
             if(!Validation.ValidId(profileId)||!Validation.ValidId(quantityUnitId)
-                ||packedVolumePerUnitCubicFeet.HasValue&&packedVolumePerUnitCubicFeet.Value<default(RuleQuantity))
+                ||packedVolumePerUnitCubicFeet.HasValue&&packedVolumePerUnitCubicFeet.Value<default(RuleQuantity)
+                ||massPerUnitLb.HasValue&&massPerUnitLb.Value<=default(RuleQuantity))
                 throw new ArgumentException("Invalid portable storage profile.");
             var allowed=allowedContainedProfileIds??Array.Empty<string>();
             if(allowed.Length>64||allowed.Any(x=>!Validation.ValidId(x))
                 ||allowed.Distinct(StringComparer.Ordinal).Count()!=allowed.Length
                 ||requiresInstalledTemporaryCamp&&allowed.Length==0)
                 throw new ArgumentException("Invalid portable storage profile admissions.");
-            ProfileId=profileId;QuantityUnitId=quantityUnitId;PackedVolumePerUnitCubicFeet=packedVolumePerUnitCubicFeet;
+            ProfileId=profileId;QuantityUnitId=quantityUnitId;PackedVolumePerUnitCubicFeet=packedVolumePerUnitCubicFeet;MassPerUnitLb=massPerUnitLb;
             this.allowedContainedProfileIds=allowed.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
             AllowedContainedProfileIds=Array.AsReadOnly(this.allowedContainedProfileIds);
             RequiresInstalledTemporaryCamp=requiresInstalledTemporaryCamp;
@@ -224,6 +228,8 @@ namespace Decennium.Foundation
                 if(s.PortableStorageProfiles.Length!=0)throw new ArgumentException("Portable storage profiles require schema71.");
                 return;
             }
+            if(s.SchemaVersion<Snapshot.PortableCountedLotSchema&&s.PortableStorageProfiles.Any(x=>x.MassPerUnitLb.HasValue))
+                throw new ArgumentException("Per-unit portable mass requires schema73.");
             if(!s.TestOnly||s.PortableStorageProfiles.Length==0)
                 throw new ArgumentException("Schema71 portable storage facts require a selected TEST_ONLY profile.");
             var profiles=s.PortableStorageProfiles;
@@ -320,7 +326,13 @@ namespace Decennium.Foundation
                             if(lot==null||inventory==null||lot.LocationId!=location||lot.CustodianId!=item.CustodianId||inventory.OwnerId!=item.OwnerId
                                 ||item.MassBasis==PortableMassBasis.FoodPounds&&inventory.Nutrition!=NutritionKind.FoodPounds
                                 ||item.MassBasis==PortableMassBasis.WaterPints&&inventory.Nutrition!=NutritionKind.WaterPints
-                                ||item.MassBasis==PortableMassBasis.GenericPounds&&(inventory.Nutrition!=NutritionKind.None||lot.UnitId!="mass-pound"))
+                                ||item.MassBasis==PortableMassBasis.GenericPounds&&(inventory.Nutrition!=NutritionKind.None||lot.UnitId!="mass-pound")
+                                ||item.MassBasis==PortableMassBasis.CountedQuantity&&(s.SchemaVersion<Snapshot.PortableCountedLotSchema
+                                    ||inventory.Nutrition!=NutritionKind.None
+                                    ||PortableStorageProfileValidation.Find(s,item.ProfileId) is not PortableStorageProfileRecord countedProfile
+                                    ||countedProfile.QuantityUnitId!=lot.UnitId||!countedProfile.MassPerUnitLb.HasValue
+                                    ||!countedProfile.PackedVolumePerUnitCubicFeet.HasValue
+                                    ||countedProfile.PackedVolumePerUnitCubicFeet.Value<=default(RuleQuantity)))
                                 throw new ArgumentException("Portable inventory link does not match its physical lot.");
                             break;
                         case PortableLinkKind.WaterVessel:
@@ -383,7 +395,7 @@ namespace Decennium.Foundation
                 &&!s.TemporaryCampConstructionAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.RouteMappingWorkAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.RouteReconnaissanceAttempts.Any(j=>j.Id==w.JobId)
-                &&!s.CraftingIncidents.Any(j=>j.Workers.Count!=0&&w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
+                &&!s.CraftingIncidents.Any(j=>w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed worker interval.");
         }
         private static string GroundLocation(int x,int y)=>"ground."+x.ToString(System.Globalization.CultureInfo.InvariantCulture)+"."+y.ToString(System.Globalization.CultureInfo.InvariantCulture);
@@ -422,7 +434,13 @@ namespace Decennium.Foundation
             if(item.MassBasis==PortableMassBasis.Fixed)return item.OperationalWeightLb.Value;
             if(item.MassBasis==PortableMassBasis.Unmodeled)throw new InvalidOperationException("Portable item mass is not modeled.");
             var lot=s.Work.Lots.Single(x=>x.Id==item.LinkedId);
-            return item.MassBasis==PortableMassBasis.FoodPounds?lot.Amount:lot.Amount;
+            if(item.MassBasis!=PortableMassBasis.CountedQuantity)return lot.Amount;
+            var profile=PortableStorageProfileValidation.Find(s,item.ProfileId);
+            if(profile==null||profile.QuantityUnitId!=lot.UnitId||!profile.MassPerUnitLb.HasValue)
+                throw new InvalidOperationException("Counted portable item mass is not established.");
+            var perUnit=profile.MassPerUnitLb.Value;
+            return RuleQuantity.FromFraction((BigInteger)perUnit.Numerator*lot.Amount.Numerator,
+                (BigInteger)perUnit.Denominator*lot.Amount.Denominator);
         }
     }
 }

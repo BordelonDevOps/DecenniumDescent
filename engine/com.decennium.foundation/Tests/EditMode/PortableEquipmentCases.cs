@@ -21,7 +21,7 @@ namespace Decennium.Foundation.Tests
                 inventory:transfer?new InventoryRequest(new RuleQuantity(1),destination,handling):null);
         }
         private static void PortableCommit(Simulation s,Command c)
-        {var r=s.Execute(TestOnlySharedWorldPolicy.Host(),c);Require(r.Outcome==Outcome.Committed,c.Kind+" expected commit: "+r.Code);}
+        {var r=s.Execute(TestOnlySharedWorldPolicy.Host(),c);Require(r.Outcome==Outcome.Committed,c.Kind+" "+c.Target+" "+c.Inventory?.Handling+" actor="+c.Actor+" expected commit: "+r.Code);}
         private static void PortableMoveToCache(Simulation s)
         {WorldStep(s,1,0);WorldAdvance(s,3,2);WorldStep(s,0,1);WorldAdvance(s,3,2);}
         private static void AddPortableEquipmentCases(Dictionary<string,Action> cases,string directory)

@@ -102,7 +102,8 @@ namespace Decennium.Foundation.Laboratory
             if (restDebtProfile == null) return;
             string error = restDebtProfile.ValidateBindings(s, dailyProvisioning);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+                : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.RuleClock != dailyProvisioning.CanonicalDayOrigin)
@@ -177,7 +178,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveRestDebtCommand(Snapshot s, Command c)
         {
-            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+                : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (restDebtProfile == null || s.SchemaVersion != expectedSchema) return "RestDebtNotSelected";
@@ -397,7 +399,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
                     && s.ExpeditionStrainGains.All(x => x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning)
                     ? null : "RestDebtProfileMissing";
-            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+                : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
             if (s.SchemaVersion != expectedSchema || s.ContentFingerprint != ContentFingerprint

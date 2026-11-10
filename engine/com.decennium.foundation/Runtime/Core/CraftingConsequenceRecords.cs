@@ -58,6 +58,9 @@ namespace Decennium.Foundation
             MaximumHp = maximumHp; Hp = hp; BaselineCopper = baselineCopper; MassPounds = mass;
         }
         public ObjectStructureRecord WithHp(long hp) => new ObjectStructureRecord(Id, ProfileId, OwnerId, CustodianId, LocationId, Material, MaximumHp, hp, BaselineCopper, MassPounds);
+        public ObjectStructureRecord WithLocation(string locationId) => new ObjectStructureRecord(Id, ProfileId, OwnerId, CustodianId, locationId, Material, MaximumHp, Hp, BaselineCopper, MassPounds);
+        public ObjectStructureRecord WithLocationAndCustodian(string locationId,string custodianId)
+            =>new ObjectStructureRecord(Id,ProfileId,OwnerId,custodianId,locationId,Material,MaximumHp,Hp,BaselineCopper,MassPounds);
     }
     /// <summary>A settled, sourced mishap and any outstanding remedy. Labor is person-seconds;
     /// active worker identity is separate from the participants in the failed order.</summary>
