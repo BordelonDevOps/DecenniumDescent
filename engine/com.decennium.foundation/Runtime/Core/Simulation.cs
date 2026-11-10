@@ -36,7 +36,7 @@ namespace Decennium.Foundation
         ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
         StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
         StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork,
-        StartHarvestPreservationTreatment }
+        StartHarvestPreservationTreatment, RecordHarvestPreservationExposure }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -136,6 +136,7 @@ namespace Decennium.Foundation
         public const int PortableCountedLotSchema = 73;
         public const int HarvestPreservationSchema = 74;
         public const int HarvestPreservationTreatmentSchema = 75;
+        public const int HarvestPreservationExposureSchema = 76;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -253,6 +254,7 @@ namespace Decennium.Foundation
         public HarvestAttemptRecord[] HarvestAttempts = Array.Empty<HarvestAttemptRecord>();
         public HarvestRequirementWorkRecord[] HarvestRequirementWorks = Array.Empty<HarvestRequirementWorkRecord>();
         public HarvestPreservationTreatmentAttemptRecord[] HarvestPreservationTreatmentAttempts = Array.Empty<HarvestPreservationTreatmentAttemptRecord>();
+        public HarvestPreservationEvidenceRecord[] HarvestPreservationEvidence = Array.Empty<HarvestPreservationEvidenceRecord>();
         public MiningDepositRecord[] MiningDeposits = Array.Empty<MiningDepositRecord>();
         public MiningCategoryRecord[] MiningCategories = Array.Empty<MiningCategoryRecord>();
         public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
@@ -358,6 +360,7 @@ namespace Decennium.Foundation
             HarvestCategories = HarvestCategories.ToArray(), HarvestUnits = HarvestUnits.ToArray(), HarvestAttempts = HarvestAttempts.ToArray(),
             HarvestRequirementWorks = HarvestRequirementWorks.ToArray(),
             HarvestPreservationTreatmentAttempts = HarvestPreservationTreatmentAttempts.ToArray(),
+            HarvestPreservationEvidence = HarvestPreservationEvidence.ToArray(),
             MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
@@ -738,7 +741,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema
                 || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationSchema
-                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema
+                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -835,6 +839,7 @@ namespace Decennium.Foundation
             HarvestValidation.Validate(s);
             HarvestRequirementWorkValidation.Validate(s);
             HarvestPreservationTreatmentValidation.Validate(s);
+            HarvestPreservationEvidenceValidation.Validate(s);
             MiningValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
@@ -906,6 +911,12 @@ namespace Decennium.Foundation
                     || command.Advancement != null || command.Ranged != null || command.HarvestSelection != null
                     || command.MiningSelection != null || command.Target == "" || command.X != 0 || command.Y != 0))
                 return "UnexpectedProspectingPayload";
+            if(command.Kind==CommandKind.RecordHarvestPreservationExposure
+                &&(command.Target==""||command.X!=0||command.Y!=0||command.Inventory!=null||command.Combat!=null
+                    ||command.Advancement!=null||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None
+                    ||command.SuppressionFire!=null||command.DefensiveFormation!=null||command.ExpeditionAssignment!=null
+                    ||command.HarvestSelection!=null||command.MiningSelection!=null||command.ProspectingExposure!=null
+                    ||command.RouteMappingWork!=null))return "UnexpectedHarvestExposurePayload";
             if ((command.Kind == CommandKind.StartRouteMappingWork) != (command.RouteMappingWork != null)
                 || command.RouteMappingWork != null && (command.Inventory != null || command.Combat != null
                     || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
@@ -955,7 +966,8 @@ namespace Decennium.Foundation
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
                     ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing
-                    ||command.Kind==CommandKind.RecordProspectingExposure) && !authority.CanModifyWorld))
+                    ||command.Kind==CommandKind.RecordProspectingExposure
+                    ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
             if (policy is ICommandInventoryClaims claims) {
                 try {

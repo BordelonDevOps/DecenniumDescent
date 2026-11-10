@@ -114,12 +114,15 @@ namespace Decennium.Foundation.Laboratory
             var item=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
             if(item==null)return "UnknownInventoryLot";
             var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
-            if(HarvestPreservationRules.IsProtectedAt(s,item.LotId,s.RuleClock))
+            bool protectedStock=HarvestPreservationRules.IsProtectedAt(s,item.LotId,s.RuleClock);
+            if(protectedStock&&!(s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+                &&HarvestPreservationExposureFixture.ActiveOpeningForPortion(s,c.Actor,item.LotId)!=null))
                 return "HarvestTreatmentProtectionActive";
             if(item.Nutrition==NutritionKind.None) {
                 if(c.Kind==CommandKind.PortionInventory
                     &&(s.SchemaVersion==Snapshot.HarvestPreservationSchema
-                        ||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema)
+                        ||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
+                        ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema)
                     &&c.Inventory.Destination==""&&c.Inventory.Handling==HandlingKind.Pickup
                     &&HarvestPreservationRules.TryProject(s,item.LotId,out _)) {
                     var massItem=s.PortableEquipment.SingleOrDefault(x=>x.Id==item.LotId

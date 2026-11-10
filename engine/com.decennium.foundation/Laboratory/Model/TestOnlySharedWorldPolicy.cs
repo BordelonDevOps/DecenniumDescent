@@ -454,6 +454,8 @@ namespace Decennium.Foundation.Laboratory
                 if(harvestRequirementBoundary.HasValue&&harvestRequirementBoundary.Value<next)next=harvestRequirementBoundary.Value;
                 var harvestTreatmentBoundary=NextHarvestPreservationTreatmentBoundary(s);
                 if(harvestTreatmentBoundary.HasValue&&harvestTreatmentBoundary.Value<next)next=harvestTreatmentBoundary.Value;
+                var harvestCoverageBoundary=HarvestPreservationRules.NextCoverageBoundary(s);
+                if(harvestCoverageBoundary.HasValue&&harvestCoverageBoundary.Value<next)next=harvestCoverageBoundary.Value;
                 var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<next)next=miningBoundary.Value;
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<next)next=prospectingBoundary.Value;
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<next)next=miningAssayBoundary.Value;
@@ -654,6 +656,11 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(c.Kind==CommandKind.RecordHarvestPreservationExposure)return ResolveHarvestPreservationExposure(s,c);
+            if(c.Kind==CommandKind.EnterInventoryCombat||c.Kind==CommandKind.BeginFixedEncounter) {
+                string harvestTransitionFailure=HarvestPreservationTacticalTransitionFailure(s);
+                if(harvestTransitionFailure!=null)return harvestTransitionFailure;
+            }
             if (IsExpeditionCampUseCommand(c.Kind)) return ResolveExpeditionCampUse(s, c);
             string pendingRecoveryFailure = PendingRecoveryChoiceFailure(s, c);
             if (pendingRecoveryFailure != null) return pendingRecoveryFailure;
@@ -713,7 +720,12 @@ namespace Decennium.Foundation.Laboratory
             if(PortableCommand(c.Kind)) {
                 string preservationHandlingError=HarvestPreservationTreatmentPortableHandlingFailure(s,c);
                 if(preservationHandlingError!=null)return preservationHandlingError;
-                return ResolvePortableEquipment(s,c);
+                var protectedOpening=harvestPreservationExposureEnabled&&c.Kind==CommandKind.OpenPortableContainer
+                    ?HarvestPreservationExposureFixture.ActiveTreatment(s,c.Target):null;
+                string portableError=ResolvePortableEquipment(s,c);
+                if(portableError!=null)return portableError;
+                if(protectedOpening!=null)AppendControlledHarvestOpening(s,c,protectedOpening);
+                return null;
             }
             if(IsHuntingTrapCommand(s,c))return ResolveHuntingTrapCommand(s,c);
             if(IsOrdinaryReceptacleCommand(s,c))return ResolveOrdinaryReceptacle(s,c);
@@ -767,6 +779,8 @@ namespace Decennium.Foundation.Laboratory
                 if (facts.StartsEncounter) {
                     if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";
                     if(HasActiveHavenCare(s))return "HavenCareCombatTransitionUnsupported";
+                    string harvestTransitionFailure=HarvestPreservationTacticalTransitionFailure(s);
+                    if(harvestTransitionFailure!=null)return harvestTransitionFailure;
                     return EnterCalendarCombat(s,new Command(c.Id,c.Actor,c.ExpectedRevision,CommandKind.BeginFixedEncounter));
                 }
                 if (c.Target == "run") {
@@ -855,12 +869,24 @@ namespace Decennium.Foundation.Laboratory
                 var campConstructionBoundary=NextTemporaryCampConstructionBoundary(s);
                 if(campConstructionBoundary.HasValue&&campConstructionBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
+            var openingForPortion=c.Kind==CommandKind.PortionInventory
+                ?HarvestPreservationExposureFixture.ActiveOpeningForPortion(s,c.Actor,c.Target):null;
+            var existingLotIds=openingForPortion==null?null:new System.Collections.Generic.HashSet<string>(
+                s.InventoryLots.Select(x=>x.LotId),StringComparer.Ordinal);
             var before = s.RuleClock;
             string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null
                 ?VesselHandling.Resolve(s,c,actor=>AvailableHands(s,actor),id=>s.PortableEquipment.Length==0
                     &&TestOnlyFillingPolicy.IsBaseFixtureVessel(id))
                 :inventory.Resolve(s, c);
             if (failure != null) return failure;
+            if(openingForPortion!=null) {
+                var child=s.InventoryLots.Single(x=>!existingLotIds.Contains(x.LotId));
+                s.HarvestPreservationEvidence=s.HarvestPreservationEvidence.Concat(new[]{
+                    new HarvestPreservationEvidenceRecord("preservation.evidence."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),
+                        HarvestPreservationEvidenceKind.InVesselPortion,openingForPortion.TreatmentAttemptId,openingForPortion.VesselId,
+                        c.Id,s.Revision+1,s.RuleClock,openingEvidenceId:openingForPortion.Id,childLotId:child.LotId)
+                }).ToArray();
+            }
             if (s.RuleClock > before) {
                 CreditFormulaWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
@@ -904,6 +930,8 @@ namespace Decennium.Foundation.Laboratory
                 string portableStorageError=ValidatePortableStorageState(s);if(portableStorageError!=null)return portableStorageError;
                 string harvestTreatmentFixtureError=ValidateHarvestPreservationTreatmentFixture(s);
                 if(harvestTreatmentFixtureError!=null)return harvestTreatmentFixtureError;
+                string harvestExposureFixtureError=ValidateHarvestPreservationExposureFixture(s);
+                if(harvestExposureFixtureError!=null)return harvestExposureFixtureError;
                 string routeMappingError=ValidateRouteMappingResultState(s);if(routeMappingError!=null)return routeMappingError;
                 string routeMappingWorkError=ValidateRouteMappingWorkState(s);if(routeMappingWorkError!=null)return routeMappingWorkError;
                 string routeReconnaissanceError=ValidateRouteReconnaissanceState(s);if(routeReconnaissanceError!=null)return routeReconnaissanceError;
@@ -1018,7 +1046,8 @@ namespace Decennium.Foundation.Laboratory
                     if(harvestSelected) {
                         var expectedHarvestWorkers=HarvestWorkerIds;
                         int expectedSkills=harvestFixture.Trained?expectedHarvestWorkers.Length:0;
-                    int expectedHarvestSchema=harvestPreservationTreatmentEnabled?Snapshot.HarvestPreservationTreatmentSchema
+                    int expectedHarvestSchema=harvestPreservationExposureEnabled?Snapshot.HarvestPreservationExposureSchema
+                        :harvestPreservationTreatmentEnabled?Snapshot.HarvestPreservationTreatmentSchema
                         :harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture.SchemaVersion;
                     if(s.SchemaVersion!=expectedHarvestSchema||fishingSkills.Length!=expectedSkills
                             ||fishingSkills.Any(x=>!expectedHarvestWorkers.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)

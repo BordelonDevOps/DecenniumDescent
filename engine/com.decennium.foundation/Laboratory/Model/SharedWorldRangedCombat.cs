@@ -82,6 +82,8 @@ namespace Decennium.Foundation.Laboratory
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
                 ||kind==CommandKind.ResolveTemporaryCampConstruction)
             ||portableStorageFixture!=null&&PortableCommand(kind)
+            ||harvestPreservationExposureEnabled&&(PortableCommand(kind)||kind==CommandKind.PortionInventory
+                ||kind==CommandKind.RecordHarvestPreservationExposure)
             ||expeditionCampSiteProfile!=null&&(kind==CommandKind.BeginCampUse||kind==CommandKind.EndCampUse
                 ||kind==CommandKind.BeginLyingLow||kind==CommandKind.EndLyingLow)
             ||kind==CommandKind.AwardCharacterMilestone||kind==CommandKind.AdvanceCharacterLevel

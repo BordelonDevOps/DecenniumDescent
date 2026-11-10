@@ -370,7 +370,8 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Expedition pressure requires schema67.");
                 return;
             }
-            if((s.SchemaVersion==Snapshot.HarvestPreservationSchema||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema)
+            if((s.SchemaVersion==Snapshot.HarvestPreservationSchema||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
+                    ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema)
                 &&s.TestOnly&&s.ExpeditionPressureCohorts.Length==0
                 &&s.ExpeditionPressureExposures.Length==0&&s.ExpeditionPressureChanges.Length==0
                 &&s.ExpeditionPressureCheckpoints.Length==0)return;

@@ -6,6 +6,92 @@ using System.Numerics;
 
 namespace Decennium.Foundation.Laboratory
 {
+    internal sealed class HarvestPreservationCleanToolBinding
+    {
+        public string Id { get; }
+        public string ToolItemId { get; }
+        public bool Clean { get; }
+        public HarvestPreservationCleanToolBinding(string id,string toolItemId,bool clean)
+        { Id=id;ToolItemId=toolItemId;Clean=clean; }
+        internal string Key=>Id+"|"+ToolItemId+"|clean="+Clean;
+    }
+
+    internal sealed class HarvestPreservationExposureOccurrence
+    {
+        public string Id { get; }
+        public HarvestPreservationExposureCause Cause { get; }
+        public HarvestPreservationExposureOccurrence(string id,HarvestPreservationExposureCause cause)
+        { Id=id;Cause=cause; }
+        internal string Key=>Id+"|cause="+(int)Cause;
+    }
+
+    /// <summary>Trusted facts admitted only by the schema76 TEST_ONLY profile. A command names
+    /// an occurrence; it cannot supply cleanliness, cause, vessel, treatment, or event time.</summary>
+    internal static class HarvestPreservationExposureFixture
+    {
+        internal const string CleanCookUtensilsFactId="TEST_ONLY.preservation.clean-cooks-utensils-v1";
+        private static readonly HarvestPreservationCleanToolBinding[] CleanTools={
+            new HarvestPreservationCleanToolBinding(CleanCookUtensilsFactId,HarvestPreservationTreatmentFixture.ToolId,true)
+        };
+        private static readonly HarvestPreservationExposureOccurrence[] Events={
+            new HarvestPreservationExposureOccurrence("TEST_ONLY.preservation.exposure.breach",HarvestPreservationExposureCause.Breach),
+            new HarvestPreservationExposureOccurrence("TEST_ONLY.preservation.exposure.contamination",HarvestPreservationExposureCause.Contamination),
+            new HarvestPreservationExposureOccurrence("TEST_ONLY.preservation.exposure.incompatible-heat",HarvestPreservationExposureCause.IncompatibleHeat)
+        };
+        internal static string Key=>"schema76-preservation-fixture-v1|"
+            +string.Join(";",CleanTools.Select(x=>x.Key).OrderBy(x=>x,StringComparer.Ordinal))
+            +"|"+string.Join(";",Events.Select(x=>x.Key).OrderBy(x=>x,StringComparer.Ordinal));
+        internal static HarvestPreservationCleanToolBinding CleanTool(string factId)
+            =>CleanTools.SingleOrDefault(x=>x.Id==factId);
+        internal static HarvestPreservationExposureOccurrence Occurrence(string id)
+            =>Events.SingleOrDefault(x=>x.Id==id);
+        internal static bool IsCleanBinding(string factId,string toolId)
+            =>CleanTools.Any(x=>x.Id==factId&&x.ToolItemId==toolId&&x.Clean);
+        internal static string[] OccurrenceIds=>Events.Select(x=>x.Id).ToArray();
+
+        internal static HarvestPreservationTreatmentAttemptRecord ActiveTreatment(Snapshot s,string vesselId)
+            =>s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+                ?s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Success
+                    &&x.CompletedAt.HasValue&&x.ContainerId==vesselId
+                    &&HarvestPreservationRules.IsProtectedAt(s,x.InventoryLotId,s.RuleClock))
+                :null;
+
+        internal static HarvestPreservationEvidenceRecord ActiveOpening(Snapshot s,
+            HarvestPreservationTreatmentAttemptRecord attempt,string actorId)
+        {
+            if(s==null||attempt==null||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema
+                ||s.InventoryCombat||actorId!=attempt.WorkerId||!s.WorldSchedule.Order.Contains(actorId)
+                ||!HarvestPreservationRules.IsProtectedAt(s,attempt.InventoryLotId,s.RuleClock))return null;
+            var vessel=s.PortableEquipment.SingleOrDefault(x=>x.Id==attempt.ContainerId&&x.Open);
+            if(vessel==null)return null;
+            var opening=s.HarvestPreservationEvidence.Where(x=>x.Kind==HarvestPreservationEvidenceKind.ControlledOpening
+                &&x.TreatmentAttemptId==attempt.Id&&x.VesselId==attempt.ContainerId&&x.At<=s.RuleClock)
+                .OrderByDescending(x=>x.AppliedRevision).FirstOrDefault();
+            if(opening==null||!IsCleanBinding(opening.CleanToolFactId,opening.ToolId)
+                ||opening.ToolId!=attempt.ToolId||s.RuleClock>=opening.At.AddSeconds(HarvestPreservationEvidenceValidation.OpeningLimitSeconds)
+                ||s.PortableHandling.Any(x=>x.ItemId==attempt.ContainerId&&x.Operation==PortableOperation.Close
+                    &&x.Revision>opening.AppliedRevision))return null;
+            var tool=s.PortableEquipment.SingleOrDefault(x=>x.Id==opening.ToolId);
+            return tool!=null&&PortableEquipmentRules.Accessible(s,actorId,tool)
+                &&!PortableEquipmentRules.HasPendingClaim(s,tool)?opening:null;
+        }
+
+        internal static HarvestPreservationEvidenceRecord ActiveOpeningForPortion(Snapshot s,string actorId,string lotId)
+        {
+            if(s==null||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)return null;
+            var attempt=s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Success
+                &&x.InventoryLotId==lotId&&x.CompletedAt.HasValue);
+            if(attempt==null||!HarvestPreservationRules.IsProtectedAt(s,lotId,s.RuleClock))return null;
+            var opening=ActiveOpening(s,attempt,actorId);
+            if(opening==null||s.HarvestPreservationEvidence.Any(x=>x.Kind==HarvestPreservationEvidenceKind.InVesselPortion
+                &&x.OpeningEvidenceId==opening.Id))return null;
+            var physical=s.PortableEquipment.SingleOrDefault(x=>x.Id==lotId&&x.LinkKind==PortableLinkKind.InventoryLot
+                &&x.LinkedId==lotId&&x.ParentId==attempt.ContainerId&&x.Placement==PortablePlacement.Contained
+                &&x.MassBasis==PortableMassBasis.GenericPounds);
+            return physical!=null&&PortableEquipmentRules.Accessible(s,actorId,physical)?opening:null;
+        }
+    }
+
     internal static class HarvestPreservationTreatmentFixture
     {
         internal const string SkillId="cooking";
@@ -21,7 +107,8 @@ namespace Decennium.Foundation.Laboratory
 
         internal static void Initialize(Snapshot s,string worker,string site,int siteX,int siteY,string fishLotId)
         {
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema||!s.TestOnly
+            if((s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)||!s.TestOnly
                 ||!s.WorldSchedule.Order.Contains(worker)||s.PortableEquipment.Any(x=>x.Id==ContainerId||x.Id==ToolId||x.Id==SupplyLotId)
                 ||s.Work.Lots.Any(x=>x.Id==SupplyLotId)||s.InventoryLots.Any(x=>x.LotId==SupplyLotId))
                 throw new ArgumentException("MGT-05B requires a clean schema75 TEST_ONLY harvest profile.");
@@ -53,7 +140,8 @@ namespace Decennium.Foundation.Laboratory
 
         internal static string Validate(Snapshot s,string worker,string site,int siteX,int siteY,string fishLotId)
         {
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema||!s.TestOnly
+            if((s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)||!s.TestOnly
                 ||s.SkillTraining.Count(x=>x.ActorId==worker&&x.SkillId==SkillId&&x.ProficiencyRank==1)!=1
                 ||s.SkillTraining.Any(x=>x.ActorId==worker&&x.SkillId==SkillId&&x.ProficiencyRank!=1))
                 return "HarvestTreatmentCookingBindingMismatch";
@@ -116,8 +204,10 @@ namespace Decennium.Foundation.Laboratory
             if(!harvestPreservationTreatmentEnabled)return null;
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return null;
             var active=s.HarvestPreservationTreatmentAttempts.Where(x=>x.Status==HarvestPreservationTreatmentStatus.Success
-                &&x.CompletedAt.HasValue&&x.CompletedAt.Value<=s.RuleClock
-                &&s.RuleClock<x.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds))
+                &&x.CompletedAt.HasValue&&(s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+                    ?HarvestPreservationRules.IsProtectedAt(s,x.InventoryLotId,s.RuleClock)
+                    :x.CompletedAt.Value<=s.RuleClock
+                        &&s.RuleClock<x.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds)))
                 .FirstOrDefault(x=>PortableInside(s,x.ContainerId,item.Id));
             if(active!=null) {
                 bool wholeVesselMove=item.Id==active.ContainerId&&!item.Open
@@ -125,12 +215,95 @@ namespace Decennium.Foundation.Laboratory
                     &&(c.Inventory.Handling==HandlingKind.Pickup||c.Inventory.Handling==HandlingKind.Drop
                         ||c.Inventory.Handling==HandlingKind.Retrieve||c.Inventory.Handling==HandlingKind.Stow
                         ||c.Inventory.Handling==HandlingKind.Handover);
-                if(!wholeVesselMove)return "HarvestTreatmentProtectionActive";
+                if(wholeVesselMove)return null;
+                if(s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema&&harvestPreservationExposureEnabled) {
+                    if(item.Id==active.ContainerId&&c.Kind==CommandKind.OpenPortableContainer)
+                        return AssessProtectedHarvestOpening(s,c,active);
+                    if(item.Id==active.ContainerId&&c.Kind==CommandKind.ClosePortableContainer)
+                        return s.InventoryCombat?"HarvestPreservationHandlingRequiresExploration":null;
+                    bool protectedChild=item.Id!=active.InventoryLotId
+                        &&s.HarvestPreservationEvidence.Any(x=>x.Kind==HarvestPreservationEvidenceKind.InVesselPortion
+                            &&x.TreatmentAttemptId==active.Id&&x.ChildLotId==item.Id);
+                    if(protectedChild&&c.Kind==CommandKind.HandlePortableEquipment&&c.Inventory!=null
+                        &&c.Inventory.Handling==HandlingKind.Retrieve) {
+                        if(s.InventoryCombat)return "HarvestPreservationHandlingRequiresExploration";
+                        if(HarvestPreservationExposureFixture.ActiveOpening(s,active,c.Actor)!=null)return null;
+                    }
+                }
+                return "HarvestTreatmentProtectionActive";
             }
             var working=s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Working
                 &&(x.ContainerId==item.Id||x.InventoryLotId==item.Id||x.SupplyLotId==item.Id||x.ToolId==item.Id
                     ||PortableInside(s,x.ContainerId,item.Id)));
             return working==null?null:"HarvestTreatmentInputsInUse";
+        }
+
+        private string AssessProtectedHarvestOpening(Snapshot s,Command c,
+            HarvestPreservationTreatmentAttemptRecord attempt)
+        {
+            if(!harvestPreservationExposureEnabled||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)
+                return "HarvestTreatmentProtectionActive";
+            if(s.InventoryCombat)return "HarvestPreservationHandlingRequiresExploration";
+            if(c.Inventory!=null||c.X!=0||c.Y!=0||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
+                ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null
+                ||c.ExpeditionAssignment!=null||c.HarvestSelection!=null||c.MiningSelection!=null
+                ||c.ProspectingExposure!=null||c.RouteMappingWork!=null)
+                return "InvalidHarvestPreservationOpeningCommand";
+            if(c.Actor!=attempt.WorkerId||!s.WorldSchedule.Order.Contains(c.Actor))return "HarvestPreservationWorkerUnsupported";
+            var binding=HarvestPreservationExposureFixture.CleanTool(HarvestPreservationExposureFixture.CleanCookUtensilsFactId);
+            var tool=binding==null?null:s.PortableEquipment.SingleOrDefault(x=>x.Id==binding.ToolItemId);
+            if(binding==null||!binding.Clean||binding.ToolItemId!=attempt.ToolId||tool==null
+                ||!PortableEquipmentRules.Accessible(s,c.Actor,tool)||PortableEquipmentRules.HasPendingClaim(s,tool))
+                return "CleanPreservationToolUnavailable";
+            return null;
+        }
+
+        private static bool HasUnresolvedHarvestOpening(Snapshot s)
+        {
+            foreach(var opening in s.HarvestPreservationEvidence.Where(x=>x.Kind==HarvestPreservationEvidenceKind.ControlledOpening)) {
+                bool closed=s.PortableHandling.Any(x=>x.ItemId==opening.VesselId&&x.Operation==PortableOperation.Close
+                    &&x.Revision>opening.AppliedRevision);
+                var vessel=s.PortableEquipment.SingleOrDefault(x=>x.Id==opening.VesselId);
+                if(!closed&&vessel!=null&&vessel.Open)return true;
+            }
+            return false;
+        }
+
+        private string HarvestPreservationTacticalTransitionFailure(Snapshot s)
+            =>harvestPreservationExposureEnabled&&s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+                &&HasUnresolvedHarvestOpening(s)?"HarvestPreservationOpenLifecycleTacticalUnsupported":null;
+
+        private string ResolveHarvestPreservationExposure(Snapshot s,Command c)
+        {
+            if(!harvestPreservationExposureEnabled||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)
+                return "HarvestPreservationExposureNotSelected";
+            if(s.InventoryCombat)return "HarvestPreservationExposureRequiresExploration";
+            var occurrence=HarvestPreservationExposureFixture.Occurrence(c.Target);
+            if(occurrence==null)return "UnknownHarvestPreservationOccurrence";
+            if(s.HarvestPreservationEvidence.Any(x=>x.Kind==HarvestPreservationEvidenceKind.Exposure
+                &&x.OccurrenceId==occurrence.Id))return "HarvestPreservationOccurrenceAlreadyRecorded";
+            var attempt=HarvestPreservationExposureFixture.ActiveTreatment(s,HarvestPreservationTreatmentFixture.ContainerId);
+            if(attempt==null)return "NoActiveHarvestPreservationCoverage";
+            s.HarvestPreservationEvidence=s.HarvestPreservationEvidence.Concat(new[]{
+                new HarvestPreservationEvidenceRecord("preservation.evidence."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),
+                    HarvestPreservationEvidenceKind.Exposure,attempt.Id,attempt.ContainerId,c.Id,s.Revision+1,s.RuleClock,
+                    occurrenceId:occurrence.Id,cause:occurrence.Cause)
+            }).ToArray();
+            return null;
+        }
+
+        private void AppendControlledHarvestOpening(Snapshot s,Command c,
+            HarvestPreservationTreatmentAttemptRecord attempt)
+        {
+            if(attempt==null||!HarvestPreservationRules.IsProtectedAt(s,attempt.InventoryLotId,s.RuleClock))return;
+            var handling=s.PortableHandling.Single(x=>x.Revision==s.Revision+1&&x.ItemId==attempt.ContainerId
+                &&x.Operation==PortableOperation.Open&&x.ActorId==c.Actor);
+            var binding=HarvestPreservationExposureFixture.CleanTool(HarvestPreservationExposureFixture.CleanCookUtensilsFactId);
+            s.HarvestPreservationEvidence=s.HarvestPreservationEvidence.Concat(new[]{
+                new HarvestPreservationEvidenceRecord("preservation.evidence."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),
+                    HarvestPreservationEvidenceKind.ControlledOpening,attempt.Id,attempt.ContainerId,c.Id,s.Revision+1,
+                    handling.EndedAt,portableHandlingId:handling.Id,toolId:binding.ToolItemId,cleanToolFactId:binding.Id)
+            }).ToArray();
         }
 
         private void InitializeHarvestPreservationTreatmentFixture(Snapshot s)
@@ -144,6 +317,29 @@ namespace Decennium.Foundation.Laboratory
             =>!harvestPreservationTreatmentEnabled?s.HarvestPreservationTreatmentAttempts.Length==0?null:"HarvestTreatmentFixtureNotSelected"
                 :HarvestPreservationTreatmentFixture.Validate(s,TestOnlyPolicy.ActorId,HarvestSiteId,HarvestSiteX,HarvestSiteY,
                     HarvestFiniteLotId);
+
+        private string ValidateHarvestPreservationExposureFixture(Snapshot s)
+        {
+            if(!harvestPreservationExposureEnabled)
+                return s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.HarvestPreservationEvidence.Length!=0
+                    ?"HarvestPreservationExposureFixtureNotSelected":null;
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema||!s.TestOnly
+                ||s.HarvestRequirementWorks.Length!=0)return "HarvestPreservationExposureFixtureMismatch";
+            foreach(var evidence in s.HarvestPreservationEvidence) {
+                if(evidence.Kind==HarvestPreservationEvidenceKind.ControlledOpening
+                    &&(!HarvestPreservationExposureFixture.IsCleanBinding(evidence.CleanToolFactId,evidence.ToolId)
+                        ||evidence.ToolId!=HarvestPreservationTreatmentFixture.ToolId
+                        ||!s.PortableEquipment.Any(x=>x.Id==evidence.ToolId)))return "HarvestPreservationCleanToolBindingMismatch";
+                if(evidence.Kind==HarvestPreservationEvidenceKind.Exposure) {
+                    var occurrence=HarvestPreservationExposureFixture.Occurrence(evidence.OccurrenceId);
+                    if(occurrence==null||occurrence.Cause!=evidence.Cause
+                        ||evidence.VesselId!=HarvestPreservationTreatmentFixture.ContainerId)
+                        return "HarvestPreservationOccurrenceBindingMismatch";
+                }
+            }
+            return s.InventoryCombat&&HasUnresolvedHarvestOpening(s)
+                ?"HarvestPreservationOpenLifecycleTacticalUnsupported":null;
+        }
 
         private static HarvestPreservationTreatmentAttemptRecord ReplaceHarvestPreservationTreatment(
             Snapshot s,HarvestPreservationTreatmentAttemptRecord value)
@@ -166,7 +362,8 @@ namespace Decennium.Foundation.Laboratory
             out HarvestPreservationTreatmentAttemptRecord current,out HarvestPreservationView preservation)
         {
             current=null;preservation=null;
-            if(!harvestPreservationTreatmentEnabled||s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema)
+            if(!harvestPreservationTreatmentEnabled||(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema))
                 return "HarvestPreservationTreatmentNotSelected";
             if(c.Kind!=CommandKind.StartHarvestPreservationTreatment||c.Inventory==null||c.Target==""
                 ||c.Inventory.Amount==default||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup

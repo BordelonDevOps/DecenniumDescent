@@ -11,6 +11,7 @@ namespace Decennium.Foundation.Laboratory
     {
         private bool harvestPreservationEnabled;
         private bool harvestPreservationTreatmentEnabled;
+        private bool harvestPreservationExposureEnabled;
 
         /// <summary>Build the explicit schema74 TEST_ONLY witness over the existing finite harvest fixture.
         /// The two-interval workload is harness scaffolding so it remains unfinished at the first
@@ -39,6 +40,19 @@ namespace Decennium.Foundation.Laboratory
                 +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(policy.ContentFingerprint
                     +"|schema75|closed-container|generic.ordinary-fish-meat|fresh-or-degraded|whole-available-lot<=10lb"
                     +"|work=1800s|supply=1/2lb|cooking-wisdom-dc10|protection=86400s|terminal-seal"))
+                    .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            return policy;
+        }
+
+        /// <summary>Build the schema76 TEST_ONLY exposure/opening profile. Existing schema74/75
+        /// factories and their fingerprints remain unchanged.</summary>
+        public static TestOnlySharedWorldPolicy WithHarvestPreservationExposure(SharedHarvestFixture harvest=null,uint seed=1)
+        {
+            var policy=WithHarvestPreservationTreatment(harvest,seed);
+            policy.harvestPreservationExposureEnabled=true;
+            using(var sha=SHA256.Create())policy.ContentFingerprint="TEST_ONLY.mgt05c-v1-"
+                +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(policy.ContentFingerprint
+                    +"|schema76|"+HarvestPreservationExposureFixture.Key))
                     .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
             return policy;
         }
@@ -74,14 +88,16 @@ namespace Decennium.Foundation.Laboratory
 
         internal static void InitializeHarvestPreservationTreatmentPortableProfiles(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema)
-                throw new ArgumentException("Harvest treatment portable profiles require schema75.");
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)
+                throw new ArgumentException("Harvest treatment portable profiles require schema75 or76.");
             s.PortableStorageProfiles=HarvestPreservationTreatmentPortableProfiles();
         }
 
         internal static string ValidateHarvestPreservationTreatmentPortableProfiles(Snapshot s)
         {
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema||!s.TestOnly||s.PortableStorageProfiles==null
+            if((s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)||!s.TestOnly||s.PortableStorageProfiles==null
                 ||s.PortableStorageProfiles.Length!=3)return "HarvestTreatmentPortableProfileMismatch";
             string[] priorIds={"TEST_ONLY.harvest-tray","prototype.generic-pound-lot"};
             string prior=ValidatePreservationPortableProfiles(new Snapshot{SchemaVersion=Snapshot.HarvestPreservationSchema,
