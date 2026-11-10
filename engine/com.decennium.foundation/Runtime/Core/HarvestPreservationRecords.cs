@@ -3,7 +3,9 @@ using System.Linq;
 
 namespace Decennium.Foundation
 {
-    public enum HarvestIngredientRequirement { Fresh = 1 }
+    // Ordinary and Spoiled are query-only projections for the agreed eligibility matrix.
+    // The TEST_ONLY reservation/work adapter below deliberately persists Fresh only.
+    public enum HarvestIngredientRequirement { Fresh = 1, Ordinary = 2, Spoiled = 3 }
     public enum HarvestRequirementWorkStatus { Working = 1, Paused = 2 }
     public enum HarvestRequirementPauseReason { None = 0, Explicit = 1, IngredientNotFresh = 2, WorkerUnavailable = 3 }
 
@@ -28,6 +30,18 @@ namespace Decennium.Foundation
     /// <summary>Schema-74 projection over the existing harvest and inventory authorities.</summary>
     public static class HarvestPreservationRules
     {
+        public static bool SatisfiesRequirement(HarvestPreservationView view,HarvestIngredientRequirement requirement)
+        {
+            if(view==null||!Enum.IsDefined(typeof(HarvestIngredientRequirement),requirement))return false;
+            switch(requirement) {
+                case HarvestIngredientRequirement.Fresh:return view.State==HarvestPreservationState.Fresh;
+                case HarvestIngredientRequirement.Ordinary:return view.State==HarvestPreservationState.Fresh
+                    ||view.State==HarvestPreservationState.Degraded;
+                case HarvestIngredientRequirement.Spoiled:return view.State==HarvestPreservationState.Spoiled;
+                default:return false;
+            }
+        }
+
         public static bool TryProject(Snapshot s,string inventoryLotId,out HarvestPreservationView view)
         {
             view=null;
@@ -141,9 +155,12 @@ namespace Decennium.Foundation
                     ||reservation.ReleasedAmount!=default||reservation.RemainingAmount!=job.RequiredAmount)
                     throw new ArgumentException("Harvest requirement reservation changed unexpectedly.");
                 var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==job.Id).ToArray();
-                RuleTime deadline=job.StartedAt.AddSeconds(checked(s.HarvestUnits.Single(y=>y.Id==view.HarvestUnitId).PreservationIntervalSeconds*2L));
-                if(intervals.Any(x=>x.WorkerId!=job.WorkerId||x.Start<job.StartedAt||x.Start>s.RuleClock||x.End>deadline))
+                if(intervals.Any(x=>x.WorkerId!=job.WorkerId||x.Start<job.StartedAt||x.Start>s.RuleClock))
                     throw new ArgumentException("Invalid harvest requirement work interval.");
+                RuleTime booked=default;
+                foreach(var interval in intervals)booked=Add(booked,Subtract(interval.End,interval.Start));
+                RuleTime expectedBooked=job.Status==HarvestRequirementWorkStatus.Working?job.Work.Required:job.Work.Labor;
+                if(booked!=expectedBooked)throw new ArgumentException("Harvest requirement work booking does not match active or retained work.");
                 RuleTime credited=default;
                 foreach(var interval in intervals) {
                     if(interval.Start>=s.RuleClock)continue;

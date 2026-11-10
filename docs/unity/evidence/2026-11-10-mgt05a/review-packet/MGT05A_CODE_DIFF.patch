@@ -1,0 +1,1223 @@
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs b/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs
+index a9b2ef3f..606260ce 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs
+@@ -114,8 +114,9 @@ namespace Decennium.Foundation.Laboratory
+                 :tactical.Length!=0||tacticalVessels.Length!=0||s.Intakes.Any(x=>x.Status==IntakeStatus.CombatInterrupted)))return "InvalidTacticalHistory";
+             var cropTasks=s.Crops.SelectMany(x=>x.Tasks).ToArray();
+             if(s.Work.Reservations.Any(r=>!cropTasks.Any(t=>t.InputReservations.Contains(r.Id))&&!s.Intakes.Any(j=>j.ReservationId==r.Id)&&!s.WaterFills.Any(j=>j.ReservationId==r.Id)
++                    &&!s.HarvestRequirementWorks.Any(j=>j.ReservationId==r.Id&&j.Id==r.JobId&&j.InventoryLotId==r.LotId)
+                     &&!s.MiningAttempts.Any(j=>j.Id==r.JobId&&j.SelectedUnitIds.Contains(r.LotId,StringComparer.Ordinal)))
+-                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)&&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)&&!s.MiningAttempts.Any(j=>j.Id==w.JobId)&&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)))
++                ||s.Work.WorkerIntervals.Any(w=>!cropTasks.Any(t=>t.Id==w.JobId)&&!s.Intakes.Any(j=>j.Id==w.JobId)&&!s.Handling.Any(j=>j.Id==w.JobId)&&!s.WaterFills.Any(j=>j.Id==w.JobId)&&!s.VesselMoves.Any(j=>j.Id==w.JobId)&&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)&&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)&&!s.HarvestRequirementWorks.Any(j=>j.Id==w.JobId)&&!s.MiningAttempts.Any(j=>j.Id==w.JobId)&&!s.MineralPreparationAttempts.Any(j=>j.Id==w.JobId)))
+                 return "UnattributedInventoryLedger";
+             foreach(var job in s.Intakes) {
+                 var item=s.InventoryLots.Single(x=>x.LotId==job.LotId);var lot=s.Work.Lots.Single(x=>x.Id==job.LotId);
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/PortableStorage.cs b/engine/com.decennium.foundation/Laboratory/Model/PortableStorage.cs
+index a1627efc..5cf1ea77 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/PortableStorage.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/PortableStorage.cs
+@@ -142,7 +142,7 @@ namespace Decennium.Foundation.Laboratory
+         }
+ 
+         private string ValidatePortableStorageState(Snapshot s)
+-            =>portableStorageFixture==null
++            =>harvestPreservationEnabled?ValidatePreservationPortableProfiles(s):portableStorageFixture==null
+                 ?s.PortableStorageProfiles.Length==0?null:"PortableStorageFixtureMissing"
+                 :portableStorageFixture.ValidateSnapshot(s);
+     }
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs
+index 44f55199..a0144d67 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs
+@@ -89,6 +89,7 @@ namespace Decennium.Foundation.Laboratory
+     {
+         private SharedCraftingFixture crafting;
+         private int SelectedSchema => recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
++            : harvestPreservationEnabled ? Snapshot.HarvestPreservationSchema
+             : portableStorageFixture != null ? Snapshot.PortableStorageSchema
+             : expeditionCampConstructionProfile != null ? Snapshot.TemporaryCampConstructionSchema
+             : expeditionCampSiteProfile != null ? Snapshot.ExpeditionCampUseSchema
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs
+index 0b209a42..edd511d8 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs
+@@ -353,7 +353,7 @@ namespace Decennium.Foundation.Laboratory
+         private string AssessHarvestCommand(Snapshot s,Command c,out HarvestAssessment facts)
+         {
+             facts=null;
+-            if(harvestFixture==null||s.SchemaVersion!=harvestFixture.SchemaVersion)return "HarvestingNotSelected";
++            if(harvestFixture==null||s.SchemaVersion!=(harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture.SchemaVersion))return "HarvestingNotSelected";
+             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.OverwatchRider!=OverwatchRider.None
+                 ||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null||c.X!=0||c.Y!=0)
+                 return "InvalidHarvestCommand";
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs
+new file mode 100644
+index 00000000..4a859ea4
+--- /dev/null
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs
+@@ -0,0 +1,219 @@
++#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
++using System;
++using System.Globalization;
++using System.Linq;
++using System.Security.Cryptography;
++using System.Text;
++
++namespace Decennium.Foundation.Laboratory
++{
++    public sealed partial class TestOnlySharedWorldPolicy
++    {
++        private bool harvestPreservationEnabled;
++
++        /// <summary>Build the explicit schema74 TEST_ONLY witness over the existing finite harvest fixture.
++        /// The two-interval workload is harness scaffolding so it remains unfinished at the first
++        /// sourced preservation boundary; it is not a crafting duration.</summary>
++        public static TestOnlySharedWorldPolicy WithHarvestPreservation(SharedHarvestFixture harvest=null,uint seed=1)
++        {
++            var policy=WithHarvest(harvest??new SharedHarvestFixture(),seed);
++            policy.harvestPreservationEnabled=true;
++            using(var sha=SHA256.Create())policy.ContentFingerprint="TEST_ONLY.mgt05a-v1-"
++                +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(policy.ContentFingerprint
++                    +"|harvest-preservation-derived-v1|fresh-only-reservation-work-adapter-v1|fixture-work=two-age-intervals"
++                    +"|portable-identities=TEST_ONLY.harvest-tray:item,prototype.generic-pound-lot:mass-pound;volume=unknown"))
++                    .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
++            return policy;
++        }
++
++        internal static PortableStorageProfileRecord[] PreservationPortableProfiles()=>new[]{
++            new PortableStorageProfileRecord("TEST_ONLY.harvest-tray","item",null),
++            new PortableStorageProfileRecord("prototype.generic-pound-lot",SharedHarvestFixture.MaterialUnit,null)
++        };
++
++        internal static void InitializePreservationPortableProfiles(Snapshot s)
++        {
++            if(s.SchemaVersion!=Snapshot.HarvestPreservationSchema)
++                throw new ArgumentException("Harvest preservation portable profiles require schema74.");
++            s.PortableStorageProfiles=PreservationPortableProfiles();
++        }
++
++        internal static string ValidatePreservationPortableProfiles(Snapshot s)
++        {
++            if(s.SchemaVersion!=Snapshot.HarvestPreservationSchema||!s.TestOnly||s.PortableStorageProfiles==null
++                ||s.PortableStorageProfiles.Length!=2)return "HarvestPreservationPortableProfileMismatch";
++            var tray=s.PortableStorageProfiles.SingleOrDefault(x=>x.ProfileId=="TEST_ONLY.harvest-tray");
++            var pounds=s.PortableStorageProfiles.SingleOrDefault(x=>x.ProfileId=="prototype.generic-pound-lot");
++            if(tray==null||tray.QuantityUnitId!="item"||tray.PackedVolumePerUnitCubicFeet.HasValue||tray.MassPerUnitLb.HasValue
++                ||tray.AllowedContainedProfileIds.Count!=0||pounds==null
++                ||pounds.QuantityUnitId!=SharedHarvestFixture.MaterialUnit||pounds.PackedVolumePerUnitCubicFeet.HasValue
++                ||pounds.MassPerUnitLb.HasValue||pounds.AllowedContainedProfileIds.Count!=0)
++                return "HarvestPreservationPortableProfileMismatch";
++            return null;
++        }
++
++        private static bool HarvestRequirementWorkCommand(CommandKind kind)
++            =>kind==CommandKind.StartHarvestRequirementWork||kind==CommandKind.PauseHarvestRequirementWork
++                ||kind==CommandKind.ResumeHarvestRequirementWork;
++
++        private static HarvestRequirementWorkRecord ReplaceHarvestRequirementWork(Snapshot s,HarvestRequirementWorkRecord value)
++        {
++            s.HarvestRequirementWorks=s.HarvestRequirementWorks.Select(x=>x.Id==value.Id?value:x).ToArray();
++            return value;
++        }
++
++        private static RuleTime AddHarvestRequirementTime(RuleTime first,RuleTime second)
++        {
++            var sum=new RuleQuantity(first.Numerator,first.Denominator)+new RuleQuantity(second.Numerator,second.Denominator);
++            return new RuleTime(sum.Numerator,sum.Denominator);
++        }
++
++        private static RuleTime SubtractHarvestRequirementTime(RuleTime first,RuleTime second)
++        {
++            var difference=new RuleQuantity(first.Numerator,first.Denominator)-new RuleQuantity(second.Numerator,second.Denominator);
++            return new RuleTime(difference.Numerator,difference.Denominator);
++        }
++
++        private RuleTime HarvestRequirementDuration(Snapshot s,string lotId)
++        {
++            if(!HarvestPreservationRules.TryProject(s,lotId,out var view))throw new ArgumentException("Unknown harvest preservation lineage.");
++            var unit=s.HarvestUnits.Single(x=>x.Id==view.HarvestUnitId);
++            return new RuleTime(checked(unit.PreservationIntervalSeconds*2L));
++        }
++
++        private static RuleTime? NextHarvestRequirementWorkBoundary(Snapshot s)
++        {
++            RuleTime? next=null;
++            foreach(var job in s.HarvestRequirementWorks.Where(x=>x.Status==HarvestRequirementWorkStatus.Working)) {
++                var interval=s.Work.WorkerIntervals.Single(w=>w.JobId==job.Id&&w.Start<=s.RuleClock&&w.End>s.RuleClock);
++                if(!next.HasValue||interval.End<next.Value)next=interval.End;
++                if(!HarvestPreservationRules.TryProject(s,job.InventoryLotId,out var view))
++                    throw new InvalidOperationException("Harvest requirement lineage disappeared.");
++                var unit=s.HarvestUnits.Single(x=>x.Id==view.HarvestUnitId);
++                RuleTime boundary=unit.OriginAt.AddSeconds(unit.PreservationIntervalSeconds);
++                if(boundary>s.RuleClock&&(!next.HasValue||boundary<next.Value))next=boundary;
++            }
++            return next;
++        }
++
++        private string AssessHarvestRequirementWork(Snapshot s,Command c,out HarvestRequirementWorkRecord current,
++            out HarvestPreservationView preservation)
++        {
++            current=null;preservation=null;
++            if(!harvestPreservationEnabled||s.SchemaVersion!=Snapshot.HarvestPreservationSchema)return "HarvestRequirementWorkNotSelected";
++            bool start=c.Kind==CommandKind.StartHarvestRequirementWork;
++            if((start?c.Inventory==null:c.Inventory!=null)||c.Target==""||c.X!=0||c.Y!=0
++                ||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.OverwatchRider!=OverwatchRider.None
++                ||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null
++                ||c.HarvestSelection!=null||c.MiningSelection!=null||c.ProspectingExposure!=null||c.RouteMappingWork!=null)
++                return "InvalidHarvestRequirementWorkCommand";
++            if(s.InventoryCombat)return "HarvestRequirementWorkDuringCombatUnsupported";
++            if(start) {
++                if(c.Inventory.Amount==default||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup)
++                    return "InvalidHarvestRequirementInput";
++                if(s.HarvestRequirementWorks.Any(x=>x.Status==HarvestRequirementWorkStatus.Working
++                    ||x.Status==HarvestRequirementWorkStatus.Paused))return "HarvestRequirementWorkAlreadyOpen";
++                if(!HarvestPreservationRules.TryProject(s,c.Target,out preservation))return "HarvestRequirementNeedsHarvestedMass";
++                if(preservation.State!=HarvestPreservationState.Fresh)return "FreshIngredientRequired";
++                var item=s.InventoryLots.Single(x=>x.LotId==c.Target);
++                var physical=s.PortableEquipment.Single(x=>x.Id==item.LotId&&x.LinkKind==PortableLinkKind.InventoryLot
++                    &&x.LinkedId==item.LotId&&x.MassBasis==PortableMassBasis.GenericPounds);
++                if(!PortableEquipmentRules.Accessible(s,c.Actor,physical))return "InventoryOutOfReach";
++                if(!CapableWorker(s,c.Actor))return "HarvestRequirementWorkerIncapable";
++                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
++                if(c.Inventory.Amount>s.Work.AvailableAmount(c.Target))return "InventoryQuantityUnavailable";
++                return null;
++            }
++            current=s.HarvestRequirementWorks.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
++            if(current==null)return "UnknownHarvestRequirementWork";
++            if(c.Kind==CommandKind.PauseHarvestRequirementWork) {
++                if(current.Status!=HarvestRequirementWorkStatus.Working)return "HarvestRequirementWorkNotWorking";
++                return null;
++            }
++            if(current.Status!=HarvestRequirementWorkStatus.Paused)return "HarvestRequirementWorkNotPaused";
++            if(!HarvestPreservationRules.TryProject(s,current.InventoryLotId,out preservation))return "HarvestRequirementNeedsHarvestedMass";
++            if(preservation.State!=HarvestPreservationState.Fresh)return "FreshIngredientRequired";
++            string currentLotId=current.InventoryLotId;
++            var bound=s.PortableEquipment.Single(x=>x.Id==currentLotId&&x.LinkKind==PortableLinkKind.InventoryLot
++                &&x.LinkedId==currentLotId&&x.MassBasis==PortableMassBasis.GenericPounds);
++            if(!PortableEquipmentRules.Accessible(s,c.Actor,bound))return "InventoryOutOfReach";
++            if(!CapableWorker(s,c.Actor))return "HarvestRequirementWorkerIncapable";
++            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
++            string reservationId=current.ReservationId;
++            var claim=s.Work.Reservations.Single(x=>x.Id==reservationId);
++            if(claim.RemainingAmount!=current.RequiredAmount)return "HarvestRequirementReservationUnavailable";
++            return null;
++        }
++
++        private void BookHarvestRequirementWork(Snapshot s,HarvestRequirementWorkRecord job)
++        {
++            RuleTime end=AddHarvestRequirementTime(s.RuleClock,job.Work.Remaining);
++            string intervalId=job.Id+".labor."+(s.Revision+1).ToString(CultureInfo.InvariantCulture);
++            s.Work=s.Work.Reserve(job.Id,new[]{new WorkerInterval(intervalId,job.Id,job.WorkerId,s.RuleClock,end)},Array.Empty<ResourceReservation>());
++        }
++
++        private void PauseHarvestRequirementWork(Snapshot s,HarvestRequirementWorkRecord job,
++            HarvestRequirementWorkStatus status,HarvestRequirementPauseReason reason,ActiveWorkProgress progress=null)
++        {
++            if(job.Status!=HarvestRequirementWorkStatus.Working)return;
++            s.Work=s.Work.CancelFutureWork(job.Id,s.RuleClock);
++            ReplaceHarvestRequirementWork(s,job.With(s.RuleClock,progress??job.Work,status,reason));
++        }
++
++        private void PauseIncompatibleHarvestRequirementWork(Snapshot s)
++        {
++            if(!harvestPreservationEnabled)return;
++            foreach(var job in s.HarvestRequirementWorks.Where(x=>x.Status==HarvestRequirementWorkStatus.Working).ToArray())
++                if(!CapableWorker(s,job.WorkerId))PauseHarvestRequirementWork(s,job,
++                    HarvestRequirementWorkStatus.Paused,HarvestRequirementPauseReason.WorkerUnavailable);
++        }
++
++        private void CreditHarvestRequirementWork(Snapshot s,RuleTime elapsed)
++        {
++            if(!harvestPreservationEnabled||elapsed==default)return;
++            RuleTime start=SubtractHarvestRequirementTime(s.RuleClock,elapsed);
++            foreach(var job in s.HarvestRequirementWorks.Where(x=>x.Status==HarvestRequirementWorkStatus.Working).ToArray()) {
++                if(!s.Work.WorkerIntervals.Any(w=>w.JobId==job.Id&&w.Start<=start&&w.End>=s.RuleClock))continue;
++                if(!HarvestPreservationRules.TryProject(s,job.InventoryLotId,out var view))
++                    throw new InvalidOperationException("Harvest requirement lineage disappeared during work.");
++                var unit=s.HarvestUnits.Single(x=>x.Id==view.HarvestUnitId);
++                RuleTime boundary=unit.OriginAt.AddSeconds(unit.PreservationIntervalSeconds);
++                if(start>=boundary||s.RuleClock>boundary)
++                    throw new InvalidOperationException("Fresh-required work crossed its scheduled preservation boundary.");
++                ActiveWorkProgress progress=job.Work.Credit(elapsed);
++                if(s.RuleClock==boundary)
++                    PauseHarvestRequirementWork(s,job,HarvestRequirementWorkStatus.Paused,
++                        HarvestRequirementPauseReason.IngredientNotFresh,progress);
++                else ReplaceHarvestRequirementWork(s,job.With(s.RuleClock,progress,HarvestRequirementWorkStatus.Working,
++                    HarvestRequirementPauseReason.None));
++            }
++        }
++
++        private string ResolveHarvestRequirementWork(Snapshot s,Command c)
++        {
++            string failure=AssessHarvestRequirementWork(s,c,out var current,out var preservation);
++            if(failure!=null)return failure;
++            if(c.Kind==CommandKind.StartHarvestRequirementWork) {
++                string id="harvest.requirement."+(s.Revision+1).ToString(CultureInfo.InvariantCulture);
++                string reservation=id+".ingredient";
++                var progress=new ActiveWorkProgress(new[]{HarvestRequirementDuration(s,c.Target)});
++                current=new HarvestRequirementWorkRecord(id,c.Actor,c.Target,reservation,c.Inventory.Amount,
++                    HarvestIngredientRequirement.Fresh,HarvestRequirementWorkStatus.Working,
++                    HarvestRequirementPauseReason.None,s.RuleClock,s.RuleClock,progress);
++                s.Work=s.Work.Reserve(id,Array.Empty<WorkerInterval>(),new[]{new ResourceReservation(reservation,id,c.Target,c.Inventory.Amount)});
++                BookHarvestRequirementWork(s,current);
++                s.HarvestRequirementWorks=s.HarvestRequirementWorks.Concat(new[]{current}).ToArray();
++                return null;
++            }
++            if(c.Kind==CommandKind.PauseHarvestRequirementWork) {
++                PauseHarvestRequirementWork(s,current,HarvestRequirementWorkStatus.Paused,
++                    HarvestRequirementPauseReason.Explicit);return null;
++            }
++            BookHarvestRequirementWork(s,current);
++            ReplaceHarvestRequirementWork(s,current.With(s.RuleClock,current.Work,
++                HarvestRequirementWorkStatus.Working,HarvestRequirementPauseReason.None));
++            return null;
++        }
++    }
++}
++#endif
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs.meta b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs.meta
+new file mode 100644
+index 00000000..fa48132c
+--- /dev/null
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservation.cs.meta
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 821bff892dff450ab1915f5c5ce72ea0
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData:
++  assetBundleName:
++  assetBundleVariant:
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs
+index 019d6976..65343c97 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs
+@@ -39,6 +39,14 @@ namespace Decennium.Foundation.Laboratory
+         private readonly SharedRepairFixture repair;
+         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
+         {
++            if(HarvestRequirementWorkCommand(c.Kind)) {
++                string lotId=c.Kind==CommandKind.StartHarvestRequirementWork?c.Target
++                    :s.HarvestRequirementWorks.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor)?.InventoryLotId;
++                if(string.IsNullOrEmpty(lotId))return Array.Empty<string>();
++                return new[]{s.InventoryLots.SingleOrDefault(x=>x.LotId==lotId)?.OwnerId}
++                    .Concat(PortableEquipmentRules.Owners(s,lotId))
++                    .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
++            }
+             if(IsProspectingCommand(c)&&c.Kind!=CommandKind.RecordProspectingExposure) {
+                 string patchId=c.Kind==CommandKind.StartProspecting?c.Target
+                     :s.ProspectingAttempts.SingleOrDefault(x=>x.Id==c.Target)?.PatchId;
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
+index 3e5f6aad..7e85a3b3 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
+@@ -402,6 +402,24 @@ namespace Decennium.Foundation.Laboratory
+                     }
+                 }
+             }
++            if(harvestPreservationEnabled) {
++                var work=s.HarvestRequirementWorks.SingleOrDefault(x=>x.WorkerId==actor
++                    &&(x.Status==HarvestRequirementWorkStatus.Working||x.Status==HarvestRequirementWorkStatus.Paused));
++                if(work!=null) {
++                    var kind=work.Status==HarvestRequirementWorkStatus.Working
++                        ?CommandKind.PauseHarvestRequirementWork:CommandKind.ResumeHarvestRequirementWork;
++                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".harvest-requirement."+(index++).ToString(CultureInfo.InvariantCulture),
++                        actor,s.Revision,kind,work.Id);
++                } else if(!OrdinaryInventory.Busy(s,actor)) {
++                    foreach(var lot in s.InventoryLots.OrderBy(x=>x.LotId,StringComparer.Ordinal)) {
++                        if(!HarvestPreservationRules.TryProject(s,lot.LotId,out var view)||view.State!=HarvestPreservationState.Fresh)continue;
++                        RuleQuantity available=s.Work.AvailableAmount(lot.LotId);if(available==default)continue;
++                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".harvest-requirement."+(index++).ToString(CultureInfo.InvariantCulture),
++                            actor,s.Revision,CommandKind.StartHarvestRequirementWork,lot.LotId,
++                            inventory:new InventoryRequest(available,"",HandlingKind.Pickup));
++                    }
++                }
++            }
+             if(miningFixture!=null&&IsMiningWorker(actor)) {
+                 var attempt=s.MiningAttempts.SingleOrDefault(x=>x.WorkerId==actor
+                     &&(x.Status==MiningAttemptStatus.Working||x.Status==MiningAttemptStatus.Paused||x.Status==MiningAttemptStatus.AwaitingCheck));
+@@ -583,6 +601,16 @@ namespace Decennium.Foundation.Laboratory
+                 }
+                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+             }
++            if(HarvestRequirementWorkCommand(c.Kind)) {
++                string failure=AssessHarvestRequirementWork(s,c,out var current,out _);
++                var costs=new List<CommandCost>();
++                if(failure==null&&c.Kind==CommandKind.StartHarvestRequirementWork) {
++                    RuleTime duration=HarvestRequirementDuration(s,c.Target);
++                    if(duration.Denominator==1)costs.Add(new CommandCost("work-seconds","",duration.Numerator));
++                } else if(failure==null&&c.Kind==CommandKind.ResumeHarvestRequirementWork&&current.Work.Remaining.Denominator==1)
++                    costs.Add(new CommandCost("work-seconds",current.Id,current.Work.Remaining.Numerator));
++                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
++            }
+             if(c.Kind==CommandKind.StartMining||c.Kind==CommandKind.PauseMining||c.Kind==CommandKind.ResumeMining) {
+                 string failure=AssessMiningCommand(s,c,out var facts);var costs=new List<CommandCost>();
+                 if(failure==null&&c.Kind==CommandKind.StartMining) {
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
+index 84fc26c7..808e1916 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
+@@ -96,6 +96,7 @@ namespace Decennium.Foundation.Laboratory
+             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
+             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
+             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
++            ||harvestPreservationEnabled&&HarvestRequirementWorkCommand(kind)
+             ||kind==CommandKind.StartMining||kind==CommandKind.PauseMining||kind==CommandKind.ResumeMining
+             ||kind==CommandKind.StartProspecting||kind==CommandKind.PauseProspecting||kind==CommandKind.ResumeProspecting
+             ||kind==CommandKind.RecordProspectingExposure
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs b/engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs
+index 24bbaf33..32a7c9df 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs
+@@ -115,6 +115,19 @@ namespace Decennium.Foundation.Laboratory
+             if(item==null)return "UnknownInventoryLot";
+             var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
+             if(item.Nutrition==NutritionKind.None) {
++                if(c.Kind==CommandKind.PortionInventory&&s.SchemaVersion==Snapshot.HarvestPreservationSchema
++                    &&c.Inventory.Destination==""&&c.Inventory.Handling==HandlingKind.Pickup
++                    &&HarvestPreservationRules.TryProject(s,item.LotId,out _)) {
++                    var massItem=s.PortableEquipment.SingleOrDefault(x=>x.Id==item.LotId
++                        &&x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==item.LotId
++                        &&x.MassBasis==PortableMassBasis.GenericPounds);
++                    if(massItem==null)return "UnsupportedInventoryProfile";
++                    if(!PortableEquipmentRules.Accessible(s,c.Actor,massItem))return "InventoryOutOfReach";
++                    if(c.Inventory.Amount>s.Work.AvailableAmount(lot.Id))return "InventoryQuantityUnavailable";
++                    OrdinaryInventory.Descendant(s,lot.Id,OrdinaryInventory.Identity(s,"lot"),c.Inventory.Amount,
++                        lot.LocationId,lot.CustodianId,item.Access);
++                    return null;
++                }
+                 if(c.Kind!=CommandKind.PortionInventory||s.SchemaVersion<Snapshot.PortableCountedLotSchema
+                     ||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup)
+                     return "UnsupportedInventoryProfile";
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs b/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
+index 3df072e6..141e1832 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
+@@ -199,6 +199,7 @@ namespace Decennium.Foundation.Laboratory
+             InitializeExpeditionCampUse(s);
+             InitializeExpeditionCampConstruction(s);
+             InitializePortableStorage(s);
++            if(harvestPreservationEnabled)InitializePreservationPortableProfiles(s);
+             InitializeRecipe347(s);
+             if(contentManifest!=null) {
+                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
+@@ -263,6 +264,7 @@ namespace Decennium.Foundation.Laboratory
+                 case CommandKind.ResumeCacheExcavation:
+                 case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:
+                 case CommandKind.StartHarvest: case CommandKind.ResumeHarvest:
++                case CommandKind.StartHarvestRequirementWork: case CommandKind.ResumeHarvestRequirementWork:
+                 case CommandKind.StartMining: case CommandKind.ResumeMining:
+                 case CommandKind.StartProspecting: case CommandKind.ResumeProspecting:
+                 case CommandKind.StartMiningAssay: case CommandKind.ResumeMiningAssay:
+@@ -328,6 +330,7 @@ namespace Decennium.Foundation.Laboratory
+             InterruptIncompatibleHuntingTrapActions(s);
+             PauseFishingTrapSetupIfIncompatible(s);
+             PauseIncompatibleHarvesting(s);
++            PauseIncompatibleHarvestRequirementWork(s);
+             PauseIncompatibleMining(s);
+             PauseIncompatibleProspecting(s);
+             PauseIncompatibleMiningAssay(s);
+@@ -443,6 +446,8 @@ namespace Decennium.Foundation.Laboratory
+                 var huntingTrapBoundary=NextHuntingTrapActionBoundary(s);if(huntingTrapBoundary.HasValue&&huntingTrapBoundary.Value<next)next=huntingTrapBoundary.Value;
+                 var trapBoundary=NextFishingTrapBoundary(s);if(trapBoundary.HasValue&&trapBoundary.Value<next)next=trapBoundary.Value;
+                 var harvestBoundary=NextHarvestBoundary(s);if(harvestBoundary.HasValue&&harvestBoundary.Value<next)next=harvestBoundary.Value;
++                var harvestRequirementBoundary=NextHarvestRequirementWorkBoundary(s);
++                if(harvestRequirementBoundary.HasValue&&harvestRequirementBoundary.Value<next)next=harvestRequirementBoundary.Value;
+                 var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<next)next=miningBoundary.Value;
+                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<next)next=prospectingBoundary.Value;
+                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<next)next=miningAssayBoundary.Value;
+@@ -541,7 +546,7 @@ namespace Decennium.Foundation.Laboratory
+                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
+                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
+                         PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);PauseIncompatibleRouteMappingWork(world);PauseIncompatibleRouteReconnaissance(world);PauseIncompatibleTemporaryCampConstruction(world);
+-                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
++                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                     else {
+                         OrdinaryInventory.AdvanceTo(s, next);
+                         TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture),
+@@ -552,7 +557,7 @@ namespace Decennium.Foundation.Laboratory
+                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
+                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
+                         PauseIncompatibleWork(world,false);
+-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
++                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                 }
+                 RefreshActivityIntervals(s);
+                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
+@@ -707,6 +712,7 @@ namespace Decennium.Foundation.Laboratory
+             if(IsMineralPreparationCommand(c))return ResolveMineralPreparation(s,c);
+             if(IsMiningCommand(c))return ResolveMining(s,c);
+             if(Recipe347Command(c.Kind))return ResolveRecipe347(s,c);
++            if(HarvestRequirementWorkCommand(c.Kind))return ResolveHarvestRequirementWork(s,c);
+             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
+             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
+             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);
+@@ -995,7 +1001,7 @@ namespace Decennium.Foundation.Laboratory
+                     if(harvestSelected) {
+                         var expectedHarvestWorkers=HarvestWorkerIds;
+                         int expectedSkills=harvestFixture.Trained?expectedHarvestWorkers.Length:0;
+-                        if(s.SchemaVersion!=harvestFixture.SchemaVersion||fishingSkills.Length!=expectedSkills
++                    if(s.SchemaVersion!=(harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture.SchemaVersion)||fishingSkills.Length!=expectedSkills
+                             ||fishingSkills.Any(x=>!expectedHarvestWorkers.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
+                             ||s.FishingCreatures.Length!=1||s.FishingCreatures[0].Id!=SharedHarvestFixture.CreatureId
+                             ||s.FishingCreatures[0].OriginId!=HarvestSiteId||s.FishingCreatures[0].SiteId!=HarvestSiteId
+diff --git a/engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs b/engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs
+index 8bbea44c..be6ecbe1 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs
+@@ -370,6 +370,9 @@ namespace Decennium.Foundation
+                     throw new ArgumentException("Expedition pressure requires schema67.");
+                 return;
+             }
++            if(s.SchemaVersion==Snapshot.HarvestPreservationSchema&&s.TestOnly&&s.ExpeditionPressureCohorts.Length==0
++                &&s.ExpeditionPressureExposures.Length==0&&s.ExpeditionPressureChanges.Length==0
++                &&s.ExpeditionPressureCheckpoints.Length==0)return;
+             if (s.SchemaVersion == Snapshot.ExpeditionPressureSchema
+                 && s.ExpeditionPressureExposures.Any(x => x.EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted))
+                 throw new ArgumentException("Retreat completion requires the pressure lifecycle schema.");
+diff --git a/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs b/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs
+new file mode 100644
+index 00000000..a3a37578
+--- /dev/null
++++ b/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs
+@@ -0,0 +1,185 @@
++using System;
++using System.Linq;
++
++namespace Decennium.Foundation
++{
++    // Ordinary and Spoiled are query-only projections for the agreed eligibility matrix.
++    // The TEST_ONLY reservation/work adapter below deliberately persists Fresh only.
++    public enum HarvestIngredientRequirement { Fresh = 1, Ordinary = 2, Spoiled = 3 }
++    public enum HarvestRequirementWorkStatus { Working = 1, Paused = 2 }
++    public enum HarvestRequirementPauseReason { None = 0, Explicit = 1, IngredientNotFresh = 2, WorkerUnavailable = 3 }
++
++    /// <summary>Read-only preservation facts derived from one physical inventory descendant and its
++    /// extracted harvest root. No age, stage or value is copied into saved state.</summary>
++    public sealed class HarvestPreservationView
++    {
++        public string InventoryLotId { get; }
++        public string HarvestUnitId { get; }
++        public RuleTime EvaluatedAt { get; }
++        public HarvestPreservationState State { get; }
++        public RuleQuantity ValueMultiplier { get; }
++
++        internal HarvestPreservationView(string inventoryLotId,string harvestUnitId,RuleTime evaluatedAt,
++            HarvestPreservationState state,RuleQuantity valueMultiplier)
++        {
++            InventoryLotId=inventoryLotId;HarvestUnitId=harvestUnitId;EvaluatedAt=evaluatedAt;
++            State=state;ValueMultiplier=valueMultiplier;
++        }
++    }
++
++    /// <summary>Schema-74 projection over the existing harvest and inventory authorities.</summary>
++    public static class HarvestPreservationRules
++    {
++        public static bool SatisfiesRequirement(HarvestPreservationView view,HarvestIngredientRequirement requirement)
++        {
++            if(view==null||!Enum.IsDefined(typeof(HarvestIngredientRequirement),requirement))return false;
++            switch(requirement) {
++                case HarvestIngredientRequirement.Fresh:return view.State==HarvestPreservationState.Fresh;
++                case HarvestIngredientRequirement.Ordinary:return view.State==HarvestPreservationState.Fresh
++                    ||view.State==HarvestPreservationState.Degraded;
++                case HarvestIngredientRequirement.Spoiled:return view.State==HarvestPreservationState.Spoiled;
++                default:return false;
++            }
++        }
++
++        public static bool TryProject(Snapshot s,string inventoryLotId,out HarvestPreservationView view)
++        {
++            view=null;
++            if(s==null||s.SchemaVersion<Snapshot.HarvestPreservationSchema||s.InventoryLots==null
++                ||s.HarvestUnits==null||s.Work==null||!Validation.ValidId(inventoryLotId))return false;
++            var lot=s.InventoryLots.SingleOrDefault(x=>x.LotId==inventoryLotId);
++            var resource=s.Work.Lots.SingleOrDefault(x=>x.Id==inventoryLotId);
++            if(lot==null||resource==null||lot.Nutrition!=NutritionKind.None||resource.UnitId!="mass-pound")return false;
++
++            var seen=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal){lot.LotId};
++            var root=lot;
++            while(root.ParentId!="") {
++                if(!seen.Add(root.ParentId))return false;
++                root=s.InventoryLots.SingleOrDefault(x=>x.LotId==root.ParentId);
++                if(root==null)return false;
++            }
++            var unit=s.HarvestUnits.SingleOrDefault(x=>x.Id==root.LotId);
++            if(unit==null||unit.Status!=HarvestUnitStatus.Extracted
++                ||root.FreshUntil!=unit.OriginAt.AddSeconds(unit.PreservationIntervalSeconds))return false;
++            var physical=s.PortableEquipment?.SingleOrDefault(x=>x.LinkKind==PortableLinkKind.InventoryLot
++                &&x.LinkedId==lot.LotId);
++            if(physical==null||physical.Id!=lot.LotId||physical.MassBasis!=PortableMassBasis.GenericPounds)return false;
++
++            HarvestPreservationState state=unit.PreservationAt(s.RuleClock);
++            RuleQuantity multiplier=state==HarvestPreservationState.Fresh?new RuleQuantity(1)
++                :state==HarvestPreservationState.Degraded?new RuleQuantity(1,2):default;
++            view=new HarvestPreservationView(lot.LotId,unit.Id,s.RuleClock,state,multiplier);
++            return true;
++        }
++    }
++
++    /// <summary>Persisted TEST_ONLY ingredient/work binding. Work progress is the existing exact
++    /// ActiveWorkProgress record; current preservation remains a derived query.</summary>
++    public sealed class HarvestRequirementWorkRecord
++    {
++        public string Id { get; }
++        public string WorkerId { get; }
++        public string InventoryLotId { get; }
++        public string ReservationId { get; }
++        public RuleQuantity RequiredAmount { get; }
++        public HarvestIngredientRequirement Requirement { get; }
++        public HarvestRequirementWorkStatus Status { get; }
++        public HarvestRequirementPauseReason PauseReason { get; }
++        public RuleTime StartedAt { get; }
++        public RuleTime UpdatedAt { get; }
++        public ActiveWorkProgress Work { get; }
++
++        public HarvestRequirementWorkRecord(string id,string workerId,string inventoryLotId,string reservationId,
++            RuleQuantity requiredAmount,HarvestIngredientRequirement requirement,HarvestRequirementWorkStatus status,
++            HarvestRequirementPauseReason pauseReason,RuleTime startedAt,RuleTime updatedAt,ActiveWorkProgress work)
++        {
++            if(!Validation.ValidId(id)||!Validation.ValidId(workerId)||!Validation.ValidId(inventoryLotId)
++                ||!Validation.ValidId(reservationId)||requiredAmount==default
++                ||!Enum.IsDefined(typeof(HarvestIngredientRequirement),requirement)
++                ||!Enum.IsDefined(typeof(HarvestRequirementWorkStatus),status)
++                ||!Enum.IsDefined(typeof(HarvestRequirementPauseReason),pauseReason)||updatedAt<startedAt||work==null)
++                throw new ArgumentException("Invalid harvest requirement work binding.");
++            Id=id;WorkerId=workerId;InventoryLotId=inventoryLotId;ReservationId=reservationId;
++            RequiredAmount=requiredAmount;Requirement=requirement;Status=status;PauseReason=pauseReason;
++            StartedAt=startedAt;UpdatedAt=updatedAt;Work=work;
++        }
++
++        public HarvestRequirementWorkRecord With(RuleTime at,ActiveWorkProgress work,
++            HarvestRequirementWorkStatus status,HarvestRequirementPauseReason pauseReason)
++            =>new HarvestRequirementWorkRecord(Id,WorkerId,InventoryLotId,ReservationId,RequiredAmount,
++                Requirement,status,pauseReason,StartedAt,at,work);
++    }
++
++    public static class HarvestRequirementWorkValidation
++    {
++        public const int MaxRecords=16;
++
++        private static RuleTime Add(RuleTime first,RuleTime second)
++        {
++            var sum=new RuleQuantity(first.Numerator,first.Denominator)+new RuleQuantity(second.Numerator,second.Denominator);
++            return new RuleTime(sum.Numerator,sum.Denominator);
++        }
++
++        private static RuleTime Subtract(RuleTime first,RuleTime second)
++        {
++            if(second>first)throw new ArgumentException("Negative work interval.");
++            var difference=new RuleQuantity(first.Numerator,first.Denominator)-new RuleQuantity(second.Numerator,second.Denominator);
++            return new RuleTime(difference.Numerator,difference.Denominator);
++        }
++
++        public static void Validate(Snapshot s)
++        {
++            if(s.HarvestRequirementWorks==null||s.HarvestRequirementWorks.Length>MaxRecords
++                ||s.HarvestRequirementWorks.Any(x=>x==null)
++                ||s.HarvestRequirementWorks.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=s.HarvestRequirementWorks.Length)
++                throw new ArgumentException("Invalid harvest requirement work collection.");
++            if(s.SchemaVersion<Snapshot.HarvestPreservationSchema) {
++                if(s.HarvestRequirementWorks.Length!=0)throw new ArgumentException("Harvest requirement work requires schema 74.");
++                return;
++            }
++            if(s.SchemaVersion!=Snapshot.HarvestPreservationSchema||!s.TestOnly)
++                throw new ArgumentException("Harvest preservation schema 74 is TEST_ONLY.");
++
++            foreach(var job in s.HarvestRequirementWorks) {
++                if(!s.Actors.Any(x=>x.Id==job.WorkerId)||job.StartedAt>s.RuleClock||job.UpdatedAt>s.RuleClock
++                    ||job.Requirement!=HarvestIngredientRequirement.Fresh||job.Work.Phases.Count!=1
++                    ||job.Work.Complete||job.Work.Retained!=job.Work.Labor)
++                    throw new ArgumentException("Invalid harvest requirement work progress.");
++                if(!HarvestPreservationRules.TryProject(s,job.InventoryLotId,out var view))
++                    throw new ArgumentException("Harvest requirement work has no resolved physical harvest root.");
++                if(job.Work.Required!=new RuleTime(checked(s.HarvestUnits.Single(x=>x.Id==view.HarvestUnitId).PreservationIntervalSeconds*2L)))
++                    throw new ArgumentException("Invalid TEST_ONLY harvest requirement work duration.");
++                var reservation=s.Work.Reservations.SingleOrDefault(x=>x.Id==job.ReservationId);
++                if(reservation==null||reservation.JobId!=job.Id||reservation.LotId!=job.InventoryLotId
++                    ||reservation.Amount!=job.RequiredAmount||reservation.ConsumedAmount!=default
++                    ||reservation.ReleasedAmount!=default||reservation.RemainingAmount!=job.RequiredAmount)
++                    throw new ArgumentException("Harvest requirement reservation changed unexpectedly.");
++                var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==job.Id).ToArray();
++                if(intervals.Any(x=>x.WorkerId!=job.WorkerId||x.Start<job.StartedAt||x.Start>s.RuleClock))
++                    throw new ArgumentException("Invalid harvest requirement work interval.");
++                RuleTime booked=default;
++                foreach(var interval in intervals)booked=Add(booked,Subtract(interval.End,interval.Start));
++                RuleTime expectedBooked=job.Status==HarvestRequirementWorkStatus.Working?job.Work.Required:job.Work.Labor;
++                if(booked!=expectedBooked)throw new ArgumentException("Harvest requirement work booking does not match active or retained work.");
++                RuleTime credited=default;
++                foreach(var interval in intervals) {
++                    if(interval.Start>=s.RuleClock)continue;
++                    RuleTime end=interval.End<s.RuleClock?interval.End:s.RuleClock;
++                    if(end>interval.Start)credited=Add(credited,Subtract(end,interval.Start));
++                }
++                if(credited!=job.Work.Labor)throw new ArgumentException("Harvest requirement work does not match credited labor.");
++                bool active=intervals.Any(x=>x.Start<=s.RuleClock&&x.End>s.RuleClock);
++                if(job.Status==HarvestRequirementWorkStatus.Working) {
++                    if(job.UpdatedAt!=s.RuleClock||job.PauseReason!=HarvestRequirementPauseReason.None
++                        ||view.State!=HarvestPreservationState.Fresh||!active
++                        ||intervals.Count(x=>x.Start<=s.RuleClock&&x.End>s.RuleClock)!=1)
++                        throw new ArgumentException("Invalid active Fresh-required work.");
++                } else if(job.Status==HarvestRequirementWorkStatus.Paused) {
++                    if(active||job.PauseReason==HarvestRequirementPauseReason.None
++                        ||job.PauseReason==HarvestRequirementPauseReason.IngredientNotFresh&&view.State==HarvestPreservationState.Fresh)
++                        throw new ArgumentException("Invalid paused Fresh-required work.");
++                } else throw new ArgumentException("Unknown harvest requirement work status.");
++            }
++        }
++    }
++}
+diff --git a/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs.meta b/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs.meta
+new file mode 100644
+index 00000000..a2960be5
+--- /dev/null
++++ b/engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs.meta
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 2d17c05ff6a146d8bc5d9d459b9e714c
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData:
++  assetBundleName:
++  assetBundleVariant:
+diff --git a/engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs b/engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs
+index a308025f..0e5522f0 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/HuntingTrapRecords.cs
+@@ -323,6 +323,7 @@ namespace Decennium.Foundation
+                 &&s.SupplyCacheAttempts.All(j=>j.Id!=w.JobId)&&s.PortableHandling.All(j=>j.Id!=w.JobId)
+                 &&s.FormulaWork.All(j=>j.Id!=w.JobId)&&s.RepairWork.All(j=>j.Id!=w.JobId)&&s.ManufacturingOrders.All(j=>j.Id!=w.JobId)
+                 &&s.Recipe347WorkOrders.All(j=>j.Id!=w.JobId)
++                &&s.HarvestRequirementWorks.All(j=>j.Id!=w.JobId)
+                 &&s.FishingTrapAttempts.All(j=>j.Id!=w.JobId)&&s.FishingTrapRetrievals.All(j=>j.Id!=w.JobId)
+                 &&s.HarvestAttempts.All(j=>j.Id!=w.JobId)&&s.MiningAttempts.All(j=>j.Id!=w.JobId)
+                 &&s.ProspectingAttempts.All(j=>j.Id!=w.JobId)&&s.MiningAssayAttempts.All(j=>j.Id!=w.JobId)
+diff --git a/engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs b/engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs
+index 120509e1..4665efe5 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs
+@@ -384,6 +384,7 @@ namespace Decennium.Foundation
+                 &&!s.SupplyCacheAttempts.Any(j=>j.Id==w.JobId)&&!s.PortableHandling.Any(j=>j.Id==w.JobId)
+                 &&!s.FormulaWork.Any(j=>j.Id==w.JobId)&&!s.RepairWork.Any(j=>j.Id==w.JobId)&&!s.ManufacturingOrders.Any(j=>j.Id==w.JobId)
+                 &&!s.Recipe347WorkOrders.Any(j=>j.Id==w.JobId)
++                &&!s.HarvestRequirementWorks.Any(j=>j.Id==w.JobId)
+                 &&!s.FishingTrapAttempts.Any(j=>j.Id==w.JobId)&&!s.FishingTrapRetrievals.Any(j=>j.Id==w.JobId)&&!s.HarvestAttempts.Any(j=>j.Id==w.JobId)
+                 &&!s.MiningAttempts.Any(j=>j.Id==w.JobId)
+                 &&!s.ProspectingAttempts.Any(j=>j.Id==w.JobId)
+diff --git a/engine/com.decennium.foundation/Runtime/Core/Simulation.cs b/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
+index f484b4fd..04c7dbfa 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
+@@ -34,7 +34,8 @@ namespace Decennium.Foundation
+         BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow,
+         StartTemporaryCampConstruction, PauseTemporaryCampConstruction,
+         ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
+-        StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality }
++        StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
++        StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork }
+     public enum Outcome { Rejected, Committed, Duplicate }
+ 
+     // DTOs are detached copies. No caller ever receives the owned simulation state.
+@@ -132,6 +133,7 @@ namespace Decennium.Foundation
+         public const int PortableStorageSchema = 71;
+         public const int Recipe347Schema = 72;
+         public const int PortableCountedLotSchema = 73;
++        public const int HarvestPreservationSchema = 74;
+         public const int MaxActors = 64;
+         public const int MaxCropBatches = 8;
+         public const int MaxCropWorkRecords = 128;
+@@ -247,6 +249,7 @@ namespace Decennium.Foundation
+         public HarvestCategoryRecord[] HarvestCategories = Array.Empty<HarvestCategoryRecord>();
+         public HarvestMaterialUnitRecord[] HarvestUnits = Array.Empty<HarvestMaterialUnitRecord>();
+         public HarvestAttemptRecord[] HarvestAttempts = Array.Empty<HarvestAttemptRecord>();
++        public HarvestRequirementWorkRecord[] HarvestRequirementWorks = Array.Empty<HarvestRequirementWorkRecord>();
+         public MiningDepositRecord[] MiningDeposits = Array.Empty<MiningDepositRecord>();
+         public MiningCategoryRecord[] MiningCategories = Array.Empty<MiningCategoryRecord>();
+         public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
+@@ -350,6 +353,7 @@ namespace Decennium.Foundation
+             WorldActivityIntervals = WorldActivityIntervals.ToArray(),
+             HarvestDonors = HarvestDonors.ToArray(), HarvestManifests = HarvestManifests.ToArray(),
+             HarvestCategories = HarvestCategories.ToArray(), HarvestUnits = HarvestUnits.ToArray(), HarvestAttempts = HarvestAttempts.ToArray(),
++            HarvestRequirementWorks = HarvestRequirementWorks.ToArray(),
+             MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
+             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
+             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
+@@ -728,7 +732,8 @@ namespace Decennium.Foundation
+                 || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema
+                 || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema
+                 || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema
+-                || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema) { }
++                || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema
++                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationSchema) { }
+             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
+                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
+                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
+@@ -823,6 +828,7 @@ namespace Decennium.Foundation
+             DefensiveFormationValidation.Validate(s);
+             FishingTrapValidation.Validate(s);
+             HarvestValidation.Validate(s);
++            HarvestRequirementWorkValidation.Validate(s);
+             MiningValidation.Validate(s);
+             ProspectingValidation.Validate(s);
+             MiningAssayValidation.Validate(s);
+diff --git a/engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs b/engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs
+index 33896972..31a00477 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs
+@@ -6,7 +6,7 @@ using System.Numerics;
+ namespace Decennium.Foundation
+ {
+     public enum WorldActionCommitment { None, Dash, ActiveLabor }
+-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance }
++    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork }
+ 
+     /// <summary>Derived activity projection over the existing procedure records. It is never saved
+     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
+@@ -172,6 +172,11 @@ namespace Decennium.Foundation
+                     result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Harvest,
+                     includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                     includeDetails ? (RuleTime?)attempt.Duration : null, options, includeDetails));
++            foreach(var job in s.HarvestRequirementWorks??Array.Empty<HarvestRequirementWorkRecord>())
++                if(job.Status==HarvestRequirementWorkStatus.Working||includeOpen&&job.Status==HarvestRequirementWorkStatus.Paused)
++                    result.Add(Create(s,job.Id,job.WorkerId,WorldProcedureKind.HarvestRequirementWork,
++                        includeDetails?job.Status.ToString():null,includeDetails?(RuleTime?)job.Work.Retained:null,
++                        includeDetails?(RuleTime?)job.Work.Required:null,options,includeDetails));
+             foreach (var attempt in s.MiningAttempts ?? Array.Empty<MiningAttemptRecord>())
+                 if (attempt.Status == MiningAttemptStatus.Working || includeOpen
+                     && (attempt.Status == MiningAttemptStatus.Paused || attempt.Status == MiningAttemptStatus.AwaitingCheck))
+@@ -273,6 +278,7 @@ namespace Decennium.Foundation
+                 case CommandKind.PauseRouteReconnaissance: case CommandKind.ResumeRouteReconnaissance:
+                 case CommandKind.ResolveManufacturingQuality:
+                 case CommandKind.PauseHarvest: case CommandKind.ResumeHarvest:
++                case CommandKind.PauseHarvestRequirementWork: case CommandKind.ResumeHarvestRequirementWork:
+                 case CommandKind.PauseMining: case CommandKind.ResumeMining:
+                 case CommandKind.PauseProspecting: case CommandKind.ResumeProspecting:
+                 case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
+@@ -376,6 +382,7 @@ namespace Decennium.Foundation
+                 || s.FishingTrapRetrievals.Any(x => x.Id == id && x.WorkerId == actor)
+                 || s.SupplyCacheAttempts.Any(x => x.Id == id && x.ActorId == actor)
+                 || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor)
++                || s.HarvestRequirementWorks.Any(x=>x.Id==id&&x.WorkerId==actor)
+                 || s.MiningAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
+                 || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+diff --git a/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs b/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs
+new file mode 100644
+index 00000000..d866d50a
+--- /dev/null
++++ b/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs
+@@ -0,0 +1,55 @@
++using System;
++using System.IO;
++using System.Linq;
++using System.Text;
++
++namespace Decennium.Foundation
++{
++    /// <summary>Schema74 append-only TEST_ONLY work-adapter section. Preservation remains derived.</summary>
++    internal static class HarvestRequirementWorkCodec
++    {
++        private static readonly UTF8Encoding Utf8=new UTF8Encoding(false,true);
++        private static void Text(BinaryWriter w,string value)
++        {byte[] bytes=Utf8.GetBytes(value);w.Write(bytes.Length);w.Write(bytes);}
++        private static string Text(BinaryReader r)
++        {
++            int length=r.ReadInt32();if(length<0||length>96)throw new InvalidDataException("Invalid harvest requirement text length.");
++            byte[] bytes=r.ReadBytes(length);if(bytes.Length!=length)throw new EndOfStreamException();return Utf8.GetString(bytes);
++        }
++        private static void Time(BinaryWriter w,RuleTime value){w.Write(value.Numerator);w.Write(value.Denominator);}
++        private static RuleTime Time(BinaryReader r)=>new RuleTime(r.ReadInt64(),r.ReadInt64());
++        private static void Quantity(BinaryWriter w,RuleQuantity value){w.Write(value.Numerator);w.Write(value.Denominator);}
++        private static RuleQuantity Quantity(BinaryReader r)=>new RuleQuantity(r.ReadInt64(),r.ReadInt64());
++        private static void Progress(BinaryWriter w,ActiveWorkProgress work)
++        {
++            w.Write(work.Phases.Count);foreach(var phase in work.Phases)Time(w,phase);
++            w.Write(work.CompletedPhases);Time(w,work.Partial);Time(w,work.Labor);
++        }
++        private static ActiveWorkProgress Progress(BinaryReader r)
++        {
++            var phases=new RuleTime[SnapshotCodec.ReadCount(r,ActiveWorkProgress.MaxPhases)];
++            for(int i=0;i<phases.Length;i++)phases[i]=Time(r);
++            return new ActiveWorkProgress(phases,r.ReadInt32(),Time(r),Time(r));
++        }
++        public static void Write(BinaryWriter w,Snapshot s)
++        {
++            w.Write(s.HarvestRequirementWorks.Length);
++            foreach(var x in s.HarvestRequirementWorks.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
++                Text(w,x.Id);Text(w,x.WorkerId);Text(w,x.InventoryLotId);Text(w,x.ReservationId);
++                Quantity(w,x.RequiredAmount);w.Write((int)x.Requirement);w.Write((int)x.Status);w.Write((int)x.PauseReason);
++                Time(w,x.StartedAt);Time(w,x.UpdatedAt);Progress(w,x.Work);
++            }
++        }
++        public static void Read(BinaryReader r,Snapshot s)
++        {
++            s.HarvestRequirementWorks=new HarvestRequirementWorkRecord[SnapshotCodec.ReadCount(r,HarvestRequirementWorkValidation.MaxRecords)];
++            for(int i=0;i<s.HarvestRequirementWorks.Length;i++) {
++                string id=Text(r),worker=Text(r),lot=Text(r),reservation=Text(r);var amount=Quantity(r);
++                var requirement=(HarvestIngredientRequirement)r.ReadInt32();var status=(HarvestRequirementWorkStatus)r.ReadInt32();
++                var reason=(HarvestRequirementPauseReason)r.ReadInt32();var started=Time(r);var updated=Time(r);var progress=Progress(r);
++                s.HarvestRequirementWorks[i]=new HarvestRequirementWorkRecord(id,worker,lot,reservation,amount,
++                    requirement,status,reason,started,updated,progress);
++            }
++        }
++    }
++}
+diff --git a/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs.meta b/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs.meta
+new file mode 100644
+index 00000000..5e4d8629
+--- /dev/null
++++ b/engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs.meta
+@@ -0,0 +1,11 @@
++fileFormatVersion: 2
++guid: 38fb89be3b8e42428ee59462e344fec8
++MonoImporter:
++  externalObjects: {}
++  serializedVersion: 2
++  defaultReferences: []
++  executionOrder: 0
++  icon: {instanceID: 0}
++  userData:
++  assetBundleName:
++  assetBundleVariant:
+diff --git a/engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs b/engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs
+index f16df8ec..15254763 100644
+--- a/engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs
++++ b/engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs
+@@ -102,6 +102,7 @@ namespace Decennium.Foundation
+                 if (state.SchemaVersion >= Snapshot.TemporaryCampConstructionSchema) TemporaryCampConstructionCodec.Write(writer,state);
+                 if (state.SchemaVersion >= Snapshot.PortableStorageSchema) PortableEquipmentCodec.WriteStorageProfiles(writer,state);
+                 if (state.SchemaVersion >= Snapshot.Recipe347Schema) Recipe347Codec.Write(writer,state);
++                if (state.SchemaVersion >= Snapshot.HarvestPreservationSchema) HarvestRequirementWorkCodec.Write(writer,state);
+                 writer.Flush(); payload = stream.ToArray();
+             }
+             if (payload.Length + 32 > Limit(state.SchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
+@@ -121,7 +122,7 @@ namespace Decennium.Foundation
+                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
+                     int schema = reader.ReadInt32();
+                     if (data.Length > Limit(schema)) throw new InvalidDataException("Save exceeds schema size limit.");
+-                    if (schema != Snapshot.ExpeditionPressureSchema && schema != Snapshot.ExpeditionPressureLifecycleSchema && schema != Snapshot.ExpeditionCampUseSchema && schema != Snapshot.TemporaryCampConstructionSchema && schema != Snapshot.PortableStorageSchema && schema != Snapshot.Recipe347Schema && schema != Snapshot.PortableCountedLotSchema && schema != Snapshot.HavenCareSchema && schema != Snapshot.MoraleRestSchema && schema != Snapshot.ExpeditionStrainRecoverySchema && schema != Snapshot.RestDebtSchema && schema != Snapshot.DailyProvisioningSchema && schema != Snapshot.RouteReconnaissanceSchema && schema != Snapshot.RouteMappingWorkSchema && schema != Snapshot.ReadyActionSchema && schema != Snapshot.HuntingTrapSchema && schema != Snapshot.DodgeSchema && schema != Snapshot.RouteMappingSchema && schema != Snapshot.RouteObservationSchema && schema != Snapshot.ExpeditionRouteSchema && schema != Snapshot.ObservationSchema && schema != Snapshot.OrdinaryReceptacleSchema && schema != Snapshot.MiningToolCandidateSchema && schema != Snapshot.MineralPreparationSchema && schema != Snapshot.MiningExpeditionAssignmentSchema && schema != Snapshot.DestructiveMiningAssaySchema && schema != Snapshot.MiningAssaySchema && schema != Snapshot.ProspectingSchema && schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema && schema != Snapshot.OverwatchExecutionSchema && schema != Snapshot.SoldierInitialLoadoutSchema && schema != Snapshot.SoldierInitialBuildSchema && schema != Snapshot.SoldierTacticalTechniquesSchema && schema != Snapshot.CharacterAdvancementHistorySchema && schema != Snapshot.TacticalAssessmentSchema && schema != Snapshot.CommandStepSchema && schema != Snapshot.SuppressionFireSchema && schema != Snapshot.DefensiveFormationSchema && schema != Snapshot.FishingTrapLegacySchema && schema != Snapshot.FishingTrapBaitSchema && schema != Snapshot.FishingTrapSchema && schema != Snapshot.FishingStockSchema && schema != Snapshot.ExpeditionAssignmentSchema && schema != Snapshot.OffCalendarActivitySchema && schema != Snapshot.HarvestSchema && schema != Snapshot.HarvestManifestSchema && schema != Snapshot.MiningSchema && schema != Snapshot.BuriedCacheSchema && schema != Snapshot.SharedCharacterAdvancementSchema)
++                    if (schema != Snapshot.ExpeditionPressureSchema && schema != Snapshot.ExpeditionPressureLifecycleSchema && schema != Snapshot.ExpeditionCampUseSchema && schema != Snapshot.TemporaryCampConstructionSchema && schema != Snapshot.PortableStorageSchema && schema != Snapshot.Recipe347Schema && schema != Snapshot.PortableCountedLotSchema && schema != Snapshot.HarvestPreservationSchema && schema != Snapshot.HavenCareSchema && schema != Snapshot.MoraleRestSchema && schema != Snapshot.ExpeditionStrainRecoverySchema && schema != Snapshot.RestDebtSchema && schema != Snapshot.DailyProvisioningSchema && schema != Snapshot.RouteReconnaissanceSchema && schema != Snapshot.RouteMappingWorkSchema && schema != Snapshot.ReadyActionSchema && schema != Snapshot.HuntingTrapSchema && schema != Snapshot.DodgeSchema && schema != Snapshot.RouteMappingSchema && schema != Snapshot.RouteObservationSchema && schema != Snapshot.ExpeditionRouteSchema && schema != Snapshot.ObservationSchema && schema != Snapshot.OrdinaryReceptacleSchema && schema != Snapshot.MiningToolCandidateSchema && schema != Snapshot.MineralPreparationSchema && schema != Snapshot.MiningExpeditionAssignmentSchema && schema != Snapshot.DestructiveMiningAssaySchema && schema != Snapshot.MiningAssaySchema && schema != Snapshot.ProspectingSchema && schema != Snapshot.Schema && schema != Snapshot.WorkSchema && schema != Snapshot.CropSchema && schema != Snapshot.InventorySchema && schema != Snapshot.VesselSchema && schema != Snapshot.MovableVesselSchema && schema != Snapshot.EncounterSchema && schema != Snapshot.ActorLifeSchema && schema != Snapshot.ClubAttackSchema && schema != Snapshot.PostureSchema && schema != Snapshot.TacticalMovementSchema && schema != Snapshot.ConditionSchema && schema != Snapshot.SharedWorldSchema && schema != Snapshot.CalendarCombatSchema && schema != Snapshot.FormulaWorkSchema && schema != Snapshot.CraftingConsequenceSchema && schema != Snapshot.RepairWorkSchema && schema != Snapshot.ManufacturingSchema && schema != Snapshot.SupplyCacheSchema && schema != Snapshot.PortableEquipmentSchema && schema != Snapshot.CharacterAdvancementSchema && schema != Snapshot.RepeatingCrossbowSchema && schema != Snapshot.PeriodicRiderSchema && schema != Snapshot.SharedBonusActionSchema && schema != Snapshot.OverwatchSchema && schema != Snapshot.OverwatchExecutionSchema && schema != Snapshot.SoldierInitialLoadoutSchema && schema != Snapshot.SoldierInitialBuildSchema && schema != Snapshot.SoldierTacticalTechniquesSchema && schema != Snapshot.CharacterAdvancementHistorySchema && schema != Snapshot.TacticalAssessmentSchema && schema != Snapshot.CommandStepSchema && schema != Snapshot.SuppressionFireSchema && schema != Snapshot.DefensiveFormationSchema && schema != Snapshot.FishingTrapLegacySchema && schema != Snapshot.FishingTrapBaitSchema && schema != Snapshot.FishingTrapSchema && schema != Snapshot.FishingStockSchema && schema != Snapshot.ExpeditionAssignmentSchema && schema != Snapshot.OffCalendarActivitySchema && schema != Snapshot.HarvestSchema && schema != Snapshot.HarvestManifestSchema && schema != Snapshot.MiningSchema && schema != Snapshot.BuriedCacheSchema && schema != Snapshot.SharedCharacterAdvancementSchema)
+                         throw new InvalidDataException("Unsupported save schema.");
+                     string fingerprint = ReadText(reader);
+                     if (ReadText(reader) != RandomV1.Algorithm) throw new InvalidDataException("Unsupported RNG version.");
+@@ -208,6 +209,7 @@ namespace Decennium.Foundation
+                     if(schema >= Snapshot.TemporaryCampConstructionSchema)TemporaryCampConstructionCodec.Read(reader,s);
+                     if(schema >= Snapshot.PortableStorageSchema)PortableEquipmentCodec.ReadStorageProfiles(reader,s);
+                     if(schema >= Snapshot.Recipe347Schema)Recipe347Codec.Read(reader,s);
++                    if(schema >= Snapshot.HarvestPreservationSchema)HarvestRequirementWorkCodec.Read(reader,s);
+                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
+                     Validation.Snapshot(s); return s;
+                 }
+diff --git a/engine/com.decennium.foundation/Tests/EditMode/HarvestCases.cs b/engine/com.decennium.foundation/Tests/EditMode/HarvestCases.cs
+index 6f233ad4..01c05033 100644
+--- a/engine/com.decennium.foundation/Tests/EditMode/HarvestCases.cs
++++ b/engine/com.decennium.foundation/Tests/EditMode/HarvestCases.cs
+@@ -17,6 +17,13 @@ namespace Decennium.Foundation.Tests
+             return new Command("harvest.command."+(state.Revision+1),actor,state.Revision,kind,target);
+         }
+ 
++        private static Command HarvestRequirementCommand(Simulation s,CommandKind kind,string target,InventoryRequest request=null,
++            string actor=HarvestWorker)
++        {
++            var state=s.Capture();
++            return new Command("mgt05a.requirement."+(state.Revision+1),actor,state.Revision,kind,target,inventory:request);
++        }
++
+         private static void HarvestCommit(Simulation s,Command command)
+         {
+             var result=s.Execute(TestOnlySharedWorldPolicy.Host(),command);
+@@ -58,6 +65,14 @@ namespace Decennium.Foundation.Tests
+                 SharedHarvestFixture.ManifestId,harvestSelection:selection);
+         }
+ 
++        private static Command HarvestPreservationSourceCommand(Simulation simulation)
++        {
++            var state=simulation.Capture();var manifest=state.HarvestManifests.Single();
++            return new Command("mgt05a.harvest."+(state.Revision+1),HarvestWorker,state.Revision,CommandKind.StartHarvest,
++                manifest.Id,harvestSelection:new HarvestSelectionRequest(manifest.AnatomyVersionId,
++                    new[]{SharedHarvestFixture.CategoryRecordId}));
++        }
++
+         private static void AddHarvestCases(Dictionary<string,Action> cases,string directory)
+         {
+             var host=TestOnlySharedWorldPolicy.Host();
+@@ -131,6 +146,271 @@ namespace Decennium.Foundation.Tests
+                 RejectUnchanged(simulation,host,retry,"HarvestSelectionExhausted");
+             });
+ 
++            cases.Add("mgt05a_harvest_mass_preservation_work_deadline_save_restore_and_replay",()=>{
++                var unseeded=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture());
++                int modifier=HarvestModifier(unseeded.Initial());uint seed=HarvestSeedFor(TaskDegree.Success,modifier);
++                var policy=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture(),seed);
++                var simulation=World(policy);
++                // Put the scheduled worker beside the off-calendar harvest worker. The later
++                // adapter test uses this ordinary roster member, preserving the shared rule that
++                // an off-calendar actor cannot restart work after an idle-time gap.
++                WorldStep(simulation,1,0);WorldAdvance(simulation,1);
++                WorldStep(simulation,0,1);WorldAdvance(simulation,1);
++                WorldStep(simulation,0,1);WorldAdvance(simulation,1);
++                WorldStep(simulation,0,1);WorldAdvance(simulation,1);
++                WorldStep(simulation,1,0);WorldAdvance(simulation,1);
++                var initial=simulation.Capture();var source=initial.HarvestUnits.Single();
++                HarvestCommit(simulation,HarvestPreservationSourceCommand(simulation));
++                WorldAdvance(simulation,600);
++                var harvested=simulation.Capture();var extracted=harvested.HarvestUnits.Single(x=>x.Id==source.Id);
++                ExpeditionPressureValidation.Validate(harvested);
++                Require(extracted.Status==HarvestUnitStatus.Extracted&&extracted.ValueCopper==null
++                    &&HarvestPreservationRules.TryProject(harvested,source.Id,out var freshRoot)
++                    &&freshRoot.State==HarvestPreservationState.Fresh&&freshRoot.ValueMultiplier==new RuleQuantity(1)
++                    &&HarvestPreservationRules.SatisfiesRequirement(freshRoot,HarvestIngredientRequirement.Fresh)
++                    &&HarvestPreservationRules.SatisfiesRequirement(freshRoot,HarvestIngredientRequirement.Ordinary)
++                    &&!HarvestPreservationRules.SatisfiesRequirement(freshRoot,HarvestIngredientRequirement.Spoiled),
++                    "Actual finite harvest output was not recognized as fresh physical mass with its original unknown value.");
++
++                var portion=IC(simulation,CommandKind.PortionInventory,source.Id,
++                    new InventoryRequest(RuleQuantity.FromFraction(1,10),"",HandlingKind.Pickup),HarvestWorker);
++                HarvestCommit(simulation,portion);
++                var split=simulation.Capture();var storageChild=split.InventoryLots.Single(x=>x.ParentId==source.Id);
++                var storageFreshUntil=storageChild.FreshUntil;var storageOwner=storageChild.OwnerId;
++                HarvestCommit(simulation,IC(simulation,CommandKind.PortionInventory,source.Id,
++                    new InventoryRequest(RuleQuantity.FromFraction(1,10),"",HandlingKind.Pickup),HarvestWorker));
++                split=simulation.Capture();var child=split.InventoryLots.Single(x=>x.ParentId==source.Id&&x.LotId!=storageChild.LotId);
++                var rootAmount=split.Work.Lots.Single(x=>x.Id==source.Id).Amount;
++                var storageAmount=split.Work.Lots.Single(x=>x.Id==storageChild.LotId).Amount;
++                var childAmount=split.Work.Lots.Single(x=>x.Id==child.LotId).Amount;
++                Require(rootAmount+storageAmount+childAmount==source.MassPounds&&child.OwnerId==storageOwner
++                    &&storageChild.FreshUntil==split.InventoryLots.Single(x=>x.LotId==source.Id).FreshUntil
++                    &&child.FreshUntil==storageFreshUntil
++                    &&split.PortableEquipment.Single(x=>x.Id==child.LotId).MassBasis==PortableMassBasis.GenericPounds
++                    &&split.PortableEquipment.Single(x=>x.Id==storageChild.LotId).ParentId==SharedHarvestFixture.ContainerId,
++                    "Portioning did not conserve all unreserved harvested mass and its inherited owner, age, and physical ancestry.");
++
++                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,storageChild.LotId,
++                    handling:HandlingKind.Retrieve,actor:HarvestWorker));
++                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,storageChild.LotId,
++                    TestOnlyPolicy.ActorId,HandlingKind.Handover,HarvestWorker));
++                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,child.LotId,
++                    handling:HandlingKind.Retrieve,actor:HarvestWorker));
++                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,child.LotId,
++                    TestOnlyPolicy.ActorId,HandlingKind.Handover,HarvestWorker));
++                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,storageChild.LotId,
++                    SharedHarvestFixture.ContainerId,HandlingKind.Stow,TestOnlyPolicy.ActorId));
++                var retrieved=simulation.Capture();child=retrieved.InventoryLots.Single(x=>x.LotId==child.LotId);
++                var carried=retrieved.PortableEquipment.Single(x=>x.Id==child.LotId);
++                var stored=retrieved.PortableEquipment.Single(x=>x.Id==storageChild.LotId);
++                var freshness=child.FreshUntil;
++                Require(carried.ParentId==""&&carried.Placement==PortablePlacement.Carried&&carried.CustodianId==TestOnlyPolicy.ActorId
++                    &&retrieved.InventoryLots.Single(x=>x.LotId==child.LotId).OwnerId==storageOwner
++                    &&retrieved.Work.Lots.Single(x=>x.Id==child.LotId).LocationId==TestOnlyPolicy.ActorId
++                    &&retrieved.Work.Lots.Single(x=>x.Id==storageChild.LotId).LocationId==SharedHarvestFixture.ContainerId
++                    &&stored.ParentId==SharedHarvestFixture.ContainerId&&stored.Placement==PortablePlacement.Contained
++                    &&stored.CustodianId==retrieved.PortableEquipment.Single(x=>x.Id==SharedHarvestFixture.ContainerId).CustodianId
++                    &&stored.OwnerId==storageOwner&&retrieved.InventoryLots.Single(x=>x.LotId==storageChild.LotId).FreshUntil==storageFreshUntil
++                    &&retrieved.Work.Lots.Where(x=>x.Id==source.Id||x.Id==child.LotId||x.Id==storageChild.LotId)
++                        .Aggregate(default(RuleQuantity),(sum,x)=>sum+x.Amount)==source.MassPounds
++                    &&retrieved.PortableHandling.Any(x=>x.ItemId==storageChild.LotId&&x.Operation==PortableOperation.Handover
++                        &&x.RecipientId==TestOnlyPolicy.ActorId)
++                    &&retrieved.PortableHandling.Any(x=>x.ItemId==storageChild.LotId&&x.Operation==PortableOperation.Stow
++                        &&x.ToParentId==SharedHarvestFixture.ContainerId),
++                    "Actual retrieval, handover, and authored-tray storage did not preserve ownership, lineage, custody, or ledger quantity.");
++
++                var unit=retrieved.HarvestUnits.Single(x=>x.Id==source.Id);
++                RuleTime b1=unit.OriginAt.AddSeconds(unit.PreservationIntervalSeconds);
++                Require(b1.Denominator==1&&retrieved.RuleClock.Denominator==1&&b1>retrieved.RuleClock,
++                    "Fixture no longer leaves a bounded integral interval before B1.");
++                RuleTime remaining=new RuleTime(b1.Numerator-retrieved.RuleClock.Numerator);
++                Require(remaining.Numerator>10,"Fixture no longer leaves a bounded interval before B1.");
++                WorldAdvance(simulation,checked((int)remaining.Numerator-10));
++                Require(simulation.DiscoverCommands(host,TestOnlyPolicy.ActorId).Any(x=>x.Command.Kind==CommandKind.StartHarvestRequirementWork
++                    &&x.Command.Target==child.LotId&&x.Query.Admissible),"Fresh extracted mass did not produce a discoverable bound-work option.");
++                var start=HarvestRequirementCommand(simulation,CommandKind.StartHarvestRequirementWork,child.LotId,
++                    new InventoryRequest(childAmount,"",HandlingKind.Pickup),TestOnlyPolicy.ActorId);
++                byte[] beforeQuery=Bytes(simulation);var startQuery=simulation.QueryCommand(host,start);
++                Require(startQuery.Supported&&startQuery.Admissible&&startQuery.Costs.Any(x=>x.Kind=="work-seconds"
++                    &&x.Amount==checked(unit.PreservationIntervalSeconds*2L))&&beforeQuery.SequenceEqual(Bytes(simulation)),
++                    "Pure command query did not expose the bounded adapter work while preserving authoritative state.");
++                var startResult=simulation.Execute(host,start);
++                if(startResult.Outcome!=Outcome.Committed) {
++                    var diagnostic=simulation.Capture();string resolver=policy.Resolve(diagnostic,start);
++                    string snapshotError="";try { Validation.Snapshot(diagnostic); } catch(Exception ex) { snapshotError=ex.Message; }
++                    string policyError=policy.ValidateState(diagnostic);
++                    throw new Exception("Fresh adapter start rejected: "+startResult.Code+"; resolver="+resolver
++                        +"; snapshot="+snapshotError+"; policy="+policyError);
++                }
++                var work=simulation.Capture().HarvestRequirementWorks.Single();
++                Require(work.Status==HarvestRequirementWorkStatus.Working&&work.Requirement==HarvestIngredientRequirement.Fresh
++                    &&simulation.Capture().Work.Reservations.Single(x=>x.Id==work.ReservationId).RemainingAmount==childAmount,
++                    "Fresh-required adapter work failed to reserve the existing physical portion.");
++                WorldAdvance(simulation,2);
++                HarvestCommit(simulation,HarvestRequirementCommand(simulation,CommandKind.PauseHarvestRequirementWork,work.Id,
++                    actor:TestOnlyPolicy.ActorId));
++                var paused=simulation.Capture();work=paused.HarvestRequirementWorks.Single();
++                Require(work.Status==HarvestRequirementWorkStatus.Paused&&work.Work.Labor==new RuleTime(2)
++                    &&work.Work.Retained==work.Work.Labor&&paused.Work.Reservations.Single(x=>x.Id==work.ReservationId).RemainingAmount==childAmount,
++                    "Explicit pause lost credited work or released the input reservation.");
++                WorldAdvance(simulation,1);
++                paused=simulation.Capture();work=paused.HarvestRequirementWorks.Single();
++                Require(paused.RuleClock==new RuleTime(b1.Numerator-7)&&work.Status==HarvestRequirementWorkStatus.Paused
++                    &&work.Work.Labor==new RuleTime(2),
++                    "A positive paused-time gap changed the retained active-work credit or failed to advance the shared clock.");
++
++                string pausedPath=Path.Combine(directory,"mgt05a-paused.ddsave");var store=new FileSaveStore();store.Save(pausedPath,paused);
++                var codec=new SnapshotCodec();byte[] pausedBytes=codec.Encode(paused);
++                simulation=new Simulation(policy,store.Load(pausedPath),ExecutionProfile.Laboratory);
++                Require(pausedBytes.SequenceEqual(Bytes(simulation)),"Paused adapter state changed through the supported save/restore path.");
++                var resume=HarvestRequirementCommand(simulation,CommandKind.ResumeHarvestRequirementWork,work.Id,
++                    actor:TestOnlyPolicy.ActorId);
++                byte[] beforeResumeQuery=Bytes(simulation);var resumeQuery=simulation.QueryCommand(host,resume);
++                Require(resumeQuery.Supported&&resumeQuery.Admissible&&beforeResumeQuery.SequenceEqual(Bytes(simulation)),
++                    "The scheduled worker's Fresh resume query did not admit the same saved job without changing state.");
++                var replayA=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
++                var replayB=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
++                var replayC=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
++                HarvestCommit(replayA,resume);HarvestCommit(replayB,resume);HarvestCommit(replayC,resume);
++                WorldAdvance(replayA,8);WorldAdvance(replayC,8);
++                Require(Bytes(replayA).SequenceEqual(Bytes(replayC)),"Identical resume and whole-advance commands did not deterministically replay from the same save.");
++
++                WorldAdvance(replayB,7);
++                var atB1=replayB.Capture();var first=atB1.HarvestRequirementWorks.Single();
++                Require(atB1.RuleClock==b1&&first.Status==HarvestRequirementWorkStatus.Paused
++                    &&first.PauseReason==HarvestRequirementPauseReason.IngredientNotFresh&&first.Work.Labor==new RuleTime(9)
++                    &&first.Work.Retained==first.Work.Labor
++                    &&atB1.Work.Reservations.Single(x=>x.Id==first.ReservationId).RemainingAmount==childAmount
++                    &&atB1.Work.Reservations.Single(x=>x.Id==first.ReservationId).ConsumedAmount==default
++                    &&HarvestPreservationRules.TryProject(atB1,child.LotId,out var degraded)
++                    &&degraded.State==HarvestPreservationState.Degraded&&degraded.ValueMultiplier==new RuleQuantity(1,2)
++                    &&HarvestPreservationRules.SatisfiesRequirement(degraded,HarvestIngredientRequirement.Ordinary)
++                    &&!HarvestPreservationRules.SatisfiesRequirement(degraded,HarvestIngredientRequirement.Fresh)
++                    &&!HarvestPreservationRules.SatisfiesRequirement(degraded,HarvestIngredientRequirement.Spoiled)
++                    &&degraded.HarvestUnitId==source.Id&&atB1.InventoryLots.Single(x=>x.LotId==child.LotId).FreshUntil==freshness
++                    &&HarvestPreservationRules.TryProject(atB1,storageChild.LotId,out var storedDegraded)
++                    &&storedDegraded.State==HarvestPreservationState.Degraded
++                    &&atB1.PortableEquipment.Single(x=>x.Id==storageChild.LotId).ParentId==SharedHarvestFixture.ContainerId
++                    &&atB1.Work.Lots.Single(x=>x.Id==storageChild.LotId).LocationId==SharedHarvestFixture.ContainerId,
++                    "Exact B1 did not pause at the boundary with nine active seconds, a retained claim, and the stored descendant naturally degraded.");
++                string b1Path=Path.Combine(directory,"mgt05a-at-b1.ddsave");store.Save(b1Path,atB1);
++                byte[] b1Bytes=codec.Encode(atB1);
++                replayB=new Simulation(policy,store.Load(b1Path),ExecutionProfile.Laboratory);
++                Require(b1Bytes.SequenceEqual(Bytes(replayB)),"The exact-B1 paused job and stored descendant changed through save/restore.");
++                var resumeAtB1=HarvestRequirementCommand(replayB,CommandKind.ResumeHarvestRequirementWork,first.Id,
++                    actor:TestOnlyPolicy.ActorId);
++                byte[] beforeDeniedQuery=Bytes(replayB);var denied=replayB.QueryCommand(host,resumeAtB1);
++                Require(denied.Supported&&!denied.Admissible&&denied.Code=="FreshIngredientRequired"
++                    &&beforeDeniedQuery.SequenceEqual(Bytes(replayB)),"B1 Fresh-only resume was not denied by a pure query.");
++
++                WorldAdvance(replayB,1);
++                var afterBoundaryAdvance=replayB.Capture();
++                var afterBoundaryWork=afterBoundaryAdvance.HarvestRequirementWorks.Single();
++                Require(afterBoundaryAdvance.RuleClock==b1.AddSeconds(1)&&afterBoundaryWork.Work.Labor==new RuleTime(9)
++                    &&afterBoundaryWork.Status==HarvestRequirementWorkStatus.Paused
++                    &&afterBoundaryAdvance.Work.Reservations.Single(x=>x.Id==afterBoundaryWork.ReservationId).RemainingAmount==childAmount,
++                    "The one-second post-B1 segment earned Fresh-dependent work or changed its retained reservation.");
++
++                var retrieveAfterB1=new Simulation(policy,codec.Decode(b1Bytes),ExecutionProfile.Laboratory);
++                PortableCommit(retrieveAfterB1,Portable(retrieveAfterB1,CommandKind.HandlePortableEquipment,storageChild.LotId,
++                    handling:HandlingKind.Retrieve,actor:TestOnlyPolicy.ActorId));
++                var retrievedAfterB1=retrieveAfterB1.Capture();
++                Require(retrievedAfterB1.RuleClock==b1.AddSeconds(1)
++                    &&retrievedAfterB1.PortableEquipment.Single(x=>x.Id==storageChild.LotId).ParentId==""
++                    &&retrievedAfterB1.PortableEquipment.Single(x=>x.Id==storageChild.LotId).Placement==PortablePlacement.Carried
++                    &&retrievedAfterB1.PortableEquipment.Single(x=>x.Id==storageChild.LotId).CustodianId==TestOnlyPolicy.ActorId
++                    &&retrievedAfterB1.PortableEquipment.Single(x=>x.Id==storageChild.LotId).OwnerId==storageOwner
++                    &&retrievedAfterB1.Work.Lots.Single(x=>x.Id==storageChild.LotId).LocationId==TestOnlyPolicy.ActorId
++                    &&retrievedAfterB1.Work.Lots.Single(x=>x.Id==storageChild.LotId).Amount==storageAmount
++                    &&retrievedAfterB1.InventoryLots.Single(x=>x.LotId==storageChild.LotId).OwnerId==storageOwner
++                    &&retrievedAfterB1.InventoryLots.Single(x=>x.LotId==storageChild.LotId).FreshUntil==storageFreshUntil
++                    &&HarvestPreservationRules.TryProject(retrievedAfterB1,storageChild.LotId,out var retrievedDegraded)
++                    &&retrievedDegraded.State==HarvestPreservationState.Degraded
++                    &&retrievedDegraded.HarvestUnitId==source.Id&&retrievedDegraded.EvaluatedAt==b1.AddSeconds(1),
++                    "Retrieval after B1 changed custody without preserving the original harvested item's owner, amount, age, and degraded state.");
++
++                var whole=replayA.Capture();var splitAtBoundary=afterBoundaryAdvance;
++                var wholeWork=whole.HarvestRequirementWorks.Single();var splitWork=splitAtBoundary.HarvestRequirementWorks.Single();
++                Require(whole.RuleClock==b1.AddSeconds(1)&&splitAtBoundary.RuleClock==whole.RuleClock
++                    &&wholeWork.Status==splitWork.Status&&wholeWork.PauseReason==splitWork.PauseReason
++                    &&wholeWork.Work.Labor==splitWork.Work.Labor&&wholeWork.Work.Retained==splitWork.Work.Retained
++                    &&whole.Work.Reservations.Single(x=>x.Id==wholeWork.ReservationId).RemainingAmount
++                        ==splitAtBoundary.Work.Reservations.Single(x=>x.Id==splitWork.ReservationId).RemainingAmount
++                    &&whole.Work.Reservations.Single(x=>x.Id==wholeWork.ReservationId).ConsumedAmount
++                        ==splitAtBoundary.Work.Reservations.Single(x=>x.Id==splitWork.ReservationId).ConsumedAmount,
++                    "Whole 8-second advancement and advancement partitioned at B1 disagreed on clock, pause, credit, or reservation.");
++
++                WorldAdvance(replayA,unit.PreservationIntervalSeconds);
++                var atB2=replayA.Capture();
++                Require(HarvestPreservationRules.TryProject(atB2,child.LotId,out var spoiled)
++                    &&spoiled.State==HarvestPreservationState.Spoiled&&spoiled.ValueMultiplier==default
++                    &&!HarvestPreservationRules.SatisfiesRequirement(spoiled,HarvestIngredientRequirement.Ordinary)
++                    &&HarvestPreservationRules.SatisfiesRequirement(spoiled,HarvestIngredientRequirement.Spoiled)
++                    &&atB2.HarvestRequirementWorks.Single().Status==HarvestRequirementWorkStatus.Paused
++                    &&atB2.Work.Reservations.Single(x=>x.Id==first.ReservationId).RemainingAmount==childAmount,
++                    "The second sourced interval failed to derive Spoiled/zero multiplier while retaining unfinished reservation state.");
++            });
++
++            cases.Add("mgt05a_rejects_unbound_mass_and_schema73_harvested_mass_split",()=>{
++                var policy=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture(),seed:17);
++                var simulation=World(policy);HarvestCommit(simulation,HarvestPreservationSourceCommand(simulation));
++                WorldAdvance(simulation,600);var harvested=simulation.Capture();
++                string unrelated="TEST_ONLY.unbound-generic-pound";var unrelatedState=harvested.Copy();
++                unrelatedState.Work=new WorkLedger(unrelatedState.Work.Lots.Concat(new[]{new ResourceLot(unrelated,SharedHarvestFixture.MaterialUnit,
++                    RuleQuantity.FromFraction(1,10),HarvestWorker,HarvestWorker)}),unrelatedState.Work.WorkerIntervals,unrelatedState.Work.Reservations);
++                unrelatedState.InventoryLots=unrelatedState.InventoryLots.Concat(new[]{new InventoryLotRecord(unrelated,"",HarvestWorker,
++                    RuleQuantity.FromFraction(1,10),unrelatedState.RuleClock,NutritionKind.None,null,InventoryAccess.Ready)}).ToArray();
++                unrelatedState.PortableEquipment=unrelatedState.PortableEquipment.Concat(new[]{new PortableEquipmentRecord(unrelated,
++                    "prototype.generic-pound-lot",HarvestWorker,HarvestWorker,"",PortablePlacement.Carried,PortableLinkKind.InventoryLot,
++                    unrelated,PortableMassBasis.GenericPounds,RuleQuantity.FromFraction(1,10),null)}).ToArray();
++                Validation.Snapshot(unrelatedState);
++                var badPortion=new Command("mgt05a.unbound-portion",HarvestWorker,unrelatedState.Revision,CommandKind.PortionInventory,
++                    unrelated,inventory:new InventoryRequest(RuleQuantity.FromFraction(1,20),"",HandlingKind.Pickup));
++                byte[] unrelatedBefore=new SnapshotCodec().Encode(unrelatedState);
++                string unrelatedResult=new TestOnlyInventoryPolicy().Resolve(unrelatedState,badPortion);
++                Require(unrelatedResult=="UnsupportedInventoryProfile"&&unrelatedBefore.SequenceEqual(new SnapshotCodec().Encode(unrelatedState)),
++                    "Unbound generic mass was accepted or mutated by the schema74 inventory handler.");
++
++                // Handler-only compatibility probe: apply the pre-schema74 version gate to the
++                // actual harvested descendant. Do not validate or encode this schema-relabelled
++                // copy as a historical save; the separate following case restores a genuine
++                // schema73 profile byte-for-byte.
++                var schema73=harvested.Copy();schema73.SchemaVersion=Snapshot.PortableCountedLotSchema;
++                schema73.HarvestRequirementWorks=Array.Empty<HarvestRequirementWorkRecord>();
++                string schema73Mass=harvested.HarvestUnits.Single().Id;
++                var schema73BeforeWork=schema73.Work.Lots.ToArray();var schema73BeforeInventory=schema73.InventoryLots.ToArray();
++                var schema73BeforePortable=schema73.PortableEquipment.ToArray();long schema73Revision=schema73.Revision;
++                var unsupported=IC(simulation,CommandKind.PortionInventory,schema73Mass,
++                    new InventoryRequest(RuleQuantity.FromFraction(1,10),"",HandlingKind.Pickup),HarvestWorker);
++                string result=new TestOnlyInventoryPolicy().Resolve(schema73,unsupported);
++                Require(result=="UnsupportedInventoryProfile"&&schema73.Revision==schema73Revision
++                    &&schema73.Work.Lots.SequenceEqual(schema73BeforeWork)
++                    &&schema73.InventoryLots.SequenceEqual(schema73BeforeInventory)
++                    &&schema73.PortableEquipment.SequenceEqual(schema73BeforePortable),
++                    "Schema73 handler accepted a portion of the actual harvested mass or mutated its input state.");
++            });
++
++            cases.Add("mgt05a_schema73_profile_roundtrips_and_pressure_requires_cohort",()=>{
++                var policy=Recipe347Policy(17);var schema73=policy.Initial();var codec=new SnapshotCodec();
++                Require(schema73.SchemaVersion==Snapshot.PortableCountedLotSchema&&schema73.TestOnly
++                    &&schema73.ExpeditionPressureCohorts.Length==1,
++                    "The existing schema73 recipe profile did not initialize its authored Pressure cohort.");
++                byte[] bytes=codec.Encode(schema73);
++                var restored=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
++                Require(bytes.SequenceEqual(codec.Encode(restored.Capture())),
++                    "An existing schema73 profile changed through its normal encode/decode/restore path.");
++
++                var missing=schema73.Copy();
++                missing.ExpeditionPressureCohorts=Array.Empty<ExpeditionPressureCohortRecord>();
++                missing.ExpeditionPressureExposures=Array.Empty<ExpeditionPressureExposureRecord>();
++                missing.ExpeditionPressureChanges=Array.Empty<ExpeditionPressureChangeRecord>();
++                missing.ExpeditionPressureCheckpoints=Array.Empty<ExpeditionPressureCheckpointRecord>();
++                bool rejected=false;
++                try { ExpeditionPressureValidation.Validate(missing); }
++                catch(ArgumentException) { rejected=true; }
++                Require(rejected,"Schema73 accepted empty Pressure history; its prior one-cohort validation must remain intact.");
++            });
++
+             cases.Add("harvest_critical_failure_records_trade_accident_and_applies_life_damage",()=>{
+                 var unseeded=TestOnlySharedWorldPolicy.WithHarvest(new SharedHarvestFixture());
+                 int modifier=HarvestModifier(unseeded.Initial());uint seed=HarvestSeedFor(TaskDegree.CriticalFailure,modifier);
