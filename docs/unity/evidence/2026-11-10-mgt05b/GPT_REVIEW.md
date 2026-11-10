@@ -22,4 +22,14 @@ The MGT-05B implementation is authorized but not yet accepted. The actual source
 
 ## Implementation review status
 
-The implementation candidate is Engine commit `4d11fdceb25fb6a9f86b419484f3cca70a615211`. Its code, retained validation, source-hash bindings, exact changed-file list, and source/test excerpts are in [MGT05B_REVIEW_PACKET.md](MGT05B_REVIEW_PACKET.md). This implementation review is pending; no GPT acceptance of the implementation is claimed yet.
+### First review — returned for bounded corrections
+
+Codex sent the exact implementation commit `4d11fdceb25fb6a9f86b419484f3cca70a615211`, evidence/docs commit `bb6a2f5c45fd43728aebefe10f9bb9a3e6354012`, the complete code patch, file list, source bindings, and retained reports to GPT in “Draft MGT05 API Contract.” GPT replied: “MGT-05B is not accepted at implementation commit `4d11fdceb25fb6a9f86b419484f3cca70a615211`.” Its final disposition was: “Return MGT-05B for bounded correction.”
+
+GPT identified three in-scope blockers: (1) treatment validation rejected children created before treatment, and age projection failed to stop an ancestor’s protection at the first branch separation; (2) the policy permitted whole closed-vessel handover, but fixture validation permanently required the original worker to remain supply custodian; (3) the passing package report did not hash-match the three committed `.meta` files. GPT confirmed these were bounded corrections within the approved contract and required no owner ruling, source/API re-review, or expansion into deferred features. Optional stress testing, exposure handling, re-treatment, broader materials, and production-food integration were explicitly not blockers.
+
+GPT inspected the patch and retained reports, compared the exact GitHub revisions, and text/hash-checked the source artifacts. It explicitly did **not** compile or execute the submitted C# code or tests. The original findings and their source/reasoning are preserved in the GPT response in the chat and the before-fix reproductions are in the [correction evidence](review-corrections/README.md).
+
+### Corrected implementation — re-review pending
+
+Correction commit `9c0a4e92b7f2af8c62c07326934fad7524f64f9c` contains the bounded code fixes and reproducible validation. The [correction packet](review-corrections/README.md), [exact code diff](review-corrections/MGT05B_CORRECTIONS.patch), and [source/report bindings](review-corrections/MGT05B_CORRECTION_BINDINGS.json) are the review material for the next GPT response. The full C# 9 warnings-as-errors suite passes **1,326/1,326**, all five MGT-05B cases pass, the two new focused corrections pass **1/1 each**, and the refreshed static package report passes **18/18** with all three `.meta` hashes matched to the checked-in bytes. GPT has not reviewed this correction commit yet, so implementation acceptance is still pending and no successor module may begin.

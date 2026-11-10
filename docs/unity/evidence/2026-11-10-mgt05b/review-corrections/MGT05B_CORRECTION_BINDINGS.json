@@ -1,0 +1,131 @@
+{
+  "module": "MGT-05B",
+  "status": "corrected-awaiting-gpt-implementation-review",
+  "schema": 75,
+  "classification": "TEST_ONLY",
+  "implementationCommit": "9c0a4e92b7f2af8c62c07326934fad7524f64f9c",
+  "reviewedImplementationBase": "4d11fdceb25fb6a9f86b419484f3cca70a615211",
+  "preCorrectionBranchHead": "bb6a2f5c45fd43728aebefe10f9bb9a3e6354012",
+  "sourceAuthority": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "b8adb3ac6eb51f333fdb8f2d68ecc7e9c6511e7ee3aded1bfe54cd4728c93479",
+    "sections": "Preservation and spoilage, source lines 152-166"
+  },
+  "changedFiles": [
+    "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs"
+  ],
+  "changedSourceHashes": [
+    {
+      "path": "com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+      "sha256": "e6c96d2212cb43737f34effd6567a40d4109e48645d71362e18fb3d24adb8267"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs",
+      "sha256": "a27d1975e28d0a704a01da8b5486a7149cbf8528254c10842231fdf22f8ebabc"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs",
+      "sha256": "b97c37ca608b1f32804d314785da1740c785ac7db11a90dc297403717e68818f"
+    }
+  ],
+  "correctionDiff": {
+    "path": "MGT05B_CORRECTIONS.patch",
+    "baseCommit": "4d11fdceb25fb6a9f86b419484f3cca70a615211",
+    "targetCommit": "9c0a4e92b7f2af8c62c07326934fad7524f64f9c",
+    "sha256": "7b65185dac7cac564fa1b571f930260de63d4a4e9b1ab0fae3c9ee7aea704fc6"
+  },
+  "reproductionsBeforeCorrection": [
+    {
+      "case": "mgt05b_lineage_cutoff_save_restore_and_replay",
+      "path": "reproduction-lineage/run-20261110T195850881Z-90b242e6/results.json",
+      "sha256": "8f860789436036af3426cec1b46d43b0bd3b28308d522201c1269d2c5c956e0b",
+      "result": "FAIL reproduced: successful AdvanceClock completion returned InvalidResult when the treated lot had a child created before treatment began."
+    },
+    {
+      "case": "mgt05b_closed_vessel_handover_preserves_treatment_and_ownership",
+      "path": "reproduction-handover/run-20261110T195937023Z-28b61ebb/results.json",
+      "sha256": "115d77d6c41b00ec7eb53b33ccfabead0d8f68eaabde11cfed28a6db5978e5f1",
+      "result": "FAIL reproduced: legal whole closed-vessel Handover returned InvalidResult because the fixture required the original worker to remain supply custodian."
+    }
+  ],
+  "focusedAfterCorrection": [
+    {
+      "case": "mgt05b_lineage_cutoff_save_restore_and_replay",
+      "path": "after-fix-lineage-2/run-20261110T200241421Z-9dffabda/results.json",
+      "sha256": "cc10a0cafbcdbc7d5ab529b0697b25454f601240e210c54608712997af94f7bd",
+      "result": "PASS 1/1"
+    },
+    {
+      "case": "mgt05b_closed_vessel_handover_preserves_treatment_and_ownership",
+      "path": "after-fix-handover-3/run-20261110T200417154Z-907ffbba/results.json",
+      "sha256": "ba60bde6bb7fc5cdedf048d2a3f03cbff65421a2390965fdcaf7f15c9e391d13",
+      "result": "PASS 1/1"
+    }
+  ],
+  "fullValidation": {
+    "path": "final-full/run-20261110T200517015Z-6826bf1a/results.json",
+    "sha256": "016963603e12294fa3194d44b58f1f9794d1ecab0c14bd32ef59345c9a25519a",
+    "language": "C# 9",
+    "warningsAsErrors": true,
+    "runtime": ".NET 10.0.14",
+    "powershell": "7.6.9",
+    "passed": 1326,
+    "failed": 0,
+    "sourceHashes": 282,
+    "compiledAssemblies": [
+      {
+        "path": "final-full/run-20261110T200517015Z-6826bf1a/Decennium.Foundation.Core.dll",
+        "sha256": "790a66e0dffb21e453ce49905476e3c5b532ad0bcc7f5e0b27c6dd2d595190f9"
+      },
+      {
+        "path": "final-full/run-20261110T200517015Z-6826bf1a/Decennium.Foundation.Persistence.dll",
+        "sha256": "86f25bff3e9407a15ac20d7bfbaa66af411fb068f642912291b284b2c03b5035"
+      },
+      {
+        "path": "final-full/run-20261110T200517015Z-6826bf1a/Decennium.Foundation.LabModel.dll",
+        "sha256": "ab65358d79af6a27504f6ee085ee18c45752abfcfdbe739d146508170af63ccf"
+      },
+      {
+        "path": "final-full/run-20261110T200517015Z-6826bf1a/Decennium.Foundation.HeadlessTests.dll",
+        "sha256": "133e61814c6e2e719e31035313b584231cfb7bf3b893ba516a2e7c2801e1a1a2"
+      }
+    ],
+    "unityCompilation": "NOT RUN",
+    "editMode": "NOT RUN",
+    "playMode": "NOT RUN",
+    "standaloneBuild": "NOT RUN",
+    "gameplay": "NOT RUN"
+  },
+  "staticPackageValidation": {
+    "path": "final-package/static-20261110T200517323Z-4c1d2fb1/results.json",
+    "sha256": "250f3eb36648f7e20b91c55a947509318a3f4284ffbf761347fc2ffee2453551",
+    "passed": 18,
+    "failed": 0,
+    "packageAssets": 308,
+    "uniqueGuids": 308,
+    "sourceHashes": 605
+  },
+  "packageSidecarHashes": [
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs.meta",
+      "sha256": "ffcdf42b5980edbcb8b1fb051dfa0c5c4fb467078d932364fc5b406f786a296a"
+    },
+    {
+      "path": "com.decennium.foundation/Runtime/Persistence/HarvestPreservationTreatmentCodec.cs.meta",
+      "sha256": "50c20b478b9ed8ad4a4d716f59a150ecd8b4af7906520f7ef153029b9196091d"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs.meta",
+      "sha256": "22258d8a0b5581d40255cbd9832b93448dd5a924f28f19f47c563d9a4ae3465c"
+    }
+  ],
+  "knownLimits": [
+    "MGT-05B remains TEST_ONLY and does not add production preservation authority.",
+    "No snapshot payload or historical save format changed.",
+    "Unity import/compilation, Editor tests, Play Mode, player build and observed gameplay were not run.",
+    "The broader MGT-05 dependency and complete engine remain unfinished."
+  ]
+}
