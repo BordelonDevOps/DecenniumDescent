@@ -1,14 +1,13 @@
-# GPT review request — MGT-04 correction candidate
+# GPT follow-up review request — MGT-04 recipe-347
 
-Please review source commit [`11e77c50012d97acd5f24e91b523283ed957a96a`](https://github.com/BordelonDevOps/DecenniumDescent/commit/11e77c50012d97acd5f24e91b523283ed957a96a) on `Engine` and the evidence in [README.md](README.md). This is the correction to your hold review of `fd561c5e8b08e915b3d79ca952a16db04da3e36e`.
+Please review current source commit [`381942726e470d283fad16dfb061f792da184b56`](https://github.com/BordelonDevOps/DecenniumDescent/commit/381942726e470d283fad16dfb061f792da184b56) on `Engine`, its two-file delta from `11e77c50012d97acd5f24e91b523283ed957a96a`, the preceding seven-file implementation, and the pinned contract/source bindings linked in the [evidence packet](README.md).
 
-Check the seven-file diff against the existing MGT-04 source contract and your six findings: Mishap 3 damage/fixture validation; source-bound physical Mining recalibration; indivisible counted quantities; schema49 behavior isolation; the connected explore-through-continue scenario; and the half-open Watch endpoint. Please verify the authoritative record flow and inspect whether each acceptance criterion is demonstrated by the retained reports. The source note says the mishap fact targets `MiningToolsStructureId`; your prior mention of `AssayKitStructureId` may be a reference mismatch.
+Your previous review of `11e77c5` returned a hold. Check the two implementation blockers against current code and retained current-source reports:
 
-Validation performed by Codex is listed with exact report paths in README.md. In particular, the full-suite attempt did not finish or produce a report; please do not treat it as a pass. Codex has current focused C# passes, standalone Core/Persistence/LabModel compilation, and static package validation. Unity import and game builds were not run.
+1. Recipe result-5 fouled-apparatus cleanup must accept any physically capable worker, including concurrent workers, without the recalibration-only Miner’s-kit/training gate. Recipe result-6 remains lead-only. Verify recipe-mishap identity does not capture unrelated Mining incidents. Check the focused save/restore/replay regression.
+2. The Work Watch test must genuinely reach the 32-hour interval endpoint in both booking orders. It must verify the interval that ends at the next job start without changing labor accounting.
+3. Verify the formerly missing reports are now published in this packet and their source provenance matches the candidate.
 
-Please state:
+The full current-source suite reports **1,318/1,318** passed; standalone C# 9 warnings-as-errors compilation passes Core/Persistence/LabModel; static package validation passes 18/18. Evidence paths, scenario names, test failures reproduced before correction, and explicit limitations are in [README.md](README.md). Please inspect those reports and the implementation rather than infer acceptance from counts alone.
 
-1. Whether the six concrete findings are closed, with exact remaining blockers (if any) tied to the current source or acceptance evidence.
-2. Whether MGT-04's agreed bounded acceptance is now met. Distinguish blockers from optional hardening.
-3. If accepted, the next dependency indicated by the already-approved implementation map and any bounded source-contract review required before starting it.
-4. What you inspected and which checks you did not execute. An attempted review without a verdict is not acceptance.
+State (a) whether the two blockers and evidence gap are closed, with any remaining concrete code/evidence blocker; (b) whether bounded MGT-04 acceptance is met versus optional hardening; (c) the next dependency from the existing implementation map and whether it remains aligned; and (d) what you inspected versus checks you did not independently run. Unity import, Unity tests and game builds were not run. An attempted review without a verdict is not acceptance. The next module remains gated on your actual response and agreement.
