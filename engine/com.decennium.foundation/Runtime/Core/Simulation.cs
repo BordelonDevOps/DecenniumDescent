@@ -34,7 +34,8 @@ namespace Decennium.Foundation
         BeginCampUse, EndCampUse, BeginLyingLow, EndLyingLow,
         StartTemporaryCampConstruction, PauseTemporaryCampConstruction,
         ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
-        StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality }
+        StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
+        StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -132,6 +133,7 @@ namespace Decennium.Foundation
         public const int PortableStorageSchema = 71;
         public const int Recipe347Schema = 72;
         public const int PortableCountedLotSchema = 73;
+        public const int HarvestPreservationSchema = 74;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -247,6 +249,7 @@ namespace Decennium.Foundation
         public HarvestCategoryRecord[] HarvestCategories = Array.Empty<HarvestCategoryRecord>();
         public HarvestMaterialUnitRecord[] HarvestUnits = Array.Empty<HarvestMaterialUnitRecord>();
         public HarvestAttemptRecord[] HarvestAttempts = Array.Empty<HarvestAttemptRecord>();
+        public HarvestRequirementWorkRecord[] HarvestRequirementWorks = Array.Empty<HarvestRequirementWorkRecord>();
         public MiningDepositRecord[] MiningDeposits = Array.Empty<MiningDepositRecord>();
         public MiningCategoryRecord[] MiningCategories = Array.Empty<MiningCategoryRecord>();
         public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
@@ -350,6 +353,7 @@ namespace Decennium.Foundation
             WorldActivityIntervals = WorldActivityIntervals.ToArray(),
             HarvestDonors = HarvestDonors.ToArray(), HarvestManifests = HarvestManifests.ToArray(),
             HarvestCategories = HarvestCategories.ToArray(), HarvestUnits = HarvestUnits.ToArray(), HarvestAttempts = HarvestAttempts.ToArray(),
+            HarvestRequirementWorks = HarvestRequirementWorks.ToArray(),
             MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
@@ -728,7 +732,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.TemporaryCampConstructionSchema
                 || s.SchemaVersion == Foundation.Snapshot.PortableStorageSchema
                 || s.SchemaVersion == Foundation.Snapshot.Recipe347Schema
-                || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema
+                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -823,6 +828,7 @@ namespace Decennium.Foundation
             DefensiveFormationValidation.Validate(s);
             FishingTrapValidation.Validate(s);
             HarvestValidation.Validate(s);
+            HarvestRequirementWorkValidation.Validate(s);
             MiningValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);

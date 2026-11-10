@@ -402,6 +402,24 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
+            if(harvestPreservationEnabled) {
+                var work=s.HarvestRequirementWorks.SingleOrDefault(x=>x.WorkerId==actor
+                    &&(x.Status==HarvestRequirementWorkStatus.Working||x.Status==HarvestRequirementWorkStatus.Paused));
+                if(work!=null) {
+                    var kind=work.Status==HarvestRequirementWorkStatus.Working
+                        ?CommandKind.PauseHarvestRequirementWork:CommandKind.ResumeHarvestRequirementWork;
+                    yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".harvest-requirement."+(index++).ToString(CultureInfo.InvariantCulture),
+                        actor,s.Revision,kind,work.Id);
+                } else if(!OrdinaryInventory.Busy(s,actor)) {
+                    foreach(var lot in s.InventoryLots.OrderBy(x=>x.LotId,StringComparer.Ordinal)) {
+                        if(!HarvestPreservationRules.TryProject(s,lot.LotId,out var view)||view.State!=HarvestPreservationState.Fresh)continue;
+                        RuleQuantity available=s.Work.AvailableAmount(lot.LotId);if(available==default)continue;
+                        yield return new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".harvest-requirement."+(index++).ToString(CultureInfo.InvariantCulture),
+                            actor,s.Revision,CommandKind.StartHarvestRequirementWork,lot.LotId,
+                            inventory:new InventoryRequest(available,"",HandlingKind.Pickup));
+                    }
+                }
+            }
             if(miningFixture!=null&&IsMiningWorker(actor)) {
                 var attempt=s.MiningAttempts.SingleOrDefault(x=>x.WorkerId==actor
                     &&(x.Status==MiningAttemptStatus.Working||x.Status==MiningAttemptStatus.Paused||x.Status==MiningAttemptStatus.AwaitingCheck));
@@ -582,6 +600,16 @@ namespace Decennium.Foundation.Laboratory
                     if (remaining.Denominator == 1) costs.Add(new CommandCost("work-seconds", "", remaining.Numerator));
                 }
                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+            }
+            if(HarvestRequirementWorkCommand(c.Kind)) {
+                string failure=AssessHarvestRequirementWork(s,c,out var current,out _);
+                var costs=new List<CommandCost>();
+                if(failure==null&&c.Kind==CommandKind.StartHarvestRequirementWork) {
+                    RuleTime duration=HarvestRequirementDuration(s,c.Target);
+                    if(duration.Denominator==1)costs.Add(new CommandCost("work-seconds","",duration.Numerator));
+                } else if(failure==null&&c.Kind==CommandKind.ResumeHarvestRequirementWork&&current.Work.Remaining.Denominator==1)
+                    costs.Add(new CommandCost("work-seconds",current.Id,current.Work.Remaining.Numerator));
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
             }
             if(c.Kind==CommandKind.StartMining||c.Kind==CommandKind.PauseMining||c.Kind==CommandKind.ResumeMining) {
                 string failure=AssessMiningCommand(s,c,out var facts);var costs=new List<CommandCost>();

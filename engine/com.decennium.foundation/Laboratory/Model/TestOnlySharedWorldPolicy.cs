@@ -199,6 +199,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeExpeditionCampUse(s);
             InitializeExpeditionCampConstruction(s);
             InitializePortableStorage(s);
+            if(harvestPreservationEnabled)InitializePreservationPortableProfiles(s);
             InitializeRecipe347(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
@@ -263,6 +264,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.ResumeCacheExcavation:
                 case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:
                 case CommandKind.StartHarvest: case CommandKind.ResumeHarvest:
+                case CommandKind.StartHarvestRequirementWork: case CommandKind.ResumeHarvestRequirementWork:
                 case CommandKind.StartMining: case CommandKind.ResumeMining:
                 case CommandKind.StartProspecting: case CommandKind.ResumeProspecting:
                 case CommandKind.StartMiningAssay: case CommandKind.ResumeMiningAssay:
@@ -328,6 +330,7 @@ namespace Decennium.Foundation.Laboratory
             InterruptIncompatibleHuntingTrapActions(s);
             PauseFishingTrapSetupIfIncompatible(s);
             PauseIncompatibleHarvesting(s);
+            PauseIncompatibleHarvestRequirementWork(s);
             PauseIncompatibleMining(s);
             PauseIncompatibleProspecting(s);
             PauseIncompatibleMiningAssay(s);
@@ -443,6 +446,8 @@ namespace Decennium.Foundation.Laboratory
                 var huntingTrapBoundary=NextHuntingTrapActionBoundary(s);if(huntingTrapBoundary.HasValue&&huntingTrapBoundary.Value<next)next=huntingTrapBoundary.Value;
                 var trapBoundary=NextFishingTrapBoundary(s);if(trapBoundary.HasValue&&trapBoundary.Value<next)next=trapBoundary.Value;
                 var harvestBoundary=NextHarvestBoundary(s);if(harvestBoundary.HasValue&&harvestBoundary.Value<next)next=harvestBoundary.Value;
+                var harvestRequirementBoundary=NextHarvestRequirementWorkBoundary(s);
+                if(harvestRequirementBoundary.HasValue&&harvestRequirementBoundary.Value<next)next=harvestRequirementBoundary.Value;
                 var miningBoundary=NextMiningBoundary(s);if(miningBoundary.HasValue&&miningBoundary.Value<next)next=miningBoundary.Value;
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<next)next=prospectingBoundary.Value;
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<next)next=miningAssayBoundary.Value;
@@ -541,7 +546,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);PauseIncompatibleRouteMappingWork(world);PauseIncompatibleRouteReconnaissance(world);PauseIncompatibleTemporaryCampConstruction(world);
-                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                     else {
                         OrdinaryInventory.AdvanceTo(s, next);
                         TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture),
@@ -552,7 +557,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
                 RefreshActivityIntervals(s);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -707,6 +712,7 @@ namespace Decennium.Foundation.Laboratory
             if(IsMineralPreparationCommand(c))return ResolveMineralPreparation(s,c);
             if(IsMiningCommand(c))return ResolveMining(s,c);
             if(Recipe347Command(c.Kind))return ResolveRecipe347(s,c);
+            if(HarvestRequirementWorkCommand(c.Kind))return ResolveHarvestRequirementWork(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
             if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);
@@ -995,7 +1001,7 @@ namespace Decennium.Foundation.Laboratory
                     if(harvestSelected) {
                         var expectedHarvestWorkers=HarvestWorkerIds;
                         int expectedSkills=harvestFixture.Trained?expectedHarvestWorkers.Length:0;
-                        if(s.SchemaVersion!=harvestFixture.SchemaVersion||fishingSkills.Length!=expectedSkills
+                    if(s.SchemaVersion!=(harvestPreservationEnabled?Snapshot.HarvestPreservationSchema:harvestFixture.SchemaVersion)||fishingSkills.Length!=expectedSkills
                             ||fishingSkills.Any(x=>!expectedHarvestWorkers.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
                             ||s.FishingCreatures.Length!=1||s.FishingCreatures[0].Id!=SharedHarvestFixture.CreatureId
                             ||s.FishingCreatures[0].OriginId!=HarvestSiteId||s.FishingCreatures[0].SiteId!=HarvestSiteId

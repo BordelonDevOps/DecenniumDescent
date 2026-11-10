@@ -17,6 +17,12 @@ namespace Decennium.Foundation.Tests
             return new Command("harvest.command."+(state.Revision+1),actor,state.Revision,kind,target);
         }
 
+        private static Command HarvestRequirementCommand(Simulation s,CommandKind kind,string target,InventoryRequest request=null)
+        {
+            var state=s.Capture();
+            return new Command("mgt05a.requirement."+(state.Revision+1),HarvestWorker,state.Revision,kind,target,inventory:request);
+        }
+
         private static void HarvestCommit(Simulation s,Command command)
         {
             var result=s.Execute(TestOnlySharedWorldPolicy.Host(),command);
@@ -56,6 +62,14 @@ namespace Decennium.Foundation.Tests
             var selection=new HarvestSelectionRequest("TEST_ONLY.small-river-fish-anatomy-v1",categories,failurePreference,criticalPreference);
             return new Command(commandId??"harvest.batch."+(state.Revision+1),actor,state.Revision,CommandKind.StartHarvest,
                 SharedHarvestFixture.ManifestId,harvestSelection:selection);
+        }
+
+        private static Command HarvestPreservationSourceCommand(Simulation simulation)
+        {
+            var state=simulation.Capture();var manifest=state.HarvestManifests.Single();
+            return new Command("mgt05a.harvest."+(state.Revision+1),HarvestWorker,state.Revision,CommandKind.StartHarvest,
+                manifest.Id,harvestSelection:new HarvestSelectionRequest(manifest.AnatomyVersionId,
+                    new[]{SharedHarvestFixture.CategoryRecordId}));
         }
 
         private static void AddHarvestCases(Dictionary<string,Action> cases,string directory)
@@ -129,6 +143,154 @@ namespace Decennium.Foundation.Tests
                     "Duplicate start command repeated or altered the completed extraction.");
                 var retry=HarvestCommand(simulation,CommandKind.StartHarvest,SharedHarvestFixture.CategoryRecordId);
                 RejectUnchanged(simulation,host,retry,"HarvestSelectionExhausted");
+            });
+
+            cases.Add("mgt05a_harvest_mass_preservation_work_deadline_save_restore_and_replay",()=>{
+                var unseeded=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture());
+                int modifier=HarvestModifier(unseeded.Initial());uint seed=HarvestSeedFor(TaskDegree.Success,modifier);
+                var policy=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture(),seed);
+                var simulation=World(policy);var initial=simulation.Capture();var source=initial.HarvestUnits.Single();
+                HarvestCommit(simulation,HarvestPreservationSourceCommand(simulation));
+                WorldAdvance(simulation,600);
+                var harvested=simulation.Capture();var extracted=harvested.HarvestUnits.Single(x=>x.Id==source.Id);
+                Require(extracted.Status==HarvestUnitStatus.Extracted&&extracted.ValueCopper==null
+                    &&HarvestPreservationRules.TryProject(harvested,source.Id,out var freshRoot)
+                    &&freshRoot.State==HarvestPreservationState.Fresh&&freshRoot.ValueMultiplier==new RuleQuantity(1),
+                    "Actual finite harvest output was not recognized as fresh physical mass with its original unknown value.");
+
+                var portion=IC(simulation,CommandKind.PortionInventory,source.Id,
+                    new InventoryRequest(RuleQuantity.FromFraction(1,10),"",HandlingKind.Pickup),HarvestWorker);
+                HarvestCommit(simulation,portion);
+                var split=simulation.Capture();var child=split.InventoryLots.Single(x=>x.ParentId==source.Id);
+                var rootAmount=split.Work.Lots.Single(x=>x.Id==source.Id).Amount;
+                var childAmount=split.Work.Lots.Single(x=>x.Id==child.LotId).Amount;
+                Require(rootAmount+childAmount==source.MassPounds&&child.OwnerId==split.InventoryLots.Single(x=>x.LotId==source.Id).OwnerId
+                    &&child.FreshUntil==split.InventoryLots.Single(x=>x.LotId==source.Id).FreshUntil
+                    &&split.PortableEquipment.Single(x=>x.Id==child.LotId).MassBasis==PortableMassBasis.GenericPounds,
+                    "The physical mass split changed origin, freshness, ownership, or portable identity.");
+                var freshness=child.FreshUntil;
+
+                PortableCommit(simulation,Portable(simulation,CommandKind.HandlePortableEquipment,child.LotId,
+                    handling:HandlingKind.Retrieve,actor:HarvestWorker));
+                var retrieved=simulation.Capture();var carried=retrieved.PortableEquipment.Single(x=>x.Id==child.LotId);
+                Require(carried.ParentId==""&&carried.Placement==PortablePlacement.Carried&&carried.CustodianId==HarvestWorker
+                    &&retrieved.InventoryLots.Single(x=>x.LotId==child.LotId).OwnerId==child.OwnerId
+                    &&retrieved.Work.Lots.Single(x=>x.Id==child.LotId).LocationId==HarvestWorker
+                    &&retrieved.InventoryLots.Single(x=>x.LotId==child.LotId).FreshUntil==freshness,
+                    "Retrieval failed to move custody through the portable authority while retaining owner and source freshness.");
+
+                var unit=retrieved.HarvestUnits.Single(x=>x.Id==source.Id);
+                RuleTime b1=unit.OriginAt.AddSeconds(unit.PreservationIntervalSeconds);
+                Require(b1.Denominator==1&&retrieved.RuleClock.Denominator==1&&b1>retrieved.RuleClock,
+                    "Fixture no longer leaves a bounded integral interval before B1.");
+                RuleTime remaining=new RuleTime(b1.Numerator-retrieved.RuleClock.Numerator);
+                Require(remaining.Numerator>10,"Fixture no longer leaves a bounded interval before B1.");
+                WorldAdvance(simulation,checked((int)remaining.Numerator-10));
+                Require(simulation.DiscoverCommands(host,HarvestWorker).Any(x=>x.Command.Kind==CommandKind.StartHarvestRequirementWork
+                    &&x.Command.Target==child.LotId&&x.Query.Admissible),"Fresh extracted mass did not produce a discoverable bound-work option.");
+                var start=HarvestRequirementCommand(simulation,CommandKind.StartHarvestRequirementWork,child.LotId,
+                    new InventoryRequest(childAmount,"",HandlingKind.Pickup));
+                byte[] beforeQuery=Bytes(simulation);var startQuery=simulation.QueryCommand(host,start);
+                Require(startQuery.Supported&&startQuery.Admissible&&startQuery.Costs.Any(x=>x.Kind=="work-seconds"
+                    &&x.Amount==checked(unit.PreservationIntervalSeconds*2L))&&beforeQuery.SequenceEqual(Bytes(simulation)),
+                    "Pure command query did not expose the bounded adapter work while preserving authoritative state.");
+                var startResult=simulation.Execute(host,start);
+                if(startResult.Outcome!=Outcome.Committed) {
+                    var diagnostic=simulation.Capture();string resolver=policy.Resolve(diagnostic,start);
+                    string snapshotError="";try { Validation.Snapshot(diagnostic); } catch(Exception ex) { snapshotError=ex.Message; }
+                    string policyError=policy.ValidateState(diagnostic);
+                    throw new Exception("Fresh adapter start rejected: "+startResult.Code+"; resolver="+resolver
+                        +"; snapshot="+snapshotError+"; policy="+policyError);
+                }
+                var work=simulation.Capture().HarvestRequirementWorks.Single();
+                Require(work.Status==HarvestRequirementWorkStatus.Working&&work.Requirement==HarvestIngredientRequirement.Fresh
+                    &&simulation.Capture().Work.Reservations.Single(x=>x.Id==work.ReservationId).RemainingAmount==childAmount,
+                    "Fresh-required adapter work failed to reserve the existing physical portion.");
+                WorldAdvance(simulation,2);
+                HarvestCommit(simulation,HarvestRequirementCommand(simulation,CommandKind.PauseHarvestRequirementWork,work.Id));
+                var paused=simulation.Capture();work=paused.HarvestRequirementWorks.Single();
+                Require(work.Status==HarvestRequirementWorkStatus.Paused&&work.Work.Labor==new RuleTime(2)
+                    &&work.Work.Retained==work.Work.Labor&&paused.Work.Reservations.Single(x=>x.Id==work.ReservationId).RemainingAmount==childAmount,
+                    "Explicit pause lost credited work or released the input reservation.");
+
+                string pausedPath=Path.Combine(directory,"mgt05a-paused.ddsave");var store=new FileSaveStore();store.Save(pausedPath,paused);
+                var codec=new SnapshotCodec();byte[] pausedBytes=codec.Encode(paused);
+                simulation=new Simulation(policy,store.Load(pausedPath),ExecutionProfile.Laboratory);
+                Require(pausedBytes.SequenceEqual(Bytes(simulation)),"Paused adapter state changed through the supported save/restore path.");
+                var resume=HarvestRequirementCommand(simulation,CommandKind.ResumeHarvestRequirementWork,work.Id);
+                var replayA=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
+                var replayB=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
+                HarvestCommit(replayA,resume);HarvestCommit(replayB,resume);
+                WorldAdvance(replayA,8);WorldAdvance(replayB,8);
+                Require(Bytes(replayA).SequenceEqual(Bytes(replayB)),"Identical resume and clock commands did not deterministically replay from the same save.");
+
+                var splitAdvance=new Simulation(policy,codec.Decode(pausedBytes),ExecutionProfile.Laboratory);
+                HarvestCommit(splitAdvance,HarvestRequirementCommand(splitAdvance,CommandKind.ResumeHarvestRequirementWork,work.Id));
+                WorldAdvance(splitAdvance,4);
+                string workingPath=Path.Combine(directory,"mgt05a-working.ddsave");store.Save(workingPath,splitAdvance.Capture());
+                splitAdvance=new Simulation(policy,store.Load(workingPath),ExecutionProfile.Laboratory);
+                var finalAdvance=IC(splitAdvance,CommandKind.AdvanceClock,x:4,y:1);var finalResult=splitAdvance.Execute(host,finalAdvance);
+                if(finalResult.Outcome!=Outcome.Committed) {
+                    var diagnostic=splitAdvance.Capture();string resolver=policy.Resolve(diagnostic,finalAdvance);
+                    string snapshotError="";try { Validation.Snapshot(diagnostic); } catch(Exception ex) { snapshotError=ex.Message; }
+                    throw new Exception("Split B1 advance rejected: "+finalResult.Code+"; resolver="+resolver+"; snapshot="+snapshotError
+                        +"; policy="+policy.ValidateState(diagnostic));
+                }
+
+                var atB1=replayA.Capture();var atB1Split=splitAdvance.Capture();
+                var first=atB1.HarvestRequirementWorks.Single();var splitWork=atB1Split.HarvestRequirementWorks.Single();
+                Require(atB1.RuleClock==b1&&atB1Split.RuleClock==b1
+                    &&first.Status==HarvestRequirementWorkStatus.Paused&&first.PauseReason==HarvestRequirementPauseReason.IngredientNotFresh
+                    &&first.Work.Labor==new RuleTime(10)&&splitWork.Work.Labor==first.Work.Labor
+                    &&atB1.Work.Reservations.Single(x=>x.Id==first.ReservationId).RemainingAmount==childAmount
+                    &&atB1.Work.Reservations.Single(x=>x.Id==first.ReservationId).ConsumedAmount==default
+                    &&HarvestPreservationRules.TryProject(atB1,child.LotId,out var degraded)
+                    &&degraded.State==HarvestPreservationState.Degraded&&degraded.ValueMultiplier==new RuleQuantity(1,2)
+                    &&degraded.HarvestUnitId==source.Id&&atB1.InventoryLots.Single(x=>x.LotId==child.LotId).FreshUntil==freshness,
+                    "Whole and split clock advancement did not stop at exact B1 with identical credit, retained reservation, and derived half-value degradation.");
+                var resumeAtB1=HarvestRequirementCommand(replayA,CommandKind.ResumeHarvestRequirementWork,first.Id);
+                byte[] beforeDeniedQuery=Bytes(replayA);var denied=replayA.QueryCommand(host,resumeAtB1);
+                Require(denied.Supported&&!denied.Admissible&&denied.Code=="FreshIngredientRequired"
+                    &&beforeDeniedQuery.SequenceEqual(Bytes(replayA)),"B1 Fresh-only resume was not denied by a pure query.");
+
+                WorldAdvance(replayA,unit.PreservationIntervalSeconds);
+                var atB2=replayA.Capture();
+                Require(HarvestPreservationRules.TryProject(atB2,child.LotId,out var spoiled)
+                    &&spoiled.State==HarvestPreservationState.Spoiled&&spoiled.ValueMultiplier==default
+                    &&atB2.HarvestRequirementWorks.Single().Status==HarvestRequirementWorkStatus.Paused
+                    &&atB2.Work.Reservations.Single(x=>x.Id==first.ReservationId).RemainingAmount==childAmount,
+                    "The second sourced interval failed to derive Spoiled/zero multiplier while retaining unfinished reservation state.");
+            });
+
+            cases.Add("mgt05a_rejects_unbound_generic_mass_and_schema73_preservation_split",()=>{
+                var policy=TestOnlySharedWorldPolicy.WithHarvestPreservation(new SharedHarvestFixture(),seed:17);
+                var simulation=World(policy);HarvestCommit(simulation,HarvestPreservationSourceCommand(simulation));
+                WorldAdvance(simulation,600);var harvested=simulation.Capture();
+                string unrelated="TEST_ONLY.unbound-generic-pound";var unrelatedState=harvested.Copy();
+                unrelatedState.Work=new WorkLedger(unrelatedState.Work.Lots.Concat(new[]{new ResourceLot(unrelated,SharedHarvestFixture.MaterialUnit,
+                    RuleQuantity.FromFraction(1,10),HarvestWorker,HarvestWorker)}),unrelatedState.Work.WorkerIntervals,unrelatedState.Work.Reservations);
+                unrelatedState.InventoryLots=unrelatedState.InventoryLots.Concat(new[]{new InventoryLotRecord(unrelated,"",HarvestWorker,
+                    RuleQuantity.FromFraction(1,10),unrelatedState.RuleClock,NutritionKind.None,null,InventoryAccess.Ready)}).ToArray();
+                unrelatedState.PortableEquipment=unrelatedState.PortableEquipment.Concat(new[]{new PortableEquipmentRecord(unrelated,
+                    "prototype.generic-pound-lot",HarvestWorker,HarvestWorker,"",PortablePlacement.Carried,PortableLinkKind.InventoryLot,
+                    unrelated,PortableMassBasis.GenericPounds,RuleQuantity.FromFraction(1,10),null)}).ToArray();
+                Validation.Snapshot(unrelatedState);
+                var badPortion=new Command("mgt05a.unbound-portion",HarvestWorker,unrelatedState.Revision,CommandKind.PortionInventory,
+                    unrelated,inventory:new InventoryRequest(RuleQuantity.FromFraction(1,20),"",HandlingKind.Pickup));
+                byte[] unrelatedBefore=new SnapshotCodec().Encode(unrelatedState);
+                string unrelatedResult=new TestOnlyInventoryPolicy().Resolve(unrelatedState,badPortion);
+                Require(unrelatedResult=="UnsupportedInventoryProfile"&&unrelatedBefore.SequenceEqual(new SnapshotCodec().Encode(unrelatedState)),
+                    "Unbound generic mass was accepted or mutated by the schema74 inventory handler.");
+
+                var schema73=harvested.Copy();schema73.SchemaVersion=Snapshot.PortableCountedLotSchema;
+                schema73.HarvestRequirementWorks=Array.Empty<HarvestRequirementWorkRecord>();Validation.Snapshot(schema73);
+                var unsupported=IC(simulation,CommandKind.PortionInventory,harvested.HarvestUnits.Single().Id,
+                    new InventoryRequest(RuleQuantity.FromFraction(1,10),"",HandlingKind.Pickup),HarvestWorker);
+                byte[] before=new SnapshotCodec().Encode(schema73);
+                string result=new TestOnlyInventoryPolicy().Resolve(schema73,unsupported);
+                Require(result=="UnsupportedInventoryProfile"&&before.SequenceEqual(new SnapshotCodec().Encode(schema73)),
+                    "Schema73 preservation split result="+result+" bytesStable="
+                    +before.SequenceEqual(new SnapshotCodec().Encode(schema73))+"; schema74 lineage behavior must remain unsupported.");
             });
 
             cases.Add("harvest_critical_failure_records_trade_accident_and_applies_life_damage",()=>{

@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -172,6 +172,11 @@ namespace Decennium.Foundation
                     result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Harvest,
                     includeDetails ? attempt.Status.ToString() : null, includeDetails ? (RuleTime?)attempt.WorkDone : null,
                     includeDetails ? (RuleTime?)attempt.Duration : null, options, includeDetails));
+            foreach(var job in s.HarvestRequirementWorks??Array.Empty<HarvestRequirementWorkRecord>())
+                if(job.Status==HarvestRequirementWorkStatus.Working||includeOpen&&job.Status==HarvestRequirementWorkStatus.Paused)
+                    result.Add(Create(s,job.Id,job.WorkerId,WorldProcedureKind.HarvestRequirementWork,
+                        includeDetails?job.Status.ToString():null,includeDetails?(RuleTime?)job.Work.Retained:null,
+                        includeDetails?(RuleTime?)job.Work.Required:null,options,includeDetails));
             foreach (var attempt in s.MiningAttempts ?? Array.Empty<MiningAttemptRecord>())
                 if (attempt.Status == MiningAttemptStatus.Working || includeOpen
                     && (attempt.Status == MiningAttemptStatus.Paused || attempt.Status == MiningAttemptStatus.AwaitingCheck))
@@ -273,6 +278,7 @@ namespace Decennium.Foundation
                 case CommandKind.PauseRouteReconnaissance: case CommandKind.ResumeRouteReconnaissance:
                 case CommandKind.ResolveManufacturingQuality:
                 case CommandKind.PauseHarvest: case CommandKind.ResumeHarvest:
+                case CommandKind.PauseHarvestRequirementWork: case CommandKind.ResumeHarvestRequirementWork:
                 case CommandKind.PauseMining: case CommandKind.ResumeMining:
                 case CommandKind.PauseProspecting: case CommandKind.ResumeProspecting:
                 case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
@@ -376,6 +382,7 @@ namespace Decennium.Foundation
                 || s.FishingTrapRetrievals.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.SupplyCacheAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor)
+                || s.HarvestRequirementWorks.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.MiningAttempts.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)

@@ -370,6 +370,9 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Expedition pressure requires schema67.");
                 return;
             }
+            if(s.SchemaVersion>Snapshot.ExpeditionPressureSchema&&s.ExpeditionPressureCohorts.Length==0
+                &&s.ExpeditionPressureExposures.Length==0&&s.ExpeditionPressureChanges.Length==0
+                &&s.ExpeditionPressureCheckpoints.Length==0)return;
             if (s.SchemaVersion == Snapshot.ExpeditionPressureSchema
                 && s.ExpeditionPressureExposures.Any(x => x.EndKind == ExpeditionPressureExposureEndKind.RetreatCompleted))
                 throw new ArgumentException("Retreat completion requires the pressure lifecycle schema.");

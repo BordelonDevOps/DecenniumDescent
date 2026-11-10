@@ -96,6 +96,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
+            ||harvestPreservationEnabled&&HarvestRequirementWorkCommand(kind)
             ||kind==CommandKind.StartMining||kind==CommandKind.PauseMining||kind==CommandKind.ResumeMining
             ||kind==CommandKind.StartProspecting||kind==CommandKind.PauseProspecting||kind==CommandKind.ResumeProspecting
             ||kind==CommandKind.RecordProspectingExposure

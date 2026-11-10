@@ -89,6 +89,7 @@ namespace Decennium.Foundation.Laboratory
     {
         private SharedCraftingFixture crafting;
         private int SelectedSchema => recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            : harvestPreservationEnabled ? Snapshot.HarvestPreservationSchema
             : portableStorageFixture != null ? Snapshot.PortableStorageSchema
             : expeditionCampConstructionProfile != null ? Snapshot.TemporaryCampConstructionSchema
             : expeditionCampSiteProfile != null ? Snapshot.ExpeditionCampUseSchema

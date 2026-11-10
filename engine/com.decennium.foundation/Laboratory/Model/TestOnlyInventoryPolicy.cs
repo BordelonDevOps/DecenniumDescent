@@ -115,6 +115,19 @@ namespace Decennium.Foundation.Laboratory
             if(item==null)return "UnknownInventoryLot";
             var lot=s.Work.Lots.Single(x=>x.Id==item.LotId);
             if(item.Nutrition==NutritionKind.None) {
+                if(c.Kind==CommandKind.PortionInventory&&s.SchemaVersion==Snapshot.HarvestPreservationSchema
+                    &&c.Inventory.Destination==""&&c.Inventory.Handling==HandlingKind.Pickup
+                    &&HarvestPreservationRules.TryProject(s,item.LotId,out _)) {
+                    var massItem=s.PortableEquipment.SingleOrDefault(x=>x.Id==item.LotId
+                        &&x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==item.LotId
+                        &&x.MassBasis==PortableMassBasis.GenericPounds);
+                    if(massItem==null)return "UnsupportedInventoryProfile";
+                    if(!PortableEquipmentRules.Accessible(s,c.Actor,massItem))return "InventoryOutOfReach";
+                    if(c.Inventory.Amount>s.Work.AvailableAmount(lot.Id))return "InventoryQuantityUnavailable";
+                    OrdinaryInventory.Descendant(s,lot.Id,OrdinaryInventory.Identity(s,"lot"),c.Inventory.Amount,
+                        lot.LocationId,lot.CustodianId,item.Access);
+                    return null;
+                }
                 if(c.Kind!=CommandKind.PortionInventory||s.SchemaVersion<Snapshot.PortableCountedLotSchema
                     ||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup)
                     return "UnsupportedInventoryProfile";
