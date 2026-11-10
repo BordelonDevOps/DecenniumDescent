@@ -1,6 +1,6 @@
 # MGT-05B bounded implementation corrections
 
-**Status:** GPT accepted the corrected implementation at code commit `9c0a4e92b7f2af8c62c07326934fad7524f64f9c`, with evidence/docs at `6573b7882ee2f9c6323a2de96d95100820e80629`: “No concrete acceptance blocker remains within the agreed bounded schema75 TEST_ONLY contract.” The MGT-05B implementation-review gate is closed. GPT did not select or start a successor module; its separate next-step response is pending. The earlier MGT-05A acceptance remains intact.
+**Status:** GPT accepted the corrected implementation at code commit `9c0a4e92b7f2af8c62c07326934fad7524f64f9c`, with evidence/docs at `6573b7882ee2f9c6323a2de96d95100820e80629`: “No concrete acceptance blocker remains within the agreed bounded schema75 TEST_ONLY contract.” The MGT-05B implementation-review gate is closed. GPT recommended MGT-05C source/API review for preservation exposure and controlled opening; the contract draft is [here](../../2026-11-10-mgt05c/MGT05C_SOURCE_API_REVIEW.md). No MGT-05C implementation has begun. The earlier MGT-05A acceptance remains intact.
 
 ## Scope and authority
 
@@ -29,4 +29,4 @@ Exact report digests, changed source hashes, assembly digests, reproduction resu
 
 This remains a bounded `TEST_ONLY` fish-material and vessel profile. Other materials, general exposure handling, re-treatment, active-protection content splitting, cancellation settlement, recipes and production authority remain unsupported. No Unity import or compilation, Editor tests, Play Mode, player build, or observed game runtime was performed.
 
-This acceptance covers only the bounded schema75 TEST_ONLY slice. GPT's next-dependency recommendation must be reconciled with the implementation map before another module starts. The engine remains incomplete.
+This acceptance covers only the bounded schema75 TEST_ONLY slice. GPT's MGT-05C recommendation is being reconciled through the source/API contract review before implementation begins. The engine remains incomplete.
