@@ -18,7 +18,7 @@ GPT's actual clarification of implementation authority:
 >
 > I identify no concrete conflict with that standing authorization. The deferred features remain excluded. Implementation permission is not module acceptance: MGT-05B’s resulting code and retained evidence must still pass implementation review before the module is closed.
 
-The MGT-05B implementation is authorized but not yet accepted. The actual source/API review and authorization were communicated in the “Draft MGT05 API Contract” chat; this file records the response and does not claim GPT independently ran code or tests.
+The MGT-05B implementation was authorized under the standing engine-development direction and was subsequently accepted at the exact correction commit recorded below. The actual source/API review, implementation authorization, and final acceptance were communicated in the “Draft MGT05 API Contract” chat; this file distinguishes GPT's artifact review from Codex's retained execution results.
 
 ## Implementation review status
 
@@ -30,6 +30,18 @@ GPT identified three in-scope blockers: (1) treatment validation rejected childr
 
 GPT inspected the patch and retained reports, compared the exact GitHub revisions, and text/hash-checked the source artifacts. It explicitly did **not** compile or execute the submitted C# code or tests. The original findings and their source/reasoning are preserved in the GPT response in the chat and the before-fix reproductions are in the [correction evidence](review-corrections/README.md).
 
-### Corrected implementation — re-review pending
+### Corrected implementation — accepted
 
-Correction commit `9c0a4e92b7f2af8c62c07326934fad7524f64f9c` contains the bounded code fixes and reproducible validation. The [correction packet](review-corrections/README.md), [exact code diff](review-corrections/MGT05B_CORRECTIONS.patch), and [source/report bindings](review-corrections/MGT05B_CORRECTION_BINDINGS.json) are the review material for the next GPT response. The full C# 9 warnings-as-errors suite passes **1,326/1,326**, all five MGT-05B cases pass, the two new focused corrections pass **1/1 each**, and the refreshed static package report passes **18/18** with all three `.meta` hashes matched to the checked-in bytes. GPT has not reviewed this correction commit yet, so implementation acceptance is still pending and no successor module may begin.
+GPT reviewed correction commit `9c0a4e92b7f2af8c62c07326934fad7524f64f9c` against the exact evidence/docs commit `6573b7882ee2f9c6323a2de96d95100820e80629` in the “Draft MGT05 API Contract” chat. Its final disposition was:
+
+> MGT-05B: ACCEPTED at `9c0a4e92b7f2af8c62c07326934fad7524f64f9c`, with evidence/docs at `6573b7882ee2f9c6323a2de96d95100820e80629`.
+>
+> No concrete acceptance blocker remains within the agreed bounded schema75 TEST_ONLY contract. Codex may record this verdict and close the MGT-05B implementation-review gate. No further correction, owner ruling, or repeat design review is required for this slice. This review does not select or start another module.
+
+GPT confirmed that the three returned findings are closed: branch-specific age projection no longer gives a late-created descendant protection its material did not experience; treatment validation permits children that separated before protection while preserving the restriction on in-window splits; and the legal closed-vessel handover validates current physical custody while retaining owner, treatment worker, and immutable history. The actual handover regression preserves protection, rejects opening/content retrieval, and verifies save/restore and replay.
+
+GPT reviewed the retained results as follows: the full C# 9 regression reports **1,326/1,326**, all five MGT-05B cases pass in that suite, the focused lineage and handover corrections each report **1/1**, both pre-fix defect reproductions retain their expected `InvalidResult`, and static package validation reports **18/18** (308 assets, 308 GUIDs, 605 hashes). GPT independently matched report/patch digests and the 282 source entries to the refreshed package report, reconstructed and hashed the changed treatment-handler and test-file bytes, and confirmed the three corrected `.meta` hashes. It inspected the corrected core projection directly but did not independently recompute that entire file’s hash or load the retained assemblies.
+
+One evidence qualification is explicitly nonblocking: the standalone lineage report is from an intermediate test-source revision, while the exact final full-suite report includes and passes that case; the focused handover report matches all 282 final source hashes. GPT said this requires no rerun. Deeper randomized lineage trees, repeated handovers, and stronger forged-snapshot tests are optional hardening, not acceptance blockers.
+
+The acceptance remains limited to the bounded schema75 TEST_ONLY treatment slice. Exposure handling, clean-tool openings, re-treatment, active-protection content splitting/repackaging, cancellation settlement, other materials, and production recipes remain deferred. Unity import/compilation, Editor tests, Play Mode, player builds, and observed gameplay were not run. This does not complete all of MGT-05 or the engine. GPT's separate follow-up about the next mapped task is still pending; no successor module has started.
