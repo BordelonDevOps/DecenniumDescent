@@ -12,6 +12,7 @@ namespace Decennium.Foundation.Laboratory
         {
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             string error = ResolveCore(s, c);
+            if (IsNextCharterAgreementCommand(c.Kind)) return error;
             if(error==null&&workWatchBefore!=null)
                 error=Recipe347ProjectedWorkWatchFailure(workWatchBefore,s,c);
             if(error==null)ApplyExpeditionCampTransitions(s,c);

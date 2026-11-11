@@ -291,8 +291,8 @@ namespace Decennium.Foundation
             if (jobs == null || jobs.Length > MaxAttempts || jobs.Any(x => x == null)
                 || jobs.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != jobs.Length
                 || jobs.Count(x => x.Open || x.Report != null) > 1
-                || state.SchemaVersion != Snapshot.NextCharterPlanSchema && jobs.Length != 0
-                || state.SchemaVersion == Snapshot.NextCharterPlanSchema && !state.TestOnly)
+                || state.SchemaVersion < Snapshot.NextCharterPlanSchema && jobs.Length != 0
+                || state.SchemaVersion >= Snapshot.NextCharterPlanSchema && !state.TestOnly)
                 throw new ArgumentException("Invalid next-charter planning history.");
             foreach (var job in jobs) ValidateJob(state, job);
         }

@@ -145,19 +145,21 @@ namespace Decennium.Foundation.Laboratory
             return AtSalePosition(state, terms.PlannerId, terms.StageX, terms.StageY) ? null : "NextCharterPlanningWorkerNotAtDesk";
         }
 
+        private static bool NextCharterCommandPayloadValid(Command command)
+            => command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.Advancement == null
+                && command.Ranged == null && command.OverwatchRider == OverwatchRider.None && command.SuppressionFire == null
+                && command.DefensiveFormation == null && command.ExpeditionAssignment == null && command.HarvestSelection == null
+                && command.MiningSelection == null && command.ProspectingExposure == null && command.RouteMappingWork == null;
+
         private string AssessNextCharterPlanCommand(Snapshot state, Command command, out NextCharterPlanRecord job, out long passageRevision,
             out NextCharterPlanObservation observation)
         {
             job = null;
             passageRevision = 0;
             observation = null;
-            if (nextCharterPlanProfile == null || state.SchemaVersion != Snapshot.NextCharterPlanSchema) return "NextCharterPlanningNotSelected";
+            if (nextCharterPlanProfile == null || state.SchemaVersion < Snapshot.NextCharterPlanSchema) return "NextCharterPlanningNotSelected";
             if (command.Actor != TestOnlyNextCharterPlanProfile.PlannerId) return "NextCharterPlanningWorkerUnauthorized";
-            if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null || command.Advancement != null
-                || command.Ranged != null || command.OverwatchRider != OverwatchRider.None || command.SuppressionFire != null
-                || command.DefensiveFormation != null || command.ExpeditionAssignment != null || command.HarvestSelection != null
-                || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
-                return "InvalidNextCharterPlanningPayload";
+            if (!NextCharterCommandPayloadValid(command)) return "InvalidNextCharterPlanningPayload";
             if (command.Kind == CommandKind.InspectNextCharterPlan) {
                 job = state.NextCharterPlans.SingleOrDefault(x => x.Id == command.Target && x.Report != null);
                 if (job == null) return "NextCharterPlanningReportMissing";

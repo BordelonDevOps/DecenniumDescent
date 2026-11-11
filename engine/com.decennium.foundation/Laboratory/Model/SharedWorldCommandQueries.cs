@@ -268,6 +268,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var mealCommand in DiscoverHavenMealCommands(s, actor)) yield return mealCommand;
             foreach (var billCommand in DiscoverExpeditionBillCommands(s, actor)) yield return billCommand;
             foreach (var planCommand in DiscoverNextCharterPlan(s, actor)) yield return planCommand;
+            foreach (var agreementCommand in DiscoverNextCharterAgreement(s, actor)) yield return agreementCommand;
             var closeCommand = DiscoverExpeditionClose(s, actor);
             if (closeCommand != null) yield return closeCommand;
             foreach (var campCommand in DiscoverExpeditionCampUseCommands(s, actor)) yield return campCommand;

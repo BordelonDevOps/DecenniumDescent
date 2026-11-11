@@ -261,6 +261,7 @@ namespace Decennium.Foundation.Tests
             AddExpeditionBillCases(cases,directory);
             AddExpeditionEpisodeCloseCases(cases,directory);
             AddNextCharterPlanCases(cases,directory);
+            AddNextCharterAgreementCases(cases,directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

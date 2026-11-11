@@ -41,7 +41,8 @@ namespace Decennium.Foundation
         StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal,
         StartHavenSale, PauseHavenSale, ResumeHavenSale, FinalizeHavenSale, CancelHavenSale, PurchaseHavenMeal,
         StartExpeditionBill, PauseExpeditionBill, ResumeExpeditionBill, FinalizeExpeditionBill, CancelExpeditionBill, CloseExpeditionEpisode,
-        StartNextCharterPlan, PauseNextCharterPlan, ResumeNextCharterPlan, FinalizeNextCharterPlan, CancelNextCharterPlan, InspectNextCharterPlan }
+        StartNextCharterPlan, PauseNextCharterPlan, ResumeNextCharterPlan, FinalizeNextCharterPlan, CancelNextCharterPlan, InspectNextCharterPlan,
+        AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -149,6 +150,7 @@ namespace Decennium.Foundation
         public const int ExpeditionBillSchema = 81;
         public const int ExpeditionEpisodeCloseSchema = 82;
         public const int NextCharterPlanSchema = 83;
+        public const int NextCharterAgreementSchema = 84;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -278,6 +280,7 @@ namespace Decennium.Foundation
         public ExpeditionBillRecord[] ExpeditionBills = Array.Empty<ExpeditionBillRecord>();
         public ExpeditionEpisodeCloseRecord ExpeditionEpisodeClose;
         public NextCharterPlanRecord[] NextCharterPlans = Array.Empty<NextCharterPlanRecord>();
+        public NextCharterAgreementRecord NextCharterAgreement;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -389,6 +392,7 @@ namespace Decennium.Foundation
             ExpeditionBills = ExpeditionBills.ToArray(),
             ExpeditionEpisodeClose = ExpeditionEpisodeClose,
             NextCharterPlans = NextCharterPlans.ToArray(),
+            NextCharterAgreement = NextCharterAgreement,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -699,6 +703,7 @@ namespace Decennium.Foundation
         public HavenMealOffer HavenMealOffer { get; }
         public ExpeditionBillBasis ExpeditionBillDraft { get; }
         public NextCharterPlanObservation NextCharterPlanAssessment { get; }
+        public NextCharterAgreementAssessment NextCharterAgreementAssessment { get; }
         public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
             IEnumerable<CommandCost> costs = null, IEnumerable<string> requiredChoices = null)
             : this(supported, admissible, code, observedRevision, costs, requiredChoices, null) { }
@@ -715,6 +720,12 @@ namespace Decennium.Foundation
         public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
             IEnumerable<CommandCost> costs, IEnumerable<string> requiredChoices, HavenSaleBasis havenSaleOffer,
             HavenMealOffer havenMealOffer, ExpeditionBillBasis expeditionBillDraft, NextCharterPlanObservation nextCharterPlanAssessment)
+            : this(supported, admissible, code, observedRevision, costs, requiredChoices, havenSaleOffer, havenMealOffer,
+                expeditionBillDraft, nextCharterPlanAssessment, null) { }
+        public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
+            IEnumerable<CommandCost> costs, IEnumerable<string> requiredChoices, HavenSaleBasis havenSaleOffer,
+            HavenMealOffer havenMealOffer, ExpeditionBillBasis expeditionBillDraft, NextCharterPlanObservation nextCharterPlanAssessment,
+            NextCharterAgreementAssessment nextCharterAgreementAssessment)
         {
             if (observedRevision < 0 || string.IsNullOrEmpty(code) || code.Length > 96
                 || code.Any(c => c < 32 || c > 126) || !supported && admissible)
@@ -729,6 +740,7 @@ namespace Decennium.Foundation
             HavenMealOffer = havenMealOffer;
             ExpeditionBillDraft = expeditionBillDraft;
             NextCharterPlanAssessment = nextCharterPlanAssessment;
+            NextCharterAgreementAssessment = nextCharterAgreementAssessment;
         }
     }
     public sealed class CommandOption
@@ -797,7 +809,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema
                 || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema || s.SchemaVersion == Foundation.Snapshot.HavenSaleSchema
                 || s.SchemaVersion == Foundation.Snapshot.HavenMealSchema || s.SchemaVersion == Foundation.Snapshot.ExpeditionBillSchema
-                || s.SchemaVersion == Foundation.Snapshot.ExpeditionEpisodeCloseSchema || s.SchemaVersion == Foundation.Snapshot.NextCharterPlanSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionEpisodeCloseSchema || s.SchemaVersion == Foundation.Snapshot.NextCharterPlanSchema
+                || s.SchemaVersion == Foundation.Snapshot.NextCharterAgreementSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -902,6 +915,7 @@ namespace Decennium.Foundation
             ExpeditionBillValidation.Validate(s);
             ExpeditionEpisodeCloseValidation.Validate(s);
             NextCharterPlanValidation.Validate(s);
+            NextCharterAgreementValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1171,7 +1185,7 @@ namespace Decennium.Foundation
             if(result==null)return new CommandQueryResult(true,false,"PolicyFailure",observedRevision);
             if(!result.Supported)return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
             return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices,
-                result.HavenSaleOffer,result.HavenMealOffer,result.ExpeditionBillDraft,result.NextCharterPlanAssessment);
+                result.HavenSaleOffer,result.HavenMealOffer,result.ExpeditionBillDraft,result.NextCharterPlanAssessment,result.NextCharterAgreementAssessment);
         }
         public IReadOnlyList<CommandOption> DiscoverCommands(Authority authority, string actor)
         {
