@@ -219,10 +219,10 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var agreement = state.NextCharterAgreement;
-            if (state.SchemaVersion == Snapshot.NextCharterAgreementSchema && !state.TestOnly)
+            if (state.SchemaVersion >= Snapshot.NextCharterAgreementSchema && !state.TestOnly)
                 throw new ArgumentException("The prospective charter profile requires TEST_ONLY authority.");
             if (agreement == null) return;
-            if (state.SchemaVersion != Snapshot.NextCharterAgreementSchema)
+            if (state.SchemaVersion < Snapshot.NextCharterAgreementSchema)
                 throw new ArgumentException("Prospective charter history requires its own schema.");
             var plan = state.NextCharterPlans.SingleOrDefault(x => x.Id == agreement.PlanId);
             var close = state.ExpeditionEpisodeClose;

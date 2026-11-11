@@ -83,6 +83,7 @@ namespace Decennium.Foundation.Laboratory
             ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)
             ||nextCharterPlanProfile!=null&&IsNextCharterPlanCommand(kind)
             ||nextCharterAgreementProfile!=null&&IsNextCharterAgreementCommand(kind)
+            ||charterAttemptProfile!=null&&IsCharterAttemptCommand(kind)
             ||expeditionCloseProfile!=null&&kind==CommandKind.CloseExpeditionEpisode
             ||havenMealProfile!=null&&kind==CommandKind.PurchaseHavenMeal
             ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
@@ -291,6 +292,11 @@ namespace Decennium.Foundation.Laboratory
             if(expeditionCloseProfile!=null&&c.Kind==CommandKind.CloseExpeditionEpisode) {
                 string closeFailure=AssessExpeditionClose(s,c,out _);
                 return new CommandQueryResult(true,closeFailure==null,closeFailure??"Available",s.Revision);
+            }
+            if(charterAttemptProfile!=null&&IsCharterAttemptCommand(c.Kind)) {
+                string attemptFailure=AssessCharterAttempt(s,c,out _,out var attemptAssessment);
+                return new CommandQueryResult(true,attemptFailure==null,attemptFailure??"Available",s.Revision,
+                    null,null,null,null,null,null,null,attemptAssessment);
             }
             if(nextCharterAgreementProfile!=null&&IsNextCharterAgreementCommand(c.Kind)) {
                 string agreementFailure=AssessNextCharterAgreementCommand(s,c,out _,out var agreementAssessment);

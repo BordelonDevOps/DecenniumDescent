@@ -12,7 +12,11 @@ namespace Decennium.Foundation.Laboratory
         {
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             string error = ResolveCore(s, c);
-            if (IsNextCharterAgreementCommand(c.Kind)) return error;
+            if (IsCharterAttemptCommand(c.Kind)) return error;
+            if (IsNextCharterAgreementCommand(c.Kind)) {
+                if (error == null && c.Kind == CommandKind.WithdrawNextCharter) ReconcileCharterAttempt(s, c);
+                return error;
+            }
             if(error==null&&workWatchBefore!=null)
                 error=Recipe347ProjectedWorkWatchFailure(workWatchBefore,s,c);
             if(error==null)ApplyExpeditionCampTransitions(s,c);
@@ -27,6 +31,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if (error == null && ObservationRules.Enabled(s))
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
+            if (error == null) ReconcileCharterAttempt(s, c);
             return error;
         }
 

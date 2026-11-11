@@ -22,6 +22,7 @@ namespace Decennium.Foundation.Laboratory
             public int ToX;
             public int ToY;
             public long Cost;
+            public CharterAttemptReadiness CharterDeparture;
         }
 
         private string AssessWorldStep(Snapshot s, Command c, out WorldStepFacts facts)
@@ -131,7 +132,7 @@ namespace Decennium.Foundation.Laboratory
             facts = new WorldStepFacts { Scheduled = scheduled, OffCalendar = offCalendar, StartsEncounter = startsEncounter,
                 DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
-            return null;
+            return AssessCharterWorldStep(s, c, facts);
         }
 
         private bool WorldStepWouldStartEncounter(Snapshot s, string actor, int fromX, int fromY, int toX, int toY)
@@ -187,7 +188,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                 }
             }
-            return null;
+            return AssessCharterTraversalResume(s, edge);
         }
 
         private string AssessRepairStart(Snapshot s, Command c)
@@ -269,6 +270,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var billCommand in DiscoverExpeditionBillCommands(s, actor)) yield return billCommand;
             foreach (var planCommand in DiscoverNextCharterPlan(s, actor)) yield return planCommand;
             foreach (var agreementCommand in DiscoverNextCharterAgreement(s, actor)) yield return agreementCommand;
+            foreach (var attemptCommand in DiscoverCharterAttempt(s, actor)) yield return attemptCommand;
             var closeCommand = DiscoverExpeditionClose(s, actor);
             if (closeCommand != null) yield return closeCommand;
             foreach (var campCommand in DiscoverExpeditionCampUseCommands(s, actor)) yield return campCommand;

@@ -488,6 +488,7 @@ namespace Decennium.Foundation.Laboratory
                 var saleBoundary=NextHavenSaleBoundary(s);if(saleBoundary.HasValue&&saleBoundary.Value<next)next=saleBoundary.Value;
                 var billBoundary=NextExpeditionBillBoundary(s);if(billBoundary.HasValue&&billBoundary.Value<next)next=billBoundary.Value;
                 var planBoundary=NextCharterPlanBoundary(s);if(planBoundary.HasValue&&planBoundary.Value<next)next=planBoundary.Value;
+                var attemptBoundary=NextCharterAttemptBoundary(s);if(attemptBoundary.HasValue&&attemptBoundary.Value<next)next=attemptBoundary.Value;
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<next)next=prospectingBoundary.Value;
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<next)next=miningAssayBoundary.Value;
                 var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<next)next=mineralPreparationBoundary.Value;
@@ -527,6 +528,7 @@ namespace Decennium.Foundation.Laboratory
                     x => WorldActivityValidation.ActiveLaborReference(s, x.ActorId, segmentStart, next), StringComparer.Ordinal);
                 var observationSegments = new System.Collections.Generic.List<ObservationMovementSegment>();
                 WorldTraversalRecord stagedPressureArrival = null;
+                WorldTraversalRecord charterArrival = null;
                 bool completedPressureRetreat = false;
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;
@@ -548,8 +550,12 @@ namespace Decennium.Foundation.Laboratory
                     else if(IsOffCalendarActivity(s,edge.ActorId))SetActivityInterval(s,ActivityInterval(s,edge.ActorId).Spend(distance.Scale(multiplier)));
                     var progress = edge.DistanceFeet + distance;
                     if (distance > default(RuleQuantity)) observationSegments.Add(new ObservationMovementSegment(edge, priorDistance, progress));
-                    if(distance>default(RuleQuantity))CharacterAdvancementRules.MarkMoved(s,edge.ActorId);
+                    if(distance>default(RuleQuantity)) {
+                        CharacterAdvancementRules.MarkMoved(s,edge.ActorId);
+                        CreditCharterMovement(s,edge,elapsed);
+                    }
                     if (progress == new RuleQuantity(5)) {
+                        if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
                         bool pressureArrival = IsPressureHavenArrival(s, edge);
                         if (pressureArrival) stagedPressureArrival = edge;
                         else {
@@ -670,6 +676,7 @@ namespace Decennium.Foundation.Laboratory
                 string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 FinishDueNextCharterPlan(s);
+                ReconcileCharterAttempt(s,initiating,charterArrival);
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -714,6 +721,7 @@ namespace Decennium.Foundation.Laboratory
             if (restingActorFailure != null) return restingActorFailure;
             if(IsHavenAppraisalCommand(c.Kind))return ResolveHavenAppraisal(s,c);
             if(c.Kind==CommandKind.CloseExpeditionEpisode)return ResolveExpeditionClose(s,c);
+            if(IsCharterAttemptCommand(c.Kind))return ResolveCharterAttempt(s,c);
             if(IsNextCharterAgreementCommand(c.Kind))return ResolveNextCharterAgreement(s,c);
             if(IsNextCharterPlanCommand(c.Kind))return ResolveNextCharterPlan(s,c);
             if(IsExpeditionBillCommand(c.Kind))return ResolveExpeditionBill(s,c);
@@ -842,8 +850,10 @@ namespace Decennium.Foundation.Laboratory
                     if (routeSpatial == null || routeSpatial.Detached) return "RoutePositionAuthorityMismatch";
                     SetRouteSpatial(s, routeSpatial.With(routeSpatial.X, routeSpatial.Y, true));
                 }
-                s.WorldTraversals = s.WorldTraversals.Concat(new[] { new WorldTraversalRecord(c.Actor, s.Revision + 1,
-                    actor.X, actor.Y, facts.ToX, facts.ToY, facts.InitialDistance, c.Target == "run") }).ToArray();
+                var edge = new WorldTraversalRecord(c.Actor, s.Revision + 1,
+                    actor.X, actor.Y, facts.ToX, facts.ToY, facts.InitialDistance, c.Target == "run");
+                s.WorldTraversals = s.WorldTraversals.Append(edge).ToArray();
+                AttachCharterWorldStep(s,c,edge,facts.CharterDeparture);
                 SyncExpeditionAssignments(s,c.Actor); return null;
             }
             if (c.Kind == CommandKind.SuspendWorldStep || c.Kind == CommandKind.ResumeWorldStep) {
@@ -857,7 +867,8 @@ namespace Decennium.Foundation.Laboratory
                     if(s.WorldSchedule.Order.Contains(c.Actor)) { string error = PayRun(s, c.Actor); if (error != null) return error; }
                     else { string error=PayActivityDash(s,c.Actor,c.Id,s.Revision+1);if(error!=null)return error; }
                 }
-                SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Moving)); ReconcileTraversal(s); return null;
+                SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Moving));
+                ResumeCharterTraversal(s,c,edge); ReconcileTraversal(s); return null;
             }
             if (c.Kind == CommandKind.DispatchConditionEvent) {
                 if(harvestPreservationTreatmentEnabled&&s.HarvestPreservationTreatmentAttempts.Any(x=>
@@ -900,6 +911,7 @@ namespace Decennium.Foundation.Laboratory
                 var saleBoundary=NextHavenSaleBoundary(s);if(saleBoundary.HasValue&&saleBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var billBoundary=NextExpeditionBillBoundary(s);if(billBoundary.HasValue&&billBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var planBoundary=NextCharterPlanBoundary(s);if(planBoundary.HasValue&&planBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
+                var attemptBoundary=NextCharterAttemptBoundary(s);if(attemptBoundary.HasValue&&attemptBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var prospectingBoundary=NextProspectingBoundary(s);if(prospectingBoundary.HasValue&&prospectingBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var miningAssayBoundary=NextMiningAssayBoundary(s);if(miningAssayBoundary.HasValue&&miningAssayBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";

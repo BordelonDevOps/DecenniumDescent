@@ -148,7 +148,7 @@ namespace Decennium.Foundation.Laboratory
             plan = null;
             assessment = null;
             var terms = nextCharterAgreementTerms;
-            if (nextCharterAgreementProfile == null || state.SchemaVersion != Snapshot.NextCharterAgreementSchema)
+            if (nextCharterAgreementProfile == null || state.SchemaVersion < Snapshot.NextCharterAgreementSchema)
                 return "NextCharterAssentNotSelected";
             if (command.Actor != terms.ParticipantId) return "NextCharterAssentActorUnauthorized";
             if (!NextCharterCommandPayloadValid(command)) return "InvalidNextCharterAssentPayload";
