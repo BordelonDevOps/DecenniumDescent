@@ -1,6 +1,6 @@
 # MGT-10 one funded Haven sale implementation review
 
-[Source commit `62cc2947aff229d97d925f9288bf102bfa263713`](https://github.com/BordelonDevOps/DecenniumDescent/commit/62cc2947aff229d97d925f9288bf102bfa263713) implements the [approved bounded contract](SOURCE_API_REVIEW.md#approved-bounded-contract) as an opt-in schema 79 TEST_ONLY simulation. GPT implementation review is pending.
+[Source commit `62cc2947aff229d97d925f9288bf102bfa263713`](https://github.com/BordelonDevOps/DecenniumDescent/commit/62cc2947aff229d97d925f9288bf102bfa263713) implements the [approved bounded contract](SOURCE_API_REVIEW.md#approved-bounded-contract) as an opt-in schema 79 TEST_ONLY simulation. GPT accepted the exact source. [Actual implementation review](GPT_REVIEW.md)
 
 One actual, non-roster buyer brings two existing genuine copper coins to the counter. A scoped mandate, title clearance and written routine-goods levy exemption authorize the exact offer. The buyer's fixed quote is 7/3 cp and the ordinary material appraisal remains 15/2 cp. The one actual payment rounds down to two copper coins. An authorized seller can query the exact offer and can leave the counter with the iron.
 
