@@ -1,32 +1,131 @@
 {
-  "schema": "mgt05c-validation-artifacts-v1",
-  "codeCommit": "27dea8d0343b385539b8703255064301974c6e27",
+  "schema": "mgt05c-validation-artifacts-v2",
+  "initialCodeCommit": "27dea8d0343b385539b8703255064301974c6e27",
+  "correctedCodeCommit": "4b88ed7b2876e69dee3d104fc9745b3eba0829ae",
+  "correctedFiles": [
+    "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/HarvestPreservationTreatmentCases.cs"
+  ],
+  "correctionPatch": {
+    "path": "../MGT05C_CORRECTION.patch",
+    "bytes": 9406,
+    "sha256": "b4e74ee02279623caac317305bef2d294b9ab17b557a0f8cd5787ad5e0336f89",
+    "reverseApplyCheck": "PASS"
+  },
   "sourceHashEntries": 283,
-  "sourceHashSetSha256": "acd1b210be70141d00ca887ec40a3d833823a10e5a5a5cf2d582aa212cdf6e98",
-  "representativeCompileReport": "attempt-results/final-focused/run-20261110T230912332Z-5a0167b7/results.json",
+  "sourceHashSetSha256": "9580902fdfa371a9a7f591c0c888a95c33c984b850e1ee87a427c5cb197372a4",
+  "focusedCases": [
+    {
+      "case": "mgt05a_harvest_mass_preservation_work_deadline_save_restore_and_replay",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235220450Z-f44b8ec2/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05b_closed_vessel_treatment_lineage_save_restore_and_replay",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235304410Z-fd3ffe6c/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05b_failed_treatment_spends_supply_once_without_protection",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235424075Z-989d1f9f/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05b_degraded_treatment_retains_half_value_and_spoilage_deadlines_reject",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235455262Z-03ddc902/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05b_lineage_cutoff_save_restore_and_replay",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235523124Z-b0bf2323/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05b_closed_vessel_handover_preserves_treatment_and_ownership",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235557054Z-f15b1fe2/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05c_controlled_open_portion_retrieval_save_restore_and_replay",
+      "result": "attempt-results/gpt-correction-after/run-20261110T235018773Z-d9c08a3d/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    },
+    {
+      "case": "mgt05c_deadline_and_trusted_exposure_boundaries",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235630800Z-75597948/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "total": 1,
+      "sourceHashEntries": 283
+    }
+  ],
+  "retainedNonPassingAttempts": [
+    {
+      "kind": "expected-pre-fix-regression-reproduction",
+      "result": "attempt-results/gpt-correction-before/run-20261110T234914655Z-3022b330/results.json",
+      "status": "FAIL",
+      "sourceHashEntries": 283
+    },
+    {
+      "kind": "runner-selection-error-invalid-stale-case-name",
+      "result": "attempt-results/gpt-correction-focused/run-20261110T235331587Z-c8d25450/results.json",
+      "status": "FAIL",
+      "sourceHashEntries": 283
+    }
+  ],
   "compiledAssemblies": [
     {
       "bytes": 971776,
-      "sha256": "f54b352fa971c43e901e0db94412eea89a60a6cfe2aeda702ab4508426bcb7ac",
+      "sha256": "e7f3f2fdc930b60f72ffb577618da503387e099e809c10d687897fa68edb1588",
       "path": "assemblies/Decennium.Foundation.Core.dll"
     },
     {
-      "bytes": 2088960,
-      "sha256": "c5ec4b1e82008d888ae48d1bbecfb4e0a9559d9ad30579e58a0db4982eb5de06",
+      "bytes": 2091008,
+      "sha256": "e4cfb85606e06a1529585d9c418471fd57ea9744a23421b03278095e2739d1db",
       "path": "assemblies/Decennium.Foundation.HeadlessTests.dll"
     },
     {
       "bytes": 2430464,
-      "sha256": "045c1162f1229e4a432bc90249e7b0edfa16aa1f86cb0000f2f69991bac5c321",
+      "sha256": "fca1aff9902584d9d087d1bf48310318669c9d27c30a4d569345a9bb2cd9e185",
       "path": "assemblies/Decennium.Foundation.LabModel.dll"
     },
     {
       "bytes": 218624,
-      "sha256": "9bd53c65fab1597dc307d6c39910fc325e452780d325f056d32a8a04e5212f47",
+      "sha256": "dc8a12b6540480334420a725c1bfcf85d6da97f05bc44644f4393eabf40854f9",
       "path": "assemblies/Decennium.Foundation.Persistence.dll"
     }
   ],
-  "packageReport": "package/results.json",
-  "packageAssets": 309,
-  "packageUniqueGuids": 309
+  "packageReport": {
+    "path": "package/results.json",
+    "bytes": 116252,
+    "sha256": "a0293ce4d06c652172e2bc249d565d95572033f03d8b41399307718653cb78b8",
+    "status": "PASS",
+    "passedChecks": 18,
+    "totalChecks": 18,
+    "packageAssets": 309,
+    "uniqueGuids": 309,
+    "fileHashes": 607
+  },
+  "reviewStatus": "GPT implementation re-review pending; do not begin next module before acceptance"
 }
