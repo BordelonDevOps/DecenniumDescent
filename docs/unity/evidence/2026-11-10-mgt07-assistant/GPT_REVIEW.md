@@ -22,4 +22,12 @@ Correction commit [`5082abfd90d821baac2017a8a2c312c7b1473978`](https://github.co
 | 48 | `mineral_preparation_conserves_measured_mass_and_resumes_after_save` |
 | 49 | `recipe347_mining_tool_applies_check_reserve_and_integrated_dressing_through_shared_extraction` |
 
-The initial unfiltered suite recorded 1,340 passing cases, but it computed hashes after the correction began. Three hashes refer to the later working files while the loaded assemblies still contained the original candidate. That run is excluded from exact-source acceptance evidence. An unfiltered run against the corrected source is in progress. GPT implementation acceptance is pending and the next module is gated on the actual verdict.
+The initial unfiltered suite recorded 1,340 passing cases, but it computed hashes after the correction began. Three hashes refer to the later working files while the loaded assemblies still contained the original candidate. That run is excluded from exact-source acceptance evidence. An unfiltered run against the corrected source is in progress.
+
+## Actual GPT disposition
+
+[Unity Rules Engine Development](https://chatgpt.com/c/6af31754-d1bc-83ea-aa5c-d5e33cc9258c) accepted correction commit `5082abfd90d821baac2017a8a2c312c7b1473978` with evidence commit `f17ec17897f58dcb228ca35be226b61e48bb9359`. It closed the tactical-entry blocker and the historical and forged-state coverage gaps. GPT found no remaining concrete blocker in the bounded schema77 `TEST_ONLY` direct-extraction contract. It accepted the exact focused, historical/connected, compilation, and static package evidence and excluded the initial unfiltered run. The corrected unfiltered run and Unity execution were outside its acceptance basis.
+
+GPT inspected the complete correction diff, both changed tests, the before-fix and corrected reports, all 30 historical results, the source/API contract, current handoff, map, and dependency order. It cross-checked the two runtime files' listed hashes against the bindings and the focused, historical and compilation reports. It did not independently hash all files, run tests or compile C#, load binary saves, replay commands, or run Unity.
+
+GPT identified MGT-08 Farming and agricultural companion work as the next mapped review area, with prerequisites MGT-01 and MGT-02. Codex checked that dependency order against the implementation map and agrees. MGT-08 begins at [source/API review](../2026-11-10-mgt08-camp-greens/SOURCE_API_REVIEW.md). Existing MGT-05A/B/C and MGT-06 acceptances stand.
