@@ -6,4 +6,6 @@ GPT verified all six agreed groups in the pinned material, including assigned te
 
 GPT inspected the MGT-07 addendum reporting the corrected exact-source full pass, 1,341/1,341. It treated that as supplemental evidence for the existing MGT-07 acceptance.
 
+The MGT-08 exact-source unfiltered suite subsequently passed **1,346/1,346** with all 283 source hashes matching the focused evidence. [Full results](validation/run-20261111T051933287Z-98db63a8/results.json)
+
 GPT selected MGT-09 Research, discovery, training and progression for source/API review, citing mapped prerequisites MGT-01, MGT-02 and RUL-01. Codex verified the map and agrees. [MGT-09 source/API review request](../2026-11-10-mgt09-research-station/SOURCE_API_REVIEW.md)

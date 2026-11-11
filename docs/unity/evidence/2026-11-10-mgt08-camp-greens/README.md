@@ -13,4 +13,6 @@ The mode is encoded in the final TEST_ONLY content fingerprint. The standalone c
 - Both pre-change schema3 and schema39 save pairs passed exact byte roundtrip, the 900-second continuation, and rejection under the wrong profile. The verifier used the same assemblies as the final focused run. [Verifier](Verify-LegacyCampGreens.ps1) · [Legacy save results](legacy-saves/verification.json)
 - Standalone Core, Persistence and LabModel C# 9 warnings-as-errors compilation passed with 207 matching source hashes. Static package validation passed **18/18** with 309 assets and unique GUIDs. All seven changed C# file hashes match the committed blobs. [Compilation](compilation/compile-20261111T051748191Z-66c5669c/results.json) · [Package](package/static-20261111T051933238Z-60f79810/results.json) · [Bindings](BINDINGS.json)
 
-The unfiltered regression suite is still running against the exact candidate. Unity gameplay integration, the portable-water bridge, broader agriculture, and production plot rules remain deferred.
+- The corrected-source unfiltered regression suite passed **1,346/1,346**. All 283 source hashes match the focused report. It includes the five new cases, the connected exploration/combat/assigned-mining case, and the connected exploration/encounter/cache/storage/crafting/continue case. This run completed after GPT's acceptance. [Full results](validation/run-20261111T051933287Z-98db63a8/results.json)
+
+Unity gameplay integration, the portable-water bridge, broader agriculture, and production plot rules remain deferred.
