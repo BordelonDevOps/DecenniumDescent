@@ -467,6 +467,18 @@ namespace Decennium.Foundation.Tests
 
             cases.Add("exp07_living_retreat_save_authority_and_isolated_provenance", () =>
             {
+                var legacyPressure = PressurePolicy(initialPressure: 2).Initial();
+                var cohort = legacyPressure.ExpeditionPressureCohorts.Single();
+                var codec = new SnapshotCodec();
+                var original = codec.Encode(legacyPressure);
+                Require(codec.Encode(codec.Decode(original)).SequenceEqual(original),
+                    "The original one-member Pressure envelope did not roundtrip.");
+                legacyPressure.ExpeditionPressureCohorts = new[] {
+                    ExpeditionPressureCohortRecord.ForLocalRetreat(cohort.Id, cohort.ProfileFingerprint, cohort.RouteFingerprint,
+                        cohort.InitialPressure, new[] { cohort.Members[0], TestOnlyPolicy.CompanionId })
+                };
+                Throws<ArgumentException>(() => codec.Encode(legacyPressure));
+
                 var old = ReinforcementStaged(ReinforcementPolicy(7), early: true);
                 EnterLater(old);
                 LaterCommit(old, ReinforcementCommand(old));

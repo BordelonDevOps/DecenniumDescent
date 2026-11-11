@@ -408,8 +408,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Retreat completion requires the pressure lifecycle schema.");
             if (s.ExpeditionPressureCohorts.Length != 1
                 || s.ExpeditionPressureCohorts.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureCohorts.Length
-                || s.ExpeditionPressureCohorts.Any(x => x.Members.Any(id => !s.Actors.Any(a => a.Id == id))
-                    || x.ProfileFingerprint != s.ContentFingerprint)
+                || s.ExpeditionPressureCohorts.Any(x => x.Members.Count != (localRetreat ? 2 : 1)
+                    || x.Members.Any(id => !s.Actors.Any(a => a.Id == id)) || x.ProfileFingerprint != s.ContentFingerprint)
                 || s.ExpeditionPressureExposures.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureExposures.Length
                 || s.ExpeditionPressureChanges.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureChanges.Length
                 || s.ExpeditionPressureCheckpoints.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.ExpeditionPressureCheckpoints.Length
