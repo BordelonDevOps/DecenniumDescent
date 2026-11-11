@@ -1,5 +1,7 @@
 # MGT-10 prospective next-charter planning
 
+The first candidate met planning groups 1-5 in GPT review. Group 6 was held for the existing bill busy protocol. [Actual review](GPT_REVIEW.md) · [Corrected evidence](correction/README.md)
+
 [Implementation `db061611dffd0260c272528e384004c2420fdd1a`](https://github.com/BordelonDevOps/DecenniumDescent/commit/db061611dffd0260c272528e384004c2420fdd1a) implements the reviewed schema 83 TEST_ONLY planning procedure on `Engine`. It follows the mapped MGT-10 dependencies MGT-01, MGT-04, MGT-09 and supported EXP-07. The governing source is the pinned Expedition Player Book at `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`, including FL-19's 60 active minutes and FL-26's prospective charter boundary. [Source/API decisions and fixture clarification](SOURCE_API_REVIEW.md)
 
 ## Connected behavior
@@ -25,4 +27,4 @@ The report records zero authorized new spending. The vendor keeps the earlier te
 - C# 9 warnings-as-errors standalone compilation passed. The package passed all 18 static checks over 333 assets and 333 unique GUIDs. [Compilation report](compile/compile-20261111T125447173Z-0143dfed/results.json) · [Package report](static/static-20261111T125447306Z-06084a03/results.json)
 - Seven authentic historical controls on the candidate assemblies retained byte-identical roundtrips and ordinary continuations. [Schema 82](legacy-saves/schema82-verification.json) · [Schema 81](legacy-saves/schema81-verification.json) · [Schema 80](legacy-saves/schema80-verification.json) · [Schema 79](legacy-saves/schema79-verification.json) · [Schema 78 paused](legacy-saves/schema78-paused-verification.json) · [Schema 78 completed](legacy-saves/schema78-completed-verification.json) · [Schema 43](legacy-saves/schema43-verification.json)
 - Source, sidecars, compilation, reports, saves and audit hashes are bound to the exact implementation. [Bindings](BINDINGS.json)
-- The unfiltered C# regression is running against this exact source. Unity Editor compilation, Edit Mode, Play Mode and player build remain deferred.
+- This exact held source passed **1,399/1,399** unfiltered C# cases with 307 matching Git source hashes. The targeted legacy busy-code case was added in the correction. Unity integration remains deferred. [Held unfiltered report](validation/run-20261111T125447013Z-de0c7e33/results.json) · [Held full bindings](FULL_BINDINGS.json)
