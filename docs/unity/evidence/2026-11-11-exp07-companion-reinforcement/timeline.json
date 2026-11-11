@@ -1,0 +1,1419 @@
+[
+  {
+    "save": "exp07_companion_reinforcement_authority_incapacity_and_tactical_priority/exp07-reinforcement-deferred.ddsave",
+    "sha256": "a2a0a6802655cb91b0dffaa96108f311643d2c567c41b5351140088915ed66c1",
+    "revision": 105,
+    "at": "23199/2",
+    "random": 502002592,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 100,
+        "command": "reinforcement.99.BeginReinforcementApproach",
+        "at": "23187/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 102,
+        "command": "tactical.command.102",
+        "at": "23189/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Deferred",
+        "revision": 105,
+        "command": "tactical.command.105",
+        "at": "23199/2",
+        "reason": "ReinforcementActorIncapable",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_authority_incapacity_and_tactical_priority/exp07-reinforcement-pending-choice-recovered.ddsave",
+    "sha256": "fecbe902bf4bd834604d83c89aaf335102d64222acc982bf7bef212f061db24a",
+    "revision": 116,
+    "at": "23199/2",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 2,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 109,
+        "command": "reinforcement.108.BeginReinforcementApproach",
+        "at": "23187/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Suspended",
+        "revision": 110,
+        "command": "reinforcement.109.SuspendWorldStep",
+        "at": "23187/2",
+        "reason": "ReinforcementExplicitSuspension",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Resumed",
+        "revision": 115,
+        "command": "reinforcement.114.ResumeWorldStep",
+        "at": "23193/2",
+        "reason": "ReinforcementExplicitResume",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 116,
+        "command": "tactical.command.116",
+        "at": "23195/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 116,
+        "command": "tactical.command.116",
+        "at": "23199/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23199/2",
+      "localCursor": 0,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "5/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "30/1",
+          "action": true,
+          "dash": true,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-cancelled-continued.ddsave",
+    "sha256": "06e224076f57f8dbc831403824efa3c9be8bac19155105b9971f9acbdcda8b3e",
+    "revision": 136,
+    "at": "23275/2",
+    "random": 2952121365,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "5/1",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.actor",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.13",
+      "round": 7,
+      "isActive": false,
+      "closedAt": "23271/2"
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Cancelled",
+        "revision": 106,
+        "command": "reinforcement.105.CancelReinforcementApproach",
+        "at": "23199/2",
+        "reason": "ReinforcementExplicitCancellation",
+        "feet": "15/4"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-exact.ddsave",
+    "sha256": "1207d8289b6575a72d251cdc97adf866a36fd8ebd0365d523b719630760f1b4c",
+    "revision": 104,
+    "at": "23199/2",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 2,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 102,
+        "command": "reinforcement.101.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 104,
+        "command": "tactical.command.104",
+        "at": "23199/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 104,
+        "command": "tactical.command.104",
+        "at": "23199/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23199/2",
+      "localCursor": 0,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "15/2",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-late.ddsave",
+    "sha256": "6f899af39fb082f3f62106f7575a43ef65f40eed456c593305a7f910764a2a2f",
+    "revision": 109,
+    "at": "23211/2",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 4,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.4",
+      "round": 3,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 107,
+        "command": "tactical.command.107",
+        "at": "23201/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 109,
+        "command": "tactical.command.109",
+        "at": "23211/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23211/2",
+      "localCursor": 0,
+      "firstTurn": 4,
+      "firstRound": 3,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 3
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 2
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-no-longer-needed.ddsave",
+    "sha256": "91b48f6af9435bea2d1431f86436982b80cf8aef99bdbcea8f7e23f5cf53a63f",
+    "revision": 134,
+    "at": "23271/2",
+    "random": 2952121365,
+    "position": [
+      "5/4",
+      "3/1"
+    ],
+    "approach": {
+      "status": "Suspended",
+      "feet": "15/4",
+      "revision": 103
+    },
+    "companionMovement": "0/1",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.actor",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.13",
+      "round": 7,
+      "isActive": false,
+      "closedAt": "23271/2"
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Suspended",
+        "revision": 106,
+        "command": "reinforcement.105.SuspendWorldStep",
+        "at": "23199/2",
+        "reason": "ReinforcementExplicitSuspension",
+        "feet": "15/4"
+      },
+      {
+        "kind": "NoLongerNeeded",
+        "revision": 133,
+        "command": "tactical.command.133",
+        "at": "23265/2",
+        "reason": "ReinforcementConflictResolved",
+        "feet": "15/4"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-partial-control.ddsave",
+    "sha256": "24a80ac1a5d5a9a139ef862b21b1d945bbfe68ededfbc2cd36f35aa1ec032054",
+    "revision": 105,
+    "at": "23199/2",
+    "random": 502002592,
+    "position": [
+      "5/4",
+      "3/1"
+    ],
+    "approach": {
+      "status": "Moving",
+      "feet": "15/4",
+      "revision": 103
+    },
+    "companionMovement": "15/2",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_partial_exact_late_and_cancelled/exp07-reinforcement-partial.ddsave",
+    "sha256": "24a80ac1a5d5a9a139ef862b21b1d945bbfe68ededfbc2cd36f35aa1ec032054",
+    "revision": 105,
+    "at": "23199/2",
+    "random": 502002592,
+    "position": [
+      "5/4",
+      "3/1"
+    ],
+    "approach": {
+      "status": "Moving",
+      "feet": "15/4",
+      "revision": 103
+    },
+    "companionMovement": "15/2",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "23193/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_physical_arrival_and_same_fight/exp07-reinforcement-admitted.ddsave",
+    "sha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+    "revision": 104,
+    "at": "23199/2",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 2,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 100,
+        "command": "reinforcement.99.BeginReinforcementApproach",
+        "at": "23187/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 102,
+        "command": "tactical.command.102",
+        "at": "23189/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 104,
+        "command": "tactical.command.104",
+        "at": "23199/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23199/2",
+      "localCursor": 0,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_physical_arrival_and_same_fight/exp07-reinforcement-arrived.ddsave",
+    "sha256": "fd940dda569423c8413001b42904935cf45bf1c94c95ddfaece92f7cd86b42e5",
+    "revision": 102,
+    "at": "23193/2",
+    "random": 502002592,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "5/1",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.actor",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.1",
+      "round": 1,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 100,
+        "command": "reinforcement.99.BeginReinforcementApproach",
+        "at": "23187/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 102,
+        "command": "tactical.command.102",
+        "at": "23189/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_physical_arrival_and_same_fight/exp07-reinforcement-before.ddsave",
+    "sha256": "028f006b4333adfb565925555b305b430c04b560ece0fc8353199b39cfd6d0d4",
+    "revision": 99,
+    "at": "23187/2",
+    "random": 502002592,
+    "position": [
+      "2/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": null,
+    "companionReaction": null,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.0",
+      "round": 1,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [],
+    "transfer": null,
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_resource_carry_virtual_markers_and_reaction/exp07-reinforcement-coincident-markers.ddsave",
+    "sha256": "08c35ec2a0d334f53f43117d8056e9fcb7699416581c6799bf95c6dbafb9bec9",
+    "revision": 115,
+    "at": "11610/1",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 5,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.5",
+      "round": 3,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 103,
+        "command": "reinforcement.102.BeginReinforcementApproach",
+        "at": "11598/1",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 106,
+        "command": "tactical.command.106",
+        "at": "11599/1",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 109,
+        "command": "tactical.command.109",
+        "at": "11604/1",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "11604/1",
+      "localCursor": 3,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": true,
+          "dash": true,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "5/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": true,
+          "dash": true,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_resource_carry_virtual_markers_and_reaction/exp07-reinforcement-initial-reaction.ddsave",
+    "sha256": "671ba322186f80f9a4e1f26987e9bee3d93fa7f32aedb74b573ae71187cf7be1",
+    "revision": 45,
+    "at": "123/2",
+    "random": 3201163884,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 4,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor",
+        "TEST_ONLY.companion"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.4",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 32,
+        "command": "reinforcement.31.BeginReinforcementApproach",
+        "at": "103/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 34,
+        "command": "tactical.command.34",
+        "at": "105/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 36,
+        "command": "tactical.command.36",
+        "at": "115/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "115/2",
+      "localCursor": 2,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 3,
+      "words": 1,
+      "before": 4169580893,
+      "after": 889409643,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [
+      {
+        "actor": "TEST_ONLY.companion",
+        "target": "TEST_ONLY.later-defender",
+        "weapon": "TEST_ONLY.ordinary-unarmed",
+        "turn": 2,
+        "at": "115/2",
+        "opportunity": true,
+        "hit": false
+      }
+    ],
+    "remoteFills": []
+  },
+  {
+    "save": "exp07_companion_reinforcement_unarmed_archive_work_and_canonical_replay/exp07-reinforcement-admitted-with-remote-work.ddsave",
+    "sha256": "94028879d7b04df8fd694ea9f79a94b30a98c47c49a62734588dcce05e4b029a",
+    "revision": 111,
+    "at": "23227/2",
+    "random": 275222415,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 2,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.companion",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.2",
+      "round": 2,
+      "isActive": true,
+      "closedAt": null
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 107,
+        "command": "reinforcement.106.BeginReinforcementApproach",
+        "at": "23215/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 109,
+        "command": "tactical.command.109",
+        "at": "23217/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 111,
+        "command": "tactical.command.111",
+        "at": "23227/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23227/2",
+      "localCursor": 0,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [],
+    "remoteFills": [
+      {
+        "actor": "TEST_ONLY.haven-copper-buyer",
+        "at": "11600/1",
+        "status": "Working",
+        "progress": "27/2"
+      }
+    ]
+  },
+  {
+    "save": "exp07_companion_reinforcement_unarmed_archive_work_and_canonical_replay/exp07-reinforcement-closed.ddsave",
+    "sha256": "180c3aa8562bebc26d996958ddd55a64d338736ff8914f13017584128dd54ea9",
+    "revision": 177,
+    "at": "23343/2",
+    "random": 768258485,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 29,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.30",
+      "round": 11,
+      "isActive": false,
+      "closedAt": "23343/2"
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 107,
+        "command": "reinforcement.106.BeginReinforcementApproach",
+        "at": "23215/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 109,
+        "command": "tactical.command.109",
+        "at": "23217/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 111,
+        "command": "tactical.command.111",
+        "at": "23227/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23227/2",
+      "localCursor": 29,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [
+      {
+        "actor": "TEST_ONLY.companion",
+        "target": "TEST_ONLY.later-defender",
+        "weapon": "TEST_ONLY.ordinary-unarmed",
+        "turn": 2,
+        "at": "23227/2",
+        "opportunity": false,
+        "hit": false
+      }
+    ],
+    "remoteFills": [
+      {
+        "actor": "TEST_ONLY.haven-copper-buyer",
+        "at": "11600/1",
+        "status": "Complete",
+        "progress": "60/1"
+      }
+    ]
+  },
+  {
+    "save": "exp07_companion_reinforcement_unarmed_archive_work_and_canonical_replay/exp07-reinforcement-continued.ddsave",
+    "sha256": "b2e6bd8a1c65d1bb487538098837d0844dce8b53003b53e4751f38356598b1b9",
+    "revision": 179,
+    "at": "23355/2",
+    "random": 768258485,
+    "position": [
+      "1/1",
+      "3/1"
+    ],
+    "approach": null,
+    "companionMovement": "0/1",
+    "companionRegularStart": 32,
+    "companionReaction": true,
+    "planting": {
+      "status": "Paused",
+      "seconds": "2/1"
+    },
+    "encounter": {
+      "id": "TEST_ONLY.later-conflict",
+      "initialOrder": [
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "order": [
+        "TEST_ONLY.companion",
+        "TEST_ONLY.later-defender",
+        "TEST_ONLY.actor"
+      ],
+      "currentActor": "TEST_ONLY.later-defender",
+      "lastActualTurn": "TEST_ONLY.later-conflict.turn.30",
+      "round": 11,
+      "isActive": false,
+      "closedAt": "23343/2"
+    },
+    "intent": [
+      {
+        "kind": "Began",
+        "revision": 107,
+        "command": "reinforcement.106.BeginReinforcementApproach",
+        "at": "23215/2",
+        "reason": "ReinforcementVoluntaryDeparture",
+        "feet": "0/1"
+      },
+      {
+        "kind": "Arrived",
+        "revision": 109,
+        "command": "tactical.command.109",
+        "at": "23217/2",
+        "reason": "ReinforcementPhysicalArrival",
+        "feet": "5/1"
+      },
+      {
+        "kind": "Admitted",
+        "revision": 111,
+        "command": "tactical.command.111",
+        "at": "23227/2",
+        "reason": "ReinforcementEndRoundAdmission",
+        "feet": "5/1"
+      }
+    ],
+    "transfer": {
+      "id": "TEST_ONLY.reinforced-calendar",
+      "origin": "23227/2",
+      "localCursor": 32,
+      "firstTurn": 2,
+      "firstRound": 2,
+      "initiative": 15,
+      "words": 1,
+      "before": 502002592,
+      "after": 275222415,
+      "carried": [
+        {
+          "actor": "TEST_ONLY.actor",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 1
+        },
+        {
+          "actor": "TEST_ONLY.companion",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": -1
+        },
+        {
+          "actor": "TEST_ONLY.later-defender",
+          "movement": "0/1",
+          "action": false,
+          "dash": false,
+          "reaction": true,
+          "interactions": 0,
+          "bonusAction": true,
+          "lastStart": 0
+        }
+      ]
+    },
+    "actualCompanionMelee": [
+      {
+        "actor": "TEST_ONLY.companion",
+        "target": "TEST_ONLY.later-defender",
+        "weapon": "TEST_ONLY.ordinary-unarmed",
+        "turn": 2,
+        "at": "23227/2",
+        "opportunity": false,
+        "hit": false
+      }
+    ],
+    "remoteFills": [
+      {
+        "actor": "TEST_ONLY.haven-copper-buyer",
+        "at": "11600/1",
+        "status": "Complete",
+        "progress": "60/1"
+      }
+    ]
+  }
+]
