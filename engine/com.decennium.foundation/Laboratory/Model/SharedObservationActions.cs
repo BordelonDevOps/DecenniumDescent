@@ -17,6 +17,7 @@ namespace Decennium.Foundation.Laboratory
             if(error==null)ApplyExpeditionCampTransitions(s,c);
             if(error==null)ReconcileHavenAppraisal(s);
             if(error==null)ReconcileHavenSale(s);
+            if(error==null)ReconcileExpeditionBill(s);
             if(error==null)ExpireReadyActionsAtStart(s,c);
             if(error==null&&s.InventoryCombat) {
                 error=QueueCompletedTacticalHuntingTrapEntries(s);

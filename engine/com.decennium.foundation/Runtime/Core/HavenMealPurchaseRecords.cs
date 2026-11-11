@@ -90,7 +90,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             if (s.HavenMealPurchases == null || s.HavenMealPurchases.Length > 1
-                || s.SchemaVersion != Snapshot.HavenMealSchema && s.HavenMealPurchases.Length != 0)
+                || s.SchemaVersion < Snapshot.HavenMealSchema && s.HavenMealPurchases.Length != 0)
                 throw new ArgumentException("Invalid Haven meal purchase history.");
             foreach (var purchase in s.HavenMealPurchases) ValidatePurchase(s, purchase);
         }

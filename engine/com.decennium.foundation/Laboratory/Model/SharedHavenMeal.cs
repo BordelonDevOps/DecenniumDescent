@@ -170,7 +170,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveHavenMealPurchase(Snapshot s, Command command, out HavenMealOffer offer)
         {
             offer = null;
-            if (havenMealProfile == null || s.SchemaVersion != Snapshot.HavenMealSchema) return "HavenMealNotSelected";
+            if (havenMealProfile == null || s.SchemaVersion < Snapshot.HavenMealSchema) return "HavenMealNotSelected";
             if (command.Actor != TestOnlyHavenMealProfile.CustomerId) return "HavenMealCustomerUnauthorized";
             if (command.Target != TestOnlyHavenMealProfile.OfferVersionId) return "HavenMealOfferUnknown";
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null

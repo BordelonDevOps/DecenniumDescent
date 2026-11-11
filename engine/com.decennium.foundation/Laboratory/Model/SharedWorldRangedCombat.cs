@@ -80,6 +80,7 @@ namespace Decennium.Foundation.Laboratory
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
+            ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)
             ||havenMealProfile!=null&&kind==CommandKind.PurchaseHavenMeal
             ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
@@ -283,6 +284,11 @@ namespace Decennium.Foundation.Laboratory
             if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind)) {
                 string appraisalFailure=AssessHavenAppraisal(s,c,out _,out _);
                 return new CommandQueryResult(true,appraisalFailure==null,appraisalFailure??"Available",s.Revision);
+            }
+            if(expeditionBillProfile!=null&&IsExpeditionBillCommand(c.Kind)) {
+                string billFailure=AssessExpeditionBill(s,c,out _,out var billDraft);
+                return new CommandQueryResult(true,billFailure==null,billFailure??"Available",s.Revision,
+                    null,null,null,null,billFailure==null&&c.Kind==CommandKind.StartExpeditionBill?billDraft:null);
             }
             if(havenSaleProfile!=null&&IsHavenSaleCommand(c.Kind)) {
                 string saleFailure=AssessHavenSale(s,c,out _,out var offer,out _);

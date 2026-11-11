@@ -150,7 +150,7 @@ namespace Decennium.Foundation
             ValidateLabor(s, sale);
             if (sale.Status == HavenSaleStatus.Paid) {
                 ValidateDelivery(s, basis.GoodsLotId, "mass-pound", basis.GoodsQuantity, basis.BuyerId);
-                var successor = s.SchemaVersion == Snapshot.HavenMealSchema && s.HavenMealPurchases?.Length == 1
+                var successor = s.SchemaVersion >= Snapshot.HavenMealSchema && s.HavenMealPurchases?.Length == 1
                     ? s.HavenMealPurchases[0] : null;
                 string tenderOwner = successor?.PriorSaleId == sale.Id ? successor.Offer.VendorId : basis.SellerId;
                 ValidateDelivery(s, basis.TenderLotId, basis.CurrencyUnitId, new RuleQuantity(basis.TenderCount), tenderOwner);
