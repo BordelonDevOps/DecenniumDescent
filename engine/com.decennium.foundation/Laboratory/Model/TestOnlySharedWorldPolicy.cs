@@ -21,6 +21,7 @@ namespace Decennium.Foundation.Laboratory
         private SharedFishingTrapFixture[] fishingTrapProfiles = Array.Empty<SharedFishingTrapFixture>();
         private bool fishingTrapLegacy;
         private bool fishingTrapBaitOnly;
+        private bool fishingTrapResponsibilityHandoverEnabled;
         private bool expeditionAssignmentsEnabled;
         private bool cropAssignmentsEnabled;
         private bool cacheExcavationEnabled;
@@ -696,6 +697,8 @@ namespace Decennium.Foundation.Laboratory
                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.DispatchConditionEvent
                 && c.Kind != CommandKind.BeginFixedEncounter) return "RouteTravelMustPauseFirst";
             if (c.Kind == CommandKind.Hide || c.Kind == CommandKind.Search) return ResolveObservationAction(s, c);
+            if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
+                return ResolveFishingTrapResponsibilityHandover(s,c);
             if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c)) {
                 var activity = ActivityInterval(s, c.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
@@ -1076,7 +1079,8 @@ namespace Decennium.Foundation.Laboratory
                         !fishingSkills.Any(skill=>skill.ActorId==g.Key&&skill.ProficiencyRank==g.First().ProficiencyRank))
                     ||s.FishingTrapAttempts.Any(x=>{
                         var profile=fishingTrapProfiles.SingleOrDefault(p=>p.TrapIdentity==x.TrapId);
-                        return profile==null||x.SetterId!=profile.SetterId||x.ResponsibleHolderId!=profile.SetterId
+                        return profile==null||x.SetterId!=profile.SetterId
+                            ||(!fishingTrapResponsibilityHandoverEnabled&&x.ResponsibleHolderId!=profile.SetterId)
                             ||x.OpportunityId!=(PhysicalFishingEnabled?profile.OpportunityIdentity:SharedFishingTrapFixture.OpportunityId)
                             ||x.CreatureId!=(PhysicalFishingEnabled?profile.CreatureIdentity:SharedFishingTrapFixture.CreatureId)
                             ||x.SiteId!=(PhysicalFishingEnabled?profile.SiteIdentity:SharedFishingTrapFixture.SiteId)
@@ -1086,6 +1090,7 @@ namespace Decennium.Foundation.Laboratory
                             ||x.CapturedCreatureId!=""&&x.CapturedCreatureId!=(PhysicalFishingEnabled?profile.CreatureIdentity:SharedFishingTrapFixture.CreatureId)
                             ||x.CheckDc!=0&&x.CheckDc!=profile.CatchDc;
                     })
+                    ||(fishingTrapResponsibilityHandoverEnabled&&s.Actors.Any(x=>FishingTrapObligations(s,x.Id).Length>1))
                     ||PhysicalFishingEnabled&&(s.FishingOpportunities.Length!=fishingTrapProfiles.Length
                         ||s.FishingCreatures.Length!=fishingTrapProfiles.Select(x=>x.CreatureIdentity).Distinct(StringComparer.Ordinal).Count()
                         ||s.SchemaVersion>=Snapshot.FishingStockSchema&&(s.FishingStockManifests.Length!=fishingTrapProfiles

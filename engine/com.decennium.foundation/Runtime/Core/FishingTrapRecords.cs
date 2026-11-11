@@ -124,6 +124,11 @@ namespace Decennium.Foundation
             CheckModifier=checkModifier;CheckDc=checkDc;CheckDegree=checkDegree;CheckOutcome=checkOutcome;
             RandomBefore=randomBefore;RandomAfter=randomAfter;WordsConsumed=wordsConsumed;
         }
+        public FishingTrapAttemptRecord WithResponsibleHolder(string responsibleHolderId)
+            =>new FishingTrapAttemptRecord(Id,SetterId,responsibleHolderId,TrapId,OpportunityId,CreatureId,CapturedCreatureId,SiteId,
+                StartedAt,SetupLabor,SetupCompletedAt,CheckDueAt,CheckResolvedAt,AbandonedAt,Status,OpportunityCommitted,
+                WisdomModifier,ProficiencyRank,ProficiencyBonus,DiceSelection,FirstDie,SecondDie,Natural,CheckModifier,CheckDc,
+                CheckDegree,CheckOutcome,RandomBefore,RandomAfter,WordsConsumed,BaitLotId,BaitReservationId,BaitExposedAt);
     }
 
     /// <summary>One finite site opportunity with one authored candidate in the bounded schema37 fixture.</summary>

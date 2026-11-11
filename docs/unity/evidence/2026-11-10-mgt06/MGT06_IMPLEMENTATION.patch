@@ -1,0 +1,665 @@
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs
+index 50c701d3..6c2fc099 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs
+@@ -36,9 +36,12 @@ namespace Decennium.Foundation.Laboratory
+         public int RecoveryPathFeet { get; }
+         public string SetterId { get; }
+         public string TrapOwnerId { get; }
++        public int InitialSetterWisdomScore { get; }
++        public int InitialSetterIntelligenceScore { get; }
+         public SharedFishingTrapFixture(int catchDc=12,int proficiencyRank=1,bool hasBait=true,string identity="riverbank",
+             int trapX=3,int trapY=4,int receiverX=3,int receiverY=3,int recoveryPathFeet=5,string setterId=null,
+-            string sharedSiteIdentity=null,string sharedCreatureIdentity=null,string sharedStockIdentity=null,string trapOwnerId=null)
++            string sharedSiteIdentity=null,string sharedCreatureIdentity=null,string sharedStockIdentity=null,string trapOwnerId=null,
++            int setterWisdomScore=10,int setterIntelligenceScore=10)
+         {
+             setterId=setterId??TestOnlyPolicy.CompanionId;
+             trapOwnerId=trapOwnerId??setterId;
+@@ -48,6 +51,7 @@ namespace Decennium.Foundation.Laboratory
+                 ||sharedSiteIdentity!=null&&!Validation.ValidId(sharedSiteIdentity)
+                 ||sharedCreatureIdentity!=null&&!Validation.ValidId(sharedCreatureIdentity)
+                 ||sharedStockIdentity!=null&&!Validation.ValidId(sharedStockIdentity)
++                ||setterWisdomScore<3||setterWisdomScore>20||setterIntelligenceScore<3||setterIntelligenceScore>20
+                 ||trapX<0||trapY<0||receiverX<0||receiverY<0||recoveryPathFeet<0||recoveryPathFeet>1000)
+                 throw new ArgumentException("Fishing Trap fixture requires a source-listed DC, valid world layout, supported setter and proficiency rank 0–2.");
+             CatchDc=catchDc;ProficiencyRank=proficiencyRank;HasBait=hasBait;SetterId=setterId;TrapOwnerId=trapOwnerId;
+@@ -62,6 +66,7 @@ namespace Decennium.Foundation.Laboratory
+             ReceiverSupportIdentity=root+"receiver-support";StockVersionIdentity=root+"stock-v1";
+             SharedStockIdentity=sharedStockIdentity??root+"shared-stock";
+             TrapX=trapX;TrapY=trapY;ReceiverX=receiverX;ReceiverY=receiverY;RecoveryPathFeet=recoveryPathFeet;
++            InitialSetterWisdomScore=setterWisdomScore;InitialSetterIntelligenceScore=setterIntelligenceScore;
+         }
+         internal string Key=>"one-complete-unenchanted-trap-with-bait-holder|one-finite-compatible-ordinary-bait|one-finite-opportunity|one-compatible-ordinary-fish|no-equipment-bonus|bait="
+             +HasBait.ToString(CultureInfo.InvariantCulture)+"|"
+@@ -75,6 +80,8 @@ namespace Decennium.Foundation.Laboratory
+             +"|path-ft="+RecoveryPathFeet.ToString(CultureInfo.InvariantCulture)+"|alternate-worker=third-combatant-free-hands"
+             +(SetterId==TestOnlyPolicy.CompanionId?"":"|setter="+SetterId)
+             +(TrapOwnerId==SetterId?"":"|trap-owner="+TrapOwnerId);
++        internal string HandoverKey=>Key+"|initial-setter-wisdom-score="+InitialSetterWisdomScore.ToString(CultureInfo.InvariantCulture)
++            +"|initial-setter-intelligence-score="+InitialSetterIntelligenceScore.ToString(CultureInfo.InvariantCulture);
+     }
+ 
+     public enum FishingTrapInteraction { Set=1, Pause=2, Resume=3, Cancel=4, Abandon=5, Retrieve=6, PauseRetrieval=7, ResumeRetrieval=8 }
+@@ -91,6 +98,13 @@ namespace Decennium.Foundation.Laboratory
+             using(var sha=SHA256.Create())return "TEST_ONLY.fishing-trap-set-v1-"+string.Concat(sha.ComputeHash(
+                 Encoding.UTF8.GetBytes(prior+"|world-profiles-v1|"+key)).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+         }
++        private static string FishingTrapHandoverFingerprint(string prior,IEnumerable<SharedFishingTrapFixture> profiles)
++        {
++            string key=string.Join("||",profiles.OrderBy(x=>x.TrapIdentity,StringComparer.Ordinal).Select(x=>x.HandoverKey));
++            using(var sha=SHA256.Create())return "TEST_ONLY.fishing-transfer-v1-"+string.Concat(sha.ComputeHash(
++                Encoding.UTF8.GetBytes(prior+"|mgt06-responsibility-handover-v1|source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|"+key))
++                .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
++        }
+         private static string BaitOnlyFishingTrapFingerprint(string prior,SharedFishingTrapFixture fixture)
+         {
+             string key="one-complete-unenchanted-trap-with-bait-holder|one-finite-compatible-ordinary-bait|one-finite-opportunity|one-compatible-ordinary-fish|no-equipment-bonus|bait="
+@@ -109,6 +123,16 @@ namespace Decennium.Foundation.Laboratory
+         private void InitializeFishingTrap(Snapshot s)
+         {
+             if(fishingTrapProfiles.Length==0)return;
++            if(fishingTrapResponsibilityHandoverEnabled) {
++                foreach(var profile in fishingTrapProfiles.GroupBy(x=>x.SetterId,StringComparer.Ordinal).Select(x=>x.First())) {
++                    var current=s.Characters.Single(x=>x.ActorId==profile.SetterId);
++                    int[] abilities=current.Abilities.ToArray();
++                    abilities[(int)CharacterAbility.Wisdom]=profile.InitialSetterWisdomScore;
++                    abilities[(int)CharacterAbility.Intelligence]=profile.InitialSetterIntelligenceScore;
++                    s.Characters=s.Characters.Select(x=>x.ActorId==profile.SetterId
++                        ?new ActorCharacterRecord(x.ActorId,x.ProfileId,abilities,x.Levels):x).ToArray();
++                }
++            }
+             // Snapshot schema is cumulative: schema35 also requires the shared Bonus Action
+             // ledger introduced at schema24, even though this fixture does not grant Soldier features.
+             s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
+@@ -184,6 +208,22 @@ namespace Decennium.Foundation.Laboratory
+                 ??throw new InvalidOperationException("Missing supplied fishing Trap profile: "+trapId);
+         private bool IsFishingTrapCommand(Command c)=>fishingTrapProfiles.Length!=0&&c.Kind==CommandKind.Interact
+             &&fishingTrapProfiles.Any(x=>x.TrapIdentity==c.Target);
++        private bool IsFishingTrapResponsibilityHandoverCommand(Command c)
++            =>fishingTrapResponsibilityHandoverEnabled&&c.Kind==CommandKind.HandoverFishingTrapResponsibility;
++        private IEnumerable<Command> DiscoverFishingTrapResponsibilityHandoverCommands(Snapshot s,Authority authority,string actor)
++        {
++            if(!fishingTrapResponsibilityHandoverEnabled||s.InventoryCombat)yield break;
++            var held=FishingTrapObligations(s,actor);
++            if(held.Length!=1)yield break;
++            int index=0;var attempt=held[0];
++            foreach(var recipient in s.Actors.Select(x=>x.Id).Where(x=>x!=actor&&authority.ConsentsToHandover(x)
++                &&FishingTrapObligations(s,x).Length==0).OrderBy(x=>x,StringComparer.Ordinal)) {
++                string id="option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".fishing-handover."
++                    +(index++).ToString(CultureInfo.InvariantCulture)+"."+attempt.Id;
++                var command=new Command(id,actor,s.Revision,CommandKind.HandoverFishingTrapResponsibility,recipient);
++                if(AssessFishingTrapResponsibilityHandover(s,command)==null)yield return command;
++            }
++        }
+         private IEnumerable<Command> DiscoverFishingTrapControls(Snapshot s,string actor)
+         {
+             int index=0;
+@@ -197,6 +237,13 @@ namespace Decennium.Foundation.Laboratory
+                         yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Resume,index++);
+                     yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Cancel,index++);
+                 }
++                if(fishingTrapResponsibilityHandoverEnabled) {
++                    var responsibility=CurrentFishingTrap(s,actor);
++                    var physical=responsibility==null?null:s.FishingTraps.SingleOrDefault(x=>x.TrapId==responsibility.TrapId);
++                    if(responsibility!=null&&responsibility.TrapId==profile.TrapIdentity&&responsibility.OpportunityCommitted
++                        &&physical!=null&&physical.Status==FishingTrapPhysicalStatus.Deployed)
++                        yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Abandon,index++);
++                }
+                 foreach(var job in s.FishingTrapRetrievals.Where(x=>x.TrapId==profile.TrapIdentity
+                     &&(x.Status==FishingTrapRetrievalStatus.Working&&x.WorkerId==actor||x.Status==FishingTrapRetrievalStatus.Paused))
+                     .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
+@@ -208,13 +255,45 @@ namespace Decennium.Foundation.Laboratory
+         private static Command TrapControlOption(Snapshot s,string actor,string trapId,FishingTrapInteraction operation,int index)
+             =>new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".fishing-trap."+index.ToString(CultureInfo.InvariantCulture),
+                 actor,s.Revision,CommandKind.Interact,trapId,(int)operation);
++        private CommandQueryResult QueryFishingTrapResponsibilityHandover(Snapshot s,Authority authority,Command c)
++        {
++            if(!IsFishingTrapResponsibilityHandoverCommand(c))
++                return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
++            if(!authority.ConsentsToHandover(c.Target))
++                return new CommandQueryResult(true,false,"RecipientNotWilling",s.Revision);
++            string failure=ResolveCore(s.Copy(),c);
++            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
++        }
++        private string AssessFishingTrapResponsibilityHandover(Snapshot s,Command c)
++        {
++            if(!fishingTrapResponsibilityHandoverEnabled||!PhysicalFishingEnabled)
++                return "FishingTrapResponsibilityHandoverUnsupported";
++            if(c.X!=0||c.Y!=0||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
++                ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null
++                ||c.ExpeditionAssignment!=null||c.HarvestSelection!=null||c.MiningSelection!=null
++                ||c.ProspectingExposure!=null||c.RouteMappingWork!=null)
++                return "InvalidFishingTrapResponsibilityHandover";
++            if(s.InventoryCombat)return "FishingRequiresExploration";
++            if(c.Target==c.Actor||!s.Actors.Any(x=>x.Id==c.Target))return "InvalidFishingTrapRecipient";
++            var held=FishingTrapObligations(s,c.Actor);
++            if(held.Length==0)return "FishingTrapDeploymentUnavailable";
++            if(held.Length!=1)return "FishingTrapResponsibilityAmbiguous";
++            var attempt=held[0];
++            if(!attempt.OpportunityCommitted)return "FishingTrapNotCommitted";
++            var physical=s.FishingTraps.SingleOrDefault(x=>x.TrapId==attempt.TrapId);
++            if(physical==null||physical.AttemptId!=attempt.Id||physical.Status!=FishingTrapPhysicalStatus.Deployed)
++                return "FishingTrapDeploymentUnavailable";
++            if(FishingTrapObligations(s,c.Target).Length!=0)return "FishingTrapDeploymentOccupied";
++            return null;
++        }
+         private CommandQueryResult QueryFishingTrapControl(Snapshot s,Command c)
+         {
+             if(!IsFishingTrapCommand(c)||c.Combat!=null||c.Y!=0||!Enum.IsDefined(typeof(FishingTrapInteraction),c.X))
+                 return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+             var operation=(FishingTrapInteraction)c.X;
+             if(operation!=FishingTrapInteraction.Pause&&operation!=FishingTrapInteraction.Resume&&operation!=FishingTrapInteraction.Cancel
+-                &&operation!=FishingTrapInteraction.PauseRetrieval&&operation!=FishingTrapInteraction.ResumeRetrieval)
++                &&operation!=FishingTrapInteraction.Abandon&&operation!=FishingTrapInteraction.PauseRetrieval
++                &&operation!=FishingTrapInteraction.ResumeRetrieval)
+                 return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+             string failure=AssessFishingTrapControl(s,c,operation);
+             return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
+@@ -249,7 +328,10 @@ namespace Decennium.Foundation.Laboratory
+                 return null;
+             }
+             if(c.Inventory!=null)return "InvalidFishingTrapInteraction";
+-            if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
++            if(operation==FishingTrapInteraction.Abandon&&fishingTrapResponsibilityHandoverEnabled) {
++                var responsible=CurrentFishingTrap(s,c.Actor);
++                if(responsible==null||responsible.TrapId!=profile.TrapIdentity)return "FishingTrapResponsibleHolderRequired";
++            } else if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
+             var current=CurrentFishingTrap(s,c.Actor);
+             if(current==null||current.TrapId!=profile.TrapIdentity)return "FishingTrapDeploymentUnavailable";
+             if(operation==FishingTrapInteraction.Pause)
+@@ -260,16 +342,22 @@ namespace Decennium.Foundation.Laboratory
+                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+                 return null;
+             }
++            if(operation==FishingTrapInteraction.Abandon) {
++                if(PhysicalFishingEnabled&&!current.OpportunityCommitted)return "FishingTrapNotCommitted";
++                return null;
++            }
+             return current.Status==FishingTrapAttemptStatus.SettingUp||current.Status==FishingTrapAttemptStatus.Paused
+                 ?null:"FishingTrapAlreadyCommitted";
+         }
+         private bool PhysicalFishingEnabled=>fishingTrapProfiles.Length!=0&&!fishingTrapLegacy&&!fishingTrapBaitOnly;
+-        private static FishingTrapAttemptRecord CurrentFishingTrap(Snapshot s,string actor)
++        private static FishingTrapAttemptRecord[] FishingTrapObligations(Snapshot s,string actor)
+             =>s.FishingTrapAttempts.Where(x=>x.ResponsibleHolderId==actor&&x.Status!=FishingTrapAttemptStatus.Cancelled
+                 &&x.Status!=FishingTrapAttemptStatus.Abandoned
+                 &&!(x.Status==FishingTrapAttemptStatus.CheckMissed&&!x.OpportunityCommitted)
+                 &&!s.FishingTraps.Any(t=>t.TrapId==x.TrapId&&t.AttemptId==x.Id&&t.Status==FishingTrapPhysicalStatus.Retrieved))
+-                .OrderByDescending(x=>x.StartedAt).FirstOrDefault();
++                .OrderByDescending(x=>x.StartedAt).ToArray();
++        private static FishingTrapAttemptRecord CurrentFishingTrap(Snapshot s,string actor)
++            =>FishingTrapObligations(s,actor).FirstOrDefault();
+         private static void PutFishingTrap(Snapshot s,FishingTrapAttemptRecord value)
+             =>s.FishingTrapAttempts=s.FishingTrapAttempts.Select(x=>x.Id==value.Id?value:x).ToArray();
+         private static void PutFishingOpportunity(Snapshot s,FishingOpportunityRecord value)
+@@ -339,7 +427,11 @@ namespace Decennium.Foundation.Laboratory
+                         FishingTrapCheckDegree.None,FishingTrapCheckOutcome.None,0,0,0,attempt.BaitLotId,attempt.BaitReservationId,null));
+                     continue;
+                 }
+-                var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",CharacterAbility.Intelligence);
++                // The schema38 responsibility-handover profile captures the pinned WIS check.
++                // Earlier profiles retain their historical INT calculation and fingerprint so
++                // existing snapshots continue to replay under their original behavior.
++                var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",
++                    fishingTrapResponsibilityHandoverEnabled?CharacterAbility.Wisdom:CharacterAbility.Intelligence);
+                 RuleTime due=fishingTrapLegacy?s.RuleClock.AddSeconds(3000):attempt.CheckDueAt.Value;
+                 bool responseAvailable=true;
+                 // This witnessed dry-set sequence exposes its reserved bait when setup completes.
+@@ -577,7 +669,10 @@ namespace Decennium.Foundation.Laboratory
+                 return ResumeFishingTrapRetrieval(s,c,job);
+             }
+             if(c.Inventory!=null)return "InvalidFishingTrapInteraction";
+-            if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
++            if(operation==FishingTrapInteraction.Abandon&&fishingTrapResponsibilityHandoverEnabled) {
++                var responsible=CurrentFishingTrap(s,c.Actor);
++                if(responsible==null||responsible.TrapId!=profile.TrapIdentity)return "FishingTrapResponsibleHolderRequired";
++            } else if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
+             var current=CurrentFishingTrap(s,c.Actor);
+             if(operation==FishingTrapInteraction.Set) {
+                 if(current!=null)return "FishingTrapDeploymentOccupied";
+@@ -681,6 +776,14 @@ namespace Decennium.Foundation.Laboratory
+             }
+             return "InvalidFishingTrapInteraction";
+         }
++        private string ResolveFishingTrapResponsibilityHandover(Snapshot s,Command c)
++        {
++            string failure=AssessFishingTrapResponsibilityHandover(s,c);
++            if(failure!=null)return failure;
++            var attempt=FishingTrapObligations(s,c.Actor).Single();
++            PutFishingTrap(s,attempt.WithResponsibleHolder(c.Target));
++            return null;
++        }
+     }
+ }
+ #endif
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs
+index 560e2450..e4a1cf34 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs
+@@ -185,6 +185,20 @@ namespace Decennium.Foundation.Laboratory
+             policy.ContentFingerprint=FishingTrapSetFingerprint(policy.ContentFingerprint,rows);
+             return policy;
+         }
++        /// <summary>Schema38 TEST_ONLY profile for source-bound unattended-Trap responsibility handover.
++        /// Existing schema37/38 profiles retain their original behavior and fingerprints.</summary>
++        public static TestOnlySharedWorldPolicy WithFishingTrapResponsibilityHandover(
++            System.Collections.Generic.IEnumerable<SharedFishingTrapFixture> profiles,uint seed=1)
++        {
++            var policy=WithFishingTraps(profiles,seed);
++            if(policy.fishingTrapProfiles.GroupBy(x=>x.SetterId,StringComparer.Ordinal).Any(g=>
++                g.Select(x=>x.InitialSetterWisdomScore).Distinct().Count()!=1
++                ||g.Select(x=>x.InitialSetterIntelligenceScore).Distinct().Count()!=1))
++                throw new ArgumentException("A setter must have one consistent initial character record across fishing profiles.",nameof(profiles));
++            policy.fishingTrapResponsibilityHandoverEnabled=true;
++            policy.ContentFingerprint=FishingTrapHandoverFingerprint(policy.ContentFingerprint,policy.fishingTrapProfiles);
++            return policy;
++        }
+         /// <summary>Historical schema35 authority used only to verify old save replay. New sessions
+         /// must use schema37, which requires actual stock and physical equipment records.</summary>
+         public static TestOnlySharedWorldPolicy WithLegacyFishingTrap(SharedFishingTrapFixture fishingTrap,uint seed=1)
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
+index 3424f342..aa921716 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs
+@@ -509,6 +509,7 @@ namespace Decennium.Foundation.Laboratory
+                 }
+             }
+             foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
++            foreach (var command in DiscoverFishingTrapResponsibilityHandoverCommands(s, authority, actor)) yield return command;
+             foreach (var command in DiscoverCacheExcavationControls(s, actor)) yield return command;
+             foreach (var command in DiscoverContextualInteractions(s, authority, actor)) yield return command;
+             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
+@@ -537,6 +538,8 @@ namespace Decennium.Foundation.Laboratory
+ 
+         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
+         {
++            if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
++                return QueryFishingTrapResponsibilityHandover(s,authority,c);
+             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
+             if(recipe347Fixture!=null&&Recipe347Command(c.Kind)) {
+                 string failure=AssessRecipe347(s,c,out var order);
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
+index 7d820b9a..409b7902 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs
+@@ -95,6 +95,7 @@ namespace Decennium.Foundation.Laboratory
+             ||kind==CommandKind.StartRouteMappingWork||kind==CommandKind.PauseRouteMappingWork||kind==CommandKind.ResumeRouteMappingWork
+             ||kind==CommandKind.StartRouteReconnaissance||kind==CommandKind.PauseRouteReconnaissance||kind==CommandKind.ResumeRouteReconnaissance
+             ||kind==CommandKind.ConsumeTestOnlyRouteMappingResult
++            ||fishingTrapResponsibilityHandoverEnabled&&kind==CommandKind.HandoverFishingTrapResponsibility
+             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
+             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
+             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs b/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
+index 25ca2a92..fc5db342 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs
+@@ -21,6 +21,7 @@ namespace Decennium.Foundation.Laboratory
+         private SharedFishingTrapFixture[] fishingTrapProfiles = Array.Empty<SharedFishingTrapFixture>();
+         private bool fishingTrapLegacy;
+         private bool fishingTrapBaitOnly;
++        private bool fishingTrapResponsibilityHandoverEnabled;
+         private bool expeditionAssignmentsEnabled;
+         private bool cropAssignmentsEnabled;
+         private bool cacheExcavationEnabled;
+@@ -696,6 +697,8 @@ namespace Decennium.Foundation.Laboratory
+                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.DispatchConditionEvent
+                 && c.Kind != CommandKind.BeginFixedEncounter) return "RouteTravelMustPauseFirst";
+             if (c.Kind == CommandKind.Hide || c.Kind == CommandKind.Search) return ResolveObservationAction(s, c);
++            if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
++                return ResolveFishingTrapResponsibilityHandover(s,c);
+             if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c)) {
+                 var activity = ActivityInterval(s, c.Actor);
+                 if (activity.Action == WorldActionCommitment.Dash
+@@ -1076,7 +1079,8 @@ namespace Decennium.Foundation.Laboratory
+                         !fishingSkills.Any(skill=>skill.ActorId==g.Key&&skill.ProficiencyRank==g.First().ProficiencyRank))
+                     ||s.FishingTrapAttempts.Any(x=>{
+                         var profile=fishingTrapProfiles.SingleOrDefault(p=>p.TrapIdentity==x.TrapId);
+-                        return profile==null||x.SetterId!=profile.SetterId||x.ResponsibleHolderId!=profile.SetterId
++                        return profile==null||x.SetterId!=profile.SetterId
++                            ||(!fishingTrapResponsibilityHandoverEnabled&&x.ResponsibleHolderId!=profile.SetterId)
+                             ||x.OpportunityId!=(PhysicalFishingEnabled?profile.OpportunityIdentity:SharedFishingTrapFixture.OpportunityId)
+                             ||x.CreatureId!=(PhysicalFishingEnabled?profile.CreatureIdentity:SharedFishingTrapFixture.CreatureId)
+                             ||x.SiteId!=(PhysicalFishingEnabled?profile.SiteIdentity:SharedFishingTrapFixture.SiteId)
+@@ -1086,6 +1090,7 @@ namespace Decennium.Foundation.Laboratory
+                             ||x.CapturedCreatureId!=""&&x.CapturedCreatureId!=(PhysicalFishingEnabled?profile.CreatureIdentity:SharedFishingTrapFixture.CreatureId)
+                             ||x.CheckDc!=0&&x.CheckDc!=profile.CatchDc;
+                     })
++                    ||(fishingTrapResponsibilityHandoverEnabled&&s.Actors.Any(x=>FishingTrapObligations(s,x.Id).Length>1))
+                     ||PhysicalFishingEnabled&&(s.FishingOpportunities.Length!=fishingTrapProfiles.Length
+                         ||s.FishingCreatures.Length!=fishingTrapProfiles.Select(x=>x.CreatureIdentity).Distinct(StringComparer.Ordinal).Count()
+                         ||s.SchemaVersion>=Snapshot.FishingStockSchema&&(s.FishingStockManifests.Length!=fishingTrapProfiles
+diff --git a/engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs b/engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs
+index bb43228c..a0e5142c 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs
+@@ -124,6 +124,11 @@ namespace Decennium.Foundation
+             CheckModifier=checkModifier;CheckDc=checkDc;CheckDegree=checkDegree;CheckOutcome=checkOutcome;
+             RandomBefore=randomBefore;RandomAfter=randomAfter;WordsConsumed=wordsConsumed;
+         }
++        public FishingTrapAttemptRecord WithResponsibleHolder(string responsibleHolderId)
++            =>new FishingTrapAttemptRecord(Id,SetterId,responsibleHolderId,TrapId,OpportunityId,CreatureId,CapturedCreatureId,SiteId,
++                StartedAt,SetupLabor,SetupCompletedAt,CheckDueAt,CheckResolvedAt,AbandonedAt,Status,OpportunityCommitted,
++                WisdomModifier,ProficiencyRank,ProficiencyBonus,DiceSelection,FirstDie,SecondDie,Natural,CheckModifier,CheckDc,
++                CheckDegree,CheckOutcome,RandomBefore,RandomAfter,WordsConsumed,BaitLotId,BaitReservationId,BaitExposedAt);
+     }
+ 
+     /// <summary>One finite site opportunity with one authored candidate in the bounded schema37 fixture.</summary>
+diff --git a/engine/com.decennium.foundation/Runtime/Core/Simulation.cs b/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
+index c22257e3..e745e036 100644
+--- a/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
++++ b/engine/com.decennium.foundation/Runtime/Core/Simulation.cs
+@@ -36,7 +36,8 @@ namespace Decennium.Foundation
+         ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
+         StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
+         StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork,
+-        StartHarvestPreservationTreatment, RecordHarvestPreservationExposure }
++        StartHarvestPreservationTreatment, RecordHarvestPreservationExposure,
++        HandoverFishingTrapResponsibility }
+     public enum Outcome { Rejected, Committed, Duplicate }
+ 
+     // DTOs are detached copies. No caller ever receives the owned simulation state.
+@@ -969,6 +970,8 @@ namespace Decennium.Foundation
+                     ||command.Kind==CommandKind.RecordProspectingExposure
+                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
+                 return "NotAuthorized";
++            if(command.Kind==CommandKind.HandoverFishingTrapResponsibility&&!authority.ConsentsToHandover(command.Target))
++                return "RecipientNotWilling";
+             if (policy is ICommandInventoryClaims claims) {
+                 try {
+                     if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return "InventoryNotAuthorized";
+diff --git a/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs b/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs
+index f73b1cbf..66cb703d 100644
+--- a/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs
++++ b/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs
+@@ -20,6 +20,10 @@ namespace Decennium.Foundation.Tests
+         {var p=TestOnlySharedWorldPolicy.WithFishingTrap(fixture,seed);return new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);}
+         private static Simulation LegacyTrapWorld(SharedFishingTrapFixture fixture,uint seed=1)
+         {var p=TestOnlySharedWorldPolicy.WithLegacyFishingTrap(fixture,seed);return new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);}
++        private static Authority TrapHandoverAuthority(bool recipientConsents=true)
++            =>new Authority("TEST_ONLY.fishing-handover",
++                new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
++                Array.Empty<string>(),recipientConsents?new[]{AdditionalTacticalActor.Id}:Array.Empty<string>());
+         private static void TrapCommit(Simulation s,FishingTrapInteraction operation,string id=null)
+             =>WorldCommit(s,TrapOp(s,operation,id));
+         private static int TrapModifier(Snapshot s,int rank,string actorId=TestOnlyPolicy.CompanionId)
+@@ -525,6 +529,278 @@ namespace Decennium.Foundation.Tests
+                     &&s.Capture().Work.Lots.Single(x=>x.Id==SharedFishingTrapFixture.BaitLotId).Amount==default
+                     &&s.Capture().Revision==initial.Revision,"Missing bait created a Trap deployment or changed state.");
+             });
++            cases.Add("fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"handover-wisdom",setterId:TestOnlyPolicy.CompanionId,
++                    setterWisdomScore:18,setterIntelligenceScore:5);
++                var recipient=new SharedFishingTrapFixture(12,1,identity:"handover-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:23);
++                var changedWisdom=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{
++                    new SharedFishingTrapFixture(12,1,identity:"handover-wisdom",setterId:TestOnlyPolicy.CompanionId,
++                        setterWisdomScore:17,setterIntelligenceScore:5),recipient},seed:23);
++                Require(policy.ContentFingerprint!=changedWisdom.ContentFingerprint,
++                    "The new profile fingerprint omitted its TEST_ONLY initial character facts.");
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var initial=s.Capture();
++                var character=initial.Characters.Single(x=>x.ActorId==source.SetterId);
++                Require(character.Abilities[(int)CharacterAbility.Wisdom]==18
++                    &&character.Abilities[(int)CharacterAbility.Intelligence]==5,
++                    "The handover profile did not initialize the shared character record from its explicit TEST_ONLY profile.");
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"handover-wisdom-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,300);var attempt=s.Capture().FishingTrapAttempts.Single();
++                int wisdom=AbilityCheckRules.Derive(initial,source.SetterId,"fishing-tackle",CharacterAbility.Wisdom).AbilityModifier;
++                int intelligence=AbilityCheckRules.Derive(initial,source.SetterId,"fishing-tackle",CharacterAbility.Intelligence).AbilityModifier;
++                Require(attempt.Status==FishingTrapAttemptStatus.Soaking&&attempt.WisdomModifier==wisdom&&wisdom!=intelligence,
++                    "The new handover profile did not capture the source-required WIS check at first deployment.");
++
++                var historicalSource=new SharedFishingTrapFixture(12,1,identity:"historical-wisdom",setterId:TestOnlyPolicy.CompanionId,
++                    setterWisdomScore:18,setterIntelligenceScore:5);
++                var historicalRecipient=new SharedFishingTrapFixture(12,1,identity:"historical-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
++                var historicalDefault=new[]{
++                    new SharedFishingTrapFixture(12,1,identity:"historical-wisdom",setterId:TestOnlyPolicy.CompanionId),
++                    new SharedFishingTrapFixture(12,1,identity:"historical-recipient",setterId:AdditionalTacticalActor.Id,trapX:4,trapY:1,receiverX:4,receiverY:2)};
++                var historical=TestOnlySharedWorldPolicy.WithFishingTraps(new[]{historicalSource,historicalRecipient},seed:23);
++                var historicalBaseline=TestOnlySharedWorldPolicy.WithFishingTraps(historicalDefault,seed:23);
++                Require(historical.ContentFingerprint==historicalBaseline.ContentFingerprint,
++                    "The source correction changed an existing schema38 profile fingerprint.");
++                var historicalBaselineState=historicalBaseline.Initial();
++                s=new Simulation(historical,historical.Initial(),ExecutionProfile.Laboratory);initial=s.Capture();
++                var originalHistoricalAbilities=historicalBaselineState.Characters.Single(x=>x.ActorId==historicalSource.SetterId).Abilities.ToArray();
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"historical-int-set",historicalSource.SetterId,historicalSource.TrapIdentity));
++                WorldAdvance(s,300);attempt=s.Capture().FishingTrapAttempts.Single();
++                character=initial.Characters.Single(x=>x.ActorId==historicalSource.SetterId);
++                Require(character.Abilities.SequenceEqual(originalHistoricalAbilities)
++                    &&attempt.WisdomModifier==AbilityCheckRules.Derive(initial,historicalSource.SetterId,"fishing-tackle",
++                        CharacterAbility.Intelligence).AbilityModifier,
++                    "A historical schema38 profile did not retain its original setter facts and check calculation.");
++            });
++            cases.Add("fishing_trap_responsibility_handover_connected_save_replay_and_retrieval",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"riverbank",setterId:TestOnlyPolicy.CompanionId,
++                    setterWisdomScore:18,setterIntelligenceScore:5);
++                var recipientTrap=new SharedFishingTrapFixture(12,1,identity:"recipient-bank",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
++                var independent=new SharedFishingTrapFixture(12,1,identity:"independent-bank",setterId:TestOnlyPolicy.CompanionId,
++                    trapX:2,trapY:3,receiverX:2,receiverY:2,setterWisdomScore:18,setterIntelligenceScore:5);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(
++                    new[]{source,recipientTrap,independent},seed:31);
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var authority=TrapHandoverAuthority();
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-source-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,300);var before=s.Capture();var attempt=before.FishingTrapAttempts.Single();
++                var transfer=new Command("mgt06-transfer",source.SetterId,before.Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,recipientTrap.SetterId);
++                RejectUnchanged(s,TrapHandoverAuthority(false),transfer,"RecipientNotWilling");
++                var query=s.QueryCommand(authority,transfer);
++                var discovered=s.DiscoverCommands(authority,source.SetterId).SingleOrDefault(x=>
++                    x.Command.Kind==CommandKind.HandoverFishingTrapResponsibility&&x.Command.Target==recipientTrap.SetterId);
++                Require(query.Supported&&query.Admissible&&query.Code=="Available"&&discovered!=null
++                    &&discovered.Query.Admissible&&discovered.Command.Id.EndsWith(attempt.Id,StringComparison.Ordinal),
++                    "The available handover was not discovered with its unique occupied obligation and shared execution assessment.");
++                var result=s.Execute(authority,transfer);Require(result.Outcome==Outcome.Committed,"Handover failed: "+result.Code);
++                var after=s.Capture();var expected=before.Copy();expected.Revision=after.Revision;
++                expected.FishingTrapAttempts=expected.FishingTrapAttempts.Select(x=>x.Id==attempt.Id
++                    ?x.WithResponsibleHolder(recipientTrap.SetterId):x).ToArray();expected.Receipts=after.Receipts;
++                var codec=new SnapshotCodec();
++                Require(codec.Encode(expected).SequenceEqual(codec.Encode(after))
++                    &&after.RuleClock==before.RuleClock&&after.RandomState==before.RandomState
++                    &&after.FishingTrapAttempts.Single().SetterId==attempt.SetterId
++                    &&after.FishingTrapAttempts.Single().ResponsibleHolderId==recipientTrap.SetterId
++                    &&after.FishingTrapAttempts.Single().WisdomModifier==attempt.WisdomModifier
++                    &&after.FishingTrapAttempts.Single().CheckDueAt==attempt.CheckDueAt,
++                    "Handover changed state outside the holder field, command receipt and revision.");
++                byte[] handoverSave=Bytes(s);s=new Simulation(policy,codec.Decode(handoverSave),ExecutionProfile.Laboratory);
++                Require(handoverSave.SequenceEqual(Bytes(s)),"Handover history did not survive byte-identical save/restore and receipt replay.");
++                var duplicate=s.Execute(authority,transfer);
++                Require(duplicate.Outcome==Outcome.Duplicate&&handoverSave.SequenceEqual(Bytes(s)),
++                    "Exact handover retry after restore was not idempotent.");
++
++                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Set,
++                    "mgt06-recipient-occupied",recipientTrap.SetterId,recipientTrap.TrapIdentity),"FishingTrapDeploymentOccupied");
++                var independentSet=TrapOp(s,FishingTrapInteraction.Set,"mgt06-independent-set",source.SetterId,independent.TrapIdentity);
++                var setResult=s.Execute(TestOnlySharedWorldPolicy.Host(),independentSet);
++                Require(setResult.Outcome==Outcome.Committed
++                    &&s.Capture().FishingTrapAttempts.Single(x=>x.TrapId==independent.TrapIdentity).Status==FishingTrapAttemptStatus.SettingUp,
++                    "The former holder could not begin a distinct deployment after handover.");
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Cancel,"mgt06-independent-cancel",source.SetterId,independent.TrapIdentity));
++
++                var control=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
++                WorldCommit(control,TrapOp(control,FishingTrapInteraction.Set,"mgt06-control-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(control,3300);WorldAdvance(s,3000);
++                var handedAttempt=s.Capture().FishingTrapAttempts.Single(x=>x.Id==attempt.Id);
++                var controlAttempt=control.Capture().FishingTrapAttempts.Single();
++                Require(handedAttempt.Status==controlAttempt.Status&&handedAttempt.CheckResolvedAt==controlAttempt.CheckResolvedAt
++                    &&handedAttempt.WisdomModifier==controlAttempt.WisdomModifier&&handedAttempt.ProficiencyRank==controlAttempt.ProficiencyRank
++                    &&handedAttempt.ProficiencyBonus==controlAttempt.ProficiencyBonus&&handedAttempt.DiceSelection==controlAttempt.DiceSelection
++                    &&handedAttempt.FirstDie==controlAttempt.FirstDie&&handedAttempt.SecondDie==controlAttempt.SecondDie
++                    &&handedAttempt.Natural==controlAttempt.Natural&&handedAttempt.CheckModifier==controlAttempt.CheckModifier
++                    &&handedAttempt.CheckDc==controlAttempt.CheckDc&&handedAttempt.CheckDegree==controlAttempt.CheckDegree
++                    &&handedAttempt.CheckOutcome==controlAttempt.CheckOutcome&&handedAttempt.RandomBefore==controlAttempt.RandomBefore
++                    &&handedAttempt.RandomAfter==controlAttempt.RandomAfter&&handedAttempt.WordsConsumed==controlAttempt.WordsConsumed
++                    &&s.Capture().RandomState==control.Capture().RandomState,
++                    "Responsibility transfer changed the original setter check, scheduled outcome or deterministic RNG replay.");
++
++                WorldCommit(s,TrapRetrieve(s,actor:source.SetterId,destination:source.ReceiverIdentity,
++                    id:"mgt06-former-holder-retrieve",target:source.TrapIdentity));WorldAdvance(s,300);
++                var retrieved=s.Capture();
++                Require(retrieved.FishingTrapAttempts.Single(x=>x.Id==attempt.Id).ResponsibleHolderId==recipientTrap.SetterId
++                    &&retrieved.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Retrieved
++                    &&retrieved.FishingTrapRetrievals.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapRetrievalStatus.Complete,
++                    "The existing capable-worker retrieval path did not recover the handed-over physical Trap.");
++                var recipientSet=TrapOp(s,FishingTrapInteraction.Set,"mgt06-recipient-after-retrieval",
++                    recipientTrap.SetterId,recipientTrap.TrapIdentity);
++                Require(s.Execute(TestOnlySharedWorldPolicy.Host(),recipientSet).Outcome==Outcome.Committed,
++                    "Physical retrieval did not release the recipient's deployment allowance.");
++            });
++            cases.Add("fishing_trap_handover_authority_rejections_and_current_holder_abandonment",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"authority-source",setterId:TestOnlyPolicy.CompanionId);
++                var recipient=new SharedFishingTrapFixture(12,1,identity:"authority-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:41);
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-authority-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,300);var revision=s.Capture().Revision;var authority=TrapHandoverAuthority();
++                Command Handover(string id,string actor,string target,long? expectedRevision=null,int x=0)
++                    =>new Command(id,actor,expectedRevision??s.Capture().Revision,CommandKind.HandoverFishingTrapResponsibility,target,x:x);
++                var current=Handover("mgt06-unauthorized",source.SetterId,recipient.SetterId);
++                RejectUnchanged(s,new Authority("TEST_ONLY.handover-guest",new[]{recipient.SetterId},true,false,
++                    Array.Empty<string>(),new[]{recipient.SetterId}),current,"NotAuthorized");
++                var nonholder=Handover("mgt06-nonholder",recipient.SetterId,TestOnlyPolicy.ActorId);
++                var recipientAuthority=new Authority("TEST_ONLY.fishing-handover",
++                    new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
++                    Array.Empty<string>(),new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id});
++                RejectUnchanged(s,recipientAuthority,nonholder,"FishingTrapDeploymentUnavailable");
++                RejectUnchanged(s,recipientAuthority,Handover("mgt06-self",source.SetterId,source.SetterId),"InvalidFishingTrapRecipient");
++                var unknownAuthority=new Authority("TEST_ONLY.fishing-handover",
++                    new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
++                    Array.Empty<string>(),new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id,
++                        "TEST_ONLY.unknown-recipient"});
++                RejectUnchanged(s,unknownAuthority,Handover("mgt06-unknown",source.SetterId,"TEST_ONLY.unknown-recipient"),
++                    "InvalidFishingTrapRecipient");
++                var stale=Handover("mgt06-stale",source.SetterId,recipient.SetterId,revision-1);
++                RejectUnchanged(s,authority,stale,"StaleRevision");
++                var malformed=Handover("mgt06-malformed",source.SetterId,recipient.SetterId,x:1);
++                var malformedQuery=s.QueryCommand(authority,malformed);
++                RejectUnchanged(s,authority,malformed,"InvalidFishingTrapResponsibilityHandover");
++                Require(malformedQuery.Supported&&!malformedQuery.Admissible
++                    &&malformedQuery.Code=="InvalidFishingTrapResponsibilityHandover",
++                    "Malformed handover query and execution did not share one assessment.");
++
++                var transfer=Handover("mgt06-authority-transfer",source.SetterId,recipient.SetterId);
++                Require(s.Execute(authority,transfer).Outcome==Outcome.Committed,"Valid handover failed in authority regression.");
++                var conflict=Handover(transfer.Id,source.SetterId,TestOnlyPolicy.ActorId,transfer.ExpectedRevision);
++                RejectUnchanged(s,recipientAuthority,conflict,"CommandIdConflict");
++                var forged=s.Capture();var deployed=forged.FishingTrapAttempts.Single();
++                forged.FishingTrapAttempts=forged.FishingTrapAttempts.Select(x=>x.Id==deployed.Id
++                    ?x.WithResponsibleHolder(x.SetterId):x).ToArray();
++                Throws<ArgumentException>(()=>new Simulation(policy,forged,ExecutionProfile.Laboratory));
++                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Abandon,
++                    "mgt06-former-holder-abandon",source.SetterId,source.TrapIdentity),"FishingTrapResponsibleHolderRequired");
++                var currentHolderOptions=s.DiscoverCommands(recipientAuthority,recipient.SetterId);
++                Require(currentHolderOptions.Any(x=>x.Command.Target==source.TrapIdentity
++                        &&x.Command.X==(int)FishingTrapInteraction.Abandon&&x.Query.Admissible),
++                    "The current holder did not discover its existing abandonment operation.");
++                var abandon=s.Execute(TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Abandon,
++                    "mgt06-current-holder-abandon",recipient.SetterId,source.TrapIdentity));
++                Require(abandon.Outcome==Outcome.Committed
++                    &&s.Capture().FishingTrapAttempts.Single().Status==FishingTrapAttemptStatus.Abandoned
++                    &&s.Capture().FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Abandoned,
++                    "The current responsible holder could not take the existing deployed-trap abandonment route.");
++
++                var occupiedPolicy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:43);
++                var occupied=new Simulation(occupiedPolicy,occupiedPolicy.Initial(),ExecutionProfile.Laboratory);
++                WorldCommit(occupied,TrapOp(occupied,FishingTrapInteraction.Set,"mgt06-occupied-source",source.SetterId,source.TrapIdentity));
++                WorldCommit(occupied,TrapOp(occupied,FishingTrapInteraction.Set,"mgt06-occupied-recipient",recipient.SetterId,recipient.TrapIdentity));
++                WorldAdvance(occupied,300);
++                var occupiedTransfer=new Command("mgt06-recipient-has-obligation",source.SetterId,occupied.Capture().Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
++                RejectUnchanged(occupied,authority,occupiedTransfer,"FishingTrapDeploymentOccupied");
++            });
++            cases.Add("fishing_trap_handover_preserves_working_and_paused_retrieval",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"retrieval-source",setterId:TestOnlyPolicy.CompanionId);
++                var recipient=new SharedFishingTrapFixture(12,1,identity:"retrieval-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:47);
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var host=TestOnlySharedWorldPolicy.Host();
++                var consentThird=TrapHandoverAuthority();
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-retrieval-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,300);WorldCommit(s,TrapRetrieve(s,actor:source.SetterId,destination:source.ReceiverIdentity,
++                    id:"mgt06-retrieval-start",target:source.TrapIdentity));WorldAdvance(s,120);
++                var working=s.Capture().FishingTrapRetrievals.Single();
++                var toRecipient=new Command("mgt06-working-retrieval-transfer",source.SetterId,s.Capture().Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
++                var transferResult=s.Execute(consentThird,toRecipient);
++                Require(transferResult.Outcome==Outcome.Committed,"Handover during working retrieval failed: "+transferResult.Code);
++                var afterWorking=s.Capture();var stillWorking=afterWorking.FishingTrapRetrievals.Single();
++                Require(stillWorking.Id==working.Id&&stillWorking.Status==FishingTrapRetrievalStatus.Working
++                    &&stillWorking.WorkerId==working.WorkerId&&stillWorking.WorkDone==working.WorkDone
++                    &&stillWorking.StartedAt==working.StartedAt&&stillWorking.DestinationId==working.DestinationId
++                    &&afterWorking.FishingReceiveLocations.Single(x=>x.Id==source.ReceiverIdentity).ReservedByRetrievalId==working.Id,
++                    "Working retrieval changed when deployment responsibility transferred.");
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.PauseRetrieval,"mgt06-retrieval-pause",source.SetterId,source.TrapIdentity));
++                var pausedBefore=s.Capture().FishingTrapRetrievals.Single();
++                var consentSource=new Authority("TEST_ONLY.fishing-return",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,
++                    AdditionalTacticalActor.Id},true,false,Array.Empty<string>(),new[]{source.SetterId});
++                var toFormer=new Command("mgt06-paused-retrieval-transfer",recipient.SetterId,s.Capture().Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,source.SetterId);
++                var pausedTransfer=s.Execute(consentSource,toFormer);
++                var afterPaused=s.Capture();var stillPaused=afterPaused.FishingTrapRetrievals.Single();
++                Require(pausedTransfer.Outcome==Outcome.Committed&&stillPaused.Id==pausedBefore.Id
++                    &&stillPaused.Status==FishingTrapRetrievalStatus.Paused&&stillPaused.WorkerId==pausedBefore.WorkerId
++                    &&stillPaused.WorkDone==pausedBefore.WorkDone&&stillPaused.StartedAt==pausedBefore.StartedAt
++                    &&stillPaused.DestinationId==pausedBefore.DestinationId
++                    &&afterPaused.FishingReceiveLocations.Single(x=>x.Id==source.ReceiverIdentity).ReservedByRetrievalId==pausedBefore.Id,
++                    "Paused retrieval progress or its reserved receiver changed when responsibility transferred back.");
++                var codec=new SnapshotCodec();var bytes=Bytes(s);s=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
++                Require(bytes.SequenceEqual(Bytes(s)),"Two handovers around a paused retrieval did not replay byte-identically.");
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.ResumeRetrieval,"mgt06-retrieval-resume",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,180);var completed=s.Capture();var attempt=completed.FishingTrapAttempts.Single();
++                Require(attempt.ResponsibleHolderId==source.SetterId
++                    &&completed.FishingTrapRetrievals.Single().Status==FishingTrapRetrievalStatus.Complete
++                    &&completed.FishingTrapRetrievals.Single().WorkDone==new RuleTime(300)
++                    &&completed.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Retrieved,
++                    "The original retrieval worker could not resume and complete work after the responsibility handovers.");
++            });
++            cases.Add("fishing_trap_handover_remains_available_after_check_while_deployed",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"post-check-source",setterId:TestOnlyPolicy.CompanionId,
++                    setterWisdomScore:18,setterIntelligenceScore:5);
++                var recipient=new SharedFishingTrapFixture(12,1,identity:"post-check-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:53);
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-post-check-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,3300);var before=s.Capture();var attempt=before.FishingTrapAttempts.Single();
++                Require(attempt.CheckResolvedAt==attempt.CheckDueAt
++                    &&before.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Deployed,
++                    "The post-check witness did not retain its physical Trap deployment.");
++                var authority=TrapHandoverAuthority();
++                var handover=new Command("mgt06-post-check-transfer",source.SetterId,before.Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
++                var query=s.QueryCommand(authority,handover);
++                Require(query.Supported&&query.Admissible&&query.Code=="Available",
++                    "A resolved post-check Trap that remains deployed was not offered for responsibility transfer.");
++                var result=s.Execute(authority,handover);var after=s.Capture();var settled=after.FishingTrapAttempts.Single();
++                Require(result.Outcome==Outcome.Committed&&after.RuleClock==before.RuleClock&&after.RandomState==before.RandomState
++                    &&settled.ResponsibleHolderId==recipient.SetterId&&settled.CheckResolvedAt==attempt.CheckResolvedAt
++                    &&settled.Natural==attempt.Natural&&settled.CheckOutcome==attempt.CheckOutcome
++                    &&settled.RandomBefore==attempt.RandomBefore&&settled.RandomAfter==attempt.RandomAfter
++                    &&after.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Deployed,
++                    "Post-check handover changed the already-settled roll, clock, RNG, or physical deployment.");
++                var codec=new SnapshotCodec();byte[] bytes=codec.Encode(after);
++                var restored=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
++                Require(bytes.SequenceEqual(Bytes(restored)),"Post-check responsibility transfer failed save/restore replay.");
++            });
++            cases.Add("fishing_trap_handover_is_rejected_in_tactical_mode",()=>{
++                var source=new SharedFishingTrapFixture(12,1,identity:"tactical-source",setterId:TestOnlyPolicy.CompanionId);
++                var recipient=new SharedFishingTrapFixture(12,1,identity:"tactical-recipient",setterId:AdditionalTacticalActor.Id,
++                    trapX:4,trapY:1,receiverX:4,receiverY:2);
++                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:59);
++                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
++                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-tactical-set",source.SetterId,source.TrapIdentity));
++                WorldAdvance(s,300);WorldCommit(s,IC(s,CommandKind.BeginFixedEncounter));
++                Require(s.Capture().InventoryCombat,"The tactical rejection witness did not enter the shared encounter.");
++                var handover=new Command("mgt06-tactical-transfer",source.SetterId,s.Capture().Revision,
++                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
++                RejectUnchanged(s,TrapHandoverAuthority(),handover,"FishingRequiresExploration");
++            });
+         }
+     }
+ }

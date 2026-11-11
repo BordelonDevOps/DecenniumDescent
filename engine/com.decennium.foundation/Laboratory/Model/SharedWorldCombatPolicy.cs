@@ -185,6 +185,20 @@ namespace Decennium.Foundation.Laboratory
             policy.ContentFingerprint=FishingTrapSetFingerprint(policy.ContentFingerprint,rows);
             return policy;
         }
+        /// <summary>Schema38 TEST_ONLY profile for source-bound unattended-Trap responsibility handover.
+        /// Existing schema37/38 profiles retain their original behavior and fingerprints.</summary>
+        public static TestOnlySharedWorldPolicy WithFishingTrapResponsibilityHandover(
+            System.Collections.Generic.IEnumerable<SharedFishingTrapFixture> profiles,uint seed=1)
+        {
+            var policy=WithFishingTraps(profiles,seed);
+            if(policy.fishingTrapProfiles.GroupBy(x=>x.SetterId,StringComparer.Ordinal).Any(g=>
+                g.Select(x=>x.InitialSetterWisdomScore).Distinct().Count()!=1
+                ||g.Select(x=>x.InitialSetterIntelligenceScore).Distinct().Count()!=1))
+                throw new ArgumentException("A setter must have one consistent initial character record across fishing profiles.",nameof(profiles));
+            policy.fishingTrapResponsibilityHandoverEnabled=true;
+            policy.ContentFingerprint=FishingTrapHandoverFingerprint(policy.ContentFingerprint,policy.fishingTrapProfiles);
+            return policy;
+        }
         /// <summary>Historical schema35 authority used only to verify old save replay. New sessions
         /// must use schema37, which requires actual stock and physical equipment records.</summary>
         public static TestOnlySharedWorldPolicy WithLegacyFishingTrap(SharedFishingTrapFixture fishingTrap,uint seed=1)

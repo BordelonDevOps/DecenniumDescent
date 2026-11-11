@@ -20,6 +20,10 @@ namespace Decennium.Foundation.Tests
         {var p=TestOnlySharedWorldPolicy.WithFishingTrap(fixture,seed);return new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);}
         private static Simulation LegacyTrapWorld(SharedFishingTrapFixture fixture,uint seed=1)
         {var p=TestOnlySharedWorldPolicy.WithLegacyFishingTrap(fixture,seed);return new Simulation(p,p.Initial(),ExecutionProfile.Laboratory);}
+        private static Authority TrapHandoverAuthority(bool recipientConsents=true)
+            =>new Authority("TEST_ONLY.fishing-handover",
+                new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
+                Array.Empty<string>(),recipientConsents?new[]{AdditionalTacticalActor.Id}:Array.Empty<string>());
         private static void TrapCommit(Simulation s,FishingTrapInteraction operation,string id=null)
             =>WorldCommit(s,TrapOp(s,operation,id));
         private static int TrapModifier(Snapshot s,int rank,string actorId=TestOnlyPolicy.CompanionId)
@@ -524,6 +528,278 @@ namespace Decennium.Foundation.Tests
                 Require(s.Capture().FishingTrapAttempts.Length==0
                     &&s.Capture().Work.Lots.Single(x=>x.Id==SharedFishingTrapFixture.BaitLotId).Amount==default
                     &&s.Capture().Revision==initial.Revision,"Missing bait created a Trap deployment or changed state.");
+            });
+            cases.Add("fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"handover-wisdom",setterId:TestOnlyPolicy.CompanionId,
+                    setterWisdomScore:18,setterIntelligenceScore:5);
+                var recipient=new SharedFishingTrapFixture(12,1,identity:"handover-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:23);
+                var changedWisdom=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{
+                    new SharedFishingTrapFixture(12,1,identity:"handover-wisdom",setterId:TestOnlyPolicy.CompanionId,
+                        setterWisdomScore:17,setterIntelligenceScore:5),recipient},seed:23);
+                Require(policy.ContentFingerprint!=changedWisdom.ContentFingerprint,
+                    "The new profile fingerprint omitted its TEST_ONLY initial character facts.");
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var initial=s.Capture();
+                var character=initial.Characters.Single(x=>x.ActorId==source.SetterId);
+                Require(character.Abilities[(int)CharacterAbility.Wisdom]==18
+                    &&character.Abilities[(int)CharacterAbility.Intelligence]==5,
+                    "The handover profile did not initialize the shared character record from its explicit TEST_ONLY profile.");
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"handover-wisdom-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,300);var attempt=s.Capture().FishingTrapAttempts.Single();
+                int wisdom=AbilityCheckRules.Derive(initial,source.SetterId,"fishing-tackle",CharacterAbility.Wisdom).AbilityModifier;
+                int intelligence=AbilityCheckRules.Derive(initial,source.SetterId,"fishing-tackle",CharacterAbility.Intelligence).AbilityModifier;
+                Require(attempt.Status==FishingTrapAttemptStatus.Soaking&&attempt.WisdomModifier==wisdom&&wisdom!=intelligence,
+                    "The new handover profile did not capture the source-required WIS check at first deployment.");
+
+                var historicalSource=new SharedFishingTrapFixture(12,1,identity:"historical-wisdom",setterId:TestOnlyPolicy.CompanionId,
+                    setterWisdomScore:18,setterIntelligenceScore:5);
+                var historicalRecipient=new SharedFishingTrapFixture(12,1,identity:"historical-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
+                var historicalDefault=new[]{
+                    new SharedFishingTrapFixture(12,1,identity:"historical-wisdom",setterId:TestOnlyPolicy.CompanionId),
+                    new SharedFishingTrapFixture(12,1,identity:"historical-recipient",setterId:AdditionalTacticalActor.Id,trapX:4,trapY:1,receiverX:4,receiverY:2)};
+                var historical=TestOnlySharedWorldPolicy.WithFishingTraps(new[]{historicalSource,historicalRecipient},seed:23);
+                var historicalBaseline=TestOnlySharedWorldPolicy.WithFishingTraps(historicalDefault,seed:23);
+                Require(historical.ContentFingerprint==historicalBaseline.ContentFingerprint,
+                    "The source correction changed an existing schema38 profile fingerprint.");
+                var historicalBaselineState=historicalBaseline.Initial();
+                s=new Simulation(historical,historical.Initial(),ExecutionProfile.Laboratory);initial=s.Capture();
+                var originalHistoricalAbilities=historicalBaselineState.Characters.Single(x=>x.ActorId==historicalSource.SetterId).Abilities.ToArray();
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"historical-int-set",historicalSource.SetterId,historicalSource.TrapIdentity));
+                WorldAdvance(s,300);attempt=s.Capture().FishingTrapAttempts.Single();
+                character=initial.Characters.Single(x=>x.ActorId==historicalSource.SetterId);
+                Require(character.Abilities.SequenceEqual(originalHistoricalAbilities)
+                    &&attempt.WisdomModifier==AbilityCheckRules.Derive(initial,historicalSource.SetterId,"fishing-tackle",
+                        CharacterAbility.Intelligence).AbilityModifier,
+                    "A historical schema38 profile did not retain its original setter facts and check calculation.");
+            });
+            cases.Add("fishing_trap_responsibility_handover_connected_save_replay_and_retrieval",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"riverbank",setterId:TestOnlyPolicy.CompanionId,
+                    setterWisdomScore:18,setterIntelligenceScore:5);
+                var recipientTrap=new SharedFishingTrapFixture(12,1,identity:"recipient-bank",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
+                var independent=new SharedFishingTrapFixture(12,1,identity:"independent-bank",setterId:TestOnlyPolicy.CompanionId,
+                    trapX:2,trapY:3,receiverX:2,receiverY:2,setterWisdomScore:18,setterIntelligenceScore:5);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(
+                    new[]{source,recipientTrap,independent},seed:31);
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var authority=TrapHandoverAuthority();
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-source-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,300);var before=s.Capture();var attempt=before.FishingTrapAttempts.Single();
+                var transfer=new Command("mgt06-transfer",source.SetterId,before.Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,recipientTrap.SetterId);
+                RejectUnchanged(s,TrapHandoverAuthority(false),transfer,"RecipientNotWilling");
+                var query=s.QueryCommand(authority,transfer);
+                var discovered=s.DiscoverCommands(authority,source.SetterId).SingleOrDefault(x=>
+                    x.Command.Kind==CommandKind.HandoverFishingTrapResponsibility&&x.Command.Target==recipientTrap.SetterId);
+                Require(query.Supported&&query.Admissible&&query.Code=="Available"&&discovered!=null
+                    &&discovered.Query.Admissible&&discovered.Command.Id.EndsWith(attempt.Id,StringComparison.Ordinal),
+                    "The available handover was not discovered with its unique occupied obligation and shared execution assessment.");
+                var result=s.Execute(authority,transfer);Require(result.Outcome==Outcome.Committed,"Handover failed: "+result.Code);
+                var after=s.Capture();var expected=before.Copy();expected.Revision=after.Revision;
+                expected.FishingTrapAttempts=expected.FishingTrapAttempts.Select(x=>x.Id==attempt.Id
+                    ?x.WithResponsibleHolder(recipientTrap.SetterId):x).ToArray();expected.Receipts=after.Receipts;
+                var codec=new SnapshotCodec();
+                Require(codec.Encode(expected).SequenceEqual(codec.Encode(after))
+                    &&after.RuleClock==before.RuleClock&&after.RandomState==before.RandomState
+                    &&after.FishingTrapAttempts.Single().SetterId==attempt.SetterId
+                    &&after.FishingTrapAttempts.Single().ResponsibleHolderId==recipientTrap.SetterId
+                    &&after.FishingTrapAttempts.Single().WisdomModifier==attempt.WisdomModifier
+                    &&after.FishingTrapAttempts.Single().CheckDueAt==attempt.CheckDueAt,
+                    "Handover changed state outside the holder field, command receipt and revision.");
+                byte[] handoverSave=Bytes(s);s=new Simulation(policy,codec.Decode(handoverSave),ExecutionProfile.Laboratory);
+                Require(handoverSave.SequenceEqual(Bytes(s)),"Handover history did not survive byte-identical save/restore and receipt replay.");
+                var duplicate=s.Execute(authority,transfer);
+                Require(duplicate.Outcome==Outcome.Duplicate&&handoverSave.SequenceEqual(Bytes(s)),
+                    "Exact handover retry after restore was not idempotent.");
+
+                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Set,
+                    "mgt06-recipient-occupied",recipientTrap.SetterId,recipientTrap.TrapIdentity),"FishingTrapDeploymentOccupied");
+                var independentSet=TrapOp(s,FishingTrapInteraction.Set,"mgt06-independent-set",source.SetterId,independent.TrapIdentity);
+                var setResult=s.Execute(TestOnlySharedWorldPolicy.Host(),independentSet);
+                Require(setResult.Outcome==Outcome.Committed
+                    &&s.Capture().FishingTrapAttempts.Single(x=>x.TrapId==independent.TrapIdentity).Status==FishingTrapAttemptStatus.SettingUp,
+                    "The former holder could not begin a distinct deployment after handover.");
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Cancel,"mgt06-independent-cancel",source.SetterId,independent.TrapIdentity));
+
+                var control=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
+                WorldCommit(control,TrapOp(control,FishingTrapInteraction.Set,"mgt06-control-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(control,3300);WorldAdvance(s,3000);
+                var handedAttempt=s.Capture().FishingTrapAttempts.Single(x=>x.Id==attempt.Id);
+                var controlAttempt=control.Capture().FishingTrapAttempts.Single();
+                Require(handedAttempt.Status==controlAttempt.Status&&handedAttempt.CheckResolvedAt==controlAttempt.CheckResolvedAt
+                    &&handedAttempt.WisdomModifier==controlAttempt.WisdomModifier&&handedAttempt.ProficiencyRank==controlAttempt.ProficiencyRank
+                    &&handedAttempt.ProficiencyBonus==controlAttempt.ProficiencyBonus&&handedAttempt.DiceSelection==controlAttempt.DiceSelection
+                    &&handedAttempt.FirstDie==controlAttempt.FirstDie&&handedAttempt.SecondDie==controlAttempt.SecondDie
+                    &&handedAttempt.Natural==controlAttempt.Natural&&handedAttempt.CheckModifier==controlAttempt.CheckModifier
+                    &&handedAttempt.CheckDc==controlAttempt.CheckDc&&handedAttempt.CheckDegree==controlAttempt.CheckDegree
+                    &&handedAttempt.CheckOutcome==controlAttempt.CheckOutcome&&handedAttempt.RandomBefore==controlAttempt.RandomBefore
+                    &&handedAttempt.RandomAfter==controlAttempt.RandomAfter&&handedAttempt.WordsConsumed==controlAttempt.WordsConsumed
+                    &&s.Capture().RandomState==control.Capture().RandomState,
+                    "Responsibility transfer changed the original setter check, scheduled outcome or deterministic RNG replay.");
+
+                WorldCommit(s,TrapRetrieve(s,actor:source.SetterId,destination:source.ReceiverIdentity,
+                    id:"mgt06-former-holder-retrieve",target:source.TrapIdentity));WorldAdvance(s,300);
+                var retrieved=s.Capture();
+                Require(retrieved.FishingTrapAttempts.Single(x=>x.Id==attempt.Id).ResponsibleHolderId==recipientTrap.SetterId
+                    &&retrieved.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Retrieved
+                    &&retrieved.FishingTrapRetrievals.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapRetrievalStatus.Complete,
+                    "The existing capable-worker retrieval path did not recover the handed-over physical Trap.");
+                var recipientSet=TrapOp(s,FishingTrapInteraction.Set,"mgt06-recipient-after-retrieval",
+                    recipientTrap.SetterId,recipientTrap.TrapIdentity);
+                Require(s.Execute(TestOnlySharedWorldPolicy.Host(),recipientSet).Outcome==Outcome.Committed,
+                    "Physical retrieval did not release the recipient's deployment allowance.");
+            });
+            cases.Add("fishing_trap_handover_authority_rejections_and_current_holder_abandonment",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"authority-source",setterId:TestOnlyPolicy.CompanionId);
+                var recipient=new SharedFishingTrapFixture(12,1,identity:"authority-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:41);
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-authority-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,300);var revision=s.Capture().Revision;var authority=TrapHandoverAuthority();
+                Command Handover(string id,string actor,string target,long? expectedRevision=null,int x=0)
+                    =>new Command(id,actor,expectedRevision??s.Capture().Revision,CommandKind.HandoverFishingTrapResponsibility,target,x:x);
+                var current=Handover("mgt06-unauthorized",source.SetterId,recipient.SetterId);
+                RejectUnchanged(s,new Authority("TEST_ONLY.handover-guest",new[]{recipient.SetterId},true,false,
+                    Array.Empty<string>(),new[]{recipient.SetterId}),current,"NotAuthorized");
+                var nonholder=Handover("mgt06-nonholder",recipient.SetterId,TestOnlyPolicy.ActorId);
+                var recipientAuthority=new Authority("TEST_ONLY.fishing-handover",
+                    new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
+                    Array.Empty<string>(),new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id});
+                RejectUnchanged(s,recipientAuthority,nonholder,"FishingTrapDeploymentUnavailable");
+                RejectUnchanged(s,recipientAuthority,Handover("mgt06-self",source.SetterId,source.SetterId),"InvalidFishingTrapRecipient");
+                var unknownAuthority=new Authority("TEST_ONLY.fishing-handover",
+                    new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id},true,false,
+                    Array.Empty<string>(),new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,AdditionalTacticalActor.Id,
+                        "TEST_ONLY.unknown-recipient"});
+                RejectUnchanged(s,unknownAuthority,Handover("mgt06-unknown",source.SetterId,"TEST_ONLY.unknown-recipient"),
+                    "InvalidFishingTrapRecipient");
+                var stale=Handover("mgt06-stale",source.SetterId,recipient.SetterId,revision-1);
+                RejectUnchanged(s,authority,stale,"StaleRevision");
+                var malformed=Handover("mgt06-malformed",source.SetterId,recipient.SetterId,x:1);
+                var malformedQuery=s.QueryCommand(authority,malformed);
+                RejectUnchanged(s,authority,malformed,"InvalidFishingTrapResponsibilityHandover");
+                Require(malformedQuery.Supported&&!malformedQuery.Admissible
+                    &&malformedQuery.Code=="InvalidFishingTrapResponsibilityHandover",
+                    "Malformed handover query and execution did not share one assessment.");
+
+                var transfer=Handover("mgt06-authority-transfer",source.SetterId,recipient.SetterId);
+                Require(s.Execute(authority,transfer).Outcome==Outcome.Committed,"Valid handover failed in authority regression.");
+                var conflict=Handover(transfer.Id,source.SetterId,TestOnlyPolicy.ActorId,transfer.ExpectedRevision);
+                RejectUnchanged(s,recipientAuthority,conflict,"CommandIdConflict");
+                var forged=s.Capture();var deployed=forged.FishingTrapAttempts.Single();
+                forged.FishingTrapAttempts=forged.FishingTrapAttempts.Select(x=>x.Id==deployed.Id
+                    ?x.WithResponsibleHolder(x.SetterId):x).ToArray();
+                Throws<ArgumentException>(()=>new Simulation(policy,forged,ExecutionProfile.Laboratory));
+                RejectUnchanged(s,TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Abandon,
+                    "mgt06-former-holder-abandon",source.SetterId,source.TrapIdentity),"FishingTrapResponsibleHolderRequired");
+                var currentHolderOptions=s.DiscoverCommands(recipientAuthority,recipient.SetterId);
+                Require(currentHolderOptions.Any(x=>x.Command.Target==source.TrapIdentity
+                        &&x.Command.X==(int)FishingTrapInteraction.Abandon&&x.Query.Admissible),
+                    "The current holder did not discover its existing abandonment operation.");
+                var abandon=s.Execute(TestOnlySharedWorldPolicy.Host(),TrapOp(s,FishingTrapInteraction.Abandon,
+                    "mgt06-current-holder-abandon",recipient.SetterId,source.TrapIdentity));
+                Require(abandon.Outcome==Outcome.Committed
+                    &&s.Capture().FishingTrapAttempts.Single().Status==FishingTrapAttemptStatus.Abandoned
+                    &&s.Capture().FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Abandoned,
+                    "The current responsible holder could not take the existing deployed-trap abandonment route.");
+
+                var occupiedPolicy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:43);
+                var occupied=new Simulation(occupiedPolicy,occupiedPolicy.Initial(),ExecutionProfile.Laboratory);
+                WorldCommit(occupied,TrapOp(occupied,FishingTrapInteraction.Set,"mgt06-occupied-source",source.SetterId,source.TrapIdentity));
+                WorldCommit(occupied,TrapOp(occupied,FishingTrapInteraction.Set,"mgt06-occupied-recipient",recipient.SetterId,recipient.TrapIdentity));
+                WorldAdvance(occupied,300);
+                var occupiedTransfer=new Command("mgt06-recipient-has-obligation",source.SetterId,occupied.Capture().Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
+                RejectUnchanged(occupied,authority,occupiedTransfer,"FishingTrapDeploymentOccupied");
+            });
+            cases.Add("fishing_trap_handover_preserves_working_and_paused_retrieval",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"retrieval-source",setterId:TestOnlyPolicy.CompanionId);
+                var recipient=new SharedFishingTrapFixture(12,1,identity:"retrieval-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:47);
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);var host=TestOnlySharedWorldPolicy.Host();
+                var consentThird=TrapHandoverAuthority();
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-retrieval-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,300);WorldCommit(s,TrapRetrieve(s,actor:source.SetterId,destination:source.ReceiverIdentity,
+                    id:"mgt06-retrieval-start",target:source.TrapIdentity));WorldAdvance(s,120);
+                var working=s.Capture().FishingTrapRetrievals.Single();
+                var toRecipient=new Command("mgt06-working-retrieval-transfer",source.SetterId,s.Capture().Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
+                var transferResult=s.Execute(consentThird,toRecipient);
+                Require(transferResult.Outcome==Outcome.Committed,"Handover during working retrieval failed: "+transferResult.Code);
+                var afterWorking=s.Capture();var stillWorking=afterWorking.FishingTrapRetrievals.Single();
+                Require(stillWorking.Id==working.Id&&stillWorking.Status==FishingTrapRetrievalStatus.Working
+                    &&stillWorking.WorkerId==working.WorkerId&&stillWorking.WorkDone==working.WorkDone
+                    &&stillWorking.StartedAt==working.StartedAt&&stillWorking.DestinationId==working.DestinationId
+                    &&afterWorking.FishingReceiveLocations.Single(x=>x.Id==source.ReceiverIdentity).ReservedByRetrievalId==working.Id,
+                    "Working retrieval changed when deployment responsibility transferred.");
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.PauseRetrieval,"mgt06-retrieval-pause",source.SetterId,source.TrapIdentity));
+                var pausedBefore=s.Capture().FishingTrapRetrievals.Single();
+                var consentSource=new Authority("TEST_ONLY.fishing-return",new[]{TestOnlyPolicy.ActorId,TestOnlyPolicy.CompanionId,
+                    AdditionalTacticalActor.Id},true,false,Array.Empty<string>(),new[]{source.SetterId});
+                var toFormer=new Command("mgt06-paused-retrieval-transfer",recipient.SetterId,s.Capture().Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,source.SetterId);
+                var pausedTransfer=s.Execute(consentSource,toFormer);
+                var afterPaused=s.Capture();var stillPaused=afterPaused.FishingTrapRetrievals.Single();
+                Require(pausedTransfer.Outcome==Outcome.Committed&&stillPaused.Id==pausedBefore.Id
+                    &&stillPaused.Status==FishingTrapRetrievalStatus.Paused&&stillPaused.WorkerId==pausedBefore.WorkerId
+                    &&stillPaused.WorkDone==pausedBefore.WorkDone&&stillPaused.StartedAt==pausedBefore.StartedAt
+                    &&stillPaused.DestinationId==pausedBefore.DestinationId
+                    &&afterPaused.FishingReceiveLocations.Single(x=>x.Id==source.ReceiverIdentity).ReservedByRetrievalId==pausedBefore.Id,
+                    "Paused retrieval progress or its reserved receiver changed when responsibility transferred back.");
+                var codec=new SnapshotCodec();var bytes=Bytes(s);s=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
+                Require(bytes.SequenceEqual(Bytes(s)),"Two handovers around a paused retrieval did not replay byte-identically.");
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.ResumeRetrieval,"mgt06-retrieval-resume",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,180);var completed=s.Capture();var attempt=completed.FishingTrapAttempts.Single();
+                Require(attempt.ResponsibleHolderId==source.SetterId
+                    &&completed.FishingTrapRetrievals.Single().Status==FishingTrapRetrievalStatus.Complete
+                    &&completed.FishingTrapRetrievals.Single().WorkDone==new RuleTime(300)
+                    &&completed.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Retrieved,
+                    "The original retrieval worker could not resume and complete work after the responsibility handovers.");
+            });
+            cases.Add("fishing_trap_handover_remains_available_after_check_while_deployed",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"post-check-source",setterId:TestOnlyPolicy.CompanionId,
+                    setterWisdomScore:18,setterIntelligenceScore:5);
+                var recipient=new SharedFishingTrapFixture(12,1,identity:"post-check-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2,setterWisdomScore:7,setterIntelligenceScore:19);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:53);
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-post-check-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,3300);var before=s.Capture();var attempt=before.FishingTrapAttempts.Single();
+                Require(attempt.CheckResolvedAt==attempt.CheckDueAt
+                    &&before.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Deployed,
+                    "The post-check witness did not retain its physical Trap deployment.");
+                var authority=TrapHandoverAuthority();
+                var handover=new Command("mgt06-post-check-transfer",source.SetterId,before.Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
+                var query=s.QueryCommand(authority,handover);
+                Require(query.Supported&&query.Admissible&&query.Code=="Available",
+                    "A resolved post-check Trap that remains deployed was not offered for responsibility transfer.");
+                var result=s.Execute(authority,handover);var after=s.Capture();var settled=after.FishingTrapAttempts.Single();
+                Require(result.Outcome==Outcome.Committed&&after.RuleClock==before.RuleClock&&after.RandomState==before.RandomState
+                    &&settled.ResponsibleHolderId==recipient.SetterId&&settled.CheckResolvedAt==attempt.CheckResolvedAt
+                    &&settled.Natural==attempt.Natural&&settled.CheckOutcome==attempt.CheckOutcome
+                    &&settled.RandomBefore==attempt.RandomBefore&&settled.RandomAfter==attempt.RandomAfter
+                    &&after.FishingTraps.Single(x=>x.TrapId==source.TrapIdentity).Status==FishingTrapPhysicalStatus.Deployed,
+                    "Post-check handover changed the already-settled roll, clock, RNG, or physical deployment.");
+                var codec=new SnapshotCodec();byte[] bytes=codec.Encode(after);
+                var restored=new Simulation(policy,codec.Decode(bytes),ExecutionProfile.Laboratory);
+                Require(bytes.SequenceEqual(Bytes(restored)),"Post-check responsibility transfer failed save/restore replay.");
+            });
+            cases.Add("fishing_trap_handover_is_rejected_in_tactical_mode",()=>{
+                var source=new SharedFishingTrapFixture(12,1,identity:"tactical-source",setterId:TestOnlyPolicy.CompanionId);
+                var recipient=new SharedFishingTrapFixture(12,1,identity:"tactical-recipient",setterId:AdditionalTacticalActor.Id,
+                    trapX:4,trapY:1,receiverX:4,receiverY:2);
+                var policy=TestOnlySharedWorldPolicy.WithFishingTrapResponsibilityHandover(new[]{source,recipient},seed:59);
+                var s=new Simulation(policy,policy.Initial(),ExecutionProfile.Laboratory);
+                WorldCommit(s,TrapOp(s,FishingTrapInteraction.Set,"mgt06-tactical-set",source.SetterId,source.TrapIdentity));
+                WorldAdvance(s,300);WorldCommit(s,IC(s,CommandKind.BeginFixedEncounter));
+                Require(s.Capture().InventoryCombat,"The tactical rejection witness did not enter the shared encounter.");
+                var handover=new Command("mgt06-tactical-transfer",source.SetterId,s.Capture().Revision,
+                    CommandKind.HandoverFishingTrapResponsibility,recipient.SetterId);
+                RejectUnchanged(s,TrapHandoverAuthority(),handover,"FishingRequiresExploration");
             });
         }
     }

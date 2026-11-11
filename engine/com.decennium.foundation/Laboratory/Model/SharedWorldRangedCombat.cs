@@ -95,6 +95,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.StartRouteMappingWork||kind==CommandKind.PauseRouteMappingWork||kind==CommandKind.ResumeRouteMappingWork
             ||kind==CommandKind.StartRouteReconnaissance||kind==CommandKind.PauseRouteReconnaissance||kind==CommandKind.ResumeRouteReconnaissance
             ||kind==CommandKind.ConsumeTestOnlyRouteMappingResult
+            ||fishingTrapResponsibilityHandoverEnabled&&kind==CommandKind.HandoverFishingTrapResponsibility
             ||kind==CommandKind.StartToolRepair||kind==CommandKind.PauseToolRepair
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest

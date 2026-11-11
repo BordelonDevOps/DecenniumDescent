@@ -509,6 +509,7 @@ namespace Decennium.Foundation.Laboratory
                 }
             }
             foreach (var command in DiscoverFishingTrapControls(s, actor)) yield return command;
+            foreach (var command in DiscoverFishingTrapResponsibilityHandoverCommands(s, authority, actor)) yield return command;
             foreach (var command in DiscoverCacheExcavationControls(s, actor)) yield return command;
             foreach (var command in DiscoverContextualInteractions(s, authority, actor)) yield return command;
             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
@@ -537,6 +538,8 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
+                return QueryFishingTrapResponsibilityHandover(s,authority,c);
             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);
             if(recipe347Fixture!=null&&Recipe347Command(c.Kind)) {
                 string failure=AssessRecipe347(s,c,out var order);

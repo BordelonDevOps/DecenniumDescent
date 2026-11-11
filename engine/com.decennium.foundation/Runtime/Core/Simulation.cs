@@ -36,7 +36,8 @@ namespace Decennium.Foundation
         ResumeTemporaryCampConstruction, ResolveTemporaryCampConstruction,
         StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
         StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork,
-        StartHarvestPreservationTreatment, RecordHarvestPreservationExposure }
+        StartHarvestPreservationTreatment, RecordHarvestPreservationExposure,
+        HandoverFishingTrapResponsibility }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -969,6 +970,8 @@ namespace Decennium.Foundation
                     ||command.Kind==CommandKind.RecordProspectingExposure
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
+            if(command.Kind==CommandKind.HandoverFishingTrapResponsibility&&!authority.ConsentsToHandover(command.Target))
+                return "RecipientNotWilling";
             if (policy is ICommandInventoryClaims claims) {
                 try {
                     if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return "InventoryNotAuthorized";

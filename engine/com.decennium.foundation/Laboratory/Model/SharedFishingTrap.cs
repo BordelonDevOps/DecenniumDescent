@@ -36,9 +36,12 @@ namespace Decennium.Foundation.Laboratory
         public int RecoveryPathFeet { get; }
         public string SetterId { get; }
         public string TrapOwnerId { get; }
+        public int InitialSetterWisdomScore { get; }
+        public int InitialSetterIntelligenceScore { get; }
         public SharedFishingTrapFixture(int catchDc=12,int proficiencyRank=1,bool hasBait=true,string identity="riverbank",
             int trapX=3,int trapY=4,int receiverX=3,int receiverY=3,int recoveryPathFeet=5,string setterId=null,
-            string sharedSiteIdentity=null,string sharedCreatureIdentity=null,string sharedStockIdentity=null,string trapOwnerId=null)
+            string sharedSiteIdentity=null,string sharedCreatureIdentity=null,string sharedStockIdentity=null,string trapOwnerId=null,
+            int setterWisdomScore=10,int setterIntelligenceScore=10)
         {
             setterId=setterId??TestOnlyPolicy.CompanionId;
             trapOwnerId=trapOwnerId??setterId;
@@ -48,6 +51,7 @@ namespace Decennium.Foundation.Laboratory
                 ||sharedSiteIdentity!=null&&!Validation.ValidId(sharedSiteIdentity)
                 ||sharedCreatureIdentity!=null&&!Validation.ValidId(sharedCreatureIdentity)
                 ||sharedStockIdentity!=null&&!Validation.ValidId(sharedStockIdentity)
+                ||setterWisdomScore<3||setterWisdomScore>20||setterIntelligenceScore<3||setterIntelligenceScore>20
                 ||trapX<0||trapY<0||receiverX<0||receiverY<0||recoveryPathFeet<0||recoveryPathFeet>1000)
                 throw new ArgumentException("Fishing Trap fixture requires a source-listed DC, valid world layout, supported setter and proficiency rank 0–2.");
             CatchDc=catchDc;ProficiencyRank=proficiencyRank;HasBait=hasBait;SetterId=setterId;TrapOwnerId=trapOwnerId;
@@ -62,6 +66,7 @@ namespace Decennium.Foundation.Laboratory
             ReceiverSupportIdentity=root+"receiver-support";StockVersionIdentity=root+"stock-v1";
             SharedStockIdentity=sharedStockIdentity??root+"shared-stock";
             TrapX=trapX;TrapY=trapY;ReceiverX=receiverX;ReceiverY=receiverY;RecoveryPathFeet=recoveryPathFeet;
+            InitialSetterWisdomScore=setterWisdomScore;InitialSetterIntelligenceScore=setterIntelligenceScore;
         }
         internal string Key=>"one-complete-unenchanted-trap-with-bait-holder|one-finite-compatible-ordinary-bait|one-finite-opportunity|one-compatible-ordinary-fish|no-equipment-bonus|bait="
             +HasBait.ToString(CultureInfo.InvariantCulture)+"|"
@@ -75,6 +80,8 @@ namespace Decennium.Foundation.Laboratory
             +"|path-ft="+RecoveryPathFeet.ToString(CultureInfo.InvariantCulture)+"|alternate-worker=third-combatant-free-hands"
             +(SetterId==TestOnlyPolicy.CompanionId?"":"|setter="+SetterId)
             +(TrapOwnerId==SetterId?"":"|trap-owner="+TrapOwnerId);
+        internal string HandoverKey=>Key+"|initial-setter-wisdom-score="+InitialSetterWisdomScore.ToString(CultureInfo.InvariantCulture)
+            +"|initial-setter-intelligence-score="+InitialSetterIntelligenceScore.ToString(CultureInfo.InvariantCulture);
     }
 
     public enum FishingTrapInteraction { Set=1, Pause=2, Resume=3, Cancel=4, Abandon=5, Retrieve=6, PauseRetrieval=7, ResumeRetrieval=8 }
@@ -90,6 +97,13 @@ namespace Decennium.Foundation.Laboratory
             string key=string.Join("||",profiles.OrderBy(x=>x.TrapIdentity,StringComparer.Ordinal).Select(x=>x.Key));
             using(var sha=SHA256.Create())return "TEST_ONLY.fishing-trap-set-v1-"+string.Concat(sha.ComputeHash(
                 Encoding.UTF8.GetBytes(prior+"|world-profiles-v1|"+key)).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+        }
+        private static string FishingTrapHandoverFingerprint(string prior,IEnumerable<SharedFishingTrapFixture> profiles)
+        {
+            string key=string.Join("||",profiles.OrderBy(x=>x.TrapIdentity,StringComparer.Ordinal).Select(x=>x.HandoverKey));
+            using(var sha=SHA256.Create())return "TEST_ONLY.fishing-transfer-v1-"+string.Concat(sha.ComputeHash(
+                Encoding.UTF8.GetBytes(prior+"|mgt06-responsibility-handover-v1|source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|"+key))
+                .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
         }
         private static string BaitOnlyFishingTrapFingerprint(string prior,SharedFishingTrapFixture fixture)
         {
@@ -109,6 +123,16 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeFishingTrap(Snapshot s)
         {
             if(fishingTrapProfiles.Length==0)return;
+            if(fishingTrapResponsibilityHandoverEnabled) {
+                foreach(var profile in fishingTrapProfiles.GroupBy(x=>x.SetterId,StringComparer.Ordinal).Select(x=>x.First())) {
+                    var current=s.Characters.Single(x=>x.ActorId==profile.SetterId);
+                    int[] abilities=current.Abilities.ToArray();
+                    abilities[(int)CharacterAbility.Wisdom]=profile.InitialSetterWisdomScore;
+                    abilities[(int)CharacterAbility.Intelligence]=profile.InitialSetterIntelligenceScore;
+                    s.Characters=s.Characters.Select(x=>x.ActorId==profile.SetterId
+                        ?new ActorCharacterRecord(x.ActorId,x.ProfileId,abilities,x.Levels):x).ToArray();
+                }
+            }
             // Snapshot schema is cumulative: schema35 also requires the shared Bonus Action
             // ledger introduced at schema24, even though this fixture does not grant Soldier features.
             s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
@@ -184,6 +208,22 @@ namespace Decennium.Foundation.Laboratory
                 ??throw new InvalidOperationException("Missing supplied fishing Trap profile: "+trapId);
         private bool IsFishingTrapCommand(Command c)=>fishingTrapProfiles.Length!=0&&c.Kind==CommandKind.Interact
             &&fishingTrapProfiles.Any(x=>x.TrapIdentity==c.Target);
+        private bool IsFishingTrapResponsibilityHandoverCommand(Command c)
+            =>fishingTrapResponsibilityHandoverEnabled&&c.Kind==CommandKind.HandoverFishingTrapResponsibility;
+        private IEnumerable<Command> DiscoverFishingTrapResponsibilityHandoverCommands(Snapshot s,Authority authority,string actor)
+        {
+            if(!fishingTrapResponsibilityHandoverEnabled||s.InventoryCombat)yield break;
+            var held=FishingTrapObligations(s,actor);
+            if(held.Length!=1)yield break;
+            int index=0;var attempt=held[0];
+            foreach(var recipient in s.Actors.Select(x=>x.Id).Where(x=>x!=actor&&authority.ConsentsToHandover(x)
+                &&FishingTrapObligations(s,x).Length==0).OrderBy(x=>x,StringComparer.Ordinal)) {
+                string id="option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".fishing-handover."
+                    +(index++).ToString(CultureInfo.InvariantCulture)+"."+attempt.Id;
+                var command=new Command(id,actor,s.Revision,CommandKind.HandoverFishingTrapResponsibility,recipient);
+                if(AssessFishingTrapResponsibilityHandover(s,command)==null)yield return command;
+            }
+        }
         private IEnumerable<Command> DiscoverFishingTrapControls(Snapshot s,string actor)
         {
             int index=0;
@@ -197,6 +237,13 @@ namespace Decennium.Foundation.Laboratory
                         yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Resume,index++);
                     yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Cancel,index++);
                 }
+                if(fishingTrapResponsibilityHandoverEnabled) {
+                    var responsibility=CurrentFishingTrap(s,actor);
+                    var physical=responsibility==null?null:s.FishingTraps.SingleOrDefault(x=>x.TrapId==responsibility.TrapId);
+                    if(responsibility!=null&&responsibility.TrapId==profile.TrapIdentity&&responsibility.OpportunityCommitted
+                        &&physical!=null&&physical.Status==FishingTrapPhysicalStatus.Deployed)
+                        yield return TrapControlOption(s,actor,profile.TrapIdentity,FishingTrapInteraction.Abandon,index++);
+                }
                 foreach(var job in s.FishingTrapRetrievals.Where(x=>x.TrapId==profile.TrapIdentity
                     &&(x.Status==FishingTrapRetrievalStatus.Working&&x.WorkerId==actor||x.Status==FishingTrapRetrievalStatus.Paused))
                     .OrderBy(x=>x.Id,StringComparer.Ordinal)) {
@@ -208,13 +255,45 @@ namespace Decennium.Foundation.Laboratory
         private static Command TrapControlOption(Snapshot s,string actor,string trapId,FishingTrapInteraction operation,int index)
             =>new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".fishing-trap."+index.ToString(CultureInfo.InvariantCulture),
                 actor,s.Revision,CommandKind.Interact,trapId,(int)operation);
+        private CommandQueryResult QueryFishingTrapResponsibilityHandover(Snapshot s,Authority authority,Command c)
+        {
+            if(!IsFishingTrapResponsibilityHandoverCommand(c))
+                return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
+            if(!authority.ConsentsToHandover(c.Target))
+                return new CommandQueryResult(true,false,"RecipientNotWilling",s.Revision);
+            string failure=ResolveCore(s.Copy(),c);
+            return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
+        }
+        private string AssessFishingTrapResponsibilityHandover(Snapshot s,Command c)
+        {
+            if(!fishingTrapResponsibilityHandoverEnabled||!PhysicalFishingEnabled)
+                return "FishingTrapResponsibilityHandoverUnsupported";
+            if(c.X!=0||c.Y!=0||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
+                ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null
+                ||c.ExpeditionAssignment!=null||c.HarvestSelection!=null||c.MiningSelection!=null
+                ||c.ProspectingExposure!=null||c.RouteMappingWork!=null)
+                return "InvalidFishingTrapResponsibilityHandover";
+            if(s.InventoryCombat)return "FishingRequiresExploration";
+            if(c.Target==c.Actor||!s.Actors.Any(x=>x.Id==c.Target))return "InvalidFishingTrapRecipient";
+            var held=FishingTrapObligations(s,c.Actor);
+            if(held.Length==0)return "FishingTrapDeploymentUnavailable";
+            if(held.Length!=1)return "FishingTrapResponsibilityAmbiguous";
+            var attempt=held[0];
+            if(!attempt.OpportunityCommitted)return "FishingTrapNotCommitted";
+            var physical=s.FishingTraps.SingleOrDefault(x=>x.TrapId==attempt.TrapId);
+            if(physical==null||physical.AttemptId!=attempt.Id||physical.Status!=FishingTrapPhysicalStatus.Deployed)
+                return "FishingTrapDeploymentUnavailable";
+            if(FishingTrapObligations(s,c.Target).Length!=0)return "FishingTrapDeploymentOccupied";
+            return null;
+        }
         private CommandQueryResult QueryFishingTrapControl(Snapshot s,Command c)
         {
             if(!IsFishingTrapCommand(c)||c.Combat!=null||c.Y!=0||!Enum.IsDefined(typeof(FishingTrapInteraction),c.X))
                 return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
             var operation=(FishingTrapInteraction)c.X;
             if(operation!=FishingTrapInteraction.Pause&&operation!=FishingTrapInteraction.Resume&&operation!=FishingTrapInteraction.Cancel
-                &&operation!=FishingTrapInteraction.PauseRetrieval&&operation!=FishingTrapInteraction.ResumeRetrieval)
+                &&operation!=FishingTrapInteraction.Abandon&&operation!=FishingTrapInteraction.PauseRetrieval
+                &&operation!=FishingTrapInteraction.ResumeRetrieval)
                 return new CommandQueryResult(false,false,"UnsupportedOperation",s.Revision);
             string failure=AssessFishingTrapControl(s,c,operation);
             return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
@@ -249,7 +328,10 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
             if(c.Inventory!=null)return "InvalidFishingTrapInteraction";
-            if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
+            if(operation==FishingTrapInteraction.Abandon&&fishingTrapResponsibilityHandoverEnabled) {
+                var responsible=CurrentFishingTrap(s,c.Actor);
+                if(responsible==null||responsible.TrapId!=profile.TrapIdentity)return "FishingTrapResponsibleHolderRequired";
+            } else if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
             var current=CurrentFishingTrap(s,c.Actor);
             if(current==null||current.TrapId!=profile.TrapIdentity)return "FishingTrapDeploymentUnavailable";
             if(operation==FishingTrapInteraction.Pause)
@@ -260,16 +342,22 @@ namespace Decennium.Foundation.Laboratory
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
                 return null;
             }
+            if(operation==FishingTrapInteraction.Abandon) {
+                if(PhysicalFishingEnabled&&!current.OpportunityCommitted)return "FishingTrapNotCommitted";
+                return null;
+            }
             return current.Status==FishingTrapAttemptStatus.SettingUp||current.Status==FishingTrapAttemptStatus.Paused
                 ?null:"FishingTrapAlreadyCommitted";
         }
         private bool PhysicalFishingEnabled=>fishingTrapProfiles.Length!=0&&!fishingTrapLegacy&&!fishingTrapBaitOnly;
-        private static FishingTrapAttemptRecord CurrentFishingTrap(Snapshot s,string actor)
+        private static FishingTrapAttemptRecord[] FishingTrapObligations(Snapshot s,string actor)
             =>s.FishingTrapAttempts.Where(x=>x.ResponsibleHolderId==actor&&x.Status!=FishingTrapAttemptStatus.Cancelled
                 &&x.Status!=FishingTrapAttemptStatus.Abandoned
                 &&!(x.Status==FishingTrapAttemptStatus.CheckMissed&&!x.OpportunityCommitted)
                 &&!s.FishingTraps.Any(t=>t.TrapId==x.TrapId&&t.AttemptId==x.Id&&t.Status==FishingTrapPhysicalStatus.Retrieved))
-                .OrderByDescending(x=>x.StartedAt).FirstOrDefault();
+                .OrderByDescending(x=>x.StartedAt).ToArray();
+        private static FishingTrapAttemptRecord CurrentFishingTrap(Snapshot s,string actor)
+            =>FishingTrapObligations(s,actor).FirstOrDefault();
         private static void PutFishingTrap(Snapshot s,FishingTrapAttemptRecord value)
             =>s.FishingTrapAttempts=s.FishingTrapAttempts.Select(x=>x.Id==value.Id?value:x).ToArray();
         private static void PutFishingOpportunity(Snapshot s,FishingOpportunityRecord value)
@@ -339,7 +427,11 @@ namespace Decennium.Foundation.Laboratory
                         FishingTrapCheckDegree.None,FishingTrapCheckOutcome.None,0,0,0,attempt.BaitLotId,attempt.BaitReservationId,null));
                     continue;
                 }
-                var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",CharacterAbility.Intelligence);
+                // The schema38 responsibility-handover profile captures the pinned WIS check.
+                // Earlier profiles retain their historical INT calculation and fingerprint so
+                // existing snapshots continue to replay under their original behavior.
+                var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",
+                    fishingTrapResponsibilityHandoverEnabled?CharacterAbility.Wisdom:CharacterAbility.Intelligence);
                 RuleTime due=fishingTrapLegacy?s.RuleClock.AddSeconds(3000):attempt.CheckDueAt.Value;
                 bool responseAvailable=true;
                 // This witnessed dry-set sequence exposes its reserved bait when setup completes.
@@ -577,7 +669,10 @@ namespace Decennium.Foundation.Laboratory
                 return ResumeFishingTrapRetrieval(s,c,job);
             }
             if(c.Inventory!=null)return "InvalidFishingTrapInteraction";
-            if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
+            if(operation==FishingTrapInteraction.Abandon&&fishingTrapResponsibilityHandoverEnabled) {
+                var responsible=CurrentFishingTrap(s,c.Actor);
+                if(responsible==null||responsible.TrapId!=profile.TrapIdentity)return "FishingTrapResponsibleHolderRequired";
+            } else if(c.Actor!=profile.SetterId)return "FishingTrapSetterRequired";
             var current=CurrentFishingTrap(s,c.Actor);
             if(operation==FishingTrapInteraction.Set) {
                 if(current!=null)return "FishingTrapDeploymentOccupied";
@@ -680,6 +775,14 @@ namespace Decennium.Foundation.Laboratory
                     current.BaitReservationId,current.BaitExposedAt));return null;
             }
             return "InvalidFishingTrapInteraction";
+        }
+        private string ResolveFishingTrapResponsibilityHandover(Snapshot s,Command c)
+        {
+            string failure=AssessFishingTrapResponsibilityHandover(s,c);
+            if(failure!=null)return failure;
+            var attempt=FishingTrapObligations(s,c.Actor).Single();
+            PutFishingTrap(s,attempt.WithResponsibleHolder(c.Target));
+            return null;
         }
     }
 }
