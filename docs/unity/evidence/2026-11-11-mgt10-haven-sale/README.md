@@ -16,4 +16,6 @@ The copper stock uses the existing linked counted-lot representation. Each coin 
 - Both genuine schema 78 appraisal saves and archived continuations verify byte-for-byte on the candidate. The authentic schema 43 save and continuation also match and retain historical retrieval and wrong-profile rejection. [Schema 78 paused](legacy-saves/schema78-paused-verification.json) · [Schema 78 completed](legacy-saves/schema78-completed-verification.json) · [Schema 43](legacy-saves/schema43-verification.json)
 - Core, Persistence and LabModel standalone C# 9 warnings-as-errors compilation passed. Static checks passed **18/18**, with **317 assets and 317 unique GUIDs**. [Compilation](compile/compile-20261111T082011665Z-294e8488/results.json) · [Static package](static/static-20261111T082011785Z-9e717523/results.json)
 
-The unfiltered C# suite is running on this source. General title and market procedures, other denominations, purchases, ordinary levy settlement, expedition bills, rewards, and preparation for a new descent remain open. Unity gameplay integration remains deferred.
+- The exact accepted source passed **1,370/1,370** in the unfiltered suite after GPT acceptance. All 291 source hashes match the focused report and the accepted Git source. [Full regression](validation/run-20261111T082221382Z-139bee37/results.json)
+
+General title and market procedures, other denominations, purchases, ordinary levy settlement, expedition bills, rewards, and preparation for a new descent remain open. Unity gameplay integration remains deferred.
