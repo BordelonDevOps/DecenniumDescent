@@ -15,7 +15,7 @@ namespace Decennium.Foundation
             void Quantity(RuleQuantity value) => WritePair(writer, value.Numerator, value.Denominator);
             foreach (string value in new[] { record.EpisodeId, record.CharterVersionId, record.CloserId, record.MandateId,
                 record.EvidenceAuthorityId, record.CommandId, record.BillId, record.EncounterId, record.HostileId,
-                record.MiningAttemptId, record.MealIntakeId }) Text(value);
+                record.MiningAttemptId }) Text(value);
             writer.Write(record.SourceRevision);
             Time(record.ClosedAt);
             writer.Write(record.BillReportRevision);
@@ -30,6 +30,8 @@ namespace Decennium.Foundation
             Quantity(outcome.GrossTargetCopper);
             Quantity(outcome.ProfitTargetCopper);
 
+            writer.Write(record.MealIntakeIds.Count);
+            foreach (string intakeId in record.MealIntakeIds) Text(intakeId);
             writer.Write(record.Members.Count);
             foreach (var member in record.Members) {
                 ActorLifeCodec.WriteLife(writer, member.Life);
@@ -96,7 +98,7 @@ namespace Decennium.Foundation
             RuleQuantity Quantity() => new RuleQuantity(reader.ReadInt64(), reader.ReadInt64());
             T[] Rows<T>(int limit, Func<T> read) => Enumerable.Range(0, SnapshotCodec.ReadCount(reader, limit)).Select(_ => read()).ToArray();
             string episode = Text(), charter = Text(), closer = Text(), mandate = Text(), access = Text(), command = Text(),
-                bill = Text(), encounter = Text(), hostile = Text(), mining = Text(), intake = Text();
+                bill = Text(), encounter = Text(), hostile = Text(), mining = Text();
             long sourceRevision = reader.ReadInt64();
             var at = Time();
             long billRevision = reader.ReadInt64(), exitRevision = reader.ReadInt64();
@@ -105,6 +107,7 @@ namespace Decennium.Foundation
             var outcome = new ExpeditionCloseOutcome((ExpeditionCloseMetric)reader.ReadInt32(), reader.ReadInt64(),
                 Quantity(), reader.ReadInt64(), Quantity(), Quantity());
 
+            var intakes = Rows(32, Text);
             ExpeditionCloseCondition ReadCondition()
             {
                 string id = Text(), kind = Text();
@@ -133,7 +136,7 @@ namespace Decennium.Foundation
             var coverage = Rows(Enum.GetValues(typeof(ExpeditionCloseField)).Length, () => new ExpeditionCloseCoverage(
                 (ExpeditionCloseField)reader.ReadInt32(), (ExpeditionCloseKnowledge)reader.ReadInt32(), Text()));
             return new ExpeditionEpisodeCloseRecord(episode, charter, closer, mandate, access, command, sourceRevision, at,
-                bill, billRevision, encounter, exitRevision, hostile, hostileX, hostileY, mining, intake, outcome,
+                bill, billRevision, encounter, exitRevision, hostile, hostileX, hostileY, mining, intakes, outcome,
                 members, dispositions, stockRows, equipment, vessels, coverage);
         }
 

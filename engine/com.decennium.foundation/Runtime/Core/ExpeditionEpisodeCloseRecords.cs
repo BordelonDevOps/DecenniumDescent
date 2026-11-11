@@ -155,7 +155,7 @@ namespace Decennium.Foundation
         public RuleQuantity HostileX { get; }
         public RuleQuantity HostileY { get; }
         public string MiningAttemptId { get; }
-        public string MealIntakeId { get; }
+        public IReadOnlyList<string> MealIntakeIds { get; }
         public ExpeditionCloseOutcome Outcome { get; }
         public IReadOnlyList<ExpeditionCloseMember> Members { get; }
         public IReadOnlyList<ExpeditionCloseMiningDisposition> MiningDispositions { get; }
@@ -167,13 +167,13 @@ namespace Decennium.Foundation
         public ExpeditionEpisodeCloseRecord(string episodeId, string charterVersionId, string closerId, string mandateId,
             string evidenceAuthorityId, string commandId, long sourceRevision, RuleTime closedAt, string billId,
             long billReportRevision, string encounterId, long encounterExitRevision, string hostileId,
-            RuleQuantity hostileX, RuleQuantity hostileY, string miningAttemptId, string mealIntakeId, ExpeditionCloseOutcome outcome,
+            RuleQuantity hostileX, RuleQuantity hostileY, string miningAttemptId, IEnumerable<string> mealIntakeIds, ExpeditionCloseOutcome outcome,
             IEnumerable<ExpeditionCloseMember> members, IEnumerable<ExpeditionCloseMiningDisposition> miningDispositions,
             IEnumerable<ExpeditionCloseStock> stock, IEnumerable<PortableEquipmentRecord> equipment,
             IEnumerable<WaterVesselRecord> vessels, IEnumerable<ExpeditionCloseCoverage> coverage)
         {
             if (new[] { episodeId, charterVersionId, closerId, mandateId, evidenceAuthorityId, commandId, billId, encounterId,
-                hostileId, miningAttemptId, mealIntakeId }.Any(id => !Validation.ValidId(id))
+                hostileId, miningAttemptId }.Any(id => !Validation.ValidId(id))
                 || sourceRevision < 1 || sourceRevision == long.MaxValue || billReportRevision < 1 || billReportRevision > sourceRevision
                 || encounterExitRevision < 1 || encounterExitRevision >= billReportRevision || outcome == null)
                 throw new ArgumentException("Invalid Expedition episode close identity or chronology.");
@@ -193,7 +193,9 @@ namespace Decennium.Foundation
             HostileX = hostileX;
             HostileY = hostileY;
             MiningAttemptId = miningAttemptId;
-            MealIntakeId = mealIntakeId;
+            MealIntakeIds = Ordered(mealIntakeIds, 32, id => id);
+            if (MealIntakeIds.Count == 0 || MealIntakeIds.Any(id => !Validation.ValidId(id)))
+                throw new ArgumentException("Missing or invalid Expedition meal intake history.");
             Outcome = outcome;
             Members = Ordered(members, 12, x => x.ActorId);
             MiningDispositions = Ordered(miningDispositions, 32, x => x.UnitId);
@@ -225,6 +227,42 @@ namespace Decennium.Foundation
 
     public static class ExpeditionEpisodeCloseValidation
     {
+        /// <summary>References the actual terminal debits for the named paid serving as of closure.
+        /// Inventory provenance validates the descendant graph and exact quantity conservation.</summary>
+        public static bool TryReadMealIntakes(Snapshot state, HavenMealPurchaseRecord meal, RuleTime asOf, out string[] intakeIds)
+        {
+            intakeIds = Array.Empty<string>();
+            var offer = meal.Offer;
+            if (meal.EndedAt > asOf || !state.InventoryLots.Any(x => x.LotId == offer.MealLotId && x.ParentId == ""
+                && x.OwnerId == offer.CustomerId && x.Nutrition == NutritionKind.FoodPounds
+                && x.CreatedAmount == offer.ServingPounds)) return false;
+
+            var children = state.InventoryLots.Where(x => x.CreatedAt <= asOf).ToLookup(x => x.ParentId, StringComparer.Ordinal);
+            var family = new HashSet<string>(StringComparer.Ordinal) { offer.MealLotId };
+            var pending = new Queue<string>();
+            pending.Enqueue(offer.MealLotId);
+            while (pending.Count != 0) {
+                foreach (var child in children[pending.Dequeue()])
+                    if (family.Add(child.LotId)) pending.Enqueue(child.LotId);
+            }
+
+            var references = new List<string>();
+            RuleQuantity consumed = default;
+            foreach (var intake in state.Intakes.Where(x => x.ActorId == offer.CustomerId && family.Contains(x.LotId)
+                && meal.EndedAt <= x.StartedAt && x.StartedAt <= asOf)) {
+                if (intake.Status == IntakeStatus.Working || !intake.EndedAt.HasValue || intake.EndedAt.Value > asOf) return false;
+                var claim = state.Work.Reservations.SingleOrDefault(x => x.Id == intake.ReservationId && x.JobId == intake.Id
+                    && x.LotId == intake.LotId);
+                if (claim == null || claim.RemainingAmount != default) return false;
+                if (claim.ConsumedAmount == default) continue;
+                consumed += claim.ConsumedAmount;
+                references.Add(intake.Id);
+            }
+            if (consumed != offer.ServingPounds) return false;
+            intakeIds = references.OrderBy(id => id, StringComparer.Ordinal).ToArray();
+            return true;
+        }
+
         public static void Validate(Snapshot state)
         {
             var record = state.ExpeditionEpisodeClose;
@@ -243,8 +281,8 @@ namespace Decennium.Foundation
                 || record.Outcome.RealizedGrossCopper != bill.Basis.GrossSaleCopper || record.Outcome.RealizedNetCopper != bill.Basis.NetExpeditionCopper
                 || record.Outcome.GrossTargetCopper != charter.GrossTargetCopper || record.Outcome.NetTargetCopper != charter.NetTargetCopper
                 || record.Outcome.ProfitTargetCopper != charter.ProfitAfterReservesTargetCopper
-                || !state.Intakes.Any(x => x.Id == record.MealIntakeId && x.Status == IntakeStatus.Complete
-                    && x.ActorId == meal.Offer.CustomerId && x.LotId == meal.Offer.MealLotId && x.EndedAt <= record.ClosedAt)
+                || !TryReadMealIntakes(state, meal, record.ClosedAt, out var intakeIds)
+                || !record.MealIntakeIds.SequenceEqual(intakeIds)
                 || !state.MiningAttempts.Any(x => x.Id == record.MiningAttemptId && x.ClosedAt.HasValue && x.ClosedAt.Value <= record.ClosedAt))
                 throw new ArgumentException("Invalid Expedition close provenance.");
             var command = CommandHistory.Read(receipt);

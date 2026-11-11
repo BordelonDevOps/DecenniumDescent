@@ -115,7 +115,7 @@ namespace Decennium.Foundation.Tests
                 Require(Bytes(sim).SequenceEqual(Bytes(afterRestore)), "Post-close movement and handling replay diverged.");
                 Throws<ArgumentException>(() => new Simulation(BillPolicy(), sim.Capture(), ExecutionProfile.Laboratory));
                 Throws<InvalidOperationException>(() => new Simulation(ClosePolicy(), sim.Capture(), ExecutionProfile.Release));
-                WriteClosureAudit(directory, sim.Capture());
+                WriteClosureAudit(directory, sim.Capture(), "ordinary-movement-and-vendor-handling");
             });
             cases.Add("mgt10_episode_close_authority_receipts_and_stable_admission", () =>
             {
@@ -194,7 +194,103 @@ namespace Decennium.Foundation.Tests
                         "Later custody rewrote closing placement.");
                 }
                 Require(Bytes(sim).SequenceEqual(Bytes(replay)), "Post-close condition and handling replay diverged.");
-                WriteClosureAudit(directory, sim.Capture());
+                WriteClosureAudit(directory, sim.Capture(), "condition-expiry-and-vendor-handling");
+            });
+            cases.Add("mgt10_episode_close_evidence_aggregates_interrupted_and_resumed_root_intakes", () =>
+            {
+                var sim = PurchasedMealForClose();
+                InterruptCloseMeal(sim);
+                EatMeal(sim, new RuleQuantity(1, 2));
+                WorldAdvance(sim, 450);
+                VerifyMealConsumptionClose(sim, directory, "interrupted-root", new[] { IntakeStatus.Interrupted, IntakeStatus.Complete },
+                    new[] { new RuleQuantity(1, 6), new RuleQuantity(1, 2) }, new[] { HavenMealLot, HavenMealLot });
+            });
+            cases.Add("mgt10_episode_close_evidence_aggregates_two_completed_partial_intakes", () =>
+            {
+                var sim = PurchasedMealForClose();
+                EatMeal(sim, new RuleQuantity(1, 3));
+                WorldAdvance(sim, 300);
+                WorldAdvance(sim, 6);
+                EatMeal(sim, new RuleQuantity(1, 3));
+                WorldAdvance(sim, 300);
+                VerifyMealConsumptionClose(sim, directory, "two-complete-root", new[] { IntakeStatus.Complete, IntakeStatus.Complete },
+                    new[] { new RuleQuantity(1, 3), new RuleQuantity(1, 3) }, new[] { HavenMealLot, HavenMealLot });
+            });
+            cases.Add("mgt10_episode_close_evidence_aggregates_descendant_portion_after_drop_and_return", () =>
+            {
+                var sim = PurchasedMealForClose();
+                InterruptCloseMeal(sim);
+                WorldCommit(sim, IC(sim, CommandKind.PortionInventory, HavenMealLot, new InventoryRequest(new RuleQuantity(1, 6)), SaleSeller));
+                string child = sim.Capture().InventoryLots.Single(x => x.ParentId == HavenMealLot).LotId;
+                PortableCommit(sim, HandleMeal(sim, HandlingKind.Drop));
+                WorldAdvance(sim, 6);
+                PortableCommit(sim, HandleMeal(sim, HandlingKind.Drop, child));
+                WorldStep(sim, 1, 0, actor: SaleSeller);
+                WorldAdvance(sim, 6);
+                WorldStep(sim, -1, 0, actor: SaleSeller);
+                WorldAdvance(sim, 6);
+                PortableCommit(sim, HandleMeal(sim, HandlingKind.Pickup, child));
+                WorldAdvance(sim, 6);
+                EatMeal(sim, new RuleQuantity(1, 6), child);
+                WorldAdvance(sim, 150);
+                WorldAdvance(sim, 6);
+                PortableCommit(sim, HandleMeal(sim, HandlingKind.Pickup));
+                WorldAdvance(sim, 6);
+                EatMeal(sim, new RuleQuantity(1, 3));
+                WorldAdvance(sim, 300);
+                VerifyMealConsumptionClose(sim, directory, "descendant-meal",
+                    new[] { IntakeStatus.Interrupted, IntakeStatus.Complete, IntakeStatus.Complete },
+                    new[] { new RuleQuantity(1, 6), new RuleQuantity(1, 6), new RuleQuantity(1, 3) },
+                    new[] { HavenMealLot, child, HavenMealLot });
+            });
+            cases.Add("mgt10_episode_close_evidence_rejects_live_partial_and_unrelated_consumption", () =>
+            {
+                var sim = PurchasedMealForClose();
+                SaleCommit(sim, BillCommand(sim));
+                WorldAdvance(sim, 1800);
+                EatMeal(sim, new RuleQuantity(2, 3));
+                WorldAdvance(sim, 150);
+                RejectUnchanged(sim, host, CloseCommand(sim), "ExpeditionCloseMealIntakeRequired");
+                var first = sim.Capture().Intakes.Single();
+                WorldCommit(sim, IC(sim, CommandKind.InterruptIntake, first.Id, actor: SaleSeller));
+                WorldAdvance(sim, 6);
+                RejectUnchanged(sim, host, CloseCommand(sim), "ExpeditionCloseMealIntakeRequired");
+
+                PortableCommit(sim, Portable(sim, CommandKind.HandlePortableEquipment, PortableKitFixture.Rations, handling: HandlingKind.Retrieve));
+                WorldCommit(sim, IC(sim, CommandKind.PortionInventory, PortableKitFixture.Rations, new InventoryRequest(new RuleQuantity(1, 2))));
+                string ration = sim.Capture().InventoryLots.Single(x => x.ParentId == PortableKitFixture.Rations).LotId;
+                WorldStep(sim, -1, 0);
+                WorldAdvance(sim, 6);
+                for (int step = 0; step < 3; step++) {
+                    WorldStep(sim, 0, 1);
+                    WorldAdvance(sim, 6);
+                }
+                PortableCommit(sim, Portable(sim, CommandKind.HandlePortableEquipment, ration, SaleSeller, HandlingKind.Handover));
+                WorldAdvance(sim, 6);
+                EatMeal(sim, new RuleQuantity(1, 2), ration);
+                WorldAdvance(sim, 450);
+                var unrelated = sim.Capture();
+                Require(OrdinaryInventory.Consumed(unrelated, SaleSeller, NutritionKind.FoodPounds) == new RuleQuantity(2, 3)
+                    && unrelated.Work.Lots.Single(x => x.Id == HavenMealLot).Amount == new RuleQuantity(1, 2),
+                    "The same customer did not eat unrelated rations while leaving actual meal stock.");
+                RejectUnchanged(sim, host, CloseCommand(sim), "ExpeditionCloseMealIntakeRequired");
+
+                WorldAdvance(sim, 6);
+                EatMeal(sim, new RuleQuantity(1, 2));
+                WorldAdvance(sim, 450);
+                SaleCommit(sim, CloseCommand(sim));
+                var closed = sim.Capture();
+                var close = closed.ExpeditionEpisodeClose;
+                string unrelatedId = closed.Intakes.Single(x => x.LotId == ration).Id;
+                Require(close.MealIntakeIds.Count == 2 && !close.MealIntakeIds.Contains(unrelatedId),
+                    "Corrected closure attributed an unrelated intake to the purchased meal.");
+                var codec = new SnapshotCodec();
+                foreach (var ids in new[] { new[] { first.Id }, new[] { first.Id, unrelatedId } }) {
+                    var forged = closed.Copy();
+                    forged.ExpeditionEpisodeClose = AlterClose(close, intakeIds: ids);
+                    Throws<ArgumentException>(() => codec.Encode(forged));
+                }
+                Throws<ArgumentException>(() => AlterClose(close, intakeIds: new[] { first.Id, first.Id }));
             });
             cases.Add("mgt10_episode_close_rejects_isolated_forged_history_and_projection", () =>
             {
@@ -245,14 +341,62 @@ namespace Decennium.Foundation.Tests
             });
         }
 
+        private static Simulation PurchasedMealForClose()
+        {
+            var sim = MealAtCounter(ClosePolicy(), withEncounter: true);
+            SaleCommit(sim, PurchaseMeal(sim));
+            return sim;
+        }
+
+        private static void InterruptCloseMeal(Simulation sim)
+        {
+            EatMeal(sim, new RuleQuantity(2, 3));
+            WorldAdvance(sim, 150);
+            WorldCommit(sim, IC(sim, CommandKind.InterruptIntake, sim.Capture().Intakes.Single().Id, actor: SaleSeller));
+            WorldAdvance(sim, 6);
+        }
+
+        private static void VerifyMealConsumptionClose(Simulation sim, string directory, string name,
+            IntakeStatus[] statuses, RuleQuantity[] amounts, string[] lots)
+        {
+            var before = sim.Capture();
+            var entries = before.Intakes.OrderBy(x => x.StartedAt).ToArray();
+            var debits = entries.Select(x => before.Work.Reservations.Single(r => r.Id == x.ReservationId)).ToArray();
+            Require(entries.Select(x => x.Status).SequenceEqual(statuses) && entries.Select(x => x.LotId).SequenceEqual(lots)
+                && debits.Select(x => x.ConsumedAmount).SequenceEqual(amounts) && debits.All(x => x.RemainingAmount == default)
+                && lots.Distinct().All(id => before.Work.Lots.Single(x => x.Id == id).Amount == default)
+                && RuleQuantity.Sum(amounts) == new RuleQuantity(2, 3), "The actual terminal meal debits were not established.");
+            WorldAdvance(sim, 6);
+            SaleCommit(sim, BillCommand(sim));
+            WorldAdvance(sim, 1800);
+            var replay = SaveBill(sim, ClosePolicy(), directory, name + "-before-close");
+            var command = CloseCommand(sim);
+            byte[] beforeQuery = Bytes(sim);
+            Require(sim.QueryCommand(HavenSaleHost(), command).Admissible && beforeQuery.SequenceEqual(Bytes(sim)),
+                "Closure preview rejected the fully consumed serving or changed state.");
+            foreach (var branch in new[] { sim, replay }) {
+                SaleCommit(branch, command);
+                var captured = Closure(branch);
+                Require(captured.MealIntakeIds.SequenceEqual(entries.Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal))
+                    && captured.ClosedAt == branch.Capture().RuleClock && captured.Outcome.RealizedNetCopper == 2,
+                    "The close did not retain the complete exact terminal meal history.");
+                WorldStep(branch, 1, 0, actor: SaleSeller);
+                WorldAdvance(branch, 2);
+                Require(ReferenceEquals(Closure(branch), captured), "Later movement rewrote closed meal evidence.");
+            }
+            Require(Bytes(sim).SequenceEqual(Bytes(replay)), "Restored meal history did not replay the same close and continuation.");
+            SaveBill(sim, ClosePolicy(), directory, name + "-after-close");
+            WriteClosureAudit(directory, sim.Capture(), "ordinary-movement");
+        }
+
         private static ExpeditionEpisodeCloseRecord AlterClose(ExpeditionEpisodeCloseRecord close,
             ExpeditionCloseOutcome outcome = null, IEnumerable<ExpeditionCloseMember> members = null,
             IEnumerable<ExpeditionCloseStock> stock = null, IEnumerable<ExpeditionCloseCoverage> coverage = null,
-            long? billRevision = null, long? sourceRevision = null)
+            long? billRevision = null, long? sourceRevision = null, IEnumerable<string> intakeIds = null)
             => new ExpeditionEpisodeCloseRecord(close.EpisodeId, close.CharterVersionId, close.CloserId, close.MandateId,
                 close.EvidenceAuthorityId, close.CommandId, sourceRevision ?? close.SourceRevision, close.ClosedAt,
                 close.BillId, billRevision ?? close.BillReportRevision, close.EncounterId, close.EncounterExitRevision,
-                close.HostileId, close.HostileX, close.HostileY, close.MiningAttemptId, close.MealIntakeId, outcome ?? close.Outcome,
+                close.HostileId, close.HostileX, close.HostileY, close.MiningAttemptId, intakeIds ?? close.MealIntakeIds, outcome ?? close.Outcome,
                 members ?? close.Members, close.MiningDispositions, stock ?? close.Stock, close.Equipment, close.Vessels, coverage ?? close.Coverage);
 
         private static void CheckClosureCoverage(ExpeditionEpisodeCloseRecord close)
@@ -276,7 +420,7 @@ namespace Decennium.Foundation.Tests
                 "The close omitted or silently resolved a required coverage category.");
         }
 
-        private static void WriteClosureAudit(string directory, Snapshot state)
+        private static void WriteClosureAudit(string directory, Snapshot state, string continuation)
         {
             var close = state.ExpeditionEpisodeClose;
             var bill = state.ExpeditionBills.Single();
@@ -297,6 +441,12 @@ namespace Decennium.Foundation.Tests
             };
             rows.AddRange(close.Members.Select(x => string.Join("\t", "member-" + x.ActorId, close.ClosedAt, close.CloseRevision,
                 x.X + "," + x.Y + "/HP-" + x.Life.Hp + "/" + x.Life.MaximumHp)));
+            rows.AddRange(close.MealIntakeIds.Select(id => {
+                var intake = state.Intakes.Single(x => x.Id == id);
+                var debit = state.Work.Reservations.Single(x => x.Id == intake.ReservationId);
+                return string.Join("\t", "meal-intake-" + id, intake.EndedAt, close.CloseRevision,
+                    intake.LotId + "/" + intake.Status + "/" + debit.ConsumedAmount);
+            }));
             rows.AddRange(close.MiningDispositions.Select(x => string.Join("\t", "mining-" + x.UnitId, close.ClosedAt,
                 close.CloseRevision, x.Status)));
             rows.AddRange(close.Stock.Select(x => string.Join("\t", "stock-" + x.Stock.Id, close.ClosedAt, close.CloseRevision,
@@ -305,7 +455,7 @@ namespace Decennium.Foundation.Tests
                 close.ClosedAt, close.CloseRevision, c.Kind + "/expiry-" + c.Expires?.Time))));
             rows.AddRange(close.Coverage.Select(x => string.Join("\t", "coverage-" + x.Field, close.ClosedAt, close.CloseRevision,
                 x.Knowledge + "/" + x.BasisId)));
-            rows.Add(string.Join("\t", "continued", state.RuleClock, state.Revision, "ordinary-movement-and-vendor-handling"));
+            rows.Add(string.Join("\t", "continued", state.RuleClock, state.Revision, continuation));
             File.WriteAllLines(Path.Combine(directory, "episode-close-audit.tsv"), rows);
         }
     }

@@ -96,10 +96,8 @@ namespace Decennium.Foundation.Laboratory
 
             var meal = state.HavenMealPurchases.Single();
             var sale = state.HavenSales.Single(x => x.Id == bill.Basis.SaleId);
-            var intake = state.Intakes.SingleOrDefault(x => x.ActorId == meal.Offer.CustomerId && x.LotId == meal.Offer.MealLotId
-                && x.Status == IntakeStatus.Complete && x.StartedAt >= meal.EndedAt);
-            if (intake == null || !state.Work.Reservations.Any(x => x.Id == intake.ReservationId
-                && x.ConsumedAmount == meal.Offer.ServingPounds)) return "ExpeditionCloseMealIntakeRequired";
+            if (!ExpeditionEpisodeCloseValidation.TryReadMealIntakes(state, meal, state.RuleClock, out var intakeIds))
+                return "ExpeditionCloseMealIntakeRequired";
             var attempt = state.MiningAttempts.SingleOrDefault(x => x.SelectedUnitIds.Contains(sale.Basis.GoodsLotId)
                 && (x.Status == MiningAttemptStatus.Success || x.Status == MiningAttemptStatus.CriticalSuccess)
                 && x.ClosedAt.HasValue && x.ClosedAt.Value <= sale.StartedAt);
@@ -125,7 +123,7 @@ namespace Decennium.Foundation.Laboratory
             close = new ExpeditionEpisodeCloseRecord(charter.EpisodeId, charter.VersionId, command.Actor,
                 TestOnlyExpeditionCloseProfile.MandateId, TestOnlyExpeditionCloseProfile.EvidenceId, command.Id, state.Revision,
                 state.RuleClock, bill.Id, bill.UpdatedRevision, state.Encounter.Id, exit.Revision, AdditionalTacticalActor.Id,
-                hostile.X, hostile.Y, attempt.Id, intake.Id, outcome, capturedMembers,
+                hostile.X, hostile.Y, attempt.Id, intakeIds, outcome, capturedMembers,
                 units.Select(x => new ExpeditionCloseMiningDisposition(x.Id, x.Status, x.ReceivedLotId)), scopedStock,
                 state.PortableEquipment.Where(x => members.Contains(x.OwnerId) || members.Contains(x.CustodianId) || related.Contains(x.Id)),
                 state.Vessels.Where(x => members.Contains(x.OwnerId) || members.Contains(x.CustodianId)), EpisodeCloseCoverage());
