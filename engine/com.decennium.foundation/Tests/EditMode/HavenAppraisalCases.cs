@@ -14,12 +14,13 @@ namespace Decennium.Foundation.Tests
         private const string AppraisalIron = SharedMiningFixture.UnitA;
 
         private static TestOnlySharedWorldPolicy AppraisalPolicy(TestOnlyHavenAppraisalProfile profile = null,
-            ConditionCombatFixture conditions = null, bool legacy = false)
+            ConditionCombatFixture conditions = null, bool legacy = false, CraftingMishapFact incident = null)
         {
             uint seed = 1;
             while (PlaytestDice.RollD20(seed).Natural != 12) seed++;
             var policy = new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: seed),
                 new SupplyCacheFixture(), conditions: conditions).EnableMining(new SharedMiningFixture());
+            if (incident != null) policy.EnableCraftingConsequences(new SharedCraftingFixture(events: new[] { incident }));
             return legacy ? policy : policy.EnableHavenAppraisal(profile ?? new TestOnlyHavenAppraisalProfile());
         }
 
@@ -46,6 +47,14 @@ namespace Decennium.Foundation.Tests
             WorldAdvance(s, 6);
             PortableCommit(s, AppraisalHandling(s, HandlingKind.Drop));
             WorldAdvance(s, 6);
+        }
+
+        private static Simulation AppraisalAtDesk(TestOnlySharedWorldPolicy policy = null)
+        {
+            var s = PortableWorld(policy ?? AppraisalPolicy());
+            ExtractAppraisalIron(s);
+            PlaceIronAtAppraisalDesk(s);
+            return s;
         }
 
         private static void ResolveAppraisalExpeditionEncounter(Simulation s)
@@ -267,6 +276,120 @@ namespace Decennium.Foundation.Tests
                     MaterialDemand.Normal, MaterialCondition.Sound, MaterialUrgency.Normal));
                 Throws<ArgumentException>(() => OrdinaryMaterialValuation.ExactCopper(10, default,
                     MaterialDemand.Normal, MaterialCondition.Sound, MaterialUrgency.Normal));
+            });
+            cases.Add("mgt10_haven_appraisal_desk_restriction_pauses_work_and_cleanup_preserves_claim", () =>
+            {
+                var profile = new TestOnlyHavenAppraisalProfile(availableUntil: 12000);
+                var arrival = AppraisalAtDesk().Capture().RuleClock;
+                var spill = new CraftingMishapFact("appraisal-desk-spill", 1, at: arrival.AddSeconds(300), stationId: AppraisalDesk);
+                var fresh = AppraisalAtDesk(AppraisalPolicy(profile, incident: spill));
+                WorldAdvance(fresh, 300);
+                CraftEvent(fresh, spill.Id);
+                RejectUnchanged(fresh, host, AppraisalCommand(fresh, CommandKind.StartHavenAppraisal), "AppraisalDeskUseBlocked");
+                var s = AppraisalAtDesk(AppraisalPolicy(profile, incident: spill));
+                MiningCommit(s, AppraisalCommand(s, CommandKind.StartHavenAppraisal));
+                WorldAdvance(s, 300);
+                CraftEvent(s, spill.Id);
+                var blocked = s.Capture();
+                var job = blocked.HavenAppraisals.Single();
+                Require(CraftingRestrictions.StationUseBlocked(blocked, AppraisalDesk)
+                    && !blocked.Structures.Single(x => x.Id == AppraisalDesk).Broken
+                    && job.Status == HavenAppraisalStatus.Paused && job.Reason == "AppraisalDeskUseBlocked"
+                    && job.Work.Labor == T(300) && job.UpdatedAt == spill.At
+                    && blocked.Work.WorkerIntervals.All(x => x.JobId != job.Id || x.End <= spill.At)
+                    && blocked.Work.AvailableAmount(AppraisalIron) == default,
+                    "Result-1 desk restriction did not pause and retain exactly the earned work and claim.");
+                RejectUnchanged(s, host, AppraisalCommand(s, CommandKind.ResumeHavenAppraisal, job.Id), "AppraisalDeskUseBlocked");
+                WorldAdvance(s, 6);
+                Remedy(s, spill.Id);
+                WorldAdvance(s, 3599);
+                Require(CraftingRestrictions.StationUseBlocked(s.Capture(), AppraisalDesk)
+                    && s.Capture().HavenAppraisals.Single().Work.Labor == T(300),
+                    "Appraisal credited labor before cleanup finished.");
+                WorldAdvance(s, 1);
+                var cleaned = s.Capture();
+                Require(!CraftingRestrictions.StationUseBlocked(cleaned, AppraisalDesk)
+                    && cleaned.HavenAppraisals.Single().Status == HavenAppraisalStatus.Paused
+                    && cleaned.Work.AvailableAmount(AppraisalIron) == default,
+                    "Cleanup automatically resumed appraisal or released its claim.");
+                WorldAdvance(s, 6);
+                MiningCommit(s, AppraisalCommand(s, CommandKind.ResumeHavenAppraisal, job.Id));
+                WorldAdvance(s, 1500);
+                Require(s.Capture().HavenAppraisals.Single().ResultCopper == new RuleQuantity(15, 2),
+                    "Explicit resumption did not complete the original appraisal after the retained 300 seconds.");
+            });
+            cases.Add("mgt10_haven_appraisal_desk_restriction_blocks_pending_completion", () =>
+            {
+                var profile = new TestOnlyHavenAppraisalProfile(availableUntil: 12000);
+                var endpoint = AppraisalAtDesk().Capture().RuleClock.AddSeconds(HavenAppraisalRecord.RequiredSeconds);
+                var spill = new CraftingMishapFact("appraisal-endpoint-spill", 1, lead: TestOnlyPolicy.ActorId,
+                    at: endpoint, stationId: AppraisalDesk);
+                var cure = new ConditionFixtureEvent(AppraisalWorker, ConditionOperation.Cure("event.cure",
+                    new ConditionStamp(endpoint), "Stunned"));
+                var conditions = new ConditionCombatFixture(CCApply("stun", "Stunned", AppraisalWorker),
+                    CCGrant("ward", AppraisalWorker, new ConditionStamp(endpoint), "Stunned"), cure);
+                var s = PortableWorld(AppraisalPolicy(profile, conditions, incident: spill));
+                CCDispatch(s, "stun", AppraisalWorker);
+                CCDispatch(s, "ward", AppraisalWorker);
+                ExtractAppraisalIron(s);
+                PlaceIronAtAppraisalDesk(s);
+                MiningCommit(s, AppraisalCommand(s, CommandKind.StartHavenAppraisal));
+                WorldAdvance(s, HavenAppraisalRecord.RequiredSeconds);
+                CraftEvent(s, spill.Id, TestOnlyPolicy.ActorId);
+                CCDispatch(s, "cure", AppraisalWorker);
+                var pending = s.Capture().HavenAppraisals.Single();
+                Require(pending.Status == HavenAppraisalStatus.PendingCompletion && pending.Work.Complete
+                    && !pending.ResultCopper.HasValue, "Endpoint setup did not retain fully earned pending work.");
+                RejectUnchanged(s, host, AppraisalCommand(s, CommandKind.ResumeHavenAppraisal, pending.Id), "AppraisalDeskUseBlocked");
+                Remedy(s, spill.Id);
+                WorldAdvance(s, 3600);
+                var restoredEligibility = s.Capture();
+                MiningCommit(s, AppraisalCommand(s, CommandKind.ResumeHavenAppraisal, pending.Id));
+                var after = s.Capture();
+                Require(after.RuleClock == restoredEligibility.RuleClock && after.RandomState == restoredEligibility.RandomState
+                    && after.HavenAppraisals.Single().ResultCopper == new RuleQuantity(15, 2),
+                    "Pending work did not finalize once after lawful desk cleanup.");
+            });
+            cases.Add("mgt10_haven_appraisal_requires_inventory_authority_exclusive_worker_and_physical_subject", () =>
+            {
+                var arrival = AppraisalAtDesk().Capture().RuleClock;
+                var fouling = new CraftingMishapFact("appraisal-order-only-fouling", 5, at: arrival, stationId: AppraisalDesk);
+                var policy = AppraisalPolicy(incident: fouling);
+                var s = AppraisalAtDesk(policy);
+                var start = AppraisalCommand(s, CommandKind.StartHavenAppraisal);
+                var workerOnly = new Authority(host.Principal, new[] { AppraisalWorker });
+                RejectUnchanged(s, workerOnly, start, "InventoryNotAuthorized");
+                Require(s.QueryCommand(workerOnly, start).Code == "InventoryNotAuthorized",
+                    "Read-only appraisal admission exposed property without inventory authority.");
+                CraftEvent(s, fouling.Id);
+                Require(CraftingRestrictions.OrderWorkBlocked(s.Capture(), AppraisalDesk)
+                    && !CraftingRestrictions.StationUseBlocked(s.Capture(), AppraisalDesk),
+                    "Result 5 must block affected order work only.");
+                Remedy(s, fouling.Id);
+                Require(s.Capture().Work.WorkerIntervals.Any(x => x.WorkerId == AppraisalWorker && x.End > s.Capture().RuleClock),
+                    "Competing cleanup failed to establish an actual worker booking.");
+                RejectUnchanged(s, host, AppraisalCommand(s, CommandKind.StartHavenAppraisal), "AppraisalWorkerBusy");
+                Remedy(s, fouling.Id, pause: true);
+                start = AppraisalCommand(s, CommandKind.StartHavenAppraisal);
+                var shortened = s.Capture();
+                var original = shortened.Work.Lots.Single(x => x.Id == AppraisalIron);
+                var shortLot = new ResourceLot(original.Id, original.UnitId, new RuleQuantity(1, 2), original.LocationId, original.CustodianId);
+                shortened.Work = new WorkLedger(shortened.Work.Lots.Select(x => x.Id == AppraisalIron ? shortLot : x),
+                    shortened.Work.WorkerIntervals, shortened.Work.Reservations);
+                var misbound = s.Capture();
+                misbound.PortableEquipment = misbound.PortableEquipment.Select(x => x.Id != AppraisalIron ? x
+                    : new PortableEquipmentRecord(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, x.ParentId, x.Placement,
+                        x.LinkKind, SharedMiningFixture.UnitB, x.MassBasis, x.SourceWeightLb, x.OperationalWeightLb,
+                        groundX: x.GroundX, groundY: x.GroundY)).ToArray();
+                foreach (var forged in new[] { shortened, misbound })
+                {
+                    var query = policy.QueryCommand(forged, host, start);
+                    Require(query.Supported && !query.Admissible && query.Code == "AppraisalWholeSubjectNotAtDesk",
+                        "Appraisal admission accepted a shortened or misbound physical subject.");
+                    Throws<ArgumentException>(() => new Simulation(AppraisalPolicy(incident: fouling), forged, ExecutionProfile.Laboratory));
+                    Throws<ArgumentException>(() => new SnapshotCodec().Encode(forged));
+                }
+                MiningCommit(s, start);
             });
         }
 

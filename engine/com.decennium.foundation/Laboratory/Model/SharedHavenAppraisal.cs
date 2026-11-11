@@ -121,6 +121,7 @@ namespace Decennium.Foundation.Laboratory
             var desk=s.Structures.SingleOrDefault(x=>x.Id==TestOnlyHavenAppraisalProfile.DeskId);
             if(desk==null||desk.ProfileId!=AppraisalDeskStructure||desk.LocationId!=AppraisalGround||desk.Broken
                 ||!havenAppraisalProfile.InstrumentsAvailable)return "AppraisalDeskUnavailable";
+            if(CraftingRestrictions.StationUseBlocked(s,desk.Id))return "AppraisalDeskUseBlocked";
             if(s.RuleClock<havenAppraisalProfile.AvailableFrom||s.RuleClock>havenAppraisalProfile.AvailableUntil
                 ||!finishing&&s.RuleClock==havenAppraisalProfile.AvailableUntil)return "AppraisalAppointmentClosed";
             if(s.InventoryCombat||s.Encounter!=null&&!ResolvedConflict(s)||PendingCalendarChoice(s))return "AppraisalCombatUnavailable";
