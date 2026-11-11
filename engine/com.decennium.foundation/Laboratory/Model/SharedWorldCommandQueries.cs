@@ -86,12 +86,7 @@ namespace Decennium.Foundation.Laboratory
             if (spatial == SpatialStepFailure.Occupied) return "Occupied";
             if (RoutePathReserved(s, actor.Id, toX, toY)) return "RouteTravelPathReserved";
 
-            bool startsEncounter = s.WorldSchedule.Order.Where(id => id != actor.Id && !SoldierTacticalFeatures.IsAlly(s, actor.Id, id)
-                && (connectedCombat == null || !s.Lives.Single(l => l.ActorId == id).Dead)).Any(id => {
-                    var enemy = s.Actors.Single(a => a.Id == id);
-                    return WorldSpatialQueries.WithinRange(actor.X, actor.Y, enemy.X, enemy.Y, 1)
-                        || WorldSpatialQueries.WithinRange(toX, toY, enemy.X, enemy.Y, 1);
-                });
+            bool startsEncounter = WorldStepWouldStartEncounter(s, actor.Id, actor.X, actor.Y, toX, toY);
             if (startsEncounter && s.RestIntervals.Any(x => x.Status == RestIntervalStatus.Active))
                 return "RestInterruptionAuthorityUnsupported";
             if (startsEncounter && HasActiveHavenCare(s)) return "HavenCareCombatTransitionUnsupported";
@@ -138,6 +133,14 @@ namespace Decennium.Foundation.Laboratory
                 ToX = toX, ToY = toY, Cost = movementCost };
             return null;
         }
+
+        private bool WorldStepWouldStartEncounter(Snapshot s, string actor, int fromX, int fromY, int toX, int toY)
+            => s.WorldSchedule.Order.Where(id => id != actor && !SoldierTacticalFeatures.IsAlly(s, actor, id)
+                && (connectedCombat == null || !s.Lives.Single(l => l.ActorId == id).Dead)).Any(id => {
+                    var enemy = s.Actors.Single(a => a.Id == id);
+                    return WorldSpatialQueries.WithinRange(fromX, fromY, enemy.X, enemy.Y, 1)
+                        || WorldSpatialQueries.WithinRange(toX, toY, enemy.X, enemy.Y, 1);
+                });
 
         private bool RoutePathReserved(Snapshot s, string actor, int x, int y)
         {
@@ -264,6 +267,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var saleCommand in DiscoverHavenSaleCommands(s, actor)) yield return saleCommand;
             foreach (var mealCommand in DiscoverHavenMealCommands(s, actor)) yield return mealCommand;
             foreach (var billCommand in DiscoverExpeditionBillCommands(s, actor)) yield return billCommand;
+            foreach (var planCommand in DiscoverNextCharterPlan(s, actor)) yield return planCommand;
             var closeCommand = DiscoverExpeditionClose(s, actor);
             if (closeCommand != null) yield return closeCommand;
             foreach (var campCommand in DiscoverExpeditionCampUseCommands(s, actor)) yield return campCommand;

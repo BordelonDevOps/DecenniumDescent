@@ -6,7 +6,7 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum WorldActionCommitment { None, Dash, ActiveLabor }
-    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork, HavenAppraisal, HavenSale, ExpeditionBill }
+    public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork, HavenAppraisal, HavenSale, ExpeditionBill, NextCharterPlan }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
     /// independently; each domain procedure remains authoritative for its state and settlement.</summary>
@@ -188,6 +188,11 @@ namespace Decennium.Foundation
                         result.Add(Create(s, job.Id, participant, WorldProcedureKind.HavenSale,
                             includeDetails ? job.Status.ToString() : null, includeDetails ? (RuleTime?)job.Work.Labor : null,
                             includeDetails ? (RuleTime?)new RuleTime(HavenSaleRecord.RequiredSeconds) : null, options, includeDetails));
+            foreach (var job in s.NextCharterPlans)
+                if (job.Status == NextCharterPlanStatus.Working || includeOpen && job.Open)
+                    result.Add(Create(s, job.Id, job.WorkerId, WorldProcedureKind.NextCharterPlan,
+                        includeDetails ? job.Status.ToString() : null, includeDetails ? (RuleTime?)job.Work.Labor : null,
+                        includeDetails ? (RuleTime?)job.Work.Required : null, options, includeDetails));
             foreach (var job in s.ExpeditionBills)
                 if (job.Status == ExpeditionBillStatus.Working || includeOpen && job.Open)
                     result.Add(Create(s, job.Id, job.WorkerId, WorldProcedureKind.ExpeditionBill,
@@ -302,6 +307,8 @@ namespace Decennium.Foundation
                 case CommandKind.FinalizeHavenSale: case CommandKind.CancelHavenSale:
                 case CommandKind.PauseExpeditionBill: case CommandKind.ResumeExpeditionBill:
                 case CommandKind.FinalizeExpeditionBill: case CommandKind.CancelExpeditionBill:
+                case CommandKind.PauseNextCharterPlan: case CommandKind.ResumeNextCharterPlan:
+                case CommandKind.FinalizeNextCharterPlan: case CommandKind.CancelNextCharterPlan:
                 case CommandKind.PauseProspecting: case CommandKind.ResumeProspecting:
                 case CommandKind.PauseMiningAssay: case CommandKind.ResumeMiningAssay: case CommandKind.CancelMiningAssay:
                 case CommandKind.PauseMineralPreparation: case CommandKind.ResumeMineralPreparation:
@@ -408,6 +415,7 @@ namespace Decennium.Foundation
                 || s.HavenAppraisals.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.HavenSales.Any(x=>x.Id==id&&(x.Basis.SellerId==actor||x.Basis.BuyerId==actor))
                 || s.ExpeditionBills.Any(x=>x.Id==id&&x.WorkerId==actor)
+                || s.NextCharterPlans.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.HavenMealPurchases.Any(x=>x.Id==id&&(x.Offer.CustomerId==actor||x.Offer.VendorId==actor))
                 || s.HarvestPreservationTreatmentAttempts.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.MiningAttempts.Any(x => x.Id == id && (x.WorkerId == actor||x.AssistantId==actor))

@@ -92,15 +92,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(s==null||!s.Actors.Any(x=>x.Id==actor))throw new ArgumentException("Unknown carrying actor.");
             var records=s.PortableEquipment;
-            bool CarriedTree(PortableEquipmentRecord item) {
-                var current=item;var seen=new HashSet<string>(StringComparer.Ordinal);
-                while(current.ParentId!="") {
-                    if(!seen.Add(current.ParentId))return false;
-                    current=records.Single(x=>x.Id==current.ParentId);
-                }
-                return current.CustodianId==actor&&current.Placement!=PortablePlacement.Ground;
-            }
-            var modeled=records.Where(CarriedTree).ToArray();
+            var modeled=records.Where(item=>IsCarriedBy(s,actor,item)).ToArray();
             var burden=modeled.Select(x=>{
                 if(x.MassBasis==PortableMassBasis.Unmodeled)return new BurdenItem(x.Id,x.ParentId==""?null:x.ParentId,null,null);
                 var mass=PortableEquipmentValidation.Mass(s,x);
@@ -148,6 +140,17 @@ namespace Decennium.Foundation.Laboratory
             }
             return PlaytestCarrying.Total(burden);
         }
+        internal static bool IsCarriedBy(Snapshot s, string actor, PortableEquipmentRecord item)
+        {
+            var current = item;
+            var seen = new HashSet<string>(StringComparer.Ordinal);
+            while (current.ParentId != "") {
+                if (!seen.Add(current.ParentId)) return false;
+                current = s.PortableEquipment.Single(x => x.Id == current.ParentId);
+            }
+            return current.CustodianId == actor && current.Placement != PortablePlacement.Ground;
+        }
+
         public static bool IsBurdened(Snapshot s,string actor)
         {
             var burden=CarriedBurden(s,actor);if(!burden.Pounds.HasValue||!burden.Load.HasValue)throw new InvalidOperationException("Portable carrying evidence is incomplete.");

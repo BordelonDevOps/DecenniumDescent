@@ -260,6 +260,7 @@ namespace Decennium.Foundation.Tests
             AddHavenMealCases(cases,directory);
             AddExpeditionBillCases(cases,directory);
             AddExpeditionEpisodeCloseCases(cases,directory);
+            AddNextCharterPlanCases(cases,directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

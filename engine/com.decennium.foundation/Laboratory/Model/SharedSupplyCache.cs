@@ -51,6 +51,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(supplyCache==null)return;
             string id=SupplyCacheFixture.CacheId,actor=TestOnlyPolicy.ActorId;
+            bool reserveStartsCarried = nextCharterPlanProfile?.ReserveWaterStartsCarried == true;
             s.SupplyCaches=new[]{new SupplyCacheRecord(id,actor,SupplyCacheFixture.CacheX,SupplyCacheFixture.CacheY,true,false,
                 supplyCache.ToolsProficient,TestOnlyInventoryPolicy.FoodId,TestOnlyFillingPolicy.ActorSkinId)};
             s.SupplyCacheEquipment=(supplyCache.HasKey?new[]{new SupplyCacheEquipmentRecord(SupplyCacheFixture.KeyId,SupplyCacheEquipmentKind.Key,actor,actor,actor)}:Array.Empty<SupplyCacheEquipmentRecord>())
@@ -61,9 +62,9 @@ namespace Decennium.Foundation.Laboratory
                     ?new ResourceLot(l.Id,l.UnitId,l.Amount,TestOnlyFillingPolicy.ActorSkinId,l.CustodianId):l),s.Work.WorkerIntervals,s.Work.Reservations);
             s.InventoryLots=s.InventoryLots.Select(l=>l.LotId==TestOnlyInventoryPolicy.FoodId
                 ?new InventoryLotRecord(l.LotId,l.ParentId,l.OwnerId,l.CreatedAmount,l.CreatedAt,l.Nutrition,l.FreshUntil,InventoryAccess.Ground)
-                :l.LotId==TestOnlyInventoryPolicy.WaterId
+                :l.LotId==TestOnlyInventoryPolicy.WaterId && !reserveStartsCarried
                     ?new InventoryLotRecord(l.LotId,l.ParentId,l.OwnerId,l.CreatedAmount,l.CreatedAt,l.Nutrition,l.FreshUntil,InventoryAccess.Ground):l).ToArray();
-            s.Vessels=s.Vessels.Select(v=>v.Id==TestOnlyFillingPolicy.ActorSkinId
+            if (!reserveStartsCarried) s.Vessels=s.Vessels.Select(v=>v.Id==TestOnlyFillingPolicy.ActorSkinId
                 ?new WaterVesselRecord(v.Id,v.Profile,v.OwnerId,id,actor):v).ToArray();
         }
         private bool IsSupplyCacheCommand(Command c)=>supplyCache!=null&&c.Kind==CommandKind.Interact&&c.Target==SupplyCacheFixture.CacheId;

@@ -49,7 +49,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static bool Near(ActorState a,ActorState b)=>Math.Abs((long)a.X-b.X)+Math.Abs((long)a.Y-b.Y)<=1;
         private static bool AtPlot(ActorState a)=>Math.Abs((long)a.X-3)+Math.Abs((long)a.Y-3)<=1;
-        private static bool Accessible(Snapshot s,string actor,InventoryLotRecord item,ResourceLot lot)=>item.Access==InventoryAccess.Ground
+        internal static bool Accessible(Snapshot s,string actor,InventoryLotRecord item,ResourceLot lot)=>item.Access==InventoryAccess.Ground
             ?lot.LocationId==TestOnlyCropPolicy.PlotId&&AtPlot(s.Actors.Single(a=>a.Id==actor))||SupplyCacheRules.Accessible(s,actor,lot.LocationId)
             :lot.LocationId==actor&&lot.CustodianId==actor
                 ||s.SchemaVersion>=Snapshot.PortableEquipmentSchema&&item.Access==InventoryAccess.Stowed&&lot.CustodianId==actor

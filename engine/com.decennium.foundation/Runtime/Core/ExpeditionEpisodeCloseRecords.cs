@@ -237,15 +237,7 @@ namespace Decennium.Foundation
                 && x.OwnerId == offer.CustomerId && x.Nutrition == NutritionKind.FoodPounds
                 && x.CreatedAmount == offer.ServingPounds)) return false;
 
-            var children = state.InventoryLots.Where(x => x.CreatedAt <= asOf).ToLookup(x => x.ParentId, StringComparer.Ordinal);
-            var family = new HashSet<string>(StringComparer.Ordinal) { offer.MealLotId };
-            var pending = new Queue<string>();
-            pending.Enqueue(offer.MealLotId);
-            while (pending.Count != 0) {
-                foreach (var child in children[pending.Dequeue()])
-                    if (family.Add(child.LotId)) pending.Enqueue(child.LotId);
-            }
-
+            var family = InventoryValidation.FamilyAt(state, offer.MealLotId, asOf);
             var references = new List<string>();
             RuleQuantity consumed = default;
             foreach (var intake in state.Intakes.Where(x => x.ActorId == offer.CustomerId && family.Contains(x.LotId)
@@ -267,7 +259,7 @@ namespace Decennium.Foundation
         {
             var record = state.ExpeditionEpisodeClose;
             if (record == null) return;
-            if (state.SchemaVersion != Snapshot.ExpeditionEpisodeCloseSchema || !state.TestOnly)
+            if (state.SchemaVersion < Snapshot.ExpeditionEpisodeCloseSchema || !state.TestOnly)
                 throw new ArgumentException("Unexpected Expedition episode close.");
             var charter = state.ExpeditionBillCharter;
             var bill = state.ExpeditionBills.SingleOrDefault(x => x.Id == record.BillId && x.Status == ExpeditionBillStatus.Reconciled);

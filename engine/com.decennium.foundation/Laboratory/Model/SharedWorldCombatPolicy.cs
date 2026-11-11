@@ -272,6 +272,7 @@ namespace Decennium.Foundation.Laboratory
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
             ReconcileExpeditionBill(s);
+            ReconcileNextCharterPlan(s);
             if(miningAssistanceEnabled)PauseIncompatibleMining(s);
             PauseIncompatibleTemporaryCampConstruction(s);
             PauseIncompatibleCacheExcavation(s);

@@ -80,6 +80,19 @@ namespace Decennium.Foundation
     }
     public static class InventoryValidation
     {
+        public static System.Collections.Generic.HashSet<string> FamilyAt(Snapshot state, string rootId, RuleTime asOf)
+        {
+            var children = state.InventoryLots.Where(x => x.CreatedAt <= asOf).ToLookup(x => x.ParentId, StringComparer.Ordinal);
+            var family = new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal) { rootId };
+            var pending = new System.Collections.Generic.Queue<string>();
+            pending.Enqueue(rootId);
+            while (pending.Count != 0) {
+                foreach (var child in children[pending.Dequeue()])
+                    if (family.Add(child.LotId)) pending.Enqueue(child.LotId);
+            }
+            return family;
+        }
+
         public static void Validate(Snapshot s)
         {
             if(s.InventoryLots==null||s.Intakes==null||s.Handling==null||s.PortableHandling==null||s.InventoryTurnActor==null

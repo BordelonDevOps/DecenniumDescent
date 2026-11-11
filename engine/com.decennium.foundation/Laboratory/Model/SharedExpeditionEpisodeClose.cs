@@ -60,7 +60,7 @@ namespace Decennium.Foundation.Laboratory
         private string AssessExpeditionClose(Snapshot state, Command command, out ExpeditionEpisodeCloseRecord close)
         {
             close = null;
-            if (expeditionCloseProfile == null || state.SchemaVersion != Snapshot.ExpeditionEpisodeCloseSchema)
+            if (expeditionCloseProfile == null || state.SchemaVersion < Snapshot.ExpeditionEpisodeCloseSchema)
                 return "ExpeditionCloseNotSelected";
             if (command.Actor != TestOnlyExpeditionCloseProfile.LeaderId || !expeditionCloseProfile.MandateAuthorized)
                 return "ExpeditionCloseLeaderUnauthorized";

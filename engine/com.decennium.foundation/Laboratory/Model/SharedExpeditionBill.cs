@@ -194,11 +194,11 @@ namespace Decennium.Foundation.Laboratory
                     || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(state, command.Actor))
                     return "OffCalendarActionAlreadySpent";
             }
-            if (ExpeditionBillWorkerBusy(state, command.Actor, end)) return "ExpeditionBillWorkerBusy";
+            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return "WorkerHasIncompatibleLabor";
             return null;
         }
 
-        private static bool ExpeditionBillWorkerBusy(Snapshot state, string actor, RuleTime end)
+        private static bool WorkerHasIncompatibleLabor(Snapshot state, string actor, RuleTime end)
             => state.ExpeditionAssignments.Any(x => x.WorkerId == actor && x.Open) || OrdinaryInventory.Busy(state, actor)
                 || WorldActivityValidation.HasActiveLabor(state, actor, state.RuleClock,
                     end > state.RuleClock ? end : state.RuleClock.AddSeconds(1));
@@ -303,8 +303,8 @@ namespace Decennium.Foundation.Laboratory
             var job = OpenExpeditionBill(state);
             if (job?.Status != ExpeditionBillStatus.PendingCompletion || job.Reason != "ExpeditionBillCompletionDue") return;
             string obstruction = ExpeditionBillWorkerFailure(state, job.WorkerId);
-            if (obstruction == null && ExpeditionBillWorkerBusy(state, job.WorkerId, state.RuleClock))
-                obstruction = "ExpeditionBillWorkerBusy";
+            if (obstruction == null && WorkerHasIncompatibleLabor(state, job.WorkerId, state.RuleClock))
+                obstruction = "WorkerHasIncompatibleLabor";
             if (obstruction == null) FinishExpeditionBill(state, job);
             else PutExpeditionBill(state, job.With(state, job.Work.Labor, ExpeditionBillStatus.PendingCompletion, obstruction));
         }
