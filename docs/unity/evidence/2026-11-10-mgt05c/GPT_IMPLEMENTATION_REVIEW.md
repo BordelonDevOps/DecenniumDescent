@@ -2,7 +2,7 @@
 
 **Review target:** initial MGT-05C implementation code commit `27dea8d0343b385539b8703255064301974c6e27`, with evidence/docs commit `2da15f7546cdb91abf530db9dbdf6ffc4e2dddb0`.
 
-**Actual result:** GPT did not accept MGT-05C. It found one concrete lineage defect and requested targeted evidence before acceptance. MGT-05A and MGT-05B acceptance and the MGT-05C source/API contract approval remain settled.
+**First review result:** GPT did not accept the initial implementation. It found one concrete lineage defect and requested targeted evidence. MGT-05A and MGT-05B acceptance and the MGT-05C source/API contract approval remained settled.
 
 ## Findings from GPT
 
@@ -17,10 +17,14 @@ The smallest requested code change was to find the evidenced portion child in th
 
 The correction was implemented and pushed at code commit `4b88ed7b2876e69dee3d104fc9745b3eba0829ae`. It modifies only `HarvestPreservationRecords.cs` and `HarvestPreservationTreatmentCases.cs`. The defect was reproduced before the fix; the new connected regression failed at the expected earned-time assertion. After the fix, the MGT-05A schema74 regression, all five targeted MGT-05B compatibility cases, and both MGT-05C cases pass as eight separate runs. Every passing report binds to the same 283 source hashes and source/hash-set digest `9580902fdfa371a9a7f591c0c888a95c33c984b850e1ee87a427c5cb197372a4`. Static package validation passes 18/18 checks. The exact reports, code diffs, source excerpts and artifact hashes are in [the updated review packet](README.md) and [BINDINGS.json](validation/BINDINGS.json).
 
-The corrected implementation and evidence have not yet been returned to GPT for re-review. Therefore this document records GPT’s actual first implementation review, not a later sign-off. The next module remains blocked until GPT reviews the corrected commit and retained evidence and accepts the agreed MGT-05C criteria.
+## GPT correction review and acceptance
+
+GPT re-reviewed the exact corrected code commit `4b88ed7b2876e69dee3d104fc9745b3eba0829ae` and evidence/docs commit `c4c4342149ce16efffcaaa9872759e9b17c59adf` in the [Draft MGT05 API Contract conversation](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6af2fe69-dcf8-83ea-a491-59512e8f5e51). It explicitly accepted the bounded schema76 TEST_ONLY MGT-05C implementation and stated that no concrete blocker remains within scope. GPT confirmed the correction carries earned protection through later descendants while retrieval still ends future protection, and that the exact lineage regression, exposure authority/retry checks, schema74 continuation run, five MGT-05B regressions, and package results close the prior findings. GPT said the next mapped gameplay dependency may now follow. No disagreement remains on MGT-05C.
+
+This was source-and-retained-evidence acceptance. GPT inspected the correction patch, corrected source/test bodies, packet, bindings, all eight result records, pre-fix failure and static package report, but did not compile or execute C#, run tests, or load saved snapshots through the engine. It independently cross-checked the two corrected source-file hash entries between the connected case and package reports, but did not recompute the full 283-file source set digest, patch SHA-256, or compiled-assembly hashes. These limits do not block the bounded acceptance. A full all-cases rerun and broader randomized/forged-snapshot checks remain optional hardening; Unity was not touched.
 
 ## Review limits
 
-GPT inspected the code and report/hash artifacts but did not independently execute the C# checks. It did not independently recompute the full source-set digest, the patch SHA-256, or the retained DLL hashes. These remain Codex-reported validation results, not GPT-run results.
+The eight C# 9 warnings-as-errors focused runs and static package validation are Codex-run and retained, not GPT-run. The README and [BINDINGS.json](validation/BINDINGS.json) enumerate exact report paths, 283 source hashes, the source-set digest, correction patch digest, and four DLL digests.
 
 **Conversation:** [Draft MGT05 API Contract](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6af2fe69-dcf8-83ea-a491-59512e8f5e51).
