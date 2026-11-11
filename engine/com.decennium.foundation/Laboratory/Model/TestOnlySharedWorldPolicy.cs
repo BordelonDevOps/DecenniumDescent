@@ -169,6 +169,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeHavenBuyer(s);
             InitializeLaterEncounter(s);
             InitializeReinforcement(s);
+            InitializeRetreat(s);
             s.WorldSchedule = new WorldScheduleRecord("world.fixed-calendar", default, new[] { TestOnlyPolicy.ActorId, AdditionalTacticalActor.Id });
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
             if (offCalendarActivityEnabled||s.SchemaVersion>=Snapshot.OffCalendarActivitySchema)
@@ -503,7 +504,8 @@ namespace Decennium.Foundation.Laboratory
                 var mineralPreparationBoundary=NextMineralPreparationBoundary(s);if(mineralPreparationBoundary.HasValue&&mineralPreparationBoundary.Value<next)next=mineralPreparationBoundary.Value;
                 var tacticalFeatureBoundary=SoldierTacticalFeatures.NextDeadline(s);if(tacticalFeatureBoundary.HasValue&&tacticalFeatureBoundary.Value<next)next=tacticalFeatureBoundary.Value;
                 var routeBoundary=NextRouteTravelBoundary(s);if(routeBoundary.HasValue&&routeBoundary.Value<next)next=routeBoundary.Value;
-                var pressureBoundary=NextExpeditionPressureBoundary(s);if(pressureBoundary.HasValue&&pressureBoundary.Value<next)next=pressureBoundary.Value;
+                var pressureBoundary=NextExpeditionPressureBoundary(s) ?? NextLocalRetreatPressureBoundary(s);
+                if(pressureBoundary.HasValue&&pressureBoundary.Value<next)next=pressureBoundary.Value;
                 var campUseBoundary=NextCampUseBoundary(s);if(campUseBoundary.HasValue&&campUseBoundary.Value<next)next=campUseBoundary.Value;
                 var campConstructionBoundary=NextTemporaryCampConstructionBoundary(s);if(campConstructionBoundary.HasValue&&campConstructionBoundary.Value<next)next=campConstructionBoundary.Value;
                 var routeMappingWorkBoundary=NextRouteMappingWorkBoundary(s);if(routeMappingWorkBoundary.HasValue&&routeMappingWorkBoundary.Value<next)next=routeMappingWorkBoundary.Value;
@@ -557,6 +559,7 @@ namespace Decennium.Foundation.Laboratory
                     var end = CampGreens.Add(s.RuleClock, new RuleTime(duration.Numerator, duration.Denominator)); if (end < next) next = end;
                 }
                 bool reinforcementEndRound = AtReinforcementEndRound(s, initiating, next, target);
+                bool retreatEndRound = AtRetreatSettlement(s, initiating, next, target);
                 var elapsed = CampGreens.Subtract(next, s.RuleClock);
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     var priorDistance = edge.DistanceFeet;
@@ -653,7 +656,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 ProcessPeriodicRiderMarker(s,previousSlot);
                 if (!reinforcementEndRound) RefreshLaterEpoch(s);
-                RefreshReinforcementEpoch(s);
+                if (!retreatEndRound) RefreshReinforcementEpoch(s);
                 ResolveReadyMining(s);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -695,6 +698,8 @@ namespace Decennium.Foundation.Laboratory
                 string havenCareError=ProcessHavenCareBoundary(s,initiating,continuation);if(havenCareError!=null)return havenCareError;
                 string pressureCheckpointError=ProcessExpeditionPressureBoundary(s,s.RuleClock,initiating,
                     stagedPressureArrival,completedPressureRetreat);if(pressureCheckpointError!=null)return pressureCheckpointError;
+                string retreatPressureError = ProcessLocalRetreatPressureBoundary(s, initiating);
+                if (retreatPressureError != null) return retreatPressureError;
                 ProcessCampUseBoundary(s,initiating);
                 string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
                     deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
@@ -705,6 +710,7 @@ namespace Decennium.Foundation.Laboratory
                 if (reinforcementArrival != null) RecordReinforcementArrival(s, initiating, reinforcementArrival);
                 ReconcileReinforcement(s, initiating);
                 if (reinforcementEndRound) ResolveReinforcementEndRound(s, initiating);
+                if (retreatEndRound) SettleRetreatRound(s, initiating);
                 if (laterArrival != null) {
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
                     return null;
@@ -730,6 +736,9 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (retreatDefinition != null && RetreatValidation.IsCommand(c.Kind)) return ResolveRetreatInstruction(s, c);
+            string hostileRetreatAttack = RetreatHostileAttackFailure(s, c);
+            if (hostileRetreatAttack != null) return hostileRetreatAttack;
             if(c.Kind==CommandKind.RecordHarvestPreservationExposure)return ResolveHarvestPreservationExposure(s,c);
             if(c.Kind==CommandKind.EnterInventoryCombat||c.Kind==CommandKind.BeginFixedEncounter) {
                 string harvestTransitionFailure=HarvestPreservationTacticalTransitionFailure(s);
@@ -960,7 +969,7 @@ namespace Decennium.Foundation.Laboratory
                 if(moraleRestBoundary.HasValue&&moraleRestBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var havenCareBoundary=NextHavenCareBoundary(s);
                 if(havenCareBoundary.HasValue&&havenCareBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
-                var pressureBoundary=NextExpeditionPressureBoundary(s);
+                var pressureBoundary=NextExpeditionPressureBoundary(s) ?? NextLocalRetreatPressureBoundary(s);
                 if(pressureBoundary.HasValue&&pressureBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var campConstructionBoundary=NextTemporaryCampConstructionBoundary(s);
                 if(campConstructionBoundary.HasValue&&campConstructionBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
@@ -1024,7 +1033,9 @@ namespace Decennium.Foundation.Laboratory
                 if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;
                 string routeTravelError=ValidateRouteTravelState(s);if(routeTravelError!=null)return routeTravelError;
-                string pressureError=ValidateExpeditionPressureFixtureState(s);if(pressureError!=null)return pressureError;
+                if (retreatDefinition == null) {
+                    string pressureError=ValidateExpeditionPressureFixtureState(s);if(pressureError!=null)return pressureError;
+                }
                 string campUseError=ValidateExpeditionCampFixtureState(s);if(campUseError!=null)return campUseError;
                 string campConstructionError=ValidateTemporaryCampConstructionFixtureState(s);if(campConstructionError!=null)return campConstructionError;
                 string portableStorageError=ValidatePortableStorageState(s);if(portableStorageError!=null)return portableStorageError;

@@ -54,7 +54,8 @@ namespace Decennium.Foundation.Laboratory
             int toX, toY;
             try { toX = checked(actor.X + dx); toY = checked(actor.Y + dy); }
             catch (OverflowException) { return "InvalidWorldStep"; }
-            string pressurePathFailure=AssessExpeditionPressureMovement(s,c.Actor,actor.X,actor.Y,toX,toY,false);
+            string pressurePathFailure=AssessExpeditionPressureMovement(s,c.Actor,actor.X,actor.Y,toX,toY,false)
+                ?? AssessLocalRetreatMovement(s,c.Actor,actor.X,actor.Y,toX,toY,false);
             if(pressurePathFailure!=null)return pressurePathFailure;
             if(HuntingTrapValidation.BlocksGridMove(s,c.Actor,toX,toY))return "HuntingTrapTetherPreventsMovement";
             RuleQuantity initialDistance = default;

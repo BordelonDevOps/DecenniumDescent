@@ -44,7 +44,8 @@ namespace Decennium.Foundation
         StartNextCharterPlan, PauseNextCharterPlan, ResumeNextCharterPlan, FinalizeNextCharterPlan, CancelNextCharterPlan, InspectNextCharterPlan,
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
-        BeginReinforcementApproach, CancelReinforcementApproach }
+        BeginReinforcementApproach, CancelReinforcementApproach,
+        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -156,6 +157,7 @@ namespace Decennium.Foundation
         public const int CharterAttemptSchema = 85;
         public const int LaterEncounterSchema = 86;
         public const int ReinforcementSchema = 87;
+        public const int RetreatSchema = 88;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -289,6 +291,7 @@ namespace Decennium.Foundation
         public CharterAttemptRecord CharterAttempt;
         public LaterEncounterRecord LaterEncounter;
         public ReinforcementRecord Reinforcement;
+        public RetreatRecord Retreat;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -404,6 +407,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
+            Retreat = Retreat,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -842,7 +846,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.NextCharterAgreementSchema
                 || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema
                 || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema
-                || s.SchemaVersion == Foundation.Snapshot.ReinforcementSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.ReinforcementSchema
+                || s.SchemaVersion == Foundation.Snapshot.RetreatSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -951,6 +956,7 @@ namespace Decennium.Foundation
             CharterAttemptValidation.Validate(s);
             LaterEncounterValidation.Validate(s);
             ReinforcementValidation.Validate(s);
+            RetreatValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1082,6 +1088,9 @@ namespace Decennium.Foundation
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
             string requestedMiningAssistant=command.MiningSelection?.AssistantId??"";
+            if (state.Retreat != null && RetreatValidation.IsCommand(command.Kind)
+                && (authority.Principal != state.Retreat.Definition.ControllerId
+                    || !authority.Controls(state.Retreat.Definition.CompanionId))) return "RetreatControllerUnauthorized";
             if (state.Reinforcement != null && authority.Principal != state.Reinforcement.Definition.ControllerId
                 && (ReinforcementValidation.IsInstruction(command.Kind) || state.InventoryCombat
                     && (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)

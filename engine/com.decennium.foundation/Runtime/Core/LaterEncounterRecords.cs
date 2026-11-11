@@ -205,6 +205,9 @@ namespace Decennium.Foundation
             long local = owner.LatestStart(actor, owner.ProcessedSlot);
             var admission = state.Reinforcement?.Admission;
             if (owner.Id != admission?.Phase.Epoch.Id) return local;
+            var exit = state.Retreat?.SuccessfulExit;
+            if (local >= 0 && exit != null && admission.Phase.GlobalTurn(local) == exit.EndTurn + 1)
+                local -= owner.Order.Count;
             return local < 0 ? admission.Carried.Single(x => x.Interval.ActorId == actor).Interval.LastStart
                 : admission.Phase.GlobalTurn(local);
         }
@@ -288,7 +291,11 @@ namespace Decennium.Foundation
         private static void ValidateExit(Snapshot state, ClosedEncounterRecord exit)
         {
             var command = ReceiptCommand(state, exit.ClosedRevision);
-            if (exit.ClosedAt > state.RuleClock || command.Kind != CommandKind.EndFixedEncounter
+            var retreat = state.Retreat?.SuccessfulExit;
+            bool isRetreat = retreat != null && exit.Encounter.Id == state.Retreat.Definition.EncounterId
+                && retreat.Revision == exit.ClosedRevision && retreat.At == exit.ClosedAt && retreat.CommandId == exit.Reason;
+            var required = isRetreat ? CommandKind.EndRegularTurn : CommandKind.EndFixedEncounter;
+            if (exit.ClosedAt > state.RuleClock || command.Kind != required
                 || command.Id != exit.Reason || command.Actor != exit.Encounter.CurrentActor || command.Target != exit.Encounter.CurrentTurnId)
                 throw new ArgumentException("Invalid later encounter exit provenance.");
         }

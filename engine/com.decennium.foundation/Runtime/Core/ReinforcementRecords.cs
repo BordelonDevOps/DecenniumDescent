@@ -159,7 +159,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var reinforcement = state.Reinforcement;
-            if (state.SchemaVersion != Snapshot.ReinforcementSchema) {
+            if (state.SchemaVersion < Snapshot.ReinforcementSchema) {
                 if (reinforcement != null) throw new ArgumentException("Reinforcement requires schema 87.");
                 return;
             }

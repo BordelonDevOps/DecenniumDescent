@@ -125,6 +125,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.BeginHavenCare&&havenCareProfile!=null
             ||kind==CommandKind.InterruptHavenCare&&havenCareProfile!=null
             ||reinforcementDefinition!=null&&ReinforcementValidation.IsInstruction(kind)
+            ||retreatDefinition!=null&&RetreatValidation.IsCommand(kind)
             ||kind==CommandKind.AdvanceClock&&(strainRecoveryProfile!=null||laterEncounterDefinition!=null)
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
@@ -145,6 +146,7 @@ namespace Decennium.Foundation.Laboratory
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
             options.AddRange(DiscoverReinforcementCommands(s, authority, actor));
+            options.AddRange(DiscoverRetreatCommands(s, authority, actor));
             if(PendingDefensiveFormationShift(s)!=null) {
                 options.AddRange(DiscoverDefensiveFormationCommands(s,actor));return options;
             }
@@ -327,6 +329,10 @@ namespace Decennium.Foundation.Laboratory
             }
             string mealServingFailure=HavenMealServingCommandFailure(s,c);
             if(mealServingFailure!=null)return new CommandQueryResult(true,false,mealServingFailure,s.Revision);
+            if (retreatDefinition != null && RetreatValidation.IsCommand(c.Kind)) {
+                string retreatFailure = AssessRetreatInstruction(s, c);
+                return new CommandQueryResult(true, retreatFailure == null, retreatFailure ?? "Available", s.Revision);
+            }
             if (reinforcementDefinition != null && (ReinforcementValidation.IsInstruction(c.Kind) || IsReinforcementControl(s, c))) {
                 string reinforcementFailure = ReinforcementValidation.IsInstruction(c.Kind) ? AssessReinforcementInstruction(s, c, out _)
                     : AssessReinforcementControl(s, c, out _);

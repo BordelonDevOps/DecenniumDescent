@@ -33,6 +33,10 @@ namespace Decennium.Foundation.Laboratory
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
             if (error == null) ReconcileCharterAttempt(s, c);
             if (error == null) ReconcileReinforcement(s, c);
+            if (error == null && s.Retreat != null) {
+                RecordLocalRetreatCombatSources(s);
+                ReconcileRetreat(s, c);
+            }
             return error;
         }
 

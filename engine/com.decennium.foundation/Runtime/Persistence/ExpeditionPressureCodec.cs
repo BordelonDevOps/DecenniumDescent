@@ -67,7 +67,9 @@ namespace Decennium.Foundation
                 string id = SnapshotCodec.ReadText(r), profile = SnapshotCodec.ReadText(r), routes = SnapshotCodec.ReadText(r);
                 int pressure = r.ReadInt32(); int membersCount = SnapshotCodec.ReadCount(r, Snapshot.MaxActors);
                 var members = new string[membersCount]; for (int j = 0; j < membersCount; j++) members[j] = SnapshotCodec.ReadText(r);
-                cohorts[i] = new ExpeditionPressureCohortRecord(id, profile, routes, pressure, members);
+                cohorts[i] = s.SchemaVersion == Snapshot.RetreatSchema && members.Length == 2
+                    ? ExpeditionPressureCohortRecord.ForLocalRetreat(id, profile, routes, pressure, members)
+                    : new ExpeditionPressureCohortRecord(id, profile, routes, pressure, members);
             }
 
             count = SnapshotCodec.ReadCount(r, ExpeditionPressureValidation.MaxExposures);

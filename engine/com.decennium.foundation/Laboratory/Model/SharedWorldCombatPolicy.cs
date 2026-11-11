@@ -394,7 +394,7 @@ namespace Decennium.Foundation.Laboratory
                 CharacterAdvancementRules.EndRegularTurn(s,c.Actor,outgoing.TurnOrdinal);
                 string timeFailure=AdvanceTo(s,schedule.Start(schedule.ProcessedSlot+1),exit,c);
                 if(timeFailure!=null)return timeFailure;
-                if(s.ManufacturingAdvance!=null)return null;
+                if(s.ManufacturingAdvance!=null || s.Encounter==null)return null;
                 s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
                 // Time and consequences are committed even if the exit predicate no longer holds.
                 if(exit&&ResolvedConflict(s)&&!PendingCalendarChoice(s)){

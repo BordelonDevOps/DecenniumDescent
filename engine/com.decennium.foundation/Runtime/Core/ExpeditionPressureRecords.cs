@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Decennium.Foundation
 {
-    public enum ExpeditionPressureChangeKind { OpenCombat = 1, SecuredRouteEntry = 2, ExposedCampUse = 3, FullWatchLyingLow = 4 }
+    public enum ExpeditionPressureChangeKind { OpenCombat = 1, SecuredRouteEntry = 2, ExposedCampUse = 3, FullWatchLyingLow = 4, SuccessfulRetreat = 5 }
     public enum ExpeditionPressureExposureEndKind { RouteTransition = 1, SafeHavenArrival = 2, SevereClosure = 3, RetreatCompleted = 4 }
     public enum ExpeditionPressureSettlementReason { WatchEnd = 1, HavenArrival = 2, HavenArrivalAtWatchEnd = 3 }
     public enum ExpeditionPressureOutcome { None = 0, Minor = 1, Standard = 2, Severe = 3 }
@@ -25,11 +25,19 @@ namespace Decennium.Foundation
 
         public ExpeditionPressureCohortRecord(string id, string profileFingerprint, string routeFingerprint,
             int initialPressure, IEnumerable<string> members)
+            : this(id, profileFingerprint, routeFingerprint, initialPressure, members, 1) { }
+
+        public static ExpeditionPressureCohortRecord ForLocalRetreat(string id, string profileFingerprint,
+            string routeFingerprint, int initialPressure, IEnumerable<string> members)
+            => new ExpeditionPressureCohortRecord(id, profileFingerprint, routeFingerprint, initialPressure, members, 2);
+
+        private ExpeditionPressureCohortRecord(string id, string profileFingerprint, string routeFingerprint,
+            int initialPressure, IEnumerable<string> members, int memberCount)
         {
             this.members = (members ?? Array.Empty<string>()).ToArray();
             if (!Validation.ValidId(id) || string.IsNullOrEmpty(profileFingerprint) || profileFingerprint.Length > 96
                 || string.IsNullOrEmpty(routeFingerprint) || routeFingerprint.Length > 96
-                || initialPressure < 0 || initialPressure > 6 || this.members.Length != 1
+                || initialPressure < 0 || initialPressure > 6 || this.members.Length != memberCount
                 || this.members.Any(x => !Validation.ValidId(x))
                 || this.members.Distinct(StringComparer.Ordinal).Count() != this.members.Length)
                 throw new ArgumentException("Invalid fixed expedition-pressure cohort.");
@@ -271,7 +279,9 @@ namespace Decennium.Foundation
                 || at < default(RuleTime) || at > snapshot.RuleClock)
                 throw new ArgumentException("Invalid causal pressure query.");
             var cohort = snapshot.ExpeditionPressureCohorts.SingleOrDefault(x => x.Id == cohortId);
-            if (cohort == null) throw new ArgumentException("Unknown pressure cohort.");
+            if (cohort == null || snapshot.Retreat?.Definition.CohortId == cohort.Id
+                && !snapshot.ExpeditionPressureExposures.Any(x => x.CohortId == cohort.Id && x.StartedRevision <= revision && x.StartedAt <= at))
+                throw new ArgumentException("Unknown pressure cohort.");
             return At(snapshot, cohort, revision, at);
         }
 
@@ -282,7 +292,22 @@ namespace Decennium.Foundation
             var latest = snapshot.ExpeditionPressureCheckpoints.Where(x => x.CohortId == cohort.Id
                     && x.AppliedRevision <= revision && x.At <= at)
                 .OrderBy(x => x.WatchIndex).LastOrDefault();
+            if (snapshot.Retreat?.Definition.CohortId == cohort.Id)
+                return LocalRetreatPressure(snapshot, cohort, latest, revision, at, includeExitAtBoundary: true);
             return latest == null ? cohort.InitialPressure : AfterCheckpoint(snapshot, latest, revision, at);
+        }
+
+        // At an exact tie the Watch checkpoint owns the earlier stage of the receipt.
+        internal static int LocalRetreatPressure(Snapshot s, ExpeditionPressureCohortRecord cohort,
+            ExpeditionPressureCheckpointRecord latest, long revision, RuleTime at, bool includeExitAtBoundary)
+        {
+            var exit = s.ExpeditionPressureChanges.SingleOrDefault(x => x.CohortId == cohort.Id
+                && x.Kind == ExpeditionPressureChangeKind.SuccessfulRetreat && x.SourceRevision <= revision
+                && (x.At < at || x.At == at && (includeExitAtBoundary || x.SourceRevision < revision))
+                && (latest == null || x.SourceRevision > latest.AppliedRevision
+                    || x.SourceRevision == latest.AppliedRevision && x.At >= latest.At));
+            int value = latest?.StoredPressure ?? cohort.InitialPressure;
+            return exit == null ? value : Settle(value, true, 0, s.Retreat.Definition.Risk);
         }
 
         internal static int AfterCheckpoint(Snapshot snapshot, ExpeditionPressureCheckpointRecord checkpoint,
@@ -370,6 +395,8 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Expedition pressure requires schema67.");
                 return;
             }
+            bool localRetreat = s.SchemaVersion == Snapshot.RetreatSchema && s.Retreat != null;
+            if (localRetreat) ValidateLocalAuthority(s);
             if((s.SchemaVersion==Snapshot.HarvestPreservationSchema||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
                     ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
                     ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema||s.SchemaVersion>=Snapshot.HavenMealSchema)
@@ -389,7 +416,7 @@ namespace Decennium.Foundation
                 || s.ExpeditionPressureCheckpoints.GroupBy(x => x.CohortId + "|" + x.WatchIndex, StringComparer.Ordinal).Any(g => g.Count() > 1)
                 || s.ExpeditionPressureExposures.Any(x => x.StartedRevision > s.Revision || x.EndRevision > s.Revision
                     || !s.ExpeditionPressureCohorts.Any(c => c.Id == x.CohortId)
-                    || !s.RouteTravels.Any(t => t.RouteId == x.RouteId && t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
+                    || !localRetreat && !s.RouteTravels.Any(t => t.RouteId == x.RouteId && t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
                         && t.StartedRevision == x.StartedRevision)
                     || !s.Receipts.Any(r => r.Revision == x.StartedRevision)
                     || x.EndedAt.HasValue && (x.EndedAt.Value > s.RuleClock || x.EndRevision < x.StartedRevision
@@ -417,7 +444,7 @@ namespace Decennium.Foundation
                     || ExpeditionPressureRules.Classify(x.EffectivePressure, x.Natural, x.ModifiedTotal,
                         x.RollWasModifiedOrRerolled) != x.Outcome
                     || !ValidCheckpointTime(x) || !ValidCheckpointRoll(x)
-                    || !s.RouteTravels.Any(t => t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
+                    || !localRetreat && !s.RouteTravels.Any(t => t.TravelerId == s.ExpeditionPressureCohorts.Single(c => c.Id == x.CohortId).Members[0]
                         && t.RouteId == x.RouteId && t.StartedRevision <= x.AppliedRevision)))
                 throw new ArgumentException("Invalid expedition-pressure references or checkpoints.");
 
@@ -443,9 +470,11 @@ namespace Decennium.Foundation
             foreach (var c in s.ExpeditionPressureCheckpoints.OrderBy(x => x.WatchIndex))
             {
                 var cohort = s.ExpeditionPressureCohorts.Single(x => x.Id == c.CohortId);
-                int before = s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == c.CohortId && x.WatchIndex < c.WatchIndex)
-                    .OrderBy(x => x.WatchIndex).LastOrDefault() is ExpeditionPressureCheckpointRecord previous
-                    ? ExpeditionPressureRules.AfterCheckpoint(s, previous, c.AppliedRevision, c.At) : cohort.InitialPressure;
+                var previous = s.ExpeditionPressureCheckpoints.Where(x => x.CohortId == c.CohortId && x.WatchIndex < c.WatchIndex)
+                    .OrderBy(x => x.WatchIndex).LastOrDefault();
+                int before = localRetreat
+                    ? ExpeditionPressureRules.LocalRetreatPressure(s, cohort, previous, c.AppliedRevision, c.At, includeExitAtBoundary: false)
+                    : previous == null ? cohort.InitialPressure : ExpeditionPressureRules.AfterCheckpoint(s, previous, c.AppliedRevision, c.At);
                 var available = s.ExpeditionPressureChanges.Where(x => x.CohortId == c.CohortId
                     && x.WatchIndex == c.WatchIndex && x.SourceRevision <= c.AppliedRevision && x.At <= c.At).ToArray();
                 var causeRecords = available.Where(x => x.Kind == ExpeditionPressureChangeKind.OpenCombat
@@ -465,6 +494,38 @@ namespace Decennium.Foundation
                     || !c.ReductionIds.SequenceEqual(reductions, StringComparer.Ordinal))
                     throw new ArgumentException("Expedition-pressure checkpoint does not derive from its source history.");
             }
+        }
+
+        private static void ValidateLocalAuthority(Snapshot s)
+        {
+            var retreat = s.Retreat;
+            var d = retreat.Definition;
+            var join = s.Reinforcement.Joined;
+            if (join == null) {
+                if (s.ExpeditionPressureCohorts.Length + s.ExpeditionPressureExposures.Length
+                    + s.ExpeditionPressureChanges.Length + s.ExpeditionPressureCheckpoints.Length != 0)
+                    throw new ArgumentException("Local Pressure requires actual reinforcement admission.");
+                return;
+            }
+            if (s.ExpeditionPressureCohorts.Length == 0 && retreat.Round == null
+                && s.ExpeditionPressureExposures.Length + s.ExpeditionPressureChanges.Length + s.ExpeditionPressureCheckpoints.Length == 0)
+                return;
+            if (s.ExpeditionPressureCohorts.Length != 1 || s.ExpeditionPressureExposures.Length != 1)
+                throw new ArgumentException("Invalid local retreat Pressure authority count.");
+            var cohort = s.ExpeditionPressureCohorts[0];
+            var exposure = s.ExpeditionPressureExposures[0];
+            if (d.RouteAccessId == "" || cohort.Id != d.CohortId || cohort.RouteFingerprint != d.RouteFingerprint
+                || cohort.InitialPressure != d.InitialPressure || !cohort.Members.SequenceEqual(new[] { d.LeadId, d.CompanionId })
+                || exposure?.Id != d.ExposureId || exposure.CohortId != d.CohortId || exposure.RouteId != d.RouteId
+                || exposure.StartedRevision != join.Revision || exposure.StartedAt != join.At || exposure.EndedAt.HasValue
+                || s.ExpeditionPressureCheckpoints.Any(x => x.At <= join.At || x.RouteId != d.RouteId
+                    || x.RouteQuality != d.Quality || x.RiskFloor != d.Risk || x.Reason != ExpeditionPressureSettlementReason.WatchEnd
+                    || x.RouteProgress != default || x.Context != ExpeditionPressureCheckpointContext.Route || x.ReductionIds.Count != 0)
+                || s.ExpeditionPressureChanges.Any(x => x.Kind != ExpeditionPressureChangeKind.OpenCombat
+                    && x.Kind != ExpeditionPressureChangeKind.SuccessfulRetreat)
+                || s.ExpeditionPressureChanges.Count(x => x.Kind == ExpeditionPressureChangeKind.SuccessfulRetreat)
+                    != (retreat.SuccessfulExit == null ? 0 : 1))
+                throw new ArgumentException("Invalid local retreat Pressure history.");
         }
 
         private static long EventWatchIndex(RuleTime at)
@@ -510,6 +571,11 @@ namespace Decennium.Foundation
             var exposure = s.ExpeditionPressureExposures.SingleOrDefault(x => x.Id == change.ExposureId
                 && x.CohortId == change.CohortId && x.RouteId == change.RouteId);
             if (exposure == null) return false;
+            if (change.Kind == ExpeditionPressureChangeKind.SuccessfulRetreat) {
+                var exit = s.Retreat?.SuccessfulExit;
+                return exit != null && change.SourceId == exit.CommandId && change.SourceRevision == exit.Revision
+                    && change.At == exit.At && change.CohortId == s.Retreat.Definition.CohortId;
+            }
             if (change.Kind == ExpeditionPressureChangeKind.ExposedCampUse
                 || change.Kind == ExpeditionPressureChangeKind.FullWatchLyingLow)
                 return s.SchemaVersion >= Snapshot.ExpeditionCampUseSchema

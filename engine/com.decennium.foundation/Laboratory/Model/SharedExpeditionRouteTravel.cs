@@ -258,6 +258,7 @@ namespace Decennium.Foundation.Laboratory
         public TestOnlySharedWorldPolicy EnableExpeditionRouteTravel(TestOnlyExpeditionRouteFixture fixture)
         {
             if (initializationStarted) throw new InvalidOperationException("World initialization has already started.");
+            if (retreatDefinition != null) throw new InvalidOperationException("LocalRetreatRouteCompositionUnsupported");
             if (observationFixture != null) throw new InvalidOperationException("RouteObservationIntegrationUnsupported");
             if (fixture == null || routeTravelFixture != null) throw new ArgumentException("Supply one explicit route fixture.");
             routeTravelFixture = fixture;
@@ -276,6 +277,7 @@ namespace Decennium.Foundation.Laboratory
             ObservationAlgorithmVersion algorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2)
         {
             if (initializationStarted) throw new InvalidOperationException("World initialization has already started.");
+            if (retreatDefinition != null) throw new InvalidOperationException("LocalRetreatRouteCompositionUnsupported");
             if (routes == null || motion == null || observation == null)
                 throw new ArgumentNullException("Composed route-observation profile requires route, motion, and observation content.");
             if (routeTravelFixture != null || observationFixture != null || routeMotionFixture != null)

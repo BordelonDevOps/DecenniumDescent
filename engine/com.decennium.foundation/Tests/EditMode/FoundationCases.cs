@@ -265,6 +265,7 @@ namespace Decennium.Foundation.Tests
             AddCharterAttemptCases(cases,directory);
             AddLaterEncounterCases(cases,directory);
             AddReinforcementCases(cases, directory);
+            AddRetreatCases(cases, directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

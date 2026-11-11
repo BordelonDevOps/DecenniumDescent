@@ -10,7 +10,17 @@ The verifier uses the exact reviewed schema 87 assemblies and authentic admitted
 
 The accepted host has zero Pressure cohorts or exposures. Enabling the existing route/Pressure pair on that profile fails at `RouteTravelSchemaMismatch`. The existing fixed-cohort record also rejects a two-member hero/companion group. The source tracks Pressure for the real group travelling together and requires +1 at successful retreat. These measured boundaries require an explicit new scoped composition. The previous closed expedition and local charter cannot supply a Pressure subject for this fight. [Existing Pressure cohort and causal projection](../../../../engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs)
 
-## Proposed source/API decisions
+## Controlling source/API ruling
+
+Unity Rules Engine Development approved one opt-in, append-only schema 88 TEST_ONLY contract in `a9b4dc3b-59a2-4590-9a46-de07f9d9db1c`. The approved local north route is **Known, Risk 1, starting Pressure 1**. The two-member route group activates on actual companion admission while both actors occupy the selected local route. The hero’s lead mandate and the companion’s consent are explicit, and the opposing defender retains separate authority. The north opening uses the physical y2→y1 crossings at x0 and x1 and permits onward ordinary movement to y0. Earlier charter, Haven and route-progress records supply no authority for this opening.
+
+The controller declares once on the first unconsumed decision of an actual round. The same intent continues into the next actual round after a complete exchange. The hero pays its actual Action for an untrained live Dexterity check against DC 12, and the defender pays for one ordinary live Club attack on the hero. Hit and miss both qualify. Pending tactical choices keep priority, additional hostile attacks in this attempt reject before spending resources, and a real defender defeat takes the existing ordinary resolution path. An incomplete exchange preserves paid evidence without awarding points. Pursuit at least 3 wins at the actual final incumbent End, including 3/3. Escape at least 3 with lower Pursuit requires both actual paid crossings, current physical clearance and continued party eligibility. Blocked and failed outcomes keep earned positions and costs.
+
+At a shared Watch and final End, apply elapsed time and due work, settle the real Watch and its supported physical consequences, then validate the retreat. A successful retreat closes the actual phased encounter with a living defender at the outgoing End, without an extra combat Start. Its causal immediate +1 follows any Watch settlement on that receipt, retains the cap, preserves exposure on the same route, and never rolls an additional complication. Actual open combat sources aggregate once per Watch, including those before declaration. Escape-task Pursuit supplies no future Watch cause on its own. Existing timed obstruction and route closure rules apply only to the selected opening. Generalized pursuit, reentry, new travel mechanics, and Unity gameplay integration remain deferred.
+
+Implementation acceptance remains subject to six evidence groups covering authority, the paid task and threat, thresholds and actual positions, Pressure and shared due work, archive and replay with isolated forgery controls, and compatibility with the exact build and regression artifacts. [Review conversation](https://chatgpt.com/c/6af31754-d1bc-83ea-aa5c-d5e33cc9258c)
+
+## Historical proposal
 
 ### Actual route, withdrawing group and paid method
 

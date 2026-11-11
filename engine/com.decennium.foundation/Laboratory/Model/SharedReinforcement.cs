@@ -309,6 +309,7 @@ namespace Decennium.Foundation.Laboratory
             AppendReinforcementEvent(state, cause, ReinforcementEventKind.Admitted, "ReinforcementEndRoundAdmission",
                 new RuleQuantity(5), admission);
             state.Encounter = outgoing.Observe(state.Revision + 1, phase.FirstTurn, phase);
+            ActivateLocalRetreatPressure(state);
             state.WorldActivityIntervals = state.WorldActivityIntervals.Where(x => x.ActorId != definition.CompanionId).ToArray();
             state.WorldIntervals = state.WorldIntervals.Append(entrant).ToArray();
             state.BonusActions = state.BonusActions.Append(new ActorBonusActionRecord(entrant.ActorId, -1)).ToArray();
@@ -327,10 +328,10 @@ namespace Decennium.Foundation.Laboratory
             long slot = epoch.SlotAt(state.RuleClock);
             if (slot == epoch.ProcessedSlot) return;
             state.Reinforcement = record.At(slot);
-            foreach (string actor in epoch.Order.OrderBy(x => epoch.LatestStart(x, slot))) {
-                long local = epoch.LatestStart(actor, slot);
-                if (local >= 0 && phase.GlobalTurn(local) != Interval(state, actor).LastStart)
-                    ProcessLaterRegularStart(state, epoch, local, phase.GlobalTurn(local));
+            foreach (string actor in epoch.Order.OrderBy(x => WorldTiming.LatestActorStart(state, x))) {
+                long global = WorldTiming.LatestActorStart(state, actor);
+                if (global >= phase.FirstTurn && global != Interval(state, actor).LastStart)
+                    ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global));
             }
         }
     }
