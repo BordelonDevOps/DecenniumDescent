@@ -1,7 +1,8 @@
 param(
     [Parameter(Mandatory)][string]$AssemblyRoot,
     [Parameter(Mandatory)][string]$ReportPath,
-    [string]$CaptureFrom
+    [string]$CaptureFrom,
+    [switch]$Completed
 )
 $ErrorActionPreference = 'Stop'
 $assemblies = @('Core', 'Persistence', 'LabModel' | ForEach-Object {
@@ -31,7 +32,7 @@ public static class LegacyAppraisalWitness
         if (result.Outcome != Outcome.Committed) throw new InvalidOperationException(kind + " rejected: " + result.Code);
     }
 
-    public static string Run(string beforePath, string afterPath, bool capture)
+    public static string Run(string beforePath, string afterPath, bool capture, bool completed)
     {
         uint seed = 1;
         while (PlaytestDice.RollD20(seed).Natural != 12) seed++;
@@ -41,13 +42,18 @@ public static class LegacyAppraisalWitness
         var codec = new SnapshotCodec();
         var before = store.Load(beforePath);
         var s = new Simulation(policy, before, ExecutionProfile.Laboratory);
-        var paused = s.Capture().HavenAppraisals.Single();
-        if (before.SchemaVersion != 78 || paused.Status != HavenAppraisalStatus.Paused
-            || paused.Work.Labor != new RuleTime(1, 2) || !codec.Encode(s.Capture()).SequenceEqual(File.ReadAllBytes(beforePath)))
-            throw new InvalidOperationException("Accepted schema 78 paused appraisal save did not roundtrip exactly.");
-        Apply(s, CommandKind.ResumeHavenAppraisal, Worker, paused.Id);
-        Apply(s, CommandKind.AdvanceClock, Hero, x: 1799, y: 1);
-        Apply(s, CommandKind.AdvanceClock, Hero, x: 1, y: 2);
+        var report = s.Capture().HavenAppraisals.Single();
+        var expectedStatus = completed ? HavenAppraisalStatus.Completed : HavenAppraisalStatus.Paused;
+        var expectedLabor = completed ? new RuleTime(1800) : new RuleTime(1, 2);
+        if (before.SchemaVersion != 78 || report.Status != expectedStatus || report.Work.Labor != expectedLabor
+            || !codec.Encode(s.Capture()).SequenceEqual(File.ReadAllBytes(beforePath)))
+            throw new InvalidOperationException("Accepted schema 78 appraisal save did not roundtrip exactly.");
+        if (!completed)
+        {
+            Apply(s, CommandKind.ResumeHavenAppraisal, Worker, report.Id);
+            Apply(s, CommandKind.AdvanceClock, Hero, x: 1799, y: 1);
+            Apply(s, CommandKind.AdvanceClock, Hero, x: 1, y: 2);
+        }
         Apply(s, CommandKind.HandlePortableEquipment, Worker, Unit,
             inventory: new InventoryRequest(new RuleQuantity(1), handling: HandlingKind.Pickup));
         Apply(s, CommandKind.BeginWorldStep, Worker, "walk", x: 1);
@@ -65,8 +71,9 @@ public static class LegacyAppraisalWitness
 }
 '@
 $saves = Join-Path $PSScriptRoot 'legacy-saves'
-$before = Join-Path $saves 'appraisal-before.ddsave'
-$after = Join-Path $saves 'appraisal-after.ddsave'
+$key = if ($Completed) { 'appraisal-completed' } else { 'appraisal' }
+$before = Join-Path $saves "$key-before.ddsave"
+$after = Join-Path $saves "$key-after.ddsave"
 if ($CaptureFrom) {
     if ((Test-Path -LiteralPath $before) -or (Test-Path -LiteralPath $after)) {
         throw 'Authentic pre-change witnesses already exist.'
@@ -74,7 +81,7 @@ if ($CaptureFrom) {
     New-Item -ItemType Directory -Path $saves -Force | Out-Null
     Copy-Item -LiteralPath $CaptureFrom -Destination $before
 }
-$fingerprint = [LegacyAppraisalWitness]::Run($before, $after, [bool]$CaptureFrom)
+$fingerprint = [LegacyAppraisalWitness]::Run($before, $after, [bool]$CaptureFrom, [bool]$Completed)
 $report = [ordered]@{
     status = 'PASS'
     schema = 78
