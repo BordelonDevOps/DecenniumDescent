@@ -230,7 +230,7 @@ namespace Decennium.Foundation
             var charter = state.ExpeditionBillCharter;
             var jobs = state.ExpeditionBills;
             if (jobs == null) throw new ArgumentException("Missing Expedition bill history.");
-            if (state.SchemaVersion != Snapshot.ExpeditionBillSchema) {
+            if (state.SchemaVersion < Snapshot.ExpeditionBillSchema) {
                 if (charter != null || jobs.Length != 0) throw new ArgumentException("Unexpected Expedition bill history.");
                 return;
             }

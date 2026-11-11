@@ -40,7 +40,7 @@ namespace Decennium.Foundation
         HandoverFishingTrapResponsibility,
         StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal,
         StartHavenSale, PauseHavenSale, ResumeHavenSale, FinalizeHavenSale, CancelHavenSale, PurchaseHavenMeal,
-        StartExpeditionBill, PauseExpeditionBill, ResumeExpeditionBill, FinalizeExpeditionBill, CancelExpeditionBill }
+        StartExpeditionBill, PauseExpeditionBill, ResumeExpeditionBill, FinalizeExpeditionBill, CancelExpeditionBill, CloseExpeditionEpisode }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -146,6 +146,7 @@ namespace Decennium.Foundation
         public const int HavenSaleSchema = 79;
         public const int HavenMealSchema = 80;
         public const int ExpeditionBillSchema = 81;
+        public const int ExpeditionEpisodeCloseSchema = 82;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -273,6 +274,7 @@ namespace Decennium.Foundation
         public HavenMealPurchaseRecord[] HavenMealPurchases = Array.Empty<HavenMealPurchaseRecord>();
         public ExpeditionBillCharter ExpeditionBillCharter;
         public ExpeditionBillRecord[] ExpeditionBills = Array.Empty<ExpeditionBillRecord>();
+        public ExpeditionEpisodeCloseRecord ExpeditionEpisodeClose;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -382,6 +384,7 @@ namespace Decennium.Foundation
             HavenMealPurchases = HavenMealPurchases.ToArray(),
             ExpeditionBillCharter = ExpeditionBillCharter,
             ExpeditionBills = ExpeditionBills.ToArray(),
+            ExpeditionEpisodeClose = ExpeditionEpisodeClose,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -783,7 +786,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema
                 || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema || s.SchemaVersion == Foundation.Snapshot.HavenSaleSchema
-                || s.SchemaVersion == Foundation.Snapshot.HavenMealSchema || s.SchemaVersion == Foundation.Snapshot.ExpeditionBillSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HavenMealSchema || s.SchemaVersion == Foundation.Snapshot.ExpeditionBillSchema
+                || s.SchemaVersion == Foundation.Snapshot.ExpeditionEpisodeCloseSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -886,6 +890,7 @@ namespace Decennium.Foundation
             HavenSaleValidation.Validate(s);
             HavenMealPurchaseValidation.Validate(s);
             ExpeditionBillValidation.Validate(s);
+            ExpeditionEpisodeCloseValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);

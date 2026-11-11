@@ -81,6 +81,7 @@ namespace Decennium.Foundation.Laboratory
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
             ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)
+            ||expeditionCloseProfile!=null&&kind==CommandKind.CloseExpeditionEpisode
             ||havenMealProfile!=null&&kind==CommandKind.PurchaseHavenMeal
             ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
@@ -284,6 +285,10 @@ namespace Decennium.Foundation.Laboratory
             if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind)) {
                 string appraisalFailure=AssessHavenAppraisal(s,c,out _,out _);
                 return new CommandQueryResult(true,appraisalFailure==null,appraisalFailure??"Available",s.Revision);
+            }
+            if(expeditionCloseProfile!=null&&c.Kind==CommandKind.CloseExpeditionEpisode) {
+                string closeFailure=AssessExpeditionClose(s,c,out _);
+                return new CommandQueryResult(true,closeFailure==null,closeFailure??"Available",s.Revision);
             }
             if(expeditionBillProfile!=null&&IsExpeditionBillCommand(c.Kind)) {
                 string billFailure=AssessExpeditionBill(s,c,out _,out var billDraft);

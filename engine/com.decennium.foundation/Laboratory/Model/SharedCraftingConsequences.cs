@@ -88,7 +88,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedCraftingFixture crafting;
-        private int SelectedSchema => expeditionBillProfile != null ? Snapshot.ExpeditionBillSchema
+        private int SelectedSchema => expeditionCloseProfile != null ? Snapshot.ExpeditionEpisodeCloseSchema
+            : expeditionBillProfile != null ? Snapshot.ExpeditionBillSchema
             : havenMealProfile!=null ? Snapshot.HavenMealSchema
             : havenSaleProfile!=null ? Snapshot.HavenSaleSchema
             : havenAppraisalProfile!=null ? Snapshot.HavenAppraisalSchema

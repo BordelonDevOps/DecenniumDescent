@@ -11,15 +11,7 @@ namespace Decennium.Foundation
         public static void Write(BinaryWriter w,Snapshot s)
         {
             w.Write(s.PortableEquipment.Length);
-            foreach(var x in s.PortableEquipment.OrderBy(x=>x.Id,StringComparer.Ordinal)) {
-                Text(w,x.Id);Text(w,x.ProfileId);Text(w,x.OwnerId);Text(w,x.CustodianId);Text(w,x.ParentId);
-                w.Write((int)x.Placement);w.Write((int)x.LinkKind);Text(w,x.LinkedId);w.Write((int)x.MassBasis);
-                Optional(w,x.SourceWeightLb);Optional(w,x.OperationalWeightLb);Optional(w,x.PrintedLoad);
-                Optional(w,x.CapacityPounds);Optional(w,x.CapacityCubicFeet);w.Write(x.Wearable);w.Write(x.Open);Text(w,x.FitRuleId);
-                w.Write(x.FitMemberIds.Count);foreach(string id in x.FitMemberIds.OrderBy(v=>v,StringComparer.Ordinal))Text(w,id);
-                w.Write(x.GroundX);w.Write(x.GroundY);
-                if(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema)w.Write(x.HeldHands);
-            }
+            foreach(var x in s.PortableEquipment.OrderBy(x=>x.Id,StringComparer.Ordinal)) WriteItem(w,x,s.SchemaVersion);
             w.Write(s.PortableHandling.Length);
             foreach(var x in s.PortableHandling.OrderBy(x=>x.Revision)) {
                 Text(w,x.Id);w.Write(x.Revision);Text(w,x.ActorId);Text(w,x.ItemId);Text(w,x.FromParentId);Text(w,x.ToParentId);Text(w,x.RecipientId);
@@ -29,19 +21,31 @@ namespace Decennium.Foundation
         public static void Read(BinaryReader r,Snapshot s)
         {
             s.PortableEquipment=new PortableEquipmentRecord[Count(r,PortableEquipmentValidation.MaxItems)];
-            for(int i=0;i<s.PortableEquipment.Length;i++) {
-                string id=Text(r),profile=Text(r),owner=Text(r),custodian=Text(r),parent=Text(r);
-                var placement=(PortablePlacement)r.ReadInt32();var kind=(PortableLinkKind)r.ReadInt32();string linked=Text(r);var basis=(PortableMassBasis)r.ReadInt32();
-                var source=Optional(r);var operational=Optional(r);var load=Optional(r);var pounds=Optional(r);var volume=Optional(r);
-                bool wearable=Bool(r),open=Bool(r);string fit=Text(r);string[] members=new string[Count(r,32)];
-                for(int j=0;j<members.Length;j++)members[j]=Text(r);
-                int groundX=r.ReadInt32(),groundY=r.ReadInt32();int heldHands=s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema?r.ReadInt32():0;
-                s.PortableEquipment[i]=new PortableEquipmentRecord(id,profile,owner,custodian,parent,placement,kind,linked,basis,source,operational,load,
-                    pounds,volume,wearable,open,fit,members,groundX,groundY,heldHands);
-            }
+            for(int i=0;i<s.PortableEquipment.Length;i++) s.PortableEquipment[i]=ReadItem(r,s.SchemaVersion);
             s.PortableHandling=new PortableHandlingRecord[Count(r,PortableEquipmentValidation.MaxHandling)];
             for(int i=0;i<s.PortableHandling.Length;i++)s.PortableHandling[i]=new PortableHandlingRecord(Text(r),r.ReadInt64(),Text(r),Text(r),Text(r),Text(r),Text(r),
                 (PortableOperation)r.ReadInt32(),(PortablePlacement)r.ReadInt32(),(PortablePlacement)r.ReadInt32(),Time(r),Time(r),Bool(r));
+        }
+        internal static void WriteItem(BinaryWriter w,PortableEquipmentRecord x,int schema)
+        {
+            Text(w,x.Id);Text(w,x.ProfileId);Text(w,x.OwnerId);Text(w,x.CustodianId);Text(w,x.ParentId);
+            w.Write((int)x.Placement);w.Write((int)x.LinkKind);Text(w,x.LinkedId);w.Write((int)x.MassBasis);
+            Optional(w,x.SourceWeightLb);Optional(w,x.OperationalWeightLb);Optional(w,x.PrintedLoad);
+            Optional(w,x.CapacityPounds);Optional(w,x.CapacityCubicFeet);w.Write(x.Wearable);w.Write(x.Open);Text(w,x.FitRuleId);
+            w.Write(x.FitMemberIds.Count);foreach(string id in x.FitMemberIds.OrderBy(v=>v,StringComparer.Ordinal))Text(w,id);
+            w.Write(x.GroundX);w.Write(x.GroundY);
+            if(schema>=Snapshot.SoldierInitialBuildSchema)w.Write(x.HeldHands);
+        }
+        internal static PortableEquipmentRecord ReadItem(BinaryReader r,int schema)
+        {
+            string id=Text(r),profile=Text(r),owner=Text(r),custodian=Text(r),parent=Text(r);
+            var placement=(PortablePlacement)r.ReadInt32();var kind=(PortableLinkKind)r.ReadInt32();string linked=Text(r);var basis=(PortableMassBasis)r.ReadInt32();
+            var source=Optional(r);var operational=Optional(r);var load=Optional(r);var pounds=Optional(r);var volume=Optional(r);
+            bool wearable=Bool(r),open=Bool(r);string fit=Text(r);string[] members=new string[Count(r,32)];
+            for(int j=0;j<members.Length;j++)members[j]=Text(r);
+            int groundX=r.ReadInt32(),groundY=r.ReadInt32();int heldHands=schema>=Snapshot.SoldierInitialBuildSchema?r.ReadInt32():0;
+            return new PortableEquipmentRecord(id,profile,owner,custodian,parent,placement,kind,linked,basis,source,operational,load,
+                pounds,volume,wearable,open,fit,members,groundX,groundY,heldHands);
         }
         public static void WriteStorageProfiles(BinaryWriter w,Snapshot s)
         {

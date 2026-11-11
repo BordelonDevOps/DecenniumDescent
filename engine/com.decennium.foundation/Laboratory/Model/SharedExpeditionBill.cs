@@ -159,7 +159,8 @@ namespace Decennium.Foundation.Laboratory
         {
             job = null;
             basis = null;
-            if (expeditionBillProfile == null || state.SchemaVersion != Snapshot.ExpeditionBillSchema) return "ExpeditionBillNotSelected";
+            if (expeditionBillProfile == null || state.SchemaVersion < Snapshot.ExpeditionBillSchema) return "ExpeditionBillNotSelected";
+            if (state.ExpeditionEpisodeClose != null) return "ExpeditionEpisodeAlreadyClosed";
             if (command.Actor != TestOnlyExpeditionBillProfile.WorkerId) return "ExpeditionBillRepresentativeUnauthorized";
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None

@@ -709,6 +709,7 @@ namespace Decennium.Foundation.Laboratory
             string restingActorFailure = RestingActorCommandFailure(s, c);
             if (restingActorFailure != null) return restingActorFailure;
             if(IsHavenAppraisalCommand(c.Kind))return ResolveHavenAppraisal(s,c);
+            if(c.Kind==CommandKind.CloseExpeditionEpisode)return ResolveExpeditionClose(s,c);
             if(IsExpeditionBillCommand(c.Kind))return ResolveExpeditionBill(s,c);
             if(IsHavenSaleCommand(c.Kind))return ResolveHavenSale(s,c);
             if(c.Kind==CommandKind.PurchaseHavenMeal)return ResolveHavenMealPurchase(s,c,out _);
