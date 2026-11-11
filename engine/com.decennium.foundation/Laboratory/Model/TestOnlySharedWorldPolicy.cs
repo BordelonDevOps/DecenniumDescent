@@ -176,6 +176,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeResearch(s);
             InitializeCrafting(s);
             InitializeRepair(s);
+            InitializeResearchStation(s);
             InitializeManufacturing(s);
             InitializeSupplyCache(s);
             InitializeFishingTrap(s);

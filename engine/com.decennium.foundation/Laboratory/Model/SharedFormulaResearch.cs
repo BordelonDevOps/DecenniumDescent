@@ -65,9 +65,61 @@ namespace Decennium.Foundation.Laboratory
         public static bool Succeeds(int natural, int modifier, int dc) => PlaytestRolls.TaskCheck(natural, modifier, dc).Degree >= TaskDegree.Success;
         public static bool Knows(Snapshot s, string actor, string recipe) => s.FormulaWork.Any(x => x.WorkerId == actor && x.RecipeId == recipe && x.Status == FormulaWorkStatus.Success);
     }
+
+    /// <summary>One pre-existing TEST_ONLY FL-07 facility, with a supplied Fortified context,
+    /// suitable site, research furnishings and permission. These facts grant no construction marks.
+    /// The structural numbers below belong to the fixture, not a general facility specification.</summary>
+    public sealed class TestOnlyResearchStationProfile
+    {
+        public const string InstanceId="TEST_ONLY.research-station",StructureProfileId="TEST_ONLY.FL07.research-station";
+        private const string Offsite="TEST_ONLY.research-station-offsite";
+        internal const int CheckBonus=2;
+        internal ObjectStructureRecord InitialStructure { get; }
+        internal string ResearcherId { get; }
+        internal bool FurnishingsInstalled { get; }
+        internal bool LawfulUse { get; }
+
+        public TestOnlyResearchStationProfile(string researcherId=TestOnlyPolicy.CompanionId,bool lawfulUse=true,
+            bool furnishingsInstalled=true,bool atWorksite=true,bool intact=true)
+        {
+            if(researcherId!=TestOnlyPolicy.ActorId&&researcherId!=TestOnlyPolicy.CompanionId)
+                throw new ArgumentException("Unknown TEST_ONLY researcher.",nameof(researcherId));
+            ResearcherId=researcherId;LawfulUse=lawfulUse;FurnishingsInstalled=furnishingsInstalled;
+            InitialStructure=new ObjectStructureRecord(InstanceId,StructureProfileId,TestOnlyPolicy.ActorId,TestOnlyPolicy.ActorId,
+                atWorksite?TestOnlyCropPolicy.PlotId:Offsite,ObjectMaterial.WoodLeather,5,intact?5:0,0,new RuleQuantity(50));
+        }
+
+        internal string Key=>"FL07-46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|recipe-4|fortified-authored|"
+            +InstanceId+"|"+StructureProfileId+"|"+InitialStructure.OwnerId+"|"+InitialStructure.CustodianId+"|"
+            +InitialStructure.LocationId+"|"+InitialStructure.Material+"|"+InitialStructure.MassPounds+"|"
+            +InitialStructure.MaximumHp.ToString(CultureInfo.InvariantCulture)+"|"+InitialStructure.Hp.ToString(CultureInfo.InvariantCulture)+"|"
+            +InitialStructure.BaselineCopper.ToString(CultureInfo.InvariantCulture)+"|"
+            +ResearcherId+"|"+LawfulUse+"|"+FurnishingsInstalled;
+    }
+
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private readonly SharedResearchFixture research;
+        private TestOnlyResearchStationProfile researchStation;
+
+        public TestOnlySharedWorldPolicy EnableResearchStation(TestOnlyResearchStationProfile profile)
+        {
+            if(initializationStarted||researchStation!=null||crafting==null||repair==null
+                ||research?.RecipeId!=SharedResearchFixture.Recipe)
+                throw new InvalidOperationException("Select the station once before initializing a recipe-4 research/crafting/repair host.");
+            if(profile==null)throw new ArgumentNullException(nameof(profile));
+            if(profile.ResearcherId!=research.WorkerId)throw new ArgumentException("Research station permission binding names another researcher.",nameof(profile));
+            researchStation=profile;
+            using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.research-station-v1-"+string.Concat(sha.ComputeHash(
+                Encoding.UTF8.GetBytes(ContentFingerprint+"|"+profile.Key)).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            return this;
+        }
+
+        private void InitializeResearchStation(Snapshot s)
+        {
+            if(researchStation!=null)s.Structures=s.Structures.Concat(new[]{researchStation.InitialStructure}).ToArray();
+        }
+
         private static string ResearchFingerprint(string body, SharedResearchFixture facts)
         {
             using (var sha = SHA256.Create()) return "TEST_ONLY.research-v1-" + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(body + "|" + facts.Key)).Select(x => x.ToString("x2", CultureInfo.InvariantCulture)));
@@ -80,6 +132,9 @@ namespace Decennium.Foundation.Laboratory
         }
         private string ValidateFormulaProfile(Snapshot s)
         {
+            var station=s.Structures.SingleOrDefault(x=>x.Id==TestOnlyResearchStationProfile.InstanceId);
+            if(researchStation==null ? station!=null : station==null||station.ProfileId!=TestOnlyResearchStationProfile.StructureProfileId)
+                return "InvalidResearchStationBinding";
             if(research==null)return s.FormulaWork.Length==0?null:"FormulaFixtureNotSelected";
             return s.FormulaWork.Any(x=>!research.SupportsRecipe(x.RecipeId))?"FormulaFixtureMismatch":null;
         }
@@ -152,10 +207,27 @@ namespace Decennium.Foundation.Laboratory
             int modifier = facts.AbilityModifier(CharacterAbility.Intelligence) + facts.ProficiencyBonus;
             // Schema16 histories retain their original check outcomes. Schema17 corrects actual tool checks.
             if (s.SchemaVersion >= 17) modifier += actorFacts.InjuryPenalty(CharacterAbility.Intelligence, toolCheck: true);
+            if(ResearchStationIneligibility(s,job)==null)modifier+=TestOnlyResearchStationProfile.CheckBonus;
             var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0);
             s.RandomState = roll.NextRandomState;
             var status = FormulaResearchRules.Succeeds(roll.Natural, modifier, SharedResearchFixture.Difficulty(job.RecipeId)) ? FormulaWorkStatus.Success : FormulaWorkStatus.Failure;
             PutFormula(s, ChangeFormula(s, job, status, first: roll.First, second: roll.Second ?? 0, natural: roll.Natural));
+        }
+
+        private string ResearchStationIneligibility(Snapshot s,FormulaWorkRecord job)
+        {
+            if(researchStation==null||job.Kind!=FormulaWorkKind.Research||job.RecipeId!=SharedResearchFixture.Recipe)
+                return "ResearchStationNotSelected";
+            if(!researchStation.LawfulUse||job.WorkerId!=researchStation.ResearcherId)return "ResearchStationPermissionMissing";
+            if(!researchStation.FurnishingsInstalled)return "ResearchStationFurnishingsUnavailable";
+            var station=s.Structures.SingleOrDefault(x=>x.Id==TestOnlyResearchStationProfile.InstanceId);
+            if(station==null||station.ProfileId!=TestOnlyResearchStationProfile.StructureProfileId)
+                return "ResearchStationInstanceMissing";
+            if(station.LocationId!=TestOnlyCropPolicy.PlotId)return "ResearchStationOffsite";
+            if(station.OwnerId!=researchStation.InitialStructure.OwnerId||station.CustodianId!=researchStation.InitialStructure.CustodianId)
+                return "ResearchStationCustodyChanged";
+            if(station.Broken)return "ResearchStationBroken";
+            return CraftingRestrictions.StationUseBlocked(s,station.Id)?"ResearchStationUseBlocked":null;
         }
         private string ResolveFormulaWork(Snapshot s, Command c)
         {

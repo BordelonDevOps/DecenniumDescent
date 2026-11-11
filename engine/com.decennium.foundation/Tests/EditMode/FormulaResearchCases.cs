@@ -20,8 +20,218 @@ namespace Decennium.Foundation.Tests
         private static void ResearchControl(Simulation s, CommandKind kind, string worker = TestOnlyPolicy.CompanionId)
             => WorldCommit(s, ResearchCommand(s, kind, ResearchJob(s).Id, worker: worker,recipe:ResearchJob(s).RecipeId));
         private static RuleQuantity WritingStock(Simulation s) => s.Capture().Work.Lots.Single(x => x.Id == SharedResearchFixture.Supplies).Amount;
+
+        private static TestOnlySharedWorldPolicy ResearchStationPolicy(uint seed,TestOnlyResearchStationProfile station=null,
+            SharedResearchFixture research=null,SharedCraftingFixture crafting=null,ConditionCombatFixture conditions=null)
+        {
+            var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed:seed),research??new SharedResearchFixture(),
+                crafting??new SharedCraftingFixture(),new SharedRepairFixture(),conditions:conditions);
+            return station==null?policy:policy.EnableResearchStation(station);
+        }
+
+        private static void ResearchStationAudit(string directory,string label,Snapshot before,Snapshot after,int bonus,string eligibility)
+        {
+            var job=after.FormulaWork.Last();
+            var actor=CharacterStateFacts.ForActor(before,job.WorkerId);
+            int ability=actor.Rules.AbilityModifier(CharacterAbility.Intelligence),proficiency=actor.Rules.ProficiencyBonus;
+            int injury=actor.InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true);
+            int dc=SharedResearchFixture.Difficulty(job.RecipeId);
+            bool poisoned=TestOnlyClubAttackPolicy.ConditionsFor(before,job.WorkerId).View().Has(ConditionKind.Poisoned);
+            var roll=PlaytestDice.RollD20(before.RandomState,disadvantageSources:poisoned?1:0);
+            var expected=PlaytestRolls.TaskCheck(roll.Natural,ability+proficiency+injury+bonus,dc).Degree>=TaskDegree.Success
+                ?FormulaWorkStatus.Success:FormulaWorkStatus.Failure;
+            Require(job.Status==expected&&job.First==roll.First&&job.Second==(roll.Second??0)&&job.Natural==roll.Natural
+                &&after.RandomState==roll.NextRandomState&&job.Work.Labor==T(28800)&&after.Revision==before.Revision+1,
+                "Research check or elapsed labor differed from the audited inputs for "+label+".");
+            var station=before.Structures.SingleOrDefault(x=>x.Id==TestOnlyResearchStationProfile.InstanceId);
+            var receipt=after.Receipts.Single(x=>x.Revision==after.Revision);
+            var path=Path.Combine(directory,"research-check-audit.tsv");
+            if(!File.Exists(path))File.WriteAllLines(path,new[]{"witness\twork\tworker\trecipe\tevidence\tmethod\tresolved_at\trevision\tcommand"
+                +"\tstation\teligibility\tbonus\tability\tproficiency\tinjury\tdc\tselection\tfirst\tsecond\tnatural\trng_before\trng_after\twords\tresult"});
+            File.AppendAllLines(path,new[]{string.Join("\t",label,
+                job.Id,job.WorkerId,job.RecipeId,job.EvidenceId,job.MethodId,job.UpdatedAt,receipt.Revision,receipt.Id,
+                station?.Id??"ordinary",eligibility,bonus,ability,proficiency,injury,dc,roll.Selection,
+                roll.First,roll.Second??0,roll.Natural,before.RandomState,after.RandomState,roll.WordsConsumed,job.Status)});
+        }
+
+        private static void AddResearchStationCases(Dictionary<string,Action> cases,string directory)
+        {
+            var host=TestOnlySharedWorldPolicy.Host();
+            const string worker=TestOnlyPolicy.CompanionId;
+            uint thresholdSeed=ManufacturingNaturalSeed(4);
+            const string blocked="research-station-spill";
+            CraftingMishapFact Spill(int at)=>new CraftingMishapFact(blocked,1,at:T(at),stationId:TestOnlyResearchStationProfile.InstanceId);
+
+            cases.Add("mgt09_research_station_exact_bonus_connected_save_and_historical_result",()=>{
+                var crafting=new SharedCraftingFixture(events:new[]{Spill(28800)});
+                var ordinary=ResearchStationPolicy(thresholdSeed,crafting:crafting);
+                var qualified=ResearchStationPolicy(thresholdSeed,new TestOnlyResearchStationProfile(),crafting:crafting);
+                var baseline=World(ordinary);var station=World(qualified);
+                var start=ResearchCommand(station);
+                var store=new FileSaveStore();var codec=new SnapshotCodec();
+                foreach(var run in new[]{baseline,station}) {
+                    WorldCommit(run,start);WorldAdvance(run,14400);
+                    Require(run.Capture().SchemaVersion==Snapshot.RepairWorkSchema&&ResearchJob(run).Work.Labor==T(14400)
+                        &&WritingStock(run)==Q(3)&&!FormulaResearchRules.Knows(run.Capture(),worker,SharedResearchFixture.Recipe),
+                        "Partial research spent materials or granted knowledge.");
+                }
+                var partial=Path.Combine(directory,"station-research-midwork.ddsave");
+                store.Save(partial,station.Capture());
+                var restored=new Simulation(qualified,store.Load(partial),ExecutionProfile.Laboratory);
+                Throws<ArgumentException>(()=>new Simulation(ordinary,store.Load(partial),ExecutionProfile.Laboratory));
+                foreach(var run in new[]{baseline,station,restored}) {
+                    var before=run.Capture();WorldAdvance(run,14400);var after=run.Capture();
+                    bool eligible=run!=baseline;
+                    ResearchStationAudit(directory,eligible?"functioning":"ordinary",before,after,eligible?2:0,
+                        eligible?"functioning at check":"ordinary workspace only");
+                    var result=ResearchJob(run);
+                    Require(result.Natural==4&&result.Status==(eligible?FormulaWorkStatus.Success:FormulaWorkStatus.Failure)
+                        &&after.ManufacturingOrders.Length==0&&after.AlchemyDoses.Length==0&&after.Trades.Length==0
+                        &&after.SkillTraining.SequenceEqual(before.SkillTraining)&&WritingStock(run)==Q(3)
+                        &&FormulaResearchRules.Knows(after,worker,SharedResearchFixture.Recipe)==eligible,
+                        "The +2 witness did not preserve the source-bound knowledge-only result.");
+                }
+                Require(Bytes(station).SequenceEqual(Bytes(restored))&&baseline.Capture().RandomState==station.Capture().RandomState,
+                    "Station modifier changed the roll stream or deterministic restoration.");
+                byte[] resolved=Bytes(station);
+                Require(station.Execute(host,start).Outcome==Outcome.Duplicate&&resolved.SequenceEqual(Bytes(station)),"Retry changed a resolved check.");
+                var conflict=new Command(start.Id,start.Actor,start.ExpectedRevision,start.Kind,SharedResearchFixture.FreshEvidence);
+                RejectUnchanged(station,host,conflict,"CommandIdConflict");
+                foreach(var run in new[]{station,restored})CraftEvent(run,blocked);
+                var now=station.Capture();
+                Require(CraftingRestrictions.StationUseBlocked(now,TestOnlyResearchStationProfile.InstanceId)
+                    &&ResearchJob(station).Status==FormulaWorkStatus.Success&&Bytes(station).SequenceEqual(Bytes(restored)),
+                    "A later same-time spill rewrote the earlier +2 check.");
+                var settled=Path.Combine(directory,"station-research-resolved-then-blocked.ddsave");
+                store.Save(settled,now);
+                Require(Bytes(station).SequenceEqual(Bytes(new Simulation(qualified,store.Load(settled),ExecutionProfile.Laboratory))),
+                    "Replay used current facility state instead of the historical check boundary.");
+                var forged=codec.Decode(Bytes(station));
+                var old=forged.FormulaWork.Single();
+                forged.FormulaWork=new[]{new FormulaWorkRecord(old.Id,old.WorkerId,old.RecipeId,old.EvidenceId,old.MethodId,
+                    old.Kind,FormulaWorkStatus.Failure,old.StartedAt,old.UpdatedAt,old.Work,old.First,old.Second,old.Natural)};
+                Throws<ArgumentException>(()=>new Simulation(qualified,forged,ExecutionProfile.Laboratory));
+                forged=codec.Decode(Bytes(station));
+                forged.Structures=forged.Structures.Where(x=>x.Id!=TestOnlyResearchStationProfile.InstanceId).ToArray();
+                Throws<ArgumentException>(()=>new Simulation(qualified,forged,ExecutionProfile.Laboratory));
+            });
+
+            cases.Add("mgt09_research_station_unavailable_variants_and_supported_spill_fall_back",()=>{
+                var variants=new[]{(new TestOnlyResearchStationProfile(intact:false),"broken"),
+                    (new TestOnlyResearchStationProfile(atWorksite:false),"offsite"),
+                    (new TestOnlyResearchStationProfile(lawfulUse:false),"permission absent"),
+                    (new TestOnlyResearchStationProfile(furnishingsInstalled:false),"furnishings absent despite profile label")};
+                foreach(var (profile,reason) in variants) {
+                    var run=World(ResearchStationPolicy(thresholdSeed,profile));
+                    ResearchStart(run);var before=run.Capture();WorldAdvance(run,28800);
+                    ResearchStationAudit(directory,reason,before,run.Capture(),0,reason);
+                    Require(ResearchJob(run).Status==FormulaWorkStatus.Failure,"Unavailable facility supplied a bonus.");
+                }
+                var live=World(ResearchStationPolicy(thresholdSeed,new TestOnlyResearchStationProfile(),
+                    crafting:new SharedCraftingFixture(events:new[]{Spill(14400)})));
+                ResearchStart(live);WorldAdvance(live,14400);CraftEvent(live,blocked);
+                var obstructed=live.Capture();
+                Require(ResearchJob(live).Status==FormulaWorkStatus.Working
+                    &&CraftingRestrictions.StationUseBlocked(obstructed,TestOnlyResearchStationProfile.InstanceId)
+                    &&!CraftingRestrictions.StationUseBlocked(obstructed,SharedCraftingFixture.StationId),
+                    "A bonus-facility spill blocked independent ordinary research.");
+                WorldAdvance(live,14400);
+                ResearchStationAudit(directory,"spill before completion",obstructed,live.Capture(),0,"station use blocked");
+                Require(ResearchJob(live).Status==FormulaWorkStatus.Failure,"Eligible completion waited for or used the blocked bonus.");
+            });
+
+            cases.Add("mgt09_research_station_does_not_waive_independent_gates",()=>{
+                var bonus=new TestOnlyResearchStationProfile();
+                foreach(var (facts,code) in new[]{(new SharedResearchFixture(qualified:false),"ResearchCredentialMissing"),
+                    (new SharedResearchFixture(accessible:false),"ResearchEvidenceUnavailable"),
+                    (new SharedResearchFixture(sufficient:false),"ResearchEvidenceUnavailable"),
+                    (new SharedResearchFixture(stationSuitable:false),"ResearchStationUnavailable")}) {
+                    var run=World(ResearchStationPolicy(thresholdSeed,bonus,facts));
+                    RejectUnchanged(run,host,ResearchCommand(run),code);
+                }
+                var tool=World(ResearchStationPolicy(thresholdSeed,bonus,crafting:new SharedCraftingFixture(toolHp:0)));
+                RejectUnchanged(tool,host,ResearchCommand(tool),"ResearchToolsOrStationUnavailable");
+                var moving=World(ResearchStationPolicy(thresholdSeed,bonus));
+                WorldStep(moving,-1,0,actor:worker);
+                RejectUnchanged(moving,host,ResearchCommand(moving),"ResearchStationOutOfReach");
+                var hero=World(ResearchStationPolicy(thresholdSeed,new TestOnlyResearchStationProfile(TestOnlyPolicy.ActorId),
+                    new SharedResearchFixture(TestOnlyPolicy.ActorId)));
+                RejectUnchanged(hero,host,ResearchCommand(hero,worker:TestOnlyPolicy.ActorId),"ResearchStationOutOfReach");
+                HeroToWorkshop(hero);BeginEncounter(hero);
+                RejectUnchanged(hero,host,ResearchCommand(hero,worker:TestOnlyPolicy.ActorId),"ResearchParticipantInCombat");
+                var late=World(ResearchStationPolicy(thresholdSeed,bonus));WorldAdvance(late,57600);
+                RejectUnchanged(late,host,ResearchCommand(late),"ResearchWorkWindowClosed");
+                var failed=World(ResearchStationPolicy(ManufacturingNaturalSeed(2),bonus));
+                ResearchStart(failed);WorldAdvance(failed,28800);
+                Require(ResearchJob(failed).Status==FormulaWorkStatus.Failure,"Retry fixture must fail its first roll.");
+                RejectUnchanged(failed,host,ResearchCommand(failed),"UnchangedResearchEvidence");
+            });
+
+            cases.Add("mgt09_research_station_awaiting_check_uses_current_availability_after_restore",()=>{
+                var cure=new ConditionFixtureEvent(worker,ConditionOperation.Cure("event.cure",new ConditionStamp(T(57601)),"Stunned"));
+                var conditions=new ConditionCombatFixture(CCApply("stun","Stunned",worker),CCGrant("ward",worker,new ConditionStamp(T(57600)),"Stunned"),cure);
+                var policy=ResearchStationPolicy(thresholdSeed,new TestOnlyResearchStationProfile(),
+                    crafting:new SharedCraftingFixture(events:new[]{Spill(57600)}),conditions:conditions);
+                var run=World(policy);CCDispatch(run,"stun",worker);CCDispatch(run,"ward",worker);
+                WorldAdvance(run,28800);ResearchStart(run);var rng=run.Capture().RandomState;WorldAdvance(run,28800);
+                Require(ResearchJob(run).Status==FormulaWorkStatus.AwaitingCheck&&ResearchJob(run).Work.Complete
+                    &&run.Capture().RandomState==rng,"Fully worked incapacity consumed a research roll.");
+                var path=Path.Combine(directory,"station-research-awaiting.ddsave");
+                var store=new FileSaveStore();store.Save(path,run.Capture());
+                var restored=new Simulation(policy,store.Load(path),ExecutionProfile.Laboratory);
+                foreach(var branch in new[]{run,restored}) {
+                    CraftEvent(branch,blocked);
+                    RejectUnchanged(branch,host,ResearchCommand(branch,CommandKind.ResumeFormulaWork,ResearchJob(branch).Id),"ResearchWorkerIncapable");
+                    WorldAdvance(branch,1);CCDispatch(branch,"cure",worker);var before=branch.Capture();
+                    Require(ResearchJob(branch).Status==FormulaWorkStatus.AwaitingCheck&&before.RandomState==rng,"Restored eligibility automatically resolved waiting research.");
+                    var complete=ResearchCommand(branch,CommandKind.ResumeFormulaWork,ResearchJob(branch).Id);
+                    WorldCommit(branch,complete);
+                    ResearchStationAudit(directory,"awaiting after spill",before,branch.Capture(),0,"station use blocked");
+                    Require(ResearchJob(branch).Status==FormulaWorkStatus.Failure&&branch.Capture().RuleClock==T(57601)
+                        &&branch.Execute(host,complete).Outcome==Outcome.Duplicate,"Deferred check repeated time, work or RNG.");
+                }
+                Require(Bytes(run).SequenceEqual(Bytes(restored)),"Deferred check replay diverged.");
+            });
+
+            cases.Add("mgt09_research_station_preserves_poison_injury_copying_and_manufacture",()=>{
+                var conditions=new ConditionCombatFixture(CCApply("poison","Poisoned",worker,at:CJAt(6)));
+                uint seed=0;
+                for(uint probe=1;probe<2000000;probe++) {
+                    var d4=DiceStream.Draw(probe,4);
+                    var damage=PlaytestDamageDice.Resolve(new LifeState(26,1),d4.Value+1,default,d4.NextState);
+                    if(damage.InjuryD6!=(int)Injury.FineMotorTrauma)continue;
+                    var recovery=PlaytestDice.RollD20(damage.NextRandomState);
+                    if(recovery.Natural!=20)continue;
+                    var check=PlaytestDice.RollD20(recovery.NextRandomState,disadvantageSources:1);
+                    if(check.Natural==4&&check.First!=4) { seed=probe;break; }
+                }
+                Require(seed!=0,"No injury and disadvantage witness seed.");
+                var poisoned=World(ResearchStationPolicy(seed,new TestOnlyResearchStationProfile(),
+                    crafting:new SharedCraftingFixture(companionHp:1,events:new[]{new CraftingMishapFact("acid",4)}),conditions:conditions));
+                CraftEvent(poisoned,"acid");WorldAdvance(poisoned,6);CCDispatch(poisoned,"poison",worker);
+                ResearchStart(poisoned);WorldAdvance(poisoned,28794);ResearchControl(poisoned,CommandKind.ResumeFormulaWork);
+                var before=poisoned.Capture();WorldAdvance(poisoned,6);
+                ResearchStationAudit(directory,"poisoned and injured",before,poisoned.Capture(),2,"functioning at check");
+                Require(CharacterStateFacts.ForActor(before,worker).InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true)==-1
+                    &&ResearchJob(poisoned).Natural==4&&ResearchJob(poisoned).First!=4&&ResearchJob(poisoned).Status==FormulaWorkStatus.Failure,
+                    "Station bypassed Poisoned or the injury that keeps total below the exact DC.");
+                var plain=World(ManufacturePolicy(SeedForDeath(6)));
+                var station=World(ManufacturePolicy(SeedForDeath(6)).EnableResearchStation(new TestOnlyResearchStationProfile()));
+                foreach(var run in new[]{plain,station}) {
+                    uint random=run.Capture().RandomState;LearnManufacturing(run);
+                    Require(run.Capture().RandomState==random&&ResearchJob(run).Work.Labor==T(3600)
+                        &&ResearchJob(run).Natural==0&&WritingStock(run)==Q(2),"Station changed copying cost or rolled a check.");
+                    ManufactureStart(run);WorldAdvance(run,14400);
+                }
+                Require(Order(plain).Quality==CraftQuality.Standard&&Order(plain).Quality==Order(station).Quality
+                    &&Order(plain).XpAward==Order(station).XpAward&&Order(plain).Natural==Order(station).Natural
+                    &&plain.Capture().RandomState==station.Capture().RandomState,"The station bonus leaked into manufacturing.");
+            });
+        }
+
         private static void AddFormulaResearchCases(Dictionary<string, Action> cases, string directory)
         {
+            AddResearchStationCases(cases,directory);
             var host = TestOnlySharedWorldPolicy.Host();
             cases.Add("active_work_phase_interruption_loses_only_unfinished_phase", () => {
                 var work = new ActiveWorkProgress(new[] { T(28800), T(28800), T(14400) }).Credit(T(36001, 2));
