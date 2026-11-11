@@ -1,6 +1,6 @@
 # MGT-09 existing-formula Research Station implementation review
 
-The [implementation commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/5d568e23ef68ee0e65bb83cca8ada6cdc1338256) implements the [approved source/API contract](SOURCE_API_REVIEW.md) on `Engine`. Implementation acceptance is pending.
+The [implementation commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/5d568e23ef68ee0e65bb83cca8ada6cdc1338256) implements the [approved source/API contract](SOURCE_API_REVIEW.md) on `Engine`. GPT accepted the bounded implementation. [Actual review](GPT_REVIEW.md)
 
 The opt-in profile supplies one pre-existing FL-07 Research Station for the exact recipe-4 research procedure. It registers an actual bound structure after the normal crafting and repair structures. The fingerprint binds the facility qualification, site, lawful researcher, furnishings and initial physical facts. At the check boundary, the existing research resolver adds +2 only when that instance is usable. HP, site and custody are read from the structure and the existing result-1 station restriction is read from occurred incidents. The normal researcher, evidence, ordinary station/tool and timing checks still apply. The check uses the same function for immediate completion and explicit `AwaitingCheck` resolution. No schema, codec field, or construction or marks command changed.
 
