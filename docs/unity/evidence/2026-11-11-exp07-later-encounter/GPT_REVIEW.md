@@ -1,0 +1,9 @@
+# EXP-07 genuine later encounter implementation review
+
+## Schema 86 accepted
+
+Unity Rules Engine Development accepted `dc877fda97743080ba1f8ee6ecb2b9999249ebf5` against evidence `95770ffc0d2f1285aafc951ed4c10b85eccbdb34` in reply `ff19e7d5-2f98-4445-b8fd-118853ad5572`. It closed all six bounded TEST_ONLY acceptance groups and requested no correction. The exact implementation connects two distinct fights through one shared world, resources, clock, RNG and persistent history. The second fight starts on actual arrival, owns its rolled order, preserves old marker timing and produces an actual exit and ordinary continuation. [Actual GPT review](https://chatgpt.com/c/6af31754-d1bc-83ea-aa5c-d5e33cc9258c) · [Exact source and evidence](README.md)
+
+GPT read all six focused cases and helpers, the new runtime, Core records and codec, the changed scheduling, archive and decision-yield paths, relevant map and source provisions, all ten legacy reports, and four connected audits. It inspected retained execution evidence. It performed no independent C# execution, assembly or binary-save loading, replay or Unity validation. The unfiltered run was still in progress at the verdict and later passed 1,418/1,418 with all 319 source hashes bound to the accepted Git implementation. [Full exact bindings](FULL_BINDINGS.json)
+
+GPT selected one source-defined end-round reinforcement in the existing later fight, using the already present companion and actual physical arrival. Codex agrees with EXP-07’s mapped TAC-01, TAC-02, EXP-01 and MGT-01 dependency order. The successor needs explicit participation, entry, tie, timing and persistence authority. [Mapped prerequisites](../2026-11-03-rule-map/RULE_MAP.json#L1719) · [Reinforcement source/API proposal and baseline](../2026-11-11-exp07-companion-reinforcement/SOURCE_API_REVIEW.md)
