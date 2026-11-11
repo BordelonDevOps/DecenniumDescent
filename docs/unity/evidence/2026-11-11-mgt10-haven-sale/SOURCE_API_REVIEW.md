@@ -34,3 +34,5 @@ Source revision `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`. The expedition playe
 | Pinned economy registry | `c10eefe60f4ccbe2f98788afe0fe495016b448a52fa32d41eb99b9273952803f` |
 
 Dependencies are MGT-01 for stock and custody, MGT-04 for the accepted shared-work/material settlement foundation, MGT-09 for established facts, and supported EXP-07 resolved encounter continuity. The accepted appraisal supplies a connected basis for this first sale. Currency and consensual title/payment remain genuine missing gameplay authorities. Uncertain bargains, general sellers or prices, full Haven intake, and Unity gameplay integration remain deferred.
+
+Before any sale gameplay edits, the accepted appraisal assemblies loaded the genuine schema 78 paused save from the connected correction suite. Normal commands completed the appraisal at 15/2 cp, picked up the original unit and continued moving. A second run produced byte-identical roundtrip and continuation results. [Pre-change save verification](legacy-saves/baseline-verification.json) · [Reproducer](Verify-LegacyAppraisal.ps1)
