@@ -328,11 +328,13 @@ namespace Decennium.Foundation
             }
             if(s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema) {
                 foreach(var portion in (s.HarvestPreservationEvidence??Array.Empty<HarvestPreservationEvidenceRecord>())
-                    .Where(x=>x.Kind==HarvestPreservationEvidenceKind.InVesselPortion&&x.ChildLotId==lot.LotId&&x.At<at)) {
+                    .Where(x=>x.Kind==HarvestPreservationEvidenceKind.InVesselPortion&&lineageIndex.ContainsKey(x.ChildLotId)&&x.At<at)) {
                     var attempt=s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Id==portion.TreatmentAttemptId
                         &&x.Status==HarvestPreservationTreatmentStatus.Success&&x.CompletedAt.HasValue);
                     if(attempt==null)continue;
-                    RuleTime end=Min(at,ProtectionEnd(s,attempt,lot.LotId,at,long.MaxValue));
+                    int portionIndex=lineageIndex[portion.ChildLotId];
+                    RuleTime branchEnd=portionIndex==0?at:Min(at,lineage[portionIndex-1].CreatedAt);
+                    RuleTime end=Min(Min(at,ProtectionEnd(s,attempt,portion.ChildLotId,at,long.MaxValue)),branchEnd);
                     if(end>portion.At)intervals.Add((portion.At,end));
                 }
             }

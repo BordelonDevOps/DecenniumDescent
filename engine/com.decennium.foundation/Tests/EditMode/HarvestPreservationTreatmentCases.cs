@@ -503,6 +503,9 @@ namespace Decennium.Foundation.Tests
                 var splitRestored=new Simulation(policyA,codec.Decode(splitSave),ExecutionProfile.Laboratory);
                 Require(splitSave.SequenceEqual(Bytes(splitRestored))&&splitSave.SequenceEqual(Bytes(replay)),
                     "The split-before-retrieval state failed canonical save/restore or replay.");
+                WorldAdvance(splitRestored,20);WorldAdvance(replay,20);
+                Require(Bytes(splitRestored).SequenceEqual(Bytes(replay)),
+                    "The in-vessel protection interval diverged before physical retrieval.");
                 foreach(var run in new[]{splitRestored,replay})
                     PortableCommit(run,Portable(run,CommandKind.HandlePortableEquipment,child,
                         handling:HandlingKind.Retrieve,actor:TestOnlyPolicy.ActorId));
@@ -517,6 +520,37 @@ namespace Decennium.Foundation.Tests
                 var removedRestored=new Simulation(policyA,codec.Decode(removedSave),ExecutionProfile.Laboratory);
                 Require(removedSave.SequenceEqual(Bytes(removedRestored))&&removedSave.SequenceEqual(Bytes(replay)),
                     "The post-retrieval cutoff failed save/restore or deterministic replay.");
+                var beforeLaterSplit=removedRestored.Capture();
+                Require(HarvestPreservationRules.TryProjectAt(beforeLaterSplit,child,beforeLaterSplit.RuleClock,
+                    out var childAgeBeforeLaterSplit),"The removed child has no preservation projection before later subdivision.");
+                RuleQuantity childMassBeforeLaterSplit=beforeLaterSplit.Work.AvailableAmount(child);
+                RuleQuantity laterPortion=RuleQuantity.FromFraction(1,32);
+                foreach(var run in new[]{removedRestored,replay})
+                    WorldCommit(run,IC(run,CommandKind.PortionInventory,child,
+                        new InventoryRequest(laterPortion,"",HandlingKind.Pickup),TestOnlyPolicy.ActorId));
+                var afterLaterSplit=removedRestored.Capture();
+                string grandchild=afterLaterSplit.InventoryLots.Single(x=>x.ParentId==child).LotId;
+                var laterChild=afterLaterSplit.InventoryLots.Single(x=>x.LotId==child);
+                var grandchildRecord=afterLaterSplit.InventoryLots.Single(x=>x.LotId==grandchild);
+                Require(Bytes(removedRestored).SequenceEqual(Bytes(replay))
+                    &&afterLaterSplit.Work.AvailableAmount(child)+afterLaterSplit.Work.AvailableAmount(grandchild)==childMassBeforeLaterSplit
+                    &&grandchildRecord.CreatedAmount==laterPortion&&grandchildRecord.ParentId==child
+                    &&grandchildRecord.FreshUntil==laterChild.FreshUntil&&grandchildRecord.Nutrition==NutritionKind.None
+                    &&grandchildRecord.OwnerId==laterChild.OwnerId
+                    &&afterLaterSplit.RandomState==beforeLaterSplit.RandomState,
+                    "A legal post-removal subdivision did not conserve the child amount and original material identity.");
+                Require(HarvestPreservationRules.TryProjectAt(afterLaterSplit,child,afterLaterSplit.RuleClock,out var childAgeAfterLaterSplit)
+                    &&HarvestPreservationRules.TryProjectAt(afterLaterSplit,grandchild,afterLaterSplit.RuleClock,out var grandchildAge)
+                    &&childAgeBeforeLaterSplit.UnprotectedAge==childAgeAfterLaterSplit.UnprotectedAge
+                    &&childAgeAfterLaterSplit.UnprotectedAge==grandchildAge.UnprotectedAge
+                    &&!HarvestPreservationRules.IsProtectedAt(afterLaterSplit,child,afterLaterSplit.RuleClock)
+                    &&!HarvestPreservationRules.IsProtectedAt(afterLaterSplit,grandchild,afterLaterSplit.RuleClock),
+                    "A descendant of a removed portion lost earned protected time or regained active protection.");
+                byte[] laterSplitSave=Bytes(removedRestored);
+                var laterSplitRestored=new Simulation(policyA,codec.Decode(laterSplitSave),ExecutionProfile.Laboratory);
+                Require(laterSplitSave.SequenceEqual(Bytes(laterSplitRestored))&&laterSplitSave.SequenceEqual(Bytes(replay)),
+                    "The post-removal descendant lineage failed save/restore or deterministic replay.");
+                removedRestored=laterSplitRestored;
                 foreach(var run in new[]{removedRestored,replay}) {
                     PortableCommit(run,Portable(run,CommandKind.HandlePortableEquipment,child,Mgt05bVessel,
                         HandlingKind.Stow,TestOnlyPolicy.ActorId));
@@ -613,6 +647,8 @@ namespace Decennium.Foundation.Tests
                     var b=new Simulation(exposurePolicy,codecLocal.Decode(exposedFrom),ExecutionProfile.Laboratory);
                     var eventCommand=new Command("mgt05c.exposure."+occurrence,TestOnlyPolicy.ActorId,a.Capture().Revision,
                         CommandKind.RecordHarvestPreservationExposure,occurrence);
+                    RejectUnchanged(new Simulation(exposurePolicy,codecLocal.Decode(exposedFrom),ExecutionProfile.Laboratory),
+                        new Authority("TEST_ONLY.exposure-actor-only",new[]{TestOnlyPolicy.ActorId}),eventCommand,"NotAuthorized");
                     uint randomBeforeExposure=a.Capture().RandomState;
                     WorldCommit(a,eventCommand);
                     WorldCommit(b,new Command("mgt05c.exposure."+occurrence,TestOnlyPolicy.ActorId,b.Capture().Revision,
@@ -628,6 +664,16 @@ namespace Decennium.Foundation.Tests
                     var exposureRestore=new Simulation(exposurePolicy,codecLocal.Decode(exposureSave),ExecutionProfile.Laboratory);
                     Require(exposureSave.SequenceEqual(Bytes(exposureRestore)),
                         "Typed exposure evidence failed canonical save/restore: "+occurrence);
+                    var beforeExactRetry=exposureRestore.Capture();byte[] exactRetrySave=Bytes(exposureRestore);
+                    var exactRetry=exposureRestore.Execute(host,eventCommand);var afterExactRetry=exposureRestore.Capture();
+                    Require(exactRetry.Outcome==Outcome.Duplicate&&exactRetry.Code=="AlreadyCommitted"
+                        &&exactRetrySave.SequenceEqual(Bytes(exposureRestore))
+                        &&afterExactRetry.HarvestPreservationEvidence.Length==beforeExactRetry.HarvestPreservationEvidence.Length
+                        &&afterExactRetry.RuleClock==beforeExactRetry.RuleClock&&afterExactRetry.RandomState==beforeExactRetry.RandomState,
+                        "Exact exposure retry after restore was not idempotent: "+occurrence);
+                    string conflictingOccurrence=occurrences[(Array.IndexOf(occurrences,occurrence)+1)%occurrences.Length];
+                    RejectUnchanged(exposureRestore,host,new Command(eventCommand.Id,eventCommand.Actor,eventCommand.ExpectedRevision,
+                        eventCommand.Kind,conflictingOccurrence),"CommandIdConflict");
                     RejectUnchanged(a,TestOnlySharedWorldPolicy.Host(),new Command("mgt05c.exposure.duplicate."+occurrence,
                         TestOnlyPolicy.ActorId,a.Capture().Revision,CommandKind.RecordHarvestPreservationExposure,occurrence),
                         "HarvestPreservationOccurrenceAlreadyRecorded");
