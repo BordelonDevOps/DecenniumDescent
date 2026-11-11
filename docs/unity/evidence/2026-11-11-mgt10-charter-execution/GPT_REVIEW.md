@@ -1,0 +1,9 @@
+# MGT-10 charter-bound local execution implementation review
+
+## Schema 85 accepted
+
+Unity Rules Engine Development accepted `2acc74a263f5cbbd3f84252cf02dd291fadbced8` against evidence `51787e40d8008a2ff29ab47259a19dd34ff6b463` in reply `c2cb62b9-c60a-45c0-ab33-08ca6e62827d`. It closed all six bounded TEST_ONLY groups and requested no correction. The acceptance covers explicit admission, actual ordinary outbound and return movement, limited stationary observation, shared-clock interruption and expiry, and independently authorized finite egress. [Actual GPT review](https://chatgpt.com/c/6af31754-d1bc-83ea-aa5c-d5e33cc9258c) · [Exact evidence](README.md)
+
+GPT read the complete new runtime, records and codec, all six focused cases and helpers, changed shared integration paths, relevant source and map entries, both movement traces, the ordinary-scope verifier and result, and all nine original-profile reports. It compared one source digest across the focus, history, compilation and binding files and all legacy and ordinary-scope assembly digests with the manifest. Codex verified all 315 exact source hashes against Git. GPT inspected retained execution evidence and performed no independent C# execution, binary replay, complete-set hash recomputation or Unity validation.
+
+The verdict selects an EXP-07 source/API review for one later encounter against a distinct living opponent. Codex agrees with the order after checking TAC-01, TAC-02, EXP-01 and MGT-01 in the map and their bounded implementations. The new encounter requires a separate reviewed authority and exact resource continuity. Broader production authority and Unity gameplay integration remain deferred. [Mapped dependencies](../2026-11-03-rule-map/RULE_MAP.json#L1719) · [Later encounter source/API proposal](../2026-11-11-exp07-later-encounter/SOURCE_API_REVIEW.md)
