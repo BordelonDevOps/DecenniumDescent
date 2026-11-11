@@ -12,4 +12,6 @@ The opt-in profile supplies one pre-existing FL-07 Research Station for the exac
 - Both authentic pre-change schema15 and schema17 save pairs roundtrip and continue byte-identically. The schema17 ordinary save rejects under the station profile. The verifier ran on the exact focused assemblies. [Legacy verifier](Verify-LegacyResearch.ps1) · [Legacy save results](legacy-saves/verification.json)
 - Standalone Core, Persistence and LabModel C# 9 warnings-as-errors compilation passed. Static package validation passed **18/18** with 309 assets and 309 unique GUIDs. [Compilation](compilation/compile-20261111T055216434Z-90f2373c/results.json) · [Package](package/static-20261111T055216652Z-5f4b5189/results.json)
 
-The exact-source unfiltered suite is in progress. Station construction, marks, other camp benefits, identification expansion, destructive experiments, general training, production authority and Unity gameplay integration remain outside this increment.
+- The exact-source unfiltered suite passed **1,351/1,351** after GPT's acceptance. All 283 source hashes agree with the focused report. The full run includes the five Research Station cases and the prior connected exploration/combat/mining and exploration/encounter/storage/crafting/continue cases. [Full results](validation/run-20261111T055326150Z-5253349a/results.json)
+
+Station construction, marks, other camp benefits, identification expansion, destructive experiments, general training, production authority and Unity gameplay integration remain outside this increment.

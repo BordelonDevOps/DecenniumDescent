@@ -2,7 +2,7 @@
 
 **Current active gate: MGT-10 Haven, markets, settlement, rewards and next descent at source/API review.** GPT and Codex agree on the mapped MGT-01, MGT-04, MGT-09 and EXP-07 dependency order. The first candidate is a known-facts Haven appraisal of one physically recovered whole lot. [Source/API review request](evidence/2026-11-11-mgt10-haven-appraisal/SOURCE_API_REVIEW.md)
 
-**MGT-09 accepted checkpoint:** GPT accepted the bounded TEST_ONLY FL-07 Research Station +2 for recipe-4 at `5d568e23ef68ee0e65bb83cca8ada6cdc1338256`. All six acceptance groups are satisfied. The exact candidate passed 5 focused, 64 historical, and 2 golden-save checks, standalone compilation and 18 package checks. The unfiltered run is pending. [MGT-09 actual review](evidence/2026-11-10-mgt09-research-station/GPT_REVIEW.md)
+**MGT-09 accepted checkpoint:** GPT accepted the bounded TEST_ONLY FL-07 Research Station +2 for recipe-4 at `5d568e23ef68ee0e65bb83cca8ada6cdc1338256`. All six acceptance groups are satisfied. The exact candidate passed 5 focused, 64 historical, and 2 golden-save checks, standalone compilation and 18 package checks. The subsequent exact-source full regression passed 1,351/1,351. [MGT-09 actual review](evidence/2026-11-10-mgt09-research-station/GPT_REVIEW.md)
 
 **MGT-08 accepted checkpoint:** GPT accepted the bounded TEST_ONLY first-positive-work Camp Greens tending profile at `03334c6bb5dfa9d0d01629522ca4075ecb488222`. All six acceptance groups are satisfied. The exact candidate passed 5 focused, 150 historical, and 2 golden-save checks, standalone compilation, and 18 package checks. [MGT-08 review and evidence](evidence/2026-11-10-mgt08-camp-greens/GPT_REVIEW.md)
 
