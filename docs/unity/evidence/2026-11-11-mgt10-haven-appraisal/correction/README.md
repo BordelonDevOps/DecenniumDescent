@@ -17,4 +17,6 @@ GPT accepted this exact source and closed both findings. [Actual review and limi
 - Standalone C# 9 warnings-as-errors compilation passed for Core, Persistence and LabModel. Static package validation passed **18/18**, with 313 assets and 313 unique GUIDs. [Compilation](compile/compile-20261111T071757577Z-560f8323/results.json) · [Static package](static/static-20261111T071757698Z-94a4db88/results.json)
 - The pre-change schema 43 before/after save verifier passed on the corrected assemblies. The previous save and continuation are byte-identical, with the historical retrieval restriction and wrong-profile rejection preserved. [Legacy verification](legacy-verification.json)
 
-The initial unfiltered run was stopped once the reviewed defect was reproduced. The unfiltered suite is running against this corrected source. Unity gameplay integration remains deferred.
+- The corrected unfiltered C# suite passed **1,360/1,360** after GPT acceptance. All 287 source hashes match the focused correction report. It includes the nine appraisal cases and the connected exploration, encounter, cache, storage, crafting and continued expedition case. [Exact corrected full report](validation/run-20261111T071758134Z-afc10bdd/results.json)
+
+The initial unfiltered run was stopped once the reviewed defect was reproduced. Unity gameplay integration remains deferred.
