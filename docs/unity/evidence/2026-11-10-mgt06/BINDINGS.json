@@ -1,0 +1,331 @@
+{
+  "schema": "mgt06-implementation-evidence-v1",
+  "branch": "Engine",
+  "implementationCommit": "9f8478b88399fae8fc8f4818f7518718d16afa20",
+  "baseCommit": "f41c2b93ce2e5f0a8bf0de5425f6807e6e29897d",
+  "sourceAuthority": {
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "path": "docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md",
+    "sha256": "447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf"
+  },
+  "codeFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "082ce975fa91e3253278fb40dcc621dd06ee118aa9fb754b30258e7eff6d7fae",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs",
+      "sha256": "83df74f96de6a06df3de0f33a3278daec683493236559466677789547415236c",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "6d172831994800a6a600f94502e8adcf1ff111aca2e240ee633b77c48f1f6cea",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "471300fe6a09d8faccfe65bcb12947ead6915ea495c8ce22ec2d44e505fc583c",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "106c053993b21d703837eeb19c5e53e02fb22364dbf2348b3098b7b2831b5537",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "b2654c71e661e867d32ed1058ce41f58e429621fb6c3d38eb55ff246e0ad3649",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "385cca194768c6580932470bd8bf41ad99d86321c59549a595c74aed53f7c465",
+      "matchesFullRunSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs",
+      "sha256": "33b86cd29b046ea217abf4d2b1b0b038f6ac8e4a5cbfe4f403cfb4be95a95003",
+      "matchesFullRunSourceHash": true
+    }
+  ],
+  "documentationFiles": [
+    "docs/unity/DEVELOPMENT_HANDOFF.md",
+    "docs/unity/FISHING_TRAP_RULE_DECISIONS.md",
+    "docs/unity/IMPLEMENTATION_TRACE.md",
+    "docs/unity/evidence/2026-11-10-mgt06/SOURCE_API_REVIEW.md"
+  ],
+  "implementationPatch": {
+    "path": "docs/unity/evidence/2026-11-10-mgt06/MGT06_IMPLEMENTATION.patch",
+    "bytes": 58911,
+    "sha256": "b1c68b402b94b46f701d1baf008794e718761956998cf2a7035c67e73f45482d",
+    "reverseApplyCheck": "PASS"
+  },
+  "fullSuite": {
+    "path": "docs/unity/evidence/2026-11-10-mgt06/validation/run-20261111T015316547Z-9bc0a6f4/results.json",
+    "reportSha256": "3494f99affdf04af5ef1669868c7ec54c44c707da9ab969cf2863a90599895ee",
+    "status": "PASS",
+    "runner": "PowerShell Roslyn shared-source regression",
+    "language": "C# 9",
+    "compilerOptions": "C# 9; warnings as errors",
+    "testsDiscovered": 1334,
+    "passed": 1334,
+    "failed": 0,
+    "finishedUtc": "2026-11-11T02:16:09.6293759Z",
+    "sourceHashEntries": 283,
+    "allEightChangedCSharpHashesMatchReport": true,
+    "compiledAssemblies": [
+      {
+        "name": "Decennium.Foundation.Core.dll",
+        "bytes": 972288,
+        "sha256": "16979035a1f8bfeff60999b20c06cafce2ac88bd429f888314d85f8e5c471e75"
+      },
+      {
+        "name": "Decennium.Foundation.HeadlessTests.dll",
+        "bytes": 2109440,
+        "sha256": "2ad6bebef9dc79d5a36d9eff3c29d188395fd317c61c66e6892c1e7d059a0afa"
+      },
+      {
+        "name": "Decennium.Foundation.LabModel.dll",
+        "bytes": 2440192,
+        "sha256": "2e04eeabb75d03d0f04f2b18b33d419cb5047acdd6b57c3f4a41e2d88b0b76ad"
+      },
+      {
+        "name": "Decennium.Foundation.Persistence.dll",
+        "bytes": 218624,
+        "sha256": "f3b51f3668f666b15a3456439d9417f720ebbd94e0571944511e7db79ce4aa0f"
+      }
+    ],
+    "retainedSaveArtifactFiles": 160
+  },
+  "focusedAcceptedRuns": [
+    {
+      "case": "fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T015010156Z-f68fa6cc/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "f86b7eb251eb499cf055e6d4e619669bd78dcb770affb49a442119aa8bb2e52e"
+    },
+    {
+      "case": "fishing_trap_responsibility_handover_connected_save_replay_and_retrieval",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014348046Z-74a644ad/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "2e1e7de6a9c21c34eb63ca9eb495d811e9aa8763ebdc5c387c404f1c79144e34"
+    },
+    {
+      "case": "fishing_trap_handover_authority_rejections_and_current_holder_abandonment",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014417390Z-628695bb/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "f8841779f17c6c1340e533a8cd27330d9f89410f727d7c3645d682650bc9a5f5"
+    },
+    {
+      "case": "fishing_trap_handover_preserves_working_and_paused_retrieval",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014449245Z-115ef291/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "858a483807fafa31cdb52e7c707b65e8139fd8695c896ed5a46a392550bc98d5"
+    },
+    {
+      "case": "fishing_trap_handover_remains_available_after_check_while_deployed",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014600951Z-4cd6f89a/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "5f743e6c83c3d2cad76c82347b29d616467a7f51dbfbf9448c86a8dd37607f60"
+    },
+    {
+      "case": "fishing_trap_handover_is_rejected_in_tactical_mode",
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014739261Z-e2a2e85e/results.json",
+      "status": "PASS",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "16f54c595efc473511e726bc10be5ee93b6a7cf7e1d8d1f5241c0787d3033b31"
+    }
+  ],
+  "allFocusedAttempts": [
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T012751080Z-76b9fd29/results.json",
+      "status": "FAIL",
+      "case": "",
+      "passed": 0,
+      "testsDiscovered": 0,
+      "sourceHashEntries": 1,
+      "reportSha256": "9cdf60ffcb9aa507c79121f1350b7e0692eede2bc8aaeb79410c3742b36526bb"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T012820026Z-11bfb73d/results.json",
+      "status": "FAIL",
+      "case": "",
+      "passed": 0,
+      "testsDiscovered": 0,
+      "sourceHashEntries": 1,
+      "reportSha256": "cd3e911875dc0c0e3ce07faec864dde820dd8dc1b70dc8a56a5bf77097c05532"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T012847631Z-fd939218/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "951657bc2323e4aa58a000ce47354d240627a1cb9963f0aa74149a763c52fcc9"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T012916395Z-34275771/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_responsibility_handover_connected_save_replay_and_retrieval",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "955e17f855178b03dea5925a073980a9e843bada67f1bedc00136bcc1c46e973"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013304363Z-9d2ce53d/results.json",
+      "status": "FAIL",
+      "case": "fishing_trap_handover_authority_rejections_and_current_holder_abandonment",
+      "passed": 0,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "9fa7ac651d89648a5e643eb2d165fae8e1ed74d2c5bc1bfd10c33ab8872c4afd"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013349834Z-bffb4ff3/results.json",
+      "status": "FAIL",
+      "case": "fishing_trap_handover_authority_rejections_and_current_holder_abandonment",
+      "passed": 0,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "ac7b17d0056142f60f49ee1ae161ea4c9ba1854254c303dfeb58e8759730f337"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013437913Z-9a688ce4/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_authority_rejections_and_current_holder_abandonment",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "825ebf10d1c15ab5e57773a2589f341481c55bf3f2f5c60728271307a96e16d0"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013507069Z-5a2b8c56/results.json",
+      "status": "FAIL",
+      "case": "fishing_trap_handover_preserves_working_and_paused_retrieval",
+      "passed": 0,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "c2b583cefe05d93a6e8f7633c46a873d27516a1b348ac9359acc74067d790b53"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013552809Z-61ba6a9e/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_preserves_working_and_paused_retrieval",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "4d235571a091a6c016306408ef84aca1aed90cdf138fc665b7db5c4d85f9c00a"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T013907949Z-68d521da/results.json",
+      "status": "FAIL",
+      "case": "fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",
+      "passed": 0,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "f17986808a04974a55ef3486710a398b830b8e71c0e5eb67a499f1f2dfd62fd5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014318580Z-7729cc24/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "138dfd973415d44880a1094d7bf6dd40f0a146a61542fb9a678c4bddf5a13aba"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014348046Z-74a644ad/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_responsibility_handover_connected_save_replay_and_retrieval",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "2e1e7de6a9c21c34eb63ca9eb495d811e9aa8763ebdc5c387c404f1c79144e34"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014417390Z-628695bb/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_authority_rejections_and_current_holder_abandonment",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "f8841779f17c6c1340e533a8cd27330d9f89410f727d7c3645d682650bc9a5f5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014449245Z-115ef291/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_preserves_working_and_paused_retrieval",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "858a483807fafa31cdb52e7c707b65e8139fd8695c896ed5a46a392550bc98d5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014600951Z-4cd6f89a/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_remains_available_after_check_while_deployed",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "5f743e6c83c3d2cad76c82347b29d616467a7f51dbfbf9448c86a8dd37607f60"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T014739261Z-e2a2e85e/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_is_rejected_in_tactical_mode",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "16f54c595efc473511e726bc10be5ee93b6a7cf7e1d8d1f5241c0787d3033b31"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-10-mgt06/attempts/run-20261111T015010156Z-f68fa6cc/results.json",
+      "status": "PASS",
+      "case": "fishing_trap_handover_profile_uses_pinned_wisdom_and_preserves_historical_check",
+      "passed": 1,
+      "testsDiscovered": 1,
+      "sourceHashEntries": 283,
+      "reportSha256": "f86b7eb251eb499cf055e6d4e619669bd78dcb770affb49a442119aa8bb2e52e"
+    }
+  ],
+  "staticPackage": {
+    "path": "docs/unity/evidence/2026-11-10-mgt06/validation/static-20261111T015638622Z-fe067027/results.json",
+    "reportSha256": "220eb4080170c48d0775740516886c479143f57c749fb29ced9a85162a6ffe54",
+    "status": "PASS",
+    "passedChecks": 18,
+    "totalChecks": 18,
+    "packageAssets": 309,
+    "uniqueGuids": 309,
+    "sourceHashes": 607,
+    "scope": "Static package structure only; not Unity import, compilation or release-build validation"
+  },
+  "normalization": "Committed JSON reports were normalized from CRLF to LF; report values and embedded source hashes were preserved.",
+  "unperformed": [
+    "Unity Editor import/compilation",
+    "Unity Edit Mode",
+    "Play Mode",
+    "scenes and player build"
+  ]
+}
