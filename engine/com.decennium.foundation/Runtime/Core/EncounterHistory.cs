@@ -35,8 +35,10 @@ namespace Decennium.Foundation
             && e.ObservedOrdinals.Contains(ordinal) && e.Order[ordinal % e.Order.Count] == actor;
         public static int LatestStartOrdinal(Snapshot s, string actor)
         {
-            if(s.SchemaVersion>=Snapshot.CalendarCombatSchema&&s.WorldSchedule!=null)
-                return s.WorldSchedule.Order.Contains(actor)?checked((int)s.WorldSchedule.LatestStart(actor,s.WorldSchedule.ProcessedSlot)):-1;
+            if (s.SchemaVersion >= Snapshot.CalendarCombatSchema && s.WorldSchedule != null) {
+                var owner = WorldTiming.ForActor(s, actor);
+                return owner == null ? -1 : checked((int)owner.LatestStart(actor, owner.ProcessedSlot));
+            }
             long revision = 0; int ordinal = -1;
             foreach (var e in All(s))
                 for (int i = 0; i < e.StartRevisions.Count; i++)

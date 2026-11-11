@@ -492,8 +492,8 @@ namespace Decennium.Foundation
             if(s.SchemaVersion<Snapshot.SharedBonusActionSchema) {
                 if(s.BonusActions.Length!=0)throw new ArgumentException("Shared Bonus Action ledger requires schema24.");
             } else {
-                if(s.WorldSchedule==null||s.BonusActions.Length!=s.WorldSchedule.Order.Count
-                    ||s.BonusActions.Any(b=>!Actor(b.ActorId)||!s.WorldSchedule.Order.Contains(b.ActorId)
+                if(s.WorldSchedule==null||s.BonusActions.Length!=s.WorldIntervals.Length
+                    ||s.BonusActions.Any(b=>!Actor(b.ActorId)||WorldTiming.ForActor(s,b.ActorId)==null
                         ||b.LastRegularStart!=s.WorldIntervals.Single(x=>x.ActorId==b.ActorId).LastStart)
                     ||s.BonusActions.Select(b=>b.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.BonusActions.Length)
                     throw new ArgumentException("Shared Bonus Action ledger must cover each calendar actor at the current regular start.");

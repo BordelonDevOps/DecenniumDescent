@@ -124,7 +124,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.InterruptMoraleRest&&moraleRestProfile!=null
             ||kind==CommandKind.BeginHavenCare&&havenCareProfile!=null
             ||kind==CommandKind.InterruptHavenCare&&havenCareProfile!=null
-            ||kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null
+            ||kind==CommandKind.AdvanceClock&&(strainRecoveryProfile!=null||laterEncounterDefinition!=null)
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
@@ -325,6 +325,10 @@ namespace Decennium.Foundation.Laboratory
             }
             string mealServingFailure=HavenMealServingCommandFailure(s,c);
             if(mealServingFailure!=null)return new CommandQueryResult(true,false,mealServingFailure,s.Revision);
+            if (c.Kind == CommandKind.AdvanceClock && laterEncounterDefinition != null) {
+                string clockFailure = AssessLaterClockQuery(s, c);
+                return new CommandQueryResult(true, clockFailure == null, clockFailure ?? "Available", s.Revision);
+            }
             if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
                 string clockFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);

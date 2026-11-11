@@ -122,8 +122,12 @@ namespace Decennium.Foundation
             }
             if (s.SchemaVersion < Snapshot.SharedWorldSchema || schedule.SlotAt(s.RuleClock) != schedule.ProcessedSlot
                 || schedule.Order.Any(x => !s.Actors.Any(a => a.Id == x))
-                || !schedule.Order.OrderBy(x => x, StringComparer.Ordinal).SequenceEqual(s.WorldIntervals.Select(x => x.ActorId).OrderBy(x => x, StringComparer.Ordinal))
-                || s.WorldIntervals.Any(x => x.LastStart != schedule.LatestStart(x.ActorId, schedule.ProcessedSlot))
+                || !WorldTiming.IntervalActors(s).OrderBy(x => x, StringComparer.Ordinal)
+                    .SequenceEqual(s.WorldIntervals.Select(x => x.ActorId).OrderBy(x => x, StringComparer.Ordinal))
+                || s.WorldIntervals.Any(x => {
+                    var owner = WorldTiming.ForActor(s, x.ActorId);
+                    return x.LastStart != owner.LatestStart(x.ActorId, owner.ProcessedSlot);
+                })
                 || s.WorldTraversals.Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count() != s.WorldTraversals.Length)
                 throw new ArgumentException("World calendar or interval mismatch.");
             foreach (var edge in s.WorldTraversals) {
@@ -131,7 +135,7 @@ namespace Decennium.Foundation
                 // A traversal can belong either to an actor in the tactical calendar or to an
                 // expedition member moving during noncombat exploration. The latter shares the
                 // same actor position and clock, but never receives an initiative interval.
-                if (actor == null || !schedule.Order.Contains(edge.ActorId) && s.InventoryCombat
+                if (actor == null || WorldTiming.ForActor(s, edge.ActorId) == null && s.InventoryCombat
                     || edge.StartedRevision > s.Revision || actor.X != edge.FromX || actor.Y != edge.FromY)
                     throw new ArgumentException("Invalid traversal reference.");
             }

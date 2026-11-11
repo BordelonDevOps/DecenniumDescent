@@ -88,7 +88,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedCraftingFixture crafting;
-        private int SelectedSchema => charterAttemptProfile != null ? Snapshot.CharterAttemptSchema
+        private int SelectedSchema => laterEncounterDefinition != null ? Snapshot.LaterEncounterSchema
+            : charterAttemptProfile != null ? Snapshot.CharterAttemptSchema
             : nextCharterAgreementProfile != null ? Snapshot.NextCharterAgreementSchema
             : nextCharterPlanProfile != null ? Snapshot.NextCharterPlanSchema
             : expeditionCloseProfile != null ? Snapshot.ExpeditionEpisodeCloseSchema
@@ -180,28 +181,33 @@ namespace Decennium.Foundation.Laboratory
         private static void ReconcileDyingCadences(Snapshot s)
         {
             if (s.SchemaVersion < Snapshot.CraftingConsequenceSchema) return;
-            s.DyingCadences = s.DyingCadences.Where(x => Dying(s.Lives.Single(a => a.ActorId == x.ActorId))).ToArray();
-            foreach (var life in s.Lives.Where(x => Dying(x) && !s.WorldSchedule.Order.Contains(x.ActorId)).OrderBy(x => x.ActorId, StringComparer.Ordinal))
+            s.DyingCadences = s.DyingCadences.Where(x => WorldTiming.ForActor(s, x.ActorId) == null
+                && Dying(s.Lives.Single(a => a.ActorId == x.ActorId))).ToArray();
+            foreach (var life in s.Lives.Where(x => Dying(x) && WorldTiming.ForActor(s, x.ActorId) == null).OrderBy(x => x.ActorId, StringComparer.Ordinal))
                 if (!s.DyingCadences.Any(x => x.ActorId == life.ActorId)) s.DyingCadences = s.DyingCadences.Concat(new[] { new DyingCadenceRecord(life.ActorId, s.RuleClock) }).ToArray();
         }
         private static RuleTime? NextDyingMarker(Snapshot s)
         {
             if (s.SchemaVersion < Snapshot.CraftingConsequenceSchema) return null;
             var deadlines = s.DyingCadences.Select(x => x.NextAt).ToList();
-            foreach (var life in s.Lives.Where(x => Dying(x) && s.WorldSchedule.Order.Contains(x.ActorId))) {
-                long ordinal = s.WorldSchedule.LatestStart(life.ActorId, s.WorldSchedule.ProcessedSlot);
-                if (ordinal < 0) ordinal = s.WorldSchedule.Order.ToList().IndexOf(life.ActorId); else ordinal = checked(ordinal + s.WorldSchedule.Order.Count);
-                deadlines.Add(s.WorldSchedule.Start(ordinal));
+            foreach (var life in s.Lives.Where(Dying)) {
+                var owner = WorldTiming.ForActor(s, life.ActorId);
+                if (owner == null) continue;
+                long ordinal = owner.LatestStart(life.ActorId, owner.ProcessedSlot);
+                if (ordinal < 0) ordinal = owner.Order.ToList().IndexOf(life.ActorId);
+                else ordinal = checked(ordinal + owner.Order.Count);
+                deadlines.Add(owner.Start(ordinal));
             }
             return deadlines.Count == 0 ? (RuleTime?)null : deadlines.Min();
         }
-        private static void ProcessSharedLifeMarkers(Snapshot s, long previousSlot)
+        private static void ProcessSharedLifeMarkers(Snapshot s, long previousSlot, string deferredActor = null)
         {
             // Expiry and absolute Stable recovery have already run. At a tie, established calendar
             // actors precede unscheduled actors, whose stable identity supplies deterministic order.
             if (s.WorldSchedule.ProcessedSlot != previousSlot && s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot) == s.RuleClock) {
                 string actor = s.WorldSchedule.Order[(int)(s.WorldSchedule.ProcessedSlot % s.WorldSchedule.Order.Count)];
-                SaveWorldLifeMarker(s, actor, s.WorldSchedule.Id, s.WorldSchedule.Origin, s.WorldSchedule.ProcessedSlot, checked((int)s.WorldSchedule.ProcessedSlot));
+                if (actor != deferredActor && WorldTiming.ForActor(s, actor).Id == s.WorldSchedule.Id)
+                    SaveWorldLifeMarker(s, actor, s.WorldSchedule.Id, s.WorldSchedule.Origin, s.WorldSchedule.ProcessedSlot, checked((int)s.WorldSchedule.ProcessedSlot));
             }
             foreach (var cadence in s.DyingCadences.Where(x => x.NextAt == s.RuleClock).OrderBy(x => x.ActorId, StringComparer.Ordinal).ToArray()) {
                 SaveWorldLifeMarker(s, cadence.ActorId, "outside.dying", cadence.Onset, cadence.NextOrdinal, -1);
@@ -209,6 +215,15 @@ namespace Decennium.Foundation.Laboratory
             }
             ReconcileDyingCadences(s);
         }
+        private static void ProcessDeferredOldLifeMarker(Snapshot s, long previousSlot, string actor)
+        {
+            var calendar = s.WorldSchedule;
+            long slot = calendar.ProcessedSlot;
+            if (slot != previousSlot && calendar.Start(slot) == s.RuleClock
+                && calendar.Order[(int)(slot % calendar.Order.Count)] == actor)
+                SaveWorldLifeMarker(s, actor, calendar.Id, calendar.Origin, slot, checked((int)slot));
+        }
+
         private static void SaveWorldLifeMarker(Snapshot s, string actor, string calendar, RuleTime origin, long ordinal, int turnOrdinal)
         {
             long sequence = s.WorldLifeMarkers.Length + 1L;

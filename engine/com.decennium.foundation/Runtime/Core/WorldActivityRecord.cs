@@ -468,12 +468,12 @@ namespace Decennium.Foundation
             }
             var calendar = s.WorldSchedule;
             if (calendar == null) throw new ArgumentException("Off-calendar activity requires its shared calendar.");
-            var expected = s.Actors.Where(x => !calendar.Order.Contains(x.Id)).Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).ToArray();
+            var expected = s.Actors.Where(x => WorldTiming.ForActor(s, x.Id) == null).Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).ToArray();
             var actual = s.WorldActivityIntervals.Select(x => x.ActorId).OrderBy(x => x, StringComparer.Ordinal).ToArray();
             if (!expected.SequenceEqual(actual) || s.WorldActivityIntervals.Any(x => x.CalendarId != calendar.Id
                 || x.IntervalIndex != WorldActivityIntervalRecord.IndexAt(calendar, s.RuleClock)))
                 throw new ArgumentException("Off-calendar activity calendar mismatch.");
-            foreach (var edge in s.WorldTraversals.Where(x => x.Running && !calendar.Order.Contains(x.ActorId))) {
+            foreach (var edge in s.WorldTraversals.Where(x => x.Running && WorldTiming.ForActor(s, x.ActorId) == null)) {
                 var instructionReceipts = s.Receipts.Where(x => x.Revision == edge.StartedRevision).ToArray();
                 if (instructionReceipts.Length != 1)
                     throw new ArgumentException("Off-calendar running traversal must reference one originating run instruction.");
@@ -506,7 +506,7 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Active labor must reference its work history.");
                 }
             }
-            foreach (var edge in s.WorldTraversals.Where(x => x.Running && !calendar.Order.Contains(x.ActorId)
+            foreach (var edge in s.WorldTraversals.Where(x => x.Running && WorldTiming.ForActor(s, x.ActorId) == null
                 && x.Status == WorldTraversalStatus.Moving))
                 if (!s.WorldActivityIntervals.Single(x => x.ActorId == edge.ActorId).DashPaid)
                     throw new ArgumentException("Off-calendar running has no paid Dash.");

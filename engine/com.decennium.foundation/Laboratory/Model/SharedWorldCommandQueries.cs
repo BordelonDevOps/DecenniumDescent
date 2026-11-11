@@ -34,12 +34,12 @@ namespace Decennium.Foundation.Laboratory
                 return "RouteTravelMustPauseFirst";
             if (routeMotionFixture != null && s.RouteTravelSpatial.Any(x => !x.Detached && x.TravelerId != c.Actor))
                 return "RouteTravelerMustDetachBeforeOtherMovement";
-            bool scheduled = s.WorldSchedule.Order.Contains(c.Actor);
+            bool scheduled = WorldTiming.ForActor(s, c.Actor) != null;
             bool offCalendar = !scheduled && (c.Actor == TestOnlyPolicy.CompanionId || IsOffCalendarActivity(s, c.Actor));
             if (!scheduled && (!offCalendar || s.InventoryCombat)) return "NoActivityCalendar";
             if (!scheduled && c.Target == "run" && !IsOffCalendarActivity(s, c.Actor)) return "OffCalendarDashBudgetUnsupported";
             if (s.WorldTraversals.Any(x => x.ActorId == c.Actor)) return "TraversalAlreadyPending";
-            if (s.WorldTraversals.Any(x => s.WorldSchedule.Order.Contains(x.ActorId)))
+            if (s.WorldTraversals.Any(x => WorldTiming.ForActor(s, x.ActorId) != null))
                 return scheduled ? "ConcurrentHostileTraversalUnsupported" : "ConcurrentWorldTraversalUnsupported";
             if (s.WorldTraversals.Length != 0) return "ConcurrentWorldTraversalUnsupported";
             if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
@@ -132,11 +132,12 @@ namespace Decennium.Foundation.Laboratory
             facts = new WorldStepFacts { Scheduled = scheduled, OffCalendar = offCalendar, StartsEncounter = startsEncounter,
                 DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
-            return AssessCharterWorldStep(s, c, facts);
+            return AssessLaterWorldStep(s, edge) ?? AssessCharterWorldStep(s, c, facts);
         }
 
         private bool WorldStepWouldStartEncounter(Snapshot s, string actor, int fromX, int fromY, int toX, int toY)
-            => s.WorldSchedule.Order.Where(id => id != actor && !SoldierTacticalFeatures.IsAlly(s, actor, id)
+            => (s.LaterEncounter == null || s.LaterEncounter.FirstExit == null && s.WorldSchedule.Order.Contains(actor))
+                && s.WorldSchedule.Order.Where(id => id != actor && !SoldierTacticalFeatures.IsAlly(s, actor, id)
                 && (connectedCombat == null || !s.Lives.Single(l => l.ActorId == id).Dead)).Any(id => {
                     var enemy = s.Actors.Single(a => a.Id == id);
                     return WorldSpatialQueries.WithinRange(fromX, fromY, enemy.X, enemy.Y, 1)
@@ -168,14 +169,14 @@ namespace Decennium.Foundation.Laboratory
             bool offCalendarActivity = IsOffCalendarActivity(s, c.Actor);
             bool waitingForFreshActivityDash = offCalendarActivity && edge.Running && edge.Status == WorldTraversalStatus.WaitingForRefresh;
             if (edge.Status != WorldTraversalStatus.Suspended && !waitingForFreshActivityDash) return "TraversalNotSuspended";
-            if (!s.WorldSchedule.Order.Contains(c.Actor) && edge.Running && !offCalendarActivity) return "OffCalendarDashBudgetUnsupported";
+            if (WorldTiming.ForActor(s, c.Actor) == null && edge.Running && !offCalendarActivity) return "OffCalendarDashBudgetUnsupported";
             if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) == 0) return "ConditionPreventsMovement";
             if (edge.Running)
             {
-                bool dashPaid = s.WorldSchedule.Order.Contains(c.Actor) ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
+                bool dashPaid = WorldTiming.ForActor(s, c.Actor) != null ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
                 if (!dashPaid)
                 {
-                    if (s.WorldSchedule.Order.Contains(c.Actor))
+                    if (WorldTiming.ForActor(s, c.Actor) != null)
                     {
                         if (Interval(s, c.Actor).ActionSpent) return "ActionAlreadySpent";
                         if (!Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
@@ -712,7 +713,7 @@ namespace Decennium.Foundation.Laboratory
                 var costs = new List<CommandCost>();
                 if (failure == null && c.Kind == CommandKind.ResumeWorldStep && edge.Running)
                 {
-                    bool paid = s.WorldSchedule.Order.Contains(c.Actor) ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
+                    bool paid = WorldTiming.ForActor(s, c.Actor) != null ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
                     if (!paid) costs.Add(new CommandCost("action", "", 1));
                 }
                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);

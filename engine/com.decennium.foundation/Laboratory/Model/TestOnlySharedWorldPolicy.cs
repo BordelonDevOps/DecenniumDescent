@@ -167,6 +167,7 @@ namespace Decennium.Foundation.Laboratory
             s.Lives = s.Lives.Select(l => l.ActorId == companion.Id ? ActorLifeRules.Record(l.ActorId, ActorLifeRules.Read(l), l.Prone) : l).ToArray();
             AddConfiguredActors(s);
             InitializeHavenBuyer(s);
+            InitializeLaterEncounter(s);
             s.WorldSchedule = new WorldScheduleRecord("world.fixed-calendar", default, new[] { TestOnlyPolicy.ActorId, AdditionalTacticalActor.Id });
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
             if (offCalendarActivityEnabled||s.SchemaVersion>=Snapshot.OffCalendarActivitySchema)
@@ -307,7 +308,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool IsOffCalendarActivity(Snapshot s, string actor)
             => s.SchemaVersion >= Snapshot.OffCalendarActivitySchema
                 && s.WorldActivityIntervals.Any(x => x.ActorId == actor)
-                && !s.WorldSchedule.Order.Contains(actor);
+                && WorldTiming.ForActor(s, actor) == null;
         private static void SetEdge(Snapshot s, WorldTraversalRecord edge) => s.WorldTraversals = s.WorldTraversals.Select(x => x.ActorId == edge.ActorId ? edge : x).ToArray();
         private static ConditionView View(Snapshot s, string actor) => TestOnlyClubAttackPolicy.ConditionsFor(s, actor).View();
         private static ConditionPermissions Permissions(Snapshot s, string actor)
@@ -371,10 +372,11 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleRouteReconnaissance(s);
             PauseIncompatibleTemporaryCampConstruction(s);
         }
-        private static void RefreshIntervals(Snapshot s)
+        private static void RefreshIntervals(Snapshot s, string deferredActor = null)
         {
             var schedule = s.WorldSchedule; long slot = schedule.SlotAt(s.RuleClock);
             s.WorldIntervals = s.WorldIntervals.Select(a => {
+                if (a.ActorId == deferredActor || WorldTiming.ForActor(s, a.ActorId).Id != schedule.Id) return a;
                 long start = schedule.LatestStart(a.ActorId, slot);
                 return start == a.LastStart ? a : new WorldIntervalRecord(a.ActorId, start);
             }).ToArray();
@@ -420,7 +422,7 @@ namespace Decennium.Foundation.Laboratory
         private void ReconcileTraversal(Snapshot s)
         {
             foreach (var edge in s.WorldTraversals.Where(x => x.Status != WorldTraversalStatus.Suspended).ToArray()) {
-                bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
+                bool scheduled=WorldTiming.ForActor(s, edge.ActorId)!=null;
                 bool offCalendar=IsOffCalendarActivity(s,edge.ActorId);
                 var activity = offCalendar ? ActivityInterval(s, edge.ActorId) : null;
                 bool needsFreshDash=edge.Running&&offCalendar&&!activity.DashPaid;
@@ -509,6 +511,11 @@ namespace Decennium.Foundation.Laboratory
                 if (active.Length != 0 || s.InventoryCombat || s.Encounter!=null&&s.Lives.Any(x=>x.Hp==0&&!x.Stable&&!x.Dead&&x.UsesDeathSaves)) {
                     var boundary = s.WorldSchedule.Start(checked(s.WorldSchedule.ProcessedSlot + 1)); if (boundary < next) next = boundary;
                 }
+                var laterEpoch = s.LaterEncounter?.Entry?.Epoch;
+                if (laterEpoch != null && (s.InventoryCombat || active.Any(edge => laterEpoch.Order.Contains(edge.ActorId)))) {
+                    var boundary = laterEpoch.Start(checked(laterEpoch.ProcessedSlot + 1));
+                    if (boundary < next) next = boundary;
+                }
                 foreach (var activity in s.WorldActivityIntervals) {
                     var boundary = WorldActivityIntervalRecord.EndAt(s.WorldSchedule, activity.IntervalIndex);
                     var horizon = target < boundary ? target : boundary;
@@ -529,10 +536,11 @@ namespace Decennium.Foundation.Laboratory
                 var observationSegments = new System.Collections.Generic.List<ObservationMovementSegment>();
                 WorldTraversalRecord stagedPressureArrival = null;
                 WorldTraversalRecord charterArrival = null;
+                WorldTraversalRecord laterArrival = null;
                 bool completedPressureRetreat = false;
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;
-                    bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
+                    bool scheduled=WorldTiming.ForActor(s, edge.ActorId)!=null;
                     if(scheduled||IsOffCalendarActivity(s,edge.ActorId)) {
                         var available=scheduled?Remaining(s,edge.ActorId):ActivityRemaining(s,edge.ActorId);
                         var remaining = available.Scale(1, multiplier); if (remaining < distance) distance = remaining;
@@ -545,7 +553,7 @@ namespace Decennium.Foundation.Laboratory
                     var priorDistance = edge.DistanceFeet;
                     long multiplier = CostPerFoot(s, edge);
                     var distance = new RuleQuantity(elapsed.Numerator, elapsed.Denominator).Scale(checked(Speed(s, edge.ActorId) * (edge.Running ? 2 : 1)), 6 * multiplier);
-                    bool scheduled=s.WorldSchedule.Order.Contains(edge.ActorId);
+                    bool scheduled=WorldTiming.ForActor(s, edge.ActorId)!=null;
                     if(scheduled)SetInterval(s, Interval(s, edge.ActorId).Spend(distance.Scale(multiplier)));
                     else if(IsOffCalendarActivity(s,edge.ActorId))SetActivityInterval(s,ActivityInterval(s,edge.ActorId).Spend(distance.Scale(multiplier)));
                     var progress = edge.DistanceFeet + distance;
@@ -556,6 +564,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                     if (progress == new RuleQuantity(5)) {
                         if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
+                        if (IsLaterApproach(s, edge)) laterArrival = edge;
                         bool pressureArrival = IsPressureHavenArrival(s, edge);
                         if (pressureArrival) stagedPressureArrival = edge;
                         else {
@@ -570,6 +579,9 @@ namespace Decennium.Foundation.Laboratory
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != edge.ActorId).ToArray();
                     } else SetEdge(s, edge.With(progress, edge.Status));
                 }
+                var carriedLater = laterArrival == null ? null : Interval(s, laterArrival.ActorId);
+                if (laterArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
+                    return "LaterEncounterRequiresExplicitClockAdvance";
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
                     .ToDictionary(x => x.StartedRevision, x => x.Progress);
                 string routeTrapError=AdvanceRouteTravel(s,elapsed,next);if(routeTrapError!=null)return routeTrapError;
@@ -618,8 +630,8 @@ namespace Decennium.Foundation.Laboratory
                 ResolveWorldHuntingTrapTriggers(s);
                 CompleteFishingTrapRetrievals(s);
                 SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
-                RefreshIntervals(s);
-                if(s.SchemaVersion>=Snapshot.CraftingConsequenceSchema)ProcessSharedLifeMarkers(s,previousSlot);
+                RefreshIntervals(s, laterArrival?.ActorId);
+                if(s.SchemaVersion>=Snapshot.CraftingConsequenceSchema)ProcessSharedLifeMarkers(s,previousSlot,laterArrival?.ActorId);
                 else if(connectedCombat!=null&&s.Encounter!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
                     // Any dying actor forces real boundary visits above; no random save is skipped.
                     ActorLifeRules.RegularStart(s,checked((int)s.WorldSchedule.ProcessedSlot));
@@ -629,6 +641,7 @@ namespace Decennium.Foundation.Laboratory
                     SaveWorldLifeMarker(s,actor,s.WorldSchedule.Id,s.WorldSchedule.Origin,slot,checked((int)slot));
                 }
                 ProcessPeriodicRiderMarker(s,previousSlot);
+                RefreshLaterEpoch(s);
                 ResolveReadyMining(s);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -677,6 +690,10 @@ namespace Decennium.Foundation.Laboratory
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 FinishDueNextCharterPlan(s);
                 ReconcileCharterAttempt(s,initiating,charterArrival);
+                if (laterArrival != null) {
+                    ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
+                    return null;
+                }
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -692,7 +709,7 @@ namespace Decennium.Foundation.Laboratory
             }
             TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                 s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
-            if(connectedCombat!=null){ObserveCalendar(s);ExpireReadyActionsAtStart(s,initiating);}
+            if(connectedCombat!=null){ObserveCalendar(s,exitAfterSlot);ExpireReadyActionsAtStart(s,initiating);}
             return null;
         }
         private string ResolveCore(Snapshot s, Command c)
@@ -823,7 +840,7 @@ namespace Decennium.Foundation.Laboratory
                 return rangedCombat==null?"RangedCommandNotImplemented":"RangedCombatRequiresEncounter";
             if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
             if (c.Kind == CommandKind.AdvanceClock) {
-                if (c.Inventory != null || c.Target != "" || c.X < 1 || c.Y < 1) return "InvalidWorldAdvance";
+                string clockPayloadFailure = WorldAdvancePayloadFailure(c); if (clockPayloadFailure != null) return clockPayloadFailure;
                 return AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y)),initiating:c);
             }
             if (c.Kind == CommandKind.BeginWorldStep) {
@@ -864,7 +881,7 @@ namespace Decennium.Foundation.Laboratory
                 bool offCalendarActivity=IsOffCalendarActivity(s,c.Actor);
                 bool waitingForFreshActivityDash=offCalendarActivity&&edge.Running&&edge.Status==WorldTraversalStatus.WaitingForRefresh;
                 if(edge.Running) {
-                    if(s.WorldSchedule.Order.Contains(c.Actor)) { string error = PayRun(s, c.Actor); if (error != null) return error; }
+                    if(WorldTiming.ForActor(s,c.Actor)!=null) { string error = PayRun(s, c.Actor); if (error != null) return error; }
                     else { string error=PayActivityDash(s,c.Actor,c.Id,s.Revision+1);if(error!=null)return error; }
                 }
                 SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Moving));

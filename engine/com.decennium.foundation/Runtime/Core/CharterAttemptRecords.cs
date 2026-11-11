@@ -274,12 +274,12 @@ namespace Decennium.Foundation
     {
         public static void Validate(Snapshot state)
         {
-            if (state.SchemaVersion == Snapshot.CharterAttemptSchema && !state.TestOnly)
+            if (state.SchemaVersion >= Snapshot.CharterAttemptSchema && !state.TestOnly)
                 throw new ArgumentException("Charter-bound local attempts require TEST_ONLY authority.");
             var attempt = state.CharterAttempt;
             if (attempt == null) return;
             var agreement = state.NextCharterAgreement;
-            if (state.SchemaVersion != Snapshot.CharterAttemptSchema || agreement == null || attempt.CharterId != agreement.Terms.CharterId
+            if (state.SchemaVersion < Snapshot.CharterAttemptSchema || agreement == null || attempt.CharterId != agreement.Terms.CharterId
                 || attempt.AgreementRevision != agreement.AcceptedRevision || attempt.PlanId != agreement.PlanId
                 || attempt.CloseRevision != agreement.PriorCloseRevision || !attempt.Authority.Matches(agreement.Terms)
                 || !attempt.Admission.Physical.Matches(agreement.Terms.PlanTerms)

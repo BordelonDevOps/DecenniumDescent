@@ -153,6 +153,7 @@ namespace Decennium.Foundation
         public const int NextCharterPlanSchema = 83;
         public const int NextCharterAgreementSchema = 84;
         public const int CharterAttemptSchema = 85;
+        public const int LaterEncounterSchema = 86;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -284,6 +285,7 @@ namespace Decennium.Foundation
         public NextCharterPlanRecord[] NextCharterPlans = Array.Empty<NextCharterPlanRecord>();
         public NextCharterAgreementRecord NextCharterAgreement;
         public CharterAttemptRecord CharterAttempt;
+        public LaterEncounterRecord LaterEncounter;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -397,6 +399,7 @@ namespace Decennium.Foundation
             NextCharterPlans = NextCharterPlans.ToArray(),
             NextCharterAgreement = NextCharterAgreement,
             CharterAttempt = CharterAttempt,
+            LaterEncounter = LaterEncounter,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -783,8 +786,18 @@ namespace Decennium.Foundation
         public string Code { get; }
         public long Revision { get; }
         public bool IsSuspended { get; }
-        internal CommandResult(Outcome outcome, string code, long revision, bool suspended = false)
-        { Outcome = outcome; Code = code; Revision = revision; IsSuspended = suspended; }
+        public RuleTime? TacticalDecisionAt { get; }
+        public RuleTime? ReachedClock { get; }
+        internal CommandResult(Outcome outcome, string code, long revision, bool suspended = false,
+            RuleTime? tacticalDecisionAt = null, RuleTime? reachedClock = null)
+        {
+            Outcome = outcome;
+            Code = code;
+            Revision = revision;
+            IsSuspended = suspended;
+            TacticalDecisionAt = tacticalDecisionAt;
+            ReachedClock = tacticalDecisionAt ?? reachedClock;
+        }
     }
 
     public static class Validation
@@ -823,7 +836,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HavenMealSchema || s.SchemaVersion == Foundation.Snapshot.ExpeditionBillSchema
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionEpisodeCloseSchema || s.SchemaVersion == Foundation.Snapshot.NextCharterPlanSchema
                 || s.SchemaVersion == Foundation.Snapshot.NextCharterAgreementSchema
-                || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema
+                || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -930,6 +944,7 @@ namespace Decennium.Foundation
             NextCharterPlanValidation.Validate(s);
             NextCharterAgreementValidation.Validate(s);
             CharterAttemptValidation.Validate(s);
+            LaterEncounterValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1146,6 +1161,22 @@ namespace Decennium.Foundation
                     && state.ManufacturingAdvance.CommandRevision == receipt.Revision
                 || state.ExpeditionStrainRecoveryOffers.Any(x => x.Pending
                     && x.InitiatingCommandId == receipt.Id && x.Revision == receipt.Revision));
+        private CommandResult AcceptedResult(CommandReceipt receipt, Outcome outcome)
+        {
+            bool duplicate = outcome == Outcome.Duplicate;
+            var entry = state.LaterEncounter?.Entry;
+            if (entry != null && entry.ArrivalRevision == receipt.Revision && entry.ArrivalCommandId == receipt.Id)
+                return new CommandResult(outcome, duplicate ? "AlreadyCommittedAtTacticalDecision" : "CommittedAtTacticalDecision",
+                    receipt.Revision, tacticalDecisionAt: entry.Epoch.Origin);
+            var interruption = state.LaterEncounter?.Interruptions.SingleOrDefault(x => x.Revision == receipt.Revision);
+            if (interruption != null && interruption.CommandId == receipt.Id)
+                return new CommandResult(outcome, interruption.Reason, receipt.Revision, reachedClock: interruption.At);
+            bool suspended = AcceptedClockAwaitingChoice(receipt);
+            string code = duplicate ? (suspended ? "AlreadyAcceptedSuspended" : "AlreadyCommitted")
+                : (suspended ? "AcceptedSuspended" : "Committed");
+            return new CommandResult(outcome, code, receipt.Revision, suspended);
+        }
+
         public CommandResult Execute(Authority authority, Command command)
         {
             string preflightFailure=ValidateCommandAndAuthority(authority,command);
@@ -1153,8 +1184,7 @@ namespace Decennium.Foundation
             CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
             if (previous != null)
                 return previous.Fingerprint == command.Fingerprint
-                    ? new CommandResult(Outcome.Duplicate, AcceptedClockAwaitingChoice(previous)?"AlreadyAcceptedSuspended":"AlreadyCommitted",
-                        previous.Revision,AcceptedClockAwaitingChoice(previous)) : Reject("CommandIdConflict");
+                    ? AcceptedResult(previous, Outcome.Duplicate) : Reject("CommandIdConflict");
             if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
             if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
             if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
@@ -1175,8 +1205,7 @@ namespace Decennium.Foundation
             catch (ArgumentException) { return Reject("InvalidResult"); }
             state = candidate.Copy();
             var acceptedReceipt=state.Receipts.Single(r=>r.Principal==authority.Principal&&r.Id==command.Id);
-            bool awaitingChoice=AcceptedClockAwaitingChoice(acceptedReceipt);
-            return new CommandResult(Outcome.Committed, awaitingChoice?"AcceptedSuspended":"Committed", state.Revision,awaitingChoice);
+            return AcceptedResult(acceptedReceipt, Outcome.Committed);
         }
         public CommandQueryResult QueryCommand(Authority authority, Command command)
         {

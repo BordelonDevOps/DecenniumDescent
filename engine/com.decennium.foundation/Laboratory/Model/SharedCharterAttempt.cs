@@ -190,7 +190,7 @@ namespace Decennium.Foundation.Laboratory
         {
             readiness = null;
             assessment = null;
-            if (charterAttemptProfile == null || state.SchemaVersion != Snapshot.CharterAttemptSchema)
+            if (charterAttemptProfile == null || state.SchemaVersion < Snapshot.CharterAttemptSchema)
                 return "CharterAttemptNotSelected";
             string actor = charterAttemptAuthority.HeroId;
             if (command.Actor != actor) return "CharterAttemptActorUnauthorized";

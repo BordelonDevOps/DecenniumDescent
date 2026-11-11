@@ -118,7 +118,7 @@ namespace Decennium.Foundation
             if (s.DyingCadences.Select(x => x.ActorId).Distinct().Count() != s.DyingCadences.Length || s.Structures.Select(x => x.Id).Distinct().Count() != s.Structures.Length
                 || s.CraftingIncidents.Select(x => x.Id).Distinct().Count() != s.CraftingIncidents.Length) throw new ArgumentException("Duplicate consequence identity.");
             foreach (var cadence in s.DyingCadences)
-                if (!s.Actors.Any(x => x.Id == cadence.ActorId) || cadence.Onset > s.RuleClock || cadence.NextAt <= s.RuleClock || s.WorldSchedule.Order.Contains(cadence.ActorId))
+                if (!s.Actors.Any(x => x.Id == cadence.ActorId) || cadence.Onset > s.RuleClock || cadence.NextAt <= s.RuleClock || WorldTiming.ForActor(s, cadence.ActorId) != null)
                     throw new ArgumentException("Invalid fallback cadence reference or cursor.");
             if (s.SchemaVersion >= Snapshot.CraftingConsequenceSchema) {
                 var saves = s.LifeEvents.Where(x => x.Kind == LifeEventKind.DeathSave).ToArray();
@@ -126,6 +126,12 @@ namespace Decennium.Foundation
                 for (int i = 0; i < saves.Length; i++) {
                     var marker = s.WorldLifeMarkers[i];
                     if (marker.Sequence != i + 1 || marker.ActorId != saves[i].ActorId || marker.At != saves[i].At) throw new ArgumentException("Invalid life marker sequence.");
+                    if (s.SchemaVersion == Snapshot.LaterEncounterSchema && marker.CalendarId != "outside.dying") {
+                        var epoch = WorldTiming.FindEpoch(s, marker.CalendarId);
+                        if (epoch == null || epoch.Origin != marker.Origin || marker.Ordinal > epoch.ProcessedSlot
+                            || epoch.Start(marker.Ordinal) != marker.At || epoch.Order[(int)(marker.Ordinal % epoch.Order.Count)] != marker.ActorId)
+                            throw new ArgumentException("Invalid life marker epoch.");
+                    }
                 }
             }
             foreach (var incident in s.CraftingIncidents)
