@@ -88,7 +88,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedCraftingFixture crafting;
-        private int SelectedSchema => miningAssistanceEnabled ? Snapshot.MiningAssistantSchema
+        private int SelectedSchema => havenAppraisalProfile!=null ? Snapshot.HavenAppraisalSchema
+            : miningAssistanceEnabled ? Snapshot.MiningAssistantSchema
             : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
             : harvestPreservationExposureEnabled ? Snapshot.HarvestPreservationExposureSchema
             : harvestPreservationTreatmentEnabled ? Snapshot.HarvestPreservationTreatmentSchema

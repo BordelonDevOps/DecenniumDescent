@@ -313,8 +313,11 @@ namespace Decennium.Foundation
                 if(!s.MiningCategories.Any(x=>x.Id==unit.CategoryId&&x.DepositId==unit.DepositId))throw new ArgumentException("Mining unit references an unknown category.");
                 var source=s.Work.Lots.SingleOrDefault(x=>x.Id==unit.Id);
                 var provenance=s.InventoryLots.SingleOrDefault(x=>x.LotId==unit.Id);
+                bool wholeTransport=s.SchemaVersion==Snapshot.HavenAppraisalSchema&&unit.Status==MiningUnitStatus.Extracted
+                    &&unit.ReceivedLotId==unit.Id;
                 if(source==null||source.UnitId!="mass-pound"||provenance==null||provenance.ParentId!=""
-                    ||provenance.Nutrition!=NutritionKind.None||provenance.OwnerId!=source.CustodianId||provenance.CreatedAmount!=unit.MassPounds)
+                    ||provenance.Nutrition!=NutritionKind.None||!wholeTransport&&provenance.OwnerId!=source.CustodianId
+                    ||provenance.CreatedAmount!=unit.MassPounds)
                     throw new ArgumentException("Mining unit source inventory is invalid.");
                 var integratedUse=s.SchemaVersion>=Snapshot.MiningToolCandidateSchema
                     ?s.MiningToolUses.SingleOrDefault(x=>x.PreparedUnitId==unit.Id&&x.PreparationCompletedAt.HasValue):null;
@@ -335,14 +338,17 @@ namespace Decennium.Foundation
                             :body?.ProfileId??"";
                     if(unit.ReceivedLotId!=retainedId
                         ||(prepared?source.Amount!=default:source.Amount!=unit.MassPounds)
-                        ||!integratedPrepared&&source.LocationId!=unit.ReceivedContainerId
+                        ||!wholeTransport&&!integratedPrepared&&source.LocationId!=unit.ReceivedContainerId
                         ||output==null||output.ParentId!=(prepared?unit.Id:"")
                         ||output.CreatedAmount!=retainedMass
                         ||output.OwnerId!=provenance.OwnerId||output.Nutrition!=NutritionKind.None||output.FreshUntil!=provenance.FreshUntil
-                        ||output.Access!=InventoryAccess.Stowed
+                        ||!wholeTransport&&output.Access!=InventoryAccess.Stowed
                         ||outputLot==null||outputLot.UnitId!="mass-pound"||outputLot.Amount!=retainedMass
-                        ||outputLot.LocationId!=unit.ReceivedContainerId||body==null||body.ParentId!=unit.ReceivedContainerId
-                        ||body.LinkedId!=unit.ReceivedLotId||body.LinkKind!=PortableLinkKind.InventoryLot||body.Placement!=PortablePlacement.Contained
+                        ||body==null||!wholeTransport&&(outputLot.LocationId!=unit.ReceivedContainerId
+                            ||body.ParentId!=unit.ReceivedContainerId||body.Placement!=PortablePlacement.Contained)
+                        ||wholeTransport&&(unit.ReceivedContainerId!=s.MiningDeposits.Single(x=>x.Id==unit.DepositId).ReceiverId
+                            ||body.OwnerId!=provenance.OwnerId)
+                        ||body.LinkedId!=unit.ReceivedLotId||body.LinkKind!=PortableLinkKind.InventoryLot
                         ||prepared&&body.ProfileId!=expectedProfile)
                         throw new ArgumentException("Mining receipt lost physical unit provenance.");
                 } else if(integratedUse!=null) {

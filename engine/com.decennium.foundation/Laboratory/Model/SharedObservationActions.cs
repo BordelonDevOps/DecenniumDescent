@@ -15,6 +15,7 @@ namespace Decennium.Foundation.Laboratory
             if(error==null&&workWatchBefore!=null)
                 error=Recipe347ProjectedWorkWatchFailure(workWatchBefore,s,c);
             if(error==null)ApplyExpeditionCampTransitions(s,c);
+            if(error==null)ReconcileHavenAppraisal(s);
             if(error==null)ExpireReadyActionsAtStart(s,c);
             if(error==null&&s.InventoryCombat) {
                 error=QueueCompletedTacticalHuntingTrapEntries(s);

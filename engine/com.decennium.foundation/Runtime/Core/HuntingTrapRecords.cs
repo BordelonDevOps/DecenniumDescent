@@ -334,6 +334,7 @@ namespace Decennium.Foundation
                 &&s.RouteMappingWorkAttempts.All(j=>j.Id!=w.JobId)
                 &&s.RouteReconnaissanceAttempts.All(j=>j.Id!=w.JobId)
                 &&s.CacheExcavations.All(j=>j.Id!=w.JobId)
+                &&s.HavenAppraisals.All(j=>j.Id!=w.JobId)
                 &&s.CraftingIncidents.All(j=>w.JobId!="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed hunting-trap worker interval.");
         }

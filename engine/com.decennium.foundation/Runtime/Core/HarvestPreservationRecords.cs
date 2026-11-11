@@ -77,7 +77,8 @@ namespace Decennium.Foundation
                 ||s.HarvestPreservationEvidence.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()
                     !=s.HarvestPreservationEvidence.Length)
                 throw new ArgumentException("Invalid harvest preservation evidence collection.");
-            if(s.SchemaVersion<Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema) {
+            if(s.SchemaVersion<Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
+                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema) {
                 if(s.HarvestPreservationEvidence.Length!=0)
                     throw new ArgumentException("Harvest preservation evidence requires schema76.");
                 return;
@@ -522,7 +523,8 @@ namespace Decennium.Foundation
                 return;
             }
             if(s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
-                ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema) {
+                ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
+                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema) {
                 if(s.HarvestRequirementWorks.Length!=0)
                     throw new ArgumentException("The selected schema does not contain the schema74 Fresh-work adapter.");
                 return;
@@ -616,7 +618,8 @@ namespace Decennium.Foundation
                 ||s.HarvestPreservationTreatmentAttempts.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()
                     !=s.HarvestPreservationTreatmentAttempts.Length)
                 throw new ArgumentException("Invalid harvest preservation treatment collection.");
-            if(s.SchemaVersion<Snapshot.HarvestPreservationTreatmentSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema) {
+            if(s.SchemaVersion<Snapshot.HarvestPreservationTreatmentSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
+                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema) {
                 if(s.HarvestPreservationTreatmentAttempts.Length!=0)
                     throw new ArgumentException("Harvest treatment history requires schema75.");
                 return;

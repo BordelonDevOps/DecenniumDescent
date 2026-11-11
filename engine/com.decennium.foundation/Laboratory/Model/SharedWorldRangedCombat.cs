@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
@@ -277,6 +278,10 @@ namespace Decennium.Foundation.Laboratory
             string moraleRestingActorFailure=MoraleRestingActorCommandFailure(s,c);
             if(moraleRestingActorFailure!=null)
                 return new CommandQueryResult(true,false,moraleRestingActorFailure,s.Revision);
+            if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind)) {
+                string appraisalFailure=AssessHavenAppraisal(s,c,out _,out _);
+                return new CommandQueryResult(true,appraisalFailure==null,appraisalFailure??"Available",s.Revision);
+            }
             if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
                 string clockFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);

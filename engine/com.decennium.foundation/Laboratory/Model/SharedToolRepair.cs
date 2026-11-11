@@ -39,6 +39,8 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind))
+                return new[]{TestOnlyHavenAppraisalProfile.WorkerId};
             if(HarvestPreservationTreatmentCommand(c.Kind)) {
                 var treatedLot=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
                 string[] physicalIds={c.Target,HarvestPreservationTreatmentFixture.SupplyLotId,

@@ -37,7 +37,8 @@ namespace Decennium.Foundation
         StartRecipe347, PauseRecipe347, ResumeRecipe347, CancelRecipe347, ResolveRecipe347Quality,
         StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork,
         StartHarvestPreservationTreatment, RecordHarvestPreservationExposure,
-        HandoverFishingTrapResponsibility }
+        HandoverFishingTrapResponsibility,
+        StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -139,6 +140,7 @@ namespace Decennium.Foundation
         public const int HarvestPreservationTreatmentSchema = 75;
         public const int HarvestPreservationExposureSchema = 76;
         public const int MiningAssistantSchema = 77;
+        public const int HavenAppraisalSchema = 78;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -261,6 +263,7 @@ namespace Decennium.Foundation
         public MiningCategoryRecord[] MiningCategories = Array.Empty<MiningCategoryRecord>();
         public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
         public MiningAttemptRecord[] MiningAttempts = Array.Empty<MiningAttemptRecord>();
+        public HavenAppraisalRecord[] HavenAppraisals = Array.Empty<HavenAppraisalRecord>();
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -365,6 +368,7 @@ namespace Decennium.Foundation
             HarvestPreservationEvidence = HarvestPreservationEvidence.ToArray(),
             MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
+            HavenAppraisals = HavenAppraisals.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -748,7 +752,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema
-                || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema
+                || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -847,6 +852,7 @@ namespace Decennium.Foundation
             HarvestPreservationTreatmentValidation.Validate(s);
             HarvestPreservationEvidenceValidation.Validate(s);
             MiningValidation.Validate(s);
+            HavenAppraisalValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
