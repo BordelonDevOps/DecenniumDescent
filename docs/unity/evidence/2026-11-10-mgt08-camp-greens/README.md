@@ -1,6 +1,6 @@
 # MGT-08 Camp Greens first-work tending implementation review
 
-The [implementation commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/03334c6bb5dfa9d0d01629522ca4075ecb488222) implements the [GPT-approved source/API contract](SOURCE_API_REVIEW.md) on `Engine`. Implementation review is pending.
+The [implementation commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/03334c6bb5dfa9d0d01629522ca4075ecb488222) implements the [GPT-approved source/API contract](SOURCE_API_REVIEW.md) on `Engine`. GPT accepted the bounded implementation. [Actual review](GPT_REVIEW.md)
 
 The explicit TEST_ONLY profile reserves eight pints of the existing suitable-water lot at tending admission. The shared `CampGreens.AdvanceExact` path consumes that same claim when it credits the first positive labor, including time spent in another actor's inventory command. The existing task, worker and claim survive zero-progress pauses. Existing terminal cleanup releases unspent water, and positive labor commits water before a crop endpoint resolves. Care renews only on 900 active seconds of completed tending.
 
