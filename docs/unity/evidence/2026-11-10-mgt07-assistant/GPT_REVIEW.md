@@ -22,7 +22,7 @@ Correction commit [`5082abfd90d821baac2017a8a2c312c7b1473978`](https://github.co
 | 48 | `mineral_preparation_conserves_measured_mass_and_resumes_after_save` |
 | 49 | `recipe347_mining_tool_applies_check_reserve_and_integrated_dressing_through_shared_extraction` |
 
-The initial unfiltered suite recorded 1,340 passing cases, but it computed hashes after the correction began. Three hashes refer to the later working files while the loaded assemblies still contained the original candidate. That run is excluded from exact-source acceptance evidence. An unfiltered run against the corrected source is in progress.
+The initial unfiltered suite recorded 1,340 passing cases, but it computed hashes after the correction began. Three hashes refer to the later working files while the loaded assemblies still contained the original candidate. That run is excluded from exact-source acceptance evidence. The corrected unfiltered run passed **1,341/1,341**. All 283 hashes match the corrected focused report, and the run includes the extraction, connected exploration/combat/mining, and connected exploration/encounter/storage/crafting/continue cases. This run completed after GPT's acceptance. [Corrected full results](combat-correction/validation/run-20261111T044738526Z-be2248da/results.json)
 
 ## Actual GPT disposition
 
