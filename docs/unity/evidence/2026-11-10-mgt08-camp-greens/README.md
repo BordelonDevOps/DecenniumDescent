@@ -1,0 +1,16 @@
+# MGT-08 Camp Greens first-work tending implementation review
+
+The [implementation commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/03334c6bb5dfa9d0d01629522ca4075ecb488222) implements the [GPT-approved source/API contract](SOURCE_API_REVIEW.md) on `Engine`. Implementation review is pending.
+
+The explicit TEST_ONLY profile reserves eight pints of the existing suitable-water lot at tending admission. The shared `CampGreens.AdvanceExact` path consumes that same claim when it credits the first positive labor, including time spent in another actor's inventory command. The existing task, worker and claim survive zero-progress pauses. Existing terminal cleanup releases unspent water, and positive labor commits water before a crop endpoint resolves. Care renews only on 900 active seconds of completed tending.
+
+The mode is encoded in the final TEST_ONLY content fingerprint. The standalone crop policy and its inventory and filling compositions preserve the profile, as does the shared-world host even when it replaces a nested crop policy to configure workers. `Simulation` binds the fingerprint at load and the shared-world validator reconstructs normal command history. No schema, codec field or command fingerprint changed. Existing constructors and fingerprints continue to select the legacy admission debit. The new shared-world profile previews tending commands through the existing resolver on a detached copy.
+
+## Retained validation
+
+- Five focused C# 9 warnings-as-errors cases passed. The connected case covers assigned planting and tending, read-only admission and rejection, a zero-work pause with an elapsed gap, disk restore, first labor of half a second, care at completion, the seven-day cycle, once-only harvest, portion, handover, intake and byte-identical replay. Other cases cover inventory-driven first work, post-debit restore, repeated pauses, terminal release, the positive-work failure boundary, profile composition, claim forgery and legacy immediate debit. [Focused results](focused/run-20261111T051932623Z-901ec611/results.json)
+- The historical crop, inventory, filling, vessel and connected assignment suite passed **150/150**. It shares all 283 source hashes with the focused suite. [Historical results](historical/run-20261111T051932630Z-35284fd8/results.json)
+- Both pre-change schema3 and schema39 save pairs passed exact byte roundtrip, the 900-second continuation, and rejection under the wrong profile. The verifier used the same assemblies as the final focused run. [Verifier](Verify-LegacyCampGreens.ps1) · [Legacy save results](legacy-saves/verification.json)
+- Standalone Core, Persistence and LabModel C# 9 warnings-as-errors compilation passed with 207 matching source hashes. Static package validation passed **18/18** with 309 assets and unique GUIDs. All seven changed C# file hashes match the committed blobs. [Compilation](compilation/compile-20261111T051748191Z-66c5669c/results.json) · [Package](package/static-20261111T051933238Z-60f79810/results.json) · [Bindings](BINDINGS.json)
+
+The unfiltered regression suite is still running against the exact candidate. Unity gameplay integration, the portable-water bridge, broader agriculture, and production plot rules remain deferred.
