@@ -2,6 +2,8 @@
 
 [Correction commit](https://github.com/BordelonDevOps/DecenniumDescent/commit/d2085f510d74214e1b1eecefcde5d4ddbf5f3022) addresses GPT's B1 and E1 findings for the bounded Haven appraisal. The source change is a single shared `CraftingRestrictions.StationUseBlocked` check on the exact desk inside the eligibility predicate used by start, reconciliation, resume and finalization. The schema, service terms, work duration and valuation remain those reviewed for the initial candidate. [Initial review](../GPT_REVIEW.md)
 
+GPT accepted this exact source and closed both findings. [Actual review and limits](../GPT_REVIEW.md#corrected-implementation-accepted)
+
 ## Corrected behavior
 
 - The exact pre-fix assemblies let appraisal progress from 300 to 1,800 seconds and produce 15/2 cp after an occurred result-1 station restriction. The same normal command trace against corrected assemblies records immediate pause at clock 2,114, 300 seconds retained, and 300 seconds after another 1,500 elapsed seconds with the restriction still active. [Reproducer](../Verify-AppraisalDeskRestriction.ps1) · [Pre-fix trace](../baseline-desk-restriction.json) · [Corrected trace](desk-restriction.json)
