@@ -142,7 +142,8 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ValidatePortableStorageState(Snapshot s)
-            =>harvestPreservationTreatmentEnabled?ValidateHarvestPreservationTreatmentPortableProfiles(s)
+            =>havenSaleProfile!=null?ValidateHavenSaleContent(s)
+                :harvestPreservationTreatmentEnabled?ValidateHarvestPreservationTreatmentPortableProfiles(s)
                 :harvestPreservationEnabled?ValidatePreservationPortableProfiles(s):portableStorageFixture==null
                 ?s.PortableStorageProfiles.Length==0?null:"PortableStorageFixtureMissing"
                 :portableStorageFixture.ValidateSnapshot(s);

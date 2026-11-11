@@ -41,6 +41,9 @@ namespace Decennium.Foundation.Laboratory
         {
             if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind))
                 return new[]{TestOnlyHavenAppraisalProfile.WorkerId};
+            if(havenSaleProfile!=null&&(c.Kind==CommandKind.StartHavenSale||c.Kind==CommandKind.ResumeHavenSale
+                ||c.Kind==CommandKind.FinalizeHavenSale))
+                return new[]{TestOnlyHavenSaleProfile.SellerId,TestOnlyHavenSaleProfile.BuyerId};
             if(HarvestPreservationTreatmentCommand(c.Kind)) {
                 var treatedLot=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
                 string[] physicalIds={c.Target,HarvestPreservationTreatmentFixture.SupplyLotId,

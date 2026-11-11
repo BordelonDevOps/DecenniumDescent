@@ -372,7 +372,7 @@ namespace Decennium.Foundation
             }
             if((s.SchemaVersion==Snapshot.HarvestPreservationSchema||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
                     ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
-                    ||s.SchemaVersion==Snapshot.HavenAppraisalSchema)
+                    ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema)
                 &&s.TestOnly&&s.ExpeditionPressureCohorts.Length==0
                 &&s.ExpeditionPressureExposures.Length==0&&s.ExpeditionPressureChanges.Length==0
                 &&s.ExpeditionPressureCheckpoints.Length==0)return;

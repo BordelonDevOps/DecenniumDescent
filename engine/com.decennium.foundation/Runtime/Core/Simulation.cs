@@ -38,7 +38,8 @@ namespace Decennium.Foundation
         StartHarvestRequirementWork, PauseHarvestRequirementWork, ResumeHarvestRequirementWork,
         StartHarvestPreservationTreatment, RecordHarvestPreservationExposure,
         HandoverFishingTrapResponsibility,
-        StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal }
+        StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal,
+        StartHavenSale, PauseHavenSale, ResumeHavenSale, FinalizeHavenSale, CancelHavenSale }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -141,6 +142,7 @@ namespace Decennium.Foundation
         public const int HarvestPreservationExposureSchema = 76;
         public const int MiningAssistantSchema = 77;
         public const int HavenAppraisalSchema = 78;
+        public const int HavenSaleSchema = 79;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -264,6 +266,7 @@ namespace Decennium.Foundation
         public MiningMaterialUnitRecord[] MiningUnits = Array.Empty<MiningMaterialUnitRecord>();
         public MiningAttemptRecord[] MiningAttempts = Array.Empty<MiningAttemptRecord>();
         public HavenAppraisalRecord[] HavenAppraisals = Array.Empty<HavenAppraisalRecord>();
+        public HavenSaleRecord[] HavenSales = Array.Empty<HavenSaleRecord>();
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -369,6 +372,7 @@ namespace Decennium.Foundation
             MiningDeposits = MiningDeposits.ToArray(), MiningCategories = MiningCategories.ToArray(),
             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
             HavenAppraisals = HavenAppraisals.ToArray(),
+            HavenSales = HavenSales.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -675,8 +679,12 @@ namespace Decennium.Foundation
         public long ObservedRevision { get; }
         public IReadOnlyList<CommandCost> Costs { get; }
         public IReadOnlyList<string> RequiredChoices { get; }
+        public HavenSaleBasis HavenSaleOffer { get; }
         public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
             IEnumerable<CommandCost> costs = null, IEnumerable<string> requiredChoices = null)
+            : this(supported, admissible, code, observedRevision, costs, requiredChoices, null) { }
+        public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
+            IEnumerable<CommandCost> costs, IEnumerable<string> requiredChoices, HavenSaleBasis havenSaleOffer)
         {
             if (observedRevision < 0 || string.IsNullOrEmpty(code) || code.Length > 96
                 || code.Any(c => c < 32 || c > 126) || !supported && admissible)
@@ -687,6 +695,7 @@ namespace Decennium.Foundation
                 || x.Length > 96 || x.Any(c => c < 32 || c > 126))) throw new ArgumentException("Invalid command-query details.");
             Supported = supported; Admissible = admissible; Code = code; ObservedRevision = observedRevision;
             Costs = Array.AsReadOnly(this.costs); RequiredChoices = Array.AsReadOnly(this.requiredChoices);
+            HavenSaleOffer = havenSaleOffer;
         }
     }
     public sealed class CommandOption
@@ -753,7 +762,7 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema
-                || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema || s.SchemaVersion == Foundation.Snapshot.HavenSaleSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -853,6 +862,7 @@ namespace Decennium.Foundation
             HarvestPreservationEvidenceValidation.Validate(s);
             MiningValidation.Validate(s);
             HavenAppraisalValidation.Validate(s);
+            HavenSaleValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1121,7 +1131,7 @@ namespace Decennium.Foundation
             { return new CommandQueryResult(true,false,"PolicyFailure",observedRevision); }
             if(result==null)return new CommandQueryResult(true,false,"PolicyFailure",observedRevision);
             if(!result.Supported)return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
-            return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices);
+            return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices,result.HavenSaleOffer);
         }
         public IReadOnlyList<CommandOption> DiscoverCommands(Authority authority, string actor)
         {

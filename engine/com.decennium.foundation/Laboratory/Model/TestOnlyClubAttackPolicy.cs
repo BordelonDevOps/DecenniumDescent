@@ -51,6 +51,7 @@ namespace Decennium.Foundation.Laboratory
             using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.club-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));
         }
         private static string N(long n)=>n.ToString(CultureInfo.InvariantCulture);
+        internal void RegisterDeferredConditionTarget(string actorId) => deferredConditionTargets.Add(actorId);
         internal void ConfigureCropWorkers(string[] workerIds)
         {
             if(workerIds==null||workerIds.Length==0)throw new ArgumentException("At least one crop worker is required.",nameof(workerIds));

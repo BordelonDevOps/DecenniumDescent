@@ -118,7 +118,7 @@ namespace Decennium.Foundation
         {
             var jobs=s.HavenAppraisals;
             if(jobs==null||jobs.Length>MaxRecords||jobs.Any(x=>x==null)||jobs.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=jobs.Length
-                ||s.SchemaVersion!=Snapshot.HavenAppraisalSchema&&jobs.Length!=0||jobs.Count(x=>x.Open)>1
+                ||s.SchemaVersion<Snapshot.HavenAppraisalSchema&&jobs.Length!=0||jobs.Count(x=>x.Open)>1
                 ||jobs.Count(x=>x.Status==HavenAppraisalStatus.Completed)>1)
                 throw new ArgumentException("Invalid Haven appraisal history.");
             foreach(var job in jobs)ValidateJob(s,job);

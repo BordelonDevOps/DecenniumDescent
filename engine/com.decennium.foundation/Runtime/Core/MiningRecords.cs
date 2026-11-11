@@ -313,7 +313,7 @@ namespace Decennium.Foundation
                 if(!s.MiningCategories.Any(x=>x.Id==unit.CategoryId&&x.DepositId==unit.DepositId))throw new ArgumentException("Mining unit references an unknown category.");
                 var source=s.Work.Lots.SingleOrDefault(x=>x.Id==unit.Id);
                 var provenance=s.InventoryLots.SingleOrDefault(x=>x.LotId==unit.Id);
-                bool wholeTransport=s.SchemaVersion==Snapshot.HavenAppraisalSchema&&unit.Status==MiningUnitStatus.Extracted
+                bool wholeTransport=s.SchemaVersion>=Snapshot.HavenAppraisalSchema&&unit.Status==MiningUnitStatus.Extracted
                     &&unit.ReceivedLotId==unit.Id;
                 if(source==null||source.UnitId!="mass-pound"||provenance==null||provenance.ParentId!=""
                     ||provenance.Nutrition!=NutritionKind.None||!wholeTransport&&provenance.OwnerId!=source.CustodianId

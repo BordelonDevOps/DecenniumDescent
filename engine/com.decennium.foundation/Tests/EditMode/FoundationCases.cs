@@ -256,6 +256,7 @@ namespace Decennium.Foundation.Tests
             AddHarvestCases(cases,directory);
             AddMiningCases(cases,directory);
             AddHavenAppraisalCases(cases,directory);
+            AddHavenSaleCases(cases,directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

@@ -153,7 +153,7 @@ namespace Decennium.Foundation.Laboratory
         private string AssessHavenAppraisal(Snapshot s,Command c,out HavenAppraisalRecord current,out HavenAppraisalBasis basis)
         {
             current=null;basis=null;
-            if(havenAppraisalProfile==null||s.SchemaVersion!=Snapshot.HavenAppraisalSchema)return "HavenAppraisalNotSelected";
+            if(havenAppraisalProfile==null||s.SchemaVersion<Snapshot.HavenAppraisalSchema)return "HavenAppraisalNotSelected";
             if(c.Actor!=TestOnlyHavenAppraisalProfile.WorkerId)return "AppraisalWorkerUnauthorized";
             if(c.X!=0||c.Y!=0||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
                 ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null
