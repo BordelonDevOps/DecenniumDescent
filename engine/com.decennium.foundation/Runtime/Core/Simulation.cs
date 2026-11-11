@@ -158,6 +158,7 @@ namespace Decennium.Foundation
         public const int LaterEncounterSchema = 86;
         public const int ReinforcementSchema = 87;
         public const int RetreatSchema = 88;
+        public const int ReengagementSchema = 89;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -292,6 +293,7 @@ namespace Decennium.Foundation
         public LaterEncounterRecord LaterEncounter;
         public ReinforcementRecord Reinforcement;
         public RetreatRecord Retreat;
+        public ReengagementRecord Reengagement;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -407,7 +409,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
-            Retreat = Retreat,
+            Retreat = Retreat, Reengagement = Reengagement,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -847,7 +849,7 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema
                 || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema
                 || s.SchemaVersion == Foundation.Snapshot.ReinforcementSchema
-                || s.SchemaVersion == Foundation.Snapshot.RetreatSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.RetreatSchema || s.SchemaVersion == Foundation.Snapshot.ReengagementSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -957,6 +959,7 @@ namespace Decennium.Foundation
             LaterEncounterValidation.Validate(s);
             ReinforcementValidation.Validate(s);
             RetreatValidation.Validate(s);
+            ReengagementValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1087,6 +1090,13 @@ namespace Decennium.Foundation
                     ||command.Kind==CommandKind.RecordProspectingExposure
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
+            var engagement = state.Reengagement?.Definition;
+            if (engagement != null && (engagement.IsApproachCommand(state, command)
+                || (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)
+                    && command.Actor == engagement.LeadId && state.Retreat.SuccessfulExit != null && state.Reengagement.Entry == null
+                    && state.WorldTraversals.Any(engagement.IsApproach))
+                && (authority.Principal != engagement.ControllerId || !authority.Controls(engagement.CompanionId)))
+                return "ReengagementControllerUnauthorized";
             string requestedMiningAssistant=command.MiningSelection?.AssistantId??"";
             if (state.Retreat != null && RetreatValidation.IsCommand(command.Kind)
                 && (authority.Principal != state.Retreat.Definition.ControllerId
@@ -1184,6 +1194,12 @@ namespace Decennium.Foundation
         private CommandResult AcceptedResult(CommandReceipt receipt, Outcome outcome)
         {
             bool duplicate = outcome == Outcome.Duplicate;
+            var contact = state.Reengagement?.Contacts.SingleOrDefault(x => x.ArrivalRevision == receipt.Revision && x.ArrivalCommandId == receipt.Id);
+            if (contact != null)
+                return contact.Entered
+                    ? new CommandResult(outcome, duplicate ? "AlreadyCommittedAtTacticalDecision" : "CommittedAtTacticalDecision",
+                        receipt.Revision, tacticalDecisionAt: contact.At)
+                    : new CommandResult(outcome, contact.Failure, receipt.Revision, reachedClock: contact.At);
             var entry = state.LaterEncounter?.Entry;
             if (entry != null && entry.ArrivalRevision == receipt.Revision && entry.ArrivalCommandId == receipt.Id)
                 return new CommandResult(outcome, duplicate ? "AlreadyCommittedAtTacticalDecision" : "CommittedAtTacticalDecision",

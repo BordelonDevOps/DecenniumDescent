@@ -88,7 +88,8 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedCraftingFixture crafting;
-        private int SelectedSchema => retreatDefinition != null ? Snapshot.RetreatSchema
+        private int SelectedSchema => reengagementDefinition != null ? Snapshot.ReengagementSchema
+            : retreatDefinition != null ? Snapshot.RetreatSchema
             : reinforcementDefinition != null ? Snapshot.ReinforcementSchema
             : laterEncounterDefinition != null ? Snapshot.LaterEncounterSchema
             : charterAttemptProfile != null ? Snapshot.CharterAttemptSchema

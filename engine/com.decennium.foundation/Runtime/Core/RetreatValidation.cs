@@ -11,7 +11,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var retreat = state.Retreat;
-            if (state.SchemaVersion != Snapshot.RetreatSchema) {
+            if (state.SchemaVersion < Snapshot.RetreatSchema) {
                 if (retreat != null) throw new ArgumentException("Retreat requires schema 88.");
                 return;
             }
@@ -85,7 +85,8 @@ namespace Decennium.Foundation
                 var closed = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == d.EncounterId);
                 if (closed == null || closed.ClosedRevision != exit.Revision || closed.ClosedAt != exit.At
                     || closed.Reason != exit.CommandId || closed.Encounter.TurnOrdinal != exit.EndTurn
-                    || state.InventoryCombat || exit.LeadCrossingId == "" || exit.CompanionCrossingId == "")
+                    || state.InventoryCombat && state.Reengagement?.IsSegment(state.Encounter?.Id) != true
+                    || exit.LeadCrossingId == "" || exit.CompanionCrossingId == "")
                     throw new ArgumentException("Invalid living-opponent retreat exit provenance.");
             }
         }

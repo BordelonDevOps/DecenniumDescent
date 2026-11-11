@@ -138,7 +138,7 @@ namespace Decennium.Foundation.Laboratory
             facts = new WorldStepFacts { Scheduled = scheduled, OffCalendar = offCalendar, StartsEncounter = startsEncounter,
                 DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
-            return AssessLaterWorldStep(s, edge) ?? AssessCharterWorldStep(s, c, facts);
+            return AssessLaterWorldStep(s, edge) ?? AssessReengagementDeparture(s, c) ?? AssessCharterWorldStep(s, c, facts);
         }
 
         private static WorldTraversalRecord AddOrdinaryWorldTraversal(Snapshot state, Command command, WorldStepFacts facts, bool running)
@@ -181,6 +181,8 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.SuspendWorldStep)
                 return edge.Status == WorldTraversalStatus.Suspended ? "TraversalAlreadySuspended" : null;
             if (c.Kind != CommandKind.ResumeWorldStep) return "InvalidTraversalControl";
+            string contactObstruction = ReengagementTraversalObstruction(s, edge);
+            if (contactObstruction != null) return contactObstruction;
             bool offCalendarActivity = IsOffCalendarActivity(s, c.Actor);
             bool waitingForFreshActivityDash = offCalendarActivity && edge.Running && edge.Status == WorldTraversalStatus.WaitingForRefresh;
             if (edge.Status != WorldTraversalStatus.Suspended && !waitingForFreshActivityDash) return "TraversalNotSuspended";
@@ -720,7 +722,8 @@ namespace Decennium.Foundation.Laboratory
                 if (facts.StartsEncounter) return new CommandQueryResult(true, true, "EncounterTransition", s.Revision);
                 var costs = new List<CommandCost> { new CommandCost("movement-feet", "", facts.Cost) };
                 if (c.Target == "run" && !facts.DashAlreadyPaid) costs.Add(new CommandCost("action", "", 1));
-                return new CommandQueryResult(true, true, "Available", s.Revision, costs);
+                string available = s.Reengagement?.Definition.IsApproachCommand(s, c) == true ? "ReengagementApproachAvailable" : "Available";
+                return new CommandQueryResult(true, true, available, s.Revision, costs);
             }
             if (c.Kind == CommandKind.SuspendWorldStep || c.Kind == CommandKind.ResumeWorldStep)
             {

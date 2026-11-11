@@ -170,6 +170,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeLaterEncounter(s);
             InitializeReinforcement(s);
             InitializeRetreat(s);
+            InitializeReengagement(s);
             s.WorldSchedule = new WorldScheduleRecord("world.fixed-calendar", default, new[] { TestOnlyPolicy.ActorId, AdditionalTacticalActor.Id });
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
             if (offCalendarActivityEnabled||s.SchemaVersion>=Snapshot.OffCalendarActivitySchema)
@@ -450,7 +451,8 @@ namespace Decennium.Foundation.Laboratory
                     ||scheduled&&PayRun(s,edge.ActorId)!=null||!scheduled&&!offCalendar);
                 bool noMovement=scheduled?Remaining(s,edge.ActorId)==default
                     :offCalendar?ActivityRemaining(s,edge.ActorId)==default:false;
-                if (!Permissions(s, edge.ActorId).VoluntarySpeed || Speed(s, edge.ActorId) == 0 || cannotDash)
+                if (!Permissions(s, edge.ActorId).VoluntarySpeed || Speed(s, edge.ActorId) == 0 || cannotDash
+                    || ReengagementTraversalObstruction(s, edge) != null)
                     SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Suspended));
                 else SetEdge(s, edge.With(edge.DistanceFeet, needsFreshDash||noMovement
                     ? WorldTraversalStatus.WaitingForRefresh : WorldTraversalStatus.Moving));
@@ -547,6 +549,8 @@ namespace Decennium.Foundation.Laboratory
                 WorldTraversalRecord charterArrival = null;
                 WorldTraversalRecord laterArrival = null;
                 WorldTraversalRecord reinforcementArrival = null;
+                WorldTraversalRecord reengagementArrival = null;
+                RuleQuantity reengagementDistance = default;
                 bool completedPressureRetreat = false;
                 foreach (var edge in active.Where(x => x.Status == WorldTraversalStatus.Moving)) {
                     long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;
@@ -577,6 +581,10 @@ namespace Decennium.Foundation.Laboratory
                     if (progress == new RuleQuantity(5)) {
                         if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
                         if (IsLaterApproach(s, edge)) laterArrival = edge;
+                        if (IsReengagementEdge(s, edge)) {
+                            reengagementArrival = edge;
+                            reengagementDistance = progress;
+                        }
                         if (s.Reinforcement?.Pending == true && s.Reinforcement.OwnsApproach(edge))
                             reinforcementArrival = edge;
                         bool pressureArrival = IsPressureHavenArrival(s, edge);
@@ -596,6 +604,9 @@ namespace Decennium.Foundation.Laboratory
                 var carriedLater = laterArrival == null ? null : Interval(s, laterArrival.ActorId);
                 if (laterArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
                     return "LaterEncounterRequiresExplicitClockAdvance";
+                if (reengagementArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
+                    return "ReengagementRequiresExplicitClockAdvance";
+                int reengagementMarker = reengagementArrival == null ? -1 : ReengagementHeroMarker(s, next);
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
                     .ToDictionary(x => x.StartedRevision, x => x.Progress);
                 string routeTrapError=AdvanceRouteTravel(s,elapsed,next);if(routeTrapError!=null)return routeTrapError;
@@ -656,7 +667,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 ProcessPeriodicRiderMarker(s,previousSlot);
                 if (!reinforcementEndRound) RefreshLaterEpoch(s);
-                if (!retreatEndRound) RefreshReinforcementEpoch(s);
+                if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);
                 ResolveReadyMining(s);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -700,6 +711,7 @@ namespace Decennium.Foundation.Laboratory
                     stagedPressureArrival,completedPressureRetreat);if(pressureCheckpointError!=null)return pressureCheckpointError;
                 string retreatPressureError = ProcessLocalRetreatPressureBoundary(s, initiating);
                 if (retreatPressureError != null) return retreatPressureError;
+                SuspendObstructedReengagementApproach(s);
                 ProcessCampUseBoundary(s,initiating);
                 string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
                     deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
@@ -711,6 +723,12 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileReinforcement(s, initiating);
                 if (reinforcementEndRound) ResolveReinforcementEndRound(s, initiating);
                 if (retreatEndRound) SettleRetreatRound(s, initiating);
+                if (reengagementArrival != null) {
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
+                    if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
+                    ResolveReengagementArrival(s, reengagementArrival, initiating, reengagementMarker, reengagementDistance);
+                    return null;
+                }
                 if (laterArrival != null) {
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
                     return null;

@@ -35,6 +35,8 @@ namespace Decennium.Foundation
         public RuleTime Origin { get; }
         public IReadOnlyList<string> InitialOrder { get; }
         public EncounterRosterPhase RosterPhase { get; }
+        public EncounterRosterPhase InheritedPhase { get; }
+        private EncounterRosterPhase TimingPhase => InheritedPhase ?? RosterPhase;
         public IReadOnlyList<string> Order => OrderAt(TurnOrdinal);
         public IReadOnlyList<long> StartRevisions { get; }
         // Schema14 can record sparse cursor observations against an established calendar. These
@@ -44,19 +46,19 @@ namespace Decennium.Foundation
         public int TurnOrdinal=>ObservedOrdinals[ObservedOrdinals.Count-1];
         public long Round => RoundAt(TurnOrdinal);
         public string CurrentActor => ActorAt(TurnOrdinal);
-        public IReadOnlyList<string> OrderAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Epoch.Order : InitialOrder;
-        public long RoundAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Round(ordinal) : (long)ordinal / InitialOrder.Count + 1;
-        public string ActorAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Actor(ordinal) : InitialOrder[ordinal % InitialOrder.Count];
+        public IReadOnlyList<string> OrderAt(int ordinal) => TimingPhase?.Owns(ordinal) == true ? TimingPhase.Epoch.Order : InitialOrder;
+        public long RoundAt(int ordinal) => TimingPhase?.Owns(ordinal) == true ? TimingPhase.Round(ordinal) : (long)ordinal / InitialOrder.Count + 1;
+        public string ActorAt(int ordinal) => TimingPhase?.Owns(ordinal) == true ? TimingPhase.Actor(ordinal) : InitialOrder[ordinal % InitialOrder.Count];
 
         private RuleTime InitialStart(int ordinal)
             => RuleTime.FromFraction((BigInteger)Origin.Numerator * InitialOrder.Count + (BigInteger)6 * ordinal * Origin.Denominator,
                 (BigInteger)Origin.Denominator * InitialOrder.Count);
 
-        public RuleTime StartAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Start(ordinal) : InitialStart(ordinal);
+        public RuleTime StartAt(int ordinal) => TimingPhase?.Owns(ordinal) == true ? TimingPhase.Start(ordinal) : InitialStart(ordinal);
         public RuleTime NextOwnStart(int originatingTurn)
         {
             int next = checked(originatingTurn + OrderAt(originatingTurn).Count);
-            return RosterPhase?.Owns(originatingTurn) == true ? RosterPhase.Start(next) : InitialStart(next);
+            return TimingPhase?.Owns(originatingTurn) == true ? TimingPhase.Start(next) : InitialStart(next);
         }
         public string CurrentTurnId=>Id+".turn."+TurnOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
         public FixedEncounterRecord(string id,RuleTime origin,IEnumerable<string> order,IEnumerable<long> starts)
@@ -65,6 +67,10 @@ namespace Decennium.Foundation
             : this(id, origin, order, starts, observedOrdinals, null) { }
         public FixedEncounterRecord(string id, RuleTime origin, IEnumerable<string> order, IEnumerable<long> starts,
             IEnumerable<int> observedOrdinals, EncounterRosterPhase rosterPhase)
+            : this(id, origin, order, starts, observedOrdinals, rosterPhase, null) { }
+
+        public FixedEncounterRecord(string id, RuleTime origin, IEnumerable<string> order, IEnumerable<long> starts,
+            IEnumerable<int> observedOrdinals, EncounterRosterPhase rosterPhase, EncounterRosterPhase inheritedPhase)
         {
             if(!Validation.ValidId(id)||order==null||starts==null)throw new ArgumentException("Invalid encounter header.");
             var ids=order.ToArray();var revisions=starts.ToArray();
@@ -85,14 +91,22 @@ namespace Decennium.Foundation
                 || !rosterPhase.Epoch.Order.Where(InitialOrder.Contains).SequenceEqual(InitialOrder)
                 || rosterPhase.Epoch.Order.Count != InitialOrder.Count + 1))
                 throw new ArgumentException("Invalid end-round roster transition.");
+            if (inheritedPhase != null && (rosterPhase != null || !inheritedPhase.Owns(ordinals[0])
+                || inheritedPhase.Start(ordinals[0]) != origin || !inheritedPhase.Epoch.Order.SequenceEqual(ids)
+                || ordinals.Where((ordinal, i) => ordinal != ordinals[0] + i).Any()))
+                throw new ArgumentException("Invalid inherited segment timing.");
+            InheritedPhase = inheritedPhase == null ? null
+                : new EncounterRosterPhase(inheritedPhase.Epoch.At(0), inheritedPhase.FirstTurn, inheritedPhase.FirstRound);
         }
 
         public FixedEncounterRecord Observe(long revision, int ordinal, EncounterRosterPhase phase = null)
             => new FixedEncounterRecord(Id, Origin, InitialOrder, StartRevisions.Append(revision),
-                ObservedOrdinals.Append(ordinal), phase ?? RosterPhase);
+                ObservedOrdinals.Append(ordinal), phase ?? RosterPhase, InheritedPhase);
 
         public FixedEncounterRecord BindRosterPhase(EncounterRosterPhase phase)
             => new FixedEncounterRecord(Id, Origin, InitialOrder, StartRevisions, ObservedOrdinals, phase);
+        public FixedEncounterRecord BindInheritedPhase(EncounterRosterPhase phase)
+            => new FixedEncounterRecord(Id, Origin, InitialOrder, StartRevisions, ObservedOrdinals, RosterPhase, phase);
     }
     public sealed class EncounterDashRecord
     {

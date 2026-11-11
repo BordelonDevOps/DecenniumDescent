@@ -213,7 +213,8 @@ namespace Decennium.Foundation
         }
 
         public static bool IsLaterActive(Snapshot state) => state.LaterEncounter?.Entry != null
-            && state.Encounter?.Id == state.LaterEncounter.Definition.EncounterId;
+            && (state.Encounter?.Id == state.LaterEncounter.Definition.EncounterId
+                || state.Reengagement?.IsSegment(state.Encounter?.Id) == true);
 
         public static IEnumerable<string> IntervalActors(Snapshot state)
         {
@@ -265,14 +266,15 @@ namespace Decennium.Foundation
 
             var first = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == later.FirstExit.Encounter.Id);
             if (!SameExit(first, later.FirstExit)) throw new ArgumentException("Invalid first encounter archive.");
-            var live = state.Encounter;
+            bool resumed = state.Reengagement?.IsSegment(state.Encounter?.Id) == true;
+            var live = resumed ? null : state.Encounter;
             var closed = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == definition.EncounterId);
             if (closed != null) ValidateExit(state, closed);
             var encounter = live ?? closed?.Encounter;
             if (encounter == null || encounter.Id != definition.EncounterId || encounter.Origin != entry.Epoch.Origin
                 || encounter.StartRevisions[0] != entry.ArrivalRevision || encounter.ObservedOrdinals[0] != 0
                 || !encounter.InitialOrder.SequenceEqual(entry.Epoch.Order)
-                || (state.InventoryCombat ? closed != null || live == null || live.TurnOrdinal != WorldTiming.EncounterOrdinal(state)
+                || (state.InventoryCombat && !resumed ? closed != null || live == null || live.TurnOrdinal != WorldTiming.EncounterOrdinal(state)
                     : closed == null || live != null))
                 throw new ArgumentException("Invalid later encounter history.");
         }

@@ -395,7 +395,7 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Expedition pressure requires schema67.");
                 return;
             }
-            bool localRetreat = s.SchemaVersion == Snapshot.RetreatSchema && s.Retreat != null;
+            bool localRetreat = s.SchemaVersion >= Snapshot.RetreatSchema && s.Retreat != null;
             if (localRetreat) ValidateLocalAuthority(s);
             if((s.SchemaVersion==Snapshot.HarvestPreservationSchema||s.SchemaVersion==Snapshot.HarvestPreservationTreatmentSchema
                     ||s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema

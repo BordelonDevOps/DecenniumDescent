@@ -135,7 +135,7 @@ namespace Decennium.Foundation.Laboratory
                 if (later.FirstExit == null) state.LaterEncounter = later.WithFirstExit(closed);
                 return;
             }
-            if (outgoing.Id == later.Definition.EncounterId) {
+            if (outgoing.Id == later.Definition.EncounterId || state.Reengagement?.IsSegment(outgoing.Id) == true) {
                 state.ClosedEncounters = state.ClosedEncounters.Append(closed).ToArray();
                 state.Encounter = null;
             }
