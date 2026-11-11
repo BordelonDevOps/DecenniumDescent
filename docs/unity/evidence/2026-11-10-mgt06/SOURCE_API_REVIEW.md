@@ -1,11 +1,13 @@
 # MGT-06 source/API review — responsibility handover
 
-**Review stage:** Source/API contract alignment completed with GPT in the in-app ChatGPT conversation “Draft MGT05 API Contract.” This is not implementation acceptance. GPT has not yet inspected the implementation commit or independently run the C# checks.
+**Review stage:** This records the source/API gate completed before implementation. GPT later inspected and accepted implementation commit `9f8478b88399fae8fc8f4818f7518718d16afa20`; see [the actual implementation review](GPT_IMPLEMENTATION_REVIEW.md). GPT did not independently execute C# checks.
 
 ## Source binding
 
 - Source revision: `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`.
-- Source file: `docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md`.
+- Canonical source file at the pinned revision: `DescentReviewChanges/ReviewBible/docs/mechanics/FISHING_RECIPE_PLAYTEST.md`.
+- Later evidence copy: `docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md`, introduced at `ea259f8df18da59cd47a2f5763eeb9a2a1f68720`.
+- Both paths resolve to Git blob `01aa68782e604c3e2b2e06ca1caf582d8cd01305`; the pinned revision does not contain the later evidence-copy path.
 - Local SHA-256: `447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf`.
 - Relevant source rule: an unresolved Fishing deployment is limited to one per lead; the unattended Trap check is `d20 + WIS + one applicable proficiency contribution`. The pinned source does not specify a general transfer transaction or consent authority.
 
@@ -24,4 +26,4 @@ GPT's bounded acceptance scenario was: commit a first Trap setup and save/restor
 
 ## Scope boundaries
 
-This contract authorizes only the TEST_ONLY fixture profile described above. It does not define production consent, ownership disputes, travel to the Trap, negotiation, tactical transfer, general companion assignment, broad deployment-allowance rules, or a general inventory handover. Those remain unimplemented. GPT approved the contract; code and evidence are being submitted separately for implementation review.
+This contract authorizes only the TEST_ONLY fixture profile described above. It does not define production consent, ownership disputes, travel to the Trap, negotiation, tactical transfer, general companion assignment, broad deployment-allowance rules, or a general inventory handover. Those remain unimplemented. GPT approved the source/API contract before implementation; the separate implementation review records its acceptance, evidence qualifications and next dependency.

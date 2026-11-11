@@ -1,6 +1,6 @@
 # MGT-06 responsibility handover — implementation review packet
 
-**Review state:** the source/API contract was approved by GPT in “Draft MGT05 API Contract.” This implementation is committed and pushed for GPT’s implementation review. It is not marked accepted, and no next module has started.
+**Review state:** GPT accepted implementation commit `9f8478b88399fae8fc8f4818f7518718d16afa20` with evidence/docs at `dc89e73ed3acb211951e311988e12c7be88cab80`. No concrete blocker remains in the bounded handover scope. GPT confirmed the next mapped dependency is MGT-07 Mining and deposit extraction, beginning with source/API review only. The actual verdict, findings and review limits are recorded in [GPT_IMPLEMENTATION_REVIEW.md](GPT_IMPLEMENTATION_REVIEW.md).
 
 ## Exact revision and scope
 
@@ -37,7 +37,8 @@ Useful review locations in the pushed code:
 - Discovery, assessment and settlement: [`SharedFishingTrap.cs`](https://github.com/BordelonDevOps/DecenniumDescent/blob/9f8478b88399fae8fc8f4818f7518718d16afa20/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs#L212), [handover eligibility](https://github.com/BordelonDevOps/DecenniumDescent/blob/9f8478b88399fae8fc8f4818f7518718d16afa20/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs#L267), and [record update](https://github.com/BordelonDevOps/DecenniumDescent/blob/9f8478b88399fae8fc8f4818f7518718d16afa20/engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs#L779).
 - Shared-character Wisdom and historical-profile check regression: [`FishingTrapCases.cs`](https://github.com/BordelonDevOps/DecenniumDescent/blob/9f8478b88399fae8fc8f4818f7518718d16afa20/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs#L532).
 - Connected transfer, save/restore, deterministic comparison and physical retrieval: [connected regression](https://github.com/BordelonDevOps/DecenniumDescent/blob/9f8478b88399fae8fc8f4818f7518718d16afa20/engine/com.decennium.foundation/Tests/EditMode/FishingTrapCases.cs#L577).
-- Pinned source: [`FISHING_RECIPE_PLAYTEST.md` at revision `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`](https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md#L63-L71), SHA-256 `447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf`.
+- Canonical pinned source: [`DescentReviewChanges/ReviewBible/docs/mechanics/FISHING_RECIPE_PLAYTEST.md` at revision `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4`](https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/FISHING_RECIPE_PLAYTEST.md#L63-L71), Git blob `01aa68782e604c3e2b2e06ca1caf582d8cd01305`, SHA-256 `447c77740e42a561346fdbbb0a5ed4e785421c27c4f399bfbd53ab45240d36cf`.
+- Later evidence copy: [`docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md`](https://github.com/BordelonDevOps/DecenniumDescent/blob/ea259f8df18da59cd47a2f5763eeb9a2a1f68720/docs/unity/evidence/2026-11-05-fishing-trap/sources/FISHING_RECIPE_PLAYTEST.md), introduced at `ea259f8df18da59cd47a2f5763eeb9a2a1f68720`; it has the same Git blob and SHA-256 as the canonical source.
 
 ## Acceptance evidence
 
@@ -52,7 +53,9 @@ All six MGT-06 cases passed in that full run:
 - `fishing_trap_handover_remains_available_after_check_while_deployed`
 - `fishing_trap_handover_is_rejected_in_tactical_mode`
 
-The connected case sets up the source Trap, saves/restores it, hands responsibility from A to B, checks the exact state delta, checks both deployment allowances, continues to the original roll against a no-handover control, restores after handover, performs retrieval through the existing physical-work path, and verifies deterministic bytes and duplicate retry behavior.
+The connected case completes setup and then hands responsibility from A to B; it has no separate save/restore checkpoint immediately before the handover. It saves/restores after handover, replaying the setup and transfer receipts before comparing state, then checks the exact state delta, both deployment allowances, the original roll against a no-handover control, physical retrieval and deterministic replay. GPT classified a distinct pre-transfer save checkpoint as optional coverage, not a blocker.
+
+The six retained focused reports each pass 1/1, but their `FishingTrapCases.cs` source hashes are not all the final hash. The profile and tactical reports use final hash `33b86cd29b046ea217abf4d2b1b0b038f6ac8e4a5cbfe4f403cfb4be95a95003`; the connected, authority and paused-retrieval reports use intermediate hash `3230c36cf84d3df75dd469fd7c8b992a2ad752e3821eca61bb1041fc5ae585a3`; the post-check report uses intermediate hash `a226d6022ae85e4282ff2807cc50162294a7abe2cb2f0e0b4b40de2d11d859ea`. The full-suite report includes all six cases against final hash `33b86…` and passes 1,334/1,334. GPT accepted the module on that full-suite evidence; the focused report hash differences are retained as a qualification, not presented as final-source focused runs.
 
 The static package validator also passed **18/18** checks across **309 assets, 309 unique GUIDs and 607 file hashes**. It is structural package validation; it is not Unity import or Unity compilation.
 
@@ -75,4 +78,4 @@ This is a bounded `TEST_ONLY` integration. The pinned source does not define the
 
 Unity Editor import/compilation, Edit Mode, Play Mode, scenes and player builds were not run. Unity gameplay integration remains deferred.
 
-Please review the exact pushed commit, full diff, source pin, implementation, tests, retained source-hash-bound results and limitations. Confirm whether the MGT-06 module meets the agreed acceptance criteria and whether the next mapped dependency follows. Identify concrete blockers separately from optional hardening. Codex will not start that next dependency until this implementation review is complete.
+GPT’s implementation review is complete and accepted. Its source review inspected the eight-file patch, six regression bodies, pinned source, shared replay path and retained reports; GPT did not independently compile or execute tests, load saves/assemblies, recompute every digest, or run Unity. Optional hardening and all limitations remain distinguished in [the review record](GPT_IMPLEMENTATION_REVIEW.md). The next mapped gate may now begin at MGT-07 source/API review; no MGT-07 implementation is authorized by that review.
