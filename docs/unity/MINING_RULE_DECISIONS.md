@@ -114,3 +114,15 @@ Run `pwsh -NoProfile -File engine/tools/Test-Foundation.ps1` from the repository
 - canonical save/load and rejection of a noncanonical mining boolean after checksum recomputation.
 
 This acceptance proves the bounded TEST_ONLY slice and its integration contracts. It does not prove complete MGT-07 coverage, source parity outside the listed procedures or release eligibility.
+
+## Schema77 extraction assistance contract (GPT-approved 2026-11-10)
+
+GPT approved a bounded TEST_ONLY increment for direct exposed-node extraction: one predeclared trained assistant completes the entire existing task with the lead and adds exactly +1 to the lead's single check. The actual in-app GPT response, source pins, APIs, operational completions and runnable criteria are preserved in [the source/API review](evidence/2026-11-10-mgt07-assistant/SOURCE_API_REVIEW.md).
+
+Bind assistant training to the existing `SkillTrainingRecord` lookup for `mining-tools` with proficiency rank greater than zero. Rank 1 and 2 each qualify for the same +1. The lead retains its own selected ability, proficiency, tools and work eligibility; assistant training, ability, level, item magic, and equipment benefits do not transfer. Both participants must pass existing physical, access, hands, capability, work and receiver checks. The trusted authority must control both workers when starting or resuming the paired labor; this is a TEST_ONLY authorization binding, not source wording.
+
+Select one fixed assistant at task start. Book the lead and assistant in matching `WorkLedger` intervals under one mining job. The pair's active seconds credit `MiningAttemptRecord.WorkDone` once. Full task includes setup, removal, and sorting/receipt. If either participant loses work eligibility, pause the attempt and truncate both future intervals at the same boundary; retain earned work and reservations. Resume only with the same eligible pair. This fixed-team interruption policy and retention of full-task qualification while `AwaitingCheck` are explicit operational TEST_ONLY completions.
+
+Use an optional `AssistantId` in `MiningSelectionRequest`, immutable `AssistantId` on the attempt, and settled 0/1 `AssistantBonus` on the resolved check evidence. Preserve solo `mining-selection-v1` command fingerprints exactly; use an explicit v2 fingerprint/parser only for nonempty assistant requests. Reject assisted mining nested inside expedition-assignment commands. Schema77 appends assistant identity/result only in the new Mining codec branch; older schemas decode empty identity and zero bonus, without migration or changed replay semantics.
+
+The approved first slice does not implement assistance for prospecting, nondestructive/destructive assay, standalone mineral preparation or expedition mining assignments. Late joining, helper replacement/drop-to-solo, generic hiring/consent, production qualification and any wider assistant system remain unsupported.
