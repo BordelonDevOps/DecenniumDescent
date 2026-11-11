@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "schema": 87,
+  "authority": "TEST_ONLY",
+  "controls": [
+    {
+      "name": "forged controller against the original consent receipt",
+      "stage": "structural codec",
+      "error": "Invalid reinforcement consent or cancellation receipt."
+    },
+    {
+      "name": "forged entrant RNG input with unchanged draw total and order",
+      "stage": "canonical replay after successful codec roundtrip",
+      "error": "InvalidSharedWorldReplay"
+    },
+    {
+      "name": "phase begins one global turn late",
+      "stage": "encounter roster phase binding",
+      "error": "Invalid end-round roster transition."
+    },
+    {
+      "name": "phase skips one continuous round",
+      "stage": "encounter roster phase binding",
+      "error": "Invalid end-round roster transition."
+    },
+    {
+      "name": "forged companion movement spent in the transfer record",
+      "stage": "canonical replay after successful codec roundtrip",
+      "error": "InvalidSharedWorldReplay"
+    },
+    {
+      "name": "forged later exit receipt with the first archive intact",
+      "stage": "structural codec",
+      "error": "Invalid later encounter exit provenance."
+    },
+    {
+      "name": "exact duplicate originating consent",
+      "stage": "actual command dispatch",
+      "outcome": "Duplicate",
+      "code": "AlreadyCommitted",
+      "canonicalSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+      "randomState": 275222415,
+      "admissionCount": 1,
+      "drawRandomAfter": 275222415
+    },
+    {
+      "name": "exact duplicate of the admitting incumbent End",
+      "stage": "actual command dispatch",
+      "outcome": "Duplicate",
+      "code": "AlreadyCommitted",
+      "canonicalSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+      "randomState": 275222415,
+      "admissionCount": 1,
+      "drawRandomAfter": 275222415
+    },
+    {
+      "name": "same command ID with conflicting payload",
+      "stage": "actual command dispatch",
+      "outcome": "Rejected",
+      "code": "CommandIdConflict",
+      "canonicalSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+      "randomState": 275222415,
+      "admissionCount": 1,
+      "drawRandomAfter": 275222415
+    },
+    {
+      "name": "fresh-ID approach after admission",
+      "stage": "actual command dispatch",
+      "outcome": "Rejected",
+      "code": "ReinforcementAlreadyAttempted",
+      "canonicalSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+      "randomState": 275222415,
+      "admissionCount": 1,
+      "drawRandomAfter": 275222415
+    }
+  ],
+  "admittedSaveSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+  "closedSaveSha256": "180c3aa8562bebc26d996958ddd55a64d338736ff8914f13017584128dd54ea9",
+  "assemblies": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "939c55e91bb5e1c86d7dd44efaf58a1e153194166277788202a4a4f5f03dc0b7"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "d1d4099c2329078226e44fdfca967aee45ab5b3d0a8770e9721cefa922055f48"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "712a682e8a9f23732e27b6a12d63ff9159ab45810228763b99e97650cfd2df7d"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "7d52671ce43827625b6b572cedafbe28994003a5354c628cb5652ac89a2cc92d"
+    }
+  ]
+}
