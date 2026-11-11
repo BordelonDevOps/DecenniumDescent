@@ -83,7 +83,8 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Unknown ranged receipt version or command.");
                 ranged = new RangedRequest(p[7], p[8], p[9], Int(p[10]));
             }
-            if (p.Length >= 12 && p[6] != "mining-selection-v1" && p[6] != "expedition-mining-assignment-v1") {
+            if (p.Length >= 12 && p[6] != "mining-selection-v1" && p[6] != "mining-selection-v2"
+                && p[6] != "expedition-mining-assignment-v1") {
                 if (p[6] != (p.Length == 12 ? "combat-v1" : "combat-v2") || p.Length == 13 && p[12] != "1"
                     || p[11] != "0" && p[11] != "1") throw new ArgumentException("Invalid combat receipt version or flag.");
                 combat = new CombatRequest(p[7], p[8], Int(p[9]), (AttackKnockoutMode)Int(p[10]), p[11] == "1",
@@ -98,6 +99,12 @@ namespace Decennium.Foundation
                 if(kind!=CommandKind.StartMining||p[9]!="0"&&p[9]!="1")throw new ArgumentException("Mining selection payload has the wrong command kind or hurry flag.");
                 string[] categories=p[10].Length==0?Array.Empty<string>():p[10].Split(',');
                 miningSelection=new MiningSelectionRequest(p[7],categories,(MiningAbilityChoice)Int(p[8]),p[9]=="1",p[11],p[12]);
+            }
+            if(p.Length==14&&p[6]=="mining-selection-v2") {
+                if(kind!=CommandKind.StartMining||p[9]!="0"&&p[9]!="1"||!Validation.ValidId(p[13]))
+                    throw new ArgumentException("Mining selection v2 payload has the wrong command kind, hurry flag, or assistant.");
+                string[] categories=p[10].Length==0?Array.Empty<string>():p[10].Split(',');
+                miningSelection=new MiningSelectionRequest(p[7],categories,(MiningAbilityChoice)Int(p[8]),p[9]=="1",p[11],p[12],p[13]);
             }
             if(p.Length==9&&p[6]=="prospecting-exposure-v1") {
                 if(kind!=CommandKind.RecordProspectingExposure)throw new ArgumentException("Prospecting exposure payload has the wrong command kind.");

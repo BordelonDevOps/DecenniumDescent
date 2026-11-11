@@ -138,6 +138,7 @@ namespace Decennium.Foundation
         public const int HarvestPreservationSchema = 74;
         public const int HarvestPreservationTreatmentSchema = 75;
         public const int HarvestPreservationExposureSchema = 76;
+        public const int MiningAssistantSchema = 77;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -514,27 +515,30 @@ namespace Decennium.Foundation
         public bool Hurried { get; }
         public string FailureVictimPreference { get; }
         public string CriticalRecoveryPreference { get; }
+        public string AssistantId { get; }
         public string[] CategoryIds=>(string[])categoryIds.Clone();
+        internal string FingerprintVersion=>AssistantId==""?"mining-selection-v1":"mining-selection-v2";
         internal string Fingerprint=>DepositVersionId+"|"+((int)Ability).ToString(System.Globalization.CultureInfo.InvariantCulture)
             +"|"+(Hurried?"1":"0")+"|"+string.Join(",",categoryIds)+"|"+FailureVictimPreference
-            +"|"+CriticalRecoveryPreference;
+            +"|"+CriticalRecoveryPreference+(AssistantId==""?"":"|"+AssistantId);
         public MiningSelectionRequest(string depositVersionId,IEnumerable<string> categoryIds,
             MiningAbilityChoice ability=MiningAbilityChoice.Wisdom,bool hurried=false,string failureVictimPreference="",
-            string criticalRecoveryPreference="")
+            string criticalRecoveryPreference="",string assistantId="")
         {
             if(!Validation.ValidId(depositVersionId)||categoryIds==null||!Enum.IsDefined(typeof(MiningAbilityChoice),ability)
                 ||failureVictimPreference==null||failureVictimPreference!=""&&!Validation.ValidId(failureVictimPreference)
-                ||criticalRecoveryPreference==null||criticalRecoveryPreference!=""&&!Validation.ValidId(criticalRecoveryPreference))
+                ||criticalRecoveryPreference==null||criticalRecoveryPreference!=""&&!Validation.ValidId(criticalRecoveryPreference)
+                ||assistantId==null||assistantId!=""&&!Validation.ValidId(assistantId))
                 throw new ArgumentException("Invalid mining selection.");
             var ids=categoryIds.ToArray();
             if(ids.Length<1||ids.Length>MiningValidation.MaxRecords||ids.Any(x=>!Validation.ValidId(x))
                 ||ids.Distinct(StringComparer.Ordinal).Count()!=ids.Length)
                 throw new ArgumentException("Mining selection requires distinct category identities.");
             ids=ids.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
-            if(depositVersionId.Length+failureVictimPreference.Length+criticalRecoveryPreference.Length+string.Join(",",ids).Length>400)
+            if(depositVersionId.Length+failureVictimPreference.Length+criticalRecoveryPreference.Length+assistantId.Length+string.Join(",",ids).Length>400)
                 throw new ArgumentException("Mining selection exceeds the receipt bound.");
             DepositVersionId=depositVersionId;Ability=ability;Hurried=hurried;FailureVictimPreference=failureVictimPreference;
-            CriticalRecoveryPreference=criticalRecoveryPreference;
+            CriticalRecoveryPreference=criticalRecoveryPreference;AssistantId=assistantId;
             this.categoryIds=ids;
         }
     }
@@ -604,7 +608,7 @@ namespace Decennium.Foundation
                 ? "|expedition-assignment-v1|" + ExpeditionAssignment.Fingerprint
                 : "|expedition-mining-assignment-v1|" + ExpeditionAssignment.Fingerprint + "|" + ExpeditionAssignment.MiningSelection.Fingerprint)
             + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint)
-            + (MiningSelection == null ? "" : "|mining-selection-v1|" + MiningSelection.Fingerprint)
+            + (MiningSelection == null ? "" : "|" + MiningSelection.FingerprintVersion + "|" + MiningSelection.Fingerprint)
             + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint)
             + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
@@ -743,7 +747,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.PortableCountedLotSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema
-                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema
+                || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -756,7 +761,7 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HuntingTrapSchema
                 || s.SchemaVersion == Foundation.Snapshot.BuriedCacheSchema) { }
             else if (s.SchemaVersion != Foundation.Snapshot.Schema && s.SchemaVersion != Foundation.Snapshot.WorkSchema
-                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema && s.SchemaVersion != Foundation.Snapshot.DodgeSchema && s.SchemaVersion != Foundation.Snapshot.BuriedCacheSchema && s.SchemaVersion != Foundation.Snapshot.SharedCharacterAdvancementSchema)
+                && s.SchemaVersion != Foundation.Snapshot.CropSchema && s.SchemaVersion != Foundation.Snapshot.InventorySchema && s.SchemaVersion != Foundation.Snapshot.VesselSchema && s.SchemaVersion != Foundation.Snapshot.MovableVesselSchema && s.SchemaVersion != Foundation.Snapshot.EncounterSchema && s.SchemaVersion != Foundation.Snapshot.ActorLifeSchema && s.SchemaVersion != Foundation.Snapshot.ClubAttackSchema && s.SchemaVersion != Foundation.Snapshot.PostureSchema && s.SchemaVersion != Foundation.Snapshot.TacticalMovementSchema && s.SchemaVersion != Foundation.Snapshot.ConditionSchema && s.SchemaVersion != Foundation.Snapshot.SharedWorldSchema && s.SchemaVersion != Foundation.Snapshot.CalendarCombatSchema && s.SchemaVersion != Foundation.Snapshot.FormulaWorkSchema && s.SchemaVersion != Foundation.Snapshot.CraftingConsequenceSchema && s.SchemaVersion != Foundation.Snapshot.RepairWorkSchema && s.SchemaVersion != Foundation.Snapshot.ManufacturingSchema && s.SchemaVersion != Foundation.Snapshot.SupplyCacheSchema && s.SchemaVersion != Foundation.Snapshot.PortableEquipmentSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.RepeatingCrossbowSchema && s.SchemaVersion != Foundation.Snapshot.PeriodicRiderSchema && s.SchemaVersion != Foundation.Snapshot.SharedBonusActionSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchSchema && s.SchemaVersion != Foundation.Snapshot.OverwatchExecutionSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialLoadoutSchema && s.SchemaVersion != Foundation.Snapshot.SoldierInitialBuildSchema && s.SchemaVersion != Foundation.Snapshot.SoldierTacticalTechniquesSchema && s.SchemaVersion != Foundation.Snapshot.CharacterAdvancementHistorySchema && s.SchemaVersion != Foundation.Snapshot.TacticalAssessmentSchema && s.SchemaVersion != Foundation.Snapshot.CommandStepSchema && s.SchemaVersion != Foundation.Snapshot.SuppressionFireSchema && s.SchemaVersion != Foundation.Snapshot.DefensiveFormationSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapLegacySchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapBaitSchema && s.SchemaVersion != Foundation.Snapshot.FishingTrapSchema && s.SchemaVersion != Foundation.Snapshot.FishingStockSchema && s.SchemaVersion != Foundation.Snapshot.ExpeditionAssignmentSchema && s.SchemaVersion != Foundation.Snapshot.OffCalendarActivitySchema && s.SchemaVersion != Foundation.Snapshot.HarvestSchema && s.SchemaVersion != Foundation.Snapshot.HarvestManifestSchema && s.SchemaVersion != Foundation.Snapshot.MiningSchema && s.SchemaVersion != Foundation.Snapshot.DodgeSchema && s.SchemaVersion != Foundation.Snapshot.BuriedCacheSchema && s.SchemaVersion != Foundation.Snapshot.SharedCharacterAdvancementSchema && s.SchemaVersion != Foundation.Snapshot.MiningAssistantSchema)
                 throw new ArgumentException("Unsupported snapshot schema.");
             if (s.SchemaVersion >= Foundation.Snapshot.RouteMappingSchema && !s.TestOnly)
                 throw new ArgumentException("TEST_ONLY route-mapping state cannot be loaded as release content.");
@@ -956,6 +961,8 @@ namespace Decennium.Foundation
                         ||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null
                         ||command.DefensiveFormation!=null||command.Target==""||command.X!=0||command.Y!=0))
                 return "UnexpectedExpeditionAssignmentPayload";
+            if(!string.IsNullOrEmpty(command.ExpeditionAssignment?.MiningSelection?.AssistantId))
+                return "MiningAssistantAssignmentUnsupported";
             if(command.ExpeditionAssignment?.MiningSelection!=null&&state.SchemaVersion<Snapshot.MiningExpeditionAssignmentSchema)
                 return "MiningAssignmentRequiresSchema47";
             if(command.Kind==CommandKind.RespondDefensiveFormation&&(command.Inventory!=null||command.Advancement!=null||command.Ranged!=null
@@ -970,6 +977,13 @@ namespace Decennium.Foundation
                     ||command.Kind==CommandKind.RecordProspectingExposure
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
+            string requestedMiningAssistant=command.MiningSelection?.AssistantId??"";
+            if(requestedMiningAssistant!=""&&!authority.Controls(requestedMiningAssistant))return "NotAuthorized";
+            if(command.Kind==CommandKind.ResumeMining) {
+                var miningAttempt=state.MiningAttempts.FirstOrDefault(x=>x.Id==command.Target&&x.WorkerId==command.Actor);
+                if(miningAttempt?.Status==MiningAttemptStatus.Paused&&miningAttempt.AssistantId!=""
+                    &&!authority.Controls(miningAttempt.AssistantId))return "NotAuthorized";
+            }
             if(command.Kind==CommandKind.HandoverFishingTrapResponsibility&&!authority.ConsentsToHandover(command.Target))
                 return "RecipientNotWilling";
             if (policy is ICommandInventoryClaims claims) {

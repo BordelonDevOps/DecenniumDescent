@@ -230,6 +230,7 @@ namespace Decennium.Foundation
             }
             if(s.SchemaVersion<Snapshot.PortableCountedLotSchema&&s.PortableStorageProfiles.Any(x=>x.MassPerUnitLb.HasValue))
                 throw new ArgumentException("Per-unit portable mass requires schema73.");
+            if(s.SchemaVersion==Snapshot.MiningAssistantSchema&&s.TestOnly&&s.PortableStorageProfiles.Length==0)return;
             if(!s.TestOnly||s.PortableStorageProfiles.Length==0)
                 throw new ArgumentException("Schema71 portable storage facts require a selected TEST_ONLY profile.");
             var profiles=s.PortableStorageProfiles;

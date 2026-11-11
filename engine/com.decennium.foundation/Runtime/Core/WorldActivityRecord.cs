@@ -180,10 +180,11 @@ namespace Decennium.Foundation
             foreach (var attempt in s.MiningAttempts ?? Array.Empty<MiningAttemptRecord>())
                 if (attempt.Status == MiningAttemptStatus.Working || includeOpen
                     && (attempt.Status == MiningAttemptStatus.Paused || attempt.Status == MiningAttemptStatus.AwaitingCheck))
-                    result.Add(Create(s, attempt.Id, attempt.WorkerId, WorldProcedureKind.Mining,
-                    includeDetails ? attempt.Status.ToString() : null,
-                    includeDetails ? (RuleTime?)attempt.WorkDone : null,
-                    includeDetails ? (RuleTime?)new RuleTime(attempt.DurationSeconds) : null, options, includeDetails));
+                    foreach(string worker in attempt.AssistantId==""?new[]{attempt.WorkerId}:new[]{attempt.WorkerId,attempt.AssistantId})
+                        result.Add(Create(s, attempt.Id, worker, WorldProcedureKind.Mining,
+                        includeDetails ? attempt.Status.ToString() : null,
+                        includeDetails ? (RuleTime?)attempt.WorkDone : null,
+                        includeDetails ? (RuleTime?)new RuleTime(attempt.DurationSeconds) : null, options, includeDetails));
             foreach (var attempt in s.ProspectingAttempts ?? Array.Empty<ProspectingAttemptRecord>())
                 if (attempt.Status == ProspectingAttemptStatus.Working || includeOpen
                     && (attempt.Status == ProspectingAttemptStatus.Paused || attempt.Status == ProspectingAttemptStatus.AwaitingCheck))
@@ -384,7 +385,7 @@ namespace Decennium.Foundation
                 || s.FishingTrapAttempts.Any(x => x.Id == id && x.SetterId == actor)
                 || s.HarvestRequirementWorks.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.HarvestPreservationTreatmentAttempts.Any(x=>x.Id==id&&x.WorkerId==actor)
-                || s.MiningAttempts.Any(x => x.Id == id && x.WorkerId == actor)
+                || s.MiningAttempts.Any(x => x.Id == id && (x.WorkerId == actor||x.AssistantId==actor))
                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)
                 || s.MiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)
                 || s.DestructiveMiningAssayAttempts.Any(x => x.Id == id && x.WorkerId == actor)

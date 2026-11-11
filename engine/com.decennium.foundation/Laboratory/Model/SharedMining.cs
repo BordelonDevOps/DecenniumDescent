@@ -172,16 +172,18 @@ namespace Decennium.Foundation.Laboratory
         public ObjectStructureRecord[] MiningToolStructures=>miningToolStructures.ToArray();
         public PortableEquipmentRecord[] MiningToolItems=>miningToolItems.ToArray();
         public readonly int? Intelligence,Wisdom;
-        private readonly string[] trainedWorkerIds;
+        private readonly string[] trainedWorkerIds,assistantWorkerIds;
         public bool HasExplicitTrainingRoster => trainedWorkerIds != null;
         public string[] TrainedWorkerIds => trainedWorkerIds?.ToArray();
+        public string[] AssistantWorkerIds => assistantWorkerIds?.ToArray()??Array.Empty<string>();
+        internal int AssistantProficiencyRank { get; }
         internal SharedMiningFixture WithMineralPreparationProfile(MineralPreparationProfileRecord profile)
         {
             if(profile==null)throw new ArgumentNullException(nameof(profile));
             if(mineralPreparationProfiles.Any(x=>x.Id==profile.Id))return this;
             return new SharedMiningFixture(deposits,Trained,Intelligence,Wisdom,assayProfiles,assaySamples,
                 destructiveAssayProfiles,mineralPreparationProfiles.Concat(new[]{profile}).ToArray(),
-                miningToolCandidateProfiles,miningToolInstanceStates,miningToolStructures,miningToolItems,trainedWorkerIds);
+                miningToolCandidateProfiles,miningToolInstanceStates,miningToolStructures,miningToolItems,trainedWorkerIds,assistantWorkerIds,AssistantProficiencyRank);
         }
         public SharedMiningFixture(bool trained=true,bool hasMiningTools=true,bool hasPick=true,bool hasReceiver=true,
             bool hasWorkSurface=true,bool hurryFeasible=false,int siteX=3,int siteY=3,
@@ -191,16 +193,21 @@ namespace Decennium.Foundation.Laboratory
             MineralPreparationProfileRecord[] mineralPreparationProfiles=null,
             MiningToolCandidateProfileRecord[] miningToolCandidateProfiles=null,
             MiningToolInstanceStateRecord[] miningToolInstanceStates=null,ObjectStructureRecord[] miningToolStructures=null,
-            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null)
+            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null,string[] assistantWorkerIds=null,int assistantProficiencyRank=1)
         {
             if(siteX<0||siteY<0||!Enum.IsDefined(typeof(MiningUnitCondition),unitBCondition)
                 ||intelligence.HasValue&&(intelligence.Value<1||intelligence.Value>30)
                 ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30)
                 ||trainedWorkerIds!=null&&(!trained||trainedWorkerIds.Any(x=>!Validation.ValidId(x))
-                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length))throw new ArgumentOutOfRangeException(nameof(siteX));
+                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length)
+                ||assistantProficiencyRank<1||assistantProficiencyRank>2
+                ||assistantWorkerIds!=null&&(assistantWorkerIds.Any(x=>!Validation.ValidId(x))
+                    ||assistantWorkerIds.Distinct(StringComparer.Ordinal).Count()!=assistantWorkerIds.Length))throw new ArgumentOutOfRangeException(nameof(siteX));
             Trained=trained;HasMiningTools=hasMiningTools;HasPick=hasPick;HasReceiver=hasReceiver;
             HasWorkSurface=hasWorkSurface;HurryFeasible=hurryFeasible;SiteX=siteX;SiteY=siteY;UnitBCondition=unitBCondition;
             Intelligence=intelligence;Wisdom=wisdom;this.trainedWorkerIds=trainedWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            this.assistantWorkerIds=assistantWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            AssistantProficiencyRank=assistantProficiencyRank;
             deposits=new[]{DefaultContent(siteX,siteY,hasMiningTools,hasPick,hasReceiver,hasWorkSurface,hurryFeasible,unitBCondition)};
             this.assayProfiles=ValidateAssayProfiles(assayProfiles);
             this.assaySamples=ValidateAssaySamples(assaySamples);
@@ -218,7 +225,7 @@ namespace Decennium.Foundation.Laboratory
             MineralPreparationProfileRecord[] mineralPreparationProfiles=null,
             MiningToolCandidateProfileRecord[] miningToolCandidateProfiles=null,
             MiningToolInstanceStateRecord[] miningToolInstanceStates=null,ObjectStructureRecord[] miningToolStructures=null,
-            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null)
+            PortableEquipmentRecord[] miningToolItems=null,string[] trainedWorkerIds=null,string[] assistantWorkerIds=null,int assistantProficiencyRank=1)
         {
             if(deposits==null)throw new ArgumentNullException(nameof(deposits));
             var authored=deposits.ToArray();
@@ -230,7 +237,10 @@ namespace Decennium.Foundation.Laboratory
                 ||intelligence.HasValue&&(intelligence.Value<1||intelligence.Value>30)
                 ||wisdom.HasValue&&(wisdom.Value<1||wisdom.Value>30)
                 ||trainedWorkerIds!=null&&(!trained||trainedWorkerIds.Any(x=>!Validation.ValidId(x))
-                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length))throw new ArgumentException("Invalid authored mining fixture set.",nameof(deposits));
+                    ||trainedWorkerIds.Distinct(StringComparer.Ordinal).Count()!=trainedWorkerIds.Length)
+                ||assistantProficiencyRank<1||assistantProficiencyRank>2
+                ||assistantWorkerIds!=null&&(assistantWorkerIds.Any(x=>!Validation.ValidId(x))
+                    ||assistantWorkerIds.Distinct(StringComparer.Ordinal).Count()!=assistantWorkerIds.Length))throw new ArgumentException("Invalid authored mining fixture set.",nameof(deposits));
             this.deposits=authored;
             Trained=trained;HasMiningTools=authored.All(x=>x.PhysicalItems.Any(i=>i.Id==x.Deposit.MiningToolsId));
             HasPick=authored.All(x=>x.PhysicalItems.Any(i=>i.Id==x.Deposit.PickId));
@@ -240,6 +250,8 @@ namespace Decennium.Foundation.Laboratory
                 .SingleOrDefault(x=>x.Id==UnitB)?.Condition??MiningUnitCondition.Intact;
             SiteX=authored[0].Deposit.SiteX;SiteY=authored[0].Deposit.SiteY;
             Intelligence=intelligence;Wisdom=wisdom;this.trainedWorkerIds=trainedWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            this.assistantWorkerIds=assistantWorkerIds?.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            AssistantProficiencyRank=assistantProficiencyRank;
             this.assayProfiles=ValidateAssayProfiles(assayProfiles);
             this.assaySamples=ValidateAssaySamples(assaySamples);
             this.destructiveAssayProfiles=ValidateDestructiveAssayProfiles(destructiveAssayProfiles);
@@ -272,7 +284,9 @@ namespace Decennium.Foundation.Laboratory
                 .Select(x=>x.Id+"|"+x.ProfileId+"|"+x.OwnerId+"|"+x.CustodianId+"|"+x.GroundX.ToString(CultureInfo.InvariantCulture)
                     +"|"+x.GroundY.ToString(CultureInfo.InvariantCulture)+"|"+Q(x.SourceWeightLb)+"|"+Q(x.OperationalWeightLb))))
             +(assayProfiles.Length+assaySamples.Length+destructiveAssayProfiles.Length==0?"":"|assay-source-policy|"+MiningAssayContentBinding.Identity)
-            +(trainedWorkerIds==null?"":"|trained-workers|"+string.Join(";",trainedWorkerIds));
+            +(trainedWorkerIds==null?"":"|trained-workers|"+string.Join(";",trainedWorkerIds))
+            +(assistantWorkerIds==null?"":"|assistant-workers|"+string.Join(";",assistantWorkerIds)
+                +"|rank|"+AssistantProficiencyRank.ToString(CultureInfo.InvariantCulture));
         private static string Q(RuleQuantity? value)=>value.HasValue?value.Value.ToString():"-";
 
         private void ValidateAssayProfileIdentity()
@@ -443,10 +457,13 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private SharedMiningFixture miningFixture;
+        private bool miningAssistanceEnabled;
         private string MiningOwnerId=>OffCalendarWorkerId;
         private string[] MiningWorkerIds=>worldConfiguration?.Actors.Select(x=>x.Id).ToArray()??new[]{TestOnlyPolicy.CompanionId};
         private string[] MiningTrainingWorkerIds=>miningFixture==null||!miningFixture.Trained?Array.Empty<string>()
             :miningFixture.HasExplicitTrainingRoster?miningFixture.TrainedWorkerIds:MiningWorkerIds;
+        private int MiningFixtureTrainingRank(string actor)=>miningAssistanceEnabled&&miningFixture.AssistantWorkerIds.Contains(actor,StringComparer.Ordinal)
+            ?miningFixture.AssistantProficiencyRank:1;
         private bool IsMiningWorker(string id)=>assignmentBindingProfile!=null
             ?assignmentBindingProfile.WorkerIds.Contains(id,StringComparer.Ordinal)
             :worldConfiguration==null?id==TestOnlyPolicy.CompanionId:worldConfiguration.Actors.Any(x=>x.Id==id);
@@ -476,6 +493,19 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
 
+        /// <summary>Explicit TEST_ONLY schema77 profile for one fixed trained helper on direct
+        /// exposed-node extraction. The helper roster is fixture-bound; historical profiles remain unchanged.</summary>
+        public TestOnlySharedWorldPolicy EnableMiningAssistance()
+        {
+            if(initializationStarted||miningFixture==null||miningAssistanceEnabled||miningFixture.AssistantWorkerIds.Length==0)
+                throw new InvalidOperationException("Mining assistance requires an uninitialized mining fixture with an explicit helper roster.");
+            miningAssistanceEnabled=true;
+            using(var sha=SHA256.Create())ContentFingerprint="TEST_ONLY.mining-assistant-v1-"+string.Concat(sha.ComputeHash(
+                Encoding.UTF8.GetBytes(ContentFingerprint+"|schema77|fixed-one-trained-mining-tools-helper"))
+                    .Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
+            return this;
+        }
+
         private void InitializeMining(Snapshot s)
         {
             if(miningFixture==null)return;
@@ -499,8 +529,9 @@ namespace Decennium.Foundation.Laboratory
             if(trainedWorkers.Any(id=>!s.Actors.Any(a=>a.Id==id)))throw new InvalidOperationException("MiningTrainingWorkerNotControlled");
             s.SkillTraining=s.SkillTraining.Concat(trainedWorkers
                 .Where(id=>!s.SkillTraining.Any(x=>x.ActorId==id&&x.SkillId=="mining-tools"))
-                .Select(id=>new SkillTrainingRecord(id,"mining-tools",1))).ToArray();
+                .Select(id=>new SkillTrainingRecord(id,"mining-tools",MiningFixtureTrainingRank(id)))).ToArray();
             var authored=miningFixture.Deposits;
+            if(miningAssistanceEnabled)PrepareMiningAssistantFixtureActors(s,authored[0].Deposit);
             var deposits=authored.Select(x=>x.Deposit).ToArray();
             var categories=authored.SelectMany(x=>x.Categories).ToArray();
             var units=authored.SelectMany(x=>x.Units).ToArray();
@@ -527,6 +558,23 @@ namespace Decennium.Foundation.Laboratory
             s.Structures=s.Structures.Concat(surfaces).Concat(miningFixture.MiningToolStructures).ToArray();
         }
 
+        private void PrepareMiningAssistantFixtureActors(Snapshot s,MiningDepositRecord deposit)
+        {
+            var used=new HashSet<string>(s.Actors.Select(a=>a.X+","+a.Y),StringComparer.Ordinal);
+            foreach(string id in miningFixture.AssistantWorkerIds) {
+                var actor=s.Actors.SingleOrDefault(a=>a.Id==id);
+                if(actor==null)throw new InvalidOperationException("MiningAssistantWorkerNotInFixtureWorld");
+                used.Remove(actor.X+","+actor.Y);
+                int[][] adjacent={new[]{deposit.SiteX-1,deposit.SiteY},new[]{deposit.SiteX+1,deposit.SiteY},
+                    new[]{deposit.SiteX,deposit.SiteY-1},new[]{deposit.SiteX,deposit.SiteY+1}};
+                var point=adjacent.FirstOrDefault(p=>p[0]>=0&&p[1]>=0&&p[0]<5&&p[1]<5
+                    &&TestOnlyPolicy.Walkable(p[0],p[1])&&!used.Contains(p[0]+","+p[1]));
+                if(point==null)throw new InvalidOperationException("MiningAssistantSiteHasNoFixtureWorkerSpace");
+                actor.X=point[0];actor.Y=point[1];used.Add(actor.X+","+actor.Y);
+                s.Clubs=s.Clubs.Select(c=>c.HeldBy==id?new ClubInstance(c.Id,c.ProfileId,c.OwnerId,c.CustodianId,"",actor.X,actor.Y):c).ToArray();
+            }
+        }
+
         private static string GroundId(int x,int y)=>"ground."+x.ToString(CultureInfo.InvariantCulture)+"."+y.ToString(CultureInfo.InvariantCulture);
 
         private static void PutMiningAttempt(Snapshot s,MiningAttemptRecord value)
@@ -550,9 +598,23 @@ namespace Decennium.Foundation.Laboratory
                 -(System.Numerics.BigInteger)second.Numerator*first.Denominator,(System.Numerics.BigInteger)first.Denominator*second.Denominator);
         private static string MiningWorkId(long revision)=>"mining.extraction."+revision.ToString(CultureInfo.InvariantCulture);
 
+        private bool MatchesMiningStartReceipt(Snapshot s,MiningAttemptRecord attempt)
+        {
+            if(attempt.AssistantId!=""&&!miningFixture.AssistantWorkerIds.Contains(attempt.AssistantId,StringComparer.Ordinal))return false;
+            var receipt=s.Receipts.SingleOrDefault(x=>MiningWorkId(x.Revision)==attempt.Id);
+            if(receipt==null)return false;
+            var command=CommandHistory.Read(receipt);
+            if(command.Kind!=CommandKind.StartMining)return attempt.AssistantId==""&&command.Kind==CommandKind.StartExpeditionWork;
+            return command.Actor==attempt.WorkerId&&command.Target==attempt.DepositId
+                &&command.MiningSelection?.AssistantId==attempt.AssistantId;
+        }
+
         private static bool MiningWorkerBusy(Snapshot s,string actor,string exceptJob="")
             =>s.Work.WorkerIntervals.Any(x=>x.WorkerId==actor&&x.JobId!=exceptJob&&x.Start<=s.RuleClock&&x.End>s.RuleClock)
                 ||WorldActivityProjection.CurrentWork(s).Any(x=>x.ActorId==actor&&x.Id!=exceptJob);
+
+        private static bool MiningIntervalAvailable(Snapshot s,string actor,RuleTime start,RuleTime end,string exceptJob="")
+            =>!s.Work.WorkerIntervals.Any(x=>x.WorkerId==actor&&x.JobId!=exceptJob&&x.Start<end&&x.End>start);
 
         private string MiningAccess(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="",string[] selectedUnitIds=null)
         {
@@ -593,6 +655,22 @@ namespace Decennium.Foundation.Laboratory
             if(RuleQuantity.Sum(existing.Select(x=>x.VolumeCubicFeet).Concat(units.Select(x=>x.VolumeCubicFeet)))>receiver.CapacityCubicFeet.Value)
                 return "MiningReceiverVolumeInsufficient";
             if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,actor))return "MiningConsequenceCapacityReached";
+            return null;
+        }
+
+        private string MiningAssistantAccess(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="")
+        {
+            if(!miningAssistanceEnabled||!miningFixture.AssistantWorkerIds.Contains(actor,StringComparer.Ordinal))return "MiningAssistantUnsupported";
+            if(!CharacterSkillTrainingFacts.IsTrained(s,actor,"mining-tools"))return "MiningAssistantUntrained";
+            if(!CapableWorker(s,actor))return "MiningWorkerIncapable";
+            if(s.WorldTraversals.Any(x=>x.ActorId==actor))return "MiningWorkerMoving";
+            if(MiningWorkerBusy(s,actor,exceptJob))return "WorkerBusy";
+            if(AvailableHands(s,actor)<2)return "TwoHandsRequired";
+            var worker=s.Actors.Single(x=>x.Id==actor);
+            if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return "MiningWorksiteOutOfReach";
+            // The lead's MiningAccess validates the one shared tool set, work surface, receiver,
+            // and selected material. The helper contributes support labor without a second claim
+            // on the lead's pick or tools.
             return null;
         }
 
@@ -675,8 +753,9 @@ namespace Decennium.Foundation.Laboratory
             RuleTime remaining=SubtractMiningTime(new RuleTime(attempt.DurationSeconds),attempt.WorkDone);
             RuleTime end=AddMiningTime(s.RuleClock,remaining);
             int interval=s.Work.WorkerIntervals.Count(x=>x.JobId==attempt.Id);
-            string intervalId=attempt.Id+".labor."+interval.ToString(CultureInfo.InvariantCulture);
-            var intervals=new[]{new WorkerInterval(intervalId,attempt.Id,attempt.WorkerId,s.RuleClock,end)};
+            string[] workers=attempt.AssistantId==""?new[]{attempt.WorkerId}:new[]{attempt.WorkerId,attempt.AssistantId};
+            var intervals=workers.Select((worker,index)=>new WorkerInterval(attempt.Id+".labor."+(interval+index).ToString(CultureInfo.InvariantCulture),
+                attempt.Id,worker,s.RuleClock,end)).ToArray();
             var claims=attempt.SelectedUnitIds.Select((id,index)=>new ResourceReservation(MiningIds.Reservation(attempt.Id,index),
                 attempt.Id,id,s.MiningUnits.Single(x=>x.Id==id).MassPounds)).ToArray();
             var use=s.SchemaVersion>=Snapshot.MiningToolCandidateSchema?s.MiningToolUses.SingleOrDefault(x=>x.MiningAttemptId==attempt.Id):null;
@@ -697,7 +776,8 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach(var attempt in s.MiningAttempts.Where(x=>x.Status==MiningAttemptStatus.Working).ToArray()) {
                 var deposit=s.MiningDeposits.Single(x=>x.Id==attempt.DepositId);
-                if(MiningAccess(s,attempt.WorkerId,deposit,attempt.Id,attempt.SelectedUnitIds)!=null)PauseMining(s,attempt);
+                if(MiningAccess(s,attempt.WorkerId,deposit,attempt.Id,attempt.SelectedUnitIds)!=null
+                    ||attempt.AssistantId!=""&&MiningAssistantAccess(s,attempt.AssistantId,deposit,attempt.Id)!=null)PauseMining(s,attempt);
             }
         }
 
@@ -705,7 +785,13 @@ namespace Decennium.Foundation.Laboratory
         {
             var boundaries=new List<RuleTime>();
             foreach(var attempt in s.MiningAttempts.Where(x=>x.Status==MiningAttemptStatus.Working)) {
-                boundaries.Add(s.Work.WorkerIntervals.Single(w=>w.JobId==attempt.Id&&w.Start<=s.RuleClock&&w.End>s.RuleClock).End);
+                var active=s.Work.WorkerIntervals.Where(w=>w.JobId==attempt.Id&&w.Start<=s.RuleClock&&w.End>s.RuleClock).ToArray();
+                int expected=attempt.AssistantId==""?1:2;
+                if(active.Length!=expected||active.Select(w=>w.End).Distinct().Count()!=1
+                    ||!active.Any(w=>w.WorkerId==attempt.WorkerId)
+                    ||attempt.AssistantId!=""&&!active.Any(w=>w.WorkerId==attempt.AssistantId))
+                    throw new InvalidOperationException("Mining team intervals are not synchronized.");
+                boundaries.Add(active[0].End);
                 if(s.SchemaVersion<Snapshot.MiningToolCandidateSchema)continue;
                 var use=s.MiningToolUses.SingleOrDefault(x=>x.MiningAttemptId==attempt.Id);
                 if(use==null||use.PreparedUnitId==""||attempt.RemovalSeconds<MineralPreparationValidation.WorkSeconds)continue;
@@ -719,7 +805,9 @@ namespace Decennium.Foundation.Laboratory
         private void CreditMiningWork(Snapshot s,RuleTime elapsed)
         {
             foreach(var attempt in s.MiningAttempts.Where(x=>x.Status==MiningAttemptStatus.Working).ToArray()) {
-                if(!s.Work.WorkerIntervals.Any(w=>w.JobId==attempt.Id&&w.Start<=attempt.UpdatedAt&&w.End>=s.RuleClock))continue;
+                string[] workers=attempt.AssistantId==""?new[]{attempt.WorkerId}:new[]{attempt.WorkerId,attempt.AssistantId};
+                if(workers.Any(worker=>!s.Work.WorkerIntervals.Any(w=>w.JobId==attempt.Id&&w.WorkerId==worker
+                    &&w.Start<=attempt.UpdatedAt&&w.End>=s.RuleClock)))continue;
                 RuleTime work=AddMiningTime(attempt.WorkDone,elapsed);RuleTime? committedAt=attempt.CommittedAt;
                 if(!committedAt.HasValue&&attempt.WorkDone<=new RuleTime(attempt.SetupSeconds)&&work>new RuleTime(attempt.SetupSeconds)) {
                     RuleTime untilRemoval=SubtractMiningTime(new RuleTime(attempt.SetupSeconds),attempt.WorkDone);
@@ -830,10 +918,11 @@ namespace Decennium.Foundation.Laboratory
                 &&Recipe347MiningToolPhysicallyEligible(s,recipeToolProfile,prior.WorkerId,deposit,prior.Id);
             int recipeToolBonus=recipeToolQualified
                 ?recipeToolProfile.CheckBonus:0;
+            int assistantBonus=prior.AssistantId==""?0:1;
             CharacterAbility ability=prior.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
             int injury=actorFacts.InjuryPenalty(ability,toolCheck:true);
             int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury
-                +(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:recipeToolBonus));
+                +(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:recipeToolBonus)+assistantBonus);
             int disadvantage=(prior.ProficiencyRank==0?1:0)+(prior.Hurried?1:0)
                 +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)?1:0);
             uint randomBefore=s.RandomState;
@@ -928,7 +1017,7 @@ namespace Decennium.Foundation.Laboratory
             PutMiningAttempt(s,prior.WithResult(s.RuleClock,status,degree,
                 roll.Selection==D20Selection.Normal?MiningDiceSelection.Normal:roll.Selection==D20Selection.Advantage?MiningDiceSelection.Advantage:MiningDiceSelection.Disadvantage,
                 roll.First,roll.Second??0,roll.Natural,modifier,d4,damage,d4==0?"":"bludgeoning",wound,injuryRoll,
-                randomBefore,s.RandomState,words));
+                randomBefore,s.RandomState,words,assistantBonus));
             if(toolUse!=null)PutMiningToolUse(s,toolUse.WithOutcome(toolQualified,reserveAwarded,dressedAwarded));
             ReconcileDyingCadences(s);PauseIncompatibleWork(s);
         }
@@ -983,6 +1072,7 @@ namespace Decennium.Foundation.Laboratory
             public MiningToolCandidateProfileRecord ToolProfile;
             public Recipe347MiningToolProfileRecord Recipe347ToolProfile;
             public string ToolPreparedUnitId,ToolReservedUnitId;
+            public string AssistantId;
             public string[] CategoryIds,UnitIds;
             public string FailurePreference,CriticalPreference;
             public int Duration,AbilityModifier,ProficiencyRank,ProficiencyBonus,CheckDc;
@@ -1033,6 +1123,12 @@ namespace Decennium.Foundation.Laboratory
                 if(criticalPreference!=""&&!damaged.Any(x=>x.Id==criticalPreference))return "InvalidMiningCriticalRecoveryPreference";
                 if(c.MiningSelection.Hurried&&!deposit.HurryFeasible)return "MiningHurryNotFeasible";
                 string access=MiningAccess(s,c.Actor,deposit,selectedUnitIds:unitIds);if(access!=null)return access;
+                string assistantId=c.MiningSelection.AssistantId;
+                if(assistantId!="") {
+                    if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return "MiningAssistantRequiresSchema77";
+                    if(assistantId==c.Actor)return "MiningAssistantMustDiffer";
+                    string assistantAccess=MiningAssistantAccess(s,assistantId,deposit);if(assistantAccess!=null)return assistantAccess;
+                }
                 CharacterAbility ability=c.MiningSelection.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
                 var check=AbilityCheckRules.Derive(s,c.Actor,"mining-tools",ability);
                 int dc;
@@ -1040,6 +1136,9 @@ namespace Decennium.Foundation.Laboratory
                 else if(categories.Any(x=>x.Tier==0))return "MiningUnknownTierRequiresExactDc";
                 else dc=MiningExtractionRules.TierDc(categories.Max(x=>x.Tier));
                 int duration=MiningExtractionRules.DurationSeconds(accessible.Length,categories.Length,c.MiningSelection.Hurried);
+                RuleTime end=AddMiningTime(s.RuleClock,new RuleTime(duration));
+                if(s.SchemaVersion==Snapshot.MiningAssistantSchema&&(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,end)
+                    ||assistantId!=""&&!MiningIntervalAvailable(s,assistantId,s.RuleClock,end)))return "MiningWorkerIntervalConflict";
                 MiningToolCandidateProfileRecord toolProfile=null;string preparedUnitId="",reservedUnitId="";
                 if(s.SchemaVersion>=Snapshot.MiningToolCandidateSchema) {
                     toolProfile=s.MiningToolCandidateProfiles.SingleOrDefault(x=>x.DepositId==deposit.Id);
@@ -1069,7 +1168,7 @@ namespace Decennium.Foundation.Laboratory
                 facts=new MiningAssessment { Deposit=deposit,Categories=categories,Units=units,CategoryIds=categoryIds,UnitIds=unitIds,
                     FailurePreference=failurePreference,CriticalPreference=criticalPreference,
                     Duration=duration,ToolProfile=toolProfile,ToolPreparedUnitId=preparedUnitId,ToolReservedUnitId=reservedUnitId,
-                    Recipe347ToolProfile=recipeToolProfile,
+                    Recipe347ToolProfile=recipeToolProfile,AssistantId=assistantId,
                     AbilityModifier=check.AbilityModifier,ProficiencyRank=check.ProficiencyRank,
                     ProficiencyBonus=check.ProficiencyBonus,CheckDc=dc };
                 return null;
@@ -1085,6 +1184,18 @@ namespace Decennium.Foundation.Laboratory
             if(current.Status!=MiningAttemptStatus.Paused&&current.Status!=MiningAttemptStatus.AwaitingCheck)return "MiningNotPaused";
             var depositToResume=s.MiningDeposits.Single(x=>x.Id==current.DepositId);
             string resumeAccess=MiningAccess(s,c.Actor,depositToResume,current.Id,current.SelectedUnitIds);if(resumeAccess!=null)return resumeAccess;
+            if(current.Status==MiningAttemptStatus.Paused&&current.AssistantId!="") {
+                if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return "MiningAssistantRequiresSchema77";
+                string assistantAccess=MiningAssistantAccess(s,current.AssistantId,depositToResume,current.Id);
+                if(assistantAccess!=null)return assistantAccess;
+                RuleTime remaining=SubtractMiningTime(new RuleTime(current.DurationSeconds),current.WorkDone);
+                RuleTime end=AddMiningTime(s.RuleClock,remaining);
+                if(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,end,current.Id)
+                    ||!MiningIntervalAvailable(s,current.AssistantId,s.RuleClock,end,current.Id))return "MiningWorkerIntervalConflict";
+            } else if(current.Status==MiningAttemptStatus.Paused&&s.SchemaVersion==Snapshot.MiningAssistantSchema) {
+                RuleTime remaining=SubtractMiningTime(new RuleTime(current.DurationSeconds),current.WorkDone);
+                if(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,AddMiningTime(s.RuleClock,remaining),current.Id))return "MiningWorkerIntervalConflict";
+            }
             facts=new MiningAssessment { Current=current,Deposit=depositToResume };
             return null;
         }
@@ -1099,7 +1210,7 @@ namespace Decennium.Foundation.Laboratory
                     s.MiningCategories.Count(x=>x.DepositId==facts.Deposit.Id&&x.Accessible),c.MiningSelection.Ability,c.MiningSelection.Hurried,
                     facts.CategoryIds,facts.UnitIds,facts.FailurePreference,s.RuleClock,s.RuleClock,facts.Duration,setup,removal,sorting,default,null,
                     MiningAttemptStatus.Working,facts.AbilityModifier,facts.ProficiencyRank,facts.ProficiencyBonus,facts.CheckDc,null,null,
-                    MiningCheckDegree.None,MiningDiceSelection.None,0,0,0,0,0,0,"",0,0,0,0,0,facts.CriticalPreference);
+                    MiningCheckDegree.None,MiningDiceSelection.None,0,0,0,0,0,0,"",0,0,0,0,0,facts.CriticalPreference,facts.AssistantId??"");
                 if(facts.ToolProfile!=null) {
                     s.MiningToolUses=s.MiningToolUses.Concat(new[]{new MiningToolUseRecord(id+".tool-use",id,facts.ToolProfile.Id,
                         c.Actor,facts.ToolPreparedUnitId,facts.ToolReservedUnitId,default,default,null,"","",false,"",false)}).ToArray();

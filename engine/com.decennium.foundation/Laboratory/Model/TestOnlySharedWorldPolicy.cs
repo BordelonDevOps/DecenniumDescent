@@ -1028,10 +1028,13 @@ namespace Decennium.Foundation.Laboratory
                         ||!s.MineralPreparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal)
                             .Zip(preparationProfiles.OrderBy(x=>x.Id,StringComparer.Ordinal),(a,b)=>a.HasSameContent(b)).All(x=>x)
                         ||miningSkills.Length!=expectedMiningWorkers.Length
-                        ||miningSkills.Any(x=>!expectedMiningWorkers.Contains(x.ActorId,StringComparer.Ordinal)||x.ProficiencyRank!=1)
+                        ||miningSkills.Any(x=>!expectedMiningWorkers.Contains(x.ActorId,StringComparer.Ordinal)
+                            ||x.ProficiencyRank!=MiningFixtureTrainingRank(x.ActorId))
                         ||s.PortableEquipment.Where(x=>groundItems.ContainsKey(x.Id)&&x.Placement==PortablePlacement.Ground)
                             .Any(x=>x.GroundX!=groundItems[x.Id].GroundX||x.GroundY!=groundItems[x.Id].GroundY))
                         return "InvalidMiningFixture";
+                    if(miningAssistanceEnabled&&s.MiningAttempts.Any(attempt=>!MatchesMiningStartReceipt(s,attempt)))
+                        return "InvalidMiningAssistantHistory";
                 } else if(s.MiningDeposits.Length+s.MiningCategories.Length+s.MiningUnits.Length+s.MiningAttempts.Length
                     +s.MiningAssayProfiles.Length+s.MiningAssayAttempts.Length+s.MiningAssaySamples.Length
                     +s.DestructiveMiningAssayProfiles.Length+s.DestructiveMiningAssayAttempts.Length

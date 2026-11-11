@@ -101,7 +101,8 @@ namespace Decennium.Foundation.Tests
         }
 
         private static MiningToolScenario Recipe347MiningScenario(bool includeToolItem=true,bool broken=false,
-            bool missingPrimary=false,bool suppressed=false,bool melded=false,bool misplaced=false)
+            bool missingPrimary=false,bool suppressed=false,bool melded=false,bool misplaced=false,
+            string owner=MiningWorker,int x=3,int y=3)
         {
             const string key="recipe347";
             string depositId="TEST_ONLY.mining."+key+".deposit",versionId=depositId+".v1",siteId="TEST_ONLY.mining."+key+".site";
@@ -114,7 +115,6 @@ namespace Decennium.Foundation.Tests
             string toolsId="TEST_ONLY.mining."+key+".ordinary-tools",pickId="TEST_ONLY.mining."+key+".pick";
             string receiverId="TEST_ONLY.mining."+key+".receiver",surfaceId="TEST_ONLY.mining."+key+".surface";
             string toolItemId="TEST_ONLY.mining."+key+".candidate-item",structureId="TEST_ONLY.mining."+key+".candidate-structure";
-            int x=3,y=3;var owner=MiningWorker;
             var deposit=new MiningDepositRecord(depositId,versionId,siteId,owner,x,y,toolsId,pickId,receiverId,surfaceId);
             var categories=new[]{
                 new MiningCategoryRecord(targetCategoryId,depositId,"TEST_ONLY.mineral.recipe347-target",1,true,new[]{targetId}),
@@ -164,6 +164,7 @@ namespace Decennium.Foundation.Tests
         private static void AddMiningCases(Dictionary<string,Action> cases,string directory)
         {
             var host=TestOnlySharedWorldPolicy.Host();
+            AddMiningAssistantCases(cases,directory);
             cases.Add("recipe347_mining_tool_applies_check_reserve_and_integrated_dressing_through_shared_extraction",()=>{
                 var scenario=Recipe347MiningScenario();var selection=new MiningSelectionRequest(scenario.Content.Deposit.VersionId,
                     new[]{scenario.TargetCategoryId,scenario.DamagedCategoryId},MiningAbilityChoice.Wisdom,false,"",scenario.DamagedId);
@@ -606,6 +607,261 @@ namespace Decennium.Foundation.Tests
                 var hurrySelection=new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,new[]{SharedMiningFixture.CategoryA},
                     MiningAbilityChoice.Wisdom,true);
                 RejectUnchanged(hurried,host,MiningCommand(hurried,CommandKind.StartMining,SharedMiningFixture.DepositId,hurrySelection),"MiningHurryNotFeasible");
+            });
+        }
+
+        private static TestOnlySharedWorldPolicy MiningAssistantPolicy(uint seed=1,bool trainAssistant=true,bool trainLead=true,int helperRank=1)
+        {
+            var trained=new List<string>();
+            if(trainLead)trained.Add(MiningWorker);
+            if(trainAssistant)trained.Add(AdditionalTacticalActor.Id);
+            return TestOnlySharedWorldPolicy.WithMining(new SharedMiningFixture(trainedWorkerIds:trained.ToArray(),
+                assistantWorkerIds:new[]{AdditionalTacticalActor.Id},assistantProficiencyRank:helperRank),seed).EnableMiningAssistance();
+        }
+
+        private static Command StartMiningAssistant(Simulation simulation,string assistant)
+            =>MiningCommand(simulation,CommandKind.StartMining,SharedMiningFixture.DepositId,
+                new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
+                    new[]{SharedMiningFixture.CategoryA,SharedMiningFixture.CategoryB},assistantId:assistant));
+
+        private static void AddMiningAssistantCases(Dictionary<string,Action> cases,string directory)
+        {
+            string helper=AdditionalTacticalActor.Id;
+            var host=TestOnlySharedWorldPolicy.Host();
+            cases.Add("mgt07_extraction_assistant_full_task_bonus_save_restore_replay",()=>{
+                var initial=MiningAssistantPolicy().Initial();
+                uint seed=MiningSeedFor(TaskDegree.Success,MiningModifier(initial),dc:MiningExtractionRules.TierDc(2));
+                var policy=MiningAssistantPolicy(seed);
+                var simulation=World(policy);
+                var replay=World(policy);
+                var start=StartMiningAssistant(simulation,helper);
+                foreach(var run in new[]{simulation,replay}) {
+                    MiningCommit(run,start);
+                    WorldAdvance(run,300);
+                }
+                var work=simulation.Capture();
+                var attempt=work.MiningAttempts.Single();
+                var paired=work.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id).ToArray();
+                Require(work.SchemaVersion==Snapshot.MiningAssistantSchema&&attempt.AssistantId==helper
+                    &&attempt.AssistantBonus==0&&attempt.WorkDone==new RuleTime(300)
+                    &&paired.Length==2&&paired.Any(x=>x.WorkerId==helper)&&paired.All(x=>x.Start==default&&x.End==new RuleTime(attempt.DurationSeconds))
+                    &&WorldActivityProjection.CurrentWork(work).Any(x=>x.Id==attempt.Id&&x.ActorId==helper),
+                    "Assisted extraction did not book and project the same duration for both workers or credited progress twice.");
+                var path=Path.Combine(directory,"mining-assistant-working.bin");
+                new FileSaveStore().Save(path,work);
+                simulation=new Simulation(policy,new FileSaveStore().Load(path),ExecutionProfile.Laboratory);
+                Require(Bytes(simulation).SequenceEqual(Bytes(replay)),"Schema77 mid-task restore changed the paired job.");
+                foreach(var run in new[]{simulation,replay}) {
+                    MiningCommit(run,MiningCommand(run,CommandKind.PauseMining,attempt.Id));
+                    WorldAdvance(run,37);
+                    var paused=run.Capture();
+                    Require(paused.MiningAttempts.Single().WorkDone==new RuleTime(300)
+                        &&paused.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id).All(x=>x.End==new RuleTime(300)),
+                        "Paused time was credited or both bookings were not truncated.");
+                    MiningCommit(run,MiningCommand(run,CommandKind.ResumeMining,attempt.Id));
+                    WorldAdvance(run,attempt.DurationSeconds-300);
+                }
+                var final=simulation.Capture();
+                var settled=final.MiningAttempts.Single();
+                var solo=World(policy);
+                MiningCommit(solo,StartMiningAssistant(solo,""));
+                WorldAdvance(solo,attempt.DurationSeconds);
+                var soloCheck=solo.Capture().MiningAttempts.Single();
+                Require((settled.Status==MiningAttemptStatus.Success||settled.Status==MiningAttemptStatus.CriticalSuccess)
+                    &&settled.AssistantBonus==1
+                    &&settled.WorkDone==new RuleTime(attempt.DurationSeconds)
+                    &&settled.CheckModifier==soloCheck.CheckModifier+1&&settled.CheckDc==soloCheck.CheckDc
+                    &&settled.FirstDie==soloCheck.FirstDie&&settled.RandomAfter==soloCheck.RandomAfter
+                    &&settled.ResolvedAt==new RuleTime(attempt.DurationSeconds+37)
+                    &&final.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id).GroupBy(x=>x.WorkerId)
+                        .Select(group=>RuleQuantity.Sum(group.Select(x=>new RuleQuantity(x.End.Numerator,x.End.Denominator)
+                            -new RuleQuantity(x.Start.Numerator,x.Start.Denominator))))
+                        .SequenceEqual(Enumerable.Repeat(new RuleQuantity(attempt.DurationSeconds),2)),
+                    "Assisted settlement: status="+settled.Status+", work="+settled.WorkDone+", resolved="+settled.ResolvedAt
+                    +", modifiers="+settled.CheckModifier+"/"+soloCheck.CheckModifier+", DC="+settled.CheckDc+"/"+soloCheck.CheckDc
+                    +", RNG="+settled.RandomAfter+"/"+soloCheck.RandomAfter);
+                foreach(var id in settled.SelectedUnitIds) {
+                    var unit=final.MiningUnits.Single(x=>x.Id==id);
+                    Require(unit.Status==MiningUnitStatus.Extracted&&unit.ReceivedLotId==id
+                        &&final.Work.Lots.Single(x=>x.Id==id).Amount==unit.MassPounds
+                        &&final.PortableEquipment.Single(x=>x.Id==id).ParentId==SharedMiningFixture.ReceiverId,
+                        "Finite extracted stock did not settle into the physical receiver.");
+                }
+                var receipt=final.Receipts.Single(x=>x.Id==start.Id);
+                Require(CommandHistory.Read(receipt).MiningSelection.AssistantId==helper
+                    &&Bytes(simulation).SequenceEqual(Bytes(replay))
+                    &&simulation.Execute(host,start).Outcome==Outcome.Duplicate
+                    &&Bytes(simulation).SequenceEqual(Bytes(replay)),"Assisted history, replay or idempotency changed settlement.");
+                new FileSaveStore().Save(Path.Combine(directory,"mining-assistant-settled.bin"),final);
+            });
+
+            cases.Add("mgt07_extraction_assistant_rejects_invalid_training_authority_and_overlap",()=>{
+                void Reject(Simulation run,Authority authority,Command command,string code) {
+                    byte[] before=Bytes(run);
+                    var query=run.QueryCommand(authority,command);
+                    var result=run.Execute(authority,command);
+                    Require(!query.Admissible&&query.Code==code&&result.Code==code&&Bytes(run).SequenceEqual(before),
+                        "Expected unchanged rejection "+code+", got query "+query.Code+" and execution "+result.Code);
+                }
+                var simulation=World(MiningAssistantPolicy());
+                Reject(simulation,host,StartMiningAssistant(simulation,MiningWorker),"MiningAssistantMustDiffer");
+                var unauthorized=new Authority("TEST_ONLY.lead-only",new[]{MiningWorker});
+                Reject(simulation,unauthorized,StartMiningAssistant(simulation,helper),"NotAuthorized");
+                var untrained=World(MiningAssistantPolicy(trainAssistant:false));
+                Reject(untrained,host,StartMiningAssistant(untrained,helper),"MiningAssistantUntrained");
+                const string unknown="TEST_ONLY.mining.unknown";
+                Reject(simulation,new Authority("TEST_ONLY.unknown-helper",new[]{MiningWorker,unknown},
+                    inventoryOwners:new[]{MiningWorker}),
+                    StartMiningAssistant(simulation,unknown),"MiningAssistantUnsupported");
+                var policy=MiningAssistantPolicy();
+                var busy=policy.Initial();
+                busy.Work=busy.Work.Reserve("TEST_ONLY.other-work",new[]{new WorkerInterval("TEST_ONLY.future-booking",
+                    "TEST_ONLY.other-work",helper,new RuleTime(10),new RuleTime(20))},Array.Empty<ResourceReservation>());
+                var scheduledStart=StartMiningAssistant(simulation,helper);
+                var futureQuery=policy.QueryCommand(busy,host,scheduledStart);
+                Require(!futureQuery.Admissible&&futureQuery.Code=="MiningWorkerIntervalConflict"
+                    &&((ICommandPolicy)policy).Resolve(busy,scheduledStart)==futureQuery.Code&&busy.MiningAttempts.Length==0,
+                    "The detached query and resolver did not reject a future overlapping booking before reserving stock.");
+                var displaced=World(MiningAssistantPolicy());
+                WorldStep(displaced,-1,0,actor:helper);
+                Reject(displaced,host,StartMiningAssistant(displaced,helper),"MiningWorkerMoving");
+                WorldAdvance(displaced,1);
+                Reject(displaced,host,StartMiningAssistant(displaced,helper),"MiningWorksiteOutOfReach");
+                MiningCommit(simulation,StartMiningAssistant(simulation,helper));
+                WorldAdvance(simulation,300);
+                var attempt=simulation.Capture().MiningAttempts.Single();
+                MiningCommit(simulation,MiningCommand(simulation,CommandKind.PauseMining,attempt.Id));
+                Reject(simulation,unauthorized,MiningCommand(simulation,CommandKind.ResumeMining,attempt.Id),"NotAuthorized");
+            });
+
+            cases.Add("mgt07_extraction_assistant_team_pause_resume_and_interruption",()=>{
+                var fixture=new SharedMiningFixture(trainedWorkerIds:new[]{MiningWorker,helper},assistantWorkerIds:new[]{helper});
+                var conditions=new ConditionCombatFixture(new[]{CCApply("helper-stun","Stunned",helper,expires:CJAt(330),at:CJAt(300))});
+                var policy=new TestOnlySharedWorldPolicy(new SharedCombatFixture(),conditions:conditions)
+                    .EnableMining(fixture).EnableMiningAssistance();
+                var simulation=World(policy);
+                MiningCommit(simulation,StartMiningAssistant(simulation,helper));
+                WorldAdvance(simulation,300);
+                CCDispatch(simulation,"helper-stun",helper);
+                var interrupted=simulation.Capture();
+                var attempt=interrupted.MiningAttempts.Single();
+                Require(attempt.Status==MiningAttemptStatus.Paused&&attempt.WorkDone==new RuleTime(300)
+                    &&interrupted.Work.WorkerIntervals.Count(x=>x.JobId==attempt.Id&&x.End==new RuleTime(300))==2
+                    &&interrupted.Work.Reservations.Count(x=>x.JobId==attempt.Id&&x.Status==ReservationStatus.Reserved)==2,
+                    "A helper's incapacity did not pause both workers and preserve claims at the event boundary.");
+                var resume=MiningCommand(simulation,CommandKind.ResumeMining,attempt.Id);
+                Require(!simulation.QueryCommand(host,resume).Admissible,"Resume was allowed while the fixed helper was incapacitated.");
+                WorldAdvance(simulation,37);
+                MiningCommit(simulation,MiningCommand(simulation,CommandKind.ResumeMining,attempt.Id));
+                WorldAdvance(simulation,attempt.DurationSeconds-300);
+                var final=simulation.Capture();
+                Require(final.MiningAttempts.Single().AssistantBonus==1
+                    &&final.MiningAttempts.Single().ResolvedAt==new RuleTime(attempt.DurationSeconds+37)
+                    &&final.Work.WorkerIntervals.Count(x=>x.JobId==attempt.Id&&x.Start==new RuleTime(337))==2,
+                    "The original pair did not resume with the exact outstanding work after the clock gap.");
+            });
+
+            cases.Add("mgt07_extraction_assistant_preserves_lead_rules_and_blocks_magic_transfer",()=>{
+                var initial=MiningAssistantPolicy(trainLead:false).Initial();
+                uint seed=MiningSeedFor(TaskDegree.Success,MiningModifier(initial)+1,disadvantage:true,dc:MiningExtractionRules.TierDc(2));
+                var results=new List<MiningAttemptRecord>();
+                foreach(int rank in new[]{1,2}) {
+                    var policy=MiningAssistantPolicy(seed,trainLead:false,helperRank:rank);
+                    var run=World(policy);
+                    var state=run.Capture();
+                    Require(state.SkillTraining.Single(x=>x.ActorId==helper&&x.SkillId=="mining-tools").ProficiencyRank==rank,
+                        "The intended persisted assistant proficiency rank was absent.");
+                    MiningCommit(run,StartMiningAssistant(run,helper));
+                    WorldAdvance(run,run.Capture().MiningAttempts.Single().DurationSeconds);
+                    results.Add(run.Capture().MiningAttempts.Single());
+                }
+                Require(results.All(x=>x.ProficiencyRank==0&&x.ProficiencyBonus==0
+                    &&x.DiceSelection==MiningDiceSelection.Disadvantage&&x.AssistantBonus==1
+                    &&x.CheckModifier==MiningModifier(initial)+1)
+                    &&results[0].RandomAfter==results[1].RandomAfter,
+                    "Helper rank changed the one-point bonus or the untrained lead's check.");
+
+                var owned=Recipe347MiningScenario(owner:helper,x:2);
+                var ordinary=new SharedMiningFixture().Deposits.Single();
+                var fixture=new SharedMiningFixture(new[]{ordinary,owned.Content},
+                    mineralPreparationProfiles:owned.Fixture.MineralPreparationProfiles,
+                    miningToolCandidateProfiles:owned.Fixture.MiningToolCandidateProfiles,
+                    miningToolInstanceStates:owned.Fixture.MiningToolInstanceStates,
+                    miningToolStructures:owned.Fixture.MiningToolStructures,miningToolItems:owned.Fixture.MiningToolItems,
+                    trainedWorkerIds:new[]{helper},assistantWorkerIds:new[]{helper});
+                var magicRun=World(TestOnlySharedWorldPolicy.WithMining(fixture,seed).EnableMiningAssistance());
+                var withMagic=magicRun.Capture();
+                Require(withMagic.PortableEquipment.Single(x=>x.Id==owned.ToolItemId).CustodianId==helper
+                    &&MiningToolCandidateRules.PhysicallyEligible(withMagic,owned.Profile,
+                        withMagic.MiningToolInstanceStates.Single(),helper,new[]{owned.TargetId,owned.DamagedId}),
+                    "The helper did not have a physically eligible magical Mining Tool at their authored deposit.");
+                MiningCommit(magicRun,StartMiningAssistant(magicRun,helper));
+                WorldAdvance(magicRun,magicRun.Capture().MiningAttempts.Single().DurationSeconds);
+                var magicResult=magicRun.Capture();
+                Require(magicResult.MiningToolUses.Length==0&&magicResult.Recipe347MiningToolUseEvidence.Length==0
+                    &&magicResult.MiningAttempts.Single().CheckModifier==results[0].CheckModifier
+                    &&magicResult.MiningAttempts.Single().RandomAfter==results[0].RandomAfter,
+                    "The helper's actual Mining Tool changed the lead's check, RNG or recorded tool participation.");
+            });
+
+            cases.Add("mgt07_extraction_assistant_once_only_check_and_finite_settlement",()=>{
+                int modifier=MiningModifier(MiningAssistantPolicy().Initial())+1;
+                uint seed=MiningSeedFor(TaskDegree.Failure,modifier,dc:MiningExtractionRules.TierDc(2));
+                var policy=MiningAssistantPolicy(seed);
+                var run=World(policy);
+                var start=StartMiningAssistant(run,helper);
+                MiningCommit(run,start);
+                var attempt=run.Capture().MiningAttempts.Single();
+                WorldAdvance(run,attempt.DurationSeconds);
+                var final=run.Capture();
+                var checkedAttempt=final.MiningAttempts.Single();
+                Require(checkedAttempt.Status==MiningAttemptStatus.Failure&&checkedAttempt.AssistantBonus==1
+                    &&checkedAttempt.WordsConsumed==1
+                    &&final.Work.Reservations.Count(x=>x.JobId==attempt.Id&&x.Status==ReservationStatus.Released)==2,
+                    "Failed assisted extraction did not consume exactly one normal check and release its finite allocation.");
+                byte[] saved=Bytes(run);
+                run=new Simulation(policy,new SnapshotCodec().Decode(saved),ExecutionProfile.Laboratory);
+                Require(run.Execute(host,start).Outcome==Outcome.Duplicate,"The exact start was not idempotent after restore.");
+                var conflict=new Command(start.Id,start.Actor,start.ExpectedRevision,start.Kind,start.Target,
+                    miningSelection:new MiningSelectionRequest(SharedMiningFixture.DepositVersionId,
+                        new[]{SharedMiningFixture.CategoryA,SharedMiningFixture.CategoryB}));
+                Require(run.Execute(host,conflict).Code=="CommandIdConflict"&&Bytes(run).SequenceEqual(saved),
+                    "Conflicting command identity changed the recorded roll, work, or stock.");
+            });
+
+            cases.Add("mgt07_extraction_assistant_schema_history_and_team_validation",()=>{
+                var run=World(MiningAssistantPolicy());
+                var start=StartMiningAssistant(run,helper);
+                var assignment=new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
+                    SharedMiningFixture.DepositId,miningSelection:start.MiningSelection);
+                var nested=new Command("TEST_ONLY.assisted-assignment",MiningWorker,run.Capture().Revision,
+                    CommandKind.AssignExpeditionWork,expeditionAssignment:assignment);
+                Require(run.Execute(host,nested).Code=="MiningAssistantAssignmentUnsupported",
+                    "An assisted selection was admitted through the historical expedition assignment payload.");
+                MiningCommit(run,start);
+                WorldAdvance(run,300);
+                var bad=run.Capture();
+                var attempt=bad.MiningAttempts.Single();
+                var intervals=bad.Work.WorkerIntervals.ToArray();
+                var interval=intervals.Single(x=>x.WorkerId==helper&&x.JobId==attempt.Id);
+                bad.Work=new WorkLedger(bad.Work.Lots,intervals.Where(x=>x.Id!=interval.Id),bad.Work.Reservations);
+                Throws<ArgumentException>(()=>MiningValidation.Validate(bad));
+                var shortInterval=new WorkerInterval(interval.Id,interval.JobId,helper,interval.Start,new RuleTime(attempt.DurationSeconds-1));
+                bad.Work=new WorkLedger(bad.Work.Lots,bad.Work.WorkerIntervals.Concat(new[]{shortInterval}),bad.Work.Reservations);
+                Throws<ArgumentException>(()=>MiningValidation.Validate(bad));
+                var legacyPolicy=TestOnlySharedWorldPolicy.WithMining(new SharedMiningFixture());
+                var legacy=World(legacyPolicy);
+                Require(legacy.Execute(host,StartMiningAssistant(legacy,helper)).Code=="MiningAssistantRequiresSchema77",
+                    "A historical schema admitted an assistant.");
+                var solo=StartMiningAssistant(legacy,"");
+                MiningCommit(legacy,solo);
+                var legacyState=new SnapshotCodec().Decode(Bytes(legacy));
+                var legacyReceipt=legacyState.Receipts.Single(x=>x.Id==solo.Id);
+                Require(legacyState.SchemaVersion==Snapshot.MiningSchema
+                    &&legacyReceipt.Fingerprint.Contains("|mining-selection-v1|")
+                    &&CommandHistory.Read(legacyReceipt).MiningSelection.AssistantId==""
+                    &&legacyState.MiningAttempts.Single().AssistantBonus==0,
+                    "The historical solo request or persisted attempt changed format.");
             });
         }
     }

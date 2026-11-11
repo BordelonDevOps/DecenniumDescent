@@ -54,6 +54,7 @@ namespace Decennium.Foundation
                 w.Write(x.CheckModifier);w.Write(x.D4Rolled);w.Write(x.DamageApplied);Text(w,x.AccidentDamageType);
                 w.Write(x.WoundRoll);w.Write(x.InjuryRoll);w.Write(x.RandomBefore);w.Write(x.RandomAfter);w.Write(x.WordsConsumed);
                 Text(w,x.CriticalRecoveryPreference);
+                if(s.SchemaVersion>=Snapshot.MiningAssistantSchema) { Text(w,x.AssistantId);w.Write(x.AssistantBonus); }
             }
         }
 
@@ -86,9 +87,12 @@ namespace Decennium.Foundation
                 int modifier=r.ReadInt32(),d4=r.ReadInt32();long damage=r.ReadInt64();string damageType=Text(r);
                 int wound=r.ReadInt32(),injury=r.ReadInt32();uint before=r.ReadUInt32(),after=r.ReadUInt32();long words=r.ReadInt64();
                 string recoveryPreference=Text(r);
+                string assistantId=s.SchemaVersion>=Snapshot.MiningAssistantSchema?Text(r):"";
+                int assistantBonus=s.SchemaVersion>=Snapshot.MiningAssistantSchema?r.ReadInt32():0;
                 s.MiningAttempts[i]=new MiningAttemptRecord(id,worker,deposit,version,accessible,ability,hurried,categories,units,preference,
                     started,updated,duration,setup,removal,sorting,work,committed,status,abilityModifier,rank,pb,dc,resolved,closed,
-                    degree,selection,first,second,natural,modifier,d4,damage,damageType,wound,injury,before,after,words,recoveryPreference);
+                    degree,selection,first,second,natural,modifier,d4,damage,damageType,wound,injury,before,after,words,recoveryPreference,
+                    assistantId,assistantBonus);
             }
         }
     }

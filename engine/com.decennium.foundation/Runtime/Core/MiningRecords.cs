@@ -109,6 +109,8 @@ namespace Decennium.Foundation
         public string[] SelectedUnitIds=>selectedUnitIds.ToArray();
         public string FailureVictimPreference { get; }
         public string CriticalRecoveryPreference { get; }
+        public string AssistantId { get; }
+        public int AssistantBonus { get; }
         public RuleTime StartedAt { get; }
         public RuleTime UpdatedAt { get; }
         public int DurationSeconds { get; }
@@ -146,7 +148,7 @@ namespace Decennium.Foundation
             int proficiencyBonus,int checkDc,RuleTime? resolvedAt,RuleTime? closedAt,MiningCheckDegree degree,
             MiningDiceSelection diceSelection,int firstDie,int secondDie,int natural,int checkModifier,int d4Rolled,
             long damageApplied,string accidentDamageType,int woundRoll,int injuryRoll,uint randomBefore,uint randomAfter,long wordsConsumed,
-            string criticalRecoveryPreference="")
+            string criticalRecoveryPreference="",string assistantId="",int assistantBonus=0)
         {
             foreach(string value in new[]{id,workerId,depositId,depositVersionId})if(!Validation.ValidId(value))throw new ArgumentException("Invalid mining attempt identity.");
             if(accessibleCategoryCount<1||!Enum.IsDefined(typeof(MiningAbilityChoice),ability)
@@ -157,6 +159,7 @@ namespace Decennium.Foundation
                 ||selectedUnitIds.Distinct(StringComparer.Ordinal).Count()!=selectedUnitIds.Length
                 ||failureVictimPreference==null||failureVictimPreference!=""&&!Validation.ValidId(failureVictimPreference)
                 ||criticalRecoveryPreference==null||criticalRecoveryPreference!=""&&!Validation.ValidId(criticalRecoveryPreference)
+                ||assistantId==null||assistantId!=""&&!Validation.ValidId(assistantId)
                 ||startedAt>updatedAt||durationSeconds<60||durationSeconds%60!=0||setupSeconds<=0||removalSeconds<=0||sortingSeconds<=0
                 ||checked(setupSeconds+removalSeconds+sortingSeconds)!=durationSeconds
                 ||workDone<default(RuleTime)||workDone>new RuleTime(durationSeconds)
@@ -171,6 +174,9 @@ namespace Decennium.Foundation
             bool resolved=status==MiningAttemptStatus.Success||status==MiningAttemptStatus.CriticalSuccess
                 ||status==MiningAttemptStatus.Failure||status==MiningAttemptStatus.CriticalFailure;
             bool terminal=status==MiningAttemptStatus.TerminalNoCheck;
+            if(assistantId==workerId||assistantBonus<0||assistantBonus>1
+                ||assistantBonus!=(resolved&&assistantId!=""?1:0))
+                throw new ArgumentException("Mining assistance evidence does not match its completed team check.");
             bool dieValid=diceSelection==MiningDiceSelection.Normal?secondDie==0&&natural==firstDie
                 :diceSelection==MiningDiceSelection.Advantage?secondDie>=1&&natural==Math.Max(firstDie,secondDie)
                 :diceSelection==MiningDiceSelection.Disadvantage&&secondDie>=1&&natural==Math.Min(firstDie,secondDie);
@@ -196,6 +202,7 @@ namespace Decennium.Foundation
             Ability=ability;Hurried=hurried;this.selectedCategoryIds=selectedCategoryIds.OrderBy(x=>x,StringComparer.Ordinal).ToArray();
             this.selectedUnitIds=selectedUnitIds.OrderBy(x=>x,StringComparer.Ordinal).ToArray();FailureVictimPreference=failureVictimPreference;
             CriticalRecoveryPreference=criticalRecoveryPreference;
+            AssistantId=assistantId;AssistantBonus=assistantBonus;
             StartedAt=startedAt;UpdatedAt=updatedAt;DurationSeconds=durationSeconds;SetupSeconds=setupSeconds;RemovalSeconds=removalSeconds;
             SortingSeconds=sortingSeconds;WorkDone=workDone;CommittedAt=committedAt;Status=status;AbilityModifier=abilityModifier;
             ProficiencyRank=proficiencyRank;ProficiencyBonus=proficiencyBonus;CheckDc=checkDc;ResolvedAt=resolvedAt;ClosedAt=closedAt;
@@ -208,23 +215,23 @@ namespace Decennium.Foundation
             =>new MiningAttemptRecord(Id,WorkerId,DepositId,DepositVersionId,AccessibleCategoryCount,Ability,Hurried,
                 selectedCategoryIds,selectedUnitIds,FailureVictimPreference,StartedAt,at,DurationSeconds,SetupSeconds,RemovalSeconds,
                 SortingSeconds,work,committedAt,status,AbilityModifier,ProficiencyRank,ProficiencyBonus,CheckDc,null,null,
-                MiningCheckDegree.None,MiningDiceSelection.None,0,0,0,0,0,0,"",0,0,0,0,0,CriticalRecoveryPreference);
+                MiningCheckDegree.None,MiningDiceSelection.None,0,0,0,0,0,0,"",0,0,0,0,0,CriticalRecoveryPreference,AssistantId);
 
         public MiningAttemptRecord WithResult(RuleTime at,MiningAttemptStatus status,MiningCheckDegree degree,
             MiningDiceSelection selection,int firstDie,int secondDie,int natural,int modifier,int d4,long damage,string damageType,
-            int wound,int injury,uint randomBefore,uint randomAfter,long words)
+            int wound,int injury,uint randomBefore,uint randomAfter,long words,int assistantBonus=0)
             =>new MiningAttemptRecord(Id,WorkerId,DepositId,DepositVersionId,AccessibleCategoryCount,Ability,Hurried,
                 selectedCategoryIds,selectedUnitIds,FailureVictimPreference,StartedAt,at,DurationSeconds,SetupSeconds,RemovalSeconds,
                 SortingSeconds,new RuleTime(DurationSeconds),CommittedAt,status,AbilityModifier,ProficiencyRank,ProficiencyBonus,
                 CheckDc,at,at,degree,selection,firstDie,secondDie,natural,modifier,d4,damage,damageType,wound,injury,randomBefore,randomAfter,words,
-                CriticalRecoveryPreference);
+                CriticalRecoveryPreference,AssistantId,assistantBonus);
 
         public MiningAttemptRecord WithTerminalNoCheck(RuleTime at)
             =>new MiningAttemptRecord(Id,WorkerId,DepositId,DepositVersionId,AccessibleCategoryCount,Ability,Hurried,
                 selectedCategoryIds,selectedUnitIds,FailureVictimPreference,StartedAt,at,DurationSeconds,SetupSeconds,RemovalSeconds,
                 SortingSeconds,WorkDone,CommittedAt,MiningAttemptStatus.TerminalNoCheck,AbilityModifier,ProficiencyRank,
                 ProficiencyBonus,CheckDc,null,at,MiningCheckDegree.None,MiningDiceSelection.None,0,0,0,0,0,0,"",0,0,0,0,0,
-                CriticalRecoveryPreference);
+                CriticalRecoveryPreference,AssistantId);
     }
 
     /// <summary>Pure exposed-node calculations. These methods do not create deposits, units, tiers or output.</summary>
@@ -402,6 +409,11 @@ namespace Decennium.Foundation
 
         private static void ValidateAttempt(Snapshot s,MiningAttemptRecord attempt)
         {
+            if(attempt.AssistantId!=""&&(s.SchemaVersion!=Snapshot.MiningAssistantSchema
+                ||attempt.AssistantId==attempt.WorkerId||!s.Actors.Any(x=>x.Id==attempt.AssistantId)
+                ||s.SkillTraining.Count(x=>x.ActorId==attempt.AssistantId&&x.SkillId=="mining-tools")!=1
+                ||s.SkillTraining.Single(x=>x.ActorId==attempt.AssistantId&&x.SkillId=="mining-tools").ProficiencyRank<=0))
+                throw new ArgumentException("Mining assistant binding is unsupported or untrained.");
             var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==attempt.DepositId)
                 ??throw new ArgumentException("Mining attempt references an unknown deposit.");
             if(attempt.DepositVersionId!=deposit.VersionId)throw new ArgumentException("Mining attempt version mismatch.");
@@ -462,20 +474,26 @@ namespace Decennium.Foundation
                     ||!open&&(claims[i].RemainingAmount!=default||claims[i].Status!=ReservationStatus.Released))
                     throw new ArgumentException("Mining reservation settlement does not match its attempt.");
             }
+            var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id).OrderBy(x=>x.Start).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
+            string[] workers=attempt.AssistantId==""?new[]{attempt.WorkerId}:new[]{attempt.WorkerId,attempt.AssistantId};
+            if(intervals.Any(x=>!workers.Contains(x.WorkerId,StringComparer.Ordinal))||intervals.Length>0&&intervals[0].Start<attempt.StartedAt
+                ||attempt.UpdatedAt>s.RuleClock||attempt.AssistantId!=""&&intervals.Any(x=>x.Start>s.RuleClock))
+                throw new ArgumentException("Mining worker interval history is inconsistent.");
+            foreach(var segment in intervals.GroupBy(x=>new{x.Start,x.End}))
+                if(segment.Count()!=workers.Length||workers.Any(worker=>segment.Count(x=>x.WorkerId==worker)!=1))
+                    throw new ArgumentException("Mining team labor intervals do not match.");
             if(attempt.Status==MiningAttemptStatus.Working) {
-                var active=s.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id&&x.Start<=s.RuleClock&&x.End>s.RuleClock).ToArray();
-                var bookedRemaining=active.Length==1?new RuleQuantity(active[0].End.Numerator,active[0].End.Denominator)
+                var active=intervals.Where(x=>x.Start<=s.RuleClock&&x.End>s.RuleClock).ToArray();
+                var bookedRemaining=active.Length==workers.Length?new RuleQuantity(active[0].End.Numerator,active[0].End.Denominator)
                     -new RuleQuantity(s.RuleClock.Numerator,s.RuleClock.Denominator):default;
                 var workRemaining=new RuleQuantity(attempt.DurationSeconds)-new RuleQuantity(attempt.WorkDone.Numerator,attempt.WorkDone.Denominator);
-                if(active.Length!=1||active[0].WorkerId!=attempt.WorkerId||bookedRemaining!=workRemaining)
-                    throw new ArgumentException("Working mining job lacks its exact remaining interval.");
-            } else if(s.Work.WorkerIntervals.Any(x=>x.JobId==attempt.Id&&x.Start<=s.RuleClock&&x.End>s.RuleClock))
+                if(active.Length!=workers.Length||workers.Any(worker=>active.Count(x=>x.WorkerId==worker)!=1)
+                    ||active.Select(x=>x.End).Distinct().Count()!=1||bookedRemaining!=workRemaining)
+                    throw new ArgumentException("Working mining job lacks its exact synchronized team interval.");
+            } else if(intervals.Any(x=>x.Start<=s.RuleClock&&x.End>s.RuleClock))
                 throw new ArgumentException("Inactive mining job retains a live worker interval.");
-            var intervals=s.Work.WorkerIntervals.Where(x=>x.JobId==attempt.Id).OrderBy(x=>x.Start).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray();
-            if(intervals.Any(x=>x.WorkerId!=attempt.WorkerId)||intervals.Length>0&&intervals[0].Start<attempt.StartedAt
-                ||attempt.UpdatedAt>s.RuleClock)throw new ArgumentException("Mining worker interval history is inconsistent.");
             RuleTime credited=default;RuleTime? expectedCommit=null;
-            foreach(var interval in intervals) {
+            foreach(var interval in intervals.Where(x=>x.WorkerId==attempt.WorkerId)) {
                 if(interval.Start>=s.RuleClock)continue;
                 RuleTime end=interval.End<s.RuleClock?interval.End:s.RuleClock;
                 if(end<=interval.Start)continue;
