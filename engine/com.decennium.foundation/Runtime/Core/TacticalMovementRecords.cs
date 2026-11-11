@@ -149,11 +149,11 @@ namespace Decennium.Foundation
                 &&x.Origin==CharacterFeatureGrantOrigin.SelectedCard))return false;
             var created=EncounterHistory.AtRevision(s,offer.CreatedRevision);
             if(created==null||!EncounterHistory.MatchesTurn(created,offer.TurnOrdinal,offer.SoldierActorId)
-                ||offer.RoundOrdinal!=offer.TurnOrdinal/created.Order.Count
+                ||offer.RoundOrdinal!=created.RoundAt(offer.TurnOrdinal)-1
                 ||offer.TurnId!=created.Id+".turn."+offer.TurnOrdinal.ToString(CultureInfo.InvariantCulture))return false;
             long ownStart=0,nextOwnStart=long.MaxValue;
             for(int i=0;i<created.StartRevisions.Count;i++) {
-                int ordinal=created.ObservedOrdinals[i];if(created.Order[ordinal%created.Order.Count]!=offer.SoldierActorId)continue;
+                int ordinal=created.ObservedOrdinals[i];if(created.ActorAt(ordinal)!=offer.SoldierActorId)continue;
                 if(ordinal==offer.TurnOrdinal)ownStart=Math.Max(ownStart,created.StartRevisions[i]);
                 else if(ordinal>offer.TurnOrdinal)nextOwnStart=Math.Min(nextOwnStart,created.StartRevisions[i]);
             }

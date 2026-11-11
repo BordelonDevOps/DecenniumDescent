@@ -13,10 +13,17 @@ namespace Decennium.Foundation.Tests
         private const string LaterClub = TestOnlySharedWorldPolicy.LaterDefenderClubId;
 
         private static TestOnlySharedWorldPolicy LaterPolicy(uint? seed = null, ConditionCombatFixture conditions = null)
+            => MakeLaterPolicy(seed, conditions, Array.Empty<TacticalTerrainCell>());
+
+        private static TestOnlySharedWorldPolicy MakeLaterPolicy(uint? seed, ConditionCombatFixture conditions, TacticalTerrainCell[] terrain)
         {
-            if (!seed.HasValue) return AttemptPolicy(conditions: conditions).EnableLaterEncounter();
-            return new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: seed.Value),
-                new SupplyCacheFixture(), conditions: conditions)
+            if (!seed.HasValue && terrain.Length == 0) return AttemptPolicy(conditions: conditions).EnableLaterEncounter();
+            uint combatSeed = seed ?? 1;
+            if (!seed.HasValue) {
+                while (PlaytestDice.RollD20(combatSeed).Natural != 12) combatSeed++;
+            }
+            return new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: combatSeed),
+                new SupplyCacheFixture(), conditions: conditions, terrain: terrain)
                 .EnableMining(new SharedMiningFixture())
                 .EnableHavenAppraisal(new TestOnlyHavenAppraisalProfile())
                 .EnableHavenSale(new TestOnlyHavenSaleProfile())

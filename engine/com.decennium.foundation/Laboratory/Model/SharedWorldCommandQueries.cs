@@ -25,19 +25,24 @@ namespace Decennium.Foundation.Laboratory
             public CharterAttemptReadiness CharterDeparture;
         }
 
-        private string AssessWorldStep(Snapshot s, Command c, out WorldStepFacts facts)
+        private string AssessWorldStep(Snapshot s, Command c, out WorldStepFacts facts, bool reinforcementApproach = false)
         {
             facts = null;
-            if (c.Kind != CommandKind.BeginWorldStep || c.Inventory != null || (c.Target != "walk" && c.Target != "run")
-                || !WorldSpatialQueries.Neighbor(0, 0, c.X, c.Y, false)) return "InvalidWorldStep";
+            var definition = reinforcementApproach ? s.Reinforcement.Definition : null;
+            string mode = reinforcementApproach ? "walk" : c.Target;
+            int dx = reinforcementApproach ? definition.EntryX - definition.FromX : c.X;
+            int dy = reinforcementApproach ? definition.EntryY - definition.FromY : c.Y;
+            var expected = reinforcementApproach ? CommandKind.BeginReinforcementApproach : CommandKind.BeginWorldStep;
+            if (c.Kind != expected || c.Inventory != null || (mode != "walk" && mode != "run")
+                || !WorldSpatialQueries.Neighbor(0, 0, dx, dy, false)) return "InvalidWorldStep";
             if (s.RouteTravels.Any(x => x.Status == ExpeditionRouteTravelStatus.Moving && x.TravelerId == c.Actor))
                 return "RouteTravelMustPauseFirst";
             if (routeMotionFixture != null && s.RouteTravelSpatial.Any(x => !x.Detached && x.TravelerId != c.Actor))
                 return "RouteTravelerMustDetachBeforeOtherMovement";
             bool scheduled = WorldTiming.ForActor(s, c.Actor) != null;
             bool offCalendar = !scheduled && (c.Actor == TestOnlyPolicy.CompanionId || IsOffCalendarActivity(s, c.Actor));
-            if (!scheduled && (!offCalendar || s.InventoryCombat)) return "NoActivityCalendar";
-            if (!scheduled && c.Target == "run" && !IsOffCalendarActivity(s, c.Actor)) return "OffCalendarDashBudgetUnsupported";
+            if (!scheduled && (!offCalendar || s.InventoryCombat && !reinforcementApproach)) return "NoActivityCalendar";
+            if (!scheduled && mode == "run" && !IsOffCalendarActivity(s, c.Actor)) return "OffCalendarDashBudgetUnsupported";
             if (s.WorldTraversals.Any(x => x.ActorId == c.Actor)) return "TraversalAlreadyPending";
             if (s.WorldTraversals.Any(x => WorldTiming.ForActor(s, x.ActorId) != null))
                 return scheduled ? "ConcurrentHostileTraversalUnsupported" : "ConcurrentWorldTraversalUnsupported";
@@ -47,7 +52,7 @@ namespace Decennium.Foundation.Laboratory
 
             var actor = s.Actors.Single(x => x.Id == c.Actor);
             int toX, toY;
-            try { toX = checked(actor.X + c.X); toY = checked(actor.Y + c.Y); }
+            try { toX = checked(actor.X + dx); toY = checked(actor.Y + dy); }
             catch (OverflowException) { return "InvalidWorldStep"; }
             string pressurePathFailure=AssessExpeditionPressureMovement(s,c.Actor,actor.X,actor.Y,toX,toY,false);
             if(pressurePathFailure!=null)return pressurePathFailure;
@@ -93,7 +98,7 @@ namespace Decennium.Foundation.Laboratory
             if (startsEncounter && HasActiveHavenCare(s)) return "HavenCareCombatTransitionUnsupported";
             if (startsEncounter && connectedCombat == null) return "TacticalTransitionRequired";
             bool dashPaid = false;
-            if (c.Target == "run")
+            if (mode == "run")
             {
                 dashPaid = scheduled ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
                 if (scheduled)
@@ -111,14 +116,14 @@ namespace Decennium.Foundation.Laboratory
                 }
             }
             var edge = new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, toX, toY,
-                initialDistance, running: c.Target == "run");
+                initialDistance, running: mode == "run");
             long movementCost;
             try { movementCost = checked(CostPerFoot(s, edge) * 5); }
             catch (OverflowException) { return "InvalidWorldStep"; }
             bool hasActivityBudget = offCalendar && IsOffCalendarActivity(s, c.Actor);
             RuleQuantity available = scheduled ? Remaining(s, c.Actor)
                 : hasActivityBudget ? ActivityRemaining(s, c.Actor) : new RuleQuantity(long.MaxValue);
-            if (c.Target == "run") {
+            if (mode == "run") {
                 if (!dashPaid) {
                     var maximum = new RuleQuantity(Speed(s, c.Actor)).Scale(2);
                     var spent = scheduled ? Interval(s, c.Actor).MovementSpent : ActivityInterval(s, c.Actor).MovementSpent;
@@ -133,6 +138,15 @@ namespace Decennium.Foundation.Laboratory
                 DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
             return AssessLaterWorldStep(s, edge) ?? AssessCharterWorldStep(s, c, facts);
+        }
+
+        private static WorldTraversalRecord AddOrdinaryWorldTraversal(Snapshot state, Command command, WorldStepFacts facts, bool running)
+        {
+            var actor = state.Actors.Single(x => x.Id == command.Actor);
+            var edge = new WorldTraversalRecord(actor.Id, state.Revision + 1, actor.X, actor.Y, facts.ToX, facts.ToY,
+                facts.InitialDistance, running);
+            state.WorldTraversals = state.WorldTraversals.Append(edge).ToArray();
+            return edge;
         }
 
         private bool WorldStepWouldStartEncounter(Snapshot s, string actor, int fromX, int fromY, int toX, int toY)

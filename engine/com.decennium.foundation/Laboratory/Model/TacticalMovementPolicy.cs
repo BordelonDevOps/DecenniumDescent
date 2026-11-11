@@ -76,17 +76,37 @@ namespace Decennium.Foundation.Laboratory
         {
             if(move.Kind==TacticalMoveKind.TacticalReposition||move.Kind==TacticalMoveKind.CommandStep
                 ||move.Kind==TacticalMoveKind.DefensiveFormationShift)return false;
-            if(reactor==move.ActorId||SoldierTacticalFeatures.IsAlly(s,reactor,move.ActorId)
-                ||!ActorLifeRules.CanAct(s,reactor)||!TacticalActor(s,reactor).ReactionAvailable
-                ||ActiveStance(s,reactor)?.Kind==CombatStance.Focused)return false;
-            if(WithConditions(s)&&(!CurrentPermissions(s,reactor).Reaction||PhysicalAttackFailure(s,reactor)!=null||!CanSee(s,reactor,move.ActorId)))return false;
-            var moving=TacticalActor(s,move.ActorId);
-            if(moving.DisengageTurn==s.Encounter.TurnOrdinal||ActiveStance(s,move.ActorId)?.Kind==CombatStance.Mobile&&moving.MobileFeet<5)return false;
+            if (!CanReactToOrdinaryDeparture(s, reactor, move.ActorId)) return false;
             var body=s.Actors.Single(a=>a.Id==reactor);
             // This admitted fixture supplies hostility and sight for legal adjacent melee attacks.
             // Every reactor has a usable ordinary unarmed attack, even after dropping a Club.
             return Adjacent(body.X,body.Y,move.FromX,move.FromY)&&!Adjacent(body.X,body.Y,move.ToX,move.ToY);
         }
+        private static bool CanReactToOrdinaryDeparture(Snapshot state, string reactor, string traveler)
+        {
+            if (reactor == traveler || SoldierTacticalFeatures.IsAlly(state, reactor, traveler)
+                || !ActorLifeRules.CanAct(state, reactor) || !TacticalActor(state, reactor).ReactionAvailable
+                || ActiveStance(state, reactor)?.Kind == CombatStance.Focused) return false;
+            if (WithConditions(state) && (!CurrentPermissions(state, reactor).Reaction
+                || PhysicalAttackFailure(state, reactor) != null || !CanSee(state, reactor, traveler))) return false;
+            var moving = TacticalActor(state, traveler);
+            return moving.DisengageTurn != state.Encounter.TurnOrdinal
+                && (ActiveStance(state, traveler)?.Kind != CombatStance.Mobile || moving.MobileFeet >= 5);
+        }
+
+        internal static bool ReinforcementWouldTriggerOpportunity(Snapshot state, WorldTraversalRecord edge)
+        {
+            var point = WorldPositionResolver.Position(state, edge.ActorId);
+            bool WithinReach(RuleQuantity coordinate, int anchor)
+                => coordinate >= new RuleQuantity(Math.Max(0, anchor - 1)) && coordinate <= new RuleQuantity(anchor + 1);
+            return state.Encounter.Order.Any(reactor => {
+                var body = state.Actors.Single(x => x.Id == reactor);
+                return WithinReach(point.X, body.X) && WithinReach(point.Y, body.Y)
+                    && !Adjacent(body.X, body.Y, edge.ToX, edge.ToY)
+                    && CanReactToOrdinaryDeparture(state, reactor, edge.ActorId);
+            });
+        }
+
         private string BeginOrdinaryStep(Snapshot s,Command c)
         {
             var body=s.Actors.Single(a=>a.Id==c.Actor);string error=StepFailure(s,c.Actor,body.X,body.Y,c.X,c.Y,TacticalMoveKind.Ordinary);if(error!=null)return error;

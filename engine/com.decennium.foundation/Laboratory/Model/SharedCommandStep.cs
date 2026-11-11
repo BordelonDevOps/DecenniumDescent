@@ -34,7 +34,7 @@ namespace Decennium.Foundation.Laboratory
             long start=0,nextStart=long.MaxValue;
             for(int i=0;i<encounter.StartRevisions.Count;i++) {
                 int ordinal=encounter.ObservedOrdinals[i];
-                if(encounter.Order[ordinal%encounter.Order.Count]!=actor)continue;
+                if(encounter.ActorAt(ordinal)!=actor)continue;
                 if(ordinal==turnOrdinal)start=Math.Max(start,encounter.StartRevisions[i]);
                 else if(ordinal>turnOrdinal)nextStart=Math.Min(nextStart,encounter.StartRevisions[i]);
             }
@@ -64,7 +64,7 @@ namespace Decennium.Foundation.Laboratory
             var source=s.Actors.Single(a=>a.Id==c.Actor);var ally=s.Actors.Single(a=>a.Id==c.Target);
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(source.X,source.Y),new CombatCell(ally.X,ally.Y))!=5)
                 return "CommandStepAllyMustBeAdjacent";
-            int round=s.Encounter.TurnOrdinal/s.Encounter.Order.Count;
+            int round=checked((int)(s.Encounter.Round - 1));
             if(s.CommandStepOffers.Any(x=>x.SoldierActorId==c.Actor&&x.RoundOrdinal==round&&x.Status==CommandStepOfferStatus.Accepted))
                 return "CommandStepAlreadyUsedThisRound";
             if(s.CommandStepOffers.Length>=128)return "CommandStepHistoryCapacityReached";

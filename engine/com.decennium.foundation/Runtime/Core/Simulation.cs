@@ -43,7 +43,8 @@ namespace Decennium.Foundation
         StartExpeditionBill, PauseExpeditionBill, ResumeExpeditionBill, FinalizeExpeditionBill, CancelExpeditionBill, CloseExpeditionEpisode,
         StartNextCharterPlan, PauseNextCharterPlan, ResumeNextCharterPlan, FinalizeNextCharterPlan, CancelNextCharterPlan, InspectNextCharterPlan,
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
-        StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt }
+        StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
+        BeginReinforcementApproach, CancelReinforcementApproach }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -154,6 +155,7 @@ namespace Decennium.Foundation
         public const int NextCharterAgreementSchema = 84;
         public const int CharterAttemptSchema = 85;
         public const int LaterEncounterSchema = 86;
+        public const int ReinforcementSchema = 87;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -286,6 +288,7 @@ namespace Decennium.Foundation
         public NextCharterAgreementRecord NextCharterAgreement;
         public CharterAttemptRecord CharterAttempt;
         public LaterEncounterRecord LaterEncounter;
+        public ReinforcementRecord Reinforcement;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -400,6 +403,7 @@ namespace Decennium.Foundation
             NextCharterAgreement = NextCharterAgreement,
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
+            Reinforcement = Reinforcement,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -837,7 +841,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.ExpeditionEpisodeCloseSchema || s.SchemaVersion == Foundation.Snapshot.NextCharterPlanSchema
                 || s.SchemaVersion == Foundation.Snapshot.NextCharterAgreementSchema
                 || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema
-                || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema
+                || s.SchemaVersion == Foundation.Snapshot.ReinforcementSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -945,6 +950,7 @@ namespace Decennium.Foundation
             NextCharterAgreementValidation.Validate(s);
             CharterAttemptValidation.Validate(s);
             LaterEncounterValidation.Validate(s);
+            ReinforcementValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1076,6 +1082,11 @@ namespace Decennium.Foundation
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
                 return "NotAuthorized";
             string requestedMiningAssistant=command.MiningSelection?.AssistantId??"";
+            if (state.Reinforcement != null && authority.Principal != state.Reinforcement.Definition.ControllerId
+                && (ReinforcementValidation.IsInstruction(command.Kind) || state.InventoryCombat
+                    && (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)
+                    && state.WorldTraversals.Any(edge => edge.ActorId == command.Actor && state.Reinforcement.OwnsApproach(edge))))
+                return "ReinforcementControllerUnauthorized";
             if(requestedMiningAssistant!=""&&!authority.Controls(requestedMiningAssistant))return "NotAuthorized";
             if(command.Kind==CommandKind.ResumeMining) {
                 var miningAttempt=state.MiningAttempts.FirstOrDefault(x=>x.Id==command.Target&&x.WorkerId==command.Actor);

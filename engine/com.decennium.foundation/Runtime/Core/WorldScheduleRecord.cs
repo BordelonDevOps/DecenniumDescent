@@ -124,10 +124,7 @@ namespace Decennium.Foundation
                 || schedule.Order.Any(x => !s.Actors.Any(a => a.Id == x))
                 || !WorldTiming.IntervalActors(s).OrderBy(x => x, StringComparer.Ordinal)
                     .SequenceEqual(s.WorldIntervals.Select(x => x.ActorId).OrderBy(x => x, StringComparer.Ordinal))
-                || s.WorldIntervals.Any(x => {
-                    var owner = WorldTiming.ForActor(s, x.ActorId);
-                    return x.LastStart != owner.LatestStart(x.ActorId, owner.ProcessedSlot);
-                })
+                || s.WorldIntervals.Any(x => x.LastStart != WorldTiming.LatestActorStart(s, x.ActorId))
                 || s.WorldTraversals.Select(x => x.ActorId).Distinct(StringComparer.Ordinal).Count() != s.WorldTraversals.Length)
                 throw new ArgumentException("World calendar or interval mismatch.");
             foreach (var edge in s.WorldTraversals) {
@@ -136,6 +133,7 @@ namespace Decennium.Foundation
                 // expedition member moving during noncombat exploration. The latter shares the
                 // same actor position and clock, but never receives an initiative interval.
                 if (actor == null || WorldTiming.ForActor(s, edge.ActorId) == null && s.InventoryCombat
+                    && s.Reinforcement?.OwnsApproach(edge) != true
                     || edge.StartedRevision > s.Revision || actor.X != edge.FromX || actor.Y != edge.FromY)
                     throw new ArgumentException("Invalid traversal reference.");
             }

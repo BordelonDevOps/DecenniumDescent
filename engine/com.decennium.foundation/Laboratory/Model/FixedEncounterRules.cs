@@ -13,8 +13,7 @@ namespace Decennium.Foundation.Laboratory
         public static RuleTime Start(FixedEncounterRecord e,int ordinal)
         {
             if(e==null||ordinal<0)throw new ArgumentException("Invalid regular-turn ordinal.");
-            return RuleTime.FromFraction((BigInteger)e.Origin.Numerator*e.Order.Count+(BigInteger)6*ordinal*e.Origin.Denominator,
-                (BigInteger)e.Origin.Denominator*e.Order.Count);
+            return e.StartAt(ordinal);
         }
         internal static int TurnForRevision(FixedEncounterRecord e,long revision)
         {
@@ -27,7 +26,7 @@ namespace Decennium.Foundation.Laboratory
             long revision=VesselHandling.CreationRevision(job);if(revision>s.Revision)return false;
             var e=EncounterHistory.AtRevision(s,revision);if(e==null)return false;
             int ordinal=TurnForRevision(e,revision);
-            return start==end&&start==Start(e,ordinal)&&actor==e.Order[ordinal%e.Order.Count];
+            return start==end&&start==Start(e,ordinal)&&actor==e.ActorAt(ordinal);
         }
         internal static int Interactions(Snapshot s,int ordinal)=>s.Handling.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)
             +s.VesselMoves.Count(h=>h.Tactical&&EncounterHistory.InCurrent(s,VesselHandling.CreationRevision(h.Id))&&TurnForRevision(s.Encounter,VesselHandling.CreationRevision(h.Id))==ordinal)

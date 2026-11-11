@@ -170,6 +170,8 @@ namespace Decennium.Foundation
     {
         public static WorldScheduleRecord ForActor(Snapshot state, string actor)
         {
+            var phase = state.Reinforcement?.Admission?.Phase;
+            if (phase != null && phase.Epoch.Order.Contains(actor)) return phase.Epoch;
             var later = state.LaterEncounter?.Entry?.Epoch;
             if (later != null && later.Order.Contains(actor)) return later;
             var earlier = state.WorldSchedule;
@@ -180,11 +182,32 @@ namespace Decennium.Foundation
         {
             if (state.WorldSchedule?.Id == id) return state.WorldSchedule;
             var later = state.LaterEncounter?.Entry?.Epoch;
-            return later?.Id == id ? later : null;
+            if (later?.Id == id) return later;
+            var phase = state.Reinforcement?.Admission?.Phase;
+            return phase?.Epoch.Id == id ? phase.Epoch : null;
         }
 
-        public static WorldScheduleRecord ForEncounter(Snapshot state) =>
-            IsLaterActive(state) ? state.LaterEncounter.Entry.Epoch : state.WorldSchedule;
+        public static WorldScheduleRecord ForEncounter(Snapshot state)
+            => IsLaterActive(state) ? state.Reinforcement?.Admission?.Phase.Epoch ?? state.LaterEncounter.Entry.Epoch
+                : state.WorldSchedule;
+
+        public static int EncounterOrdinal(Snapshot state)
+        {
+            var owner = ForEncounter(state);
+            var phase = state.Reinforcement?.Admission?.Phase;
+            return owner.Id == phase?.Epoch.Id ? phase.GlobalTurn(owner.ProcessedSlot) : checked((int)owner.ProcessedSlot);
+        }
+
+        public static long LatestActorStart(Snapshot state, string actor)
+        {
+            var owner = ForActor(state, actor);
+            if (owner == null) return -1;
+            long local = owner.LatestStart(actor, owner.ProcessedSlot);
+            var admission = state.Reinforcement?.Admission;
+            if (owner.Id != admission?.Phase.Epoch.Id) return local;
+            return local < 0 ? admission.Carried.Single(x => x.Interval.ActorId == actor).Interval.LastStart
+                : admission.Phase.GlobalTurn(local);
+        }
 
         public static bool IsLaterActive(Snapshot state) => state.LaterEncounter?.Entry != null
             && state.Encounter?.Id == state.LaterEncounter.Definition.EncounterId;
@@ -193,7 +216,9 @@ namespace Decennium.Foundation
         {
             if (state.WorldSchedule == null) return Array.Empty<string>();
             var later = state.LaterEncounter?.Entry?.Epoch;
-            return later == null ? state.WorldSchedule.Order : state.WorldSchedule.Order.Union(later.Order, StringComparer.Ordinal);
+            if (later == null) return state.WorldSchedule.Order;
+            return state.WorldSchedule.Order.Union(state.Reinforcement?.Admission?.Phase.Epoch.Order ?? later.Order,
+                StringComparer.Ordinal);
         }
     }
 
@@ -202,7 +227,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var later = state.LaterEncounter;
-            if (state.SchemaVersion != Snapshot.LaterEncounterSchema) {
+            if (state.SchemaVersion < Snapshot.LaterEncounterSchema) {
                 if (later != null) throw new ArgumentException("Later encounter requires schema 86.");
                 return;
             }
@@ -243,8 +268,8 @@ namespace Decennium.Foundation
             var encounter = live ?? closed?.Encounter;
             if (encounter == null || encounter.Id != definition.EncounterId || encounter.Origin != entry.Epoch.Origin
                 || encounter.StartRevisions[0] != entry.ArrivalRevision || encounter.ObservedOrdinals[0] != 0
-                || !encounter.Order.SequenceEqual(entry.Epoch.Order)
-                || (state.InventoryCombat ? closed != null || live == null || live.TurnOrdinal != entry.Epoch.ProcessedSlot
+                || !encounter.InitialOrder.SequenceEqual(entry.Epoch.Order)
+                || (state.InventoryCombat ? closed != null || live == null || live.TurnOrdinal != WorldTiming.EncounterOrdinal(state)
                     : closed == null || live != null))
                 throw new ArgumentException("Invalid later encounter history.");
         }

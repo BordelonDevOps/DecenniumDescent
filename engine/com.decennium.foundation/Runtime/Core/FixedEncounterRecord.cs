@@ -1,28 +1,70 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Decennium.Foundation
 {
+    public sealed class EncounterRosterPhase
+    {
+        public WorldScheduleRecord Epoch { get; }
+        public int FirstTurn { get; }
+        public long FirstRound { get; }
+
+        public EncounterRosterPhase(WorldScheduleRecord epoch, int firstTurn, long firstRound)
+        {
+            if (epoch == null || firstTurn < 1 || firstRound < 2)
+                throw new ArgumentException("Invalid prospective encounter roster phase.");
+            Epoch = epoch;
+            FirstTurn = firstTurn;
+            FirstRound = firstRound;
+        }
+
+        public int GlobalTurn(long localTurn) => checked(FirstTurn + (int)localTurn);
+        public bool Owns(int globalTurn) => globalTurn >= FirstTurn;
+        public RuleTime Start(int globalTurn) => Epoch.Start(checked(globalTurn - FirstTurn));
+        public long Round(int globalTurn) => checked(FirstRound + (globalTurn - FirstTurn) / Epoch.Order.Count);
+        public string Actor(int globalTurn) => Epoch.Order[(globalTurn - FirstTurn) % Epoch.Order.Count];
+    }
+
     /// <summary>Completed boundary transactions only. A start revision identifies one regular turn;
     /// earlier starts are retained so historical actions never bind to the current cursor.</summary>
     public sealed class FixedEncounterRecord
     {
         public string Id { get; }
         public RuleTime Origin { get; }
-        public IReadOnlyList<string> Order { get; }
+        public IReadOnlyList<string> InitialOrder { get; }
+        public EncounterRosterPhase RosterPhase { get; }
+        public IReadOnlyList<string> Order => OrderAt(TurnOrdinal);
         public IReadOnlyList<long> StartRevisions { get; }
         // Schema14 can record sparse cursor observations against an established calendar. These
         // revisions are actual commands, not claims that every earlier Start was a new command.
         public IReadOnlyList<int> ObservedOrdinals { get; }
         public bool Sparse=>ObservedOrdinals.Where((n,i)=>n!=i).Any();
         public int TurnOrdinal=>ObservedOrdinals[ObservedOrdinals.Count-1];
-        public long Round=>(long)TurnOrdinal/Order.Count+1;
-        public string CurrentActor=>Order[TurnOrdinal%Order.Count];
+        public long Round => RoundAt(TurnOrdinal);
+        public string CurrentActor => ActorAt(TurnOrdinal);
+        public IReadOnlyList<string> OrderAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Epoch.Order : InitialOrder;
+        public long RoundAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Round(ordinal) : (long)ordinal / InitialOrder.Count + 1;
+        public string ActorAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Actor(ordinal) : InitialOrder[ordinal % InitialOrder.Count];
+
+        private RuleTime InitialStart(int ordinal)
+            => RuleTime.FromFraction((BigInteger)Origin.Numerator * InitialOrder.Count + (BigInteger)6 * ordinal * Origin.Denominator,
+                (BigInteger)Origin.Denominator * InitialOrder.Count);
+
+        public RuleTime StartAt(int ordinal) => RosterPhase?.Owns(ordinal) == true ? RosterPhase.Start(ordinal) : InitialStart(ordinal);
+        public RuleTime NextOwnStart(int originatingTurn)
+        {
+            int next = checked(originatingTurn + OrderAt(originatingTurn).Count);
+            return RosterPhase?.Owns(originatingTurn) == true ? RosterPhase.Start(next) : InitialStart(next);
+        }
         public string CurrentTurnId=>Id+".turn."+TurnOrdinal.ToString(System.Globalization.CultureInfo.InvariantCulture);
         public FixedEncounterRecord(string id,RuleTime origin,IEnumerable<string> order,IEnumerable<long> starts)
             :this(id,origin,order,starts,null) { }
         public FixedEncounterRecord(string id,RuleTime origin,IEnumerable<string> order,IEnumerable<long> starts,IEnumerable<int> observedOrdinals)
+            : this(id, origin, order, starts, observedOrdinals, null) { }
+        public FixedEncounterRecord(string id, RuleTime origin, IEnumerable<string> order, IEnumerable<long> starts,
+            IEnumerable<int> observedOrdinals, EncounterRosterPhase rosterPhase)
         {
             if(!Validation.ValidId(id)||order==null||starts==null)throw new ArgumentException("Invalid encounter header.");
             var ids=order.ToArray();var revisions=starts.ToArray();
@@ -32,8 +74,25 @@ namespace Decennium.Foundation
                 ||revisions.Where((x,i)=>i>0&&x<=revisions[i-1]).Any()||ordinals.Length!=revisions.Length||ordinals.Any(x=>x<0)
                 ||ordinals.Where((x,i)=>i>0&&x<=ordinals[i-1]).Any())throw new ArgumentException("Invalid fixed roster or regular-start history.");
             if(!Validation.ValidId(id+".turn."+Math.Max(127,ordinals.Last()).ToString(System.Globalization.CultureInfo.InvariantCulture)))throw new ArgumentException("Encounter turn identity exceeds bounds.");
-            Id=id;Origin=origin;Order=Array.AsReadOnly(ids);StartRevisions=Array.AsReadOnly(revisions);ObservedOrdinals=Array.AsReadOnly(ordinals);
+            Id=id;Origin=origin;InitialOrder=Array.AsReadOnly(ids);StartRevisions=Array.AsReadOnly(revisions);ObservedOrdinals=Array.AsReadOnly(ordinals);
+            // The admission owns the live calendar cursor. Encounter history needs only the phase definition.
+            RosterPhase = rosterPhase?.Epoch.ProcessedSlot > 0
+                ? new EncounterRosterPhase(rosterPhase.Epoch.At(0), rosterPhase.FirstTurn, rosterPhase.FirstRound) : rosterPhase;
+            if (rosterPhase != null && (rosterPhase.FirstTurn % InitialOrder.Count != 0
+                || rosterPhase.FirstRound != rosterPhase.FirstTurn / InitialOrder.Count + 1L
+                || !ordinals.Contains(rosterPhase.FirstTurn - 1) || !ordinals.Contains(rosterPhase.FirstTurn)
+                || rosterPhase.Epoch.Origin != InitialStart(rosterPhase.FirstTurn)
+                || !rosterPhase.Epoch.Order.Where(InitialOrder.Contains).SequenceEqual(InitialOrder)
+                || rosterPhase.Epoch.Order.Count != InitialOrder.Count + 1))
+                throw new ArgumentException("Invalid end-round roster transition.");
         }
+
+        public FixedEncounterRecord Observe(long revision, int ordinal, EncounterRosterPhase phase = null)
+            => new FixedEncounterRecord(Id, Origin, InitialOrder, StartRevisions.Append(revision),
+                ObservedOrdinals.Append(ordinal), phase ?? RosterPhase);
+
+        public FixedEncounterRecord BindRosterPhase(EncounterRosterPhase phase)
+            => new FixedEncounterRecord(Id, Origin, InitialOrder, StartRevisions, ObservedOrdinals, phase);
     }
     public sealed class EncounterDashRecord
     {
@@ -52,6 +111,8 @@ namespace Decennium.Foundation
                 if(s.Encounter!=null||s.EncounterDashes.Length!=0)throw new ArgumentException("Fixed encounter requires schema7.");return;
             }
             var e=s.Encounter;
+            if (s.SchemaVersion < Snapshot.ReinforcementSchema && EncounterHistory.All(s).Any(x => x.RosterPhase != null))
+                throw new ArgumentException("Encounter roster phase requires schema 87.");
             if(s.SchemaVersion<Snapshot.CalendarCombatSchema&&EncounterHistory.All(s).Any(x=>x.Sparse))throw new ArgumentException("Sparse encounter cursor requires schema14.");
             bool world=s.SchemaVersion>=Snapshot.CalendarCombatSchema&&s.WorldSchedule!=null;
             if((world?s.InventoryCombat&&e==null:(e!=null)!=s.InventoryCombat)||s.SchemaVersion<Snapshot.SharedWorldSchema&&e==null&&s.EncounterDashes.Length!=0)throw new ArgumentException("Invalid encounter presence.");

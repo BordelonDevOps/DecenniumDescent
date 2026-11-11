@@ -110,16 +110,20 @@ namespace Decennium.Foundation.Laboratory
 
         private static LaterInitiativeDraw[] RollLaterInitiative(Snapshot state, LaterEncounterDefinition definition)
         {
-            return new[] { definition.HeroId, definition.DefenderId }.OrderBy(x => x, StringComparer.Ordinal).Select(actor => {
-                var character = CharacterStateFacts.ForActor(state, actor);
-                int dexterity = character.Rules.AbilityModifier(CharacterAbility.Dexterity);
-                int legalModifier = character.InjuryPenalty(CharacterAbility.Dexterity, initiative: true);
-                uint before = state.RandomState;
-                var roll = PlaytestDice.RollD20(before);
-                state.RandomState = roll.NextRandomState;
-                return new LaterInitiativeDraw(actor, roll.Natural, dexterity, legalModifier, before,
-                    roll.NextRandomState, checked((int)roll.WordsConsumed));
-            }).ToArray();
+            return new[] { definition.HeroId, definition.DefenderId }.OrderBy(x => x, StringComparer.Ordinal)
+                .Select(actor => RollWorldInitiative(state, actor)).ToArray();
+        }
+
+        private static LaterInitiativeDraw RollWorldInitiative(Snapshot state, string actor)
+        {
+            var character = CharacterStateFacts.ForActor(state, actor);
+            int dexterity = character.Rules.AbilityModifier(CharacterAbility.Dexterity);
+            int legalModifier = character.InjuryPenalty(CharacterAbility.Dexterity, initiative: true);
+            uint before = state.RandomState;
+            var roll = PlaytestDice.RollD20(before);
+            state.RandomState = roll.NextRandomState;
+            return new LaterInitiativeDraw(actor, roll.Natural, dexterity, legalModifier, before,
+                roll.NextRandomState, checked((int)roll.WordsConsumed));
         }
 
         private static void RecordActualCombatExit(Snapshot state, FixedEncounterRecord outgoing, Command command)
@@ -205,15 +209,16 @@ namespace Decennium.Foundation.Laboratory
                 ? new ActorMovementRecord(actor, x.BaseWalkingSpeed, start) : x).ToArray();
         }
 
-        private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal)
+        private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null)
         {
             string actor = epoch.Order[(int)(ordinal % epoch.Order.Count)];
-            var interval = new WorldIntervalRecord(actor, ordinal);
+            int turn = globalTurn ?? checked((int)ordinal);
+            var interval = new WorldIntervalRecord(actor, turn);
             SetInterval(state, interval);
             BindLaterIntervalBodies(state, actor, interval, preserveTurnState: false);
-            CharacterAdvancementRules.RegularStart(state, actor, checked((int)ordinal));
+            CharacterAdvancementRules.RegularStart(state, actor, turn);
             if (epoch.Start(ordinal) == state.RuleClock)
-                SaveWorldLifeMarker(state, actor, epoch.Id, epoch.Origin, ordinal, checked((int)ordinal));
+                SaveWorldLifeMarker(state, actor, epoch.Id, epoch.Origin, ordinal, turn);
         }
 
         private static void RefreshLaterEpoch(Snapshot state)
@@ -226,6 +231,7 @@ namespace Decennium.Foundation.Laboratory
             if (slot == epoch.ProcessedSlot) return;
             state.LaterEncounter = later.WithEntry(entry.At(slot));
             foreach (string actor in epoch.Order.OrderBy(x => epoch.LatestStart(x, slot))) {
+                if (WorldTiming.ForActor(state, actor).Id != epoch.Id) continue;
                 long start = epoch.LatestStart(actor, slot);
                 if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start);
             }

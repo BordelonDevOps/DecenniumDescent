@@ -204,12 +204,12 @@ namespace Decennium.Foundation.Laboratory
                 if(HasStance(s))return "StanceAlreadySelected";
                 if((CombatStance)c.Combat.Stance==CombatStance.Carrying)return "NoApplicableCargoPenalty";
                 if(s.Stances.Length==128)return "StanceHistoryCapacityReached";
-                s.Stances=s.Stances.Concat(new[]{new StanceSelectionRecord(c.Actor,s.Revision+1,e.TurnOrdinal,(CombatStance)c.Combat.Stance,FixedEncounterRules.Start(e,e.TurnOrdinal+e.Order.Count))}).ToArray();return null;
+                s.Stances=s.Stances.Concat(new[]{new StanceSelectionRecord(c.Actor,s.Revision+1,e.TurnOrdinal,(CombatStance)c.Combat.Stance,e.NextOwnStart(e.TurnOrdinal))}).ToArray();return null;
             }
             if(c.Kind==CommandKind.Dodge) {
                 string failure=AssessDodgeAction(s,c);if(failure!=null)return failure;
                 s.Dodges=s.Dodges.Concat(new[]{new DodgeRecord(c.Actor,s.Revision+1,e.TurnOrdinal,
-                    FixedEncounterRules.Start(e,e.TurnOrdinal+e.Order.Count))}).ToArray();return null;
+                    e.NextOwnStart(e.TurnOrdinal))}).ToArray();return null;
             }
             if(c.Kind==CommandKind.TacticalStep) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
@@ -287,7 +287,7 @@ namespace Decennium.Foundation.Laboratory
                 if(pending&&s.Receipts.Length>=511)return "ContinuationCapacityReached";
                 if(!pending)ApplyLife(s,target,result.Outcome.State);
                 if(request.PressInstruction==PressHitInstruction.ArmOrReplace&&(s.SchemaVersion<Snapshot.TacticalMovementSchema||s.Encounter.CurrentActor==c.Actor&&!TacticalActor(s,c.Actor).PressConsumed)) {
-                    var press=new PressRecord(c.Actor,c.Target,s.Revision+1,FixedEncounterRules.Start(s.Encounter,s.Encounter.TurnOrdinal+s.Encounter.Order.Count));
+                    var press=new PressRecord(c.Actor,c.Target,s.Revision+1,s.Encounter.NextOwnStart(s.Encounter.TurnOrdinal));
                     s.Presses=s.Presses.Where(p=>p.ActorId!=c.Actor).Concat(new[]{press}).ToArray();
                 }
             } else damage=new CombatDamageRoll(Array.Empty<int>(),0,0,next,next,0,0,0,0);

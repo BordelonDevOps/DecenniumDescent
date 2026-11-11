@@ -23,7 +23,7 @@ namespace Decennium.Foundation
         internal static void WriteRecord(BinaryWriter w,FixedEncounterRecord e,bool calendar=false)
         {
             Text(w,e.Id);w.Write(e.Origin.Numerator);w.Write(e.Origin.Denominator);
-            w.Write(e.Order.Count);foreach(string id in e.Order)Text(w,id);
+            w.Write(e.InitialOrder.Count);foreach(string id in e.InitialOrder)Text(w,id);
             w.Write(e.StartRevisions.Count);foreach(long revision in e.StartRevisions)w.Write(revision);
             if(calendar)foreach(int ordinal in e.ObservedOrdinals)w.Write(ordinal);
         }

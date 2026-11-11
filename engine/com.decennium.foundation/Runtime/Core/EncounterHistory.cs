@@ -32,17 +32,15 @@ namespace Decennium.Foundation
         }
         public static bool InCurrent(Snapshot s, long revision) => s.Encounter != null && AtRevision(s, revision)?.Id == s.Encounter.Id;
         public static bool MatchesTurn(FixedEncounterRecord e, int ordinal, string actor) => e != null && ordinal >= 0
-            && e.ObservedOrdinals.Contains(ordinal) && e.Order[ordinal % e.Order.Count] == actor;
+            && e.ObservedOrdinals.Contains(ordinal) && e.ActorAt(ordinal) == actor;
         public static int LatestStartOrdinal(Snapshot s, string actor)
         {
-            if (s.SchemaVersion >= Snapshot.CalendarCombatSchema && s.WorldSchedule != null) {
-                var owner = WorldTiming.ForActor(s, actor);
-                return owner == null ? -1 : checked((int)owner.LatestStart(actor, owner.ProcessedSlot));
-            }
+            if (s.SchemaVersion >= Snapshot.CalendarCombatSchema && s.WorldSchedule != null)
+                return checked((int)WorldTiming.LatestActorStart(s, actor));
             long revision = 0; int ordinal = -1;
             foreach (var e in All(s))
                 for (int i = 0; i < e.StartRevisions.Count; i++)
-                    if (e.Order[e.ObservedOrdinals[i] % e.Order.Count] == actor && e.StartRevisions[i] > revision) { revision = e.StartRevisions[i]; ordinal = e.ObservedOrdinals[i]; }
+                    if (e.ActorAt(e.ObservedOrdinals[i]) == actor && e.StartRevisions[i] > revision) { revision = e.StartRevisions[i]; ordinal = e.ObservedOrdinals[i]; }
             return ordinal;
         }
         public static void Validate(Snapshot s)

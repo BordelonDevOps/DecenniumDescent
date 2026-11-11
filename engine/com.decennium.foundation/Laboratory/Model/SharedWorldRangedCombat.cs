@@ -124,6 +124,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.InterruptMoraleRest&&moraleRestProfile!=null
             ||kind==CommandKind.BeginHavenCare&&havenCareProfile!=null
             ||kind==CommandKind.InterruptHavenCare&&havenCareProfile!=null
+            ||reinforcementDefinition!=null&&ReinforcementValidation.IsInstruction(kind)
             ||kind==CommandKind.AdvanceClock&&(strainRecoveryProfile!=null||laterEncounterDefinition!=null)
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
@@ -143,6 +144,7 @@ namespace Decennium.Foundation.Laboratory
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
+            options.AddRange(DiscoverReinforcementCommands(s, authority, actor));
             if(PendingDefensiveFormationShift(s)!=null) {
                 options.AddRange(DiscoverDefensiveFormationCommands(s,actor));return options;
             }
@@ -325,6 +327,11 @@ namespace Decennium.Foundation.Laboratory
             }
             string mealServingFailure=HavenMealServingCommandFailure(s,c);
             if(mealServingFailure!=null)return new CommandQueryResult(true,false,mealServingFailure,s.Revision);
+            if (reinforcementDefinition != null && (ReinforcementValidation.IsInstruction(c.Kind) || IsReinforcementControl(s, c))) {
+                string reinforcementFailure = ReinforcementValidation.IsInstruction(c.Kind) ? AssessReinforcementInstruction(s, c, out _)
+                    : AssessReinforcementControl(s, c, out _);
+                return new CommandQueryResult(true, reinforcementFailure == null, reinforcementFailure ?? "Available", s.Revision);
+            }
             if (c.Kind == CommandKind.AdvanceClock && laterEncounterDefinition != null) {
                 string clockFailure = AssessLaterClockQuery(s, c);
                 return new CommandQueryResult(true, clockFailure == null, clockFailure ?? "Available", s.Revision);

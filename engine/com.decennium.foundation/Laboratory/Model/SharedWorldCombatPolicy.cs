@@ -238,8 +238,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var e=s.Encounter;if(e==null)return;
             if (completingExit && WorldTiming.IsLaterActive(s) && ResolvedConflict(s) && !PendingCalendarChoice(s)) return;
-            int slot=checked((int)WorldTiming.ForEncounter(s).ProcessedSlot);
-            if(slot!=e.TurnOrdinal)s.Encounter=new FixedEncounterRecord(e.Id,e.Origin,e.Order,e.StartRevisions.Concat(new[]{s.Revision+1}),e.ObservedOrdinals.Concat(new[]{slot}));
+            int slot=WorldTiming.EncounterOrdinal(s);
+            if(slot!=e.TurnOrdinal)s.Encounter=e.Observe(s.Revision+1,slot);
             if(s.InventoryCombat)s.InventoryTurnActor=s.Encounter.CurrentActor;
         }
         private static void PauseParticipantWork(Snapshot s,string actor)
@@ -372,6 +372,13 @@ namespace Decennium.Foundation.Laboratory
             }
             if(c.Kind==CommandKind.DispatchConditionEvent) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
+                var approach = ReinforcementEdge(s);
+                if (approach?.ActorId == c.Actor && approach.DistanceFeet != default) {
+                    var application = conditions?.Events.SingleOrDefault(x => x.Operation.Id == c.Target
+                        && x.Target == c.Actor)?.Operation.Application;
+                    if (application?.Kind == "Unconscious" || application?.Kind == "Prone")
+                        return "OffGridPhysicalConsequenceUnsupported";
+                }
                 string error=bodies.Resolve(s,c);if(error==null){PauseIncompatibleWork(s);NormalizePendingOverwatchOffers(s);}return error;
             }
             if(c.Kind==CommandKind.EndRegularTurn||c.Kind==CommandKind.EndFixedEncounter) {
@@ -398,7 +405,9 @@ namespace Decennium.Foundation.Laboratory
             }
             if(!s.Encounter.Order.Contains(c.Actor))return "ActorOutsideEncounter";
             if(c.Kind==CommandKind.SelectCombatStance&&c.Combat?.Stance==(int)CombatStance.Mobile)return "SharedMobileDistanceNotImplemented";
-            if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed)&&!s.Encounter.Order.Contains(c.Target))return "TargetOutsideEncounter";
+            if ((c.Kind == CommandKind.AttackClub || c.Kind == CommandKind.AttackUnarmed) && !s.Encounter.Order.Contains(c.Target))
+                return s.Reinforcement?.Pending == true && c.Target == s.Reinforcement.Definition.CompanionId
+                    ? "ReinforcementPreAdmissionCombatUnsupported" : "TargetOutsideEncounter";
             if(c.Kind==CommandKind.EncounterDash) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 if(c.Inventory!=null||c.Combat!=null||c.X!=0||c.Y!=0||c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
@@ -409,6 +418,9 @@ namespace Decennium.Foundation.Laboratory
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 return CharacterAdvancementRules.ActivateTacticalReposition(s,c);
             }
+            if (s.Reinforcement?.Pending == true && ReinforcementEdge(s) != null
+                && (c.Kind == CommandKind.Ready || c.Kind == CommandKind.DesignateOverwatch))
+                return "ReinforcementApproachTriggerUnsupported";
             if(c.Kind==CommandKind.DesignateOverwatch) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 return ResolveOverwatchDesignation(s,c);

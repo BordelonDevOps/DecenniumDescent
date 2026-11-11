@@ -150,7 +150,7 @@ namespace Decennium.Foundation
                 var encounter=EncounterHistory.AtRevision(s,action.PreparedRevision);
                 if(encounter==null||!EncounterHistory.MatchesTurn(encounter,action.PreparedTurnOrdinal,action.ActorId)
                     ||!encounter.Order.SequenceEqual(s.WorldSchedule.Order)||encounter.Origin!=s.WorldSchedule.Origin
-                    ||action.ExpiresAfterTurnOrdinal!=checked(action.PreparedTurnOrdinal+encounter.Order.Count)
+                    ||action.ExpiresAfterTurnOrdinal!=checked(action.PreparedTurnOrdinal+encounter.OrderAt(action.PreparedTurnOrdinal).Count)
                     ||action.ExpiresAt!=s.WorldSchedule.Start(action.ExpiresAfterTurnOrdinal))
                     throw new ArgumentException("Ready Action preparation is not anchored to the next own turn.");
                 var preparation=ReceiptCommand(action.PreparedRevision,action.PreparationCommandId);

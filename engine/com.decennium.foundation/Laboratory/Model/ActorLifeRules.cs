@@ -56,7 +56,7 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static void RegularStart(Snapshot s,int ordinal)
         {
-            SaveAtMarker(s,s.Encounter.Order[ordinal%s.Encounter.Order.Count],ordinal,(long)ordinal+1);
+            SaveAtMarker(s,s.Encounter.ActorAt(ordinal),ordinal,(long)ordinal+1);
         }
         internal static void SaveAtMarker(Snapshot s,string actor,int ordinal,long marker)
         {

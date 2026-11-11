@@ -32,6 +32,7 @@ namespace Decennium.Foundation.Laboratory
             if (error == null && ObservationRules.Enabled(s))
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
             if (error == null) ReconcileCharterAttempt(s, c);
+            if (error == null) ReconcileReinforcement(s, c);
             return error;
         }
 

@@ -126,7 +126,7 @@ namespace Decennium.Foundation
                 for (int i = 0; i < saves.Length; i++) {
                     var marker = s.WorldLifeMarkers[i];
                     if (marker.Sequence != i + 1 || marker.ActorId != saves[i].ActorId || marker.At != saves[i].At) throw new ArgumentException("Invalid life marker sequence.");
-                    if (s.SchemaVersion == Snapshot.LaterEncounterSchema && marker.CalendarId != "outside.dying") {
+                    if (s.SchemaVersion >= Snapshot.LaterEncounterSchema && marker.CalendarId != "outside.dying") {
                         var epoch = WorldTiming.FindEpoch(s, marker.CalendarId);
                         if (epoch == null || epoch.Origin != marker.Origin || marker.Ordinal > epoch.ProcessedSlot
                             || epoch.Start(marker.Ordinal) != marker.At || epoch.Order[(int)(marker.Ordinal % epoch.Order.Count)] != marker.ActorId)
