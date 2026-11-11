@@ -194,7 +194,7 @@ namespace Decennium.Foundation.Laboratory
                     || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(state, command.Actor))
                     return "OffCalendarActionAlreadySpent";
             }
-            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return "WorkerHasIncompatibleLabor";
+            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return "ExpeditionBillWorkerBusy";
             return null;
         }
 
@@ -304,7 +304,7 @@ namespace Decennium.Foundation.Laboratory
             if (job?.Status != ExpeditionBillStatus.PendingCompletion || job.Reason != "ExpeditionBillCompletionDue") return;
             string obstruction = ExpeditionBillWorkerFailure(state, job.WorkerId);
             if (obstruction == null && WorkerHasIncompatibleLabor(state, job.WorkerId, state.RuleClock))
-                obstruction = "WorkerHasIncompatibleLabor";
+                obstruction = "ExpeditionBillWorkerBusy";
             if (obstruction == null) FinishExpeditionBill(state, job);
             else PutExpeditionBill(state, job.With(state, job.Work.Labor, ExpeditionBillStatus.PendingCompletion, obstruction));
         }

@@ -298,6 +298,36 @@ namespace Decennium.Foundation.Tests
                 Require(BillJob(restored).Report != null && restored.Capture().RuleClock == cured.RuleClock
                     && restored.Capture().RandomState == cured.RandomState, "Explicit finalization changed elapsed time or RNG.");
             });
+            cases.Add("mgt10_expedition_bill_legacy_pending_finalize_busy_retains_domain_code", () =>
+            {
+                var baseline = MealAtCounter(BillPolicy());
+                SaleCommit(baseline, PurchaseMeal(baseline));
+                var endpoint = baseline.Capture().RuleClock.AddSeconds(1800);
+                var pending = PortableWorld(BillPolicy(conditions: BillEndpointConditions(endpoint)));
+                SaleCommit(pending, CCCommand(pending, "bill-endpoint-stun", SaleSeller));
+                SaleCommit(pending, CCCommand(pending, "bill-ward", SaleSeller));
+                EarnMealTender(pending);
+                SaleCommit(pending, PurchaseMeal(pending));
+                SaleCommit(pending, BillCommand(pending));
+                WorldAdvance(pending, 1800);
+                var bill = BillJob(pending);
+                Require(pending.Capture().SchemaVersion == Snapshot.ExpeditionBillSchema
+                    && bill.Status == ExpeditionBillStatus.PendingCompletion && bill.UpdatedAt == endpoint
+                    && bill.Work.Labor == T(1800) && bill.Report == null,
+                    "The original bill profile did not reach its fully earned pending endpoint.");
+                SaleCommit(pending, CCCommand(pending, "bill-endpoint-cure", SaleSeller));
+                WorldAdvance(pending, 6);
+                EatMeal(pending, new RuleQuantity(2, 3));
+                Require(pending.Capture().Intakes.Single().Status == IntakeStatus.Working,
+                    "The representative was not actually eating the purchased meal.");
+                var finalize = BillCommand(pending, CommandKind.FinalizeExpeditionBill, bill.Id);
+                byte[] before = Bytes(pending);
+                var query = pending.QueryCommand(host, finalize);
+                Require(query.Supported && !query.Admissible && query.Code == "ExpeditionBillWorkerBusy"
+                    && before.SequenceEqual(Bytes(pending)),
+                    "Schema81 busy finalization query changed its code or state: " + query.Code);
+                RejectUnchanged(pending, host, finalize, "ExpeditionBillWorkerBusy");
+            });
             cases.Add("mgt10_expedition_bill_rejects_forged_totals_charter_receipts_and_preserves_asof", () =>
             {
                 var profile = new TestOnlyExpeditionBillProfile(authorizationUntil: 30000);
