@@ -217,6 +217,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeExpeditionCampConstruction(s);
             InitializePortableStorage(s);
             InitializeHavenTender(s);
+            InitializeHavenMeal(s);
             if(harvestPreservationEnabled) {
                 if(harvestPreservationTreatmentEnabled)InitializeHarvestPreservationTreatmentPortableProfiles(s);
                 else InitializePreservationPortableProfiles(s);
@@ -704,6 +705,9 @@ namespace Decennium.Foundation.Laboratory
             if (restingActorFailure != null) return restingActorFailure;
             if(IsHavenAppraisalCommand(c.Kind))return ResolveHavenAppraisal(s,c);
             if(IsHavenSaleCommand(c.Kind))return ResolveHavenSale(s,c);
+            if(c.Kind==CommandKind.PurchaseHavenMeal)return ResolveHavenMealPurchase(s,c,out _);
+            string mealServingFailure=HavenMealServingCommandFailure(s,c);
+            if(mealServingFailure!=null)return mealServingFailure;
             if(havenSaleProfile!=null&&c.Kind==CommandKind.PortionInventory&&c.Target==TestOnlyHavenSaleProfile.TenderLotId)
                 return "HavenSaleWholeTenderOnly";
             if (IsTemporaryCampConstructionCommand(c.Kind)) return ResolveTemporaryCampConstruction(s,c);

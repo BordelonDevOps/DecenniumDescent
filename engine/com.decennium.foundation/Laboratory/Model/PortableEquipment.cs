@@ -121,7 +121,7 @@ namespace Decennium.Foundation.Laboratory
                 // records at all. Preserve its existing fixed-pouch fact and include legacy
                 // carried lots/vessels that the portable projection does not own. Earlier
                 // schemas retain their exact historical projection.
-                if(!(s.SchemaVersion==Snapshot.HavenSaleSchema&&actor==TestOnlyHavenSaleProfile.BuyerId)
+                if(!(s.SchemaVersion>=Snapshot.HavenSaleSchema&&actor==TestOnlyHavenSaleProfile.BuyerId)
                     &&!records.Any(x=>x.ProfileId=="adventuring-gear.pouch"&&x.OwnerId==actor))
                     burden.Add(new BurdenItem("TEST_ONLY.default-pouch."+actor,null,new RuleQuantity(1),new RuleQuantity(1,10)));
                 var portableLots=new HashSet<string>(records.Where(x=>x.LinkKind==PortableLinkKind.InventoryLot)

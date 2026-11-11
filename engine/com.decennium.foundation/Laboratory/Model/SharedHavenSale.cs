@@ -175,14 +175,15 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
 
-        private static bool SaleAssetAtParty(Snapshot s, string lotId, string party, string unitId, RuleQuantity amount)
+        private static bool SaleAssetAtParty(Snapshot s, string lotId, string party, string unitId, RuleQuantity amount,
+            NutritionKind nutrition = NutritionKind.None)
         {
             var lot = s.Work.Lots.SingleOrDefault(x => x.Id == lotId);
             var inventory = s.InventoryLots.SingleOrDefault(x => x.LotId == lotId);
             var item = s.PortableEquipment.SingleOrDefault(x => x.Id == lotId);
             return lot != null && lot.UnitId == unitId && lot.Amount == amount && lot.LocationId == party && lot.CustodianId == party
                 && inventory != null && inventory.ParentId == "" && inventory.OwnerId == party && inventory.CreatedAmount == amount
-                && inventory.Access == InventoryAccess.Ready && inventory.Nutrition == NutritionKind.None
+                && inventory.Access == InventoryAccess.Ready && inventory.Nutrition == nutrition
                 && !s.InventoryLots.Any(x => x.ParentId == lotId)
                 && item != null && item.LinkKind == PortableLinkKind.InventoryLot && item.LinkedId == lotId && item.ParentId == ""
                 && item.OwnerId == party && item.CustodianId == party && item.Placement == PortablePlacement.Carried
@@ -242,13 +243,13 @@ namespace Decennium.Foundation.Laboratory
         private static string PrepareSaleDelivery(Snapshot s, out Snapshot delivery)
         {
             delivery = s.Copy();
-            TransferSaleAsset(delivery, SharedMiningFixture.UnitA, TestOnlyHavenSaleProfile.BuyerId);
-            TransferSaleAsset(delivery, TestOnlyHavenSaleProfile.TenderLotId, TestOnlyHavenSaleProfile.SellerId);
+            TransferWholePortableLotTitle(delivery, SharedMiningFixture.UnitA, TestOnlyHavenSaleProfile.BuyerId);
+            TransferWholePortableLotTitle(delivery, TestOnlyHavenSaleProfile.TenderLotId, TestOnlyHavenSaleProfile.SellerId);
             PortableEquipmentRules.SynchronizeLinks(delivery);
             return CheckPortableProjectedState(delivery);
         }
 
-        private static void TransferSaleAsset(Snapshot s, string lotId, string recipient)
+        private static void TransferWholePortableLotTitle(Snapshot s, string lotId, string recipient)
         {
             var item = s.PortableEquipment.Single(x => x.Id == lotId);
             SetPortable(s, new PortableEquipmentRecord(item.Id, item.ProfileId, recipient, recipient, "", PortablePlacement.Carried,
@@ -287,7 +288,7 @@ namespace Decennium.Foundation.Laboratory
             sale = null;
             basis = null;
             delivery = null;
-            if (havenSaleProfile == null || s.SchemaVersion != Snapshot.HavenSaleSchema) return "HavenSaleNotSelected";
+            if (havenSaleProfile == null || s.SchemaVersion < Snapshot.HavenSaleSchema) return "HavenSaleNotSelected";
             bool controls = command.Kind == CommandKind.PauseHavenSale || command.Kind == CommandKind.CancelHavenSale;
             if (command.Actor != TestOnlyHavenSaleProfile.SellerId && (!controls || command.Actor != TestOnlyHavenSaleProfile.BuyerId))
                 return "HavenSaleParticipantUnauthorized";

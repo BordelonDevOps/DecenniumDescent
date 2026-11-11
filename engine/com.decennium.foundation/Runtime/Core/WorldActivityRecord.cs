@@ -400,6 +400,7 @@ namespace Decennium.Foundation
                 || s.HarvestRequirementWorks.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.HavenAppraisals.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.HavenSales.Any(x=>x.Id==id&&(x.Basis.SellerId==actor||x.Basis.BuyerId==actor))
+                || s.HavenMealPurchases.Any(x=>x.Id==id&&(x.Offer.CustomerId==actor||x.Offer.VendorId==actor))
                 || s.HarvestPreservationTreatmentAttempts.Any(x=>x.Id==id&&x.WorkerId==actor)
                 || s.MiningAttempts.Any(x => x.Id == id && (x.WorkerId == actor||x.AssistantId==actor))
                 || s.ProspectingAttempts.Any(x => x.Id == id && x.ActorId == actor)

@@ -122,7 +122,7 @@ namespace Decennium.Foundation
             var sales = s.HavenSales;
             if (sales == null || sales.Length > MaxRecords || sales.Any(x => x == null)
                 || sales.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != sales.Length
-                || s.SchemaVersion != Snapshot.HavenSaleSchema && sales.Length != 0
+                || s.SchemaVersion < Snapshot.HavenSaleSchema && sales.Length != 0
                 || sales.Count(x => x.Open) > 1 || sales.Count(x => x.Status == HavenSaleStatus.Paid) > 1)
                 throw new ArgumentException("Invalid Haven sale history.");
             foreach (var sale in sales) ValidateSale(s, sale);
@@ -150,7 +150,10 @@ namespace Decennium.Foundation
             ValidateLabor(s, sale);
             if (sale.Status == HavenSaleStatus.Paid) {
                 ValidateDelivery(s, basis.GoodsLotId, "mass-pound", basis.GoodsQuantity, basis.BuyerId);
-                ValidateDelivery(s, basis.TenderLotId, basis.CurrencyUnitId, new RuleQuantity(basis.TenderCount), basis.SellerId);
+                var successor = s.SchemaVersion == Snapshot.HavenMealSchema && s.HavenMealPurchases?.Length == 1
+                    ? s.HavenMealPurchases[0] : null;
+                string tenderOwner = successor?.PriorSaleId == sale.Id ? successor.Offer.VendorId : basis.SellerId;
+                ValidateDelivery(s, basis.TenderLotId, basis.CurrencyUnitId, new RuleQuantity(basis.TenderCount), tenderOwner);
             }
         }
 

@@ -39,7 +39,7 @@ namespace Decennium.Foundation
         StartHarvestPreservationTreatment, RecordHarvestPreservationExposure,
         HandoverFishingTrapResponsibility,
         StartHavenAppraisal, PauseHavenAppraisal, ResumeHavenAppraisal, CancelHavenAppraisal,
-        StartHavenSale, PauseHavenSale, ResumeHavenSale, FinalizeHavenSale, CancelHavenSale }
+        StartHavenSale, PauseHavenSale, ResumeHavenSale, FinalizeHavenSale, CancelHavenSale, PurchaseHavenMeal }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -143,6 +143,7 @@ namespace Decennium.Foundation
         public const int MiningAssistantSchema = 77;
         public const int HavenAppraisalSchema = 78;
         public const int HavenSaleSchema = 79;
+        public const int HavenMealSchema = 80;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -267,6 +268,7 @@ namespace Decennium.Foundation
         public MiningAttemptRecord[] MiningAttempts = Array.Empty<MiningAttemptRecord>();
         public HavenAppraisalRecord[] HavenAppraisals = Array.Empty<HavenAppraisalRecord>();
         public HavenSaleRecord[] HavenSales = Array.Empty<HavenSaleRecord>();
+        public HavenMealPurchaseRecord[] HavenMealPurchases = Array.Empty<HavenMealPurchaseRecord>();
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -373,6 +375,7 @@ namespace Decennium.Foundation
             MiningUnits = MiningUnits.ToArray(), MiningAttempts = MiningAttempts.ToArray(),
             HavenAppraisals = HavenAppraisals.ToArray(),
             HavenSales = HavenSales.ToArray(),
+            HavenMealPurchases = HavenMealPurchases.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -680,11 +683,15 @@ namespace Decennium.Foundation
         public IReadOnlyList<CommandCost> Costs { get; }
         public IReadOnlyList<string> RequiredChoices { get; }
         public HavenSaleBasis HavenSaleOffer { get; }
+        public HavenMealOffer HavenMealOffer { get; }
         public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
             IEnumerable<CommandCost> costs = null, IEnumerable<string> requiredChoices = null)
             : this(supported, admissible, code, observedRevision, costs, requiredChoices, null) { }
         public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
             IEnumerable<CommandCost> costs, IEnumerable<string> requiredChoices, HavenSaleBasis havenSaleOffer)
+            : this(supported, admissible, code, observedRevision, costs, requiredChoices, havenSaleOffer, null) { }
+        public CommandQueryResult(bool supported, bool admissible, string code, long observedRevision,
+            IEnumerable<CommandCost> costs, IEnumerable<string> requiredChoices, HavenSaleBasis havenSaleOffer, HavenMealOffer havenMealOffer)
         {
             if (observedRevision < 0 || string.IsNullOrEmpty(code) || code.Length > 96
                 || code.Any(c => c < 32 || c > 126) || !supported && admissible)
@@ -696,6 +703,7 @@ namespace Decennium.Foundation
             Supported = supported; Admissible = admissible; Code = code; ObservedRevision = observedRevision;
             Costs = Array.AsReadOnly(this.costs); RequiredChoices = Array.AsReadOnly(this.requiredChoices);
             HavenSaleOffer = havenSaleOffer;
+            HavenMealOffer = havenMealOffer;
         }
     }
     public sealed class CommandOption
@@ -762,7 +770,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationTreatmentSchema
                 || s.SchemaVersion == Foundation.Snapshot.HarvestPreservationExposureSchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningAssistantSchema
-                || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema || s.SchemaVersion == Foundation.Snapshot.HavenSaleSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.HavenAppraisalSchema || s.SchemaVersion == Foundation.Snapshot.HavenSaleSchema
+                || s.SchemaVersion == Foundation.Snapshot.HavenMealSchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -863,6 +872,7 @@ namespace Decennium.Foundation
             MiningValidation.Validate(s);
             HavenAppraisalValidation.Validate(s);
             HavenSaleValidation.Validate(s);
+            HavenMealPurchaseValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);
@@ -1131,7 +1141,8 @@ namespace Decennium.Foundation
             { return new CommandQueryResult(true,false,"PolicyFailure",observedRevision); }
             if(result==null)return new CommandQueryResult(true,false,"PolicyFailure",observedRevision);
             if(!result.Supported)return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
-            return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices,result.HavenSaleOffer);
+            return new CommandQueryResult(true,result.Admissible,result.Code,observedRevision,result.Costs,result.RequiredChoices,
+                result.HavenSaleOffer,result.HavenMealOffer);
         }
         public IReadOnlyList<CommandOption> DiscoverCommands(Authority authority, string actor)
         {

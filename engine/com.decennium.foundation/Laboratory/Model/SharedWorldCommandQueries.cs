@@ -262,6 +262,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var moraleCommand in DiscoverMoraleRestCommands(s, actor)) yield return moraleCommand;
             foreach (var havenCommand in DiscoverHavenCareCommands(s, actor)) yield return havenCommand;
             foreach (var saleCommand in DiscoverHavenSaleCommands(s, actor)) yield return saleCommand;
+            foreach (var mealCommand in DiscoverHavenMealCommands(s, actor)) yield return mealCommand;
             foreach (var campCommand in DiscoverExpeditionCampUseCommands(s, actor)) yield return campCommand;
             foreach (var campBuildCommand in DiscoverTemporaryCampConstructionCommands(s, actor)) yield return campBuildCommand;
             foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;

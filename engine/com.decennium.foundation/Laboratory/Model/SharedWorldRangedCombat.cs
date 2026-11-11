@@ -80,6 +80,7 @@ namespace Decennium.Foundation.Laboratory
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
+            ||havenMealProfile!=null&&kind==CommandKind.PurchaseHavenMeal
             ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
@@ -288,6 +289,13 @@ namespace Decennium.Foundation.Laboratory
                 return new CommandQueryResult(true,saleFailure==null,saleFailure??"Available",s.Revision,
                     null,null,saleFailure==null&&c.Kind==CommandKind.StartHavenSale?offer:null);
             }
+            if(havenMealProfile!=null&&c.Kind==CommandKind.PurchaseHavenMeal) {
+                string mealFailure=ResolveHavenMealPurchase(s.Copy(),c,out var mealOffer);
+                return new CommandQueryResult(true,mealFailure==null,mealFailure??"Available",s.Revision,
+                    null,null,null,mealOffer);
+            }
+            string mealServingFailure=HavenMealServingCommandFailure(s,c);
+            if(mealServingFailure!=null)return new CommandQueryResult(true,false,mealServingFailure,s.Revision);
             if(c.Kind==CommandKind.AdvanceClock&&strainRecoveryProfile!=null) {
                 string clockFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,clockFailure==null,clockFailure??"Available",s.Revision);

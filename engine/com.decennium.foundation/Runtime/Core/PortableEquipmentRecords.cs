@@ -392,6 +392,7 @@ namespace Decennium.Foundation
                 &&!s.MiningAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.HavenAppraisals.Any(j=>j.Id==w.JobId)
                 &&!s.HavenSales.Any(j=>j.Id==w.JobId)
+                &&!s.HavenMealPurchases.Any(j=>j.Id==w.JobId)
                 &&!s.ProspectingAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.MiningAssayAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.DestructiveMiningAssayAttempts.Any(j=>j.Id==w.JobId)
