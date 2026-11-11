@@ -661,6 +661,7 @@ namespace Decennium.Foundation.Laboratory
         private string MiningAssistantAccess(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="")
         {
             if(!miningAssistanceEnabled||!miningFixture.AssistantWorkerIds.Contains(actor,StringComparer.Ordinal))return "MiningAssistantUnsupported";
+            if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return "MiningRequiresExploration";
             if(!CharacterSkillTrainingFacts.IsTrained(s,actor,"mining-tools"))return "MiningAssistantUntrained";
             if(!CapableWorker(s,actor))return "MiningWorkerIncapable";
             if(s.WorldTraversals.Any(x=>x.ActorId==actor))return "MiningWorkerMoving";

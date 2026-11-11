@@ -761,6 +761,44 @@ namespace Decennium.Foundation.Tests
                     "The original pair did not resume with the exact outstanding work after the clock gap.");
             });
 
+            cases.Add("mgt07_extraction_assistant_pauses_at_tactical_entry",()=>{
+                var run=World(MiningAssistantPolicy());
+                MiningCommit(run,StartMiningAssistant(run,helper));
+                WorldAdvance(run,300);
+                BeginEncounter(run);
+                var entered=run.Capture();
+                var attempt=entered.MiningAttempts.Single();
+                Require(entered.InventoryCombat&&entered.WorldSchedule.Order.Contains(helper)
+                    &&!entered.WorldSchedule.Order.Contains(MiningWorker)
+                    &&entered.RuleClock==new RuleTime(300)&&attempt.Status==MiningAttemptStatus.Paused
+                    &&attempt.WorkDone==new RuleTime(300)
+                    &&entered.Work.WorkerIntervals.Count(x=>x.JobId==attempt.Id&&x.End==entered.RuleClock)==2
+                    &&entered.Work.Reservations.Count(x=>x.JobId==attempt.Id&&x.Status==ReservationStatus.Reserved)==2,
+                    "Tactical entry left the pair in "+attempt.Status+" at "+entered.RuleClock+" with "+attempt.WorkDone+" credited.");
+                ConnectedEnd(run);
+                var afterTurn=run.Capture();
+                Require(afterTurn.RuleClock>entered.RuleClock&&afterTurn.MiningAttempts.Single().WorkDone==attempt.WorkDone,
+                    "Tactical clock advancement credited extraction while the helper participated in combat.");
+
+                void RejectTacticalMining(Simulation simulation,Command command) {
+                    var before=Bytes(simulation);
+                    var query=simulation.QueryCommand(host,command);
+                    var result=simulation.Execute(host,command);
+                    Require(!query.Admissible&&query.Code=="MiningRequiresExploration"&&result.Code==query.Code
+                        &&Bytes(simulation).SequenceEqual(before),"Tactical helper admission diverged: "+query.Code+"/"+result.Code);
+                }
+                RejectTacticalMining(run,MiningCommand(run,CommandKind.ResumeMining,attempt.Id));
+                var fresh=World(MiningAssistantPolicy());
+                BeginEncounter(fresh);
+                RejectTacticalMining(fresh,StartMiningAssistant(fresh,helper));
+                MiningCommit(fresh,StartMiningAssistant(fresh,""));
+                ConnectedEnd(fresh);
+                var remote=fresh.Capture();
+                Require(remote.MiningAttempts.Single().Status==MiningAttemptStatus.Working
+                    &&remote.MiningAttempts.Single().WorkDone==remote.RuleClock&&remote.RuleClock>default(RuleTime),
+                    "Tactical participation blocked unrelated off-calendar solo extraction.");
+            });
+
             cases.Add("mgt07_extraction_assistant_preserves_lead_rules_and_blocks_magic_transfer",()=>{
                 var initial=MiningAssistantPolicy(trainLead:false).Initial();
                 uint seed=MiningSeedFor(TaskDegree.Success,MiningModifier(initial)+1,disadvantage:true,dc:MiningExtractionRules.TierDc(2));
@@ -830,7 +868,8 @@ namespace Decennium.Foundation.Tests
             });
 
             cases.Add("mgt07_extraction_assistant_schema_history_and_team_validation",()=>{
-                var run=World(MiningAssistantPolicy());
+                var policy=MiningAssistantPolicy();
+                var run=World(policy);
                 var start=StartMiningAssistant(run,helper);
                 var assignment=new ExpeditionAssignmentRequest(ExpeditionWorkProcedure.MiningExtraction,
                     SharedMiningFixture.DepositId,miningSelection:start.MiningSelection);
@@ -842,6 +881,19 @@ namespace Decennium.Foundation.Tests
                 WorldAdvance(run,300);
                 var bad=run.Capture();
                 var attempt=bad.MiningAttempts.Single();
+                bad.MiningAttempts=new[]{attempt.WithWork(attempt.UpdatedAt,new RuleTime(299),attempt.Status,attempt.CommittedAt)};
+                Throws<ArgumentException>(()=>MiningValidation.Validate(bad));
+
+                var soloSchema77=World(policy);
+                MiningCommit(soloSchema77,StartMiningAssistant(soloSchema77,""));
+                bad=run.Capture();
+                bad.Receipts[0].Fingerprint=soloSchema77.Capture().Receipts[0].Fingerprint;
+                MiningValidation.Validate(bad);
+                Require(policy.ValidateState(bad)=="InvalidMiningAssistantHistory",
+                    "Replacing the assistant's starting receipt with canonical solo history did not invalidate the binding.");
+                Throws<ArgumentException>(()=>new Simulation(policy,bad,ExecutionProfile.Laboratory));
+
+                bad=run.Capture();
                 var intervals=bad.Work.WorkerIntervals.ToArray();
                 var interval=intervals.Single(x=>x.WorkerId==helper&&x.JobId==attempt.Id);
                 bad.Work=new WorkLedger(bad.Work.Lots,intervals.Where(x=>x.Id!=interval.Id),bad.Work.Reservations);

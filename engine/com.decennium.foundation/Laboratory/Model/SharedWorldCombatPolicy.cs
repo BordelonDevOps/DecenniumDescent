@@ -271,6 +271,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in s.WorldSchedule.Order)PauseParticipantWork(s,actor);
             // Starts have already been processed by shared advancement. Do not replay one here.
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.Encounter.CurrentActor).Interactions;
+            if(miningAssistanceEnabled)PauseIncompatibleMining(s);
             PauseIncompatibleTemporaryCampConstruction(s);
             PauseIncompatibleCacheExcavation(s);
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);PauseIncompatibleRecipe347(s);
