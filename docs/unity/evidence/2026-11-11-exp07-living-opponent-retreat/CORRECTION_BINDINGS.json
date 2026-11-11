@@ -1,0 +1,259 @@
+{
+  "module": "EXP-07 FL-15 retreat from a living opponent",
+  "schema": 88,
+  "authority": "TEST_ONLY",
+  "sourceCommit": "cd941c4f184226e5f444822484ca0e1398e5951b",
+  "initialImplementationCommit": "18276ad82bbaba4433f5cfb8e27feb7d93045302",
+  "approvedSourceApiReply": "a9b4dc3b-59a2-4590-9a46-de07f9d9db1c",
+  "acceptedPredecessorReply": "8f0c8a36-ec72-4165-8c8a-c8f90627575c",
+  "pinnedSourceCommit": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "pinnedSourceHashes": {
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md": "6ebf9e6644d5510cacda7e16f8ffddc88cdd314a7dd10094aa1037fd1fb4a83a",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da"
+  },
+  "exactRuntimeCommitFiles": {
+    "docs/unity/evidence/2026-11-11-exp07-living-opponent-retreat/SOURCE_API_REVIEW.md": "7c53c02eacbc28378ed651e7820b92cba1596b6ea181ce0bc016d815d5368ea0",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs": "f2bde9885271ac26f836268b6cf3ae7591583954ce1c3fc9ae04c6357ecf50f6",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs": "425f76fbff7ad945f72715acaa4aeac6eef688fff80f58ff8b4edb48c372a0ec",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs": "f111be14e25cadaab61606ed0d41b2190502950824add526a656391a77d41599",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs": "0236dce9cc0015bb486c28ffcd2104b355b59ff33728403b34f3b762cb86169e",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs": "66eb50ca1d0863e9cdd1e1ffb4091c6f5149f607038931326cb17261b60c6ffe",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs.meta": "ac19ef06b9a99d7c2a2a35423aa7e4c6a3d76ceac40c6d70cbca67184381e0ce",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedRetreatPressure.cs": "2d192af8938ab05e654778373bc9b56f15c11ef0685d4d6bc23ee7f7345393af",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedRetreatPressure.cs.meta": "4f0d52876ad839edf64c0bf76df52a87df93deb4f3e340d96125f403abba628b",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs": "877f9b5a796feb663c5ebc54a2c95fc45733689439ff8e92e131de282ac3cbbe",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs": "d6c62daf9a674f085aaaf7043422706b34af5249003487e018bb03877c918572",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs": "b461bfcb427d30e3e6df55009df0dbc4e9d72a6aa531d501454555213d3028d0",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs": "07e1ffb76a94b88a8f88683774119e1cb2f70ef4336313436ddc64aab81a9cd8",
+    "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs": "94273f3aaa828a20d428ffda2656185c2e60efdeb8bea314245651eb8f74e014",
+    "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs": "6e38a1e8a98de25eab4a1f3ceb3953f6cf5a3291b01faa8f60c49995e1082708",
+    "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+    "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs": "72208e1f54bf7c49a4c69c1ea656b4c47a489b155d3bd1f6907df2b60fa064a5",
+    "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs.meta": "faf3367a44ba94f399e5619af07ef6d61d0189ac1678646a8339ecca3e50871a",
+    "engine/com.decennium.foundation/Runtime/Core/RetreatValidation.cs": "44c8cd4fbb2bc73e7a73fcffc181bcab95c66ad058d2df4391bf4217b09697fd",
+    "engine/com.decennium.foundation/Runtime/Core/RetreatValidation.cs.meta": "921b9277e290815640dbebd3cfcde84cd1d6f533c1ce4a798693745e3644753b",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs": "c9730f121970c42872a4d5f55431fbf36da700a22198ec1c9a296df78854defd",
+    "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionPressureCodec.cs": "be9dfd0af943cc84d5ee83cc4a8347961d2a4e8953cbb8a7a640bfd0723e177d",
+    "engine/com.decennium.foundation/Runtime/Persistence/RetreatCodec.cs": "66a9d2a4eaf489692c795d367cf1f70f3552e1fb55400ed78f6752ad3761178a",
+    "engine/com.decennium.foundation/Runtime/Persistence/RetreatCodec.cs.meta": "252ad66a4b64bc0cfeb1ae90a175f229c4f85f56361589ed5b734c5158d1e91e",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs": "b644b499a726e9597f3ea5196c23e82f7dd5e73c8a1134bd2ea338a62d9395a6",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs": "67e2f42f0af0172c0deca601da3406eeac3a5f23f7fd348bb957c1314a8a415d",
+    "engine/com.decennium.foundation/Tests/EditMode/RetreatCases.cs": "a9076930ffd97c6c610a7f7f64a297459afbf4627a4367c76cfc97d2dc5fdec8",
+    "engine/com.decennium.foundation/Tests/EditMode/RetreatCases.cs.meta": "beec4a694906f378b9a137c157db8e5e26d242758a89f31876a331b03834b914"
+  },
+  "headlessSourceHashes": 329,
+  "standaloneSourceHashes": 242,
+  "runtimeWithoutLabDefinesSourceHashes": 134,
+  "packageSourceHashes": 699,
+  "packageAssets": 355,
+  "uniqueGuids": 355,
+  "packageChecks": 18,
+  "focusedCases": 6,
+  "historicalAndUnfiltered": "Pending at this correction checkpoint",
+  "savedStates": 20,
+  "authenticSchema87SaveSha256": "c02af4ff30a14983127589fc16414aedcebe0b24aceced286859d43b0248de3e",
+  "artifacts": {
+    "standaloneCompile": {
+      "path": "final/compile/results.json",
+      "sha256": "ebf4bce5db1a240c35cfb8508b77ee15fd10cd93dd0a2052c97b730ef5f897c9",
+      "bytes": 45406
+    },
+    "runtimeWithoutLabDefines": {
+      "path": "final/compile/runtime-without-lab-defines.json",
+      "sha256": "f3f79ebfa2af9d46bf3951eadb81f16a59e16ddd465d7cad16dc5d2ed18f117c",
+      "bytes": 24690
+    },
+    "packageValidation": {
+      "path": "final/static/results.json",
+      "sha256": "aedc27be1506267d90e76196cdda4fa9d97d971716d25280ed1148026fc7cbe6",
+      "bytes": 133502
+    },
+    "singleExactCompilationAndIntegrityCase": {
+      "path": "final/focused/exact-runner-results.json",
+      "sha256": "b642ac4fa590cf04d0b2ac966657783b225b3fc19435f97c02ea94ca1b808c1f",
+      "bytes": 61617
+    },
+    "authenticSchema87Continuation": {
+      "path": "final/legacy-saves/schema87-verification.json",
+      "sha256": "11f273951d9064473af7885fdbe9464aff0a514465dc1036c911c7ef53828212",
+      "bytes": 12809
+    },
+    "timeline": {
+      "path": "final/timeline.json",
+      "sha256": "dd237a3b9881d74e0a7ea786ffcc6e172ab1bd3f583a28b7973e435f301c0087",
+      "bytes": 60949
+    },
+    "severeClosure": {
+      "path": "final/severe-closure.json",
+      "sha256": "fa3c6591019a280a54fdd6387196ab8a2a574aac3146782cf3b5931fdb385da0",
+      "bytes": 1212
+    },
+    "Decennium.Foundation.Core.dll": {
+      "path": "final/focused/assemblies/Decennium.Foundation.Core.dll",
+      "sha256": "81b3884dc10eb8acbce57b7ff073a61fb051dd2bcada45d8f6ac4d5fa6ccb74a",
+      "bytes": 1139712
+    },
+    "Decennium.Foundation.HeadlessTests.dll": {
+      "path": "final/focused/assemblies/Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "820ed3b7dcad48f2d3ed0cb8df88c7abbb5f4cf9cd23aa09f9df46d008274780",
+      "bytes": 2435584
+    },
+    "Decennium.Foundation.LabModel.dll": {
+      "path": "final/focused/assemblies/Decennium.Foundation.LabModel.dll",
+      "sha256": "9f040d64c2f1e004dc8ed35d962e24bfe030bde2ef1ec262da57f0cab3f6712f",
+      "bytes": 2663936
+    },
+    "Decennium.Foundation.Persistence.dll": {
+      "path": "final/focused/assemblies/Decennium.Foundation.Persistence.dll",
+      "sha256": "81984542e9c7b80927724715cd6c0a650694e57e0e82d051952888f8a3104240",
+      "bytes": 258048
+    },
+    "focusJournal": {
+      "path": "final/regression/focus.jsonl",
+      "sha256": "1a598e7814a9bf445daff5fe5b9576302d47ecaf8adf4c25b2ef1bddb5a2fd8a",
+      "bytes": 611
+    },
+    "focusInventory": {
+      "path": "final/regression/focus-names.txt",
+      "sha256": "e2b82daa3067407f3115ab05fa01264e7340363f3fe89795fedf3eecf698c4f3",
+      "bytes": 395
+    },
+    "exactUnfilteredInventory": {
+      "path": "final/regression/all-names.txt",
+      "sha256": "870e6575955f4bb4347e3cdc6a9ad99c23096634bc3260a3a6b47f56b688a488",
+      "bytes": 89477
+    },
+    "Read-RetreatEvidence.ps1": {
+      "path": "Read-RetreatEvidence.ps1",
+      "sha256": "9a1de9e549094c8415f0f68f19af6d29b4f50457aee62f9a4d72ff8209e7a09b",
+      "bytes": 6530
+    },
+    "Run-ExactRetreatRegressionShard.ps1": {
+      "path": "Run-ExactRetreatRegressionShard.ps1",
+      "sha256": "abfe9efcabf7c76f9b247e72577c7d7c3b74c286041d6b6633c8d4909ea1e036",
+      "bytes": 1710
+    },
+    "Verify-RetreatBaseline.ps1": {
+      "path": "Verify-RetreatBaseline.ps1",
+      "sha256": "205cf0bd463c85454b5c746ed40e559163b6acab399296813d283729b7dfea85",
+      "bytes": 8853
+    },
+    "Compile-RuntimeWithoutFixture.ps1": {
+      "path": "Compile-RuntimeWithoutFixture.ps1",
+      "sha256": "55c300213a9f8eed159cb7d0b2287af7d5a83827417d1fd7b0b0539f18a93c56",
+      "bytes": 1221
+    },
+    "Verify-RetreatClosure.ps1": {
+      "path": "Verify-RetreatClosure.ps1",
+      "sha256": "6c0279e15a701cfd98db71b32967ad7b285d8bde119ba5a4e93b1b3b4c549b14",
+      "bytes": 3533
+    },
+    "save:exp07-retreat-abandoned.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-abandoned.ddsave",
+      "sha256": "79b4f9d96cb9e10267ee0ba73a82516dadb1257afb5c4d86e80de58aeb8fca8a",
+      "bytes": 24576
+    },
+    "save:exp07-retreat-admitted.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-admitted.ddsave",
+      "sha256": "613720e6914bf14c200d74ab4fedaa29c10af7ea819e9ea3d9e24e0a95125c84",
+      "bytes": 51858
+    },
+    "save:exp07-retreat-connected-before-declaration.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-connected-before-declaration.ddsave",
+      "sha256": "99141ab0801af4399bdadcf48d32ec52221a9da9e5e2a1c65f3b8715b944cb66",
+      "bytes": 55156
+    },
+    "save:exp07-retreat-connected-continued.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-connected-continued.ddsave",
+      "sha256": "de2fe8ef52c6ec3f4e9a876466b0f1e250198f7554fd8371739020d59c6152fb",
+      "bytes": 67728
+    },
+    "save:exp07-retreat-connected-exit.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-connected-exit.ddsave",
+      "sha256": "869b8be84b4d2ca71c1c9a1bc3f2615a980416e769dd41905f2b3cbf78ba8228",
+      "bytes": 67592
+    },
+    "save:exp07-retreat-connected-final-round.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-connected-final-round.ddsave",
+      "sha256": "7b08dc7ae1f29249186246b6b0119e772c7acfc8f87c8c0e0ffc6a4be070668a",
+      "bytes": 65355
+    },
+    "save:exp07-retreat-control-schema87.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-control-schema87.ddsave",
+      "sha256": "2565cfb51a8cd079f8430f151ceaf3bf95b4134aaf9be7e0646c76e9c625e02c",
+      "bytes": 24537
+    },
+    "save:exp07-retreat-declared.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-declared.ddsave",
+      "sha256": "c73c2688326196317d670b5949a42973fde36664b16376b29c5b4818f2461547",
+      "bytes": 52048
+    },
+    "save:exp07-retreat-failed.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-failed.ddsave",
+      "sha256": "64735c027e6bc2fb2190566fe587bb4d60fb23c9909976caa98145256e9b8a17",
+      "bytes": 30001
+    },
+    "save:exp07-retreat-following-watch.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-following-watch.ddsave",
+      "sha256": "f0b86f36e8bd7b6911fc8f88e37ac473241299d9152e324b271b2c851bffa1e7",
+      "bytes": 32583
+    },
+    "save:exp07-retreat-incomplete.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-incomplete.ddsave",
+      "sha256": "cc721ccb11743ac5049a9e4dc9d100dee4e632282ec6558156ddfac4e7006fc3",
+      "bytes": 24394
+    },
+    "save:exp07-retreat-live-condition.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-live-condition.ddsave",
+      "sha256": "5c1685bb31de88d2c74bacff677eb0af9cb221394868b72bd5f994687d7cb24b",
+      "bytes": 24739
+    },
+    "save:exp07-retreat-mid-round.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-mid-round.ddsave",
+      "sha256": "76a5d32fc0df6ee5877376ad984110f20b03c0b423f6ee8f998a4776fe93d6b1",
+      "bytes": 24496
+    },
+    "save:exp07-retreat-ordinary-conflict-close.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-ordinary-conflict-close.ddsave",
+      "sha256": "9077934b5b514ef73a706733c5ff59d964fc5206450f05addb4787afc1fb720a",
+      "bytes": 30765
+    },
+    "save:exp07-retreat-remote-work.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-remote-work.ddsave",
+      "sha256": "da57f3067abcbd0111dc2ed82618051778e507782a431d4b385215f135ec6cae",
+      "bytes": 56673
+    },
+    "save:exp07-retreat-same-watch-exit.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-same-watch-exit.ddsave",
+      "sha256": "d72174b0af815315ce40e6dafb5d638ee2cfe5712223ee48276421c43f909793",
+      "bytes": 32122
+    },
+    "save:exp07-retreat-same-watch-obstruction.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-same-watch-obstruction.ddsave",
+      "sha256": "ec1075b8a4284258e1f1029945fea7c4f5d98e0b86d8c978da9d94f1bc9259a7",
+      "bytes": 29743
+    },
+    "save:exp07-retreat-seeded-success.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-seeded-success.ddsave",
+      "sha256": "1e5763210d521fb92ab4fcb3a73a77573ac479e8a18af5cfcc60755e2d799ee8",
+      "bytes": 31452
+    },
+    "save:exp07-retreat-unaltered-provenance.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-unaltered-provenance.ddsave",
+      "sha256": "d72174b0af815315ce40e6dafb5d638ee2cfe5712223ee48276421c43f909793",
+      "bytes": 32122
+    },
+    "save:exp07-retreat-uncrossed.ddsave": {
+      "path": "final/focused/saves/exp07-retreat-uncrossed.ddsave",
+      "sha256": "173b9f3630db369ff7ea1d52481af65aa168544259ac1f1f9806cdda5eac1aed",
+      "bytes": 30592
+    },
+    "focusResults": {
+      "path": "final/focused/results.json",
+      "sha256": "5be06dcb4a61a2cc78d44b5d13caeec45c872949981ef2c4d283bc0e3f9f5e2e",
+      "bytes": 61579
+    }
+  }
+}
