@@ -1,0 +1,116 @@
+{
+  "status": "PASS",
+  "authority": "TEST_ONLY",
+  "schema": 85,
+  "leftScope": {
+    "clock": "11563/1",
+    "revision": 81,
+    "position": [
+      1,
+      3
+    ],
+    "outcome": "EndedAtStaging",
+    "events": [
+      {
+        "kind": "Admitted",
+        "clock": "11557/1",
+        "revision": 79,
+        "reason": "CharterAttemptAdmitted"
+      },
+      {
+        "kind": "ScopeLeft",
+        "clock": "11557/1",
+        "revision": 80,
+        "reason": "CharterUnrelatedOrdinaryMovement"
+      }
+    ]
+  },
+  "ordinaryTravelAfterScopeLeft": {
+    "clock": "11581/1",
+    "revision": 87,
+    "position": [
+      2,
+      3
+    ],
+    "outcome": "EndedAtStaging",
+    "events": [
+      {
+        "kind": "Admitted",
+        "clock": "11557/1",
+        "revision": 79,
+        "reason": "CharterAttemptAdmitted"
+      },
+      {
+        "kind": "ScopeLeft",
+        "clock": "11557/1",
+        "revision": 80,
+        "reason": "CharterUnrelatedOrdinaryMovement"
+      }
+    ]
+  },
+  "physicalReturnWithoutObservation": {
+    "clock": "11560/1",
+    "revision": 83,
+    "position": [
+      2,
+      3
+    ],
+    "outcome": "ReturnedIncomplete",
+    "events": [
+      {
+        "kind": "Admitted",
+        "clock": "11557/1",
+        "revision": 79,
+        "reason": "CharterAttemptAdmitted"
+      },
+      {
+        "kind": "OutboundStarted",
+        "clock": "11557/1",
+        "revision": 80,
+        "reason": "CharterActualOutbound"
+      },
+      {
+        "kind": "OutboundArrived",
+        "clock": "23117/2",
+        "revision": 81,
+        "reason": "CharterPhysicalOutboundArrival"
+      },
+      {
+        "kind": "Aborted",
+        "clock": "23117/2",
+        "revision": 82,
+        "reason": "CharterReturnedWithoutObservation"
+      },
+      {
+        "kind": "ReturnStarted",
+        "clock": "23117/2",
+        "revision": 82,
+        "reason": "CharterActualReturnStarted"
+      },
+      {
+        "kind": "Returned",
+        "clock": "11560/1",
+        "revision": 83,
+        "reason": "CharterPhysicalReturn"
+      }
+    ]
+  },
+  "assemblyHashes": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "a9defc60093e54259b164d54f2cd1f9f8237df3d8600709d41a1d60b16b9afda"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "821e1443cfe501554c7c71f3e5f5939da73506d9d14973e141c269dee84d89db"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "3dd5592da46b7321cb83a93fde3617e48be7a0e3e40c44dfd31b911cfd538bec"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "b6947269d891a52a21f490a35b172b2546017a2dd49fac73bbb3b5a014d67958"
+    }
+  ]
+}
