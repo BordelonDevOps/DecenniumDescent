@@ -29,6 +29,7 @@ namespace Decennium.Foundation.Laboratory
                 // therefore participate in its own persisted content identity.
                 if(crops.ContentFingerprint=="TEST_ONLY.camp-greens-v1-s8-w512")return legacy;
                 string key=legacy+"|crop="+crops.ContentFingerprint;
+                if(CampGreens.IsFirstWorkFingerprint(crops.ContentFingerprint))return CampGreens.FirstWorkFingerprint(key);
                 using(var sha=SHA256.Create())
                     return "TEST_ONLY.inventory-v1-c"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key))
                         .Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));

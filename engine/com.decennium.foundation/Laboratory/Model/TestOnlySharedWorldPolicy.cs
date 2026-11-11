@@ -32,8 +32,20 @@ namespace Decennium.Foundation.Laboratory
         private ObservationAlgorithmVersion observationAlgorithmVersion = ObservationAlgorithmVersion.ExactPathIntervalsV2;
         private bool initializationStarted;
         private TestOnlyContentManifest contentManifest;
+        private string contentFingerprint;
+        private bool firstWorkTendingEnabled;
         public bool TestOnly => true;
-        public string ContentFingerprint { get; private set; }
+        public string ContentFingerprint {
+            get=>firstWorkTendingEnabled?CampGreens.FirstWorkFingerprint(contentFingerprint):contentFingerprint;
+            private set=>contentFingerprint=value;
+        }
+        public TestOnlySharedWorldPolicy EnableCampGreensFirstWorkTending()
+        {
+            if(initializationStarted||firstWorkTendingEnabled)
+                throw new InvalidOperationException("Select Camp Greens first-work tending once before initialization.");
+            firstWorkTendingEnabled=true;
+            return this;
+        }
         public TestOnlySharedWorldPolicy(int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)
             :this((SharedCombatFixture)null,walkingSpeed,conditions,terrain) { }
         public TestOnlySharedWorldPolicy(SharedCombatFixture combat,int walkingSpeed = 30, ConditionCombatFixture conditions = null, params TacticalTerrainCell[] terrain)

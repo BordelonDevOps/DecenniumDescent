@@ -19,14 +19,17 @@ namespace Decennium.Foundation.Laboratory
         public const int PlotWidthFeet=10,PlotLengthFeet=10;
         private readonly long seeds,water;
         private readonly string[] workers;
+        private readonly bool firstWorkTending;
         private readonly TestOnlyPolicy world=new TestOnlyPolicy();
-        public TestOnlyCropPolicy(long seedPackets=8,long waterPints=512,string[] workerIds=null)
+        public TestOnlyCropPolicy(long seedPackets=8,long waterPints=512,string[] workerIds=null,bool firstWorkTending=false)
         {
             if(seedPackets<0||waterPints<0||workerIds!=null&&(workerIds.Any(x=>!Validation.ValidId(x))
                 ||workerIds.Distinct(StringComparer.Ordinal).Count()!=workerIds.Length))throw new ArgumentOutOfRangeException(nameof(seedPackets));
             seeds=seedPackets;water=waterPints;workers=(workerIds??new[]{TestOnlyPolicy.CompanionId}).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
+            this.firstWorkTending=firstWorkTending;
         }
-        public string ContentFingerprint
+        public string ContentFingerprint=>firstWorkTending?CampGreens.FirstWorkFingerprint(LegacyFingerprint):LegacyFingerprint;
+        private string LegacyFingerprint
         {
             get
             {
@@ -113,14 +116,15 @@ namespace Decennium.Foundation.Laboratory
             string worldError=TestOnlyPolicy.ValidateWorld(s);if(worldError!=null)return worldError;
             if(s.CropPlots.Length!=1||s.CropPlots[0].Id!=PlotId||s.CropPlots[0].OwnerId!=TestOnlyPolicy.CompanionId)return "InvalidPlot";
             var tasks=s.Crops.SelectMany(c=>c.Tasks).ToArray();
+            bool deferTending=CampGreens.UsesFirstWorkTending(s);
             if(!inventory&&(s.Work.Lots.Count!=2+s.CropFood.Length||s.Work.Reservations.Count!=tasks.Sum(t=>t.InputReservations.Count)
-                ||s.Work.Reservations.Any(r=>r.Status!=ReservationStatus.Consumed||!tasks.Any(t=>t.Id==r.JobId&&t.InputReservations.Contains(r.Id)))
+                ||s.Work.Reservations.Any(r=>!tasks.Any(t=>t.Id==r.JobId&&t.InputReservations.Contains(r.Id)))
                 ||s.Work.WorkerIntervals.Any(w=>!tasks.Any(t=>t.Id==w.JobId))))return "InvalidCropLedger";
             bool Stock(string id,string unit,long initial) {
                 var lot=s.Work.Lots.Single(l=>l.Id==id);
-                long consumed=s.Work.Reservations.Where(r=>r.LotId==id).Sum(r=>r.Quantity);
+                var consumed=RuleQuantity.Sum(s.Work.Reservations.Where(r=>r.LotId==id).Select(r=>r.ConsumedAmount));
                 return lot.UnitId==unit&&lot.LocationId==PlotId&&lot.CustodianId==TestOnlyPolicy.CompanionId
-                    &&consumed<=initial&&lot.Quantity==initial-consumed;
+                    &&consumed<=new RuleQuantity(initial)&&lot.Amount==new RuleQuantity(initial)-consumed;
             }
             if(!inventory&&(!Stock(SeedLotId,CampGreens.SeedUnit,seeds)||!Stock(WaterLotId,CampGreens.WaterUnit,water)))return "InvalidCropStock";
             if(s.Crops.Count(c=>c.Stage!=CropStage.Harvested&&c.Stage!=CropStage.Failed)>1)return "PlotOccupiedTwice";
@@ -168,7 +172,13 @@ namespace Decennium.Foundation.Laboratory
                         &&(task.Status==CropWorkStatus.Working||task.Status==CropWorkStatus.Paused))return "ClosedCropHasWork";
                     var claims=task.InputReservations.Select(id=>s.Work.Reservations.Single(r=>r.Id==id)).ToArray();
                     int wanted=task.Kind==CropWorkKind.Plant?2:task.Kind==CropWorkKind.Tend?1:0;
-                    if(claims.Length!=wanted||claims.Any(r=>r.Status!=ReservationStatus.Consumed||r.JobId!=task.Id))return "InvalidInputCommitment";
+                    if(claims.Length!=wanted||claims.Any(r=>r.JobId!=task.Id))return "InvalidInputCommitment";
+                    foreach(var claim in claims) {
+                        bool unspentTending=deferTending&&task.Kind==CropWorkKind.Tend&&task.Progress==default;
+                        var consumed=unspentTending?default:claim.Amount;
+                        var released=unspentTending&&task.Status==CropWorkStatus.Cancelled?claim.Amount:default;
+                        if(claim.ConsumedAmount!=consumed||claim.ReleasedAmount!=released)return "InvalidInputCommitment";
+                    }
                     if(task.Kind!=CropWorkKind.Harvest&&claims.Count(r=>r.LotId==WaterLotId&&r.Quantity==8)!=1)return "InvalidWaterCommitment";
                     if(task.Kind==CropWorkKind.Plant&&claims.Count(r=>r.LotId==SeedLotId&&r.Quantity==1)!=1)return "InvalidSeedCommitment";
                     RuleTime actual=default;var intervals=s.Work.WorkerIntervals.Where(w=>w.JobId==task.Id).ToArray();

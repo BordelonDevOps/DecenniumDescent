@@ -35,6 +35,7 @@ namespace Decennium.Foundation.Laboratory
                     return prefix+inventory.ContentFingerprint;
                 string key=(movable?"movable":"filling")+"|actorHands="+actorHands.ToString(CultureInfo.InvariantCulture)
                     +"|companionHands="+companionHands.ToString(CultureInfo.InvariantCulture)+"|inventory="+inventory.ContentFingerprint;
+                if(CampGreens.IsFirstWorkFingerprint(inventory.ContentFingerprint))return CampGreens.FirstWorkFingerprint(key);
                 using(var sha=SHA256.Create())
                     return (movable?"TEST_ONLY.movable-v1-c":"TEST_ONLY.filling-v1-c")
                         +string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key)).Select(b=>b.ToString("x2",CultureInfo.InvariantCulture)));

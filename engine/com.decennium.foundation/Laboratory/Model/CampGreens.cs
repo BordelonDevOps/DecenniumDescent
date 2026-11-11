@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
@@ -17,6 +19,17 @@ namespace Decennium.Foundation.Laboratory
         public const long PlantSeconds=3600,TendSeconds=900,HarvestSeconds=3600,GrowthSeconds=604800,CareSeconds=86400,WindowSeconds=172800;
         public const long SeedPacketsPerPlant=1,WaterPintsPerWork=8,FoodPoundsPerHarvest=8;
         public const string SeedUnit="prototype.camp-greens.seed-packet",WaterUnit="prototype.suitable-water.pint",FoodUnit="prototype.camp-greens.food-pound";
+        private const string FirstWorkProfilePrefix="TEST_ONLY.greens-first-work-v1-";
+        internal static string FirstWorkFingerprint(string content)
+        {
+            using(var sha=SHA256.Create())
+                return FirstWorkProfilePrefix+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(content))
+                    .Select(value=>value.ToString("x2",CultureInfo.InvariantCulture)));
+        }
+        internal static bool IsFirstWorkFingerprint(string fingerprint)
+            =>fingerprint?.StartsWith(FirstWorkProfilePrefix,StringComparison.Ordinal)==true;
+        internal static bool UsesFirstWorkTending(Snapshot state)
+            =>state.TestOnly&&IsFirstWorkFingerprint(state.ContentFingerprint);
         internal static RuleTime Add(RuleTime a,RuleTime b)=>RuleTime.FromFraction((BigInteger)a.Numerator*b.Denominator
             +(BigInteger)b.Numerator*a.Denominator,(BigInteger)a.Denominator*b.Denominator);
         internal static RuleTime Subtract(RuleTime a,RuleTime b)=>RuleTime.FromFraction((BigInteger)a.Numerator*b.Denominator
@@ -88,7 +101,8 @@ namespace Decennium.Foundation.Laboratory
             if(kind==CropWorkKind.Plant)Input(".seed",seedLot,SeedUnit,SeedPacketsPerPlant); // One explicitly authored0.1-lb packet.
             if(kind!=CropWorkKind.Harvest)Input(".water",waterLot,WaterUnit,WaterPintsPerWork);
             state.Work=state.Work.Reserve(id,Array.Empty<WorkerInterval>(),claims);
-            foreach(var claim in claims)state.Work=state.Work.Consume(id,claim.Id);
+            if(kind!=CropWorkKind.Tend||!UsesFirstWorkTending(state))
+                foreach(var claim in claims)state.Work=state.Work.Consume(id,claim.Id);
             return new CropWorkRecord(id,worker,kind,CropWorkStatus.Working,state.RuleClock,default,null,claims.Select(c=>c.Id));
         }
         private static void Book(Snapshot state,CropWorkRecord task)
@@ -150,12 +164,15 @@ namespace Decennium.Foundation.Laboratory
             foreach(var food in state.CropFood.Where(f=>!f.Expired))Due(food.FreshUntil);
             RuleTime target=RuleTime.FromFraction(targetNumerator,targetDenominator);
             var elapsed=Subtract(target,now);var outputs=state.CropFood.ToList();var crops=new List<CropBatchRecord>();
+            bool firstWorkTending=UsesFirstWorkTending(state);
             foreach(var record in state.Crops) {
                 var crop=Draft(state,record);crop.UpdatedAt=target;
                 if(crop.Stage==CropStage.Growing&&Eligible(crop,now))crop.Growth=Add(crop.Growth,elapsed);
                 for(int i=0;i<crop.Tasks.Count;i++) {
-                    var task=crop.Tasks[i];if(task.Status==CropWorkStatus.Working)
-                        crop.Tasks[i]=UpdateTask(task,task.Status,Add(task.Progress,elapsed),null);
+                    var task=crop.Tasks[i];if(task.Status!=CropWorkStatus.Working)continue;
+                    if(firstWorkTending&&task.Kind==CropWorkKind.Tend&&task.Progress==default&&elapsed>default(RuleTime))
+                        state.Work=state.Work.Consume(task.Id,task.InputReservations.Single());
+                    crop.Tasks[i]=UpdateTask(task,task.Status,Add(task.Progress,elapsed),null);
                 }
                 // Failure wins over care recovery exactly at the continuous-neglect endpoint.
                 if(crop.Stage==CropStage.Growing&&crop.UnsuitableSince.HasValue&&CompareOffset(target,crop.UnsuitableSince.Value,WindowSeconds)>=0)Fail(state,crop);

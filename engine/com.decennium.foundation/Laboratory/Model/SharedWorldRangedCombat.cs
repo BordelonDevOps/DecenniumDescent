@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||firstWorkTendingEnabled&&(kind==CommandKind.TendCrop||kind==CommandKind.StartExpeditionWork)
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
                 ||kind==CommandKind.ResolveTemporaryCampConstruction)
@@ -284,6 +285,11 @@ namespace Decennium.Foundation.Laboratory
                 &&connectedCombat!=null&&s.InventoryCombat) {
                 string turnFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,turnFailure==null,turnFailure??"Available",s.Revision);
+            }
+            if(firstWorkTendingEnabled&&(c.Kind==CommandKind.TendCrop||c.Kind==CommandKind.StartExpeditionWork
+                &&s.ExpeditionAssignments.Any(x=>x.Id==c.Target&&x.Procedure==ExpeditionWorkProcedure.CropTending))) {
+                string tendingFailure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,tendingFailure==null,tendingFailure??"Available",s.Revision);
             }
             var sharedWorld=QuerySharedWorldCommand(s,authority,c);
             if(sharedWorld!=null)return sharedWorld;
