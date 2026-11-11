@@ -1,6 +1,6 @@
 # EXP-07 FL-15 retreat from a living opponent
 
-The implementation on `Engine` is `18276ad82bbaba4433f5cfb8e27feb7d93045302` with the legacy save correction `cd941c4f184226e5f444822484ca0e1398e5951b`. Unity Rules Engine Development approved the schema 88 TEST_ONLY contract in `a9b4dc3b-59a2-4590-9a46-de07f9d9db1c`. The six implementation groups are submitted for review. The named opening, party, lead task, opposing Club attack, route Pressure, and archive transition are the scope of this increment. [Approved source/API ruling](SOURCE_API_REVIEW.md) · [Exact file and artifact hashes](BINDINGS.json) · [Legacy cardinality correction](LEGACY_CARDINALITY_CORRECTION.md)
+The implementation on `Engine` is `18276ad82bbaba4433f5cfb8e27feb7d93045302` with the legacy save correction `cd941c4f184226e5f444822484ca0e1398e5951b`. Unity Rules Engine Development approved the schema 88 TEST_ONLY contract in `a9b4dc3b-59a2-4590-9a46-de07f9d9db1c`. GPT accepted all six bounded implementation groups in `fe0aad05-a360-479c-a82a-6fce1e94504b`. [Actual implementation review](GPT_REVIEW.md) The named opening, party, lead task, opposing Club attack, route Pressure, and archive transition are the scope of this increment. [Approved source/API ruling](SOURCE_API_REVIEW.md) · [Exact file and artifact hashes](BINDINGS.json) · [Legacy cardinality correction](LEGACY_CARDINALITY_CORRECTION.md)
 
 ## Connected witness
 
