@@ -1,0 +1,320 @@
+{
+  "module": "EXP-07 physical re-engagement with the surviving defender",
+  "schema": 89,
+  "authority": "TEST_ONLY",
+  "sourceCommit": "344c33f11fbd4c2d3919c2f3f68cb0ec4db072b1",
+  "approvedSourceApiReply": "0b781a5e-dcfd-4875-8efa-ad93b47b7b6f",
+  "acceptedPredecessorReply": "fe0aad05-a360-479c-a82a-6fce1e94504b",
+  "sourceApiEvidenceCommit": "de3ed76d7324780c0f657294e020c6dcc5fa95a7",
+  "pinnedSourceCommit": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "pinnedSourceHashes": {
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_DIRECTOR_BOOK.md": "6ebf9e6644d5510cacda7e16f8ffddc88cdd314a7dd10094aa1037fd1fb4a83a"
+  },
+  "exactImplementationFiles": {
+    "docs/unity/DEVELOPMENT_HANDOFF.md": "6be7c27297c6b6f16fa3008de77b12d9eaddb8e11b23a07454f269b82f4e32b1",
+    "docs/unity/evidence/2026-11-11-exp07-physical-reengagement/APPROVED_CONTRACT.md": "70a0e4ddee60ef8821499d1dcc64254fa8105b7786121bb575c22b4d531c075f",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs": "6a129cc607c29473bc7e0d3e0181581856d3b068448fde67373c5c4e0f9f20ae",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs": "b6f32195029772566ac39d6536860e61f977cec7bd2d17e95134029cc8592542",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs": "a90a83a92a1f40ee38cc2b743032c168bb061a5bf5080e41311ec6f673bba8c6",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs.meta": "14bf7e44652a7d12aa8cfc753dce1e2046e14ebab8cf1017baec23773b300473",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs": "ac664dc83ea891b6e8deedf59c9aaeb6e25cf24a299f589cfc2104a92784db39",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs": "f47ea9aed46dad965aa07ad18b5320560f81e21d9ce01e99e239cfd48a575262",
+    "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs": "91f3ac0fb1589f4242774ed0c7377275d66f98fa6c30441d011fb4cb1a466873",
+    "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+    "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs": "7714805b0cf55fe6d433d114f10ec68e4ac842d0ab61cda4d031919ff97fd527",
+    "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+    "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs.meta": "2026f904f1d1506135e71179bbecf4bb43abbad628219f4b3a57e1440dcae557",
+    "engine/com.decennium.foundation/Runtime/Core/ReengagementValidation.cs": "5653825dd0986961f6b74a414bf4e3f671293982cdc35eb34f675b857eaaf826",
+    "engine/com.decennium.foundation/Runtime/Core/ReengagementValidation.cs.meta": "c32711f410266d5aa72156ba5693de50abd04c5492a76a3f03314cc140960ce6",
+    "engine/com.decennium.foundation/Runtime/Core/RetreatValidation.cs": "43fbffe7fa13fb9ac0cdea0fd10f222fda0c2a36622b4b357f1eb94f1a4c19b3",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs": "9d66c6e9a1c9713097471059ce928f9328772ce9f649a7bf370c80bfc2ac555e",
+    "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionPressureCodec.cs": "001c19ca62b111eb4fa513380c7d46c56aff9e5194c5e3f066a2244f24a67e6f",
+    "engine/com.decennium.foundation/Runtime/Persistence/ReengagementCodec.cs": "8e7be6c21d5323e257a9c50bf6c3a60c18cb41709ee6ce836fac565b9a50d044",
+    "engine/com.decennium.foundation/Runtime/Persistence/ReengagementCodec.cs.meta": "5f9a866757454cff0450f126ac83f006a0fde5fa618e71c36e9c3ada4db2333f",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs": "d02265d967b6834e023db09ff3d941103821d56403e9df6b654d9fa7a6495326",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs": "4a06691c46358f5a821654f69b3b28c36b1fd271e233b609f12a7cd60051fa7a",
+    "engine/com.decennium.foundation/Tests/EditMode/ReengagementCases.cs": "8bb7db2f3e6b12433525f03098b13f99e2c96a036a2bf0cd183994a9c67ad314",
+    "engine/com.decennium.foundation/Tests/EditMode/ReengagementCases.cs.meta": "39afa8be5be53e8edf34ef889218de1c6ea28ee9663f89b41acf0ce31e39ef32"
+  },
+  "headlessSourceHashes": 334,
+  "standaloneSourceHashes": 246,
+  "runtimeWithoutLabDefinesSourceHashes": 137,
+  "packageSourceHashes": 709,
+  "packageAssets": 360,
+  "uniqueGuids": 360,
+  "packageChecks": 18,
+  "focusedCases": 6,
+  "historicalCases": 491,
+  "unfilteredCases": "Pending",
+  "savedStates": 17,
+  "authenticSchema88SaveSha256": "de2fe8ef52c6ec3f4e9a876466b0f1e250198f7554fd8371739020d59c6152fb",
+  "sharedRunner": {
+    "path": "docs/unity/evidence/2026-11-11-exp07-living-opponent-retreat/Run-ExactRetreatRegressionShard.ps1",
+    "sha256": "abfe9efcabf7c76f9b247e72577c7d7c3b74c286041d6b6633c8d4909ea1e036"
+  },
+  "artifacts": {
+    "headlessCompilation": {
+      "path": "focused/exact-runner-results.json",
+      "sha256": "937764347aa118512d3841bf5168ae663a6f6c347e7fbb50aaa4a7fc181b1da2",
+      "bytes": 62536
+    },
+    "standaloneCompilation": {
+      "path": "compile/results.json",
+      "sha256": "40cf0b31c67cf726e984f8d44e6168c5c84cddbf578fbacac404325ce94d94de",
+      "bytes": 46141
+    },
+    "runtimeWithoutLabDefines": {
+      "path": "compile/runtime-without-lab-defines.json",
+      "sha256": "76a3e6a86f1f7f2fabe8fe67d0999d0c8a17f7dfb5c03b63ef5a065f7650c305",
+      "bytes": 25232
+    },
+    "static": {
+      "path": "static/results.json",
+      "sha256": "9728538f7ec4af979fb4424cb7faf4bb1d8af979968a851fa1a45dfc2478217d",
+      "bytes": 135359
+    },
+    "timeline": {
+      "path": "timeline.json",
+      "sha256": "a4387286cd3374e901385ea8428f3e14a1ba22960c0a3f5d5385b4b8e8b15255",
+      "bytes": 62533
+    },
+    "authenticSchema88": {
+      "path": "legacy-saves/schema88-verification.json",
+      "sha256": "e07e22ed19769e2cac589d6c7338dc8ad8cccfb96877ea029a09f1d284f29498",
+      "bytes": 14550
+    },
+    "Decennium.Foundation.Core.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.Core.dll",
+      "sha256": "fe9f820306127cdfe80e1e71c8d4c31987b226d4cd97ea2305b9660149cfeebe",
+      "bytes": 1148928
+    },
+    "Decennium.Foundation.HeadlessTests.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "36e2b05e5282cfebc5b5045d9edf99a04f36b9f6f8f768147fb5c3d4af2399e1",
+      "bytes": 2460672
+    },
+    "Decennium.Foundation.LabModel.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.LabModel.dll",
+      "sha256": "a091c272f56d93f3d8492199a6a1dbe77a8835624aa1cd781b21ef3e9969d219",
+      "bytes": 2671104
+    },
+    "Decennium.Foundation.Persistence.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.Persistence.dll",
+      "sha256": "8881a371bb14f43ce86f1893a7538d64fa1614e7a72dd202409ae27689dc22d5",
+      "bytes": 259584
+    },
+    "Read-ReengagementEvidence.ps1": {
+      "path": "Read-ReengagementEvidence.ps1",
+      "sha256": "08873696f155ef7e92eb5b8561afc2a66f3027e0675e306bc6be897d0c087e0b",
+      "bytes": 7520
+    },
+    "Start-ExactReengagementRegression.ps1": {
+      "path": "Start-ExactReengagementRegression.ps1",
+      "sha256": "b4aaef63f239b12a079bebe1abc8cdc37433350e6a86f539902004c5c0bc9c4a",
+      "bytes": 2378
+    },
+    "all-names.txt": {
+      "path": "regression/historical/all-names.txt",
+      "sha256": "ff258b6f6d1cdaf7caf3ec1cfa5bae24989c33d1adf41e814952849664b4b23b",
+      "bytes": 89848
+    },
+    "focus-original-inventory.txt": {
+      "path": "regression/historical/focus-original-inventory.txt",
+      "sha256": "216916ad43cd9c2ca1805fe490805321ebbfba72d7979b8c6354c0e0167ee312",
+      "bytes": 371
+    },
+    "historical-original-inventory.txt": {
+      "path": "regression/historical/historical-original-inventory.txt",
+      "sha256": "9924e343a6a33e70a2468aefbabfa91adbecfb81c4140da1280c580f396af54b",
+      "bytes": 32153
+    },
+    "save:exp07-reengagement-before-approach.ddsave": {
+      "path": "focused/saves/exp07-reengagement-before-approach.ddsave",
+      "sha256": "e900147ce440cb34ce324fa33ad4400536390c41b7ae2c8c5c25b4b62bdc4654",
+      "bytes": 68261
+    },
+    "save:exp07-reengagement-before-watch-closure.ddsave": {
+      "path": "focused/saves/exp07-reengagement-before-watch-closure.ddsave",
+      "sha256": "00f4810fcd73b78f07714f80513a2246b0ae7730a5fcfb54192de4260738ca00",
+      "bytes": 31578
+    },
+    "save:exp07-reengagement-closed.ddsave": {
+      "path": "focused/saves/exp07-reengagement-closed.ddsave",
+      "sha256": "df5781742bf584a7417c7819ab0c7f14c1b5a719104bfa139c4ab9f282e98ae4",
+      "bytes": 81744
+    },
+    "save:exp07-reengagement-condition-at-arrival.ddsave": {
+      "path": "focused/saves/exp07-reengagement-condition-at-arrival.ddsave",
+      "sha256": "821d3a2ef72e11b41b8b897f4da5f9f0b9dcf5e9c432b6027c4703ec045fa2a8",
+      "bytes": 33175
+    },
+    "save:exp07-reengagement-contact.ddsave": {
+      "path": "focused/saves/exp07-reengagement-contact.ddsave",
+      "sha256": "4781b339345aec7017443c5bb58449b51f69b99e712015d9b7b3f59e93359140",
+      "bytes": 68919
+    },
+    "save:exp07-reengagement-continued.ddsave": {
+      "path": "focused/saves/exp07-reengagement-continued.ddsave",
+      "sha256": "3d8d36c693d0f67cfebc44a2ec1308ed5719bf0955d01ccac00d84bf56118ed1",
+      "bytes": 82048
+    },
+    "save:exp07-reengagement-dash-and-markers.ddsave": {
+      "path": "focused/saves/exp07-reengagement-dash-and-markers.ddsave",
+      "sha256": "f2132b15b32338fe2e2aab86e29d93a8d5e4f2e14ae64150d357de1583c0c4b1",
+      "bytes": 69731
+    },
+    "save:exp07-reengagement-inherited-starts.ddsave": {
+      "path": "focused/saves/exp07-reengagement-inherited-starts.ddsave",
+      "sha256": "dcc4a9b0a665a1bfa1959e59328035d09a70d94ebb3c7ddff77e83d4a9cbdb18",
+      "bytes": 69616
+    },
+    "save:exp07-reengagement-off-phase-and-retry.ddsave": {
+      "path": "focused/saves/exp07-reengagement-off-phase-and-retry.ddsave",
+      "sha256": "668d8015f3dbeaaef322b89dbc2cf3c0f2366e9ce3b9545cd32cbfd878c0a446",
+      "bytes": 33347
+    },
+    "save:exp07-reengagement-original-schema88.ddsave": {
+      "path": "focused/saves/exp07-reengagement-original-schema88.ddsave",
+      "sha256": "f5f8b7821658268ffb184444c7d02d3977621c94226f8ef169dbeab7f6d00424",
+      "bytes": 68096
+    },
+    "save:exp07-reengagement-paid-attack.ddsave": {
+      "path": "focused/saves/exp07-reengagement-paid-attack.ddsave",
+      "sha256": "ebb8a369c6f3f96246b91a2943a1731d5b3b10df5fe585dd290303588a10b775",
+      "bytes": 69476
+    },
+    "save:exp07-reengagement-partial-watch-closure.ddsave": {
+      "path": "focused/saves/exp07-reengagement-partial-watch-closure.ddsave",
+      "sha256": "4cbf3af0465460c7f47d7f258a7b3f7ca4f5c44e2db4a6b88055e0eea96b4221",
+      "bytes": 32514
+    },
+    "save:exp07-reengagement-partial.ddsave": {
+      "path": "focused/saves/exp07-reengagement-partial.ddsave",
+      "sha256": "68cf29d90d03c6c0af96de6ac9a211b42bc0ea6c8879ef244857dc9dcd2beee7",
+      "bytes": 68637
+    },
+    "save:exp07-reengagement-remote-work.ddsave": {
+      "path": "focused/saves/exp07-reengagement-remote-work.ddsave",
+      "sha256": "f098aaa6518f46d37fc5f93867b1173051d63354041bf3ac2d3e892506dc6dad",
+      "bytes": 70420
+    },
+    "save:exp07-reengagement-unmodified-integrity.ddsave": {
+      "path": "focused/saves/exp07-reengagement-unmodified-integrity.ddsave",
+      "sha256": "acc481edf92dc25b41d0044a29bcbdaaaab3ce6c4dd1aedcd29ee1af007d9b99",
+      "bytes": 68595
+    },
+    "save:exp07-reengagement-watch-admitted.ddsave": {
+      "path": "focused/saves/exp07-reengagement-watch-admitted.ddsave",
+      "sha256": "0393c46c4483d2a1c218bf7c3fb8f3f0c59cc382213a4c1df43f767eaf23de2e",
+      "bytes": 33504
+    },
+    "save:exp07-reengagement-watch-closed.ddsave": {
+      "path": "focused/saves/exp07-reengagement-watch-closed.ddsave",
+      "sha256": "39534ccb469b4c17180009fd70138092d2e40fa8bd8e2b3bfa674fe65e806e60",
+      "bytes": 32527
+    },
+    "focusedResults": {
+      "path": "focused/results.json",
+      "sha256": "4a2c9fd32f0f11037877e9b562341a410100f97142090bd871428fcf9eb1b80c",
+      "bytes": 62411
+    },
+    "historicalResults": {
+      "path": "historical/results.json",
+      "sha256": "3c6a69ee76e516ebd92c69c3ba7cc160d14f0289f9b9b50815f04848466ab1d5",
+      "bytes": 127665
+    },
+    "shardA-names.txt": {
+      "path": "regression/historical/shardA-names.txt",
+      "sha256": "ba2390ac66191b8f111eaae14ed5e184641b24dc50000a6239b6bdfeb51d3e2f",
+      "bytes": 22405
+    },
+    "focused-shardA.jsonl": {
+      "path": "regression/historical/focused-shardA.jsonl",
+      "sha256": "51dc41b9a03e41bf0e2ad63287a3e1a1f745c65f49db33d2b99961d108ed8a97",
+      "bytes": 193
+    },
+    "historical-shardA.jsonl": {
+      "path": "regression/historical/historical-shardA.jsonl",
+      "sha256": "5db4f164b3930f46f363008b49125c653e84b985ecf9ecdce1815b3ccacec696",
+      "bytes": 12254
+    },
+    "shardB-names.txt": {
+      "path": "regression/historical/shardB-names.txt",
+      "sha256": "8c0975df43c78c3bcd982ef4298919395879b7c250260c5c5cb1ea1ada1ec777",
+      "bytes": 22463
+    },
+    "focused-shardB.jsonl": {
+      "path": "regression/historical/focused-shardB.jsonl",
+      "sha256": "a9d15ba7609c408eddf97a09bc6d371fa9d1312c031fba69dce6658f99cf22c6",
+      "bytes": 191
+    },
+    "historical-shardB.jsonl": {
+      "path": "regression/historical/historical-shardB.jsonl",
+      "sha256": "59997259287826b6c542f52437d984a6194bfd63bd917894371c2147671a157e",
+      "bytes": 12345
+    },
+    "shardC-names.txt": {
+      "path": "regression/historical/shardC-names.txt",
+      "sha256": "df262e746fc96fb8c0a47933f0603c1d4d1432cc03689f501ad3115675099ed6",
+      "bytes": 11324
+    },
+    "focused-shardC.jsonl": {
+      "path": "regression/historical/focused-shardC.jsonl",
+      "sha256": "7a869fd24589c28e3b4a6d3be20f0fcdb8f9f65c4f690be9db379dbd9fbf641c",
+      "bytes": 96
+    },
+    "historical-shardC.jsonl": {
+      "path": "regression/historical/historical-shardC.jsonl",
+      "sha256": "1df583904f238f70502cd26397e9847e874e12d38d6d7f7081fbbc926aefcbbe",
+      "bytes": 9997
+    },
+    "shardD-names.txt": {
+      "path": "regression/historical/shardD-names.txt",
+      "sha256": "dce8f0024caf0bdf476e12b7d2da89cd856a946b8ff71a8ada7a6bce28fc8c76",
+      "bytes": 22263
+    },
+    "focused-shardD.jsonl": {
+      "path": "regression/historical/focused-shardD.jsonl",
+      "sha256": "08bdbc538871f4eccbea4d2b417c86c3136a854259494befba26a3c6b187bd03",
+      "bytes": 101
+    },
+    "historical-shardD.jsonl": {
+      "path": "regression/historical/historical-shardD.jsonl",
+      "sha256": "1235c69a963fe5e057cba5ebe7e9d8194c4cf9ea784f29ea2c76f22cb82f7e63",
+      "bytes": 12373
+    },
+    "shardE-names.txt": {
+      "path": "regression/historical/shardE-names.txt",
+      "sha256": "e078773e7f76a542f6f4be96f7aa89e03c3bb58c0ef8d48b6100a33c3164b111",
+      "bytes": 5718
+    },
+    "focused-shardE.jsonl": {
+      "path": "regression/historical/focused-shardE.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "historical-shardE.jsonl": {
+      "path": "regression/historical/historical-shardE.jsonl",
+      "sha256": "f43908a6661d6003bfd701959386f942b5015f281fcaead4b513af0e6fe24f0a",
+      "bytes": 1209
+    },
+    "shardF-names.txt": {
+      "path": "regression/historical/shardF-names.txt",
+      "sha256": "90fe592304920663eb90fefa74a2f00fce1bcc728e1f92451a8271bec1ddac4c",
+      "bytes": 5675
+    },
+    "focused-shardF.jsonl": {
+      "path": "regression/historical/focused-shardF.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "historical-shardF.jsonl": {
+      "path": "regression/historical/historical-shardF.jsonl",
+      "sha256": "8e1977f4006fd71cd349cf2403cf9e8f7383fd23405300aa41710e93ac148ee1",
+      "bytes": 1160
+    }
+  }
+}
