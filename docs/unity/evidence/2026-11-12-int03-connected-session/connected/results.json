@@ -1,0 +1,2213 @@
+{
+  "Status": "PASS",
+  "Measurement": "Actual C# session input through scoped response and scoped View, excluding script input construction and JSON presentation.",
+  "Hardware": "Intel(R) Core(TM) i5-4590 CPU @ 3.30GHz",
+  "Runtime": ".NET 10.0.14",
+  "PowerShell": "7.6.9",
+  "Percentile": "Nearest rank ceil(0.95*n); one full trace before measurements.",
+  "WarmSamplesPerInput": 30,
+  "ProfileFingerprint": "TEST_ONLY.recipe4-batch-v1-8e3fd0fe4005207e90bffc01cd900efddcfd6e976e7aab4b46000d64d50c4d01",
+  "RepeatedFinalSha256": "6f1bc7afa0f5727e76dccc26d0d33911682f791a3ca3e971ca1350c64dcdd521",
+  "RestoredFinalSha256": "6f1bc7afa0f5727e76dccc26d0d33911682f791a3ca3e971ca1350c64dcdd521",
+  "PendingSha256": "724f6b4b6e4001f5d848e7a84eda39bd8439901d669a7bde3f56743b7554bea7",
+  "ReferenceInputsSha256": "729cd433b7f2deae80523000b381e147bb291ebe1aa7833c8877092ed5a18238",
+  "ConsoleInputsSha256": "647dacc8e1c7450d3d97dbdca19d5c6f8039f4b91251a8ed74d7ae8a5b0c7c88",
+  "Startup": {
+    "AssemblyLoadMs": 87.4131,
+    "ColdStartWithViewMs": 587.2924,
+    "WarmStartWithView": {
+      "Count": 30,
+      "MedianMs": 5.612,
+      "P95Ms": 6.216,
+      "MaxMs": 20.322
+    }
+  },
+  "FileOperations": {
+    "DecodePendingMs": 2.4939,
+    "FullRestorePendingMs": 5957.8885,
+    "SavePendingMs": 15.2463,
+    "EncodableFalseHistoryRejected": true,
+    "AuthenticPredecessorFullRestoreMs": 5873.3477,
+    "AuthenticPredecessorSha256": "da7440ae7269744c7ffe514fe26ffb2ec8003e089cc99e7728c67d6b71230de5"
+  },
+  "Gameplay": {
+    "FinalRevision": 165,
+    "FinalClock": "113415/2",
+    "ClosedEncounters": 2,
+    "MiningStatus": "Success",
+    "HistoricalSaleCopper": 2,
+    "CharterOutcome": "ReturnedComplete",
+    "FormulaStatus": "Success",
+    "BatchNatural": 15,
+    "BatchQuality": "Exceptional",
+    "BatchDisposition": "Consumed",
+    "Doses": 6,
+    "HeroHpBefore": 23,
+    "HeroHpAfter": 26,
+    "Receipts": [
+      {
+        "Name": "TEST_ONLY.host",
+        "Count": 90
+      },
+      {
+        "Name": "TEST_ONLY.session-first-opponent",
+        "Count": 4
+      },
+      {
+        "Name": "TEST_ONLY.session-operator",
+        "Count": 47
+      },
+      {
+        "Name": "TEST_ONLY.tac10-later-defender.v1",
+        "Count": 24
+      }
+    ]
+  },
+  "Timings": [
+    {
+      "Revision": 1,
+      "Workload": "Opening step",
+      "Kind": "BeginWorldStep",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.681,
+        "P95Ms": 6.006,
+        "MaxMs": 6.337
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 2,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.131,
+        "P95Ms": 7.91,
+        "MaxMs": 8.194
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 3,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.396,
+        "P95Ms": 5.95,
+        "MaxMs": 6.025
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 4,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.249,
+        "P95Ms": 11.239,
+        "MaxMs": 11.251
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 5,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.724,
+        "P95Ms": 6.022,
+        "MaxMs": 6.311
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 6,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 3.737,
+        "P95Ms": 4.62,
+        "MaxMs": 4.622
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 7,
+      "Workload": null,
+      "Kind": "TacticalStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.24,
+        "P95Ms": 6.171,
+        "MaxMs": 6.415
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 8,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.122,
+        "P95Ms": 6.23,
+        "MaxMs": 6.613
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 9,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.069,
+        "P95Ms": 5.176,
+        "MaxMs": 5.719
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 10,
+      "Workload": "First encounter attack",
+      "Kind": "AttackClub",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.903,
+        "P95Ms": 5.64,
+        "MaxMs": 5.666
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 11,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.525,
+        "P95Ms": 6.218,
+        "MaxMs": 6.241
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 12,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.499,
+        "P95Ms": 5.83,
+        "MaxMs": 6.787
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 13,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.752,
+        "P95Ms": 5.382,
+        "MaxMs": 5.398
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 14,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.962,
+        "P95Ms": 5.958,
+        "MaxMs": 6.057
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 15,
+      "Workload": null,
+      "Kind": "EndFixedEncounter",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.635,
+        "P95Ms": 5.953,
+        "MaxMs": 6.084
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 16,
+      "Workload": null,
+      "Kind": "StartMining",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 4.962,
+        "P95Ms": 5.634,
+        "MaxMs": 6.956
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 17,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 309.61,
+        "P95Ms": 321.348,
+        "MaxMs": 334.924
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 18,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.381,
+        "P95Ms": 8.649,
+        "MaxMs": 9.753
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 19,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.391,
+        "P95Ms": 6.105,
+        "MaxMs": 6.886
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 20,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.041,
+        "P95Ms": 11.017,
+        "MaxMs": 11.059
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 21,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.24,
+        "P95Ms": 8.265,
+        "MaxMs": 8.798
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 22,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.219,
+        "P95Ms": 6.977,
+        "MaxMs": 7.439
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 23,
+      "Workload": null,
+      "Kind": "StartHavenAppraisal",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.43,
+        "P95Ms": 6.555,
+        "MaxMs": 6.607
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 24,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 365.173,
+        "P95Ms": 396.626,
+        "MaxMs": 426.237
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 25,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.464,
+        "P95Ms": 9.362,
+        "MaxMs": 10.013
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 26,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.355,
+        "P95Ms": 8.568,
+        "MaxMs": 9.08
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 27,
+      "Workload": null,
+      "Kind": "StartHavenSale",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.573,
+        "P95Ms": 7.217,
+        "MaxMs": 8.656
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 28,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 392.877,
+        "P95Ms": 411.648,
+        "MaxMs": 470.549
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 29,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.692,
+        "P95Ms": 7.652,
+        "MaxMs": 7.718
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 30,
+      "Workload": null,
+      "Kind": "PurchaseHavenMeal",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.746,
+        "P95Ms": 9.687,
+        "MaxMs": 10.839
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 31,
+      "Workload": null,
+      "Kind": "StartIntake",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.431,
+        "P95Ms": 6.168,
+        "MaxMs": 6.61
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 32,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 35.656,
+        "P95Ms": 37.566,
+        "MaxMs": 38.189
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 33,
+      "Workload": null,
+      "Kind": "InterruptIntake",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.873,
+        "P95Ms": 6.542,
+        "MaxMs": 7.118
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 34,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.643,
+        "P95Ms": 7.785,
+        "MaxMs": 8.455
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 35,
+      "Workload": null,
+      "Kind": "PortionInventory",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.784,
+        "P95Ms": 6.441,
+        "MaxMs": 6.807
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 36,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.147,
+        "P95Ms": 9.156,
+        "MaxMs": 10.112
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 37,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.058,
+        "P95Ms": 7.774,
+        "MaxMs": 7.796
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 38,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.75,
+        "P95Ms": 9.247,
+        "MaxMs": 9.264
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 39,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 5.992,
+        "P95Ms": 6.709,
+        "MaxMs": 7.232
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 40,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.164,
+        "P95Ms": 10.903,
+        "MaxMs": 11.406
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 41,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.03,
+        "P95Ms": 6.715,
+        "MaxMs": 6.812
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 42,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.76,
+        "P95Ms": 11.125,
+        "MaxMs": 11.152
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 43,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.224,
+        "P95Ms": 8.851,
+        "MaxMs": 8.883
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 44,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.082,
+        "P95Ms": 8.973,
+        "MaxMs": 10.808
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 45,
+      "Workload": null,
+      "Kind": "StartIntake",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.209,
+        "P95Ms": 6.964,
+        "MaxMs": 8.619
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 46,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 36.782,
+        "P95Ms": 38.438,
+        "MaxMs": 38.588
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 47,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.456,
+        "P95Ms": 9.774,
+        "MaxMs": 10.459
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 48,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.229,
+        "P95Ms": 7.994,
+        "MaxMs": 8.319
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 49,
+      "Workload": null,
+      "Kind": "StartIntake",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.165,
+        "P95Ms": 7.181,
+        "MaxMs": 8.336
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 50,
+      "Workload": "Mid-expedition clock advance",
+      "Kind": "AdvanceClock",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 64.371,
+        "P95Ms": 68.004,
+        "MaxMs": 98.322
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 51,
+      "Workload": null,
+      "Kind": "StartExpeditionBill",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.61,
+        "P95Ms": 7.984,
+        "MaxMs": 8.17
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 52,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 392.949,
+        "P95Ms": 413.628,
+        "MaxMs": 496.665
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 53,
+      "Workload": null,
+      "Kind": "CloseExpeditionEpisode",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.271,
+        "P95Ms": 8.537,
+        "MaxMs": 8.637
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 54,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.235,
+        "P95Ms": 8.213,
+        "MaxMs": 8.458
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 55,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.727,
+        "P95Ms": 12.891,
+        "MaxMs": 14.782
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 56,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.821,
+        "P95Ms": 9.229,
+        "MaxMs": 9.683
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 57,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.597,
+        "P95Ms": 16.43,
+        "MaxMs": 25.199
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 58,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.897,
+        "P95Ms": 8.514,
+        "MaxMs": 11.411
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 59,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 14.888,
+        "P95Ms": 15.673,
+        "MaxMs": 20.808
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 60,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.549,
+        "P95Ms": 8.534,
+        "MaxMs": 10.045
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 61,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 14.785,
+        "P95Ms": 16.868,
+        "MaxMs": 23.62
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 62,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.678,
+        "P95Ms": 9.152,
+        "MaxMs": 10.401
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 63,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 14.892,
+        "P95Ms": 15.905,
+        "MaxMs": 17.499
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 64,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.685,
+        "P95Ms": 10.658,
+        "MaxMs": 14.875
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 65,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.024,
+        "P95Ms": 17.643,
+        "MaxMs": 18.26
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 66,
+      "Workload": null,
+      "Kind": "StartNextCharterPlan",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 1150.288,
+        "P95Ms": 1192.519,
+        "MaxMs": 1261.121
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 67,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.38,
+        "P95Ms": 10.531,
+        "MaxMs": 10.534
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 68,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.661,
+        "P95Ms": 8.693,
+        "MaxMs": 9.206
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 69,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.341,
+        "P95Ms": 16.54,
+        "MaxMs": 17.564
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 70,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.803,
+        "P95Ms": 9.415,
+        "MaxMs": 9.956
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 71,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.069,
+        "P95Ms": 12.201,
+        "MaxMs": 12.325
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 72,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.621,
+        "P95Ms": 8.274,
+        "MaxMs": 9.139
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 73,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.308,
+        "P95Ms": 16.952,
+        "MaxMs": 17.013
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 74,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.061,
+        "P95Ms": 11.047,
+        "MaxMs": 11.316
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 75,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.812,
+        "P95Ms": 8.664,
+        "MaxMs": 8.724
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 76,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.379,
+        "P95Ms": 11.066,
+        "MaxMs": 11.784
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 77,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.889,
+        "P95Ms": 9.539,
+        "MaxMs": 10.275
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 78,
+      "Workload": null,
+      "Kind": "AcceptNextCharter",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.545,
+        "P95Ms": 8.792,
+        "MaxMs": 9.473
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 79,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.81,
+        "P95Ms": 8.75,
+        "MaxMs": 8.87
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 80,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.562,
+        "P95Ms": 13.889,
+        "MaxMs": 13.974
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 81,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.347,
+        "P95Ms": 8.601,
+        "MaxMs": 9.183
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 82,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.518,
+        "P95Ms": 14.615,
+        "MaxMs": 14.913
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 83,
+      "Workload": null,
+      "Kind": "StartCharterAttempt",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 6.717,
+        "P95Ms": 8.327,
+        "MaxMs": 8.833
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 84,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.496,
+        "P95Ms": 11.202,
+        "MaxMs": 11.403
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 85,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.048,
+        "P95Ms": 13.992,
+        "MaxMs": 14.11
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 86,
+      "Workload": null,
+      "Kind": "ObserveCharterApproach",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.233,
+        "P95Ms": 8.515,
+        "MaxMs": 9.528
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 87,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.7,
+        "P95Ms": 11.486,
+        "MaxMs": 11.708
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 88,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.51,
+        "P95Ms": 16.489,
+        "MaxMs": 22.228
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 89,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.28,
+        "P95Ms": 10.303,
+        "MaxMs": 10.354
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 90,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.656,
+        "P95Ms": 14.066,
+        "MaxMs": 14.371
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 91,
+      "Workload": null,
+      "Kind": "OpenPortableContainer",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.754,
+        "P95Ms": 12.536,
+        "MaxMs": 13.204
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 92,
+      "Workload": null,
+      "Kind": "StartHarvestPreservationTreatment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 7.845,
+        "P95Ms": 9.528,
+        "MaxMs": 9.75
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 93,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 337.636,
+        "P95Ms": 364.653,
+        "MaxMs": 455.054
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 94,
+      "Workload": null,
+      "Kind": "StartFormulaResearch",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.6,
+        "P95Ms": 9.33,
+        "MaxMs": 10.832
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 95,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 2850.019,
+        "P95Ms": 3030.663,
+        "MaxMs": 3169.438
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 96,
+      "Workload": null,
+      "Kind": "ResumeFormulaWork",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.626,
+        "P95Ms": 10.154,
+        "MaxMs": 10.191
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 97,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 2495.587,
+        "P95Ms": 2598.301,
+        "MaxMs": 2644.13
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 98,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.199,
+        "P95Ms": 12.73,
+        "MaxMs": 16.795
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 99,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.153,
+        "P95Ms": 9.658,
+        "MaxMs": 12.378
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 100,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.242,
+        "P95Ms": 15.47,
+        "MaxMs": 23.63
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 101,
+      "Workload": null,
+      "Kind": "HandlePortableEquipment",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.309,
+        "P95Ms": 12.74,
+        "MaxMs": 13.478
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 102,
+      "Workload": null,
+      "Kind": "OpenPortableContainer",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.319,
+        "P95Ms": 13.676,
+        "MaxMs": 13.74
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 103,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.931,
+        "P95Ms": 11.396,
+        "MaxMs": 12.516
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 104,
+      "Workload": null,
+      "Kind": "StartManufacturing",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.395,
+        "P95Ms": 10.127,
+        "MaxMs": 10.826
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 105,
+      "Workload": "Stabilization milestone",
+      "Kind": "AdvanceClock",
+      "BudgetMs": 350,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 197.773,
+        "P95Ms": 218.744,
+        "MaxMs": 289.837
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 106,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 2723.973,
+        "P95Ms": 2849.462,
+        "MaxMs": 2856.429
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 107,
+      "Workload": null,
+      "Kind": "ResolveManufacturingQuality",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.803,
+        "P95Ms": 10.887,
+        "MaxMs": 11.302
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 108,
+      "Workload": null,
+      "Kind": "ClosePortableContainer",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.527,
+        "P95Ms": 13.082,
+        "MaxMs": 19.254
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 109,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.735,
+        "P95Ms": 11.218,
+        "MaxMs": 26.383
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 110,
+      "Workload": null,
+      "Kind": "AdvanceClock",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.805,
+        "P95Ms": 15.508,
+        "MaxMs": 31.337
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 111,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.817,
+        "P95Ms": 10.933,
+        "MaxMs": 11.707
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 112,
+      "Workload": null,
+      "Kind": "TacticalStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.746,
+        "P95Ms": 26.614,
+        "MaxMs": 29.267
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 113,
+      "Workload": null,
+      "Kind": "TacticalStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.056,
+        "P95Ms": 11.149,
+        "MaxMs": 20.424
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 114,
+      "Workload": "Off-turn opportunity",
+      "Kind": "RespondOpportunityAttack",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.675,
+        "P95Ms": 14.684,
+        "MaxMs": 24.937
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 115,
+      "Workload": null,
+      "Kind": "UseAlchemyDose",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 8.555,
+        "P95Ms": 10.38,
+        "MaxMs": 11.094
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 116,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.377,
+        "P95Ms": 14.134,
+        "MaxMs": 14.209
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 117,
+      "Workload": "Defender stance",
+      "Kind": "SelectCombatStance",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.374,
+        "P95Ms": 23.374,
+        "MaxMs": 25.876
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 118,
+      "Workload": "Defender tactical step",
+      "Kind": "TacticalStep",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.353,
+        "P95Ms": 24.028,
+        "MaxMs": 24.926
+      },
+      "MetBudget": true
+    },
+    {
+      "Revision": 119,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.717,
+        "P95Ms": 11.31,
+        "MaxMs": 11.52
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 120,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.558,
+        "P95Ms": 14.077,
+        "MaxMs": 18.524
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 121,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.595,
+        "P95Ms": 20.953,
+        "MaxMs": 25.931
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 122,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.032,
+        "P95Ms": 16.163,
+        "MaxMs": 20.562
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 123,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.307,
+        "P95Ms": 22.395,
+        "MaxMs": 28.204
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 124,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.765,
+        "P95Ms": 11.405,
+        "MaxMs": 17.749
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 125,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.599,
+        "P95Ms": 18.628,
+        "MaxMs": 26.313
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 126,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.168,
+        "P95Ms": 26.752,
+        "MaxMs": 29.324
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 127,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.569,
+        "P95Ms": 11.4,
+        "MaxMs": 11.818
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 128,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.213,
+        "P95Ms": 12.884,
+        "MaxMs": 22.809
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 129,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.041,
+        "P95Ms": 13.221,
+        "MaxMs": 13.86
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 130,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.084,
+        "P95Ms": 19.122,
+        "MaxMs": 27.186
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 131,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.145,
+        "P95Ms": 11.545,
+        "MaxMs": 11.811
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 132,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.758,
+        "P95Ms": 13.838,
+        "MaxMs": 14.428
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 133,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.499,
+        "P95Ms": 10.549,
+        "MaxMs": 23.458
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 134,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.272,
+        "P95Ms": 15.968,
+        "MaxMs": 24.602
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 135,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.404,
+        "P95Ms": 22.126,
+        "MaxMs": 28.948
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 136,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.398,
+        "P95Ms": 23.312,
+        "MaxMs": 24.97
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 137,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.301,
+        "P95Ms": 11.82,
+        "MaxMs": 12.446
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 138,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.874,
+        "P95Ms": 16.447,
+        "MaxMs": 24.098
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 139,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.202,
+        "P95Ms": 12.342,
+        "MaxMs": 22.168
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 140,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.917,
+        "P95Ms": 26.406,
+        "MaxMs": 28.89
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 141,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.711,
+        "P95Ms": 20.479,
+        "MaxMs": 27.712
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 142,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.968,
+        "P95Ms": 22.906,
+        "MaxMs": 28.362
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 143,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.543,
+        "P95Ms": 11.633,
+        "MaxMs": 12.0
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 144,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.876,
+        "P95Ms": 13.958,
+        "MaxMs": 19.623
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 145,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.774,
+        "P95Ms": 20.94,
+        "MaxMs": 21.888
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 146,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.223,
+        "P95Ms": 12.444,
+        "MaxMs": 22.59
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 147,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.479,
+        "P95Ms": 14.888,
+        "MaxMs": 22.759
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 148,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.216,
+        "P95Ms": 17.273,
+        "MaxMs": 18.536
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 149,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.474,
+        "P95Ms": 12.122,
+        "MaxMs": 24.591
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 150,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.064,
+        "P95Ms": 14.455,
+        "MaxMs": 15.086
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 151,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.526,
+        "P95Ms": 24.041,
+        "MaxMs": 26.133
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 152,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.302,
+        "P95Ms": 12.007,
+        "MaxMs": 15.865
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 153,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 12.62,
+        "P95Ms": 15.27,
+        "MaxMs": 16.085
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 154,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.709,
+        "P95Ms": 11.922,
+        "MaxMs": 12.034
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 155,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.893,
+        "P95Ms": 12.674,
+        "MaxMs": 21.135
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 156,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.203,
+        "P95Ms": 21.588,
+        "MaxMs": 25.476
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 157,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.375,
+        "P95Ms": 11.586,
+        "MaxMs": 20.756
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 158,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.634,
+        "P95Ms": 23.694,
+        "MaxMs": 27.301
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 159,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.479,
+        "P95Ms": 15.621,
+        "MaxMs": 31.52
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 160,
+      "Workload": null,
+      "Kind": "EndRegularTurn",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.333,
+        "P95Ms": 19.466,
+        "MaxMs": 29.405
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 161,
+      "Workload": null,
+      "Kind": "SelectCombatStance",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 9.673,
+        "P95Ms": 17.375,
+        "MaxMs": 22.334
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 162,
+      "Workload": null,
+      "Kind": "AttackClub",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 11.247,
+        "P95Ms": 15.855,
+        "MaxMs": 19.289
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 163,
+      "Workload": null,
+      "Kind": "EndFixedEncounter",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 13.235,
+        "P95Ms": 27.738,
+        "MaxMs": 31.088
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 164,
+      "Workload": null,
+      "Kind": "BeginWorldStep",
+      "BudgetMs": null,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 10.595,
+        "P95Ms": 12.921,
+        "MaxMs": 13.049
+      },
+      "MetBudget": null
+    },
+    {
+      "Revision": 165,
+      "Workload": "Ordinary continuation",
+      "Kind": "AdvanceClock",
+      "BudgetMs": 150,
+      "Timing": {
+        "Count": 30,
+        "MedianMs": 15.071,
+        "P95Ms": 30.047,
+        "MaxMs": 30.657
+      },
+      "MetBudget": true
+    }
+  ]
+}
