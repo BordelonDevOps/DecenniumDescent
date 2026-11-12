@@ -10,4 +10,6 @@ The other paths cover worker interruption, the exact Spoiled tie, deferred check
 
 The 25 original-profile checks include all ten accepted wire 94 saves and authentic active manufacturing orders from wires 18 and 20. Both older manufacturing orders continue through their original check and finite output. Exact compilation and static reports cover the C# package and runtime without laboratory defines. [Compatibility evidence](legacy-saves/results.json) · [Source and artifact bindings](BINDINGS.json)
 
+GPT supported the exact focused evidence in reply `d873cf18-938c-47b3-a0e9-e91bb3e4165e` and held only for the completed regression. All six unfiltered journals now record 1,477 passes on the same four assemblies. The inventory includes the 1,470 predecessor cases and all seven new cases. [Full regression](validation/results.json)
+
 This is one bounded work order. General crafting, donor procurement, production authority and Unity gameplay integration remain outside the selected profile. P1 remains tracked for full-history replay responsiveness.
