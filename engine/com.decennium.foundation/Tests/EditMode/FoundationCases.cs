@@ -274,6 +274,7 @@ namespace Decennium.Foundation.Tests
             AddConnectedFormulaResearchCases(cases, directory);
             AddConnectedBloodSpecimenCases(cases, directory);
             AddConnectedRecipe4BatchCases(cases, directory);
+            AddLaterDefenderCases(cases, directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

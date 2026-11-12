@@ -43,11 +43,17 @@ namespace Decennium.Foundation.Laboratory
             return candidate;
         }
 
+        internal static string AttackAuditCapacityFailure(Snapshot s)
+            => s.SchemaVersion >= Snapshot.SoldierTacticalTechniquesSchema
+                && s.TacticalAttackAudits.Length >= SoldierTacticalFeatureValidation.MaxAttackAudits
+                ? "TacticalAttackAuditCapacityReached" : null;
+
         public static string CaptureAndConsume(Snapshot s,string attackId,string attacker,string target,string technique,out TacticalAttackEffects effects)
         {
             effects=ForAttack(s,attacker,target);
             if(s.SchemaVersion<Snapshot.SoldierTacticalTechniquesSchema)return null;
-            if(s.TacticalAttackAudits.Length>=SoldierTacticalFeatureValidation.MaxAttackAudits)return "TacticalAttackAuditCapacityReached";
+            string failure = AttackAuditCapacityFailure(s);
+            if (failure != null) return failure;
             if(effects.EffectIds.Length>0) {
                 var selected=new System.Collections.Generic.HashSet<string>(effects.EffectIds,StringComparer.Ordinal);
                 s.SoldierTacticalEffects=s.SoldierTacticalEffects.Select(x=>selected.Contains(x.Id)

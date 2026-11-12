@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
             if(kind==TacticalMoveKind.TacticalReposition)return cost>CharacterAdvancementRules.RepositionBudget(s,actor,s.Encounter.TurnOrdinal)?"InsufficientRepositionMovement":null;
             return new RuleQuantity(cost)>RemainingMovement(s,actor)?"InsufficientMovement":null;
         }
-        private static bool EligibleOpportunity(Snapshot s,string reactor,TacticalMoveRecord move)
+        internal static bool EligibleOpportunity(Snapshot s,string reactor,TacticalMoveRecord move)
         {
             if(move.Kind==TacticalMoveKind.TacticalReposition||move.Kind==TacticalMoveKind.CommandStep
                 ||move.Kind==TacticalMoveKind.DefensiveFormationShift)return false;
@@ -107,10 +107,10 @@ namespace Decennium.Foundation.Laboratory
             });
         }
 
-        private string BeginOrdinaryStep(Snapshot s,Command c)
+        private string BeginOrdinaryStep(Snapshot s, Command c, bool assessTactical)
         {
-            var body=s.Actors.Single(a=>a.Id==c.Actor);string error=StepFailure(s,c.Actor,body.X,body.Y,c.X,c.Y,TacticalMoveKind.Ordinary);if(error!=null)return error;
-            error=OrdinaryStepCapacityFailure(s);if(error!=null)return error;
+            string error = AssessTacticalMovementCommand(s, c, out _);
+            if (error != null || assessTactical) return error;
             BeginStep(s,c.Actor,c.X,c.Y,TacticalMoveKind.Ordinary);AdvanceTacticalFlow(s);return null;
         }
         private string OrdinaryStepCapacityFailure(Snapshot s)
@@ -268,7 +268,17 @@ namespace Decennium.Foundation.Laboratory
             }
         }
         internal void ContinueTacticalFlow(Snapshot s)=>AdvanceTacticalFlow(s);
-        private string ResolveTacticalChoice(Snapshot s,Command c)
+
+        private static Command OpportunityAttackCommand(Command response, TacticalMoveRecord move)
+        {
+            var request = response.Combat;
+            bool unarmed = request.WeaponId == CombatProfileIds.OrdinaryUnarmed;
+            return new Command(response.Id, response.Actor, response.ExpectedRevision,
+                unarmed ? CommandKind.AttackUnarmed : CommandKind.AttackClub, move.ActorId,
+                combat: new CombatRequest(request.TurnId, unarmed ? "" : request.WeaponId,
+                    knockout: request.Knockout, pressInstruction: request.PressInstruction));
+        }
+        private string ResolveTacticalChoice(Snapshot s, Command c, bool assessTactical)
         {
             var move=PendingMove(s);var r=c.Combat;
             if(move!=null) {
@@ -277,13 +287,12 @@ namespace Decennium.Foundation.Laboratory
                 if(move.ResponseIndex>=move.Reactors.Count||c.Actor!=move.Reactors[move.ResponseIndex])return "WrongReactionController";
                 if(!EligibleOpportunity(s,c.Actor,move))return "OpportunityNoLongerEligible";
                 if(!r.Choice&&(r.WeaponId!=""||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace))return "InvalidOpportunityResponse";
+                var attack = r.Choice ? OpportunityAttackCommand(c, move) : null;
+                if (assessTactical) return attack == null ? null : Attack(s, attack, opportunity: true, assessTactical: true);
                 SetMove(s,move.Progress(move.ResponseIndex+1,move.Status));
-                if(r.Choice) {
+                if (attack != null) {
                     var actor=TacticalActor(s,c.Actor);var reaction=new ReactionClock(actor.ReactionAvailable,lastRegularStart:actor.LastRegularStart).Spend();
                     SetTactical(s,new ActorTacticalRecord(actor.ActorId,actor.LastRegularStart,reaction.Available,actor.MobileFeet,actor.PressConsumed,actor.DisengageTurn));
-                    bool unarmed=r.WeaponId==CombatProfileIds.OrdinaryUnarmed;
-                    var attack=new Command(c.Id,c.Actor,c.ExpectedRevision,unarmed?CommandKind.AttackUnarmed:CommandKind.AttackClub,move.ActorId,
-                        combat:new CombatRequest(r.TurnId,unarmed?"":r.WeaponId,knockout:r.Knockout,pressInstruction:r.PressInstruction));
                     string error=Attack(s,attack,true);if(error!=null)return error;
                 }
                 AdvanceTacticalFlow(s);return null;

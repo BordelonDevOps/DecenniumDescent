@@ -295,7 +295,7 @@ namespace Decennium.Foundation.Laboratory
             string opponent = WorldTiming.IsLaterActive(s) ? s.LaterEncounter.Definition.DefenderId : AdditionalTacticalActor.Id;
             return s.Lives.Single(x => x.ActorId == opponent).Dead;
         }
-        private string ResolveCalendarCombat(Snapshot s,Command c)
+        private string ResolveCalendarCombat(Snapshot s, Command c, bool assessTactical = false)
         {
             if(c.Kind==CommandKind.AdvanceClock)return "TacticalDecisionClockPaused";
             var formationResponse=PendingDefensiveFormationShift(s);
@@ -389,6 +389,7 @@ namespace Decennium.Foundation.Laboratory
                 if(TestOnlyClubAttackPolicy.Aware(s,c.Actor)&&!TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
                 var schedule = WorldTiming.ForEncounter(s);
                 if(schedule.ProcessedSlot>=int.MaxValue-1)return "CombatCalendarCapacityReached";
+                if (assessTactical) return null;
                 var outgoing = s.Encounter;
                 ExpireOverwatchSnares(s,c.Actor,outgoing.TurnOrdinal,s.Revision+1);
                 CharacterAdvancementRules.EndRegularTurn(s,c.Actor,outgoing.TurnOrdinal);
@@ -444,7 +445,8 @@ namespace Decennium.Foundation.Laboratory
             if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed)&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))
                 return "OverwatchAttackTriggerNotImplemented";
             bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage||c.Kind==CommandKind.Dodge;
-            string failure=bodies.Resolve(s,c);if(failure!=null)return failure;
+            string failure = bodies.Resolve(s, c, assessTactical);
+            if (failure != null || assessTactical) return failure;
             string triggerError=QueueCompletedMovementOverwatch(s);if(triggerError!=null)return triggerError;
             NormalizePendingOverwatchOffers(s);
             FinishDefensiveFormationContinuation(s,c.Id);

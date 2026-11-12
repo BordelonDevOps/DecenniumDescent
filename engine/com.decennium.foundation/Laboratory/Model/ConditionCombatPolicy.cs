@@ -25,7 +25,7 @@ namespace Decennium.Foundation.Laboratory
             if (ActorLifeRules.ZeroHpUnconscious(s, actor)) { result.Add(ConditionClause.Unconscious); result.Add(ConditionClause.Incapacitated); }
             return ConditionClauses.FromResolved(result);
         }
-        private static ConditionPermissions CurrentPermissions(Snapshot s, string actor)
+        internal static ConditionPermissions CurrentPermissions(Snapshot s, string actor)
         {
             bool ownTurn = s.Encounter?.CurrentActor == actor;
             long spent = ownTurn ? s.ActorMovement.Single(x => x.ActorId == actor).Spent

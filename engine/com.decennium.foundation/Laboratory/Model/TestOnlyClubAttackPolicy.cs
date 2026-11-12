@@ -131,7 +131,7 @@ namespace Decennium.Foundation.Laboratory
             if(m.TurnOrdinal!=s.Encounter.TurnOrdinal)throw new ArgumentException("Movement turn is not current.");
             return new MovementLedger(m.Spent,s.EncounterDashes.Count(d=>d.TurnOrdinal==m.TurnOrdinal&&EncounterHistory.InCurrent(s,d.Revision)));
         }
-        private static RuleQuantity RemainingMovement(Snapshot s,string actor) {
+        internal static RuleQuantity RemainingMovement(Snapshot s,string actor) {
             if(s.WorldSchedule==null)return new RuleQuantity(WalkingLedger(s).Remaining(WalkingSpeed(s,actor)));
             var a=s.WorldIntervals.Single(x=>x.ActorId==actor);var maximum=new RuleQuantity(WalkingSpeed(s,actor)).Scale(a.DashPaid?2:1);
             return maximum>a.MovementSpent?maximum-a.MovementSpent:default;
@@ -151,7 +151,9 @@ namespace Decennium.Foundation.Laboratory
             s.ActorMovement=s.ActorMovement.Select(m=>m.ActorId==s.Encounter.CurrentActor?new ActorMovementRecord(m.ActorId,m.BaseWalkingSpeed,s.Encounter.TurnOrdinal):m).ToArray();
         }
         internal static bool HasStance(Snapshot s)=>s.Stances.Any(t=>t.TurnOrdinal==s.Encounter.TurnOrdinal&&EncounterHistory.InCurrent(s,t.Revision));
-        public string Resolve(Snapshot s,Command c)
+        public string Resolve(Snapshot s, Command c) => Resolve(s, c, assessTactical: false);
+
+        internal string Resolve(Snapshot s, Command c, bool assessTactical)
         {
             if(!Admitted(c.Kind))return "ClubCommandNotImplemented";
             bool combat=c.Kind==CommandKind.SelectCombatStance||c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.ResolveKnockout
@@ -163,7 +165,7 @@ namespace Decennium.Foundation.Laboratory
                 string choiceError=Complete(s,c,pending);if(choiceError==null&&tactical!=null)AdvanceTacticalFlow(s);return choiceError;
             }
             if(c.Kind==CommandKind.DispatchConditionEvent)return DispatchCondition(s,c);
-            if(tactical!=null&&(PendingMove(s)!=null||CurrentPressOffer(s)!=null))return ResolveTacticalChoice(s,c);
+            if(tactical!=null&&(PendingMove(s)!=null||CurrentPressOffer(s)!=null))return ResolveTacticalChoice(s, c, assessTactical);
             if(c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress)return "NoPendingMovementChoice";
             if(c.Kind==CommandKind.ResolveKnockout)return "NoPendingKnockout";
             if(c.Kind==CommandKind.BeginFixedEncounter||c.Kind==CommandKind.AdvanceClock) {
@@ -204,6 +206,7 @@ namespace Decennium.Foundation.Laboratory
                 if(HasStance(s))return "StanceAlreadySelected";
                 if((CombatStance)c.Combat.Stance==CombatStance.Carrying)return "NoApplicableCargoPenalty";
                 if(s.Stances.Length==128)return "StanceHistoryCapacityReached";
+                if (assessTactical) return null;
                 s.Stances=s.Stances.Concat(new[]{new StanceSelectionRecord(c.Actor,s.Revision+1,e.TurnOrdinal,(CombatStance)c.Combat.Stance,e.NextOwnStart(e.TurnOrdinal))}).ToArray();return null;
             }
             if(c.Kind==CommandKind.Dodge) {
@@ -214,7 +217,7 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.TacticalStep) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
                 if(!HasStance(s))return "StanceRequired";
-                return BeginOrdinaryStep(s,c);
+                return BeginOrdinaryStep(s, c, assessTactical);
             }
             if(c.Kind==CommandKind.TacticalRepositionStep) {
                 if(c.Target!=e.CurrentTurnId)return "WrongRegularTurn";
@@ -227,11 +230,11 @@ namespace Decennium.Foundation.Laboratory
             }
             if(c.Kind==CommandKind.EncounterDash)return encounter.Resolve(s,c);
             if(!HasStance(s))return "StanceRequired";
-            return Attack(s,c);
+            return Attack(s, c, assessTactical: assessTactical);
         }
         private static CombatDamageRoll DamageRecord(int[] dice,long total,long diceWords,uint seed,RolledDamage result)
             =>new CombatDamageRoll(dice,total,diceWords,seed,result.NextRandomState,result.WordsConsumed,result.WoundRoll?.Natural??0,result.InjuryD6??0,result.StableD4??0);
-        private static string Attack(Snapshot s,Command c,bool opportunity=false)
+        private static string Attack(Snapshot s, Command c, bool opportunity = false, bool assessTactical = false)
         {
             string physical=PhysicalAttackFailure(s,c.Actor);if(physical!=null)return physical;
             var request=c.Combat;
@@ -249,6 +252,7 @@ namespace Decennium.Foundation.Laboratory
             if(ObservationRules.Enabled(s)&&!ObservationRules.LocationKnown(s,c.Actor,c.Target))return "TargetLocationUnknown";
             if(ObservationRules.Enabled(s)&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "BlockedLineOfEffect";
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
+            if (assessTactical) return SoldierTacticalFeatures.AttackAuditCapacityFailure(s);
             bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
             bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
             var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),

@@ -777,7 +777,7 @@ namespace Decennium.Foundation.Laboratory
             if(connectedCombat!=null){ObserveCalendar(s,exitAfterSlot);ExpireReadyActionsAtStart(s,initiating);}
             return null;
         }
-        private string ResolveCore(Snapshot s, Command c, bool assessFormula = false)
+        private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             var searchActivityConflict = SearchActivityConflict(s, c);
@@ -909,6 +909,7 @@ namespace Decennium.Foundation.Laboratory
                     return EnterCalendarCombat(s,c);
                 }
                 if(s.InventoryCombat) {
+                    if (assessTactical) return ResolveCalendarCombat(s, c, assessTactical: true);
                     string[] meleeBefore=s.MeleeAttacks.Select(x=>x.Id).ToArray();
                     string[] rangedBefore=s.RangedAttacks.Select(x=>x.Id).ToArray();
                     string combatError=ResolveCalendarCombat(s,c);

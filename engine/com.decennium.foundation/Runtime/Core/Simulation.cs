@@ -798,6 +798,27 @@ namespace Decennium.Foundation
         IEnumerable<Command> DiscoverCommands(Snapshot snapshot, Authority authority, string actor);
         CommandQueryResult QueryCommand(Snapshot snapshot, Authority authority, Command command);
     }
+    /// <summary>Optional admission for a finite command surface. Assessment stops before execution and RNG.</summary>
+    public interface ICommandAdmissionPolicy
+    {
+        bool SupportsAdmission(CommandKind kind);
+        string AssessAdmission(Snapshot snapshot, Command command);
+    }
+
+    public enum CommandAdmissionStatus { Admitted, RuleDenied, AlreadyCommitted, Rejected }
+
+    public sealed class CommandAdmission
+    {
+        public CommandAdmissionStatus Status { get; }
+        public string Code { get; }
+
+        internal CommandAdmission(CommandAdmissionStatus status, string code)
+        {
+            Status = status;
+            Code = code;
+        }
+    }
+
     /// <summary>Policy-resolved physical inputs; host authority remains outside client payloads.
     /// Called on detached state before duplicate handling and any mutation.</summary>
     public interface ICommandInventoryClaims
@@ -1263,17 +1284,39 @@ namespace Decennium.Foundation
             return new CommandResult(outcome, code, receipt.Revision, suspended);
         }
 
+        private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)
+        {
+            previous = null;
+            string failure = ValidateCommandAndAuthority(authority, command);
+            if (failure != null) return failure;
+            previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
+            if (previous != null) return previous.Fingerprint == command.Fingerprint ? null : "CommandIdConflict";
+            if (command.ExpectedRevision != state.Revision) return "StaleRevision";
+            if (!state.Actors.Any(a => a.Id == command.Actor)) return "UnknownActor";
+            if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts))
+                return "SessionCapacityReached";
+            return null;
+        }
+
+        public CommandAdmission AssessCommandAdmission(Authority authority, Command command)
+        {
+            if (!(policy is ICommandAdmissionPolicy admission) || command == null || !admission.SupportsAdmission(command.Kind))
+                return new CommandAdmission(CommandAdmissionStatus.Rejected, "UnsupportedOperation");
+            string failure = PreflightCommand(authority, command, out var previous);
+            if (failure != null) return new CommandAdmission(CommandAdmissionStatus.Rejected, failure);
+            if (previous != null) return new CommandAdmission(CommandAdmissionStatus.AlreadyCommitted, "AlreadyCommitted");
+            try { failure = admission.AssessAdmission(state.Copy(), command); }
+            catch (Exception ex) when (ex is ArgumentException || ex is OverflowException || ex is InvalidOperationException)
+            { return new CommandAdmission(CommandAdmissionStatus.Rejected, "PolicyFailure"); }
+            return failure == null ? new CommandAdmission(CommandAdmissionStatus.Admitted, "Available")
+                : new CommandAdmission(CommandAdmissionStatus.RuleDenied, failure);
+        }
+
         public CommandResult Execute(Authority authority, Command command)
         {
-            string preflightFailure=ValidateCommandAndAuthority(authority,command);
-            if(preflightFailure!=null)return Reject(preflightFailure);
-            CommandReceipt previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
-            if (previous != null)
-                return previous.Fingerprint == command.Fingerprint
-                    ? AcceptedResult(previous, Outcome.Duplicate) : Reject("CommandIdConflict");
-            if (command.ExpectedRevision != state.Revision) return Reject("StaleRevision");
-            if (!state.Actors.Any(a => a.Id == command.Actor)) return Reject("UnknownActor");
-            if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts)) return Reject("SessionCapacityReached");
+            string preflightFailure = PreflightCommand(authority, command, out var previous);
+            if (preflightFailure != null) return Reject(preflightFailure);
+            if (previous != null) return AcceptedResult(previous, Outcome.Duplicate);
             Snapshot candidate = state.Copy();
             string failure;
             try { failure = policy.Resolve(candidate, command); }
@@ -1299,14 +1342,9 @@ namespace Decennium.Foundation
             var queryPolicy=policy as ICommandQueryPolicy;
             if(queryPolicy==null||command==null||!Enum.IsDefined(typeof(CommandKind),command.Kind)||!queryPolicy.SupportsCommand(command.Kind))
                 return new CommandQueryResult(false,false,"UnsupportedOperation",observedRevision);
-            string failure=ValidateCommandAndAuthority(authority,command);
-            if(failure!=null)return new CommandQueryResult(true,false,failure,observedRevision);
-            CommandReceipt previous=state.Receipts.FirstOrDefault(r=>r.Principal==authority.Principal&&r.Id==command.Id);
-            if(previous!=null)return new CommandQueryResult(true,false,previous.Fingerprint==command.Fingerprint?"AlreadyCommitted":"CommandIdConflict",observedRevision);
-            if(command.ExpectedRevision!=state.Revision)return new CommandQueryResult(true,false,"StaleRevision",observedRevision);
-            if(!state.Actors.Any(a=>a.Id==command.Actor))return new CommandQueryResult(true,false,"UnknownActor",observedRevision);
-            if(state.Revision==long.MaxValue||state.Receipts.Length==(state.SchemaVersion>=Snapshot.InventorySchema?512:Validation.MaxReceipts))
-                return new CommandQueryResult(true,false,"SessionCapacityReached",observedRevision);
+            string failure = PreflightCommand(authority, command, out var previous);
+            if (failure != null) return new CommandQueryResult(true, false, failure, observedRevision);
+            if (previous != null) return new CommandQueryResult(true, false, "AlreadyCommitted", observedRevision);
             CommandQueryResult result;
             try { result=queryPolicy.QueryCommand(state.Copy(),authority,command); }
             catch(Exception ex) when(ex is ArgumentException||ex is OverflowException||ex is InvalidOperationException)
