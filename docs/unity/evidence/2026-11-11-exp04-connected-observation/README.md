@@ -13,7 +13,7 @@ The exact corrected implementation is `77b6bb0daae3f6177d6c6c789d340b9909ab8991`
 
 [Focused execution](focused/results.json) · [Saved timeline](focused/timeline.json) · [Authentic save execution](legacy-saves/results.json) · [C#9 compilation](compile/results.json) · [Core and Persistence without lab defines](compile/runtime-without-lab-defines.json) · [Static package checks](static/results.json)
 
-The exact corrected assemblies passed seven focused and 560 historical cases. The historical inventory retains the 552 cases for the ordinary Hide predecessor and adds its eight focused cases. [Corrected historical report](historical/results.json) · [Inventory and actual journals](regression/historical/)
+The exact corrected assemblies passed seven focused, 560 historical, and 1,463 unfiltered cases. The historical inventory retains the 552 cases for the ordinary Hide predecessor and adds its eight focused cases. [Corrected historical report](historical/results.json) · [Full exact execution](validation/results.json) · [Inventories and actual journals](regression/)
 
 [Exact shard launcher](Start-ExactConnectedObservationRegression.ps1) · [Authentic save verifier](Verify-ConnectedObservationCompatibility.ps1) · [Timeline reader](Read-ConnectedObservationEvidence.ps1)
 
