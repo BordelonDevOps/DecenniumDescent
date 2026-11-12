@@ -18,7 +18,8 @@ namespace Decennium.Foundation
         {
             var search = state.ExplorationSearch;
             if (search == null || state.WireSchemaVersion != Snapshot.ExplorationSearchSchema
-                && state.WireSchemaVersion != Snapshot.ExplorationHideSchema)
+                && state.WireSchemaVersion != Snapshot.ExplorationHideSchema
+                && state.WireSchemaVersion != Snapshot.ConnectedExplorationObservationSchema)
                 throw new ArgumentException("Search activity requires a selected ordinary Search profile.");
             if (interval.ActorId != search.Definition.SearcherId || !search.Attempts.Any(x => x.IntervalIndex == interval.IntervalIndex
                 && x.CommandId == interval.ActionReference && x.Revision == interval.ActionReferenceRevision))
@@ -28,17 +29,19 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var search = state.ExplorationSearch;
-            bool selected = state.ContentFingerprint.StartsWith(ExplorationSearchDefinition.FingerprintPrefix, StringComparison.Ordinal)
+            bool connected = ConnectedExplorationObservation.IsSelected(state);
+            bool selected = connected || state.ContentFingerprint.StartsWith(ExplorationSearchDefinition.FingerprintPrefix, StringComparison.Ordinal)
                 || state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);
             if ((search != null) != selected)
                 throw new ArgumentException("Ordinary Search fingerprint and private component must agree.");
             if (search == null) return;
-            if (!state.TestOnly || state.SchemaVersion != Snapshot.ObservationSchema || state.WorldSchedule == null
-                || state.ObservationMapWidth == 0 || state.LaterEncounter != null || state.CharterAttempt != null
-                || state.Retreat != null || state.Reengagement != null || state.SurpriseEntry != null)
-                throw new ArgumentException("Invalid independent wire91 observation layout.");
-
             var d = search.Definition;
+            if (connected) ConnectedExplorationObservation.ValidateLayout(state, d);
+            else if (!state.TestOnly || state.SchemaVersion != Snapshot.ObservationSchema || state.WorldSchedule == null
+                || state.ObservationMapWidth == 0 || state.LaterEncounter != null || state.CharterAttempt != null
+                || state.Retreat != null || state.Reengagement != null || state.SurpriseEntry != null
+                || d.DirectorId != ExplorationSearchDefinition.Director)
+                throw new ArgumentException("Invalid independent ordinary observation layout.");
             if (!state.Actors.Any(x => x.Id == d.SearcherId) || !state.Actors.Any(x => x.Id == d.ConcealedActorId)
                 || WorldTiming.ForActor(state, d.SearcherId) != null
                 || new[] { d.Anchor, d.CueCandidate, d.Sign, d.Occlusion }.Any(x => !InMap(state, x))
@@ -54,8 +57,11 @@ namespace Decennium.Foundation
                     || attempt.DueAt != WorldActivityIntervalRecord.EndAt(state.WorldSchedule, attempt.IntervalIndex)
                     || attempt.StartedAt > state.RuleClock)
                     throw new ArgumentException("Ordinary Search declaration or interval lacks its committed provenance.");
+                if (connected) ConnectedExplorationObservation.ValidateDeclaration(state, attempt.Revision, attempt.StartedAt);
                 var end = attempt.End;
                 if (end != null) {
+                    if (connected) ConnectedExplorationObservation.ValidateTerminal(state, end.Revision, end.CommandId, end.At,
+                        end.Interruption == ExplorationSearchInterruption.TacticalControlEntered);
                     if (ReadReceipt(state, end.Revision, end.CommandId) == null || end.At > state.RuleClock)
                         throw new ArgumentException("Ordinary Search terminal receipt is invalid.");
                     ValidateEnd(state, d, attempt, end);
@@ -70,7 +76,8 @@ namespace Decennium.Foundation
             var pending = search.Pending;
             if (pending != null) {
                 var pos = WorldPositionResolver.Position(state, d.SearcherId);
-                if (state.InventoryCombat || state.RuleClock > pending.DueAt || currentAttempt != pending
+                if (state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)
+                    || state.RuleClock > pending.DueAt || currentAttempt != pending
                     || state.RuleClock == pending.DueAt && state.ManufacturingAdvance == null
                     || state.WorldTraversals.Any(x => x.ActorId == d.SearcherId)
                     || pos.X != new RuleQuantity(d.Anchor.X) || pos.Y != new RuleQuantity(d.Anchor.Y))

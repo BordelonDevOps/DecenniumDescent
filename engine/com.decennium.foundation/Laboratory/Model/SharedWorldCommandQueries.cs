@@ -628,6 +628,9 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.Hide && s.ExplorationHide != null)
             {
                 var failure = AssessObservationAction(s, c, out _);
+                if (failure == null && ConnectedExplorationObservation.IsSelected(s)
+                    && (c.Target != s.Encounter.CurrentTurnId || c.X != 0 || c.Y != 0))
+                    failure = "InvalidHideRequest";
                 return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision,
                     failure == null ? new[] { new CommandCost("action", "", 1) } : null);
             }

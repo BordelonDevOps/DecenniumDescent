@@ -129,7 +129,7 @@ namespace Decennium.Foundation.Laboratory
                 if (s.Encounter == null || actor != s.Encounter.CurrentActor) yield break;
                 turnId = s.Encounter.CurrentTurnId;
             } else {
-                if (s.ExplorationSearch?.Definition.SearcherId != actor) yield break;
+                if (s.ExplorationSearch?.Definition.SearcherId != actor || ConnectedObservationStageClosed(s)) yield break;
                 var pending = s.ExplorationSearch.Pending;
                 if (pending != null) {
                     yield return new Command("option." + s.Revision + ".cancel-ordinary-search", actor,

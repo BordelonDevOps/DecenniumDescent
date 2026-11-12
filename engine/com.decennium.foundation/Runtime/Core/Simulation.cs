@@ -162,6 +162,7 @@ namespace Decennium.Foundation
         public const int SurpriseEntrySchema = 90;
         public const int ExplorationSearchSchema = 91;
         public const int ExplorationHideSchema = 92;
+        public const int ConnectedExplorationObservationSchema = 93;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -300,7 +301,8 @@ namespace Decennium.Foundation
         public SurpriseEntryRecord SurpriseEntry;
         public ExplorationSearchRecord ExplorationSearch;
         public ExplorationHideRecord ExplorationHide;
-        public int WireSchemaVersion => ExplorationHide != null ? ExplorationHideSchema
+        public int WireSchemaVersion => ExplorationHide != null
+            ? ConnectedExplorationObservation.IsSelected(this) ? ConnectedExplorationObservationSchema : ExplorationHideSchema
             : ExplorationSearch != null ? ExplorationSearchSchema : SchemaVersion;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();

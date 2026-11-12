@@ -21,8 +21,11 @@ namespace Decennium.Foundation
         public ExplorationHideDefinition(string source, string director, string hider, string witness,
             ExplorationSearchCell recess, ExplorationSearchCell alternate)
         {
-            if (source != ExplorationSearchDefinition.Source || director != Director || !Validation.ValidId(hider)
-                || witness != Witness || hider == witness || !recess.Equals(new ExplorationSearchCell(1, 0))
+            bool independent = director == Director && witness == Witness;
+            bool connected = director == ConnectedExplorationObservation.HideDirector
+                && hider == ConnectedExplorationObservation.Hero && witness == ConnectedExplorationObservation.Buyer;
+            if (source != ExplorationSearchDefinition.Source || !independent && !connected || !Validation.ValidId(hider)
+                || hider == witness || !recess.Equals(new ExplorationSearchCell(1, 0))
                 || !alternate.Equals(new ExplorationSearchCell(2, 0)))
                 throw new ArgumentException("Invalid authored ordinary Hide authority.");
             SourceRevision = source;

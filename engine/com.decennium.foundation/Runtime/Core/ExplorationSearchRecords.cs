@@ -43,7 +43,9 @@ namespace Decennium.Foundation
         public ExplorationSearchDefinition(string source, string director, string cue, string searcher, string concealedActor,
             ExplorationSearchCell anchor, ExplorationSearchCell candidate, ExplorationSearchCell sign, ExplorationSearchCell occlusion)
         {
-            if (source != Source || director != Director || cue != VisibleFringe || !Validation.ValidId(searcher)
+            bool independent = director == Director && cue == VisibleFringe;
+            bool connected = director == ConnectedExplorationObservation.SearchDirector && cue == ConnectedExplorationObservation.VisibleFringe;
+            if (source != Source || !independent && !connected || !Validation.ValidId(searcher)
                 || !Validation.ValidId(concealedActor) || searcher == concealedActor
                 || new[] { anchor, candidate, sign, occlusion }.Distinct().Count() != 4)
                 throw new ArgumentException("Invalid authored visual Search authority.");

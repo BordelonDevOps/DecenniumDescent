@@ -48,6 +48,7 @@ namespace Decennium.Foundation.Laboratory
             due = default;
             var hide = state.ExplorationHide;
             if (hide == null || state.InventoryCombat) return "OrdinaryHideUnavailable";
+            if (ConnectedObservationStageClosed(state)) return "ConnectedObservationStageClosed";
             var d = hide.Definition;
             if (command.Actor != d.HiderId || WorldTiming.ForActor(state, command.Actor)?.Id != state.WorldSchedule.Id)
                 return "OrdinaryHideActorUnavailable";
@@ -151,7 +152,7 @@ namespace Decennium.Foundation.Laboratory
         private static void RecordHideRelocation(Snapshot state, WorldTraversalRecord edge, RuleTime at, Command cause)
         {
             var hide = state.ExplorationHide;
-            if (hide == null || hide.Definition.HiderId != edge.ActorId) return;
+            if (hide == null || hide.Definition.HiderId != edge.ActorId || ConnectedObservationStageClosed(state)) return;
             var d = hide.Definition;
             var from = new ExplorationSearchCell(edge.FromX, edge.FromY);
             var to = new ExplorationSearchCell(edge.ToX, edge.ToY);
@@ -281,7 +282,8 @@ namespace Decennium.Foundation.Laboratory
             if (hide != null && hide.DueAt == state.RuleClock || search != null && search.DueAt == state.RuleClock
                 || hide != null && HideInterruption(state, hide) != ExplorationHideInterruption.None
                 || search != null && SearchInterruption(state, state.ExplorationSearch.Definition) != ExplorationSearchInterruption.None) {
-                TestOnlyClubAttackPolicy.AdvanceConditions(state, ".clock-final");
+                TestOnlyClubAttackPolicy.AdvanceConditions(state, ".clock-final",
+                    onlyAtExpiry: state.SchemaVersion >= Snapshot.ExpeditionRouteSchema);
                 if (ReconcileOrdinaryObservationActions(state, cause)) {
                     string deferred = state.ExplorationSearch.Pending?.DueAt == state.RuleClock
                         ? state.ExplorationSearch.Definition.SearcherId : null;

@@ -8,25 +8,28 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var hide = state.ExplorationHide;
-            bool selected = state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);
+            bool connected = ConnectedExplorationObservation.IsSelected(state);
+            bool selected = connected || state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);
             if ((hide != null) != selected)
                 throw new ArgumentException("Ordinary Hide fingerprint and private component must agree.");
             if (hide == null) {
                 if (state.ExplorationSearch != null && state.Receipts.Any(x => CommandHistory.Read(x).Kind == CommandKind.CancelExplorationHide))
-                    throw new ArgumentException("Ordinary Hide cancellation requires wire92.");
+                    throw new ArgumentException("Ordinary Hide cancellation requires a selected Hide profile.");
                 return;
             }
             var search = state.ExplorationSearch;
             var d = hide.Definition;
             var schedule = state.WorldSchedule;
-            if (search == null || !state.TestOnly || state.SchemaVersion != Snapshot.ObservationSchema
+            if (search == null || !state.TestOnly
+                || state.SchemaVersion != (connected ? Snapshot.SurpriseEntrySchema : Snapshot.ObservationSchema)
+                || d.DirectorId != (connected ? ConnectedExplorationObservation.HideDirector : ExplorationHideDefinition.Director)
                 || schedule == null || !schedule.Order.Contains(d.HiderId)
                 || !state.ObservationProfiles.Any(x => x.ActorId == d.WitnessId)
                 || d.WitnessId == search.Definition.SearcherId || d.HiderId != search.Definition.ConcealedActorId
                 || !d.Recess.Equals(search.Definition.CueCandidate)
                 || new[] { d.Recess, d.Alternate }.Any(x => x.X >= state.ObservationMapWidth || x.Y >= state.ObservationMapHeight
                     || state.ObservationCells.Any(c => c.X == x.X && c.Y == x.Y)))
-                throw new ArgumentException("Invalid wire92 Hide authority or layout.");
+                throw new ArgumentException("Invalid ordinary Hide authority or layout.");
 
             ValidateRelocation(state, d, hide.LatestRelocation);
             foreach (var attempt in hide.Attempts) {
@@ -38,18 +41,25 @@ namespace Decennium.Foundation
                     || attempt.DueAt != schedule.Start(checked(attempt.PaidStart + schedule.Order.Count))
                     || !d.Allows(attempt.Anchor))
                     throw new ArgumentException("Ordinary Hide declaration or scheduled payment lacks its committed provenance.");
+                if (connected) ConnectedExplorationObservation.ValidateDeclaration(state, attempt.Revision, attempt.StartedAt);
                 ValidateRelocation(state, d, attempt.Relocation);
-                if (attempt.End != null) ValidateEnd(state, d, attempt);
+                if (attempt.End != null) {
+                    if (connected) ConnectedExplorationObservation.ValidateTerminal(state, attempt.End.Revision,
+                        attempt.End.CommandId, attempt.End.At, attempt.End.Interruption == ExplorationHideInterruption.TacticalControlEntered);
+                    ValidateEnd(state, d, attempt);
+                }
             }
 
             var interval = state.WorldIntervals.Single(x => x.ActorId == d.HiderId);
-            var livePayment = hide.Attempts.LastOrDefault(x => x.PaidStart == interval.LastStart);
+            string currentCalendar = WorldTiming.ForActor(state, d.HiderId)?.Id;
+            var livePayment = hide.Attempts.LastOrDefault(x => x.CalendarId == currentCalendar && x.PaidStart == interval.LastStart);
             if (livePayment != null && (!interval.ActionSpent || interval.DashPaid))
                 throw new ArgumentException("Ordinary Hide lost the paid scheduled Action before refresh.");
             var pending = hide.Pending;
             if (pending != null) {
                 var position = WorldPositionResolver.Position(state, d.HiderId);
-                if (state.InventoryCombat || state.RuleClock > pending.DueAt
+                if (state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)
+                    || state.RuleClock > pending.DueAt
                     || state.RuleClock == pending.DueAt && state.ManufacturingAdvance == null
                     || state.RuleClock < pending.DueAt && livePayment != pending
                     || state.WorldTraversals.Any(x => x.ActorId == d.HiderId)

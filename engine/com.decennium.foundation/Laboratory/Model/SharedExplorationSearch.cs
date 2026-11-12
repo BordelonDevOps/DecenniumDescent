@@ -61,6 +61,7 @@ namespace Decennium.Foundation.Laboratory
             activity = null;
             var search = state.ExplorationSearch;
             if (search == null || state.InventoryCombat) return "OrdinarySearchUnavailable";
+            if (ConnectedObservationStageClosed(state)) return "ConnectedObservationStageClosed";
             var d = search.Definition;
             if (command.Actor != d.SearcherId || !IsOffCalendarActivity(state, command.Actor)) return "OrdinarySearchActorUnavailable";
             if (InvalidExplorationSearchPayload(command) || command.X < 0 || command.Y < 0
