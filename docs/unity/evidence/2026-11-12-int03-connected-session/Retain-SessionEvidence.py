@@ -97,10 +97,22 @@ def main():
             or connected["RestoredFinalSha256"] != console["FinalSha256"]
             or connected["PendingSha256"] != console["PendingSha256"]
             or connected["ConsoleInputsSha256"] != file_binding(args.connected / "walkthrough.jsonl")["sha256"]
-            or lines(args.console / "inputs.jsonl")[:-2] != lines(args.connected / "walkthrough.jsonl")):
+            or [json.loads(line) for line in lines(args.console / "inputs.jsonl")[:-2]]
+            != [json.loads(line) for line in lines(args.connected / "walkthrough.jsonl")]):
         raise ValueError("The measured and console continuations must match.")
-    for name in ("results.json", "samples.csv", "timeline.json"):
-        retain(args.connected / name, f"connected/{name}")
+    if correction and args.samples == 30:
+        provisional = read_json(packet / "connected/results.json")
+        if (provisional["WarmSamplesPerInput"] != 1
+                or provisional["RepeatedFinalSha256"] != connected["RepeatedFinalSha256"]):
+            raise ValueError("Keep the reviewed contended sample and its matching walkthrough.")
+        for name in ("results.json", "samples.csv"):
+            relative = f"connected/{name}"
+            artifacts[relative] = file_binding(packet / relative)
+            retain(args.connected / name, f"performance/{name}")
+    else:
+        for name in ("results.json", "samples.csv"):
+            retain(args.connected / name, f"connected/{name}")
+    retain(args.connected / "timeline.json", "connected/timeline.json")
     for name in ("initial.ddsave", "checkpoint-15.ddsave", "checkpoint-16.ddsave", "checkpoint-28.ddsave",
                  "checkpoint-30.ddsave", "checkpoint-84.ddsave", "checkpoint-97.ddsave", "checkpoint-105.ddsave",
                  "checkpoint-106.ddsave", "checkpoint-107.ddsave", "checkpoint-113.ddsave", "restored-pending.ddsave", "forged-history.ddsave",
