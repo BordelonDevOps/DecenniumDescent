@@ -48,9 +48,10 @@ $rows = @(foreach ($file in Get-ChildItem -LiteralPath $SaveRoot -Recurse -Filte
         research=if ($research) {$research.Status.ToString()}; eligibility=$assay.Item2; eligible=$assay.Item1
         eligibilityCurrentAge=$assay.Item3?.ToString(); firstPhaseAge=$assay.Item4?.ToString()
         manufacturingOrders=$state.ManufacturingOrders.Length
+        tactical=$state.InventoryCombat; laterEntry=if ($state.LaterEncounter.Entry) {$state.LaterEncounter.Entry.Epoch.Origin.ToString()}
     }
 })
-if ($rows.Count -ne 9 -or @($rows.save | Sort-Object -Unique).Count -ne 9) {
-    throw 'Expected nine distinct connected wire 94 saves.'
+if ($rows.Count -ne 10 -or @($rows.save | Sort-Object -Unique).Count -ne 10) {
+    throw 'Expected ten distinct connected wire 94 saves.'
 }
 @{status='PASS'; savedStates=$rows} | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $OutputPath -Encoding utf8
