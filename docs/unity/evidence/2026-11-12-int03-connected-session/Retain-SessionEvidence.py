@@ -36,8 +36,15 @@ def main():
     parser.add_argument("--connected", type=Path, required=True)
     parser.add_argument("--console", type=Path, required=True)
     parser.add_argument("--regression", type=Path)
+    parser.add_argument("--scope-control", type=Path)
+    parser.add_argument("--choice-console", type=Path)
+    parser.add_argument("--samples", type=int, default=30)
     args = parser.parse_args()
-    packet = Path(__file__).resolve().parent
+    root = Path(__file__).resolve().parent
+    if (args.scope_control is None) != (args.choice_console is None):
+        raise ValueError("The correction requires both the scope and interactive console controls.")
+    correction = args.choice_console is not None
+    packet = root / "correction" if correction else root
     archive_bytes = subprocess.check_output(["git", "archive", "--format=zip", args.implementation, "engine"])
     archive = zipfile.ZipFile(io.BytesIO(archive_bytes))
     artifacts = {}
@@ -62,6 +69,20 @@ def main():
     headless = retain_compilation(args.headless / "results.json", "compile/headless.json")
     standalone = retain_compilation(args.standalone, "compile/standalone.json")
     static = retain_compilation(args.static, "compile/static.json")
+    focused = headless["cases"].copy()
+    if correction:
+        scope = read_json(args.scope_control)
+        choices = read_json(args.choice_console / "results.json")
+        if (scope["Name"] != "int03_session_scoped_views_delivery_and_validated_file_recovery"
+                or not scope["Passed"] or scope["Error"] or choices["Status"] != "PASS"):
+            raise ValueError("The corrected scoped or console pending-choice control failed.")
+        focused.append(scope)
+        retain(args.scope_control, "compile/scope-control.json")
+        for name in ("inputs.jsonl", "responses.jsonl", "results.json", "opportunity.ddsave", "knockout.ddsave", "press.ddsave"):
+            retain(args.choice_console / name, f"choices/console/{name}")
+        for kind in ("opportunity", "knockout", "press"):
+            name = f"int03-session-choice-{kind}.ddsave"
+            retain(args.headless / "saves" / name, f"choices/headless/{name}")
     assemblies = {}
     for name in ("Core", "Persistence", "LabModel", "HeadlessTests"):
         filename = f"Decennium.Foundation.{name}.dll"
@@ -71,10 +92,12 @@ def main():
 
     connected = read_json(args.connected / "results.json")
     console = read_json(args.console / "results.json")
-    if (connected["WarmSamplesPerInput"] != 30 or console["Status"] != "PASS"
+    if (connected["WarmSamplesPerInput"] != args.samples or console["Status"] != "PASS"
             or connected["RepeatedFinalSha256"] != console["FinalSha256"]
             or connected["RestoredFinalSha256"] != console["FinalSha256"]
-            or connected["PendingSha256"] != console["PendingSha256"]):
+            or connected["PendingSha256"] != console["PendingSha256"]
+            or connected["ConsoleInputsSha256"] != file_binding(args.connected / "walkthrough.jsonl")["sha256"]
+            or lines(args.console / "inputs.jsonl")[:-2] != lines(args.connected / "walkthrough.jsonl")):
         raise ValueError("The measured and console continuations must match.")
     for name in ("results.json", "samples.csv", "timeline.json"):
         retain(args.connected / name, f"connected/{name}")
@@ -97,9 +120,10 @@ def main():
     if args.regression:
         run = args.regression
         names = lines(run / "all-names.txt")
-        prior = lines(packet.parent / "2026-11-12-int03-playability/regression/inventory.txt")
-        focus = headless["cases"][0]["Name"]
-        if len(names) != 1481 or len(set(names)) != 1481 or [name for name in names if name != focus] != prior:
+        prior = lines(root.parent / "2026-11-12-int03-playability/regression/inventory.txt")
+        focus = {row["Name"] for row in focused}
+        expected = len(prior) + len(focus)
+        if len(names) != expected or len(set(names)) != expected or [name for name in names if name not in focus] != prior:
             raise ValueError("The exact session inventory differs from the accepted predecessor inventory.")
         results = {}
         for label in ("shard" + letter for letter in "ABCDEF"):
@@ -113,7 +137,7 @@ def main():
                 results[row["Name"]] = row
             for suffix in ("-names.txt", ".done", ".jsonl"):
                 retain(run / (label + suffix), "regression/" + label + suffix)
-        if set(names) != results.keys() or results[focus] != headless["cases"][0]:
+        if set(names) != results.keys() or any(results.get(row["Name"]) != row for row in focused):
             raise ValueError("The executed journals differ from the inventory or the focus result.")
         retain(run / "all-names.txt", "regression/inventory.txt")
         report = {"status": "PASS", **implementation, "testsDiscovered": len(names), "passed": len(names),
@@ -126,14 +150,15 @@ def main():
     binding = {
         **implementation,
         "gptGateReview": "7e7a9141-78c3-4dcb-923b-7ea779e7eab2",
+        "gptFocusedReview": "6dbac0a2-455e-45a0-a204-5ada740fff94" if correction else None,
         "compiledSourceCounts": {
             "headless": len(headless["sourceHashes"]),
             "standalone": len(standalone["sourceHashes"]),
             "staticInputs": len(static["sourceHashes"]),
         },
-        "focusedCases": headless["cases"],
+        "focusedCases": focused,
         "regressionCases": regression_cases,
-        "performanceStatus": connected["Status"],
+        "performanceStatus": connected["Status"] if args.samples == 30 else "WARM VALIDATION ONLY",
         "finalCanonicalSha256": connected["RepeatedFinalSha256"],
         "artifacts": dict(sorted(artifacts.items())),
     }

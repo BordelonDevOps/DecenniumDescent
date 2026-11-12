@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory)][string]$AssemblyRoot,
-    [Parameter(Mandatory)][string]$Run
+    [Parameter(Mandatory)][string]$Run,
+    [switch]$Correction
 )
 
 $ErrorActionPreference = 'Stop'
@@ -12,9 +13,10 @@ foreach ($name in 'Core','Persistence','LabModel','HeadlessTests') {
 }
 $names = @([Decennium.Foundation.Tests.FoundationCases]::Names())
 $priorNames = @(Get-Content -LiteralPath $prior)
-$focus = 'int03_session_scoped_views_delivery_and_validated_file_recovery'
-$predecessors = @($names | Where-Object { $_ -cne $focus })
-if ($names.Count -ne 1481 -or $focus -cnotin $names -or
+$focus = @('int03_session_scoped_views_delivery_and_validated_file_recovery')
+if ($Correction) { $focus += 'int03_session_off_turn_knockout_and_press_restore' }
+$predecessors = @($names | Where-Object { $_ -cnotin $focus })
+if ($names.Count -ne (1480 + $focus.Count) -or @($focus | Where-Object { $_ -cnotin $names }).Count -ne 0 -or
     [string]::Join("`n", $predecessors) -cne [string]::Join("`n", $priorNames)) {
     throw 'Unexpected session case or accepted predecessor inventory.'
 }
