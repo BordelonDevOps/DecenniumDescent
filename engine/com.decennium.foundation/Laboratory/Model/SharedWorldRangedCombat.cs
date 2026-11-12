@@ -133,6 +133,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
             ||kind==CommandKind.Search||explorationSearchDefinition!=null&&kind==CommandKind.CancelExplorationSearch
+            ||explorationHideDefinition!=null&&(kind==CommandKind.Hide||kind==CommandKind.CancelExplorationHide)
             ||connectedCombat!=null&&(kind==CommandKind.EndRegularTurn||kind==CommandKind.EndFixedEncounter)
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
@@ -143,7 +144,8 @@ namespace Decennium.Foundation.Laboratory
             if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)
-                return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor));
+                return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
+                    .Concat(DiscoverExplorationHide(s, actor));
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
@@ -277,6 +279,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var searchConflict = SearchActivityConflict(s, c);
             if (searchConflict != null) return new CommandQueryResult(true, false, searchConflict, s.Revision);
+            var hideConflict = HideActivityConflict(s, c);
+            if (hideConflict != null) return new CommandQueryResult(true, false, hideConflict, s.Revision);
             string pendingRecoveryFailure=PendingRecoveryChoiceFailure(s,c);
             if(pendingRecoveryFailure!=null)
                 return new CommandQueryResult(true,false,pendingRecoveryFailure,s.Revision);

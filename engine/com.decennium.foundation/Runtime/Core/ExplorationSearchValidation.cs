@@ -17,8 +17,9 @@ namespace Decennium.Foundation
         public static void ValidateCommitment(Snapshot state, WorldActivityIntervalRecord interval)
         {
             var search = state.ExplorationSearch;
-            if (search == null || state.WireSchemaVersion != Snapshot.ExplorationSearchSchema)
-                throw new ArgumentException("Search activity requires the selected wire91 profile.");
+            if (search == null || state.WireSchemaVersion != Snapshot.ExplorationSearchSchema
+                && state.WireSchemaVersion != Snapshot.ExplorationHideSchema)
+                throw new ArgumentException("Search activity requires a selected ordinary Search profile.");
             if (interval.ActorId != search.Definition.SearcherId || !search.Attempts.Any(x => x.IntervalIndex == interval.IntervalIndex
                 && x.CommandId == interval.ActionReference && x.Revision == interval.ActionReferenceRevision))
                 throw new ArgumentException("Search activity lacks its originating payment.");
@@ -27,7 +28,8 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot state)
         {
             var search = state.ExplorationSearch;
-            bool selected = state.ContentFingerprint.StartsWith(ExplorationSearchDefinition.FingerprintPrefix, StringComparison.Ordinal);
+            bool selected = state.ContentFingerprint.StartsWith(ExplorationSearchDefinition.FingerprintPrefix, StringComparison.Ordinal)
+                || state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);
             if ((search != null) != selected)
                 throw new ArgumentException("Ordinary Search fingerprint and private component must agree.");
             if (search == null) return;
@@ -109,7 +111,8 @@ namespace Decennium.Foundation
             if (end.CueId == "") return;
             var hide = state.ObservationActions.SingleOrDefault(x => x.Id == end.HideId);
             if (end.CueId != d.CueId || !attempt.Candidate.Equals(d.CueCandidate)
-                || hide?.Kind != ObservationActionKind.Hide || hide.ActorId != d.ConcealedActorId || hide.Revision >= end.Revision
+                || hide?.Kind != ObservationActionKind.Hide || hide.ActorId != d.ConcealedActorId || hide.Revision > end.Revision
+                || hide.Revision == end.Revision && !ExplorationHideValidation.PrecedesSearchAtSameBoundary(state, hide, attempt)
                 || !state.ObservationHideResults.Any(x => x.AttemptId == end.HideId && x.ObserverId == d.SearcherId && x.HiddenEstablished))
                 throw new ArgumentException("Ordinary Search has no genuine cue and observer-specific Hide reference.");
         }

@@ -39,7 +39,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileRetreat(s, c);
             }
             if (error == null && s.SurpriseEntry != null) CompleteSurpriseFirstEnd(s, c, pendingAdvance);
-            if (error == null && ReconcileExplorationSearch(s, c)) RefreshActivityIntervals(s);
+            if (error == null && ReconcileOrdinaryObservationActions(s, c)) RefreshActivityIntervals(s);
             return error;
         }
 
@@ -184,16 +184,10 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
 
-            var actorFacts = CharacterStateFacts.ForActor(s, actor.Id, "stealth");
-            int modifier = actorFacts.TotalWithInjury(CharacterAbility.Dexterity);
-            int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor.Id).View().Has(ConditionKind.Poisoned) ? 1 : 0;
+            int modifier = HideModifier(s, actor.Id);
+            int disadvantage = HideDisadvantage(s, actor.Id);
             var selection = PlaytestDice.Selection(0, disadvantage);
-            var observerFacts = observers.Select(observer => new
-            {
-                Actor = observer,
-                Position = ObservationGeometry.Position(s, observer.Id),
-                Dc = PassivePerception(s, observer.Id)
-            }).ToArray();
+            var observerFacts = HideObserverFacts(s, observers.Select(x => x.Id));
             var prior = s.ObservationActions.Where(x => x.ActorId == actor.Id && x.Kind == ObservationActionKind.Hide)
                 .OrderByDescending(x => x.Revision).FirstOrDefault();
             if (prior != null && prior.Outcome == ObservationActionOutcome.HideAttempted
@@ -203,14 +197,33 @@ namespace Decennium.Foundation.Laboratory
                 var priorResults = s.ObservationHideResults.Where(x => x.AttemptId == prior.Id)
                     .OrderBy(x => x.ObserverId, StringComparer.Ordinal).ToArray();
                 bool unchanged = priorResults.Length == observerFacts.Length
-                    && observerFacts.OrderBy(x => x.Actor.Id, StringComparer.Ordinal).Select((x, i) =>
-                        priorResults[i].ObserverId == x.Actor.Id && priorResults[i].Dc == x.Dc
+                    && observerFacts.OrderBy(x => x.Actor, StringComparer.Ordinal).Select((x, i) =>
+                        priorResults[i].ObserverId == x.Actor && priorResults[i].Dc == x.Dc
                             && priorResults[i].ObserverX == x.Position.X && priorResults[i].ObserverY == x.Position.Y).All(x => x);
                 if (unchanged && priorResults.Any(x => !x.HiddenEstablished)) return "HideAttemptUnchanged";
             }
+            RecordHideRoll(s, actor.Id, position, observerFacts, modifier, disadvantage);
+            return null;
+        }
+
+        private static int HideModifier(Snapshot s, string actor)
+            => CharacterStateFacts.ForActor(s, actor, "stealth").TotalWithInjury(CharacterAbility.Dexterity);
+
+        private static int HideDisadvantage(Snapshot s, string actor)
+            => View(s, actor).Has(ConditionKind.Poisoned) ? 1 : 0;
+
+        private static (string Actor, ObservationPoint Position, int Dc)[] HideObserverFacts(Snapshot s, IEnumerable<string> observers)
+            => observers.Select(x => (x, ObservationGeometry.Position(s, x), PassivePerception(s, x))).ToArray();
+
+        private static ObservationActionRecord RecordHideRoll(Snapshot s, string actor, ObservationPoint position,
+            (string Actor, ObservationPoint Position, int Dc)[] observerFacts, int modifier, int disadvantage)
+        {
+            long revision = s.Revision + 1;
+            string attemptId = "observation." + revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".hide";
+            RuleTime at = s.RuleClock;
             uint before = s.RandomState;
             var roll = PlaytestDice.RollD20(before, disadvantageSources: disadvantage);
-            var action = new ObservationActionRecord(attemptId, actor.Id, "", ObservationActionKind.Hide,
+            var action = new ObservationActionRecord(attemptId, actor, "", ObservationActionKind.Hide,
                 ObservationActionOutcome.HideAttempted, at, revision, position.X, position.Y, roll.First,
                 roll.Second ?? 0, roll.Natural, modifier, roll.Natural + (long)modifier, DieSelection(roll.Selection),
                 before, roll.NextRandomState, roll.WordsConsumed);
@@ -218,15 +231,15 @@ namespace Decennium.Foundation.Laboratory
             {
                 var check = PlaytestRolls.TaskCheck(roll.Natural, modifier, fact.Dc);
                 var degree = ObservationDegree(check.Degree);
-                return new ObservationHideResultRecord(attemptId, fact.Actor.Id, fact.Position.X, fact.Position.Y,
+                return new ObservationHideResultRecord(attemptId, fact.Actor, fact.Position.X, fact.Position.Y,
                     fact.Dc, degree, check.Success);
             }).ToArray();
             s.ObservationActions = s.ObservationActions.Concat(new[] { action }).ToArray();
             s.ObservationHideResults = s.ObservationHideResults.Concat(results).ToArray();
             s.RandomState = roll.NextRandomState;
             foreach (var result in results.Where(x => x.HiddenEstablished))
-                ObservationRules.ApplyHide(s, result.ObserverId, actor.Id, attemptId, at, revision);
-            return null;
+                ObservationRules.ApplyHide(s, result.ObserverId, actor, attemptId, at, revision);
+            return action;
         }
 
         private string ResolveSearch(Snapshot s, Command c, ObservationPoint candidateCell)

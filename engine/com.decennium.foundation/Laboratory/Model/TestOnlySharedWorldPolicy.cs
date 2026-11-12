@@ -209,6 +209,7 @@ namespace Decennium.Foundation.Laboratory
                 observationFixture.Initialize(s);
                 ObservationRules.Initialize(s, observationFixture);
                 InitializeExplorationSearch(s);
+                InitializeExplorationHide(s);
             }
             InitializeExpeditionRouteTravel(s);
             InitializeRouteMappingWork(s);
@@ -478,6 +479,8 @@ namespace Decennium.Foundation.Laboratory
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
+                var hideDue = s.ExplorationHide?.Pending?.DueAt;
+                if (hideDue.HasValue && hideDue.Value > segmentStart && hideDue.Value < next) next = hideDue.Value;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
                 var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
@@ -595,6 +598,7 @@ namespace Decennium.Foundation.Laboratory
                         if (pressureArrival) stagedPressureArrival = edge;
                         else {
                             var actor = s.Actors.Single(a => a.Id == edge.ActorId); actor.X = edge.ToX; actor.Y = edge.ToY;
+                            RecordHideRelocation(s, edge, next, initiating);
                             s.Clubs = s.Clubs.Select(c => c.HeldBy == actor.Id ? new ClubInstance(c.Id, c.ProfileId, c.OwnerId, c.CustodianId, c.HeldBy, actor.X, actor.Y) : c).ToArray();
                             completedPressureRetreat |= IsPressureRetreatDeparture(s, edge.ActorId,
                                 edge.FromX, edge.FromY, edge.ToX, edge.ToY);
@@ -739,7 +743,7 @@ namespace Decennium.Foundation.Laboratory
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
                     return null;
                 }
-                if (FinishSearchAtAdvanceBoundary(s, initiating)) {
+                if (FinishOrdinaryObservationAtAdvanceBoundary(s, initiating)) {
                     if (connectedCombat != null) {
                         ObserveCalendar(s);
                         ExpireReadyActionsAtStart(s, initiating);
@@ -769,6 +773,11 @@ namespace Decennium.Foundation.Laboratory
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             var searchActivityConflict = SearchActivityConflict(s, c);
             if (searchActivityConflict != null) return searchActivityConflict;
+            var hideActivityConflict = HideActivityConflict(s, c);
+            if (hideActivityConflict != null) return hideActivityConflict;
+            if (c.Kind == CommandKind.CancelExplorationHide)
+                return s.ExplorationHide == null ? "OrdinaryHideUnavailable" : CancelExplorationHide(s, c);
+            if (s.ExplorationHide != null && !s.InventoryCombat && c.Kind == CommandKind.Hide) return BeginExplorationHide(s, c);
             if (s.ExplorationSearch != null && c.Kind == CommandKind.CancelExplorationSearch) return CancelExplorationSearch(s, c);
             if (s.ExplorationSearch != null && !s.InventoryCombat && c.Kind == CommandKind.Search) return BeginExplorationSearch(s, c);
             if (retreatDefinition != null && RetreatValidation.IsCommand(c.Kind)) return ResolveRetreatInstruction(s, c);
@@ -973,6 +982,8 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.HandleVessel) {
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
                 if (searchDue.HasValue && searchDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var hideDue = s.ExplorationHide?.Pending?.DueAt;
+                if (hideDue.HasValue && hideDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var periodic = NextPeriodicMarker(s);
@@ -1071,6 +1082,13 @@ namespace Decennium.Foundation.Laboratory
                 if ((explorationSearchDefinition == null) != (s.ExplorationSearch == null)
                     || explorationSearchDefinition != null && !explorationSearchDefinition.SameAs(s.ExplorationSearch.Definition))
                     return "OrdinarySearchBindingMismatch";
+                if ((explorationHideDefinition == null) != (s.ExplorationHide == null)
+                    || explorationHideDefinition != null && !explorationHideDefinition.SameAs(s.ExplorationHide.Definition))
+                    return "OrdinaryHideBindingMismatch";
+                if (s.ExplorationHide?.Pending != null && !HiderCapable(s, s.ExplorationHide.Definition.HiderId))
+                    return "OrdinaryHidePendingAfterCapabilityLoss";
+                string hideRollError = ValidateExplorationHideRolls(s);
+                if (hideRollError != null) return hideRollError;
                 string assignmentBindingsError = ValidateExpeditionAssignmentBindings(s);
                 if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;

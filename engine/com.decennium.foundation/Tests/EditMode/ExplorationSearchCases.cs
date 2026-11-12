@@ -14,26 +14,33 @@ namespace Decennium.Foundation.Tests
 
         private static TestOnlySharedWorldPolicy ExplorationSearchPolicy(bool enabled = true, int toolHp = 5,
             params ConditionFixtureEvent[] events)
+            => ExplorationObservationPolicy(enabled, false, toolHp, 2, 1, 4, 30, 30, events);
+
+        private static TestOnlySharedWorldPolicy ExplorationObservationPolicy(bool search, bool hide, int toolHp, uint seed,
+            int witnessX, int witnessY, int companionRange, int witnessRange, ConditionFixtureEvent[] events)
         {
             var original = ObservationObserverIsolatedGapFixture();
             var map = new ObservationFixture(8, 8,
                 original.Cells.Append(new ObservationGridCell(2, 1, true, false, true)),
-                original.Profiles.Append(new ObservationSightProfile(SearchWitness, 30, 30)));
+                original.Profiles.Select(x => x.ActorId == ExplorationSearcher
+                    ? new ObservationSightProfile(x.ActorId, companionRange, 30) : x)
+                    .Append(new ObservationSightProfile(SearchWitness, witnessRange, 30)));
             var config = new SharedWorldConfiguration("TEST_ONLY.search-source-baseline",
                 new[] { new SharedActorDefinition("profile.numeric-warrior3", "TEST_ONLY.numeric-warrior3", 30) },
-                new[] { new SharedActorInstanceDefinition(SearchWitness, "profile.numeric-warrior3", 1, 4) },
+                new[] { new SharedActorInstanceDefinition(SearchWitness, "profile.numeric-warrior3", witnessX, witnessY) },
                 new[] { new SharedSiteDefinition("profile.tool-repair", SharedSiteDefinition.ToolRepairProfile) },
                 new SharedSiteInstanceDefinition("TEST_ONLY.search-unused-site", "profile.tool-repair", 4, 4),
                 "TEST_ONLY.search-unused-lot");
             var conditions = new ConditionCombatFixture(new[] { CCApply("observation-exit-blind", "Blinded", AdditionalTacticalActor.Id) }
                 .Concat(events).ToArray());
-            var policy = new TestOnlySharedWorldPolicy(config, new SharedCombatFixture(1, 2), null,
+            var policy = new TestOnlySharedWorldPolicy(config, new SharedCombatFixture(1, seed), null,
                 new SharedCraftingFixture(toolHp: toolHp), new SharedRepairFixture(siteX: 4, siteY: 4),
                 conditions: conditions).EnableObservation(map);
-            return enabled ? policy.EnableExplorationSearch() : policy;
+            if (search) policy.EnableExplorationSearch();
+            return hide ? policy.EnableExplorationHide() : policy;
         }
 
-        private static Simulation ExplorationSearchReady(TestOnlySharedWorldPolicy policy = null)
+        private static Simulation ExplorationSearchReady(TestOnlySharedWorldPolicy policy = null, bool tacticalHide = true)
         {
             policy = policy ?? ExplorationSearchPolicy();
             var sim = World(policy);
@@ -41,7 +48,7 @@ namespace Decennium.Foundation.Tests
             WorldStep(sim, 1, 0);
             WorldAdvance(sim, 1);
             WorldCommit(sim, IC(sim, CommandKind.BeginFixedEncounter, id: "search.baseline.begin"));
-            return RunObservationHideThroughExit(policy, Bytes(sim), 3);
+            return RunObservationHideThroughExit(policy, Bytes(sim), 3, tacticalHide);
         }
 
         private static WorldActivityIntervalRecord SearchInterval(Snapshot state)

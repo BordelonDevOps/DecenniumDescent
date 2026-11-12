@@ -623,6 +623,14 @@ namespace Decennium.Foundation.Laboratory
             if (RouteMappingWorkCommand(c.Kind)) return QueryRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return QueryRouteReconnaissance(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
+            if (s.ExplorationHide != null && (c.Kind == CommandKind.CancelExplorationHide || c.Kind == CommandKind.Hide && !s.InventoryCombat))
+                return QueryExplorationHide(s, c);
+            if (c.Kind == CommandKind.Hide && s.ExplorationHide != null)
+            {
+                var failure = AssessObservationAction(s, c, out _);
+                return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision,
+                    failure == null ? new[] { new CommandCost("action", "", 1) } : null);
+            }
             if (c.Kind == CommandKind.Search || c.Kind == CommandKind.CancelExplorationSearch)
                 return QueryObservationSearchCommand(s, c);
             if (CacheExcavationCommand(c)) return QueryCacheExcavationControl(s, c);
