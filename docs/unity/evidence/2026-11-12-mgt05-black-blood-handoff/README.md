@@ -12,4 +12,6 @@ The save verification uses the original profile for each predecessor. Its added 
 
 The endpoint control uses a live Poisoned condition expiring at treatment completion and one second afterward. The first case resolves one RNG draw, and the second resolves two and uses the lower value. Both round-trip through the selected save. Integrity controls also reject an altered treatment draw, specimen placement, cutoff timestamp and opening receipt. [Endpoint results](focused/endpoint.json) · [Integrity results](focused/integrity.json)
 
+GPT closed the focused hold and accepted groups 1–5 in reply `5b36e060-440b-4679-af70-64672db6c3d4`. The six unfiltered journals on the corrected four assemblies record 1,470 passes. Their inventory includes all 1,467 predecessor cases and the three new focused cases. [Full regression](validation/results.json) · [Source and artifact bindings](BINDINGS.json)
+
 The production admission decision, positive manufacturing and Unity gameplay integration remain outside this checkpoint. The existing full-history replay performance issue remains tracked separately.
