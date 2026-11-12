@@ -623,7 +623,8 @@ namespace Decennium.Foundation.Laboratory
             if (RouteMappingWorkCommand(c.Kind)) return QueryRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return QueryRouteReconnaissance(s, c);
             if (RouteTravelCommand(c.Kind)) return QueryRouteTravelCommand(s, c);
-            if (c.Kind == CommandKind.Search) return QueryObservationSearchCommand(s, c);
+            if (c.Kind == CommandKind.Search || c.Kind == CommandKind.CancelExplorationSearch)
+                return QueryObservationSearchCommand(s, c);
             if (CacheExcavationCommand(c)) return QueryCacheExcavationControl(s, c);
             if (IsSupplyCacheCommand(c)) return QuerySupplyCacheCommand(s,c);
             if (IsOrdinaryReceptacleCommand(s,c)) return QueryOrdinaryReceptacleCommand(s,c);

@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Decennium.Foundation
 {
-    public enum WorldActionCommitment { None, Dash, ActiveLabor }
+    public enum WorldActionCommitment { None, Dash, ActiveLabor, Search }
     public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork, HavenAppraisal, HavenSale, ExpeditionBill, NextCharterPlan }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
@@ -343,7 +343,8 @@ namespace Decennium.Foundation
             if (!Validation.ValidId(calendarId) || !Validation.ValidId(actorId) || intervalIndex < 0
                 || !Enum.IsDefined(typeof(WorldActionCommitment), action)
                 || action == WorldActionCommitment.None && (actionReference != "" || actionReferenceRevision != 0)
-                || action == WorldActionCommitment.Dash && (!Validation.ValidId(actionReference) || actionReferenceRevision < 1)
+                || (action == WorldActionCommitment.Dash || action == WorldActionCommitment.Search)
+                    && (!Validation.ValidId(actionReference) || actionReferenceRevision < 1)
                 || action == WorldActionCommitment.ActiveLabor && (!Validation.ValidId(actionReference) || actionReferenceRevision < 0))
                 throw new ArgumentException("Invalid off-calendar activity interval.");
             CalendarId = calendarId;
@@ -366,10 +367,18 @@ namespace Decennium.Foundation
                 WorldActionCommitment.Dash, commandId, commandRevision);
         }
 
+        public WorldActivityIntervalRecord PaySearch(string commandId, long commandRevision)
+        {
+            if (Action != WorldActionCommitment.None) throw new InvalidOperationException("Ordinary action already committed.");
+            return new WorldActivityIntervalRecord(CalendarId, ActorId, IntervalIndex, MovementSpent,
+                WorldActionCommitment.Search, commandId, commandRevision);
+        }
+
         public WorldActivityIntervalRecord CommitActiveLabor(string workReference)
         {
             if (!Validation.ValidId(workReference)) throw new ArgumentException("Invalid active-labor reference.");
             if (Action == WorldActionCommitment.Dash) throw new InvalidOperationException("Dash already committed this activity interval.");
+            if (Action == WorldActionCommitment.Search) throw new InvalidOperationException("Search already committed this activity interval.");
             return new WorldActivityIntervalRecord(CalendarId, ActorId, IntervalIndex, MovementSpent,
                 WorldActionCommitment.ActiveLabor, workReference, 0);
         }
@@ -471,7 +480,8 @@ namespace Decennium.Foundation
             var expected = s.Actors.Where(x => WorldTiming.ForActor(s, x.Id) == null).Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).ToArray();
             var actual = s.WorldActivityIntervals.Select(x => x.ActorId).OrderBy(x => x, StringComparer.Ordinal).ToArray();
             if (!expected.SequenceEqual(actual) || s.WorldActivityIntervals.Any(x => x.CalendarId != calendar.Id
-                || x.IntervalIndex != WorldActivityIntervalRecord.IndexAt(calendar, s.RuleClock)))
+                || x.IntervalIndex != WorldActivityIntervalRecord.IndexAt(calendar, s.RuleClock)
+                    && !ExplorationSearchValidation.RetainsPaidIntervalAtBoundary(s, x)))
                 throw new ArgumentException("Off-calendar activity calendar mismatch.");
             foreach (var edge in s.WorldTraversals.Where(x => x.Running && WorldTiming.ForActor(s, x.ActorId) == null)) {
                 var instructionReceipts = s.Receipts.Where(x => x.Revision == edge.StartedRevision).ToArray();
@@ -502,6 +512,10 @@ namespace Decennium.Foundation
                         throw new ArgumentException("Dash activity references a non-Dash command.");
                     if (HasActiveLabor(s, activity.ActorId, start, end))
                         throw new ArgumentException("Dash overlaps committed labor.");
+                } else if (activity.Action == WorldActionCommitment.Search) {
+                    ExplorationSearchValidation.ValidateCommitment(s, activity);
+                    if (HasActiveLabor(s, activity.ActorId, start, end))
+                        throw new ArgumentException("Search overlaps committed labor.");
                 } else if (!HasReference(s, activity, start, end)) {
                     throw new ArgumentException("Active labor must reference its work history.");
                 }

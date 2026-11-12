@@ -45,7 +45,7 @@ namespace Decennium.Foundation
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
-        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat }
+        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -160,6 +160,7 @@ namespace Decennium.Foundation
         public const int RetreatSchema = 88;
         public const int ReengagementSchema = 89;
         public const int SurpriseEntrySchema = 90;
+        public const int ExplorationSearchSchema = 91;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -296,6 +297,8 @@ namespace Decennium.Foundation
         public RetreatRecord Retreat;
         public ReengagementRecord Reengagement;
         public SurpriseEntryRecord SurpriseEntry;
+        public ExplorationSearchRecord ExplorationSearch;
+        public int WireSchemaVersion => ExplorationSearch == null ? SchemaVersion : ExplorationSearchSchema;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -411,7 +414,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
-            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry,
+            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry, ExplorationSearch = ExplorationSearch,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -971,6 +974,7 @@ namespace Decennium.Foundation
             MiningToolValidation.Validate(s);
             OrdinaryReceptacleValidation.Validate(s);
             ObservationValidation.Validate(s);
+            ExplorationSearchValidation.Validate(s);
             ExpeditionRouteTravelValidation.Validate(s);
             ExpeditionRouteSpatialValidation.Validate(s);
             ExpeditionRouteMappingValidation.Validate(s);
@@ -999,7 +1003,20 @@ namespace Decennium.Foundation
                 throw new InvalidOperationException("TEST_ONLY content is forbidden in release.");
             state = initial.Copy();
         }
+        /// <summary>Authoritative snapshot for trusted simulation and persistence callers.</summary>
         public Snapshot Capture() => state.Copy();
+
+        /// <summary>Player-facing Search history for the controlled observer, without private roll or cue evidence.</summary>
+        public ExplorationSearchView ObserveExplorationSearch(Authority authority, string attemptId)
+        {
+            var search = state.ExplorationSearch;
+            if (search == null || authority?.Controls(search.Definition.SearcherId) != true) return null;
+            var attempt = search.Attempts.SingleOrDefault(x => x.Id == attemptId);
+            if (attempt == null) return null;
+            var result = attempt.Status == ExplorationSearchStatus.Completed
+                ? state.ObservationActions.Single(x => x.Id == attempt.End.ObservationId) : null;
+            return new ExplorationSearchView(attempt, result);
+        }
         private void ValidateCandidate(Snapshot candidate)
         {
             Validation.Snapshot(candidate);
@@ -1211,6 +1228,11 @@ namespace Decennium.Foundation
             var interruption = state.LaterEncounter?.Interruptions.SingleOrDefault(x => x.Revision == receipt.Revision);
             if (interruption != null && interruption.CommandId == receipt.Id)
                 return new CommandResult(outcome, interruption.Reason, receipt.Revision, reachedClock: interruption.At);
+            var searchEnd = state.ExplorationSearch?.Attempts.Select(x => x.End)
+                .SingleOrDefault(x => x != null && x.Revision == receipt.Revision && x.CommandId == receipt.Id);
+            if (searchEnd != null)
+                return new CommandResult(outcome, duplicate ? "AlreadyCommitted" : "Committed", receipt.Revision,
+                    reachedClock: searchEnd.At);
             bool suspended = AcceptedClockAwaitingChoice(receipt);
             string code = duplicate ? (suspended ? "AlreadyAcceptedSuspended" : "AlreadyCommitted")
                 : (suspended ? "AcceptedSuspended" : "Committed");

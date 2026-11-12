@@ -208,6 +208,7 @@ namespace Decennium.Foundation.Laboratory
             {
                 observationFixture.Initialize(s);
                 ObservationRules.Initialize(s, observationFixture);
+                InitializeExplorationSearch(s);
             }
             InitializeExpeditionRouteTravel(s);
             InitializeRouteMappingWork(s);
@@ -269,7 +270,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var activity = ActivityInterval(s, actor);
             if (activity.Action == WorldActionCommitment.None) return true;
-            if (activity.Action == WorldActionCommitment.Dash) return false;
+            if (activity.Action == WorldActionCommitment.Dash || activity.Action == WorldActionCommitment.Search) return false;
             var prior = s.Work.WorkerIntervals.SingleOrDefault(x => x.Id == activity.ActionReference
                 && x.WorkerId == actor && x.End == s.RuleClock);
             return prior != null;
@@ -475,6 +476,8 @@ namespace Decennium.Foundation.Laboratory
             while (s.RuleClock < target) {
                 ReconcileRouteTravel(s); ReconcileTraversal(s); ReconcileReinforcement(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
+                var searchDue = s.ExplorationSearch?.Pending?.DueAt;
+                if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
                 var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
@@ -642,7 +645,9 @@ namespace Decennium.Foundation.Laboratory
                         PauseIncompatibleWork(world,false);
                     }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
-                RefreshActivityIntervals(s, reinforcementEndRound ? s.Reinforcement.Definition.CompanionId : null);
+                string deferredActivityActor = reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
+                    : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
+                RefreshActivityIntervals(s, deferredActivityActor);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
                     string reference = activityLabor[activity.ActorId];
                     if (reference == "") continue;
@@ -734,6 +739,13 @@ namespace Decennium.Foundation.Laboratory
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
                     return null;
                 }
+                if (FinishSearchAtAdvanceBoundary(s, initiating)) {
+                    if (connectedCombat != null) {
+                        ObserveCalendar(s);
+                        ExpireReadyActionsAtStart(s, initiating);
+                    }
+                    return null;
+                }
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -755,6 +767,10 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            var searchActivityConflict = SearchActivityConflict(s, c);
+            if (searchActivityConflict != null) return searchActivityConflict;
+            if (s.ExplorationSearch != null && c.Kind == CommandKind.CancelExplorationSearch) return CancelExplorationSearch(s, c);
+            if (s.ExplorationSearch != null && !s.InventoryCombat && c.Kind == CommandKind.Search) return BeginExplorationSearch(s, c);
             if (retreatDefinition != null && RetreatValidation.IsCommand(c.Kind)) return ResolveRetreatInstruction(s, c);
             string hostileRetreatAttack = RetreatHostileAttackFailure(s, c);
             if (hostileRetreatAttack != null) return hostileRetreatAttack;
@@ -955,6 +971,8 @@ namespace Decennium.Foundation.Laboratory
             // position. Keep those combinations explicitly gated until that procedure is resumable.
             if ((c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.HandleVessel) && s.WorldTraversals.Length != 0) return "ConcurrentTraversalHandlingUnsupported";
             if (c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.HandleVessel) {
+                var searchDue = s.ExplorationSearch?.Pending?.DueAt;
+                if (searchDue.HasValue && searchDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var periodic = NextPeriodicMarker(s);
@@ -1050,6 +1068,9 @@ namespace Decennium.Foundation.Laboratory
                     || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
                 if (surpriseEntryBinding != null && !surpriseEntryBinding.SameAs(s.SurpriseEntry?.Binding))
                     return "SurpriseEntryBindingMismatch";
+                if ((explorationSearchDefinition == null) != (s.ExplorationSearch == null)
+                    || explorationSearchDefinition != null && !explorationSearchDefinition.SameAs(s.ExplorationSearch.Definition))
+                    return "OrdinarySearchBindingMismatch";
                 string assignmentBindingsError = ValidateExpeditionAssignmentBindings(s);
                 if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;

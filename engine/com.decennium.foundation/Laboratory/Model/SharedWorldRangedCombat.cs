@@ -132,7 +132,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
             ||kind==CommandKind.Dodge&&dodgeActionEnabled
             ||(kind==CommandKind.Ready||kind==CommandKind.RespondReady)&&readyActionEnabled
-            ||kind==CommandKind.Search
+            ||kind==CommandKind.Search||explorationSearchDefinition!=null&&kind==CommandKind.CancelExplorationSearch
             ||connectedCombat!=null&&(kind==CommandKind.EndRegularTurn||kind==CommandKind.EndFixedEncounter)
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
@@ -142,7 +142,8 @@ namespace Decennium.Foundation.Laboratory
         {
             if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
-            if(s.Encounter==null||!s.InventoryCombat)return DiscoverSharedWorldCommands(s,authority,actor);
+            if(s.Encounter==null||!s.InventoryCombat)
+                return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor));
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
@@ -274,6 +275,8 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            var searchConflict = SearchActivityConflict(s, c);
+            if (searchConflict != null) return new CommandQueryResult(true, false, searchConflict, s.Revision);
             string pendingRecoveryFailure=PendingRecoveryChoiceFailure(s,c);
             if(pendingRecoveryFailure!=null)
                 return new CommandQueryResult(true,false,pendingRecoveryFailure,s.Revision);

@@ -245,8 +245,7 @@ namespace Decennium.Foundation.Tests
             if (completes) ObservationRules.Refresh(state, end, revision);
         }
 
-        private static byte[] RunObservationTacticalHideExitTrace(TestOnlySharedWorldPolicy policy,
-            ObservationFixture fixture, byte[] encounterBytes)
+        private static Simulation RunObservationHideThroughExit(TestOnlySharedWorldPolicy policy, byte[] encounterBytes, int observers)
         {
             string hero = TestOnlyPolicy.ActorId;
             string companion = TestOnlyPolicy.CompanionId;
@@ -264,11 +263,11 @@ namespace Decennium.Foundation.Tests
                 stance: (int)CombatStance.Aggressive));
             WorldCommit(simulation, ObservationCommand(simulation, CommandKind.Hide, hero));
             var hidden = simulation.Capture();
-            Require(hidden.ObservationHideResults.Length == 2
+            Require(hidden.ObservationHideResults.Length == observers
                 && hidden.ObservationHideResults.All(x => x.HiddenEstablished)
                 && ObservationRules.HiddenTo(hidden, companion, hero)
                 && ObservationRules.HiddenTo(hidden, enemy, hero),
-                "The legal tactical Hide did not establish both observer-specific Hidden results.");
+                "The legal tactical Hide did not establish the expected observer-specific Hidden results.");
             byte[] afterHide = Bytes(simulation);
             simulation = new Simulation(policy, codec.Decode(afterHide), ExecutionProfile.Laboratory);
             Require(afterHide.SequenceEqual(Bytes(simulation))
@@ -310,9 +309,18 @@ namespace Decennium.Foundation.Tests
                 && ObservationRules.HiddenTo(exited, companion, hero)
                 && exited.ObservationActions.Any(x => x.Kind == ObservationActionKind.Hide
                     && x.Outcome == ObservationActionOutcome.HideAttempted)
-                && exited.ObservationHideResults.Length == 2,
+                && exited.ObservationHideResults.Length == observers,
                 "A legal tactical Hide did not survive resolved encounter exit for the occluded companion.");
+            return simulation;
+        }
 
+        private static byte[] RunObservationTacticalHideExitTrace(TestOnlySharedWorldPolicy policy,
+            ObservationFixture fixture, byte[] encounterBytes)
+        {
+            string hero = TestOnlyPolicy.ActorId, companion = TestOnlyPolicy.CompanionId, enemy = AdditionalTacticalActor.Id;
+            var codec = new SnapshotCodec();
+            var simulation = RunObservationHideThroughExit(policy, encounterBytes, 2);
+            var exited = simulation.Capture();
             var otherObserverBefore = exited.ObserverKnowledge.Single(x => x.ObserverId == enemy && x.TargetId == hero);
             byte[] exitedBytes = Bytes(simulation);
             var uninterrupted = new Simulation(policy, codec.Decode(exitedBytes), ExecutionProfile.Laboratory);

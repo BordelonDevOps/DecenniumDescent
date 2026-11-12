@@ -39,6 +39,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileRetreat(s, c);
             }
             if (error == null && s.SurpriseEntry != null) CompleteSurpriseFirstEnd(s, c, pendingAdvance);
+            if (error == null && ReconcileExplorationSearch(s, c)) RefreshActivityIntervals(s);
             return error;
         }
 
@@ -96,6 +97,22 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QueryObservationSearchCommand(Snapshot s, Command c)
         {
+            if (c.Kind == CommandKind.CancelExplorationSearch) {
+                var cancellationFailure = AssessCancelExplorationSearch(s, c);
+                return new CommandQueryResult(true, cancellationFailure == null, cancellationFailure ?? "Available", s.Revision);
+            }
+            if (s.ExplorationSearch != null && !s.InventoryCombat) {
+                var explorationFailure = AssessExplorationSearch(s, c, out var activity);
+                var explorationCosts = Array.Empty<CommandCost>();
+                if (explorationFailure == null) {
+                    var start = WorldActivityIntervalRecord.StartAt(s.WorldSchedule, activity.IntervalIndex);
+                    var end = WorldActivityIntervalRecord.EndAt(s.WorldSchedule, activity.IntervalIndex);
+                    var elapsed = CampGreens.Subtract(end, start);
+                    explorationCosts = new[] { new CommandCost("action", "", 1), new CommandCost("elapsed-seconds", "", elapsed.Numerator) };
+                }
+                return new CommandQueryResult(true, explorationFailure == null, explorationFailure ?? "Available",
+                    s.Revision, explorationCosts);
+            }
             string failure = AssessObservationAction(s, c, out _);
             if (failure == null) failure = AssessSearchRequest(s, c, out _);
             var costs = failure == null
@@ -106,12 +123,25 @@ namespace Decennium.Foundation.Laboratory
 
         private IEnumerable<Command> DiscoverObservationSearchCommands(Snapshot s, string actor)
         {
-            if (observationFixture == null || s.SchemaVersion < Snapshot.ObservationSchema
-                || s.Encounter == null || !s.InventoryCombat || actor != s.Encounter.CurrentActor) yield break;
+            if (observationFixture == null || s.SchemaVersion < Snapshot.ObservationSchema) yield break;
+            string turnId;
+            if (s.InventoryCombat) {
+                if (s.Encounter == null || actor != s.Encounter.CurrentActor) yield break;
+                turnId = s.Encounter.CurrentTurnId;
+            } else {
+                if (s.ExplorationSearch?.Definition.SearcherId != actor) yield break;
+                var pending = s.ExplorationSearch.Pending;
+                if (pending != null) {
+                    yield return new Command("option." + s.Revision + ".cancel-ordinary-search", actor,
+                        s.Revision, CommandKind.CancelExplorationSearch, pending.Id);
+                    yield break;
+                }
+                var activity = ActivityInterval(s, actor);
+                turnId = ExplorationSearchRecord.Marker(activity.CalendarId, activity.IntervalIndex);
+            }
             var profile = s.ObservationProfiles.SingleOrDefault(x => x.ActorId == actor);
             if (profile == null) yield break;
             var searcher = ObservationGeometry.Position(s, actor);
-            string turnId = s.Encounter.CurrentTurnId;
             for (int y = 0; y < s.ObservationMapHeight; y++)
             for (int x = 0; x < s.ObservationMapWidth; x++)
             {
@@ -209,36 +239,48 @@ namespace Decennium.Foundation.Laboratory
                     return IsGridCell(point.X) && IsGridCell(point.Y) && point.X == candidateCell.X && point.Y == candidateCell.Y;
                 }).OrderBy(x => x.Id, StringComparer.Ordinal).ToArray();
             if (targets.Length > 1) return "SearchCandidateAmbiguous";
+            var hide = targets.Length == 0 ? null : ActiveSearchHide(s, c.Actor, targets[0].Id);
+            RecordSearchResult(s, c.Actor, candidateCell, hide);
+            return null;
+        }
+
+        private static ObservationActionRecord ActiveSearchHide(Snapshot state, string observer, string target)
+        {
+            var knowledge = state.ObserverKnowledge.Single(x => x.ObserverId == observer && x.TargetId == target);
+            return state.ObservationActions.Single(x => x.Id == knowledge.HiddenAttemptId && x.Kind == ObservationActionKind.Hide);
+        }
+
+        private static ObservationActionRecord RecordSearchResult(Snapshot s, string actor, ObservationPoint candidateCell,
+            ObservationActionRecord hide)
+        {
             long revision = s.Revision + 1;
             string attemptId = "observation." + revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".search";
             RuleTime at = s.RuleClock;
-            if (targets.Length == 0)
+            if (hide == null)
             {
-                s.ObservationActions = s.ObservationActions.Concat(new[] { new ObservationActionRecord(attemptId, c.Actor, "",
-                    ObservationActionKind.Search, ObservationActionOutcome.SearchNoFinding, at, revision, candidateCell.X, candidateCell.Y,
-                    0, 0, 0, 0, 0, ObservationDieSelection.None, s.RandomState, s.RandomState, 0) }).ToArray();
-                return null;
+                var noFinding = new ObservationActionRecord(attemptId, actor, "", ObservationActionKind.Search,
+                    ObservationActionOutcome.SearchNoFinding, at, revision, candidateCell.X, candidateCell.Y,
+                    0, 0, 0, 0, 0, ObservationDieSelection.None, s.RandomState, s.RandomState, 0);
+                s.ObservationActions = s.ObservationActions.Append(noFinding).ToArray();
+                return noFinding;
             }
 
-            var target = targets[0];
-            var knowledge = s.ObserverKnowledge.Single(x => x.ObserverId == c.Actor && x.TargetId == target.Id);
-            var hide = s.ObservationActions.Single(x => x.Id == knowledge.HiddenAttemptId && x.Kind == ObservationActionKind.Hide);
             int dc = checked((int)hide.Total);
-            var actorFacts = CharacterStateFacts.ForActor(s, c.Actor, "perception");
+            var actorFacts = CharacterStateFacts.ForActor(s, actor, "perception");
             int modifier = actorFacts.TotalWithInjury(CharacterAbility.Wisdom, perception: true);
-            int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, c.Actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
+            int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
             uint before = s.RandomState;
             var roll = PlaytestDice.RollD20(before, disadvantageSources: disadvantage);
             var check = PlaytestRolls.TaskCheck(roll.Natural, modifier, dc);
             bool found = check.Success;
-            var action = new ObservationActionRecord(attemptId, c.Actor, found ? target.Id : "", ObservationActionKind.Search,
+            var action = new ObservationActionRecord(attemptId, actor, found ? hide.ActorId : "", ObservationActionKind.Search,
                 found ? ObservationActionOutcome.SearchFound : ObservationActionOutcome.SearchNoFinding, at, revision,
                 candidateCell.X, candidateCell.Y, roll.First, roll.Second ?? 0, roll.Natural, modifier,
                 roll.Natural + (long)modifier, DieSelection(roll.Selection), before, roll.NextRandomState, roll.WordsConsumed);
             s.ObservationActions = s.ObservationActions.Concat(new[] { action }).ToArray();
             s.RandomState = roll.NextRandomState;
-            if (found) ObservationRules.DiscloseLocation(s, c.Actor, target.Id, ObservationEvidenceKind.Search, at, revision);
-            return null;
+            if (found) ObservationRules.DiscloseLocation(s, actor, hide.ActorId, ObservationEvidenceKind.Search, at, revision);
+            return action;
         }
 
         private static bool IsGridCell(RuleQuantity x) => x.Denominator == 1;
