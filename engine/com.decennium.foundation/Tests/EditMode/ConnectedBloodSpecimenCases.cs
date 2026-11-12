@@ -180,11 +180,26 @@ namespace Decennium.Foundation.Tests
                         && assay.Eligible && assay.CurrentAge == settledAt && assay.FirstPhaseAge == settledAt.AddSeconds(900)
                         && Bytes(run).SequenceEqual(bytes) && atCutoff.ManufacturingOrders.Length == 0,
                         "The same physically accessible specimen must pass the pure real assessment at the actual cutoff.");
-                    if (run == sim) SaveBlood(sim, policy, directory, "cutoff");
+                    FormulaDenial(run, host, LaterApproach(run), "HarvestPreservationOpenLifecycleTacticalUnsupported");
+                    if (run == sim) {
+                        var closedBranch = SaveBlood(sim, policy, directory, "cutoff");
+                        FormulaDenial(closedBranch, host, LaterApproach(closedBranch),
+                            "HarvestPreservationOpenLifecycleTacticalUnsupported");
+                        LaterCommit(closedBranch, BloodVesselCommand(closedBranch, CommandKind.ClosePortableContainer));
+                        Require(!HarvestPreservationRules.IsProtectedAt(closedBranch.Capture(), definition.LotId,
+                                closedBranch.Capture().RuleClock)
+                            && BloodAge(closedBranch).UnprotectedAge == settledAt.AddSeconds(1),
+                            "Closing after timeout restored treatment or changed age beyond its elapsed second.");
+                        EnterLater(closedBranch);
+                        Require(closedBranch.Capture().InventoryCombat,
+                            "The real later encounter stayed gated after the physical close.");
+                        SaveBlood(closedBranch, policy, directory, "tactical-entry-after-close");
+                    }
                     WorldAdvance(run, 900);
                     Require(BloodAge(run).UnprotectedAge == settledAt.AddSeconds(900)
                         && run.Capture().ManufacturingOrders.Length == 0 && run.Capture().AlchemyDoses.Length == 0,
                         "Ordinary elapsed observation cannot book a manufacturing phase or stabilize the input.");
+                    FormulaDenial(run, host, LaterApproach(run), "HarvestPreservationOpenLifecycleTacticalUnsupported");
                     PlanWalk(run, 0, -1);
                 }
                 Require(Bytes(sim).SequenceEqual(Bytes(replay)), "Restored opening cutoff and ordinary continuation diverged.");

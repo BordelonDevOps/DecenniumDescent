@@ -159,8 +159,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (s.BloodSpecimen == null) return null;
             if (ActiveBloodTreatment(s) != null) return "HarvestTreatmentInterruptionUnsupported";
-            var vessel = s.PortableEquipment.Single(x => x.Id == s.BloodSpecimen.VesselId);
-            return vessel.Open && HarvestPreservationRules.IsProtectedAt(s, s.BloodSpecimen.LotId, s.RuleClock)
+            return HasUnresolvedHarvestOpening(s)
                 ? "HarvestPreservationOpenLifecycleTacticalUnsupported" : null;
         }
 
