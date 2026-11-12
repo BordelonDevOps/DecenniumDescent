@@ -15,4 +15,4 @@ The same hero and companion retreat from a living defender, continue in ordinary
 
 All six focused cases passed on the exact source, with 17 retained states. C# 9 standalone compilation, Core/Persistence compilation without the laboratory defines and all 18 static package checks passed. The exact historical regression passed 491/491 on the same assemblies. The full regression passed 1,436/1,436 on the same four assemblies. [Exact final bindings](BINDINGS.json) · [Historical results](historical/results.json) · [Unfiltered results](validation/results.json)
 
-Repeated re-engagement, generalized pursuit, generalized roster changes, production authority and Unity gameplay integration remain deferred. This bounded increment requires actual implementation acceptance before any successor.
+Repeated re-engagement, generalized pursuit, generalized roster changes, production authority and Unity gameplay integration remain deferred. GPT accepted all six groups in `8e2b9569-73e3-4273-82fd-e484be7a3332`. [Actual implementation review](GPT_REVIEW.md)
