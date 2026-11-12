@@ -1088,7 +1088,9 @@ namespace Decennium.Foundation.Laboratory
             }
             return null;
         }
-        public string ValidateState(Snapshot s)
+        public string ValidateState(Snapshot s) => ValidateState(s, () => ValidateCanonicalHistory(s));
+
+        private string ValidateState(Snapshot s, Func<string> verifyHistory)
         {
             try {
                 if ((s.SchemaVersion != SelectedSchema
@@ -1320,17 +1322,29 @@ namespace Decennium.Foundation.Laboratory
                     return "InvalidFishingTrapFixture";
                 string prospectingError=ValidateProspectingFixtureState(s);
                 if(prospectingError!=null)return prospectingError;
-                var replay = Initial(); replay.SchemaVersion = s.SchemaVersion;
-                foreach (var receipt in s.Receipts.OrderBy(x => x.Revision)) {
-                    var command = CommandHistory.Read(receipt);
-                    if (command.ExpectedRevision != replay.Revision || Resolve(replay, command) != null) return "InvalidSharedWorldHistory";
-                    replay.Revision = receipt.Revision; replay.Receipts = replay.Receipts.Concat(new[] { receipt }).ToArray();
-                }
-                // The laboratory dispatcher uses the existing canonical persistence projection
-                // to compare EVERY subsystem, including nested crop tasks and consumed reservations.
-                // Core stays independent of Persistence and the gameplay procedures stay in LabModel.
-                var codec = new SnapshotCodec(); return codec.Encode(s).SequenceEqual(codec.Encode(replay)) ? null : "InvalidSharedWorldReplay";
+                return verifyHistory();
             } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException || ex is System.IO.InvalidDataException) { return "InvalidSharedWorldState"; }
+        }
+
+        private string ValidateCanonicalHistory(Snapshot snapshot)
+        {
+            var replay = Initial();
+            replay.SchemaVersion = snapshot.SchemaVersion;
+            foreach (var receipt in snapshot.Receipts.OrderBy(x => x.Revision))
+                if (!ReplayReceipt(replay, receipt)) return "InvalidSharedWorldHistory";
+
+            // Compare every persisted subsystem, including nested tasks and consumed reservations.
+            var codec = new SnapshotCodec();
+            return codec.Encode(snapshot).SequenceEqual(codec.Encode(replay)) ? null : "InvalidSharedWorldReplay";
+        }
+
+        private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt)
+        {
+            var command = CommandHistory.Read(receipt);
+            if (command.ExpectedRevision != replay.Revision || Resolve(replay, command) != null) return false;
+            replay.Revision = receipt.Revision;
+            replay.Receipts = replay.Receipts.Concat(new[] { receipt }).ToArray();
+            return true;
         }
     }
 }

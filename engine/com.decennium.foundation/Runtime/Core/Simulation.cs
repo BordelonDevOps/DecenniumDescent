@@ -5,6 +5,7 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public enum ExecutionProfile { Laboratory, Release }
+    public enum CommandVerification { FullReplay, VerifiedPrefix }
     public enum CommandKind { Move, Interact, AdvanceClock, ReserveWork, ConsumeReservation, ReleaseReservation,
         PlantCrop, TendCrop, HarvestCrop, PauseCrop, SetCropConditions,
         PortionInventory, HandleInventory, StartIntake, InterruptIntake, EnterInventoryCombat, StartWaterFill, PauseWaterFill, ResumeWaterFill, CancelWaterFill, HandleVessel, BeginFixedEncounter, EndRegularTurn, EncounterDash, SelectCombatStance, AttackClub, ResolveKnockout, StandFromProne, DropProne,
@@ -708,6 +709,26 @@ namespace Decennium.Foundation
         string Resolve(Snapshot candidate, Command command);
         string ValidateState(Snapshot candidate);
     }
+    /// <summary>Capability created after the full initial validation of one Simulation.</summary>
+    public sealed class VerifiedSimulationOrigin
+    {
+        private readonly Snapshot state;
+        internal VerifiedSimulationOrigin(Snapshot state) { this.state = state; }
+        public Snapshot Capture() => state.Copy();
+    }
+
+    public interface IVerifiedCommandPolicy
+    {
+        IVerifiedCommandCheckpoint Seal(VerifiedSimulationOrigin origin);
+    }
+
+    /// <summary>Private to the owning simulation. Validation returns a new checkpoint only on success.</summary>
+    public interface IVerifiedCommandCheckpoint
+    {
+        string VerifyNext(VerifiedSimulationOrigin origin, Snapshot predecessor, Snapshot candidate,
+            CommandReceipt submittedReceipt, out IVerifiedCommandCheckpoint successor);
+    }
+
     public sealed class CommandCost
     {
         public string Kind { get; }
@@ -1028,14 +1049,35 @@ namespace Decennium.Foundation
     {
         private Snapshot state;
         private readonly ICommandPolicy policy;
+        private readonly VerifiedSimulationOrigin verificationOrigin;
+        private IVerifiedCommandCheckpoint checkpoint;
+
         public Simulation(ICommandPolicy policy, Snapshot initial, ExecutionProfile profile)
+            : this(policy, initial, profile, CommandVerification.FullReplay) { }
+
+        public Simulation(ICommandPolicy policy, Snapshot initial, ExecutionProfile profile, CommandVerification verification)
         {
             this.policy = policy ?? throw new ArgumentNullException(nameof(policy));
             if (!Enum.IsDefined(typeof(ExecutionProfile), profile)) throw new ArgumentException("Invalid profile.");
-            ValidateCandidate(initial);
-            if (profile == ExecutionProfile.Release && (policy.TestOnly || initial.TestOnly))
+            if (!Enum.IsDefined(typeof(CommandVerification), verification)) throw new ArgumentException("Invalid command verification.");
+            var owned = initial;
+            if (verification == CommandVerification.VerifiedPrefix) {
+                // Check the external shape before copying, then fully validate the exact
+                // detached predecessor that this instance will own and seal.
+                Validation.Snapshot(initial);
+                owned = initial.Copy();
+            }
+            ValidateCandidate(owned);
+            if (profile == ExecutionProfile.Release && (policy.TestOnly || owned.TestOnly))
                 throw new InvalidOperationException("TEST_ONLY content is forbidden in release.");
-            state = initial.Copy();
+            if (verification == CommandVerification.VerifiedPrefix) {
+                if (profile != ExecutionProfile.Laboratory || !policy.TestOnly || !(policy is IVerifiedCommandPolicy verifiedPolicy))
+                    throw new ArgumentException("Verified prefix is unavailable for this policy and profile.");
+                verificationOrigin = new VerifiedSimulationOrigin(owned);
+                checkpoint = verifiedPolicy.Seal(verificationOrigin)
+                    ?? throw new ArgumentException("Verified prefix is unavailable for this selected content.");
+            }
+            state = verificationOrigin == null ? owned.Copy() : owned;
         }
         /// <summary>Authoritative snapshot for trusted simulation and persistence callers.</summary>
         public Snapshot Capture() => state.Copy();
@@ -1060,11 +1102,16 @@ namespace Decennium.Foundation
             return attempt == null ? null : new ExplorationHideView(attempt);
         }
 
-        private void ValidateCandidate(Snapshot candidate)
+        private void ValidateCandidateShape(Snapshot candidate)
         {
             Validation.Snapshot(candidate);
             if (candidate.ContentFingerprint != policy.ContentFingerprint || candidate.TestOnly != policy.TestOnly)
                 throw new ArgumentException("Content fingerprint or scope mismatch.");
+        }
+
+        private void ValidateCandidate(Snapshot candidate)
+        {
+            ValidateCandidateShape(candidate);
             string error = policy.ValidateState(candidate);
             if (error != null) throw new ArgumentException(error);
         }
@@ -1326,14 +1373,27 @@ namespace Decennium.Foundation
             if (candidate.SchemaVersion != state.SchemaVersion) return Reject("SchemaChangeForbidden");
             // Policy cannot rewrite command history, revision, identity or content scope.
             candidate.Revision = state.Revision + 1;
-            candidate.Receipts = state.Receipts.Select(r => r.Copy()).Concat(new[] { new CommandReceipt {
+            var submittedReceipt = new CommandReceipt {
                 Principal = authority.Principal, Id = command.Id, Fingerprint = command.Fingerprint, Revision = candidate.Revision
-            }}).ToArray();
+            };
+            candidate.Receipts = state.Receipts.Select(r => r.Copy()).Concat(new[] { submittedReceipt }).ToArray();
             if (candidate.Clock < state.Clock || candidate.RuleClock < state.RuleClock) return Reject("ClockReversal");
-            try { ValidateCandidate(candidate); }
+            IVerifiedCommandCheckpoint nextCheckpoint = null;
+            try {
+                if (verificationOrigin == null) {
+                    ValidateCandidate(candidate);
+                } else {
+                    ValidateCandidateShape(candidate);
+                    if (checkpoint == null || checkpoint.VerifyNext(verificationOrigin, state.Copy(), candidate.Copy(),
+                        submittedReceipt.Copy(), out nextCheckpoint) != null || nextCheckpoint == null)
+                        return Reject("InvalidResult");
+                }
+            }
             catch (ArgumentException) { return Reject("InvalidResult"); }
-            state = candidate.Copy();
-            var acceptedReceipt=state.Receipts.Single(r=>r.Principal==authority.Principal&&r.Id==command.Id);
+            var committed = candidate.Copy();
+            var acceptedReceipt = committed.Receipts.Single(r => r.Principal == authority.Principal && r.Id == command.Id);
+            state = committed;
+            checkpoint = nextCheckpoint;
             return AcceptedResult(acceptedReceipt, Outcome.Committed);
         }
         public CommandQueryResult QueryCommand(Authority authority, Command command)
