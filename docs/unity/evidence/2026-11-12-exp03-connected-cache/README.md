@@ -1,5 +1,7 @@
 # EXP-03 finite supply cache composition proposal
 
+GPT approved this source/API contract in reply `84f2499c-22f3-4d15-8762-f67b068e0a17`. The implementation evidence records the public walkthrough and current validation. [Source/API approval](GPT_SOURCE_API_REVIEW.md) · [Implementation evidence](IMPLEMENTATION_EVIDENCE.md)
+
 The proposed object is `TEST_ONLY.supply-cache`, the existing authored stationary chest in the accepted ordinary wire95 session. The source/API review should approve its exact access and projection before gameplay edits begin. The accepted thin session is the starting point. [Final session review](../2026-11-12-int03-connected-session/correction/GPT_FINAL_REVIEW.md) · [EXP-03 work item](../2026-11-03-rule-map/RULE_MAP.json)
 
 ## Object and source authority
