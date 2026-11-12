@@ -1,0 +1,13 @@
+# MGT-04 connected recipe-4 manufacturing batch
+
+Wire 95 selects one actual TEST_ONLY order on the accepted connected expedition. GPT approved the loading, work, settlement, dose use and persistence contract in `8b3b1c72-4061-417d-b1a4-944d5f2496b3`. The selected injury witness follows `54c525bc-26da-4805-aaa1-ca0323f88e99`. MGT-01, MGT-02 and RUL-01 are the direct prerequisites. [Implementation contract](IMPLEMENTATION_CONTRACT.md) · [Pinned source audit](source-findings.json)
+
+The real research and preservation path leads to the authorized workshop loading of the same one-unit specimen. The work ledger binds the original other ingredients and packaging, and the specimen moves into one closed apparatus with its original provenance. The actual first 900 active seconds earn stabilization. The real 13,500-second remaining phase and live check use the existing manufacturing procedure. The native quality choice settles ingredients, packaging, finite doses and XP. Physical closure of the separate preservation vessel clears the tactical opening restriction.
+
+The positive connected witness produces six doses, brings the hero into real later tactical contact, takes an actual opportunity hit while walking to bench access, and spends one dose and Action. Its recorded faces give `4 + 1 + 2 = 7` potential healing, with three actual HP restored under the cap and the exact empty vial retained. The case compares byte-identical replay through the connected continuation. [Connected cases](../../../../engine/com.decennium.foundation/Tests/EditMode/ConnectedRecipe4BatchCases.cs) · [Measured saves](focused/timeline.json)
+
+The other paths cover worker interruption, the exact Spoiled tie, deferred checks, zero- and positive-labor cancellation, native low-quality settlement, a whole-catalyst Masterwork return, and a real Failed check with the separately authorized injury and recovery. The healthy default cannot reach Failed with +2 against DC 8. Natural 1 triggers Mishap and natural 2 yields Flawed. [Focused results](focused/results.json)
+
+The 25 original-profile checks include all ten accepted wire 94 saves and authentic active manufacturing orders from wires 18 and 20. Both older manufacturing orders continue through their original check and finite output. Exact compilation and static reports cover the C# package and runtime without laboratory defines. [Compatibility evidence](legacy-saves/results.json) · [Source and artifact bindings](BINDINGS.json)
+
+This is one bounded work order. General crafting, donor procurement, production authority and Unity gameplay integration remain outside the selected profile. P1 remains tracked for full-history replay responsiveness.
