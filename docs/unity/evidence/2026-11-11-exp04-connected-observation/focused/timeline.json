@@ -1,0 +1,1700 @@
+{
+  "status": "PASS",
+  "assemblies": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "ecad14db2b797b80d3451528a442949da1bc75ee92eab3223dc599ab3172fc16"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "aa0d1e60ad638f62de3f4202284913b4ea0e93eb9b5bb36b2aa86e7876a4ff17"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "ac0fce5361fd69a6812996e999a37f946c00b9ba8aad2fab0572a633385a3e66"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "ec2425e60c89c71ca881617b88bef26a19bfdcc42de06f40ebc6843f21428246"
+    }
+  ],
+  "restored": [
+    {
+      "name": "before-observation",
+      "sha256": "61ae6ab3f4383587fbbeea10ee84d330ccec37859a3d08b5ed3be447aba9d067",
+      "wire": 93,
+      "base": 90,
+      "at": "11610/1",
+      "revision": 101,
+      "rng": 3247499250,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3870,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1935,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [],
+      "search": [],
+      "checks": [],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "primary-failure",
+      "sha256": "1575c7c488ec0ddc390d78bd3a64eb0f9837ce52168414959a8449a32e04288a",
+      "wire": 93,
+      "base": 90,
+      "at": "11616/1",
+      "revision": 103,
+      "rng": 1891099109,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3872,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1936,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        }
+      ],
+      "search": [],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "alternate-hidden",
+      "sha256": "4e174ab6d713f6c367c07a0f18dd37c1030c8957331c19fa2513f6c8ddf6022b",
+      "wire": 93,
+      "base": 90,
+      "at": "11628/1",
+      "revision": 107,
+      "rng": 502002592,
+      "tactical": false,
+      "hero": [
+        2,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3876,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1938,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        }
+      ],
+      "search": [],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": true,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        }
+      ]
+    },
+    {
+      "name": "returned-unseen-to-searcher",
+      "sha256": "74506cdfdfa7564517433588855ebd50ce62b71462a0eadeaad0703b50f0fcb3",
+      "wire": 93,
+      "base": 90,
+      "at": "11634/1",
+      "revision": 109,
+      "rng": 502002592,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3878,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1939,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        }
+      ],
+      "search": [],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "paid-search",
+      "sha256": "244214a89a653369aee095a9567f308931000c101271a440a6be0ca412f7b651",
+      "wire": 93,
+      "base": 90,
+      "at": "11634/1",
+      "revision": 110,
+      "rng": 502002592,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3878,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1939,
+      "searcherAction": "Search",
+      "searcherPayment": "test.connected-search",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        }
+      ],
+      "search": [
+        {
+          "id": "exploration.search.110",
+          "declaration": "test.connected-search",
+          "revision": 110,
+          "interval": 1939,
+          "started": "11634/1",
+          "due": "11640/1",
+          "status": "Pending"
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "actual-later-entry",
+      "sha256": "e0e0966d525206f0441ebe7ac6b25cb9de12ce71eeae2f3d7883c15f6b7827fb",
+      "wire": 93,
+      "base": 90,
+      "at": "23319/2",
+      "revision": 119,
+      "rng": 3624231762,
+      "tactical": true,
+      "hero": [
+        0,
+        3
+      ],
+      "currentHeroCalendar": "TEST_ONLY.later-calendar",
+      "currentHeroOrdinal": 0,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1943,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        }
+      ],
+      "search": [
+        {
+          "id": "exploration.search.110",
+          "declaration": "test.connected-search",
+          "revision": 110,
+          "interval": 1939,
+          "started": "11634/1",
+          "due": "11640/1",
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-110",
+            "revision": 111,
+            "observation": "observation.111.search",
+            "reason": "None",
+            "hide": "observation.107.hide"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.111.search",
+          "kind": "Search",
+          "at": "11640/1",
+          "revision": 111,
+          "outcome": "SearchFound",
+          "natural": 15,
+          "total": 15,
+          "words": 1,
+          "before": 502002592,
+          "after": 275222415,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ],
+      "entry": {
+        "at": "23319/2",
+        "receipt": "later.advance.118",
+        "revision": 119,
+        "director": "TEST_ONLY.director.surprise-aware-entry.v1",
+        "decision": "Warned",
+        "order": [
+          "TEST_ONLY.actor",
+          "TEST_ONLY.later-defender"
+        ],
+        "draws": [
+          {
+            "ActorId": "TEST_ONLY.actor",
+            "Natural": 4,
+            "RandomBefore": 275222415,
+            "RandomAfter": 3545626564,
+            "WordsConsumed": 1
+          },
+          {
+            "ActorId": "TEST_ONLY.later-defender",
+            "Natural": 2,
+            "RandomBefore": 3545626564,
+            "RandomAfter": 3624231762,
+            "WordsConsumed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "continued-after-real-combat",
+      "sha256": "e7b050d2d99602e9dd9e25c51ab8aa29250391777b109f4c88ddf3f47fecdcea",
+      "wire": 93,
+      "base": 90,
+      "at": "23517/2",
+      "revision": 199,
+      "rng": 3632012002,
+      "tactical": false,
+      "hero": [
+        1,
+        3
+      ],
+      "currentHeroCalendar": "TEST_ONLY.later-calendar",
+      "currentHeroOrdinal": 32,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1959,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        }
+      ],
+      "search": [
+        {
+          "id": "exploration.search.110",
+          "declaration": "test.connected-search",
+          "revision": 110,
+          "interval": 1939,
+          "started": "11634/1",
+          "due": "11640/1",
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-110",
+            "revision": 111,
+            "observation": "observation.111.search",
+            "reason": "None",
+            "hide": "observation.107.hide"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.111.search",
+          "kind": "Search",
+          "at": "11640/1",
+          "revision": 111,
+          "outcome": "SearchFound",
+          "natural": 15,
+          "total": 15,
+          "words": 1,
+          "before": 502002592,
+          "after": 275222415,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": false,
+          "evidence": "DirectSight",
+          "known": false
+        }
+      ],
+      "entry": {
+        "at": "23319/2",
+        "receipt": "later.advance.118",
+        "revision": 119,
+        "director": "TEST_ONLY.director.surprise-aware-entry.v1",
+        "decision": "Warned",
+        "order": [
+          "TEST_ONLY.actor",
+          "TEST_ONLY.later-defender"
+        ],
+        "draws": [
+          {
+            "ActorId": "TEST_ONLY.actor",
+            "Natural": 4,
+            "RandomBefore": 275222415,
+            "RandomAfter": 3545626564,
+            "WordsConsumed": 1
+          },
+          {
+            "ActorId": "TEST_ONLY.later-defender",
+            "Natural": 2,
+            "RandomBefore": 3545626564,
+            "RandomAfter": 3624231762,
+            "WordsConsumed": 1
+          }
+        ]
+      },
+      "continued": {
+        "earlierCombat": "15/1",
+        "acquiredLot": "TEST_ONLY.mining.unit.iron",
+        "paidAt": "5436/1",
+        "paidCopper": 2,
+        "mealAt": "5443/1",
+        "billAt": "7889/1",
+        "charterReturned": "11572/1",
+        "laterCombatClosed": "23505/2",
+        "realLaterAttacks": [
+          {
+            "Id": "attack.121",
+            "Revision": 121,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.124",
+            "Revision": 124,
+            "AttackerId": "TEST_ONLY.later-defender",
+            "TargetId": "TEST_ONLY.actor"
+          },
+          {
+            "Id": "attack.127",
+            "Revision": 127,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.132",
+            "Revision": 132,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.137",
+            "Revision": 137,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.142",
+            "Revision": 142,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.147",
+            "Revision": 147,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.152",
+            "Revision": 152,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.157",
+            "Revision": 157,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.162",
+            "Revision": 162,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.167",
+            "Revision": 167,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.172",
+            "Revision": 172,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.177",
+            "Revision": 177,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.182",
+            "Revision": 182,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.187",
+            "Revision": 187,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.192",
+            "Revision": 192,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          },
+          {
+            "Id": "attack.196",
+            "Revision": 196,
+            "AttackerId": "TEST_ONLY.actor",
+            "TargetId": "TEST_ONLY.later-defender"
+          }
+        ]
+      }
+    },
+    {
+      "name": "hide-first",
+      "sha256": "fbdc08cb02a453853c329db666f7bc07f0220bac40b1862237c951ecf0259e77",
+      "wire": 93,
+      "base": 90,
+      "at": "11640/1",
+      "revision": 112,
+      "rng": 3545626564,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3880,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1940,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        },
+        {
+          "id": "exploration.hide.110",
+          "declaration": "i-109",
+          "revision": 110,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3878,
+          "started": "11634/1",
+          "due": "11640/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-111",
+            "revision": 112,
+            "observation": "observation.112.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          },
+          "arrived": "23259/2"
+        }
+      ],
+      "search": [
+        {
+          "id": "exploration.search.111",
+          "declaration": "test.search.111",
+          "revision": 111,
+          "interval": 1939,
+          "started": "11634/1",
+          "due": "11640/1",
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-111",
+            "revision": 112,
+            "observation": "observation.112.search",
+            "reason": "None",
+            "hide": "observation.112.hide"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.112.hide",
+          "kind": "Hide",
+          "at": "11640/1",
+          "revision": 112,
+          "outcome": "HideAttempted",
+          "natural": 15,
+          "total": 15,
+          "words": 1,
+          "before": 502002592,
+          "after": 275222415,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.112.search",
+          "kind": "Search",
+          "at": "11640/1",
+          "revision": 112,
+          "outcome": "SearchNoFinding",
+          "natural": 4,
+          "total": 4,
+          "words": 1,
+          "before": 275222415,
+          "after": 3545626564,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "sees": false,
+          "evidence": "DirectSightLimit",
+          "known": false
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "search-first",
+      "sha256": "8989328debaa1761d6ea12bd7719ca50f7d7b73e1fbd66770614cda577cdb26a",
+      "wire": 93,
+      "base": 90,
+      "at": "11640/1",
+      "revision": 112,
+      "rng": 3545626564,
+      "tactical": false,
+      "hero": [
+        1,
+        0
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3880,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1940,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [
+        {
+          "id": "exploration.hide.102",
+          "declaration": "i-101",
+          "revision": 102,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3870,
+          "started": "11610/1",
+          "due": "11616/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11616/1",
+            "command": "i-102",
+            "revision": 103,
+            "observation": "observation.103.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          }
+        },
+        {
+          "id": "exploration.hide.106",
+          "declaration": "i-105",
+          "revision": 106,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3874,
+          "started": "11622/1",
+          "due": "11628/1",
+          "anchor": [
+            2,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11628/1",
+            "command": "i-106",
+            "revision": 107,
+            "observation": "observation.107.hide",
+            "reason": "None",
+            "observers": "Searcher, Witness"
+          },
+          "arrived": "23235/2"
+        },
+        {
+          "id": "exploration.hide.111",
+          "declaration": "i-110",
+          "revision": 111,
+          "paidCalendar": "world.fixed-calendar",
+          "paidStart": 3878,
+          "started": "11634/1",
+          "due": "11640/1",
+          "anchor": [
+            1,
+            0
+          ],
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-111",
+            "revision": 112,
+            "observation": "observation.112.hide",
+            "reason": "None",
+            "observers": "Searcher"
+          },
+          "arrived": "23259/2"
+        }
+      ],
+      "search": [
+        {
+          "id": "exploration.search.110",
+          "declaration": "test.search.110",
+          "revision": 110,
+          "interval": 1939,
+          "started": "11634/1",
+          "due": "11640/1",
+          "status": "Completed",
+          "end": {
+            "at": "11640/1",
+            "command": "i-111",
+            "revision": 112,
+            "observation": "observation.112.search",
+            "reason": "None",
+            "hide": "observation.107.hide"
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.103.hide",
+          "kind": "Hide",
+          "at": "11616/1",
+          "revision": 103,
+          "outcome": "HideAttempted",
+          "natural": 9,
+          "total": 9,
+          "words": 1,
+          "before": 3247499250,
+          "after": 1891099109,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.107.hide",
+          "kind": "Hide",
+          "at": "11628/1",
+          "revision": 107,
+          "outcome": "HideAttempted",
+          "natural": 12,
+          "total": 12,
+          "words": 1,
+          "before": 1891099109,
+          "after": 502002592,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.haven-copper-buyer",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.112.search",
+          "kind": "Search",
+          "at": "11640/1",
+          "revision": 112,
+          "outcome": "SearchFound",
+          "natural": 15,
+          "total": 15,
+          "words": 1,
+          "before": 502002592,
+          "after": 275222415,
+          "comparisons": []
+        },
+        {
+          "id": "observation.112.hide",
+          "kind": "Hide",
+          "at": "11640/1",
+          "revision": 112,
+          "outcome": "HideAttempted",
+          "natural": 4,
+          "total": 4,
+          "words": 1,
+          "before": 275222415,
+          "after": 3545626564,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": false,
+          "evidence": "Search",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ]
+    },
+    {
+      "name": "search-interrupted-by-actual-entry",
+      "sha256": "da6b2ea7b9f43ea94f76d55a3df5136304cc3b45c147d072494f969f8adefa74",
+      "wire": 93,
+      "base": 90,
+      "at": "23283/2",
+      "revision": 112,
+      "rng": 502002592,
+      "tactical": true,
+      "hero": [
+        0,
+        3
+      ],
+      "currentHeroCalendar": "TEST_ONLY.later-calendar",
+      "currentHeroOrdinal": -1,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1940,
+      "searcherAction": "Search",
+      "searcherPayment": "test.connected-search-before-entry",
+      "hide": [],
+      "search": [
+        {
+          "id": "exploration.search.109",
+          "declaration": "test.connected-search-before-entry",
+          "revision": 109,
+          "interval": 1940,
+          "started": "11640/1",
+          "due": "11646/1",
+          "status": "Interrupted",
+          "end": {
+            "at": "23283/2",
+            "command": "later.advance.111",
+            "revision": 112,
+            "observation": "",
+            "reason": "TacticalControlEntered",
+            "hide": ""
+          }
+        }
+      ],
+      "checks": [],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        }
+      ],
+      "entry": {
+        "at": "23283/2",
+        "receipt": "later.advance.111",
+        "revision": 112,
+        "director": "TEST_ONLY.director.surprise-aware-entry.v1",
+        "decision": "Warned",
+        "order": [
+          "TEST_ONLY.later-defender",
+          "TEST_ONLY.actor"
+        ],
+        "draws": [
+          {
+            "ActorId": "TEST_ONLY.actor",
+            "Natural": 9,
+            "RandomBefore": 3247499250,
+            "RandomAfter": 1891099109,
+            "WordsConsumed": 1
+          },
+          {
+            "ActorId": "TEST_ONLY.later-defender",
+            "Natural": 12,
+            "RandomBefore": 1891099109,
+            "RandomAfter": 502002592,
+            "WordsConsumed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "failed-contact-search-completed",
+      "sha256": "ada2d49d7faadd02c1606bdf1fb83e4263825bf7ea6d10e51dc0dc8e5f9c1046",
+      "wire": 93,
+      "base": 90,
+      "at": "11646/1",
+      "revision": 114,
+      "rng": 3247499250,
+      "tactical": false,
+      "hero": [
+        0,
+        3
+      ],
+      "currentHeroCalendar": "world.fixed-calendar",
+      "currentHeroOrdinal": 3882,
+      "currentHeroActionSpent": false,
+      "searcherCalendar": "world.fixed-calendar",
+      "searcherInterval": 1941,
+      "searcherAction": "None",
+      "searcherPayment": "",
+      "hide": [],
+      "search": [
+        {
+          "id": "exploration.search.109",
+          "declaration": "test.connected-search-before-entry",
+          "revision": 109,
+          "interval": 1940,
+          "started": "11640/1",
+          "due": "11646/1",
+          "status": "Completed",
+          "end": {
+            "at": "11646/1",
+            "command": "i-113",
+            "revision": 114,
+            "observation": "observation.114.search",
+            "reason": "None",
+            "hide": ""
+          }
+        }
+      ],
+      "checks": [
+        {
+          "id": "observation.114.search",
+          "kind": "Search",
+          "at": "11646/1",
+          "revision": 114,
+          "outcome": "SearchNoFinding",
+          "natural": 0,
+          "total": 0,
+          "words": 0,
+          "before": 3247499250,
+          "after": 3247499250,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.haven-copper-buyer",
+          "hidden": false,
+          "sees": true,
+          "evidence": "DirectSight",
+          "known": true
+        },
+        {
+          "observer": "TEST_ONLY.later-defender",
+          "hidden": false,
+          "sees": false,
+          "evidence": "DirectSight",
+          "known": false
+        }
+      ]
+    }
+  ]
+}
