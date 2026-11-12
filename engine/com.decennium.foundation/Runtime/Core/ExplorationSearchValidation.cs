@@ -42,8 +42,13 @@ namespace Decennium.Foundation
                 || state.Retreat != null || state.Reengagement != null || state.SurpriseEntry != null
                 || d.DirectorId != ExplorationSearchDefinition.Director)
                 throw new ArgumentException("Invalid independent ordinary observation layout.");
+            var owner = WorldTiming.ForActor(state, d.SearcherId);
+            bool offCalendar = owner == null;
+            var admission = state.Reinforcement?.Admission;
+            bool admittedLater = connected && state.LaterEncounter.Entry != null && admission != null
+                && state.Reinforcement.Definition.CompanionId == d.SearcherId && owner?.Id == admission.Phase.Epoch.Id;
             if (!state.Actors.Any(x => x.Id == d.SearcherId) || !state.Actors.Any(x => x.Id == d.ConcealedActorId)
-                || WorldTiming.ForActor(state, d.SearcherId) != null
+                || !offCalendar && !admittedLater
                 || new[] { d.Anchor, d.CueCandidate, d.Sign, d.Occlusion }.Any(x => !InMap(state, x))
                 || !state.ObservationCells.Any(x => x.X == d.Occlusion.X && x.Y == d.Occlusion.Y && x.BlocksSight))
                 throw new ArgumentException("Ordinary Search source does not bind the selected actor and geometry.");
@@ -68,15 +73,17 @@ namespace Decennium.Foundation
                 }
             }
 
-            var current = state.WorldActivityIntervals.Single(x => x.ActorId == d.SearcherId);
-            var currentAttempt = search.Attempts.LastOrDefault(x => x.IntervalIndex == current.IntervalIndex);
+            // A successful later reinforcement retires this activity ledger. Its earlier
+            // paid Search still validates against the original calendar and receipts above.
+            var current = offCalendar ? state.WorldActivityIntervals.Single(x => x.ActorId == d.SearcherId) : null;
+            var currentAttempt = current == null ? null : search.Attempts.LastOrDefault(x => x.IntervalIndex == current.IntervalIndex);
             if (currentAttempt != null && (current.Action != WorldActionCommitment.Search
                 || current.ActionReference != currentAttempt.CommandId || current.ActionReferenceRevision != currentAttempt.Revision))
                 throw new ArgumentException("Ordinary Search lost its paid Action before the authorized refresh.");
             var pending = search.Pending;
             if (pending != null) {
                 var pos = WorldPositionResolver.Position(state, d.SearcherId);
-                if (state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)
+                if (!offCalendar || state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)
                     || state.RuleClock > pending.DueAt || currentAttempt != pending
                     || state.RuleClock == pending.DueAt && state.ManufacturingAdvance == null
                     || state.WorldTraversals.Any(x => x.ActorId == d.SearcherId)

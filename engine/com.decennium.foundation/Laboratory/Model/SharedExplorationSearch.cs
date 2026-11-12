@@ -193,7 +193,8 @@ namespace Decennium.Foundation.Laboratory
                 || command.Kind == CommandKind.ResumeWorldStep || command.Kind == CommandKind.HandleInventory
                 || command.Kind == CommandKind.HandleVessel || command.Kind == CommandKind.StartIntake))
                 return "OrdinarySearchInProgress";
-            if (activeWork && ActivityInterval(state, command.Actor).Action == WorldActionCommitment.Search)
+            if (activeWork && IsOffCalendarActivity(state, command.Actor)
+                && ActivityInterval(state, command.Actor).Action == WorldActionCommitment.Search)
                 return "OffCalendarActionAlreadySpent";
             return null;
         }

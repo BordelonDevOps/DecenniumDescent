@@ -205,6 +205,47 @@ namespace Decennium.Foundation.Tests
 
             AddConnectedObservationBoundaryCases(cases, directory);
             AddConnectedObservationIntegrityCases(cases, directory);
+            cases.Add("exp04_connected_observation_retired_search_ledger_survives_actual_reinforcement", () =>
+            {
+                var sim = ConnectedObservationReady();
+                var hidden = PrepareConnectedConcealment(sim);
+                WorldCommit(sim, ExplorationSearchCommand(sim));
+                SearchAdvance(sim, 18);
+                var paidSearch = sim.Capture().ExplorationSearch.Attempts.Single();
+                var originalCalendar = sim.Capture().WorldSchedule;
+                Require(paidSearch.End.HideId == hidden.Id && paidSearch.End.At == T(11640),
+                    "The historical Search was not genuinely paid and resolved.");
+                PlanWalk(sim, 0, 1, ExplorationSearcher);
+                StageReinforcingCompanion(sim);
+                ReturnToConnectedApproach(sim);
+                var entry = EnterLater(sim);
+                LaterCommit(sim, ReinforcementCommand(sim));
+                EndReinforcementTurn(sim);
+                var saved = SaveConnectedObservation(sim, directory, "reinforcement-before-admission");
+                foreach (var run in new[] { sim, saved }) {
+                    EndReinforcementTurn(run);
+                    var admitted = run.Capture();
+                    var phase = admitted.Reinforcement.Admission.Phase;
+                    var recorded = admitted.ExplorationSearch.Attempts.Single();
+                    Require(admitted.InventoryCombat && admitted.Encounter.Order.Contains(ExplorationSearcher)
+                        && phase.Epoch.Order.Contains(ExplorationSearcher)
+                        && WorldTiming.ForActor(admitted, ExplorationSearcher).Id == phase.Epoch.Id
+                        && WorldTiming.FindEpoch(admitted, originalCalendar.Id).Id == originalCalendar.Id
+                        && !admitted.WorldActivityIntervals.Any(x => x.ActorId == ExplorationSearcher)
+                        && recorded.CommandId == paidSearch.CommandId && recorded.IntervalIndex == paidSearch.IntervalIndex
+                        && recorded.End.ObservationId == paidSearch.End.ObservationId && recorded.End.HideId == hidden.Id
+                        && admitted.ExplorationSearch.Pending == null && admitted.LaterEncounter.Entry.ArrivalRevision == entry.ArrivalRevision
+                        && run.ObserveExplorationSearch(host, recorded.Id).Status == ExplorationSearchViewStatus.Found,
+                        "Real admission must retire the old ledger while preserving actual historical Search and its projection.");
+                }
+                Require(Bytes(sim).SequenceEqual(Bytes(saved)), "Saving before actual admission changed replay across the roster change.");
+                SaveConnectedObservation(sim, directory, "reinforcement-search-history-retained");
+                File.WriteAllLines(Path.Combine(directory, "exp04-connected-observation-reinforcement.tsv"), new[] {
+                    "historical Search " + paidSearch.CommandId + " paid in " + originalCalendar.Id + " interval " + paidSearch.IntervalIndex,
+                    "actual admission " + sim.Capture().RuleClock + " current companion calendar " + WorldTiming.ForActor(sim.Capture(), ExplorationSearcher).Id,
+                    "old activity row retired, exact history retained and replayed"
+                });
+            });
         }
 
         private static void AddConnectedObservationBoundaryCases(Dictionary<string, Action> cases, string directory)
