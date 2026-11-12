@@ -151,10 +151,13 @@ namespace Decennium.Foundation.Laboratory
                     return new ExpeditionSeatView(position, false, false, "", "", "", Array.Empty<ExpeditionOwnActor>(),
                         Array.Empty<ExpeditionOwnedItem>(), Array.Empty<ExpeditionWorkStatus>(), Array.Empty<CommandKind>(),
                         NoKnownTargets, 0);
-                string acting = ActingActor(state, out _, out string decisionId);
+                string acting = ActingActor(state, out var decision, out string decisionId);
                 string ownedActing = grant.Controls(acting) ? acting : "";
                 string ownedDecision = ownedActing != "" ? decisionId : "";
-                string turn = state.InventoryCombat && grant.Controls(state.Encounter.CurrentActor) ? state.Encounter.CurrentTurnId : "";
+                bool ownsTacticalResponse = ownedActing != "" && (decision == ExpeditionDecisionKind.Opportunity
+                    || decision == ExpeditionDecisionKind.Knockout || decision == ExpeditionDecisionKind.Press);
+                string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
+                    ? state.Encounter.CurrentTurnId : "";
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
                     ownedActing, turn, ownedDecision,
                     state.Actors.Where(x => grant.Controls(x.Id)).Select(x => new ExpeditionOwnActor(state, x, grant)),

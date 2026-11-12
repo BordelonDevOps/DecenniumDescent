@@ -90,6 +90,112 @@ namespace Decennium.Foundation.Tests
                     && snapshot.Receipts.Last().Principal == ConnectedExpeditionSession.FirstOpponentPrincipal,
                     "The ordinary wire95 save must retain the separate opponent receipt.");
             });
+
+            cases.Add("int03_session_off_turn_knockout_and_press_restore", () =>
+            {
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string opponent = ConnectedExpeditionSession.FirstOpponent;
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const ExpeditionSeat director = ExpeditionSeat.FirstOpponent;
+                var session = ConnectedExpeditionSession.Start();
+                Command Input(string actor, CommandKind kind, string target = "", int x = 0, int y = 0,
+                    CombatRequest combat = null)
+                {
+                    long revision = session.View(player).Revision;
+                    return new Command("session.choice." + (revision + 1).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                        actor, revision, kind, target, x, y, combat: combat);
+                }
+                ExpeditionActionResult Commit(ExpeditionActionResult result)
+                {
+                    Require(result.Response == ExpeditionResponse.Committed, "The public choice branch failed: " + result.Response);
+                    return result;
+                }
+                void AssertChoice(ExpeditionSeat seat, ExpeditionSeat other, ExpeditionDecisionKind kind, string actor)
+                {
+                    var view = session.View(seat);
+                    var privateView = session.View(other);
+                    Require(view.PendingDecision == kind && view.ActingActorId == actor && view.DecisionId != ""
+                        && view.TurnId != "" && privateView.DecisionId == "" && privateView.ActingActorId == "",
+                        "Only the actual responding actor's seat may see its token and submit the pending choice.");
+                }
+
+                for (int step = 0; step < 3; step++) {
+                    Commit(session.Submit(player, Input(hero, CommandKind.BeginWorldStep, "walk", x: 1)));
+                    if (step < 2) Commit(session.SubmitSessionCommand(Input(hero, CommandKind.AdvanceClock, x: 2, y: 1)));
+                }
+                var thirdTurn = session.View(director).TurnId;
+                Commit(session.Submit(director, Input(opponent, CommandKind.SelectCombatStance,
+                    combat: new CombatRequest(thirdTurn, stance: (int)CombatStance.Aggressive))));
+                Commit(session.Submit(director, Input(opponent, CommandKind.TacticalStep, thirdTurn, x: 3)));
+                string before = Path.Combine(directory, "int03-session-choice-fork.ddsave");
+                session.Save(before);
+
+                Commit(session.Submit(director, Input(opponent, CommandKind.TacticalStep, thirdTurn, x: 4)));
+                AssertChoice(player, director, ExpeditionDecisionKind.Opportunity, hero);
+                string opportunityFile = Path.Combine(directory, "int03-session-choice-opportunity.ddsave");
+                session.Save(opportunityFile);
+                session = ConnectedExpeditionSession.Start();
+                session.Restore(opportunityFile);
+                AssertChoice(player, director, ExpeditionDecisionKind.Opportunity, hero);
+                var reaction = session.View(player);
+                Require(reaction.TurnId == thirdTurn, "An off-turn player needs the actual turn token for its opportunity.");
+                var strike = Input(hero, CommandKind.RespondOpportunityAttack, reaction.DecisionId,
+                    combat: new CombatRequest(reaction.TurnId, TestOnlyClubAttackPolicy.ActorClub,
+                        knockout: AttackKnockoutMode.AskIfEligible, choice: true));
+                Require(session.Submit(director, strike).Response == ExpeditionResponse.NotAuthorized,
+                    "Only the player may answer the off-turn opportunity.");
+                var suspended = Commit(session.Submit(player, strike));
+                Require(suspended.PendingDecision == ExpeditionDecisionKind.Knockout && !suspended.OpportunityPending
+                    && suspended.NextSeat == ExpeditionTurnSeat.Player, "Knockout must take priority over its suspended opportunity move.");
+                AssertChoice(player, director, ExpeditionDecisionKind.Knockout, hero);
+                string pending = Path.Combine(directory, "int03-session-choice-knockout.ddsave");
+                session.Save(pending);
+                var pendingFile = new FileSaveStore().Load(pending);
+                var move = TestOnlyClubAttackPolicy.PendingMove(pendingFile);
+                Require(move != null && move.ResponseIndex == move.Reactors.Count,
+                    "This branch must suspend a move with its last opportunity already submitted.");
+                session = ConnectedExpeditionSession.Start();
+                session.Restore(pending);
+                AssertChoice(player, director, ExpeditionDecisionKind.Knockout, hero);
+                var knockout = session.View(player);
+                var resolve = Input(hero, CommandKind.ResolveKnockout, knockout.DecisionId,
+                    combat: new CombatRequest(knockout.TurnId));
+                Require(session.Submit(director, resolve).Response == ExpeditionResponse.NotAuthorized
+                    && session.Submit(player, strike).Response == ExpeditionResponse.Duplicate,
+                    "Only the player may decide the knockout, and retrying the reaction may not roll again.");
+                Require(Commit(session.Submit(player, resolve)).PendingDecision == ExpeditionDecisionKind.None,
+                    "Resolving the real knockout must release the tactical continuation.");
+
+                session.Restore(before);
+                Commit(session.Submit(director, Input(opponent, CommandKind.AttackClub, hero,
+                    combat: new CombatRequest(thirdTurn, AdditionalTacticalActor.ClubId))));
+                Commit(session.Submit(director, Input(opponent, CommandKind.EndRegularTurn, thirdTurn)));
+                string heroTurn = session.View(player).TurnId;
+                Commit(session.Submit(player, Input(hero, CommandKind.SelectCombatStance,
+                    combat: new CombatRequest(heroTurn, stance: (int)CombatStance.Aggressive))));
+                Commit(session.Submit(player, Input(hero, CommandKind.TacticalStep, heroTurn, x: 1)));
+                AssertChoice(director, player, ExpeditionDecisionKind.Opportunity, opponent);
+                var opportunity = session.View(director);
+                Require(opportunity.TurnId == heroTurn, "An off-turn opponent needs the actual turn token for its opportunity.");
+                Commit(session.Submit(director, Input(opponent, CommandKind.RespondOpportunityAttack, opportunity.DecisionId,
+                    combat: new CombatRequest(opportunity.TurnId))));
+                AssertChoice(director, player, ExpeditionDecisionKind.Press, opponent);
+                string pressFile = Path.Combine(directory, "int03-session-choice-press.ddsave");
+                session.Save(pressFile);
+                session = ConnectedExpeditionSession.Start();
+                session.Restore(pressFile);
+                AssertChoice(director, player, ExpeditionDecisionKind.Press, opponent);
+                var press = session.View(director);
+                var follow = Input(opponent, CommandKind.RespondPress, press.DecisionId,
+                    combat: new CombatRequest(press.TurnId, choice: true));
+                Require(session.Submit(player, follow).Response == ExpeditionResponse.NotAuthorized,
+                    "The player cannot decide the director's Press.");
+                Require(Commit(session.Submit(director, follow)).PendingDecision == ExpeditionDecisionKind.None
+                    && session.View(director).Actors.Single().Position.X == 2,
+                    "Accepting Press must perform the existing follow step and return control.");
+                Require(session.Submit(director, follow).Response == ExpeditionResponse.Duplicate,
+                    "Retrying the Press response may not repeat the follow step.");
+            });
         }
     }
 }

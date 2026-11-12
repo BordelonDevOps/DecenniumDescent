@@ -8,7 +8,7 @@ namespace Decennium.Foundation.Laboratory
 {
     public enum ExpeditionSeat { Player, FirstOpponent }
     public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable }
-    public enum ExpeditionDecisionKind { None, Opportunity, ManufacturingQuality }
+    public enum ExpeditionDecisionKind { None, Opportunity, ManufacturingQuality, Knockout, Press }
     public enum ExpeditionResponse { Unavailable, NotAuthorized, StaleRevision, CommandIdConflict, Committed, Duplicate, Waiting }
 
     public sealed class ExpeditionActionResult
@@ -221,11 +221,23 @@ namespace Decennium.Foundation.Laboratory
 
         internal static string ActingActor(Snapshot state, out ExpeditionDecisionKind decision, out string decisionId)
         {
+            var attack = state.MeleeAttacks.SingleOrDefault(x => x.Pending);
+            if (attack != null) {
+                decision = ExpeditionDecisionKind.Knockout;
+                decisionId = attack.Id;
+                return attack.AttackerId;
+            }
             var move = TestOnlyClubAttackPolicy.PendingMove(state);
-            if (move != null) {
+            if (move != null && move.ResponseIndex < move.Reactors.Count) {
                 decision = ExpeditionDecisionKind.Opportunity;
                 decisionId = move.Id;
                 return move.Reactors[move.ResponseIndex];
+            }
+            var press = TestOnlyClubAttackPolicy.CurrentPressOffer(state);
+            if (press != null) {
+                decision = ExpeditionDecisionKind.Press;
+                decisionId = press.Id;
+                return press.ActorId;
             }
             var quality = state.ManufacturingOrders.FirstOrDefault(x => x.Status == ManufacturingStatus.AwaitingChoice);
             if (quality != null) {
@@ -272,7 +284,8 @@ namespace Decennium.Foundation.Laboratory
 
         private static readonly CommandKind[] CombatCommands = {
             CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
-            CommandKind.EndRegularTurn, CommandKind.RespondOpportunityAttack
+            CommandKind.EndRegularTurn, CommandKind.RespondOpportunityAttack, CommandKind.ResolveKnockout,
+            CommandKind.RespondPress
         };
 
         private static readonly IReadOnlyDictionary<CommandKind, string> KnownServices =
@@ -317,9 +330,15 @@ namespace Decennium.Foundation.Laboratory
                         && state.Encounter.Order.Contains(target) && ObservationRules.CanSee(state, actor, target);
                 case CommandKind.RespondOpportunityAttack:
                     var pending = TestOnlyClubAttackPolicy.PendingMove(state);
-                    return pending != null && target == pending.Id && pending.Reactors[pending.ResponseIndex] == actor
+                    return pending != null && pending.ResponseIndex < pending.Reactors.Count && target == pending.Id
+                        && pending.Reactors[pending.ResponseIndex] == actor
                         && (command.Combat?.WeaponId == "" || state.Clubs.Any(x => x.Id == command.Combat?.WeaponId
                             && x.OwnerId == actor && x.CustodianId == actor));
+                case CommandKind.ResolveKnockout:
+                    return state.MeleeAttacks.Any(x => x.Pending && x.Id == target && x.AttackerId == actor);
+                case CommandKind.RespondPress:
+                    var offer = TestOnlyClubAttackPolicy.CurrentPressOffer(state);
+                    return offer != null && offer.Id == target && offer.ActorId == actor;
                 case CommandKind.HandlePortableEquipment:
                 case CommandKind.OpenPortableContainer:
                 case CommandKind.ClosePortableContainer:
