@@ -1,0 +1,349 @@
+#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+
+namespace Decennium.Foundation.Laboratory
+{
+    public enum ExpeditionSeat { Player, FirstOpponent }
+    public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable }
+    public enum ExpeditionDecisionKind { None, Opportunity, ManufacturingQuality }
+    public enum ExpeditionResponse { Unavailable, NotAuthorized, StaleRevision, CommandIdConflict, Committed, Duplicate, Waiting }
+
+    public sealed class ExpeditionActionResult
+    {
+        public ExpeditionResponse Response { get; }
+        public long Revision { get; }
+        public RuleTime Clock { get; }
+        public ExpeditionTurnSeat NextSeat { get; }
+        public ExpeditionDecisionKind PendingDecision { get; }
+        public bool OpportunityPending => PendingDecision == ExpeditionDecisionKind.Opportunity;
+
+        internal ExpeditionActionResult(ExpeditionResponse response, Snapshot state, bool discloseTacticalSlot = true)
+        {
+            Response = response;
+            Revision = state.Revision;
+            Clock = state.RuleClock;
+            if (!discloseTacticalSlot) {
+                NextSeat = ExpeditionTurnSeat.Unavailable;
+                return;
+            }
+            string actor = ConnectedExpeditionSession.ActingActor(state, out var decision, out _);
+            PendingDecision = decision;
+            NextSeat = ConnectedExpeditionSession.SeatForActor(actor);
+        }
+    }
+
+    /// <summary>Local TEST_ONLY host for the selected connected recipe-4 scenario.
+    /// The embedding application is trusted to bind inputs to seats and control the file operations.</summary>
+    public sealed partial class ConnectedExpeditionSession
+    {
+        public const string Profile = "TEST_ONLY.connected-expedition-recipe4.v1";
+        public const string Hero = TestOnlyPolicy.ActorId;
+        public const string Companion = TestOnlyPolicy.CompanionId;
+        public const string FirstOpponent = AdditionalTacticalActor.Id;
+        public const string FirstOpponentPrincipal = "TEST_ONLY.session-first-opponent";
+        private const string PlayerPrincipal = "TEST_ONLY.host";
+        private const string SessionPrincipal = "TEST_ONLY.session-operator";
+        private const string ResearchSource = "research.guild-notes";
+        private const string Recipe = "recipe-4";
+        private static readonly string[] Party = { Hero, Companion };
+        private static readonly string[] FirstOpponentActors = { FirstOpponent };
+        private static readonly Authority PlayerGrant = new Authority(PlayerPrincipal, Party, inventoryOwners: Party);
+        private static readonly Authority FirstOpponentGrant = new Authority(FirstOpponentPrincipal, FirstOpponentActors,
+            inventoryOwners: FirstOpponentActors);
+        private static readonly Authority HavenTransactionGrant = new Authority(PlayerPrincipal, new[] { Companion },
+            inventoryOwners: new[] { Companion, TestOnlyHavenSaleProfile.BuyerId });
+        private static readonly Authority ClockGrant = new Authority(SessionPrincipal, new[] { Hero }, canAdvanceClock: true);
+        private static readonly Authority CloseGrant = new Authority(SessionPrincipal, new[] { Hero }, canModifyWorld: true);
+        private static readonly Authority DefenderGrant = LaterDefenderController.DefenderAuthority();
+
+        private readonly object gate = new object();
+        private readonly TestOnlySharedWorldPolicy policy;
+        private readonly FileSaveStore store = new FileSaveStore();
+        private readonly HashSet<ExpeditionSeat> revoked = new HashSet<ExpeditionSeat>();
+        private Simulation simulation;
+        private LaterDefenderController defender;
+
+        private ConnectedExpeditionSession(TestOnlySharedWorldPolicy policy)
+        {
+            this.policy = policy;
+            Adopt(Validate(policy.Initial()));
+        }
+
+        public static ConnectedExpeditionSession Start() => new ConnectedExpeditionSession(
+            new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
+                new SupplyCacheFixture())
+                .EnableMining(new SharedMiningFixture())
+                .EnableHavenAppraisal(new TestOnlyHavenAppraisalProfile())
+                .EnableHavenSale(new TestOnlyHavenSaleProfile())
+                .EnableHavenMeal(new TestOnlyHavenMealProfile())
+                .EnableExpeditionBill(new TestOnlyExpeditionBillProfile())
+                .EnableExpeditionClose(new TestOnlyExpeditionCloseProfile())
+                .EnableNextCharterPlan(new TestOnlyNextCharterPlanProfile(reserveWaterStartsCarried: true))
+                .EnableNextCharterAgreement(new TestOnlyNextCharterAgreementProfile())
+                .EnableCharterAttempt(new TestOnlyCharterAttemptProfile())
+                .EnableLaterEncounter()
+                .EnableCompanionReinforcement(new TestOnlyReinforcementProfile())
+                .EnableLivingOpponentRetreat(new TestOnlyLivingOpponentRetreatProfile())
+                .EnablePhysicalReengagement(true, true)
+                .EnableSurpriseAwareEntry(SurpriseAwareness.Warned)
+                .EnableConnectedExplorationObservation()
+                .EnableConnectedFormulaResearch()
+                .EnableConnectedBloodSpecimen()
+                .EnableConnectedRecipe4Batch());
+
+        private Simulation Validate(Snapshot state)
+            => new Simulation(policy, state, ExecutionProfile.Laboratory, CommandVerification.VerifiedPrefix);
+
+        private void Adopt(Simulation replacement)
+        {
+            simulation = replacement;
+            defender = new LaterDefenderController(replacement, policy);
+        }
+
+        public void Save(string path)
+        {
+            lock (gate) store.Save(path, simulation.Capture());
+        }
+
+        public void Restore(string path)
+        {
+            lock (gate) Adopt(Validate(store.Load(path)));
+        }
+
+        public string RecoverBackup(string path)
+        {
+            lock (gate) {
+                Simulation replacement = null;
+                string displaced = store.RecoverBackup(path, snapshot => replacement = Validate(snapshot));
+                Adopt(replacement);
+                return displaced;
+            }
+        }
+
+        public void SetSeatEnabled(ExpeditionSeat seat, bool enabled)
+        {
+            if (!Enum.IsDefined(typeof(ExpeditionSeat), seat)) throw new ArgumentOutOfRangeException(nameof(seat));
+            lock (gate) {
+                if (enabled) revoked.Remove(seat);
+                else revoked.Add(seat);
+            }
+        }
+
+        public ExpeditionActionResult Submit(ExpeditionSeat seat, Command command)
+        {
+            lock (gate) {
+                var state = simulation.Capture();
+                var grant = SeatGrant(seat);
+                if (grant == null || command == null || !grant.Controls(command.Actor))
+                    return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized, state, discloseTacticalSlot: false);
+                if (!ExposedCommand(seat, command.Kind))
+                    return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state,
+                        seat == ExpeditionSeat.Player || FirstEncounterActive(state));
+                if (seat == ExpeditionSeat.Player && command.Actor == Companion
+                    && ((command.Kind == CommandKind.StartHavenSale && command.Target == TestOnlyHavenSaleProfile.OfferVersionId)
+                        || (command.Kind == CommandKind.PurchaseHavenMeal && command.Target == TestOnlyHavenMealProfile.OfferVersionId)))
+                    grant = HavenTransactionGrant;
+                return Execute(state, grant, command, () => KnownTarget(state, seat, command),
+                    seat == ExpeditionSeat.Player || FirstEncounterActive(state));
+            }
+        }
+
+        public ExpeditionActionResult SubmitSessionCommand(Command command)
+        {
+            lock (gate) {
+                var state = simulation.Capture();
+                if (command == null || command.Actor != Hero)
+                    return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized, state);
+                switch (command.Kind) {
+                    case CommandKind.AdvanceClock:
+                        return Execute(state, ClockGrant, command, () => command.Target == "");
+                    case CommandKind.EndFixedEncounter:
+                        return Execute(state, CloseGrant, command, () => state.InventoryCombat && command.Target == state.Encounter?.CurrentTurnId);
+                    default:
+                        return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state);
+                }
+            }
+        }
+
+        public ExpeditionActionResult AdvanceAutomaticDefender()
+        {
+            lock (gate) {
+                var decision = defender.Plan(DefenderGrant);
+                var result = defender.Dispatch(DefenderGrant, decision);
+                var response = result switch {
+                    DefenderDispatchStatus.Committed => ExpeditionResponse.Committed,
+                    DefenderDispatchStatus.Duplicate => ExpeditionResponse.Duplicate,
+                    DefenderDispatchStatus.Stale => ExpeditionResponse.StaleRevision,
+                    DefenderDispatchStatus.Waiting => ExpeditionResponse.Waiting,
+                    _ => ExpeditionResponse.Unavailable
+                };
+                return new ExpeditionActionResult(response, simulation.Capture());
+            }
+        }
+
+        private Authority SeatGrant(ExpeditionSeat seat)
+        {
+            if (revoked.Contains(seat)) return null;
+            return seat switch {
+                ExpeditionSeat.Player => PlayerGrant,
+                ExpeditionSeat.FirstOpponent => FirstOpponentGrant,
+                _ => null
+            };
+        }
+
+        private ExpeditionActionResult Execute(Snapshot state, Authority grant, Command command, Func<bool> targetAllowed,
+            bool discloseTacticalSlot = true)
+        {
+            ExpeditionActionResult Respond(ExpeditionResponse response)
+                => new ExpeditionActionResult(response, state, discloseTacticalSlot);
+            if (!Validation.ValidId(command.Id) || command.Target == null
+                || (command.Target != "" && !Validation.ValidId(command.Target)) || !ExposedPayload(command))
+                return Respond(ExpeditionResponse.Unavailable);
+            var previous = state.Receipts.FirstOrDefault(r => r.Principal == grant.Principal && r.Id == command.Id);
+            if (previous != null) {
+                if (!command.MatchesReceipt(previous)) return Respond(ExpeditionResponse.CommandIdConflict);
+                // Retried receipts still pass through the engine with the current grant.
+            } else {
+                if (command.ExpectedRevision != state.Revision) return Respond(ExpeditionResponse.StaleRevision);
+                if (!targetAllowed()) return Respond(ExpeditionResponse.Unavailable);
+            }
+            var result = simulation.Execute(grant, command);
+            if (result.Outcome == Outcome.Committed)
+                return new ExpeditionActionResult(ExpeditionResponse.Committed, simulation.Capture(), discloseTacticalSlot);
+            return Respond(result.Outcome == Outcome.Duplicate ? ExpeditionResponse.Duplicate : ExpeditionResponse.Unavailable);
+        }
+
+        private static bool FirstEncounterActive(Snapshot state)
+            => state.InventoryCombat && state.Encounter.Order.Contains(FirstOpponent);
+
+        internal static string ActingActor(Snapshot state, out ExpeditionDecisionKind decision, out string decisionId)
+        {
+            var move = TestOnlyClubAttackPolicy.PendingMove(state);
+            if (move != null) {
+                decision = ExpeditionDecisionKind.Opportunity;
+                decisionId = move.Id;
+                return move.Reactors[move.ResponseIndex];
+            }
+            var quality = state.ManufacturingOrders.FirstOrDefault(x => x.Status == ManufacturingStatus.AwaitingChoice);
+            if (quality != null) {
+                decision = ExpeditionDecisionKind.ManufacturingQuality;
+                decisionId = quality.Id;
+                return quality.WorkerId;
+            }
+            decision = ExpeditionDecisionKind.None;
+            decisionId = "";
+            return state.InventoryCombat ? state.Encounter.CurrentActor : "";
+        }
+
+        internal static ExpeditionTurnSeat SeatForActor(string actor)
+        {
+            return actor switch {
+                Hero => ExpeditionTurnSeat.Player,
+                Companion => ExpeditionTurnSeat.Player,
+                FirstOpponent => ExpeditionTurnSeat.FirstOpponent,
+                TestOnlySharedWorldPolicy.LaterDefenderId => ExpeditionTurnSeat.AutomaticDefender,
+                "" => ExpeditionTurnSeat.None,
+                _ => ExpeditionTurnSeat.Unavailable
+            };
+        }
+
+        private static bool ExposedPayload(Command command)
+        {
+            if (command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
+                || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
+                || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
+                return false;
+            if (command.Inventory != null) {
+                if (command.Kind == CommandKind.UseAlchemyDose)
+                    return Party.Contains(command.Inventory.Destination);
+                if (command.Inventory.Destination != "") return false;
+                if (command.Kind == CommandKind.HandlePortableEquipment)
+                    return command.Inventory.Handling == HandlingKind.Pickup || command.Inventory.Handling == HandlingKind.Drop
+                        || command.Inventory.Handling == HandlingKind.Retrieve;
+            }
+            return true;
+        }
+
+        private static bool ExposedCommand(ExpeditionSeat seat, CommandKind kind)
+            => CombatCommands.Contains(kind) || (seat == ExpeditionSeat.Player && PartyCommands.Contains(kind));
+
+        private static readonly CommandKind[] CombatCommands = {
+            CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
+            CommandKind.EndRegularTurn, CommandKind.RespondOpportunityAttack
+        };
+
+        private static readonly IReadOnlyDictionary<CommandKind, string> KnownServices =
+            new ReadOnlyDictionary<CommandKind, string>(new Dictionary<CommandKind, string> {
+            { CommandKind.BeginWorldStep, "walk" },
+            { CommandKind.StartMining, SharedMiningFixture.DepositId },
+            { CommandKind.StartHavenAppraisal, TestOnlyHavenAppraisalProfile.DeskId },
+            { CommandKind.StartHavenSale, TestOnlyHavenSaleProfile.OfferVersionId },
+            { CommandKind.PurchaseHavenMeal, TestOnlyHavenMealProfile.OfferVersionId },
+            { CommandKind.StartExpeditionBill, TestOnlyExpeditionBillProfile.BillVersionId },
+            { CommandKind.CloseExpeditionEpisode, TestOnlyExpeditionBillProfile.EpisodeId },
+            { CommandKind.StartNextCharterPlan, TestOnlyNextCharterPlanProfile.VersionId },
+            { CommandKind.AcceptNextCharter, TestOnlyNextCharterAgreementProfile.OfferId },
+            { CommandKind.StartCharterAttempt, TestOnlyNextCharterAgreementProfile.CharterId },
+            { CommandKind.StartFormulaResearch, ResearchSource },
+            { CommandKind.StartManufacturing, Recipe }
+        });
+
+        private static readonly CommandKind[] PartyCommands = KnownServices.Keys.Concat(new[] {
+            CommandKind.HandlePortableEquipment, CommandKind.OpenPortableContainer, CommandKind.ClosePortableContainer,
+            CommandKind.PortionInventory, CommandKind.StartIntake, CommandKind.InterruptIntake,
+            CommandKind.ObserveCharterApproach, CommandKind.StartHarvestPreservationTreatment,
+            CommandKind.ResumeFormulaWork, CommandKind.ResolveManufacturingQuality, CommandKind.UseAlchemyDose
+        }).ToArray();
+
+        private static bool KnownTarget(Snapshot state, ExpeditionSeat seat, Command command)
+        {
+            string target = command.Target;
+            string actor = command.Actor;
+            if (seat == ExpeditionSeat.FirstOpponent && !FirstEncounterActive(state)) return false;
+            if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
+            bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
+            switch (command.Kind) {
+                case CommandKind.SelectCombatStance:
+                    return state.InventoryCombat && target == "" && command.Combat?.TurnId == state.Encounter?.CurrentTurnId;
+                case CommandKind.EndRegularTurn:
+                case CommandKind.TacticalStep:
+                    return state.InventoryCombat && target == state.Encounter?.CurrentTurnId;
+                case CommandKind.AttackClub:
+                    return state.InventoryCombat && command.Combat != null && command.Combat.TurnId == state.Encounter?.CurrentTurnId
+                        && state.Clubs.Any(x => x.Id == command.Combat.WeaponId && x.OwnerId == actor && x.CustodianId == actor)
+                        && state.Encounter.Order.Contains(target) && ObservationRules.CanSee(state, actor, target);
+                case CommandKind.RespondOpportunityAttack:
+                    var pending = TestOnlyClubAttackPolicy.PendingMove(state);
+                    return pending != null && target == pending.Id && pending.Reactors[pending.ResponseIndex] == actor
+                        && (command.Combat?.WeaponId == "" || state.Clubs.Any(x => x.Id == command.Combat?.WeaponId
+                            && x.OwnerId == actor && x.CustodianId == actor));
+                case CommandKind.HandlePortableEquipment:
+                case CommandKind.OpenPortableContainer:
+                case CommandKind.ClosePortableContainer:
+                    return state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId));
+                case CommandKind.PortionInventory:
+                case CommandKind.StartIntake:
+                    return state.InventoryLots.Any(x => x.LotId == target && KnownInventory(x.OwnerId))
+                        && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId));
+                case CommandKind.InterruptIntake:
+                    return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
+                case CommandKind.ObserveCharterApproach:
+                    return target == state.CharterAttempt?.Id;
+                case CommandKind.StartHarvestPreservationTreatment:
+                    return target == ConnectedBloodSpecimen.SpecimenId && actor == Companion;
+                case CommandKind.ResumeFormulaWork:
+                    return state.FormulaWork.Any(x => x.Id == target && x.WorkerId == actor);
+                case CommandKind.ResolveManufacturingQuality:
+                    return state.ManufacturingOrders.Any(x => x.Id == target && x.WorkerId == actor);
+                case CommandKind.UseAlchemyDose:
+                    return state.AlchemyDoses.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId));
+                default:
+                    return false;
+            }
+        }
+    }
+}
+#endif
