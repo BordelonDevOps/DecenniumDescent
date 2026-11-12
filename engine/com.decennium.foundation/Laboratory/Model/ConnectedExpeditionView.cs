@@ -108,12 +108,13 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyDictionary<CommandKind, string> KnownTargets { get; }
         public long HistoricalSaleCopper { get; }
         public ExpeditionCacheView Cache { get; }
+        public ExpeditionObservationView Observation { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
-            long historicalSaleCopper, ExpeditionCacheView cache = null)
+            long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -131,6 +132,33 @@ namespace Decennium.Foundation.Laboratory
             KnownTargets = knownTargets;
             HistoricalSaleCopper = historicalSaleCopper;
             Cache = cache;
+            Observation = observation;
+        }
+    }
+
+    public sealed class ExpeditionObservationView
+    {
+        public bool OrdinaryStageOpen { get; }
+        public string HiderId => ConnectedExpeditionSession.Hero;
+        public string SearcherId => ConnectedExpeditionSession.Companion;
+        public string HideStartId { get; }
+        public string SearchStartId { get; }
+        public IReadOnlyList<ExplorationHideView> HideAttempts { get; }
+        public IReadOnlyList<ExplorationSearchView> SearchAttempts { get; }
+        public IReadOnlyList<ObservationKnownLocation> HiderKnowledge { get; }
+        public IReadOnlyList<ObservationKnownLocation> SearcherKnowledge { get; }
+
+        internal ExpeditionObservationView(bool stageOpen, string hideStartId, string searchStartId,
+            IEnumerable<ExplorationHideView> hideAttempts, IEnumerable<ExplorationSearchView> searchAttempts,
+            IReadOnlyList<ObservationKnownLocation> hiderKnowledge, IReadOnlyList<ObservationKnownLocation> searcherKnowledge)
+        {
+            OrdinaryStageOpen = stageOpen;
+            HideStartId = hideStartId;
+            SearchStartId = searchStartId;
+            HideAttempts = Array.AsReadOnly(hideAttempts.ToArray());
+            SearchAttempts = Array.AsReadOnly(searchAttempts.ToArray());
+            HiderKnowledge = hiderKnowledge;
+            SearcherKnowledge = searcherKnowledge;
         }
     }
 
@@ -194,8 +222,19 @@ namespace Decennium.Foundation.Laboratory
                     player ? CombatCommands.Concat(PartyCommands) : CombatCommands,
                     player ? KnownServices : NoKnownTargets,
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
-                    player ? ProjectCache(state) : null);
+                    player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null);
             }
+        }
+
+        private ExpeditionObservationView ProjectObservation(Snapshot state, Authority grant)
+        {
+            bool stageOpen = OrdinaryObservationOpen(state);
+            return new ExpeditionObservationView(stageOpen, stageOpen ? HideStartToken(state) : null,
+                stageOpen ? SearchStartToken(state) : null,
+                state.ExplorationHide.Attempts.Select(x => simulation.ObserveExplorationHide(grant, x.Id)),
+                state.ExplorationSearch.Attempts.Select(x => simulation.ObserveExplorationSearch(grant, x.Id)),
+                stageOpen ? ObservationRules.KnownLocations(state, Hero) : Array.Empty<ObservationKnownLocation>(),
+                stageOpen ? ObservationRules.KnownLocations(state, Companion) : Array.Empty<ObservationKnownLocation>());
         }
 
         private static ExpeditionCacheView ProjectCache(Snapshot state)

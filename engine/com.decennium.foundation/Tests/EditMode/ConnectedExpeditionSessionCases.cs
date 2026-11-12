@@ -11,6 +11,25 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("exp04_session_ordinary_observation_scope_before_charter", () =>
+            {
+                var session = ConnectedExpeditionSession.Start();
+                var player = session.View(ExpeditionSeat.Player);
+                var director = session.View(ExpeditionSeat.FirstOpponent);
+                Require(player.Observation != null && !player.Observation.OrdinaryStageOpen
+                    && player.Observation.HideStartId == null && player.Observation.SearchStartId == null
+                    && player.Observation.HideAttempts.Count == 0 && player.Observation.SearchAttempts.Count == 0
+                    && director.Observation == null, "The unopened stage and opposing seat must disclose no observation inputs.");
+                var hide = new Command("observation.early.hide", ConnectedExpeditionSession.Hero, 0, CommandKind.Hide,
+                    "world.fixed-calendar.start.0");
+                var search = new Command("observation.early.search", ConnectedExpeditionSession.Companion, 0, CommandKind.Search,
+                    "world.fixed-calendar.activity.0", 1, 0);
+                Require(session.Submit(ExpeditionSeat.Player, hide).Response == ExpeditionResponse.Unavailable
+                    && session.Submit(ExpeditionSeat.Player, search).Response == ExpeditionResponse.Unavailable
+                    && session.Submit(ExpeditionSeat.FirstOpponent, search).Response == ExpeditionResponse.NotAuthorized
+                    && session.View(ExpeditionSeat.Player).Revision == 0, "Early or wrong-seat observation must leave history unchanged.");
+            });
+
             cases.Add("int03_session_scoped_views_delivery_and_validated_file_recovery", () =>
             {
                 const string hero = ConnectedExpeditionSession.Hero;

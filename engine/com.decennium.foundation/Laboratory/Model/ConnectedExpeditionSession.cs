@@ -268,6 +268,9 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
+            if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
+                || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
+                return command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Interact)
                 return command.Y == 0 && command.Combat == null && command.Inventory == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.HandleInventory)
@@ -313,6 +316,7 @@ namespace Decennium.Foundation.Laboratory
             CommandKind.HandlePortableEquipment, CommandKind.OpenPortableContainer, CommandKind.ClosePortableContainer,
             CommandKind.Interact, CommandKind.HandleInventory, CommandKind.PortionInventory, CommandKind.StartIntake,
             CommandKind.InterruptIntake,
+            CommandKind.Hide, CommandKind.Search, CommandKind.CancelExplorationHide, CommandKind.CancelExplorationSearch,
             CommandKind.ObserveCharterApproach, CommandKind.StartHarvestPreservationTreatment,
             CommandKind.ResumeFormulaWork, CommandKind.ResolveManufacturingQuality, CommandKind.UseAlchemyDose
         }).ToArray();
@@ -342,6 +346,14 @@ namespace Decennium.Foundation.Laboratory
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.Hide:
+                    return actor == Hero && OrdinaryObservationOpen(state) && target == HideStartToken(state);
+                case CommandKind.Search:
+                    return actor == Companion && OrdinaryObservationOpen(state) && target == SearchStartToken(state);
+                case CommandKind.CancelExplorationHide:
+                    return actor == Hero && target == state.ExplorationHide?.Pending?.Id;
+                case CommandKind.CancelExplorationSearch:
+                    return actor == Companion && target == state.ExplorationSearch?.Pending?.Id;
                 case CommandKind.SelectCombatStance:
                     return state.InventoryCombat && target == "" && command.Combat?.TurnId == state.Encounter?.CurrentTurnId;
                 case CommandKind.EndRegularTurn:
@@ -395,6 +407,33 @@ namespace Decennium.Foundation.Laboratory
                 default:
                     return false;
             }
+        }
+
+        private static bool OrdinaryObservationOpen(Snapshot state)
+            => !state.InventoryCombat && ConnectedExplorationObservation.StageOpen(state);
+
+        private static string HideStartToken(Snapshot state)
+        {
+            var interval = state.WorldIntervals.SingleOrDefault(x => x.ActorId == Hero);
+            if (interval == null || interval.LastStart < 0 || interval.ActionSpent
+                || state.ExplorationHide?.Pending != null || state.WorldTraversals.Any(x => x.ActorId == Hero)
+                || state.RuleClock != state.WorldSchedule.Start(interval.LastStart)) return null;
+            var position = state.Actors.Single(x => x.Id == Hero);
+            var definition = state.ExplorationHide.Definition;
+            var cell = new ExplorationSearchCell(position.X, position.Y);
+            if (!cell.Equals(definition.Recess) && !cell.Equals(definition.Alternate)) return null;
+            return state.WorldSchedule.MarkerId(interval.LastStart);
+        }
+
+        private static string SearchStartToken(Snapshot state)
+        {
+            var activity = state.WorldActivityIntervals.SingleOrDefault(x => x.ActorId == Companion);
+            if (activity == null || activity.Action != WorldActionCommitment.None
+                || state.ExplorationSearch?.Pending != null || state.WorldTraversals.Any(x => x.ActorId == Companion)
+                || state.RuleClock != WorldActivityIntervalRecord.StartAt(state.WorldSchedule, activity.IntervalIndex)) return null;
+            var position = state.Actors.Single(x => x.Id == Companion);
+            if (!state.ExplorationSearch.Definition.Anchor.Equals(new ExplorationSearchCell(position.X, position.Y))) return null;
+            return ExplorationSearchRecord.Marker(activity.CalendarId, activity.IntervalIndex);
         }
     }
 }
