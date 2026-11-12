@@ -93,6 +93,8 @@ namespace Decennium.Foundation.Laboratory
                 || !WorldWalkable(state, definition.ArrivalX, definition.ArrivalY)
                 || ObservationRules.Enabled(state) && !ObservationGeometry.LineOfEffectClear(state, definition.HeroId, definition.DefenderId))
                 return "LaterEncounterAwarenessUnavailable";
+            if (state.SurpriseEntry != null && SurpriseEntryValidation.ConflictingAwareness(state,
+                state.SurpriseEntry.Binding, state.Revision + 1)) return "LaterEncounterAwarenessContradicted";
             if (state.RestIntervals.Any(x => x.Status == RestIntervalStatus.Active
                 && (x.ActorId == definition.HeroId || x.ActorId == definition.DefenderId))
                 || HasActiveHavenCare(state))
@@ -166,6 +168,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var later = state.LaterEncounter;
             var definition = later.Definition;
+            ApplySurpriseEntry(state, cause);
             var draws = RollLaterInitiative(state, definition);
             var order = draws.OrderByDescending(x => x.Total).ThenBy(x => x.ActorId != definition.DefenderId)
                 .Select(x => x.ActorId).ToArray();
@@ -213,7 +216,7 @@ namespace Decennium.Foundation.Laboratory
         {
             string actor = epoch.Order[(int)(ordinal % epoch.Order.Count)];
             int turn = globalTurn ?? checked((int)ordinal);
-            var interval = new WorldIntervalRecord(actor, turn);
+            var interval = RecordSurpriseFirstStart(state, epoch, ordinal, new WorldIntervalRecord(actor, turn));
             SetInterval(state, interval);
             BindLaterIntervalBodies(state, actor, interval, preserveTurnState: false);
             CharacterAdvancementRules.RegularStart(state, actor, turn);

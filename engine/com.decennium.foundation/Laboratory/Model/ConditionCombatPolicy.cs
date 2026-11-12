@@ -32,7 +32,7 @@ namespace Decennium.Foundation.Laboratory
                 + s.TacticalMoves.Where(x => x.ActorId == actor && x.TurnOrdinal == s.Encounter.TurnOrdinal && EncounterHistory.InCurrent(s,x.Revision) && x.Kind == TacticalMoveKind.Press && x.Status == TacticalMoveStatus.Completed).Sum(x => x.CostPaid) : 0;
             if(ownTurn&&s.WorldSchedule!=null&&s.WorldIntervals.Single(x=>x.ActorId==actor).MovementSpent!=default)spent=Math.Max(1,spent);
             var permissions = PlaytestConditions.Permissions(CombatConditions(s, actor), ownTurn && ActionSpent(s) ? 1 : 0, spent);
-            return ExpeditionStrainRules.RestrictPermissions(s, actor, permissions);
+            return SurprisePermissions.Restrict(s, actor, ExpeditionStrainRules.RestrictPermissions(s, actor, permissions));
         }
         private static bool EffectiveProne(Snapshot s, string actor) => WithConditions(s)
             ? ConditionsFor(s, actor).View().Has(ConditionKind.Prone) : s.Lives.Single(x => x.ActorId == actor).Prone;

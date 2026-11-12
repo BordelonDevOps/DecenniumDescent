@@ -171,6 +171,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeReinforcement(s);
             InitializeRetreat(s);
             InitializeReengagement(s);
+            InitializeSurpriseEntry(s);
             s.WorldSchedule = new WorldScheduleRecord("world.fixed-calendar", default, new[] { TestOnlyPolicy.ActorId, AdditionalTacticalActor.Id });
             s.WorldIntervals = s.WorldSchedule.Order.Select(a => new WorldIntervalRecord(a, s.WorldSchedule.LatestStart(a, 0))).ToArray();
             if (offCalendarActivityEnabled||s.SchemaVersion>=Snapshot.OffCalendarActivitySchema)
@@ -322,7 +323,7 @@ namespace Decennium.Foundation.Laboratory
             // Permission projection asks whether any movement occurred, not its rounded foot count.
             var permissions = View(s, actor).PermissionsForLife(ActorLifeRules.Read(s.Lives.Single(x => x.ActorId == actor)),
                 a != null && a.ActionSpent ? 1 : 0, a == null || a.MovementSpent == default ? 0 : 1);
-            return ExpeditionStrainRules.RestrictPermissions(s, actor, permissions);
+            return SurprisePermissions.Restrict(s, actor, ExpeditionStrainRules.RestrictPermissions(s, actor, permissions));
         }
         private static long Speed(Snapshot s, string actor) => TestOnlyClubAttackPolicy.WalkingSpeed(s, actor);
         private static RuleQuantity Remaining(Snapshot s, string actor)
@@ -1047,6 +1048,8 @@ namespace Decennium.Foundation.Laboratory
                 if ((s.SchemaVersion != SelectedSchema
                     && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema))
                     || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if (surpriseEntryBinding != null && !surpriseEntryBinding.SameAs(s.SurpriseEntry?.Binding))
+                    return "SurpriseEntryBindingMismatch";
                 string assignmentBindingsError = ValidateExpeditionAssignmentBindings(s);
                 if (assignmentBindingsError != null) return assignmentBindingsError;
                 string advancementError=CharacterAdvancementRules.ValidateHistorical(s);if(advancementError!=null)return advancementError;

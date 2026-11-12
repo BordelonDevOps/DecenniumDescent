@@ -267,6 +267,7 @@ namespace Decennium.Foundation.Tests
             AddReinforcementCases(cases, directory);
             AddRetreatCases(cases, directory);
             AddReengagementCases(cases, directory);
+            AddSurpriseEntryCases(cases, directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);

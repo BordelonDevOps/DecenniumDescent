@@ -159,6 +159,7 @@ namespace Decennium.Foundation
         public const int ReinforcementSchema = 87;
         public const int RetreatSchema = 88;
         public const int ReengagementSchema = 89;
+        public const int SurpriseEntrySchema = 90;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -294,6 +295,7 @@ namespace Decennium.Foundation
         public ReinforcementRecord Reinforcement;
         public RetreatRecord Retreat;
         public ReengagementRecord Reengagement;
+        public SurpriseEntryRecord SurpriseEntry;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
         public ProspectingExposureRecord[] ProspectingExposures = Array.Empty<ProspectingExposureRecord>();
         public ProspectingAttemptRecord[] ProspectingAttempts = Array.Empty<ProspectingAttemptRecord>();
@@ -409,7 +411,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
-            Retreat = Retreat, Reengagement = Reengagement,
+            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -849,7 +851,8 @@ namespace Decennium.Foundation
                 || s.SchemaVersion == Foundation.Snapshot.CharterAttemptSchema
                 || s.SchemaVersion == Foundation.Snapshot.LaterEncounterSchema
                 || s.SchemaVersion == Foundation.Snapshot.ReinforcementSchema
-                || s.SchemaVersion == Foundation.Snapshot.RetreatSchema || s.SchemaVersion == Foundation.Snapshot.ReengagementSchema) { }
+                || s.SchemaVersion == Foundation.Snapshot.RetreatSchema || s.SchemaVersion == Foundation.Snapshot.ReengagementSchema
+                || s.SchemaVersion == Foundation.Snapshot.SurpriseEntrySchema) { }
             else if (s.SchemaVersion == Foundation.Snapshot.ProspectingSchema || s.SchemaVersion == Foundation.Snapshot.MiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.DestructiveMiningAssaySchema
                 || s.SchemaVersion == Foundation.Snapshot.MiningExpeditionAssignmentSchema
@@ -960,6 +963,7 @@ namespace Decennium.Foundation
             ReinforcementValidation.Validate(s);
             RetreatValidation.Validate(s);
             ReengagementValidation.Validate(s);
+            SurpriseEntryValidation.Validate(s);
             ProspectingValidation.Validate(s);
             MiningAssayValidation.Validate(s);
             DestructiveMiningAssayValidation.Validate(s);

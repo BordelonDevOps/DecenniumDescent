@@ -8,7 +8,7 @@ namespace Decennium.Foundation
         public static void Validate(Snapshot s)
         {
             var r = s.Reengagement;
-            if (s.SchemaVersion != Snapshot.ReengagementSchema) {
+            if (s.SchemaVersion < Snapshot.ReengagementSchema) {
                 if (r != null || s.Encounter?.InheritedPhase != null || s.ClosedEncounters.Any(x => x.Encounter.InheritedPhase != null))
                     throw new ArgumentException("Inherited re-engagement requires schema 89.");
                 return;

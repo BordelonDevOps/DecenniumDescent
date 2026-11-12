@@ -601,6 +601,18 @@ namespace Decennium.Foundation.Laboratory
                     :Array.Empty<CommandCost>();
                 return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,costs);
             }
+            if (surpriseEntryBinding != null && IsSurpriseEntryQuery(c.Kind)) {
+                if (!s.InventoryCombat || s.Encounter?.Id != surpriseEntryBinding.EncounterId)
+                    return new CommandQueryResult(false, false, "UnsupportedOperation", s.Revision);
+                string failure = ResolveCore(s.Copy(), c);
+                var costs = new List<CommandCost>();
+                if (failure == null) {
+                    if (c.Kind == CommandKind.HandlePortableEquipment) costs.Add(new CommandCost("interaction", "", 1));
+                    if (c.Kind != CommandKind.HandlePortableEquipment || Interval(s, c.Actor).Interactions == 1)
+                        costs.Add(new CommandCost("action", "", 1));
+                }
+                return new CommandQueryResult(true, failure == null, failure ?? "Available", s.Revision, costs);
+            }
             if (IsTemporaryCampConstructionCommand(c.Kind)) return QueryTemporaryCampConstruction(s,c);
             if (IsExpeditionCampUseCommand(c.Kind)) return QueryExpeditionCampUse(s, c);
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel) {

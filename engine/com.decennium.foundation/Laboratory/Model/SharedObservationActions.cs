@@ -11,6 +11,7 @@ namespace Decennium.Foundation.Laboratory
         public string Resolve(Snapshot s, Command c)
         {
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
+            var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c);
             if (IsCharterAttemptCommand(c.Kind)) return error;
             if (IsNextCharterAgreementCommand(c.Kind)) {
@@ -37,6 +38,7 @@ namespace Decennium.Foundation.Laboratory
                 RecordLocalRetreatCombatSources(s);
                 ReconcileRetreat(s, c);
             }
+            if (error == null && s.SurpriseEntry != null) CompleteSurpriseFirstEnd(s, c, pendingAdvance);
             return error;
         }
 

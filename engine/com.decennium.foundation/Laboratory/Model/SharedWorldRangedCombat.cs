@@ -126,6 +126,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.InterruptHavenCare&&havenCareProfile!=null
             ||reinforcementDefinition!=null&&ReinforcementValidation.IsInstruction(kind)
             ||retreatDefinition!=null&&RetreatValidation.IsCommand(kind)
+            ||surpriseEntryBinding!=null&&IsSurpriseEntryQuery(kind)
             ||kind==CommandKind.AdvanceClock&&(strainRecoveryProfile!=null||laterEncounterDefinition!=null)
             ||kind==CommandKind.ResolveExpeditionStrainRecovery
             ||kind==CommandKind.TacticalStep||kind==CommandKind.TacticalRepositionStep||kind==CommandKind.Interact
