@@ -107,12 +107,13 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyList<CommandKind> Commands { get; }
         public IReadOnlyDictionary<CommandKind, string> KnownTargets { get; }
         public long HistoricalSaleCopper { get; }
+        public ExpeditionCacheView Cache { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
-            long historicalSaleCopper)
+            long historicalSaleCopper, ExpeditionCacheView cache = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -129,6 +130,34 @@ namespace Decennium.Foundation.Laboratory
             Commands = Array.AsReadOnly(commands.ToArray());
             KnownTargets = knownTargets;
             HistoricalSaleCopper = historicalSaleCopper;
+            Cache = cache;
+        }
+    }
+
+    public sealed class ExpeditionCacheView
+    {
+        public string Id { get; }
+        public int X { get; }
+        public int Y { get; }
+        public bool Locked { get; }
+        public bool Open { get; }
+        public string PickAttemptId { get; }
+        public RuleTime? PickDueAt { get; }
+        public string StockId { get; }
+        public RuleQuantity? AvailablePounds { get; }
+
+        internal ExpeditionCacheView(SupplyCacheRecord cache, SupplyCacheAttemptRecord pick, RuleTime? due,
+            RuleQuantity available)
+        {
+            Id = cache.Id;
+            X = cache.X;
+            Y = cache.Y;
+            Locked = cache.Locked;
+            Open = cache.Open;
+            PickAttemptId = pick?.Id ?? "";
+            PickDueAt = due;
+            StockId = available == default ? "" : cache.RationLotId;
+            AvailablePounds = available == default ? (RuleQuantity?)null : available;
         }
     }
 
@@ -164,8 +193,20 @@ namespace Decennium.Foundation.Laboratory
                     ProjectItems(state, grant), player ? ProjectWork(state, grant) : Array.Empty<ExpeditionWorkStatus>(),
                     player ? CombatCommands.Concat(PartyCommands) : CombatCommands,
                     player ? KnownServices : NoKnownTargets,
-                    player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0);
+                    player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
+                    player ? ProjectCache(state) : null);
             }
+        }
+
+        private static ExpeditionCacheView ProjectCache(Snapshot state)
+        {
+            var cache = ReachableCache(state);
+            if (cache == null) return null;
+            var pick = state.SupplyCacheAttempts.SingleOrDefault(x => x.CacheId == cache.Id && x.ActorId == Hero
+                && x.Status == SupplyCacheAttemptStatus.Working);
+            RuleTime? due = pick == null ? (RuleTime?)null
+                : state.Work.WorkerIntervals.Single(x => x.JobId == pick.Id && x.WorkerId == Hero).End;
+            return new ExpeditionCacheView(cache, pick, due, AvailableCacheRations(state, cache));
         }
 
         private static IEnumerable<ExpeditionOwnedItem> ProjectItems(Snapshot state, Authority grant)
@@ -173,6 +214,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var item in state.PortableEquipment.Where(x => grant.MayUseInventory(x.OwnerId)
                 && grant.Controls(x.CustodianId))) {
                 var lot = state.InventoryLots.FirstOrDefault(x => x.LotId == item.LinkedId && grant.MayUseInventory(x.OwnerId));
+                if (lot != null && state.Work.Lots.Any(x => x.Id == lot.LotId && InSelectedCache(x))) continue;
                 yield return new ExpeditionOwnedItem(item.Id, item.OwnerId, lot == null ? (RuleQuantity?)null
                     : state.Work.AvailableAmount(lot.LotId), item.Placement.ToString(), item.Open);
             }
@@ -180,7 +222,7 @@ namespace Decennium.Foundation.Laboratory
                 yield return new ExpeditionOwnedItem(item.Id, item.OwnerId, null, item.HeldBy == "" ? "Ground" : "Held");
             foreach (var lot in state.InventoryLots.Where(x => grant.MayUseInventory(x.OwnerId)
                 && !state.PortableEquipment.Any(i => i.Id == x.LotId || i.LinkedId == x.LotId))) {
-                if (state.Work.Lots.Any(x => x.Id == lot.LotId && grant.Controls(x.CustodianId)))
+                if (state.Work.Lots.Any(x => x.Id == lot.LotId && grant.Controls(x.CustodianId) && !InSelectedCache(x)))
                     yield return new ExpeditionOwnedItem(lot.LotId, lot.OwnerId, state.Work.AvailableAmount(lot.LotId),
                         lot.Access.ToString());
             }

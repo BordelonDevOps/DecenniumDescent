@@ -71,7 +71,7 @@ namespace Decennium.Foundation.Laboratory
         private static SupplyCacheRecord Cache(Snapshot s,string id)=>s.SupplyCaches.SingleOrDefault(x=>x.Id==id);
         private static void SetCache(Snapshot s,SupplyCacheRecord value)=>s.SupplyCaches=s.SupplyCaches.Select(x=>x.Id==value.Id?value:x).ToArray();
         private static void SetAttempt(Snapshot s,SupplyCacheAttemptRecord value)=>s.SupplyCacheAttempts=s.SupplyCacheAttempts.Select(x=>x.Id==value.Id?value:x).ToArray();
-        private static bool NearCache(Snapshot s,string actor,SupplyCacheRecord cache)
+        internal static bool NearCache(Snapshot s,string actor,SupplyCacheRecord cache)
         {var a=s.Actors.Single(x=>x.Id==actor);return Math.Abs((long)a.X-cache.X)+Math.Abs((long)a.Y-cache.Y)<=1;}
         private bool CredentialAvailable(Snapshot s,string actor,SupplyCacheUnlockMethod method,out SupplyCacheEquipmentRecord item)
         {

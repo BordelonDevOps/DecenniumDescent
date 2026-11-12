@@ -268,6 +268,11 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
+            if (command.Kind == CommandKind.Interact)
+                return command.Y == 0 && command.Combat == null && command.Inventory == null && command.MiningSelection == null;
+            if (command.Kind == CommandKind.HandleInventory)
+                return command.X == 0 && command.Y == 0 && command.Combat == null && command.MiningSelection == null
+                    && command.Inventory?.Destination == "";
             if (command.Inventory != null) {
                 if (command.Kind == CommandKind.UseAlchemyDose)
                     return Party.Contains(command.Inventory.Destination);
@@ -306,10 +311,28 @@ namespace Decennium.Foundation.Laboratory
 
         private static readonly CommandKind[] PartyCommands = KnownServices.Keys.Concat(new[] {
             CommandKind.HandlePortableEquipment, CommandKind.OpenPortableContainer, CommandKind.ClosePortableContainer,
-            CommandKind.PortionInventory, CommandKind.StartIntake, CommandKind.InterruptIntake,
+            CommandKind.Interact, CommandKind.HandleInventory, CommandKind.PortionInventory, CommandKind.StartIntake,
+            CommandKind.InterruptIntake,
             CommandKind.ObserveCharterApproach, CommandKind.StartHarvestPreservationTreatment,
             CommandKind.ResumeFormulaWork, CommandKind.ResolveManufacturingQuality, CommandKind.UseAlchemyDose
         }).ToArray();
+
+        private static SupplyCacheRecord ReachableCache(Snapshot state)
+        {
+            if (state.InventoryCombat || state.WorldTraversals.Any(x => x.ActorId == Hero)) return null;
+            return state.SupplyCaches.SingleOrDefault(x => x.Id == SupplyCacheFixture.CacheId && x.OwnerId == Hero
+                && !SupplyCacheRules.Buried(state, x.Id) && TestOnlySharedWorldPolicy.NearCache(state, Hero, x));
+        }
+
+        private static bool InSelectedCache(ResourceLot lot) => lot.LocationId == SupplyCacheFixture.CacheId;
+
+        private static RuleQuantity AvailableCacheRations(Snapshot state, SupplyCacheRecord cache)
+        {
+            if (cache?.Open != true || !state.Work.Lots.Any(x => x.Id == cache.RationLotId && InSelectedCache(x)
+                && x.CustodianId == Hero) || !state.InventoryLots.Any(x => x.LotId == cache.RationLotId
+                    && x.OwnerId == Hero && x.Access == InventoryAccess.Ground)) return default;
+            return state.Work.AvailableAmount(cache.RationLotId);
+        }
 
         private static bool KnownTarget(Snapshot state, ExpeditionSeat seat, Command command)
         {
@@ -342,11 +365,21 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.HandlePortableEquipment:
                 case CommandKind.OpenPortableContainer:
                 case CommandKind.ClosePortableContainer:
-                    return state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId));
+                    return state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId)
+                        && !state.Work.Lots.Any(lot => lot.Id == x.LinkedId && InSelectedCache(lot)));
+                case CommandKind.Interact:
+                    var operation = (SupplyCacheInteraction)command.X;
+                    return actor == Hero && target == SupplyCacheFixture.CacheId && ReachableCache(state) != null
+                        && (operation == SupplyCacheInteraction.PickWithTools || operation == SupplyCacheInteraction.Open
+                            || operation == SupplyCacheInteraction.Interrupt);
+                case CommandKind.HandleInventory:
+                    var cache = ReachableCache(state);
+                    return actor == Hero && command.Inventory.Handling == HandlingKind.Pickup
+                        && cache?.RationLotId == target && AvailableCacheRations(state, cache) > default(RuleQuantity);
                 case CommandKind.PortionInventory:
                 case CommandKind.StartIntake:
                     return state.InventoryLots.Any(x => x.LotId == target && KnownInventory(x.OwnerId))
-                        && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId));
+                        && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId) && !InSelectedCache(x));
                 case CommandKind.InterruptIntake:
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
                 case CommandKind.ObserveCharterApproach:

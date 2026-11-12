@@ -108,6 +108,7 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         [Console]::WriteLine('View: {"op":"view","seat":"Player"} or use "FirstOpponent".')
         [Console]::WriteLine('Walk: {"op":"submit","actor":"TEST_ONLY.actor","kind":"BeginWorldStep","target":"walk","x":1,"y":0}')
         [Console]::WriteLine('Advance 2 seconds: {"op":"clock","x":2,"y":1}. Use "auto" for one automatic defender action and "close" for a legal encounter exit.')
+        [Console]::WriteLine('Use the in-reach Cache view for its target. Interact x=2 starts a pick, x=3 opens, x=4 interrupts. HandleInventory picks up visible stock.')
         [Console]::WriteLine('Files: {"op":"save","path":"expedition.ddsave"}. Use "load" to restore and "recover" to validate and recover the backup.')
     } elseif (-not [string]::IsNullOrWhiteSpace($line)) {
         Write-SessionResponse $line

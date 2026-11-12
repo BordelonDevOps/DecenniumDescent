@@ -277,6 +277,7 @@ namespace Decennium.Foundation.Tests
             AddLaterDefenderCases(cases, directory);
             AddVerifiedCommandCases(cases);
             AddConnectedExpeditionSessionCases(cases, directory);
+            AddConnectedExpeditionCacheCases(cases, directory);
             AddRecipe347Cases(cases,directory);
             AddProspectingCases(cases,directory);
             AddObservationCases(cases);
