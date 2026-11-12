@@ -13,7 +13,7 @@ The exact corrected assemblies ran 30 measured walkthroughs after one complete w
 | Defender tactical step | 117 | 13.132 | 20.983 | 26.160 | 150 |
 | Ordinary continuation | 164 | 18.680 | 50.686 | 286.319 | 150 |
 
-The single contended correctness sample remains retained, including its 1,133.642 ms stabilization miss, 8,210.284 ms long work advance and 14,619.955 ms full restore. The isolated distribution met all eight p95 thresholds. Its recorded maxima include routine samples above 150 ms. [Contended sample](connected/results.json) · [GPT timing disposition](GPT_FOCUSED_REVIEW.md)
+The single contended correctness sample remains retained, including its 1,133.642 ms stabilization miss, 8,210.284 ms long work advance and 14,619.955 ms full restore. The isolated distribution met all eight p95 thresholds, and GPT accepted the timing evidence. Its recorded maxima include routine samples above 150 ms. [Contended sample](connected/results.json) · [GPT timing disposition](GPT_PERFORMANCE_REVIEW.md)
 
 The isolated charter-plan submission had p95 1,463.167 ms. The three long work advances had p95 values from 3,659.727 to 3,861.787 ms. Their exact gameplay and timing remain visible for broader P1. [Full route timing](performance/results.json)
 
