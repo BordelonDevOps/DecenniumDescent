@@ -20,7 +20,7 @@ $previous = @(Get-Content -LiteralPath $prior)
 $focus = @($names | Where-Object { $_ -clike 'exp04_connected_observation_*' })
 $historical = @($names | Where-Object { $_ -cin $previous -or $_ -clike 'exp04_exploration_hide_*' })
 $remainder = @($names | Where-Object { $_ -cnotin $focus -and $_ -cnotin $historical })
-if ($previous.Count -ne 552 -or $focus.Count -ne 6 -or $historical.Count -ne 560 -or $names.Count -ne 1462 -or
+if ($previous.Count -ne 552 -or $focus.Count -ne 7 -or $historical.Count -ne 560 -or $names.Count -ne 1463 -or
     ($focus.Count + $historical.Count + $remainder.Count) -ne $names.Count) { throw 'Unexpected exact case inventory.' }
 $names | Set-Content -LiteralPath "$Run/all-names.txt" -Encoding utf8
 $focus | Set-Content -LiteralPath "$Run/focus-original-inventory.txt" -Encoding utf8

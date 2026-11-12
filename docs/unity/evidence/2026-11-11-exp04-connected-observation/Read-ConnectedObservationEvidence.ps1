@@ -28,6 +28,7 @@ function Stage([string]$Name,[Decennium.Foundation.Laboratory.ConditionFixtureEv
         throw "The selected save failed an exact wire93 restore: $Name"
     }
     $current = [Decennium.Foundation.WorldTiming]::ForActor($s,$hero)
+    $companionOwner = [Decennium.Foundation.WorldTiming]::ForActor($s,$companion)
     $allowance = $s.WorldIntervals | Where-Object ActorId -CEQ $hero
     $searcher = $s.WorldActivityIntervals | Where-Object ActorId -CEQ $companion
     $position = $s.Actors | Where-Object Id -CEQ $hero
@@ -68,8 +69,8 @@ function Stage([string]$Name,[Decennium.Foundation.Laboratory.ConditionFixtureEv
     $result = [ordered]@{name=$Name;sha256=Hash $raw;wire=$s.WireSchemaVersion;base=$s.SchemaVersion
         at=$s.RuleClock.ToString();revision=$s.Revision;rng=$s.RandomState;tactical=$s.InventoryCombat;hero=@($position.X,$position.Y)
         currentHeroCalendar=$current.Id;currentHeroOrdinal=$allowance.LastStart;currentHeroActionSpent=$allowance.ActionSpent
-        searcherCalendar=$searcher.CalendarId;searcherInterval=$searcher.IntervalIndex
-        searcherAction=$searcher.Action.ToString();searcherPayment=$searcher.ActionReference
+        currentCompanionCalendar=$companionOwner.Id;searcherCalendar=$searcher.CalendarId;searcherInterval=$searcher.IntervalIndex
+        searcherAction=if ($searcher) { $searcher.Action.ToString() } else { 'Retired' };searcherPayment=$searcher.ActionReference
         hide=$hide;search=$search;checks=$checks;knowledge=$knowledge}
     if ($entry) {
         $result.entry = [ordered]@{at=$entry.Epoch.Origin.ToString();receipt=$entry.ArrivalCommandId;revision=$entry.ArrivalRevision
@@ -102,6 +103,7 @@ $event = $tests.GetMethod('CCApply',$flags).Invoke($null,@('connected-defender-b
 $events = [Decennium.Foundation.Laboratory.ConditionFixtureEvent[]]@($event)
 $interrupted = Stage 'search-interrupted-by-actual-entry' $events
 $failed = Stage 'failed-contact-search-completed' $events
+$reinforced = Stage 'reinforcement-search-history-retained'
 
 if ($ready.at -cne '11610/1' -or $first.checks[0].natural -ne 9 -or $alternate.checks[-1].total -ne 12 -or
     -not $return.knowledge[0].hidden -or -not $return.knowledge[1].sees -or $pending.searcherAction -cne 'Search' -or
@@ -121,6 +123,11 @@ if ($interrupted.search[0].end.command -cne $interrupted.entry.receipt -or
     $failed.checks[0].words -ne 0) {
     throw 'The successful and failed later-contact saves do not retain the different ordinary Search consequences.'
 }
+if ($reinforced.searcherAction -cne 'Retired' -or -not $reinforced.currentCompanionCalendar -or
+    $reinforced.currentCompanionCalendar -ceq 'world.fixed-calendar' -or $reinforced.search[0].interval -ne 1939 -or
+    $reinforced.search[0].end.hide -cne $alternate.checks[-1].id) {
+    throw 'Actual reinforcement did not retire only the live ledger and retain the original Search history.'
+}
 [ordered]@{status='PASS';assemblies=$assemblies
-    restored=@($ready,$first,$alternate,$return,$pending,$entry,$continued,$hideFirst,$searchFirst,$interrupted,$failed)} |
+    restored=@($ready,$first,$alternate,$return,$pending,$entry,$continued,$hideFirst,$searchFirst,$interrupted,$failed,$reinforced)} |
     ConvertTo-Json -Depth 15 | Set-Content -LiteralPath $OutputFile -Encoding utf8
