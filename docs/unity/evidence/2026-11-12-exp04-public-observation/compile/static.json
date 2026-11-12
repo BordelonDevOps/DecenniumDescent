@@ -1,0 +1,3215 @@
+{
+  "status": "PASS",
+  "scope": "Static package structure only; not Unity import, compilation or release-build validation",
+  "checks": [
+    {
+      "name": "Package identity parses and matches assembly paths",
+      "passed": true
+    },
+    {
+      "name": "Every package asset and subdirectory has metadata",
+      "passed": true
+    },
+    {
+      "name": "Metadata has unique valid GUIDs and no orphans",
+      "passed": true
+    },
+    {
+      "name": "Seven distinct assembly definitions parse",
+      "passed": true
+    },
+    {
+      "name": "Assembly references resolve without cycles",
+      "passed": true
+    },
+    {
+      "name": "Core and persistence enforce engine-free dependency boundaries",
+      "passed": true
+    },
+    {
+      "name": "Authoritative code has no Unity, wall-clock or System.Random dependency",
+      "passed": true
+    },
+    {
+      "name": "Laboratory assemblies require opt-in and editor/development; editor and test assemblies are editor-only",
+      "passed": true
+    },
+    {
+      "name": "Finite source manifest matches trusted build digest",
+      "passed": true
+    },
+    {
+      "name": "Serialized content bindings reproduce their immutable manifest digest",
+      "passed": true
+    },
+    {
+      "name": "Manifest keeps test-only scope, internal visibility, result pointer and knowledge grants separate",
+      "passed": true
+    },
+    {
+      "name": "Authority-reference verification rejects a mismatched pinned Git blob",
+      "passed": true
+    },
+    {
+      "name": "Every authority-reference locator resolves to its pinned Git blob",
+      "passed": true
+    },
+    {
+      "name": "Every source locator resolves to its pinned Git blob",
+      "passed": true
+    },
+    {
+      "name": "Recipe-14 expansion manifest matches its separately trusted build digest",
+      "passed": true
+    },
+    {
+      "name": "Serialized recipe-14 bindings reproduce their immutable manifest digest",
+      "passed": true
+    },
+    {
+      "name": "Recipe-14 profile keeps recipe-scoped occurrence identity, output and TEST_ONLY boundaries",
+      "passed": true
+    },
+    {
+      "name": "Recipe-14 source and authority references resolve to pinned Git blobs",
+      "passed": true
+    }
+  ],
+  "packageAssets": 397,
+  "uniqueGuids": 397,
+  "sourceHashes": [
+    {
+      "sha256": "0ae6b221cdfe044dfbb2c26e28803477079b747e961ce0afca37be9da63d26d8",
+      "path": "com.decennium.foundation\\Editor.meta"
+    },
+    {
+      "sha256": "5d5db6f8bb02057f6408877fd88378b3ec8e2cb79333508006f0715469b0a2e3",
+      "path": "com.decennium.foundation\\Laboratory.meta"
+    },
+    {
+      "sha256": "9425145fe976d27cf344bfe0a4ecc7a38cb10658f3a8a5814db41113eb25364d",
+      "path": "com.decennium.foundation\\package.json"
+    },
+    {
+      "sha256": "07423cfe7f3a474b9fdc68175747333270a8cb4906176006e2a2685adaf6965a",
+      "path": "com.decennium.foundation\\package.json.meta"
+    },
+    {
+      "sha256": "2f47d5afb7fe5c4f98947b408c585bc67c874cd095259ffcf2151633b310aea9",
+      "path": "com.decennium.foundation\\Runtime.meta"
+    },
+    {
+      "sha256": "30607ffdf8c3b174d01a5a5d8d48ad0d34b593aade09abc1ef3c48f26a2be226",
+      "path": "com.decennium.foundation\\Tests.meta"
+    },
+    {
+      "sha256": "2c224047cf54888e235ffaf8fc0670d35b60e3c47831067fff0b0c314f637f81",
+      "path": "com.decennium.foundation\\Editor\\Builder.meta"
+    },
+    {
+      "sha256": "8055f81f27bc82a23c1f58e60aee605c37b5f901e4e6d76a339cc71ae17faa85",
+      "path": "com.decennium.foundation\\Editor\\Decennium.Foundation.Editor.asmdef"
+    },
+    {
+      "sha256": "9ab536ddb7ee31e6f626dac07d4c683a48c1a6578729fe8996814118afa041a9",
+      "path": "com.decennium.foundation\\Editor\\Decennium.Foundation.Editor.asmdef.meta"
+    },
+    {
+      "sha256": "e8cd6c9619b7ad549c9f8774a91093b775335f94dd344888fc8904650034c56f",
+      "path": "com.decennium.foundation\\Editor\\LaboratoryGate.cs"
+    },
+    {
+      "sha256": "b7f8f5b4fe7ce13451f414c0a2a7b8070106085e387acbd16e3ff4e436511eba",
+      "path": "com.decennium.foundation\\Editor\\LaboratoryGate.cs.meta"
+    },
+    {
+      "sha256": "9d3814d9815733ae0653430ca2806427de9e73d36345d4d6ba60e108becaf7a3",
+      "path": "com.decennium.foundation\\Editor\\Builder\\Decennium.Foundation.LabBuilder.asmdef"
+    },
+    {
+      "sha256": "cd2c01e6f0a95b770ba6b3ef2bd3b7a278dd85d9be1e9b62898b7588d7475b3f",
+      "path": "com.decennium.foundation\\Editor\\Builder\\Decennium.Foundation.LabBuilder.asmdef.meta"
+    },
+    {
+      "sha256": "ce02b019c0f9de8c38e0beb1b5937d535dab742e9b49ec379eb81369ce016bec",
+      "path": "com.decennium.foundation\\Editor\\Builder\\LaboratorySceneBuilder.cs"
+    },
+    {
+      "sha256": "a7e1e9d1f73fc4e1e91a98ce4ef8141b87ca8e980629263e496677a21d77e0a1",
+      "path": "com.decennium.foundation\\Editor\\Builder\\LaboratorySceneBuilder.cs.meta"
+    },
+    {
+      "sha256": "5bc647b832d46cd84fd998288ab1b13e7ad8ecc8b1729639e8ca08c9d4ddad1f",
+      "path": "com.decennium.foundation\\Laboratory\\Content.meta"
+    },
+    {
+      "sha256": "36b118ff87350edc39444f59249b76e250db0bc2f7f3c92b38a639a7123a0235",
+      "path": "com.decennium.foundation\\Laboratory\\Model.meta"
+    },
+    {
+      "sha256": "7f010b330bb9be8a2af2c465c66e8b9f7bbbe67022a09df7a623ccc045d5ead6",
+      "path": "com.decennium.foundation\\Laboratory\\Unity.meta"
+    },
+    {
+      "sha256": "739b2817049d8b00db4fd33c5cfb3806e6074825dea71efb9ce8545d6be6d392",
+      "path": "com.decennium.foundation\\Laboratory\\Content\\test-only-content-manifest-recipe14.json"
+    },
+    {
+      "sha256": "37b7d6042dc08e4f2e09df053dbc631b51d36e05d605c811f2348ced166cf2c8",
+      "path": "com.decennium.foundation\\Laboratory\\Content\\test-only-content-manifest-recipe14.json.meta"
+    },
+    {
+      "sha256": "b75d6aee5ea36bb8c7aa4a60522c96fe7931aa49eeae9c7ec644e7dc6338be56",
+      "path": "com.decennium.foundation\\Laboratory\\Content\\test-only-content-manifest.json"
+    },
+    {
+      "sha256": "e2d5d473158b7325ff08d62c242d7088d08e437cef512f0ae7d4cc4b1343cfd7",
+      "path": "com.decennium.foundation\\Laboratory\\Content\\test-only-content-manifest.json.meta"
+    },
+    {
+      "sha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\AbilityCheckRules.cs"
+    },
+    {
+      "sha256": "fba75e5b4c47786b670f4a60309626136d966bab90aa173e5f515aa776d23e28",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\AbilityCheckRules.cs.meta"
+    },
+    {
+      "sha256": "6e122f8b95c692fb806921f93372f64747826c36c5cfe4e367ac8636c81204dc",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ActorLifeRules.cs"
+    },
+    {
+      "sha256": "149c5f832e139cd9b765079c53ec439ae096a85afe4ff1c7597734310d06afc7",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ActorLifeRules.cs.meta"
+    },
+    {
+      "sha256": "e2f0b8cff76052d0154d0d69793249c5ed0656273dd8c35d39e700eaaa0fa5d5",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CampGreens.cs"
+    },
+    {
+      "sha256": "a23c6d7f8ce312bc238790cf16d4f1d4dfbbf2c0d9fbd305d72722334d24112c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CampGreens.cs.meta"
+    },
+    {
+      "sha256": "8202cb10adfb97b27f5b66fe0973aaf0cec91ade50dacd63e317829e148ac031",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterProfiles.cs"
+    },
+    {
+      "sha256": "06f449f8f427938a0edee22e2e9b0fbc47325eebc0a530d159d7b052d1c96ec7",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterProfiles.cs.meta"
+    },
+    {
+      "sha256": "351c69dfd63ce7ac98717a8b8e78e6901a5dfd2d95a46dbd1b0095d9b8eb9d34",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterRuleFacts.cs"
+    },
+    {
+      "sha256": "275935737f4f494141a05d95a2cdec8b642c29c81952ed72578ba07e77d15340",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterRuleFacts.cs.meta"
+    },
+    {
+      "sha256": "f1ff66d542a88901705ed6d70fedeb8be9a3af9415f1fb7cb2f4c8ae1244013f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterSkillTrainingFacts.cs"
+    },
+    {
+      "sha256": "a21d47d02c470c1014d73b95ccbffdbac4621a73509330766e86062db7f9837e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\CharacterSkillTrainingFacts.cs.meta"
+    },
+    {
+      "sha256": "e9a0fa3ed8b63fda1c5938827f95424bdcf7b7e391d613d51112f500bdba19a1",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ClassAdvancementOptionCatalog.cs"
+    },
+    {
+      "sha256": "53de4f7f3b089558d9c7b543bbcc2b5f05b44e595a17f147bd421d9a3e9b4b61",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ClassAdvancementOptionCatalog.cs.meta"
+    },
+    {
+      "sha256": "3b050ddf7f6e94b715405b837be7f89be67b2f539e02a49bc5271d52fc2424d1",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ClassAdvancementScheduleCatalog.cs"
+    },
+    {
+      "sha256": "fdf01788bc2a1fabea32611f25207463cacc60a41facc04ce830c54ea71acafa",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ClassAdvancementScheduleCatalog.cs.meta"
+    },
+    {
+      "sha256": "34d06f60005480a0b1d4b028e6b33c76c609376a18f4bfa2edd3adb4c8929599",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionApplications.cs"
+    },
+    {
+      "sha256": "657621daf2190ef31ed28407f2c1f900fb4c040968ec40b8b06ff5b1c7ef48d8",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionApplications.cs.meta"
+    },
+    {
+      "sha256": "aeebaa86f9a3f3c09cac41241834e728eabcf3a39e3c375f70ad3f26b0758363",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionCombatFixture.cs"
+    },
+    {
+      "sha256": "307eb33be15dade40093d8f357f2a97a811a5757b3ec80ee95f20b55fa411044",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionCombatFixture.cs.meta"
+    },
+    {
+      "sha256": "e381d0106a43ced996467cff563d98f3db0d98ee9a4ea5c0a8acd6461018018d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionCombatPolicy.cs"
+    },
+    {
+      "sha256": "32a1b5d4392bd8ecfbe4e9d5b42db51647307a05cfc69e42a3fc389cf41e77d8",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionCombatPolicy.cs.meta"
+    },
+    {
+      "sha256": "63547f8182df5b06c941e8fe9ade919db071cc6cf5d7a4e1eef0d56cf1ca2a25",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionHistory.cs"
+    },
+    {
+      "sha256": "077a8e9ebbebae4dd4ec32c6aa3467d7626db24b414c43733f92c77947e69913",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionHistory.cs.meta"
+    },
+    {
+      "sha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionLedger.cs"
+    },
+    {
+      "sha256": "62031b42e27f6025c05360cb3fa00a9dfb2cecf778bd0c9e3eb4d9daa10a7d0d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConditionLedger.cs.meta"
+    },
+    {
+      "sha256": "526d2efad2b486191f9145ec6f6f34b3107bcd3964cf88f1196fc3db345c4fa1",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConnectedExpeditionSession.cs"
+    },
+    {
+      "sha256": "d9ae8c380721cd6eb8d482ea73b9520705f10715dae643632d98ee89a73164cc",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConnectedExpeditionSession.cs.meta"
+    },
+    {
+      "sha256": "6a902f115e9b06aa2516ba7c6d674153a8769596da1e2be13ccac410389859bd",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConnectedExpeditionView.cs"
+    },
+    {
+      "sha256": "8f609c987cdbc51303e8744073ae4df4181556fb0b4a091bff18542bb8bd7432",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ConnectedExpeditionView.cs.meta"
+    },
+    {
+      "sha256": "e2682b547bed75e211122a7c16dc0faa30ec913d60a826ed7855f12f36c2d730",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\Decennium.Foundation.LabModel.asmdef"
+    },
+    {
+      "sha256": "a4d1f81b6ea329da7e23714cbd658e385411d8d51bba41321b708154a0af202b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\Decennium.Foundation.LabModel.asmdef.meta"
+    },
+    {
+      "sha256": "8c2dc59275326359168343235421fcfef0b0fbe87f4cf4cb28d728925b8b247a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\FixedEncounterRules.cs"
+    },
+    {
+      "sha256": "dae0d2abbb2b0f39daf8ca71bc14d84674620b3dfb0462942d25f65b1b954ba0",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\FixedEncounterRules.cs.meta"
+    },
+    {
+      "sha256": "3a2a120d95d9005fd77f9477f7d78433d265620ecbe97a82457ed05d02c9024f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\LaterDefenderController.cs"
+    },
+    {
+      "sha256": "65f539557b5ba6099e88ef8cdf7f073a9d056f2e39156a8bb9c1de64ebb9fdbd",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\LaterDefenderController.cs.meta"
+    },
+    {
+      "sha256": "97de2c4084b634e8faf4bbbc34ae93547b3d286be1ae3ac6e1e67e6c90ad635d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ManufacturingRules.cs"
+    },
+    {
+      "sha256": "6164fd3513506e084284ff9fbbddd1d108142aea8ea63d3ae0c70067c9f320b5",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ManufacturingRules.cs.meta"
+    },
+    {
+      "sha256": "15c6f662a8c3603c1ffb187ca5331b3298fc02c71a95617f53727c75fa070b2a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ObservationGeometry.cs"
+    },
+    {
+      "sha256": "593b928b9bc3080d42b06eb2065a1ad8ee36a677feef6d472e96c91d9021179c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ObservationGeometry.cs.meta"
+    },
+    {
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ObservationRules.cs"
+    },
+    {
+      "sha256": "58f63f6e6c26a9dfa937f7e347c6019e09f8c596ccd1f046aad54cc285ba3a2f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\ObservationRules.cs.meta"
+    },
+    {
+      "sha256": "33b3f05599751c462552e7a05ebb0b9aa831ec41299cfcc98fe49f5e5b58d136",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\OrdinaryInventory.cs"
+    },
+    {
+      "sha256": "a7610609e11e71177077caa4a419cae5653bba030eb3a8ce2cab143c39fd9059",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\OrdinaryInventory.cs.meta"
+    },
+    {
+      "sha256": "d3116e0b137e61c64807d18f57636dd4aef898af69475faddfb1254f40954aea",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PeriodicRiderFixture.cs"
+    },
+    {
+      "sha256": "28f3165be8ccb2b65e4d43c9459a4bf08b8e68135f40bdb605a35f5c840f9215",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PeriodicRiderFixture.cs.meta"
+    },
+    {
+      "sha256": "9bc2587e15daaf85582e14d88cb2983901aade3ebdbdbb4a2db961719028c2ab",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlanarCombatGeometry.cs"
+    },
+    {
+      "sha256": "c1fbbea09e5a8334b326d4d6196bdf20316971ca20921a0e210c64bb63ccb759",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlanarCombatGeometry.cs.meta"
+    },
+    {
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCarrying.cs"
+    },
+    {
+      "sha256": "259b7f132d589114511a4d9171556edef04276a1de6d1cda7165dfd85d631092",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCarrying.cs.meta"
+    },
+    {
+      "sha256": "46d2a893e3c45ea175ba373a7d8c469129ddb79b951f90cc86c92937ef625ce6",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCharacterBuild.cs"
+    },
+    {
+      "sha256": "0f5cc123b664d81e5841a7ae2e52c46673bca210698639c48c7eb5a1342d1942",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCharacterBuild.cs.meta"
+    },
+    {
+      "sha256": "65d3d84483547d09afa4fc9764154416900924ab0e34c5bf21e501cd49892b8c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCharacters.cs"
+    },
+    {
+      "sha256": "fd64559e15051d937826519a53044d1ea4a366e99c3820ebf2e5f2d993b12616",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCharacters.cs.meta"
+    },
+    {
+      "sha256": "cc29179f08204b6631a03f5097accef1b56d198d929fd7b2418847462e913f2a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCombatBudgets.cs"
+    },
+    {
+      "sha256": "d159ada3f56be3f543caad28294f8dbb38745bb88206974c31f265b403bf4c21",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestCombatBudgets.cs.meta"
+    },
+    {
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestConditions.cs"
+    },
+    {
+      "sha256": "0fe3077c6d487f3f1b2baf9755801647a7cc8b085650b36f2294f1536ca6f6d5",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestConditions.cs.meta"
+    },
+    {
+      "sha256": "0771eda178b8f6a545ea00afc2bfa20dd8042ebc03b702a56fc6f0ad7d2fdc62",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestDamageDice.cs"
+    },
+    {
+      "sha256": "0da35e972a163be711fd102e529c5b675406c48f624c2c5fd781523d1f9391cc",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestDamageDice.cs.meta"
+    },
+    {
+      "sha256": "507b98b4e51ea0f9ede4ddf2365bf6471c9d425f4d20e88d6972b5c448b6edfe",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestDice.cs"
+    },
+    {
+      "sha256": "1be67a0e9c40513637a6b23dc6ba3c0765c37408b5322a869a679c6f7db49b57",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestDice.cs.meta"
+    },
+    {
+      "sha256": "2657098b9c3590409e113b9f46510d9ca13611bab353e2f390dc0a81f9c10dfe",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestLife.cs"
+    },
+    {
+      "sha256": "e1ba396a4b79adbe88b82ad390a79c79186c588037e94069f71c625d45d06aad",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestLife.cs.meta"
+    },
+    {
+      "sha256": "a0de283de78f404ff75aeb3116e740e341d3d85fa5f1c96f45d0ef75382a936b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestMaximumHp.cs"
+    },
+    {
+      "sha256": "1a6244f96f077bb7e5c2853492f371f70ab8f5c62cc018c05d1d462813908bcd",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestMaximumHp.cs.meta"
+    },
+    {
+      "sha256": "ef0c64a97d6cc65ae71c0d935d4e713ee89f262736b20fddce0197b408650792",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestRolls.cs"
+    },
+    {
+      "sha256": "8789c5d460d2227cf07db426122bc24216cbcb3256b837c9b5594c77e0baa0cd",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestRolls.cs.meta"
+    },
+    {
+      "sha256": "c104ddb2d8e3bcee43f37fdaeda4536e891c9c28c8a00ccd6a9b913b2672a352",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestTiming.cs"
+    },
+    {
+      "sha256": "0373495327db8879b05b78860aafe3ebc0f5b806b1e5155ce9b9ab1729212b07",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PlaytestTiming.cs.meta"
+    },
+    {
+      "sha256": "996d1705d7b52ab9203a0fb93efaa0cc33de145400339d90846377155409e96f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PortableEquipment.cs"
+    },
+    {
+      "sha256": "63396358ebd36d858be15ecb1215f5db5810e6e4fbe8b3e4a45b9bf456fb0217",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PortableEquipment.cs.meta"
+    },
+    {
+      "sha256": "de639d2756b0921b1f403daedab86b7be8264d73c084060007b7c031a5917791",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PortableStorage.cs"
+    },
+    {
+      "sha256": "f71250139603a66ccac6b6d73f640fdbf136d0d25a1708c9bb884089d6380095",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PortableStorage.cs.meta"
+    },
+    {
+      "sha256": "701812e2936675ff4e3e70158070364e25c35be53c248b082ccacde67db58b4c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeClock.cs"
+    },
+    {
+      "sha256": "f84e43fd3b02ca9d54ce7fee13d59388cad374bc2448884261f77ad4234a4c39",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeClock.cs.meta"
+    },
+    {
+      "sha256": "d6ca32ee951489d5356b13a90df0bf7a731078207f1c53974f9f8479f1d04512",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeTraversal.cs"
+    },
+    {
+      "sha256": "abc6269f9e26ac189b5eb57a3177e7dc956886999166d3a7247e613f5b7daa36",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeTraversal.cs.meta"
+    },
+    {
+      "sha256": "0348c6d86a80e41bc79498ea28d31a50814f523a50d5bf7ecf1bdd2d981a6694",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeUnarmed.cs"
+    },
+    {
+      "sha256": "0980008a7c5fdaf7bd1691afc2fd5b82e7f06037510116c1009a4f3cc7062a13",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\PrototypeUnarmed.cs.meta"
+    },
+    {
+      "sha256": "208790688b8a00f41912cfb17d1b1240525c91399aada74f1cf1646ae45aa1c4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RangedAttackResolution.cs"
+    },
+    {
+      "sha256": "fe585778e1ab7670a9363a5ec9ef062d5770340e60521d8ff1a3a6c6bab2a45f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RangedAttackResolution.cs.meta"
+    },
+    {
+      "sha256": "13937605c3f82e14ffdc689e4aeab3db666226489b710793c2a597acaaf18967",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RepeatingCrossbowShot.cs"
+    },
+    {
+      "sha256": "707c9b3e10d6d95556adf8b3952cf23eeec389fec534f44eeff481b095edf26b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RepeatingCrossbowShot.cs.meta"
+    },
+    {
+      "sha256": "e6c07969bd847389062242d0d243f4f38ab44815578ede8baa295b7b0babcc33",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RepeatingFiveMagazine.cs"
+    },
+    {
+      "sha256": "6466a098b82d89a43882654c629b23211b8da336ceb0ab279e6d9614192e618a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RepeatingFiveMagazine.cs.meta"
+    },
+    {
+      "sha256": "c62104cfd6f433bc39cbcac576b9da26644552df1fc1293f10227f665b86c574",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RuleResolution.cs"
+    },
+    {
+      "sha256": "97616ad5f2e36568045366fa80a18214cec606b8f54b3d2b0f5d4431dfc57268",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\RuleResolution.cs.meta"
+    },
+    {
+      "sha256": "d08aa1d9f0c1be6e6aa57e9f13fe629a1df11c82be2424483dc2f242415cc77c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCacheExcavation.cs"
+    },
+    {
+      "sha256": "3005f2c91a66fa3f79d7f71041d952397e5ef6ec1cae0668e7bb566447e3363e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCacheExcavation.cs.meta"
+    },
+    {
+      "sha256": "05f3337e7d24967398fc11740ef246373cca9f001aad4050b7a9ac4981a22a38",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCharacterAdvancement.cs"
+    },
+    {
+      "sha256": "aea2ee895a3b22573ea4d5aa4dc56d3a3e1724790ac7ab255f981ab00a478224",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCharacterAdvancement.cs.meta"
+    },
+    {
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCharterAttempt.cs"
+    },
+    {
+      "sha256": "6541d943a079589a1edc66c6a46aed6d88404c858d9f490bb30ab2d14b25e285",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCharterAttempt.cs.meta"
+    },
+    {
+      "sha256": "c477a5e8a84bc2b407ec33a2f9b20f0bb3cb71de106481a981ee9bc9a9211dc3",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCommandStep.cs"
+    },
+    {
+      "sha256": "7ee2a0252a2bbf3a4b8859d96bd54ea54ede01aa690d2fcf4a8ec830a3012ec5",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCommandStep.cs.meta"
+    },
+    {
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedBloodSpecimen.cs"
+    },
+    {
+      "sha256": "ef51318785a81bd6fb43d5d77102cdcc34156589f23624cf30df4657e002f4de",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedBloodSpecimen.cs.meta"
+    },
+    {
+      "sha256": "bdf960cfcea0f11e9b8f8222cd13aaf33d420b96d0a633b1ccec7de868e1ebdf",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedExplorationObservation.cs"
+    },
+    {
+      "sha256": "ee813bdd72daafe4ee6199963123ce79ffb7e3f9fb948aab000c57e948b8a3df",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedExplorationObservation.cs.meta"
+    },
+    {
+      "sha256": "9dc1b3fbad88945b2be2997efca9d89b734852998f29b2e39c8c2312ff857945",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedFormulaResearch.cs"
+    },
+    {
+      "sha256": "9a557b34d9d166fc027341716658e928b42e692d61f93de5ee15c7749e453775",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedFormulaResearch.cs.meta"
+    },
+    {
+      "sha256": "8919705560e29ad960d3e020727e6a0bcccaf1853d65ca2fbc08dc7d67d2e06b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedRecipe4Batch.cs"
+    },
+    {
+      "sha256": "f5c6b58e575febbf536be48b314a7cb2910943fffb3de35ae136696ef11fdf73",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedConnectedRecipe4Batch.cs.meta"
+    },
+    {
+      "sha256": "8379812f19f41218baab0f6337f7b7b39657ad6fd7da7ceb7d8ccafd1f237eb3",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCraftingConsequences.cs"
+    },
+    {
+      "sha256": "37296cca01ee3a09af9aa223d5057c2cdba47dda177c6a9254b6153f1f11cf1d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedCraftingConsequences.cs.meta"
+    },
+    {
+      "sha256": "ccd03fd1735cb8bacf0100ddddd9af8d849f94581cbc22f42ac151755ccc9ff4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedDailyProvisioning.cs"
+    },
+    {
+      "sha256": "f70441ee5284d9a4cb6b7a1e6dbe3943e233e2b9feab18335f1e936be3481e58",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedDailyProvisioning.cs.meta"
+    },
+    {
+      "sha256": "82a71ce6a40deb796191f96f223e7c2c242b2db1bb8df83f45558cf0dde40fb4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedDefensiveFormation.cs"
+    },
+    {
+      "sha256": "edf92f9257ebec77199a0f4b9b976c741f565ed156700973b3504cef787a6562",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedDefensiveFormation.cs.meta"
+    },
+    {
+      "sha256": "19ba57b2dfc8ddb64a5fa5cb2640c5abe1e0c01ec9413a1609495e82646f000d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionAssignments.cs"
+    },
+    {
+      "sha256": "e233bc259146e39a0348b2a43e911e1778c81e4ca1bf6f441110eaa61c72c813",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionAssignments.cs.meta"
+    },
+    {
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionBill.cs"
+    },
+    {
+      "sha256": "79cd3f5750c25f4c93e0ac8a9efd51d4abac023aad441f84d894348766f92147",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionBill.cs.meta"
+    },
+    {
+      "sha256": "301c86a8a3b21a674ffe12c8c820f4d40658423c4e15c69032f23c89a5b5a75a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionCampUse.cs"
+    },
+    {
+      "sha256": "f8e32822313d98d7f5dbca34249fe00686daea987d36a90d8da4d671433cd22f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionCampUse.cs.meta"
+    },
+    {
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionEpisodeClose.cs"
+    },
+    {
+      "sha256": "f626bbd8c61e2d6a2fc2f10661e8872bc5865dc9207632624344d733cbaf1c2a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionEpisodeClose.cs.meta"
+    },
+    {
+      "sha256": "935d0a28ab75e19b12057f821bc23b2539690ac4271bf93a3069b37c6a31a318",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionPressure.cs"
+    },
+    {
+      "sha256": "12a3d58029c2b1e68478f54aaaa669f239b9b45400fb09b76e2f0ce52545af7e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionPressure.cs.meta"
+    },
+    {
+      "sha256": "20256de7c68009a594475ba4a53bd28c492c166858743ee665da68288eeb8f58",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteMapping.cs"
+    },
+    {
+      "sha256": "20b272a20cf4a6d4fc40d18ebcef25d7ad00774b77cb7413306391a72b43798b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteMapping.cs.meta"
+    },
+    {
+      "sha256": "afb6c8c0ac659f4439f1652a7128f39716fd554e756ce5782e2320f272eed1f9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteMappingWork.cs"
+    },
+    {
+      "sha256": "0b6dc024ad80481dfb427747d638b51c3956a80b7248620c97b5e786430773fb",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteMappingWork.cs.meta"
+    },
+    {
+      "sha256": "6cc2525dc31be0308317d16ec3a892d4931dbf3618d89337fe381ca97a59964c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteReconnaissance.cs"
+    },
+    {
+      "sha256": "caeeb095dc70ce4a0a15491e1d90d5948110153fa1e3fe62b5236547cde632a7",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteReconnaissance.cs.meta"
+    },
+    {
+      "sha256": "425f76fbff7ad945f72715acaa4aeac6eef688fff80f58ff8b4edb48c372a0ec",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteTravel.cs"
+    },
+    {
+      "sha256": "bd8d1d119f93760beef78161a8556a032567be5d523d859959b371d33dcb3888",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExpeditionRouteTravel.cs.meta"
+    },
+    {
+      "sha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExplorationHide.cs"
+    },
+    {
+      "sha256": "c1ec697d6d91778f9b5d5b6c10e8156473507a8e6e50eaec029987510d3b1a33",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExplorationHide.cs.meta"
+    },
+    {
+      "sha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExplorationSearch.cs"
+    },
+    {
+      "sha256": "f26bf42be0a045bea9906848e4534b8a8af13cd8d2a44bb5ea1bfb0596118b6b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedExplorationSearch.cs.meta"
+    },
+    {
+      "sha256": "6d172831994800a6a600f94502e8adcf1ff111aca2e240ee633b77c48f1f6cea",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedFishingTrap.cs"
+    },
+    {
+      "sha256": "3ab23e601eb64e378b0f41d87525780c04ac17270f9d10bcc08c10786444e082",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedFishingTrap.cs.meta"
+    },
+    {
+      "sha256": "349d14f17e1a4217c94c664a1967fdb1211302525ac782e35996633d5ce1e35b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedFormulaResearch.cs"
+    },
+    {
+      "sha256": "68200c2cd7d9d783d8bb9f919322d0d52f599750ab059ef247dc9b3d70008e1b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedFormulaResearch.cs.meta"
+    },
+    {
+      "sha256": "094d23daba2db5d90a349ce1b3c89a3a8bbfbad5af0f9eed7d5654fb3f4f3f6e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvest.cs"
+    },
+    {
+      "sha256": "a5c04dad7fdbc3b189de40a4cd7f09dbe842c13007448abf2d4a0701a8b53415",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvest.cs.meta"
+    },
+    {
+      "sha256": "220017e72bcad989272eeeef22df0bea86212b9703dc425688e1098e0ae64c3d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvestPreservation.cs"
+    },
+    {
+      "sha256": "35252d2343f8050bcb9a63b1380200726ad58c15ce09824b1eaf9dc903069e46",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvestPreservation.cs.meta"
+    },
+    {
+      "sha256": "eb1c261b7e11ea657fa2b9c1b80d067ca8bf64c55a38a931b2c218d600b95af0",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvestPreservationTreatment.cs"
+    },
+    {
+      "sha256": "ffcdf42b5980edbcb8b1fb051dfa0c5c4fb467078d932364fc5b406f786a296a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHarvestPreservationTreatment.cs.meta"
+    },
+    {
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenAppraisal.cs"
+    },
+    {
+      "sha256": "70008c1bc9fa452579d7f7088105426dacb86928920e2602da3927ad5a897ff2",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenAppraisal.cs.meta"
+    },
+    {
+      "sha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs"
+    },
+    {
+      "sha256": "62c12b3a24066994c4dea1bb63e6ac7a0ae390b6fd16e2848075f4606e58c8a7",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenCare.cs.meta"
+    },
+    {
+      "sha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenMeal.cs"
+    },
+    {
+      "sha256": "5ec1110e64a6803837ad0c6a88db3cdd4f86c5e0ad301f8770967385497f3dfb",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenMeal.cs.meta"
+    },
+    {
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenSale.cs"
+    },
+    {
+      "sha256": "5cca9695b9b3e79e485d19506ac106fc69ca1d55639fd0ea9d7db91df91d8fbb",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHavenSale.cs.meta"
+    },
+    {
+      "sha256": "09c7816e4dccec603b23669e7cfe9e4530d474b8301920bc155bbdef8166bf29",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHuntingTrap.cs"
+    },
+    {
+      "sha256": "602894326dc5a0491e06899dfd023a55089c33a95b320fd05b70058c2bda759c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedHuntingTrap.cs.meta"
+    },
+    {
+      "sha256": "9931020dd9cac8d5678e013ad895e1686a19a82874950e0b00c79c5a2fb31581",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedLaterDefenderDecision.cs"
+    },
+    {
+      "sha256": "18cf985fc9e3ee9606a5d58792d7e050deb188e149a84f029e41b32d1a9cf04e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedLaterDefenderDecision.cs.meta"
+    },
+    {
+      "sha256": "7b0a091afa2a240ca07ad704229d0e3a366c8bfec388b8492b0c228207db366b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedLaterEncounter.cs"
+    },
+    {
+      "sha256": "7ef7b49d239cea99070e5d2b7017022ac04e769ed05ae4d43228fe9cc95a982a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedLaterEncounter.cs.meta"
+    },
+    {
+      "sha256": "99273f7d8328a35c6056b61abc4cc1bedbcd67f5b1bdf7de93f6bd276ecc48c8",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedManufacturing.cs"
+    },
+    {
+      "sha256": "dd9f6538a8f9842e33f3eeb2027e819249ebf531fb504b693d37a6106f460287",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedManufacturing.cs.meta"
+    },
+    {
+      "sha256": "d78eeef60996eda2275882d743285fb61f861b35b600f204afbbe94cb3fcf9c2",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMining.cs"
+    },
+    {
+      "sha256": "49b56f72d63997e76fa9502b049fe89a22e479b201108397461705ee942cd2d9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMining.cs.meta"
+    },
+    {
+      "sha256": "d11e045c8743fb259502d6d0fe7122e2c8020347b830815579c6659944a5f5ca",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMiningAssay.cs"
+    },
+    {
+      "sha256": "6d9531ac178fca27154567eb8dc60f258dce9db2d24b49230856e873e1571176",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMiningAssay.cs.meta"
+    },
+    {
+      "sha256": "7abae37780357e9794691048860710bbce31d99b0443a58c5bbb6877af091e66",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMoraleRest.cs"
+    },
+    {
+      "sha256": "8c981faf4fe6054109df40cfa1c47d1cfe3525655ec4c72ecb570ff53579c1aa",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedMoraleRest.cs.meta"
+    },
+    {
+      "sha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedNextCharterAgreement.cs"
+    },
+    {
+      "sha256": "c3a6ee7c2d174894e4b0f9bac4f7e9bd99401e20c43058cabdd61810b8805103",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedNextCharterAgreement.cs.meta"
+    },
+    {
+      "sha256": "d031b88111cf5dc7fb7334a62ab59acf29ded8dcef6657c720a83d51c8645964",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedNextCharterPlan.cs"
+    },
+    {
+      "sha256": "06cb5fa35799b8cc1cdc1def711f1e3af47acb7ef2880d9a3f6a3707f906f1db",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedNextCharterPlan.cs.meta"
+    },
+    {
+      "sha256": "55b28655464e8a5a4acd797585244bef206b5f0656fe2a367b05f33c748d75c2",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedObservationActions.cs"
+    },
+    {
+      "sha256": "efde809213df1d977f681c7a00a3d1b68a06c7f3e1230cf7f37b9103f37f7e8f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedObservationActions.cs.meta"
+    },
+    {
+      "sha256": "9dba3e96974ea63b4a8b9db56c48c94d08faedb8de60a4800d5846d6e67a289f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOrdinaryReceptacle.cs"
+    },
+    {
+      "sha256": "70203c82dec4bae5f588a367f96171be267687002bd7b8e2023656cd9e3c9760",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOrdinaryReceptacle.cs.meta"
+    },
+    {
+      "sha256": "7c54ad81a2a015a924b13f8eb185382edaaea922988b2cf3c0454e7ed2151d30",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOverwatchDesignation.cs"
+    },
+    {
+      "sha256": "e25101f03e065dcc518b496e7514f8d1e6af2f0a5943feb0fadc0d4d9a9e6f4a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOverwatchDesignation.cs.meta"
+    },
+    {
+      "sha256": "c9c56b80e9fff9d0214fd802a77adcffb644022e78058b595fd644883b8266e0",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOverwatchExecution.cs"
+    },
+    {
+      "sha256": "11e2e53f72d685b21e722546c1dace93bffe51c232d0f818ac2a385b3ccc105b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedOverwatchExecution.cs.meta"
+    },
+    {
+      "sha256": "449e951f4d7f3e80b31c0bbfd80f922db5711c6478fb5fb74ca4ba5a1df684af",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedPeriodicRider.cs"
+    },
+    {
+      "sha256": "aa052619f48bec01d5733e1a5ae24297a4da7db5a54bd048a0f8f15f2438e4a6",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedPeriodicRider.cs.meta"
+    },
+    {
+      "sha256": "fc4d20d4bb5549fe580f37a4439e58791d363428a48ef44f05eca871f28046b9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedPortableEquipment.cs"
+    },
+    {
+      "sha256": "9a2f173ed345ad7abde87376abb4a11c2e02adeb6a18e9550674209d6ff1b774",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedPortableEquipment.cs.meta"
+    },
+    {
+      "sha256": "ac7486c15090a1d04c7ce8ea560a6d71b50b29ea55f4892689b0ab27a701aaef",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedProspecting.cs"
+    },
+    {
+      "sha256": "f2d83933968627e2274d496acb49a8bd2db58536efa103d5d3dd897a25d31163",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedProspecting.cs.meta"
+    },
+    {
+      "sha256": "e7ea3cb0a24c08452f3a5324fb930fe7201473eb6b15a8e453d1db5379c0469a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReadyAction.cs"
+    },
+    {
+      "sha256": "c7bbe775369a59f1923cbcbee7aaeed833ae0ea2e33602258efbfa6d6a846c25",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReadyAction.cs.meta"
+    },
+    {
+      "sha256": "25ffd839145a76fb51f884b9349dfa8969547cf4f279405a9b67d33e6cdefcf8",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRecipe347.cs"
+    },
+    {
+      "sha256": "816e72d099954bec04148838070275f41bb181d804e13404ab563e26cdc59ce4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRecipe347.cs.meta"
+    },
+    {
+      "sha256": "a90a83a92a1f40ee38cc2b743032c168bb061a5bf5080e41311ec6f673bba8c6",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReengagement.cs"
+    },
+    {
+      "sha256": "14bf7e44652a7d12aa8cfc753dce1e2046e14ebab8cf1017baec23773b300473",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReengagement.cs.meta"
+    },
+    {
+      "sha256": "fb595bccea5ae0b78a6710ecc7363f9755b46a90e80549d05f83de8dcf4fedd6",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReinforcement.cs"
+    },
+    {
+      "sha256": "5add004bc6e17c66ce40c8ab1b9be0199f8af112cf087d6d77c6fc2b71914736",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedReinforcement.cs.meta"
+    },
+    {
+      "sha256": "6817b223a147c32e13c74add0a9b2fbb743fb76b403f8681866d856cee494e05",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRestDebt.cs"
+    },
+    {
+      "sha256": "43d3554409de8e187d0c482c75bb33496a25f2bc5d8bf99b3a19b982f8f038af",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRestDebt.cs.meta"
+    },
+    {
+      "sha256": "66eb50ca1d0863e9cdd1e1ffb4091c6f5149f607038931326cb17261b60c6ffe",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRetreat.cs"
+    },
+    {
+      "sha256": "ac19ef06b9a99d7c2a2a35423aa7e4c6a3d76ceac40c6d70cbca67184381e0ce",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRetreat.cs.meta"
+    },
+    {
+      "sha256": "2d192af8938ab05e654778373bc9b56f15c11ef0685d4d6bc23ee7f7345393af",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRetreatPressure.cs"
+    },
+    {
+      "sha256": "4f0d52876ad839edf64c0bf76df52a87df93deb4f3e340d96125f403abba628b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedRetreatPressure.cs.meta"
+    },
+    {
+      "sha256": "c8690ed31ef5e4e5ae3aa7e65bb06a77d75a4ee135754002b0de35fa3884f3f5",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedStrainRecovery.cs"
+    },
+    {
+      "sha256": "9047232c130a3eea7cdf542a6af13abca956a9bcdff1b07f72c228baae0807c9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedStrainRecovery.cs.meta"
+    },
+    {
+      "sha256": "2c17bb82fddd8f9c925d2efee2aac2b3e7542474a68939c4a14629292e40086c",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedSupplyCache.cs"
+    },
+    {
+      "sha256": "d78924c76f73fa1ceed2fd647afb8a4f5f2138505c08ef7ea49327f78e91cafd",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedSupplyCache.cs.meta"
+    },
+    {
+      "sha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedSurpriseEntry.cs"
+    },
+    {
+      "sha256": "512b76ee4b9bb238b3d81b3ffeaf2d3ae8b673d36b82fab43395bab25b3094d4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedSurpriseEntry.cs.meta"
+    },
+    {
+      "sha256": "26dc6756a141aa3816fdc497dd72a955517db001fd3d0bdd0b20ba0c75989423",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedTemporaryCampConstruction.cs"
+    },
+    {
+      "sha256": "8c96302424c0b2218cbd777154f439fbd30392763445ffeef160cc56243a51eb",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedTemporaryCampConstruction.cs.meta"
+    },
+    {
+      "sha256": "54ac18cca3d81980974b5fa26b5e1b05af592566c1be585ee158f083e8c07e48",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedToolRepair.cs"
+    },
+    {
+      "sha256": "ee77f20a38d158670fe63a9c9dcade56358ec4e6aa3ddf5da0b20ed71ee746d4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedToolRepair.cs.meta"
+    },
+    {
+      "sha256": "6abd00baacad51b72bd6d45b09ecf2c3857d647246404f052409a7963036fb46",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldCombatPolicy.cs"
+    },
+    {
+      "sha256": "040747728efda3c97e46f06dea4622d3be4b7ddbae05b8b6a964862625772992",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldCombatPolicy.cs.meta"
+    },
+    {
+      "sha256": "a026007c17a636d64e060fa445cf78dfa807189c3290b91a2ab37df047813d5e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldCommandQueries.cs"
+    },
+    {
+      "sha256": "9c2d5417951a2ea4edfc619b96ca81b3dbd3de6885ccc869ed360793010c7110",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldCommandQueries.cs.meta"
+    },
+    {
+      "sha256": "d33512c0ad8876d3651decb0cf3ca2e296036d48d3bcb61df6c542cace060fd6",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldDefinitions.cs"
+    },
+    {
+      "sha256": "8da47df60cd7a759bf0a234a3dbdcfe6863bd367b7840c289a9111349c66330e",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldDefinitions.cs.meta"
+    },
+    {
+      "sha256": "0a5f1f73a6406c158784d9af2e3c69bb61ff4fc4ffbc29ab3f8c3ab7d6faa884",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldRangedCombat.cs"
+    },
+    {
+      "sha256": "0eb86f1e129d89d1935841deacbee1ac99b708aa4a485d3313ed62f7098bce04",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SharedWorldRangedCombat.cs.meta"
+    },
+    {
+      "sha256": "6f237a1205dc83bd863ccb149bf79fceb295aa0320ce737b1dd0a843b94918ca",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SoldierTacticalFeatures.cs"
+    },
+    {
+      "sha256": "02c4024cdeee1f6e4212cf38bc3d5fde1ad427365d5d7701fe7dbaa81a658598",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SoldierTacticalFeatures.cs.meta"
+    },
+    {
+      "sha256": "437696210b6976081f0252d06b16990fbc28b4f91eff7fad43f9d5f25c7640d4",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SoldierTacticalTechniqueFixture.cs"
+    },
+    {
+      "sha256": "ce7e4f6f2b48041e3ed42cc38fe4f8a3aca14a2a7f457e38491b2badaf618f5a",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SoldierTacticalTechniqueFixture.cs.meta"
+    },
+    {
+      "sha256": "80e200b63226a01b2c2b0fbf0f40ad0ecb6a5fc3761603b2dd7c6c4492722649",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SourceContentResolution.cs"
+    },
+    {
+      "sha256": "62ed76f5b6e3f9861a00d2e21682c797f62a29edae5acaf202000b0253ae3041",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\SourceContentResolution.cs.meta"
+    },
+    {
+      "sha256": "b20f25bb1433949388465d15e690187201170f5754bc5b581bac55f416eee90f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TacticalCombatFixture.cs"
+    },
+    {
+      "sha256": "be9ef7ab8054621a3395f5c6c09f8bf1ed0ee00d517b0faf758cd7c3cc817e95",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TacticalCombatFixture.cs.meta"
+    },
+    {
+      "sha256": "ee6e758decabc50e30fa2721a7a1e397281d065d0121b66b7d3396abc6d56ed2",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TacticalMovementPolicy.cs"
+    },
+    {
+      "sha256": "fd7690ba28d5c467721c38a8c3792cdcce33e611993186ccb1440423f4a53e51",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TacticalMovementPolicy.cs.meta"
+    },
+    {
+      "sha256": "3bbb93560da5bd20a66199e6fc597009ce7793705b9ccc378dd343ec2d424661",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyClubAttackPolicy.cs"
+    },
+    {
+      "sha256": "891faadf70cba809a7efd7219cf6bb5335fda8527fbb4214ea09c11dd15caf61",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyClubAttackPolicy.cs.meta"
+    },
+    {
+      "sha256": "c3ca151b8d225d8c5d2c9644b48a9b01a8ce078830d00b74760089e7707ec5da",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyCropPolicy.cs"
+    },
+    {
+      "sha256": "cdd8cdf2b83fae4901136c5dc4f08338ef1838a7bc55d8c9b94778dd2dad8d05",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyCropPolicy.cs.meta"
+    },
+    {
+      "sha256": "8aa5415aab9aa6b30f0d6718d015b1ec81350ca1bc0065cdc20578e7a5f7086b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyFillingPolicy.cs"
+    },
+    {
+      "sha256": "90b2d21a8e2da66924a6902d6451d13450120f3e3e64df5fae839ead54d2056d",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyFillingPolicy.cs.meta"
+    },
+    {
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyInventoryPolicy.cs"
+    },
+    {
+      "sha256": "296f24554623fec00eda12997c6b525925f19d872220909c8e22ad8f3f7042aa",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyInventoryPolicy.cs.meta"
+    },
+    {
+      "sha256": "c9395f32c069f2d7298dfbe55484dcf1b61d7f5ced395c2eaaba83eeacd7707f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyPolicy.cs"
+    },
+    {
+      "sha256": "c665f40e218a5e3017ecf4f77cab2ddd8de71ec5808b3e051fbce9ff5384ce5b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyPolicy.cs.meta"
+    },
+    {
+      "sha256": "b07cd429ab04bcb253de212290aee55ad6d67dc36290bb6b8d562e58f46b290b",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs"
+    },
+    {
+      "sha256": "57ceac29d469fe6946cbbe0127780274145e2f42c0a83a8e5d6b9f315851cb70",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlySharedWorldPolicy.cs.meta"
+    },
+    {
+      "sha256": "b34c094a34da7ae670516a618bf6e970b85d2d7cb4139bf73ca939ec7e5675c9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyWorkPolicy.cs"
+    },
+    {
+      "sha256": "63232daa119cd44e11759803b49ae1848cc052864e117bd817c8d6166b896f64",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\TestOnlyWorkPolicy.cs.meta"
+    },
+    {
+      "sha256": "45fe0c7e44bc73c478badaa6b09732690d35cd87281720a140d2111b1c4e82f1",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\VerifiedSharedWorldCheckpoint.cs"
+    },
+    {
+      "sha256": "8dac7dd5ccfaaf93f268700870d33dfb57f439c56ec6df31b70b62da34244ef9",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\VerifiedSharedWorldCheckpoint.cs.meta"
+    },
+    {
+      "sha256": "d4021bbf88c23b8faa4167bdea32b982b46f871bba807129a29bbb5a8261f23f",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\VesselHandling.cs"
+    },
+    {
+      "sha256": "fb284e4060bc16a7ee8bd9e6c8dc6c780a8384f8c1561f4eba27196f4d19d124",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\VesselHandling.cs.meta"
+    },
+    {
+      "sha256": "25e58a94f5ed65579a81f274be348ed1a873f237e6e5765629eb12c82cdc5f41",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\WaterFilling.cs"
+    },
+    {
+      "sha256": "b280cec7b280e38bb00d834466d904f64f337d5249b106ad7a88397e7dc56745",
+      "path": "com.decennium.foundation\\Laboratory\\Model\\WaterFilling.cs.meta"
+    },
+    {
+      "sha256": "e7f56dd038ce1355c8459be79a5f0cca6cf0e23ce3ce90be391b1193e795c585",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\Decennium.Foundation.UnityLaboratory.asmdef"
+    },
+    {
+      "sha256": "568f60c778514560856d55e930d0d9a804c77c4d92e36dbbd752e4ae282c8d99",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\Decennium.Foundation.UnityLaboratory.asmdef.meta"
+    },
+    {
+      "sha256": "9086b16aee2b4e34a15d31db962b87d4f86fd1e6e12b42312bcdf90057b1d724",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\FoundationLab.cs"
+    },
+    {
+      "sha256": "eb2d5d38d261dbb0bd767ca02524749363e669629f971105b93482c266b86a56",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\FoundationLab.cs.meta"
+    },
+    {
+      "sha256": "760fbb5ca309fe7961f012fad78ae5087f7cdfeafec6543c66da837c3493b23a",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\Laboratory.uss"
+    },
+    {
+      "sha256": "2b7c3d3123fcb9b083dbd1a418e60bdfffb6e53abdf7a07f35e7fafe8aa42d92",
+      "path": "com.decennium.foundation\\Laboratory\\Unity\\Laboratory.uss.meta"
+    },
+    {
+      "sha256": "af516c48811112f035e359ae76d68ea93c685ce180ab798eb919a926008a04ba",
+      "path": "com.decennium.foundation\\Runtime\\Core.meta"
+    },
+    {
+      "sha256": "5648dc47badf21f54977c7b1b3aafd380523bf5166b3ed7e7196c7afc139eb21",
+      "path": "com.decennium.foundation\\Runtime\\Persistence.meta"
+    },
+    {
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActiveWorkProgress.cs"
+    },
+    {
+      "sha256": "1f67eb3bd1c3b68cee20095415c34a31948d9de32e45ed0b2670d7daae01b20e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActiveWorkProgress.cs.meta"
+    },
+    {
+      "sha256": "a58b8ceb15fe17cab04958da380a186725d2860b86edbf5057d8ce6a8f802384",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorConditionRecord.cs"
+    },
+    {
+      "sha256": "a0d0bb2808e6019b8ccdf72b674e0ffd7a5a5a213fa6b34c863ebf3005c424fa",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorConditionRecord.cs.meta"
+    },
+    {
+      "sha256": "a5917c6e9a4da6ab8ba4addde8e5d61e3f6308d7b878b18d27b23e4031d472f9",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorLifeRecords.cs"
+    },
+    {
+      "sha256": "d0a2e5f78c8fdc005b0ff4673f122c12ccc886c202c4d4d1e7e428ac172a9b55",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorLifeRecords.cs.meta"
+    },
+    {
+      "sha256": "531d667abc59dda39bfb71041efd767967c755d63d477b25530c765d07b21b4e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorMovementRecord.cs"
+    },
+    {
+      "sha256": "9c5191a5cd995601baaa155646d897a32afbe33b707dffd2899925997c3147e6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ActorMovementRecord.cs.meta"
+    },
+    {
+      "sha256": "da498dc180329092c95a59f7bb49a1eef8a63b109828a7b007d9760329126541",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CacheExcavationRecords.cs"
+    },
+    {
+      "sha256": "ccda43bba92983f091542a38c4d370e517712c7afddff7eea3f58457601df28c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CacheExcavationRecords.cs.meta"
+    },
+    {
+      "sha256": "207d55f1e10197ee28c254671f1ba67f5d6296995b5de716028b0c5722f42f7b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CharacterAdvancementRecords.cs"
+    },
+    {
+      "sha256": "4bd0da907f19c3b2be8b6917e58091b34a24c7f4c4c434554543647cac269169",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CharacterAdvancementRecords.cs.meta"
+    },
+    {
+      "sha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CharterAttemptRecords.cs"
+    },
+    {
+      "sha256": "fef12a3a80e095ae1e88b8edacde6632df386f5d039b1afa78920cf9f1a12a7c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CharterAttemptRecords.cs.meta"
+    },
+    {
+      "sha256": "1b4742e29020f77a5afbc6a5161e2a5897b6d9a2ba552c8b66fba6562e1b28f1",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ClubAttackRecords.cs"
+    },
+    {
+      "sha256": "f72650b24cdd47f306f50e6cdb4ad3670ed8804d530adecf249d1d848d6f289a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ClubAttackRecords.cs.meta"
+    },
+    {
+      "sha256": "145a2d934cf7bc104b7eab65600b42eb974b7177ecff7e3273a51b13a689d749",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CommandHistory.cs"
+    },
+    {
+      "sha256": "aae2ff0f43648ea76c57e2fad262e9ded46dd12a635c5124db79d624f23210de",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CommandHistory.cs.meta"
+    },
+    {
+      "sha256": "f9d5e24ae89e1ffbf1fafd66ef82ea52ab7e0632e8902f39fef56307c19eec7a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConditionJournal.cs"
+    },
+    {
+      "sha256": "aca53b5a2b8d908dc4d1697b90961c82150926a797d8385583d49101f9877f1b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConditionJournal.cs.meta"
+    },
+    {
+      "sha256": "4be39af72db53c5226715dc9203e9c3cc5b5fce82af44ad0c5f1086ea2cae05c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedBloodSpecimen.cs"
+    },
+    {
+      "sha256": "847a988ca404c72a5216708ccb6249c3fe783a2435fc910cb8612be55cebdff7",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedBloodSpecimen.cs.meta"
+    },
+    {
+      "sha256": "033a583331e3b86b7197c148e44e349e19321c141c0d95e6edb28cd4755ea42c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedExplorationObservation.cs"
+    },
+    {
+      "sha256": "d76a839668a15501a3d01be30de35fee4d5e63881af817e8b300d1cdd93a9d27",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedExplorationObservation.cs.meta"
+    },
+    {
+      "sha256": "af9a57c7daa43a890693cdbcbc56c3340a5e94eacab3d2ad0abc5764b6898b89",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedRecipe4Batch.cs"
+    },
+    {
+      "sha256": "e4b0582efc534fc6930be7210914529c44446d03514c04b4387d12e971f2fe61",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ConnectedRecipe4Batch.cs.meta"
+    },
+    {
+      "sha256": "e5dd467f477c339d6fd308566a669661743b871f3b2130dde5868c821420caeb",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CraftingConsequenceRecords.cs"
+    },
+    {
+      "sha256": "3813610248f2cb7e4c6a51026058eed8192c730c9f95cafcc5ab4d3a7378c5b4",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CraftingConsequenceRecords.cs.meta"
+    },
+    {
+      "sha256": "0e8e18e77ee88a8a34b4ade5cb40fbda9a08dcb69e5332d11be01c09b7a03e7f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CropRecords.cs"
+    },
+    {
+      "sha256": "49393984038b5857ab4ec6fb0106fdc4b14c42f35f00bf21dfc76ec6cecdd296",
+      "path": "com.decennium.foundation\\Runtime\\Core\\CropRecords.cs.meta"
+    },
+    {
+      "sha256": "aa7975f8bb99054d7275ddc0f8d71e97854a3146aa0cae6b4b91982ebea60b0e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Decennium.Foundation.Core.asmdef"
+    },
+    {
+      "sha256": "c4b689aa3b4675f0b4ff43329a35ec5c0e189aea582df70d60ef2b7ae3336cb1",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Decennium.Foundation.Core.asmdef.meta"
+    },
+    {
+      "sha256": "cc0059f98da32685194bd7a69e6240d19ce386f8347317e5a2939e500689be68",
+      "path": "com.decennium.foundation\\Runtime\\Core\\DiceStream.cs"
+    },
+    {
+      "sha256": "f82bd48780fd8b7dc5ecc26aed8e326caa13c76c89464d65ec2de68618166a33",
+      "path": "com.decennium.foundation\\Runtime\\Core\\DiceStream.cs.meta"
+    },
+    {
+      "sha256": "ac3c2210250b8a4bc064fb165df375e24937226e879c01d702729bc0e0f8040a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\EncounterHistory.cs"
+    },
+    {
+      "sha256": "04eb97319c5a491f11193b425a171f738cbf48d996560b81ec9e6a6004e57419",
+      "path": "com.decennium.foundation\\Runtime\\Core\\EncounterHistory.cs.meta"
+    },
+    {
+      "sha256": "b5bf6ba29cf8c54c9da57e91e163d604ecb2918505fef6f7126d7b026d34fbd6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionAssignmentRecords.cs"
+    },
+    {
+      "sha256": "0fb7daacb4398d67535ebd2529f6cb747d08db907da5b3f88b50f608e1dd2dd4",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionAssignmentRecords.cs.meta"
+    },
+    {
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionBillRecords.cs"
+    },
+    {
+      "sha256": "8706c5d8dec521cf2de2519cbfbfafb485de15d7596d83b8ab3406cf9a9317eb",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionBillRecords.cs.meta"
+    },
+    {
+      "sha256": "7ac6e3494c0b23db4bc3b26a46c8d7c7601d85fcfa8aee77e6afa96bc86992b9",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionCampRecords.cs"
+    },
+    {
+      "sha256": "4ebd3cee85e472260b53a1328b26f8c711e411b24a0a5d1d8a7705f64bb08d17",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionCampRecords.cs.meta"
+    },
+    {
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionEpisodeCloseRecords.cs"
+    },
+    {
+      "sha256": "9598f09c6cd5c5e4651cf2f7ba04b9c6e0cd2dd0e2bbb037ccb9def992e43935",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionEpisodeCloseRecords.cs.meta"
+    },
+    {
+      "sha256": "ce84f3173af2553914ae51a78e4777f153e2b2f89eeca8080260cda52cd6481d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionHavenCareRecords.cs"
+    },
+    {
+      "sha256": "d3b666a61af657bd8b82ba4495e0a79abf21b2a519ba3583fc46af08f4470aff",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionHavenCareRecords.cs.meta"
+    },
+    {
+      "sha256": "71605ef694133c400462edcb977e4d4d4db8446a2ec8866c7bc5c0bdaadec192",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionMoraleRestRecords.cs"
+    },
+    {
+      "sha256": "35efe26c22d71a3056ca3181172b8216948e62bf48775237edc68346dfb8349a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionMoraleRestRecords.cs.meta"
+    },
+    {
+      "sha256": "91f3ac0fb1589f4242774ed0c7377275d66f98fa6c30441d011fb4cb1a466873",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionPressureRecords.cs"
+    },
+    {
+      "sha256": "9d6d070cedc8f2e436af7ebb816404ec2e79d88e7d4970039b16425dde5c97ab",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionPressureRecords.cs.meta"
+    },
+    {
+      "sha256": "0a48fe9cc55410415fc2f82e9fb58708a1effb067f807c726613aae1886bcbbc",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionProvisioningRecords.cs"
+    },
+    {
+      "sha256": "639f307925669e03f77f90028b9385469c18d0e3bbbd9bb3f698e4b7d33a6d11",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionProvisioningRecords.cs.meta"
+    },
+    {
+      "sha256": "7ab0fdbe6f5c03fe8ac8b03dae0c95fb3ddc9f4a8396cadcfaf3b12092344924",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteMappingRecord.cs"
+    },
+    {
+      "sha256": "fa09e49cb84b9f8ea1382f8a3fb9ffa78982c5ebcc93ffe46f0e4598b8036d30",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteMappingRecord.cs.meta"
+    },
+    {
+      "sha256": "3846d5ff34bafafe0e30555d0dc6289f4b7c0f9ebdea6131b1970cf9f8db1bf8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteMappingWorkRecord.cs"
+    },
+    {
+      "sha256": "d41253afb59c705c525198ebc4b8cced306c5ac3d7842dd3aeacef33e5fe6fd7",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteMappingWorkRecord.cs.meta"
+    },
+    {
+      "sha256": "ff6ac1595a534bed3e95932e3d5cbd69826ae5342f8a8205af332f020d491423",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteSpatialRecord.cs"
+    },
+    {
+      "sha256": "f6ca0c393d196c1ad6c5b64b0f25885aa8c103aea7b5b0f16aa5095fff94f493",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteSpatialRecord.cs.meta"
+    },
+    {
+      "sha256": "ee250fc551ab1fb8d5fafa32754c92758a8a3537a0a3c22f5a53da6ee666e632",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteTravelRecord.cs"
+    },
+    {
+      "sha256": "1105eddbbf5d903abf28a7de38f8d73d184fbfae061262f33483c40c60955fb8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionRouteTravelRecord.cs.meta"
+    },
+    {
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionStrainRecoveryRecords.cs"
+    },
+    {
+      "sha256": "a7bb8bbcdc41450dd44c05d2f0efe1394853473eab5a27639f583c36ca4c3058",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExpeditionStrainRecoveryRecords.cs.meta"
+    },
+    {
+      "sha256": "9c3d2a555e1fe2c6f7427d7dc071067030de34079595ebccab03014f25317c5e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationHideRecords.cs"
+    },
+    {
+      "sha256": "8a7081639799ad9c429c8c705e4ce7854e02b3b8f8a99601fa2e9fc721871c00",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationHideRecords.cs.meta"
+    },
+    {
+      "sha256": "ebde4f4364b4517408dd3c23cd815a309b3d327a41cd0ed3d61936279725558f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationHideValidation.cs"
+    },
+    {
+      "sha256": "f59ef559d738b387dd7427e78643c40acf0b172f4ef41844a37ee35c8032d4e1",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationHideValidation.cs.meta"
+    },
+    {
+      "sha256": "ee4f478ae2a26e45886fde2c444cb2ee8634853f9a6ef07a6501ca4bfeb35892",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationSearchRecords.cs"
+    },
+    {
+      "sha256": "ec23e0b39ce8cad1e9c24a4bef23594c0c571de8863551558c596a167bedb6c5",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationSearchRecords.cs.meta"
+    },
+    {
+      "sha256": "c0ba5df38b019fa635b67b0d32d5652b739f344740ef2222839e69c9877d5896",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationSearchValidation.cs"
+    },
+    {
+      "sha256": "911e411f3e7b2d90701290adcb07a69194d56c1aef71932e2d05a529b5b36027",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ExplorationSearchValidation.cs.meta"
+    },
+    {
+      "sha256": "83df74f96de6a06df3de0f33a3278daec683493236559466677789547415236c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FishingTrapRecords.cs"
+    },
+    {
+      "sha256": "97808584f4784ed66ca214bebc45aebd179e7401acbe293949bc9e3eff436d6e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FishingTrapRecords.cs.meta"
+    },
+    {
+      "sha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FixedEncounterRecord.cs"
+    },
+    {
+      "sha256": "3d2c316d979a7039130eb508fa06f3ca7da9d55c3474588b43b5b381f6263697",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FixedEncounterRecord.cs.meta"
+    },
+    {
+      "sha256": "ab6acc5f26d8b14ea71d586cbccb515ad813e814c4dc761f7010adc9ffd7307d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FormulaWorkRecord.cs"
+    },
+    {
+      "sha256": "73d80784c3c10cd77302b2918fa170ee4f9484c752d4b375a1ad48dd3d75d503",
+      "path": "com.decennium.foundation\\Runtime\\Core\\FormulaWorkRecord.cs.meta"
+    },
+    {
+      "sha256": "004d9a8c476fa669b44a7f7078b77a087f915e6d7af3a02b934fe6693eb156e2",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HarvestPreservationRecords.cs"
+    },
+    {
+      "sha256": "8dee74e28cfaf69271a44ec023d1a8c299177b9f22b5cdac685bbb67b4134e92",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HarvestPreservationRecords.cs.meta"
+    },
+    {
+      "sha256": "881ce841a96cbff6947c3e749407a05087cd9d73a9ed6b0719c163124b42296f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HarvestRecords.cs"
+    },
+    {
+      "sha256": "5e5eb9e11b4e3c6513f40d65a44afb349b5cba3950b5c742fe8a40877408ba7b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HarvestRecords.cs.meta"
+    },
+    {
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenAppraisalRecords.cs"
+    },
+    {
+      "sha256": "fd084d7e9c89bdd05d366a91131f3f872b843f99fb35f5d2f3f09b0fc8fc3d63",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenAppraisalRecords.cs.meta"
+    },
+    {
+      "sha256": "a0b749e94ecfb840e2583e925281d2e92bfada286fc9b239e5efaae3a89072cc",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenMealPurchaseRecords.cs"
+    },
+    {
+      "sha256": "fade5082e11e2ef48609235fae2ce77244b1941d7aed2910e999f0300c69007c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenMealPurchaseRecords.cs.meta"
+    },
+    {
+      "sha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenSaleRecords.cs"
+    },
+    {
+      "sha256": "4feba70113321699a575e010407ad8eda31f158032cd06b60c0e9212008aca02",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HavenSaleRecords.cs.meta"
+    },
+    {
+      "sha256": "8ef384efb463eeec961490e5015ca93a431e0d1c6a9b45c3ac264c8581aea425",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HuntingTrapRecords.cs"
+    },
+    {
+      "sha256": "852f7847cd0f823b79b788360cf2b5088e622e0dd84791eb3258f1a0be752d3e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\HuntingTrapRecords.cs.meta"
+    },
+    {
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\InventoryRecords.cs"
+    },
+    {
+      "sha256": "a1dc5dda8cb782f5fe93bb0cb29c404111e1e43f106e8051e0e2311955d0f0e4",
+      "path": "com.decennium.foundation\\Runtime\\Core\\InventoryRecords.cs.meta"
+    },
+    {
+      "sha256": "7714805b0cf55fe6d433d114f10ec68e4ac842d0ab61cda4d031919ff97fd527",
+      "path": "com.decennium.foundation\\Runtime\\Core\\LaterEncounterRecords.cs"
+    },
+    {
+      "sha256": "63f9def81f0d0e079bd9269d7022bd05404c0a1856f21f6705276435d4e66d7c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\LaterEncounterRecords.cs.meta"
+    },
+    {
+      "sha256": "b0e050ed8edefbff9ab69e548b01926d1e0049d9574937ff1e5a866473541166",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ManufacturingRecords.cs"
+    },
+    {
+      "sha256": "f930cfdb1034df4341e16527e1a6b4745fdf6e4a8758e5b855499de9e636d9bb",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ManufacturingRecords.cs.meta"
+    },
+    {
+      "sha256": "c9237d91fee4ca821a46a895d22113a463e921b0464afeac0c6ce9c0d804ddde",
+      "path": "com.decennium.foundation\\Runtime\\Core\\MiningAssayRecords.cs"
+    },
+    {
+      "sha256": "ba0fb7b78b6a97057236915f71078f374613e941947706cc7b53b13d0fa381f8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\MiningAssayRecords.cs.meta"
+    },
+    {
+      "sha256": "c188872251f0ec336396dffd0e8873e663b21492659ecd5e49264dc37d552a49",
+      "path": "com.decennium.foundation\\Runtime\\Core\\MiningRecords.cs"
+    },
+    {
+      "sha256": "d2baf6ba68cea17ca9f7fc49609b14f20a773434e9da8dbfbb3b0987d643bfb7",
+      "path": "com.decennium.foundation\\Runtime\\Core\\MiningRecords.cs.meta"
+    },
+    {
+      "sha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "path": "com.decennium.foundation\\Runtime\\Core\\NextCharterAgreementRecords.cs"
+    },
+    {
+      "sha256": "995c45e83e38b3f49f798fe5325ecd32674d904f0bf46c5fee9efe7710d6a3d8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\NextCharterAgreementRecords.cs.meta"
+    },
+    {
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "path": "com.decennium.foundation\\Runtime\\Core\\NextCharterPlanRecords.cs"
+    },
+    {
+      "sha256": "4970bac87538c95a6c3e2d557e40f2c5d083139bbe02d4320fb748a90d1736ff",
+      "path": "com.decennium.foundation\\Runtime\\Core\\NextCharterPlanRecords.cs.meta"
+    },
+    {
+      "sha256": "649ee3459cf5281a5da598d66acdd0a17080ded8bb56951a8ded167128457ed6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ObservationRecords.cs"
+    },
+    {
+      "sha256": "59fb3cb3a15390cb521d27d4f4d09a2bf60bcfcee37e1bbed0d5ebae30d7de5a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ObservationRecords.cs.meta"
+    },
+    {
+      "sha256": "9cd1edd522bc42f80a15a9ea446844b1a5bcb204b0ff3008ea8c2e893c961e87",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OrdinaryReceptacleRecords.cs"
+    },
+    {
+      "sha256": "283cf3fa6400d64f109878f1b79840c9e3108ccdd19035e03086b9a0ffca77fe",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OrdinaryReceptacleRecords.cs.meta"
+    },
+    {
+      "sha256": "f8b09d0aea46ecd17b1d8a44657e8a9e131fe5de2edac7b1330cf637bff92042",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OverwatchExecutionRecords.cs"
+    },
+    {
+      "sha256": "34dcdb15506d7efd7593398690024b97b743b9b40dafda1ea335c0653257be90",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OverwatchExecutionRecords.cs.meta"
+    },
+    {
+      "sha256": "46cdbc55b4a6b28508e9cfd3a6f76a8e7b8dd4e0d01d41563bbf2dee95b39884",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OverwatchRecords.cs"
+    },
+    {
+      "sha256": "a457af87b229bd9f1950795434856f05f71eca5d99e84e3599d4cbfa22438944",
+      "path": "com.decennium.foundation\\Runtime\\Core\\OverwatchRecords.cs.meta"
+    },
+    {
+      "sha256": "691461e14aeafcccfd499de39b564e8728d2e05c39614ef522abbffd25b6fbe5",
+      "path": "com.decennium.foundation\\Runtime\\Core\\PeriodicRiderRecords.cs"
+    },
+    {
+      "sha256": "2e686c37834212730aff69b9748b8e4293237014ba13eb509587c6b54f421744",
+      "path": "com.decennium.foundation\\Runtime\\Core\\PeriodicRiderRecords.cs.meta"
+    },
+    {
+      "sha256": "98a9f70aa90b62aba66beea648d2a93454bc538ae15feed143f52bfafb10d374",
+      "path": "com.decennium.foundation\\Runtime\\Core\\PortableEquipmentRecords.cs"
+    },
+    {
+      "sha256": "9d9e37a2b1a91942d2c87eaba7257321a293bf303ee8777105d8586b89f23b5e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\PortableEquipmentRecords.cs.meta"
+    },
+    {
+      "sha256": "dc0749e9f3dec8a26acb4104888a801842de33b92bff88c3ffef2af4df25aa7f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ProspectingRecords.cs"
+    },
+    {
+      "sha256": "e55661f489c1343410a7be9666cd82cc3d519d3d47759367d0f94bde47b56461",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ProspectingRecords.cs.meta"
+    },
+    {
+      "sha256": "5b5768e7e9a39598e42c54282c05364e4b89853e5f03c6d9b223afea34138c2f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RangedCombatRecords.cs"
+    },
+    {
+      "sha256": "43c80d8e5ebbab5f0b92b8987d2098d98c811def30f6fc7d4b986fbe8f7868b7",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RangedCombatRecords.cs.meta"
+    },
+    {
+      "sha256": "1df7f176d81ff6f7e128737842a0e667083af56c89adf55348166c45cda20152",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReadyActionRecords.cs"
+    },
+    {
+      "sha256": "e63819e27655e8950e0f5712e561813c6708cd8cbbffdca9f2f089e6fddb718c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReadyActionRecords.cs.meta"
+    },
+    {
+      "sha256": "53c9c639de6b745caf8d3ce98d9e424d9608676b2ca2055d195741711cdc8e4f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Recipe347Records.cs"
+    },
+    {
+      "sha256": "3029ff861c780e0bb9252d2c0f82ae1b73bb2430cddc632426df2ad87a6eda00",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Recipe347Records.cs.meta"
+    },
+    {
+      "sha256": "965a165880da2279b8448625ca6805c441eae1c15feece26c833a8941ed3e00c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Recipe347Validation.cs"
+    },
+    {
+      "sha256": "535c4f3f0838bb18530e02a4917784ee0f1bc01fe04af481bd2d38d78ba1db54",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Recipe347Validation.cs.meta"
+    },
+    {
+      "sha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReengagementRecords.cs"
+    },
+    {
+      "sha256": "2026f904f1d1506135e71179bbecf4bb43abbad628219f4b3a57e1440dcae557",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReengagementRecords.cs.meta"
+    },
+    {
+      "sha256": "1355d0b7f5b455aa401fec0b5b7b5eef5207f84acc7095fc5eb0f2aa35a9deb0",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReengagementValidation.cs"
+    },
+    {
+      "sha256": "c32711f410266d5aa72156ba5693de50abd04c5492a76a3f03314cc140960ce6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReengagementValidation.cs.meta"
+    },
+    {
+      "sha256": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReinforcementRecords.cs"
+    },
+    {
+      "sha256": "9b6612292ffe09d69175cc052fe96e007fcd5f66787ef63caf64470ecf2003ca",
+      "path": "com.decennium.foundation\\Runtime\\Core\\ReinforcementRecords.cs.meta"
+    },
+    {
+      "sha256": "8a82b83734cedcbc71152744d4ae3a7da8a145ac0b114a395f28f2d3225ed484",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RepairWorkRecord.cs"
+    },
+    {
+      "sha256": "55af229d4687d6f7d015c1bbfa925742780fcf9d960b35c6352c92c2e29c464f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RepairWorkRecord.cs.meta"
+    },
+    {
+      "sha256": "72208e1f54bf7c49a4c69c1ea656b4c47a489b155d3bd1f6907df2b60fa064a5",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RetreatRecords.cs"
+    },
+    {
+      "sha256": "faf3367a44ba94f399e5619af07ef6d61d0189ac1678646a8339ecca3e50871a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RetreatRecords.cs.meta"
+    },
+    {
+      "sha256": "43fbffe7fa13fb9ac0cdea0fd10f222fda0c2a36622b4b357f1eb94f1a4c19b3",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RetreatValidation.cs"
+    },
+    {
+      "sha256": "921b9277e290815640dbebd3cfcde84cd1d6f533c1ce4a798693745e3644753b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RetreatValidation.cs.meta"
+    },
+    {
+      "sha256": "63623c1e5566860e350aa19be29f6cba25d82b6c6a7b19770f83374c77e952d6",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RouteReconnaissanceRecords.cs"
+    },
+    {
+      "sha256": "3d0bfcd1edbb45938aa60a63247714aadc6883160802811bc73f82c9a1369376",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RouteReconnaissanceRecords.cs.meta"
+    },
+    {
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RuleQuantity.cs"
+    },
+    {
+      "sha256": "6524e99f0bfc971414132c8d864e69a9b3237adc7e394cc09b6c6d2db3671f4f",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RuleQuantity.cs.meta"
+    },
+    {
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RuleTime.cs"
+    },
+    {
+      "sha256": "e906fc9b842948cd9a1b741e549fad3e2e570e7c13f4f54cc8a167fd1fd630f7",
+      "path": "com.decennium.foundation\\Runtime\\Core\\RuleTime.cs.meta"
+    },
+    {
+      "sha256": "b8956347d28ce33c2540eff5de419b66e9f8127e48e3616f0cfc91205fef3de4",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Simulation.cs"
+    },
+    {
+      "sha256": "d64986f740558dd8411d7a02eeb58eefefe86076e930b29b8c5fbf120f7f7d2c",
+      "path": "com.decennium.foundation\\Runtime\\Core\\Simulation.cs.meta"
+    },
+    {
+      "sha256": "146d1459db11189772784ee6f4d6db94fe6fcaf32789eda4f3a8e050f24dd6f8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SoldierDefensiveFormationRecords.cs"
+    },
+    {
+      "sha256": "4e516f402db864212a067c828bed41b4e002ca8580d67ac690fc1c47a3e5c86d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SoldierDefensiveFormationRecords.cs.meta"
+    },
+    {
+      "sha256": "426cf152eeeff1d19627a4b4373fd6142e9d46fa0e2d930a637367a05e4f1f2a",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SoldierTacticalFeatureRecords.cs"
+    },
+    {
+      "sha256": "3094045ca5d85db01e610f721be91ba6616be2800ad85d36a747db69bab4eb21",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SoldierTacticalFeatureRecords.cs.meta"
+    },
+    {
+      "sha256": "35c119c585d37dda2c47b286bc1e204119f8cd7766d7a23c6dbbe09503830aa2",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SupplyCacheRecords.cs"
+    },
+    {
+      "sha256": "032018ddd6e06fc5f509a39c8d9b055ea808e6ebd742cb3171a2bff02e050dd8",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SupplyCacheRecords.cs.meta"
+    },
+    {
+      "sha256": "067d56d5de760341bf34aee3de51260884bcadef70fa6d3ee4630add9f2cc705",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SurpriseEntryRecords.cs"
+    },
+    {
+      "sha256": "09d621f6034e67e8e0e743a12edeb6877490cf5b2957ed891a4bb0d299b31a22",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SurpriseEntryRecords.cs.meta"
+    },
+    {
+      "sha256": "cd867f289c80da90195e7ddfd1269d897e61233405b5812e17c4a90f04297830",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SurpriseEntryValidation.cs"
+    },
+    {
+      "sha256": "b59b6e6c26aa197bfd48e338ddfc1e6df44cf69d91f976a0c89abc792dcd7b4d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\SurpriseEntryValidation.cs.meta"
+    },
+    {
+      "sha256": "5c8f02df3e9e513ca4c6707838a2430edb947a0dc1c25685b89bfa8db5835b69",
+      "path": "com.decennium.foundation\\Runtime\\Core\\TacticalMovementRecords.cs"
+    },
+    {
+      "sha256": "c0e3e299b69d7f1873e949d1aa0ef1ed16d1ac68e59b7a74ba2e9f70287dd4bb",
+      "path": "com.decennium.foundation\\Runtime\\Core\\TacticalMovementRecords.cs.meta"
+    },
+    {
+      "sha256": "c7e27c0eebfbe66aa0414bb1c0bc41e24e3bcabd7440e96f555ab1eb4bc07c6e",
+      "path": "com.decennium.foundation\\Runtime\\Core\\TemporaryCampConstructionRecords.cs"
+    },
+    {
+      "sha256": "661febb709c2b048d55294468b667cd0a9dcbada8fde18b812a4f9b3f4544dbf",
+      "path": "com.decennium.foundation\\Runtime\\Core\\TemporaryCampConstructionRecords.cs.meta"
+    },
+    {
+      "sha256": "86c3d43c0990c70470a257a0c126cf84f366e697245c2766d1a613c1636eec2d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\VesselHandlingRecord.cs"
+    },
+    {
+      "sha256": "8b7081493ced8385045aebf00b6d9e977e0df9768cf3d6785a6cbfe4aed31f59",
+      "path": "com.decennium.foundation\\Runtime\\Core\\VesselHandlingRecord.cs.meta"
+    },
+    {
+      "sha256": "53ccad179ac816bbd019ef516c0a47c91fe269972e5914d06f5918d85de490d1",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WaterVesselRecords.cs"
+    },
+    {
+      "sha256": "2b418fc46afe68282c0a83f8c0f0d59f12df3fb1a517036ff268930a9891c7a5",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WaterVesselRecords.cs.meta"
+    },
+    {
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorkLedger.cs"
+    },
+    {
+      "sha256": "40bb8c584f3a630fa3af92b59e4c461b390221e9624fd558c4cecb5f22164855",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorkLedger.cs.meta"
+    },
+    {
+      "sha256": "5c3bac187349e12f25fe90cfe575e1bb1f62143ecc6cd82244f16c7cd43152f1",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldActivityRecord.cs"
+    },
+    {
+      "sha256": "7c9ab09a2f4cb3302366d33f6c9c8f8fdc165c75c9471574b7fda604253e23cf",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldActivityRecord.cs.meta"
+    },
+    {
+      "sha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldPositionResolver.cs"
+    },
+    {
+      "sha256": "998a486d9683a25b982235b0ba10378a819806b3f635070fd5f6265d67f0ba4d",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldPositionResolver.cs.meta"
+    },
+    {
+      "sha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldScheduleRecord.cs"
+    },
+    {
+      "sha256": "7fccd1ee4bfecc6bdc15041c83d6b10f4e6ee0fa70a57d74747580b7a2ed70bb",
+      "path": "com.decennium.foundation\\Runtime\\Core\\WorldScheduleRecord.cs.meta"
+    },
+    {
+      "sha256": "652d846d945c4ad11b2818034052e60c78ea2a8cce7f418dd85abf4e67d48577",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ActorLifeCodec.cs"
+    },
+    {
+      "sha256": "a812ddd3bceb8e1c603ec517bb979dd3a8d67e3b32177776fefac5b199765cae",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ActorLifeCodec.cs.meta"
+    },
+    {
+      "sha256": "1ae0598154fcfc559bfe86694edf9cdecd3c3b576251839c487c8e7e54d44556",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ActorMovementCodec.cs"
+    },
+    {
+      "sha256": "390969d033e165e9f6ceccfff00e54c75b0172e68480b3514663a966fc09a95e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ActorMovementCodec.cs.meta"
+    },
+    {
+      "sha256": "d1407170060d61122006d55d5af9ae222a1fe27fe9bdfea84fc9ed06917758db",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CacheExcavationCodec.cs"
+    },
+    {
+      "sha256": "425cf67d7c1d95a51cb4a46a32c74493e037c32a938b4e3ae95ce2c5dfca4b7c",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CacheExcavationCodec.cs.meta"
+    },
+    {
+      "sha256": "21f3e6f2f617afe84b0a1a89c3e968abd05fe72f17d878151baf76ea330044a4",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CharacterAdvancementCodec.cs"
+    },
+    {
+      "sha256": "964362de8d9ca01c451c0626328c39f666731cb16978b28958c16e0ad70e4035",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CharacterAdvancementCodec.cs.meta"
+    },
+    {
+      "sha256": "cfbdf610ae4f33006eef71c8644051b9d707740e8508c92306768ed7acac8ffb",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CharterAttemptCodec.cs"
+    },
+    {
+      "sha256": "d5ca356fe01dd237ba0458d0d91bce97bf184c95daa8adaf6232d05207586f30",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CharterAttemptCodec.cs.meta"
+    },
+    {
+      "sha256": "2a3b523e1733f4b10fe283215d72a295db4a2be2fdf1483befdc47620ef59ea1",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ClubAttackCodec.cs"
+    },
+    {
+      "sha256": "91a6c1edb3e3907735e100838238104b4afed2d53a4c42e1eda312e5e94a02ee",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ClubAttackCodec.cs.meta"
+    },
+    {
+      "sha256": "506e6cf8c2a5a2bc202cfae6d7b934e38598592a0b08140a0e867ec4499cbdae",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConditionJournalCodec.cs"
+    },
+    {
+      "sha256": "72c13781755095a3fb8441071aeaffe1e3fd97fe21d461b1ed61bd845cfad838",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConditionJournalCodec.cs.meta"
+    },
+    {
+      "sha256": "3926b93cf941904c02a04d7dcff4dc5a83b050e810088cc7c6b734e1ee3d4ddb",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConnectedBloodSpecimenCodec.cs"
+    },
+    {
+      "sha256": "8009dd30bd66c21478024b58884ebc1cba2b33db224ec6747f24959e8106f5f5",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConnectedBloodSpecimenCodec.cs.meta"
+    },
+    {
+      "sha256": "3bce401829ebf50d32041bbef2acfd5f5196c9496251e0d8e983e16f993230c9",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConnectedRecipe4BatchCodec.cs"
+    },
+    {
+      "sha256": "92c0d6e7778f82adf7a1dcf5930d2c88c7e02249d1de3674f238468733f541d1",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ConnectedRecipe4BatchCodec.cs.meta"
+    },
+    {
+      "sha256": "d6fcb0f3a0e4426ac56f0ff60cb9a63ce512ea4b1cc503abbc18dc4038b78f7b",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CraftingConsequenceCodec.cs"
+    },
+    {
+      "sha256": "198ae8269635daed8692f86ce57ad0ff19ca7ae04c3417608154fdf725e38930",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CraftingConsequenceCodec.cs.meta"
+    },
+    {
+      "sha256": "9e77b0edd18e77de3de26f4afbe08c92ec1ede7d2c080b80111f63e787c44ce2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CropRecordCodec.cs"
+    },
+    {
+      "sha256": "b6b3b1ba3a79b47be912d76f0b985b684e73fe18e4f7900b45adbde3dd5107c9",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\CropRecordCodec.cs.meta"
+    },
+    {
+      "sha256": "df2c74d972df50f77b4f332b59af160f9688a998fc1b09f22842779a4ea5b382",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\Decennium.Foundation.Persistence.asmdef"
+    },
+    {
+      "sha256": "7431d4825659670f2918385b24423d410ef86228c17e2a531f3a2fe9e47f5853",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\Decennium.Foundation.Persistence.asmdef.meta"
+    },
+    {
+      "sha256": "b5bffed8c5df99d921272e647d300d4873a80adec3d3f436eea86c44a6814d8a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionAssignmentCodec.cs"
+    },
+    {
+      "sha256": "4c6ad0e8cede87eef84d24819b89d23881b2b03d6479b3fe486b53ed792a7214",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionAssignmentCodec.cs.meta"
+    },
+    {
+      "sha256": "53f063014592f3128e24027dc540aaf6c13c45d64beec62aa74b87812fd6cc39",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionBillCodec.cs"
+    },
+    {
+      "sha256": "bc6db5a55b0e05d06f5f2a948716740bd9417c223e66e5fef8bf18f0931c854d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionBillCodec.cs.meta"
+    },
+    {
+      "sha256": "91bd05e373be1e2c5ab8f1b1afb30b2ef7d359ff4b15ee02fd66a24e2a0d8f7a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionCampCodec.cs"
+    },
+    {
+      "sha256": "8cba0bfca90310573bc3345031f8636e2d345c27abd1593ad28f0a6f69f0ecdb",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionCampCodec.cs.meta"
+    },
+    {
+      "sha256": "d0c2858e8c962171c42400d1e5b22315788953c4f6fc5ddcd05d77321012434b",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionEpisodeCloseCodec.cs"
+    },
+    {
+      "sha256": "5752d468cfad2d218059d9b8c9afc759db2f0a547740c0647d7317c796bc7f1e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionEpisodeCloseCodec.cs.meta"
+    },
+    {
+      "sha256": "001c19ca62b111eb4fa513380c7d46c56aff9e5194c5e3f066a2244f24a67e6f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionPressureCodec.cs"
+    },
+    {
+      "sha256": "fd7f009b69795ab63e7f7395598ddb0a08aa2f8e92fd554435f635278354e5e3",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionPressureCodec.cs.meta"
+    },
+    {
+      "sha256": "2439bf41bda623262ee65b4ac80f1d6e2535256fd653f57bc2a706f8e7c84d24",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionProvisioningCodec.cs"
+    },
+    {
+      "sha256": "5b0025d4ecc4244fbc9e03b85abbee4faffb603ce534b0285ee3747be138e8a1",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionProvisioningCodec.cs.meta"
+    },
+    {
+      "sha256": "0f8d8f2cce7dfdec5d33d77adff9b410f1495f27723e542224490da6217d1623",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteMappingCodec.cs"
+    },
+    {
+      "sha256": "b9f8ee64d90204fae1de2ff5efe17e337a99264fbc9618e7c1dbe71a7f52b02f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteMappingCodec.cs.meta"
+    },
+    {
+      "sha256": "0728ad906059c018a25149c7c952843fc80b3c16699accb3ae7f91d45bdae9e4",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteMappingWorkCodec.cs"
+    },
+    {
+      "sha256": "f719b5a53865f22365754056fc471d4aea728f27905a13b53839adeb404c1172",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteMappingWorkCodec.cs.meta"
+    },
+    {
+      "sha256": "681d37888b3ff3f17f0c8804143c4e06f85efb106a9f4e2a1986cf18a04cc809",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteReconnaissanceCodec.cs"
+    },
+    {
+      "sha256": "c60d2fb6a7bfde1d1c8371d75ec0bf258c2d46b53a402fc940a837ef2c4081d2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteReconnaissanceCodec.cs.meta"
+    },
+    {
+      "sha256": "1ceff9c99b796bd77173b3511c5e2fd7bcab68ec325ad2e939d82cd350b90ad5",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteSpatialCodec.cs"
+    },
+    {
+      "sha256": "f18554f084443fa094989effddb525c78dc54c3538a9907248f939b7752c64c5",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteSpatialCodec.cs.meta"
+    },
+    {
+      "sha256": "8cf238c80935b3ba78a231345a627a0d1d275acf859940a2011f173afb8f827f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteTravelCodec.cs"
+    },
+    {
+      "sha256": "ba5f630f4a828cf33fb8457d0638f8fa94bc470e2588575f4f28f120dd59f00f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExpeditionRouteTravelCodec.cs.meta"
+    },
+    {
+      "sha256": "6f17ab5b6307b2718c4e23c3c074d195bf9e598aa8129b4ba2941c68557b5b31",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExplorationHideCodec.cs"
+    },
+    {
+      "sha256": "92fd9914b600c6198c18724710d10c3558468a5d517ee108df5077409f412dad",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExplorationHideCodec.cs.meta"
+    },
+    {
+      "sha256": "19f085359b138d6fd521af1e9c67d8f7468ee81bbfe93a746afcfdab87e87f31",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExplorationSearchCodec.cs"
+    },
+    {
+      "sha256": "3dcb0aee10d058e2d233fc64af9fa1b6bb372cb9fef1e8cd58213e4a1e4e942d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ExplorationSearchCodec.cs.meta"
+    },
+    {
+      "sha256": "7d62601da0aa6e314f109293943cebc15918dc72389f8dc5825a18f0d0476058",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FishingTrapCodec.cs"
+    },
+    {
+      "sha256": "8ac0bfff81fa6eed999c583fa8bede4d09e686f00ccc6955f138fdded8ca5fff",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FishingTrapCodec.cs.meta"
+    },
+    {
+      "sha256": "f203cad1ac2ec29484666c127b74ec2865d143719902c0c2627780c94ef826a3",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FixedEncounterCodec.cs"
+    },
+    {
+      "sha256": "3ae2d8c6fda99b67171b0bcff053efe58a3c8823f89a0672fe155c935ca9311f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FixedEncounterCodec.cs.meta"
+    },
+    {
+      "sha256": "47f77f1c610c6cc37a18c45602f9fbff9d4ecd747eedcb810d61b956305cc483",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FormulaWorkCodec.cs"
+    },
+    {
+      "sha256": "e50d0a60535454b89b190440cd3813b1bfceb09b603fd09d548d8b455e2fede0",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\FormulaWorkCodec.cs.meta"
+    },
+    {
+      "sha256": "9edf4e6297cdeb3ac8fb5683f0b7d9cd1293424fe6e979678721c82ce49ef93a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestCodec.cs"
+    },
+    {
+      "sha256": "6ca0f595ba2a1bbef4216d77c2e7f8c1a7ddd6e139468905007c02a8ddfb1380",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestCodec.cs.meta"
+    },
+    {
+      "sha256": "dc986b63ea1690a9bdca32d15944a7e0bbd152570ac878efcf9308b874c2437e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestPreservationEvidenceCodec.cs"
+    },
+    {
+      "sha256": "b0259df6dbf9d7783e388c0e13d132bca33fb4598883416ab4808c02dc66672a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestPreservationEvidenceCodec.cs.meta"
+    },
+    {
+      "sha256": "2d792ed67b3e01028b82692eb76776272cc7c0ee906133c32a30d6ccb326b2b4",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestPreservationTreatmentCodec.cs"
+    },
+    {
+      "sha256": "50c20b478b9ed8ad4a4d716f59a150ecd8b4af7906520f7ef153029b9196091d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestPreservationTreatmentCodec.cs.meta"
+    },
+    {
+      "sha256": "c70918bc0cf4479cd2447b70cc62878bb563118f084b21002314fb31c9b9fc5b",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestRequirementWorkCodec.cs"
+    },
+    {
+      "sha256": "9f0d7f41dae88a4e5b6e29239bcd9ef5a2d72c1ac2eec81c1793b07812cb659e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HarvestRequirementWorkCodec.cs.meta"
+    },
+    {
+      "sha256": "30da53411f8a515f56523a96f3b32702ed9b8ff39611911662a0cdac76c457ef",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenAppraisalCodec.cs"
+    },
+    {
+      "sha256": "4975fca16fa51b821c565fe0d916d5f012d91b64e3609276128acdb67e74f3ef",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenAppraisalCodec.cs.meta"
+    },
+    {
+      "sha256": "cc863a1de9ce8553427ab22e397beaecff434473982cecbbf0828e546d524616",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenMealPurchaseCodec.cs"
+    },
+    {
+      "sha256": "a69fc03d7e8dcae2fd2d2b9b0dffdd6fa6ec3b5b91ef5438a85139fe60c5b6b0",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenMealPurchaseCodec.cs.meta"
+    },
+    {
+      "sha256": "228b3da3e139a8aa767142bb68fad87eb9986da947fb48c62a824cbe0d8cbe8c",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenSaleCodec.cs"
+    },
+    {
+      "sha256": "a7c1c9f560d0b27a71801cff5566edde508f7a8d986fe8665aaf3861bec7ef6f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HavenSaleCodec.cs.meta"
+    },
+    {
+      "sha256": "7b33f5e9dc2d26276f360b2b91729e8f0138c667eba2fdf933f313f4693b838e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HuntingTrapCodec.cs"
+    },
+    {
+      "sha256": "3e56363ffca7488893540eb3b89ad6ab241af028464b422bb81b831a31902ec8",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\HuntingTrapCodec.cs.meta"
+    },
+    {
+      "sha256": "ab21b90878048d1f5cf46b8baa215438d8e5434167e30700eaf7ca9d84f2d330",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\InventoryRecordCodec.cs"
+    },
+    {
+      "sha256": "62fcfc55faf691a5ad2ab2418ae4e1da32a5c08461063923c19fa382c33e4fa0",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\InventoryRecordCodec.cs.meta"
+    },
+    {
+      "sha256": "459c3936792d0611f1ad539ce7910e177eaa99b5e0fbb8471c6ca5245aa8a793",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\LaterEncounterCodec.cs"
+    },
+    {
+      "sha256": "5e3c2f0af0428bf2060f0f57e11bf84953d612a76adc3769fcaf9c5665095351",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\LaterEncounterCodec.cs.meta"
+    },
+    {
+      "sha256": "430aeeb99b7d181197f5577397bbdf97943d971c7328df5fc1c269643ddb672d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ManufacturingCodec.cs"
+    },
+    {
+      "sha256": "3c444fa95d11b87f1a79cb97afd08aea80a70accbf9f1321a7f7cbb7717977ae",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ManufacturingCodec.cs.meta"
+    },
+    {
+      "sha256": "138d9824c12056b52b28674a54c23cbb9152bd123d8e5480644816416a44a72c",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\MiningAssayCodec.cs"
+    },
+    {
+      "sha256": "c8a18c20a2ed6411539f76cbec06cfb199c206a8f5769b30cf48d8108f925f3e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\MiningAssayCodec.cs.meta"
+    },
+    {
+      "sha256": "a5974d7127820ae510021cc9e7c1978c2aaecac871318c56876ecf0ce7ddf9d9",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\MiningCodec.cs"
+    },
+    {
+      "sha256": "df37a6bb2c0337e3b00c311cd9446604e4fc35a8e84943912dc8aaeb717182d3",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\MiningCodec.cs.meta"
+    },
+    {
+      "sha256": "3340fcef6e9b9853d0a1055f05d4b362f4235b1577c7a672898ab1c410600ec0",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\NextCharterAgreementCodec.cs"
+    },
+    {
+      "sha256": "0d24f57e5ce63bcc992b3f39c66c6489a0b4f0b99bd45940acd30e7c29912a66",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\NextCharterAgreementCodec.cs.meta"
+    },
+    {
+      "sha256": "897271676f6c8c087f45d3f2eef3950e110ab46a8d3af7bea526aa7404ec9877",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\NextCharterPlanCodec.cs"
+    },
+    {
+      "sha256": "8f9c2acf469d684903d30f7c5429154010490b10a4360276206dbb99a1b2181a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\NextCharterPlanCodec.cs.meta"
+    },
+    {
+      "sha256": "5acbbf5791f4d66081d297b20eeaa2d885da81a089ec04d8fe80ce326dc724aa",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ObservationCodec.cs"
+    },
+    {
+      "sha256": "300e86aa72aefa91d93d989e1d45e4fda07ea7ccd979e50706243b89532f30c4",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ObservationCodec.cs.meta"
+    },
+    {
+      "sha256": "00af7284614286b25bcd22f71b35f13531447446c64e6db3095a21dc847ca30b",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OrdinaryReceptacleCodec.cs"
+    },
+    {
+      "sha256": "cf02bece7f2f9c662b33e5457fe3e7b2b7383d313cc6aeb6e2a8f04c3424d7e9",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OrdinaryReceptacleCodec.cs.meta"
+    },
+    {
+      "sha256": "815025bbe33cdbf9105dace83aed8d51b5638b7e45cc7026b651439616cbad45",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OverwatchCodec.cs"
+    },
+    {
+      "sha256": "d6a1c452fe8be393df79c669c16ac97c4e6fe3d9fc9886af1c621b3298416aa2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OverwatchCodec.cs.meta"
+    },
+    {
+      "sha256": "2e11231740bda8a3b1c38eda96caf2dba67fbc86e4529e47234341e31fd020c8",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OverwatchExecutionCodec.cs"
+    },
+    {
+      "sha256": "c0fc1633d8cdbfe0c153725b609dc2d6600c2e5dc5015f3539701d57302e2285",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\OverwatchExecutionCodec.cs.meta"
+    },
+    {
+      "sha256": "ccbcebc794ea7257690b6bd929786ab805e01bf4ccbcb3ddf4e8aac7c06321b3",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\PeriodicRiderCodec.cs"
+    },
+    {
+      "sha256": "c17ba9997289d835f85fbe3eb9012b29f2ed729b4d858929103020982b85579d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\PeriodicRiderCodec.cs.meta"
+    },
+    {
+      "sha256": "b92dc814606b364319d83a2cbd07ad6bd21a09be658d054804fcdd68b712580f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\PortableEquipmentCodec.cs"
+    },
+    {
+      "sha256": "9bf956001c3eb04d5dc870c1502ec82ccd1955732f2ed9c09c3f6246d77c0b2c",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\PortableEquipmentCodec.cs.meta"
+    },
+    {
+      "sha256": "9d1383bf6fe24e3f6b714a279fcee4dd4da897e2e299a93f8b0be4643e9a0c1a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ProspectingCodec.cs"
+    },
+    {
+      "sha256": "57c6384316793824a4a45bd2da4dd9043dbf3eb489df4c5a0752b837f38b4919",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ProspectingCodec.cs.meta"
+    },
+    {
+      "sha256": "6dfc0b0f3375a08579f93e67fa3046e18c0c0c238df1b7d2b6f0248c2812744d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RangedCombatCodec.cs"
+    },
+    {
+      "sha256": "ac6d80543b89f626ebe931c7ba1b64e2a6e52a513158085e46a69ede2e227a53",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RangedCombatCodec.cs.meta"
+    },
+    {
+      "sha256": "bbb8541357e06542a8a85cd01623e117102a9d2c323fa39eb0282cf217cd6ff2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReadyActionCodec.cs"
+    },
+    {
+      "sha256": "9ad7d4dff7a69da997650a2baed77943065dad001d0086b4b7e73c5a1099486f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReadyActionCodec.cs.meta"
+    },
+    {
+      "sha256": "27c316b592568348d22b35dc20a4cc9b68acb1fd129ce064999c31f192683a70",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\Recipe347Codec.cs"
+    },
+    {
+      "sha256": "80a071bd2c74e8d9ec4163c24732e98093e127225e1598acef0b7ff5e805abb8",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\Recipe347Codec.cs.meta"
+    },
+    {
+      "sha256": "8e7be6c21d5323e257a9c50bf6c3a60c18cb41709ee6ce836fac565b9a50d044",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReengagementCodec.cs"
+    },
+    {
+      "sha256": "5f9a866757454cff0450f126ac83f006a0fde5fa618e71c36e9c3ada4db2333f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReengagementCodec.cs.meta"
+    },
+    {
+      "sha256": "5c5974d2b2d6c4796a1f8f90f4622a8f47b2ff44c9366f5637a0eb81f980a6eb",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReinforcementCodec.cs"
+    },
+    {
+      "sha256": "b5f5ec542bbdb3033239b69deb9aae89e1f8baa2385034c027f11b366ff41da2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\ReinforcementCodec.cs.meta"
+    },
+    {
+      "sha256": "e07a81fd27c8d2c1ff2269c666af1748ec902230e9ea71262e34ceab9c87e92d",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RepairWorkCodec.cs"
+    },
+    {
+      "sha256": "1ef7982dec9e3cca26660d63f5cb435faa5311f07b7785fca4eb64f2eb5b5785",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RepairWorkCodec.cs.meta"
+    },
+    {
+      "sha256": "66a9d2a4eaf489692c795d367cf1f70f3552e1fb55400ed78f6752ad3761178a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RetreatCodec.cs"
+    },
+    {
+      "sha256": "252ad66a4b64bc0cfeb1ae90a175f229c4f85f56361589ed5b734c5158d1e91e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\RetreatCodec.cs.meta"
+    },
+    {
+      "sha256": "180384c057a5093bd918f655e072ca3b5933788840185e96abd6402ff0a8885f",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SnapshotCodec.cs"
+    },
+    {
+      "sha256": "ed13d0da2c2bddd9baed1ea8198eded01446fe10df747436ca22478cd9044870",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SnapshotCodec.cs.meta"
+    },
+    {
+      "sha256": "6c9788fe26a3d97d7f5f642d2f89aa5ab845517455570c6f26cc1a1f265937ca",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SoldierTacticalFeatureCodec.cs"
+    },
+    {
+      "sha256": "8eab36be5f17a7ae9a4726f7f09e5d1fdb9e1f6c4c022575af4ebaa9442978fe",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SoldierTacticalFeatureCodec.cs.meta"
+    },
+    {
+      "sha256": "40e0dc94c455f8708222127bb7c751fd11d2f408be372569dc91e3a57132355a",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SupplyCacheCodec.cs"
+    },
+    {
+      "sha256": "60fb9498772cf99976d8698ad521515d1ea43928d00757c15718f187bf3a3d78",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SupplyCacheCodec.cs.meta"
+    },
+    {
+      "sha256": "de936f3623906a1436803c483ec153783f7f7b01f572cb2305e8acbf77afd1a8",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SurpriseEntryCodec.cs"
+    },
+    {
+      "sha256": "d0c4a4b23d9d6d5b50367d4d861c885e745d124f6f579659b667de127d617fa1",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\SurpriseEntryCodec.cs.meta"
+    },
+    {
+      "sha256": "f2b5e437791d85d69f9619feda9badbb0cee6b3b467ad35c7a885301f0ed76a2",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\TacticalMovementCodec.cs"
+    },
+    {
+      "sha256": "1962226c1f916844d29c7de5004603666bab905b38a301d3d723efd1efe967e3",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\TacticalMovementCodec.cs.meta"
+    },
+    {
+      "sha256": "a76d9d42f0fddbdd435605f4bb353abdd28ba4abd15a44a22f055d3d98ec79da",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\TemporaryCampConstructionCodec.cs"
+    },
+    {
+      "sha256": "e825f8c99c644583ca71017352aad86283a27b7a03ce5104d5af00e33546a626",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\TemporaryCampConstructionCodec.cs.meta"
+    },
+    {
+      "sha256": "b10968b204c95038e071f5a5d6d00204fb13e0b2f6970616d88efe7c6368d464",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\VesselHandlingCodec.cs"
+    },
+    {
+      "sha256": "033f56f4e099f9a8336eb2914563c6431ae1a76997aed3748e81fcbc0897eac7",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\VesselHandlingCodec.cs.meta"
+    },
+    {
+      "sha256": "cb5e480873e3c718cc18a72d389dd413ed8111d327fa0f0f7994880870148a64",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WaterVesselCodec.cs"
+    },
+    {
+      "sha256": "ede9e939ebaf190f3b065959e100e414caa9befb8c44e188d26ee79512729847",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WaterVesselCodec.cs.meta"
+    },
+    {
+      "sha256": "a0776281efeeeaee538d9fe97adfadf97ac2d7752b721d4806c3d9386458909e",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorkLedgerCodec.cs"
+    },
+    {
+      "sha256": "b5d968292bfa0c3b3d772e66120b1f51c72011ed5208a06d5479a02c27d12df0",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorkLedgerCodec.cs.meta"
+    },
+    {
+      "sha256": "7d9ee2643662ce43f25e30297bf225088fa13f4ab63c458468c7cee243db73c4",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorldActivityCodec.cs"
+    },
+    {
+      "sha256": "7ffd0f3bbd93e20e3fb0cd30dd5288e9817459902d8c483d6e225cc489f891a8",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorldActivityCodec.cs.meta"
+    },
+    {
+      "sha256": "55f776670ee55d45cdc34098f53ad47503d70d6c783bc2b39d9c0477735f2e1c",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorldScheduleCodec.cs"
+    },
+    {
+      "sha256": "61b89729c81e7fe33c1e803bc55512f30512a31b2699732aa6d8d7c0e40bbe08",
+      "path": "com.decennium.foundation\\Runtime\\Persistence\\WorldScheduleCodec.cs.meta"
+    },
+    {
+      "sha256": "a571352be3efe1e5969756c7902dfb8fde96c3012ad50aa0815e900bbd7121f3",
+      "path": "com.decennium.foundation\\Tests\\EditMode.meta"
+    },
+    {
+      "sha256": "24e275562e947df1e19a11e774c81a72d2f13e2569b19531d120cf43708dcef7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\AbilityCheckCases.cs"
+    },
+    {
+      "sha256": "96037e878526c5bcf6ffbf70a4e799dbb378f799136d0ec31e00173dea8eed88",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\AbilityCheckCases.cs.meta"
+    },
+    {
+      "sha256": "342bec2040f507217a0eda915ea90a2c5b48749f6ca02f94c7bea55e702bc0dc",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ActorLifeCases.cs"
+    },
+    {
+      "sha256": "12b0be202889e279b8f95617a97811d52a815942c0f1f0273dc3fb59a62c8c70",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ActorLifeCases.cs.meta"
+    },
+    {
+      "sha256": "e253e782136eb5b4117eeb0b042f8165f195968ce1783fa717a0bc7dcc3b1aa5",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CacheExcavationCases.cs"
+    },
+    {
+      "sha256": "45a8bcf5b6191fb2a23715bb2ce4540aacf0d72b4967d3e583286ac21c8ce420",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CacheExcavationCases.cs.meta"
+    },
+    {
+      "sha256": "095b6dbbbb1e6aeebfb025540b812b30416d07494f56dee9a148969394f72f60",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CarryingCases.cs"
+    },
+    {
+      "sha256": "4a2a462ec7633122bbbae429fede95ab1b2dd42a53036c09e199372bd6d91083",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CarryingCases.cs.meta"
+    },
+    {
+      "sha256": "cba91e358a2696938f61defbc66358ca86c5d194f9eb6e6c7963746cd0a2e722",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterAdvancementCases.cs"
+    },
+    {
+      "sha256": "9a66b3c3d1647bd2eddcd35852a0d9ba7d1fb5bf91d363032e431a9799431026",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterAdvancementCases.cs.meta"
+    },
+    {
+      "sha256": "0c0e4e419ac56c83c6bcc3c762d057652dd4f90e7493b27830e911fca49ea873",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterBuildCases.cs"
+    },
+    {
+      "sha256": "fd92bf0a00690f1025359baa756d3eef06e5ba3193cf81addb28c0a7fd372d91",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterBuildCases.cs.meta"
+    },
+    {
+      "sha256": "119cc04fef51c60d7f9e494c28ffdec3cdd0b1c066e4942c086067e6aff85970",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterNumericCases.cs"
+    },
+    {
+      "sha256": "00c04c8069fbf2ae07ced72bd1ff6ec58c7a3d2ad09deac273ab806bd6f4669b",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterNumericCases.cs.meta"
+    },
+    {
+      "sha256": "39154b45ebe43013fe782dd568ea3fba8236bab644768a264673965e28c476e6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterProfileCases.cs"
+    },
+    {
+      "sha256": "d1060fc44704c29858b1aaa9b93d7f2bf62a2dd8eee566690409cecd3ce7b1c7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharacterProfileCases.cs.meta"
+    },
+    {
+      "sha256": "c43f8e5072cf7309024a6ad9ee84d3346c292e7a7364b5456974d0d4c9440744",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharterAttemptCases.cs"
+    },
+    {
+      "sha256": "1e6eb9cb0b7d59b2e2226de45d0c6f5406f1ca7667cf1825012a14f2b0e6bfd3",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CharterAttemptCases.cs.meta"
+    },
+    {
+      "sha256": "68433777d4abbc7ebac3714de15e70801cfb3f8f53133d4cc3df96816bae4498",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ClubAttackCases.cs"
+    },
+    {
+      "sha256": "0f63a8f1049bf1dcf0fcea2611d871c3a1e7466e6444cff955dddfba6a69eb32",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ClubAttackCases.cs.meta"
+    },
+    {
+      "sha256": "bf1fa554bd4400c511ff1d07c6ee062d0a5ea6280f9a5dc83a8d76d4b3293b22",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CombatBudgetCases.cs"
+    },
+    {
+      "sha256": "1a56d1e205d46800d1252c82290896615f98542416fcbce731f6a909bd11bddd",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CombatBudgetCases.cs.meta"
+    },
+    {
+      "sha256": "fc5f03a4fc3659569631fd67bc39fb98e95f6829ea8d566260cabc2b721aa93a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CommandHistoryCases.cs"
+    },
+    {
+      "sha256": "b233d578648bb3cec24581d296b4236bc879692a0685bfec970de3c7f0725832",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CommandHistoryCases.cs.meta"
+    },
+    {
+      "sha256": "ca42aee45380d94060aef3445b169a3dd2d82ae66c36c0ed034cd93d7685b9fe",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionCombatCases.cs"
+    },
+    {
+      "sha256": "b157d8f9b9b69f02f8fbb9a90c7e0c0b439fd227b8ff13cbed2e2598e4a505ea",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionCombatCases.cs.meta"
+    },
+    {
+      "sha256": "f9821e808e1cf12f10fad299f4b86ba7cdc0c87728cf57e081f9e350ca9b5fb1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionJournalCases.cs"
+    },
+    {
+      "sha256": "ea85687fcb6eeb5ce0a829c96b54540a943db2857e14df0cebc83bcc4fa21b04",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionJournalCases.cs.meta"
+    },
+    {
+      "sha256": "9787c985e34a300fcbe58fad065e458a4123feee50c7ddf5c43d68a407031d46",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionLifecycleCases.cs"
+    },
+    {
+      "sha256": "732055777698a9779992b8cef1109194c4eb759bd94dddfaa8640037d47e0035",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionLifecycleCases.cs.meta"
+    },
+    {
+      "sha256": "363faf9ac4412d2fe4c72251b4d7864db192d13fded5f755898fb8dee582a289",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionProjectionCases.cs"
+    },
+    {
+      "sha256": "31d17daf450c4330693f96251b267d5cbcb55e2fa914f6e4167f657492485110",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConditionProjectionCases.cs.meta"
+    },
+    {
+      "sha256": "99be3e0fbacfa9f9fd1b1c4f54af304545f0b314159d689ec6859d709d75a868",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedBloodSpecimenCases.cs"
+    },
+    {
+      "sha256": "262af6667622d283d2dfd7c6a0924abceb48657f567eaab094cc618a48c0a119",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedBloodSpecimenCases.cs.meta"
+    },
+    {
+      "sha256": "de1033f8364e58775aad9eec92e0c9fedf0a9f252425e1ede3f8ef64512ad83f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedCombatCases.cs"
+    },
+    {
+      "sha256": "77a3fa453b2d5f18250750910fbb49f307a9ab2fb644103b3eb823a373a3195b",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedCombatCases.cs.meta"
+    },
+    {
+      "sha256": "9db62b0216e72d7767ca6b3bd2bde1ee5f7069f7e671fd57a54b9839db0ad774",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExpeditionCacheCases.cs"
+    },
+    {
+      "sha256": "68fbbc1b3b73a4928da62c7a1f3fd203958489e574f21de4611e3f79ec8471f2",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExpeditionCacheCases.cs.meta"
+    },
+    {
+      "sha256": "1812578168fef5bab152ffc68cb083b81e8f2ce615f2b5ffbc3c001c747a468b",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExpeditionSessionCases.cs"
+    },
+    {
+      "sha256": "40f9bf3540c251fcd0f1c07ce0fbc4cfee2d946d67578f8263dad5d862dc4458",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExpeditionSessionCases.cs.meta"
+    },
+    {
+      "sha256": "0aff9058cfbac465382f0d1b60ca83abb2ac2bd36a935a65d2fc85cce842c19a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExplorationObservationCases.cs"
+    },
+    {
+      "sha256": "48e73f219e08f93ec3b942a2e8624b090e324b01eb8e54331546463b024e3809",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedExplorationObservationCases.cs.meta"
+    },
+    {
+      "sha256": "dc1a88152b8f45e4c3ca01b00b95036fcdc12aa3256360ab743556846949cdde",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedFormulaResearchCases.cs"
+    },
+    {
+      "sha256": "74283e583bde035be151a11ec1bd3a58d9a0c453862e584b6a13aedae4f95378",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedFormulaResearchCases.cs.meta"
+    },
+    {
+      "sha256": "0c86e660f5c6524649acafcf5020a16610b8787a6696eeffc4d81b66a60dd7b6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedRecipe4BatchCases.cs"
+    },
+    {
+      "sha256": "a4702d6280b218c97f908aedc93fee81049c01708cece875363ca1955d602c04",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ConnectedRecipe4BatchCases.cs.meta"
+    },
+    {
+      "sha256": "2f34688cf37e1e2bc5a0818d0e7914b768213b6f36c8fcf7e0f73cf1e076bf2f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ContentResolutionCases.cs"
+    },
+    {
+      "sha256": "aab6d2be717d3520cf4d5fcfd534ff24a0c0658c699a9ba533d1ce9c466eca35",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ContentResolutionCases.cs.meta"
+    },
+    {
+      "sha256": "2b31dfc12e26f6bd559aaafe05eb358bb4dc5091d3654e60090c4c23395f7248",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CraftingConsequenceCases.cs"
+    },
+    {
+      "sha256": "a745952678c0375c9d4c5f2dd110752dc7e53ef89669ef042a53d4638f0edfbe",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CraftingConsequenceCases.cs.meta"
+    },
+    {
+      "sha256": "481101d41a497d4f47c3dda9a51d8b4b3b49e0a16217ea8b5b1aeb85924e9414",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CropCases.cs"
+    },
+    {
+      "sha256": "9d0abd134642ee1fb152ead70f28de2607f58657097a99b211a3f37de08184f7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\CropCases.cs.meta"
+    },
+    {
+      "sha256": "35bea511eb12d4c3f50483c66106a199d4548005a381939c95082ef50540f229",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DailyProvisioningCases.cs"
+    },
+    {
+      "sha256": "75393c0c23cc3f2da47c9588b5e116d71f12a8768c41034cc3cd73bd23044082",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DailyProvisioningCases.cs.meta"
+    },
+    {
+      "sha256": "9685aacaf91f6a1ca9e39f182913977df4f00dfa9b3f875aacb3db445a563d19",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DamageDiceCases.cs"
+    },
+    {
+      "sha256": "88382509aba6343cd88eb949801c2c138deb789ca3470147f3e3dcb241bdd69e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DamageDiceCases.cs.meta"
+    },
+    {
+      "sha256": "3087b9d85f184feaad3a406083759d8857dd5ca986511685baed559be2ae0dc0",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\Decennium.Foundation.Tests.asmdef"
+    },
+    {
+      "sha256": "50ecae580d9bc953d13cf4b2e4e9e2fb02a768889d3242153725b202951b253a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\Decennium.Foundation.Tests.asmdef.meta"
+    },
+    {
+      "sha256": "2da2558632c9a3a4d780889b1f2af68f757cb325902c8a1ae7630f98ab16fbac",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DiceCases.cs"
+    },
+    {
+      "sha256": "659d6c38370884646231a3f791d14622c8de887a5825deb5de222a722e3f2c1c",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\DiceCases.cs.meta"
+    },
+    {
+      "sha256": "7ef31cf5473541882c6864e8ddafb52fadaa5fa92ffce274005cce1d26584601",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\EncounterHistoryCases.cs"
+    },
+    {
+      "sha256": "bbacc491321c55f0b2bbf359e3d398590229f7e38e329d0d3d21759bf4cd590b",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\EncounterHistoryCases.cs.meta"
+    },
+    {
+      "sha256": "407a596fcd83eb145f13171665e583c6effc56a60d2fdc9fece0a76f0b8b861f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExactLedgerCases.cs"
+    },
+    {
+      "sha256": "9424201c32a0873134a334622ed17f1894ccbe035b99e6181d9c11f287ffa121",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExactLedgerCases.cs.meta"
+    },
+    {
+      "sha256": "9936543a2e557cbad1f9af1899b83bdaa5bc506987f8fdf34d5d265556048945",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionAssignmentCases.cs"
+    },
+    {
+      "sha256": "abae5e4d164e7a8d56c03f488385e227340b3b0db0b6264ac45e44277e964691",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionAssignmentCases.cs.meta"
+    },
+    {
+      "sha256": "922dd60a7a3e5b7d9f6e524a095a8cd1eab4f567063c539e67826ae1a0b074df",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionBillCases.cs"
+    },
+    {
+      "sha256": "f5de36066b315b4608c96fea0eed5c4faa043920c080e55b77dc3a10c3088d88",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionBillCases.cs.meta"
+    },
+    {
+      "sha256": "6035881fc67a1b9f8374b305eb0eeaca763ff4a10867271aac141e792e5ce82e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionEpisodeCloseCases.cs"
+    },
+    {
+      "sha256": "ede61339c05a7fccd78703625703c93cddbdadaaa26866a327256b2fbeb5703e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionEpisodeCloseCases.cs.meta"
+    },
+    {
+      "sha256": "ec4f915cb76cdd739402cc5c837229a18eb094fc6a0168ee22b0469a8953b907",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionPressureCases.cs"
+    },
+    {
+      "sha256": "3b5b5137004d8114260e9f07d6dff188b45661778642ce4fbb5e39a2ba2882eb",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExpeditionPressureCases.cs.meta"
+    },
+    {
+      "sha256": "cd605931d8cb00a4a6dc6eff32722b33b279d7e959a2ba7a5636020134347604",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExplorationHideCases.cs"
+    },
+    {
+      "sha256": "b4ab96969da75812839b9111ca0d4c063f389aaaad71f247da275d0b31affeb0",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExplorationHideCases.cs.meta"
+    },
+    {
+      "sha256": "7f62ac7652400705a0c159e2058eb7fe039defe4e8fb8f8b3710826278152470",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExplorationSearchCases.cs"
+    },
+    {
+      "sha256": "29e287129f8b8f90629d5513259111374b1298902e1365f9c63ad592796f45a9",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ExplorationSearchCases.cs.meta"
+    },
+    {
+      "sha256": "33b86cd29b046ea217abf4d2b1b0b038f6ac8e4a5cbfe4f403cfb4be95a95003",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FishingTrapCases.cs"
+    },
+    {
+      "sha256": "3d2bfe6e4fb445e8a2b16a97d4c08c8b0ac59dff558d04aa6b6ef69a4917df87",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FishingTrapCases.cs.meta"
+    },
+    {
+      "sha256": "832947b3d372ccf7cff0ab7bbd88a99944fd2d16ea1bb50aaffa9d8161434fe8",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FixedEncounterCases.cs"
+    },
+    {
+      "sha256": "e5ca964a0f34daf1cb9b96db59c4fcd58946b4f19001cbd6ef0580811a9b07cd",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FixedEncounterCases.cs.meta"
+    },
+    {
+      "sha256": "a33da36ccbd9d1849378827f3ab9ec92efe2fbb7ad9c567d1e0581c8352a51d3",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FormulaResearchCases.cs"
+    },
+    {
+      "sha256": "3d59696ffb82ba8626cf3ea9492dadcd64e158ef25bcaf23e9b9ab5e25ac0f1f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FormulaResearchCases.cs.meta"
+    },
+    {
+      "sha256": "b836d8c7a6e6bdb7a4cad4bf1be0671393f2b2c6ae0f08f411abae89fa5da860",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FoundationCases.cs"
+    },
+    {
+      "sha256": "4fe102537ee8853600bb9613d434e470c0a31dca0d3a89c3c104b5d0a179b6f7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\FoundationCases.cs.meta"
+    },
+    {
+      "sha256": "c6c6ccfdfe2779598c535b360e887993e4e4d62f66272de2f12dc52eea44f2a0",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HarvestCases.cs"
+    },
+    {
+      "sha256": "c51969a5b49f2cb5d809e1327137807ff9bde2d98b0592032ccd9c8a4f797931",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HarvestCases.cs.meta"
+    },
+    {
+      "sha256": "a2a07acac3283998bef333bfa84995f9d7629725f7cb0a4b123823fc3d31b111",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HarvestPreservationTreatmentCases.cs"
+    },
+    {
+      "sha256": "22258d8a0b5581d40255cbd9832b93448dd5a924f28f19f47c563d9a4ae3465c",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HarvestPreservationTreatmentCases.cs.meta"
+    },
+    {
+      "sha256": "4c42420e48703b9edae5f1a3413cd05770891dab4897a7df8799d7c0bdeba041",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenAppraisalCases.cs"
+    },
+    {
+      "sha256": "a48216ab8401ca75ab9138519d29e04ffb2b66b912acdcab960ec4ed5364895f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenAppraisalCases.cs.meta"
+    },
+    {
+      "sha256": "f62bf3beb19d541f0e8937ed366c1e4335214c90fccac2995ce42c07539cdc40",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs"
+    },
+    {
+      "sha256": "e77e023cac7826a3588c491d6eac15f840e25b84a993b4d2a9c37e48ab47b666",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenCareCases.cs.meta"
+    },
+    {
+      "sha256": "3e94274a53f9ca105cc8efdd535215f397183b1a822fa06a4ae40bdc08ed8327",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenMealCases.cs"
+    },
+    {
+      "sha256": "c33a70b61bc10d18ee1d282f63dcc02098a2a74d55388a4cf9360ccab756a854",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenMealCases.cs.meta"
+    },
+    {
+      "sha256": "261add33b60417cb63b0e88441e1fa465272fe9be05f5673190b9dc8d0072279",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenSaleCases.cs"
+    },
+    {
+      "sha256": "7fdb367447ba1a1ccd0a52bcc4178afad927d17bcf3b5fa8c434a6743b2f8910",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HavenSaleCases.cs.meta"
+    },
+    {
+      "sha256": "090ce6c6e0ffdfb2001e4a4e4c545266845555e48b0b9aa65f25c49fc4477d09",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HuntingTrapCases.cs"
+    },
+    {
+      "sha256": "97a2b7c61030bfb209c133dda4f9c4303b3772b4b246c56b3941f9fa3b2c4437",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\HuntingTrapCases.cs.meta"
+    },
+    {
+      "sha256": "cea6d486fa14f409204c26ee22cd8b5b2c299e261dccc45f963cdfa4c31199d1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\InventoryCases.cs"
+    },
+    {
+      "sha256": "ce6b38f25dfed95f342dec1d9ab036ac0e31f6e5a38e9fd98d21a3b69b6c9ef6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\InventoryCases.cs.meta"
+    },
+    {
+      "sha256": "3e8cda893e1fbf4ccfa4f7ce34ac268cdf1e90452c47afe3963385bbcbabcb79",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LaterDefenderCases.cs"
+    },
+    {
+      "sha256": "dad3c5b322658857427a45334bb7c2880a8d932d5fcfab2e36c3f2d02fc1f6ee",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LaterDefenderCases.cs.meta"
+    },
+    {
+      "sha256": "ade3e81db0a071fc55ec1cef76470ed3b663a0ab2d0eff5af53b083e85306743",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LaterEncounterCases.cs"
+    },
+    {
+      "sha256": "552f200d5e3ce38e3b7e054e5773717ec64beb10fe927187db84b6be837b75ff",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LaterEncounterCases.cs.meta"
+    },
+    {
+      "sha256": "fced96fdfb124c2fed3e5086807a7082215f5673401b45ac17b2337e8bce3c22",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LifeCases.cs"
+    },
+    {
+      "sha256": "dd66d514b8a98f001594055c18c459875326e046546487e6b06b98165175302f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\LifeCases.cs.meta"
+    },
+    {
+      "sha256": "9e67cbc4d68e119c070c05ac4a796b63f83dafca47039fab3112cadb12e6bd14",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ManufacturingCases.cs"
+    },
+    {
+      "sha256": "0235431d892e2549a8a7ee60216ee6d71cdfaea3427fd81279567646c94c1249",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ManufacturingCases.cs.meta"
+    },
+    {
+      "sha256": "63d581bee76004cfce1ddbc18da0f844a02e8ffedf5c8086a7b8c50bfa10278e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MaximumHpCases.cs"
+    },
+    {
+      "sha256": "1b50d0867acd1ea1f9032f39e493852fa07da01da5d293f524fd415944fca514",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MaximumHpCases.cs.meta"
+    },
+    {
+      "sha256": "ca8fba2ec0c70db9d0a958bd23ea9b80ec1cf9e8437aaebf298c2bdb9d3153a4",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MiningAssayCases.cs"
+    },
+    {
+      "sha256": "acc63ba67dda243e739355a0035b774a2928e6310d06e80371658d79fd81198a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MiningAssayCases.cs.meta"
+    },
+    {
+      "sha256": "1d281e794069c1d12c816c88035b62d0e952abda1f439b0c6eace8d5fc14b4f9",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MiningCases.cs"
+    },
+    {
+      "sha256": "dac5e10ae745e9bc6f3cfa1c1e87e996eeb59b6e9234800119b1ab5a65ef97d5",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\MiningCases.cs.meta"
+    },
+    {
+      "sha256": "3d4c67105fa289feb2eed07175be6e83602234e9ae40f9b2461597dec3033037",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\NextCharterAgreementCases.cs"
+    },
+    {
+      "sha256": "dca6f2eb07b1de0966931fa0c809782c0f57fa92fbb9fbc7e4de1b5dd4a67ac1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\NextCharterAgreementCases.cs.meta"
+    },
+    {
+      "sha256": "d2ead8b37df1182278a359b32a5b15b12231cc6b9cb951453bb10699be0ec181",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\NextCharterPlanCases.cs"
+    },
+    {
+      "sha256": "e86ca8a79289e990572220c4a461d19e67ed246480ae57d8fd3c7c7fccf36a33",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\NextCharterPlanCases.cs.meta"
+    },
+    {
+      "sha256": "6d49704cbcd2a9260ef25d4f58443788459c8d11c1b0a27c6f2ad7e9b940b200",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ObservationCases.cs"
+    },
+    {
+      "sha256": "eddccfb4c453888a88b803e4162075b453e618a8bdd165a379118dad92e32d7d",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ObservationCases.cs.meta"
+    },
+    {
+      "sha256": "d805acd40bfdee51314ffb8cca1d4d1146d0f01c5154c002d3448b8139f286e8",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ObservationLegacySaveFixtureCases.cs"
+    },
+    {
+      "sha256": "f4a0c22178d311b270fb5aadad2799aef73f6de25c77ca96563c623085b34a8a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ObservationLegacySaveFixtureCases.cs.meta"
+    },
+    {
+      "sha256": "e6e322f1ede67b489d0be9c4afdfd4d44829b6caeb8a129270690b31b4425e7e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\OrdinaryReceptacleCases.cs"
+    },
+    {
+      "sha256": "cf48fdae733fe65477aae20f20ed30396ca8203ae3ecdc928b72d1edb73b9a15",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\OrdinaryReceptacleCases.cs.meta"
+    },
+    {
+      "sha256": "1b5dcf7623ceef5a5a4ce60b19f5d585f07c29ae9d75830daae2057d68e1baa6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\OverwatchExecutionCases.cs"
+    },
+    {
+      "sha256": "9d2a9ec641460c223b090353796131883acf8341796d49a36203d8c23fe912ed",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\OverwatchExecutionCases.cs.meta"
+    },
+    {
+      "sha256": "1c14da73088020f7fb0b7317ed1c22cbe80afa0b6c54017a8e00a9937fd68b32",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PeriodicRiderCases.cs"
+    },
+    {
+      "sha256": "a9cf6591924808942436fba3299f1dba4b1f604761296889b290a154c4c85966",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PeriodicRiderCases.cs.meta"
+    },
+    {
+      "sha256": "5855725491680ef2ea333ee9ab9aa9d76dc7ccca24f125b530a8b787b24f61ff",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PlanarCombatGeometryCases.cs"
+    },
+    {
+      "sha256": "3e3736eca0f848e194390fad87d0eda957e92009e31b0f8eb341a657a9fcaf81",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PlanarCombatGeometryCases.cs.meta"
+    },
+    {
+      "sha256": "d1097c071654fa69659a6454f6604ba2b50d1c3ef7d04f49c7aac065a1a3d16d",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableEquipmentCases.cs"
+    },
+    {
+      "sha256": "21dd22aa3f8782c539035ccd09b76de44e2b791c2cc5e26636248e269adac754",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableEquipmentCases.cs.meta"
+    },
+    {
+      "sha256": "e05fb941b506c11edf9ff39f43190718df00a7486c06126f43236afaa3323714",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableStorageCases.cs"
+    },
+    {
+      "sha256": "26dd3a55d1381489da0514a362fc723798eb41c53048de8859c19368de65e361",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableStorageCases.cs.meta"
+    },
+    {
+      "sha256": "64f9beaf642a513c7d193020f4a13377bcc482e5d40e41d55a95a2b58cfed6f2",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableStorageHistoricalSchema70Cases.cs"
+    },
+    {
+      "sha256": "b2afe923eeaf22c7747ee4b2b36828a1f1f5983cae53c345f3492a47b1d9ce71",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PortableStorageHistoricalSchema70Cases.cs.meta"
+    },
+    {
+      "sha256": "78e2fa93c36c0657060e092b86e2961952bd6b8d53e9098316866f03c1d4b172",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PostureCases.cs"
+    },
+    {
+      "sha256": "0f2d7ce87a96ab21482fc367a466280744d3601bf08c2e6c6f4edf64ded90986",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PostureCases.cs.meta"
+    },
+    {
+      "sha256": "9e3b836b6958395a086f12dfab3c452efb0024ce9a982a4a113467476ff6158a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ProspectingCases.cs"
+    },
+    {
+      "sha256": "a91ab8e921ba064fd426a43966269243e97191d92effe62f6812fe478cc42cee",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ProspectingCases.cs.meta"
+    },
+    {
+      "sha256": "802de033e8eed2f7343915b10d7d4670c90b5b82b973614b45a46a198420564c",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PrototypePolicyCases.cs"
+    },
+    {
+      "sha256": "8b2056e8e783c6e5f5bebe755e71a0bd96e648d6c3689c8e9c42e4340fd13d88",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\PrototypePolicyCases.cs.meta"
+    },
+    {
+      "sha256": "1228bc8ec82c448731ade5a18f6dce467573decca9b51cb8926edeca508a07d7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RangedAttackResolutionCases.cs"
+    },
+    {
+      "sha256": "95fff3e14f05b9a81a79cd74df32de1857b841c090d6b42e18a2ffe7574cae8e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RangedAttackResolutionCases.cs.meta"
+    },
+    {
+      "sha256": "a3985d7b3b62506c06ffa22303c5435275752460b01f1b784932894aa068c00d",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RangedCrossbowCases.cs"
+    },
+    {
+      "sha256": "dc50d938d163930e1b3742ca506cef505325e51ac37ab4459ec849dec9a48796",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RangedCrossbowCases.cs.meta"
+    },
+    {
+      "sha256": "a82e3479fcc8b44f9fb486048605e94d6ea2a409d9fa750d89c7ebb5cbe90c00",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\Recipe347Cases.cs"
+    },
+    {
+      "sha256": "2e4c10a98ca635a75a58986e51a0ff0eef93c988148a4974ace9a2b8f93fdb52",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\Recipe347Cases.cs.meta"
+    },
+    {
+      "sha256": "8bb7db2f3e6b12433525f03098b13f99e2c96a036a2bf0cd183994a9c67ad314",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ReengagementCases.cs"
+    },
+    {
+      "sha256": "39afa8be5be53e8edf34ef889218de1c6ea28ee9663f89b41acf0ce31e39ef32",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ReengagementCases.cs.meta"
+    },
+    {
+      "sha256": "cda067a1b8ed57e1d2edc88649cb96b172242efb05f790aa11b64e742c4fa9ff",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ReinforcementCases.cs"
+    },
+    {
+      "sha256": "c2a1b1668f022357e0a150b6e143c51d349c97741b39c86cf4882f320db9b5fb",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ReinforcementCases.cs.meta"
+    },
+    {
+      "sha256": "f6493bb11186aabb976a9f46992e83ee8bc628e9865651b061a0f5ec3354cbb9",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RepeatingCrossbowShotCases.cs"
+    },
+    {
+      "sha256": "afed1dd38a109208f7ebfca0ea9b756b0e05695d520cc747ef21442bf4d36f98",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RepeatingCrossbowShotCases.cs.meta"
+    },
+    {
+      "sha256": "111b2b3283ba1dd065e79e997a3ef27915f90b45feb85035ed7b0ca0e29428af",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RepeatingMagazineCases.cs"
+    },
+    {
+      "sha256": "355bdef6253e177916bd99e674aef6fb8805f2a7933289e417b3e817af2329ff",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RepeatingMagazineCases.cs.meta"
+    },
+    {
+      "sha256": "a9076930ffd97c6c610a7f7f64a297459afbf4627a4367c76cfc97d2dc5fdec8",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RetreatCases.cs"
+    },
+    {
+      "sha256": "beec4a694906f378b9a137c157db8e5e26d242758a89f31876a331b03834b914",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RetreatCases.cs.meta"
+    },
+    {
+      "sha256": "14db5c5bb0b8ddbda48ea4a9b095266ea34e4b9ec9f4416ede9143d5822fe882",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RollResolutionCases.cs"
+    },
+    {
+      "sha256": "c7e6458c6b381e7dcc229cc9825f159a699a4f0d86f999d38eefaff749ca8b23",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RollResolutionCases.cs.meta"
+    },
+    {
+      "sha256": "d4fceeeca2578306d856fd1f24c0d2c04d76fb7a1e3ff6991f82bdcf9a1b14e3",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteMappingWorkCases.cs"
+    },
+    {
+      "sha256": "5f5a07ccc04d5db51ec2e6051f9c2df37d4a0b64caf5523663658e248c4a1f8f",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteMappingWorkCases.cs.meta"
+    },
+    {
+      "sha256": "6376983faed9103820e8328a1d3ac14ad0ad0c75adc42b45d070f703c614a0b2",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteReconnaissanceCases.cs"
+    },
+    {
+      "sha256": "da2c078f290c3f824468795691d489c6a06846aefdf3d8579ed504dc04b7b4ff",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteReconnaissanceCases.cs.meta"
+    },
+    {
+      "sha256": "c4dd1eec096de0cd03243920bcefa4598f197e2f559f8c3850b122ce6f068ad0",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteTravelLegacySaveFixtureCases.cs"
+    },
+    {
+      "sha256": "5e46a718af17c0f081c77a9700834b7e622207c145bfddbfd75c3b92504e239d",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\RouteTravelLegacySaveFixtureCases.cs.meta"
+    },
+    {
+      "sha256": "56482103fcb79ce07dff3cb0600b45d48aab4b4885959a95c99bc252ade2a70b",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedExpeditionRouteTravelCases.cs"
+    },
+    {
+      "sha256": "233731073eb4286bc21130fefdde93fe3a3560b554094cdeaa0d2a518a8779ec",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedExpeditionRouteTravelCases.cs.meta"
+    },
+    {
+      "sha256": "98b3a46c64f06135500375054feedd7cda3dc645659df13f6aab73bbb24f7994",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedWorldArchitectureCases.cs"
+    },
+    {
+      "sha256": "696435fd9f812b838825a4d0df928d1b3e50413964edf5a545c06fd308a73cc9",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedWorldArchitectureCases.cs.meta"
+    },
+    {
+      "sha256": "4db6d8225e8680ae3be29eba7fd9ae4e435c990004137ae302084e6bb09827b1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedWorldCases.cs"
+    },
+    {
+      "sha256": "c59095e8b590c036daa40fc6146d1921cbe3b663601add338e3004341fb3d14c",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SharedWorldCases.cs.meta"
+    },
+    {
+      "sha256": "effba8dcaef800a92fff89cb7fee5901ada5e81697e6c3c806af17819015fddb",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SoldierDefensiveFormationCases.cs"
+    },
+    {
+      "sha256": "8bb38e1415842a27d6ade1905f72508e854ff81089f510b762c0af670bc1dbac",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SoldierDefensiveFormationCases.cs.meta"
+    },
+    {
+      "sha256": "12ea9a7f5fd6f5a53d2d46d3f8fd8026187994a59d2bda56172631c821754bb1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SoldierTacticalTechniqueCases.cs"
+    },
+    {
+      "sha256": "7b6ad0debf0d3e6cb55f8e86838f6e5bd741e3979c616b47643e0b7141af3c6a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SoldierTacticalTechniqueCases.cs.meta"
+    },
+    {
+      "sha256": "961cd40907fd5a53c0f639082b6619d69846aa251d9bc5cb438641a2e840c699",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SparseEncounterCases.cs"
+    },
+    {
+      "sha256": "b33d0c0db57f1eeba8f463717bb8f408fda6b9524896aa22e9063210dc907944",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SparseEncounterCases.cs.meta"
+    },
+    {
+      "sha256": "394bf90fdfcbec07dd0b4a4b12e59715f083fc828849623a2ec9805852aa2452",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SupplyCacheCases.cs"
+    },
+    {
+      "sha256": "a5d27b6367be8eac073df7c5460db3a79d5332fe16207141e49c262daa629e2a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SupplyCacheCases.cs.meta"
+    },
+    {
+      "sha256": "3be5de41e08e842080eff21c752b466cfab7f3ef2c9074852af51e4f65bbf1db",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SurpriseEntryCases.cs"
+    },
+    {
+      "sha256": "90235ed4056333cba1c8ad1dc08828075bb186b960043de75a2e9d4b6fba8da7",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\SurpriseEntryCases.cs.meta"
+    },
+    {
+      "sha256": "e8361ded363098567403309f9426bd6fbc401226231c9177a9497d89183f8eb6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TacticalMovementCases.cs"
+    },
+    {
+      "sha256": "6cbcb6239617faa2cb837deabc2ff0c3ec512a74b16bbed0b03d0fa6a87b9ef9",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TacticalMovementCases.cs.meta"
+    },
+    {
+      "sha256": "086d9995c67150b99a1f26e8c0bcf28b202eab5190fcf888d91491037ec40861",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TemporaryCampConstructionCases.cs"
+    },
+    {
+      "sha256": "7eeb60b67eb5c4de7559535041b28072bc449a66941d5f1fcd225a93354d6c88",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TemporaryCampConstructionCases.cs.meta"
+    },
+    {
+      "sha256": "937a771ecde24b6329086a001bc0466d4e9547c4c829512f01f1794f7024bd82",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TimingCases.cs"
+    },
+    {
+      "sha256": "084113f5358a3ac20f4bd5b83cd1c94be65d79186291a85db4b4c1ff6e4334d5",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\TimingCases.cs.meta"
+    },
+    {
+      "sha256": "c7d7464a1dd85704f720d784344e27a29fcf2296033ff45d18114b9970a9aef1",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ToolRepairCases.cs"
+    },
+    {
+      "sha256": "9afd51dcbc22d57a88d10646babf7d1aa2e92287c19a40c510ed878e7e7841ae",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\ToolRepairCases.cs.meta"
+    },
+    {
+      "sha256": "e2e8611671fa2a1188993a18c7b2b1415e34eb94a13c326830c3d1fb680a0fc3",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\UnityFoundationTests.cs"
+    },
+    {
+      "sha256": "a97d0a14223529bc2727a6184d64a86003a27fdf003d6d6dbfed75c2d061db03",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\UnityFoundationTests.cs.meta"
+    },
+    {
+      "sha256": "dc22aaaffb65fce88afc7eca073fd869c8aef7fddd6b8cf131eed80cc003a7d6",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\VerifiedCommandCases.cs"
+    },
+    {
+      "sha256": "b2eec4b1afb6da1e48a792bafc1a644f20c30e1bc7531680a213b829c0b07784",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\VerifiedCommandCases.cs.meta"
+    },
+    {
+      "sha256": "62e5a19fd341dd3571b0ec0ead16e9e64d72d8b069c7c1d211d423fa7fde8554",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\VesselHandlingCases.cs"
+    },
+    {
+      "sha256": "cc5b3044d95b8b93e5d8cc48a0fd770275b71ceb318fd1303a758a21df07723d",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\VesselHandlingCases.cs.meta"
+    },
+    {
+      "sha256": "6f3c474fd644f39f5c91da0cccc82c513e8d493a00e30f49c05aa70b8e022de0",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WaterFillingCases.cs"
+    },
+    {
+      "sha256": "c44543e6f8fae44240a54f7bdb6d973839d4f01dc5187b9fcc11db8424e3f507",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WaterFillingCases.cs.meta"
+    },
+    {
+      "sha256": "9a096a00eef4b78de696b01304a7e17fd2e7f51279d12d367c326c2644912eb2",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WorkLedgerCases.cs"
+    },
+    {
+      "sha256": "ce9c9fe31ecf1497de4d28390b8e912b9193112f764d6d2d552b908b150a715e",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WorkLedgerCases.cs.meta"
+    },
+    {
+      "sha256": "7033b2a06cdecc30abc769d374fc659e1d44a616d4305b32205fc56bd810c8ee",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WorkSessionCases.cs"
+    },
+    {
+      "sha256": "24528e96e54050782a4158c272e02adc64c493db3d63776ebde34a5ee14d494a",
+      "path": "com.decennium.foundation\\Tests\\EditMode\\WorkSessionCases.cs.meta"
+    }
+  ],
+  "finishedUtc": "2026-11-12T22:48:38.2519980Z"
+}
