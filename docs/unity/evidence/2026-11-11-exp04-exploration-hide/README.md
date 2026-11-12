@@ -1,0 +1,18 @@
+# EXP-04 ordinary-exploration Hide evidence
+
+The exact implementation is `2f3fc6a490cc94b6376dfe8fa74396129653c1e9` on Engine. The source/API contract was approved in reply `04a138d6-1e4b-487f-8a7a-3ac9ef16ca5e`. Its TEST_ONLY authority binds the existing ordinary scheduled Action and clock, one hider, two authored anchors and two independent observers. The base51 simulation uses the wire92 envelope with the accepted wire91 Search payload followed by ordinary Hide history. [Source/API approval binding](IMPLEMENTATION_CONTRACT.md) · [Exact source and artifact manifest](BINDINGS.json)
+
+| Acceptance group | Executed evidence |
+| --- | --- |
+| Real ordinary Hide and its source | Real combat exits to ordinary play at 30 with zero earlier Hide. Marker 10 pays once. The shared Stealth roll at 36 is 6 against two independent passive DCs of 10. Marker 12 has its new Action. |
+| Admission, payment and privacy | Query and discovery are pure. Unauthorized, stale, conflicting and incompatible commands are rejected. The zero-time cancellation keeps payment. Actual projections match across rolled failure, success, empty qualification, a clear-sighted witness and unchanged suppression. |
+| Private observers and retry | A clear-sighted witness keeps actual knowledge while the occluded companion receives Hidden. Failed comparisons survive an intervening empty attempt, observer-count changes and an excursion returning to the same anchor. At 73 a real completed alternate-position move authorizes a new attempt at that position. |
+| Hide, Search and shared time | At 84 the new Hide rolls 14. The unseen return retains that same observation record for both observers. Paid Search compares 7, 11, 13 and 19 to the same Stealth total, finding the hero at 114 only for the searcher. At a shared 36-second endpoint the two declaration orders produce different legal Search checks while both yield at 36. Remote repair receives four seconds during a Hide interval. |
+| Boundaries and persistence | Actual incapacity and lawful tactical re-entry interrupt at 33. At 36 a due Poisoned expiry and the new scheduled Start settle before the roll. Pending and terminal restores roundtrip, identical traces reproduce exact bytes, and equivalent partitions preserve mechanics. Altered authority, payment, calendar, movement, observer, result and coincident-order evidence is rejected. |
+| Compatibility and execution | The exact assemblies pass eight focused cases. Authentic wire51, wire90 and two wire91 states roundtrip byte-for-byte. The authentic pending Search also continues to its original qualified failure at 36. The standalone C#9 build, runtime compilation without lab defines, and static package checks pass. |
+
+[Eight focused results and exact assembly bindings](focused/results.json) · [Read-back of eight actual saved states](focused/timeline.json) · [Authentic predecessor results](legacy-saves/results.json) · [Standalone compilation](compile/results.json) · [Runtime without lab defines](compile/runtime-without-lab-defines.json) · [Static checks](static/results.json)
+
+The retained journals and saves can be reproduced with the exact shard launcher. Relevant historical execution has a separate inventory of 552 cases. Any full execution uses the same four assemblies. [Exact shard launcher](Start-ExactExplorationHideRegression.ps1) · [Authentic save verifier](Verify-ExplorationHideCompatibility.ps1) · [Timeline verifier](Read-ExplorationHideEvidence.ps1)
+
+The review gate covers this selected procedure. General stealth and senses, arbitrary hiding positions, production timing and broader expedition rules remain open. Unity gameplay integration remains deferred.

@@ -1,0 +1,1062 @@
+{
+  "status": "PASS",
+  "assemblies": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "0909fe6db822c66824469ad694e402abaf77a69ab19e844578675444e04bdf32"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "3f1956071ca87ec059d61ef441ae03f0074dff706163e373b5f61c62f3db3d8c"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "96f3a9a612d9e73d29339203390e368060d9761828ae9bb74307b739c60b04cb"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "9c7d921e82fe0bd8a053a05e4740d3ac8a781e67dc3c5588b433d745ec292aa1"
+    }
+  ],
+  "restored": [
+    {
+      "name": "real-combat-exit",
+      "sha256": "e382416f1054ca14f13842e7398dbd55db5dc8a1b9dc6f395e423a1422a18c92",
+      "wire": 92,
+      "base": 51,
+      "at": "30/1",
+      "revision": 34,
+      "clockRng": 3157281828,
+      "currentMarker": "world.fixed-calendar.start.10",
+      "actionSpent": false,
+      "hide": [],
+      "search": [],
+      "observations": [],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": null
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": ""
+        }
+      ]
+    },
+    {
+      "name": "paid-declared",
+      "sha256": "1669b5ef599fb1f22c134cd4910e270879190527595be0915a3fa0094c7c53ab",
+      "wire": 92,
+      "base": 51,
+      "at": "30/1",
+      "revision": 35,
+      "clockRng": 3157281828,
+      "currentMarker": "world.fixed-calendar.start.10",
+      "actionSpent": true,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "test.ordinary-hide",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Pending"
+        }
+      ],
+      "search": [],
+      "observations": [],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": null
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": ""
+        }
+      ]
+    },
+    {
+      "name": "rolled-two-observers",
+      "sha256": "553b62935a5674274809b66d7903160520b35ee0f3379920e0015344ffd6e296",
+      "wire": 92,
+      "base": 51,
+      "at": "36/1",
+      "revision": 36,
+      "clockRng": 52840766,
+      "currentMarker": "world.fixed-calendar.start.12",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "test.ordinary-hide",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 36,
+          "terminal": "i-35",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.36.hide"
+        }
+      ],
+      "search": [],
+      "observations": [
+        {
+          "id": "observation.36.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 36,
+          "outcome": "HideAttempted",
+          "natural": 6,
+          "modifier": 0,
+          "total": 6,
+          "before": 3157281828,
+          "after": 52840766,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": null
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": ""
+        }
+      ]
+    },
+    {
+      "name": "coincident-hide-before-search",
+      "sha256": "2577eaf24a8d47ed0bb2b9a12c1ef581e46fd532dd1ed2882b914a4106a3466a",
+      "wire": 92,
+      "base": 51,
+      "at": "36/1",
+      "revision": 37,
+      "clockRng": 87470069,
+      "currentMarker": "world.fixed-calendar.start.12",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "i-34",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 37,
+          "terminal": "i-36",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.37.hide"
+        }
+      ],
+      "search": [
+        {
+          "attempt": "exploration.search.36",
+          "declarationRevision": 36,
+          "terminalRevision": 37,
+          "terminal": "i-36",
+          "at": "36/1",
+          "hide": "observation.37.hide",
+          "observation": "observation.37.search"
+        }
+      ],
+      "observations": [
+        {
+          "id": "observation.37.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 37,
+          "outcome": "HideAttempted",
+          "natural": 18,
+          "modifier": 0,
+          "total": 18,
+          "before": 3031976842,
+          "after": 82049198,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.37.search",
+          "kind": "Search",
+          "at": "36/1",
+          "revision": 37,
+          "outcome": "SearchNoFinding",
+          "natural": 9,
+          "modifier": 0,
+          "total": 9,
+          "before": 82049198,
+          "after": 87470069,
+          "words": 1,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.37.hide"
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.37.hide"
+        }
+      ]
+    },
+    {
+      "name": "coincident-search-before-hide",
+      "sha256": "e6c88e0ba0c472f379717f48e9ea5a88de419eeb28c177499c045086702e9fba",
+      "wire": 92,
+      "base": 51,
+      "at": "36/1",
+      "revision": 37,
+      "clockRng": 82049198,
+      "currentMarker": "world.fixed-calendar.start.12",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.36",
+          "declarationRevision": 36,
+          "declaration": "i-35",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 37,
+          "terminal": "i-36",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.37.hide"
+        }
+      ],
+      "search": [
+        {
+          "attempt": "exploration.search.35",
+          "declarationRevision": 35,
+          "terminalRevision": 37,
+          "terminal": "i-36",
+          "at": "36/1",
+          "hide": "",
+          "observation": "observation.37.search"
+        }
+      ],
+      "observations": [
+        {
+          "id": "observation.37.search",
+          "kind": "Search",
+          "at": "36/1",
+          "revision": 37,
+          "outcome": "SearchNoFinding",
+          "natural": 0,
+          "modifier": 0,
+          "total": 0,
+          "before": 3031976842,
+          "after": 3031976842,
+          "words": 0,
+          "comparisons": []
+        },
+        {
+          "id": "observation.37.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 37,
+          "outcome": "HideAttempted",
+          "natural": 18,
+          "modifier": 0,
+          "total": 18,
+          "before": 3031976842,
+          "after": 82049198,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.37.hide"
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.37.hide"
+        }
+      ]
+    },
+    {
+      "name": "unchanged-paid-no-roll",
+      "sha256": "6e8d6ce660307c0a698dc7511079888be8f83cc3263b730a5f87098c28ae452b",
+      "wire": 92,
+      "base": 51,
+      "at": "54/1",
+      "revision": 43,
+      "clockRng": 52840766,
+      "currentMarker": "world.fixed-calendar.start.18",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "i-34",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 36,
+          "terminal": "i-35",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.36.hide"
+        },
+        {
+          "attempt": "exploration.hide.39",
+          "declarationRevision": 39,
+          "declaration": "i-38",
+          "paidMarker": "world.fixed-calendar.start.12",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "36/1",
+          "due": "42/1",
+          "status": "Completed",
+          "ended": "42/1",
+          "terminalRevision": 40,
+          "terminal": "i-39",
+          "privateNoRoll": "NoEligibleObservers",
+          "privateObserverSet": "None",
+          "priorFailure": "",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.42",
+          "declarationRevision": 42,
+          "declaration": "i-41",
+          "paidMarker": "world.fixed-calendar.start.16",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "48/1",
+          "due": "54/1",
+          "status": "Completed",
+          "ended": "54/1",
+          "terminalRevision": 43,
+          "terminal": "i-42",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher",
+          "priorFailure": "observation.36.hide",
+          "observation": ""
+        }
+      ],
+      "search": [],
+      "observations": [
+        {
+          "id": "observation.36.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 36,
+          "outcome": "HideAttempted",
+          "natural": 6,
+          "modifier": 0,
+          "total": 6,
+          "before": 3157281828,
+          "after": 52840766,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": null
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": ""
+        }
+      ]
+    },
+    {
+      "name": "alternate-real-hidden",
+      "sha256": "c6b95946f102742f9bee5aecb6056936121ed08bfa2c0818e3f2755679f4ed4c",
+      "wire": 92,
+      "base": 51,
+      "at": "84/1",
+      "revision": 56,
+      "clockRng": 2319215614,
+      "currentMarker": "world.fixed-calendar.start.28",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "i-34",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 36,
+          "terminal": "i-35",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.36.hide"
+        },
+        {
+          "attempt": "exploration.hide.39",
+          "declarationRevision": 39,
+          "declaration": "i-38",
+          "paidMarker": "world.fixed-calendar.start.12",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "36/1",
+          "due": "42/1",
+          "status": "Completed",
+          "ended": "42/1",
+          "terminalRevision": 40,
+          "terminal": "i-39",
+          "privateNoRoll": "NoEligibleObservers",
+          "privateObserverSet": "None",
+          "priorFailure": "",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.42",
+          "declarationRevision": 42,
+          "declaration": "i-41",
+          "paidMarker": "world.fixed-calendar.start.16",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "48/1",
+          "due": "54/1",
+          "status": "Completed",
+          "ended": "54/1",
+          "terminalRevision": 43,
+          "terminal": "i-42",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher",
+          "priorFailure": "observation.36.hide",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.44",
+          "declarationRevision": 44,
+          "declaration": "i-43",
+          "paidMarker": "world.fixed-calendar.start.18",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "54/1",
+          "due": "60/1",
+          "status": "Completed",
+          "ended": "60/1",
+          "terminalRevision": 45,
+          "terminal": "i-44",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "observation.36.hide",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.51",
+          "declarationRevision": 51,
+          "declaration": "i-50",
+          "paidMarker": "world.fixed-calendar.start.22",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "66/1",
+          "due": "72/1",
+          "status": "Completed",
+          "ended": "72/1",
+          "terminalRevision": 52,
+          "terminal": "i-51",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "observation.36.hide",
+          "observation": "",
+          "actualRelocation": {
+            "startedRevision": 49,
+            "at": "62/1",
+            "arrivedRevision": 50,
+            "arrival": "i-49",
+            "from": [
+              2,
+              0
+            ],
+            "to": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "attempt": "exploration.hide.55",
+          "declarationRevision": 55,
+          "declaration": "i-54",
+          "paidMarker": "world.fixed-calendar.start.26",
+          "anchor": [
+            2,
+            0
+          ],
+          "started": "78/1",
+          "due": "84/1",
+          "status": "Completed",
+          "ended": "84/1",
+          "terminalRevision": 56,
+          "terminal": "i-55",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.56.hide",
+          "actualRelocation": {
+            "startedRevision": 53,
+            "at": "73/1",
+            "arrivedRevision": 54,
+            "arrival": "i-53",
+            "from": [
+              1,
+              0
+            ],
+            "to": [
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "search": [],
+      "observations": [
+        {
+          "id": "observation.36.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 36,
+          "outcome": "HideAttempted",
+          "natural": 6,
+          "modifier": 0,
+          "total": 6,
+          "before": 3157281828,
+          "after": 52840766,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.56.hide",
+          "kind": "Hide",
+          "at": "84/1",
+          "revision": 56,
+          "outcome": "HideAttempted",
+          "natural": 14,
+          "modifier": 0,
+          "total": 14,
+          "before": 52840766,
+          "after": 2319215614,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.56.hide"
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.56.hide"
+        }
+      ]
+    },
+    {
+      "name": "continued-and-found",
+      "sha256": "f85705c236a1fcea62f35ed6b74d6046c3a8ef0d8cb5444a2112ad8f4775ac86",
+      "wire": 92,
+      "base": 51,
+      "at": "114/1",
+      "revision": 66,
+      "clockRng": 806719899,
+      "currentMarker": "world.fixed-calendar.start.38",
+      "actionSpent": false,
+      "hide": [
+        {
+          "attempt": "exploration.hide.35",
+          "declarationRevision": 35,
+          "declaration": "i-34",
+          "paidMarker": "world.fixed-calendar.start.10",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "30/1",
+          "due": "36/1",
+          "status": "Completed",
+          "ended": "36/1",
+          "terminalRevision": 36,
+          "terminal": "i-35",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.36.hide"
+        },
+        {
+          "attempt": "exploration.hide.39",
+          "declarationRevision": 39,
+          "declaration": "i-38",
+          "paidMarker": "world.fixed-calendar.start.12",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "36/1",
+          "due": "42/1",
+          "status": "Completed",
+          "ended": "42/1",
+          "terminalRevision": 40,
+          "terminal": "i-39",
+          "privateNoRoll": "NoEligibleObservers",
+          "privateObserverSet": "None",
+          "priorFailure": "",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.42",
+          "declarationRevision": 42,
+          "declaration": "i-41",
+          "paidMarker": "world.fixed-calendar.start.16",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "48/1",
+          "due": "54/1",
+          "status": "Completed",
+          "ended": "54/1",
+          "terminalRevision": 43,
+          "terminal": "i-42",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher",
+          "priorFailure": "observation.36.hide",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.44",
+          "declarationRevision": 44,
+          "declaration": "i-43",
+          "paidMarker": "world.fixed-calendar.start.18",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "54/1",
+          "due": "60/1",
+          "status": "Completed",
+          "ended": "60/1",
+          "terminalRevision": 45,
+          "terminal": "i-44",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "observation.36.hide",
+          "observation": ""
+        },
+        {
+          "attempt": "exploration.hide.51",
+          "declarationRevision": 51,
+          "declaration": "i-50",
+          "paidMarker": "world.fixed-calendar.start.22",
+          "anchor": [
+            1,
+            0
+          ],
+          "started": "66/1",
+          "due": "72/1",
+          "status": "Completed",
+          "ended": "72/1",
+          "terminalRevision": 52,
+          "terminal": "i-51",
+          "privateNoRoll": "UnchangedFailure",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "observation.36.hide",
+          "observation": "",
+          "actualRelocation": {
+            "startedRevision": 49,
+            "at": "62/1",
+            "arrivedRevision": 50,
+            "arrival": "i-49",
+            "from": [
+              2,
+              0
+            ],
+            "to": [
+              1,
+              0
+            ]
+          }
+        },
+        {
+          "attempt": "exploration.hide.55",
+          "declarationRevision": 55,
+          "declaration": "i-54",
+          "paidMarker": "world.fixed-calendar.start.26",
+          "anchor": [
+            2,
+            0
+          ],
+          "started": "78/1",
+          "due": "84/1",
+          "status": "Completed",
+          "ended": "84/1",
+          "terminalRevision": 56,
+          "terminal": "i-55",
+          "privateNoRoll": "None",
+          "privateObserverSet": "Searcher, Witness",
+          "priorFailure": "",
+          "observation": "observation.56.hide",
+          "actualRelocation": {
+            "startedRevision": 53,
+            "at": "73/1",
+            "arrivedRevision": 54,
+            "arrival": "i-53",
+            "from": [
+              1,
+              0
+            ],
+            "to": [
+              2,
+              0
+            ]
+          }
+        }
+      ],
+      "search": [
+        {
+          "attempt": "exploration.search.59",
+          "declarationRevision": 59,
+          "terminalRevision": 60,
+          "terminal": "i-59",
+          "at": "96/1",
+          "hide": "observation.56.hide",
+          "observation": "observation.60.search"
+        },
+        {
+          "attempt": "exploration.search.61",
+          "declarationRevision": 61,
+          "terminalRevision": 62,
+          "terminal": "i-61",
+          "at": "102/1",
+          "hide": "observation.56.hide",
+          "observation": "observation.62.search"
+        },
+        {
+          "attempt": "exploration.search.63",
+          "declarationRevision": 63,
+          "terminalRevision": 64,
+          "terminal": "i-63",
+          "at": "108/1",
+          "hide": "observation.56.hide",
+          "observation": "observation.64.search"
+        },
+        {
+          "attempt": "exploration.search.65",
+          "declarationRevision": 65,
+          "terminalRevision": 66,
+          "terminal": "i-65",
+          "at": "114/1",
+          "hide": "observation.56.hide",
+          "observation": "observation.66.search"
+        }
+      ],
+      "observations": [
+        {
+          "id": "observation.36.hide",
+          "kind": "Hide",
+          "at": "36/1",
+          "revision": 36,
+          "outcome": "HideAttempted",
+          "natural": 6,
+          "modifier": 0,
+          "total": 6,
+          "before": 3157281828,
+          "after": 52840766,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Failure",
+              "hidden": false
+            }
+          ]
+        },
+        {
+          "id": "observation.56.hide",
+          "kind": "Hide",
+          "at": "84/1",
+          "revision": 56,
+          "outcome": "HideAttempted",
+          "natural": 14,
+          "modifier": 0,
+          "total": 14,
+          "before": 52840766,
+          "after": 2319215614,
+          "words": 1,
+          "comparisons": [
+            {
+              "observer": "TEST_ONLY.companion",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            },
+            {
+              "observer": "TEST_ONLY.search-witness",
+              "dc": 10,
+              "degree": "Success",
+              "hidden": true
+            }
+          ]
+        },
+        {
+          "id": "observation.60.search",
+          "kind": "Search",
+          "at": "96/1",
+          "revision": 60,
+          "outcome": "SearchNoFinding",
+          "natural": 7,
+          "modifier": 0,
+          "total": 7,
+          "before": 2319215614,
+          "after": 4013335487,
+          "words": 1,
+          "comparisons": []
+        },
+        {
+          "id": "observation.62.search",
+          "kind": "Search",
+          "at": "102/1",
+          "revision": 62,
+          "outcome": "SearchNoFinding",
+          "natural": 11,
+          "modifier": 0,
+          "total": 11,
+          "before": 4013335487,
+          "after": 1399496191,
+          "words": 1,
+          "comparisons": []
+        },
+        {
+          "id": "observation.64.search",
+          "kind": "Search",
+          "at": "108/1",
+          "revision": 64,
+          "outcome": "SearchNoFinding",
+          "natural": 13,
+          "modifier": 0,
+          "total": 13,
+          "before": 1399496191,
+          "after": 444256053,
+          "words": 1,
+          "comparisons": []
+        },
+        {
+          "id": "observation.66.search",
+          "kind": "Search",
+          "at": "114/1",
+          "revision": 66,
+          "outcome": "SearchFound",
+          "natural": 19,
+          "modifier": 0,
+          "total": 19,
+          "before": 444256053,
+          "after": 806719899,
+          "words": 1,
+          "comparisons": []
+        }
+      ],
+      "knowledge": [
+        {
+          "observer": "TEST_ONLY.companion",
+          "hidden": false,
+          "directSight": false,
+          "currentLocationKnown": true,
+          "activeHide": ""
+        },
+        {
+          "observer": "TEST_ONLY.search-witness",
+          "hidden": true,
+          "directSight": false,
+          "currentLocationKnown": false,
+          "activeHide": "observation.56.hide"
+        }
+      ]
+    }
+  ]
+}

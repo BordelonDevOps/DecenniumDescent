@@ -1,0 +1,104 @@
+{
+  "status": "PASS",
+  "profile": "TEST_ONLY.observation-v2-90e2232f83e3934602841b50faae558f1164fc229b344bf02979a956986d0529",
+  "schema": 51,
+  "seed": 2,
+  "assemblies": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "0909fe6db822c66824469ad694e402abaf77a69ab19e844578675444e04bdf32"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "3f1956071ca87ec059d61ef441ae03f0074dff706163e373b5f61c62f3db3d8c"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "96f3a9a612d9e73d29339203390e368060d9761828ae9bb74307b739c60b04cb"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "9c7d921e82fe0bd8a053a05e4740d3ac8a781e67dc3c5588b433d745ec292aa1"
+    }
+  ],
+  "hide": {
+    "command": "observation.command.6",
+    "at": "1/1",
+    "revision": 6,
+    "check": "observation.6.hide",
+    "natural": 18,
+    "total": 18
+  },
+  "exit": {
+    "command": "tactical.command.35",
+    "at": "30/1",
+    "revision": 35,
+    "tactical": false
+  },
+  "ready": {
+    "at": "30/1",
+    "revision": 35,
+    "rng": 3157281828,
+    "target": "TEST_ONLY.actor",
+    "candidate": [
+      1,
+      0
+    ],
+    "searcher": "TEST_ONLY.companion",
+    "calendar": "world.fixed-calendar",
+    "interval": 5,
+    "action": "None",
+    "existingNextInterval": "36/1",
+    "knowledge": [
+      {
+        "observer": "TEST_ONLY.companion",
+        "position": [
+          3,
+          3
+        ],
+        "hiddenAttempt": "observation.6.hide",
+        "locationKnown": false,
+        "directSight": false,
+        "living": true
+      },
+      {
+        "observer": "TEST_ONLY.search-witness",
+        "position": [
+          1,
+          4
+        ],
+        "hiddenAttempt": "observation.6.hide",
+        "locationKnown": false,
+        "directSight": false,
+        "living": true
+      }
+    ]
+  },
+  "ordinarySearchBaseline": [
+    {
+      "x": 1,
+      "y": 0,
+      "query": "ObservationActionRequiresTacticalCombat",
+      "execution": "ObservationActionRequiresTacticalCombat",
+      "costs": []
+    },
+    {
+      "x": 0,
+      "y": 1,
+      "query": "ObservationActionRequiresTacticalCombat",
+      "execution": "ObservationActionRequiresTacticalCombat",
+      "costs": []
+    }
+  ],
+  "unchangedSaveSha256": "9859c4b99eb9c2457f4f5ffdff9ed8c7c69ddeaf89e1bc38b375f63436fb1543",
+  "actualUnseenRelocation": {
+    "partialAt": "61/2",
+    "partialFeet": "5/2",
+    "arrivedAt": "31/1",
+    "newAnchor": [
+      2,
+      0
+    ],
+    "bothStillHidden": true
+  }
+}

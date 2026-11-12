@@ -1,0 +1,361 @@
+{
+  "module": "EXP-04 one paid ordinary-exploration Hide",
+  "wireSchema": 92,
+  "baseFeatureSchema": 51,
+  "authority": "TEST_ONLY scheduled hider and two authored anchors on the selected independent observation host",
+  "sourceCommit": "2f3fc6a490cc94b6376dfe8fa74396129653c1e9",
+  "approvedSourceApiReply": "04a138d6-1e4b-487f-8a7a-3ac9ef16ca5e",
+  "sourceApiEvidenceCommit": "37d79e4e25bc0823eac8ab23bfaca608f8cf94e4",
+  "acceptedPredecessorSource": "67e8b43512ccbd9183f138ab5efb4dcb466938b7",
+  "acceptedPredecessorReply": "12fe4fb4-8ca0-406d-b7bf-1bd56a8d1a09",
+  "pinnedSourceCommit": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "pinnedSourceHashes": {
+    "DecenniumDescentv6/books/player/Decennium_Descent_Player_Rulebook_v6.docx": "a753da2ce935ed29e4f3f14575f3785140821c3f0c43adb760da6149b12e295e",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/COMBAT_ACTION_PLAYTEST.md": "f90d039142145fbd31c37992ebece70d7926dc4b6081e340f9a2fd9dc7237bc6",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CORE_RESOLUTION_PLAYTEST.md": "69d0e64394de58c4d86a3ec57cf282978d131a1a9c1eaa21632bb7d3b72562da",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/CONDITIONS_PLAYTEST.md": "6f6278430d48d0c74dc8e3b928b01dea3cc97d5e45226b128a405ab37b1e7148",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/GAMEPLAY_LOOP_CANON.md": "ba5ebcbdb77a27cb8fde88ba13fd05216d6808b10f7b58b64e6cba54eed62066",
+    "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480"
+  },
+  "exactImplementationFiles": {
+    "docs/unity/evidence/2026-11-11-exp04-exploration-hide/IMPLEMENTATION_CONTRACT.md": "a31eaf3728b018950073071027e776c7b50a554aeecc1c67524413a53ae4cf7a",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs": "fb390f5f64b25c9edfaa95d7ac5fd8d730b1cd18aa840b57786c7faf7e40d5c1",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs.meta": "c1ec697d6d91778f9b5d5b6c10e8156473507a8e6e50eaec029987510d3b1a33",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs": "0740b76620bbf687e9742072531ebc54a6de7332cd45c971cfe192999c6d04ce",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs": "6bf866c37aff1d5317ac66e44d41d9b5350b542e26675588d2f8295f4eb00890",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs": "98172c51518409b9a3944fd6fe0cf71313f89823db925770e0fdb1940f977913",
+    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs": "594a5c63c177abd8e7e923ac5a000bdf8220dba2df2ceced4f2ffe2ee033ebb6",
+    "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs": "2c1dc5451825f8cc28b05dd113543ab9128f37faa791dc06f86ef85f488a1329",
+    "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs.meta": "8a7081639799ad9c429c8c705e4ce7854e02b3b8f8a99601fa2e9fc721871c00",
+    "engine/com.decennium.foundation/Runtime/Core/ExplorationHideValidation.cs": "45dbe7d0c149e0278d259c36e447bc97944af61afa0650ef71c044af817ec7f2",
+    "engine/com.decennium.foundation/Runtime/Core/ExplorationHideValidation.cs.meta": "f59ef559d738b387dd7427e78643c40acf0b172f4ef41844a37ee35c8032d4e1",
+    "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchValidation.cs": "f681c1c8a748349fdf74f07f3c2993de73a26fedbfeefaf3ae1efc9c9f9b6174",
+    "engine/com.decennium.foundation/Runtime/Core/Simulation.cs": "97d5555e5bcd109734eee4727d5b71976d61d8784af069791c7b174e2f8048b3",
+    "engine/com.decennium.foundation/Runtime/Persistence/ExplorationHideCodec.cs": "6f17ab5b6307b2718c4e23c3c074d195bf9e598aa8129b4ba2941c68557b5b31",
+    "engine/com.decennium.foundation/Runtime/Persistence/ExplorationHideCodec.cs.meta": "92fd9914b600c6198c18724710d10c3558468a5d517ee108df5077409f412dad",
+    "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs": "e86b3a5e063eb105f83377e1f516868818d835cbbb16d64c4d2217a77debd2e8",
+    "engine/com.decennium.foundation/Tests/EditMode/ExplorationHideCases.cs": "cd605931d8cb00a4a6dc6eff32722b33b279d7e959a2ba7a5636020134347604",
+    "engine/com.decennium.foundation/Tests/EditMode/ExplorationHideCases.cs.meta": "b4ab96969da75812839b9111ca0d4c063f389aaaad71f247da275d0b31affeb0",
+    "engine/com.decennium.foundation/Tests/EditMode/ExplorationSearchCases.cs": "7f62ac7652400705a0c159e2058eb7fe039defe4e8fb8f8b3710826278152470",
+    "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs": "aa2129acc94b5ec453e927229815f4b45731138ff3e1fff4afc46fd27a2bb8b0",
+    "engine/com.decennium.foundation/Tests/EditMode/ObservationCases.cs": "6d49704cbcd2a9260ef25d4f58443788459c8d11c1b0a27c6f2ad7e9b940b200"
+  },
+  "headlessSourceHashes": 349,
+  "standaloneSourceHashes": 258,
+  "runtimeWithoutLabDefinesSourceHashes": 146,
+  "packageSourceHashes": 739,
+  "packageAssets": 375,
+  "uniqueGuids": 375,
+  "packageChecks": 18,
+  "focusedCases": 8,
+  "historicalCases": null,
+  "unfilteredCases": null,
+  "savedStates": 20,
+  "authenticPredecessorSaves": [
+    {
+      "path": "docs/unity/evidence/2026-11-06-observation/exact-partition-20261106/LEGACY_SCHEMA51_SAVE.bin",
+      "wire": 51,
+      "base": 51,
+      "sha256": "648b91683a742bf03807b0d945a29563eba88a112e41ce0c75f2dbdbb4354a35",
+      "bytes": 5520,
+      "time": "2/1",
+      "revision": 5
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-exp07-surprise-aware-entry/focused/saves/exp07-surprise-restricted-slot.ddsave",
+      "wire": 90,
+      "base": 90,
+      "sha256": "1fae053884b7f84f3de2f6e55be8dc0fd152209b974e964993dc443c6ebb02b1",
+      "bytes": 50621,
+      "time": "23165/2",
+      "revision": 98
+    },
+    {
+      "path": "focused/saves/exp04-search-wire91-control.ddsave",
+      "wire": 91,
+      "base": 51,
+      "sha256": "b4a6702c1db8d507104c63bd2e5a297719c2b813731da3829c898fad00c93bde",
+      "bytes": 17054,
+      "time": "30/1",
+      "revision": 35
+    },
+    {
+      "path": "focused/saves/exp04-search-paid-pending.ddsave",
+      "wire": 91,
+      "base": 51,
+      "sha256": "0d8847fc2db24f69cee003411a1567ebbf26fa6488f8e1c286de298aceecbd54",
+      "bytes": 17253,
+      "time": "30/1",
+      "revision": 36,
+      "continued": {
+        "at": "36/1",
+        "revision": 37,
+        "natural": 6,
+        "words": 1,
+        "outcome": "SearchNoFinding"
+      }
+    }
+  ],
+  "originalSchema51ConnectedTrace": "All observed state and save bytes matched",
+  "sharedRunner": {
+    "path": "docs/unity/evidence/2026-11-11-exp07-living-opponent-retreat/Run-ExactRetreatRegressionShard.ps1",
+    "sha256": "abfe9efcabf7c76f9b247e72577c7d7c3b74c286041d6b6633c8d4909ea1e036"
+  },
+  "artifacts": {
+    "baseline.json": {
+      "path": "baseline.json",
+      "sha256": "3ee81fa9da59e14987951ee508abdd87044288f6bfb66bd2927c0fb43f724c17",
+      "bytes": 2625
+    },
+    "BASELINE_BINDINGS.json": {
+      "path": "BASELINE_BINDINGS.json",
+      "sha256": "38291ed0b1dd930bf2a2672186200f31d9807237d6cb2e0cddf05a5bca6d68cd",
+      "bytes": 4874
+    },
+    "compile/results.json": {
+      "path": "compile/results.json",
+      "sha256": "e22aebe8f38ae24a5beef23f82f1b88bab55cf83a84767c5798c0629a7cb06a7",
+      "bytes": 48382
+    },
+    "compile/runtime-without-lab-defines.json": {
+      "path": "compile/runtime-without-lab-defines.json",
+      "sha256": "32b3960ff910fcbf0628a2578faa6effa6b526e937c18db4d6b4b4cdbc60af70",
+      "bytes": 27438
+    },
+    "focused/assemblies/Decennium.Foundation.Core.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.Core.dll",
+      "sha256": "0909fe6db822c66824469ad694e402abaf77a69ab19e844578675444e04bdf32",
+      "bytes": 1190912
+    },
+    "focused/assemblies/Decennium.Foundation.HeadlessTests.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "9c7d921e82fe0bd8a053a05e4740d3ac8a781e67dc3c5588b433d745ec292aa1",
+      "bytes": 2536960
+    },
+    "focused/assemblies/Decennium.Foundation.LabModel.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.LabModel.dll",
+      "sha256": "96f3a9a612d9e73d29339203390e368060d9761828ae9bb74307b739c60b04cb",
+      "bytes": 2696704
+    },
+    "focused/assemblies/Decennium.Foundation.Persistence.dll": {
+      "path": "focused/assemblies/Decennium.Foundation.Persistence.dll",
+      "sha256": "3f1956071ca87ec059d61ef441ae03f0074dff706163e373b5f61c62f3db3d8c",
+      "bytes": 266240
+    },
+    "focused/inventory.txt": {
+      "path": "focused/inventory.txt",
+      "sha256": "8f1f906e15149dfbb41f47b4cde25d002524e1c50ff896b60fa1a76a528712cc",
+      "bytes": 503
+    },
+    "focused/results.json": {
+      "path": "focused/results.json",
+      "sha256": "64a037c73eb3418a909c3a837f69d7518618f8d8b7fcdda07fda350303ca4163",
+      "bytes": 65356
+    },
+    "focused/saves/exp04-hide-alternate-real-hidden.ddsave": {
+      "path": "focused/saves/exp04-hide-alternate-real-hidden.ddsave",
+      "sha256": "c6b95946f102742f9bee5aecb6056936121ed08bfa2c0818e3f2755679f4ed4c",
+      "bytes": 23047
+    },
+    "focused/saves/exp04-hide-cancelled.ddsave": {
+      "path": "focused/saves/exp04-hide-cancelled.ddsave",
+      "sha256": "7590064a3b0140edf6eeeab1522f64678bf63eabf3d01190299575ea772bc366",
+      "bytes": 16983
+    },
+    "focused/saves/exp04-hide-coincident-hide-before-search.ddsave": {
+      "path": "focused/saves/exp04-hide-coincident-hide-before-search.ddsave",
+      "sha256": "2577eaf24a8d47ed0bb2b9a12c1ef581e46fd532dd1ed2882b914a4106a3466a",
+      "bytes": 17842
+    },
+    "focused/saves/exp04-hide-coincident-search-before-hide.ddsave": {
+      "path": "focused/saves/exp04-hide-coincident-search-before-hide.ddsave",
+      "sha256": "e6c88e0ba0c472f379717f48e9ea5a88de419eeb28c177499c045086702e9fba",
+      "bytes": 17780
+    },
+    "focused/saves/exp04-hide-condition-interrupted.ddsave": {
+      "path": "focused/saves/exp04-hide-condition-interrupted.ddsave",
+      "sha256": "4a351839856ebb178e23627b47cce219a069f9d7e1d4e9364a9a733574a3e04f",
+      "bytes": 17139
+    },
+    "focused/saves/exp04-hide-continued-and-found.ddsave": {
+      "path": "focused/saves/exp04-hide-continued-and-found.ddsave",
+      "sha256": "f85705c236a1fcea62f35ed6b74d6046c3a8ef0d8cb5444a2112ad8f4775ac86",
+      "bytes": 26423
+    },
+    "focused/saves/exp04-hide-empty-completed.ddsave": {
+      "path": "focused/saves/exp04-hide-empty-completed.ddsave",
+      "sha256": "65dff8a0d7657be57b60dcee72461e1c8927e85d1b6359b2c5e07ae96ecb1363",
+      "bytes": 17371
+    },
+    "focused/saves/exp04-hide-expiry-start-and-remote-work.ddsave": {
+      "path": "focused/saves/exp04-hide-expiry-start-and-remote-work.ddsave",
+      "sha256": "28af00429c8605c3a6008e8562e5f274a52e74ed0d18f13783b16d6efb8f238a",
+      "bytes": 18655
+    },
+    "focused/saves/exp04-hide-independent-clear-sight.ddsave": {
+      "path": "focused/saves/exp04-hide-independent-clear-sight.ddsave",
+      "sha256": "df83978ee80b02ae2d5948b09b5f2101ad14857f76e028cc9a1e80b360385a96",
+      "bytes": 17488
+    },
+    "focused/saves/exp04-hide-mode-interrupted.ddsave": {
+      "path": "focused/saves/exp04-hide-mode-interrupted.ddsave",
+      "sha256": "4792fa5ca198dba0eff921c65996e0ab19d1cb382667618221572a584a15371e",
+      "bytes": 17004
+    },
+    "focused/saves/exp04-hide-paid-declared.ddsave": {
+      "path": "focused/saves/exp04-hide-paid-declared.ddsave",
+      "sha256": "1669b5ef599fb1f22c134cd4910e270879190527595be0915a3fa0094c7c53ab",
+      "bytes": 16602
+    },
+    "focused/saves/exp04-hide-real-combat-exit.ddsave": {
+      "path": "focused/saves/exp04-hide-real-combat-exit.ddsave",
+      "sha256": "e382416f1054ca14f13842e7398dbd55db5dc8a1b9dc6f395e423a1422a18c92",
+      "bytes": 16390
+    },
+    "focused/saves/exp04-hide-restore-before.ddsave": {
+      "path": "focused/saves/exp04-hide-restore-before.ddsave",
+      "sha256": "e382416f1054ca14f13842e7398dbd55db5dc8a1b9dc6f395e423a1422a18c92",
+      "bytes": 16390
+    },
+    "focused/saves/exp04-hide-restore-completed.ddsave": {
+      "path": "focused/saves/exp04-hide-restore-completed.ddsave",
+      "sha256": "0ad874c3500ec4428152f4aec0430d6c241ba321e1e2b9c6dd4bc6f443af49b5",
+      "bytes": 17502
+    },
+    "focused/saves/exp04-hide-restore-partial.ddsave": {
+      "path": "focused/saves/exp04-hide-restore-partial.ddsave",
+      "sha256": "c158f7eb40e4f05484bda18ee0521429e6cd050e6fc4ad4ea3cb673a11892952",
+      "bytes": 16809
+    },
+    "focused/saves/exp04-hide-rolled-two-observers.ddsave": {
+      "path": "focused/saves/exp04-hide-rolled-two-observers.ddsave",
+      "sha256": "553b62935a5674274809b66d7903160520b35ee0f3379920e0015344ffd6e296",
+      "bytes": 17250
+    },
+    "focused/saves/exp04-hide-unchanged-paid-no-roll.ddsave": {
+      "path": "focused/saves/exp04-hide-unchanged-paid-no-roll.ddsave",
+      "sha256": "6e8d6ce660307c0a698dc7511079888be8f83cc3263b730a5f87098c28ae452b",
+      "bytes": 19176
+    },
+    "focused/saves/exp04-hide-wire51-control.ddsave": {
+      "path": "focused/saves/exp04-hide-wire51-control.ddsave",
+      "sha256": "9859c4b99eb9c2457f4f5ffdff9ed8c7c69ddeaf89e1bc38b375f63436fb1543",
+      "bytes": 16830
+    },
+    "focused/saves/exp04-hide-wire91-control.ddsave": {
+      "path": "focused/saves/exp04-hide-wire91-control.ddsave",
+      "sha256": "b4a6702c1db8d507104c63bd2e5a297719c2b813731da3829c898fad00c93bde",
+      "bytes": 17054
+    },
+    "focused/saves/exp04-hide-wire92-control.ddsave": {
+      "path": "focused/saves/exp04-hide-wire92-control.ddsave",
+      "sha256": "e382416f1054ca14f13842e7398dbd55db5dc8a1b9dc6f395e423a1422a18c92",
+      "bytes": 16390
+    },
+    "focused/shardA.jsonl": {
+      "path": "focused/shardA.jsonl",
+      "sha256": "be2c63c4d7c9694a53b5e44caf6eb948d664d9ea1ec589a95ae9f75b6b7c6ae2",
+      "bytes": 195
+    },
+    "focused/shardB.jsonl": {
+      "path": "focused/shardB.jsonl",
+      "sha256": "f69db1aac662cfea92408570c1aa6786910807dff8f4d0f3bc0bc6cf80a2cc0a",
+      "bytes": 194
+    },
+    "focused/shardC.jsonl": {
+      "path": "focused/shardC.jsonl",
+      "sha256": "10ed4222ae7d5f7f68bf437e903bfd050ef7f77d833ed24647745b2feca1ae3c",
+      "bytes": 97
+    },
+    "focused/shardD.jsonl": {
+      "path": "focused/shardD.jsonl",
+      "sha256": "5eb45726709e1f1c0854cd93cde55709e41102cecc701e93de41812782ee79db",
+      "bytes": 99
+    },
+    "focused/shardE.jsonl": {
+      "path": "focused/shardE.jsonl",
+      "sha256": "30b1f807bf6e2fd71c125bd48c9b5a051fa1ce8437d066893b7376cd9ca5d12c",
+      "bytes": 94
+    },
+    "focused/shardF.jsonl": {
+      "path": "focused/shardF.jsonl",
+      "sha256": "152e2c80b36db9ac1b6f0f8d8dbbcdc8d8bba36dda19f2e90cb8ee3720a21ca3",
+      "bytes": 104
+    },
+    "focused/timeline.json": {
+      "path": "focused/timeline.json",
+      "sha256": "1b5b7118f2221b6739b4561b8d3b91225ca8f62d7f591a7b6a4c89c1cf267c58",
+      "bytes": 30318
+    },
+    "focused/traces/exp04-hide-coincident-order.tsv": {
+      "path": "focused/traces/exp04-hide-coincident-order.tsv",
+      "sha256": "f98d6ffdd741529fb59548e8b88ce1e7d03e7672739fca6390fdadbe81da9685",
+      "bytes": 131
+    },
+    "focused/traces/exp04-hide-interruptions-and-work.tsv": {
+      "path": "focused/traces/exp04-hide-interruptions-and-work.tsv",
+      "sha256": "b594a5bacca76377ea942664dde9c8ec79bbf9ab6dd37894f81d38f815fdc44b",
+      "bytes": 162
+    },
+    "focused/traces/exp04-hide-public-lifecycle.tsv": {
+      "path": "focused/traces/exp04-hide-public-lifecycle.tsv",
+      "sha256": "0f50627d4e8a972b5e502edff1206dfa52f8add747dbc11e53334a9e1dab1840",
+      "bytes": 782
+    },
+    "focused/traces/exp04-hide-retry-and-search.tsv": {
+      "path": "focused/traces/exp04-hide-retry-and-search.tsv",
+      "sha256": "b528dee955f1f26bd46f1e587f9104aebd94b10bd31a9a63e5e431deb9e60ce9",
+      "bytes": 308
+    },
+    "focused/traces/exp04-hide-scheduled-payment.tsv": {
+      "path": "focused/traces/exp04-hide-scheduled-payment.tsv",
+      "sha256": "7bdf6f6631328703d36857a24b3d911aa1f9b7a9192eca4a8d2480d2da24f464",
+      "bytes": 253
+    },
+    "IMPLEMENTATION_CONTRACT.md": {
+      "path": "IMPLEMENTATION_CONTRACT.md",
+      "sha256": "a31eaf3728b018950073071027e776c7b50a554aeecc1c67524413a53ae4cf7a",
+      "bytes": 2966
+    },
+    "legacy-saves/results.json": {
+      "path": "legacy-saves/results.json",
+      "sha256": "6925e4972c3785bce1e11b2028f8715cfec8a5dccd0e8ce5aa2266ab74bcae44",
+      "bytes": 2125
+    },
+    "legacy-saves/schema51-baseline-replayed.json": {
+      "path": "legacy-saves/schema51-baseline-replayed.json",
+      "sha256": "9248d273f60a89ebdf532d8c86afa670a05418b9a459a8ce0d5a2123ac6ca3f9",
+      "bytes": 2661
+    },
+    "Read-ExplorationHideEvidence.ps1": {
+      "path": "Read-ExplorationHideEvidence.ps1",
+      "sha256": "a42e02e1a0692bc562d606f594cc07cdbdab4d2d0d88a1129fb4b41c2ea0633b",
+      "bytes": 7470
+    },
+    "SOURCE_API_REVIEW.md": {
+      "path": "SOURCE_API_REVIEW.md",
+      "sha256": "2ab2fe6bd804f1fd2656290be827a8b26f2271ef77d21f9b7ab32db3745ccaa8",
+      "bytes": 8337
+    },
+    "Start-ExactExplorationHideRegression.ps1": {
+      "path": "Start-ExactExplorationHideRegression.ps1",
+      "sha256": "a8f159c14d3d63b83041682523a7572abd9cb65d4648654d40844f1cfe287aca",
+      "bytes": 2811
+    },
+    "static/results.json": {
+      "path": "static/results.json",
+      "sha256": "0095a91d49af96d8c756c0d5d5169bdb76f0b1c4631861920684bfb3e7113c8a",
+      "bytes": 141020
+    },
+    "Verify-ExplorationHideBaseline.ps1": {
+      "path": "Verify-ExplorationHideBaseline.ps1",
+      "sha256": "869d4d66526780e2feab3c1569608136a80fe21665926f83d60971a21b33b53b",
+      "bytes": 10073
+    },
+    "Verify-ExplorationHideCompatibility.ps1": {
+      "path": "Verify-ExplorationHideCompatibility.ps1",
+      "sha256": "b346d35a3494393b1ed65afc012e0d43f554966e161e1edbee781a1e1062539e",
+      "bytes": 2983
+    }
+  }
+}
