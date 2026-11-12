@@ -1,6 +1,6 @@
 # Decennium C# gameplay simulation handoff
 
-**Current active gate is EXP-04 source/API review for one ordinary-exploration Hide.** GPT selected the next gate and Codex verified that TAC-03, RUL-01 and FND-05 are its formal prerequisites. The packet will settle actual concealment, observer eligibility, ordinary Action and time, privacy, and materially changed circumstances for a retry. [Successor selection](evidence/2026-11-11-exp04-exploration-search/GPT_REVIEW.md)
+**Current active gate is EXP-04 source/API review for one ordinary-exploration Hide.** GPT selected the next gate and Codex verified that TAC-03, RUL-01 and FND-05 are its formal prerequisites. The packet proposes actual concealment, observer eligibility, ordinary Action and time, privacy, and materially changed circumstances for a retry. [Source/API packet](evidence/2026-11-11-exp04-exploration-hide/SOURCE_API_REVIEW.md) [Successor selection](evidence/2026-11-11-exp04-exploration-search/GPT_REVIEW.md)
 
 **EXP-04 paid ordinary-exploration Search accepted checkpoint.** GPT accepted all six groups for wire 91 implementation `67e8b43512ccbd9183f138ab5efb4dcb466938b7` in reply `12fe4fb4-8ca0-406d-b7bf-1bd56a8d1a09`. The actual ordinary Action, elapsed interval and filtered observer-specific results preserve clock, inventory, work and earlier saves. The exact six focused, 546 historical and 1,448 full-suite cases passed. [Actual review](evidence/2026-11-11-exp04-exploration-search/GPT_REVIEW.md) · [Exact evidence](evidence/2026-11-11-exp04-exploration-search/README.md)
 
