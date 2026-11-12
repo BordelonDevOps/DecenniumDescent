@@ -56,7 +56,10 @@ read(ENGINE, "docs/unity/MANUFACTURING_RECIPE14_RULE_DECISIONS.md")
 read(ENGINE, PACKAGE + "Laboratory/Model/ManufacturingRules.cs")
 adapter = read(ENGINE, PACKAGE + "Laboratory/Model/SharedManufacturing.cs").decode()
 assert "HealingPotential(first.Value+second.Value+4)" in adapter
+assert "first.Value+1,second.Value+1,potential,actualHealing" in adapter
 assert "SharedManufacturingFixture.Lot(recipe.Id,c.X,i)" in adapter
+dice = read(ENGINE, PACKAGE + "Runtime/Core/DiceStream.cs").decode()
+assert "return new BoundedDraw((int)(value%outcomes),state,words)" in dice
 read(ENGINE, PACKAGE + "Laboratory/Model/SharedConnectedFormulaResearch.cs")
 read(ENGINE, PACKAGE + "Runtime/Core/ConnectedBloodSpecimen.cs")
 read(ENGINE, PACKAGE + "Runtime/Core/ManufacturingRecords.cs")
@@ -86,7 +89,8 @@ result = {
         "supplementaryGlassVialsAtFullMasterwork": 2,
         "doseMassLb": "1/5",
         "authoredHealing": recipe["mechanics"]["healing"],
-        "priorRuntimeHealing": "2d4+4",
+        "priorRuntimeHealing": "2d4+2",
+        "runtimeHealingArithmetic": "Two zero-based values (0 through 3) plus 4 equal two recorded d4 faces plus 2.",
     },
     "acceptedCutoff": cutoff,
 }
