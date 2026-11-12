@@ -77,13 +77,14 @@ namespace Decennium.Foundation
                 ||s.HarvestPreservationEvidence.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()
                     !=s.HarvestPreservationEvidence.Length)
                 throw new ArgumentException("Invalid harvest preservation evidence collection.");
-            if(s.SchemaVersion<Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
-                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema||s.SchemaVersion>=Snapshot.HavenMealSchema) {
+            var specimen = s.BloodSpecimen;
+            if(specimen==null&&(s.SchemaVersion<Snapshot.HarvestPreservationExposureSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
+                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema||s.SchemaVersion>=Snapshot.HavenMealSchema)) {
                 if(s.HarvestPreservationEvidence.Length!=0)
                     throw new ArgumentException("Harvest preservation evidence requires schema76.");
                 return;
             }
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema||!s.TestOnly
+            if(specimen==null&&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema||!s.TestOnly
                 ||s.HarvestRequirementWorks.Length!=0)
                 throw new ArgumentException("Schema76 is a TEST_ONLY treatment/exposure profile without schema74 work.");
 
@@ -104,6 +105,10 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Harvest preservation openings, portions, and occurrences are once-only.");
 
             foreach(var evidence in ordered) {
+                if(specimen!=null&&(evidence.Kind!=HarvestPreservationEvidenceKind.ControlledOpening
+                    ||evidence.VesselId!=specimen.VesselId||evidence.ToolId!=specimen.ToolId
+                    ||evidence.CleanToolFactId!=specimen.CleanToolFactId))
+                    throw new ArgumentException("Wire94 admits only the bound clean opening.");
                 if(evidence.AppliedRevision>s.Revision||evidence.At>s.RuleClock)
                     throw new ArgumentException("Harvest preservation evidence is from the future.");
                 var receipt=s.Receipts.SingleOrDefault(x=>x.Revision==evidence.AppliedRevision&&x.Id==evidence.CommandId);
@@ -120,7 +125,9 @@ namespace Decennium.Foundation
                         &&x.Operation==PortableOperation.Open&&x.ActorId==command.Actor&&x.EndedAt==evidence.At);
                     if(command.Kind!=CommandKind.OpenPortableContainer||command.Target!=evidence.VesselId
                         ||handling==null||handling.EndedAt!=handling.StartedAt.AddSeconds(1)
-                        ||evidence.ToolId!=treatment.ToolId||!s.PortableEquipment.Any(x=>x.Id==evidence.ToolId))
+                        ||evidence.ToolId!=treatment.ToolId||(specimen==null
+                            ? !s.PortableEquipment.Any(x=>x.Id==evidence.ToolId)
+                            : command.Actor!=ConnectedBloodSpecimen.Worker||!s.Structures.Any(x=>x.Id==evidence.ToolId)))
                         throw new ArgumentException("Controlled opening does not match its physical handling and clean-tool binding.");
                     if(!HarvestPreservationRules.IsProtectedAtRevision(s,treatment.InventoryLotId,evidence.At,evidence.AppliedRevision))
                         throw new ArgumentException("Controlled opening evidence was not created during the treatment protection interval.");
@@ -216,7 +223,7 @@ namespace Decennium.Foundation
                 return s.HarvestPreservationTreatmentAttempts.Any(x=>x.Status==HarvestPreservationTreatmentStatus.Success
                     &&x.InventoryLotId==inventoryLotId&&x.CompletedAt.HasValue&&x.CompletedAt.Value<=at
                     &&at<x.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds));
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)return false;
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema&&s.BloodSpecimen==null)return false;
             var attempt=s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Success
                 &&x.CompletedAt.HasValue&&(x.InventoryLotId==inventoryLotId
                     ||s.HarvestPreservationEvidence.Any(e=>e.Kind==HarvestPreservationEvidenceKind.InVesselPortion
@@ -231,7 +238,7 @@ namespace Decennium.Foundation
 
         internal static bool IsProtectedAtRevision(Snapshot s,string inventoryLotId,RuleTime at,long throughRevision)
         {
-            if(s==null||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema||throughRevision<0)return false;
+            if(s==null||(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema&&s.BloodSpecimen==null)||throughRevision<0)return false;
             var attempt=s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Success
                 &&x.CompletedAt.HasValue&&(x.InventoryLotId==inventoryLotId
                     ||s.HarvestPreservationEvidence.Any(e=>e.AppliedRevision<=throughRevision
@@ -248,7 +255,7 @@ namespace Decennium.Foundation
 
         public static RuleTime? NextCoverageBoundary(Snapshot s)
         {
-            if(s==null||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)return null;
+            if(s==null||s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema&&s.BloodSpecimen==null)return null;
             RuleTime? next=null;
             void Consider(RuleTime value)
             { if(value>s.RuleClock&&(!next.HasValue||value<next.Value))next=value; }
@@ -266,6 +273,8 @@ namespace Decennium.Foundation
         public static bool TryProjectAt(Snapshot s,string inventoryLotId,RuleTime at,out HarvestPreservationView view)
         {
             view=null;
+            if(s?.BloodSpecimen!=null&&inventoryLotId==s.BloodSpecimen.LotId)
+                return TryProjectSuppliedBlood(s, at, out view);
             if(s==null||s.SchemaVersion<Snapshot.HarvestPreservationSchema||s.InventoryLots==null
                 ||s.HarvestUnits==null||s.Work==null||!Validation.ValidId(inventoryLotId))return false;
             var lot=s.InventoryLots.SingleOrDefault(x=>x.LotId==inventoryLotId);
@@ -296,6 +305,31 @@ namespace Decennium.Foundation
             RuleQuantity multiplier=state==HarvestPreservationState.Fresh?new RuleQuantity(1)
                 :state==HarvestPreservationState.Degraded?new RuleQuantity(1,2):default;
             view=new HarvestPreservationView(lot.LotId,unit.Id,at,age,state,multiplier);
+            return true;
+        }
+
+        private static bool TryProjectSuppliedBlood(Snapshot s, RuleTime at, out HarvestPreservationView view)
+        {
+            view = null;
+            var specimen = s.BloodSpecimen;
+            if (at < specimen.Origin || !s.InventoryLots.Any(x => x.LotId == specimen.LotId)
+                || !s.Work.Lots.Any(x => x.Id == specimen.LotId && x.UnitId == ConnectedBloodSpecimen.MaterialId))
+                return false;
+
+            var elapsed = Quantity(at) - Quantity(specimen.Origin);
+            var treatment = s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x => x.InventoryLotId == specimen.LotId
+                && x.Status == HarvestPreservationTreatmentStatus.Success && x.CompletedAt.HasValue && x.CompletedAt.Value <= at);
+            if (treatment != null) {
+                RuleTime start = treatment.CompletedAt.Value;
+                RuleTime end = Min(at, ProtectionEnd(s, treatment, specimen.LotId, at, long.MaxValue));
+                if (end > start) elapsed -= Quantity(end) - Quantity(start);
+            }
+            RuleTime age = Time(elapsed);
+            var state = age < new RuleTime(specimen.IntervalSeconds) ? HarvestPreservationState.Fresh
+                : age < new RuleTime(checked(specimen.IntervalSeconds * 2)) ? HarvestPreservationState.Degraded : HarvestPreservationState.Spoiled;
+            view = new HarvestPreservationView(specimen.LotId, "", at, age, state,
+                state == HarvestPreservationState.Fresh ? new RuleQuantity(1)
+                    : state == HarvestPreservationState.Degraded ? new RuleQuantity(1, 2) : default);
             return true;
         }
 
@@ -356,7 +390,7 @@ namespace Decennium.Foundation
             string inventoryLotId,RuleTime at,long throughRevision)
         {
             RuleTime end=attempt.CompletedAt.Value.AddSeconds(HarvestPreservationTreatmentValidation.ProtectionSeconds);
-            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)return end;
+            if(s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema&&s.BloodSpecimen==null)return end;
             foreach(var opening in s.HarvestPreservationEvidence.Where(x=>x.Kind==HarvestPreservationEvidenceKind.ControlledOpening
                 &&x.AppliedRevision<=throughRevision&&x.TreatmentAttemptId==attempt.Id&&x.VesselId==attempt.ContainerId&&x.At<=at)) {
                 RuleTime deadline=opening.At.AddSeconds(HarvestPreservationEvidenceValidation.OpeningLimitSeconds);
@@ -618,20 +652,24 @@ namespace Decennium.Foundation
                 ||s.HarvestPreservationTreatmentAttempts.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()
                     !=s.HarvestPreservationTreatmentAttempts.Length)
                 throw new ArgumentException("Invalid harvest preservation treatment collection.");
-            if(s.SchemaVersion<Snapshot.HarvestPreservationTreatmentSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
-                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema||s.SchemaVersion>=Snapshot.HavenMealSchema) {
+            var specimen = s.BloodSpecimen;
+            if(specimen==null&&(s.SchemaVersion<Snapshot.HarvestPreservationTreatmentSchema||s.SchemaVersion==Snapshot.MiningAssistantSchema
+                ||s.SchemaVersion==Snapshot.HavenAppraisalSchema||s.SchemaVersion==Snapshot.HavenSaleSchema||s.SchemaVersion>=Snapshot.HavenMealSchema)) {
                 if(s.HarvestPreservationTreatmentAttempts.Length!=0)
                     throw new ArgumentException("Harvest treatment history requires schema75.");
                 return;
             }
-            if((s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+            if((specimen==null&&s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
                     &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)||!s.TestOnly
                 ||s.HarvestRequirementWorks.Length!=0)
                 throw new ArgumentException("Schemas75 and76 are TEST_ONLY treatment profiles.");
 
             foreach(var attempt in s.HarvestPreservationTreatmentAttempts) {
                 if(!s.Actors.Any(x=>x.Id==attempt.WorkerId)||s.WorldSchedule==null
-                    ||!s.WorldSchedule.Order.Contains(attempt.WorkerId)||attempt.SkillId!="cooking"
+                    ||(specimen==null ? !s.WorldSchedule.Order.Contains(attempt.WorkerId)||attempt.SkillId!="cooking"
+                        : attempt.WorkerId!=ConnectedBloodSpecimen.Worker||attempt.SkillId!="alchemy"
+                            ||attempt.InventoryLotId!=specimen.LotId||attempt.TreatedAmount!=new RuleQuantity(1)
+                            ||attempt.ContainerId!=specimen.VesselId||attempt.ToolId!=specimen.ToolId||attempt.SupplyLotId!=specimen.SupplyLotId)
                     ||attempt.StartedAt>s.RuleClock||attempt.UpdatedAt>s.RuleClock
                     ||attempt.Work.Required!=new RuleTime(WorkSeconds)||attempt.Work.Phases.Count!=1
                     ||attempt.Work.Complete!=(attempt.Status!=HarvestPreservationTreatmentStatus.Working)
@@ -642,11 +680,12 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Harvest treatment is not bound to physical harvested material.");
                 if(!s.PortableEquipment.Any(x=>x.Id==attempt.InventoryLotId
                         &&x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==attempt.InventoryLotId
-                        &&x.MassBasis==PortableMassBasis.GenericPounds)
+                        &&x.MassBasis==(specimen==null?PortableMassBasis.GenericPounds:PortableMassBasis.CountedQuantity))
                     ||!s.PortableEquipment.Any(x=>x.Id==attempt.ContainerId&&x.CapacityPounds.HasValue&&x.CapacityCubicFeet.HasValue)
-                    ||!s.PortableEquipment.Any(x=>x.Id==attempt.ToolId)
-                    ||!s.PortableEquipment.Any(x=>x.Id==attempt.SupplyLotId&&x.LinkKind==PortableLinkKind.InventoryLot
-                        &&x.LinkedId==attempt.SupplyLotId&&x.MassBasis==PortableMassBasis.GenericPounds))
+                    ||(specimen==null?!s.PortableEquipment.Any(x=>x.Id==attempt.ToolId):!s.Structures.Any(x=>x.Id==attempt.ToolId))
+                    ||(specimen==null||attempt.Status==HarvestPreservationTreatmentStatus.Working)
+                        &&!s.PortableEquipment.Any(x=>x.Id==attempt.SupplyLotId&&x.LinkKind==PortableLinkKind.InventoryLot
+                            &&x.LinkedId==attempt.SupplyLotId&&x.MassBasis==PortableMassBasis.GenericPounds))
                     throw new ArgumentException("Harvest treatment lacks its bound physical equipment or stock.");
                 if(!HarvestPreservationRules.TryProjectAt(s,attempt.InventoryLotId,attempt.StartedAt,out var atStart)
                     ||atStart.State==HarvestPreservationState.Spoiled)
@@ -687,15 +726,20 @@ namespace Decennium.Foundation
                         ||attempt.RandomBefore==0||attempt.RandomAfter==0||attempt.RandomWordsConsumed<1
                         ||!Enum.IsDefined(typeof(HarvestPreservationTreatmentDegree),attempt.Degree)
                         ||attempt.Degree==HarvestPreservationTreatmentDegree.None
-                        ||training==null||training.ProficiencyRank!=attempt.ProficiencyRank
+                        ||(specimen==null?training==null||training.ProficiencyRank!=attempt.ProficiencyRank:attempt.ProficiencyRank!=1)
                         ||target.RemainingAmount!=default(RuleQuantity)||target.ReleasedAmount!=target.Amount
                         ||supply.RemainingAmount!=default(RuleQuantity)||supply.ConsumedAmount!=supply.Amount
                         ||supply.ReleasedAmount!=default(RuleQuantity))
                         throw new ArgumentException("Invalid settled harvest treatment attempt.");
                     var draw=DiceStream.Draw(attempt.RandomBefore,20);
-                    if(draw.Value+1!=attempt.Natural||draw.NextState!=attempt.RandomAfter
-                        ||draw.WordsConsumed!=attempt.RandomWordsConsumed
-                        ||Grade(attempt.Natural,checked(attempt.AbilityModifier+attempt.ProficiencyBonus))!=attempt.Degree)
+                    bool matches=draw.Value+1==attempt.Natural&&draw.NextState==attempt.RandomAfter
+                        &&draw.WordsConsumed==attempt.RandomWordsConsumed;
+                    if(!matches&&specimen!=null) {
+                        var second=DiceStream.Draw(draw.NextState,20);
+                        matches=Math.Min(draw.Value,second.Value)+1==attempt.Natural&&second.NextState==attempt.RandomAfter
+                            &&draw.WordsConsumed+second.WordsConsumed==attempt.RandomWordsConsumed;
+                    }
+                    if(!matches||Grade(attempt.Natural,checked(attempt.AbilityModifier+attempt.ProficiencyBonus))!=attempt.Degree)
                         throw new ArgumentException("Harvest treatment check or random trace does not resolve from its recorded evidence.");
                     if((attempt.Status==HarvestPreservationTreatmentStatus.Success)!=Successful(attempt.Degree))
                         throw new ArgumentException("Treatment outcome disagrees with its task check.");

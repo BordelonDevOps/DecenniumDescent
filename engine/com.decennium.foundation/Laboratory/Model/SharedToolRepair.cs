@@ -48,8 +48,9 @@ namespace Decennium.Foundation.Laboratory
                 return new[]{TestOnlyHavenMealProfile.CustomerId,TestOnlyHavenMealProfile.VendorId};
             if(HarvestPreservationTreatmentCommand(c.Kind)) {
                 var treatedLot=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
-                string[] physicalIds={c.Target,HarvestPreservationTreatmentFixture.SupplyLotId,
-                    HarvestPreservationTreatmentFixture.ContainerId,HarvestPreservationTreatmentFixture.ToolId};
+                string[] physicalIds={c.Target,s.BloodSpecimen?.SupplyLotId??HarvestPreservationTreatmentFixture.SupplyLotId,
+                    s.BloodSpecimen?.VesselId??HarvestPreservationTreatmentFixture.ContainerId,
+                    s.BloodSpecimen?.ToolId??HarvestPreservationTreatmentFixture.ToolId};
                 return new[]{treatedLot?.OwnerId}.Concat(physicalIds.SelectMany(id=>PortableEquipmentRules.Owners(s,id)))
                     .Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
             }

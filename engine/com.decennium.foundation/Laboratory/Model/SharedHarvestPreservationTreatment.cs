@@ -50,7 +50,7 @@ namespace Decennium.Foundation.Laboratory
         internal static string[] OccurrenceIds=>Events.Select(x=>x.Id).ToArray();
 
         internal static HarvestPreservationTreatmentAttemptRecord ActiveTreatment(Snapshot s,string vesselId)
-            =>s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+            =>s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.BloodSpecimen!=null
                 ?s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x=>x.Status==HarvestPreservationTreatmentStatus.Success
                     &&x.CompletedAt.HasValue&&x.ContainerId==vesselId
                     &&HarvestPreservationRules.IsProtectedAt(s,x.InventoryLotId,s.RuleClock))
@@ -201,6 +201,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string HarvestPreservationTreatmentPortableHandlingFailure(Snapshot s,Command c)
         {
+            if(s.BloodSpecimen!=null)return BloodSpecimenHandlingFailure(s,c);
             if(!harvestPreservationTreatmentEnabled)return null;
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return null;
             var active=s.HarvestPreservationTreatmentAttempts.Where(x=>x.Status==HarvestPreservationTreatmentStatus.Success
@@ -270,8 +271,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string HarvestPreservationTacticalTransitionFailure(Snapshot s)
-            =>harvestPreservationExposureEnabled&&s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
-                &&HasUnresolvedHarvestOpening(s)?"HarvestPreservationOpenLifecycleTacticalUnsupported":null;
+            =>s.BloodSpecimen!=null?BloodTacticalTransitionFailure(s)
+                :harvestPreservationExposureEnabled&&s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema
+                    &&HasUnresolvedHarvestOpening(s)?"HarvestPreservationOpenLifecycleTacticalUnsupported":null;
 
         private string ResolveHarvestPreservationExposure(Snapshot s,Command c)
         {
@@ -298,7 +300,9 @@ namespace Decennium.Foundation.Laboratory
             if(attempt==null||!HarvestPreservationRules.IsProtectedAt(s,attempt.InventoryLotId,s.RuleClock))return;
             var handling=s.PortableHandling.Single(x=>x.Revision==s.Revision+1&&x.ItemId==attempt.ContainerId
                 &&x.Operation==PortableOperation.Open&&x.ActorId==c.Actor);
-            var binding=HarvestPreservationExposureFixture.CleanTool(HarvestPreservationExposureFixture.CleanCookUtensilsFactId);
+            var binding=s.BloodSpecimen==null
+                ?HarvestPreservationExposureFixture.CleanTool(HarvestPreservationExposureFixture.CleanCookUtensilsFactId)
+                :new HarvestPreservationCleanToolBinding(s.BloodSpecimen.CleanToolFactId,s.BloodSpecimen.ToolId,true);
             s.HarvestPreservationEvidence=s.HarvestPreservationEvidence.Concat(new[]{
                 new HarvestPreservationEvidenceRecord("preservation.evidence."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),
                     HarvestPreservationEvidenceKind.ControlledOpening,attempt.Id,attempt.ContainerId,c.Id,s.Revision+1,
@@ -314,12 +318,13 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ValidateHarvestPreservationTreatmentFixture(Snapshot s)
-            =>!harvestPreservationTreatmentEnabled?s.HarvestPreservationTreatmentAttempts.Length==0?null:"HarvestTreatmentFixtureNotSelected"
+            =>s.BloodSpecimen!=null?ValidateConnectedBloodProfile(s):!harvestPreservationTreatmentEnabled?s.HarvestPreservationTreatmentAttempts.Length==0?null:"HarvestTreatmentFixtureNotSelected"
                 :HarvestPreservationTreatmentFixture.Validate(s,TestOnlyPolicy.ActorId,HarvestSiteId,HarvestSiteX,HarvestSiteY,
                     HarvestFiniteLotId);
 
         private string ValidateHarvestPreservationExposureFixture(Snapshot s)
         {
+            if(s.BloodSpecimen!=null)return null;
             if(!harvestPreservationExposureEnabled)
                 return s.SchemaVersion==Snapshot.HarvestPreservationExposureSchema||s.HarvestPreservationEvidence.Length!=0
                     ?"HarvestPreservationExposureFixtureNotSelected":null;
@@ -362,8 +367,8 @@ namespace Decennium.Foundation.Laboratory
             out HarvestPreservationTreatmentAttemptRecord current,out HarvestPreservationView preservation)
         {
             current=null;preservation=null;
-            if(!harvestPreservationTreatmentEnabled||(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
-                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema))
+            if(s.BloodSpecimen==null&&(!harvestPreservationTreatmentEnabled||(s.SchemaVersion!=Snapshot.HarvestPreservationTreatmentSchema
+                    &&s.SchemaVersion!=Snapshot.HarvestPreservationExposureSchema)))
                 return "HarvestPreservationTreatmentNotSelected";
             if(c.Kind!=CommandKind.StartHarvestPreservationTreatment||c.Inventory==null||c.Target==""
                 ||c.Inventory.Amount==default||c.Inventory.Destination!=""||c.Inventory.Handling!=HandlingKind.Pickup
@@ -374,6 +379,7 @@ namespace Decennium.Foundation.Laboratory
                 return "InvalidHarvestPreservationTreatmentCommand";
             if(s.InventoryCombat)return "HarvestTreatmentDuringCombatUnsupported";
             if(s.HarvestPreservationTreatmentAttempts.Length!=0)return "HarvestTreatmentAlreadyAttempted";
+            if(s.BloodSpecimen!=null)return AssessBloodTreatment(s,c);
             if(!s.WorldSchedule.Order.Contains(c.Actor))return "HarvestTreatmentRequiresScheduledWorker";
             if(c.Actor!=TestOnlyPolicy.ActorId)return "HarvestTreatmentWorkerUnsupported";
             var training=s.SkillTraining.SingleOrDefault(x=>x.ActorId==c.Actor&&x.SkillId==HarvestPreservationTreatmentFixture.SkillId);
@@ -426,24 +432,27 @@ namespace Decennium.Foundation.Laboratory
             string error=AssessHarvestPreservationTreatment(s,c,out _,out _);if(error!=null)return error;
             string id="harvest.preservation."+(s.Revision+1).ToString(CultureInfo.InvariantCulture);
             string targetReservation=id+".target",supplyReservation=id+".supply";
+            string supplyLot=s.BloodSpecimen?.SupplyLotId??HarvestPreservationTreatmentFixture.SupplyLotId;
             RuleTime end=s.RuleClock.AddSeconds(HarvestPreservationTreatmentValidation.WorkSeconds);
             var work=new ActiveWorkProgress(new[]{new RuleTime(HarvestPreservationTreatmentValidation.WorkSeconds)});
             s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,s.RuleClock,end)},new[]{
                 new ResourceReservation(targetReservation,id,c.Target,c.Inventory.Amount),
-                new ResourceReservation(supplyReservation,id,HarvestPreservationTreatmentFixture.SupplyLotId,
+                new ResourceReservation(supplyReservation,id,supplyLot,
                     HarvestPreservationTreatmentValidation.SupplyAmount)
             });
-            var attempt=new HarvestPreservationTreatmentAttemptRecord(id,c.Actor,HarvestPreservationTreatmentFixture.SkillId,
-                c.Target,c.Inventory.Amount,HarvestPreservationTreatmentFixture.ContainerId,
-                HarvestPreservationTreatmentFixture.ToolId,HarvestPreservationTreatmentFixture.SupplyLotId,
+            var attempt=new HarvestPreservationTreatmentAttemptRecord(id,c.Actor,
+                s.BloodSpecimen==null?HarvestPreservationTreatmentFixture.SkillId:"alchemy",
+                c.Target,c.Inventory.Amount,s.BloodSpecimen?.VesselId??HarvestPreservationTreatmentFixture.ContainerId,
+                s.BloodSpecimen?.ToolId??HarvestPreservationTreatmentFixture.ToolId,supplyLot,
                 targetReservation,supplyReservation,s.RuleClock,s.RuleClock,work,HarvestPreservationTreatmentStatus.Working);
             s.HarvestPreservationTreatmentAttempts=s.HarvestPreservationTreatmentAttempts.Concat(new[]{attempt}).ToArray();
             return null;
         }
 
-        private void CreditHarvestPreservationTreatment(Snapshot s,RuleTime elapsed)
+        private void CreditHarvestPreservationTreatment(Snapshot s,RuleTime elapsed,bool afterDueEvents=false)
         {
-            if(!harvestPreservationTreatmentEnabled||elapsed==default)return;
+            bool blood=s.BloodSpecimen!=null;
+            if((blood?!afterDueEvents:!harvestPreservationTreatmentEnabled||afterDueEvents)||elapsed==default)return;
             var previousValue=new RuleQuantity(s.RuleClock.Numerator,s.RuleClock.Denominator)
                 -new RuleQuantity(elapsed.Numerator,elapsed.Denominator);
             RuleTime previous=new RuleTime(previousValue.Numerator,previousValue.Denominator);
@@ -460,9 +469,21 @@ namespace Decennium.Foundation.Laboratory
                 if(!HarvestPreservationRules.TryProjectAt(s,attempt.InventoryLotId,s.RuleClock,out var atFinish)
                     ||atFinish.State==HarvestPreservationState.Spoiled)
                     throw new InvalidOperationException("Harvest treatment reached its deadline after the material Spoiled.");
-                var modifier=AbilityCheckRules.Derive(s,attempt.WorkerId,attempt.SkillId,CharacterAbility.Wisdom);
-                uint randomBefore=s.RandomState;RuleD20Roll roll=RuleDice.RollD20(randomBefore);
-                RuleTaskCheckResult outcome=RuleResolution.TaskCheck(roll.Natural,modifier.Total,
+                int ability, rank, proficiency;
+                if(blood) {
+                    var facts=CharacterStateFacts.ForActor(s,attempt.WorkerId);
+                    ability=facts.Rules.AbilityModifier(CharacterAbility.Intelligence)+facts.InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true);
+                    rank=1;
+                    proficiency=facts.Rules.ProficiencyBonus;
+                } else {
+                    var modifier=AbilityCheckRules.Derive(s,attempt.WorkerId,attempt.SkillId,CharacterAbility.Wisdom);
+                    ability=modifier.AbilityModifier;
+                    rank=modifier.ProficiencyRank;
+                    proficiency=modifier.ProficiencyBonus;
+                }
+                uint randomBefore=s.RandomState;
+                RuleD20Roll roll=RuleDice.RollD20(randomBefore,disadvantageSources:blood&&View(s,attempt.WorkerId).Has(ConditionKind.Poisoned)?1:0);
+                RuleTaskCheckResult outcome=RuleResolution.TaskCheck(roll.Natural,checked(ability+proficiency),
                     HarvestPreservationTreatmentValidation.DifficultyClass);
                 s.RandomState=roll.NextRandomState;
                 var status=outcome.Degree==RuleTaskDegree.Success||outcome.Degree==RuleTaskDegree.CriticalSuccess
@@ -474,8 +495,9 @@ namespace Decennium.Foundation.Laboratory
                     if(!container.Open)throw new InvalidOperationException("Preservation vessel lost its open treatment state.");
                     s.PortableEquipment=s.PortableEquipment.Select(x=>x.Id==container.Id?x.With(open:false):x).ToArray();
                 }
+                if(blood)RetainBloodTreatmentPacking(s);
                 ReplaceHarvestPreservationTreatment(s,attempt.Complete(s.RuleClock,progress,status,
-                    modifier.AbilityModifier,modifier.ProficiencyRank,modifier.ProficiencyBonus,roll.Natural,
+                    ability,rank,proficiency,roll.Natural,
                     (HarvestPreservationTreatmentDegree)((int)outcome.Degree+1),randomBefore,roll.NextRandomState,roll.WordsConsumed));
             }
         }

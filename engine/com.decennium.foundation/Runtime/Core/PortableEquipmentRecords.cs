@@ -333,9 +333,10 @@ namespace Decennium.Foundation
                                     ||inventory.Nutrition!=NutritionKind.None
                                     ||PortableStorageProfileValidation.Find(s,item.ProfileId) is not PortableStorageProfileRecord countedProfile
                                     ||countedProfile.QuantityUnitId!=lot.UnitId||!countedProfile.MassPerUnitLb.HasValue
-                                    ||!countedProfile.PackedVolumePerUnitCubicFeet.HasValue
                                     ||lot.Amount.Denominator!=1
-                                    ||countedProfile.PackedVolumePerUnitCubicFeet.Value<=default(RuleQuantity)))
+                                    ||((!countedProfile.PackedVolumePerUnitCubicFeet.HasValue
+                                        ||countedProfile.PackedVolumePerUnitCubicFeet.Value<=default(RuleQuantity))
+                                        && !ConnectedBloodSpecimen.UsesAuthoredFit(s,item))))
                                 throw new ArgumentException("Portable inventory link does not match its physical lot.");
                             break;
                         case PortableLinkKind.WaterVessel:

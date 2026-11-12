@@ -13,6 +13,11 @@ namespace Decennium.Foundation.Laboratory
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c);
+            if (error == null && ActiveBloodTreatment(s) is HarvestPreservationTreatmentAttemptRecord treatment) {
+                if (treatment.UpdatedAt < s.RuleClock) return "BloodTreatmentRequiresSharedAdvance";
+                string access = BloodTreatmentAccess(s, treatment.WorkerId);
+                if (access != null) return access;
+            }
             if (IsCharterAttemptCommand(c.Kind)) return error;
             if (IsNextCharterAgreementCommand(c.Kind)) {
                 if (error == null && c.Kind == CommandKind.WithdrawNextCharter) ReconcileCharterAttempt(s, c);

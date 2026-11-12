@@ -16,7 +16,8 @@ namespace Decennium.Foundation
         private static readonly string[] Actors = { Hero, Searcher, Buyer, "TEST_ONLY.third-combatant", "TEST_ONLY.later-defender" };
 
         public static bool IsSelected(Snapshot state)
-            => state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+            => state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+                || ConnectedBloodSpecimen.HasFingerprint(state);
 
         public static bool MatchesSearch(ExplorationSearchDefinition d)
             => d.DirectorId == SearchDirector && d.CueId == VisibleFringe && d.SearcherId == Searcher

@@ -370,7 +370,7 @@ namespace Decennium.Foundation.Laboratory
                 SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1,d6.Value+1,true);
             }else SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1);
         }
-        private string AssessManufacturingStart(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe)
+        private string AssessManufacturingStart(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe, string specimenLotId = null)
         {
             recipe = ManufacturingRules.Recipe(c.Target);
             if (c.Inventory != null || c.Combat != null) return "InvalidManufacturingRequest";
@@ -382,11 +382,18 @@ namespace Decennium.Foundation.Laboratory
             if (CraftingRestrictions.NewOrderBlocked(s, c.Actor, TestOnlyCropPolicy.PlotId, SharedCraftingFixture.TradeId)) return "ManufacturingLogRequired";
             if (s.ManufacturingOrders.Any(x => x.Open)) return "ManufacturingApparatusClaimed";
             if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
-            if (BloodUnprotectedAge(s, recipe.Id, c.X) >= BloodSpoils) return "ManufacturingIngredientSpoiled";
+            if (specimenLotId == null) {
+                if (BloodUnprotectedAge(s, recipe.Id, c.X) >= BloodSpoils) return "ManufacturingIngredientSpoiled";
+            } else {
+                string specimenFailure = AssessBloodIngredient(s, c.Actor, specimenLotId, recipe);
+                if (specimenFailure != null) return specimenFailure;
+            }
             if (s.ManufacturingOrders.Length == ManufacturingValidation.MaxOrders) return "ManufacturingHistoryFull";
-            for (int i = 0; i < recipe.Components.Count; i++)
-                if (s.Work.AvailableAmount(SharedManufacturingFixture.Lot(recipe.Id, c.X, i)) < new RuleQuantity(recipe.Components[i].Quantity))
+            for (int i = 0; i < recipe.Components.Count; i++) {
+                string lotId = specimenLotId != null && i == 3 ? specimenLotId : SharedManufacturingFixture.Lot(recipe.Id, c.X, i);
+                if (s.Work.AvailableAmount(lotId) < new RuleQuantity(recipe.Components[i].Quantity))
                     return "ManufacturingIngredientsUnavailable";
+            }
             return s.Work.AvailableAmount(SharedManufacturingFixture.PackagingFor(recipe.Id)) < new RuleQuantity(c.Y)
                 ? "ManufacturingPackagingUnavailable" : null;
         }

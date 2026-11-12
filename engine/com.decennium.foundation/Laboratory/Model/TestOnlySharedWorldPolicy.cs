@@ -231,6 +231,7 @@ namespace Decennium.Foundation.Laboratory
                 else InitializePreservationPortableProfiles(s);
             }
             InitializeRecipe347(s);
+            InitializeConnectedBloodSpecimen(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -289,6 +290,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.HandleInventory: case CommandKind.StartIntake: case CommandKind.StartWaterFill:
                 case CommandKind.ResumeWaterFill: case CommandKind.HandleVessel:
                 case CommandKind.StartFormulaResearch: case CommandKind.StartFormulaCopy: case CommandKind.ResumeFormulaWork:
+                case CommandKind.StartHarvestPreservationTreatment:
                 case CommandKind.StartCraftRemedy: case CommandKind.StartToolRepair: case CommandKind.ResumeToolRepair:
                 case CommandKind.StartManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.UseAlchemyDose:
                 case CommandKind.StartRecipe347: case CommandKind.ResumeRecipe347:
@@ -688,6 +690,12 @@ namespace Decennium.Foundation.Laboratory
                 FinalizeDueAppraisal(s);
                 SettleDueHavenSale(s);
                 FinishDueExpeditionBill(s);
+                var bloodTreatment = ActiveBloodTreatment(s);
+                if (bloodTreatment != null) {
+                    string bloodFailure = BloodTreatmentAccess(s, bloodTreatment.WorkerId);
+                    if (bloodFailure != null) return bloodFailure;
+                    CreditHarvestPreservationTreatment(s, elapsed, afterDueEvents: true);
+                }
                 foreach(string id in ready) {
                     var job=s.FormulaWork.Single(x=>x.Id==id);
                     if(ResearchAccess(s,job.WorkerId,false)==null)FinishFormulaCheck(s,job);
@@ -839,6 +847,10 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.Hide || c.Kind == CommandKind.Search) return ResolveObservationAction(s, c);
             if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
                 return ResolveFishingTrapResponsibilityHandover(s,c);
+            if (s.BloodSpecimen != null && (c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.PortionInventory)) {
+                string bloodHandling = BloodSpecimenHandlingFailure(s,c);
+                if (bloodHandling != null) return bloodHandling;
+            }
             if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c)) {
                 var activity = ActivityInterval(s, c.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
@@ -863,7 +875,7 @@ namespace Decennium.Foundation.Laboratory
             if(PortableCommand(c.Kind)) {
                 string preservationHandlingError=HarvestPreservationTreatmentPortableHandlingFailure(s,c);
                 if(preservationHandlingError!=null)return preservationHandlingError;
-                var protectedOpening=harvestPreservationExposureEnabled&&c.Kind==CommandKind.OpenPortableContainer
+                var protectedOpening=(harvestPreservationExposureEnabled||connectedBloodSpecimen)&&c.Kind==CommandKind.OpenPortableContainer
                     ?HarvestPreservationExposureFixture.ActiveTreatment(s,c.Target):null;
                 string portableError=ResolvePortableEquipment(s,c);
                 if(portableError!=null)return portableError;
@@ -877,7 +889,8 @@ namespace Decennium.Foundation.Laboratory
             if(IsMineralPreparationCommand(c))return ResolveMineralPreparation(s,c);
             if(IsMiningCommand(c))return ResolveMining(s,c);
             if(Recipe347Command(c.Kind))return ResolveRecipe347(s,c);
-            if(HarvestPreservationTreatmentCommand(c.Kind))return ResolveHarvestPreservationTreatment(s,c);
+            if(HarvestPreservationTreatmentCommand(c.Kind))
+                return s.BloodSpecimen!=null&&assessFormula?AssessHarvestPreservationTreatment(s,c,out _,out _):ResolveHarvestPreservationTreatment(s,c);
             if(HarvestRequirementWorkCommand(c.Kind))return ResolveHarvestRequirementWork(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
             if(ManufacturingCommand(c.Kind))return connectedFormulaResearch ? AssessConnectedManufacturing(s,c) : ResolveManufacturing(s,c);

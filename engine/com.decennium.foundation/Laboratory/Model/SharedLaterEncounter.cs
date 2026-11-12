@@ -75,6 +75,8 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessLaterEngagement(Snapshot state, LaterEncounterDefinition definition)
         {
+            string specimenFailure = BloodTacticalTransitionFailure(state);
+            if (specimenFailure != null) return specimenFailure;
             var first = state.LaterEncounter.FirstExit;
             if (first == null || state.Encounter?.Id != first.Encounter.Id
                 || !state.Lives.Single(x => x.ActorId == AdditionalTacticalActor.Id).Dead)

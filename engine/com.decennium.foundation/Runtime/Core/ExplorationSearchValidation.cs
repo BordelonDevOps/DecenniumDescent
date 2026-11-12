@@ -19,7 +19,7 @@ namespace Decennium.Foundation
             var search = state.ExplorationSearch;
             if (search == null || state.WireSchemaVersion != Snapshot.ExplorationSearchSchema
                 && state.WireSchemaVersion != Snapshot.ExplorationHideSchema
-                && state.WireSchemaVersion != Snapshot.ConnectedExplorationObservationSchema)
+                && !ConnectedExplorationObservation.IsSelected(state))
                 throw new ArgumentException("Search activity requires a selected ordinary Search profile.");
             if (interval.ActorId != search.Definition.SearcherId || !search.Attempts.Any(x => x.IntervalIndex == interval.IntervalIndex
                 && x.CommandId == interval.ActionReference && x.Revision == interval.ActionReferenceRevision))

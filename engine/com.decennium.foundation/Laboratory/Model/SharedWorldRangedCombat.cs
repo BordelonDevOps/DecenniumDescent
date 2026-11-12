@@ -90,7 +90,7 @@ namespace Decennium.Foundation.Laboratory
             ||expeditionCampConstructionProfile!=null&&(kind==CommandKind.StartTemporaryCampConstruction
                 ||kind==CommandKind.PauseTemporaryCampConstruction||kind==CommandKind.ResumeTemporaryCampConstruction
                 ||kind==CommandKind.ResolveTemporaryCampConstruction)
-            ||portableStorageFixture!=null&&PortableCommand(kind)
+            ||(portableStorageFixture!=null||connectedBloodSpecimen)&&PortableCommand(kind)
             ||harvestPreservationExposureEnabled&&(PortableCommand(kind)||kind==CommandKind.PortionInventory
                 ||kind==CommandKind.RecordHarvestPreservationExposure)
             ||expeditionCampSiteProfile!=null&&(kind==CommandKind.BeginCampUse||kind==CommandKind.EndCampUse
@@ -109,7 +109,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.ResumeToolRepair||kind==CommandKind.CancelToolRepair
             ||kind==CommandKind.StartHarvest||kind==CommandKind.PauseHarvest||kind==CommandKind.ResumeHarvest
             ||harvestPreservationEnabled&&!harvestPreservationTreatmentEnabled&&HarvestRequirementWorkCommand(kind)
-            ||harvestPreservationTreatmentEnabled&&HarvestPreservationTreatmentCommand(kind)
+            ||(harvestPreservationTreatmentEnabled||connectedBloodSpecimen)&&HarvestPreservationTreatmentCommand(kind)
             ||kind==CommandKind.StartMining||kind==CommandKind.PauseMining||kind==CommandKind.ResumeMining
             ||kind==CommandKind.StartProspecting||kind==CommandKind.PauseProspecting||kind==CommandKind.ResumeProspecting
             ||kind==CommandKind.RecordProspectingExposure
@@ -146,7 +146,8 @@ namespace Decennium.Foundation.Laboratory
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
-                    .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor));
+                    .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
+                    .Concat(DiscoverBloodTreatment(s, authority, actor));
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
@@ -279,7 +280,8 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
-            if (connectedFormulaResearch && (FormulaCommand(c.Kind) || ManufacturingCommand(c.Kind))) {
+            if (connectedFormulaResearch && (FormulaCommand(c.Kind) || ManufacturingCommand(c.Kind))
+                || connectedBloodSpecimen && HarvestPreservationTreatmentCommand(c.Kind)) {
                 string connectedResearchFailure = ResolveCore(s, c, assessFormula: true);
                 return new CommandQueryResult(true, connectedResearchFailure == null, connectedResearchFailure ?? "Available", s.Revision);
             }

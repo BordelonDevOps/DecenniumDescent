@@ -283,7 +283,8 @@ namespace Decennium.Foundation.Laboratory
             var item=s.InventoryLots.Single(x=>x.LotId==lotId);var lot=s.Work.Lots.Single(x=>x.Id==lotId);
             bool genericPounds=item.Nutrition==NutritionKind.None&&lot.UnitId=="mass-pound";
             var countedProfiles=item.Nutrition==NutritionKind.None
-                ?s.PortableStorageProfiles.Where(x=>x.QuantityUnitId==lot.UnitId&&x.MassPerUnitLb.HasValue).ToArray()
+                ?s.PortableStorageProfiles.Where(x=>x.QuantityUnitId==lot.UnitId&&x.MassPerUnitLb.HasValue
+                    &&(x.ProfileId!=ConnectedBloodSpecimen.MaterialProfile||s.BloodSpecimen?.LotId==lotId)).ToArray()
                 :Array.Empty<PortableStorageProfileRecord>();
             if(countedProfiles.Length>1)throw new ArgumentException("Counted lot unit has ambiguous physical profiles.");
             bool counted=countedProfiles.Length==1;

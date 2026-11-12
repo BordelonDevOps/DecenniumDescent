@@ -163,6 +163,7 @@ namespace Decennium.Foundation
         public const int ExplorationSearchSchema = 91;
         public const int ExplorationHideSchema = 92;
         public const int ConnectedExplorationObservationSchema = 93;
+        public const int ConnectedBloodSpecimenSchema = 94;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -301,7 +302,8 @@ namespace Decennium.Foundation
         public SurpriseEntryRecord SurpriseEntry;
         public ExplorationSearchRecord ExplorationSearch;
         public ExplorationHideRecord ExplorationHide;
-        public int WireSchemaVersion => ExplorationHide != null
+        public ConnectedBloodSpecimen BloodSpecimen;
+        public int WireSchemaVersion => BloodSpecimen != null ? ConnectedBloodSpecimenSchema : ExplorationHide != null
             ? ConnectedExplorationObservation.IsSelected(this) ? ConnectedExplorationObservationSchema : ExplorationHideSchema
             : ExplorationSearch != null ? ExplorationSearchSchema : SchemaVersion;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
@@ -419,7 +421,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
-            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry, ExplorationSearch = ExplorationSearch, ExplorationHide = ExplorationHide,
+            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry, ExplorationSearch = ExplorationSearch, ExplorationHide = ExplorationHide, BloodSpecimen = BloodSpecimen,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -958,6 +960,7 @@ namespace Decennium.Foundation
             HarvestRequirementWorkValidation.Validate(s);
             HarvestPreservationTreatmentValidation.Validate(s);
             HarvestPreservationEvidenceValidation.Validate(s);
+            ConnectedBloodSpecimen.Validate(s);
             MiningValidation.Validate(s);
             HavenAppraisalValidation.Validate(s);
             HavenSaleValidation.Validate(s);

@@ -128,7 +128,9 @@ namespace Decennium.Foundation.Laboratory
         {
             if (havenSaleProfile == null) return null;
             var expected = HavenCoinProfile();
-            var actual = s.PortableStorageProfiles.SingleOrDefault();
+            var actual = s.PortableStorageProfiles.SingleOrDefault(x => x.ProfileId == expected.ProfileId);
+            if (s.PortableStorageProfiles.Length != (connectedBloodSpecimen ? 2 : 1))
+                return "InvalidHavenTenderProfile";
             if (actual == null || actual.ProfileId != expected.ProfileId || actual.QuantityUnitId != expected.QuantityUnitId
                 || actual.MassPerUnitLb != expected.MassPerUnitLb || actual.PackedVolumePerUnitCubicFeet != expected.PackedVolumePerUnitCubicFeet
                 || actual.AllowedContainedProfileIds.Count != 0 || actual.RequiresInstalledTemporaryCamp)

@@ -593,7 +593,7 @@ namespace Decennium.Foundation.Laboratory
             }
             string workWatchFailure=Recipe347WorkWatchCommandFailure(s,c);
             if(workWatchFailure!=null)return new CommandQueryResult(true,false,workWatchFailure,s.Revision,Array.Empty<CommandCost>());
-            if(portableStorageFixture!=null&&PortableCommand(c.Kind)) {
+            if((portableStorageFixture!=null||connectedBloodSpecimen)&&PortableCommand(c.Kind)) {
                 string failure=ResolveCore(s.Copy(),c);
                 var costs=failure==null
                     ?s.InventoryCombat?new[]{new CommandCost("interaction","",1)}

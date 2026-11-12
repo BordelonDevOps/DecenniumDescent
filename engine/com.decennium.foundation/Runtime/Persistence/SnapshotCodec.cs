@@ -120,6 +120,7 @@ namespace Decennium.Foundation
                 if (state.SchemaVersion == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Write(writer, state.SurpriseEntry);
                 if (state.ExplorationSearch != null) ExplorationSearchCodec.Write(writer, state.ExplorationSearch);
                 if (state.ExplorationHide != null) ExplorationHideCodec.Write(writer, state.ExplorationHide);
+                if (state.BloodSpecimen != null) ConnectedBloodSpecimenCodec.Write(writer, state.BloodSpecimen);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -143,6 +144,7 @@ namespace Decennium.Foundation
                         Snapshot.ExplorationSearchSchema => Snapshot.ObservationSchema,
                         Snapshot.ExplorationHideSchema => Snapshot.ObservationSchema,
                         Snapshot.ConnectedExplorationObservationSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedBloodSpecimenSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -250,10 +252,13 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
                     if (wireSchema == Snapshot.ExplorationSearchSchema || wireSchema == Snapshot.ExplorationHideSchema
-                        || wireSchema == Snapshot.ConnectedExplorationObservationSchema)
+                        || wireSchema == Snapshot.ConnectedExplorationObservationSchema || wireSchema == Snapshot.ConnectedBloodSpecimenSchema)
                         ExplorationSearchCodec.Read(reader, s);
-                    if (wireSchema == Snapshot.ExplorationHideSchema || wireSchema == Snapshot.ConnectedExplorationObservationSchema)
+                    if (wireSchema == Snapshot.ExplorationHideSchema || wireSchema == Snapshot.ConnectedExplorationObservationSchema
+                        || wireSchema == Snapshot.ConnectedBloodSpecimenSchema)
                         ExplorationHideCodec.Read(reader, s);
+                    if (wireSchema == Snapshot.ConnectedBloodSpecimenSchema)
+                        s.BloodSpecimen = ConnectedBloodSpecimenCodec.Read(reader);
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);
                     if (s.WireSchemaVersion != wireSchema) throw new InvalidDataException("Save envelope does not match its validated layout.");
