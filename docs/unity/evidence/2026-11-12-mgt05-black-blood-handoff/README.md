@@ -1,0 +1,11 @@
+# MGT-05 black-blood preservation and workshop handoff
+
+Implementation `28f381eeaff6a4d1ddb64f2d2042691f202252ee` adds the selected TEST_ONLY wire 94 profile over base 90. The previous connected expedition, research, Search and Hide all use the same actors, world clock, RNG and inventory. GPT approved the stock identity, treatment and workshop scope in reply `f0b13946-8c40-4c0a-a9ee-46fd4f30a7ce`. [Implementation contract](IMPLEMENTATION_CONTRACT.md) · [Source evidence](SOURCE_API_REVIEW.md)
+
+The companion starts with one pre-owned whole specimen. Its lot ID, provenance and zero origin match the authenticated standalone recipe-14 stock. The approved mapping gives recipe 4 access to that same material occurrence through the exact physical lot. A finite preservative allotment and the existing Alchemist's supplies support one real 1,800-second treatment. The vessel preserves physical mass after settlement and protects the unchanged specimen age on success.
+
+The connected scenario continues from expedition return and preparation. The companion treats the specimen, performs the already supported live recipe-4 research, carries the sealed vessel to the workshop, opens it there and advances the ordinary clock through the actual 60-second window. The lot-keyed query checks the learned formula, qualified worker, station, original other ingredients, packaging, physical access and phase-end age. The ordinary clock advance and the workshop assessment produce no manufacturing order. The sibling branches cover early and exact closure, late closure, natural elapsed expiry and a failed live treatment. [Connected cases](../../../../engine/com.decennium.foundation/Tests/EditMode/ConnectedBloodSpecimenCases.cs)
+
+The save verification uses the original profile for each predecessor. Its added cases include an actual in-progress schema-75 fish treatment, a schema-76 fish opening inside its protection window, recipe-14 starting blood, and wire-93 research saves. The fish treatment completes, the fish opening expires, the old blood ages, and the paused research finishes after restore. [Compatibility evidence](legacy-saves/results.json)
+
+The production admission decision, positive manufacturing and Unity gameplay integration remain outside this checkpoint. The existing full-history replay performance issue remains tracked separately.
