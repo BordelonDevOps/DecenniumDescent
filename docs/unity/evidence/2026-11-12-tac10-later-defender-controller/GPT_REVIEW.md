@@ -1,0 +1,13 @@
+# TAC-10 later-defender controller review
+
+Unity Rules Engine Development accepted implementation `e7fdcbf2eab61aa5aaaf5e86e900a7346e8511c2` and final evidence `1eed011f7e9ffd78a586719e71946f356682bfdf` in reply `93757c4a-d6b5-4e24-a549-30a952dcd0b0`. The controlling source/API approval was `a3ba325d-e745-4a94-a85f-08c49d907632`. [Review conversation](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6af31754-d1bc-83ea-aa5c-d5e33cc9258c)
+
+The focused reply `cf781ebf-312a-4b0c-8385-5fdb5c8f0301` supported groups 1–4 and the compatibility, build and timing portions of group 5. It left E1 open for the completed regression. The final reply closed E1 and all five groups with no requested correction or additional test. GPT compared the recorded four assembly digests, checked the regression and runner logic, inspected a journal segment and confirmed the implementation-to-evidence diff contained no package-source changes. Codex executed the checks, audited the six ordered journals with 1,478 passing cases and verified the lengths and hashes of all 37 committed artifacts. The full report SHA-256 is `9e2f26fc7f87940958d81966756a5536e58e9b202562e4dfb6a08ca5363c4636`. [Evidence](README.md)
+
+The accepted scope is one actor-scoped TEST_ONLY defender using existing commands and admission guards. The connected route includes real movement, Reaction and Action payment, a lawful dose, encounter closure and ordinary continuation. It restores at the actual pending opportunity, selects the same command and continues to the same bytes. The 2cp is the historical sale payment. P1 remains material to playability. The contended headless dispatch measurements support that open finding.
+
+## Immediate successor
+
+Codex and GPT agree to advance to **INT-03 integrated C# playability**, beginning with P1 responsiveness and validation equivalence. The direct prerequisites are EXP-03, EXP-04, EXP-05, EXP-07, TAC-04, TAC-05, TAC-10, MGT-10, MGT-06 and FND-02. FND-02 directly depends on FND-01. Reconcile each accepted minimum against the intended session and identify any precise missing behavior.
+
+Measure the accepted build without competing regression jobs across representative history lengths. Include stance, movement, Reaction, work and save/restore. Keep the existing full-history path as the equivalence reference. A runtime validation change needs an agreed contract protecting live candidates, untrusted restore, canonical replay, authority, atomic rejection, RNG, receipt behavior and profile binding. Reuse any suitable existing C# host for player-facing scoped commands, decision responses, save/restore and the separate defender grant. Unity gameplay integration remains deferred.
