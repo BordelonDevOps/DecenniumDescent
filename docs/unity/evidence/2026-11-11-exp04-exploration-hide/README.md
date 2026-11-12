@@ -13,6 +13,6 @@ The exact implementation is `2f3fc6a490cc94b6376dfe8fa74396129653c1e9` on Engine
 
 [Eight focused results and exact assembly bindings](focused/results.json) · [Read-back of eight actual saved states](focused/timeline.json) · [Authentic predecessor results](legacy-saves/results.json) · [Standalone compilation](compile/results.json) · [Runtime without lab defines](compile/runtime-without-lab-defines.json) · [Static checks](static/results.json)
 
-The retained journals and saves can be reproduced with the exact shard launcher. Relevant historical execution has a separate inventory of 552 cases. Any full execution uses the same four assemblies. [Exact shard launcher](Start-ExactExplorationHideRegression.ps1) · [Authentic save verifier](Verify-ExplorationHideCompatibility.ps1) · [Timeline verifier](Read-ExplorationHideEvidence.ps1)
+The same four assemblies passed the full relevant historical inventory, 552/552. It includes the 546 cases retained for the predecessor plus the six accepted ordinary Search cases. [Historical report](historical/results.json) · [Inventory and per-shard journals](regression/historical/) · [Exact shard launcher](Start-ExactExplorationHideRegression.ps1) · [Authentic save verifier](Verify-ExplorationHideCompatibility.ps1) · [Timeline verifier](Read-ExplorationHideEvidence.ps1) · [GPT review](GPT_REVIEW.md)
 
 The review gate covers this selected procedure. General stealth and senses, arbitrary hiding positions, production timing and broader expedition rules remain open. Unity gameplay integration remains deferred.
