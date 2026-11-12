@@ -13,11 +13,15 @@ namespace Decennium.Foundation.Laboratory
 
         /// <summary>Selects the existing recipe-4 research and finite stock assessment on the connected expedition.</summary>
         public TestOnlySharedWorldPolicy EnableConnectedFormulaResearch()
+            => SelectConnectedFormulaResearch(allowCraftingWitness: false);
+
+        private TestOnlySharedWorldPolicy SelectConnectedFormulaResearch(bool allowCraftingWitness)
         {
             if (initializationStarted || connectedFormulaResearch || SelectedSchema != Snapshot.SurpriseEntrySchema
                 || explorationSearchDefinition?.DirectorId != ConnectedExplorationObservation.SearchDirector
                 || !ContentFingerprint.StartsWith(ConnectedExplorationObservation.FingerprintPrefix, StringComparison.Ordinal)
-                || contentManifest != null || research != null || crafting != null || repair != null || manufacturing != null)
+                || contentManifest != null || research != null || crafting != null && !allowCraftingWitness
+                || repair != null || manufacturing != null)
                 throw new InvalidOperationException("Select connected recipe-4 research once on the connected observation expedition before initialization.");
 
             // The manifest supplies the two local recipe bindings. It is not installed as world content.
@@ -28,7 +32,7 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException("The existing recipe-4 authority is unavailable.");
 
             research = new SharedResearchFixture();
-            crafting = new SharedCraftingFixture();
+            crafting ??= new SharedCraftingFixture();
             manufacturing = new SharedManufacturingFixture();
             connectedFormulaResearch = true;
             ContentFingerprint = ConnectedExplorationObservation.FingerprintPrefix + RetreatHash(string.Join("|",
@@ -88,8 +92,9 @@ namespace Decennium.Foundation.Laboratory
         private string ValidateConnectedFormulaResearch(Snapshot state)
         {
             if (!connectedFormulaResearch) return null;
-            if (state.ManufacturingOrders.Length != 0 || state.AlchemyDoses.Length != 0
-                || state.ManufacturingAdvance != null || state.FormulaWork.Count(FormulaOpen) > 1)
+            if (connectedRecipe4Batch != (state.ConnectedBatch != null)
+                || !connectedRecipe4Batch && (state.ManufacturingOrders.Length != 0 || state.AlchemyDoses.Length != 0
+                    || state.ManufacturingAdvance != null) || state.FormulaWork.Count(FormulaOpen) > 1)
                 return "ConnectedFormulaProfileMismatch";
 
             var returned = state.CharterAttempt?.Returned;

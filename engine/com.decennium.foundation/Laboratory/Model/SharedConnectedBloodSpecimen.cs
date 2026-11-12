@@ -167,6 +167,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var specimen = s.BloodSpecimen;
             if (specimen == null) return null;
+            string batchFailure = ConnectedRecipe4HandlingFailure(s, c);
+            if (batchFailure != null) return batchFailure;
             if (c.Target == specimen.LotId || c.Target == specimen.SupplyLotId || c.Target == ConnectedBloodSpecimen.Packing)
                 return "BloodSpecimenRemainsInBoundVessel";
             if (c.Target != specimen.VesselId) return null;

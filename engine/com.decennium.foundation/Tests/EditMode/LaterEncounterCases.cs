@@ -15,16 +15,19 @@ namespace Decennium.Foundation.Tests
         private static TestOnlySharedWorldPolicy LaterPolicy(uint? seed = null, ConditionCombatFixture conditions = null)
             => MakeLaterPolicy(seed, conditions, Array.Empty<TacticalTerrainCell>());
 
-        private static TestOnlySharedWorldPolicy MakeLaterPolicy(uint? seed, ConditionCombatFixture conditions, TacticalTerrainCell[] terrain)
+        private static TestOnlySharedWorldPolicy MakeLaterPolicy(uint? seed, ConditionCombatFixture conditions, TacticalTerrainCell[] terrain,
+            SharedCraftingFixture crafting = null)
         {
-            if (!seed.HasValue && terrain.Length == 0) return AttemptPolicy(conditions: conditions).EnableLaterEncounter();
+            if (!seed.HasValue && terrain.Length == 0 && crafting == null) return AttemptPolicy(conditions: conditions).EnableLaterEncounter();
             uint combatSeed = seed ?? 1;
             if (!seed.HasValue) {
                 while (PlaytestDice.RollD20(combatSeed).Natural != 12) combatSeed++;
             }
-            return new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: combatSeed),
-                new SupplyCacheFixture(), conditions: conditions, terrain: terrain)
-                .EnableMining(new SharedMiningFixture())
+            var combat = new SharedCombatFixture(enemyHp: 1, seed: combatSeed);
+            var policy = crafting == null
+                ? new TestOnlySharedWorldPolicy(new PortableKitFixture(), combat, new SupplyCacheFixture(), conditions: conditions, terrain: terrain)
+                : new TestOnlySharedWorldPolicy(new PortableKitFixture(), combat, crafting, new SupplyCacheFixture(), conditions: conditions, terrain: terrain);
+            return policy.EnableMining(new SharedMiningFixture())
                 .EnableHavenAppraisal(new TestOnlyHavenAppraisalProfile())
                 .EnableHavenSale(new TestOnlyHavenSaleProfile())
                 .EnableHavenMeal(new TestOnlyHavenMealProfile())

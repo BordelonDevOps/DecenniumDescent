@@ -164,6 +164,7 @@ namespace Decennium.Foundation
         public const int ExplorationHideSchema = 92;
         public const int ConnectedExplorationObservationSchema = 93;
         public const int ConnectedBloodSpecimenSchema = 94;
+        public const int ConnectedRecipe4BatchSchema = 95;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -303,7 +304,9 @@ namespace Decennium.Foundation
         public ExplorationSearchRecord ExplorationSearch;
         public ExplorationHideRecord ExplorationHide;
         public ConnectedBloodSpecimen BloodSpecimen;
-        public int WireSchemaVersion => BloodSpecimen != null ? ConnectedBloodSpecimenSchema : ExplorationHide != null
+        public ConnectedRecipe4Batch ConnectedBatch;
+        public int WireSchemaVersion => ConnectedBatch != null ? ConnectedRecipe4BatchSchema
+            : BloodSpecimen != null ? ConnectedBloodSpecimenSchema : ExplorationHide != null
             ? ConnectedExplorationObservation.IsSelected(this) ? ConnectedExplorationObservationSchema : ExplorationHideSchema
             : ExplorationSearch != null ? ExplorationSearchSchema : SchemaVersion;
         public ProspectingPatchRecord[] ProspectingPatches = Array.Empty<ProspectingPatchRecord>();
@@ -421,7 +424,7 @@ namespace Decennium.Foundation
             CharterAttempt = CharterAttempt,
             LaterEncounter = LaterEncounter,
             Reinforcement = Reinforcement,
-            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry, ExplorationSearch = ExplorationSearch, ExplorationHide = ExplorationHide, BloodSpecimen = BloodSpecimen,
+            Retreat = Retreat, Reengagement = Reengagement, SurpriseEntry = SurpriseEntry, ExplorationSearch = ExplorationSearch, ExplorationHide = ExplorationHide, BloodSpecimen = BloodSpecimen, ConnectedBatch = ConnectedBatch,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -961,6 +964,7 @@ namespace Decennium.Foundation
             HarvestPreservationTreatmentValidation.Validate(s);
             HarvestPreservationEvidenceValidation.Validate(s);
             ConnectedBloodSpecimen.Validate(s);
+            ConnectedRecipe4Batch.Validate(s);
             MiningValidation.Validate(s);
             HavenAppraisalValidation.Validate(s);
             HavenSaleValidation.Validate(s);

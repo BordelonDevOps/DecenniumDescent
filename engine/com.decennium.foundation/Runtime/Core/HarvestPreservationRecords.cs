@@ -316,12 +316,25 @@ namespace Decennium.Foundation
                 || !s.Work.Lots.Any(x => x.Id == specimen.LotId && x.UnitId == ConnectedBloodSpecimen.MaterialId))
                 return false;
 
-            var elapsed = Quantity(at) - Quantity(specimen.Origin);
+            var batch = s.ConnectedBatch;
+            var order = batch == null || batch.OrderId == "" ? null : s.ManufacturingOrders.SingleOrDefault(x => x.Id == batch.OrderId);
+            RuleTime ageAt = batch?.Disposition == ConnectedSpecimenDisposition.Consumed && order != null
+                ? Min(at, order.UpdatedAt) : at;
+            var elapsed = Quantity(ageAt) - Quantity(specimen.Origin);
+            RuleTime protectedUntil = default;
             var treatment = s.HarvestPreservationTreatmentAttempts.SingleOrDefault(x => x.InventoryLotId == specimen.LotId
-                && x.Status == HarvestPreservationTreatmentStatus.Success && x.CompletedAt.HasValue && x.CompletedAt.Value <= at);
+                && x.Status == HarvestPreservationTreatmentStatus.Success && x.CompletedAt.HasValue && x.CompletedAt.Value <= ageAt);
             if (treatment != null) {
                 RuleTime start = treatment.CompletedAt.Value;
-                RuleTime end = Min(at, ProtectionEnd(s, treatment, specimen.LotId, at, long.MaxValue));
+                RuleTime end = Min(ageAt, ProtectionEnd(s, treatment, specimen.LotId, ageAt, long.MaxValue));
+                if (end > start) {
+                    elapsed -= Quantity(end) - Quantity(start);
+                    protectedUntil = end;
+                }
+            }
+            if (order?.StabilizedAt is RuleTime stabilized) {
+                RuleTime start = Max(stabilized, protectedUntil);
+                RuleTime end = order.Open ? ageAt : Min(ageAt, order.UpdatedAt);
                 if (end > start) elapsed -= Quantity(end) - Quantity(start);
             }
             RuleTime age = Time(elapsed);
@@ -678,7 +691,9 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Invalid harvest treatment work progress or worker binding.");
                 if(!HarvestPreservationRules.TryProject(s,attempt.InventoryLotId,out _))
                     throw new ArgumentException("Harvest treatment is not bound to physical harvested material.");
-                if(!s.PortableEquipment.Any(x=>x.Id==attempt.InventoryLotId
+                bool processedSpecimen=specimen!=null&&s.ConnectedBatch?.UsesApparatus==true
+                    &&attempt.Status==HarvestPreservationTreatmentStatus.Success;
+                if(!processedSpecimen&&!s.PortableEquipment.Any(x=>x.Id==attempt.InventoryLotId
                         &&x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==attempt.InventoryLotId
                         &&x.MassBasis==(specimen==null?PortableMassBasis.GenericPounds:PortableMassBasis.CountedQuantity))
                     ||!s.PortableEquipment.Any(x=>x.Id==attempt.ContainerId&&x.CapacityPounds.HasValue&&x.CapacityCubicFeet.HasValue)

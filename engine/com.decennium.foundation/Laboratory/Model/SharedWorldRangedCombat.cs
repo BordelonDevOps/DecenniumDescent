@@ -151,6 +151,7 @@ namespace Decennium.Foundation.Laboratory
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
+            options.AddRange(DiscoverConnectedRecipe4(s,actor));
             options.AddRange(DiscoverConnectedFormulaWork(s,actor));
             options.AddRange(DiscoverReinforcementCommands(s, authority, actor));
             options.AddRange(DiscoverRetreatCommands(s, authority, actor));
@@ -283,7 +284,9 @@ namespace Decennium.Foundation.Laboratory
             if (connectedFormulaResearch && (FormulaCommand(c.Kind) || ManufacturingCommand(c.Kind))
                 || connectedBloodSpecimen && HarvestPreservationTreatmentCommand(c.Kind)) {
                 string connectedResearchFailure = ResolveCore(s, c, assessFormula: true);
-                return new CommandQueryResult(true, connectedResearchFailure == null, connectedResearchFailure ?? "Available", s.Revision);
+                var connectedCosts = connectedRecipe4Batch && connectedResearchFailure == null
+                    ? ConnectedRecipe4Costs(s, c) : null;
+                return new CommandQueryResult(true, connectedResearchFailure == null, connectedResearchFailure ?? "Available", s.Revision, connectedCosts);
             }
             var searchConflict = SearchActivityConflict(s, c);
             if (searchConflict != null) return new CommandQueryResult(true, false, searchConflict, s.Revision);

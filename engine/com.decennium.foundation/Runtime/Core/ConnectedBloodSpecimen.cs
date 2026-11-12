@@ -64,7 +64,7 @@ namespace Decennium.Foundation
                 Vessel, Fit, Supply, Tool, CleanTool);
 
         internal static bool HasFingerprint(Snapshot s)
-            => s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+            => s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ConnectedRecipe4Batch.IsSelected(s);
 
         internal static bool UsesAuthoredFit(Snapshot s, PortableEquipmentRecord item)
             => s.BloodSpecimen != null && item.Id == s.BloodSpecimen.LotId
@@ -85,16 +85,23 @@ namespace Decennium.Foundation
             var item = s.PortableEquipment.SingleOrDefault(x => x.Id == specimen.LotId);
             var vessel = s.PortableEquipment.SingleOrDefault(x => x.Id == specimen.VesselId);
             var storage = PortableStorageProfileValidation.Find(s, MaterialProfile);
-            if (resource == null || resource.UnitId != MaterialId || resource.Amount != new RuleQuantity(1)
+            var batch = s.ConnectedBatch;
+            bool inApparatus = batch?.UsesApparatus == true;
+            var whole = new RuleQuantity(1);
+            if (resource == null || resource.UnitId != MaterialId
+                || resource.Amount != (batch?.Disposition == ConnectedSpecimenDisposition.Consumed ? default : whole)
+                || resource.LocationId != (inApparatus ? batch.ApparatusId : specimen.VesselId)
                 || resource.CustodianId != Worker || lot == null || lot.OwnerId != Worker || lot.ParentId != ""
-                || lot.CreatedAt != specimen.Origin || lot.CreatedAmount != resource.Amount || lot.Nutrition != NutritionKind.None
+                || lot.CreatedAt != specimen.Origin || lot.CreatedAmount != whole || lot.Nutrition != NutritionKind.None
                 || lot.FreshUntil.HasValue || s.InventoryLots.Any(x => x.ParentId == specimen.LotId)
-                || item == null || item.LinkKind != PortableLinkKind.InventoryLot || item.LinkedId != lot.LotId
-                || item.MassBasis != PortableMassBasis.CountedQuantity || item.ProfileId != MaterialProfile
-                || item.OwnerId != Worker || item.CustodianId != Worker || item.ParentId != specimen.VesselId
-                || item.Placement != PortablePlacement.Contained || storage?.MassPerUnitLb != specimen.UnitMass
+                || (inApparatus ? item != null || lot.Access != InventoryAccess.Stowed
+                    : item == null || item.LinkKind != PortableLinkKind.InventoryLot || item.LinkedId != lot.LotId
+                        || item.MassBasis != PortableMassBasis.CountedQuantity || item.ProfileId != MaterialProfile
+                        || item.OwnerId != Worker || item.CustodianId != Worker || item.ParentId != specimen.VesselId
+                        || item.Placement != PortablePlacement.Contained)
+                || storage?.MassPerUnitLb != specimen.UnitMass
                 || storage.QuantityUnitId != MaterialId || vessel == null || vessel.OwnerId != Worker || vessel.CustodianId != Worker
-                || vessel.FitRuleId != specimen.FitId || vessel.FitMemberIds.Count != 3 || !vessel.FitMemberIds.Contains(item.Id)
+                || vessel.FitRuleId != specimen.FitId || vessel.FitMemberIds.Count != 3 || !vessel.FitMemberIds.Contains(specimen.LotId)
                 || !vessel.FitMemberIds.Contains(specimen.SupplyLotId) || !vessel.FitMemberIds.Contains(Packing)
                 || vessel.OperationalWeightLb != new RuleQuantity(1) || vessel.CapacityPounds != new RuleQuantity(10)
                 || vessel.CapacityCubicFeet != new RuleQuantity(1) || s.HarvestUnits.Any(x => x.Id == lot.LotId))

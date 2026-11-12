@@ -543,6 +543,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var command in DiscoverCacheExcavationControls(s, actor)) yield return command;
             foreach (var command in DiscoverContextualInteractions(s, authority, actor)) yield return command;
             foreach (var command in DiscoverManufacturingCommands(s, actor)) yield return command;
+            foreach (var command in DiscoverConnectedRecipe4(s, actor)) yield return command;
         }
 
         private IEnumerable<Command> DiscoverContextualInteractions(Snapshot s,Authority authority,string actor)

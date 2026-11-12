@@ -232,6 +232,7 @@ namespace Decennium.Foundation.Laboratory
             }
             InitializeRecipe347(s);
             InitializeConnectedBloodSpecimen(s);
+            InitializeConnectedRecipe4Batch(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -851,7 +852,7 @@ namespace Decennium.Foundation.Laboratory
                 string bloodHandling = BloodSpecimenHandlingFailure(s,c);
                 if (bloodHandling != null) return bloodHandling;
             }
-            if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c)) {
+            if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c) && !IsConnectedRecipe4Check(s, c)) {
                 var activity = ActivityInterval(s, c.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
                     || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(s, c.Actor))
@@ -893,11 +894,13 @@ namespace Decennium.Foundation.Laboratory
                 return s.BloodSpecimen!=null&&assessFormula?AssessHarvestPreservationTreatment(s,c,out _,out _):ResolveHarvestPreservationTreatment(s,c);
             if(HarvestRequirementWorkCommand(c.Kind))return ResolveHarvestRequirementWork(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
-            if(ManufacturingCommand(c.Kind))return connectedFormulaResearch ? AssessConnectedManufacturing(s,c) : ResolveManufacturing(s,c);
+            if(ManufacturingCommand(c.Kind))return connectedRecipe4Batch ? ResolveManufacturing(s,c,assessFormula)
+                : connectedFormulaResearch ? AssessConnectedManufacturing(s,c) : ResolveManufacturing(s,c);
             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);
             if(IsSupplyCacheCommand(c))return ResolveSupplyCache(s,c);
             if(RepairCommand(c.Kind))return ResolveRepair(s,c);
-            if(CraftingCommand(c.Kind))return connectedFormulaResearch ? "ConnectedCraftingNotSelected" : ResolveCraftingConsequence(s,c);
+            if(CraftingCommand(c.Kind))return connectedFormulaResearch && !IsConnectedRecipe4InjuryDispatch(s,c)
+                ? "ConnectedCraftingNotSelected" : ResolveCraftingConsequence(s,c);
             if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c,assessFormula);
             if(connectedCombat!=null) {
                 if(c.Kind==CommandKind.BeginFixedEncounter) {
