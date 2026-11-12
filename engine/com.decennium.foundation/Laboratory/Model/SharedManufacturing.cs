@@ -52,7 +52,7 @@ namespace Decennium.Foundation.Laboratory
     }
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private readonly SharedManufacturingFixture manufacturing;
+        private SharedManufacturingFixture manufacturing;
         private static string ManufacturingFingerprint(string prior,SharedManufacturingFixture facts)
         {using(var sha=SHA256.Create())return "TEST_ONLY.manufacture-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior+"|"+facts.Key)).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));}
         private void InitializeManufacturing(Snapshot s)
@@ -370,6 +370,27 @@ namespace Decennium.Foundation.Laboratory
                 SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1,d6.Value+1,true);
             }else SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1);
         }
+        private string AssessManufacturingStart(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe)
+        {
+            recipe = ManufacturingRules.Recipe(c.Target);
+            if (c.Inventory != null || c.Combat != null) return "InvalidManufacturingRequest";
+            if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+            if (recipe == null || !manufacturing.SupportsRecipe(c.Target) || c.X < 0 || c.X > 1
+                || c.Y < recipe.MinimumSupplementaryVials || c.Y > recipe.MaximumSupplementaryVials) return "InvalidManufacturingRequest";
+            string access = ManufacturingAccess(s, c.Actor, true, recipeId: recipe.Id);
+            if (access != null) return access;
+            if (CraftingRestrictions.NewOrderBlocked(s, c.Actor, TestOnlyCropPolicy.PlotId, SharedCraftingFixture.TradeId)) return "ManufacturingLogRequired";
+            if (s.ManufacturingOrders.Any(x => x.Open)) return "ManufacturingApparatusClaimed";
+            if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
+            if (BloodUnprotectedAge(s, recipe.Id, c.X) >= BloodSpoils) return "ManufacturingIngredientSpoiled";
+            if (s.ManufacturingOrders.Length == ManufacturingValidation.MaxOrders) return "ManufacturingHistoryFull";
+            for (int i = 0; i < recipe.Components.Count; i++)
+                if (s.Work.AvailableAmount(SharedManufacturingFixture.Lot(recipe.Id, c.X, i)) < new RuleQuantity(recipe.Components[i].Quantity))
+                    return "ManufacturingIngredientsUnavailable";
+            return s.Work.AvailableAmount(SharedManufacturingFixture.PackagingFor(recipe.Id)) < new RuleQuantity(c.Y)
+                ? "ManufacturingPackagingUnavailable" : null;
+        }
+
         private string ResolveManufacturing(Snapshot s,Command c)
         {
             if(manufacturing==null)return "ManufacturingNotSelected";
@@ -377,17 +398,9 @@ namespace Decennium.Foundation.Laboratory
             if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
             if(PendingCalendarChoice(s))return "TacticalChoicePending";
             if(c.Kind==CommandKind.StartManufacturing){
-                var recipe=ManufacturingRules.Recipe(c.Target);
-                if(recipe==null||!manufacturing.SupportsRecipe(c.Target)||c.X<0||c.X>1||c.Y<recipe.MinimumSupplementaryVials||c.Y>recipe.MaximumSupplementaryVials)return "InvalidManufacturingRequest";
-                string access=ManufacturingAccess(s,c.Actor,true,recipeId:recipe.Id);if(access!=null)return access;
-                if(CraftingRestrictions.NewOrderBlocked(s,c.Actor,TestOnlyCropPolicy.PlotId,SharedCraftingFixture.TradeId))return "ManufacturingLogRequired";
-                if(s.ManufacturingOrders.Any(x=>x.Open))return "ManufacturingApparatusClaimed";
-                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-                if(BloodUnprotectedAge(s,recipe.Id,c.X)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
-                if(s.ManufacturingOrders.Length==ManufacturingValidation.MaxOrders)return "ManufacturingHistoryFull";
-                for(int i=0;i<recipe.Components.Count;i++)if(s.Work.AvailableAmount(SharedManufacturingFixture.Lot(recipe.Id,c.X,i))<new RuleQuantity(recipe.Components[i].Quantity))return "ManufacturingIngredientsUnavailable";
+                string failure = AssessManufacturingStart(s, c, out var recipe);
+                if (failure != null) return failure;
                 string packaging=SharedManufacturingFixture.PackagingFor(recipe.Id);
-                if(s.Work.AvailableAmount(packaging)<new RuleQuantity(c.Y))return "ManufacturingPackagingUnavailable";
                 string id="manufacture.order."+(s.Revision+1).ToString(CultureInfo.InvariantCulture);
                 var j=new ManufacturingOrderRecord(id,c.Actor,c.Target,c.X,c.Y,false,ManufacturingStatus.Working,new ActiveWorkProgress(new[]{recipe.FirstPhase,recipe.RemainingPhase}),s.RuleClock,s.RuleClock);
                 var claims=Enumerable.Range(0,recipe.Components.Count).Select(i=>new ResourceReservation(ComponentClaim(j,i),id,SharedManufacturingFixture.Lot(recipe.Id,c.X,i),recipe.Components[i].Quantity)).ToList();

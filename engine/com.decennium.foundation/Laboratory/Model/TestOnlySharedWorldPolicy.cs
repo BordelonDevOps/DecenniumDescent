@@ -768,7 +768,7 @@ namespace Decennium.Foundation.Laboratory
             if(connectedCombat!=null){ObserveCalendar(s,exitAfterSlot);ExpireReadyActionsAtStart(s,initiating);}
             return null;
         }
-        private string ResolveCore(Snapshot s, Command c)
+        private string ResolveCore(Snapshot s, Command c, bool assessFormula = false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             var searchActivityConflict = SearchActivityConflict(s, c);
@@ -880,12 +880,12 @@ namespace Decennium.Foundation.Laboratory
             if(HarvestPreservationTreatmentCommand(c.Kind))return ResolveHarvestPreservationTreatment(s,c);
             if(HarvestRequirementWorkCommand(c.Kind))return ResolveHarvestRequirementWork(s,c);
             if(IsHarvestCommand(c))return ResolveHarvest(s,c);
-            if(ManufacturingCommand(c.Kind))return ResolveManufacturing(s,c);
+            if(ManufacturingCommand(c.Kind))return connectedFormulaResearch ? AssessConnectedManufacturing(s,c) : ResolveManufacturing(s,c);
             if(IsFishingTrapCommand(c))return ResolveFishingTrap(s,c);
             if(IsSupplyCacheCommand(c))return ResolveSupplyCache(s,c);
             if(RepairCommand(c.Kind))return ResolveRepair(s,c);
-            if(CraftingCommand(c.Kind))return ResolveCraftingConsequence(s,c);
-            if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c);
+            if(CraftingCommand(c.Kind))return connectedFormulaResearch ? "ConnectedCraftingNotSelected" : ResolveCraftingConsequence(s,c);
+            if(FormulaCommand(c.Kind))return connectedCombat!=null&&PendingCalendarChoice(s)?"TacticalChoicePending":ResolveFormulaWork(s,c,assessFormula);
             if(connectedCombat!=null) {
                 if(c.Kind==CommandKind.BeginFixedEncounter) {
                     if(HasActiveMoraleRest(s))return "MoraleRestInterruptionAuthorityUnsupported";

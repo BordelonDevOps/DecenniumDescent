@@ -311,6 +311,7 @@ namespace Decennium.Foundation.Laboratory
             state.Encounter = outgoing.Observe(state.Revision + 1, phase.FirstTurn, phase);
             ActivateLocalRetreatPressure(state);
             state.WorldActivityIntervals = state.WorldActivityIntervals.Where(x => x.ActorId != definition.CompanionId).ToArray();
+            if (connectedFormulaResearch) PauseIncompatibleFormulaWork(state);
             state.WorldIntervals = state.WorldIntervals.Append(entrant).ToArray();
             state.BonusActions = state.BonusActions.Append(new ActorBonusActionRecord(entrant.ActorId, -1)).ToArray();
             BindLaterIntervalBodies(state, entrant.ActorId, entrant, preserveTurnState: true);

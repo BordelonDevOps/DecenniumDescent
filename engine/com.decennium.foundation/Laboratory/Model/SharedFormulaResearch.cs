@@ -99,7 +99,7 @@ namespace Decennium.Foundation.Laboratory
 
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        private readonly SharedResearchFixture research;
+        private SharedResearchFixture research;
         private TestOnlyResearchStationProfile researchStation;
 
         public TestOnlySharedWorldPolicy EnableResearchStation(TestOnlyResearchStationProfile profile)
@@ -126,7 +126,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private void InitializeResearch(Snapshot s)
         {
-            if (research == null) return;
+            if (research == null || connectedFormulaResearch) return;
             s.Work = new WorkLedger(s.Work.Lots.Concat(new[] { new ResourceLot(SharedResearchFixture.Supplies, "writing-allotment-1sp", 3, TestOnlyCropPolicy.PlotId, research.WorkerId) }), s.Work.WorkerIntervals, s.Work.Reservations);
             s.InventoryLots = s.InventoryLots.Concat(new[] { new InventoryLotRecord(SharedResearchFixture.Supplies, "", research.WorkerId, new RuleQuantity(3), default, NutritionKind.None, null, InventoryAccess.Ground) }).ToArray();
         }
@@ -136,7 +136,7 @@ namespace Decennium.Foundation.Laboratory
             if(researchStation==null ? station!=null : station==null||station.ProfileId!=TestOnlyResearchStationProfile.StructureProfileId)
                 return "InvalidResearchStationBinding";
             if(research==null)return s.FormulaWork.Length==0?null:"FormulaFixtureNotSelected";
-            return s.FormulaWork.Any(x=>!research.SupportsRecipe(x.RecipeId))?"FormulaFixtureMismatch":null;
+            return s.FormulaWork.Any(x=>!research.SupportsRecipe(x.RecipeId))?"FormulaFixtureMismatch":ValidateConnectedFormulaResearch(s);
         }
         private static bool FormulaCommand(CommandKind kind) => kind == CommandKind.StartFormulaResearch || kind == CommandKind.StartFormulaCopy
             || kind == CommandKind.PauseFormulaWork || kind == CommandKind.ResumeFormulaWork || kind == CommandKind.CancelFormulaWork;
@@ -148,17 +148,23 @@ namespace Decennium.Foundation.Laboratory
         private static RuleTime? ResearchWindowEnd(RuleTime at) => at < new RuleTime(28800) ? new RuleTime(28800) : at < new RuleTime(57600) ? new RuleTime(57600) : (RuleTime?)null;
         private bool ResearchCapable(Snapshot s, string actor) => research != null && actor == research.WorkerId && CapableWorker(s, actor)
             && !View(s, actor).BlocksSight && AvailableHands(s, actor) >= 1;
+        private bool ResearchParticipantInCombat(Snapshot s, string actor) => s.InventoryCombat
+            && (connectedFormulaResearch ? WorldTiming.ForEncounter(s).Order : s.WorldSchedule.Order).Contains(actor);
         private string ResearchAccess(Snapshot s, string actor, bool requireWindow = true, bool requiresPrimaryTool = true)
         {
-            if (actor != research.WorkerId || !research.Qualified) return "ResearchCredentialMissing";
+            if (actor != research.WorkerId || !research.Qualified
+                || connectedFormulaResearch && !s.Trades.Any(x => x.WorkerId == actor
+                    && x.TradeId == SharedCraftingFixture.TradeId && x.Level >= 5)) return "ResearchCredentialMissing";
             if (!research.Accessible || !research.Sufficient) return "ResearchEvidenceUnavailable";
             if (!research.StationSuitable) return "ResearchStationUnavailable";
             if(requiresPrimaryTool && TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return "ResearchToolInRepair";
-            if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||requiresPrimaryTool && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
+            if (connectedFormulaResearch) {
+                if (!ConnectedResearchWorkshopAvailable(s)) return "ResearchToolsOrStationUnavailable";
+            } else if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||requiresPrimaryTool && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
             if (!ResearchCapable(s, actor)) return "ResearchWorkerIncapable";
             var body = s.Actors.Single(x => x.Id == actor);
             if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return "ResearchStationOutOfReach";
-            if (s.InventoryCombat && s.WorldSchedule.Order.Contains(actor)) return "ResearchParticipantInCombat";
+            if (ResearchParticipantInCombat(s, actor)) return "ResearchParticipantInCombat";
             if (requireWindow && !ResearchWindowEnd(s.RuleClock).HasValue) return "ResearchWorkWindowClosed";
             return null;
         }
@@ -177,11 +183,16 @@ namespace Decennium.Foundation.Laboratory
         private void PauseIncompatibleFormulaWork(Snapshot s)
         {
             if (research == null) return;
-            foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray())
+            foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray()) {
+                if (connectedFormulaResearch) {
+                    if (ResearchAccess(s, job.WorkerId, requireWindow: false) != null) PauseFormula(s, job);
+                    continue;
+                }
                 if (!ResearchCapable(s, job.WorkerId) || (s.InventoryCombat && s.WorldSchedule.Order.Contains(job.WorkerId))
                     || (s.SchemaVersion < 17 || job.Kind == FormulaWorkKind.Research) && TargetInActiveRepair(s,SharedCraftingFixture.ToolId)
                     || crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)
                         || (s.SchemaVersion < 17 || job.Kind == FormulaWorkKind.Research) && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken)) PauseFormula(s, job);
+            }
         }
         private static RuleTime? NextFormulaBoundary(Snapshot s)
         {
@@ -229,10 +240,14 @@ namespace Decennium.Foundation.Laboratory
             if(station.Broken)return "ResearchStationBroken";
             return CraftingRestrictions.StationUseBlocked(s,station.Id)?"ResearchStationUseBlocked":null;
         }
-        private string ResolveFormulaWork(Snapshot s, Command c)
+        private string ResolveFormulaWork(Snapshot s, Command c, bool assessOnly = false)
         {
             if (research == null) return "FormulaWorkNotSelected";
             if (c.Inventory != null || c.Combat != null) return "InvalidFormulaRequest";
+            if (connectedFormulaResearch) {
+                string failure = ConnectedResearchAdmission(s, c);
+                if (failure != null) return failure;
+            }
             bool start = c.Kind == CommandKind.StartFormulaResearch || c.Kind == CommandKind.StartFormulaCopy;
             if (start) {
                 if (c.X < 0 || c.X > 1 || c.Kind == CommandKind.StartFormulaCopy && c.X != 0) return "UnknownResearchMethod";
@@ -248,6 +263,7 @@ namespace Decennium.Foundation.Laboratory
                 string method = copy ? "method.transcription" : c.X == 0 ? "method.sequence-analysis" : "method.independent-comparison";
                 if (!copy && s.FormulaWork.Any(x => x.WorkerId == c.Actor && x.RecipeId==recipeId&&x.EvidenceId == c.Target && x.MethodId == method && x.Status == FormulaWorkStatus.Failure)) return "UnchangedResearchEvidence";
                 if (s.FormulaWork.Length == FormulaWorkValidation.MaxRecords) return "FormulaHistoryCapacityReached";
+                if (assessOnly) return null;
                 var prior = s.FormulaWork.Where(x => x.WorkerId == c.Actor && x.RecipeId == recipeId && x.Status == FormulaWorkStatus.Failure)
                     .OrderByDescending(x=>x.UpdatedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).FirstOrDefault();
                 string id = "formula." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
@@ -262,9 +278,11 @@ namespace Decennium.Foundation.Laboratory
             if (!FormulaOpen(current)) return "FormulaWorkClosed";
             if (c.Kind == CommandKind.PauseFormulaWork) {
                 if (current.Status != FormulaWorkStatus.Working) return "FormulaNotWorking";
-                PauseFormula(s, current); return null;
+                if (!assessOnly) PauseFormula(s, current);
+                return null;
             }
             if (c.Kind == CommandKind.CancelFormulaWork) {
+                if (assessOnly) return null;
                 s.Work = s.Work.CancelFutureWork(current.Id, s.RuleClock);
                 if (current.Kind == FormulaWorkKind.Copy && current.Work.Labor == default) s.Work = s.Work.Release(current.Id, current.Id + ".supplies");
                 PutFormula(s, ChangeFormula(s, current, FormulaWorkStatus.Cancelled)); return null;
@@ -273,6 +291,7 @@ namespace Decennium.Foundation.Laboratory
                 if (current.Status == FormulaWorkStatus.Working) return "FormulaAlreadyWorking";
                 string access = ResearchAccess(s, c.Actor, current.Status != FormulaWorkStatus.AwaitingCheck, current.Kind == FormulaWorkKind.Research || s.SchemaVersion < 17); if (access != null) return access;
                 if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
+                if (assessOnly) return null;
                 if (current.Status == FormulaWorkStatus.AwaitingCheck) { FinishFormulaCheck(s, current); return null; }
                 BookFormula(s, current); PutFormula(s, ChangeFormula(s, current, FormulaWorkStatus.Working)); return null;
             }

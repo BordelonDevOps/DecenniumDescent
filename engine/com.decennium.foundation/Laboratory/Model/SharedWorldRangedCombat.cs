@@ -135,6 +135,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.Search||explorationSearchDefinition!=null&&kind==CommandKind.CancelExplorationSearch
             ||explorationHideDefinition!=null&&(kind==CommandKind.Hide||kind==CommandKind.CancelExplorationHide)
             ||connectedCombat!=null&&(kind==CommandKind.EndRegularTurn||kind==CommandKind.EndFixedEncounter)
+            ||connectedFormulaResearch&&(FormulaCommand(kind)||ManufacturingCommand(kind))
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing
             ||kind==CommandKind.PauseCacheExcavation||kind==CommandKind.ResumeCacheExcavation;
@@ -145,10 +146,11 @@ namespace Decennium.Foundation.Laboratory
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
-                    .Concat(DiscoverExplorationHide(s, actor));
+                    .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor));
             var options=new System.Collections.Generic.List<Command>();
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
+            options.AddRange(DiscoverConnectedFormulaWork(s,actor));
             options.AddRange(DiscoverReinforcementCommands(s, authority, actor));
             options.AddRange(DiscoverRetreatCommands(s, authority, actor));
             if(PendingDefensiveFormationShift(s)!=null) {
@@ -277,6 +279,10 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if (connectedFormulaResearch && (FormulaCommand(c.Kind) || ManufacturingCommand(c.Kind))) {
+                string connectedResearchFailure = ResolveCore(s, c, assessFormula: true);
+                return new CommandQueryResult(true, connectedResearchFailure == null, connectedResearchFailure ?? "Available", s.Revision);
+            }
             var searchConflict = SearchActivityConflict(s, c);
             if (searchConflict != null) return new CommandQueryResult(true, false, searchConflict, s.Revision);
             var hideConflict = HideActivityConflict(s, c);
