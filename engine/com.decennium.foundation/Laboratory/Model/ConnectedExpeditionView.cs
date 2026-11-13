@@ -30,6 +30,7 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyList<string> HeldItems { get; }
         public IReadOnlyList<ExpeditionVisibleActor> VisibleOpponents { get; }
         public string Travel { get; }
+        public ExpeditionTraversalView Traversal { get; }
 
         internal ExpeditionOwnActor(Snapshot state, ActorState actor, Authority grant)
         {
@@ -45,8 +46,52 @@ namespace Decennium.Foundation.Laboratory
                 && roster.Contains(actor.Id) && ObservationRules.CanSee(state, actor.Id, x.Id))
                 .Select(x => new ExpeditionVisibleActor(x)).ToArray());
             var edge = state.WorldTraversals.SingleOrDefault(x => x.ActorId == actor.Id);
+            Traversal = edge == null ? null : new ExpeditionTraversalView(state, edge);
             Travel = edge == null ? "" : FormattableString.Invariant(
                 $"Toward ({edge.ToX}, {edge.ToY}), {edge.DistanceFeet} of 5 feet, {edge.Status}");
+        }
+    }
+
+    public sealed class ExpeditionTraversalView
+    {
+        public int FromX { get; }
+        public int FromY { get; }
+        public int ToX { get; }
+        public int ToY { get; }
+        public RuleQuantity ExactX { get; }
+        public RuleQuantity ExactY { get; }
+        public RuleQuantity DistanceFeet { get; }
+        public RuleQuantity EdgeFeetRemaining { get; }
+        public WorldTraversalStatus Status { get; }
+        public string CalendarId { get; }
+        public long IntervalIndex { get; }
+        public bool PersonalStart { get; }
+        public RuleQuantity MovementSpent { get; }
+        public RuleQuantity MovementRemaining { get; }
+
+        internal ExpeditionTraversalView(Snapshot state, WorldTraversalRecord edge)
+        {
+            FromX = edge.FromX; FromY = edge.FromY; ToX = edge.ToX; ToY = edge.ToY;
+            var point = WorldPositionResolver.Position(state, edge.ActorId);
+            ExactX = point.X; ExactY = point.Y;
+            DistanceFeet = edge.DistanceFeet;
+            EdgeFeetRemaining = new RuleQuantity(5) - DistanceFeet;
+            Status = edge.Status;
+            var calendar = WorldTiming.ForActor(state, edge.ActorId);
+            PersonalStart = calendar != null;
+            if (calendar != null) {
+                var interval = state.WorldIntervals.Single(x => x.ActorId == edge.ActorId);
+                CalendarId = calendar.Id;
+                IntervalIndex = interval.LastStart;
+                MovementSpent = interval.MovementSpent;
+                MovementRemaining = TestOnlySharedWorldPolicy.Remaining(state, edge.ActorId);
+            } else {
+                var activity = state.WorldActivityIntervals.Single(x => x.ActorId == edge.ActorId);
+                CalendarId = activity.CalendarId;
+                IntervalIndex = activity.IntervalIndex;
+                MovementSpent = activity.MovementSpent;
+                MovementRemaining = TestOnlySharedWorldPolicy.ActivityRemaining(state, edge.ActorId);
+            }
         }
     }
 
@@ -109,12 +154,14 @@ namespace Decennium.Foundation.Laboratory
         public long HistoricalSaleCopper { get; }
         public ExpeditionCacheView Cache { get; }
         public ExpeditionObservationView Observation { get; }
+        public ExpeditionMiningSiteView MiningSite { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
-            long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null)
+            long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
+            ExpeditionMiningSiteView miningSite = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -133,6 +180,48 @@ namespace Decennium.Foundation.Laboratory
             HistoricalSaleCopper = historicalSaleCopper;
             Cache = cache;
             Observation = observation;
+            MiningSite = miningSite;
+        }
+    }
+
+    public sealed class ExpeditionMiningSiteView
+    {
+        public string Id { get; }
+        public string DepositId { get; }
+        public string VersionId { get; }
+        public int X { get; }
+        public int Y { get; }
+        public bool ObservedLocally { get; }
+        public bool? ClaimClosed { get; }
+        public IReadOnlyList<ExpeditionMiningUnitView> Units { get; }
+
+        internal ExpeditionMiningSiteView(MiningDepositRecord deposit, bool observed, bool? claimClosed,
+            IEnumerable<ExpeditionMiningUnitView> units)
+        {
+            Id = deposit.SiteId;
+            DepositId = deposit.Id;
+            VersionId = deposit.VersionId;
+            X = deposit.SiteX;
+            Y = deposit.SiteY;
+            ObservedLocally = observed;
+            ClaimClosed = claimClosed;
+            Units = Array.AsReadOnly(units.ToArray());
+        }
+    }
+
+    public sealed class ExpeditionMiningUnitView
+    {
+        public string Id { get; }
+        public string CategoryId { get; }
+        public MiningUnitStatus Status { get; }
+        public string RecoveredLotId { get; }
+
+        internal ExpeditionMiningUnitView(MiningMaterialUnitRecord unit)
+        {
+            Id = unit.Id;
+            CategoryId = unit.CategoryId;
+            Status = unit.Status;
+            RecoveredLotId = unit.ReceivedLotId;
         }
     }
 
@@ -222,8 +311,25 @@ namespace Decennium.Foundation.Laboratory
                     player ? CombatCommands.Concat(PartyCommands) : CombatCommands,
                     player ? KnownServices : NoKnownTargets,
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
-                    player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null);
+                    player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
+                    player ? ProjectMiningSite(state, grant) : null);
             }
+        }
+
+        private static ExpeditionMiningSiteView ProjectMiningSite(Snapshot state, Authority grant)
+        {
+            var deposit = state.MiningDeposits.SingleOrDefault(x => x.Id == SharedMiningFixture.DepositId);
+            if (deposit == null || !grant.Controls(deposit.OwnerId) || !grant.MayUseInventory(deposit.OwnerId)) return null;
+            var worker = state.Actors.Single(x => x.Id == deposit.OwnerId);
+            bool observed = !state.InventoryCombat && !state.WorldTraversals.Any(x => x.ActorId == worker.Id)
+                && TestOnlyClubAttackPolicy.Aware(state, worker.Id)
+                && !TestOnlyClubAttackPolicy.ConditionsFor(state, worker.Id).View().BlocksSight
+                && WorldSpatialQueries.WithinCardinalRange(worker.X, worker.Y, deposit.SiteX, deposit.SiteY, 1);
+            var categories = state.MiningCategories.Where(x => x.DepositId == deposit.Id && x.Accessible);
+            var units = observed ? state.MiningUnits.Where(x => x.DepositId == deposit.Id && categories.Any(c => c.Id == x.CategoryId))
+                .Select(x => new ExpeditionMiningUnitView(x)) : Enumerable.Empty<ExpeditionMiningUnitView>();
+            bool? claimClosed = observed ? state.MiningAttempts.Any(x => x.DepositId == deposit.Id) : (bool?)null;
+            return new ExpeditionMiningSiteView(deposit, observed, claimClosed, units);
         }
 
         private ExpeditionObservationView ProjectObservation(Snapshot state, Authority grant)

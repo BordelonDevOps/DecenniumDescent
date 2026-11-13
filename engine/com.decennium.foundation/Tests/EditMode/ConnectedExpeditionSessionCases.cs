@@ -11,6 +11,52 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("exp05_session_exact_local_traversal_restore", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string companion = ConnectedExpeditionSession.Companion;
+                var session = ConnectedExpeditionSession.Start();
+                Require(session.View(player).MiningSite.ObservedLocally && session.View(ExpeditionSeat.FirstOpponent).MiningSite == null,
+                    "The selected site must remain scoped to the party worker.");
+                var step = new Command("travel.local.step", companion, 0, CommandKind.BeginWorldStep, "walk", x: 1);
+                Require(session.Submit(ExpeditionSeat.FirstOpponent, step).Response == ExpeditionResponse.NotAuthorized
+                    && session.Submit(player, step).Response == ExpeditionResponse.Committed, "The companion owns the ordinary approach.");
+                var tick = new Command("travel.local.partial", hero, 1, CommandKind.AdvanceClock, x: 1, y: 2);
+                Require(session.SubmitSessionCommand(tick).Response == ExpeditionResponse.Committed, "Fractional clock advance failed.");
+                var partial = session.View(player);
+                var travel = partial.Actors.Single(x => x.Position.Id == companion).Traversal;
+                Require(travel != null && travel.ExactX > new RuleQuantity(3) && travel.ExactX < new RuleQuantity(4)
+                    && travel.ExactY == new RuleQuantity(3) && travel.DistanceFeet + travel.EdgeFeetRemaining == new RuleQuantity(5)
+                    && travel.MovementSpent == travel.DistanceFeet && !travel.PersonalStart && travel.IntervalIndex == 0
+                    && partial.MiningSite.ClaimClosed == null && partial.MiningSite.Units.Count == 0
+                    && session.View(ExpeditionSeat.FirstOpponent).Actors.All(x => x.Traversal == null),
+                    "Own fractional progress and spending must not expose remote site state or another seat's travel.");
+                string file = Path.Combine(directory, "exp05-traversal.ddsave");
+                session.Save(file);
+                var restored = ConnectedExpeditionSession.Start();
+                restored.Restore(file);
+                var resumed = restored.View(player).Actors.Single(x => x.Position.Id == companion).Traversal;
+                Require(resumed.ExactX == travel.ExactX && resumed.ExactY == travel.ExactY
+                    && resumed.MovementSpent == travel.MovementSpent && resumed.MovementRemaining == travel.MovementRemaining
+                    && resumed.CalendarId == travel.CalendarId && resumed.IntervalIndex == travel.IntervalIndex
+                    && restored.Submit(player, step).Response == ExpeditionResponse.Duplicate,
+                    "Restore and duplicate delivery must preserve the exact edge and allowance.");
+                var complete = new Command("travel.local.complete", hero, 2, CommandKind.AdvanceClock, x: 2, y: 1);
+                foreach (var run in new[] { session, restored }) {
+                    Require(run.SubmitSessionCommand(complete).Response == ExpeditionResponse.Committed,
+                        "The existing clock must complete the edge.");
+                    var actor = run.View(player).Actors.Single(x => x.Position.Id == companion);
+                    Require(actor.Traversal == null && actor.Position.X == 4 && actor.Position.Y == 3,
+                        "Arrival must keep the exact destination.");
+                }
+                string a = Path.Combine(directory, "exp05-traversal-continued.ddsave");
+                string b = Path.Combine(directory, "exp05-traversal-restored.ddsave");
+                session.Save(a);
+                restored.Save(b);
+                Require(File.ReadAllBytes(a).SequenceEqual(File.ReadAllBytes(b)), "Exact partial restore changed continued bytes.");
+            });
+
             cases.Add("exp04_session_ordinary_observation_scope_before_charter", () =>
             {
                 var session = ConnectedExpeditionSession.Start();

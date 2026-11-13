@@ -256,7 +256,7 @@ namespace Decennium.Foundation.Laboratory
                     SetActivityInterval(s, new WorldActivityIntervalRecord(s.WorldSchedule.Id, activity.ActorId, current));
             }
         }
-        private static RuleQuantity ActivityRemaining(Snapshot s, string actor)
+        internal static RuleQuantity ActivityRemaining(Snapshot s, string actor)
         {
             var activity = ActivityInterval(s, actor);
             var allowance = new RuleQuantity(Speed(s, actor)).Scale(activity.DashPaid ? 2 : 1);
@@ -331,7 +331,7 @@ namespace Decennium.Foundation.Laboratory
             return SurprisePermissions.Restrict(s, actor, ExpeditionStrainRules.RestrictPermissions(s, actor, permissions));
         }
         private static long Speed(Snapshot s, string actor) => TestOnlyClubAttackPolicy.WalkingSpeed(s, actor);
-        private static RuleQuantity Remaining(Snapshot s, string actor)
+        internal static RuleQuantity Remaining(Snapshot s, string actor)
         {
             var a = Interval(s, actor); var available = new RuleQuantity(Speed(s, actor)).Scale(a.DashPaid ? 2 : 1);
             return available > a.MovementSpent ? available - a.MovementSpent : default;
