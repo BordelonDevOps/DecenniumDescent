@@ -778,7 +778,8 @@ namespace Decennium.Foundation.Laboratory
             if(connectedCombat!=null){ObserveCalendar(s,exitAfterSlot);ExpireReadyActionsAtStart(s,initiating);}
             return null;
         }
-        private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false)
+        private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false,
+            PlanningPassage? passage = null)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             var searchActivityConflict = SearchActivityConflict(s, c);
@@ -820,7 +821,7 @@ namespace Decennium.Foundation.Laboratory
             if (IsReinforcementControl(s, c)) return ResolveReinforcementControl(s, c);
             if(IsCharterAttemptCommand(c.Kind))return ResolveCharterAttempt(s,c);
             if(IsNextCharterAgreementCommand(c.Kind))return ResolveNextCharterAgreement(s,c);
-            if(IsNextCharterPlanCommand(c.Kind))return ResolveNextCharterPlan(s,c);
+            if(IsNextCharterPlanCommand(c.Kind))return ResolveNextCharterPlan(s,c,passage);
             if(IsExpeditionBillCommand(c.Kind))return ResolveExpeditionBill(s,c);
             if(IsHavenSaleCommand(c.Kind))return ResolveHavenSale(s,c);
             if(c.Kind==CommandKind.PurchaseHavenMeal)return ResolveHavenMealPurchase(s,c,out _);
@@ -1339,10 +1340,10 @@ namespace Decennium.Foundation.Laboratory
             return codec.Encode(snapshot).SequenceEqual(codec.Encode(replay)) ? null : "InvalidSharedWorldReplay";
         }
 
-        private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt)
+        private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt, PlanningPassage? passage = null)
         {
             var command = CommandHistory.Read(receipt);
-            if (command.ExpectedRevision != replay.Revision || Resolve(replay, command) != null) return false;
+            if (command.ExpectedRevision != replay.Revision || Resolve(replay, command, passage) != null) return false;
             replay.Revision = receipt.Revision;
             replay.Receipts = replay.Receipts.Concat(new[] { receipt }).ToArray();
             return true;

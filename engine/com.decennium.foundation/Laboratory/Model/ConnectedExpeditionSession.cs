@@ -97,7 +97,8 @@ namespace Decennium.Foundation.Laboratory
                 .EnableConnectedExplorationObservation()
                 .EnableConnectedFormulaResearch()
                 .EnableConnectedBloodSpecimen()
-                .EnableConnectedRecipe4Batch();
+                .EnableConnectedRecipe4Batch()
+                .EnableVerifiedPlanningPassage();
 
         private Simulation Validate(Snapshot state)
             => new Simulation(policy, state, ExecutionProfile.Laboratory, CommandVerification.VerifiedPrefix);

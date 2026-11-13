@@ -11,6 +11,78 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("int03_verified_charter_passage_ownership_and_cutoff", () =>
+            {
+                const System.Reflection.BindingFlags fields = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+                const System.Reflection.BindingFlags methods = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+                const string companion = ConnectedExpeditionSession.Companion;
+                const string hero = ConnectedExpeditionSession.Hero;
+                var session = ConnectedExpeditionSession.Start();
+                var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession).GetField("policy", fields).GetValue(session);
+                var first = new Simulation(policy, policy.Initial(), ExecutionProfile.Laboratory, CommandVerification.VerifiedPrefix);
+                var second = new Simulation(policy, policy.Initial(), ExecutionProfile.Laboratory, CommandVerification.VerifiedPrefix);
+                var originField = typeof(Simulation).GetField("verificationOrigin", fields);
+                var checkpointField = typeof(Simulation).GetField("checkpoint", fields);
+                var firstOrigin = (VerifiedSimulationOrigin)originField.GetValue(first);
+                var secondOrigin = (VerifiedSimulationOrigin)originField.GetValue(second);
+                var checkpoint = (IVerifiedCommandResolution)checkpointField.GetValue(first);
+                var startPlan = new Command("passage.plan", hero, 0, CommandKind.StartNextCharterPlan, TestOnlyNextCharterPlanProfile.VersionId);
+                var predecessor = first.Capture();
+                var changed = predecessor.Copy();
+                changed.RandomState ^= 1;
+                Require(checkpoint.Resolves(startPlan)
+                    && checkpoint.ResolveNext(secondOrigin, predecessor, predecessor.Copy(), startPlan) == "InvalidVerifiedPrefixOwner"
+                    && checkpoint.ResolveNext(firstOrigin, changed, changed.Copy(), startPlan) == "InvalidVerifiedPrefixBytes"
+                    && checkpoint.ResolveNext(firstOrigin, predecessor, changed, startPlan) == "InvalidVerifiedPrefixBytes"
+                    && ReferenceEquals(checkpoint, checkpointField.GetValue(first))
+                    && first.Capture().Revision == 0 && second.Capture().Revision == 0,
+                    "Only the owned byte-matched predecessor may supply private passage knowledge.");
+
+                // Detached predicate probes cover histories and cutoffs outside this checkpoint's r0 scenario.
+                var terms = new TestOnlyNextCharterPlanProfile().Terms;
+                var proofType = typeof(TestOnlySharedWorldPolicy).GetNestedType("PlanningPassage", System.Reflection.BindingFlags.NonPublic);
+                var proof = Activator.CreateInstance(proofType, fields, null,
+                    new object[] { predecessor.ContentFingerprint, terms.BindingKey, 0L, null, null }, null);
+                var advance = proofType.GetMethod("Advance", fields);
+                var startThrough = proofType.GetMethod("StartThrough", fields);
+                var covers = proofType.GetMethod("Covers", fields);
+                var match = typeof(TestOnlySharedWorldPolicy).GetMethod("PendingPlanningCrossing", methods);
+                var edge = new WorldTraversalRecord(companion, 1, terms.StageX, terms.StageY, terms.ApproachX, terms.ApproachY);
+                var opposite = new WorldTraversalRecord(companion, 1, terms.ApproachX, terms.ApproachY, terms.StageX, terms.StageY);
+                var witness = predecessor.Copy();
+                witness.WorldTraversals = new[] { opposite };
+                Require(match.Invoke(null, new object[] { witness, terms }) == null, "A reversed edge is not the selected passage.");
+                witness.WorldTraversals = new[] { edge };
+                Require(ReferenceEquals(match.Invoke(null, new object[] { witness, terms }), edge), "The selected walk must match.");
+                witness.WorldTraversals = new[] { new WorldTraversalRecord(hero, 1, terms.StageX, terms.StageY,
+                    terms.ApproachX, terms.ApproachY) };
+                Require(match.Invoke(null, new object[] { witness, terms }) == null, "Another actor's crossing is insufficient.");
+                witness.WorldTraversals = new[] { edge };
+                string Fingerprint(Command command)
+                    => (string)typeof(Command).GetProperty("Fingerprint", fields).GetValue(command);
+                var firstWalk = new Command("passage.walk", companion, 0, CommandKind.BeginWorldStep, "walk", x: 1);
+                var start = new CommandReceipt { Id = firstWalk.Id, Fingerprint = Fingerprint(firstWalk), Principal = "TEST_ONLY.host", Revision = 1 };
+                var complete = new CommandReceipt { Id = "passage.complete", Principal = "TEST_ONLY.session-operator", Revision = 3,
+                    Fingerprint = Fingerprint(new Command("passage.complete", hero, 2, CommandKind.AdvanceClock, x: 2, y: 1)) };
+                witness.Receipts = new[] { start };
+                witness.Revision = 2;
+                proof = advance.Invoke(proof, new object[] { witness, edge, new CommandReceipt { Revision = 2 } });
+                Require((long)startThrough.Invoke(proof, new object[] { 2L }) == 0
+                    && (bool)covers.Invoke(proof, new object[] { witness, terms, 2L })
+                    && !(bool)covers.Invoke(proof, new object[] { witness, terms, 3L }),
+                    "Verified absence must be bounded by the actual covered prefix.");
+                witness.WorldTraversals = Array.Empty<WorldTraversalRecord>();
+                var actor = witness.Actors.Single(x => x.Id == companion);
+                actor.X = terms.ApproachX;
+                actor.Y = terms.ApproachY;
+                witness.Revision = 3;
+                proof = advance.Invoke(proof, new object[] { witness, edge, complete });
+                Require((long)startThrough.Invoke(proof, new object[] { 2L }) == 0
+                    && (long)startThrough.Invoke(proof, new object[] { 3L }) == 1
+                    && !(bool)covers.Invoke(proof, new object[] { witness, new TestOnlyNextCharterPlanProfile(authorizationUntil: 47999).Terms, 3L }),
+                    "A timely completion supplies the start revision and only the exact terms.");
+            });
+
             cases.Add("mgt06_session_trap_profile_restore_and_remote_resume", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

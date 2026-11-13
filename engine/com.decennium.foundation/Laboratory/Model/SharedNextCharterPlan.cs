@@ -92,7 +92,8 @@ namespace Decennium.Foundation.Laboratory
             }
         }
 
-        private string NextCharterPlanBasisFailure(Snapshot state, NextCharterPlanRecord previous, out long passageRevision)
+        private string NextCharterPlanBasisFailure(Snapshot state, NextCharterPlanRecord previous, out long passageRevision,
+            PlanningPassage? verified = null)
         {
             passageRevision = 0;
             var terms = nextCharterPlanProfile.Terms;
@@ -105,7 +106,10 @@ namespace Decennium.Foundation.Laboratory
             if (!close.Members.Any(x => x.ActorId == terms.PassageWitnessId)) return "NextCharterPlanningPassageEvidenceMissing";
             if (previous != null && (previous.Terms.BindingKey != terms.BindingKey || previous.PriorCloseRevision != close.CloseRevision))
                 return "NextCharterPlanningBasisChanged";
-            passageRevision = previous?.PassageRevision ?? FindPlanningPassage(state, terms, close.SourceRevision);
+            passageRevision = previous?.PassageRevision
+                ?? (verified.HasValue && verified.Value.Covers(state, terms, close.SourceRevision)
+                    ? verified.Value.StartThrough(close.SourceRevision)
+                    : FindPlanningPassage(state, terms, close.SourceRevision));
             return passageRevision == 0 ? "NextCharterPlanningPassageEvidenceMissing" : null;
         }
 
@@ -114,20 +118,25 @@ namespace Decennium.Foundation.Laboratory
             // Verify a completed prior crossing from the traversal itself, since the close may occur elsewhere.
             var replay = Initial();
             foreach (var receipt in state.Receipts.Where(x => x.Revision <= throughRevision).OrderBy(x => x.Revision)) {
-                var traversal = replay.WorldTraversals.SingleOrDefault(x => x.ActorId == terms.PassageWitnessId && !x.Running
-                    && x.FromX == terms.StageX && x.FromY == terms.StageY && x.ToX == terms.ApproachX && x.ToY == terms.ApproachY);
-                var command = CommandHistory.Read(receipt);
-                if (command.ExpectedRevision != replay.Revision || Resolve(replay, command) != null) return 0;
-                replay.Revision = receipt.Revision;
-                replay.Receipts = replay.Receipts.Append(receipt).ToArray();
-                if (traversal != null && !replay.WorldTraversals.Any(x => x.ActorId == traversal.ActorId)
-                    && AtSalePosition(replay, traversal.ActorId, traversal.ToX, traversal.ToY)) {
-                    var passage = CommandHistory.Read(replay.Receipts.Single(x => x.Revision == traversal.StartedRevision));
-                    if (passage.Kind == CommandKind.BeginWorldStep && passage.Target == "walk" && passage.Actor == traversal.ActorId)
-                        return traversal.StartedRevision;
-                }
+                var traversal = PendingPlanningCrossing(replay, terms);
+                if (!ReplayReceipt(replay, receipt)) return 0;
+                var start = CompletedPlanningCrossing(replay, traversal);
+                if (start != null) return start.Revision;
             }
             return 0;
+        }
+
+        private static WorldTraversalRecord PendingPlanningCrossing(Snapshot state, NextCharterPlanTerms terms)
+            => state.WorldTraversals.SingleOrDefault(x => x.ActorId == terms.PassageWitnessId && !x.Running
+                && x.FromX == terms.StageX && x.FromY == terms.StageY && x.ToX == terms.ApproachX && x.ToY == terms.ApproachY);
+
+        private static CommandReceipt CompletedPlanningCrossing(Snapshot state, WorldTraversalRecord traversal)
+        {
+            if (traversal == null || !AtSalePosition(state, traversal.ActorId, traversal.ToX, traversal.ToY)) return null;
+            var start = state.Receipts.Single(x => x.Revision == traversal.StartedRevision);
+            var command = CommandHistory.Read(start);
+            return command.Kind == CommandKind.BeginWorldStep && command.Target == "walk" && command.Actor == traversal.ActorId
+                ? start : null;
         }
 
         private string NextCharterPlannerFailure(Snapshot state)
@@ -152,7 +161,7 @@ namespace Decennium.Foundation.Laboratory
                 && command.MiningSelection == null && command.ProspectingExposure == null && command.RouteMappingWork == null;
 
         private string AssessNextCharterPlanCommand(Snapshot state, Command command, out NextCharterPlanRecord job, out long passageRevision,
-            out NextCharterPlanObservation observation)
+            out NextCharterPlanObservation observation, PlanningPassage? verified = null)
         {
             job = null;
             passageRevision = 0;
@@ -186,7 +195,7 @@ namespace Decennium.Foundation.Laboratory
                     return "NextCharterPlanningWorkIncomplete";
             }
 
-            string failure = NextCharterPlanBasisFailure(state, job, out passageRevision);
+            string failure = NextCharterPlanBasisFailure(state, job, out passageRevision, verified);
             if (failure != null) return failure;
             var end = CampGreens.Add(state.RuleClock, job?.Work.Remaining ?? new RuleTime(NextCharterPlanRecord.RequiredSeconds));
             if (!terms.AuthorizedAt(state.RuleClock) || end >= terms.AuthorizationUntil) return "NextCharterPlanningAuthorizationWindow";
@@ -224,9 +233,9 @@ namespace Decennium.Foundation.Laboratory
             => PutNextCharterPlan(state, job.With(state, job.Work.Labor, NextCharterPlanStatus.CompletedConditional,
                 "NextCharterPlanningCompletedConditional", ObserveNextCharterPlan(state, state.Revision + 1)));
 
-        private string ResolveNextCharterPlan(Snapshot state, Command command)
+        private string ResolveNextCharterPlan(Snapshot state, Command command, PlanningPassage? passage)
         {
-            string failure = AssessNextCharterPlanCommand(state, command, out var job, out long passageRevision, out _);
+            string failure = AssessNextCharterPlanCommand(state, command, out var job, out long passageRevision, out _, passage);
             if (failure != null) return failure;
             switch (command.Kind) {
                 case CommandKind.StartNextCharterPlan:

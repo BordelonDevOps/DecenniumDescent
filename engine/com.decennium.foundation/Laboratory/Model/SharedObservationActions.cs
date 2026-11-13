@@ -8,11 +8,13 @@ namespace Decennium.Foundation.Laboratory
 {
     public sealed partial class TestOnlySharedWorldPolicy
     {
-        public string Resolve(Snapshot s, Command c)
+        public string Resolve(Snapshot s, Command c) => Resolve(s, c, null);
+
+        private string Resolve(Snapshot s, Command c, PlanningPassage? passage)
         {
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
-            string error = ResolveCore(s, c);
+            string error = ResolveCore(s, c, passage: passage);
             if (error == null && ActiveBloodTreatment(s) is HarvestPreservationTreatmentAttemptRecord treatment) {
                 if (treatment.UpdatedAt < s.RuleClock) return "BloodTreatmentRequiresSharedAdvance";
                 string access = BloodTreatmentAccess(s, treatment.WorkerId);

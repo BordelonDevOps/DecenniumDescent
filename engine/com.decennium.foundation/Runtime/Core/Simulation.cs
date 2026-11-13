@@ -729,6 +729,13 @@ namespace Decennium.Foundation
             CommandReceipt submittedReceipt, out IVerifiedCommandCheckpoint successor);
     }
 
+    /// <summary>Optional resolution from the owning simulation's sealed predecessor.</summary>
+    public interface IVerifiedCommandResolution
+    {
+        bool Resolves(Command command);
+        string ResolveNext(VerifiedSimulationOrigin origin, Snapshot predecessor, Snapshot candidate, Command command);
+    }
+
     public sealed class CommandCost
     {
         public string Kind { get; }
@@ -1366,7 +1373,11 @@ namespace Decennium.Foundation
             if (previous != null) return AcceptedResult(previous, Outcome.Duplicate);
             Snapshot candidate = state.Copy();
             string failure;
-            try { failure = policy.Resolve(candidate, command); }
+            try {
+                failure = checkpoint is IVerifiedCommandResolution resolution && resolution.Resolves(command)
+                    ? resolution.ResolveNext(verificationOrigin, state.Copy(), candidate, command)
+                    : policy.Resolve(candidate, command);
+            }
             catch (Exception ex) when (ex is ArgumentException || ex is OverflowException || ex is InvalidOperationException)
             { return Reject("PolicyFailure"); }
             if (failure != null) return Reject(failure);
