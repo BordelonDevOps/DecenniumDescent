@@ -169,6 +169,7 @@ namespace Decennium.Foundation
         public const int ConnectedCarriedVialSchema = 96;
         public const int ConnectedStowedVialSchema = 97;
         public const int ConnectedTacticalVialSchema = 98;
+        public const int ConnectedCompanionDoseSchema = 99;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -312,7 +313,9 @@ namespace Decennium.Foundation
         public bool ConnectedCarriedVial;
         public bool ConnectedStowedVial;
         public bool ConnectedTacticalVial;
-        public int WireSchemaVersion => ConnectedTacticalVial ? ConnectedTacticalVialSchema
+        public bool ConnectedCompanionDose;
+        public int WireSchemaVersion => ConnectedCompanionDose ? ConnectedCompanionDoseSchema
+            : ConnectedTacticalVial ? ConnectedTacticalVialSchema
             : ConnectedStowedVial ? ConnectedStowedVialSchema
             : ConnectedCarriedVial ? ConnectedCarriedVialSchema
             : ConnectedBatch != null ? ConnectedRecipe4BatchSchema
@@ -438,6 +441,7 @@ namespace Decennium.Foundation
             ConnectedCarriedVial = ConnectedCarriedVial,
             ConnectedStowedVial = ConnectedStowedVial,
             ConnectedTacticalVial = ConnectedTacticalVial,
+            ConnectedCompanionDose = ConnectedCompanionDose,
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),

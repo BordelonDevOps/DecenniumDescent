@@ -51,6 +51,177 @@ namespace Decennium.Foundation.Tests
 
         private static void AddConnectedVialCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("tac06_connected_held_dose_administration_to_admitted_companion", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string ally = ConnectedExpeditionSession.Companion;
+                const string approach = "TEST_ONLY.companion-reinforcement.v1";
+                var active = StartVialScenario(ConnectedExpeditionSession.StartWithCompanionDose());
+                var store = new FileSaveStore();
+                var codec = new SnapshotCodec();
+                string FileAt(string key) => Path.Combine(directory, "companion-dose-" + key + ".ddsave");
+                Snapshot Save(string key)
+                {
+                    active.Save(FileAt(key));
+                    return store.Load(FileAt(key));
+                }
+                void Restore(string key, Snapshot expected)
+                {
+                    var restored = ConnectedExpeditionSession.StartWithCompanionDose();
+                    restored.Restore(FileAt(key));
+                    active = restored;
+                    Require(codec.Encode(expected).SequenceEqual(codec.Encode(Save(key + "-restored"))),
+                        "Restoring the actual companion-dose route changed " + key + ".");
+                }
+                void Commit(string id, string actor, CommandKind kind, string target = "", int x = 0, int y = 0,
+                    InventoryRequest inventory = null, CombatRequest combat = null)
+                    => CommitVialRoute(active, new Command(id, actor, active.View(player).Revision, kind, target, x, y, inventory, combat));
+                Command Feed(string id, long revision, string recipient = ally)
+                    => new Command(id, hero, revision, CommandKind.UseAlchemyDose, VialId, inventory: new InventoryRequest(Q(1), recipient));
+                void Deny(string key, Snapshot before, Command command, ExpeditionResponse response = ExpeditionResponse.Unavailable)
+                {
+                    Require(active.Submit(player, command).Response == response
+                        && codec.Encode(before).SequenceEqual(codec.Encode(Save(key))),
+                        "Companion dose attempt changed state or returned the wrong response: " + key);
+                }
+                void Guard(string id, string actor)
+                    => Commit(id, actor, CommandKind.SelectCombatStance, combat: new CombatRequest(active.View(player).TurnId, stance: 1));
+                void End(string id, string actor) => Commit(id, actor, CommandKind.EndRegularTurn, active.View(player).TurnId);
+                void Defender()
+                {
+                    int steps = 0;
+                    while (active.View(player).NextSeat == ExpeditionTurnSeat.AutomaticDefender) {
+                        Require(steps++ < 10 && active.AdvanceAutomaticDefender().Response == ExpeditionResponse.Committed,
+                            "The normal defender controller must resolve each actual decision.");
+                    }
+                }
+                ActorLifeRecord Life(Snapshot state, string actor) => state.Lives.Single(x => x.ActorId == actor);
+                PortableEquipmentRecord Body(Snapshot state) => state.PortableEquipment.Single(x => x.Id == VialId);
+                WorldIntervalRecord HeroInterval(Snapshot state) => state.WorldIntervals.Single(x => x.ActorId == hero);
+
+                VialWalk(active, "vial.approach", 108, 1);
+                CommitVialRoute(active, VialPickup("vial.pickup", 110));
+                Commit("vial.stow", hero, CommandKind.HandlePortableEquipment, VialId,
+                    inventory: new InventoryRequest(Q(1), ConnectedVialRules.PackId, HandlingKind.Stow));
+                VialWalk(active, "tac.away", 112, -1);
+                Commit("ally.stage", ally, CommandKind.BeginWorldStep, "walk", -1);
+                Commit("ally.stage-paid", hero, CommandKind.AdvanceClock, x: 6, y: 1);
+                VialWalk(active, "ally.entry", 116, -1, 12);
+                var entered = Save("entry");
+                Require(entered.WireSchemaVersion == 99 && entered.SchemaVersion == 90
+                    && !entered.Encounter.Order.Contains(ally) && Body(entered).ParentId == ConnectedVialRules.PackId
+                    && active.View(player).KnownTargets[CommandKind.BeginReinforcementApproach] == approach
+                    && !ConnectedExpeditionSession.StartWithTacticalVial().View(player).Commands.Contains(CommandKind.BeginReinforcementApproach),
+                    "Wire99 alone must expose the selected reinforcement through the current player grant.");
+                Restore("entry", entered);
+                var wrongProfile = ConnectedExpeditionSession.StartWithTacticalVial();
+                Throws<ArgumentException>(() => wrongProfile.Restore(FileAt("entry")));
+                Require(wrongProfile.View(player).Revision == 0, "Wire98 must reject authentic wire99 atomically.");
+                var begin = new Command("ally.reinforcement", ally, entered.Revision, CommandKind.BeginReinforcementApproach, approach);
+                Require(active.Submit(ExpeditionSeat.FirstOpponent, begin).Response == ExpeditionResponse.NotAuthorized,
+                    "Other seats cannot issue the selected reinforcement.");
+                Deny("contained", entered, Feed("ally.contained", entered.Revision));
+                CommitVialRoute(active, begin);
+                Commit("ally.retrieve", hero, CommandKind.HandlePortableEquipment, VialId,
+                    inventory: new InventoryRequest(Q(1), handling: HandlingKind.Retrieve));
+                var held = Save("held");
+                Deny("pre-admission", held, Feed("ally.pre-admission", held.Revision));
+                Guard("ally.guard-first", hero);
+                Commit("ally.step-first", hero, CommandKind.TacticalStep, active.View(player).TurnId, 0, 2);
+                var pending = Save("pending");
+                Require(active.View(player).OpportunityPending, "The actual defender opportunity must be pending.");
+                Deny("pending-denied", pending, Feed("ally.pending", pending.Revision));
+                Defender();
+                End("ally.end-first", hero);
+                Defender();
+                var admitted = Save("admitted");
+                Require(admitted.Reinforcement.Admission != null && admitted.Encounter.Order.Contains(ally)
+                    && admitted.WorldIntervals.Count(x => x.ActorId == ally) == 1
+                    && !admitted.WorldActivityIntervals.Any(x => x.ActorId == ally),
+                    "The paid approach must lead to actual end-round roster admission.");
+                Restore("admitted", admitted);
+                Guard("ally.companion-guard-1", ally);
+                End("ally.companion-end-1", ally);
+                Guard("ally.hero-guard-2", hero);
+                Commit("ally.step-out", hero, CommandKind.TacticalStep, active.View(player).TurnId, 0, 1);
+                Defender();
+                End("ally.hero-end-2", hero);
+                Defender();
+                var damaged = Save("damaged");
+                Require(Life(admitted, ally).Hp == 26 && Life(damaged, ally).Hp == 25
+                    && Life(damaged, ally).LinkedInjuries.Count == 0,
+                    "The real defender must inflict the ordinary positive-HP companion damage.");
+                Restore("damaged", damaged);
+                Guard("ally.companion-guard-2", ally);
+                End("ally.companion-end-2", ally);
+                Guard("ally.hero-guard-3", hero);
+                var tooFar = Save("too-far");
+                Deny("range-denied", tooFar, Feed("ally.range-denied", tooFar.Revision));
+                Commit("ally.return", hero, CommandKind.TacticalStep, active.View(player).TurnId, 0, 2);
+                var ready = Save("ready");
+
+                // These detached probes exercise existing geometry and life checks without editing live gameplay.
+                var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                    .GetField("policy", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(active);
+                var useMethod = typeof(TestOnlySharedWorldPolicy).GetMethod("UseAlchemy", BindingFlags.Instance | BindingFlags.NonPublic);
+                string Assess(Snapshot state, string recipient = ally)
+                    => (string)useMethod.Invoke(policy, new object[] { state, Feed("ally.probe", state.Revision, recipient), true });
+                Require(Assess(ready) == null && Assess(ready, "TEST_ONLY.later-defender") == "CompanionDoseRecipientUnavailable",
+                    "The eligible recipient is exactly the named admitted companion.");
+                var blocked = ready.Copy();
+                blocked.ObservationCells = blocked.ObservationCells.Append(new ObservationMapCellRecord(1, 3, false, true, false, false)).ToArray();
+                Require(Assess(blocked) == "CompanionDoseDeliveryBlocked", "Five feet alone cannot establish clear delivery.");
+                var incapacitated = ready.Copy();
+                var life = Life(ready, ally);
+                incapacitated.Lives = incapacitated.Lives.Select(x => x.ActorId == ally
+                    ? new ActorLifeRecord(ally, life.MaximumHp, 0, 0, life.LinkedInjuries, false, false, life.UsesDeathSaves,
+                        0, 0, null, life.LastDeathTurn, true, life.HeldItems) : x).ToArray();
+                Require(Assess(incapacitated) == "AlchemyRecipientCannotIngest", "The selected living conscious ingestion fact must not extend to zero HP.");
+                var spent = ready.Copy();
+                spent.WorldIntervals = spent.WorldIntervals.Select(x => x.ActorId == hero ? x.PayAction() : x).ToArray();
+                Require(Assess(spent) == "ActionAlreadySpent", "An already spent Action must deny fresh use.");
+
+                var feed = Feed("ally.feed", ready.Revision);
+                CommitVialRoute(active, feed);
+                var fed = Save("fed");
+                var dose = fed.AlchemyDoses.Single(x => x.Id == VialId);
+                var originalBurden = PortableEquipmentRules.CarriedBurden(ready, hero);
+                var emptyBurden = PortableEquipmentRules.CarriedBurden(fed, hero);
+                Require(dose.UserId == hero && dose.RecipientId == ally && dose.Spent && dose.ActualHealing == 1
+                    && dose.PotentialHealing == dose.FirstD4 + dose.SecondD4 + 2 && Life(fed, ally).Hp == 26
+                    && Life(ready, hero).SameAs(Life(fed, hero)) && fed.RuleClock == ready.RuleClock
+                    && fed.InventoryInteractions == ready.InventoryInteractions && HeroInterval(fed).ActionSpent
+                    && Body(fed).CustodianId == hero && Body(fed).OwnerId == ally && Body(fed).HeldHands == 1
+                    && originalBurden.Pounds - emptyBurden.Pounds == Q(1).Scale(1, 10)
+                    && fed.AlchemyDoses.Single(x => x.Id == SiblingVialId).UsedAt == null,
+                    "Recipient healing, one Action, exact vial retention and sibling preservation must settle together.");
+                Restore("fed", fed);
+                Deny("retry", fed, feed, ExpeditionResponse.Duplicate);
+                active.SetSeatEnabled(player, false);
+                Deny("revoked-retry", fed, feed, ExpeditionResponse.NotAuthorized);
+                active.SetSeatEnabled(player, true);
+                Deny("conflicting-id", fed, Feed(feed.Id, ready.Revision, hero), ExpeditionResponse.CommandIdConflict);
+
+                var forgedSpending = fed.Copy();
+                forgedSpending.WorldIntervals = forgedSpending.WorldIntervals.Select(x => x.ActorId == hero
+                    ? new WorldIntervalRecord(hero, x.LastStart, x.MovementSpent, reactionAvailable: x.ReactionAvailable,
+                        interactions: x.Interactions) : x).ToArray();
+                store.Save(FileAt("forged-spending"), forgedSpending);
+                Throws<ArgumentException>(() => active.Restore(FileAt("forged-spending")));
+                Require(codec.Encode(fed).SequenceEqual(codec.Encode(Save("after-spending-forgery"))),
+                    "A forged unspent Action must not replace the live session.");
+
+                var forged = fed.Copy();
+                forged.AlchemyDoses = forged.AlchemyDoses.Select(x => x.Id == VialId
+                    ? new AlchemyDoseRecord(x.Id, x.OrderId, x.RecipeId, x.MakerId, x.OwnerId, x.CustodianId, x.LocationId,
+                        x.CreatedAt, x.MaximumHp, x.Hp, x.UsedAt, hero, hero, x.FirstD4, x.SecondD4, x.PotentialHealing, x.ActualHealing)
+                    : x).ToArray();
+                store.Save(FileAt("forged-recipient"), forged);
+                Throws<ArgumentException>(() => active.Restore(FileAt("forged-recipient")));
+                Require(codec.Encode(fed).SequenceEqual(codec.Encode(Save("after-forgery"))),
+                    "Forged recipient history must reject without replacing the live session.");
+            });
             cases.Add("mgt01_connected_tactical_packed_vial_two_routes_and_restore", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

@@ -354,12 +354,19 @@ namespace Decennium.Foundation.Laboratory
                     || decision == ExpeditionDecisionKind.Knockout || decision == ExpeditionDecisionKind.Press);
                 string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
                     ? state.Encounter.CurrentTurnId : "";
+                IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
+                IReadOnlyDictionary<CommandKind, string> targets = player ? KnownServices : NoKnownTargets;
+                if (player && state.ConnectedCompanionDose) {
+                    commands = commands.Append(CommandKind.BeginReinforcementApproach);
+                    var selected = KnownServices.ToDictionary(x => x.Key, x => x.Value);
+                    selected.Add(CommandKind.BeginReinforcementApproach, state.Reinforcement.Definition.Id);
+                    targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
+                }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
                     ownedActing, turn, ownedDecision,
                     state.Actors.Where(x => grant.Controls(x.Id)).Select(x => new ExpeditionOwnActor(state, x, grant)),
                     ProjectItems(state, grant), player ? ProjectWork(state, grant) : Array.Empty<ExpeditionWorkStatus>(),
-                    player ? CombatCommands.Concat(PartyCommands) : CombatCommands,
-                    player ? KnownServices : NoKnownTargets,
+                    commands, targets,
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
                     player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
                     player ? ProjectMiningSite(state, grant) : null,

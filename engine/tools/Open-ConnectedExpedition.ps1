@@ -4,12 +4,13 @@ param(
     [switch]$FishingTrap,
     [switch]$CarriedVial,
     [switch]$StowedVial,
-    [switch]$TacticalVial
+    [switch]$TacticalVial,
+    [switch]$CompanionDose
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -23,6 +24,8 @@ $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
 } elseif ($CarriedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($CompanionDose) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCompanionDose()
 } elseif ($TacticalVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithTacticalVial()
 } elseif ($StowedVial) {
@@ -131,7 +134,10 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         if ($CarriedVial) {
             [Console]::WriteLine('Use the Player item view for the produced vial. Pick it up with HandlePortableEquipment when in reach, then use UseAlchemyDose on the hero''s regular turn.')
         }
-        if ($TacticalVial) {
+        if ($CompanionDose) {
+            [Console]::WriteLine('Use BeginReinforcementApproach with the companion and its known target. After admission, the hero can use the held vial on the eligible companion within 5 feet.')
+        }
+        if ($TacticalVial -or $CompanionDose) {
             [Console]::WriteLine('During the hero''s later encounter turn, open the packed vial''s Explorer pack if closed, retrieve the vial, and use it when the hero has an Action.')
         }
         if ($StowedVial) {

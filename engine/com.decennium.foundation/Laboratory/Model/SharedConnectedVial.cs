@@ -9,6 +9,7 @@ namespace Decennium.Foundation.Laboratory
         private bool connectedCarriedVial;
         private bool connectedStowedVial;
         private bool connectedTacticalVial;
+        private bool connectedCompanionDose;
 
         public TestOnlySharedWorldPolicy EnableConnectedCarriedVial()
         {
@@ -47,6 +48,39 @@ namespace Decennium.Foundation.Laboratory
             ContentFingerprint = ConnectedVialRules.TacticalFingerprintPrefix + RetreatHash(string.Join("|",
                 ContentFingerprint, "later-encounter|open-pack|retrieve|shared-interaction"));
             return this;
+        }
+
+        internal TestOnlySharedWorldPolicy EnableConnectedCompanionDose()
+        {
+            EnableConnectedTacticalVial();
+            connectedCompanionDose = true;
+            ContentFingerprint = ConnectedVialRules.CompanionFingerprintPrefix + RetreatHash(string.Join("|",
+                ContentFingerprint, ConnectedVialRules.CompanionRecipientId,
+                "willing-for-hero-recipe4|can-swallow-while-conscious|reinforced-companion"));
+            return this;
+        }
+
+        private static string CompanionDoseDeliveryFailure(Snapshot state, ActorState user, ActorState recipient)
+        {
+            var reinforcement = state.Reinforcement;
+            if (!state.ConnectedCompanionDose || user.Id != ConnectedVialRules.CarrierId
+                || recipient?.Id != ConnectedVialRules.CompanionRecipientId
+                || reinforcement?.Admission == null || reinforcement.Definition.CompanionId != recipient.Id
+                || state.Encounter.Id != reinforcement.Definition.EncounterId
+                || !state.Encounter.Order.Contains(recipient.Id)
+                || !SoldierTacticalFeatures.IsAlly(state, user.Id, recipient.Id))
+                return "CompanionDoseRecipientUnavailable";
+            if (PlanarCombatGeometry.DistanceFeet(new CombatCell(user.X, user.Y), new CombatCell(recipient.X, recipient.Y)) > 5)
+                return "AlchemyRecipientOutOfReach";
+            if (!ObservationGeometry.LineOfEffectClear(state, user.Id, recipient.Id))
+                return "CompanionDoseDeliveryBlocked";
+            var life = state.Lives.Single(x => x.ActorId == recipient.Id);
+            var conditions = View(state, recipient.Id);
+            if (life.Dead || life.Hp == 0 || conditions.Unaware || conditions.Has(ConditionKind.Paralyzed))
+                return "AlchemyRecipientCannotIngest";
+            if (state.PeriodicRiders.Any(x => x.TargetId == recipient.Id && x.Present))
+                return "CompanionDoseEndpointUnsupported";
+            return null;
         }
 
         private static void RegisterConnectedVial(Snapshot s)

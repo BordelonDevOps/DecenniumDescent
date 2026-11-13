@@ -123,7 +123,8 @@ namespace Decennium.Foundation
                 if (state.BloodSpecimen != null) ConnectedBloodSpecimenCodec.Write(writer, state.BloodSpecimen);
                 if (state.ConnectedBatch != null) ConnectedRecipe4BatchCodec.Write(writer, state.ConnectedBatch);
                 if (state.ConnectedCarriedVial)
-                    writer.Write(state.ConnectedTacticalVial ? ConnectedVialRules.TacticalMarker
+                    writer.Write(state.ConnectedCompanionDose ? ConnectedVialRules.CompanionMarker
+                        : state.ConnectedTacticalVial ? ConnectedVialRules.TacticalMarker
                         : state.ConnectedStowedVial ? ConnectedVialRules.StowMarker : ConnectedVialRules.Marker);
                 writer.Flush(); payload = stream.ToArray();
             }
@@ -153,6 +154,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedCarriedVialSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedStowedVialSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedTacticalVialSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedCompanionDoseSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -260,7 +262,8 @@ namespace Decennium.Foundation
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
                     bool carriedVialEnvelope = wireSchema == Snapshot.ConnectedCarriedVialSchema
-                        || wireSchema == Snapshot.ConnectedStowedVialSchema || wireSchema == Snapshot.ConnectedTacticalVialSchema;
+                        || wireSchema == Snapshot.ConnectedStowedVialSchema || wireSchema == Snapshot.ConnectedTacticalVialSchema
+                        || wireSchema == Snapshot.ConnectedCompanionDoseSchema;
                     if (wireSchema == Snapshot.ExplorationSearchSchema || wireSchema == Snapshot.ExplorationHideSchema
                         || wireSchema == Snapshot.ConnectedExplorationObservationSchema || wireSchema == Snapshot.ConnectedBloodSpecimenSchema
                         || wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
@@ -275,9 +278,11 @@ namespace Decennium.Foundation
                     if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
                         s.ConnectedBatch = ConnectedRecipe4BatchCodec.Read(reader);
                     if (carriedVialEnvelope) {
-                        s.ConnectedTacticalVial = wireSchema == Snapshot.ConnectedTacticalVialSchema;
+                        s.ConnectedCompanionDose = wireSchema == Snapshot.ConnectedCompanionDoseSchema;
+                        s.ConnectedTacticalVial = s.ConnectedCompanionDose || wireSchema == Snapshot.ConnectedTacticalVialSchema;
                         s.ConnectedStowedVial = s.ConnectedTacticalVial || wireSchema == Snapshot.ConnectedStowedVialSchema;
-                        byte marker = s.ConnectedTacticalVial ? ConnectedVialRules.TacticalMarker
+                        byte marker = s.ConnectedCompanionDose ? ConnectedVialRules.CompanionMarker
+                            : s.ConnectedTacticalVial ? ConnectedVialRules.TacticalMarker
                             : s.ConnectedStowedVial ? ConnectedVialRules.StowMarker : ConnectedVialRules.Marker;
                         if (reader.ReadByte() != marker) throw new InvalidDataException("Invalid carried vial marker.");
                         s.ConnectedCarriedVial = true;

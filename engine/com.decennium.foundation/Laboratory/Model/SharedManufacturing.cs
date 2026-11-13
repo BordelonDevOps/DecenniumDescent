@@ -495,17 +495,23 @@ namespace Decennium.Foundation.Laboratory
         private string UseAlchemy(Snapshot s,Command c,bool assessOnly=false)
         {
             if(c.Combat!=null||c.Inventory==null||c.Inventory.Amount!=new RuleQuantity(1)||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return "InvalidAlchemyUse";
-            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if (PendingCalendarChoice(s) || s.ConnectedCompanionDose && HasPendingRecoveryOffer(s))
+                return "TacticalChoicePending";
             if(!s.InventoryCombat||s.Encounter.CurrentActor!=c.Actor)return "AlchemyOwnTacticalTurnRequired";
             if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
             bool linked = c.Target == ConnectedVialRules.SelectedId(s);
             if (!Permissions(s,c.Actor).Action || (!linked && AvailableHands(s,c.Actor)<1)) return "AlchemyUserIncapable";
             var dose=s.AlchemyDoses.SingleOrDefault(x=>x.Id==c.Target);if(dose==null||dose.Spent||dose.Hp==0)return "AlchemyDoseUnavailable";
             var user=s.Actors.Single(x=>x.Id==c.Actor);var recipient=s.Actors.SingleOrDefault(x=>x.Id==c.Inventory.Destination);
+            bool companionDelivery = s.ConnectedCompanionDose && linked && c.Inventory.Destination != c.Actor;
             if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor||x.ActorId==c.Inventory.Destination)
-                || (linked ? !ConnectedVialIsHeldBy(s, dose.Id, c.Actor) || c.Inventory.Destination != c.Actor
+                || (linked ? !ConnectedVialIsHeldBy(s, dose.Id, c.Actor) || c.Inventory.Destination != c.Actor && !companionDelivery
                     : dose.LocationId != TestOnlyCropPolicy.PlotId || Math.Max(Math.Abs(user.X-3),Math.Abs(user.Y-3))>1))
                 return "AlchemyDoseOutOfReach";
+            if (companionDelivery) {
+                string failure = CompanionDoseDeliveryFailure(s, user, recipient);
+                if (failure != null) return failure;
+            }
             if(recipient==null||Math.Max(Math.Abs(user.X-recipient.X),Math.Abs(user.Y-recipient.Y))>1)return "AlchemyRecipientOutOfReach";
             var before=s.Lives.Single(x=>x.ActorId==recipient.Id);
             if(before.Dead||!manufacturing.CompatibleIngestion)return "AlchemyRecipientCannotIngest";

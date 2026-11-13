@@ -86,6 +86,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithTacticalVial()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedTacticalVial());
 
+        public static ConnectedExpeditionSession StartWithCompanionDose()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionDose());
+
         private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())
@@ -154,7 +157,7 @@ namespace Decennium.Foundation.Laboratory
                 var grant = SeatGrant(seat);
                 if (grant == null || command == null || !grant.Controls(command.Actor))
                     return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized, state, discloseTacticalSlot: false);
-                if (!ExposedCommand(seat, command.Kind))
+                if (!ExposedCommand(state, seat, command.Kind))
                     return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state,
                         seat == ExpeditionSeat.Player || FirstEncounterActive(state));
                 if (seat == ExpeditionSeat.Player && command.Actor == Companion
@@ -311,8 +314,9 @@ namespace Decennium.Foundation.Laboratory
             return true;
         }
 
-        private static bool ExposedCommand(ExpeditionSeat seat, CommandKind kind)
-            => CombatCommands.Contains(kind) || (seat == ExpeditionSeat.Player && PartyCommands.Contains(kind));
+        private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
+            => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+                || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach);
 
         private static readonly CommandKind[] CombatCommands = {
             CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
@@ -455,6 +459,9 @@ namespace Decennium.Foundation.Laboratory
                         && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId) && !InSelectedCache(x));
                 case CommandKind.InterruptIntake:
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
+                case CommandKind.BeginReinforcementApproach:
+                    return state.ConnectedCompanionDose && seat == ExpeditionSeat.Player && actor == Companion
+                        && target == state.Reinforcement?.Definition.Id;
                 case CommandKind.ObserveCharterApproach:
                     return target == state.CharterAttempt?.Id;
                 case CommandKind.StartHarvestPreservationTreatment:

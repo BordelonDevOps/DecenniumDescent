@@ -10,11 +10,14 @@ namespace Decennium.Foundation
         public const byte Marker = 1;
         public const byte StowMarker = 2;
         public const byte TacticalMarker = 3;
+        public const byte CompanionMarker = 4;
         public const string FingerprintPrefix = "TEST_ONLY.carried-vial-v1-";
         public const string StowFingerprintPrefix = "TEST_ONLY.stowed-vial-v1-";
         public const string TacticalFingerprintPrefix = "TEST_ONLY.tactical-vial-v1-";
+        public const string CompanionFingerprintPrefix = "TEST_ONLY.companion-dose-v1-";
         public const string ProfileId = "TEST_ONLY.recipe4.finished-vial.v1";
         public const string CarrierId = "TEST_ONLY.actor";
+        public const string CompanionRecipientId = "TEST_ONLY.companion";
         public const string PackId = "TEST_ONLY.explorer-pack";
 
         public static string SelectedId(Snapshot state)
@@ -40,10 +43,12 @@ namespace Decennium.Foundation
             var linked = state.PortableEquipment.Where(x => x.LinkKind == PortableLinkKind.AlchemyDose || x.ProfileId == ProfileId).ToArray();
             bool stowFingerprint = state.ContentFingerprint.StartsWith(StowFingerprintPrefix, StringComparison.Ordinal);
             bool tacticalFingerprint = state.ContentFingerprint.StartsWith(TacticalFingerprintPrefix, StringComparison.Ordinal);
+            bool companionFingerprint = state.ContentFingerprint.StartsWith(CompanionFingerprintPrefix, StringComparison.Ordinal);
             bool selectedFingerprint = state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
-                || stowFingerprint || tacticalFingerprint;
-            if (tacticalFingerprint != state.ConnectedTacticalVial
-                || (stowFingerprint || tacticalFingerprint) != state.ConnectedStowedVial
+                || stowFingerprint || tacticalFingerprint || companionFingerprint;
+            if (companionFingerprint != state.ConnectedCompanionDose
+                || (tacticalFingerprint || companionFingerprint) != state.ConnectedTacticalVial
+                || (stowFingerprint || tacticalFingerprint || companionFingerprint) != state.ConnectedStowedVial
                 || state.ConnectedStowedVial && !state.ConnectedCarriedVial)
                 throw new ArgumentException("Stowed vial requires its selected envelope.");
             if (!state.ConnectedCarriedVial) {
@@ -72,7 +77,9 @@ namespace Decennium.Foundation
                 || (!carried && !contained && item.Placement != PortablePlacement.Ground) || item.HeldHands != (carried ? 1 : 0)
                 || dose.RecipeId != ConnectedRecipe4Batch.RecipeId || dose.OrderId != state.ConnectedBatch.OrderId
                 || ((carried || contained) && item.CustodianId != CarrierId)
-                || (dose.Spent && (dose.UserId != CarrierId || dose.RecipientId != CarrierId
+                || (dose.Spent && (dose.UserId != CarrierId
+                    || (dose.RecipientId != CarrierId
+                        && (!state.ConnectedCompanionDose || dose.RecipientId != CompanionRecipientId))
                     || dose.FirstD4 < 1 || dose.SecondD4 < 1))
                 || item.OwnerId != dose.OwnerId || item.CustodianId != dose.CustodianId || dose.LocationId != Location(item)
                 || state.Work.Lots.Any(x => x.Id == id) || state.InventoryLots.Any(x => x.LotId == id))
