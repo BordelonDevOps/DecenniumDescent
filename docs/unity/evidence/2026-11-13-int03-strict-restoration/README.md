@@ -15,4 +15,8 @@ Each distribution contains 30 warm observations on the same source and accepted 
 
 Both complete accepted public console histories match byte for byte, including pending choices, views and canonical checkpoints. The new focused test restores actual partial movement and compares its continuation with both normal live execution and uncached full reference. The r104 negative witnesses exercise malformed input, cross-profile scope rejection, invalid late history after the qualifying crossing, and final canonical mismatch. They preserve full live bytes and revoked authority. Backup rejection preserves the files, and success retains the accepted backup and displaced primary and keeps the committed receipt idempotent. [Connected evidence](connected/results.json) · [Restore and recovery controls](rejections/results.json) · [Source and assembly bindings](BINDINGS.json)
 
+The pooled Default p95 across the two candidate runs was 4,105.871 ms. GPT accepted the complete repeat under the bounded per-run criterion, with the first and pooled misses retained as evidence of timing variability. Longer histories and load-time variance remain open. [Focused GPT review](GPT_FOCUSED_REVIEW.md)
+
+The exact full headless regression passed all 1,489 discovered cases, with zero failures. The retained run binds the 1,488 accepted predecessor cases and the new strict-restore case to the exact compiled source and all six workers. [Regression results](regression/results.json) · [Launch record](regression/launch.json)
+
 These results apply to the selected strict restoration increment. Unity gameplay integration remains deferred.
