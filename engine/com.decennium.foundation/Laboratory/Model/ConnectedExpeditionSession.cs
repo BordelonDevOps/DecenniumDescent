@@ -80,6 +80,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithCarriedVial()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCarriedVial());
 
+        public static ConnectedExpeditionSession StartWithStowedVial()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedStowedVial());
+
         private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())
@@ -209,7 +212,7 @@ namespace Decennium.Foundation.Laboratory
             ExpeditionActionResult Respond(ExpeditionResponse response)
                 => new ExpeditionActionResult(response, state, discloseTacticalSlot);
             if (!Validation.ValidId(command.Id) || command.Target == null
-                || (command.Target != "" && !Validation.ValidId(command.Target)) || !ExposedPayload(command))
+                || (command.Target != "" && !Validation.ValidId(command.Target)) || !ExposedPayload(state, command))
                 return Respond(ExpeditionResponse.Unavailable);
             var previous = state.Receipts.FirstOrDefault(r => r.Principal == grant.Principal && r.Id == command.Id);
             if (previous != null) {
@@ -271,7 +274,7 @@ namespace Decennium.Foundation.Laboratory
             };
         }
 
-        private static bool ExposedPayload(Command command)
+        private static bool ExposedPayload(Snapshot state, Command command)
         {
             if (command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
@@ -292,6 +295,11 @@ namespace Decennium.Foundation.Laboratory
             if (command.Inventory != null) {
                 if (command.Kind == CommandKind.UseAlchemyDose)
                     return Party.Contains(command.Inventory.Destination);
+                if (state.ConnectedStowedVial && command.Kind == CommandKind.HandlePortableEquipment
+                    && command.Inventory.Handling == HandlingKind.Stow)
+                    return command.Actor == ConnectedVialRules.CarrierId
+                        && command.Target == ConnectedVialRules.SelectedId(state)
+                        && command.Inventory.Destination == ConnectedVialRules.PackId;
                 if (command.Inventory.Destination != "") return false;
                 if (command.Kind == CommandKind.HandlePortableEquipment)
                     return command.Inventory.Handling == HandlingKind.Pickup || command.Inventory.Handling == HandlingKind.Drop

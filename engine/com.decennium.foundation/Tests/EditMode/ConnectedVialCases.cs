@@ -13,9 +13,9 @@ namespace Decennium.Foundation.Tests
         private const string VialId = "manufacture.order.104.dose0";
         private const string SiblingVialId = "manufacture.order.104.dose1";
 
-        private static ConnectedExpeditionSession StartVialScenario()
+        private static ConnectedExpeditionSession StartVialScenario(bool stow = false)
         {
-            var session = ConnectedExpeditionSession.StartWithCarriedVial();
+            var session = stow ? ConnectedExpeditionSession.StartWithStowedVial() : ConnectedExpeditionSession.StartWithCarriedVial();
             foreach (var input in QualityWalkthrough()) CommitVialRoute(session, input);
             CommitVialRoute(session, new Command("recipe4.batch.106", ConnectedExpeditionSession.Companion, 106,
                 CommandKind.ResolveManufacturingQuality, "manufacture.order.104", x: 1));
@@ -49,6 +49,129 @@ namespace Decennium.Foundation.Tests
 
         private static void AddConnectedVialCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("mgt01_connected_stowed_vial_paid_hand_transitions_and_restore", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string pack = ConnectedVialRules.PackId;
+                var session = StartVialScenario(stow: true);
+                var codec = new SnapshotCodec();
+                var store = new FileSaveStore();
+                Snapshot Save(ConnectedExpeditionSession active, string point)
+                {
+                    string file = Path.Combine(directory, "stow-" + point + ".ddsave");
+                    active.Save(file);
+                    return store.Load(file);
+                }
+                Command Handle(string id, long revision, HandlingKind kind, string destination = "")
+                    => new Command(id, hero, revision, CommandKind.HandlePortableEquipment, VialId,
+                        inventory: new InventoryRequest(Q(1), destination, kind));
+                PortableEquipmentRecord Body(Snapshot state) => state.PortableEquipment.Single(x => x.Id == VialId);
+                PortableEquipmentRecord Pack(Snapshot state) => state.PortableEquipment.Single(x => x.Id == pack);
+                bool Same(Snapshot first, Snapshot second) => codec.Encode(first).SequenceEqual(codec.Encode(second));
+                bool SameBurden(Snapshot first, Snapshot second)
+                {
+                    var before = PortableEquipmentRules.CarriedBurden(first, hero);
+                    var after = PortableEquipmentRules.CarriedBurden(second, hero);
+                    return before.Pounds == after.Pounds && before.Load == after.Load;
+                }
+                VialWalk(session, "vial.approach", 108, 1);
+                CommitVialRoute(session, VialPickup("vial.pickup", 110));
+                var held = Save(session, "held");
+                var stow = Handle("vial.stow", 111, HandlingKind.Stow, pack);
+                Require(session.Submit(ExpeditionSeat.FirstOpponent, stow).Response == ExpeditionResponse.NotAuthorized
+                    && session.Submit(player, Handle("vial.wrong-pack", 111, HandlingKind.Stow, "TEST_ONLY.actor-pouch"))
+                        .Response == ExpeditionResponse.Unavailable
+                    && Same(held, Save(session, "stow-rejected")), "Only the current owner grant and exact pack may stow.");
+                CommitVialRoute(session, stow);
+                var stowed = Save(session, "contained");
+                var contained = Body(stowed);
+                var dose = stowed.AlchemyDoses.Single(x => x.Id == VialId);
+                Require(stowed.WireSchemaVersion == 97 && stowed.SchemaVersion == 90
+                    && contained.Placement == PortablePlacement.Contained && contained.HeldHands == 0 && contained.ParentId == pack
+                    && dose.CustodianId == hero && dose.LocationId == pack && dose.OwnerId == ConnectedExpeditionSession.Companion
+                    && SameBurden(held, stowed) && stowed.RuleClock == held.RuleClock.AddSeconds(1)
+                    && Pack(held).FitMemberIds.SequenceEqual(Pack(stowed).FitMemberIds)
+                    && stowed.Clubs.Count(x => x.HeldBy == hero) == 1,
+                    "Stow must use the already occupied hand, keep one body, and pay one second.");
+                Require(session.Submit(player, stow).Response == ExpeditionResponse.Duplicate
+                    && session.Submit(player, new Command(stow.Id, hero, 111, stow.Kind, stow.Target, x: 1, inventory: stow.Inventory))
+                        .Response == ExpeditionResponse.CommandIdConflict
+                    && session.Submit(player, VialUse("vial.stowed-direct", 112)).Response == ExpeditionResponse.Unavailable
+                    && Same(stowed, Save(session, "stow-retries")), "Retries and direct use must preserve contained state.");
+
+                CommitVialRoute(session, new Command("vial.stow-close", hero, 112, CommandKind.ClosePortableContainer, pack));
+                VialWalk(session, "vial.stow-away", 113, -1);
+                var away = Save(session, "away");
+                Require(!Pack(away).Open && Body(away).ParentId == pack && away.Actors.Single(x => x.Id == hero).X == 1,
+                    "The hero must reach actual ordinary ground beyond the bench with a closed pack.");
+                var restored = ConnectedExpeditionSession.StartWithStowedVial();
+                restored.Restore(Path.Combine(directory, "stow-away.ddsave"));
+                Require(Same(away, Save(restored, "away-restored")), "Authentic contained restore must preserve full bytes.");
+                var legacy = ConnectedExpeditionSession.StartWithCarriedVial();
+                Throws<ArgumentException>(() => legacy.Restore(Path.Combine(directory, "stow-away.ddsave")));
+                Require(legacy.View(player).Revision == 0, "Wire96 must reject wire97 atomically.");
+
+                var unselected = away.Copy();
+                unselected.ConnectedStowedVial = false;
+                Throws<ArgumentException>(() => codec.Encode(unselected));
+                var wrongParent = away.Copy();
+                wrongParent.PortableEquipment = wrongParent.PortableEquipment.Select(x => x.Id == VialId
+                    ? x.With(parentId: "TEST_ONLY.actor-pouch") : x).ToArray();
+                wrongParent.AlchemyDoses = wrongParent.AlchemyDoses.Select(x => x.Id == VialId
+                    ? x.WithPlacement(hero, "TEST_ONLY.actor-pouch") : x).ToArray();
+                Throws<ArgumentException>(() => codec.Encode(wrongParent));
+
+                // These isolated probes do not execute or install a gameplay history.
+                var dropEquipment = typeof(TestOnlyClubAttackPolicy).GetMethod("DropConditionEquipment",
+                    BindingFlags.Static | BindingFlags.NonPublic);
+                var drop = away.Copy();
+                dropEquipment.Invoke(null, new object[] { drop, hero });
+                Require(Body(drop).ParentId == pack && Body(drop).HeldHands == 0
+                    && drop.AlchemyDoses.Single(x => x.Id == VialId).LocationId == pack,
+                    "Mandatory held-item drop must leave the contained vial in the pack.");
+                var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                    .GetField("policy", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(session);
+                var openCombat = away.Copy();
+                openCombat.PortableEquipment = openCombat.PortableEquipment.Select(x => x.Id == pack ? x.With(open: true) : x).ToArray();
+                // A genuine remote encounter supplies the tactical shape for a detached access-only probe below.
+
+                foreach (var active in new[] { session, restored }) {
+                    Require(active.Submit(player, Handle("vial.closed-retrieve", 115, HandlingKind.Retrieve))
+                        .Response == ExpeditionResponse.Unavailable && Same(away, Save(active, "closed-rejected")),
+                        "Closed pack retrieval must fail without paying time.");
+                    CommitVialRoute(active, new Command("vial.reopen", hero, 115, CommandKind.OpenPortableContainer, pack));
+                    var reopened = Save(active, "reopened");
+                    Require(Pack(reopened).Open && Body(reopened).ParentId == pack
+                        && reopened.RuleClock == away.RuleClock.AddSeconds(1), "Reopening must pay separately and preserve containment.");
+                    var retrieve = Handle("vial.retrieve", 116, HandlingKind.Retrieve);
+                    CommitVialRoute(active, retrieve);
+                    var retrieved = Save(active, "retrieved");
+                    Require(Body(retrieved).ParentId == "" && Body(retrieved).HeldHands == 1
+                        && retrieved.AlchemyDoses.Single(x => x.Id == VialId).LocationId == hero
+                        && SameBurden(reopened, retrieved) && retrieved.RuleClock == reopened.RuleClock.AddSeconds(1)
+                        && active.Submit(player, retrieve).Response == ExpeditionResponse.Duplicate,
+                        "Retrieve must restore one held hand after one second without changing burden.");
+                    VialWalk(active, "vial.entry", 117, -1, 12);
+                    var remote = Save(active, "remote");
+                    var inaccessible = remote.Copy();
+                    inaccessible.PortableEquipment = inaccessible.PortableEquipment.Select(x => x.Id == VialId
+                        ? Body(openCombat) : x).ToArray();
+                    inaccessible.AlchemyDoses = inaccessible.AlchemyDoses.Select(x => x.Id == VialId
+                        ? x.WithPlacement(hero, pack) : x).ToArray();
+                    var useMethod = typeof(TestOnlySharedWorldPolicy).GetMethod("UseAlchemy", BindingFlags.Instance | BindingFlags.NonPublic);
+                    Require((string)useMethod.Invoke(policy, new object[] { inaccessible, VialUse("vial.open-contained-probe", 119), true })
+                        == "AlchemyDoseOutOfReach", "The held-dose access assessment must reject an open contained vial on a legal turn.");
+                    CommitVialRoute(active, VialUse("vial.remote-use", 119));
+                    var used = Save(active, active == session ? "used" : "used-restored");
+                    Require(used.AlchemyDoses.Single(x => x.Id == VialId).Spent && Body(used).HeldHands == 1
+                        && used.Actors.Single(x => x.Id == hero).X == 0, "The same retrieved dose must be used remotely.");
+                }
+                Require(File.ReadAllBytes(Path.Combine(directory, "stow-used.ddsave"))
+                    .SequenceEqual(File.ReadAllBytes(Path.Combine(directory, "stow-used-restored.ddsave"))),
+                    "Restored and uninterrupted routes must use the same vial with identical canonical output.");
+            });
+
             cases.Add("mgt01_connected_finished_vial_carry_remote_use_and_restore", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

@@ -62,7 +62,8 @@ namespace Decennium.Foundation
 
         public static bool IsSelected(Snapshot s)
             => s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
-                || s.ContentFingerprint.StartsWith(ConnectedVialRules.FingerprintPrefix, StringComparison.Ordinal);
+                || s.ContentFingerprint.StartsWith(ConnectedVialRules.FingerprintPrefix, StringComparison.Ordinal)
+                || s.ContentFingerprint.StartsWith(ConnectedVialRules.StowFingerprintPrefix, StringComparison.Ordinal);
 
         public static bool OnBench(PortableEquipmentRecord item)
             => item.Placement == PortablePlacement.Ground && item.GroundX == BenchX && item.GroundY == BenchY;

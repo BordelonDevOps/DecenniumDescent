@@ -429,6 +429,7 @@ namespace Decennium.Foundation
             =>FitsAuthoredMember(s,container,item,s.PortableEquipment);
         private static bool FitsAuthoredMember(Snapshot s,PortableEquipmentRecord container,PortableEquipmentRecord item,PortableEquipmentRecord[] items)
         {
+            if (ConnectedVialRules.FitsPack(s, container, item)) return true;
             if(container.FitMemberIds.Contains(item.Id,StringComparer.Ordinal))return true;
             if(item.LinkKind!=PortableLinkKind.InventoryLot)return false;
             var lot=s.InventoryLots.SingleOrDefault(x=>x.LotId==item.LinkedId);var seen=new System.Collections.Generic.HashSet<string>(StringComparer.Ordinal);

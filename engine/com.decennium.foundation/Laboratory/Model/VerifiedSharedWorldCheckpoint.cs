@@ -18,8 +18,8 @@ namespace Decennium.Foundation.Laboratory
 
         bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
 
-        private int VerifiedExpeditionWireSchema => connectedCarriedVial
-            ? Snapshot.ConnectedCarriedVialSchema : Snapshot.ConnectedRecipe4BatchSchema;
+        private int VerifiedExpeditionWireSchema => connectedStowedVial ? Snapshot.ConnectedStowedVialSchema
+            : connectedCarriedVial ? Snapshot.ConnectedCarriedVialSchema : Snapshot.ConnectedRecipe4BatchSchema;
 
         Func<VerifiedSimulationOrigin, IVerifiedCommandCheckpoint> IVerifiedSimulationConstruction.ValidateForConstruction(Snapshot state)
         {

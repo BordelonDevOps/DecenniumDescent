@@ -46,6 +46,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if (!connectedRecipe4Batch) return;
             s.ConnectedCarriedVial = connectedCarriedVial;
+            s.ConnectedStowedVial = connectedStowedVial;
             s.ConnectedBatch = ConnectedRecipe4Batch.Selected();
             s.PortableEquipment = s.PortableEquipment.Append(new PortableEquipmentRecord(
                 s.ConnectedBatch.ApparatusId, ConnectedRecipe4Batch.ApparatusProfile,

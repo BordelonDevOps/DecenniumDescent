@@ -7,6 +7,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private bool connectedCarriedVial;
+        private bool connectedStowedVial;
 
         public TestOnlySharedWorldPolicy EnableConnectedCarriedVial()
         {
@@ -21,6 +22,20 @@ namespace Decennium.Foundation.Laboratory
             connectedCarriedVial = true;
             ContentFingerprint = ConnectedVialRules.FingerprintPrefix + RetreatHash(string.Join("|",
                 ContentFingerprint, recipe.Canonical, ConnectedVialRules.ProfileId, "first-dose|hero-held|pickup|self-use"));
+            return this;
+        }
+
+        internal TestOnlySharedWorldPolicy EnableConnectedStowedVial()
+        {
+            EnableConnectedCarriedVial();
+            var manifest = TestOnlyContentManifest.CreateSelectedProfile();
+            var pack = manifest.ResolveSemantic("equipment", "adventuring-gear.backpack");
+            if (manifest.ValidateBindings() != null || !manifest.Supports(pack, ContentOperation.PortableEquipment)
+                || !manifest.Supports(pack, ContentOperation.PortableInteraction))
+                throw new InvalidOperationException("The selected vial pack has no supported equipment binding.");
+            connectedStowedVial = true;
+            ContentFingerprint = ConnectedVialRules.StowFingerprintPrefix + RetreatHash(string.Join("|",
+                ContentFingerprint, pack.Canonical, ConnectedVialRules.PackId, "exact-dose-zero-fit|direct-contained|one-second"));
             return this;
         }
 

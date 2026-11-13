@@ -122,7 +122,8 @@ namespace Decennium.Foundation
                 if (state.ExplorationHide != null) ExplorationHideCodec.Write(writer, state.ExplorationHide);
                 if (state.BloodSpecimen != null) ConnectedBloodSpecimenCodec.Write(writer, state.BloodSpecimen);
                 if (state.ConnectedBatch != null) ConnectedRecipe4BatchCodec.Write(writer, state.ConnectedBatch);
-                if (state.ConnectedCarriedVial) writer.Write(ConnectedVialRules.Marker);
+                if (state.ConnectedCarriedVial)
+                    writer.Write(state.ConnectedStowedVial ? ConnectedVialRules.StowMarker : ConnectedVialRules.Marker);
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -149,6 +150,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedBloodSpecimenSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedRecipe4BatchSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedCarriedVialSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedStowedVialSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -255,21 +257,24 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
+                    bool carriedVialEnvelope = wireSchema == Snapshot.ConnectedCarriedVialSchema || wireSchema == Snapshot.ConnectedStowedVialSchema;
                     if (wireSchema == Snapshot.ExplorationSearchSchema || wireSchema == Snapshot.ExplorationHideSchema
                         || wireSchema == Snapshot.ConnectedExplorationObservationSchema || wireSchema == Snapshot.ConnectedBloodSpecimenSchema
-                        || wireSchema == Snapshot.ConnectedRecipe4BatchSchema || wireSchema == Snapshot.ConnectedCarriedVialSchema)
+                        || wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
                         ExplorationSearchCodec.Read(reader, s);
                     if (wireSchema == Snapshot.ExplorationHideSchema || wireSchema == Snapshot.ConnectedExplorationObservationSchema
                         || wireSchema == Snapshot.ConnectedBloodSpecimenSchema || wireSchema == Snapshot.ConnectedRecipe4BatchSchema
-                        || wireSchema == Snapshot.ConnectedCarriedVialSchema)
+                        || carriedVialEnvelope)
                         ExplorationHideCodec.Read(reader, s);
                     if (wireSchema == Snapshot.ConnectedBloodSpecimenSchema || wireSchema == Snapshot.ConnectedRecipe4BatchSchema
-                        || wireSchema == Snapshot.ConnectedCarriedVialSchema)
+                        || carriedVialEnvelope)
                         s.BloodSpecimen = ConnectedBloodSpecimenCodec.Read(reader);
-                    if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || wireSchema == Snapshot.ConnectedCarriedVialSchema)
+                    if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
                         s.ConnectedBatch = ConnectedRecipe4BatchCodec.Read(reader);
-                    if (wireSchema == Snapshot.ConnectedCarriedVialSchema) {
-                        if (reader.ReadByte() != ConnectedVialRules.Marker) throw new InvalidDataException("Invalid carried vial marker.");
+                    if (carriedVialEnvelope) {
+                        s.ConnectedStowedVial = wireSchema == Snapshot.ConnectedStowedVialSchema;
+                        byte marker = s.ConnectedStowedVial ? ConnectedVialRules.StowMarker : ConnectedVialRules.Marker;
+                        if (reader.ReadByte() != marker) throw new InvalidDataException("Invalid carried vial marker.");
                         s.ConnectedCarriedVial = true;
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");

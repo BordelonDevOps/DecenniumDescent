@@ -96,7 +96,8 @@ namespace Decennium.Foundation.Laboratory
             var burden=modeled.Select(x=>{
                 if(x.MassBasis==PortableMassBasis.Unmodeled)return new BurdenItem(x.Id,x.ParentId==""?null:x.ParentId,null,null);
                 var mass=PortableEquipmentValidation.Mass(s,x);
-                if (x.MassBasis == PortableMassBasis.AlchemyDose) return new BurdenItem(x.Id, null, mass, null);
+                if (x.MassBasis == PortableMassBasis.AlchemyDose)
+                    return new BurdenItem(x.Id, x.ParentId == "" ? null : x.ParentId, mass, null);
                 // A missing source weight is retained as null; only its approved operational
                 // Load fallback supplies estimated pounds for routine carrying.
                 RuleQuantity? pounds=x.SourceWeightLb.HasValue?mass:(RuleQuantity?)null;
