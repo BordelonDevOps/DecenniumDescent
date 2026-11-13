@@ -192,8 +192,7 @@ namespace Decennium.Foundation.Laboratory
                     ? !recipe.CatalystIndexes.Contains(order.RetainedCatalyst)
                     : order.RetainedCatalyst != -1))
                 return "ConnectedRecipe4QualityMismatch";
-            int doseCount = complete ? ManufacturingRules.Yield(order.Quality, recipe.StandardYield, order.Choice) : 0;
-            int extra = Math.Max(0, doseCount - recipe.SourceVesselCount);
+            var (doseCount, hp, extra) = complete ? ManufacturingOutput(recipe, order.Quality, order.Choice) : (0, 1, 0);
             bool abandoned = order.Status == ManufacturingStatus.Cancelled && order.Work.Labor != default;
             bool CheckSettlement(ResourceReservation claim, RuleQuantity consumed)
                 => claim.ConsumedAmount == consumed && claim.ReleasedAmount == (order.Open ? default : claim.Amount - consumed);
@@ -208,7 +207,6 @@ namespace Decennium.Foundation.Laboratory
                 if (!CheckSettlement(packaging, new RuleQuantity(extra))) return "ConnectedRecipe4PackagingSettlementMismatch";
             }
             if (extra > order.ExtraVials || s.AlchemyDoses.Length != doseCount) return "ConnectedRecipe4OutputCountMismatch";
-            int hp = complete && order.Choice == CraftQualityChoice.Durability ? 2 : 1;
             for (int i = 0; i < doseCount; i++) {
                 string id = order.Id + ".dose" + i.ToString(CultureInfo.InvariantCulture);
                 var dose = s.AlchemyDoses.SingleOrDefault(x => x.Id == id);

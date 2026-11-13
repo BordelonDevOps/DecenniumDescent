@@ -331,21 +331,41 @@ namespace Decennium.Foundation.Laboratory
             return quality == CraftQuality.Masterwork && index == retainedCatalyst ? amount - new RuleQuantity(1) : amount;
         }
 
-        private static void SettleManufacturingInputs(Snapshot s,ManufacturingOrderRecord j,CraftQualityChoice choice,int catalyst)
+        private static (int Doses, int VialHp, int SupplementaryConsumed) ManufacturingOutput(
+            ManufacturingRecipeDefinition recipe, CraftQuality quality, CraftQualityChoice choice)
         {
-            var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
-            int count=ManufacturingRules.Yield(j.Quality,recipe.StandardYield,choice);
-            int extra=Math.Max(0,count-recipe.SourceVesselCount);
+            int doses = ManufacturingRules.Yield(quality, recipe.StandardYield, choice);
+            int vialHp = choice == CraftQualityChoice.Durability && quality >= CraftQuality.Exceptional ? 2 : 1;
+            return (doses, vialHp, Math.Max(0, doses - recipe.SourceVesselCount));
+        }
+
+        private static ResourceReservation ManufacturingPackaging(Snapshot s, ManufacturingOrderRecord order)
+            => s.Work.Reservations.Single(x => x.JobId == order.Id && x.Id == order.Id + ".packaging");
+
+        internal static ExpeditionManufacturingQualityAlternative DescribeManufacturingOutput(
+            Snapshot s, ManufacturingOrderRecord order, CraftQualityChoice choice)
+        {
+            var recipe = ManufacturingRules.Recipe(order.RecipeId);
+            var (doses, vialHp, consumed) = ManufacturingOutput(recipe, order.Quality, choice);
+            var reserved = order.ExtraVials == 0 ? default : ManufacturingPackaging(s, order).RemainingAmount;
+            return new ExpeditionManufacturingQualityAlternative(choice, doses, vialHp, new RuleQuantity(consumed),
+                reserved - new RuleQuantity(consumed));
+        }
+
+        private static void SettleManufacturingInputs(Snapshot s, ManufacturingOrderRecord j,
+            ManufacturingRecipeDefinition recipe, int supplementaryConsumed, int catalyst)
+        {
             for(int i=0;i<recipe.Components.Count;i++){
                 SettleClaim(s,j.Id,ComponentClaim(j,i),ManufacturingComponentConsumption(recipe,j.Quality,catalyst,i));
             }
-            if(j.ExtraVials>0)SettleClaim(s,j.Id,j.Id+".packaging",new RuleQuantity(extra));
+            if (j.ExtraVials > 0)
+                SettleClaim(s, j.Id, ManufacturingPackaging(s, j).Id, new RuleQuantity(supplementaryConsumed));
         }
         private void SettleManufacturing(Snapshot s,ManufacturingOrderRecord j,CraftQualityChoice choice,int catalyst,int mishap=0,bool inputsSettled=false)
         {
-            if(!inputsSettled)SettleManufacturingInputs(s,j,choice,catalyst);
             var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
-            int count=ManufacturingRules.Yield(j.Quality,recipe.StandardYield,choice);
+            var (count, vialHp, supplementaryConsumed) = ManufacturingOutput(recipe, j.Quality, choice);
+            if (!inputsSettled) SettleManufacturingInputs(s, j, recipe, supplementaryConsumed, catalyst);
             var trade=ManufacturingTrade(s,j.WorkerId);string findingKey=j.RecipeId+".level"+trade.Level.ToString(CultureInfo.InvariantCulture);
             // Optional authored process evidence: sediment position and timing were measured and
             // written during this completed work, supporting a concretely different separation method.
@@ -357,8 +377,8 @@ namespace Decennium.Foundation.Laboratory
             s.Trades=s.Trades.Select(x=>x==trade?new TradeProgressRecord(trade.WorkerId,trade.TradeId,next.Level,next.Xp,successes,findings):x).ToArray();
             if(s.AlchemyDoses.Length+count>ManufacturingValidation.MaxDoses)throw new InvalidOperationException("Dose history capacity reached.");
             for(int i=0;i<count;i++){
-                string id=j.Id+".dose"+i.ToString(CultureInfo.InvariantCulture);int hp=choice==CraftQualityChoice.Durability&&j.Quality>=CraftQuality.Exceptional?2:1;
-                s.AlchemyDoses=s.AlchemyDoses.Concat(new[]{new AlchemyDoseRecord(id,j.Id,j.RecipeId,j.WorkerId,j.WorkerId,j.WorkerId,TestOnlyCropPolicy.PlotId,s.RuleClock,hp,hp)}).ToArray();
+                string id=j.Id+".dose"+i.ToString(CultureInfo.InvariantCulture);
+                s.AlchemyDoses=s.AlchemyDoses.Concat(new[]{new AlchemyDoseRecord(id,j.Id,j.RecipeId,j.WorkerId,j.WorkerId,j.WorkerId,TestOnlyCropPolicy.PlotId,s.RuleClock,vialHp,vialHp)}).ToArray();
             }
             PutOrder(s,ChangeOrder(s,j,ManufacturingStatus.Complete,choice:choice,catalyst:catalyst,mishap:mishap,xp:xp,finding:recorded?"observation.sediment-timing":""));
             SettleConnectedRecipe4(s,j);
@@ -381,7 +401,8 @@ namespace Decennium.Foundation.Laboratory
             if(quality>=CraftQuality.Exceptional)return;
             if(quality==CraftQuality.Mishap){
                 // Source ordering: actual consumed inputs are lost before the d6 and its consequences.
-                SettleManufacturingInputs(s,j,CraftQualityChoice.StandardQuantity,-1);
+                var output = ManufacturingOutput(recipe, j.Quality, CraftQualityChoice.StandardQuantity);
+                SettleManufacturingInputs(s, j, recipe, output.SupplementaryConsumed, -1);
                 var d6=DiceStream.Draw(s.RandomState,6);s.RandomState=d6.NextState;
                 string id=j.Id+".mishap";int suffix=0;
                 while(s.CraftingIncidents.Any(x=>x.Id==id)||crafting.Events.Any(x=>x.Id==id))id=j.Id+".mishap."+(++suffix).ToString(CultureInfo.InvariantCulture);

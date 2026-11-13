@@ -122,6 +122,8 @@ namespace Decennium.Foundation.Laboratory
     /// recipe-4/Club handlers. It neither imports a catalog nor grants possession or knowledge.</summary>
     public sealed class TestOnlyContentManifest
     {
+        internal const string Recipe4PublicReference =
+            "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_PUBLIC_RECIPE_CARDS.md@a71c2e54ad86a8b35377323f16a9f4ff7df986e0#recipe-4";
         public const string SourceRevision = "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
         public const string PrototypeRevision = "f0019fe5b6e1d3a1eb506203dca933a004cf05b2";
         public const string TrustedDigest = "85bbdb47e144f2877334feda0108eb9c485d182db8ea4ff7a18a167c40594dae";
@@ -328,7 +330,7 @@ namespace Decennium.Foundation.Laboratory
 
             string[] researchAuthority = {
                 "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:docs/canon/CANON_MANIFEST.json@003b9c45d3b36be43a16c431fe341de725f7f406#crafting",
-                "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_PUBLIC_RECIPE_CARDS.md@a71c2e54ad86a8b35377323f16a9f4ff7df986e0#recipe-4",
+                Recipe4PublicReference,
                 "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/ALCHEMY_RECIPE_PLAYTEST.md@a253486adc64daaaa9d105f8911dcd267c971e06",
                 "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4:DescentReviewChanges/ReviewBible/docs/mechanics/CRAFTING_HARVEST_PLAYTEST.md@b2c15e1bd56bb62e0f1729f4f6d68413e62f9be9",
                 "Engine:docs/unity/FORMULA_RESEARCH_RULE_DECISIONS.md@7d13fabbb80ecaa9f9fcd28c68aa05d4c354e522",
