@@ -49,6 +49,7 @@ namespace Decennium.Foundation.Laboratory
             s.ConnectedStowedVial = connectedStowedVial;
             s.ConnectedTacticalVial = connectedTacticalVial;
             s.ConnectedCompanionDose = connectedCompanionDose;
+            s.ConnectedCompanionStabilization = connectedCompanionStabilization;
             s.ConnectedBatch = ConnectedRecipe4Batch.Selected();
             s.PortableEquipment = s.PortableEquipment.Append(new PortableEquipmentRecord(
                 s.ConnectedBatch.ApparatusId, ConnectedRecipe4Batch.ApparatusProfile,

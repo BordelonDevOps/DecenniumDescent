@@ -18,7 +18,8 @@ namespace Decennium.Foundation.Laboratory
 
         bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
 
-        private int VerifiedExpeditionWireSchema => connectedCompanionDose ? Snapshot.ConnectedCompanionDoseSchema
+        private int VerifiedExpeditionWireSchema => connectedCompanionStabilization ? Snapshot.ConnectedCompanionStabilizationSchema
+            : connectedCompanionDose ? Snapshot.ConnectedCompanionDoseSchema
             : connectedTacticalVial ? Snapshot.ConnectedTacticalVialSchema
             : connectedStowedVial ? Snapshot.ConnectedStowedVialSchema
             : connectedCarriedVial ? Snapshot.ConnectedCarriedVialSchema : Snapshot.ConnectedRecipe4BatchSchema;

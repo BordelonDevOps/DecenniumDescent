@@ -51,6 +51,178 @@ namespace Decennium.Foundation.Tests
 
         private static void AddConnectedVialCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("tac06_connected_companion_stabilization_paid_failure_and_absolute_recovery", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string companion = ConnectedExpeditionSession.Companion;
+                var store = new FileSaveStore();
+                var codec = new SnapshotCodec();
+                foreach (bool success in new[] { false, true }) {
+                    string route = success ? "success" : "failure";
+                    var active = StartVialScenario(ConnectedExpeditionSession.StartWithCompanionStabilization());
+                    string FileAt(string mark) => Path.Combine(directory, "stabilization-" + route + "-" + mark + ".ddsave");
+                    Snapshot Save(string mark)
+                    {
+                        active.Save(FileAt(mark));
+                        return store.Load(FileAt(mark));
+                    }
+                    Snapshot Capture()
+                    {
+                        // Tests read detached state to assert the actual live route.
+                        var simulation = (Simulation)typeof(ConnectedExpeditionSession)
+                            .GetField("simulation", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(active);
+                        return simulation.Capture();
+                    }
+                    void Commit(string id, string actor, CommandKind kind, string target = "", int x = 0, int y = 0,
+                        InventoryRequest inventory = null, CombatRequest combat = null)
+                        => CommitVialRoute(active, new Command(id, actor, active.View(player).Revision, kind, target, x, y, inventory, combat));
+                    void Guard(string actor)
+                        => Commit("stable.guard." + active.View(player).Revision, actor, CommandKind.SelectCombatStance,
+                            combat: new CombatRequest(active.View(player).TurnId, stance: 1));
+                    void End(string actor)
+                        => Commit("stable.end." + active.View(player).Revision, actor, CommandKind.EndRegularTurn, active.View(player).TurnId);
+                    void Step(string actor, int x, int y)
+                        => Commit("stable.step." + active.View(player).Revision, actor, CommandKind.TacticalStep, active.View(player).TurnId, x, y);
+                    void Defender()
+                    {
+                        int count = 0;
+                        while (active.View(player).NextSeat == ExpeditionTurnSeat.AutomaticDefender)
+                            Require(count++ < 12 && active.AdvanceAutomaticDefender().Response == ExpeditionResponse.Committed,
+                                "The existing defender must resolve the actual decisions.");
+                    }
+                    ActorLifeRecord Patient(Snapshot s) => s.Lives.Single(x => x.ActorId == companion);
+                    Command Stabilize(string id, long revision)
+                        => new Command(id, hero, revision, CommandKind.StabilizeCompanion, companion);
+
+                    VialWalk(active, "vial.approach", 108, 1);
+                    CommitVialRoute(active, VialPickup("vial.pickup", 110));
+                    Commit("vial.stow", hero, CommandKind.HandlePortableEquipment, VialId,
+                        inventory: new InventoryRequest(Q(1), ConnectedVialRules.PackId, HandlingKind.Stow));
+                    VialWalk(active, "tac.away", 112, -1);
+                    Commit("ally.stage", companion, CommandKind.BeginWorldStep, "walk", -1);
+                    Commit("ally.stage-paid", hero, CommandKind.AdvanceClock, x: 6, y: 1);
+                    VialWalk(active, "ally.entry", 116, -1, 12);
+                    Commit("ally.reinforcement", companion, CommandKind.BeginReinforcementApproach, "TEST_ONLY.companion-reinforcement.v1");
+                    Guard(hero);
+                    Step(hero, 0, 2);
+                    Defender();
+                    End(hero);
+                    Defender();
+                    Guard(companion);
+                    End(companion);
+                    Guard(hero);
+                    Step(hero, 0, 1);
+                    Defender();
+                    End(hero);
+                    Defender();
+                    Guard(companion);
+                    End(companion);
+                    Guard(hero);
+                    for (int steps = 0; ; steps++) {
+                        var state = Capture();
+                        var life = Patient(state);
+                        Require(steps < 250 && !life.Dead, "The real route must reach a living dying companion.");
+                        if (life.Hp == 0 && state.Encounter.CurrentActor == hero) break;
+                        var actor = state.Encounter.CurrentActor;
+                        if (active.View(player).NextSeat == ExpeditionTurnSeat.AutomaticDefender) {
+                            Defender();
+                            continue;
+                        }
+                        if (state.Lives.Single(x => x.ActorId == actor).Hp > 0
+                            && !state.Stances.Any(x => x.ActorId == actor && x.TurnOrdinal == state.Encounter.TurnOrdinal
+                                && EncounterHistory.InCurrent(state, x.Revision))) Guard(actor);
+                        if (success && actor == companion && state.Encounter.TurnOrdinal == 71) {
+                            Step(companion, 2, 3);
+                            Defender();
+                        }
+                        End(actor);
+                    }
+                    var distant = Save("dying-out-of-reach");
+                    Require(!Patient(distant).Dead && !Patient(distant).Stable && Patient(distant).UsesDeathSaves
+                        && Patient(distant).Hp == 0 && distant.Encounter.Order.Contains(companion),
+                        "The actual zero-HP companion must be an admitted living patient.");
+                    Require(active.Submit(player, Stabilize("stable.range", distant.Revision)).Response == ExpeditionResponse.Unavailable
+                        && codec.Encode(distant).SequenceEqual(codec.Encode(Capture())), "Out-of-reach stabilization must leave complete state unchanged.");
+                    Guard(hero);
+                    Step(hero, success ? 1 : 0, 2);
+                    var ready = Save("ready");
+                    var old = ConnectedExpeditionSession.StartWithCompanionDose();
+                    Throws<ArgumentException>(() => old.Restore(FileAt("ready")));
+                    Require(old.View(player).Revision == 0 && !old.View(player).Commands.Contains(CommandKind.StabilizeCompanion),
+                        "Wire99 must reject an authentic wire100 save and retain its distinct public commands.");
+                    // Detached guard probes do not edit or restore a gameplay state.
+                    var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                        .GetField("policy", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(active);
+                    var resolve = typeof(TestOnlySharedWorldPolicy).GetMethod("ResolveCompanionStabilization",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+                    string Assess(Snapshot state) => (string)resolve.Invoke(policy,
+                        new object[] { state, Stabilize("stable.probe", state.Revision) });
+                    var dead = ready.Copy();
+                    var patient = Patient(ready);
+                    dead.Lives = dead.Lives.Select(x => x.ActorId == companion
+                        ? new ActorLifeRecord(companion, patient.MaximumHp, 0, 0, patient.LinkedInjuries, false, true,
+                            patient.UsesDeathSaves, 0, 3, null, patient.LastDeathTurn, patient.Prone, patient.HeldItems) : x).ToArray();
+                    Require(Assess(dead) == "StabilizationTargetNotDying", "Dead cannot be stabilized.");
+                    var fullHands = ready.Copy();
+                    fullHands.PortableEquipment = fullHands.PortableEquipment.Append(new PortableEquipmentRecord(
+                        "stable.probe.shield", "armor-and-shields.shield", hero, hero, "", PortablePlacement.Carried,
+                        PortableLinkKind.None, "", PortableMassBasis.Fixed, Q(6), Q(6), wearable: true, heldHands: 1)).ToArray();
+                    Require(Assess(fullHands) == "UsableHandRequired", "A physical free hand is required.");
+                    var blocked = ready.Copy();
+                    var recipient = blocked.Actors.Single(x => x.Id == companion);
+                    blocked.ObservationCells = blocked.ObservationCells.Append(new ObservationMapCellRecord(
+                        recipient.X, recipient.Y, false, true, false, false)).ToArray();
+                    Require(Assess(blocked) == "StabilizationTargetOutOfReach", "Adjacent Medicine still requires clear delivery.");
+
+                    var attempt = Stabilize("stable.attempt", ready.Revision);
+                    Require(active.Submit(ExpeditionSeat.FirstOpponent, attempt).Response == ExpeditionResponse.NotAuthorized,
+                        "Another seat cannot stabilize with the hero.");
+                    CommitVialRoute(active, attempt);
+                    var result = Save("attempt");
+                    var check = result.CompanionStabilizations.Single();
+                    var before = Patient(ready);
+                    var after = Patient(result);
+                    Require(result.WireSchemaVersion == 100 && result.SchemaVersion == 90 && result.RuleClock == ready.RuleClock
+                        && result.InventoryInteractions == ready.InventoryInteractions && check.Succeeded == success
+                        && check.Natural == (success ? 12 : 6) && check.Modifier == 0 && check.RandomBefore == ready.RandomState
+                        && check.RandomAfter == result.RandomState && check.WordsConsumed == (success ? 2 : 1)
+                        && result.WorldIntervals.Single(x => x.ActorId == hero).ActionSpent
+                        && after.LinkedInjuries.SequenceEqual(before.LinkedInjuries)
+                        && after.Prone == before.Prone && after.Hp == 0,
+                        "The real check must commit its Action, exact RNG and independent life facts.");
+                    if (success) {
+                        Require(check.RecoveryDie == 2 && after.Stable && after.StableUntil == ready.RuleClock.AddSeconds(7200)
+                            && after.DeathSuccesses == 0 && after.DeathFailures == 0,
+                            "Success must leave the patient at zero with exactly one absolute deadline.");
+                        // Detached native damage control. It does not represent an executed gameplay branch.
+                        var interrupted = PlaytestLife.DamageAt(ActorLifeRules.Read(after), 1, result.RuleClock).State;
+                        Require(!interrupted.Stable && !interrupted.StableUntil.HasValue && interrupted.DeathFailures == 1,
+                            "Existing damage must cancel Stable recovery and resume dying.");
+                    } else {
+                        Require(check.RecoveryDie == 0 && !check.RecoveryAt.HasValue && after.SameAs(before),
+                            "Failure must leave life and recovery unchanged.");
+                    }
+                    active = ConnectedExpeditionSession.StartWithCompanionStabilization();
+                    active.Restore(FileAt("attempt"));
+                    Require(codec.Encode(result).SequenceEqual(codec.Encode(Capture()))
+                        && active.Submit(player, attempt).Response == ExpeditionResponse.Duplicate,
+                        "Actual attempts must restore and retry without any new payment.");
+                    active.SetSeatEnabled(player, false);
+                    Require(active.Submit(player, attempt).Response == ExpeditionResponse.NotAuthorized, "Retry must retain current authority.");
+                    active.SetSeatEnabled(player, true);
+                    Require(active.Submit(player, Stabilize("stable.spent", result.Revision)).Response == ExpeditionResponse.Unavailable,
+                        "A second same-turn attempt cannot spend an already used Action.");
+                    var forged = result.Copy();
+                    forged.CompanionStabilizations = new[] { new CompanionStabilizationAttempt(check.CommandId, check.Revision,
+                        check.ActorId, check.PatientId, check.TurnOrdinal, check.At, check.First, check.Second, check.Natural,
+                        check.Modifier + 1, check.RecoveryDie, check.RandomBefore, check.RandomAfter, check.WordsConsumed) };
+                    store.Save(FileAt("forged"), forged);
+                    Throws<ArgumentException>(() => active.Restore(FileAt("forged")));
+                    Require(codec.Encode(result).SequenceEqual(codec.Encode(Capture())),
+                        "Denials and strict rejection of altered attempt evidence must leave the live state unchanged.");
+                }
+            });
             cases.Add("tac06_connected_held_dose_administration_to_admitted_companion", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

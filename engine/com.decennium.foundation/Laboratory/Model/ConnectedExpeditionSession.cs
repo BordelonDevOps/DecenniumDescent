@@ -89,6 +89,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithCompanionDose()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionDose());
 
+        public static ConnectedExpeditionSession StartWithCompanionStabilization()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionStabilization());
+
         private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())
@@ -316,7 +319,8 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
-                || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach);
+                || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach
+                || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion);
 
         private static readonly CommandKind[] CombatCommands = {
             CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
@@ -459,6 +463,8 @@ namespace Decennium.Foundation.Laboratory
                         && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId) && !InSelectedCache(x));
                 case CommandKind.InterruptIntake:
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
+                case CommandKind.StabilizeCompanion:
+                    return state.ConnectedCompanionStabilization && seat == ExpeditionSeat.Player && actor == Hero && target == Companion;
                 case CommandKind.BeginReinforcementApproach:
                     return state.ConnectedCompanionDose && seat == ExpeditionSeat.Player && actor == Companion
                         && target == state.Reinforcement?.Definition.Id;

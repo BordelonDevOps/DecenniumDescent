@@ -360,6 +360,10 @@ namespace Decennium.Foundation.Laboratory
                     commands = commands.Append(CommandKind.BeginReinforcementApproach);
                     var selected = KnownServices.ToDictionary(x => x.Key, x => x.Value);
                     selected.Add(CommandKind.BeginReinforcementApproach, state.Reinforcement.Definition.Id);
+                    if (state.ConnectedCompanionStabilization) {
+                        commands = commands.Append(CommandKind.StabilizeCompanion);
+                        selected.Add(CommandKind.StabilizeCompanion, Companion);
+                    }
                     targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
                 }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,

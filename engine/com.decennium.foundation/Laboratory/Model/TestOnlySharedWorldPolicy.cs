@@ -818,6 +818,7 @@ namespace Decennium.Foundation.Laboratory
             if(IsHavenAppraisalCommand(c.Kind))return ResolveHavenAppraisal(s,c);
             if(c.Kind==CommandKind.CloseExpeditionEpisode)return ResolveExpeditionClose(s,c);
             if (ReinforcementValidation.IsInstruction(c.Kind)) return ResolveReinforcementInstruction(s, c);
+            if (c.Kind == CommandKind.StabilizeCompanion) return ResolveCompanionStabilization(s, c);
             if (IsReinforcementControl(s, c)) return ResolveReinforcementControl(s, c);
             if(IsCharterAttemptCommand(c.Kind))return ResolveCharterAttempt(s,c);
             if(IsNextCharterAgreementCommand(c.Kind))return ResolveNextCharterAgreement(s,c);
