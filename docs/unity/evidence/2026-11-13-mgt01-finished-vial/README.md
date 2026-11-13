@@ -1,0 +1,9 @@
+# MGT-01 finished vial carrying and remote tactical use
+
+`ConnectedExpeditionSession.StartWithCarriedVial()` and the console's `-CarriedVial` switch select the bounded TEST_ONLY wire96/base90 session. The companion's actual recipe 4 settlement creates one portable root for dose zero. The existing one-second Pickup places it in the hero's hand and changes custody while preserving title. The portable root and dose share one identity and one mass. The other doses retain their workshop location and access. [Approved contract](GPT_CONTRACT_REVIEW.md)
+
+The route pays to approach the bench, picks up the finished vial, pays to leave, enters the real later encounter at (0,3) and restores there. The hero legally uses the vial at full HP with the same occupied hand. The actual d4 faces are 1 and 3, giving six potential healing and zero actual healing. One Action and dose are spent. The retained vial keeps the same owner, custodian and 1 structural HP. Carried burden falls from 341/5 lb and 341/50 Load to 681/10 lb and 681/100 Load. The hero then resolves the encounter, exits and continues ordinary paid travel. [Public results](public/results.json) · [Input walkthrough](walkthrough.jsonl)
+
+Restored console, uninterrupted console and direct public C# match the five canonical checkpoints through r164 at clock 113429/2. The focused registered case additionally checks same-ID conflict, atomic wrong-profile and malformed/stale/distant pickup, coherent forged spent-history rejection, and a detached probe of the existing mandatory-drop consequence on the genuine carried state. The detached probe is not an executed gameplay history. Supported save envelopes and unchanged predecessor transcripts are checked with the same exact candidate assemblies. [Prior-profile evidence](connected/results.json) · [Bindings](BINDINGS.json)
+
+The exact full 1,492-case headless regression is running. Production content and Unity gameplay integration remain deferred.
