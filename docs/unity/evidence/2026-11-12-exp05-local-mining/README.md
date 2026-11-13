@@ -14,6 +14,6 @@ The source checkpoint is `24fd553441c802c5b322c489804dc1fada71a98f` on `Engine`.
 
 ## Validation and scope
 
-The headless C# 9 compile and focused restore/control case, standalone compilation, and static package checks are bound to the source checkpoint in [BINDINGS.json](BINDINGS.json). The regression runner uses those same four headless assemblies. Timing samples are individual observations collected under regression load.
+The headless C# 9 compile and focused restore/control case, standalone compilation, and 18 static package checks are bound to the source checkpoint in [BINDINGS.json](BINDINGS.json). The exact regression passed all 1,485 registered cases on those same four headless assemblies. The retained inventory matches the 1,484 accepted cases plus the new traversal control, with six complete ordered journals and zero failures. Timing samples are individual observations collected under regression load. [Exact regression](regression/results.json) · [Focused GPT review](GPT_FOCUSED_REVIEW.md)
 
 This is a TEST_ONLY ordinary session composition. It uses the existing profile and wire format. Production profiles, directed routes, forced transport, off-map travel, new deposits and Unity gameplay integration are outside this gate. Broader INT-03 and P1 remain open.
