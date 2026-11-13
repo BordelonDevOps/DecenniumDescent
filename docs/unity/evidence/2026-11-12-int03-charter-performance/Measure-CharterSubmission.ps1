@@ -1,7 +1,8 @@
 param(
     [Parameter(Mandatory)][string]$AssemblyRoot,
     [Parameter(Mandatory)][string]$Run,
-    [ValidateRange(30,200)][int]$Samples=30
+    [ValidateRange(30,200)][int]$Samples=30,
+    [string]$ReferenceRoot
 )
 $ErrorActionPreference='Stop'
 $Run=(New-Item -ItemType Directory -Force $Run).FullName
@@ -29,7 +30,10 @@ foreach ($profile in 'Default','FishingTrap') {
         Join-Path $PSScriptRoot '../2026-11-12-mgt06-connected-trap/connected/trap-continued.ddsave'
     }
     $history=$store.Load((Resolve-Path $source).Path)
+    $startup=[Diagnostics.Stopwatch]::StartNew()
     $session=if ($profile -eq 'Default') { $sessionType::Start() } else { $sessionType::StartWithFishingTrap() }
+    $null=$session.View('Player')
+    $startupMs=$startup.Elapsed.TotalMilliseconds
     $policy=$sessionType.GetField('policy',$flags).GetValue($session)
     $proof=$policy.GetType().GetMethod('FindPlanningPassage',$flags)
     $profileChecks=$policy.GetType().GetMethods($flags) | Where-Object { $_.Name -eq 'ValidateState' -and $_.GetParameters().Count -eq 2 }
@@ -37,20 +41,37 @@ foreach ($profile in 'Default','FishingTrap') {
     $planReceipt=$history.Receipts | Where-Object Revision -eq $plan.StartRevision
     $planCommand=[Decennium.Foundation.CommandHistory]::Read($planReceipt)
     if ($planCommand.Kind -ne 'StartNextCharterPlan' -or $planCommand.ExpectedRevision -ne 74) { throw 'Unexpected accepted charter checkpoint.' }
+    $prefixTimings=@()
     foreach ($receipt in $history.Receipts | Where-Object Revision -le 74) {
         $command=[Decennium.Foundation.CommandHistory]::Read($receipt)
+        $stepTimer=[Diagnostics.Stopwatch]::StartNew()
         $result=switch ($receipt.Principal) {
             'TEST_ONLY.session-first-opponent' { $session.Submit('FirstOpponent',$command) }
             'TEST_ONLY.session-operator' { $session.SubmitSessionCommand($command) }
             'TEST_ONLY.host' { $session.Submit('Player',$command) }
             default { throw "Unexpected principal before charter declaration: $($receipt.Principal)" }
         }
+        $prefixTimings += [pscustomobject]@{Revision=$receipt.Revision; Kind=$command.Kind.ToString(); SubmitMs=$stepTimer.Elapsed.TotalMilliseconds}
         if ($result.Response -ne 'Committed' -or $result.Revision -ne $receipt.Revision) { throw "Prefix diverged at $($receipt.Revision)." }
     }
+    $prefixTimings | Export-Csv (Join-Path $folder 'prefix.csv') -NoTypeInformation
     $prePath=Join-Path $folder 'pre-submit.ddsave'
     $session.Save($prePath)
     $pre=$store.Load($prePath)
     $through=$pre.ExpeditionEpisodeClose.SourceRevision
+    $preDigest=(Get-FileHash $prePath).Hash.ToLowerInvariant()
+    if ($ReferenceRoot) {
+        $referencePre=Join-Path $ReferenceRoot "$profile/pre-submit.ddsave"
+        if ((Get-FileHash $referencePre).Hash.ToLowerInvariant() -cne $preDigest) { throw 'The normal play prefix changed.' }
+    }
+    $liveTimer=[Diagnostics.Stopwatch]::StartNew()
+    $liveResult=$session.Submit('Player',$planCommand)
+    $liveView=$session.View('Player')
+    $liveMs=$liveTimer.Elapsed.TotalMilliseconds
+    if ($liveResult.Response -ne 'Committed' -or $liveView.Revision -ne 75) { throw 'Live prefix charter did not commit.' }
+    $livePath=Join-Path $folder 'live-submit.ddsave'
+    $session.Save($livePath)
+    $liveDigest=(Get-FileHash $livePath).Hash.ToLowerInvariant()
     $expectedDigest=$null
     $rows=@()
     for ($i=0;$i -le $Samples;$i++) {
@@ -66,7 +87,14 @@ foreach ($profile in 'Default','FishingTrap') {
         $postPath=Join-Path $folder 'post-submit.ddsave'
         $session.Save($postPath)
         $digest=(Get-FileHash $postPath).Hash.ToLowerInvariant()
-        if ($null -eq $expectedDigest) { $expectedDigest=$digest }
+        if ($null -eq $expectedDigest) {
+            $expectedDigest=$digest
+            if ($expectedDigest -cne $liveDigest) { throw 'Live and restored charter commits differ.' }
+            if ($ReferenceRoot) {
+                $referencePost=Join-Path $ReferenceRoot "$profile/post-submit.ddsave"
+                if ((Get-FileHash $referencePost).Hash.ToLowerInvariant() -cne $expectedDigest) { throw 'Canonical charter result changed.' }
+            }
+        }
         if ($digest -cne $expectedDigest) { throw 'Canonical charter output changed across samples.' }
         $copy=Measure-Elapsed { $pre.Copy() }
         $encode=Measure-Elapsed { $codec.Encode($pre) }
@@ -93,7 +121,8 @@ foreach ($profile in 'Default','FishingTrap') {
     }
     $rows | ForEach-Object {[pscustomobject]$_} | Export-Csv (Join-Path $folder 'samples.csv') -NoTypeInformation
     $report=[ordered]@{Fingerprint=$pre.ContentFingerprint; PreRevision=$pre.Revision; CloseSourceRevision=$through
-        PassageRevision=$plan.PassageRevision; ResultSha256=$expectedDigest; Samples=$Samples}
+        PassageRevision=$plan.PassageRevision; PreSha256=$preDigest; ResultSha256=$expectedDigest; Samples=$Samples
+        ColdStartupWithViewMs=$startupMs; LiveSubmitWithViewMs=$liveMs; LiveResultSha256=$liveDigest}
     foreach ($field in 'PublicMs','SubmitMs','ViewMs','PassageMs','ResolverMs','CopyMs','EncodeMs','CoreShapeMs','ProfileChecksMs','StrictRestoreMs') {
         $report[$field]=Summary $rows $field
     }
