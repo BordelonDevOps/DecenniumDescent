@@ -13,7 +13,6 @@ foreach ($name in 'Core','Persistence','LabModel') {
 $assemblyMs=$assemblyWatch.Elapsed.TotalMilliseconds
 $scope=(Resolve-Path (Join-Path $PSScriptRoot '../2026-11-13-int03-active-work-performance')).Path
 $flags=[Reflection.BindingFlags]'NonPublic,Instance'
-$static=[Reflection.BindingFlags]'NonPublic,Static'
 $type=[Decennium.Foundation.Laboratory.ConnectedExpeditionSession]
 $store=[Decennium.Foundation.FileSaveStore]::new()
 $codec=[Decennium.Foundation.SnapshotCodec]::new()
@@ -100,7 +99,8 @@ foreach ($profile in 'Default','FishingTrap') {
     $probes | ForEach-Object {[pscustomobject]$_} | Export-Csv (Join-Path $folder 'probes.csv') -NoTypeInformation
     $report=[ordered]@{Samples=$Samples; FirstLoadWithViewMs=$first; StartupWithViewMs=$startup; Sha256=$digest; Controls=$control}
     foreach($field in 'PublicMs','RestoreMs','ViewMs'){$report[$field]=Summarize $rows $field}
-    foreach($field in 'ReadMs','DecodeMs','CopyMs','ShapeMs','ProfileChecksMs','ReplayAndCompareMs','SealMs'){$report[$field]=Summarize $probes $field}
+    foreach($field in 'ReadMs','DecodeMs','CopyMs','ShapeMs','ProfileChecksMs','ReplayAndCompareMs'){$report[$field]=Summarize $probes $field}
+    $report['ReferenceSealMs']=Summarize $probes 'SealMs'
     $results[$profile]=$report
     [ordered]@{Status='PASS'; AssemblyLoadMs=$assemblyMs; Profiles=$results} | ConvertTo-Json -Depth 8 |
         Set-Content (Join-Path $Run 'results.json') -Encoding utf8
