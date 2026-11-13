@@ -72,7 +72,8 @@ def main():
     for name in ("results.json", "walkthrough.jsonl", "responses.jsonl", "travel-continued.ddsave",
                  "before-cancel.ddsave", "cancelled.ddsave", "committed-setup.ddsave",
                  "away-resolved.ddsave", "away-overshoot.ddsave", "retrieved.ddsave",
-                 "authentic-exp05.ddsave", "forged-history.ddsave", "replay/walkthrough.jsonl", "replay/responses.jsonl"):
+                 "authentic-exp05.ddsave", "forged-history.ddsave", "replay/walkthrough.jsonl", "replay/responses.jsonl",
+                 "historical-results.json", "historical-standalone.ddsave", "historical-standalone.ddsave.restored.ddsave"):
         retain(args.connected / name, "connected/" + name)
     for name, expected in connected["Checkpoints"].items():
         for prefix in ("", "replay/", "csharp/"):
@@ -82,6 +83,10 @@ def main():
                 raise ValueError(f"Public checkpoint differs: {relative}")
     if artifacts["connected/authentic-exp05.ddsave"]["sha256"] != connected["AuthenticDefaultSha256"]:
         raise ValueError("The accepted predecessor changed.")
+    historical = read_json(args.connected / "historical-results.json")
+    for name in ("historical-standalone.ddsave", "historical-standalone.ddsave.restored.ddsave"):
+        if historical["Status"] != "PASS" or artifacts["connected/" + name]["sha256"] != historical["Sha256"]:
+            raise ValueError(f"Historical standalone save differs: {name}")
 
     identity = {"implementationCommit": args.implementation, "sourceArchiveSha256": digest(archive_bytes),
                 "executedAssemblies": assemblies}

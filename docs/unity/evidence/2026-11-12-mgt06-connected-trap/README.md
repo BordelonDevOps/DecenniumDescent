@@ -9,6 +9,8 @@ Implementation `71e6612cbdc07d2e8e2f347f38355e62c493d5c6` on `Engine` follows th
 
 The restored console route, uninterrupted console route, and receipt-based C# replay through the public session methods are compared at four canonical saves. Defender actions are planned again. The unchanged default profile restores and reproduces the authentic EXP-05 r223 bytes. The focused test also covers differing Wisdom and Intelligence in an isolated resolver probe, paused remote Resume, current authority and explicit backup recovery.
 
+A schema37 r2 soaking save produced by the archived standalone assemblies from the accepted MGT-06 handover packet restores and re-encodes byte for byte under the current C# assemblies. The connected checks reject both cross-profile restore directions and a structurally valid save whose RNG provenance was altered. [Historical standalone result](connected/historical-results.json)
+
 The first route exposed a reversed comparison in the existing opportunity record. It rejected a legitimate new reservation after release once the clock advanced. The correction keeps the earlier release attached to its real uncommitted attempt and permits a later reservation. The live profile and demonstration inputs use the same seed, stock, and DC throughout.
 
 [Console inputs](connected/walkthrough.jsonl) · [Console responses](connected/responses.jsonl) · [Assertions and timings](connected/results.json) · [Source and assembly bindings](BINDINGS.json)
