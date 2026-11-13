@@ -3,12 +3,13 @@ param(
     [string]$InputPath,
     [switch]$FishingTrap,
     [switch]$CarriedVial,
-    [switch]$StowedVial
+    [switch]$StowedVial,
+    [switch]$TacticalVial
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -22,6 +23,8 @@ $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
 } elseif ($CarriedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($TacticalVial) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithTacticalVial()
 } elseif ($StowedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithStowedVial()
 } else {
@@ -127,6 +130,9 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         }
         if ($CarriedVial) {
             [Console]::WriteLine('Use the Player item view for the produced vial. Pick it up with HandlePortableEquipment when in reach, then use UseAlchemyDose on the hero''s regular turn.')
+        }
+        if ($TacticalVial) {
+            [Console]::WriteLine('During the hero''s later encounter turn, open the packed vial''s Explorer pack if closed, retrieve the vial, and use it when the hero has an Action.')
         }
         if ($StowedVial) {
             [Console]::WriteLine('Use HandlePortableEquipment to stow the held vial in the open Explorer pack and retrieve it before tactical use.')

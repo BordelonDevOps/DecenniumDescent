@@ -83,6 +83,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithStowedVial()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedStowedVial());
 
+        public static ConnectedExpeditionSession StartWithTacticalVial()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedTacticalVial());
+
         private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())

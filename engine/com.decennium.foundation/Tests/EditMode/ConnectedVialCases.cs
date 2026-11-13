@@ -14,8 +14,10 @@ namespace Decennium.Foundation.Tests
         private const string SiblingVialId = "manufacture.order.104.dose1";
 
         private static ConnectedExpeditionSession StartVialScenario(bool stow = false)
+            => StartVialScenario(stow ? ConnectedExpeditionSession.StartWithStowedVial() : ConnectedExpeditionSession.StartWithCarriedVial());
+
+        private static ConnectedExpeditionSession StartVialScenario(ConnectedExpeditionSession session)
         {
-            var session = stow ? ConnectedExpeditionSession.StartWithStowedVial() : ConnectedExpeditionSession.StartWithCarriedVial();
             foreach (var input in QualityWalkthrough()) CommitVialRoute(session, input);
             CommitVialRoute(session, new Command("recipe4.batch.106", ConnectedExpeditionSession.Companion, 106,
                 CommandKind.ResolveManufacturingQuality, "manufacture.order.104", x: 1));
@@ -49,6 +51,182 @@ namespace Decennium.Foundation.Tests
 
         private static void AddConnectedVialCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("mgt01_connected_tactical_packed_vial_two_routes_and_restore", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string packId = ConnectedVialRules.PackId;
+                var codec = new SnapshotCodec();
+                var store = new FileSaveStore();
+                var session = StartVialScenario(ConnectedExpeditionSession.StartWithTacticalVial());
+                var active = session;
+                string branch = "common";
+                string PathFor(string point) => Path.Combine(directory, "tactical-vial-" + branch + "-" + point + ".ddsave");
+                Snapshot Save(string point)
+                {
+                    active.Save(PathFor(point));
+                    return store.Load(PathFor(point));
+                }
+                void Restore(string point, Snapshot expected)
+                {
+                    var restored = ConnectedExpeditionSession.StartWithTacticalVial();
+                    restored.Restore(PathFor(point));
+                    active = restored;
+                    Require(codec.Encode(expected).SequenceEqual(codec.Encode(Save(point + "-restored"))),
+                        "Strict restore must preserve " + branch + " " + point + ".");
+                }
+                void Deny(Snapshot before, Command command, ExpeditionResponse response = ExpeditionResponse.Unavailable,
+                    ExpeditionSeat seat = player)
+                {
+                    Require(active.Submit(seat, command).Response == response
+                        && codec.Encode(before).SequenceEqual(codec.Encode(Save(command.Id + "-unchanged"))),
+                        "Rejected or retried tactical command changed state: " + command.Id);
+                }
+                Command Retrieve(string id, long revision, string actor = hero)
+                    => new Command(id, actor, revision, CommandKind.HandlePortableEquipment, VialId,
+                        inventory: new InventoryRequest(Q(1), handling: HandlingKind.Retrieve));
+                Command Open(string id, long revision)
+                    => new Command(id, hero, revision, CommandKind.OpenPortableContainer, packId);
+                PortableEquipmentRecord Body(Snapshot state) => state.PortableEquipment.Single(x => x.Id == VialId);
+                PortableEquipmentRecord Pack(Snapshot state) => state.PortableEquipment.Single(x => x.Id == packId);
+                AlchemyDoseRecord Dose(Snapshot state) => state.AlchemyDoses.Single(x => x.Id == VialId);
+                WorldIntervalRecord IntervalAt(Snapshot state) => state.WorldIntervals.Single(x => x.ActorId == hero);
+                void CheckHandling(Snapshot before, Snapshot after, PortableOperation operation, bool action, int count)
+                {
+                    var entry = after.PortableHandling.Last();
+                    var original = PortableEquipmentRules.CarriedBurden(before, hero);
+                    var final = PortableEquipmentRules.CarriedBurden(after, hero);
+                    Require(entry.Operation == operation && entry.Revision == after.Revision && entry.ActorId == hero
+                        && entry.Tactical && entry.StartedAt == before.RuleClock && entry.EndedAt == before.RuleClock
+                        && after.RuleClock == before.RuleClock && after.RandomState == before.RandomState
+                        && after.Work.WorkerIntervals.Count == before.Work.WorkerIntervals.Count
+                        && after.Encounter.CurrentTurnId == before.Encounter.CurrentTurnId
+                        && after.InventoryInteractions == count && IntervalAt(after).Interactions == count
+                        && IntervalAt(after).ActionSpent == action && final.Pounds == original.Pounds && final.Load == original.Load,
+                        "Tactical handling must charge exactly the owning turn ledger and conserve time, RNG, and burden.");
+                }
+
+                VialWalk(active, "vial.approach", 108, 1);
+                CommitVialRoute(active, VialPickup("vial.pickup", 110));
+                CommitVialRoute(active, new Command("vial.stow", hero, 111, CommandKind.HandlePortableEquipment, VialId,
+                    inventory: new InventoryRequest(Q(1), packId, HandlingKind.Stow)));
+                var common = Save("packed");
+                foreach (bool closed in new[] { true, false }) {
+                    branch = "common";
+                    Restore("packed", common);
+                    branch = closed ? "closed" : "open";
+                    if (closed) CommitVialRoute(active, new Command("tactical-vial.ordinary-close", hero, 112,
+                        CommandKind.ClosePortableContainer, packId));
+                    int departure = closed ? 113 : 112;
+                    VialWalk(active, "tactical-vial.away", departure, -1);
+                    VialWalk(active, "tactical-vial.entry", departure + 2, -1, 12);
+                    var entered = Save("entry");
+                    Require(entered.WireSchemaVersion == 98 && entered.SchemaVersion == 90 && entered.InventoryCombat
+                        && entered.Encounter.CurrentActor == hero && entered.Actors.Single(x => x.Id == hero).X == 0
+                        && Body(entered).ParentId == packId && Pack(entered).Open != closed
+                        && entered.InventoryInteractions == 0 && !IntervalAt(entered).ActionSpent,
+                        "Both real routes must enter remote combat with the exact packed vial and a fresh regular turn.");
+                    Restore("entry", entered);
+                    var old = ConnectedExpeditionSession.StartWithStowedVial();
+                    Throws<ArgumentException>(() => old.Restore(PathFor("entry")));
+                    Require(old.View(player).Revision == 0, "Wire97 must reject a genuine wire98 save atomically.");
+                    int revision = checked((int)entered.Revision);
+                    Deny(entered, Retrieve("tactical-vial.wrong-seat", revision), ExpeditionResponse.NotAuthorized, ExpeditionSeat.FirstOpponent);
+                    Deny(entered, Retrieve("tactical-vial.wrong-actor", revision, ConnectedExpeditionSession.Companion));
+                    Deny(entered, VialUse("tactical-vial.contained-use", revision));
+                    if (closed) {
+                        Deny(entered, Retrieve("tactical-vial.closed-retrieve", revision));
+                        var open = Open("tactical-vial.open", revision);
+                        CommitVialRoute(active, open);
+                        var opened = Save("opened");
+                        CheckHandling(entered, opened, PortableOperation.Open, false, 1);
+                        Require(Pack(opened).Open && Body(opened).ParentId == packId && !Dose(opened).Spent
+                            && Body(opened).HeldHands == 0 && Dose(opened).LocationId == packId,
+                            "Opening the pack changes access only.");
+                        Restore("opened", opened);
+                        Deny(opened, open, ExpeditionResponse.Duplicate);
+                        active.SetSeatEnabled(player, false);
+                        Deny(opened, open, ExpeditionResponse.NotAuthorized);
+                        active.SetSeatEnabled(player, true);
+                        Deny(opened, Open(open.Id, opened.Revision), ExpeditionResponse.CommandIdConflict);
+                        Deny(opened, Retrieve("tactical-vial.stale", revision), ExpeditionResponse.StaleRevision);
+                        Deny(opened, VialUse("tactical-vial.open-contained-use", ++revision));
+                    }
+
+                    var beforeRetrieve = Save("before-retrieve");
+                    // Detached probes exercise the real resolver with one imposed control state.
+                    // These copies are neither executed gameplay nor eligible for restoration.
+                    var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                        .GetField("policy", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(active);
+                    var resolve = typeof(TestOnlySharedWorldPolicy).GetMethod("ResolvePortableEquipment",
+                        BindingFlags.Instance | BindingFlags.NonPublic);
+                    var spent = beforeRetrieve.Copy();
+                    spent.WorldIntervals = spent.WorldIntervals.Select(x => x.ActorId == hero ? x.PayAction() : x).ToArray();
+                    var spentResult = (string)resolve.Invoke(policy, new object[] { spent, Retrieve("probe.spent", revision) });
+                    Require(closed ? spentResult == "ActionAlreadySpent"
+                        : spentResult == null && spent.InventoryInteractions == 1 && IntervalAt(spent).ActionSpent,
+                        "A spent Action prohibits a second interaction and preserves an available free one.");
+                    var fullHands = beforeRetrieve.Copy();
+                    var extraHeld = new PortableEquipmentRecord("probe.held-shield", "armor-and-shields.shield",
+                        hero, hero, "", PortablePlacement.Carried, PortableLinkKind.None, "", PortableMassBasis.Fixed,
+                        Q(6), Q(6), wearable: true, heldHands: 1);
+                    fullHands.PortableEquipment = fullHands.PortableEquipment.Append(extraHeld).ToArray();
+                    Require((string)resolve.Invoke(policy, new object[] { fullHands, Retrieve("probe.hands", revision) })
+                        == "HandlingHandRequired", "Retrieval must require a genuinely free hand.");
+
+                    var retrieve = Retrieve("tactical-vial.retrieve", revision++);
+                    CommitVialRoute(active, retrieve);
+                    var retrieved = Save("retrieved");
+                    CheckHandling(beforeRetrieve, retrieved, PortableOperation.Retrieve, closed, closed ? 2 : 1);
+                    Require(Body(retrieved).ParentId == "" && Body(retrieved).HeldHands == 1
+                        && Body(retrieved).OwnerId == ConnectedExpeditionSession.Companion
+                        && Body(retrieved).CustodianId == hero && Dose(retrieved).LocationId == hero
+                        && retrieved.AlchemyDoses.Single(x => x.Id == SiblingVialId).LocationId
+                            == entered.AlchemyDoses.Single(x => x.Id == SiblingVialId).LocationId,
+                        "Tactical retrieval must hold the one existing dose and leave sibling output where it was.");
+                    Restore("retrieved", retrieved);
+                    Deny(retrieved, retrieve, ExpeditionResponse.Duplicate);
+                    if (closed) {
+                        var forged = retrieved.Copy();
+                        forged.InventoryInteractions = 1;
+                        forged.WorldIntervals = forged.WorldIntervals.Select(x => x.ActorId == hero
+                            ? new WorldIntervalRecord(hero, x.LastStart, x.MovementSpent,
+                                reactionAvailable: x.ReactionAvailable, interactions: 1) : x).ToArray();
+                        try {
+                            store.Save(PathFor("forged-spending"), forged);
+                            Throws<ArgumentException>(() => active.Restore(PathFor("forged-spending")));
+                        }
+                        catch (ArgumentException) {
+                            // Core validation may reject before strict history replay receives the forged record.
+                        }
+                        Require(codec.Encode(retrieved).SequenceEqual(codec.Encode(Save("forged-spending-unchanged"))),
+                            "Forged tactical spending must not alter the live restored state.");
+                        Deny(retrieved, VialUse("tactical-vial.action-spent", revision));
+                        CommitVialRoute(active, new Command("tactical-vial.stance", hero, revision++, CommandKind.SelectCombatStance,
+                            combat: new CombatRequest(retrieved.Encounter.CurrentTurnId, stance: 1)));
+                        CommitVialRoute(active, new Command("tactical-vial.end-first", hero, revision, CommandKind.EndRegularTurn,
+                            retrieved.Encounter.CurrentTurnId));
+                        var defender = Save("defender-turn");
+                        Deny(defender, VialUse("tactical-vial.wrong-turn", checked((int)defender.Revision)));
+                        for (int i = 0; i < 12 && active.View(player).ActingActorId != hero; i++)
+                            Require(active.AdvanceAutomaticDefender().Response == ExpeditionResponse.Committed,
+                                "Actual intervening defender decisions must progress.");
+                        revision = checked((int)active.View(player).Revision);
+                    }
+                    var ready = Save("ready-to-use");
+                    Require(ready.Encounter.CurrentActor == hero && !IntervalAt(ready).ActionSpent,
+                        "Drinking must await a real available Action.");
+                    var use = VialUse("tactical-vial.drink", revision);
+                    CommitVialRoute(active, use);
+                    var used = Save("used");
+                    Require(Dose(used).Spent && Dose(used).FirstD4 >= 1 && Dose(used).SecondD4 >= 1
+                        && Body(used).HeldHands == 1 && IntervalAt(used).ActionSpent
+                        && used.RuleClock == ready.RuleClock && used.RandomState != ready.RandomState,
+                        "The held vial uses the existing Action and real dose resolution.");
+                    Restore("used", used);
+                    Deny(used, use, ExpeditionResponse.Duplicate);
+                }
+            });
             cases.Add("mgt01_connected_stowed_vial_paid_hand_transitions_and_restore", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

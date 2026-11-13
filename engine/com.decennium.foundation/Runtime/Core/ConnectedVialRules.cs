@@ -9,8 +9,10 @@ namespace Decennium.Foundation
     {
         public const byte Marker = 1;
         public const byte StowMarker = 2;
+        public const byte TacticalMarker = 3;
         public const string FingerprintPrefix = "TEST_ONLY.carried-vial-v1-";
         public const string StowFingerprintPrefix = "TEST_ONLY.stowed-vial-v1-";
+        public const string TacticalFingerprintPrefix = "TEST_ONLY.tactical-vial-v1-";
         public const string ProfileId = "TEST_ONLY.recipe4.finished-vial.v1";
         public const string CarrierId = "TEST_ONLY.actor";
         public const string PackId = "TEST_ONLY.explorer-pack";
@@ -37,8 +39,12 @@ namespace Decennium.Foundation
         {
             var linked = state.PortableEquipment.Where(x => x.LinkKind == PortableLinkKind.AlchemyDose || x.ProfileId == ProfileId).ToArray();
             bool stowFingerprint = state.ContentFingerprint.StartsWith(StowFingerprintPrefix, StringComparison.Ordinal);
-            bool selectedFingerprint = state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || stowFingerprint;
-            if (stowFingerprint != state.ConnectedStowedVial || state.ConnectedStowedVial && !state.ConnectedCarriedVial)
+            bool tacticalFingerprint = state.ContentFingerprint.StartsWith(TacticalFingerprintPrefix, StringComparison.Ordinal);
+            bool selectedFingerprint = state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+                || stowFingerprint || tacticalFingerprint;
+            if (tacticalFingerprint != state.ConnectedTacticalVial
+                || (stowFingerprint || tacticalFingerprint) != state.ConnectedStowedVial
+                || state.ConnectedStowedVial && !state.ConnectedCarriedVial)
                 throw new ArgumentException("Stowed vial requires its selected envelope.");
             if (!state.ConnectedCarriedVial) {
                 if (linked.Length != 0 || selectedFingerprint) throw new ArgumentException("Carried vial requires its selected envelope.");

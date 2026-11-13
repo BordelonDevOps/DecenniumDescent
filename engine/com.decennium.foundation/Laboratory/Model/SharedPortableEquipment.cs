@@ -137,13 +137,28 @@ namespace Decennium.Foundation.Laboratory
                 && item.CustodianId == c.Actor && item.HeldHands == 1;
             bool selectedRetrieve = vial && s.ConnectedStowedVial && transfer && c.Inventory.Handling == HandlingKind.Retrieve
                 && item.ParentId == ConnectedVialRules.PackId && item.Placement == PortablePlacement.Contained;
-            if (vial && (s.InventoryCombat || c.Actor != ConnectedVialRules.CarrierId || !transfer
+            bool selectedPack = s.ConnectedStowedVial && item.Id == ConnectedVialRules.PackId;
+            string selectedVialId = ConnectedVialRules.SelectedId(s);
+            var packedVial = selectedPack ? s.PortableEquipment.SingleOrDefault(x => x.Id == selectedVialId
+                && x.LinkKind == PortableLinkKind.AlchemyDose) : null;
+            bool packContainsVial = packedVial?.ParentId == item.Id && packedVial.Placement == PortablePlacement.Contained;
+            bool tacticalVialAccess = s.ConnectedTacticalVial && s.InventoryCombat
+                && s.LaterEncounter?.Entry != null && s.Encounter?.Id == s.LaterEncounter.Definition.EncounterId
+                && c.Actor == ConnectedVialRules.CarrierId
+                && (selectedRetrieve && item.Id == selectedVialId || packContainsVial && c.Kind == CommandKind.OpenPortableContainer);
+            if (vial && (s.InventoryCombat && !tacticalVialAccess || c.Actor != ConnectedVialRules.CarrierId || !transfer
                 || (c.Inventory.Handling != HandlingKind.Pickup && !selectedStow && !selectedRetrieve)))
                 return "ConnectedVialHandlingUnsupported";
-            if (s.ConnectedStowedVial && item.Id == ConnectedVialRules.PackId
-                && s.PortableEquipment.Any(x => x.LinkKind == PortableLinkKind.AlchemyDose && x.ParentId == item.Id)
-                && (s.InventoryCombat || c.Kind != CommandKind.OpenPortableContainer && c.Kind != CommandKind.ClosePortableContainer))
+            bool packHandlingRestricted = s.InventoryCombat
+                ? (packContainsVial || s.ConnectedTacticalVial && packedVial?.Placement == PortablePlacement.Carried
+                    && packedVial.CustodianId == ConnectedVialRules.CarrierId) && !tacticalVialAccess
+                : packContainsVial && c.Kind != CommandKind.OpenPortableContainer && c.Kind != CommandKind.ClosePortableContainer;
+            if (packHandlingRestricted)
                 return "ConnectedVialPackHandlingUnsupported";
+            if (tacticalVialAccess) {
+                if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+                if (s.Encounter.CurrentActor != c.Actor || s.InventoryTurnActor != c.Actor) return "WrongRegularTurn";
+            }
             bool installedCampStorageRoot=portableStorageFixture!=null
                 &&item.Id==TestOnlyExpeditionCampConstructionFixture.PackLotId
                 &&s.TemporaryCampInstallations.Any(x=>x.LotId==item.Id&&x.Kind==TemporaryCampFixtureKind.FittingPack);

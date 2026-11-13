@@ -8,6 +8,7 @@ namespace Decennium.Foundation.Laboratory
     {
         private bool connectedCarriedVial;
         private bool connectedStowedVial;
+        private bool connectedTacticalVial;
 
         public TestOnlySharedWorldPolicy EnableConnectedCarriedVial()
         {
@@ -36,6 +37,15 @@ namespace Decennium.Foundation.Laboratory
             connectedStowedVial = true;
             ContentFingerprint = ConnectedVialRules.StowFingerprintPrefix + RetreatHash(string.Join("|",
                 ContentFingerprint, pack.Canonical, ConnectedVialRules.PackId, "exact-dose-zero-fit|direct-contained|one-second"));
+            return this;
+        }
+
+        internal TestOnlySharedWorldPolicy EnableConnectedTacticalVial()
+        {
+            EnableConnectedStowedVial();
+            connectedTacticalVial = true;
+            ContentFingerprint = ConnectedVialRules.TacticalFingerprintPrefix + RetreatHash(string.Join("|",
+                ContentFingerprint, "later-encounter|open-pack|retrieve|shared-interaction"));
             return this;
         }
 
