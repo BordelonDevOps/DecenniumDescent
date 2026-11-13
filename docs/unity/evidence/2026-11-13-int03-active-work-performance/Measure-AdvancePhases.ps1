@@ -21,6 +21,8 @@ foreach ($profile in 'Default','FishingTrap') {
     $view=$session.View('Player')
     $publicMs=$watch.Elapsed.TotalMilliseconds
     $publicPhases=[Decennium.Foundation.Laboratory.AdvancePhaseProbe]::Results()
+    [Decennium.Foundation.Laboratory.AdvancePhaseProbe]::Boundaries() |
+        Set-Content (Join-Path (Split-Path $Output) "$profile-public-boundaries.txt") -Encoding utf8
     $save=Join-Path (Split-Path $Output) "$profile-diagnostic.ddsave"
     $session.Save($save)
     if ($public.Response -ne 'Committed' -or $view.Revision -ne 104 -or (Get-FileHash $save).Hash -cne (Get-FileHash $post).Hash) {
@@ -33,6 +35,8 @@ foreach ($profile in 'Default','FishingTrap') {
     $failure=$policy.Resolve($candidate,$command)
     $directMs=$watch.Elapsed.TotalMilliseconds
     if ($null -ne $failure) { throw $failure }
+    [Decennium.Foundation.Laboratory.AdvancePhaseProbe]::Boundaries() |
+        Set-Content (Join-Path (Split-Path $Output) "$profile-reference-boundaries.txt") -Encoding utf8
     $results[$profile]=[ordered]@{PublicMs=$publicMs; PublicPhases=$publicPhases; DirectResolverMs=$directMs
         DirectPhases=[Decennium.Foundation.Laboratory.AdvancePhaseProbe]::Results()
         FinalSha256=(Get-FileHash $save).Hash.ToLowerInvariant()}

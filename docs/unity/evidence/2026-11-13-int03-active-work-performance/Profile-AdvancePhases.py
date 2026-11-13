@@ -32,15 +32,27 @@ def main():
     replace_once(scheduler, "string deferredActivityActor = reinforcementEndRound",
                  'workProbe.Dispose();\n                using var finalProbe = AdvancePhaseProbe.Enter("settlement");\n'
                  '                string deferredActivityActor = reinforcementEndRound')
+    replace_once(scheduler, "selectionProbe.Dispose();",
+                 'AdvancePhaseProbe.Boundary(segmentStart, next);\n                selectionProbe.Dispose();')
     replace_once(scheduler, "foreach (var actor in s.Actors.Where(a => !CapableWorker(s, a.Id))) {",
                  'using var probe = AdvancePhaseProbe.Enter("pause-incompatible-work");\n'
                  '            foreach (var actor in s.Actors.Where(a => !CapableWorker(s, a.Id))) {')
     replace_once(model / "SharedFormulaResearch.cs", "foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray()) {\n                if (job.Kind",
                  'using var probe = AdvancePhaseProbe.Enter("credit-formula");\n'
                  '            foreach (var job in s.FormulaWork.Where(x => x.Status == FormulaWorkStatus.Working).ToArray()) {\n                if (job.Kind')
-    replace_once(model / "ConditionCombatPolicy.cs", "var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;",
-                 'using var probe = AdvancePhaseProbe.Enter("restore-and-project-conditions");\n'
-                 '            var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;')
+    condition = model / "ConditionCombatPolicy.cs"
+    if "ConditionResolutionScope.Project" in condition.read_text(encoding="utf-8-sig"):
+        replace_once(condition, "var journal = s.Conditions.Single(x => x.Target == actor);\n            return ConditionResolutionScope.Project",
+                     'using var probe = AdvancePhaseProbe.Enter("restore-and-project-conditions");\n'
+                     '            var journal = s.Conditions.Single(x => x.Target == actor);\n'
+                     '            return ConditionResolutionScope.Project')
+    else:
+        replace_once(condition, "var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;",
+                     'using var probe = AdvancePhaseProbe.Enter("restore-and-project-conditions");\n'
+                     '            var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;')
+    replace_once(model / "ConditionHistory.cs", 'if (journal.PolicyId != PolicyId)',
+                 'using var probe = AdvancePhaseProbe.Enter("journal-reconstruction");\n'
+                 '            if (journal.PolicyId != PolicyId)')
     (model / "AdvancePhaseProbe.cs").write_text(
         """using System;
 using System.Collections.Generic;
@@ -52,6 +64,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed class AdvancePhaseProbe : IDisposable
     {
         private static Dictionary<string, (long Ticks, int Count)> phases;
+        private static List<string> boundaries;
         private readonly string name;
         private readonly long started;
         private bool stopped;
@@ -62,7 +75,13 @@ namespace Decennium.Foundation.Laboratory
             started = Stopwatch.GetTimestamp();
         }
 
-        public static void Reset() => phases = new Dictionary<string, (long, int)>();
+        public static void Reset()
+        {
+            phases = new Dictionary<string, (long, int)>();
+            boundaries = new List<string>();
+        }
+        public static void Boundary(RuleTime from, RuleTime to) => boundaries?.Add($"{from}|{to}");
+        public static string[] Boundaries() => boundaries.ToArray();
         public static AdvancePhaseProbe Enter(string name) => new AdvancePhaseProbe(name);
         public static string[] Results() => phases.Select(row => FormattableString.Invariant(
             $"{row.Key}|{row.Value.Count}|{row.Value.Ticks * 1000.0 / Stopwatch.Frequency}")).ToArray();
