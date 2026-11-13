@@ -4,7 +4,7 @@ using System.Linq;
 namespace Decennium.Foundation
 {
     public enum ExpeditionStrainEndpoint { None, OrdinaryDeath }
-    public enum ExpeditionStrainCauseKind { DailyProvisioning, RestDebtDeadline, RestMissedWhileIndebted }
+    public enum ExpeditionStrainCauseKind { DailyProvisioning, RestDebtDeadline, RestMissedWhileIndebted, WoundTreatmentCriticalFailure }
 
     /// <summary>Actual consumption attribution for one recipient's closed provisioning day.
     /// It references physical inventory and consumption reservations; it creates no stock.</summary>
@@ -516,8 +516,8 @@ namespace Decennium.Foundation
                     }
                 }
             }
-            if (s.ExpeditionStrainGains.Any(x => x.CauseKind != ExpeditionStrainCauseKind.DailyProvisioning
-                && !s.RestDebtEvents.Any(e => e.Id == x.CauseId && e.StrainGainId == x.Id)))
+            if (s.ExpeditionStrainGains.Any(x => (x.CauseKind == ExpeditionStrainCauseKind.RestDebtDeadline
+                || x.CauseKind == ExpeditionStrainCauseKind.RestMissedWhileIndebted) && !s.RestDebtEvents.Any(e => e.Id == x.CauseId && e.StrainGainId == x.Id)))
                 throw new ArgumentException("Rest Debt Strain gain has no unique causal event.");
         }
 

@@ -234,6 +234,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeRecipe347(s);
             InitializeConnectedBloodSpecimen(s);
             InitializeConnectedRecipe4Batch(s);
+            InitializeWoundTreatment(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -485,6 +486,8 @@ namespace Decennium.Foundation.Laboratory
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
                 var hideDue = s.ExplorationHide?.Pending?.DueAt;
                 if (hideDue.HasValue && hideDue.Value > segmentStart && hideDue.Value < next) next = hideDue.Value;
+                var treatment = WoundTreatmentStation.Active(s);
+                if (treatment != null && treatment.DueAt < next) next = treatment.DueAt;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
                 var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
@@ -542,7 +545,8 @@ namespace Decennium.Foundation.Laboratory
                     var boundary = WorldActivityIntervalRecord.EndAt(s.WorldSchedule, activity.IntervalIndex);
                     var horizon = target < boundary ? target : boundary;
                     bool activeOffCalendarWork = horizon > s.RuleClock
-                        && (s.Work.WorkerIntervals.Any(w => w.WorkerId == activity.ActorId && w.Start < horizon && w.End > s.RuleClock)
+                        && (s.Work.WorkerIntervals.Any(w => w.WorkerId == activity.ActorId && w.Start < horizon && w.End > s.RuleClock
+                            && !WoundTreatmentStation.PatientOccupancy(s, w))
                             || WorldActivityValidation.ActiveLaborReference(s, activity.ActorId, s.RuleClock, horizon) != "");
                     if ((active.Any(e => e.ActorId == activity.ActorId && e.Status == WorldTraversalStatus.Moving)
                         || activeOffCalendarWork) && boundary > s.RuleClock && boundary < next) next = boundary;
@@ -743,6 +747,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileReinforcement(s, initiating);
                 if (reinforcementEndRound) ResolveReinforcementEndRound(s, initiating);
                 if (retreatEndRound) SettleRetreatRound(s, initiating);
+                ReconcileWoundTreatment(s, initiating);
                 if (reengagementArrival != null) {
                     TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
                     if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
@@ -782,6 +787,11 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (WoundTreatmentStation.IsCommand(c.Kind)) return ResolveWoundTreatment(s, c);
+            if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return "WoundTreatmentStockSealed";
+            if (WoundTreatmentStation.Active(s) != null && (c.Actor == WoundTreatmentStation.Healer || c.Actor == WoundTreatmentStation.Patient)
+                && c.Kind != CommandKind.AdvanceClock)
+                return "WoundTreatmentParticipantOccupied";
             var searchActivityConflict = SearchActivityConflict(s, c);
             if (searchActivityConflict != null) return searchActivityConflict;
             var hideActivityConflict = HideActivityConflict(s, c);

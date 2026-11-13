@@ -89,6 +89,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithCompanionDose()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionDose());
 
+        public static ConnectedExpeditionSession StartWithWoundTreatment()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedWoundTreatment());
+
         public static ConnectedExpeditionSession StartWithCompanionStabilization()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionStabilization());
 
@@ -289,6 +292,8 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
+            if (WoundTreatmentStation.IsCommand(command.Kind))
+                return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
                 return command.Inventory == null && command.Combat == null && command.MiningSelection == null;
@@ -320,7 +325,8 @@ namespace Decennium.Foundation.Laboratory
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
                 || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach
-                || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion);
+                || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion
+                || state.ConnectedWoundTreatment && WoundTreatmentStation.IsCommand(kind));
 
         private static readonly CommandKind[] CombatCommands = {
             CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
@@ -405,6 +411,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool KnownTarget(Snapshot state, ExpeditionSeat seat, Command command)
         {
+            if (state.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(command.Target)) return false;
             string target = command.Target;
             string actor = command.Actor;
             if (seat == ExpeditionSeat.FirstOpponent && !FirstEncounterActive(state)) return false;
@@ -463,6 +470,9 @@ namespace Decennium.Foundation.Laboratory
                         && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId) && !InSelectedCache(x));
                 case CommandKind.InterruptIntake:
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
+                case CommandKind.StartWoundTreatment:
+                case CommandKind.InterruptWoundTreatment:
+                    return state.ConnectedWoundTreatment && seat == ExpeditionSeat.Player && actor == Hero && target == Companion;
                 case CommandKind.StabilizeCompanion:
                     return state.ConnectedCompanionStabilization && seat == ExpeditionSeat.Player && actor == Hero && target == Companion;
                 case CommandKind.BeginReinforcementApproach:

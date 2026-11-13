@@ -309,7 +309,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.SchemaVersion != Snapshot.MoraleRestSchema
                     && s.SchemaVersion != Snapshot.HavenCareSchema
                     && s.DailyProvisioningSettlements.Length == 0
-                    && s.DailyProvisioningConsumption.Length == 0 && s.ExpeditionStrainGains.Length == 0
+                    && s.DailyProvisioningConsumption.Length == 0
+                    && s.ExpeditionStrainGains.All(x => connectedWoundTreatment && x.CauseKind == ExpeditionStrainCauseKind.WoundTreatmentCriticalFailure)
                     && s.ExpeditionDashLocks.Length == 0 && s.RestWatchSchedules.Length == 0 && s.RestIntervals.Length == 0
                     && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0

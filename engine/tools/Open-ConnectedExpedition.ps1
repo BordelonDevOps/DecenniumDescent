@@ -6,12 +6,13 @@ param(
     [switch]$StowedVial,
     [switch]$TacticalVial,
     [switch]$CompanionDose,
-    [switch]$CompanionStabilization
+    [switch]$CompanionStabilization,
+    [switch]$WoundTreatment
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -25,6 +26,8 @@ $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
 } elseif ($CarriedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($WoundTreatment) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithWoundTreatment()
 } elseif ($CompanionStabilization) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCompanionStabilization()
 } elseif ($CompanionDose) {

@@ -128,6 +128,10 @@ namespace Decennium.Foundation
                         : state.ConnectedTacticalVial ? ConnectedVialRules.TacticalMarker
                         : state.ConnectedStowedVial ? ConnectedVialRules.StowMarker : ConnectedVialRules.Marker);
                 if (state.ConnectedCompanionStabilization) CompanionStabilizationCodec.Write(writer, state.CompanionStabilizations);
+                if (state.ConnectedWoundTreatment) {
+                    writer.Write(WoundTreatmentStation.Marker);
+                    WoundTreatmentCodec.Write(writer, state.WoundTreatments);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -158,6 +162,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedTacticalVialSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedCompanionDoseSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedCompanionStabilizationSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedWoundTreatmentSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -264,7 +269,8 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    bool carriedVialEnvelope = wireSchema == Snapshot.ConnectedCarriedVialSchema
+                    s.ConnectedWoundTreatment = wireSchema == Snapshot.ConnectedWoundTreatmentSchema;
+                    bool carriedVialEnvelope = s.ConnectedWoundTreatment || wireSchema == Snapshot.ConnectedCarriedVialSchema
                         || wireSchema == Snapshot.ConnectedStowedVialSchema || wireSchema == Snapshot.ConnectedTacticalVialSchema
                         || wireSchema == Snapshot.ConnectedCompanionDoseSchema || wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
                     if (wireSchema == Snapshot.ExplorationSearchSchema || wireSchema == Snapshot.ExplorationHideSchema
@@ -281,7 +287,7 @@ namespace Decennium.Foundation
                     if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
                         s.ConnectedBatch = ConnectedRecipe4BatchCodec.Read(reader);
                     if (carriedVialEnvelope) {
-                        s.ConnectedCompanionStabilization = wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
+                        s.ConnectedCompanionStabilization = s.ConnectedWoundTreatment || wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
                         s.ConnectedCompanionDose = s.ConnectedCompanionStabilization || wireSchema == Snapshot.ConnectedCompanionDoseSchema;
                         s.ConnectedTacticalVial = s.ConnectedCompanionDose || wireSchema == Snapshot.ConnectedTacticalVialSchema;
                         s.ConnectedStowedVial = s.ConnectedTacticalVial || wireSchema == Snapshot.ConnectedStowedVialSchema;
@@ -293,6 +299,10 @@ namespace Decennium.Foundation
                         s.ConnectedCarriedVial = true;
                     }
                     if (s.ConnectedCompanionStabilization) s.CompanionStabilizations = CompanionStabilizationCodec.Read(reader);
+                    if (s.ConnectedWoundTreatment) {
+                        if (reader.ReadByte() != WoundTreatmentStation.Marker) throw new InvalidDataException("Invalid Wound treatment marker.");
+                        s.WoundTreatments = WoundTreatmentCodec.Read(reader);
+                    }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);
                     if (s.WireSchemaVersion != wireSchema) throw new InvalidDataException("Save envelope does not match its validated layout.");

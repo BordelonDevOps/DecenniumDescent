@@ -364,6 +364,11 @@ namespace Decennium.Foundation.Laboratory
                         commands = commands.Append(CommandKind.StabilizeCompanion);
                         selected.Add(CommandKind.StabilizeCompanion, Companion);
                     }
+                    if (state.ConnectedWoundTreatment) {
+                        commands = commands.Append(CommandKind.StartWoundTreatment).Append(CommandKind.InterruptWoundTreatment);
+                        selected.Add(CommandKind.StartWoundTreatment, Companion);
+                        selected.Add(CommandKind.InterruptWoundTreatment, Companion);
+                    }
                     targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
                 }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
@@ -452,7 +457,8 @@ namespace Decennium.Foundation.Laboratory
                 && !state.PortableEquipment.Any(i => i.Id == x.LotId || i.LinkedId == x.LotId))) {
                 if (state.Work.Lots.Any(x => x.Id == lot.LotId && grant.Controls(x.CustodianId) && !InSelectedCache(x)))
                     yield return new ExpeditionOwnedItem(lot.LotId, lot.OwnerId, state.Work.AvailableAmount(lot.LotId),
-                        lot.Access.ToString());
+                        state.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(lot.LotId)
+                            ? "TreatmentStation" : lot.Access.ToString());
             }
             foreach (var dose in state.AlchemyDoses.Where(x => grant.MayUseInventory(x.OwnerId)
                 && grant.Controls(x.CustodianId) && !x.Spent && x.Id != ConnectedVialRules.SelectedId(state)))
@@ -461,6 +467,9 @@ namespace Decennium.Foundation.Laboratory
 
         private static IEnumerable<ExpeditionWorkStatus> ProjectWork(Snapshot state, Authority grant)
         {
+            foreach (var job in state.WoundTreatments.Where(x => grant.Controls(WoundTreatmentStation.Healer)))
+                yield return new ExpeditionWorkStatus(job.Id, WoundTreatmentStation.Healer, "WoundTreatment", job.Outcome.ToString(),
+                    job.Outcome == WoundTreatmentOutcome.Active ? CampGreens.Subtract(job.DueAt, state.RuleClock) : (RuleTime?)null);
             foreach (var job in state.MiningAttempts.Where(x => grant.Controls(x.WorkerId)))
                 yield return new ExpeditionWorkStatus(job.Id, job.WorkerId, "Mining", job.Status.ToString());
             foreach (var job in state.Intakes.Where(x => grant.Controls(x.ActorId)))

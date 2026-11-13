@@ -46,7 +46,7 @@ namespace Decennium.Foundation
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
-        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion }
+        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -171,6 +171,7 @@ namespace Decennium.Foundation
         public const int ConnectedTacticalVialSchema = 98;
         public const int ConnectedCompanionDoseSchema = 99;
         public const int ConnectedCompanionStabilizationSchema = 100;
+        public const int ConnectedWoundTreatmentSchema = 101;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -317,7 +318,10 @@ namespace Decennium.Foundation
         public bool ConnectedCompanionDose;
         public bool ConnectedCompanionStabilization;
         public CompanionStabilizationAttempt[] CompanionStabilizations = Array.Empty<CompanionStabilizationAttempt>();
-        public int WireSchemaVersion => ConnectedCompanionStabilization ? ConnectedCompanionStabilizationSchema
+        public bool ConnectedWoundTreatment;
+        public WoundTreatmentRecord[] WoundTreatments = Array.Empty<WoundTreatmentRecord>();
+        public int WireSchemaVersion => ConnectedWoundTreatment ? ConnectedWoundTreatmentSchema
+            : ConnectedCompanionStabilization ? ConnectedCompanionStabilizationSchema
             : ConnectedCompanionDose ? ConnectedCompanionDoseSchema
             : ConnectedTacticalVial ? ConnectedTacticalVialSchema
             : ConnectedStowedVial ? ConnectedStowedVialSchema
@@ -448,6 +452,8 @@ namespace Decennium.Foundation
             ConnectedCompanionDose = ConnectedCompanionDose,
             ConnectedCompanionStabilization = ConnectedCompanionStabilization,
             CompanionStabilizations = CompanionStabilizations.ToArray(),
+            ConnectedWoundTreatment = ConnectedWoundTreatment,
+            WoundTreatments = WoundTreatments.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
             MiningAssayProfiles = MiningAssayProfiles.ToArray(), MiningAssayAttempts = MiningAssayAttempts.ToArray(),
@@ -1074,6 +1080,7 @@ namespace Decennium.Foundation
             ExpeditionRouteMappingWorkValidation.Validate(s);
             ExpeditionRouteReconnaissanceValidation.Validate(s);
             ExpeditionProvisioningValidation.Validate(s);
+            WoundTreatmentStation.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
             TemporaryCampConstructionValidation.Validate(s);

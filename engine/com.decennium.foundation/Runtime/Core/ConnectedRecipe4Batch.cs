@@ -66,7 +66,8 @@ namespace Decennium.Foundation
                 || s.ContentFingerprint.StartsWith(ConnectedVialRules.StowFingerprintPrefix, StringComparison.Ordinal)
                 || s.ContentFingerprint.StartsWith(ConnectedVialRules.TacticalFingerprintPrefix, StringComparison.Ordinal)
                 || s.ContentFingerprint.StartsWith(ConnectedVialRules.CompanionFingerprintPrefix, StringComparison.Ordinal)
-                || s.ContentFingerprint.StartsWith(ConnectedVialRules.StabilizationFingerprintPrefix, StringComparison.Ordinal);
+                || s.ContentFingerprint.StartsWith(ConnectedVialRules.StabilizationFingerprintPrefix, StringComparison.Ordinal)
+                || WoundTreatmentStation.SelectedFingerprint(s.ContentFingerprint);
 
         public static bool OnBench(PortableEquipmentRecord item)
             => item.Placement == PortablePlacement.Ground && item.GroundX == BenchX && item.GroundY == BenchY;

@@ -45,7 +45,8 @@ namespace Decennium.Foundation
             var linked = state.PortableEquipment.Where(x => x.LinkKind == PortableLinkKind.AlchemyDose || x.ProfileId == ProfileId).ToArray();
             bool stowFingerprint = state.ContentFingerprint.StartsWith(StowFingerprintPrefix, StringComparison.Ordinal);
             bool tacticalFingerprint = state.ContentFingerprint.StartsWith(TacticalFingerprintPrefix, StringComparison.Ordinal);
-            bool stabilizationFingerprint = state.ContentFingerprint.StartsWith(StabilizationFingerprintPrefix, StringComparison.Ordinal);
+            bool stabilizationFingerprint = state.ContentFingerprint.StartsWith(StabilizationFingerprintPrefix, StringComparison.Ordinal)
+                || WoundTreatmentStation.SelectedFingerprint(state.ContentFingerprint);
             bool companionFingerprint = stabilizationFingerprint || state.ContentFingerprint.StartsWith(CompanionFingerprintPrefix, StringComparison.Ordinal);
             bool selectedFingerprint = state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
                 || stowFingerprint || tacticalFingerprint || companionFingerprint;

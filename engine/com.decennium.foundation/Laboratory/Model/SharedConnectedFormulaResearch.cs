@@ -96,6 +96,7 @@ namespace Decennium.Foundation.Laboratory
                 || connectedStowedVial != state.ConnectedStowedVial || connectedTacticalVial != state.ConnectedTacticalVial
                 || connectedCompanionDose != state.ConnectedCompanionDose
                 || connectedCompanionStabilization != state.ConnectedCompanionStabilization
+                || connectedWoundTreatment != state.ConnectedWoundTreatment
                 || !connectedRecipe4Batch && (state.ManufacturingOrders.Length != 0 || state.AlchemyDoses.Length != 0
                     || state.ManufacturingAdvance != null) || state.FormulaWork.Count(FormulaOpen) > 1)
                 return "ConnectedFormulaProfileMismatch";
