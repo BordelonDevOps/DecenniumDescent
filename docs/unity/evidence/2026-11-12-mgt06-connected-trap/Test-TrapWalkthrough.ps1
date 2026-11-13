@@ -84,7 +84,7 @@ function Assert-Console([object[]]$trace, [object[]]$responses) {
         $expected = $viewExpectation[$lastAction]
         Require ($null -eq $response.Response -and $response.Enabled -eq $true -and $view.Id -eq $trap) 'Expected an enabled Player trap view.'
         Require (@($response.Items | Where-Object {$_.Id -in $trap,$bait,'TEST_ONLY.river-fish'}).Count -eq 0 -and
-            @($response.Work | Where-Object {$_.Id -like 'fishing.trap.*' -or $_.Category -match 'Fishing|Trap'}).Count -eq 0) 'Generic items or work leaked trap state.'
+            @($response.Work | Where-Object {$_.Id -like 'fishing.trap.*' -or $_.Kind -match 'Fishing|Trap'}).Count -eq 0) 'Generic items or work leaked trap state.'
         if ($expected -eq 'Away') {
             Require ($view.ObservedLocally -eq $false -and $null -eq $view.CheckOutcome -and
                 $null -eq $view.PhysicalStatus -and $null -eq $view.CapturedCreatureId) 'An away view disclosed current trap state.'
