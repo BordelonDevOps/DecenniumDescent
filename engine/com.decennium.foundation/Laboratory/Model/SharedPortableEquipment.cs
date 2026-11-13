@@ -131,6 +131,9 @@ namespace Decennium.Foundation.Laboratory
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return "UnknownPortableItem";
+            bool vial = item.LinkKind == PortableLinkKind.AlchemyDose;
+            if (vial && (s.InventoryCombat || c.Actor != ConnectedVialRules.CarrierId || !transfer
+                || c.Inventory.Handling != HandlingKind.Pickup)) return "ConnectedVialHandlingUnsupported";
             bool installedCampStorageRoot=portableStorageFixture!=null
                 &&item.Id==TestOnlyExpeditionCampConstructionFixture.PackLotId
                 &&s.TemporaryCampInstallations.Any(x=>x.LotId==item.Id&&x.Kind==TemporaryCampFixtureKind.FittingPack);
@@ -236,7 +239,7 @@ namespace Decennium.Foundation.Laboratory
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
                 groundX:ground?(stationaryProfileAccess?projectedItem.GroundX:projected.Actors.Single(x=>x.Id==c.Actor).X):0,
                 groundY:ground?(stationaryProfileAccess?projectedItem.GroundY:projected.Actors.Single(x=>x.Id==c.Actor).Y):0,
-                heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?projectedItem.HeldHands:0);
+                heldHands:operation==PortableOperation.ShieldDoff||vial?1:after==PortablePlacement.Carried?projectedItem.HeldHands:0);
             SetPortable(projected,changed);
             if(operation==PortableOperation.ShieldDoff) {
                 var loadout=projected.InitialCharacterLoadouts.Single(x=>x.ActorId==c.Actor);
@@ -282,7 +285,7 @@ namespace Decennium.Foundation.Laboratory
                 parentId:newParent,placement:after,open:operation==PortableOperation.Open?true:operation==PortableOperation.Close?false:null,
                 groundX:ground?(stationaryProfileAccess?item.GroundX:s.Actors.Single(x=>x.Id==c.Actor).X):0,
                 groundY:ground?(stationaryProfileAccess?item.GroundY:s.Actors.Single(x=>x.Id==c.Actor).Y):0,
-                heldHands:operation==PortableOperation.ShieldDoff?1:after==PortablePlacement.Carried?item.HeldHands:0);
+                heldHands:operation==PortableOperation.ShieldDoff||vial?1:after==PortablePlacement.Carried?item.HeldHands:0);
             SetPortable(s,changed);
             if(operation==PortableOperation.ShieldDoff) {
                 var loadout=s.InitialCharacterLoadouts.Single(x=>x.ActorId==c.Actor);

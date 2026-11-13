@@ -61,7 +61,8 @@ namespace Decennium.Foundation
             || Disposition == ConnectedSpecimenDisposition.Consumed;
 
         public static bool IsSelected(Snapshot s)
-            => s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+            => s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+                || s.ContentFingerprint.StartsWith(ConnectedVialRules.FingerprintPrefix, StringComparison.Ordinal);
 
         public static bool OnBench(PortableEquipmentRecord item)
             => item.Placement == PortablePlacement.Ground && item.GroundX == BenchX && item.GroundY == BenchY;
@@ -138,7 +139,8 @@ namespace Decennium.Foundation
             var tool = s.Structures.SingleOrDefault(x => x.Id == s.BloodSpecimen.ToolId);
             if (s.AlchemyDoses.Any(x => order.Status != ManufacturingStatus.Complete || x.OrderId != order.Id
                 || x.RecipeId != RecipeId || x.MakerId != order.WorkerId || x.OwnerId != order.WorkerId
-                || x.CustodianId != order.WorkerId || x.CreatedAt != order.UpdatedAt || x.LocationId != tool?.LocationId))
+                || x.CreatedAt != order.UpdatedAt || x.Id != ConnectedVialRules.SelectedId(s)
+                    && (x.CustodianId != order.WorkerId || x.LocationId != tool?.LocationId)))
                 throw new ArgumentException("Connected batch output lacks its actual settlement and custody.");
         }
 

@@ -6,8 +6,8 @@ using System.Numerics;
 namespace Decennium.Foundation
 {
     public enum PortablePlacement { Carried, Worn, Contained, Attached, Ground }
-    public enum PortableLinkKind { None, InventoryLot, WaterVessel, SupplyEquipment }
-    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds, Unmodeled, CountedQuantity }
+    public enum PortableLinkKind { None, InventoryLot, WaterVessel, SupplyEquipment, AlchemyDose }
+    public enum PortableMassBasis { Fixed, FoodPounds, WaterPints, GenericPounds, Unmodeled, CountedQuantity, AlchemyDose }
     public enum PortableOperation { Pickup, Drop, Retrieve, Stow, Handover, Wear, Remove, Open, Close, ShieldDoff }
 
     /// <summary>One actual test-fixture item or quantity already tracked in another component.
@@ -35,7 +35,7 @@ namespace Decennium.Foundation
         public ReadOnlyCollection<string> FitMemberIds { get; }
         public int GroundX { get; }
         public int GroundY { get; }
-        /// <summary>Hands occupied while carried. Currently authored only for a held Soldier shield.</summary>
+        /// <summary>Hands occupied by the explicitly selected root-held equipment.</summary>
         public int HeldHands { get; }
 
         public PortableEquipmentRecord(string id,string profileId,string ownerId,string custodianId,string parentId,
@@ -63,8 +63,9 @@ namespace Decennium.Foundation
                 ||fitRuleId==null||(fitRuleId!=""&&!Validation.ValidId(fitRuleId))||members.Length>32
                 ||members.Any(x=>!Validation.ValidId(x)||x==id)||members.Distinct(StringComparer.Ordinal).Count()!=members.Length
                 ||((fitRuleId!="")!=(members.Length!=0))||open&&(capacityPounds==null)
-                ||heldHands<0||heldHands>2||heldHands>0&&(profileId!="armor-and-shields.shield"||placement!=PortablePlacement.Carried
-                    ||parentId!=""||!wearable)
+                ||(linkKind==PortableLinkKind.AlchemyDose)!=(massBasis==PortableMassBasis.AlchemyDose)
+                ||heldHands<0||heldHands>2||heldHands>0&&(placement!=PortablePlacement.Carried||parentId!=""
+                    ||(linkKind==PortableLinkKind.AlchemyDose?heldHands!=1:profileId!="armor-and-shields.shield"||!wearable))
                 ||(wearable&&placement!=PortablePlacement.Worn&&profileId!="adventuring-gear.backpack"&&profileId!="armor-and-shields.shield"))
                 throw new ArgumentException("Invalid portable equipment record.");
             Id=id;ProfileId=profileId;OwnerId=ownerId;CustodianId=custodianId;ParentId=parentId;Placement=placement;
@@ -350,6 +351,9 @@ namespace Decennium.Foundation
                             if(tool==null||tool.LocationId!=location||tool.CustodianId!=item.CustodianId||tool.OwnerId!=item.OwnerId||item.MassBasis!=PortableMassBasis.Fixed)
                                 throw new ArgumentException("Portable equipment link does not match its physical item.");
                             break;
+                        case PortableLinkKind.AlchemyDose:
+                            ConnectedVialRules.ValidateLink(s, item);
+                            break;
                     }
                 }
             }
@@ -442,6 +446,8 @@ namespace Decennium.Foundation
             return false;
         }
         public static RuleQuantity Mass(Snapshot s,PortableEquipmentRecord item) {
+            if(item.MassBasis==PortableMassBasis.AlchemyDose)
+                return s.AlchemyDoses.Single(x=>x.Id==item.LinkedId).MassPounds;
             if(item.MassBasis==PortableMassBasis.Fixed)return item.OperationalWeightLb.Value;
             if(item.MassBasis==PortableMassBasis.Unmodeled)throw new InvalidOperationException("Portable item mass is not modeled.");
             var lot=s.Work.Lots.Single(x=>x.Id==item.LinkedId);

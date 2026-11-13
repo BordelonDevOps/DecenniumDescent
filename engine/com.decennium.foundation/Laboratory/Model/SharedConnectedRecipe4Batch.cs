@@ -45,6 +45,7 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeConnectedRecipe4Batch(Snapshot s)
         {
             if (!connectedRecipe4Batch) return;
+            s.ConnectedCarriedVial = connectedCarriedVial;
             s.ConnectedBatch = ConnectedRecipe4Batch.Selected();
             s.PortableEquipment = s.PortableEquipment.Append(new PortableEquipmentRecord(
                 s.ConnectedBatch.ApparatusId, ConnectedRecipe4Batch.ApparatusProfile,
@@ -210,7 +211,8 @@ namespace Decennium.Foundation.Laboratory
             for (int i = 0; i < doseCount; i++) {
                 string id = order.Id + ".dose" + i.ToString(CultureInfo.InvariantCulture);
                 var dose = s.AlchemyDoses.SingleOrDefault(x => x.Id == id);
-                if (dose == null || dose.LocationId != SharedCraftingFixture.StationId || dose.MaximumHp != hp || dose.Hp != hp)
+                if (dose == null || id != ConnectedVialRules.SelectedId(s) && dose.LocationId != SharedCraftingFixture.StationId
+                    || dose.MaximumHp != hp || dose.Hp != hp)
                     return "ConnectedRecipe4OutputCustodyMismatch";
             }
             return null;

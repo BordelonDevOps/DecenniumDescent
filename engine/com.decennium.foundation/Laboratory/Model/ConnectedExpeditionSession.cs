@@ -77,6 +77,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithFishingTrap()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFishingTrap(ConnectedTrapProfile));
 
+        public static ConnectedExpeditionSession StartWithCarriedVial()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCarriedVial());
+
         private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())

@@ -80,6 +80,10 @@ namespace Decennium.Foundation
             UsedAt=used;UserId=user;RecipientId=recipient;FirstD4=first;SecondD4=second;PotentialHealing=potential;ActualHealing=actual;
         }
         public RuleQuantity MassPounds => new RuleQuantity(Spent?1:2,10);
+
+        public AlchemyDoseRecord WithPlacement(string custodian, string location)
+            => new AlchemyDoseRecord(Id, OrderId, RecipeId, MakerId, OwnerId, custodian, location, CreatedAt, MaximumHp, Hp,
+                UsedAt, UserId, RecipientId, FirstD4, SecondD4, PotentialHealing, ActualHealing);
     }
     public static class ManufacturingValidation
     {

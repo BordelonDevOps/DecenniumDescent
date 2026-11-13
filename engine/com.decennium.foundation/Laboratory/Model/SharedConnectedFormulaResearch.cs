@@ -92,7 +92,7 @@ namespace Decennium.Foundation.Laboratory
         private string ValidateConnectedFormulaResearch(Snapshot state)
         {
             if (!connectedFormulaResearch) return null;
-            if (connectedRecipe4Batch != (state.ConnectedBatch != null)
+            if (connectedRecipe4Batch != (state.ConnectedBatch != null) || connectedCarriedVial != state.ConnectedCarriedVial
                 || !connectedRecipe4Batch && (state.ManufacturingOrders.Length != 0 || state.AlchemyDoses.Length != 0
                     || state.ManufacturingAdvance != null) || state.FormulaWork.Count(FormulaOpen) > 1)
                 return "ConnectedFormulaProfileMismatch";

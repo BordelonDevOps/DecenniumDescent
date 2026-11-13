@@ -423,6 +423,12 @@ namespace Decennium.Foundation.Laboratory
             foreach (var item in state.PortableEquipment.Where(x => grant.MayUseInventory(x.OwnerId)
                 && grant.Controls(x.CustodianId))) {
                 if (IsSelectedTrapInventory(state, item.Id) || IsSelectedTrapInventory(state, item.LinkedId)) continue;
+                if (item.LinkKind == PortableLinkKind.AlchemyDose) {
+                    var linkedDose = state.AlchemyDoses.Single(x => x.Id == item.LinkedId);
+                    yield return new ExpeditionOwnedItem(item.Id, item.OwnerId,
+                        linkedDose.Spent ? default(RuleQuantity) : new RuleQuantity(1), item.Placement.ToString());
+                    continue;
+                }
                 var lot = state.InventoryLots.FirstOrDefault(x => x.LotId == item.LinkedId && grant.MayUseInventory(x.OwnerId));
                 if (lot != null && state.Work.Lots.Any(x => x.Id == lot.LotId && InSelectedCache(x))) continue;
                 yield return new ExpeditionOwnedItem(item.Id, item.OwnerId, lot == null ? (RuleQuantity?)null
@@ -438,7 +444,7 @@ namespace Decennium.Foundation.Laboratory
                         lot.Access.ToString());
             }
             foreach (var dose in state.AlchemyDoses.Where(x => grant.MayUseInventory(x.OwnerId)
-                && grant.Controls(x.CustodianId) && !x.Spent))
+                && grant.Controls(x.CustodianId) && !x.Spent && x.Id != ConnectedVialRules.SelectedId(state)))
                 yield return new ExpeditionOwnedItem(dose.Id, dose.OwnerId, new RuleQuantity(1), "Dose");
         }
 

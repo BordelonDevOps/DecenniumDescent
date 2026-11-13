@@ -1,11 +1,13 @@
 param(
     [string]$AssemblyRoot,
     [string]$InputPath,
-    [switch]$FishingTrap
+    [switch]$FishingTrap,
+    [switch]$CarriedVial
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
+if ($FishingTrap -and $CarriedVial) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -17,6 +19,8 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
 
 $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
+} elseif ($CarriedVial) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
 } else {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
@@ -117,6 +121,9 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         [Console]::WriteLine('Use Observation for the hero Hide start and companion Search start. Search takes candidate x/y. To cancel, target the actor''s pending attempt with CancelExplorationHide or CancelExplorationSearch.')
         if ($FishingTrap) {
             [Console]::WriteLine('Use FishingTrap for the companion''s site and receiver. Interact x=1 sets it. Interact x=6 retrieves it with inventory numerator=0, handling=Retrieve and the displayed receiver as destination.')
+        }
+        if ($CarriedVial) {
+            [Console]::WriteLine('Use the Player item view for the produced vial. Pick it up with HandlePortableEquipment when in reach, then use UseAlchemyDose on the hero''s regular turn.')
         }
         [Console]::WriteLine('Files: {"op":"save","path":"expedition.ddsave"}. Use "load" to restore and "recover" to validate and recover the backup.')
     } elseif (-not [string]::IsNullOrWhiteSpace($line)) {

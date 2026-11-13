@@ -18,10 +18,13 @@ namespace Decennium.Foundation.Laboratory
 
         bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
 
+        private int VerifiedExpeditionWireSchema => connectedCarriedVial
+            ? Snapshot.ConnectedCarriedVialSchema : Snapshot.ConnectedRecipe4BatchSchema;
+
         Func<VerifiedSimulationOrigin, IVerifiedCommandCheckpoint> IVerifiedSimulationConstruction.ValidateForConstruction(Snapshot state)
         {
             if (!verifiedPlanningPassage || !initializationStarted || state?.TestOnly != true
-                || state.ContentFingerprint != ContentFingerprint || state.WireSchemaVersion != Snapshot.ConnectedRecipe4BatchSchema)
+                || state.ContentFingerprint != ContentFingerprint || state.WireSchemaVersion != VerifiedExpeditionWireSchema)
                 throw new ArgumentException("Verified construction is unavailable for this selected content.");
             var known = new PlanningPassage(ContentFingerprint, nextCharterPlanProfile.Terms.BindingKey);
             byte[] canonical = null;
@@ -42,7 +45,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var state = origin?.Capture();
             if (!connectedRecipe4Batch || !initializationStarted || state?.TestOnly != true
-                || state.ContentFingerprint != ContentFingerprint || state.WireSchemaVersion != Snapshot.ConnectedRecipe4BatchSchema)
+                || state.ContentFingerprint != ContentFingerprint || state.WireSchemaVersion != VerifiedExpeditionWireSchema)
                 return null;
             var codec = new SnapshotCodec();
             byte[] canonical = codec.Encode(state);
@@ -144,7 +147,7 @@ namespace Decennium.Foundation.Laboratory
             private string VerifyOwner(VerifiedSimulationOrigin origin, Snapshot predecessor)
                 => !ReferenceEquals(owner, origin) || policy.ContentFingerprint != fingerprint
                     || predecessor.Revision != revision || predecessor.ContentFingerprint != fingerprint
-                    || !predecessor.TestOnly || predecessor.WireSchemaVersion != Snapshot.ConnectedRecipe4BatchSchema
+                    || !predecessor.TestOnly || predecessor.WireSchemaVersion != policy.VerifiedExpeditionWireSchema
                     || passage.HasValue && !passage.Value.Covers(predecessor, policy.nextCharterPlanProfile.Terms, revision)
                     ? "InvalidVerifiedPrefixOwner" : null;
 

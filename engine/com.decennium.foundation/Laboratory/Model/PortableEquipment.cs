@@ -96,6 +96,7 @@ namespace Decennium.Foundation.Laboratory
             var burden=modeled.Select(x=>{
                 if(x.MassBasis==PortableMassBasis.Unmodeled)return new BurdenItem(x.Id,x.ParentId==""?null:x.ParentId,null,null);
                 var mass=PortableEquipmentValidation.Mass(s,x);
+                if (x.MassBasis == PortableMassBasis.AlchemyDose) return new BurdenItem(x.Id, null, mass, null);
                 // A missing source weight is retained as null; only its approved operational
                 // Load fallback supplies estimated pounds for routine carrying.
                 RuleQuantity? pounds=x.SourceWeightLb.HasValue?mass:(RuleQuantity?)null;
@@ -258,6 +259,8 @@ namespace Decennium.Foundation.Laboratory
                     var vessel=vessels[item.LinkedId];vessels[item.LinkedId]=new WaterVesselRecord(vessel.Id,vessel.Profile,vessel.OwnerId,location,item.CustodianId);
                 } else if(item.LinkKind==PortableLinkKind.SupplyEquipment) {
                     var tool=tools[item.LinkedId];tools[item.LinkedId]=new SupplyCacheEquipmentRecord(tool.Id,tool.Kind,tool.OwnerId,location,item.CustodianId);
+                } else if (item.LinkKind == PortableLinkKind.AlchemyDose) {
+                    TestOnlySharedWorldPolicy.SynchronizeConnectedVial(s, item);
                 }
             }
             s.Work=new WorkLedger(s.Work.Lots.Select(x=>lots[x.Id]),s.Work.WorkerIntervals,s.Work.Reservations);

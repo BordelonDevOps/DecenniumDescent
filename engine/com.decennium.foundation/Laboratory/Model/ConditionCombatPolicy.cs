@@ -64,6 +64,7 @@ namespace Decennium.Foundation.Laboratory
         private static void DropConditionEquipment(Snapshot s, string actor)
         {
             var body = s.Actors.Single(x => x.Id == actor);
+            TestOnlySharedWorldPolicy.DropConnectedVial(s, body);
             s.Clubs = s.Clubs.Select(x => x.HeldBy == actor ? new ClubInstance(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, "", body.X, body.Y) : x).ToArray();
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.HeldBy==actor?x.DropAt(body.X,body.Y):x).ToArray();
         }

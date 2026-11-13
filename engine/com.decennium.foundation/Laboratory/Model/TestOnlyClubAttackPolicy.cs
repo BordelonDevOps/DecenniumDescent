@@ -341,6 +341,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if(dropEquipment) {
                 var a=s.Actors.Single(x=>x.Id==before.ActorId);
+                TestOnlySharedWorldPolicy.DropConnectedVial(s, a);
                 s.Clubs=s.Clubs.Select(w=>w.HeldBy==a.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,"",a.X,a.Y):w).ToArray();
                 s.RepeatingCrossbows=s.RepeatingCrossbows.Select(w=>w.HeldBy==a.Id?w.DropAt(a.X,a.Y):w).ToArray();
             }
