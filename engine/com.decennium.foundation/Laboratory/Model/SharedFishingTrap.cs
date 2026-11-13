@@ -88,6 +88,20 @@ namespace Decennium.Foundation.Laboratory
 
     public sealed partial class TestOnlySharedWorldPolicy
     {
+        private bool connectedFishingTrap;
+
+        internal TestOnlySharedWorldPolicy EnableConnectedFishingTrap(SharedFishingTrapFixture profile)
+        {
+            if (initializationStarted || !connectedRecipe4Batch || fishingTrapProfiles.Length != 0)
+                throw new InvalidOperationException("Select the connected Fishing Trap before starting the recipe-4 expedition.");
+            connectedFishingTrap = true;
+            fishingTrapProfiles = new[] { profile };
+            ContentFingerprint = ConnectedRecipe4Batch.FingerprintPrefix + RetreatHash(string.Join("|",
+                ContentFingerprint, profile.Key,
+                "connected-fishing-trap-v1|source=46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4|shared-wisdom|local-resume"));
+            return this;
+        }
+
         private static string FishingTrapFingerprint(string prior,SharedFishingTrapFixture fixture)
         {
             using(var sha=SHA256.Create())return "TEST_ONLY.fishing-trap-v1-"+string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(prior+"|"+fixture.Key)).Select(x=>x.ToString("x2",CultureInfo.InvariantCulture)));
@@ -135,7 +149,8 @@ namespace Decennium.Foundation.Laboratory
             }
             // Snapshot schema is cumulative: schema35 also requires the shared Bonus Action
             // ledger introduced at schema24, even though this fixture does not grant Soldier features.
-            s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
+            if(!connectedFishingTrap)
+                s.BonusActions=s.WorldIntervals.Select(x=>new ActorBonusActionRecord(x.ActorId,checked((int)x.LastStart))).ToArray();
             var skills=fishingTrapProfiles.GroupBy(x=>x.SetterId,StringComparer.Ordinal)
                 .Select(g=>new SkillTrainingRecord(g.Key,"fishing-tackle",g.First().ProficiencyRank)).ToArray();
             s.SkillTraining=s.SkillTraining.Where(x=>x.SkillId!="fishing-tackle").Concat(skills).ToArray();
@@ -196,7 +211,7 @@ namespace Decennium.Foundation.Laboratory
                 profile.RecoveryPathFeet)).ToArray();
             // The physical Trap witness includes a second capable recovery worker with two free
             // hands. Keep its supplied Club on the ground so retrieval does not waive grip rules.
-            var alternateClub=s.Clubs.SingleOrDefault(x=>x.Id==AdditionalTacticalActor.ClubId&&x.HeldBy==AdditionalTacticalActor.Id);
+            var alternateClub=connectedFishingTrap?null:s.Clubs.SingleOrDefault(x=>x.Id==AdditionalTacticalActor.ClubId&&x.HeldBy==AdditionalTacticalActor.Id);
             if(alternateClub!=null) {
                 s.Clubs=s.Clubs.Select(x=>x.Id==alternateClub.Id?new ClubInstance(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,"",x.CellX,x.CellY):x).ToArray();
                 s.Lives=s.Lives.Select(l=>l.ActorId==AdditionalTacticalActor.Id
@@ -340,6 +355,7 @@ namespace Decennium.Foundation.Laboratory
                 if(current.Status!=FishingTrapAttemptStatus.Paused)return "FishingTrapNotPaused";
                 if(!FishingTrapWorkerCanContinue(s,c.Actor))return "FishingTrapSetterUnavailable";
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+                if(!FishingSetupResumeInReach(s,c,profile))return "FishingTrapOutOfReach";
                 return null;
             }
             if(operation==FishingTrapInteraction.Abandon) {
@@ -372,11 +388,13 @@ namespace Decennium.Foundation.Laboratory
             =>s.FishingTrapRetrievals=s.FishingTrapRetrievals.Select(x=>x.Id==value.Id?value:x).ToArray();
         private static void PutFishingStructure(Snapshot s,ObjectStructureRecord value)
             =>s.Structures=s.Structures.Select(x=>x.Id==value.Id?value:x).ToArray();
-        private static bool FishingAccessFrom(Snapshot s,string actor,int x,int y)
+        internal static bool FishingAccessFrom(Snapshot s,string actor,int x,int y)
         {
             var body=s.Actors.SingleOrDefault(a=>a.Id==actor);
             return body!=null&&Math.Abs((long)body.X-x)+Math.Abs((long)body.Y-y)<=1;
         }
+        private bool FishingSetupResumeInReach(Snapshot s,Command c,SharedFishingTrapFixture profile)
+            => !connectedFishingTrap || FishingAccessFrom(s,c.Actor,profile.TrapX,profile.TrapY);
         private bool FishingTrapWorkerCanContinue(Snapshot s,string worker)
             =>CapableWorker(s,worker)&&AvailableHands(s,worker)>=2&&!s.WorldTraversals.Any(x=>x.ActorId==worker)
                 &&!(s.InventoryCombat&&s.WorldSchedule.Order.Contains(worker));
@@ -431,7 +449,7 @@ namespace Decennium.Foundation.Laboratory
                 // Earlier profiles retain their historical INT calculation and fingerprint so
                 // existing snapshots continue to replay under their original behavior.
                 var check=AbilityCheckRules.Derive(s,attempt.SetterId,"fishing-tackle",
-                    fishingTrapResponsibilityHandoverEnabled?CharacterAbility.Wisdom:CharacterAbility.Intelligence);
+                    fishingTrapResponsibilityHandoverEnabled || connectedFishingTrap ? CharacterAbility.Wisdom : CharacterAbility.Intelligence);
                 RuleTime due=fishingTrapLegacy?s.RuleClock.AddSeconds(3000):attempt.CheckDueAt.Value;
                 bool responseAvailable=true;
                 // This witnessed dry-set sequence exposes its reserved bait when setup completes.
@@ -466,7 +484,7 @@ namespace Decennium.Foundation.Laboratory
             var q=new RuleQuantity(a.Numerator,a.Denominator)+new RuleQuantity(b.Numerator,b.Denominator);
             return new RuleTime(q.Numerator,q.Denominator);
         }
-        private static long FishingTrapCommandSequence(FishingTrapAttemptRecord attempt)
+        internal static long FishingTrapCommandSequence(FishingTrapAttemptRecord attempt)
         {
             const string prefix="fishing.trap.";
             if(!attempt.Id.StartsWith(prefix,StringComparison.Ordinal)
@@ -729,6 +747,7 @@ namespace Decennium.Foundation.Laboratory
                 if(current.Status!=FishingTrapAttemptStatus.Paused)return "FishingTrapNotPaused";
                 if(!FishingTrapWorkerCanContinue(s,c.Actor))return "FishingTrapSetterUnavailable";
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+                if(!FishingSetupResumeInReach(s,c,profile))return "FishingTrapOutOfReach";
                 RuleTime remaining=RuleTime.FromFraction((System.Numerics.BigInteger)300*current.SetupLabor.Denominator-current.SetupLabor.Numerator,
                     current.SetupLabor.Denominator);
                 var interval=new WorkerInterval(current.Id+".setup."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),current.Id,c.Actor,

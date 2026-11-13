@@ -72,7 +72,12 @@ namespace Decennium.Foundation.Laboratory
             Adopt(Validate(policy.Initial()));
         }
 
-        public static ConnectedExpeditionSession Start() => new ConnectedExpeditionSession(
+        public static ConnectedExpeditionSession Start() => new ConnectedExpeditionSession(ExpeditionPolicy());
+
+        public static ConnectedExpeditionSession StartWithFishingTrap()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFishingTrap(ConnectedTrapProfile));
+
+        private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>
             new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),
                 new SupplyCacheFixture())
                 .EnableMining(new SharedMiningFixture())
@@ -92,7 +97,7 @@ namespace Decennium.Foundation.Laboratory
                 .EnableConnectedExplorationObservation()
                 .EnableConnectedFormulaResearch()
                 .EnableConnectedBloodSpecimen()
-                .EnableConnectedRecipe4Batch());
+                .EnableConnectedRecipe4Batch();
 
         private Simulation Validate(Snapshot state)
             => new Simulation(policy, state, ExecutionProfile.Laboratory, CommandVerification.VerifiedPrefix);
@@ -272,7 +277,11 @@ namespace Decennium.Foundation.Laboratory
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
                 return command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Interact)
-                return command.Y == 0 && command.Combat == null && command.Inventory == null && command.MiningSelection == null;
+                return command.Y == 0 && command.Combat == null && command.MiningSelection == null
+                    && (command.Target == SharedFishingTrapFixture.TrapId && command.X == (int)FishingTrapInteraction.Retrieve
+                        ? command.Inventory != null && command.Inventory.Amount == default
+                            && command.Inventory.Handling == HandlingKind.Retrieve
+                        : command.Inventory == null);
             if (command.Kind == CommandKind.HandleInventory)
                 return command.X == 0 && command.Y == 0 && command.Combat == null && command.MiningSelection == null
                     && command.Inventory?.Destination == "";
@@ -330,6 +339,39 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool InSelectedCache(ResourceLot lot) => lot.LocationId == SupplyCacheFixture.CacheId;
 
+        private static bool IsSelectedTrapInventory(Snapshot state, string id)
+            => state.FishingTraps.Length != 0
+                && (id == SharedFishingTrapFixture.TrapId || id == SharedFishingTrapFixture.BaitLotId);
+
+        private static bool KnownTrapInteraction(Snapshot state, Command command)
+        {
+            if (command.Actor != Companion || command.Target != SharedFishingTrapFixture.TrapId
+                || state.FishingTraps.Length == 0) return false;
+            var operation = (FishingTrapInteraction)command.X;
+            switch (operation) {
+                case FishingTrapInteraction.Set:
+                case FishingTrapInteraction.Resume:
+                case FishingTrapInteraction.Pause:
+                case FishingTrapInteraction.Cancel:
+                case FishingTrapInteraction.PauseRetrieval:
+                case FishingTrapInteraction.ResumeRetrieval:
+                    return true;
+                case FishingTrapInteraction.Retrieve:
+                    return command.Inventory?.Destination == ConnectedTrapProfile.ReceiverIdentity
+                        && CanObserveTrap(state, ConnectedTrapProfile.TrapX, ConnectedTrapProfile.TrapY);
+                default:
+                    return false;
+            }
+        }
+
+        internal static readonly SharedFishingTrapFixture ConnectedTrapProfile = new SharedFishingTrapFixture();
+
+        private static bool CanObserveTrap(Snapshot state, int x, int y)
+            => !state.InventoryCombat && !state.WorldTraversals.Any(edge => edge.ActorId == Companion)
+                && TestOnlyClubAttackPolicy.Aware(state, Companion)
+                && !TestOnlyClubAttackPolicy.ConditionsFor(state, Companion).View().BlocksSight
+                && TestOnlySharedWorldPolicy.FishingAccessFrom(state, Companion, x, y);
+
         private static RuleQuantity AvailableCacheRations(Snapshot state, SupplyCacheRecord cache)
         {
             if (cache?.Open != true || !state.Work.Lots.Any(x => x.Id == cache.RationLotId && InSelectedCache(x)
@@ -377,9 +419,12 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.HandlePortableEquipment:
                 case CommandKind.OpenPortableContainer:
                 case CommandKind.ClosePortableContainer:
-                    return state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId)
+                    return !IsSelectedTrapInventory(state, target)
+                        && state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId)
                         && !state.Work.Lots.Any(lot => lot.Id == x.LinkedId && InSelectedCache(lot)));
                 case CommandKind.Interact:
+                    if (target == SharedFishingTrapFixture.TrapId)
+                        return seat == ExpeditionSeat.Player && KnownTrapInteraction(state, command);
                     var operation = (SupplyCacheInteraction)command.X;
                     return actor == Hero && target == SupplyCacheFixture.CacheId && ReachableCache(state) != null
                         && (operation == SupplyCacheInteraction.PickWithTools || operation == SupplyCacheInteraction.Open
@@ -390,7 +435,8 @@ namespace Decennium.Foundation.Laboratory
                         && cache?.RationLotId == target && AvailableCacheRations(state, cache) > default(RuleQuantity);
                 case CommandKind.PortionInventory:
                 case CommandKind.StartIntake:
-                    return state.InventoryLots.Any(x => x.LotId == target && KnownInventory(x.OwnerId))
+                    return !IsSelectedTrapInventory(state, target)
+                        && state.InventoryLots.Any(x => x.LotId == target && KnownInventory(x.OwnerId))
                         && state.Work.Lots.Any(x => x.Id == target && KnownInventory(x.CustodianId) && !InSelectedCache(x));
                 case CommandKind.InterruptIntake:
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);

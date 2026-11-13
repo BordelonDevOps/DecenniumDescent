@@ -185,8 +185,9 @@ namespace Decennium.Foundation.Laboratory
             InitializeResearchStation(s);
             InitializeManufacturing(s);
             InitializeSupplyCache(s);
-            InitializeFishingTrap(s);
+            if (!connectedFishingTrap) InitializeFishingTrap(s);
             InitializePortableEquipment(s);
+            if (connectedFishingTrap) InitializeFishingTrap(s);
             InitializeBuriedCache(s);
             InitializeOrdinaryReceptacles(s);
             InitializeHuntingTrapDevices(s);

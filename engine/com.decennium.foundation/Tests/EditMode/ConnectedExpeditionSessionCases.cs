@@ -11,6 +11,84 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("mgt06_session_trap_profile_restore_and_remote_resume", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string companion = ConnectedExpeditionSession.Companion;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string trap = SharedFishingTrapFixture.TrapId;
+                var session = ConnectedExpeditionSession.StartWithFishingTrap();
+                var original = ConnectedExpeditionSession.Start();
+                var store = new FileSaveStore();
+                string baseline = Path.Combine(directory, "mgt06-default.ddsave");
+                string selected = Path.Combine(directory, "mgt06-opt-in.ddsave");
+                original.Save(baseline);
+                session.Save(selected);
+                var before = store.Load(baseline);
+                var after = store.Load(selected);
+                Require(before.WireSchemaVersion == after.WireSchemaVersion && before.ContentFingerprint != after.ContentFingerprint
+                    && after.FishingTraps.Single().TrapId == trap
+                    && after.PortableEquipment.Select(x => x.Id).Where(x => x != trap)
+                        .SequenceEqual(before.PortableEquipment.Select(x => x.Id))
+                    && before.Clubs.Select(x => x.Id + ":" + x.HeldBy).SequenceEqual(after.Clubs.Select(x => x.Id + ":" + x.HeldBy))
+                    && before.BonusActions.Select(x => x.ActorId).SequenceEqual(after.BonusActions.Select(x => x.ActorId))
+                    && after.SkillTraining.Count(x => x.SkillId == "fishing-tackle" && x.ActorId == companion) == 1,
+                    "The separate wire-compatible profile must preserve existing equipment and ledgers.");
+                foreach (var pair in new[] { (Session: session, Path: baseline), (Session: original, Path: selected) }) {
+                    bool rejected = false;
+                    try { pair.Session.Restore(pair.Path); }
+                    catch (ArgumentException) { rejected = true; }
+                    Require(rejected && pair.Session.View(player).Revision == 0, "Wrong-profile restore must be atomic.");
+                }
+                Command Interact(string id, long revision, FishingTrapInteraction operation)
+                    => new Command(id, companion, revision, CommandKind.Interact, trap, (int)operation);
+                var start = Interact("trap.test.set", 0, FishingTrapInteraction.Set);
+                // An isolated resolver probe gives WIS and INT different values without changing the playable profile.
+                var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                    .GetField("policy", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(session);
+                var probe = after.Copy();
+                var character = probe.Characters.Single(x => x.ActorId == companion);
+                int[] abilities = character.Abilities.ToArray();
+                abilities[(int)CharacterAbility.Wisdom] = 16;
+                abilities[(int)CharacterAbility.Intelligence] = 8;
+                probe.Characters = probe.Characters.Select(x => x.ActorId == companion
+                    ? new ActorCharacterRecord(x.ActorId, x.ProfileId, abilities, x.Levels) : x).ToArray();
+                Require(policy.Resolve(probe, start) == null, "The isolated Wisdom probe must book real setup.");
+                probe.Revision = 1;
+                Require(policy.Resolve(probe, new Command("trap.test.wisdom", hero, 1, CommandKind.AdvanceClock, x: 300, y: 1)) == null
+                    && probe.FishingTrapAttempts.Single().WisdomModifier == 3
+                    && probe.FishingTrapAttempts.Single().ProficiencyBonus == 2,
+                    "The opted-in resolver must capture Wisdom and one proficiency contribution at completed setup.");
+                Require(session.View(ExpeditionSeat.FirstOpponent).FishingTrap == null
+                    && session.Submit(ExpeditionSeat.FirstOpponent, start).Response == ExpeditionResponse.NotAuthorized
+                    && session.Submit(player, start).Response == ExpeditionResponse.Committed, "Setup must use the ordinary companion grant.");
+                Require(session.SubmitSessionCommand(new Command("trap.test.labor", hero, 1, CommandKind.AdvanceClock, x: 1, y: 2))
+                        .Response == ExpeditionResponse.Committed
+                    && session.Submit(player, Interact("trap.test.pause", 2, FishingTrapInteraction.Pause))
+                        .Response == ExpeditionResponse.Committed, "Setup work must pause with exact labor.");
+                Require(session.Submit(player, new Command("trap.test.depart", companion, 3, CommandKind.BeginWorldStep, "walk", x: 1))
+                        .Response == ExpeditionResponse.Committed
+                    && session.SubmitSessionCommand(new Command("trap.test.walk", hero, 4, CommandKind.AdvanceClock, x: 6, y: 1))
+                        .Response == ExpeditionResponse.Committed, "Paused setter must be able to leave the site.");
+                string remote = Path.Combine(directory, "mgt06-remote.ddsave");
+                session.Save(remote);
+                session.Restore(remote);
+                var view = session.View(player);
+                Require(!view.FishingTrap.ObservedLocally && view.FishingTrap.PhysicalStatus == null
+                    && view.FishingTrap.CheckOutcome == null && view.FishingTrap.SetupLabor == new RuleTime(1, 2)
+                    && view.FishingTrap.ScheduledCheckAt == new RuleTime(3300)
+                    && view.Items.All(x => x.Id != trap && x.Id != SharedFishingTrapFixture.BaitLotId)
+                    && session.Submit(player, Interact("trap.test.remote.resume", 5, FishingTrapInteraction.Resume))
+                        .Response == ExpeditionResponse.Unavailable
+                    && session.Submit(player, start).Response == ExpeditionResponse.Duplicate
+                    && session.View(player).Revision == 5, "A fresh remote Resume and exact receipt retry must differ.");
+                session.Save(remote);
+                File.WriteAllBytes(remote, new byte[] { 1, 2, 3 });
+                session.RecoverBackup(remote);
+                Require(session.View(player).FishingTrap.SetupLabor == new RuleTime(1, 2),
+                    "Explicit recovery must keep the selected profile and paid work.");
+            });
+
             cases.Add("exp05_session_exact_local_traversal_restore", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

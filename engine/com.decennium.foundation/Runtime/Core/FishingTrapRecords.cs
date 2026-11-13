@@ -162,7 +162,7 @@ namespace Decennium.Foundation
                     ||!Validation.ValidId(committedByAttemptId)||!committedAt.HasValue))
                 ||lastReleasedAttemptId!=""!=lastReleasedAt.HasValue
                 ||reservedAt.HasValue&&committedAt.HasValue&&committedAt.Value<reservedAt.Value
-                ||reservedAt.HasValue&&lastReleasedAt.HasValue&&lastReleasedAt.Value<reservedAt.Value)
+                ||reservedAt.HasValue&&lastReleasedAt.HasValue&&lastReleasedAt.Value>reservedAt.Value)
                 throw new ArgumentException("Invalid fishing-opportunity reservation state.");
             Id=id;SiteId=siteId;StockVersionId=stockVersionId;CandidateCreatureId=candidateCreatureId;Status=status;
             ReservedByAttemptId=reservedByAttemptId;ReservedAt=reservedAt;CommittedByAttemptId=committedByAttemptId;
@@ -547,6 +547,13 @@ namespace Decennium.Foundation
             foreach(var opportunity in s.FishingOpportunities) {
                 var creature=s.FishingCreatures.SingleOrDefault(x=>x.Id==opportunity.CandidateCreatureId);
                 if(creature==null||creature.SiteId!=opportunity.SiteId)throw new ArgumentException("Fishing opportunity has no physical stock member.");
+                if(opportunity.LastReleasedAt.HasValue) {
+                    var released=s.FishingTrapAttempts.SingleOrDefault(x=>x.Id==opportunity.LastReleasedAttemptId);
+                    if(released==null||released.OpportunityId!=opportunity.Id||released.OpportunityCommitted
+                        ||released.Status!=FishingTrapAttemptStatus.Cancelled&&released.Status!=FishingTrapAttemptStatus.CheckMissed
+                        ||opportunity.LastReleasedAt.Value<released.StartedAt||opportunity.LastReleasedAt.Value>s.RuleClock)
+                        throw new ArgumentException("Fishing opportunity release has no uncommitted historical attempt.");
+                }
                 if(opportunity.Status==FishingOpportunityStatus.Available&&opportunity.ReservedByAttemptId!="")
                     throw new ArgumentException("Available fishing opportunity remains reserved.");
                 if(opportunity.Status==FishingOpportunityStatus.Reserved) {

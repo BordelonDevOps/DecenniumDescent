@@ -155,13 +155,14 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionCacheView Cache { get; }
         public ExpeditionObservationView Observation { get; }
         public ExpeditionMiningSiteView MiningSite { get; }
+        public ExpeditionFishingTrapView FishingTrap { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
             long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
-            ExpeditionMiningSiteView miningSite = null)
+            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -181,6 +182,55 @@ namespace Decennium.Foundation.Laboratory
             Cache = cache;
             Observation = observation;
             MiningSite = miningSite;
+            FishingTrap = fishingTrap;
+        }
+    }
+
+    public sealed class ExpeditionFishingTrapView
+    {
+        public string Id { get; }
+        public string SiteId { get; }
+        public int SiteX { get; }
+        public int SiteY { get; }
+        public string ReceiverId { get; }
+        public int ReceiverX { get; }
+        public int ReceiverY { get; }
+        public string WorkerId { get; }
+        public string AttemptId { get; }
+        public RuleTime? SetupLabor { get; }
+        public RuleTime? DeployedAt { get; }
+        public RuleTime? ScheduledCheckAt { get; }
+        public FishingTrapAttemptStatus? SetupStatus { get; }
+        public RuleTime? RetrievalLabor { get; }
+        public FishingTrapRetrievalStatus? RetrievalStatus { get; }
+        public bool ObservedLocally { get; }
+        public FishingTrapPhysicalStatus? PhysicalStatus { get; }
+        public FishingTrapCheckOutcome? CheckOutcome { get; }
+        public string CapturedCreatureId { get; }
+
+        internal ExpeditionFishingTrapView(FishingTrapPhysicalRecord trap, FishingReceiveLocationRecord receiver,
+            FishingTrapAttemptRecord attempt, FishingTrapRetrievalRecord retrieval, bool observed)
+        {
+            Id = trap.TrapId;
+            SiteId = trap.SiteId;
+            SiteX = ConnectedExpeditionSession.ConnectedTrapProfile.TrapX;
+            SiteY = ConnectedExpeditionSession.ConnectedTrapProfile.TrapY;
+            ReceiverId = receiver.Id;
+            ReceiverX = receiver.X; ReceiverY = receiver.Y;
+            WorkerId = ConnectedExpeditionSession.Companion;
+            AttemptId = attempt?.Id;
+            SetupLabor = attempt?.SetupLabor;
+            DeployedAt = attempt?.SetupCompletedAt;
+            ScheduledCheckAt = attempt?.CheckDueAt;
+            if (attempt?.Status == FishingTrapAttemptStatus.SettingUp || attempt?.Status == FishingTrapAttemptStatus.Paused
+                || attempt?.Status == FishingTrapAttemptStatus.Cancelled)
+                SetupStatus = attempt.Status;
+            RetrievalLabor = retrieval?.WorkDone;
+            RetrievalStatus = retrieval?.Status;
+            ObservedLocally = observed;
+            PhysicalStatus = observed ? trap.Status : (FishingTrapPhysicalStatus?)null;
+            CheckOutcome = observed ? attempt?.CheckOutcome : null;
+            CapturedCreatureId = observed && attempt?.CapturedCreatureId != "" ? attempt?.CapturedCreatureId : null;
         }
     }
 
@@ -312,8 +362,22 @@ namespace Decennium.Foundation.Laboratory
                     player ? KnownServices : NoKnownTargets,
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
                     player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
-                    player ? ProjectMiningSite(state, grant) : null);
+                    player ? ProjectMiningSite(state, grant) : null,
+                    player ? ProjectFishingTrap(state, grant) : null);
             }
+        }
+
+        private static ExpeditionFishingTrapView ProjectFishingTrap(Snapshot state, Authority grant)
+        {
+            if (!grant.Controls(Companion) || !grant.MayUseInventory(Companion)) return null;
+            var trap = state.FishingTraps.SingleOrDefault(x => x.TrapId == SharedFishingTrapFixture.TrapId);
+            if (trap == null) return null;
+            var receiver = state.FishingReceiveLocations.Single(x => x.Id == ConnectedTrapProfile.ReceiverIdentity);
+            var attempt = state.FishingTrapAttempts.Where(x => x.TrapId == trap.TrapId && x.SetterId == Companion)
+                .OrderByDescending(TestOnlySharedWorldPolicy.FishingTrapCommandSequence).FirstOrDefault();
+            var retrieval = state.FishingTrapRetrievals.SingleOrDefault(x => x.AttemptId == attempt?.Id && x.WorkerId == Companion);
+            bool observed = CanObserveTrap(state, trap.X, trap.Y);
+            return new ExpeditionFishingTrapView(trap, receiver, attempt, retrieval, observed);
         }
 
         private static ExpeditionMiningSiteView ProjectMiningSite(Snapshot state, Authority grant)
@@ -358,6 +422,7 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach (var item in state.PortableEquipment.Where(x => grant.MayUseInventory(x.OwnerId)
                 && grant.Controls(x.CustodianId))) {
+                if (IsSelectedTrapInventory(state, item.Id) || IsSelectedTrapInventory(state, item.LinkedId)) continue;
                 var lot = state.InventoryLots.FirstOrDefault(x => x.LotId == item.LinkedId && grant.MayUseInventory(x.OwnerId));
                 if (lot != null && state.Work.Lots.Any(x => x.Id == lot.LotId && InSelectedCache(x))) continue;
                 yield return new ExpeditionOwnedItem(item.Id, item.OwnerId, lot == null ? (RuleQuantity?)null
@@ -366,6 +431,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var item in state.Clubs.Where(x => grant.MayUseInventory(x.OwnerId) && grant.Controls(x.CustodianId)))
                 yield return new ExpeditionOwnedItem(item.Id, item.OwnerId, null, item.HeldBy == "" ? "Ground" : "Held");
             foreach (var lot in state.InventoryLots.Where(x => grant.MayUseInventory(x.OwnerId)
+                && !IsSelectedTrapInventory(state, x.LotId)
                 && !state.PortableEquipment.Any(i => i.Id == x.LotId || i.LinkedId == x.LotId))) {
                 if (state.Work.Lots.Any(x => x.Id == lot.LotId && grant.Controls(x.CustodianId) && !InSelectedCache(x)))
                     yield return new ExpeditionOwnedItem(lot.LotId, lot.OwnerId, state.Work.AvailableAmount(lot.LotId),
