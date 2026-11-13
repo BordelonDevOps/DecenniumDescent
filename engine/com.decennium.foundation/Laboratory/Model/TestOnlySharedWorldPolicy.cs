@@ -1329,15 +1329,28 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ValidateCanonicalHistory(Snapshot snapshot)
+            => ReconstructCanonicalHistory(snapshot, null, out _, out _);
+
+        private string ReconstructCanonicalHistory(Snapshot snapshot, PlanningPassage? collected,
+            out byte[] canonical, out PlanningPassage? passage)
         {
+            canonical = null;
+            passage = null;
             var replay = Initial();
             replay.SchemaVersion = snapshot.SchemaVersion;
-            foreach (var receipt in snapshot.Receipts.OrderBy(x => x.Revision))
+            foreach (var receipt in snapshot.Receipts.OrderBy(x => x.Revision)) {
+                var traversal = collected?.PendingCrossing(replay, nextCharterPlanProfile.Terms);
                 if (!ReplayReceipt(replay, receipt)) return "InvalidSharedWorldHistory";
+                collected = collected?.Advance(replay, traversal, receipt);
+            }
 
             // Compare every persisted subsystem, including nested tasks and consumed reservations.
             var codec = new SnapshotCodec();
-            return codec.Encode(snapshot).SequenceEqual(codec.Encode(replay)) ? null : "InvalidSharedWorldReplay";
+            var input = codec.Encode(snapshot);
+            if (!input.SequenceEqual(codec.Encode(replay))) return "InvalidSharedWorldReplay";
+            canonical = input;
+            passage = collected;
+            return null;
         }
 
         private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt, PlanningPassage? passage = null, bool verifiedExecution = false)

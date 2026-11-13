@@ -11,6 +11,59 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("int03_strict_restore_constructs_fresh_owned_prefix", () =>
+            {
+                const ExpeditionSeat player = ExpeditionSeat.Player;
+                const string hero = ConnectedExpeditionSession.Hero;
+                const string companion = ConnectedExpeditionSession.Companion;
+                var store = new FileSaveStore();
+                foreach (bool trap in new[] { false, true }) {
+                    ConnectedExpeditionSession Start() => trap
+                        ? ConnectedExpeditionSession.StartWithFishingTrap() : ConnectedExpeditionSession.Start();
+                    var live = Start();
+                    var walk = new Command("restore.walk", companion, 0, CommandKind.BeginWorldStep, "walk", x: 1);
+                    var partial = new Command("restore.partial", hero, 1, CommandKind.AdvanceClock, x: 1, y: 2);
+                    Require(live.Submit(player, walk).Response == ExpeditionResponse.Committed
+                        && live.SubmitSessionCommand(partial).Response == ExpeditionResponse.Committed, "Actual partial traversal is required.");
+                    string file = Path.Combine(directory, "restore-prefix-" + trap + ".ddsave");
+                    live.Save(file);
+                    var restored = Start();
+                    restored.Restore(file);
+                    restored.Restore(file);
+                    var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession)
+                        .GetField("policy", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).GetValue(restored);
+                    var strict = new Simulation(policy, store.Load(file), ExecutionProfile.Laboratory);
+                    var finish = new Command("restore.finish", hero, 2, CommandKind.AdvanceClock, x: 2, y: 1);
+                    var grant = new Authority("TEST_ONLY.session-operator", new[] { hero }, canAdvanceClock: true);
+                    Require(restored.Submit(player, walk).Response == ExpeditionResponse.Duplicate
+                        && restored.SubmitSessionCommand(finish).Response == ExpeditionResponse.Committed
+                        && live.SubmitSessionCommand(finish).Response == ExpeditionResponse.Committed
+                        && strict.Execute(grant, finish).Outcome == Outcome.Committed, "All paths must continue the same traversal.");
+                    string after = Path.Combine(directory, "restore-continued-" + trap + ".ddsave");
+                    string expected = Path.Combine(directory, "restore-expected-" + trap + ".ddsave");
+                    restored.Save(after);
+                    live.Save(expected);
+                    byte[] canonical = File.ReadAllBytes(after);
+                    Require(canonical.SequenceEqual(File.ReadAllBytes(expected)) && canonical.SequenceEqual(new SnapshotCodec().Encode(strict.Capture())),
+                        "Live, restored and uncached reference paths must match.");
+                    string forged = Path.Combine(directory, "restore-forged-" + trap + ".ddsave");
+                    var invalid = store.Load(after);
+                    invalid.RandomState ^= 1;
+                    store.Save(forged, invalid);
+                    restored.SetSeatEnabled(player, false);
+                    bool rejected = false;
+                    try { restored.Restore(forged); }
+                    catch (ArgumentException) { rejected = true; }
+                    Require(rejected && restored.Submit(player, walk).Response == ExpeditionResponse.NotAuthorized,
+                        "Failed validation must leave the original seat grant revoked.");
+                    restored.Save(after);
+                    Require(canonical.SequenceEqual(File.ReadAllBytes(after)), "Failed restore changed live bytes.");
+                    restored.SetSeatEnabled(player, true);
+                    Require(restored.Submit(player, walk).Response == ExpeditionResponse.Duplicate,
+                        "The original checkpoint must remain usable after rejection.");
+                }
+            });
+
             cases.Add("int03_active_work_condition_scope_isolation", () =>
             {
                 const string actor = ConnectedExpeditionSession.Companion;

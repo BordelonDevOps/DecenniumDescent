@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    public sealed partial class TestOnlySharedWorldPolicy : IVerifiedCommandPolicy
+    public sealed partial class TestOnlySharedWorldPolicy : IVerifiedCommandPolicy, IVerifiedSimulationConstruction
     {
         private bool verifiedPlanningPassage;
 
@@ -14,6 +14,28 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException("Select verified charter passage before starting the connected expedition.");
             verifiedPlanningPassage = true;
             return this;
+        }
+
+        bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
+
+        Func<VerifiedSimulationOrigin, IVerifiedCommandCheckpoint> IVerifiedSimulationConstruction.ValidateForConstruction(Snapshot state)
+        {
+            if (!verifiedPlanningPassage || !initializationStarted || state?.TestOnly != true
+                || state.ContentFingerprint != ContentFingerprint || state.WireSchemaVersion != Snapshot.ConnectedRecipe4BatchSchema)
+                throw new ArgumentException("Verified construction is unavailable for this selected content.");
+            var known = new PlanningPassage(ContentFingerprint, nextCharterPlanProfile.Terms.BindingKey);
+            byte[] canonical = null;
+            PlanningPassage? passage = null;
+            string failure = ValidateState(state, () => ReconstructCanonicalHistory(state, known, out canonical, out passage));
+            if (failure != null) throw new ArgumentException(failure);
+            if (canonical == null || !passage.HasValue)
+                throw new ArgumentException("Verified construction did not complete history validation.");
+            return origin => {
+                var owned = origin?.Capture();
+                if (owned == null || !passage.Value.Covers(owned, nextCharterPlanProfile.Terms, owned.Revision)
+                    || !new SnapshotCodec().Encode(owned).SequenceEqual(canonical)) return null;
+                return new VerifiedSharedWorldCheckpoint(this, origin, owned.Revision, canonical, passage);
+            };
         }
 
         IVerifiedCommandCheckpoint IVerifiedCommandPolicy.Seal(VerifiedSimulationOrigin origin)

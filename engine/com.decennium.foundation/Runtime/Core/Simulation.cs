@@ -722,6 +722,13 @@ namespace Decennium.Foundation
         IVerifiedCommandCheckpoint Seal(VerifiedSimulationOrigin origin);
     }
 
+    /// <summary>Prepares a checkpoint factory only after complete validation of the detached input.</summary>
+    public interface IVerifiedSimulationConstruction
+    {
+        bool SupportsVerifiedConstruction { get; }
+        Func<VerifiedSimulationOrigin, IVerifiedCommandCheckpoint> ValidateForConstruction(Snapshot candidate);
+    }
+
     /// <summary>Private to the owning simulation. Validation returns a new checkpoint only on success.</summary>
     public interface IVerifiedCommandCheckpoint
     {
@@ -1074,15 +1081,26 @@ namespace Decennium.Foundation
                 Validation.Snapshot(initial);
                 owned = initial.Copy();
             }
-            ValidateCandidate(owned);
-            if (profile == ExecutionProfile.Release && (policy.TestOnly || owned.TestOnly))
-                throw new InvalidOperationException("TEST_ONLY content is forbidden in release.");
-            if (verification == CommandVerification.VerifiedPrefix) {
-                if (profile != ExecutionProfile.Laboratory || !policy.TestOnly || !(policy is IVerifiedCommandPolicy verifiedPolicy))
-                    throw new ArgumentException("Verified prefix is unavailable for this policy and profile.");
+            if (verification == CommandVerification.VerifiedPrefix && profile == ExecutionProfile.Laboratory
+                && policy.TestOnly && policy is IVerifiedCommandPolicy
+                && policy is IVerifiedSimulationConstruction construction && construction.SupportsVerifiedConstruction) {
+                ValidateCandidateShape(owned);
+                var seal = construction.ValidateForConstruction(owned)
+                    ?? throw new ArgumentException("Verified construction did not establish a checkpoint factory.");
                 verificationOrigin = new VerifiedSimulationOrigin(owned);
-                checkpoint = verifiedPolicy.Seal(verificationOrigin)
-                    ?? throw new ArgumentException("Verified prefix is unavailable for this selected content.");
+                checkpoint = seal(verificationOrigin)
+                    ?? throw new ArgumentException("Verified construction did not establish a checkpoint.");
+            } else {
+                ValidateCandidate(owned);
+                if (profile == ExecutionProfile.Release && (policy.TestOnly || owned.TestOnly))
+                    throw new InvalidOperationException("TEST_ONLY content is forbidden in release.");
+                if (verification == CommandVerification.VerifiedPrefix) {
+                    if (profile != ExecutionProfile.Laboratory || !policy.TestOnly || !(policy is IVerifiedCommandPolicy verifiedPolicy))
+                        throw new ArgumentException("Verified prefix is unavailable for this policy and profile.");
+                    verificationOrigin = new VerifiedSimulationOrigin(owned);
+                    checkpoint = verifiedPolicy.Seal(verificationOrigin)
+                        ?? throw new ArgumentException("Verified prefix is unavailable for this selected content.");
+                }
             }
             state = verificationOrigin == null ? owned.Copy() : owned;
         }
