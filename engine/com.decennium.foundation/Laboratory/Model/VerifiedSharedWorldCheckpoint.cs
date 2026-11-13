@@ -104,7 +104,7 @@ namespace Decennium.Foundation.Laboratory
             }
 
             public bool Resolves(Command command)
-                => passage.HasValue && command.Kind == CommandKind.StartNextCharterPlan;
+                => passage.HasValue && (command.Kind == CommandKind.StartNextCharterPlan || command.Kind == CommandKind.AdvanceClock);
 
             public string ResolveNext(VerifiedSimulationOrigin origin, Snapshot predecessor, Snapshot candidate, Command command)
             {
@@ -116,7 +116,7 @@ namespace Decennium.Foundation.Laboratory
                 if (!codec.Encode(predecessor).SequenceEqual(canonicalPredecessor)
                     || !codec.Encode(candidate).SequenceEqual(canonicalPredecessor))
                     return "InvalidVerifiedPrefixBytes";
-                return policy.Resolve(candidate, command, passage);
+                return policy.Resolve(candidate, command, passage, verifiedExecution: true);
             }
 
             private string VerifyOwner(VerifiedSimulationOrigin origin, Snapshot predecessor)
@@ -161,7 +161,7 @@ namespace Decennium.Foundation.Laboratory
                 // resolver result participate in reconstructing the next rule state.
                 var replay = codec.Decode(canonicalPredecessor);
                 var traversal = passage?.PendingCrossing(replay, policy.nextCharterPlanProfile.Terms);
-                if (!policy.ReplayReceipt(replay, submittedReceipt, passage)) return "InvalidSharedWorldHistory";
+                if (!policy.ReplayReceipt(replay, submittedReceipt, passage, verifiedExecution: true)) return "InvalidSharedWorldHistory";
                 var reconstructed = codec.Encode(replay);
                 if (!codec.Encode(candidate).SequenceEqual(reconstructed)) return "InvalidSharedWorldReplay";
                 nextPassage = passage?.Advance(replay, traversal, submittedReceipt);

@@ -71,5 +71,73 @@ namespace Decennium.Foundation.Laboratory
             }
         }
     }
+
+    /// <summary>Reuses immutable condition calculations only inside one synchronous resolver pass.</summary>
+    internal sealed class ConditionResolutionScope : IDisposable
+    {
+        [ThreadStatic] private static ConditionResolutionScope current;
+        private readonly ConditionResolutionScope previous;
+        private readonly Dictionary<ConditionJournal, Entry> entries;
+
+        private ConditionResolutionScope(bool reuse)
+        {
+            previous = current;
+            if (reuse) entries = new Dictionary<ConditionJournal, Entry>(JournalIdentity.Instance);
+            current = reuse ? this : null;
+        }
+
+        internal static ConditionResolutionScope Enter(bool reuse)
+            => reuse || current != null ? new ConditionResolutionScope(reuse) : null;
+
+        public void Dispose()
+        {
+            current = previous;
+            entries?.Clear();
+        }
+
+        internal static ConditionHistory Read(ConditionJournal journal)
+            => current == null || journal == null ? ConditionHistory.Restore(journal) : current.Get(journal).History;
+
+        internal static ConditionLedger Project(ConditionJournal journal, bool project, EffectClockMarker marker)
+        {
+            if (!project) return Read(journal).Ledger;
+            if (current == null || journal == null) return At(ConditionHistory.Restore(journal).Ledger, marker);
+            var entry = current.Get(journal);
+            if (entry.Projection == null || !entry.Marker.Equals(marker)) {
+                entry.Projection = At(entry.History.Ledger, marker);
+                entry.Marker = marker;
+            }
+            return entry.Projection;
+        }
+
+        private static ConditionLedger At(ConditionLedger ledger, EffectClockMarker marker)
+            => ledger.Now.CompareTo(marker) < 0 ? ledger.AdvanceTo(marker).State : ledger;
+
+        private Entry Get(ConditionJournal journal)
+        {
+            if (entries.TryGetValue(journal, out var entry)) return entry;
+            entry = new Entry(ConditionHistory.Restore(journal));
+            // Keep the scope bounded even if a command produces many replacement journals.
+            if (entries.Count == 32) entries.Clear();
+            entries.Add(journal, entry);
+            return entry;
+        }
+
+        private sealed class Entry
+        {
+            internal readonly ConditionHistory History;
+            internal EffectClockMarker Marker;
+            internal ConditionLedger Projection;
+
+            internal Entry(ConditionHistory history) { History = history; }
+        }
+
+        private sealed class JournalIdentity : IEqualityComparer<ConditionJournal>
+        {
+            internal static readonly JournalIdentity Instance = new JournalIdentity();
+            public bool Equals(ConditionJournal first, ConditionJournal second) => ReferenceEquals(first, second);
+            public int GetHashCode(ConditionJournal journal) => System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(journal);
+        }
+    }
 }
 #endif

@@ -467,7 +467,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private static RuleTime? NextConditionDeadline(Snapshot s)
         {
-            var values = s.Conditions.Select(j => ConditionHistory.Restore(j).Ledger).SelectMany(l => l.Applications.Where(x => !x.EndedAt.HasValue).Select(x => x.Application.Expires)
+            var values = s.Conditions.Select(j => ConditionResolutionScope.Read(j).Ledger).SelectMany(l => l.Applications.Where(x => !x.EndedAt.HasValue).Select(x => x.Application.Expires)
                 .Concat(l.Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))).Where(x => x.HasValue && x.Value.Time > s.RuleClock).Select(x => x.Value.Time).ToArray();
             return values.Length == 0 ? (RuleTime?)null : values.Min();
         }
@@ -1340,10 +1340,10 @@ namespace Decennium.Foundation.Laboratory
             return codec.Encode(snapshot).SequenceEqual(codec.Encode(replay)) ? null : "InvalidSharedWorldReplay";
         }
 
-        private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt, PlanningPassage? passage = null)
+        private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt, PlanningPassage? passage = null, bool verifiedExecution = false)
         {
             var command = CommandHistory.Read(receipt);
-            if (command.ExpectedRevision != replay.Revision || Resolve(replay, command, passage) != null) return false;
+            if (command.ExpectedRevision != replay.Revision || Resolve(replay, command, passage, verifiedExecution) != null) return false;
             replay.Revision = receipt.Revision;
             replay.Receipts = replay.Receipts.Concat(new[] { receipt }).ToArray();
             return true;

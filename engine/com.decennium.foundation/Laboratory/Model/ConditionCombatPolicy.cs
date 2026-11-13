@@ -9,10 +9,9 @@ namespace Decennium.Foundation.Laboratory
         private readonly ConditionCombatFixture conditions;
         public static ConditionLedger ConditionsFor(Snapshot s, string actor)
         {
-            var ledger = ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Ledger;
-            if (s.SchemaVersion < Snapshot.ExpeditionRouteSchema) return ledger;
-            var current = new EffectClockMarker(s.RuleClock);
-            return ledger.Now.CompareTo(current) < 0 ? ledger.AdvanceTo(current).State : ledger;
+            var journal = s.Conditions.Single(x => x.Target == actor);
+            return ConditionResolutionScope.Project(journal, s.SchemaVersion >= Snapshot.ExpeditionRouteSchema,
+                new EffectClockMarker(s.RuleClock));
         }
         private static bool WithConditions(Snapshot s) => s.SchemaVersion >= Snapshot.ConditionSchema;
         internal static bool Aware(Snapshot s, string actor) => ActorLifeRules.CanAct(s, actor)
@@ -74,14 +73,14 @@ namespace Decennium.Foundation.Laboratory
             if (journal.Now.Equals(at)) return;
             if (journal.Now.Time > at.Time) throw new ArgumentException("Condition journal is ahead of the shared clock.");
             string id = "host.clock." + N(s.Revision + 1) + ".sync." + actor;
-            CommitCondition(s, ConditionHistory.Restore(journal).Append(ConditionOperation.Advance(id, at)));
+            CommitCondition(s, ConditionResolutionScope.Read(journal).Append(ConditionOperation.Advance(id, at)));
         }
         private static void AppendCondition(Snapshot s, string actor, ConditionOperation operation)
         {
             var at = new ConditionStamp(s.RuleClock);
             if (operation.Kind != ConditionOperationKind.Advance && operation.At.Equals(at))
                 SynchronizeConditionJournal(s, actor, at);
-            CommitCondition(s, ConditionHistory.Restore(s.Conditions.Single(x => x.Target == actor)).Append(operation));
+            CommitCondition(s, ConditionResolutionScope.Read(s.Conditions.Single(x => x.Target == actor)).Append(operation));
         }
         private static void AddPhysicalProne(Snapshot s, string actor, string cause)
         {
@@ -104,7 +103,7 @@ namespace Decennium.Foundation.Laboratory
             if (!WithConditions(s)) return;
             foreach (var journal in s.Conditions.ToArray()) {
                 if (journal.Now.Time >= s.RuleClock) continue;
-                var ledger=ConditionHistory.Restore(journal).Ledger;
+                var ledger=ConditionResolutionScope.Read(journal).Ledger;
                 bool deadlineDue=ledger.Applications.Any(x=>!x.EndedAt.HasValue&&x.Application.Expires.HasValue
                         &&x.Application.Expires.Value.Time<=s.RuleClock)
                     ||ledger.Immunities.Any(x=>!x.EndedAt.HasValue&&x.Grant.Expires.HasValue
@@ -117,7 +116,7 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static bool HasUnprocessedConditionDeadline(Snapshot s)
             => s.Conditions.Any(journal => {
-                var ledger = ConditionHistory.Restore(journal).Ledger;
+                var ledger = ConditionResolutionScope.Read(journal).Ledger;
                 return ledger.Applications.Any(x => !x.EndedAt.HasValue && x.Application.Expires.HasValue
                         && x.Application.Expires.Value.Time <= s.RuleClock)
                     || ledger.Immunities.Any(x => !x.EndedAt.HasValue && x.Grant.Expires.HasValue

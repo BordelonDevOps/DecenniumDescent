@@ -10,8 +10,9 @@ namespace Decennium.Foundation.Laboratory
     {
         public string Resolve(Snapshot s, Command c) => Resolve(s, c, null);
 
-        private string Resolve(Snapshot s, Command c, PlanningPassage? passage)
+        private string Resolve(Snapshot s, Command c, PlanningPassage? passage, bool verifiedExecution = false)
         {
+            using var conditions = ConditionResolutionScope.Enter(verifiedExecution && ReuseAdvanceConditions(s, c));
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c, passage: passage);
@@ -49,6 +50,10 @@ namespace Decennium.Foundation.Laboratory
             if (error == null && ReconcileOrdinaryObservationActions(s, c)) RefreshActivityIntervals(s);
             return error;
         }
+
+        private bool ReuseAdvanceConditions(Snapshot state, Command command)
+            => verifiedPlanningPassage && command.Kind == CommandKind.AdvanceClock && !state.InventoryCombat
+                && state.FormulaWork.Any(job => job.Kind == FormulaWorkKind.Research && job.Status == FormulaWorkStatus.Working);
 
         private string ResolveObservationAction(Snapshot s, Command c)
         {

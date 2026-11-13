@@ -11,6 +11,59 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddConnectedExpeditionSessionCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("int03_active_work_condition_scope_isolation", () =>
+            {
+                const string actor = ConnectedExpeditionSession.Companion;
+                const System.Reflection.BindingFlags internalStatic = System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic;
+                var scope = typeof(ConditionHistory).Assembly.GetType("Decennium.Foundation.Laboratory.ConditionResolutionScope", true);
+                var enter = scope.GetMethod("Enter", internalStatic);
+                var read = scope.GetMethod("Read", internalStatic);
+                var project = scope.GetMethod("Project", internalStatic);
+                IDisposable Enter(bool reuse) => (IDisposable)enter.Invoke(null, new object[] { reuse });
+                ConditionHistory Read(ConditionJournal journal) => (ConditionHistory)read.Invoke(null, new object[] { journal });
+                ConditionLedger Project(ConditionJournal journal, bool advancing, EffectClockMarker marker)
+                    => (ConditionLedger)project.Invoke(null, new object[] { journal, advancing, marker });
+
+                var at = new EffectClockMarker(new RuleTime(2));
+                var expiry = new EffectClockMarker(new RuleTime(4));
+                var original = new ConditionHistory(actor).Journal;
+                var applied = original.Append(ConditionOperation.Apply("cache.test.apply", original.Now,
+                    new ConditionApplicationData("cache.test.poison", actor, "cache.test.source", "Poisoned",
+                        expires: ConditionHistory.Stamp(expiry), endingMethod: "time", genericCureAllowed: false)));
+                var expired = applied.Append(ConditionOperation.Advance("cache.test.expiry", ConditionHistory.Stamp(expiry)));
+                var baseline = ConditionHistory.Restore(applied).Ledger;
+                ConditionHistory parent;
+                using (Enter(true)) {
+                    parent = Read(applied);
+                    Require(ReferenceEquals(parent, Read(applied)) && !ReferenceEquals(parent, Read(original))
+                        && !ReferenceEquals(parent, Read(expired)), "Only the exact immutable journal may reuse its reconstructed history.");
+                    var early = Project(applied, true, at);
+                    Require(ReferenceEquals(early, Project(applied, true, at)) && early.View().Has(ConditionKind.Poisoned),
+                        "An identical marker must reuse its unchanged read-only projection.");
+                    var later = Project(applied, true, expiry);
+                    Require(!later.View().Has(ConditionKind.Poisoned)
+                        && !ReferenceEquals(later, Project(applied, true, new EffectClockMarker(expiry.Time, 1)))
+                        && Project(applied, true, at).View().Has(ConditionKind.Poisoned)
+                        && Project(applied, false, expiry).View().Has(ConditionKind.Poisoned)
+                        && parent.Ledger.View().Has(ConditionKind.Poisoned) == baseline.View().Has(ConditionKind.Poisoned),
+                        "Projection misses must recompute from the base, preserve phase and leave authoritative expiry pending.");
+                    using (Enter(false))
+                        Require(!ReferenceEquals(parent, Read(applied)) && !ReferenceEquals(Read(applied), Read(applied)),
+                            "A nested strict caller must suppress the parent cache.");
+                    try {
+                        using (Enter(true)) {
+                            Require(!ReferenceEquals(parent, Read(applied)), "A nested qualified execution needs fresh values.");
+                            Read(new ConditionJournal("TEST_ONLY.unsupported", actor));
+                        }
+                        throw new Exception("An unsupported journal should fail.");
+                    }
+                    catch (System.Reflection.TargetInvocationException error) when (error.InnerException is ArgumentException) { }
+                    Require(ReferenceEquals(parent, Read(applied)), "An exceptional nested call must restore its parent.");
+                }
+                Require(!ReferenceEquals(parent, Read(applied)) && !ReferenceEquals(Read(applied), Read(applied)),
+                    "A completed scope must not warm another resolver.");
+            });
+
             cases.Add("int03_verified_charter_passage_ownership_and_cutoff", () =>
             {
                 const System.Reflection.BindingFlags fields = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
