@@ -72,11 +72,20 @@ def main():
     baseline = read_json(packet / "baseline/results.json")
     if connected["Status"] != "PASS":
         raise ValueError("The public console continuation did not pass.")
+    comparison = read_json(args.connected / "transcript-equivalence.json")
+    if comparison["Status"] != "PASS" or comparison["IgnoredFields"]:
+        raise ValueError("The full public response comparison did not pass.")
     retain(args.connected / "results.json", "connected/results.json")
+    retain(args.connected / "transcript-equivalence.json", "connected/transcript-equivalence.json")
     retain(args.timing / "results.json", "performance/results.json")
     for profile, count in (("Default", 223), ("FishingTrap", 242)):
         result = connected["Profiles"][profile]
         timing = timings[profile]
+        transcript = comparison["Profiles"][profile]
+        if (transcript["comparedRows"] != result["Inputs"]
+                or transcript["actualSha256"] != digest((args.connected / profile / "responses.jsonl").read_bytes())
+                or transcript["referenceSha256"] != digest((packet.parent / transcript["reference"]).read_bytes())):
+            raise ValueError(f"Public transcript comparison identities differ: {profile}")
         if (result["Committed"] != count or timing["Samples"] < 30 or timing["PublicMs"]["P95"] > 150
                 or timing["LiveResultSha256"] != timing["ResultSha256"]
                 or timing["ResultSha256"] != baseline[profile]["ResultSha256"]):

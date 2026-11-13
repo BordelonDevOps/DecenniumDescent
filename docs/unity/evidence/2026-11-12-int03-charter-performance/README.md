@@ -4,6 +4,8 @@ The source is `e4c5f7f36f9c59b559fc42c6ccf0489c91225999` on `Engine`. The change
 
 At r74 the public command retains walk-start r48 within episode-close source r61. The genuine default and Fishing Trap prefixes come from their accepted command histories. Both live accumulated and restored submissions produce the exact original r75 save for each profile. The focused control checks separate owners sharing one policy, same-revision byte mismatches and detached crossing/cutoff predicates. The two full public console histories also compare actual response outcomes and previously accepted saves. [Connected result](connected/results.json) · [Source and assembly bindings](BINDINGS.json)
 
+The full-field comparison checks response field presence and every permitted view property, with no ignored fields. The older EXP-05 transcript predates the public `FishingTrap` property, so the default reference was replayed with the accepted MGT-06 assemblies and the same EXP-05 inputs. Its r223 save still matches the authentic EXP-05 bytes. The Trap comparison uses the existing accepted MGT-06 transcript. [Focused GPT review](GPT_FOCUSED_REVIEW.md) · [Full transcript comparison](connected/transcript-equivalence.json)
+
 ## Isolated performance
 
 | Profile | Prior p95 | Verified p95 | Verified max | Live prefix sample | Prior restore p95 | Verified restore p95 |
