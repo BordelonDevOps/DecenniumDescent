@@ -73,8 +73,15 @@ def main():
                  "before-cancel.ddsave", "cancelled.ddsave", "committed-setup.ddsave",
                  "away-resolved.ddsave", "away-overshoot.ddsave", "retrieved.ddsave",
                  "authentic-exp05.ddsave", "forged-history.ddsave", "replay/walkthrough.jsonl", "replay/responses.jsonl",
-                 "historical-results.json", "historical-standalone.ddsave", "historical-standalone.ddsave.restored.ddsave"):
+                 "historical-original.json", "historical-results.json", "historical-standalone.ddsave",
+                 "historical-standalone.ddsave.restored.ddsave"):
         retain(args.connected / name, "connected/" + name)
+    for label, pair in connected["RestoreRejections"].items():
+        for side, expected in pair.items():
+            name = f"{label}.{side}.ddsave"
+            retain(args.connected / name, "connected/" + name)
+            if artifacts["connected/" + name]["sha256"] != expected or pair["before"] != pair["after"]:
+                raise ValueError(f"Atomic restore evidence differs: {name}")
     for name, expected in connected["Checkpoints"].items():
         for prefix in ("", "replay/", "csharp/"):
             relative = prefix + name
@@ -84,6 +91,17 @@ def main():
     if artifacts["connected/authentic-exp05.ddsave"]["sha256"] != connected["AuthenticDefaultSha256"]:
         raise ValueError("The accepted predecessor changed.")
     historical = read_json(args.connected / "historical-results.json")
+    original = read_json(args.connected / "historical-original.json")
+    prior_build = packet.parent / "2026-11-10-mgt06/validation/run-20261111T015316547Z-9bc0a6f4"
+    for name, item in original["ExecutedAssemblies"].items():
+        if not item["moduleId"] or digest((prior_build / name).read_bytes()) != item["sha256"]:
+            raise ValueError(f"Historical execution does not match archived assembly: {name}")
+    for name, item in historical["ExecutedAssemblies"].items():
+        if not item["moduleId"] or assemblies[name]["sha256"] != item["sha256"]:
+            raise ValueError(f"Standalone restore used a different assembly: {name}")
+    if (original["Status"] != "PASS" or original["Wire"] != 37 or historical["Wire"] != 37
+            or original["Fingerprint"] != historical["Fingerprint"] or original["Sha256"] != historical["Sha256"]):
+        raise ValueError("The archival execution identity or save changed.")
     for name in ("historical-standalone.ddsave", "historical-standalone.ddsave.restored.ddsave"):
         if historical["Status"] != "PASS" or artifacts["connected/" + name]["sha256"] != historical["Sha256"]:
             raise ValueError(f"Historical standalone save differs: {name}")
@@ -93,6 +111,13 @@ def main():
     regression_cases = None
     if args.regression:
         run = args.regression
+        launch = read_json(run / "launch.json")
+        expected_digests = {name: item["sha256"] for name, item in assemblies.items()}
+        if launch["assemblies"] != expected_digests or launch["inventorySha256"] != digest((run / "all-names.txt").read_bytes()):
+            raise ValueError("The run launch does not match the retained assemblies or inventory.")
+        retain(run / "launch.json", "regression/launch.json")
+        processes = {row["group"]: row for row in read_json(run / "processes.json")}
+        retain(run / "processes.json", "regression/processes.json")
         names = lines(run / "all-names.txt")
         prior = lines(packet.parent / "2026-11-12-exp05-local-mining/regression/inventory.txt")
         if len(names) != 1486 or len(set(names)) != 1486 or [name for name in names if name != focus["Name"]] != prior:
@@ -101,13 +126,26 @@ def main():
         for label in ("shard" + letter for letter in "ABCDEF"):
             assigned = lines(run / f"{label}-names.txt")
             journal = [json.loads(line) for line in lines(run / f"{label}.jsonl")]
+            started = read_json(run / f"{label}.started.json")
+            execution = read_json(run / f"{label}.execution.json")
+            recorded = {name: item["sha256"] for name, item in started["assemblies"].items()}
+            assignment_sha = digest((run / f"{label}-names.txt").read_bytes())
+            if (recorded != expected_digests or not all(item["moduleId"] for item in started["assemblies"].values())
+                    or started["runId"] != launch["runId"] or started["group"] != label
+                    or started["pid"] != processes[label]["pid"] or processes[label]["cases"] != len(assigned)
+                    or started["inventorySha256"] != launch["inventorySha256"]
+                    or started["assignmentSha256"] != assignment_sha or launch["assignments"][label] != assignment_sha
+                    or any(execution.get(key) != value for key, value in started.items())
+                    or not execution["completedUtc"] or execution["cases"] != len(assigned)
+                    or execution["journalSha256"] != digest((run / f"{label}.jsonl").read_bytes())):
+                raise ValueError(f"The journal is not bound to the recorded launch and execution: {label}")
             if lines(run / f"{label}.done") != ["DONE"] or assigned != [row["Name"] for row in journal]:
                 raise ValueError(f"Incomplete or reordered journal: {label}")
             for row in journal:
                 if row["Name"] in results or not row["Passed"] or row["Error"]:
                     raise ValueError(f"Repeated or failed result: {row}")
                 results[row["Name"]] = row
-            for suffix in ("-names.txt", ".done", ".jsonl"):
+            for suffix in ("-names.txt", ".done", ".jsonl", ".started.json", ".execution.json"):
                 retain(run / (label + suffix), "regression/" + label + suffix)
         if set(names) != results.keys() or results[focus["Name"]] != focus:
             raise ValueError("Completed journals differ from the exact inventory or focused result.")

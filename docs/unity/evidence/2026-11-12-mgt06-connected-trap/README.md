@@ -13,6 +13,8 @@ A schema37 r2 soaking save produced by the archived standalone assemblies from t
 
 The first route exposed a reversed comparison in the existing opportunity record. It rejected a legitimate new reservation after release once the clock advanced. The correction keeps the earlier release attached to its real uncommitted attempt and permits a later reservation. The live profile and demonstration inputs use the same seed, stock, and DC throughout.
 
+The [focused GPT review](GPT_FOCUSED_REVIEW.md) requested two evidence corrections. The verifier now checks both actual console histories against expected public saves, loads, views and retries, and compares complete live bytes across rejected restores. The initial regression launch tracked assembly paths only. It was superseded by a fresh run on the same DLL bytes. The new launcher and each worker record digests before execution, and each worker binds its loaded modules and completion journal to that launch. Standalone save generation and current restoration separately record the loaded assembly identities.
+
 [Console inputs](connected/walkthrough.jsonl) · [Console responses](connected/responses.jsonl) · [Assertions and timings](connected/results.json) · [Source and assembly bindings](BINDINGS.json)
 
 The selected composition covers one ordinary finite lifecycle. Broader INT-03 and P1 remain open. Unity gameplay integration stays deferred.

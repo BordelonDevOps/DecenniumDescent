@@ -4,7 +4,15 @@ param(
     [switch]$Restore
 )
 $ErrorActionPreference = 'Stop'
-foreach ($name in 'Core','Persistence','LabModel') { Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$name.dll") }
+$loaded = [ordered]@{}
+foreach ($name in 'Core','Persistence','LabModel') {
+    $dll = "Decennium.Foundation.$name.dll"
+    $path = (Resolve-Path -LiteralPath (Join-Path $AssemblyRoot $dll)).Path
+    $assembly = [Reflection.Assembly]::LoadFrom($path)
+    if ($assembly.Location -cne $path) { throw "Unexpected loaded assembly $dll." }
+    $loaded[$dll] = [ordered]@{sha256=(Get-FileHash $assembly.Location).Hash.ToLowerInvariant()
+        moduleId=$assembly.ManifestModule.ModuleVersionId.ToString()}
+}
 $profile = [Decennium.Foundation.Laboratory.SharedFishingTrapFixture]::new()
 $policy = [Decennium.Foundation.Laboratory.TestOnlySharedWorldPolicy]::WithFishingTrap($profile,23)
 $store = [Decennium.Foundation.FileSaveStore]::new()
@@ -24,5 +32,6 @@ if ($Restore) {
     $store.Save($Save,$simulation.Capture())
 }
 $state = $simulation.Capture()
-[ordered]@{Status='PASS'; Revision=$state.Revision; Wire=$state.WireSchemaVersion; Fingerprint=$state.ContentFingerprint
-    Attempt=$state.FishingTrapAttempts[0].Status.ToString(); Sha256=(Get-FileHash $Save).Hash.ToLowerInvariant()} | ConvertTo-Json
+[ordered]@{Status='PASS'; Revision=$state.Revision; Wire=$state.SchemaVersion; Fingerprint=$state.ContentFingerprint
+    Attempt=$state.FishingTrapAttempts[0].Status.ToString(); Sha256=(Get-FileHash $Save).Hash.ToLowerInvariant()
+    ExecutedAssemblies=$loaded} | ConvertTo-Json -Depth 5

@@ -1,6 +1,7 @@
 param(
     [Parameter(Mandatory)][string]$AssemblyRoot,
-    [Parameter(Mandatory)][string]$Run
+    [Parameter(Mandatory)][string]$Run,
+    [switch]$UseRetainedRuns
 )
 
 $ErrorActionPreference = 'Stop'
@@ -21,7 +22,7 @@ function Run-Console([string]$folder, [string]$trace) {
     try { & $launcher -FishingTrap -AssemblyRoot $AssemblyRoot -InputPath $trace | Set-Content responses.jsonl -Encoding utf8 }
     finally { Pop-Location }
 }
-Run-Console $Run $inputPath
+if (-not $UseRetainedRuns) { Run-Console $Run $inputPath }
 $rows = @(Get-Content "$Run/responses.jsonl" | ForEach-Object { ConvertFrom-Json $_ })
 $store = [Decennium.Foundation.FileSaveStore]::new()
 function Read-Save([string]$name) { $store.Load("$Run/$name.ddsave") }
@@ -41,6 +42,69 @@ $trap = 'TEST_ONLY.fishing-trap'
 $receiver = 'TEST_ONLY.riverbank.receiving-location'
 $attempt = $resolved.FishingTrapAttempts | Where-Object OpportunityCommitted
 $retrieval = $final.FishingTrapRetrievals[0]
+function Assert-Console([object[]]$trace, [object[]]$responses) {
+    Require ($trace.Count -eq $responses.Count) 'The console must respond to every input.'
+    $viewExpectation = @{
+        'exp05.continue-paid'='Local'; 'mgt06.complete-setup'='Local'
+        'mgt06.near-due'='Away'; 'mgt06.check'='Away'; 'mgt06.return-paid'='Result'
+        'mgt06.partial-retrieval'='Result'; 'mgt06.complete-retrieval'='Retrieved'
+        'mgt06.continue-paid'='Retrieved'
+    }
+    $seen = @{}
+    $lastAction = ''
+    for ($j=0; $j -lt $trace.Count; $j++) {
+        $item = $trace[$j]
+        $response = $responses[$j]
+        if ($item.id) { $lastAction = $item.id }
+        if ($item.op -eq 'save' -or $item.op -eq 'load') {
+            $expected = if ($item.op -eq 'save') { 'Saved' } else { 'Restored' }
+            Require ($response.Response -ceq $expected) "$($item.op) did not succeed for $($item.path)."
+        }
+        if ($item.id -in 'mgt06.repeat-set','mgt06.repeat-retrieval') {
+            Require ($response.Response -ceq 'Unavailable' -and $response.Revision -eq 240 -and
+                $response.Clock.Numerator -eq 60478 -and $response.Clock.Denominator -eq 1) 'Fresh repeat changed the retrieval endpoint.'
+        }
+        if ($item.id -in 'mgt06.set','mgt06.retrieve') {
+            if ($seen.ContainsKey("command.$($item.id)")) {
+                Require ($response.Response -ceq 'Duplicate' -and $response.Revision -eq 240 -and
+                    $response.Clock.Numerator -eq 60478 -and $response.Clock.Denominator -eq 1) 'Exact retry did not remain idempotent.'
+                $seen["retry.$($item.id)"] = $true
+            } else {
+                Require ($response.Response -ceq 'Committed') 'The original setup or retrieval was not committed.'
+                $seen["command.$($item.id)"] = $true
+            }
+        }
+        if ($item.op -ne 'view' -or -not $viewExpectation.ContainsKey($lastAction)) { continue }
+        $view = $response.FishingTrap
+        if ($item.seat -eq 'FirstOpponent') {
+            Require ($null -eq $response.Response -and $null -eq $view) 'Opposing seat leaked trap information or failed to provide a view.'
+            $seen['opponent'] = $true
+            continue
+        }
+        $expected = $viewExpectation[$lastAction]
+        Require ($null -eq $response.Response -and $response.Enabled -eq $true -and $view.Id -eq $trap) 'Expected an enabled Player trap view.'
+        Require (@($response.Items | Where-Object {$_.Id -in $trap,$bait,'TEST_ONLY.river-fish'}).Count -eq 0 -and
+            @($response.Work | Where-Object {$_.Id -like 'fishing.trap.*' -or $_.Category -match 'Fishing|Trap'}).Count -eq 0) 'Generic items or work leaked trap state.'
+        if ($expected -eq 'Away') {
+            Require ($view.ObservedLocally -eq $false -and $null -eq $view.CheckOutcome -and
+                $null -eq $view.PhysicalStatus -and $null -eq $view.CapturedCreatureId) 'An away view disclosed current trap state.'
+        } else {
+            Require ($view.ObservedLocally -eq $true -and $null -ne $view.PhysicalStatus) 'A local view failed to report current physical state.'
+            if ($expected -in 'Result','Retrieved') {
+                Require ($view.CheckOutcome -ceq $attempt.CheckOutcome.ToString() -and
+                    [string]$view.CapturedCreatureId -ceq $attempt.CapturedCreatureId) 'Local observed outcome or identity differs from the real result.'
+                if ($expected -eq 'Retrieved') {
+                    Require ($view.PhysicalStatus -ceq 'Retrieved' -and $view.RetrievalLabor.Numerator -eq 300) 'The public retrieval endpoint is missing.'
+                }
+            }
+        }
+        $seen[$lastAction] = $true
+    }
+    foreach ($name in @($viewExpectation.Keys) + @('opponent','retry.mgt06.set','retry.mgt06.retrieve')) {
+        Require ($seen.ContainsKey($name)) "Missing expected public checkpoint $name."
+    }
+}
+Assert-Console $inputs $rows
 Require ($rows.Count -eq $inputs.Count -and @($rows | Where-Object Response -eq 'Committed').Count -eq 242 -and
     @($rows | Where-Object {$_.Response -in 'StaleRevision','CommandIdConflict'}).Count -eq 0 -and $final.Revision -eq 242) 'The public trace did not complete at the expected revision.'
 Require ($prefix.Revision -eq 223 -and $prefix.FishingTrapAttempts.Count -eq 0 -and
@@ -82,17 +146,6 @@ $checkpoints = @('pending-setup.ddsave','away-pending.ddsave','pending-retrieval
 for ($i=0; $i -lt $rows.Count; $i++) {
     $inputRow = $inputs[$i]
     $output = $rows[$i]
-    if ($inputRow.op -eq 'view' -and $i -ge 277) {
-        $view = $output.FishingTrap
-        if ($inputRow.seat -eq 'FirstOpponent') { Require ($null -eq $view) 'Opposing seat leaked trap information.' }
-        elseif (-not $view.ObservedLocally) {
-            Require ($null -eq $view.CheckOutcome -and $null -eq $view.PhysicalStatus -and $null -eq $view.CapturedCreatureId -and
-                @($output.Items | Where-Object {$_.Id -in $trap,$bait}).Count -eq 0) 'Remote projection leaked physical outcome.'
-        }
-    }
-    if ($inputRow.id -in 'mgt06.repeat-set','mgt06.repeat-retrieval') {
-        Require ($output.Response -eq 'Unavailable' -and $output.Revision -eq $inputRow.revision) 'The spent claim was accepted again.'
-    }
     if ($output.Response -eq 'Committed') {
         $receipt = $receipts[$output.Revision]
         Require ($inputRow.op -eq 'auto' -or $receipt.Id -ceq $inputRow.id) 'The public trace does not match the canonical command.'
@@ -115,7 +168,9 @@ for ($i=0; $i -lt $rows.Count; $i++) {
 }
 $replay = New-Item -ItemType Directory -Force "$Run/replay"
 $raw | Where-Object { (ConvertFrom-Json $_).op -ne 'load' } | Set-Content "$replay/walkthrough.jsonl" -Encoding utf8
-Run-Console $replay "$replay/walkthrough.jsonl"
+if (-not $UseRetainedRuns) { Run-Console $replay "$replay/walkthrough.jsonl" }
+Assert-Console @(Get-Content "$replay/walkthrough.jsonl" | ForEach-Object {ConvertFrom-Json $_}) `
+    @(Get-Content "$replay/responses.jsonl" | ForEach-Object {ConvertFrom-Json $_})
 $hashes = [ordered]@{}
 foreach ($name in $checkpoints) {
     $hashes[$name] = Digest "$Run/$name"
@@ -126,21 +181,25 @@ $default.Restore($authentic)
 $default.Save("$Run/authentic-exp05.ddsave")
 Require ((Digest $authentic) -ceq (Digest "$Run/authentic-exp05.ddsave")) 'The authentic default save changed.'
 $rejections = [ordered]@{}
-foreach ($case in @(
-    @{Name='default-in-trap'; Session=$session; Path=$authentic; Revision=242},
-    @{Name='trap-in-default'; Session=$default; Path="$Run/trap-continued.ddsave"; Revision=223})) {
+function Assert-RejectedRestore($testedSession, [string]$path, [string]$name) {
+    $before = "$Run/$name.before.ddsave"
+    $after = "$Run/$name.after.ddsave"
+    $testedSession.Save($before)
     $failed = $false
-    try { $case.Session.Restore($case.Path) } catch [ArgumentException] { $failed = $true }
-    Require ($failed -and $case.Session.View('Player').Revision -eq $case.Revision) "Wrong-profile restore replaced live state: $($case.Name)"
-    $rejections[$case.Name] = $true
+    try { $testedSession.Restore($path) } catch [ArgumentException] { $failed = $true }
+    $testedSession.Save($after)
+    Require ($failed -and (Digest $before) -ceq (Digest $after)) "Rejected restore changed canonical live bytes: $name."
+    $rejections[$name] = [ordered]@{before=(Digest $before); after=(Digest $after)}
+}
+foreach ($case in @(
+    @{Name='default-in-trap'; Session=$session; Path=$authentic},
+    @{Name='trap-in-default'; Session=$default; Path="$Run/trap-continued.ddsave"})) {
+    Assert-RejectedRestore $case.Session $case.Path $case.Name
 }
 $forged = $final.Copy()
 $forged.RandomState = [uint32]($final.RandomState -bxor 1)
 $store.Save("$Run/forged-history.ddsave",$forged)
-$failed = $false
-try { $session.Restore("$Run/forged-history.ddsave") } catch [ArgumentException] { $failed = $true }
-Require ($failed -and $session.View('Player').Revision -eq 242) 'A structurally valid altered history replaced the live session.'
-$rejections['forged-history'] = $true
+Assert-RejectedRestore $session "$Run/forged-history.ddsave" 'forged-history'
 $restoreTimes = [ordered]@{}
 foreach ($name in $checkpoints) {
     $watch = [Diagnostics.Stopwatch]::StartNew()
