@@ -1,8 +1,8 @@
 # Foundation and provisional rules implementation trace
 
-## 2026-11-14 — Short Rest/calendar correction (wire103 TEST_ONLY; final regression pending)
+## 2026-11-14 — Short Rest/calendar correction (wire103 TEST_ONLY; bounded correction accepted)
 
-Source `999c969eb88e37cd9503b832f4fba45d89200b3b` makes Short Rest use actual combat mode for admission and interruption while preserving the ordinary sparse calendar. GPT interim review `29abb61f-bb63-588d-92ea-8cc053f1d8ac` found no concrete blocker in evidence `9a6f7aa0122a215f40a53110dc244e94e26c260d`: the focused case, C# 9 compilation, 18 static checks, 69 new public checkpoints, all 571 typed inputs with 24 denial/retry pairs, and authentic wire95–103 compatibility pass. The accepted predecessor's 75 checkpoints and all branch transcripts remain unchanged. Final acceptance awaits all 1,500 cases and actual GPT review. TAC-06 Flesh Warden remains gated behind that acceptance and its separate source/API contract. [Correction evidence](evidence/2026-11-14-mgt03-rest-calendar/README.md) · [Actual interim review](evidence/2026-11-14-mgt03-rest-calendar/GPT_INTERIM_REVIEW.md)
+Codex and GPT accepted source `999c969eb88e37cd9503b832f4fba45d89200b3b` and final evidence `a246a5ad1e54827ef6416816bdd62a08bf547697` in response `3e89a445-fe0f-500c-bd1b-d80610bac36d`. Short Rest uses actual combat mode for admission and interruption while preserving the ordinary sparse calendar. All 1,500 exact cases passed. The focused case, C# 9 compilation, 18 static checks, 69 new public checkpoints, all 571 typed inputs with 24 denial/retry pairs, and authentic wire95–103 compatibility pass. The predecessor's 75 checkpoints and transcripts remain unchanged. The approved successor is the separate TAC-06 Flesh Warden source/API contract; implementation awaits that review. [Correction evidence](evidence/2026-11-14-mgt03-rest-calendar/README.md) · [Actual final review](evidence/2026-11-14-mgt03-rest-calendar/GPT_FINAL_REVIEW.md)
 
 ## 2026-11-14 — public Short Rest (wire103/base90 TEST_ONLY; bounded implementation accepted)
 
