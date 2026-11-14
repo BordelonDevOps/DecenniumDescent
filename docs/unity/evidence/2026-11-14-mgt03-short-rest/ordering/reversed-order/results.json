@@ -1,0 +1,36 @@
+{
+  "Status": "PASS",
+  "Variant": "ReversedOrder",
+  "OrderingAssertion": "EXPECTED_FAIL",
+  "AssertionFailure": "ORDER_BEFORE_COMPLETION: the same grant must already be expired and its buffer zero at the tied completion write.",
+  "Observations": 1,
+  "AtCompletionWrite": {
+    "Clock": "120681/2",
+    "RestBeforeWrite": "Active",
+    "TemporaryHp": 3,
+    "GrantId": "rest.decay",
+    "GrantRevision": 193,
+    "GrantEnd": "None",
+    "GrantEndedAt": null
+  },
+  "ExpectedGrantId": "rest.decay",
+  "ExpectedGrantRevision": 193,
+  "ExpectedDeadline": "120681/2",
+  "FinalRest": "Completed",
+  "FinalGrant": "Expired",
+  "PendingSaveSha256": "6a007860c8333a08b75d3d0bdfd3e82515501bdedf4868dc5192a20c49d33d10",
+  "Assemblies": {
+    "Core": {
+      "moduleId": "ed34e8dd-015a-4911-8e74-b6be80df62d0",
+      "sha256": "269572a9d1842ba1e0afab9f29d123e9aea0d9f646401c1792cd1aa528571c67"
+    },
+    "Persistence": {
+      "moduleId": "2f61ea1e-9971-463f-900e-f03ea30e32cd",
+      "sha256": "be6585714efb165741ce2286221f82460a7173340872fb263584c7f0977f2d73"
+    },
+    "LabModel": {
+      "moduleId": "4da87d3e-9c55-481e-97ec-55d7d79b679e",
+      "sha256": "0258278782ff9cc29ec4856637c07ec4fac5a373a30a0328d43ae4c12e9fd19e"
+    }
+  }
+}

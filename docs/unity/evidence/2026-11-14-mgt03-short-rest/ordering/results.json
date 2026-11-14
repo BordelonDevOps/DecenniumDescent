@@ -1,0 +1,81 @@
+{
+  "Status": "PASS",
+  "Implementation": "44837a2ed2be8a558ca6d37544621dac6400ab9d",
+  "SourceArchiveSha256": "579ec150b872bc207d25f582f100652de3e75a81c1c6a878bfc33d762f39f32e",
+  "PendingSaveSha256": "6a007860c8333a08b75d3d0bdfd3e82515501bdedf4868dc5192a20c49d33d10",
+  "Variants": {
+    "observed-original": {
+      "Status": "PASS",
+      "Variant": "ObservedOriginal",
+      "OrderingAssertion": "PASS",
+      "AssertionFailure": null,
+      "Observations": 1,
+      "AtCompletionWrite": {
+        "Clock": "120681/2",
+        "RestBeforeWrite": "Active",
+        "TemporaryHp": 0,
+        "GrantId": "rest.decay",
+        "GrantRevision": 193,
+        "GrantEnd": "Expired",
+        "GrantEndedAt": "120681/2"
+      },
+      "ExpectedGrantId": "rest.decay",
+      "ExpectedGrantRevision": 193,
+      "ExpectedDeadline": "120681/2",
+      "FinalRest": "Completed",
+      "FinalGrant": "Expired",
+      "PendingSaveSha256": "6a007860c8333a08b75d3d0bdfd3e82515501bdedf4868dc5192a20c49d33d10",
+      "Assemblies": {
+        "Core": {
+          "sha256": "b4a6474c0c08e6e7487023e40ac9b066ea2c771a93d07fb45f160a1d8909dd80",
+          "moduleId": "8562111a-480a-4380-8d72-97d5b4cf97cf"
+        },
+        "Persistence": {
+          "sha256": "452f71a01a3b6123fb97e3ccb9f921b3733fcbdc8e9e6bc46b58e738acde5861",
+          "moduleId": "d5886656-0265-4d15-a37f-a9f91abbe565"
+        },
+        "LabModel": {
+          "sha256": "067b49d548f3b2632f761ad4c13dc49b9ef7925c69f9561eb8dd076f58b3bb0a",
+          "moduleId": "20be3205-c4f8-4351-84e0-2fbd2e5168c9"
+        }
+      }
+    },
+    "reversed-order": {
+      "Status": "PASS",
+      "Variant": "ReversedOrder",
+      "OrderingAssertion": "EXPECTED_FAIL",
+      "AssertionFailure": "ORDER_BEFORE_COMPLETION: the same grant must already be expired and its buffer zero at the tied completion write.",
+      "Observations": 1,
+      "AtCompletionWrite": {
+        "Clock": "120681/2",
+        "RestBeforeWrite": "Active",
+        "TemporaryHp": 3,
+        "GrantId": "rest.decay",
+        "GrantRevision": 193,
+        "GrantEnd": "None",
+        "GrantEndedAt": null
+      },
+      "ExpectedGrantId": "rest.decay",
+      "ExpectedGrantRevision": 193,
+      "ExpectedDeadline": "120681/2",
+      "FinalRest": "Completed",
+      "FinalGrant": "Expired",
+      "PendingSaveSha256": "6a007860c8333a08b75d3d0bdfd3e82515501bdedf4868dc5192a20c49d33d10",
+      "Assemblies": {
+        "Core": {
+          "moduleId": "ed34e8dd-015a-4911-8e74-b6be80df62d0",
+          "sha256": "269572a9d1842ba1e0afab9f29d123e9aea0d9f646401c1792cd1aa528571c67"
+        },
+        "Persistence": {
+          "moduleId": "2f61ea1e-9971-463f-900e-f03ea30e32cd",
+          "sha256": "be6585714efb165741ce2286221f82460a7173340872fb263584c7f0977f2d73"
+        },
+        "LabModel": {
+          "moduleId": "4da87d3e-9c55-481e-97ec-55d7d79b679e",
+          "sha256": "0258278782ff9cc29ec4856637c07ec4fac5a373a30a0328d43ae4c12e9fd19e"
+        }
+      }
+    }
+  },
+  "Scope": "Evidence-only source copies; uninstrumented engine and regression assemblies unchanged"
+}

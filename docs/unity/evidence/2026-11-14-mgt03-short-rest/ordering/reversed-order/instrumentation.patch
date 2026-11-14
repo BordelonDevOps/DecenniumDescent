@@ -1,0 +1,65 @@
+--- a/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs
+@@ -72,7 +72,7 @@
+                 // Camp Greens may stop at an earlier milestone. Credit intake only through the actual endpoint.
+                 var scheduledBuffer = s.ConsumeDecay;
+                 RuleTime previous=s.RuleClock;CampGreens.Advance(s,next);RegisterCropOutput(s);
+-                if (scheduledBuffer?.Active == true && scheduledBuffer.Deadline == s.RuleClock)
++                if (scheduledBuffer?.Active == true && scheduledBuffer.Deadline == s.RuleClock && !ShortRestOrderProbe.DeferExpiry)
+                     TestOnlySharedWorldPolicy.ExpireConsumeDecay(s, scheduledBuffer);
+                 WaterFilling.CreditWork(s,CampGreens.Subtract(s.RuleClock,previous));
+                 creditOtherWork?.Invoke(s,CampGreens.Subtract(s.RuleClock,previous));
+--- a/engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs
+@@ -94,7 +94,10 @@
+             var ended = new ShortRestRecord(rest.Sequence, rest.StartCommandId, rest.StartRevision, rest.StartedAt,
+                 completed ? ShortRestOutcome.Completed : ShortRestOutcome.Interrupted, benefit, interruption,
+                 command.Id, state.Revision + 1, state.RuleClock);
++            if (completed) ShortRestOrderProbe.Observe(state, rest);
+             state.ShortRests = state.ShortRests.Select(x => x.Id == rest.Id ? ended : x).ToArray();
++            if (completed && ShortRestOrderProbe.DeferExpiry && state.ConsumeDecay?.Active == true
++                && state.ConsumeDecay.Deadline == state.RuleClock) ExpireConsumeDecay(state, state.ConsumeDecay);
+         }
+     }
+ }
+--- a/engine/com.decennium.foundation/Laboratory/Model/ShortRestOrderProbe.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/ShortRestOrderProbe.cs
+@@ -0,0 +1,38 @@
++#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
++using System.Linq;
++namespace Decennium.Foundation.Laboratory
++{
++    // Evidence instrumentation only; never copied into the engine branch.
++    public static class ShortRestOrderProbe
++    {
++        public static bool DeferExpiry { get; } = true;
++        public static int Count { get; private set; }
++        public static Observation Last { get; private set; }
++        public static void Observe(Snapshot state, ShortRestRecord rest)
++        {
++            Count++;
++            Last = new Observation(state, rest);
++        }
++        public sealed class Observation
++        {
++            public string Clock { get; }
++            public string RestBeforeWrite { get; }
++            public long TemporaryHp { get; }
++            public string GrantId { get; }
++            public long GrantRevision { get; }
++            public string GrantEnd { get; }
++            public string GrantEndedAt { get; }
++            internal Observation(Snapshot state, ShortRestRecord rest)
++            {
++                Clock = state.RuleClock.ToString();
++                RestBeforeWrite = state.ShortRests.Single(x => x.Id == rest.Id).Outcome.ToString();
++                TemporaryHp = state.Lives.Single(x => x.ActorId == rest.ActorId).TemporaryHp;
++                GrantId = state.ConsumeDecay.CommandId;
++                GrantRevision = state.ConsumeDecay.Revision;
++                GrantEnd = state.ConsumeDecay.End.ToString();
++                GrantEndedAt = state.ConsumeDecay.EndedAt?.ToString();
++            }
++        }
++    }
++}
++#endif
