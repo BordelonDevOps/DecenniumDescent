@@ -47,21 +47,25 @@ namespace Decennium.Foundation.Laboratory
 
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             int offer = state.Characters.Single(x => x.ActorId == actor.Id).Levels.Count;
-            bool accepted = TemporaryHpRules.Replaces(life.TemporaryHp, offer);
             SetInterval(state, interval.PayAction());
-            state.ConsumeDecay = new ConsumeDecayRecord(command.Id, state.Revision + 1, state.RuleClock, offer, accepted);
-            if (accepted) ReplaceTemporaryHp(state, life, offer);
+            var offered = new ConsumeDecayRecord(command.Id, state.Revision + 1, state.RuleClock, offer, true);
+            var winner = TemporaryHpRules.Select(null, life.TemporaryHp, offered);
+            bool accepted = ReferenceEquals(winner.Grant, offered);
+            state.ConsumeDecay = accepted ? offered
+                : new ConsumeDecayRecord(command.Id, state.Revision + 1, state.RuleClock, offer, false);
+            if (accepted) ReplaceTemporaryHp(state, life, winner.Remaining);
             return null;
         }
 
         private static RuleTime? NextConsumeDecayDeadline(Snapshot state)
             => state.ConsumeDecay?.Active == true ? state.ConsumeDecay.Deadline : (RuleTime?)null;
 
-        internal static void ExpireConsumeDecay(Snapshot state)
+        internal static void ExpireConsumeDecay(Snapshot state, ConsumeDecayRecord scheduled)
         {
             var grant = state.ConsumeDecay;
-            if (grant?.Active != true || grant.Deadline != state.RuleClock) return;
             var life = state.Lives.Single(x => x.ActorId == ConsumeDecaySite.Actor);
+            var remaining = TemporaryHpRules.Expire(grant, life.TemporaryHp, scheduled, state.RuleClock);
+            if (remaining.Grant != null) return;
             ReplaceTemporaryHp(state, life, 0);
             EndConsumeDecay(state, grant, TemporaryHpEnd.Expired);
         }
@@ -88,10 +92,19 @@ namespace Decennium.Foundation.Laboratory
 
     public static class TemporaryHpRules
     {
-        public static bool Replaces(long remaining, long offer)
+        public static (ConsumeDecayRecord Grant, long Remaining) Select(ConsumeDecayRecord current, long remaining, ConsumeDecayRecord offered)
         {
-            if (remaining < 0 || offer < 0) throw new ArgumentOutOfRangeException(remaining < 0 ? nameof(remaining) : nameof(offer));
-            return offer > remaining;
+            if (remaining < 0) throw new ArgumentOutOfRangeException(nameof(remaining));
+            if (offered?.Active != true) throw new ArgumentException("An active offer is required.", nameof(offered));
+            return offered.Offer > remaining ? (offered, offered.Offer) : (current, remaining);
+        }
+
+        public static (ConsumeDecayRecord Grant, long Remaining) Expire(ConsumeDecayRecord current, long remaining,
+            ConsumeDecayRecord scheduled, RuleTime at)
+        {
+            bool due = current?.Active == true && scheduled?.Active == true && current.Revision == scheduled.Revision
+                && current.CommandId == scheduled.CommandId && current.Deadline == at && scheduled.Deadline == at;
+            return due ? (null, 0) : (current, remaining);
         }
     }
 }

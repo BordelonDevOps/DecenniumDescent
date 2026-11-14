@@ -106,8 +106,27 @@ namespace Decennium.Foundation.Tests
                     ConsumeDecaySite.X, ConsumeDecaySite.Y, false, true, false, false)).ToArray();
                 Require(policy.Resolve(blocked, Grant("decay.probe-blocked")) == "ConsumeDecaySubstrateOutOfReach",
                     "Five-foot geometry does not bypass obstructed access.");
-                Require(TemporaryHpRules.Replaces(2, 3) && !TemporaryHpRules.Replaces(3, 3) && !TemporaryHpRules.Replaces(4, 3),
-                    "The shared comparison replaces only a strictly smaller remaining grant.");
+                var oldGrant = new ConsumeDecayRecord("decay.arbitration.old", 1, new RuleTime(1), 6, true);
+                var larger = new ConsumeDecayRecord("decay.arbitration.larger", 2, new RuleTime(2), 4, true);
+                var equal = new ConsumeDecayRecord("decay.arbitration.equal", 3, new RuleTime(3), 3, true);
+                var smaller = new ConsumeDecayRecord("decay.arbitration.smaller", 4, new RuleTime(4), 2, true);
+                var winner = TemporaryHpRules.Select(oldGrant, 3, larger);
+                var equalResult = TemporaryHpRules.Select(oldGrant, 3, equal);
+                var smallerResult = TemporaryHpRules.Select(oldGrant, 3, smaller);
+                Require(ReferenceEquals(winner.Grant, larger) && winner.Remaining == 4 && winner.Grant.Deadline == larger.Deadline
+                    && ReferenceEquals(equalResult.Grant, oldGrant) && equalResult.Remaining == 3 && equalResult.Grant.Deadline == oldGrant.Deadline
+                    && ReferenceEquals(smallerResult.Grant, oldGrant) && smallerResult.Remaining == 3 && smallerResult.Grant.Deadline == oldGrant.Deadline,
+                    "Shared arbitration must retain the winning identity, actual balance and its original deadline.");
+                var stale = TemporaryHpRules.Expire(winner.Grant, winner.Remaining, oldGrant, oldGrant.Deadline);
+                var atWinnerEnd = TemporaryHpRules.Expire(stale.Grant, stale.Remaining, larger, larger.Deadline);
+                var discardedEnd = TemporaryHpRules.Expire(atWinnerEnd.Grant, atWinnerEnd.Remaining, equal, equal.Deadline);
+                var finalEnd = TemporaryHpRules.Expire(discardedEnd.Grant, discardedEnd.Remaining, smaller, smaller.Deadline);
+                var retainedEnd = TemporaryHpRules.Expire(equalResult.Grant, equalResult.Remaining, oldGrant, oldGrant.Deadline);
+                Require(ReferenceEquals(stale.Grant, larger) && stale.Remaining == 4
+                    && atWinnerEnd.Grant == null && atWinnerEnd.Remaining == 0
+                    && discardedEnd.Grant == null && discardedEnd.Remaining == 0 && finalEnd.Grant == null && finalEnd.Remaining == 0
+                    && retainedEnd.Grant == null && retainedEnd.Remaining == 0,
+                    "Replacement and discarded deadlines cannot clear or revive another grant.");
                 var overflow = PlaytestDamageDice.Resolve(new LifeState(26, 21, 3), 5, entry.RuleClock, entry.RandomState).Outcome;
                 Require(overflow.TemporaryAbsorbed == 3 && overflow.PostTempDamage == 2
                     && overflow.State.TemporaryHp == 0 && overflow.State.Hp == 19 && overflow.State.MaximumHp == 26,

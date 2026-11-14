@@ -70,8 +70,10 @@ namespace Decennium.Foundation.Laboratory
                     if(item.FreshUntil.HasValue&&item.FreshUntil.Value<next)next=item.FreshUntil.Value;
                 }
                 // Camp Greens may stop at an earlier milestone. Credit intake only through the actual endpoint.
+                var scheduledBuffer = s.ConsumeDecay;
                 RuleTime previous=s.RuleClock;CampGreens.Advance(s,next);RegisterCropOutput(s);
-                TestOnlySharedWorldPolicy.ExpireConsumeDecay(s);
+                if (scheduledBuffer?.Active == true && scheduledBuffer.Deadline == s.RuleClock)
+                    TestOnlySharedWorldPolicy.ExpireConsumeDecay(s, scheduledBuffer);
                 WaterFilling.CreditWork(s,CampGreens.Subtract(s.RuleClock,previous));
                 creditOtherWork?.Invoke(s,CampGreens.Subtract(s.RuleClock,previous));
                 foreach(var job in s.Intakes.Where(x=>x.Status==IntakeStatus.Working).ToArray()) {
