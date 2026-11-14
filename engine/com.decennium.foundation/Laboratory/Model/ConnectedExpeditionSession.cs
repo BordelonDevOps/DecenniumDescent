@@ -92,6 +92,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithConsumeDecay()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedConsumeDecay());
 
+        public static ConnectedExpeditionSession StartWithShortRest()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());
+
         public static ConnectedExpeditionSession StartWithWoundTreatment()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedWoundTreatment());
 
@@ -295,7 +298,7 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
-            if (command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind))
+            if (command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
                 return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
@@ -330,7 +333,8 @@ namespace Decennium.Foundation.Laboratory
                 || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion
                 || state.ConnectedWoundTreatment && WoundTreatmentStation.IsCommand(kind)
-                || state.ConnectedConsumeDecay && kind == CommandKind.ConsumeDecay);
+                || state.ConnectedConsumeDecay && kind == CommandKind.ConsumeDecay
+                || state.ConnectedShortRest && ShortRestBerth.IsCommand(kind));
 
         private static readonly CommandKind[] CombatCommands = {
             CommandKind.SelectCombatStance, CommandKind.AttackClub, CommandKind.TacticalStep,
@@ -476,6 +480,11 @@ namespace Decennium.Foundation.Laboratory
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
                 case CommandKind.ConsumeDecay:
                     return state.ConnectedConsumeDecay && seat == ExpeditionSeat.Player && actor == Hero && target == ConsumeDecaySite.Id;
+                case CommandKind.BeginShortRest:
+                    return state.ConnectedShortRest && seat == ExpeditionSeat.Player && actor == Hero && target == ShortRestBerth.Id;
+                case CommandKind.InterruptShortRest:
+                    return state.ConnectedShortRest && seat == ExpeditionSeat.Player && actor == Hero
+                        && state.ShortRests.Any(x => x.Id == target);
                 case CommandKind.StartWoundTreatment:
                 case CommandKind.InterruptWoundTreatment:
                     return state.ConnectedWoundTreatment && seat == ExpeditionSeat.Player && actor == Hero && target == Companion;

@@ -162,13 +162,14 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionObservationView Observation { get; }
         public ExpeditionMiningSiteView MiningSite { get; }
         public ExpeditionFishingTrapView FishingTrap { get; }
+        public ExpeditionShortRestView ShortRest { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
             long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
-            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null)
+            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -189,6 +190,27 @@ namespace Decennium.Foundation.Laboratory
             Observation = observation;
             MiningSite = miningSite;
             FishingTrap = fishingTrap;
+            ShortRest = shortRest;
+        }
+    }
+
+    public sealed class ExpeditionShortRestView
+    {
+        public string SiteId => ShortRestBerth.Id;
+        public int SiteX => ShortRestBerth.X;
+        public int SiteY => ShortRestBerth.Y;
+        public string ActorId => ShortRestBerth.Actor;
+        public int InitialBenefits => ShortRestBerth.InitialBenefits;
+        public int WarriorStrain => ShortRestBerth.InitialWarriorStrain;
+        public int BenefitsRemaining { get; }
+        public string ActiveIntervalId { get; }
+        public IReadOnlyList<ShortRestRecord> Intervals { get; }
+
+        internal ExpeditionShortRestView(Snapshot state)
+        {
+            BenefitsRemaining = InitialBenefits - ShortRestBerth.BenefitsUsed(state);
+            ActiveIntervalId = ShortRestBerth.Active(state)?.Id ?? "";
+            Intervals = Array.AsReadOnly(state.ShortRests.ToArray());
         }
     }
 
@@ -379,6 +401,12 @@ namespace Decennium.Foundation.Laboratory
                         commands = commands.Append(CommandKind.ConsumeDecay);
                         selected.Add(CommandKind.ConsumeDecay, ConsumeDecaySite.Id);
                     }
+                    if (state.ConnectedShortRest) {
+                        commands = commands.Append(CommandKind.BeginShortRest).Append(CommandKind.InterruptShortRest);
+                        selected.Add(CommandKind.BeginShortRest, ShortRestBerth.Id);
+                        var activeRest = ShortRestBerth.Active(state);
+                        if (activeRest != null) selected.Add(CommandKind.InterruptShortRest, activeRest.Id);
+                    }
                     targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
                 }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
@@ -389,7 +417,8 @@ namespace Decennium.Foundation.Laboratory
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
                     player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
                     player ? ProjectMiningSite(state, grant) : null,
-                    player ? ProjectFishingTrap(state, grant) : null);
+                    player ? ProjectFishingTrap(state, grant) : null,
+                    player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null);
             }
         }
 
@@ -480,6 +509,9 @@ namespace Decennium.Foundation.Laboratory
             foreach (var job in state.WoundTreatments.Where(x => grant.Controls(WoundTreatmentStation.Healer)))
                 yield return new ExpeditionWorkStatus(job.Id, WoundTreatmentStation.Healer, "WoundTreatment", job.Outcome.ToString(),
                     job.Outcome == WoundTreatmentOutcome.Active ? CampGreens.Subtract(job.DueAt, state.RuleClock) : (RuleTime?)null);
+            foreach (var rest in state.ShortRests.Where(x => grant.Controls(x.ActorId)))
+                yield return new ExpeditionWorkStatus(rest.Id, rest.ActorId, "ShortRest", rest.Outcome.ToString(),
+                    rest.Outcome == ShortRestOutcome.Active ? CampGreens.Subtract(rest.DueAt, state.RuleClock) : (RuleTime?)null);
             foreach (var job in state.MiningAttempts.Where(x => grant.Controls(x.WorkerId)))
                 yield return new ExpeditionWorkStatus(job.Id, job.WorkerId, "Mining", job.Status.ToString());
             foreach (var job in state.Intakes.Where(x => grant.Controls(x.ActorId)))

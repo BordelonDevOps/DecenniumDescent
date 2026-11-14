@@ -441,7 +441,7 @@ namespace Decennium.Foundation
         {
             if (s == null || !Validation.ValidId(actor) || end <= start) throw new ArgumentException("Invalid labor segment.");
             var intervals = s.Work.WorkerIntervals.Where(x => x.WorkerId == actor && x.Start < end && x.End > start
-                && !WoundTreatmentStation.PatientOccupancy(s, x))
+                && !WoundTreatmentStation.PatientOccupancy(s, x) && !ShortRestBerth.RestOccupancy(s, x))
                 .OrderByDescending(x => x.End).ThenByDescending(x => x.Start).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray();
             if (intervals.Length != 0) return intervals[0].Id;
             var claim = WorldActivityProjection.CurrentWork(s).FirstOrDefault(x => x.ActorId == actor
@@ -455,7 +455,7 @@ namespace Decennium.Foundation
         {
             if (s == null || !Validation.ValidId(actor) || end <= start) throw new ArgumentException("Invalid labor interval.");
             if (s.Work.WorkerIntervals.Any(x => x.WorkerId == actor && x.Start < end && x.End > start
-                && !WoundTreatmentStation.PatientOccupancy(s, x))) return true;
+                && !WoundTreatmentStation.PatientOccupancy(s, x) && !ShortRestBerth.RestOccupancy(s, x))) return true;
             return WorldActivityProjection.CurrentWork(s).Any(x => x.ActorId == actor
                 && !s.Work.WorkerIntervals.Any(w => w.JobId == x.Id && w.WorkerId == actor));
         }

@@ -1,5 +1,9 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-14 — public Short Rest (wire103/base90 TEST_ONLY; verification pending)
+
+The approved MGT-03 contract adds `BeginShortRest` and `InterruptShortRest` to the public connected C# session and console. `ShortRestRecord`, `ShortRestBerth`, `SharedShortRest` and `ShortRestCodec` bind one hero, fixed site, full elapsed hour, terminal interruption/restart, initial two-benefit cadence and zero-dice outcomes to existing command receipts, WorkLedger occupancy and shared chronological events. Rest occupancy is excluded from labor credit. Strict canonical replay validates restored histories; predecessor envelope layouts remain separate. The [evidence packet](evidence/2026-11-14-mgt03-short-rest/README.md) retains the source bindings, approved contract, public input histories, current verification status and unsupported capabilities. Implementation acceptance is pending actual GPT review of completed evidence. No mutation equip or Unity gameplay integration is introduced.
+
 ## 2026-11-10 — MGT-06 Fishing Trap responsibility handover (schema38 TEST_ONLY; accepted)
 
 GPT accepted implementation commit `9f8478b88399fae8fc8f4818f7518718d16afa20`, reviewed with evidence/docs at `dc89e73ed3acb211951e311988e12c7be88cab80`. Its actual verdict, findings, packet corrections and review limits are recorded in [GPT_IMPLEMENTATION_REVIEW.md](evidence/2026-11-10-mgt06/GPT_IMPLEMENTATION_REVIEW.md). GPT found no concrete blocker for the bounded handover increment and confirmed MGT-05A/B/C remain accepted. MGT-06 remains partial overall; this acceptance covers one TEST_ONLY responsibility-handover profile, not complete fishing or the engine.

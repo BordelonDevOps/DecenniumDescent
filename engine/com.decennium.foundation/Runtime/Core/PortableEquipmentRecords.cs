@@ -411,6 +411,7 @@ namespace Decennium.Foundation
                 &&!s.RouteMappingWorkAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.RouteReconnaissanceAttempts.Any(j=>j.Id==w.JobId)
                 &&!s.WoundTreatments.Any(j=>j.Id==w.JobId)
+                &&!s.ShortRests.Any(j=>j.Id==w.JobId)
                 &&!s.CraftingIncidents.Any(j=>w.JobId=="craft.remedy."+j.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture))))
                 throw new ArgumentException("Unattributed worker interval.");
         }

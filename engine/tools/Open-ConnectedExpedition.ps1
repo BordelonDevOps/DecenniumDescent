@@ -8,12 +8,13 @@ param(
     [switch]$CompanionDose,
     [switch]$CompanionStabilization,
     [switch]$WoundTreatment,
-    [switch]$ConsumeDecay
+    [switch]$ConsumeDecay,
+    [switch]$ShortRest
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -27,6 +28,8 @@ $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
 } elseif ($CarriedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($ShortRest) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithShortRest()
 } elseif ($ConsumeDecay) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConsumeDecay()
 } elseif ($WoundTreatment) {
@@ -44,6 +47,11 @@ $session = if ($FishingTrap) {
 }
 
 function New-SessionCommand($request, $view, $kind) {
+    if ($kind -eq 'BeginShortRest' -and (!$request.ContainsKey('x') -or
+        !($request.x -is [int] -or $request.x -is [long]) -or $request.x -ne 0 -or
+        ($request.ContainsKey('y') -and (!($request.y -is [int] -or $request.y -is [long]) -or $request.y -ne 0)))) {
+        throw 'Short Rest requires an explicit zero Hit Dice selection.'
+    }
     $id = $request.id ?? ('local.' + [guid]::NewGuid().ToString('N'))
     $actor = $request.actor ?? $view.ActingActorId
     $revision = $request.revision ?? $view.Revision
@@ -114,7 +122,8 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ConsumeDecay) {
+            if (!$ShortRest) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
+            if (!$ConsumeDecay -and !$ShortRest) {
                 $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty TemporaryHp,TemporaryHpUntil)
             }
         }
@@ -149,8 +158,11 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         if ($CompanionStabilization) {
             [Console]::WriteLine('Use StabilizeCompanion on the dying companion during the hero''s regular turn, with a free hand and within 5 feet.')
         }
-        if ($ConsumeDecay) {
+        if ($ConsumeDecay -or $ShortRest) {
             [Console]::WriteLine('Use ConsumeDecay on the hero''s regular turn within reach of its known decay bed.')
+        }
+        if ($ShortRest) {
+            [Console]::WriteLine('At the ShortRest berth, submit BeginShortRest with its SiteId and explicit x:0. Advance the shared clock for one uninterrupted hour. InterruptShortRest targets its ActiveIntervalId; a restart requires the full hour.')
         }
         if ($CompanionDose -or $CompanionStabilization) {
             [Console]::WriteLine('Use BeginReinforcementApproach with the companion and its known target. After admission, the hero can use the held vial on the eligible companion within 5 feet.')

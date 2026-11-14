@@ -81,6 +81,7 @@ namespace Decennium.Foundation
         public const int X = 1;
         public const int Y = 3;
         public const byte Marker = 7;
-        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || ShortRestBerth.SelectedFingerprint(fingerprint);
     }
 }

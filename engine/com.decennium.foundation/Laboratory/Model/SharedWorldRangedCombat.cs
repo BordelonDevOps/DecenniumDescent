@@ -281,6 +281,10 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if (ShortRestBerth.IsCommand(c.Kind) || ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor) {
+                string restFailure = ResolveCore(s.Copy(), c);
+                return new CommandQueryResult(true, restFailure == null, restFailure ?? "Available", s.Revision);
+            }
             if (connectedFormulaResearch && (FormulaCommand(c.Kind) || ManufacturingCommand(c.Kind))
                 || connectedBloodSpecimen && HarvestPreservationTreatmentCommand(c.Kind)) {
                 string connectedResearchFailure = ResolveCore(s, c, assessFormula: true);

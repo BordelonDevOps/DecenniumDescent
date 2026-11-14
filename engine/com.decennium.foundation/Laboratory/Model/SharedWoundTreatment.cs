@@ -22,6 +22,7 @@ namespace Decennium.Foundation.Laboratory
             if (!connectedWoundTreatment) return;
             state.ConnectedWoundTreatment = true;
             state.ConnectedConsumeDecay = connectedConsumeDecay;
+            state.ConnectedShortRest = connectedShortRest;
             var stock = new[] { WoundTreatmentStation.Kit }.Concat(
                 Enumerable.Range(0, WoundTreatmentStation.BasketCount).SelectMany(WoundTreatmentStation.Stock)).ToArray();
             state.Work = new WorkLedger(state.Work.Lots.Concat(stock), state.Work.WorkerIntervals, state.Work.Reservations);

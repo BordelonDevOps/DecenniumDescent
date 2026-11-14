@@ -334,6 +334,7 @@ namespace Decennium.Foundation
                 &&s.RouteMappingWorkAttempts.All(j=>j.Id!=w.JobId)
                 &&s.RouteReconnaissanceAttempts.All(j=>j.Id!=w.JobId)
                 &&s.WoundTreatments.All(j=>j.Id!=w.JobId)
+                &&s.ShortRests.All(j=>j.Id!=w.JobId)
                 &&s.CacheExcavations.All(j=>j.Id!=w.JobId)
                 &&s.HavenAppraisals.All(j=>j.Id!=w.JobId)
                 &&s.HavenSales.All(j=>j.Id!=w.JobId)

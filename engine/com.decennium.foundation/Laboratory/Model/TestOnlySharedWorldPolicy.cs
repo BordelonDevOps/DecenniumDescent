@@ -481,6 +481,7 @@ namespace Decennium.Foundation.Laboratory
             int subevent = 0;
             while (s.RuleClock < target) {
                 ReconcileRouteTravel(s); ReconcileTraversal(s); ReconcileReinforcement(s, initiating);
+                ReconcileShortRest(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
@@ -490,6 +491,8 @@ namespace Decennium.Foundation.Laboratory
                 if (bufferDeadline.HasValue && bufferDeadline.Value < next) next = bufferDeadline.Value;
                 var treatment = WoundTreatmentStation.Active(s);
                 if (treatment != null && treatment.DueAt < next) next = treatment.DueAt;
+                var shortRest = ShortRestBerth.Active(s);
+                if (shortRest != null && shortRest.DueAt < next) next = shortRest.DueAt;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
                 var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
@@ -548,7 +551,7 @@ namespace Decennium.Foundation.Laboratory
                     var horizon = target < boundary ? target : boundary;
                     bool activeOffCalendarWork = horizon > s.RuleClock
                         && (s.Work.WorkerIntervals.Any(w => w.WorkerId == activity.ActorId && w.Start < horizon && w.End > s.RuleClock
-                            && !WoundTreatmentStation.PatientOccupancy(s, w))
+                            && !WoundTreatmentStation.PatientOccupancy(s, w) && !ShortRestBerth.RestOccupancy(s, w))
                             || WorldActivityValidation.ActiveLaborReference(s, activity.ActorId, s.RuleClock, horizon) != "");
                     if ((active.Any(e => e.ActorId == activity.ActorId && e.Status == WorldTraversalStatus.Moving)
                         || activeOffCalendarWork) && boundary > s.RuleClock && boundary < next) next = boundary;
@@ -767,6 +770,7 @@ namespace Decennium.Foundation.Laboratory
                     }
                     return null;
                 }
+                ReconcileShortRest(s, initiating);
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -789,6 +793,11 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (ShortRestBerth.IsCommand(c.Kind)) return ResolveShortRest(s, c);
+            if (ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor
+                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
+                && c.Kind != CommandKind.EnterInventoryCombat)
+                return "ShortRestRequiresInterruption";
             if (c.Kind == CommandKind.ConsumeDecay) return ResolveConsumeDecay(s, c);
             if (WoundTreatmentStation.IsCommand(c.Kind)) return ResolveWoundTreatment(s, c);
             if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return "WoundTreatmentStockSealed";
@@ -1019,6 +1028,8 @@ namespace Decennium.Foundation.Laboratory
                 if (hideDue.HasValue && hideDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var bufferDeadline = NextConsumeDecayDeadline(s);
                 if (bufferDeadline.HasValue && bufferDeadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var shortRest = ShortRestBerth.Active(s);
+                if (shortRest != null && shortRest.DueAt <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var periodic = NextPeriodicMarker(s);

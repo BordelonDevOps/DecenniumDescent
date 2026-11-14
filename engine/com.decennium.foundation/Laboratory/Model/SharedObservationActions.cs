@@ -16,6 +16,7 @@ namespace Decennium.Foundation.Laboratory
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c, passage: passage);
+            if (error == null) ReconcileShortRest(s, c);
             if (error == null && ActiveBloodTreatment(s) is HarvestPreservationTreatmentAttemptRecord treatment) {
                 if (treatment.UpdatedAt < s.RuleClock) return "BloodTreatmentRequiresSharedAdvance";
                 string access = BloodTreatmentAccess(s, treatment.WorkerId);
