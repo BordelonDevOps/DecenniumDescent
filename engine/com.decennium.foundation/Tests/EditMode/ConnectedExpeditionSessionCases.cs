@@ -14,6 +14,7 @@ namespace Decennium.Foundation.Tests
             AddConnectedExpeditionQualityCases(cases, directory);
             AddConnectedVialCases(cases, directory);
             AddConnectedWoundTreatmentCases(cases, directory);
+            AddConnectedConsumeDecayCases(cases, directory);
             cases.Add("int03_strict_restore_constructs_fresh_owned_prefix", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

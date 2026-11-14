@@ -132,6 +132,10 @@ namespace Decennium.Foundation
                     writer.Write(WoundTreatmentStation.Marker);
                     WoundTreatmentCodec.Write(writer, state.WoundTreatments);
                 }
+                if (state.ConnectedConsumeDecay) {
+                    writer.Write(ConsumeDecaySite.Marker);
+                    ConsumeDecayCodec.Write(writer, state.ConsumeDecay);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -163,6 +167,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedCompanionDoseSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedCompanionStabilizationSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedWoundTreatmentSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedConsumeDecaySchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -269,7 +274,8 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedWoundTreatment = wireSchema == Snapshot.ConnectedWoundTreatmentSchema;
+                    s.ConnectedConsumeDecay = wireSchema == Snapshot.ConnectedConsumeDecaySchema;
+                    s.ConnectedWoundTreatment = s.ConnectedConsumeDecay || wireSchema == Snapshot.ConnectedWoundTreatmentSchema;
                     bool carriedVialEnvelope = s.ConnectedWoundTreatment || wireSchema == Snapshot.ConnectedCarriedVialSchema
                         || wireSchema == Snapshot.ConnectedStowedVialSchema || wireSchema == Snapshot.ConnectedTacticalVialSchema
                         || wireSchema == Snapshot.ConnectedCompanionDoseSchema || wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
@@ -302,6 +308,10 @@ namespace Decennium.Foundation
                     if (s.ConnectedWoundTreatment) {
                         if (reader.ReadByte() != WoundTreatmentStation.Marker) throw new InvalidDataException("Invalid Wound treatment marker.");
                         s.WoundTreatments = WoundTreatmentCodec.Read(reader);
+                    }
+                    if (s.ConnectedConsumeDecay) {
+                        if (reader.ReadByte() != ConsumeDecaySite.Marker) throw new InvalidDataException("Invalid Consume Decay marker.");
+                        s.ConsumeDecay = ConsumeDecayCodec.Read(reader);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

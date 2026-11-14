@@ -71,6 +71,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 // Camp Greens may stop at an earlier milestone. Credit intake only through the actual endpoint.
                 RuleTime previous=s.RuleClock;CampGreens.Advance(s,next);RegisterCropOutput(s);
+                TestOnlySharedWorldPolicy.ExpireConsumeDecay(s);
                 WaterFilling.CreditWork(s,CampGreens.Subtract(s.RuleClock,previous));
                 creditOtherWork?.Invoke(s,CampGreens.Subtract(s.RuleClock,previous));
                 foreach(var job in s.Intakes.Where(x=>x.Status==IntakeStatus.Working).ToArray()) {

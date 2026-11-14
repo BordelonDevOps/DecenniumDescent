@@ -486,6 +486,8 @@ namespace Decennium.Foundation.Laboratory
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
                 var hideDue = s.ExplorationHide?.Pending?.DueAt;
                 if (hideDue.HasValue && hideDue.Value > segmentStart && hideDue.Value < next) next = hideDue.Value;
+                var bufferDeadline = NextConsumeDecayDeadline(s);
+                if (bufferDeadline.HasValue && bufferDeadline.Value < next) next = bufferDeadline.Value;
                 var treatment = WoundTreatmentStation.Active(s);
                 if (treatment != null && treatment.DueAt < next) next = treatment.DueAt;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
@@ -787,6 +789,7 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (c.Kind == CommandKind.ConsumeDecay) return ResolveConsumeDecay(s, c);
             if (WoundTreatmentStation.IsCommand(c.Kind)) return ResolveWoundTreatment(s, c);
             if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return "WoundTreatmentStockSealed";
             if (WoundTreatmentStation.Active(s) != null && (c.Actor == WoundTreatmentStation.Healer || c.Actor == WoundTreatmentStation.Patient)
@@ -1014,6 +1017,8 @@ namespace Decennium.Foundation.Laboratory
                 if (searchDue.HasValue && searchDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var hideDue = s.ExplorationHide?.Pending?.DueAt;
                 if (hideDue.HasValue && hideDue.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var bufferDeadline = NextConsumeDecayDeadline(s);
+                if (bufferDeadline.HasValue && bufferDeadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var periodic = NextPeriodicMarker(s);

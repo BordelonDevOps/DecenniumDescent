@@ -215,6 +215,10 @@ namespace Decennium.Foundation.Laboratory
             => s != null && s.ObservationMapWidth > 0
                 && ClearLine(s, Point.From(Position(s, sourceId)), Point.From(Position(s, targetId)), ObservationChannel.Effect);
 
+        internal static bool LineOfEffectClearToCell(Snapshot state, string actor, int x, int y)
+            => SupportsAnchorAt(state, x, y)
+                && ClearLine(state, Point.From(Position(state, actor)), Point.Cell(x, y), ObservationChannel.Effect);
+
         public static bool Walkable(ObservationFixture fixture, int x, int y)
             => fixture != null && fixture.InBounds(x, y) && !fixture.Blocks(x, y, ObservationChannel.Movement);
 

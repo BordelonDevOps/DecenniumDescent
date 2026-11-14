@@ -335,6 +335,7 @@ namespace Decennium.Foundation.Laboratory
             bool dropEquipment=newlyUnconscious||after.Dead;
             var record=ActorLifeRules.RecordFromResolution(before,after,before.Prone||newlyUnconscious&&!WithConditions(s),dropEquipment?Array.Empty<string>():before.HeldItems);
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
+            TestOnlySharedWorldPolicy.ReconcileTemporaryHpLoss(s, before, after);
             ExpeditionStrainRules.ClampLife(s, before.ActorId, s.RuleClock, s.Revision + 1);
             if(newlyUnconscious) {
                 if(WithConditions(s))AddPhysicalProne(s,before.ActorId,"zero-hp");

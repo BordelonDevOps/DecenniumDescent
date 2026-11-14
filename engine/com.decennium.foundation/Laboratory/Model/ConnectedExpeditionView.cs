@@ -25,6 +25,8 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionVisibleActor Position { get; }
         public long Hp { get; }
         public long MaximumHp { get; }
+        public long? TemporaryHp { get; }
+        public RuleTime? TemporaryHpUntil { get; }
         public bool Dead { get; }
         public IReadOnlyList<ConditionClause> Conditions { get; }
         public IReadOnlyList<string> HeldItems { get; }
@@ -38,6 +40,10 @@ namespace Decennium.Foundation.Laboratory
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
             MaximumHp = life.MaximumHp;
+            if (state.ConnectedConsumeDecay && actor.Id == ConsumeDecaySite.Actor) {
+                TemporaryHp = life.TemporaryHp;
+                TemporaryHpUntil = state.ConsumeDecay?.Active == true ? state.ConsumeDecay.Deadline : (RuleTime?)null;
+            }
             Dead = life.Dead;
             Conditions = Array.AsReadOnly(TestOnlyClubAttackPolicy.CombatConditions(state, actor.Id).Active.ToArray());
             HeldItems = Array.AsReadOnly(life.HeldItems.ToArray());
@@ -368,6 +374,10 @@ namespace Decennium.Foundation.Laboratory
                         commands = commands.Append(CommandKind.StartWoundTreatment).Append(CommandKind.InterruptWoundTreatment);
                         selected.Add(CommandKind.StartWoundTreatment, Companion);
                         selected.Add(CommandKind.InterruptWoundTreatment, Companion);
+                    }
+                    if (state.ConnectedConsumeDecay) {
+                        commands = commands.Append(CommandKind.ConsumeDecay);
+                        selected.Add(CommandKind.ConsumeDecay, ConsumeDecaySite.Id);
                     }
                     targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
                 }

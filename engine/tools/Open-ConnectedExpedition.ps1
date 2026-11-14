@@ -7,12 +7,13 @@ param(
     [switch]$TacticalVial,
     [switch]$CompanionDose,
     [switch]$CompanionStabilization,
-    [switch]$WoundTreatment
+    [switch]$WoundTreatment,
+    [switch]$ConsumeDecay
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -26,6 +27,8 @@ $session = if ($FishingTrap) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
 } elseif ($CarriedVial) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($ConsumeDecay) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConsumeDecay()
 } elseif ($WoundTreatment) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithWoundTreatment()
 } elseif ($CompanionStabilization) {
@@ -111,6 +114,9 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
+            if (!$ConsumeDecay) {
+                $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty TemporaryHp,TemporaryHpUntil)
+            }
         }
         ConvertTo-Json -InputObject $response -Depth 8 -Compress -EnumsAsStrings
     } catch {
@@ -142,6 +148,9 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
         }
         if ($CompanionStabilization) {
             [Console]::WriteLine('Use StabilizeCompanion on the dying companion during the hero''s regular turn, with a free hand and within 5 feet.')
+        }
+        if ($ConsumeDecay) {
+            [Console]::WriteLine('Use ConsumeDecay on the hero''s regular turn within reach of its known decay bed.')
         }
         if ($CompanionDose -or $CompanionStabilization) {
             [Console]::WriteLine('Use BeginReinforcementApproach with the companion and its known target. After admission, the hero can use the held vial on the eligible companion within 5 feet.')

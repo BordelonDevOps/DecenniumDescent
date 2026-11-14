@@ -140,7 +140,7 @@ namespace Decennium.Foundation
             => state.ConnectedWoundTreatment && interval.WorkerId == Patient && interval.Id == IntervalId(interval.JobId, Patient)
                 && interval.JobId.StartsWith(Prefix, StringComparison.Ordinal);
 
-        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ConsumeDecaySite.SelectedFingerprint(fingerprint);
         public static WoundTreatmentRecord Active(Snapshot state)
             => state.ConnectedWoundTreatment ? state.WoundTreatments.SingleOrDefault(x => x.Outcome == WoundTreatmentOutcome.Active) : null;
 
