@@ -9,3 +9,5 @@ Contract `a28a55d92eda4e7df01aad5d20b095a6777997f2` is awaiting a substantive de
 | `ca5d4762-0c9c-41c7-a5f7-3fcc6b400fe6` | The connector reported a thread system error with no assistant decision after a self-contained retry. |
 
 The next actionable step is an actual review of the existing contract. The wire102 acceptance and approved dependency order stand. Engine source remains at the accepted wire102 implementation.
+
+On the next goal continuation, the read connector again returned the terminal system error. A browser retry then displayed **"The conversation is too long, please start a new one."** This identifies the cause of the review failures. A continuation reviewer can use [the retained handoff](REVIEW_CONTINUATION.md) to review the pending contract. Creating the replacement review chat awaits the user's explicit request under the chat-creation tool's rules.
