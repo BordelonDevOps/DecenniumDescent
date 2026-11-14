@@ -154,7 +154,7 @@ namespace Decennium.Foundation
             if (jobs == null || jobs.Length > BasketCount || jobs.Any(x => x == null)
                 || state.ConnectedWoundTreatment != SelectedFingerprint(state.ContentFingerprint)
                 || !state.ConnectedWoundTreatment && (jobs.Length != 0 || gains.Length != 0
-                    || state.Work.Lots.Any(x => IsStationId(x.Id))))
+                    || state.Work?.Lots.Any(x => IsStationId(x.Id)) == true))
                 throw new ArgumentException("Invalid Wound treatment envelope.");
             if (!state.ConnectedWoundTreatment) return;
             if (!state.TestOnly || !state.ConnectedCompanionStabilization || state.SchemaVersion != Snapshot.SurpriseEntrySchema)
