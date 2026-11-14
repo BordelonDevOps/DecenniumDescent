@@ -21,7 +21,7 @@ namespace Decennium.Foundation.Laboratory
         private string ShortRestAccess(Snapshot state, ShortRestRecord active)
         {
             const string actor = ShortRestBerth.Actor;
-            if (active == null && (state.InventoryCombat || state.Encounter != null) || ShortRestEncounter(state))
+            if (active == null && state.InventoryCombat || ShortRestEncounter(state))
                 return "ShortRestRequiresOrdinaryExploration";
             var body = state.Actors.Single(x => x.Id == actor);
             if (body.X != ShortRestBerth.X || body.Y != ShortRestBerth.Y
@@ -83,7 +83,8 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static bool ShortRestEncounter(Snapshot state)
-            => state.Encounter?.Order.Contains(ShortRestBerth.Actor) == true || state.InventoryCombat && state.Encounter == null;
+            // Ordinary exploration retains its sparse calendar and roster after tactical exit.
+            => state.InventoryCombat && (state.Encounter == null || state.Encounter.Order.Contains(ShortRestBerth.Actor));
 
         private static void EndShortRest(Snapshot state, ShortRestRecord rest, Command command, ShortRestInterruption interruption)
         {
