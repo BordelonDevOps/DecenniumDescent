@@ -1,0 +1,21 @@
+# Actual Flesh Warden contract review
+
+Reviewer: [Unity Rules Engine Development Part 2](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6af8ba86-20cc-83e9-bed0-c2d616fefcdf). Actual response `74916fce-4f57-51ec-bd74-9d9b6d450c14`, observed 2026-11-15 UTC. Reviewed contract commit `c3275fc545a83a31a22e9457a5c530174f7dfb22`.
+
+## Reviewer response
+
+Approve implementation of the bounded TAC-06 Flesh Warden contract at c3275fc545a83a31a22e9457a5c530174f7dfb22, with the bindings below. I found no blocker requiring another contract revision. This authorizes the opt-in wire104/base90 TEST_ONLY implementation.
+
+Approve the source bindings and initial fixture. The pinned cards support automatic Slot I at Warrior 1, Flesh Warden’s passive bonus while equipped, and Spinal Buffer’s bonus only while active. Approve typed Basic Vital qualification, ownership of exactly those two mutations, and dormant Spinal Buffer initially in Slot I. Derive the slot from actual Warrior levels. The fixture supplies the initial loadout at revision zero without creating a rest or earned acquisition record.
+
+Approve shared grant reuse. Append TestOnlyFixtureEntitlement and scope it to the exact pair of hero grants in the selected wire104 profile, with the Warrior 1 gate, empty milestone, and revision zero. Exclude only that validated pair from the grant-triggered Hit Dice requirement. Existing origins and their validation retain their current behavior. Reject the new origin in predecessor profiles.
+
+Approve the rest-bound API, capacity representation, and cadence boundary. Validate the exact BeginMutationShortRest receipt and canonical card target in wire104 replay. The current rest validator reconstructs a plain BeginShortRest receipt, so extend start attribution and receipt counting to cover both command kinds. Settle the immutable choice, loadout, and capacity in the same transaction as actual completion after due events and access checks. Interruption applies no loadout change. An eligible same-card rest still spends a benefit and preserves the equipped application’s identity and start. Approve MutationRestCadenceUnsupported as the named capability reason after both benefits are spent. Plain rest keeps its ineligible completion path, and the general third-rest equipment rule stays open. Store pre-systemic capacity in the shared life record, derive base from character facts, and apply Expedition Strain once through shared resolution. Damage, healing, Stable recovery, Critical ceilings, and views must agree on the effective maximum.
+
+Confirm the connected witness and acceptance scope. The first completed rest takes the hero from 26/26 to 26/32. Genuine later injury and lawful finite tactical vial healing must put actual normal HP above 26. The second completed rest replaces Flesh Warden with dormant Spinal Buffer, recomputes capacity to 26, and clamps only the excess before paid continuation. Observe the successor’s actual rolls and HP. Retain the split and whole clock comparisons, three-path replay, denial and forgery controls, detached life-state and temporary-HP controls, authentic wire95–103 compatibility, and the exact 1,500 predecessor cases plus the new registered cases.
+
+I inspected the committed contract and manifest, fetched all five pinned source blobs by Git ID, and checked the relevant grant validation, rest receipt validation, public result handling, maximum-HP calculation, and shared life resolution code. I did not independently recompute every source SHA-256 or run the successor route. Implementation acceptance, broader TAC-06, and whole-engine completion remain open. Production promotion and Unity gameplay integration remain deferred.
+
+## Codex agreement and gate
+
+Codex agrees with all four decisions and the explicit receipt-attribution and same-card-benefit requirements. No concrete contract blocker remains. Proceed only with the bounded wire104/base90 implementation in [SOURCE_API_CONTRACT.md](SOURCE_API_CONTRACT.md). This is permission to implement, not acceptance of runtime behavior or completion of TAC-06/the engine. Retain implementation and connected evidence, commit exact files and seek actual GPT acceptance before another module.
