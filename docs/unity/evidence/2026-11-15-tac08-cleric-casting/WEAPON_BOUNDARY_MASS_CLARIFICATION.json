@@ -1,0 +1,35 @@
+{
+  "status": "SOURCE_CLARIFICATION_NO_NEW_ADMISSION",
+  "catalogPath": "DescentReviewChanges/ReviewBible/data/playtest/equipment_source_catalog.json",
+  "catalogSha256": "ff22f5974a1c95b4fb4e2a49b460726b956c093ce7990470c31eaa51238cf5c4",
+  "catalogStatus": "source-projection-only; equipment manuscript pending review",
+  "manuscript": {
+    "path": "docs/reference/Player_Rulebook_v6_source_text.txt",
+    "sha256": "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b"
+  },
+  "record": {
+    "id": "simple-melee-weapons.club",
+    "name": "Club",
+    "category": "Simple melee weapons",
+    "group": null,
+    "status": "source-projection-only",
+    "sourceLine": 6766,
+    "sourceFields": {
+      "Weapon": "Club",
+      "Cost": "1 sp",
+      "Damage": "1d4 bludgeoning",
+      "Weight": "2 lb.",
+      "Properties": "Light"
+    },
+    "sourcePriceCp": 10.0,
+    "sourceWeightLb": 2.0,
+    "sourceWeightIncludesContents": false
+  },
+  "existingBurdenAdapter": {
+    "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+    "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+    "lines": "107\u2013108",
+    "behavior": "Every held legacy Club already contributes2lb with null Load. Preserve the existing partial burden assessment; do not invent a Load or duplicate portable mass record."
+  },
+  "remainingBoundary": "Actual paid producer to retrieve an owned grounded legacy Club into HeldBy/life.HeldItems is not admitted; GPT scope decision remains pending."
+}

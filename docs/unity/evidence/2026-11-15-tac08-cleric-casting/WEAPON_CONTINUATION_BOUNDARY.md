@@ -16,7 +16,7 @@ Three direct query/execution controls reproduce the boundary against the unchang
 
 The existing source explains the limitation:
 
-- `TestOnlySharedWorldPolicy.Initial`, lines165–167, deliberately leaves the remote worker's supplied club grounded and clears its held list so both hands are free. This is a settled initial fact, not a lost item to repair silently.
+- `TestOnlySharedWorldPolicy.Initial`, lines165â€“167, deliberately leaves the remote worker's supplied club grounded and clears its held list so both hands are free. This is a settled initial fact, not a lost item to repair silently.
 - `SharedPortableEquipment.ResolvePortableEquipment`, line133, requires a matching `PortableEquipmentRecord` and returns `UnknownPortableItem` for this legacy `ClubInstance`. The item has no corresponding portable record.
 - Existing club mutations update initialized/moving/grounded equipment; no admitted command retrieves this grounded legacy club into the caster's hands.
 - `ClubInstance` stores identity, profile, ownership, custody, held actor and cell. It does not itself provide a portable mass or storage-volume fact. No additional physical quantities are inferred here.
@@ -27,3 +27,11 @@ Codex recommends resolving this as a bounded source/API integration: a genuine, 
 No unarmed substitution or detached held-club edit has been used to claim the required weapon witness. Please settle the exact bounded integration needed for this genuine continuation, or explicitly revise the acceptance requirement if the existing physical-source scope cannot support it. The caster weapon witness is presently **not demonstrated**.
 
 Independent blocker1 is corrected in the working tree: the opportunity selector now honors `DirectAttackAllowed`. The enhanced genuine Sanctuary regression passes, including the second occurrence, completed parent, unchanged RNG/save count, preserved Reaction and restore/replay. The same retained-save external reproduction changes from `AcceptOpportunity`/Unavailable/pending at revision130 to `DeclineOpportunity`/Committed/completed at revision131, with unchanged RNG1652186263 and one save. These are targeted correction results, not a new complete source freeze or full regression qualification.
+
+## Subsequent source clarification sent to GPT
+
+The legacy Club record itself lacks a mass field, but the existing shared `PortableEquipmentRules.CarriedBurden` adapter already adds2lb for every held Club, with null Load (lines107â€“108 of `Laboratory/Model/PortableEquipment.cs`). The bound equipment catalogue record `simple-melee-weapons.club`, sourceLine6766, explicitly projects2lb and retains its source-projection-only status. Catalogue SHA256 is `ff22f5974a1c95b4fb4e2a49b460726b956c093ce7990470c31eaa51238cf5c4`. [Exact source clarification](WEAPON_BOUNDARY_MASS_CLARIFICATION.json) retains the full record, manuscript pointer and adapter hash.
+
+Thus a bounded handling integration need not invent Club mass or duplicate a portable mass record. It must preserve the existing2lb calculation, derived1/5 provisional Load, and any incomplete aggregate/public assessment. The initial clarification said null Load imprecisely; the exact sent message remains preserved in its JSON record.
+
+Actual GPT response `67a07398-59b8-5af5-8410-ee42b2ce2ca2` subsequently approved the bounded pickup within TAC08; Codex agrees. [Exact amendment](GPT_CLUB_PICKUP_AMENDMENT.md) governs ownership, ordinary one-second payment, whole carrying state, handling history and explicitly versioned admission. This resolves the access-policy question. The genuine weapon witness, amended source freeze, full qualification and final review remain outstanding.
