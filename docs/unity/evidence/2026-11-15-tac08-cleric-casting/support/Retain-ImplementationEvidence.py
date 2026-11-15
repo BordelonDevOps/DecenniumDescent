@@ -232,6 +232,18 @@ def main():
     tree(compatibility_root, 'compatibility')
     projections = passed(ART / 'legacy-projections-final/results.json')
     require(len(projections['cases']) == 23 and sum(row['views'] for row in projections['cases']) == 92, 'Missing old console views')
+    projection_root = ART / 'legacy-projections-final'
+    require(projections['newConsoleSha256'] == sha(ROOT / 'engine/tools/Open-ConnectedExpedition.ps1')
+            and projections['oldConsoleSha256'] == sha(projection_root / 'accepted-predecessor-console.ps1'),
+            'Console source identity differs')
+    for index, row in enumerate(projections['cases']):
+        folder = projection_root / ('case-' + str(index) + '-wire' + str(row['wire']))
+        require(row['oldOutputSha256'] == sha(folder / 'old.jsonl')
+                and row['newOutputSha256'] == sha(folder / 'new.jsonl'), 'Legacy console output hash differs')
+        old = [json.loads(line) for line in lines(folder / 'old.jsonl')]
+        new = [json.loads(line) for line in lines(folder / 'new.jsonl')]
+        require(len(old) == len(new) == 5 and old[2]['Response'] == new[2]['Response'] == 'Restored'
+                and all(old[i] == new[i] for i in [0, 1, 3, 4]), 'Legacy public view differs')
     for file in (ART / 'legacy-projections-final').rglob('*'):
         if file.is_file() and file.suffix != '.dll':
             retain(file, str(Path('legacy-projections') / file.relative_to(ART / 'legacy-projections-final')))
@@ -256,6 +268,26 @@ def main():
             and len(halted['failures']) == 1
             and halted['failures'][0]['Name'] == 'tac06_connected_companion_stabilization_paid_failure_and_absolute_recovery',
             'Original failed regression disclosure differs')
+    failed_launch = read(failed_run / 'launch.json')
+    failed_rows = []
+    require(failed_launch['sourceCommit'] == 'de2bc389d288b280ebb6387722da3d735b48cb03'
+            and failed_launch['assemblies'] == dev_launch['assemblies'], 'Failed-run source/binary identity differs')
+    for worker in halted['workers']:
+        group = worker['group']
+        started = read(failed_run / (group + '.started.json'))
+        assignment = lines(failed_run / (group + '-names.txt'))
+        rows = [json.loads(line) for line in lines(failed_run / (group + '.jsonl'))]
+        require([row['Name'] for row in rows] == assignment[:len(rows)] and len(rows) == worker['retainedRows']
+                and failed_launch['runId'] == halted['runId'] == started['runId']
+                and started['pid'] == worker['pid']
+                and sha(failed_run / (group + '-names.txt')) == failed_launch['assignments'][group] == started['assignmentSha256'],
+                'Failed-run original identity or prefix differs')
+        for name, digest in failed_launch['assemblies'].items():
+            require(started['assemblies'][name]['sha256'] == digest == sha(failed_run / 'execution-assemblies' / name),
+                    'Failed-run loaded binary identity differs')
+        failed_rows.extend(rows)
+    require(len(failed_rows) == 377 and [row for row in failed_rows if not row['Passed']] == halted['failures'],
+            'Failed-run result inventory differs')
     for file in failed_run.iterdir():
         if file.is_file():
             retain(file, 'failed-regression/' + file.name)

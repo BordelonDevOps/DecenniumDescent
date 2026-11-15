@@ -1,5 +1,7 @@
 # TAC08 original execution locators
 
+**Current gate: actual GPT review requires correction.** Response `ab86f808-3d58-5629-8796-57523b2b5f73` identified a cached Sanctuary opportunity controller stall and missing genuine nonzero Refrain across the caster's idle/weapon intervals. Codex agrees; the stall is reproduced against the frozen DLLs. Run `794e8537f2644c98a0b304abdd0eb6f2` was explicitly stopped at487 passes with zero reported failures; it is incomplete and cannot qualify changed runtime binaries. Runtime correction and genuine evidence are now in progress. [Actual review](GPT_EXECUTION_CHECKPOINT_REVIEW.md) and [retained halt/reproduction](review-correction/ARTIFACT_INDEX.json). Earlier checkpoint descriptions below are historical. No successor is authorized.
+
 Runtime source commit: `de2bc389d288b280ebb6387722da3d735b48cb03` (exact60 engine files). Current source freeze: `242108be4ee18f2e6a10d9cd03ba1f185df557e5` (one additional test-only correction). These are execution locators, not acceptance. All paths below are relative to the repository root.
 
 - Current corrected full regression: `engine/artifacts/tac08-cleric-casting/regression-corrected-20261115`, run ID `794e8537f2644c98a0b304abdd0eb6f2`, required1,551 =1,524 predecessors +27 new cases. Original six workers: shardA PID16308/273 cases; shardB15720/261; shardC16588/258; shardD18040/254; shardE10160/253; shardF12408/252. Preserve launch/assignment/loaded-MVID/journal/completion/DONE identities. Do not replace incomplete workers.
