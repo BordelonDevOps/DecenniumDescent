@@ -292,6 +292,7 @@ namespace Decennium.Foundation.Tests
             AddHuntingTrapCases(cases,directory);
             AddDailyProvisioningCases(cases,directory);
             AddHavenCareCases(cases,directory);
+            AddFrightenedLifecycleCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

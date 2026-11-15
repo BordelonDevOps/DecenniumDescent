@@ -219,7 +219,8 @@ namespace Decennium.Foundation.Laboratory
             // Schema16 histories retain their original check outcomes. Schema17 corrects actual tool checks.
             if (s.SchemaVersion >= 17) modifier += actorFacts.InjuryPenalty(CharacterAbility.Intelligence, toolCheck: true);
             if(ResearchStationIneligibility(s,job)==null)modifier+=TestOnlyResearchStationProfile.CheckBonus;
-            var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources: View(s, job.WorkerId).Has(ConditionKind.Poisoned) ? 1 : 0);
+            var roll = PlaytestDice.RollD20(s.RandomState, disadvantageSources:
+                View(s, job.WorkerId).Has(ConditionKind.Poisoned) || FrightenedRules.VisibleSource(s, job.WorkerId) ? 1 : 0);
             s.RandomState = roll.NextRandomState;
             var status = FormulaResearchRules.Succeeds(roll.Natural, modifier, SharedResearchFixture.Difficulty(job.RecipeId)) ? FormulaWorkStatus.Success : FormulaWorkStatus.Failure;
             PutFormula(s, ChangeFormula(s, job, status, first: roll.First, second: roll.Second ?? 0, natural: roll.Natural));

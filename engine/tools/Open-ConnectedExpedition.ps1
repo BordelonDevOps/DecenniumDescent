@@ -12,12 +12,13 @@ param(
     [switch]$ShortRest,
     [switch]$FleshWarden,
     [switch]$ClericCompanion,
-    [switch]$ClericRepertoire
+    [switch]$ClericRepertoire,
+    [switch]$Frightened
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -27,7 +28,11 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($ClericRepertoire) {
+$session = if ($Frightened) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFrightened(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
+} elseif ($ClericRepertoire) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericRepertoire(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
@@ -72,6 +77,15 @@ function New-SessionCommand($request, $view, $kind) {
     $inventory = $null
     $combat = $null
     $mining = $null
+    $intimidation = $null
+    if ($request.ContainsKey('intimidatingPresence')) {
+        $details = $request.intimidatingPresence
+        if ($null -eq $details -or !$details.ContainsKey('targets') -or @($details.Keys).Count -ne 1 -or
+            $details.targets -is [string] -or @($details.targets | Where-Object { $_ -isnot [string] }).Count -ne 0) {
+            throw 'Intimidating Presence requires only a target identity array.'
+        }
+        $intimidation = [Decennium.Foundation.IntimidatingPresenceRequest]::new([string[]]$details.targets)
+    }
     if ($null -ne $request.inventory) {
         $details = $request.inventory
         $amount = [Decennium.Foundation.RuleQuantity]::new($details.numerator, ($details.denominator ?? 1))
@@ -91,7 +105,7 @@ function New-SessionCommand($request, $view, $kind) {
             ($details.criticalRecovery ?? ''), ($details.assistant ?? ''))
     }
     [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
-        $inventory, $combat, $null, $null, 'None', $null, $null, $null, $null, $mining)
+        $inventory, $combat, $null, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation)
 }
 
 function Get-SessionFilePath([string]$path) {
@@ -119,6 +133,12 @@ function Invoke-SessionInput($request) {
             return $session.SubmitSessionCommand($command)
         }
         'auto' { return $session.AdvanceAutomaticDefender() }
+        'defender-presence' {
+            if (!$Frightened) { return @{ Response = 'Unavailable' } }
+            $command = New-SessionCommand $request ($session.View('Player')) 'UseIntimidatingPresence'
+            return $session.SubmitDefenderIntimidatingPresence(
+                [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(), $command)
+        }
         'save' { $session.Save((Get-SessionFilePath $request.path)); return @{ Response = 'Saved' } }
         'load' { $session.Restore((Get-SessionFilePath $request.path)); return @{ Response = 'Restored' } }
         'recover' { return @{ Response = 'Recovered'; DisplacedPrimary = $session.RecoverBackup((Get-SessionFilePath $request.path)) } }
@@ -135,8 +155,8 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ClericCompanion -and !$ClericRepertoire) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
-            if (!$ClericRepertoire) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
             if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
             if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
             if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden) {

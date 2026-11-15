@@ -9,16 +9,18 @@ using System.Text;
 namespace Decennium.Foundation.Laboratory
 {
     public enum DefenderDecisionSlot { Waiting, RegularTurn, Opportunity }
-    public enum DefenderIntentKind { Wait, Guard, Attack, Step, End, AcceptOpportunity, DeclineOpportunity }
+    public enum DefenderIntentKind { Wait, Guard, Attack, Step, End, AcceptOpportunity, DeclineOpportunity, IntimidatingPresence }
 
     public readonly struct DefenderIntent
     {
         public DefenderIntentKind Kind { get; }
         public string TargetId { get; }
         public CombatCell Destination { get; }
+        public IntimidatingPresenceRequest IntimidatingPresence { get; }
 
-        internal DefenderIntent(DefenderIntentKind kind, string targetId = "", CombatCell destination = default)
-        { Kind = kind; TargetId = targetId; Destination = destination; }
+        internal DefenderIntent(DefenderIntentKind kind, string targetId = "", CombatCell destination = default,
+            IntimidatingPresenceRequest intimidatingPresence = null)
+        { Kind = kind; TargetId = targetId; Destination = destination; IntimidatingPresence = intimidatingPresence; }
     }
 
     public sealed class DefenderVisibleOpponent
@@ -44,17 +46,20 @@ namespace Decennium.Foundation.Laboratory
         public string VisibleProvokerId { get; }
         public IReadOnlyList<DefenderVisibleOpponent> VisibleOpponents { get; }
         public IReadOnlyList<CombatCell> ApproachCells { get; }
+        public IReadOnlyList<string> IntimidationTargets { get; }
 
         internal DefenderDecisionView(DefenderDecisionSlot slot = DefenderDecisionSlot.Waiting, CombatCell ownCell = default,
             bool canSelectStance = false, bool stanceSelected = false, bool canAttack = false, bool canMove = false,
             bool hasClub = false, bool eligibleOpportunity = false, string visibleProvokerId = "",
-            IEnumerable<DefenderVisibleOpponent> visibleOpponents = null, IEnumerable<CombatCell> approachCells = null)
+            IEnumerable<DefenderVisibleOpponent> visibleOpponents = null, IEnumerable<CombatCell> approachCells = null,
+            IEnumerable<string> intimidationTargets = null)
         {
             Slot = slot; OwnCell = ownCell; CanSelectStance = canSelectStance; StanceSelected = stanceSelected;
             CanAttack = canAttack; CanMove = canMove; HasClub = hasClub;
             EligibleOpportunity = eligibleOpportunity; VisibleProvokerId = visibleProvokerId;
             VisibleOpponents = Array.AsReadOnly(visibleOpponents?.ToArray() ?? Array.Empty<DefenderVisibleOpponent>());
             ApproachCells = Array.AsReadOnly(approachCells?.ToArray() ?? Array.Empty<CombatCell>());
+            IntimidationTargets = Array.AsReadOnly(intimidationTargets?.ToArray() ?? Array.Empty<string>());
         }
     }
 
@@ -71,6 +76,8 @@ namespace Decennium.Foundation.Laboratory
                 return new DefenderIntent(accept ? DefenderIntentKind.AcceptOpportunity : DefenderIntentKind.DeclineOpportunity);
             }
             if (!view.StanceSelected && view.CanSelectStance) return new DefenderIntent(DefenderIntentKind.Guard);
+            if (view.IntimidationTargets.Count != 0) return new DefenderIntent(DefenderIntentKind.IntimidatingPresence,
+                intimidatingPresence: new IntimidatingPresenceRequest(view.IntimidationTargets));
             if (!view.CanAttack || !view.HasClub) return new DefenderIntent(DefenderIntentKind.End);
 
             var ranked = view.VisibleOpponents.OrderBy(x => PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell))
@@ -219,6 +226,10 @@ namespace Decennium.Foundation.Laboratory
             CombatCell cell = default;
             CommandKind kind;
             switch (intent.Kind) {
+                case DefenderIntentKind.IntimidatingPresence:
+                    kind = CommandKind.UseIntimidatingPresence;
+                    target = "";
+                    break;
                 case DefenderIntentKind.Guard:
                     kind = CommandKind.SelectCombatStance;
                     target = "";
@@ -246,10 +257,12 @@ namespace Decennium.Foundation.Laboratory
                     break;
             }
             var key = FormattableString.Invariant($"{Principal}|{actor}|{state.Encounter.Id}|{turn}|{state.Revision}|{intent.Kind}|{target}|{cell.X}|{cell.Y}");
+            if (intent.IntimidatingPresence != null) key += "|" + string.Join(",", intent.IntimidatingPresence.TargetIds);
             using (var sha = SHA256.Create()) {
                 string id = "tac10." + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key))
                     .Select(value => value.ToString("x2", CultureInfo.InvariantCulture)));
-                return new Command(id, actor, state.Revision, kind, target, cell.X, cell.Y, combat: combat);
+                return new Command(id, actor, state.Revision, kind, target, cell.X, cell.Y, combat: combat,
+                    intimidatingPresence: intent.IntimidatingPresence);
             }
         }
     }

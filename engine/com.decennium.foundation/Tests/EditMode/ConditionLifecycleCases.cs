@@ -59,6 +59,7 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(() => new ConditionLedger("bad target"));
                 Throws<ArgumentException>(() => CLApp(s, "", ConditionKind.Blinded));
                 Throws<ArgumentException>(() => CLApp(s, "a", (ConditionKind)14));
+                Throws<ArgumentException>(() => CLApp(s, "a", (ConditionKind)99));
                 Throws<ArgumentException>(() => CLApp(s, "a", ConditionKind.Blinded, CLTime(0)));
                 Throws<ArgumentException>(() => CLApp(s, "a", ConditionKind.Blinded, dc: -1));
                 Throws<ArgumentException>(() => CLApp(s, "a", ConditionKind.Blinded, magnitude: -1));
@@ -72,7 +73,9 @@ namespace Decennium.Foundation.Tests
                 Throws<ArgumentException>(() => Grant(new[] { ConditionKind.Prone, ConditionKind.Prone }));
                 Throws<ArgumentException>(() => Grant(new[] { (ConditionKind)99 }));
                 Throws<ArgumentException>(() => Grant(new[] { ConditionKind.Blinded }, CLTime(0)));
-                Require(Grant((ConditionKind[])Enum.GetValues(typeof(ConditionKind))).Kinds.Count == 14, "Full admitted immunity set rejected.");
+                // This predecessor exercises the14-kind v1 policy, not subsequently admitted relationship kinds.
+                Require(Grant(Enumerable.Range(0, 14).Select(x => (ConditionKind)x).ToArray()).Kinds.Count == 14, "Full admitted immunity set rejected.");
+                Throws<ArgumentException>(() => Grant(new[] { ConditionKind.Frightened }));
             });
             cases.Add("condition_lifecycle_requires_current_marker_target_and_unique_id", () => {
                 var s = new ConditionLedger("target", CLTime(1)); string before = CLSignature(s);

@@ -223,7 +223,7 @@ namespace Decennium.Foundation.Laboratory
             => CharacterStateFacts.ForActor(s, actor, "stealth").TotalWithInjury(CharacterAbility.Dexterity);
 
         private static int HideDisadvantage(Snapshot s, string actor)
-            => View(s, actor).Has(ConditionKind.Poisoned) ? 1 : 0;
+            => View(s, actor).Has(ConditionKind.Poisoned) || FrightenedRules.VisibleSource(s, actor) ? 1 : 0;
 
         private static (string Actor, ObservationPoint Position, int Dc)[] HideObserverFacts(Snapshot s, IEnumerable<string> observers)
             => observers.Select(x => (x, ObservationGeometry.Position(s, x), PassivePerception(s, x))).ToArray();
@@ -294,7 +294,8 @@ namespace Decennium.Foundation.Laboratory
             int dc = checked((int)hide.Total);
             var actorFacts = CharacterStateFacts.ForActor(s, actor, "perception");
             int modifier = actorFacts.TotalWithInjury(CharacterAbility.Wisdom, perception: true);
-            int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor).View().Has(ConditionKind.Poisoned) ? 1 : 0;
+            int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor).View().Has(ConditionKind.Poisoned)
+                || FrightenedRules.VisibleSource(s, actor) ? 1 : 0;
             uint before = s.RandomState;
             var roll = PlaytestDice.RollD20(before, disadvantageSources: disadvantage);
             var check = PlaytestRolls.TaskCheck(roll.Natural, modifier, dc);

@@ -13,7 +13,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool IsDefenderAdmissionCommand(CommandKind kind)
             => kind == CommandKind.SelectCombatStance || kind == CommandKind.AttackClub
                 || kind == CommandKind.TacticalStep || kind == CommandKind.EndRegularTurn
-                || kind == CommandKind.RespondOpportunityAttack;
+                || kind == CommandKind.RespondOpportunityAttack || kind == CommandKind.UseIntimidatingPresence;
 
         string ICommandAdmissionPolicy.AssessAdmission(Snapshot snapshot, Command command)
         {
@@ -56,7 +56,7 @@ namespace Decennium.Foundation.Laboratory
             return ObserveDefenderSlot(state, DefenderDecisionSlot.RegularTurn, "");
         }
 
-        private static DefenderDecisionView ObserveDefenderSlot(Snapshot state, DefenderDecisionSlot slot, string provoker)
+        private DefenderDecisionView ObserveDefenderSlot(Snapshot state, DefenderDecisionSlot slot, string provoker)
         {
             var own = state.Actors.Single(x => x.Id == LaterDefenderId);
             var ownCell = new CombatCell(own.X, own.Y);
@@ -82,9 +82,15 @@ namespace Decennium.Foundation.Laboratory
                 && TestOnlyClubAttackPolicy.PhysicalAttackFailure(state, LaterDefenderId) == null;
             bool canMove = aware && permissions.VoluntarySpeed
                 && TestOnlyClubAttackPolicy.RemainingMovement(state, LaterDefenderId) > default(RuleQuantity);
+            // Once is an authored tactic. The source itself remains reusable after actual recharge.
+            var fearTargets = state.ConnectedFrightened && state.FrightenedUses.Length == 0
+                ? opponents.Where(x => AssessIntimidatingPresence(state, new Command("fear.query", LaterDefenderId,
+                    state.Revision, CommandKind.UseIntimidatingPresence,
+                    intimidatingPresence: new IntimidatingPresenceRequest(new[] { x.ActorId }))) == null)
+                    .Select(x => x.ActorId).Take(3).ToArray() : Array.Empty<string>();
             return new DefenderDecisionView(slot, ownCell, aware, TestOnlyClubAttackPolicy.HasStance(state),
                 canAttack, canMove, hasClub, visibleOpponents: opponents,
-                approachCells: canMove ? KnownDefenderApproachCells(state, ownCell, seen) : null);
+                approachCells: canMove ? KnownDefenderApproachCells(state, ownCell, seen) : null, intimidationTargets: fearTargets);
         }
 
         private static IEnumerable<CombatCell> KnownDefenderApproachCells(Snapshot state, CombatCell origin, ActorState[] seen)

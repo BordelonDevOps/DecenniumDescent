@@ -447,7 +447,8 @@ namespace Decennium.Foundation
                 ||s.TacticalCovers.Select(x=>x.X+","+x.Y).Distinct(StringComparer.Ordinal).Count()!=s.TacticalCovers.Length
                 ||s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1
                     ||s.CharacterHitDice.Any(d=>d.ActorId==c.ActorId)||s.CharacterMilestones.Any(m=>m.ActorId==c.ActorId)
-                    ||s.CharacterFeatureGrants.Any(g=>g.ActorId==c.ActorId&&!FleshWardenProfile.ValidFixtureGrant(s,g))||s.CharacterAdvancements.Any(a=>a.ActorId==c.ActorId)
+                    ||s.CharacterFeatureGrants.Any(g=>g.ActorId==c.ActorId&&!FleshWardenProfile.ValidFixtureGrant(s,g)
+                        &&!FrightenedProfile.ValidFixtureGrant(s,g))||s.CharacterAdvancements.Any(a=>a.ActorId==c.ActorId)
                     ||s.CharacterFeatureRuntime.Any(r=>r.ActorId==c.ActorId)||s.InitialClassSelections.Any(r=>r.ActorId==c.ActorId))
                     .Any(c=>s.CharacterHitDice.Count(d=>d.ActorId==c.ActorId)!=c.Levels.Count)
                 ||s.CharacterFeatureRuntime.Any(x=>!Actor(x.ActorId)||!s.CharacterFeatureGrants.Any(g=>g.ActorId==x.ActorId&&g.FeatureId==CharacterFeatureIds.TacticalReposition
@@ -463,6 +464,7 @@ namespace Decennium.Foundation
                 ||s.CharacterHitDice.Select(d=>d.ActorId+"|"+d.LevelOrdinal).Distinct(StringComparer.Ordinal).Count()!=s.CharacterHitDice.Length
                 ||s.CharacterFeatureGrants.Any(g=>!Actor(g.ActorId)||g.GrantedRevision>s.Revision
                     ||g.Origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&!FleshWardenProfile.ValidFixtureGrant(s,g)
+                        &&!FrightenedProfile.ValidFixtureGrant(s,g)
                     ||g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&(!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
                         ||g.ClassName!="Soldier"||!ValidSelectedGrant(s,g)
                         ||s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema&&!s.CharacterAdvancements.Any(a=>a.ActorId==g.ActorId

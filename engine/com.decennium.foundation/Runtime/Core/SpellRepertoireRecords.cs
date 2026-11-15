@@ -115,7 +115,8 @@ namespace Decennium.Foundation
         public const string FutureChoice = "detect-magic";
         public static IReadOnlyList<string> InitialSpells { get; } = Array.AsReadOnly(new[] {
             "arcane-ward", "guidance", "purify-food-and-drink", "sanctuary", "spare-the-dying" });
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null
+            && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || FrightenedProfile.SelectedFingerprint(value));
         public static bool IsCommand(CommandKind kind) => kind == CommandKind.CastKnownSpell || kind == CommandKind.AcquireEarnedSpell;
 
         // These denials are shared by the read-only query and actual command resolver, including rank-zero casts.

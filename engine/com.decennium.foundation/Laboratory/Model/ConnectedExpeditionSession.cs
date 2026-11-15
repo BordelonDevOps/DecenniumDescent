@@ -101,6 +101,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithClericRepertoire(ClericInitialSelection initial, ClericRepertoireSelection repertoire)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericRepertoire(initial, repertoire));
 
+        public static ConnectedExpeditionSession StartWithFrightened(ClericInitialSelection initial, ClericRepertoireSelection repertoire)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFrightened(initial, repertoire));
+
         public static ConnectedExpeditionSession StartWithShortRest()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());
 
@@ -220,6 +223,19 @@ namespace Decennium.Foundation.Laboratory
                     _ => ExpeditionResponse.Unavailable
                 };
                 return new ExpeditionActionResult(response, simulation.Capture());
+            }
+        }
+
+        /// <summary>Trusted host path for a later source reuse. Player seats do not receive this authority.</summary>
+        public ExpeditionActionResult SubmitDefenderIntimidatingPresence(Authority grant, Command command)
+        {
+            lock (gate) {
+                var state = simulation.Capture();
+                if (!LaterDefenderController.HasGrant(grant) || command?.Actor != FrightenedProfile.Actor)
+                    return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized, state, discloseTacticalSlot: false);
+                if (!state.ConnectedFrightened || command.Kind != CommandKind.UseIntimidatingPresence)
+                    return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state);
+                return Execute(state, grant, command, () => command.IntimidatingPresence != null);
             }
         }
 
@@ -380,7 +396,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static SupplyCacheRecord ReachableCache(Snapshot state)
         {
-            if (state.InventoryCombat || state.WorldTraversals.Any(x => x.ActorId == Hero)) return null;
+            if (state.InventoryCombat && !state.ConnectedFrightened || state.WorldTraversals.Any(x => x.ActorId == Hero)) return null;
             return state.SupplyCaches.SingleOrDefault(x => x.Id == SupplyCacheFixture.CacheId && x.OwnerId == Hero
                 && !SupplyCacheRules.Buried(state, x.Id) && TestOnlySharedWorldPolicy.NearCache(state, Hero, x));
         }
@@ -438,9 +454,13 @@ namespace Decennium.Foundation.Laboratory
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
                 case CommandKind.Hide:
-                    return actor == Hero && OrdinaryObservationOpen(state) && target == HideStartToken(state);
+                    return state.ConnectedFrightened && seat == ExpeditionSeat.Player && state.InventoryCombat
+                        && Party.Contains(actor) && actor == state.Encounter.CurrentActor && target == state.Encounter.CurrentTurnId
+                        || actor == Hero && OrdinaryObservationOpen(state) && target == HideStartToken(state);
                 case CommandKind.Search:
-                    return actor == Companion && OrdinaryObservationOpen(state) && target == SearchStartToken(state);
+                    return state.ConnectedFrightened && seat == ExpeditionSeat.Player && state.InventoryCombat
+                        && Party.Contains(actor) && actor == state.Encounter.CurrentActor && target == state.Encounter.CurrentTurnId
+                        || actor == Companion && OrdinaryObservationOpen(state) && target == SearchStartToken(state);
                 case CommandKind.CancelExplorationHide:
                     return actor == Hero && target == state.ExplorationHide?.Pending?.Id;
                 case CommandKind.CancelExplorationSearch:

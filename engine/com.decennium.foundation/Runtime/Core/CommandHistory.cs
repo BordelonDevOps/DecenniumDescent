@@ -30,6 +30,7 @@ namespace Decennium.Foundation
             MiningSelectionRequest miningSelection=null;
             ProspectingExposureRequest prospectingExposure=null;
             RouteMappingWorkRequest routeMappingWork=null;
+            IntimidatingPresenceRequest intimidatingPresence=null;
             OverwatchRider rider=OverwatchRider.None;
             if(p.Length==8&&p[6]=="overwatch-rider-v1") {
                 rider=(OverwatchRider)Int(p[7]);
@@ -114,7 +115,14 @@ namespace Decennium.Foundation
                 if(kind!=CommandKind.StartRouteMappingWork)throw new ArgumentException("Map Route team payload has the wrong command kind.");
                 routeMappingWork=new RouteMappingWorkRequest(p[7].Length==0?Array.Empty<string>():p[7].Split(','));
             }
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork);
+            if (p.Length == 8 && p[6] == "intimidating-presence-v1") {
+                if (kind != CommandKind.UseIntimidatingPresence || p[2] != "" || p[4] != "0" || p[5] != "0")
+                    throw new ArgumentException("Intimidating Presence receipt has the wrong command shape.");
+                intimidatingPresence = new IntimidatingPresenceRequest(p[7].Length == 0 ? Array.Empty<string>() : p[7].Split(','));
+            }
+            if (kind == CommandKind.UseIntimidatingPresence && intimidatingPresence == null)
+                throw new ArgumentException("Intimidating Presence requires its immutable target selection.");
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

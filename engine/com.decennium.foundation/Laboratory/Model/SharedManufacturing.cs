@@ -395,7 +395,8 @@ namespace Decennium.Foundation.Laboratory
             var characterFacts=actorFacts.Rules;
             int modifier=characterFacts.AbilityModifier(CharacterAbility.Intelligence)+characterFacts.ProficiencyBonus
                 +actorFacts.InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true);
-            var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:View(s,j.WorkerId).Has(ConditionKind.Poisoned)?1:0);s.RandomState=roll.NextRandomState;
+            var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:
+                View(s,j.WorkerId).Has(ConditionKind.Poisoned)||FrightenedRules.VisibleSource(s,j.WorkerId)?1:0);s.RandomState=roll.NextRandomState;
             var recipe=ManufacturingRules.Recipe(j.RecipeId);if(recipe==null)throw new InvalidOperationException("ManufacturingRecipeUnavailable");
             var quality=ManufacturingRules.Quality(roll.Natural,modifier,recipe.Difficulty);
             j=ChangeOrder(s,j,ManufacturingStatus.AwaitingChoice,first:roll.First,second:roll.Second??0,natural:roll.Natural,quality:quality);PutOrder(s,j);

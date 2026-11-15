@@ -74,9 +74,10 @@ namespace Decennium.Foundation.Laboratory
             if (journal.Now.Equals(at)) return;
             if (journal.Now.Time > at.Time) throw new ArgumentException("Condition journal is ahead of the shared clock.");
             string id = "host.clock." + N(s.Revision + 1) + ".sync." + actor;
+            if (s.ConnectedFrightened) id += "." + N(at.Time.Numerator) + "." + N(at.Time.Denominator);
             CommitCondition(s, ConditionResolutionScope.Read(journal).Append(ConditionOperation.Advance(id, at)));
         }
-        private static void AppendCondition(Snapshot s, string actor, ConditionOperation operation)
+        internal static void AppendCondition(Snapshot s, string actor, ConditionOperation operation)
         {
             var at = new ConditionStamp(s.RuleClock);
             if (operation.Kind != ConditionOperationKind.Advance && operation.At.Equals(at))
@@ -102,6 +103,7 @@ namespace Decennium.Foundation.Laboratory
         internal static void AdvanceConditions(Snapshot s, string subevent = "", bool force = false,bool onlyAtExpiry = false)
         {
             if (!WithConditions(s)) return;
+            TestOnlySharedWorldPolicy.ProcessFrightenedRepeatMarkers(s);
             foreach (var journal in s.Conditions.ToArray()) {
                 if (journal.Now.Time >= s.RuleClock) continue;
                 var ledger=ConditionResolutionScope.Read(journal).Ledger;

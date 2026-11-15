@@ -925,7 +925,8 @@ namespace Decennium.Foundation.Laboratory
             int modifier=checked(prior.AbilityModifier+prior.ProficiencyBonus+injury
                 +(toolQualified?MiningToolCandidateProfileRecord.CheckBonus:recipeToolBonus)+assistantBonus);
             int disadvantage=(prior.ProficiencyRank==0?1:0)+(prior.Hurried?1:0)
-                +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)?1:0);
+                +(TestOnlyClubAttackPolicy.ConditionsFor(s,prior.WorkerId).View().Has(ConditionKind.Poisoned)
+                    ||FrightenedRules.VisibleSource(s,prior.WorkerId)?1:0);
             uint randomBefore=s.RandomState;
             var roll=PlaytestDice.RollD20(randomBefore,disadvantageSources:disadvantage);
             var check=PlaytestRolls.TaskCheck(roll.Natural,modifier,prior.CheckDc);

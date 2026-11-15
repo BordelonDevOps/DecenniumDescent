@@ -256,7 +256,8 @@ namespace Decennium.Foundation.Laboratory
             bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
             bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
             var modifiers=PlaytestConditions.Attack(CombatConditions(s,c.Actor),CombatConditions(s,c.Target),
-                attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown);
+                attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
+                frightenedSourceVisible:FrightenedRules.VisibleSource(s,c.Actor));
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot
                 ||DodgeEffective(s,c.Target)&&CanSee(s,c.Target,c.Actor);

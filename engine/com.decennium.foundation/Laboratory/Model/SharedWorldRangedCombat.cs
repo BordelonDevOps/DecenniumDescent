@@ -79,6 +79,7 @@ namespace Decennium.Foundation.Laboratory
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
             ||clericRepertoireSelection!=null&&ClericRepertoireProfile.IsCommand(kind)
+            ||connectedFrightened&&kind==CommandKind.UseIntimidatingPresence
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
             ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)
@@ -720,6 +721,7 @@ namespace Decennium.Foundation.Laboratory
                 rangedCombat.TargetCover,targetLocationKnown,targetVisible,lineOfFireClear,attackerUnseen,closeHostile,
                 TestOnlyClubAttackPolicy.CombatConditions(s,c.Actor),TestOnlyClubAttackPolicy.CombatConditions(s,c.Target),
                 attackerInvisibleLocationKnown:attackerInvisibleKnown,targetInvisibleLocationKnown:targetInvisibleKnown,
+                frightenedSourceVisible:FrightenedRules.VisibleSource(s,c.Actor),
                 additionalDisadvantageSources:(incomingEffects.WarningShot?1:0)
                     +(TestOnlyClubAttackPolicy.DodgeEffective(s,c.Target)&&TestOnlyClubAttackPolicy.CanSee(s,c.Target,c.Actor)?1:0),
                 targetUnseenDisadvantage:targetUnseenDisadvantage,attackerUnseenAdvantage:attackerUnseenAdvantage);

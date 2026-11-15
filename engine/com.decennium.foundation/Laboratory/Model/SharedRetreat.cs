@@ -149,6 +149,7 @@ namespace Decennium.Foundation.Laboratory
                 var facts = CharacterStateFacts.ForActor(s, d.LeadId);
                 int modifier = facts.TotalWithInjury(CharacterAbility.Dexterity);
                 bool disadvantage = View(s, d.LeadId).Has(ConditionKind.Poisoned)
+                    || FrightenedRules.VisibleSource(s, d.LeadId)
                     || ExpeditionStrainRules.Current(s, d.LeadId).ExpeditionCheckDisadvantage;
                 uint before = s.RandomState;
                 var roll = RuleDice.RollD20(before, disadvantageSources: disadvantage ? 1 : 0);

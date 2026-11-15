@@ -1,0 +1,279 @@
+{
+  "status": "PARTIAL_CONSUMER_AUDIT_NOT_ACCEPTANCE",
+  "atUtc": "2026-11-15T09:40:58.6976058Z",
+  "assemblyRoot": "C:\\Users\\cbord\\Documents\\ChatGPT\\Decennium Descent\\github-delivery\\engine\\artifacts\\tac05-frightened\\development\\run-20261115T093650131Z-40129a7c",
+  "actualUnavailableProfileFields": [
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "rangedCombat"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "repair"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "harvestFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "huntingTrapFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "fishingTrap"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "prospectingFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "recipe347Fixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "routeMappingFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "routeMappingWorkFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "routeReconnaissanceFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "routeTravelFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "routeMotionFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "expeditionCampConstructionProfile"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "null",
+      "field": "portableStorageFixture"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "readyActionEnabled"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "connectedWoundTreatment"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "connectedCompanionStabilization"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "harvestPreservationEnabled"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "harvestPreservationTreatmentEnabled"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "harvestPreservationExposureEnabled"
+    },
+    {
+      "expectedUnavailable": true,
+      "observed": "false",
+      "field": "connectedFishingTrap"
+    }
+  ],
+  "consumers": [
+    {
+      "family": "Club and shared unarmed/OA melee",
+      "hook": "TestOnlyClubAttackPolicy.cs / PlaytestConditions.Attack",
+      "scope": "Shared attack roll receives actual visible feared-source projection. Club is public and genuinely demonstrated. Normal AttackUnarmed is not exposed by this connected host; do not claim a connected unarmed acquisition."
+    },
+    {
+      "family": "Ranged/Soldier attacks and Ready",
+      "hook": "SharedWorldRangedCombat.cs / RangedAttackRequest",
+      "scope": "Ranged visibility hook added, but rangedCombat=null and readyActionEnabled=false. Optional predecessor consumers are not a connected frightened ranged or Ready witness."
+    },
+    {
+      "family": "Hide and Search",
+      "hook": "SharedObservationActions.cs / HideDisadvantage and ResolveSearch",
+      "scope": "New profile exposes existing tactical actions. Actual paid Hide after sight loss uses one die. Search uses the same relationship projection; no affected Search witness claimed."
+    },
+    {
+      "family": "Supply cache",
+      "hook": "SharedSupplyCache.cs / ResolveCacheAttempt",
+      "scope": "Genuine retrieved thieves tools and tactical paid pick select 11 from 11/16 with visible fear. New-profile host bridge admits existing tactical cache rules; earlier profiles retain ordinary-only exposure."
+    },
+    {
+      "family": "Formula research and manufacturing",
+      "hook": "SharedFormulaResearch.cs / SharedManufacturing.cs",
+      "scope": "Shared selection hooks added. Real acquisition/research/manufacture occur before fear in the current connected route. No affected long-work completion witness claimed."
+    },
+    {
+      "family": "Mining",
+      "hook": "SharedMining.cs / CompleteMining",
+      "scope": "Selected mining fixture uses shared fear projection. No affected mining completion witness claimed; completion timing/ability-choice/source qualifiers remain the existing ones."
+    },
+    {
+      "family": "Retreat check",
+      "hook": "SharedRetreat.cs / ResolveRetreat",
+      "scope": "Shared fear projection added. Existing encounter/context gates still apply; a frightened retreat from the reinforced encounter has not been demonstrated."
+    },
+    {
+      "family": "Blood specimen preservation",
+      "hook": "SharedHarvestPreservationTreatment.cs",
+      "scope": "The connected specimen treatment precedes research/manufacture and later fear. Its existing single-attempt gate remains. General preservation/harvest profiles are unavailable; no affected treatment claim."
+    },
+    {
+      "family": "Repair, harvest, traps, prospecting, assay, route/work, temporary camp",
+      "hook": "Optional families listed by actual null field proof",
+      "scope": "Unavailable in this exact selected profile. Existing roll consumers are not blanket-certified for future v2 profile composition."
+    },
+    {
+      "family": "Wound treatment and companion stabilization",
+      "hook": "SharedWoundTreatment.cs / SharedCompanionStabilization.cs",
+      "scope": "Both connected producer flags false. No affected Medicine treatment/stabilization claim."
+    },
+    {
+      "family": "Tactical willing movement",
+      "hook": "TacticalMovementPolicy.cs / StepFailure",
+      "scope": "Shared hook covers ordinary tactical step, reposition, CommandStep, formation and Press when admitted. Actual visible and unseen closer steps reject unchanged; optional Soldier grants are not added."
+    },
+    {
+      "family": "World willing movement and active edges",
+      "hook": "SharedWorldCommandQueries.cs / SharedFrightened.cs / TestOnlySharedWorldPolicy.cs",
+      "scope": "Begin/Resume checks and exact boundary/reconciliation hooks installed. Dynamic simultaneous and suppressed-edge integration controls remain outstanding; current host denies concurrent world traversal."
+    },
+    {
+      "family": "Reinforcement approach",
+      "hook": "AssessWorldStep(... reinforcementApproach:true)",
+      "scope": "Uses the shared step assessment. The only actual fear producer requires reinforcement already admitted, so this source cannot newly frighten the incoming reinforcement edge."
+    },
+    {
+      "family": "Reengagement",
+      "hook": "SharedReengagement.cs plus shared world step",
+      "scope": "Existing own approach, authority and context gates retained. No frightened reengagement witness claimed."
+    },
+    {
+      "family": "Forced movement",
+      "hook": "Existing authoritative Push producers bypass willing StepFailure",
+      "scope": "No forced flag in player movement payload. Actual Push acquisition is unavailable; detached producer controls remain outstanding."
+    },
+    {
+      "family": "Saving throws, damage and passive values",
+      "hook": "SharedFrightened.cs / normal shared saves",
+      "scope": "Fear adds no penalty to these. Genuine first/repeat WIS draws remain single die; suppressed-repeat component control matches unsuppressed draw."
+    },
+    {
+      "family": "Historical causal validation",
+      "hook": "TestOnlySharedWorldPolicy.cs / ReconstructCanonicalHistory",
+      "scope": "Strict restore replays receipts from Initial and compares the complete canonical snapshot. Active and unseen-check restores pass. Complete four-path/final-expiry restore and forged historic roll controls remain in progress."
+    }
+  ],
+  "sourceHashes": [
+    {
+      "sha256": "d86a158ecde3a0c9ffc8ac0f4be253bc315af273313c5de42cde7002fc1f63d5",
+      "file": "ConnectedExpeditionSession.cs"
+    },
+    {
+      "sha256": "20a59dcb02bb9158216cc8fc9cda22fcd1dd10fbac5d405810b17d043cbf52b4",
+      "file": "TestOnlySharedWorldPolicy.cs"
+    },
+    {
+      "sha256": "a19297d271bf88654a3fd2290051123fa7cfb1955bdeff4e85095e686e349d8f",
+      "file": "SharedFrightened.cs"
+    },
+    {
+      "sha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+      "file": "FrightenedRules.cs"
+    },
+    {
+      "sha256": "4b30e90bdb8ca96e28d703f25aaa6577c629e29ed3d899cdac8808b4dc72edab",
+      "file": "TestOnlyClubAttackPolicy.cs"
+    },
+    {
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "file": "PlaytestConditions.cs"
+    },
+    {
+      "sha256": "8ebd580b7dd44ef44d87c0e1d2812fd621088971877214f8bb87e0b9de3944a1",
+      "file": "SharedWorldRangedCombat.cs"
+    },
+    {
+      "sha256": "d0bda026a621b2ca3e991a7fbf260d13e5ab626243c02516784a820e97f59cf4",
+      "file": "SharedObservationActions.cs"
+    },
+    {
+      "sha256": "b709840f4c171d80fba342ab28cce9e03fa517a2b364d9644e2ac1524e5def74",
+      "file": "SharedSupplyCache.cs"
+    },
+    {
+      "sha256": "75bb1479d75f1193ad93611432f386420a8d2cc6aadea3455bfb5d7a77aab256",
+      "file": "SharedFormulaResearch.cs"
+    },
+    {
+      "sha256": "50f149f2e146bf4a245b3bb16108332ccde00b9751e64b0753936cb1b8db6bd2",
+      "file": "SharedManufacturing.cs"
+    },
+    {
+      "sha256": "52dacd0ed2e13ca27d4061522f0446839ce52fb287ca1caec798c96419fbc676",
+      "file": "SharedMining.cs"
+    },
+    {
+      "sha256": "3d0f74d4061c65de1f4fde74f0cee35b352949fbf143a855cb00ce8b80771092",
+      "file": "SharedRetreat.cs"
+    },
+    {
+      "sha256": "a90a83a92a1f40ee38cc2b743032c168bb061a5bf5080e41311ec6f673bba8c6",
+      "file": "SharedReengagement.cs"
+    },
+    {
+      "sha256": "fb595bccea5ae0b78a6710ecc7363f9755b46a90e80549d05f83de8dcf4fedd6",
+      "file": "SharedReinforcement.cs"
+    },
+    {
+      "sha256": "eb1c261b7e11ea657fa2b9c1b80d067ca8bf64c55a38a931b2c218d600b95af0",
+      "file": "SharedHarvestPreservationTreatment.cs"
+    },
+    {
+      "sha256": "0c3464eec03d4aba21a33f664088692d7cc660d18210431f73f208543c541748",
+      "file": "SharedWorldCommandQueries.cs"
+    },
+    {
+      "sha256": "8bc8b094ef34587ce17096e72bd3361a9b5e40e76711633bc03e8238ea895f32",
+      "file": "TacticalMovementPolicy.cs"
+    }
+  ],
+  "stanceCorrection": "ClericGuard helper submits stance ordinal1, which is Aggressive, not Guarded. Retained snapshots/receipts are authoritative; do not describe those party turns as Guarded.",
+  "outstanding": [
+    "Finish causal validation/forgery audit per admitted consumer.",
+    "Finish pending-edge, whole/split clock and optional forced-movement component controls.",
+    "Resolve still-present fear across normal closure reachability without staging state."
+  ]
+}

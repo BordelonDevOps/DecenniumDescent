@@ -221,6 +221,7 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static void RegularStart(Snapshot s,string actor,int ordinal)
         {
+            RefreshNamedAbilityRecharge(s, actor, ordinal);
             var stationarity=s.ShieldStationarity.SingleOrDefault(x=>x.ActorId==actor);
             if(stationarity!=null&&ordinal>stationarity.LastRegularStart)
                 s.ShieldStationarity=s.ShieldStationarity.Select(x=>x.ActorId==actor?x.RegularStart(ordinal):x).ToArray();
@@ -241,6 +242,22 @@ namespace Decennium.Foundation.Laboratory
                 if(elapsedStarts<1)throw new InvalidOperationException("Feature recharge start count is inconsistent with the world schedule.");
             }
             SetRuntime(s,before.RegularStart(ordinal,elapsedStarts));
+        }
+        private static void RefreshNamedAbilityRecharge(Snapshot state, string actor, int globalStart)
+        {
+            var before = state.AbilityRecharges.SingleOrDefault(x => x.ActorId == actor);
+            if (before == null) return;
+            var epoch = WorldTiming.ForActor(state, actor);
+            var phase = state.Reinforcement?.Admission?.Phase;
+            long local = epoch.Id == phase?.Epoch.Id ? globalStart - (long)phase.FirstTurn : globalStart;
+            if (epoch.Id != before.EpochId || local < 0 || epoch.LatestStart(actor, local) != local)
+                throw new InvalidOperationException("Named ability recharge has no matching owner start.");
+            if (local <= before.LastLocalStart) return;
+            long elapsed = (local - before.LastLocalStart) / epoch.Order.Count;
+            if (elapsed < 1) throw new InvalidOperationException("Named ability recharge cadence is inconsistent.");
+            int remaining = checked((int)Math.Max(0, before.Remaining - elapsed));
+            var after = new CharacterAbilityRechargeRecord(actor, before.AbilityId, epoch.Id, local, epoch.Start(local), remaining);
+            state.AbilityRecharges = state.AbilityRecharges.Select(x => x == before ? after : x).ToArray();
         }
         internal static void MarkMoved(Snapshot s,string actor)
         {

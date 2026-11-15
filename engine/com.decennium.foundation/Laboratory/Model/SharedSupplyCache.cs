@@ -103,7 +103,8 @@ namespace Decennium.Foundation.Laboratory
             var character=CharacterStateFacts.ForActor(s,attempt.ActorId);
             int modifier=SupplyCacheRules.PickCheckModifier(character,Cache(s,attempt.CacheId).ToolsProficient);
             var conditions=View(s,attempt.ActorId);
-            var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:conditions.Has(ConditionKind.Poisoned)?1:0);
+            var roll=PlaytestDice.RollD20(s.RandomState,disadvantageSources:
+                conditions.Has(ConditionKind.Poisoned)||FrightenedRules.VisibleSource(s,attempt.ActorId)?1:0);
             int natural=roll.Natural;s.RandomState=roll.NextRandomState;
             bool success=PlaytestRolls.TaskCheck(natural,modifier,15).Success;
             RecordAttempt(s,attempt,success?SupplyCacheAttemptStatus.Succeeded:SupplyCacheAttemptStatus.Failed,natural,modifier);

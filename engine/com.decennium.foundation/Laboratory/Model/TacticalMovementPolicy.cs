@@ -52,6 +52,8 @@ namespace Decennium.Foundation.Laboratory
             if(spatial==SpatialStepFailure.NotNeighbor)return "InvalidTacticalStep";
             if(spatial==SpatialStepFailure.Blocked)return "BlockedTacticalStep";
             if(spatial==SpatialStepFailure.Occupied)return "OccupiedTacticalStep";
+            string fearFailure=FrightenedRules.WillingStepFailure(s,actor,(new RuleQuantity(x),new RuleQuantity(y)));
+            if(fearFailure!=null)return fearFailure;
             long speed=WalkingSpeed(s,actor);if(speed==0)return "ZeroSpeedCannotMove";
             long cost=StepCost(s,actor,x,y);
             if(kind==TacticalMoveKind.Press)return cost>PlaytestCombatBudgets.SpecialBudget(SpecialMovement.Press,speed)?"InsufficientPressMovement":null;

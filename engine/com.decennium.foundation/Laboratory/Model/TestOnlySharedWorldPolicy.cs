@@ -237,6 +237,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeWoundTreatment(s);
             InitializeClericRp(s);
             InitializeClericRepertoire(s);
+            InitializeFrightened(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -467,6 +468,7 @@ namespace Decennium.Foundation.Laboratory
                 else SetEdge(s, edge.With(edge.DistanceFeet, needsFreshDash||noMovement
                     ? WorldTraversalStatus.WaitingForRefresh : WorldTraversalStatus.Moving));
             }
+            ReconcileFrightenedTraversal(s);
         }
         private static RuleTime? NextConditionDeadline(Snapshot s)
         {
@@ -496,6 +498,7 @@ namespace Decennium.Foundation.Laboratory
                 var shortRest = ShortRestBerth.Active(s);
                 if (shortRest != null && shortRest.DueAt < next) next = shortRest.DueAt;
                 var condition = NextConditionDeadline(s); if (condition.HasValue && condition.Value < next) next = condition.Value;
+                var fearRepeat = NextFrightenedRepeatDeadline(s); if (fearRepeat.HasValue && fearRepeat.Value < next) next = fearRepeat.Value;
                 var readyExpiry=NextReadyActionExpiry(s);if(readyExpiry.HasValue&&readyExpiry.Value<next)next=readyExpiry.Value;
                 var periodic = NextPeriodicMarker(s); if(periodic.HasValue&&periodic.Value<next)next=periodic.Value;
                 var formula = NextFormulaBoundary(s); if (formula.HasValue && formula.Value < next) next = formula.Value;
@@ -584,6 +587,14 @@ namespace Decennium.Foundation.Laboratory
                     var duration = distance.Scale(6 * multiplier, checked(Speed(s, edge.ActorId) * (edge.Running ? 2 : 1)));
                     var end = CampGreens.Add(s.RuleClock, new RuleTime(duration.Numerator, duration.Denominator)); if (end < next) next = end;
                 }
+                next = BoundFrightenedTraversal(s, next, out var fearSuspensions);
+                if (next == s.RuleClock) {
+                    foreach (string actor in fearSuspensions) {
+                        var edge = s.WorldTraversals.Single(x => x.ActorId == actor);
+                        SetEdge(s, edge.With(edge.DistanceFeet, WorldTraversalStatus.Suspended));
+                    }
+                    continue;
+                }
                 bool reinforcementEndRound = AtReinforcementEndRound(s, initiating, next, target);
                 bool retreatEndRound = AtRetreatSettlement(s, initiating, next, target);
                 var elapsed = CampGreens.Subtract(next, s.RuleClock);
@@ -622,7 +633,8 @@ namespace Decennium.Foundation.Laboratory
                             edge.ToX,edge.ToY,s.Revision+1,next);
                         if(trapError!=null)return trapError;
                         s.WorldTraversals = s.WorldTraversals.Where(x => x.ActorId != edge.ActorId).ToArray();
-                    } else SetEdge(s, edge.With(progress, edge.Status));
+                    } else SetEdge(s, edge.With(progress, fearSuspensions.Contains(edge.ActorId)
+                        ? WorldTraversalStatus.Suspended : edge.Status));
                 }
                 var carriedLater = laterArrival == null ? null : Interval(s, laterArrival.ActorId);
                 if (laterArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
@@ -798,6 +810,8 @@ namespace Decennium.Foundation.Laboratory
             if (ClericRepertoireProfile.IsCommand(c.Kind)) return ClericRepertoireProfile.CommandFailure(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
             if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
+            if (c.Kind == CommandKind.UseIntimidatingPresence) return assessTactical
+                ? AssessIntimidatingPresence(s, c) : ResolveIntimidatingPresence(s, c);
             if (ShortRestBerth.IsCommand(c.Kind)) return ResolveShortRest(s, c);
             if (ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor
                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
@@ -1037,6 +1051,8 @@ namespace Decennium.Foundation.Laboratory
                 if (shortRest != null && shortRest.DueAt <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var fearDeadline = NextFrightenedRepeatDeadline(s);
+                if (fearDeadline.HasValue && fearDeadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var periodic = NextPeriodicMarker(s);
                 if(periodic.HasValue&&periodic.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var formula = NextFormulaBoundary(s);

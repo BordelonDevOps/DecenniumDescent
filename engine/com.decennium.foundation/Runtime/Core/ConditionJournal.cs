@@ -18,6 +18,21 @@ namespace Decennium.Foundation
         public override int GetHashCode() => unchecked(Time.GetHashCode() * 397 ^ Phase);
     }
 
+    /// <summary>One source-qualified fear relationship. This structural payload grants no
+    /// feature access or application authority; the shared host validates its actual use.</summary>
+    public sealed class FrightenedRelationshipData
+    {
+        public string FearedEntityId { get; }
+        public string SourceUseId { get; }
+        public string SourceRevision { get; }
+        public FrightenedRelationshipData(string fearedEntityId, string sourceUseId, string sourceRevision)
+        {
+            foreach (string value in new[] { fearedEntityId, sourceUseId, sourceRevision }) ConditionJournal.RequireId(value);
+            FearedEntityId = fearedEntityId; SourceUseId = sourceUseId; SourceRevision = sourceRevision;
+        }
+        internal string StructuralKey => FearedEntityId + "|" + SourceUseId + "|" + SourceRevision;
+    }
+
     /// <summary>Structural source data. The selected rules interpreter validates condition names,
     /// admission, component semantics and source eligibility; this record grants no authority.</summary>
     public sealed class ConditionApplicationData
@@ -32,14 +47,18 @@ namespace Decennium.Foundation
         public bool? InheritedCureAllowed { get; }
         public int? ApplyingDc { get; }
         public long? Magnitude { get; }
+        public FrightenedRelationshipData Fear { get; }
         public ConditionApplicationData(string id, string owner, string source, string kind,
             ConditionStamp? expires, string endingMethod, bool genericCureAllowed,
-            int? applyingDc = null, long? magnitude = null, bool? inheritedCureAllowed = null)
+            int? applyingDc = null, long? magnitude = null, bool? inheritedCureAllowed = null,
+            FrightenedRelationshipData fear = null)
         {
             foreach (string value in new[] { id, owner, source, kind, endingMethod }) ConditionJournal.RequireId(value);
             if (applyingDc < 0 || magnitude < 0) throw new ArgumentException("Negative condition source value.");
+            if (fear != null && kind != "Frightened") throw new ArgumentException("Fear relationship requires Frightened identity.");
             Id = id; Owner = owner; Source = source; Kind = kind; Expires = expires; EndingMethod = endingMethod;
             GenericCureAllowed = genericCureAllowed; ApplyingDc = applyingDc; Magnitude = magnitude; InheritedCureAllowed = inheritedCureAllowed;
+            Fear = fear;
         }
     }
 
@@ -52,12 +71,14 @@ namespace Decennium.Foundation
         public ConditionStamp? Expires { get; }
         public string EndingMethod { get; }
         public ConditionImmunityData(string id, string owner, string source, IEnumerable<string> kinds,
-            ConditionStamp? expires, string endingMethod)
+            ConditionStamp? expires, string endingMethod, bool allowRelationships = false)
         {
             foreach (string value in new[] { id, owner, source, endingMethod }) ConditionJournal.RequireId(value);
             if (kinds == null) throw new ArgumentNullException(nameof(kinds));
-            var copy = kinds.Take(15).ToArray();
-            if (copy.Length == 0 || copy.Length > 14 || copy.Distinct(StringComparer.Ordinal).Count() != copy.Length)
+            int maximum = allowRelationships ? 15 : 14;
+            var copy = kinds.Take(maximum + 1).ToArray();
+            if (copy.Length == 0 || copy.Length > maximum || copy.Distinct(StringComparer.Ordinal).Count() != copy.Length
+                || !allowRelationships && copy.Contains("Frightened", StringComparer.Ordinal))
                 throw new ArgumentException("Invalid named condition immunity set.");
             foreach (string kind in copy) ConditionJournal.RequireId(kind);
             Id = id; Owner = owner; Source = source; Kinds = Array.AsReadOnly(copy.OrderBy(x => x, StringComparer.Ordinal).ToArray());
@@ -129,7 +150,8 @@ namespace Decennium.Foundation
                 return Id + "|" + S(At) + "|" + N((int)Kind) + "|" + Subject + "|" + Reason + "|" + Suppressed
                     + (a == null ? "" : "|app|" + a.Id + "|" + a.Owner + "|" + a.Source + "|" + a.Kind + "|" + S(a.Expires)
                         + "|" + a.EndingMethod + "|" + a.GenericCureAllowed + "|" + a.InheritedCureAllowed
-                        + "|" + (a.ApplyingDc.HasValue ? N(a.ApplyingDc.Value) : "") + "|" + (a.Magnitude.HasValue ? N(a.Magnitude.Value) : ""))
+                        + "|" + (a.ApplyingDc.HasValue ? N(a.ApplyingDc.Value) : "") + "|" + (a.Magnitude.HasValue ? N(a.Magnitude.Value) : "")
+                        + (a.Fear == null ? "" : "|fear|" + a.Fear.StructuralKey))
                     + (g == null ? "" : "|grant|" + g.Id + "|" + g.Owner + "|" + g.Source + "|" + string.Join(",", g.Kinds) + "|" + S(g.Expires) + "|" + g.EndingMethod);
             }
         }
@@ -142,6 +164,7 @@ namespace Decennium.Foundation
     public sealed class ConditionJournal
     {
         public const int MaxOperations = 512;
+        public const string RelationshipPolicyId = "TEST_ONLY.relationship-conditions-v2";
         public string PolicyId { get; }
         public string Target { get; }
         public ConditionStamp Origin { get; }

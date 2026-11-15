@@ -46,7 +46,7 @@ namespace Decennium.Foundation
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
-        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell }
+        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell, UseIntimidatingPresence }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -177,6 +177,7 @@ namespace Decennium.Foundation
         public const int ConnectedFleshWardenSchema = 104;
         public const int ConnectedClericRpSchema = 105;
         public const int ConnectedClericRepertoireSchema = 106;
+        public const int ConnectedFrightenedSchema = 107;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -333,11 +334,18 @@ namespace Decennium.Foundation
         public FleshWardenRecord FleshWarden;
         public bool ConnectedClericRp;
         public bool ConnectedClericRepertoire;
+        public bool ConnectedFrightened;
+        public WarriorAbilityChoiceRecord[] WarriorAbilityChoices = Array.Empty<WarriorAbilityChoiceRecord>();
+        public CharacterAbilityRechargeRecord[] AbilityRecharges = Array.Empty<CharacterAbilityRechargeRecord>();
+        public FrightenedUseRecord[] FrightenedUses = Array.Empty<FrightenedUseRecord>();
+        public FrightenedSaveRecord[] FrightenedSaves = Array.Empty<FrightenedSaveRecord>();
+        public FrightenedTimingRecord[] FrightenedTimings = Array.Empty<FrightenedTimingRecord>();
         public KnownSpellRecord[] KnownSpells = Array.Empty<KnownSpellRecord>();
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => ConnectedClericRepertoire ? ConnectedClericRepertoireSchema
+        public int WireSchemaVersion => ConnectedFrightened ? ConnectedFrightenedSchema
+            : ConnectedClericRepertoire ? ConnectedClericRepertoireSchema
             : ConnectedClericRp ? ConnectedClericRpSchema
             : ConnectedFleshWarden ? ConnectedFleshWardenSchema
             : ConnectedShortRest ? ConnectedShortRestSchema
@@ -482,6 +490,9 @@ namespace Decennium.Foundation
             ConnectedFleshWarden = ConnectedFleshWarden, FleshWarden = FleshWarden,
             ConnectedClericRp = ConnectedClericRp, ClericEntry = ClericEntry,
             ConnectedClericRepertoire = ConnectedClericRepertoire, KnownSpells = KnownSpells.ToArray(),
+            ConnectedFrightened = ConnectedFrightened, WarriorAbilityChoices = WarriorAbilityChoices.ToArray(),
+            AbilityRecharges = AbilityRecharges.ToArray(), FrightenedUses = FrightenedUses.ToArray(),
+            FrightenedSaves = FrightenedSaves.ToArray(), FrightenedTimings = FrightenedTimings.ToArray(),
             ResonancePools = ResonancePools.ToArray(), HealingRites = HealingRites.ToArray(),
             ShortRests = ShortRests.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
@@ -697,15 +708,16 @@ namespace Decennium.Foundation
         public MiningSelectionRequest MiningSelection { get; }
         public ProspectingExposureRequest ProspectingExposure { get; }
         public RouteMappingWorkRequest RouteMappingWork { get; }
+        public IntimidatingPresenceRequest IntimidatingPresence { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
             CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
             SuppressionFireRequest suppressionFire = null,DefensiveFormationRequest defensiveFormation = null,
             ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null,
             MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null,
-            RouteMappingWorkRequest routeMappingWork = null)
+            RouteMappingWorkRequest routeMappingWork = null, IntimidatingPresenceRequest intimidatingPresence = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
-            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; }
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; IntimidatingPresence=intimidatingPresence; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -729,7 +741,8 @@ namespace Decennium.Foundation
             + (HarvestSelection == null ? "" : "|harvest-selection-v1|" + HarvestSelection.Fingerprint)
             + (MiningSelection == null ? "" : "|" + MiningSelection.FingerprintVersion + "|" + MiningSelection.Fingerprint)
             + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint)
-            + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint);
+            + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint)
+            + (IntimidatingPresence == null ? "" : "|intimidating-presence-v1|" + IntimidatingPresence.Fingerprint);
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -1116,6 +1129,7 @@ namespace Decennium.Foundation
             FleshWardenProfile.Validate(s);
             ClericRpProfile.Validate(s);
             ClericRepertoireProfile.Validate(s);
+            FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
             TemporaryCampConstructionValidation.Validate(s);
@@ -1221,6 +1235,12 @@ namespace Decennium.Foundation
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
+            if ((command.Kind == CommandKind.UseIntimidatingPresence) != (command.IntimidatingPresence != null)
+                || command.IntimidatingPresence != null && (command.Target != "" || command.X != 0 || command.Y != 0
+                    || command.Inventory != null || command.Combat != null || command.Advancement != null || command.Ranged != null
+                    || command.OverwatchRider != OverwatchRider.None || command.SuppressionFire != null || command.DefensiveFormation != null
+                    || command.ExpeditionAssignment != null || command.HarvestSelection != null || command.MiningSelection != null
+                    || command.ProspectingExposure != null || command.RouteMappingWork != null)) return "UnexpectedIntimidatingPresencePayload";
             if(command.Kind==CommandKind.ResolveExpeditionStrainRecovery
                 &&(command.Target==""||command.X!=0||command.Y!=0||command.Inventory!=null||command.Combat!=null
                     ||command.Advancement!=null||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None

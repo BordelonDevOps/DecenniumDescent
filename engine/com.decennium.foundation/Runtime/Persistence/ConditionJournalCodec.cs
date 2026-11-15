@@ -16,9 +16,10 @@ namespace Decennium.Foundation
         public byte[] Encode(ConditionJournal journal)
         {
             if (journal == null) throw new ArgumentNullException(nameof(journal));
+            int version = journal.PolicyId == ConditionJournal.RelationshipPolicyId ? 2 : 1;
             byte[] payload;
             using (var stream = new MemoryStream()) using (var w = new BinaryWriter(stream, Utf8, true)) {
-                w.Write(Magic); w.Write(1); Text(w, journal.PolicyId); Text(w, journal.Target); Stamp(w, journal.Origin);
+                w.Write(Magic); w.Write(version); Text(w, journal.PolicyId); Text(w, journal.Target); Stamp(w, journal.Origin);
                 w.Write(journal.Operations.Count);
                 foreach (var operation in journal.Operations) {
                     Text(w, operation.Id); Stamp(w, operation.At); w.Write((int)operation.Kind);
@@ -30,9 +31,14 @@ namespace Decennium.Foundation
                             if (a.InheritedCureAllowed.HasValue) w.Write(a.InheritedCureAllowed.Value);
                             w.Write(a.ApplyingDc.HasValue); if (a.ApplyingDc.HasValue) w.Write(a.ApplyingDc.Value);
                             w.Write(a.Magnitude.HasValue); if (a.Magnitude.HasValue) w.Write(a.Magnitude.Value);
+                            if (version == 2) {
+                                w.Write(a.Fear != null);
+                                if (a.Fear != null) { Text(w, a.Fear.FearedEntityId); Text(w, a.Fear.SourceUseId); Text(w, a.Fear.SourceRevision); }
+                            } else if (a.Fear != null) throw new InvalidDataException("Legacy condition journal cannot encode relationships.");
                             Text(w, operation.Subject); break;
                         case ConditionOperationKind.GrantImmunity:
                             var g = operation.Immunity;
+                            if (version == 1 && g.Kinds.Count > 14) throw new InvalidDataException("Legacy named immunity capacity exceeded.");
                             Text(w, g.Id); Text(w, g.Owner); Text(w, g.Source); w.Write(g.Kinds.Count);
                             foreach (string kind in g.Kinds) Text(w, kind);
                             OptionalStamp(w, g.Expires); Text(w, g.EndingMethod); break;
@@ -57,8 +63,12 @@ namespace Decennium.Foundation
                 if (!hash.ComputeHash(bytes, 0, length).SequenceEqual(bytes.Skip(length))) throw new InvalidDataException("Condition journal checksum mismatch.");
             try {
                 using (var stream = new MemoryStream(bytes, 0, length, false)) using (var r = new BinaryReader(stream, Utf8)) {
-                    if (r.ReadInt32() != Magic || r.ReadInt32() != 1) throw new InvalidDataException("Unsupported condition journal version.");
+                    if (r.ReadInt32() != Magic) throw new InvalidDataException("Unsupported condition journal magic.");
+                    int version = r.ReadInt32();
+                    if (version != 1 && version != 2) throw new InvalidDataException("Unsupported condition journal version.");
                     string policy = Text(r), target = Text(r); var origin = Stamp(r);
+                    if ((version == 2) != (policy == ConditionJournal.RelationshipPolicyId))
+                        throw new InvalidDataException("Condition journal version/policy mismatch.");
                     var operations = new ConditionOperation[Count(r, ConditionJournal.MaxOperations)];
                     for (int i = 0; i < operations.Length; i++) {
                         string id = Text(r); var at = Stamp(r); var kind = (ConditionOperationKind)r.ReadInt32();
@@ -67,11 +77,15 @@ namespace Decennium.Foundation
                                 string appId = Text(r), owner = Text(r), source = Text(r), name = Text(r); var expires = OptionalStamp(r);
                                 string ending = Text(r); bool cure = Bool(r); bool? inherited = Bool(r) ? Bool(r) : (bool?)null;
                                 int? dc = Bool(r) ? r.ReadInt32() : (int?)null; long? magnitude = Bool(r) ? r.ReadInt64() : (long?)null;
-                                operations[i] = ConditionOperation.Apply(id, at, new ConditionApplicationData(appId, owner, source, name, expires, ending, cure, dc, magnitude, inherited), Text(r, true)); break;
+                                FrightenedRelationshipData fear = version == 2 && Bool(r)
+                                    ? new FrightenedRelationshipData(Text(r), Text(r), Text(r)) : null;
+                                operations[i] = ConditionOperation.Apply(id, at,
+                                    new ConditionApplicationData(appId, owner, source, name, expires, ending, cure, dc, magnitude, inherited, fear), Text(r, true)); break;
                             case ConditionOperationKind.GrantImmunity:
-                                string grantId = Text(r), grantOwner = Text(r), grantSource = Text(r); var kinds = new string[Count(r, 14)];
+                                string grantId = Text(r), grantOwner = Text(r), grantSource = Text(r); var kinds = new string[Count(r, version == 2 ? 15 : 14)];
                                 for (int j = 0; j < kinds.Length; j++) kinds[j] = Text(r);
-                                operations[i] = ConditionOperation.Grant(id, at, new ConditionImmunityData(grantId, grantOwner, grantSource, kinds, OptionalStamp(r), Text(r))); break;
+                                operations[i] = ConditionOperation.Grant(id, at,
+                                    new ConditionImmunityData(grantId, grantOwner, grantSource, kinds, OptionalStamp(r), Text(r), version == 2)); break;
                             case ConditionOperationKind.Suppress: operations[i] = ConditionOperation.Suppress(id, at, Text(r), Bool(r)); break;
                             case ConditionOperationKind.EndApplication: operations[i] = ConditionOperation.End(id, at, Text(r), Text(r)); break;
                             case ConditionOperationKind.EndImmunity: operations[i] = ConditionOperation.EndGrant(id, at, Text(r), Text(r)); break;

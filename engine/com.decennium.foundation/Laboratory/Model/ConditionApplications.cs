@@ -5,12 +5,12 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    // Generic non-track identities admitted by this lifecycle. Relationship conditions,
-    // periodic damage, Staggered's episode rider and inactive Resonance Burn are separate.
+    // The first14 identities retain the v1 policy. Frightened requires an explicit
+    // relationship payload and the v2 interpreter; other relationships remain unadmitted.
     public enum ConditionKind
     {
         Blinded, Corrupted, Dazed, Deafened, Incapacitated, Invisible, Paralyzed,
-        Petrified, Poisoned, Prone, Restrained, Silenced, Stunned, Unconscious
+        Petrified, Poisoned, Prone, Restrained, Silenced, Stunned, Unconscious, Frightened
     }
 
     /// <summary>A legally selected source component, not permission to inflict it. The caller
@@ -29,20 +29,24 @@ namespace Decennium.Foundation.Laboratory
         public bool InheritedIncapacitatedCureAllowed { get; }
         public int? ApplyingDc { get; }
         public long? Magnitude { get; }
+        public FrightenedRelationshipData Fear { get; }
 
         public ConditionApplication(string id, string owner, string source, string target, ConditionKind kind,
             EffectClockMarker starts, EffectClockMarker? expires, string endingMethod, bool genericCureAllowed,
-            int? applyingDc = null, long? magnitude = null, bool? inheritedIncapacitatedCureAllowed = null)
+            int? applyingDc = null, long? magnitude = null, bool? inheritedIncapacitatedCureAllowed = null,
+            FrightenedRelationshipData fear = null)
         {
             foreach (string value in new[] { id, owner, source, target, endingMethod }) ConditionIdentity.Require(value);
             ConditionIdentity.Kind(kind);
+            if ((kind == ConditionKind.Frightened) != (fear != null))
+                throw new ArgumentException("Frightened requires its source-qualified relationship only.");
             if (expires.HasValue && expires.Value.CompareTo(starts) <= 0 || applyingDc < 0 || magnitude < 0)
                 throw new ArgumentException("Invalid condition endpoint or magnitude.");
             if (inheritedIncapacitatedCureAllowed.HasValue && !ConditionIdentity.InheritsIncapacitated(kind))
                 throw new ArgumentException("This condition has no inherited Incapacitated component.");
             Id = id; Owner = owner; Source = source; Target = target; Kind = kind;
             Starts = starts; Expires = expires; EndingMethod = endingMethod; GenericCureAllowed = genericCureAllowed;
-            ApplyingDc = applyingDc; Magnitude = magnitude;
+            ApplyingDc = applyingDc; Magnitude = magnitude; Fear = fear;
             InheritedIncapacitatedCureAllowed = ConditionIdentity.InheritsIncapacitated(kind)
                 && (inheritedIncapacitatedCureAllowed ?? genericCureAllowed);
         }
@@ -62,12 +66,14 @@ namespace Decennium.Foundation.Laboratory
         public string EndingMethod { get; }
 
         public ConditionImmunity(string id, string owner, string source, string target,
-            IEnumerable<ConditionKind> kinds, EffectClockMarker starts, EffectClockMarker? expires, string endingMethod)
+            IEnumerable<ConditionKind> kinds, EffectClockMarker starts, EffectClockMarker? expires, string endingMethod,
+            bool allowRelationships = false)
         {
             foreach (string value in new[] { id, owner, source, target, endingMethod }) ConditionIdentity.Require(value);
             if (kinds == null) throw new ArgumentNullException(nameof(kinds));
             var copy = kinds.ToArray();
-            if (copy.Length == 0 || copy.Length > 14 || copy.Distinct().Count() != copy.Length)
+            if (copy.Length == 0 || copy.Length > (allowRelationships ? 15 : 14) || copy.Distinct().Count() != copy.Length
+                || !allowRelationships && copy.Contains(ConditionKind.Frightened))
                 throw new ArgumentException("Invalid named immunity set.");
             foreach (var kind in copy) ConditionIdentity.Kind(kind);
             if (expires.HasValue && expires.Value.CompareTo(starts) <= 0)

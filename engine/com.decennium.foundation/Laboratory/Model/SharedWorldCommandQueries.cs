@@ -91,6 +91,8 @@ namespace Decennium.Foundation.Laboratory
             var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, (x, y) => WorldWalkable(s, x, y));
             if (spatial == SpatialStepFailure.Blocked) return "Blocked";
             if (spatial == SpatialStepFailure.Occupied) return "Occupied";
+            string fearFailure = FrightenedRules.WillingStepFailure(s, actor.Id, (new RuleQuantity(toX), new RuleQuantity(toY)));
+            if (fearFailure != null) return fearFailure;
             if (RoutePathReserved(s, actor.Id, toX, toY)) return "RouteTravelPathReserved";
 
             bool startsEncounter = WorldStepWouldStartEncounter(s, actor.Id, actor.X, actor.Y, toX, toY);
@@ -181,6 +183,8 @@ namespace Decennium.Foundation.Laboratory
             if (c.Kind == CommandKind.SuspendWorldStep)
                 return edge.Status == WorldTraversalStatus.Suspended ? "TraversalAlreadySuspended" : null;
             if (c.Kind != CommandKind.ResumeWorldStep) return "InvalidTraversalControl";
+            string fearFailure = FrightenedRules.WillingStepFailure(s, c.Actor, (new RuleQuantity(edge.ToX), new RuleQuantity(edge.ToY)));
+            if (fearFailure != null) return fearFailure;
             string contactObstruction = ReengagementTraversalObstruction(s, edge);
             if (contactObstruction != null) return contactObstruction;
             bool offCalendarActivity = IsOffCalendarActivity(s, c.Actor);
@@ -572,6 +576,7 @@ namespace Decennium.Foundation.Laboratory
             if (ClericRepertoireProfile.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, ClericRepertoireProfile.CommandFailure(s, c), s.Revision);
             if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);
+            if (c.Kind == CommandKind.UseIntimidatingPresence) return QueryIntimidatingPresence(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, "ClassRecoveryUnsupported", s.Revision);
             if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
