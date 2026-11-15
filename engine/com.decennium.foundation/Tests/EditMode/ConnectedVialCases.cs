@@ -157,7 +157,7 @@ namespace Decennium.Foundation.Tests
                     var resolve = typeof(TestOnlySharedWorldPolicy).GetMethod("ResolveCompanionStabilization",
                         BindingFlags.Instance | BindingFlags.NonPublic);
                     string Assess(Snapshot state) => (string)resolve.Invoke(policy,
-                        new object[] { state, Stabilize("stable.probe", state.Revision) });
+                        new object[] { state, Stabilize("stable.probe", state.Revision), false });
                     var dead = ready.Copy();
                     var patient = Patient(ready);
                     dead.Lives = dead.Lives.Select(x => x.ActorId == companion
