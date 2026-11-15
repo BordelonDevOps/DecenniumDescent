@@ -199,11 +199,14 @@ def main():
     check("Accepted profile retains fixed level1 and original resource invariants",
           "character.Levels.Count != 1" in resonance and "pool.Maximum != 3" in resonance and "funding.Amount != 3" in resonance)
     names = ["README.md", "SOURCE_API_CONTRACT.md", "SOURCE_API_BINDINGS.json", "SELECTED_SPELL_BINDINGS.json", "Verify-Contract.py"]
+    if (PACKET / "GPT_CONTRACT_REVIEW.md").exists():
+        names.append("GPT_CONTRACT_REVIEW.md")
     artifacts = {name: {"bytes": (PACKET / name).stat().st_size, "sha256": sha((PACKET / name).read_bytes())} for name in names}
     report = {"status": "PASS", "scope": "source/identity contract audit only", "baseline": BASELINE,
         "sourceEntriesVerified": len(rows), "checks": checks, "selectedIdentities": len(selected),
         "engineChanged": False, "compilation": "NOT RUN; engine unchanged", "runtimeTests": "NOT RUN; engine unchanged",
-        "runtimeImplementationAuthorized": False, "reviewStatus": "PENDING ACTUAL CONTRACT REVIEW", "artifacts": artifacts}
+        "runtimeImplementationAuthorized": "This source verifier grants no authority; consult actual GPT_CONTRACT_REVIEW.md",
+        "reviewStatus": "Source audit only; actual reviewer decisions are recorded separately", "artifacts": artifacts}
     write_json(PACKET / "CONTRACT_VALIDATION.json", report)
     print(json.dumps({"status": "PASS", "sources": len(rows), "checks": len(checks),
                       "selected": len(selected), "engineChanged": False, "runtimeTests": "NOT RUN"}))
