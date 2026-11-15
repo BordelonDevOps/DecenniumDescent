@@ -21,7 +21,7 @@ function Record($s,[string]$name){
     $journal=@($s.Conditions|Where-Object Target -eq $hero)[0]
     $ledger=[Decennium.Foundation.Laboratory.ConditionHistory]::Restore($journal).Ledger
     [ordered]@{scope='DETACHED_ACTUAL_SHARED_CLOSURE_PATH';revision=$s.Revision;clock=$s.RuleClock.ToString();randomState=$s.RandomState;
-        inventoryCombat=$s.InventoryCombat;encounterPresent=$null-ne$s.Encounter;closed=@($s.ClosedEncounters|Select-Object ClosedRevision,At,CommandId);
+        inventoryCombat=$s.InventoryCombat;encounterPresent=$null-ne$s.Encounter;closed=@($s.ClosedEncounters|Select-Object ClosedRevision,ClosedAt,Reason);
         sourceLife=@($s.Lives|Where-Object ActorId -eq $npc);targetFearOperative=(Fear $s);
         relationships=@($ledger.Applications|Where-Object {$_.Application.Kind.ToString()-eq'Frightened'}|ForEach-Object{@{id=$_.Id;endedAt=$_.EndedAt;present=$_.Present($ledger.Now);application=$_.Application}});
         timings=$s.FrightenedTimings;saves=$s.FrightenedSaves;calendar=$s.Reinforcement.Admission.Phase.Epoch

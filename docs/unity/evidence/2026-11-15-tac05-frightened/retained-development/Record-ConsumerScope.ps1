@@ -48,7 +48,7 @@ $sources=@('ConnectedExpeditionSession.cs','TestOnlySharedWorldPolicy.cs','Share
     sourceHashes=@($sources|ForEach-Object{@{file=$_;sha256=(Get-FileHash -LiteralPath (Join-Path $model $_)).Hash.ToLowerInvariant()}});
     stanceCorrection='ClericGuard helper submits stance ordinal1, which is Aggressive, not Guarded. Retained snapshots/receipts are authoritative; do not describe those party turns as Guarded.';
     closureDisposition='not demonstrated; reviewed scope exception (GPT bd6e3553-7534-5fdb-9883-e2426d85c097). Detached actual closure path separately passes failed repeat retention and final expiry; no connected defeat/acquisition claim.';
-    supportingReports=@('historical-check-controls/results.json','historical-consumer-controls/results.json','clock-components-3/results.json','projection-controls/results.json','forced-movement-controls-2/results.json','boundary-controls/results.json','console-boundary-controls-2/results.json','closure-transition-controls/results.json');
+    supportingReports=@('historical-check-controls/results.json','historical-consumer-controls/results.json','clock-components-3/results.json','projection-controls/results.json','forced-movement-controls-2/results.json','boundary-controls/results.json','console-boundary-controls-2/results.json','closure-transition-controls-2/results.json');
     outstanding=@('Exact full regression completion, final evidence retention and actual final GPT review.')
 }|ConvertTo-Json -Depth 8|Set-Content -LiteralPath (Join-Path $PSScriptRoot 'consumer-scope-progress.json') -Encoding utf8
 Write-Output "Recorded $($rows.Count) consumer families and $($proof.Count) actual unavailable-profile boundaries."

@@ -1,6 +1,6 @@
 # TAC-05 implementation evidence
 
-Source checkpoint **`f5800818bfadb7c51865c96a6058f9af2deb75a3`** is committed on `Engine`. This packet is interim while the original exact regression completes. It is not final TAC-05 acceptance; CHR-03 and Unity integration remain held.
+Source checkpoint **`f5800818bfadb7c51865c96a6058f9af2deb75a3`** is committed on `Engine`. The original exact regression is complete: **1,517 passing cases, zero failures**, with six original completion records and DONE markers. This packet is ready for actual final GPT review; it is not itself TAC-05 acceptance. CHR-03 and Unity integration remain held.
 
 `IMPLEMENTATION_BINDINGS.json` binds all41 changed engine files, the exact engine archive, pinned source records, build/static source hashes, executed assemblies, external drivers, inputs, checkpoints and worker identities. `REGRESSION_PROGRESS.json` explicitly distinguishes an incomplete prefix from a full passing run. The launch predates the checkpoint commit; the retained compiled-source hashes and frozen DLLs are verified against that immutable commit without rewriting the original launch record.
 
@@ -21,7 +21,7 @@ Source checkpoint **`f5800818bfadb7c51865c96a6058f9af2deb75a3`** is committed on
 | Historical causality |Four structurally encodable forged records reject strict restore unchanged: old cache natural, WIS modifier, ended-fear attack modifier, unseen-Hide modifier. |
 | Shared components |Independent relationships/advantage cancellation/dead source, qualified all-eligible cure, suppression/immunity, real forced Push producer, actor-only dynamic geometry, exact pending-edge suspension and whole/split clock progression pass with detached labels. |
 | Closure intersection |[Reviewed scope exception](GPT_CLOSURE_GUIDANCE.md): **not demonstrated; reviewed scope exception**. Genuine fourth-use closure denial retains identical bytes. Detached actual closure-path control passes failed-repeat retention, final expiry during closure, and final expiry through subsequent ordinary clock advancement. |
-| Full regression |Original run `d9620202bba1434aa4885782edb2888d`,1517 cases, six frozen-DLL workers. See the exact current status; incomplete journals are not passes. No replacement run was started. |
+| Full regression |PASS,1,517/1,517 unique cases, zero failures. Original run `d9620202bba1434aa4885782edb2888d` retains all1,509 predecessors in their original order plus eight Frightened cases. All six original frozen-DLL worker assignments, journal hashes, completion identities and DONE markers reconcile. No replacement run was started. |
 
 The party helper named `ClericGuard` submits Aggressive stance ordinal1. The retained command/snapshot values, not the helper name, define the scenario. The applying defender's ordinary tactic uses its own actual stance and Action. There is no source regrant, edited RNG/HP/position, scenario reset, player fear cure, Radiance producer or earned Warrior build in the genuine connected routes.
 
@@ -30,6 +30,8 @@ The party helper named `ClericGuard` submits Aggressive stance ordinal1. The ret
 ## Retained layout and reproduction
 
 `retained-development/` preserves selected paths from `engine/artifacts/tac05-frightened/development/`. The external scripts were executed from that original workspace location; copy them there in an isolated checkout to preserve their repository-relative tool references. Do not overwrite an active run. Use fresh output paths for any independent rerun. Recorded absolute paths identify the original execution, while hashes identify the retained inputs.
+
+`scenario-witnesses-2/results.json` is a read-only extraction of all19 hash-bound checkpoints, with actual source uses/saves/endpoints, current conditions, inventory, RP, repertoire and recent commands/rolls. It is not an additional gameplay execution. `closure-transition-controls-2` repeats the original passing component checks with corrected display labels for the existing closure record fields (`ClosedAt` and `Reason`); the interim projection had null `At`/`CommandId` display fields. Runtime assertions and source are unchanged, and both reports are retained.
 
 The source build commands are:
 

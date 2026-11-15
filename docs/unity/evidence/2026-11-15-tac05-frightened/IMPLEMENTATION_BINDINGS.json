@@ -1,9 +1,10 @@
 {
-  "status": "INTERIM_EVIDENCE_FULL_REGRESSION_RUNNING",
-  "atUtc": "2026-11-15T10:35:42.350349+00:00",
+  "status": "EVIDENCE_READY_FOR_FINAL_REVIEW",
+  "atUtc": "2026-11-15T11:44:12.071023+00:00",
   "implementationCommit": "f5800818bfadb7c51865c96a6058f9af2deb75a3",
   "contractReview": "226d668a-fd32-51b3-b64c-bbd74b67e64c",
   "closureGuidance": "bd6e3553-7534-5fdb-9883-e2426d85c097",
+  "interimReview": "2c711be6-04ea-56f5-8c6e-a87d83a681d9",
   "sourceFiles": [
     {
       "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
@@ -260,14 +261,21 @@
   },
   "compatibilityCases": 19,
   "regression": {
-    "status": "RUNNING_NOT_A_PASS",
+    "status": "PASS",
     "runId": "d9620202bba1434aa4885782edb2888d",
     "implementationCommit": "f5800818bfadb7c51865c96a6058f9af2deb75a3",
     "launchCommitNote": "Launch preceded checkpoint commit; immutable compiled source hashes and DLLs are bound to the commit here.",
     "discovered": 1517,
-    "completed": 721,
+    "completed": 1517,
     "failed": 0,
-    "finishedWorkers": [],
+    "finishedWorkers": [
+      "shardA",
+      "shardB",
+      "shardC",
+      "shardD",
+      "shardE",
+      "shardF"
+    ],
     "assemblies": {
       "Decennium.Foundation.Core.dll": "12ac7b8ee82439292d642a5fadd9343dedd6cf500bf90b72905cdcaae14b5fe7",
       "Decennium.Foundation.Persistence.dll": "97044251e94e4dcc5081185d2b6fe7646069439374203dda8fd891618ece2cd6",
@@ -280,6 +288,14 @@
       "Decennium.Foundation.LabModel.dll": "550f44f0-d14a-4786-8508-200a3e89d469",
       "Decennium.Foundation.HeadlessTests.dll": "2bda5ae2-828a-4ece-97d3-8fe5275251bf"
     }
+  },
+  "connectedContinuation": {
+    "revision": 216,
+    "wire": 107,
+    "combat": false,
+    "unspentDoses": 6,
+    "knownSpellCount": 5,
+    "rp": "3/3"
   },
   "unity": "DEFERRED_NOT_RUN",
   "finalAcceptance": "PENDING",
@@ -301,29 +317,33 @@
       "sha256": "a6d56b9dee50107d5b548aa369343eee3234fbf4032c4818bd5e25a602f9892a",
       "bytes": 8184
     },
+    "GPT_INTERIM_REVIEW.md": {
+      "sha256": "f6d0234fbd4d068c55e09379b732ecb1b6d72fc5079784e965e41a6172389372",
+      "bytes": 4587
+    },
     "IMPLEMENTATION_CHECKPOINT.md": {
       "sha256": "c2ddada42c03a2b4ef12e5f8df9bd8736e9534a8144fc7e4637de3d076f88da2",
       "bytes": 5365
     },
     "IMPLEMENTATION_EVIDENCE.md": {
-      "sha256": "a1455a3d7d5bba9e3b3944a9ffcd9e0c0247b74492287751219f3ab82579313e",
-      "bytes": 7464
+      "sha256": "8ae61279b0cf8eb606d49d0097525af4abe17c2595566c42b96e7476dea4b07a",
+      "bytes": 8293
     },
     "README.md": {
-      "sha256": "c0eae036de6bd224c816b88e597bb70f7acfbac0c5f6816682deb239ffb5897d",
-      "bytes": 1937
+      "sha256": "e8823b399b03caa2bf2ff11c11236336c48f6b86a480eef6120e1b93b230c857",
+      "bytes": 2890
     },
     "REGRESSION_PROGRESS.json": {
-      "sha256": "adfd80b6f07607b3bf19ed186044308563b1abfdf4c1b5d51a0ebc5b16bd5ffd",
-      "bytes": 99129
+      "sha256": "b5feb04c197259d3662e4ce96185e2a9e77b3e3cfc181e9a51aba0f693433411",
+      "bytes": 208538
     },
     "Retain-DevelopmentCheckpoint.py": {
       "sha256": "83bf3398067aed30560b96381053888e60a1048c0c359bc7bff03c2b04ae09e2",
       "bytes": 3536
     },
     "Retain-Evidence.py": {
-      "sha256": "e85481ee0495673c5afbcb3748ddc6f777f5df280874ba255ac9b0bad603bffb",
-      "bytes": 13763
+      "sha256": "bf6364c8ff804d11547aa857f67f46b9010574b360ab8994eac5e84700c858c0",
+      "bytes": 15858
     },
     "SELECTED_SOURCE_BINDINGS.json": {
       "sha256": "e1dac125ae5653d51c7a1318e8f27d99b3fff885be492605537366f3323b0ba2",
@@ -349,13 +369,21 @@
       "sha256": "0ab2e128cbb6ae1685f08c790f1c2f1e9448ef63baaf3f6fb4c87fee7a9daf67",
       "bytes": 5407
     },
+    "retained-development/Export-ScenarioWitnesses.ps1": {
+      "sha256": "02fcd4a2834edc39f3d17b5c72852b978d82e67235c2734a2761f296821a4070",
+      "bytes": 3114
+    },
+    "retained-development/Monitor-ExactRegression.ps1": {
+      "sha256": "48af301a3e5acc60fe62ddcc13c2f37bec4e559d8d739e6d165c85e18461caab",
+      "bytes": 2417
+    },
     "retained-development/Probe-DetachedSourceControls.ps1": {
       "sha256": "6afe63d103c1139d5417c2efb4db95a5625f70f2333e617d82b9578880be9a43",
       "bytes": 1372
     },
     "retained-development/Record-ConsumerScope.ps1": {
-      "sha256": "b887e1d446b48528c9b16c69ad94316d9bc96b2512d69940faafecdc45324f06",
-      "bytes": 9299
+      "sha256": "cecb01fe056e859ec6316c97b94f667774fa4582b1f7a77cda4e234edcea4fa6",
+      "bytes": 9301
     },
     "retained-development/Record-SourceIntegrationProgress.py": {
       "sha256": "0fe287334e2b1509f8463535c71d916a935533f6b339f6fe5573279fb10aca29",
@@ -406,8 +434,8 @@
       "bytes": 9478
     },
     "retained-development/Test-FrightenedClosureTransition.ps1": {
-      "sha256": "82e1c0e282943782673b796bea0621d4ea8b9db1e37146025fdce79a66095017",
-      "bytes": 7966
+      "sha256": "f7f94d1497bc3f65a2d4b94d777022c3be3b69242160ad4c2b4a113a57ce3bb3",
+      "bytes": 7969
     },
     "retained-development/Test-FrightenedConsoleBoundaries.ps1": {
       "sha256": "2672894ff31afdf10175175dc2bf5609f185580a092e94aba15b58de0420a46d",
@@ -516,6 +544,38 @@
     "retained-development/clock-components-3/whole-semantics.json": {
       "sha256": "dd4a35247cefb97902fcea67f45f1a5d95a414c7bffa5bddb8f90b9bcb31e5dc",
       "bytes": 6889
+    },
+    "retained-development/closure-transition-controls-2/after-final-closure.json": {
+      "sha256": "aef7cdd3a9c27c4ae0abcd57459a655be69bbcf08d2817c829639a1a130adaff",
+      "bytes": 8144
+    },
+    "retained-development/closure-transition-controls-2/after-repeat-closure.json": {
+      "sha256": "197276e3382e74d5960081eda79464f447d1997fc6e29262de5e4b2801dd7722",
+      "bytes": 8026
+    },
+    "retained-development/closure-transition-controls-2/before-final-closure.json": {
+      "sha256": "7caac47c7652434df30f15060f3052a476506bafdcfe5b1bb16172b9e36b9805",
+      "bytes": 7838
+    },
+    "retained-development/closure-transition-controls-2/before-repeat-closure.json": {
+      "sha256": "f0cb1fc5617fb8bdcfc61f03933f00f71eb3f3aa1beef1eb86f23697f6656a11",
+      "bytes": 7257
+    },
+    "retained-development/closure-transition-controls-2/genuine-fourth-after-denial.ddsave": {
+      "sha256": "31765b61665b5c82a2dcce8f9fac3075cf7b79b5fe2b0acc2f35315a5c61b416",
+      "bytes": 99978
+    },
+    "retained-development/closure-transition-controls-2/genuine-fourth-before-denial.ddsave": {
+      "sha256": "31765b61665b5c82a2dcce8f9fac3075cf7b79b5fe2b0acc2f35315a5c61b416",
+      "bytes": 99978
+    },
+    "retained-development/closure-transition-controls-2/ordinary-final-expiry.json": {
+      "sha256": "5e119d92eabdbc95f92ad50bd9e5b6aceb8bff17a7d78d0019580be41745daa3",
+      "bytes": 8145
+    },
+    "retained-development/closure-transition-controls-2/results.json": {
+      "sha256": "edb7f2f0c44fb3525745f3101150cbed12df9810ccb452c68d970e51965239b4",
+      "bytes": 2258
     },
     "retained-development/closure-transition-controls/after-final-closure.json": {
       "sha256": "aaa3de79dffa5a32286ec0a6363fc1400fd3e84bf95b41f0c1633298bea789d9",
@@ -878,8 +938,8 @@
       "bytes": 88772
     },
     "retained-development/consumer-scope-progress.json": {
-      "sha256": "ecac51068c3d1d9c0be9f533538f4c9d220cbb248ca9f17609c5ff6b7e9ecb44",
-      "bytes": 12604
+      "sha256": "90977e9a994ed0e4828c7b52531adf07a1158ae60d25a577673426f5a934dff3",
+      "bytes": 12606
     },
     "retained-development/forced-movement-controls-2/results.json": {
       "sha256": "b210c24c5cbbd9a35cf4cf55a7e5185995451f2747bce73534b09eb0eefa4df1",
@@ -1441,9 +1501,17 @@
       "sha256": "a4815f5bfe79bed11df7cc6f23b446efd415908dddd9664f31256ae7e9f67554",
       "bytes": 16652
     },
+    "retained-development/regression/shardA.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardA.execution.json": {
+      "sha256": "7a7210e7a860c2d251463a5c52d2e6e92774c9b5ad2068cdbd6396c074c89ca3",
+      "bytes": 1285
+    },
     "retained-development/regression/shardA.jsonl": {
-      "sha256": "8472d5b0431dd2555adec526e912e1eaf282c0fb8ccfb5d95cb81678e52fecc8",
-      "bytes": 3930
+      "sha256": "a7569b0308088b76000b0efd5a299417f3c6e7100a3fb5559e2919e74929631c",
+      "bytes": 26228
     },
     "retained-development/regression/shardA.started.json": {
       "sha256": "dc920507fa7a1f89391e66ed93df9ba19f089d33bddd8bada4cda217aae0c151",
@@ -1453,9 +1521,17 @@
       "sha256": "6ef3b11d8d33b13e23cafd09978970991d435ed9478a3c29ca90222d1c70e418",
       "bytes": 16134
     },
+    "retained-development/regression/shardB.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardB.execution.json": {
+      "sha256": "eb80d58c18ad47807ac59f574b0ba87743376f99faeb6213749b513740d50109",
+      "bytes": 1286
+    },
     "retained-development/regression/shardB.jsonl": {
-      "sha256": "c7057b35e9f2e19309f597ab76fa11165c485592b395d4be7da40553fb2f602a",
-      "bytes": 12115
+      "sha256": "34639778e68c4e5959ec99b424e5ec572d9e1723dddacc8b6a08e28b9f224e05",
+      "bytes": 25314
     },
     "retained-development/regression/shardB.started.json": {
       "sha256": "7ebfc93239df3a90daef9b6b511b3e21f657887bb3fd7143a3fa9ef3abeb6c87",
@@ -1465,9 +1541,17 @@
       "sha256": "e893368e9ba37f2b2c313ad3fad2c5015541bcb6084e1005be83015f193db97f",
       "bytes": 15701
     },
+    "retained-development/regression/shardC.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardC.execution.json": {
+      "sha256": "24bbbdd832bfff66a1d63b725a0d1fdf8d3acacbc36d9f09900861d3dbee78d6",
+      "bytes": 1285
+    },
     "retained-development/regression/shardC.jsonl": {
-      "sha256": "035da5ae99e3e0831e039b6d85fae62e931a7ac6df698095224925aa2cb099d8",
-      "bytes": 17271
+      "sha256": "08de4b4a27ce6987db98369e8ec163d4d385805d014e0443ec27c744756e1586",
+      "bytes": 24773
     },
     "retained-development/regression/shardC.started.json": {
       "sha256": "0f07b1be285404f8e59c64b15a37145112c63064835c93f9b267c3762083a59f",
@@ -1477,9 +1561,17 @@
       "sha256": "3e57d7a8783c640528d5446684e1b609a700389491a5a626033f8b7a8f8e8b01",
       "bytes": 15428
     },
+    "retained-development/regression/shardD.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardD.execution.json": {
+      "sha256": "0556361566100cb1e80db2ca417fb405ab5cb116b5a201e7b8f992a40d744ee7",
+      "bytes": 1286
+    },
     "retained-development/regression/shardD.jsonl": {
-      "sha256": "1bdd34d9b6bb2ec97dd799fbc9203e8d8826be18c72e8e3fddfc87fe3750438a",
-      "bytes": 16542
+      "sha256": "9f65c7a48433ffadcafbdbbdb6eb40ff3b55b6903e03020e09aa5265763c51e6",
+      "bytes": 24392
     },
     "retained-development/regression/shardD.started.json": {
       "sha256": "41aac3861f4def9181b703dd2409aa9270f3da225f5af8c4b854c27a20b5335a",
@@ -1489,9 +1581,17 @@
       "sha256": "0e1a67870b7752e0a19af9437c6cb758afa0bc15f3e829d2969f986bc3a1ef4a",
       "bytes": 15512
     },
+    "retained-development/regression/shardE.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardE.execution.json": {
+      "sha256": "2715c5892544732a91bba5a42b6d6714f1f8cdf8b4466b77e5889f92d09bf804",
+      "bytes": 1285
+    },
     "retained-development/regression/shardE.jsonl": {
-      "sha256": "05a159ed6d32ffedab4bb596956a3be4703a9166e70312ba4da5dac062a30db3",
-      "bytes": 16862
+      "sha256": "c281613706adc759bb06e411de8b0fd0db3630230deb6056900b6a89b7b0af9c",
+      "bytes": 24440
     },
     "retained-development/regression/shardE.started.json": {
       "sha256": "67e62d549dbd73a29069e3c1700b489868a7bee95828bd056e3aa2422d3f22bb",
@@ -1501,9 +1601,17 @@
       "sha256": "0e1744e43ff4a802141159d05f0955e25325021b84a3ecde651220e280bf3575",
       "bytes": 15553
     },
+    "retained-development/regression/shardF.done": {
+      "sha256": "47acd618a9d45e43b901feaf0edae12ffaa1764399fb271bebf55607e9e7d9a5",
+      "bytes": 6
+    },
+    "retained-development/regression/shardF.execution.json": {
+      "sha256": "0ec92584fc2505d8c77eca7acb78b5ccb7415dcb8cf4f70f1b8e4750eea57fd0",
+      "bytes": 1285
+    },
     "retained-development/regression/shardF.jsonl": {
-      "sha256": "3492ebe1b76181ba906936fbf226d321dcb635f29de644eb1fd9d299c9484099",
-      "bytes": 3791
+      "sha256": "25c18fc765fbc1285478fe0eca39eb1ceed7506800b143d5cde3bb273cb00e3a",
+      "bytes": 24445
     },
     "retained-development/regression/shardF.started.json": {
       "sha256": "190e14542602b59240e2d45d7d1223a8eecb5ae2035f0ea53b5ddd22d5a83f89",
@@ -1560,6 +1668,10 @@
     "retained-development/run-20261115T093650131Z-40129a7c/saves/frightened-unseen-hide-check.ddsave": {
       "sha256": "cfb7f98660710d87b336f15dead3a13b244a39ee97b23b170e9a799b43c94bf3",
       "bytes": 92151
+    },
+    "retained-development/scenario-witnesses-2/results.json": {
+      "sha256": "33d38f32bff52e98f6452f0b37d2b4e1aef9cbd9c50f56f882f4a8f82290548b",
+      "bytes": 356407
     },
     "retained-development/source-integration-controls.json": {
       "sha256": "b0884e77a2c01da0ba2a0ec63d998e5590b44d7b18785a6e8e394b8e6dd3c907",

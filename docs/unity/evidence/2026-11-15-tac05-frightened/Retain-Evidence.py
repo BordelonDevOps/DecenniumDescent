@@ -113,10 +113,27 @@ def main():
 
     controls = ['clock-components-3', 'projection-controls', 'forced-movement-controls-2', 'historical-check-controls',
                 'historical-consumer-controls', 'boundary-controls', 'console-source-probe', 'console-boundary-controls-2',
-                'closure-transition-controls', 'compatibility']
+                'closure-transition-controls', 'closure-transition-controls-2', 'scenario-witnesses-2', 'compatibility']
     for relative in controls:
         report(relative + '/results.json')
         tree(relative)
+    for name in ('before-repeat-closure', 'after-repeat-closure', 'ordinary-final-expiry',
+                 'before-final-closure', 'after-final-closure'):
+        for row in read(development / 'closure-transition-controls-2' / (name + '.json'))['closed']:
+            require(set(row) == {'ClosedRevision', 'ClosedAt', 'Reason'} and row['ClosedRevision'] > 0
+                    and row['ClosedAt']['Denominator'] > 0 and bool(row['Reason']),
+                    'Uncorrected closure summary projection: ' + name)
+    witnesses = read(development / 'scenario-witnesses-2/results.json')['checkpoints']
+    witness_keys = {(row['route'], row['checkpoint']) for row in witnesses}
+    expected_witnesses = {(trace, name) for relative, trace, _ in paths for name in path_summary[relative]['checkpoints']}
+    require(len(witnesses) == len(witness_keys) == 19 and witness_keys == expected_witnesses, 'Incomplete readable checkpoint extraction')
+    for row in witnesses:
+        relative = next(relative for relative, trace, _ in paths if trace == row['route'])
+        require(row['schema'] == 107 and row['sha256'] == path_summary[relative]['checkpoints'][row['checkpoint']], 'Readable witness hash/schema differs')
+    continued = next(row for row in witnesses if row['checkpoint'] == 'frightened-continued.ddsave')
+    require(continued['revision'] == 216 and not continued['combat'] and continued['unspentDoses'] == 6
+            and len(continued['knownSpells']) == 5 and len(continued['resonance']) == 1
+            and continued['resonance'][0]['Current'] == continued['resonance'][0]['Maximum'] == 3, 'Main continuation resources differ')
     compatibility = read(development / 'compatibility/results.json')
     require(len(compatibility['Cases']) == compatibility['NewProfileRejections'] == 19
             and {row['Wire'] for row in compatibility['Cases']} == set(range(95, 107)), 'Missing authentic compatibility input')
@@ -178,7 +195,7 @@ def main():
         for row in journal:
             require(row['Passed'] and not row['Error'] and row['Name'] not in results, 'Failed/duplicate exact case: ' + str(row))
             results[row['Name']] = row
-        if args.complete:
+        if args.complete or (run / (group + '.done')).is_file():
             completed = read(run / (group + '.execution.json'))
             require(all(completed.get(k) == v for k, v in start.items()) and completed['journalSha256'] == sha(journal_path)
                     and completed['cases'] == len(assigned) == len(journal) and lines(run / (group + '.done')) == ['DONE'], 'Incomplete exact worker: ' + group)
@@ -207,8 +224,11 @@ def main():
     binding = {'status': 'EVIDENCE_READY_FOR_FINAL_REVIEW' if args.complete else 'INTERIM_EVIDENCE_FULL_REGRESSION_RUNNING',
                'atUtc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'implementationCommit': args.implementation,
                'contractReview': '226d668a-fd32-51b3-b64c-bbd74b67e64c', 'closureGuidance': 'bd6e3553-7534-5fdb-9883-e2426d85c097',
+               'interimReview': '2c711be6-04ea-56f5-8c6e-a87d83a681d9',
                'sourceFiles': source_manifest['sourceFiles'], 'newRegisteredCases': new_names, 'pathComparisons': comparisons,
                'paths': path_summary, 'compatibilityCases': 19, 'regression': {k: v for k, v in regression.items() if k != 'cases'},
+               'connectedContinuation': {'revision': continued['revision'], 'wire': continued['schema'], 'combat': continued['combat'],
+                                         'unspentDoses': continued['unspentDoses'], 'knownSpellCount': len(continued['knownSpells']), 'rp': '3/3'},
                'unity': 'DEFERRED_NOT_RUN', 'finalAcceptance': 'PENDING', 'successor': 'CHR03_HELD', 'artifacts': dict(sorted(artifacts.items()))}
     (packet / 'IMPLEMENTATION_BINDINGS.json').write_text(json.dumps(binding, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'status': binding['status'], 'artifacts': len(artifacts), 'regressionCompleted': len(results), 'comparisons': comparisons}))
