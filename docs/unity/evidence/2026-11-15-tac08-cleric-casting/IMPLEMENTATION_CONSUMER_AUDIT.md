@@ -1,5 +1,9 @@
 # TAC08 implementation consumer and capability audit
 
+**Amended admission at source `0e5928bddd5abce47c16ff86172f5613423a2460`.** Actual GPT amendment `67a07398-59b8-5af5-8410-ee42b2ce2ca2` adds only the existing companion Club pickup to the explicit v2 TEST_ONLY profile. Its ordinary one-second work, actual owner/custodian, physical access, usable hand and complete projected burden are required; initial equipment and sourced2lb/derived1/5 provisional Load remain unchanged. Existing movement and involuntary drops keep using that ClubInstance. Arbitrary weapons, Club storage, handover, volume and free equip/grip remain unsupported. Earlier development109 saves reject under v2; authentic95–108 profiles retain their own semantics.
+
+The genuine amended branch now demonstrates nonzero Refrain across the caster's actual idle interval, its own paid Club attack and weapon End, and its next same-spell cast. The corrected automatic controller also completes the second cached Sanctuary opportunity without another save or Reaction payment. These are genuine command routes with restore/replay, distinct from the labeled detached controls below. [Amended qualification status](AMENDED_IMPLEMENTATION.md) records the outstanding full regression, five-path/legacy-view reconciliation and actual final review.
+
 This audit describes the selected wire109/base90 TEST_ONLY adapter. It is not production authority, final acceptance, or a claim that every source in the rule catalogue has an executable producer. The governing source/API contract is `APPROVED_CASTING_CONTRACT.md`, including actual focus-onset clarification `94ea32c6-0c95-537d-83ec-732d1a0d171d`. The accepted predecessor is CHR03 source `34229ec6f19c9569dd35fd7b6013b99f37759c85`.
 
 ## Actual admission and common state

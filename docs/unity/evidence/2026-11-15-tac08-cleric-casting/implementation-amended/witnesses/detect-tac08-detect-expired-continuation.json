@@ -1,0 +1,1695 @@
+{
+  "campaign": "detect",
+  "checkpoint": "tac08-detect-expired-continuation.ddsave",
+  "sha256": "fec72bd667b6486298ec9b1fad1e7c5521dda14a15792b797ed9dcaa5a8b4279",
+  "wire": 109,
+  "revision": 226,
+  "clock": "114693/2",
+  "randomState": 1136839907,
+  "testOnly": true,
+  "productionAuthority": false,
+  "inventoryCombat": false,
+  "activeEncounter": null,
+  "closedEncounterCount": 2,
+  "actorLife": [
+    {
+      "ActorId": "TEST_ONLY.actor",
+      "MaximumHp": 26,
+      "Hp": 9,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "MaximumHp": 13,
+      "Hp": 7,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.haven-copper-buyer",
+      "MaximumHp": 8,
+      "Hp": 8,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.later-defender",
+      "MaximumHp": 26,
+      "Hp": 0,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": true
+    },
+    {
+      "ActorId": "TEST_ONLY.third-combatant",
+      "MaximumHp": 26,
+      "Hp": 0,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": true
+    }
+  ],
+  "pools": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "Current": 1,
+      "Maximum": 4
+    }
+  ],
+  "strain": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "Dissonance": 0,
+      "LastSpellId": "detect-magic",
+      "Refrain": 0
+    }
+  ],
+  "knownSpells": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "arcane-ward",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "detect-magic",
+      "AcquiredRevision": 218
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "guidance",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "purify-food-and-drink",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "sanctuary",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "spare-the-dying",
+      "AcquiredRevision": 0
+    }
+  ],
+  "earnedObjective": {
+    "DeclarationDigest": "f1575026b8319dd6147851d021e78e412e35bf00b3ec64b49322a233674a9c37",
+    "FirstClosureCommand": "tactical.command.15",
+    "FirstClosureRevision": 15,
+    "BatchOrderId": "manufacture.order.104",
+    "BatchSettlementRevision": 107,
+    "LaterClosureCommand": "cleric.route.215",
+    "Revision": 216,
+    "At": {
+      "Numerator": 113477,
+      "Denominator": 2
+    }
+  },
+  "characterAdvancements": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "MilestoneId": "TEST_ONLY.cleric.opening-milestone",
+      "Revision": 218,
+      "PreviousTotalLevel": 1,
+      "NewTotalLevel": 2,
+      "ClassName": "Cleric",
+      "ClassLevel": 2,
+      "BaseHpGain": 5,
+      "HitPointMethod": "FixedAverage",
+      "MaximumHpBefore": 8,
+      "MaximumHpAfter": 13,
+      "CurrentHpBefore": 7,
+      "CurrentHpAfter": 7,
+      "FeatureOne": "cleric.base.conviction-pool",
+      "FeatureTwo": "cleric.base.judging-light",
+      "SelectedFeatureIds": [
+        "cleric.base.conviction-pool",
+        "cleric.base.judging-light"
+      ],
+      "AsiAbilityIncreases": [],
+      "AbilityScoresBefore": [],
+      "AbilityScoresAfter": []
+    }
+  ],
+  "casts": [
+    {
+      "command": "tac08.detect.aura-producer",
+      "revision": 220,
+      "actor": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.actor",
+      "spell": "guidance",
+      "at": "113481/2",
+      "classLevel": 2,
+      "rank": 0,
+      "dc": 12,
+      "focused": false,
+      "focus": "",
+      "turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 39,
+        "GlobalStart": 41,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|39|41|0"
+      },
+      "rpBefore": 3,
+      "baseRp": 0,
+      "surcharge": 0,
+      "rpAfter": 3,
+      "strainBefore": 0,
+      "strainAfter": 0,
+      "refrain": 0,
+      "randomBefore": 1136839907,
+      "randomAfter": 1136839907,
+      "words": 0
+    },
+    {
+      "command": "tac08.detect.paid-cast",
+      "revision": 222,
+      "actor": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.companion",
+      "spell": "detect-magic",
+      "at": "113493/2",
+      "classLevel": 2,
+      "rank": 1,
+      "dc": 12,
+      "focused": false,
+      "focus": "TEST_ONLY.cleric-casting.holy-symbol",
+      "turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 42,
+        "GlobalStart": 44,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|42|44|0"
+      },
+      "rpBefore": 3,
+      "baseRp": 2,
+      "surcharge": 0,
+      "rpAfter": 1,
+      "strainBefore": 0,
+      "strainAfter": 1,
+      "refrain": 0,
+      "randomBefore": 1136839907,
+      "randomAfter": 1136839907,
+      "words": 0
+    }
+  ],
+  "effects": [
+    {
+      "id": "tac08.detect.aura-producer.effect",
+      "cast": "tac08.detect.aura-producer",
+      "spell": "guidance",
+      "caster": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.actor",
+      "present": false,
+      "starts": "113481/2",
+      "expires": "113601/2",
+      "reason": "Expired",
+      "concentration": false
+    },
+    {
+      "id": "tac08.detect.paid-cast.effect",
+      "cast": "tac08.detect.paid-cast",
+      "spell": "detect-magic",
+      "caster": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.companion",
+      "present": false,
+      "starts": "113493/2",
+      "expires": "114693/2",
+      "reason": "Expired",
+      "concentration": true
+    }
+  ],
+  "saves": [],
+  "pendingSanctuary": [],
+  "guidanceUses": [],
+  "detectFocuses": [
+    {
+      "CommandId": "tac08.detect.later-focus",
+      "Revision": 224,
+      "ActorId": "TEST_ONLY.companion",
+      "DetectionEffectId": "tac08.detect.paid-cast.effect",
+      "ObservedEffectId": "tac08.detect.aura-producer.effect",
+      "ObservationId": "aura.013b245b7ff86202c159badf6cdfd5b0",
+      "Turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 45,
+        "GlobalStart": 47,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|45|47|0"
+      },
+      "At": {
+        "Numerator": 113505,
+        "Denominator": 2
+      },
+      "SchoolWithheld": false,
+      "BroadSchool": "Universal"
+    }
+  ],
+  "contamination": [
+    {
+      "Id": "TEST_ONLY.cleric-casting.ordinary-contamination",
+      "LotId": "TEST_ONLY.cleric-casting.contaminated-water",
+      "OriginId": "TEST_ONLY.cleric-casting.initial-physical.v1",
+      "OriginRevision": 0,
+      "Kind": "OrdinaryPoison",
+      "DestroyedByCastId": "",
+      "DestroyedRevision": 0,
+      "Present": true,
+      "Purifiable": true
+    }
+  ],
+  "stocks": [
+    {
+      "id": "TEST_ONLY.clean-pool",
+      "unit": "prototype.potable-water.pint",
+      "amount": "32/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.cleric-casting.contaminated-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "1/1",
+      "location": "TEST_ONLY.plot-flask",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.haven-buyer-two-copper-coins",
+      "unit": "TEST_ONLY.genuine-copper-piece",
+      "amount": "2/1",
+      "location": "TEST_ONLY.haven-copper-buyer",
+      "custodian": "TEST_ONLY.haven-copper-buyer"
+    },
+    {
+      "id": "TEST_ONLY.haven-cooked-serving",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.companion",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.mining.unit.copper",
+      "unit": "mass-pound",
+      "amount": "1/1",
+      "location": "ground.3.3",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.mining.unit.iron",
+      "unit": "mass-pound",
+      "amount": "1/1",
+      "location": "TEST_ONLY.haven-copper-buyer",
+      "custodian": "TEST_ONLY.haven-copper-buyer"
+    },
+    {
+      "id": "TEST_ONLY.pack-rations",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "20/1",
+      "location": "TEST_ONLY.actor",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.pack-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "4/1",
+      "location": "TEST_ONLY.pack-skin",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.preservation.supplies",
+      "unit": "mass-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.preservation.sealable-vessel",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.ready-rations",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "2/1",
+      "location": "TEST_ONLY.supply-cache",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.ready-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "4/1",
+      "location": "TEST_ONLY.actor-skin",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.seed-packets",
+      "unit": "prototype.camp-greens.seed-packet",
+      "amount": "8/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.water-pints",
+      "unit": "prototype.suitable-water.pint",
+      "amount": "512/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "inventory.35.lot",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.companion",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.glass-vials",
+      "unit": "ordinary.glass-vial-1gp",
+      "amount": "3/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.recipe14.set0.component2",
+      "unit": "drop-black_blood_sample",
+      "amount": "0/1",
+      "location": "TEST_ONLY.recipe4.bench-apparatus.v1",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component0",
+      "unit": "ing-4-0-alchemical_catalyst",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component1",
+      "unit": "ing-4-1-crystal_vial",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component2",
+      "unit": "ing-4-2-alchemical_base",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component3",
+      "unit": "drop-black_blood_sample",
+      "amount": "1/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component0",
+      "unit": "ing-4-0-alchemical_catalyst",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component1",
+      "unit": "ing-4-1-crystal_vial",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component2",
+      "unit": "ing-4-2-alchemical_base",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component3",
+      "unit": "drop-black_blood_sample",
+      "amount": "1/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    }
+  ],
+  "focus": [
+    {
+      "Id": "TEST_ONLY.cleric-casting.holy-symbol",
+      "OwnerId": "TEST_ONLY.companion",
+      "CustodianId": "TEST_ONLY.companion",
+      "Placement": "Worn",
+      "HeldHands": 0,
+      "GroundX": 0,
+      "GroundY": 0
+    }
+  ],
+  "clubs": [
+    {
+      "Id": "TEST_ONLY.actor-club",
+      "ProfileId": "TEST_ONLY.standard-club",
+      "OwnerId": "TEST_ONLY.actor",
+      "CustodianId": "TEST_ONLY.actor",
+      "HeldBy": "TEST_ONLY.actor",
+      "CellX": 0,
+      "CellY": 2
+    },
+    {
+      "Id": "TEST_ONLY.companion-club",
+      "ProfileId": "TEST_ONLY.standard-club",
+      "OwnerId": "TEST_ONLY.companion",
+      "CustodianId": "TEST_ONLY.companion",
+      "HeldBy": "",
+      "CellX": 3,
+      "CellY": 3
+    },
+    {
+      "Id": "TEST_ONLY.later-defender-club",
+      "ProfileId": "TEST_ONLY.standard-club",
+      "OwnerId": "TEST_ONLY.later-defender",
+      "CustodianId": "TEST_ONLY.later-defender",
+      "HeldBy": "",
+      "CellX": 0,
+      "CellY": 3
+    },
+    {
+      "Id": "TEST_ONLY.third-club",
+      "ProfileId": "TEST_ONLY.standard-club",
+      "OwnerId": "TEST_ONLY.third-combatant",
+      "CustodianId": "TEST_ONLY.third-combatant",
+      "HeldBy": "",
+      "CellX": 3,
+      "CellY": 0
+    }
+  ],
+  "heldItems": [
+    {
+      "ActorId": "TEST_ONLY.actor",
+      "HeldItems": [
+        "TEST_ONLY.actor-club"
+      ]
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "HeldItems": []
+    },
+    {
+      "ActorId": "TEST_ONLY.haven-copper-buyer",
+      "HeldItems": []
+    },
+    {
+      "ActorId": "TEST_ONLY.later-defender",
+      "HeldItems": []
+    },
+    {
+      "ActorId": "TEST_ONLY.third-combatant",
+      "HeldItems": []
+    }
+  ],
+  "clubHandling": [],
+  "clubLabor": [],
+  "casterBurden": {
+    "Pounds": {
+      "Numerator": 3,
+      "Denominator": 1
+    },
+    "Load": {
+      "Numerator": 3,
+      "Denominator": 10
+    },
+    "PoundsDocumented": true
+  },
+  "attacks": [
+    {
+      "Id": "attack.10",
+      "Revision": 10,
+      "ResolvedRevision": 10,
+      "TurnOrdinal": 2,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.third-combatant",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 6,
+        "Denominator": 1
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 12,
+        "Second": 0,
+        "Selected": 12,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 8,
+        "RandomAfter": 2162952,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          4
+        ],
+        "Total": 6,
+        "DiceWords": 1,
+        "EffectsSeed": 537014280,
+        "FinalRandom": 2791531049,
+        "EffectsWords": 1,
+        "WoundNatural": 9,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.14",
+      "Revision": 14,
+      "ResolvedRevision": 14,
+      "TurnOrdinal": 4,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.third-combatant",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 12,
+        "Denominator": 1
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 4,
+        "Second": 16,
+        "Selected": 16,
+        "Modifier": 0,
+        "ArmorClass": 10,
+        "Hit": true,
+        "Critical": true,
+        "RandomBefore": 2397225082,
+        "RandomAfter": 1512175116,
+        "Words": 2
+      },
+      "Damage": {
+        "Dice": [
+          4,
+          3
+        ],
+        "Total": 9,
+        "DiceWords": 2,
+        "EffectsSeed": 3547356631,
+        "FinalRandom": 3547356631,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.116",
+      "Revision": 116,
+      "ResolvedRevision": 116,
+      "TurnOrdinal": 0,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113313,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 9,
+        "Second": 0,
+        "Selected": 9,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 3624231762,
+        "RandomAfter": 4186715589,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          3
+        ],
+        "Total": 3,
+        "DiceWords": 1,
+        "EffectsSeed": 2577523135,
+        "FinalRandom": 2577523135,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": true,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.120",
+      "Revision": 120,
+      "ResolvedRevision": 120,
+      "TurnOrdinal": 1,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113319,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 20,
+        "Second": 0,
+        "Selected": 20,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": true,
+        "RandomBefore": 2577523135,
+        "RandomAfter": 391921140,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          1,
+          1
+        ],
+        "Total": 2,
+        "DiceWords": 2,
+        "EffectsSeed": 2265186825,
+        "FinalRandom": 2265186825,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.126",
+      "Revision": 126,
+      "ResolvedRevision": 126,
+      "TurnOrdinal": 3,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113329,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 3,
+        "Second": 0,
+        "Selected": 3,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 4024505547,
+        "RandomAfter": 1652186263,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 1652186263,
+        "FinalRandom": 1652186263,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": true,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.136",
+      "Revision": 136,
+      "ResolvedRevision": 136,
+      "TurnOrdinal": 7,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.companion",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113345,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 7,
+        "Second": 0,
+        "Selected": 7,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 2949583773,
+        "RandomAfter": 4197334307,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 4197334307,
+        "FinalRandom": 4197334307,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.143",
+      "Revision": 143,
+      "ResolvedRevision": 143,
+      "TurnOrdinal": 10,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.companion",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113357,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 10,
+        "Second": 0,
+        "Selected": 10,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 4197334307,
+        "RandomAfter": 2361540390,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          1
+        ],
+        "Total": 1,
+        "DiceWords": 1,
+        "EffectsSeed": 2952121365,
+        "FinalRandom": 2952121365,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.151",
+      "Revision": 151,
+      "ResolvedRevision": 151,
+      "TurnOrdinal": 13,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113369,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 14,
+        "Second": 0,
+        "Selected": 14,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 2952121365,
+        "RandomAfter": 3634070254,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          1
+        ],
+        "Total": 1,
+        "DiceWords": 1,
+        "EffectsSeed": 2953103149,
+        "FinalRandom": 2953103149,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.156",
+      "Revision": 156,
+      "ResolvedRevision": 156,
+      "TurnOrdinal": 15,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113377,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 1,
+        "Second": 0,
+        "Selected": 1,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 2953103149,
+        "RandomAfter": 885987581,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 885987581,
+        "FinalRandom": 885987581,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.159",
+      "Revision": 159,
+      "ResolvedRevision": 159,
+      "TurnOrdinal": 16,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113381,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 5,
+        "Second": 0,
+        "Selected": 5,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 885987581,
+        "RandomAfter": 768258485,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 768258485,
+        "FinalRandom": 768258485,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.164",
+      "Revision": 164,
+      "ResolvedRevision": 164,
+      "TurnOrdinal": 18,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113389,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 3,
+        "Second": 0,
+        "Selected": 3,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 768258485,
+        "RandomAfter": 75081003,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 75081003,
+        "FinalRandom": 75081003,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.167",
+      "Revision": 167,
+      "ResolvedRevision": 167,
+      "TurnOrdinal": 19,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113393,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 5,
+        "Second": 0,
+        "Selected": 5,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 75081003,
+        "RandomAfter": 726103525,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 726103525,
+        "FinalRandom": 726103525,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.172",
+      "Revision": 172,
+      "ResolvedRevision": 172,
+      "TurnOrdinal": 21,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113401,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 16,
+        "Second": 0,
+        "Selected": 16,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 726103525,
+        "RandomAfter": 2056082456,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          3
+        ],
+        "Total": 5,
+        "DiceWords": 1,
+        "EffectsSeed": 3519660031,
+        "FinalRandom": 3519660031,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.175",
+      "Revision": 175,
+      "ResolvedRevision": 175,
+      "TurnOrdinal": 22,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113405,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 16,
+        "Second": 0,
+        "Selected": 16,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 3519660031,
+        "RandomAfter": 552841316,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          3
+        ],
+        "Total": 3,
+        "DiceWords": 1,
+        "EffectsSeed": 2300344443,
+        "FinalRandom": 2300344443,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.180",
+      "Revision": 180,
+      "ResolvedRevision": 180,
+      "TurnOrdinal": 24,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113413,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 10,
+        "Second": 0,
+        "Selected": 10,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 2300344443,
+        "RandomAfter": 3295704370,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 3295704370,
+        "FinalRandom": 3295704370,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.183",
+      "Revision": 183,
+      "ResolvedRevision": 183,
+      "TurnOrdinal": 25,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113417,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 9,
+        "Second": 0,
+        "Selected": 9,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 3295704370,
+        "RandomAfter": 2417777529,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          4
+        ],
+        "Total": 4,
+        "DiceWords": 1,
+        "EffectsSeed": 1964879552,
+        "FinalRandom": 1964879552,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.188",
+      "Revision": 188,
+      "ResolvedRevision": 188,
+      "TurnOrdinal": 27,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113425,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 2,
+        "Second": 0,
+        "Selected": 2,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 1964879552,
+        "RandomAfter": 3632012002,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 3632012002,
+        "FinalRandom": 3632012002,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.191",
+      "Revision": 191,
+      "ResolvedRevision": 191,
+      "TurnOrdinal": 28,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113429,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 2,
+        "Second": 0,
+        "Selected": 2,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 3632012002,
+        "RandomAfter": 1060018482,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 1060018482,
+        "FinalRandom": 1060018482,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.196",
+      "Revision": 196,
+      "ResolvedRevision": 196,
+      "TurnOrdinal": 30,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113437,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 2,
+        "Second": 0,
+        "Selected": 2,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": false,
+        "Critical": false,
+        "RandomBefore": 1060018482,
+        "RandomAfter": 1830636022,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [],
+        "Total": 0,
+        "DiceWords": 0,
+        "EffectsSeed": 1830636022,
+        "FinalRandom": 1830636022,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.199",
+      "Revision": 199,
+      "ResolvedRevision": 199,
+      "TurnOrdinal": 31,
+      "AttackerId": "TEST_ONLY.later-defender",
+      "TargetId": "TEST_ONLY.actor",
+      "WeaponId": "TEST_ONLY.later-defender-club",
+      "At": {
+        "Numerator": 113441,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 11,
+        "Second": 0,
+        "Selected": 11,
+        "Modifier": 0,
+        "ArmorClass": 8,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 1830636022,
+        "RandomAfter": 1079940871,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          4
+        ],
+        "Total": 4,
+        "DiceWords": 1,
+        "EffectsSeed": 3313104216,
+        "FinalRandom": 3313104216,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "KeepExisting"
+    },
+    {
+      "Id": "attack.204",
+      "Revision": 204,
+      "ResolvedRevision": 204,
+      "TurnOrdinal": 33,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113449,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 13,
+        "Second": 0,
+        "Selected": 13,
+        "Modifier": 0,
+        "ArmorClass": 11,
+        "Hit": true,
+        "Critical": false,
+        "RandomBefore": 3313104216,
+        "RandomAfter": 2172886673,
+        "Words": 1
+      },
+      "Damage": {
+        "Dice": [
+          1
+        ],
+        "Total": 3,
+        "DiceWords": 1,
+        "EffectsSeed": 3093901465,
+        "FinalRandom": 1362209572,
+        "EffectsWords": 1,
+        "WoundNatural": 12,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    },
+    {
+      "Id": "attack.210",
+      "Revision": 210,
+      "ResolvedRevision": 210,
+      "TurnOrdinal": 36,
+      "AttackerId": "TEST_ONLY.actor",
+      "TargetId": "TEST_ONLY.later-defender",
+      "WeaponId": "TEST_ONLY.actor-club",
+      "At": {
+        "Numerator": 113461,
+        "Denominator": 2
+      },
+      "Instruction": "OrdinaryOutcome",
+      "Attack": {
+        "First": 5,
+        "Second": 13,
+        "Selected": 13,
+        "Modifier": 0,
+        "ArmorClass": 10,
+        "Hit": true,
+        "Critical": true,
+        "RandomBefore": 4009113806,
+        "RandomAfter": 2002621313,
+        "Words": 2
+      },
+      "Damage": {
+        "Dice": [
+          3,
+          3
+        ],
+        "Total": 8,
+        "DiceWords": 2,
+        "EffectsSeed": 1136839907,
+        "FinalRandom": 1136839907,
+        "EffectsWords": 0,
+        "WoundNatural": 0,
+        "InjuryD6": 0,
+        "StableD4": 0
+      },
+      "Pending": false,
+      "Opportunity": false,
+      "PressInstruction": "ArmOrReplace"
+    }
+  ],
+  "intervals": [
+    {
+      "ActorId": "TEST_ONLY.actor",
+      "LastStart": 342,
+      "MovementSpent": {
+        "Numerator": 0,
+        "Denominator": 1
+      },
+      "ActionSpent": false,
+      "DashPaid": false,
+      "ReactionAvailable": true,
+      "Interactions": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "LastStart": 344,
+      "MovementSpent": {
+        "Numerator": 0,
+        "Denominator": 1
+      },
+      "ActionSpent": false,
+      "DashPaid": false,
+      "ReactionAvailable": true,
+      "Interactions": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.later-defender",
+      "LastStart": 343,
+      "MovementSpent": {
+        "Numerator": 0,
+        "Denominator": 1
+      },
+      "ActionSpent": false,
+      "DashPaid": false,
+      "ReactionAvailable": true,
+      "Interactions": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.third-combatant",
+      "LastStart": 19115,
+      "MovementSpent": {
+        "Numerator": 0,
+        "Denominator": 1
+      },
+      "ActionSpent": false,
+      "DashPaid": false,
+      "ReactionAvailable": true,
+      "Interactions": 0
+    }
+  ],
+  "casterEnds": [
+    {
+      "Turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 39,
+        "GlobalStart": 41,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|39|41|0"
+      },
+      "CauseId": "cleric.route.220",
+      "Revision": 221,
+      "At": {
+        "Numerator": 113485,
+        "Denominator": 2
+      },
+      "Before": 0,
+      "After": 0,
+      "MagicalActivity": true,
+      "Grounding": false,
+      "Proficiency": 2
+    },
+    {
+      "Turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 42,
+        "GlobalStart": 44,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|42|44|0"
+      },
+      "CauseId": "cleric.route.222",
+      "Revision": 223,
+      "At": {
+        "Numerator": 113497,
+        "Denominator": 2
+      },
+      "Before": 1,
+      "After": 1,
+      "MagicalActivity": true,
+      "Grounding": false,
+      "Proficiency": 2
+    },
+    {
+      "Turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 45,
+        "GlobalStart": 47,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|45|47|0"
+      },
+      "CauseId": "cleric.route.224",
+      "Revision": 225,
+      "At": {
+        "Numerator": 113509,
+        "Denominator": 2
+      },
+      "Before": 1,
+      "After": 1,
+      "MagicalActivity": true,
+      "Grounding": false,
+      "Proficiency": 2
+    },
+    {
+      "Turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 48,
+        "GlobalStart": 50,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|48|50|0"
+      },
+      "CauseId": "cleric.route.224",
+      "Revision": 225,
+      "At": {
+        "Numerator": 113521,
+        "Denominator": 2
+      },
+      "Before": 1,
+      "After": 0,
+      "MagicalActivity": false,
+      "Grounding": false,
+      "Proficiency": 2
+    }
+  ],
+  "intakes": [
+    {
+      "Id": "inventory.31.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "TEST_ONLY.haven-cooked-serving",
+      "ReservationId": "inventory.31.intake.stock",
+      "StartedAt": {
+        "Numerator": 5443,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 5593,
+        "Denominator": 1
+      },
+      "Status": "Interrupted"
+    },
+    {
+      "Id": "inventory.45.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "inventory.35.lot",
+      "ReservationId": "inventory.45.intake.stock",
+      "StartedAt": {
+        "Numerator": 5626,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 5776,
+        "Denominator": 1
+      },
+      "Status": "Complete"
+    },
+    {
+      "Id": "inventory.49.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "TEST_ONLY.haven-cooked-serving",
+      "ReservationId": "inventory.49.intake.stock",
+      "StartedAt": {
+        "Numerator": 5789,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 6089,
+        "Denominator": 1
+      },
+      "Status": "Complete"
+    }
+  ],
+  "manufacturing": [
+    {
+      "Id": "manufacture.order.104",
+      "WorkerId": "TEST_ONLY.companion",
+      "RecipeId": "recipe-4",
+      "MaterialSet": 0,
+      "ExtraVials": 2,
+      "TakeTen": false,
+      "Status": "Complete",
+      "Work": {
+        "Phases": [
+          {
+            "Numerator": 900,
+            "Denominator": 1
+          },
+          {
+            "Numerator": 13500,
+            "Denominator": 1
+          }
+        ],
+        "CompletedPhases": 2,
+        "Partial": {
+          "Numerator": 0,
+          "Denominator": 1
+        },
+        "Labor": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Complete": true,
+        "Retained": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Required": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Remaining": {
+          "Numerator": 0,
+          "Denominator": 1
+        }
+      },
+      "StartedAt": {
+        "Numerator": 42248,
+        "Denominator": 1
+      },
+      "UpdatedAt": {
+        "Numerator": 56648,
+        "Denominator": 1
+      },
+      "StabilizedAt": {
+        "Numerator": 43148,
+        "Denominator": 1
+      },
+      "First": 15,
+      "Second": 0,
+      "Natural": 15,
+      "Quality": "Exceptional",
+      "Choice": "FullYield",
+      "RetainedCatalyst": -1,
+      "Mishap": 0,
+      "XpAward": 4,
+      "FindingId": "",
+      "MishapIncidentId": "",
+      "Open": false
+    }
+  ]
+}
