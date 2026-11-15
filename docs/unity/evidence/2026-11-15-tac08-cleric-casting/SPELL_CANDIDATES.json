@@ -1,0 +1,362 @@
+{
+  "status": "EXACT_SOURCE_EVIDENCE_NOT_RUNTIME_AUTHORITY",
+  "catalogPath": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "catalogSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+  "canonicalEntryHashEncoding": "UTF-8 JSON, sorted keys, compact separators, ensure_ascii=False",
+  "scopeSelection": "Pending complete source/API contract; all six owned identities are being audited without silently dropping their requirements.",
+  "candidates": [
+    {
+      "id": "arcane-ward",
+      "wholeCardPointer": "/spells/0",
+      "procedurePointer": "/spells/0/operational",
+      "wholeCardSha256": "558820bd4482c9362aafdd99865820ef4b78ad5fc4b3b434eb7cc6a601b81c2a",
+      "procedureSha256": "bca73afe2221424205828732406d6553013345fe2e71cb47739e444891b2d19f",
+      "authoredReviewEntrySha256": "77a99e7a6691480f96478602d671f96855578e62c0d9b02d15797ab90343a042",
+      "clericAccess": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 0
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Arcane Ward",
+          "school": "Abjuration",
+          "level": 0,
+          "summary": "Create a temporary barrier granting +1 AC for 1 round."
+        }
+      ],
+      "ownedOrigin": "initial-Cleric1-repertoire",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "arcane-ward",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing creature you can see within 30 feet, including yourself",
+        "duration": "Until the start of your next regular turn",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None. The chosen target gains the AC bonus after this Action resolves.",
+        "effect": "The target gains +1 AC until the start of your next regular turn.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Repeated Arcane Ward effects on one creature do not stack; keep the later expiry. It cannot retroactively change a resolved attack. Same-stat flat bonuses use the strongest under the integration rules. Refrain still applies.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+        "previousDraftDesignNotes": "NEW provisional timing and self-only targeting; source specified only a temporary +1 AC barrier lasting 1 round.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      }
+    },
+    {
+      "id": "guidance",
+      "wholeCardPointer": "/spells/781",
+      "procedurePointer": "/spells/781/operational",
+      "wholeCardSha256": "e06112b2d30fd1a5614d43d390c15038bc18aac3ba6eb9b1de754420ec06f693",
+      "procedureSha256": "2e18a4f607eaab4120b9a4e92e29143041fa82e5e9bc6791c23812666bff60b6",
+      "authoredReviewEntrySha256": "774d3b40d15ddc8205a75edfc7e5865e6bb07a730ce023d8db8733fc5b2c1b46",
+      "clericAccess": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Universal",
+        "baseRpCost": 0
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Guidance",
+          "school": "Universal",
+          "level": 0,
+          "summary": "Target gains +1d4 on one ability check."
+        }
+      ],
+      "ownedOrigin": "initial-Cleric1-repertoire",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "guidance",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing creature you can perceive within range",
+        "duration": "Until consumed or 1 minute passes",
+        "concentration": false,
+        "components": [
+          "V",
+          "S"
+        ],
+        "resolution": "None.",
+        "effect": "Before the target makes an ability check during the duration, it may choose to consume Guidance before rolling and add 1d4 to that single ability check.",
+        "scaling": "None.",
+        "limitations": "Must be present before the roll and consumed before the d20 is rolled. Applies to one ability check only, not an attack roll, saving throw, damage roll, initiative roll unless initiative is explicitly treated as an ability check by the campaign rules, or another Guidance roll. Multiple Guidance effects do not stack. Cantrip repeats use Refrain.",
+        "designNotes": "Core V2 Action, 30-foot range, and V/S components are retained. Core lists Instantaneous duration despite modifying a future check; the one-minute-or-consumed duration and before-roll timing are NEW provisional operational rules.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      }
+    },
+    {
+      "id": "spare-the-dying",
+      "wholeCardPointer": "/spells/596",
+      "procedurePointer": "/spells/596/operational",
+      "wholeCardSha256": "44fa3a830894ec6a407813db3a2f4be5fd69f37b129291191457a859249c4890",
+      "procedureSha256": "47a91059efce3a3ad27fe423b8ad9cdff6df185543c37695114eb3f8b6cfd229",
+      "authoredReviewEntrySha256": "bf1dd7a206285307da33d05bfd72d6ab3aa159dccbbcfc2a0dc8d6f7ce6956b6",
+      "clericAccess": {
+        "rank": 0,
+        "minimumClassLevel": 1,
+        "school": "Necromancy",
+        "baseRpCost": 0
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Spare the Dying",
+          "school": "Necromancy",
+          "level": 0,
+          "summary": "Stabilize a dying creature."
+        },
+        {
+          "name": "Spare the Dying",
+          "school": "Universal",
+          "level": 0,
+          "summary": "Stabilize a dying creature."
+        }
+      ],
+      "ownedOrigin": "initial-Cleric1-repertoire",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "spare-the-dying",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One living dying creature at 0 HP that you can perceive within range",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S"
+        ],
+        "resolution": "None; an eligible target is stabilized automatically.",
+        "effect": "Stabilize the target at 0 HP so it is no longer dying under the normal Downed/death procedure.",
+        "scaling": "None.",
+        "limitations": "Restores no HP, temporary HP, Wounds, resources, consciousness, missing body parts, or life to a dead creature. A stabilized creature remains at 0 HP. Cannot target a corpse. Cantrip repeats use Refrain.",
+        "designNotes": "Both source placements and Core V2 agree on Action, 30-foot range, V/S components, Instantaneous duration, and stabilization. No additional healing was added.",
+        "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+      }
+    },
+    {
+      "id": "sanctuary",
+      "wholeCardPointer": "/spells/21",
+      "procedurePointer": "/spells/21/operational",
+      "wholeCardSha256": "21bab5bd8ea755ec7e5181a8d6a5335cdc7763e2d02ffccbd5f032b3c648fb1d",
+      "procedureSha256": "f9cfad565a49b5d1cf8529078c9918a6cebb7e7985806b1639f9c78429e18161",
+      "authoredReviewEntrySha256": "025a21c0cb81e0fa979655db38edf80204eed0b3001dad6a43e6f2062befd066",
+      "clericAccess": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Sanctuary",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Enemies must make WIS save to attack warded creature."
+        }
+      ],
+      "ownedOrigin": "initial-Cleric1-repertoire",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "sanctuary",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One willing living creature you can perceive within range",
+        "duration": "Concentration, up to 1 minute",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "The first time on each attacker's turn that it attempts a direct attack against the warded creature, the attacker makes a Wisdom save against your spell save DC. On success it may attack normally and does not save again against this Sanctuary during that turn. On failure that specific attack cannot target the warded creature; the attacker may choose another legal target for the same attack.",
+        "effect": "Ward one creature against direct attacks. Attackers that fail the required Wisdom save must redirect that attack to another legal target or forgo that specific attack.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Does not block area effects, environmental hazards, effects that do not target the warded creature directly, or attacks from creatures immune to this ward. Sanctuary ends immediately if the warded creature intentionally deals damage or forces a hostile creature to make a saving throw. It never compels belief or allegiance and does not remove an attacker's entire Action unless no legal alternative exists. Ranked casting causes normal Dissonance and Refrain. This is defensive target restriction, not permission to impose another whole-Action denial: on a failed save the attacker may choose a legal different target or a different Action if its Action has not otherwise resolved.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+        "previousDraftDesignNotes": "NEW provisional activation, range, concentration, retarget procedure, and offensive-break clause. Source only specified that enemies must make a Wisdom save to attack the warded creature.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      }
+    },
+    {
+      "id": "purify-food-and-drink",
+      "wholeCardPointer": "/spells/24",
+      "procedurePointer": "/spells/24/operational",
+      "wholeCardSha256": "40dd726c75c50fb1497cde101cc02e0758a7f0bd30f2f2744234a9780f9eca14",
+      "procedureSha256": "5548ed450f1954dafed0720e7846aaf183a6b267e57129c3f63794a54d3994e3",
+      "authoredReviewEntrySha256": "e13f139b26857cf6837be90bff0b00acfbe67183cf62e60703936799f3ab85be",
+      "clericAccess": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Abjuration",
+        "baseRpCost": 2
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Purify Food and Drink",
+          "school": "Abjuration",
+          "level": 1,
+          "summary": "Remove poison and disease from consumables."
+        }
+      ],
+      "ownedOrigin": "initial-Cleric1-repertoire",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "purify-food-and-drink",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "One discrete batch or container of actual food weighing at most 5 pounds, OR one discrete batch or container of actual drink holding at most 1 gallon, outside any creature, within range and line of effect.",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "Automatic for the eligible consumable.",
+        "effect": "Remove ordinary nonmagical poison and disease-causing contamination or pathogens from the selected food or drink. Mundane alchemical poison deliberately mixed into valid food or drink qualifies. Removed contaminants are destroyed and cannot be recovered as reagents.",
+        "scaling": "None.",
+        "limitations": "The batch must already be physically separated from any larger continuous volume. Does not remove magical poison, supernatural contamination, curses, Corruption or enchantments, cure a creature already affected, turn poison stock into food, create food/water/medicine or restore spent abstract expedition resources. The food or drink remains its ordinary quantity and type; ordinary expedition consumption/accounting rules still apply. No crafting stock or medicinal product is created. Known/prepared access, class-level gates, legal components, line of effect, payment before resolution, concentration transitions, Dissonance, Refrain and class cadence follow SPELL_INTEGRATION_RULES.md. No automatic scaling or generic upcast.",
+        "designNotes": "PRESERVED: Action, 30 feet, V/S/F, instantaneous and poison/disease removal from consumables. NEW: 5-pound OR 1-gallon finite capacity, separated batch, nonmagical contamination boundary and no reagent recovery.",
+        "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+        "sourceCoreEntries": [
+          {
+            "index": 24,
+            "original": {
+              "school": "Abjuration",
+              "level": 1,
+              "name": "Purify Food and Drink",
+              "effect": "Remove poison and disease from consumables.",
+              "source_paragraph": 9009,
+              "casting_time": "1 action",
+              "range": "30 feet",
+              "duration": "Instantaneous",
+              "components": "V, S, F",
+              "resolution": "Automatic or opposed as described",
+              "tags": [
+                "Restoration"
+              ],
+              "rp_cost": 2
+            }
+          }
+        ],
+        "sourcePlacements": [
+          {
+            "name": "Purify Food and Drink",
+            "school": "Abjuration",
+            "level": 1,
+            "summary": "Remove poison and disease from consumables."
+          }
+        ],
+        "classAccessEvidence": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "sourceReview": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_SOURCE_CONFERENCE.md",
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK1_EXACT_REVIEW.md"
+        ],
+        "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank1.json"
+      }
+    },
+    {
+      "id": "detect-magic",
+      "wholeCardPointer": "/spells/216",
+      "procedurePointer": "/spells/216/operational",
+      "wholeCardSha256": "1f12f17f3a4ddcd267d4558f44e7694da54122179301017043b1ee2114e39f31",
+      "procedureSha256": "8863fa4c2e5d7e871450dcc320ae56a78c07eca67123cc0548c3ba940cc68edf",
+      "authoredReviewEntrySha256": "06fd5128acea4036e0c534e0327b5a2c6e5a37efce601113addeaf79be5be91f",
+      "clericAccess": {
+        "rank": 1,
+        "minimumClassLevel": 1,
+        "school": "Divination",
+        "baseRpCost": 2
+      },
+      "allSourcePlacements": [
+        {
+          "name": "Detect Magic",
+          "school": "Divination",
+          "level": 1,
+          "summary": "See magic within 30 ft (concentration)."
+        },
+        {
+          "name": "Detect Magic",
+          "school": "Universal",
+          "level": 1,
+          "summary": "Sense magical auras within 30 feet."
+        }
+      ],
+      "ownedOrigin": "genuine-earned-Cleric2-only",
+      "castingStatusAtBaseline": "UNSUPPORTED",
+      "operationalEvidence": {
+        "id": "detect-magic",
+        "activation": "Action",
+        "rangeFeet": 30,
+        "targets": "Self; magical auras on creatures, objects, and active effects within 30 feet that you can perceive",
+        "duration": "Concentration, up to 10 minutes",
+        "concentration": true,
+        "components": [
+          "V",
+          "S",
+          "F"
+        ],
+        "resolution": "None.",
+        "effect": "For the duration, perceive the presence and visible outline of active magical auras within 30 feet. As an Action on a later turn, you may focus on one perceived aura to learn its broad magical school/category if that information is not protected.",
+        "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+        "limitations": "Total cover and explicit anti-divination effects block detection. Does not reveal exact spell names, ranks, statistics, owners, motives, hidden curses, dormant magic, secret Director information, or mundane invisible creatures. Detecting an aura does not grant line of effect or permission to target through barriers. Ranked casting causes normal Dissonance and Refrain.",
+        "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous metadata cannot sustain the described perception; this pilot uses explicit concentration for up to10minutes. The30ft range limits perception of spell-granted information.",
+        "previousDraftDesignNotes": "NEW provisional 10-minute concentration duration and two-step information model. Source 30-foot magical detection is preserved.",
+        "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+      }
+    }
+  ]
+}
