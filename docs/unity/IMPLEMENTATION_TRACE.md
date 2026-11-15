@@ -1,5 +1,7 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-08 amended checkpoint actually reviewed; both prior blockers are resolved.** Actual GPT response `0a4fde7d-5123-52d5-8d38-a9e4e6fae29f` reviewed source `0e5928bddd5abce47c16ff86172f5613423a2460` and evidence `e5aad47491818afdb719716449c4547de4f02425`, finding all six paid Club amendment requirements addressed and no concrete remaining source, behavior or evidence blocker in that scope. Codex agrees. The review reconciles all 1,332 indexed artifacts and the original 543-case checkpoint; GPT did not execute gameplay, builds, tests, probes or retainers, or observe live workers. The chronology wording is corrected: idle End commits at140 and weapon End at148;146/154 are later post-cycle checkpoints. Continue original full run `af172366bfa542baa7147ca61dfbdd7b` to all 1,551 cases, retain final reconciliation and obtain actual final review before acceptance or any successor. Unity remains deferred and the full engine remains unfinished. [Actual checkpoint review and agreement](evidence/2026-11-15-tac08-cleric-casting/GPT_AMENDED_CHECKPOINT_REVIEW.md). The following entries preserve earlier states.
+
 ## 2026-11-15 — TAC-08 actual Club amendment and corrected source freeze
 
 ## 2026-11-15 — TAC-08 amended eight-campaign execution checkpoint
