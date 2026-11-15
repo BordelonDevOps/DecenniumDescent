@@ -42,5 +42,5 @@ Require ($null -ne $prior -and $null -ne $observed.Actors) 'Legacy projection ev
 Require (($prior | ConvertTo-Json -Depth 30 -Compress) -ceq ($observed | ConvertTo-Json -Depth 30 -Compress)) 'Wire105 public projection shape or values changed.'
 [ordered]@{Status='PASS';BoundaryControls=$controls;RuntimeSourceSha256=(Digest "$Run/runtime-source-bindings.json")
     LegacyProjectionIdentical=$true;LegacyProjectionSha256=(Digest "$Run/legacy-view-response.jsonl")} |
-    ConvertTo-Json -Depth 16 | Set-Content "$Run/results.json" -Encoding utf8
+    ConvertTo-Json -Depth 16 -EnumsAsStrings | Set-Content "$Run/results.json" -Encoding utf8
 Write-Output 'PASS: exact source registry, shared query/execution denials and unchanged legacy public projection.'
