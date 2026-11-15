@@ -559,6 +559,10 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.HandlePortableEquipment:
                 case CommandKind.OpenPortableContainer:
                 case CommandKind.ClosePortableContainer:
+                    if(command.Kind==CommandKind.HandlePortableEquipment&&seat==ExpeditionSeat.Player
+                        &&SpellCastingProfile.AdmitsCompanionClub(state,target))
+                        return actor==ClericRpProfile.Actor&&state.Clubs.Any(x=>x.Id==target
+                            &&KnownInventory(x.OwnerId)&&KnownInventory(x.CustodianId));
                     return !IsSelectedTrapInventory(state, target)
                         && state.PortableEquipment.Any(x => x.Id == target && KnownInventory(x.OwnerId) && KnownInventory(x.CustodianId)
                         && !state.Work.Lots.Any(lot => lot.Id == x.LinkedId && InSelectedCache(lot)));

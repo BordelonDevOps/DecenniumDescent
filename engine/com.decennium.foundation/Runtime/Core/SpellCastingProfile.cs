@@ -5,7 +5,14 @@ namespace Decennium.Foundation
     /// <summary>Explicit provisional admission identity. Knowing a source is not executable casting authority.</summary>
     public static partial class SpellCastingProfile
     {
-        public const string FingerprintPrefix = "TEST_ONLY.cleric-casting-v1-";
+        public const string FingerprintPrefix = "TEST_ONLY.cleric-casting-v2-";
+        public const string ClubPickupApproval = "67a07398-59b8-5af5-8410-ee42b2ce2ca2";
+        public const string CompanionClubId = "TEST_ONLY.companion-club";
+        public const string CompanionClubProfileId = "TEST_ONLY.standard-club";
+        public const string ClubSourceId = "simple-melee-weapons.club";
+        public const string ClubRulebookSha256 = "a346670f4244efe3641cfb06814819d83ffb8512153858205f0621bd8ab8a04b";
+        public static bool AdmitsCompanionClub(Snapshot s,string id) => s.ConnectedClericCasting
+            && SelectedFingerprint(s.ContentFingerprint) && id==CompanionClubId;
         public const byte Marker = 14;
         public const int MaxCasts = 512, MaxEffects = 512, MaxActivities = 1024, MaxTurnEnds = 2048,
             MaxSaves = 2048, MaxAdmissions = 512, MaxGuidanceUses = 512, MaxFocuses = 512, MaxContamination = 128;

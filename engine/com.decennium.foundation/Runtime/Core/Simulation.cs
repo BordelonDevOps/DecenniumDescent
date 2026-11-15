@@ -1414,6 +1414,10 @@ namespace Decennium.Foundation
                 ||command.Kind==CommandKind.OpenPortableContainer||command.Kind==CommandKind.ClosePortableContainer) {
                 var item=state.PortableEquipment.FirstOrDefault(x=>x.Id==command.Target);
                 if(item!=null&&!authority.MayUseInventory(item.OwnerId))return "InventoryNotAuthorized";
+                if(SpellCastingProfile.AdmitsCompanionClub(state,command.Target)) {
+                    var club=state.Clubs.SingleOrDefault(x=>x.Id==command.Target);
+                    if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+                }
                 if(command.Kind==CommandKind.HandlePortableEquipment&&command.Inventory!=null&&command.Inventory.Handling==HandlingKind.Handover
                     &&!authority.ConsentsToHandover(command.Inventory.Destination))return "RecipientNotWilling";
             }

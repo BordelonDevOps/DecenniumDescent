@@ -17,9 +17,50 @@ namespace Decennium.Foundation.Tests
             .GetField("simulation",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(session);
         private static Authority CastingAuthority()=>new Authority("TEST_ONLY.host",new[]{ConnectedExpeditionSession.Hero,ClericRpProfile.Actor},
             inventoryOwners:new[]{ConnectedExpeditionSession.Hero,ClericRpProfile.Actor},willingRecipients:new[]{ConnectedExpeditionSession.Hero,ClericRpProfile.Actor});
-        private static ConnectedExpeditionSession CastingFirstOwnTurn(bool selectStance=true)
+        private static ConnectedExpeditionSession CastingFirstOwnTurn(bool selectStance=true,bool pickupClub=false,string directory=null)
         {
             var session=StartVialScenario(NewCastingExpedition()); const string hero=ConnectedExpeditionSession.Hero,ally=ClericRpProfile.Actor;
+            if(pickupClub) {
+                var before=ShortRestCapture(session);var burden=PortableEquipmentRules.CarriedBurden(before,ally);
+                if(directory!=null)CheckCastingClubPickupDenials(session,directory);
+                if(directory!=null)session.Save(Path.Combine(directory,"tac08-club-before-pickup.ddsave"));
+                var pickup=new Command("tac08.club.pickup",ally,before.Revision,CommandKind.HandlePortableEquipment,
+                    SpellCastingProfile.CompanionClubId,inventory:new InventoryRequest(new RuleQuantity(1)));
+                CommitVialRoute(session,pickup);
+                var after=ShortRestCapture(session);var held=after.Clubs.Single(x=>x.Id==SpellCastingProfile.CompanionClubId);
+                var handling=after.PortableHandling.Last();var mass=PortableEquipmentRules.CarriedBurden(after,ally);
+                Require(after.RuleClock==before.RuleClock.AddSeconds(1)&&held.HeldBy==ally&&held.OwnerId==ally&&held.CustodianId==ally
+                    &&after.Lives.Single(x=>x.ActorId==ally).HeldItems.Count(x=>x==held.Id)==1
+                    &&!after.PortableEquipment.Any(x=>x.Id==held.Id)&&handling.ItemId==held.Id&&!handling.Tactical
+                    &&handling.Before==PortablePlacement.Ground&&handling.After==PortablePlacement.Carried
+                    &&after.Work.WorkerIntervals.Count(x=>x.JobId==handling.Id&&x.WorkerId==ally
+                        &&x.Start==before.RuleClock&&x.End==after.RuleClock)==1
+                    &&mass.Pounds==burden.Pounds+new RuleQuantity(2)&&mass.Load==burden.Load+new RuleQuantity(1,5),
+                    "Club pickup must pay actual labor and count the existing item, hand and sourced mass once.");
+                if(directory!=null) {
+                    RetainClericDenial(CastingSimulation(session),new Authority("TEST_ONLY.host",new[]{ally}),pickup,
+                        "InventoryNotAuthorized",directory);
+                    Directory.CreateDirectory(Path.Combine(directory,"club-revoked-actor"));
+                    RetainClericDenial(CastingSimulation(session),new Authority("TEST_ONLY.host",new[]{hero},inventoryOwners:new[]{ally}),
+                        pickup,"NotAuthorized",Path.Combine(directory,"club-revoked-actor"));
+                    var codec=new SnapshotCodec();
+                    var missingLabor=after.Copy();missingLabor.Work=new WorkLedger(after.Work.Lots,
+                        after.Work.WorkerIntervals.Where(x=>x.JobId!=handling.Id),after.Work.Reservations);
+                    Throws<ArgumentException>(()=>codec.Encode(missingLabor));
+                    var missingHistory=after.Copy();missingHistory.PortableHandling=before.PortableHandling;
+                    Throws<ArgumentException>(()=>codec.Encode(missingHistory));
+                    var custody=after.Copy();custody.Clubs=custody.Clubs.Select(x=>x.Id==held.Id
+                        ?new ClubInstance(x.Id,x.ProfileId,x.OwnerId,hero,x.HeldBy,x.CellX,x.CellY):x).ToArray();
+                    Throws<ArgumentException>(()=>codec.Encode(custody));
+                    var duplicate=after.Copy();duplicate.PortableEquipment=duplicate.PortableEquipment.Append(new PortableEquipmentRecord(
+                        held.Id,SpellCastingProfile.ClubSourceId,ally,ally,"",PortablePlacement.Carried,PortableLinkKind.None,"",
+                        PortableMassBasis.Fixed,new RuleQuantity(2),new RuleQuantity(2))).ToArray();
+                    Throws<ArgumentException>(()=>codec.Encode(duplicate));
+                    string path=Path.Combine(directory,"tac08-club-after-pickup.ddsave");session.Save(path);
+                    var bytes=new SnapshotCodec().Encode(after);session.Restore(path);
+                    Require(bytes.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),"Paid Club pickup replay differs.");
+                }
+            }
             ClericCommit(session,ally,CommandKind.BeginWorldStep,"walk",-1);
             ClericCommit(session,hero,CommandKind.AdvanceClock,x:6,y:1);
             ClericCommit(session,hero,CommandKind.BeginWorldStep,"walk",-1);
@@ -29,6 +70,111 @@ namespace Decennium.Foundation.Tests
             ClericDefender(session); ClericEnd(session,hero); ClericDefender(session);
             Require(ShortRestCapture(session).Reinforcement.Admission!=null,"The caster must enter by genuine paid reinforcement.");
             if(selectStance)ClericGuard(session,ally);return session;
+        }
+        private static void CheckCastingClubPickupDenials(ConnectedExpeditionSession session,string directory)
+        {
+            var baseline=ShortRestCapture(session);var simulation=CastingSimulation(session);var policy=ClericPolicy(session);
+            const string actor=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero,item=SpellCastingProfile.CompanionClubId;
+            Command Pickup(string id,string who=actor,string target=item,HandlingKind kind=HandlingKind.Pickup)
+                =>new Command(id,who,baseline.Revision,CommandKind.HandlePortableEquipment,target,
+                    inventory:new InventoryRequest(new RuleQuantity(1),handling:kind));
+            RetainClericDenial(simulation,new Authority("TEST_ONLY.host",new[]{actor}),Pickup("tac08.club.no-owner"),
+                "InventoryNotAuthorized",directory);
+            RetainClericDenial(simulation,new Authority("TEST_ONLY.host",new[]{hero},inventoryOwners:new[]{actor}),
+                Pickup("tac08.club.no-actor"),"NotAuthorized",directory);
+            var witnesses=new List<object>();
+            void Deny(string label,Action<Snapshot> setup,string expected,Command command=null) {
+                var candidate=baseline.Copy();setup(candidate);var work=candidate.Work;var clubs=candidate.Clubs;
+                var lives=candidate.Lives;var history=candidate.PortableHandling;var clock=candidate.RuleClock;uint rng=candidate.RandomState;
+                string result=policy.Resolve(candidate,command??Pickup("detached.club."+label));
+                Require(result==expected&&ReferenceEquals(work,candidate.Work)&&ReferenceEquals(clubs,candidate.Clubs)
+                    &&ReferenceEquals(lives,candidate.Lives)&&ReferenceEquals(history,candidate.PortableHandling)
+                    &&candidate.RuleClock==clock&&candidate.RandomState==rng,"Detached Club denial changed state or differed: "+label+" / "+result);
+                witnesses.Add(new{label,expected,actual=result});
+            }
+            void ChangeClub(Snapshot s,string owner=null,string custodian=null,string heldBy=null,string profile=null)
+                =>s.Clubs=s.Clubs.Select(x=>x.Id==item?new ClubInstance(x.Id,profile??x.ProfileId,owner??x.OwnerId,
+                    custodian??x.CustodianId,heldBy??x.HeldBy,x.CellX,x.CellY):x).ToArray();
+            Deny("wrong-actor",s=>{},"CastingClubOwnershipRequired",Pickup("detached.club.wrong-actor",hero));
+            Deny("wrong-item",s=>{},"UnknownPortableItem",Pickup("detached.club.wrong-item",target:"TEST_ONLY.unknown-club"));
+            Deny("wrong-owner",s=>ChangeClub(s,owner:hero),"CastingClubOwnershipRequired");
+            Deny("wrong-custody",s=>ChangeClub(s,custodian:hero),"CastingClubOwnershipRequired");
+            Deny("wrong-profile",s=>ChangeClub(s,profile:"TEST_ONLY.other-club"),"CastingClubOwnershipRequired");
+            Deny("already-held",s=>ChangeClub(s,heldBy:actor),"CastingClubMustBeGrounded");
+            Deny("out-of-reach",s=>s.Actors.Single(x=>x.Id==actor).X=20,"PortableItemOutOfReach");
+            Deny("tactical",s=>s.InventoryCombat=true,"CastingClubPickupRequiresExploration");
+            Deny("busy",s=>s.Work=s.Work.Reserve("detached.club.work",new[]{new WorkerInterval("detached.club.work.labor",
+                "detached.club.work",actor,s.RuleClock,s.RuleClock.AddSeconds(2))},Array.Empty<ResourceReservation>()),"WorkerBusy");
+            Deny("incapable",s=>s.Conditions=s.Conditions.Select(x=>x.Target==actor
+                ?CJApply(ConditionHistory.Restore(x),"detached.club.stunned","Stunned").State.Journal:x).ToArray(),"WorkerCannotPerformTask");
+            Deny("traversing",s=>s.WorldTraversals=s.WorldTraversals.Append(new WorldTraversalRecord(actor,s.Revision,3,3,2,3)).ToArray(),
+                "TraversalRequiresStationaryInteraction");
+            Deny("two-hands",s=>s.Clubs=s.Clubs.Concat(new[]{
+                new ClubInstance("detached.grip.left",TestOnlyClubAttackPolicy.ClubProfile,actor,actor,actor,3,3),
+                new ClubInstance("detached.grip.right",TestOnlyClubAttackPolicy.ClubProfile,actor,actor,actor,3,3)}).ToArray(),"HandlingHandRequired");
+            Deny("unknown-total",s=>s.PortableEquipment=s.PortableEquipment.Append(new PortableEquipmentRecord(
+                "detached.unknown-mass","detached.unknown-object",actor,actor,"",PortablePlacement.Carried,PortableLinkKind.None,"",
+                PortableMassBasis.Unmodeled,null,null)).ToArray(),"CarryingCapacityExceeded");
+            Deny("over-capacity",s=>s.PortableEquipment=s.PortableEquipment.Append(new PortableEquipmentRecord(
+                "detached.heavy-mass","detached.heavy-object",actor,actor,"",PortablePlacement.Carried,PortableLinkKind.None,"",
+                PortableMassBasis.Fixed,new RuleQuantity(1000),new RuleQuantity(1000))).ToArray(),"CarryingCapacityExceeded");
+            foreach(var kind in new[]{HandlingKind.Drop,HandlingKind.Retrieve,HandlingKind.Stow,HandlingKind.Handover})
+                Deny("unsupported-"+kind,s=>{},"CastingClubOperationUnsupported",Pickup("detached.club."+kind,kind:kind));
+            var forged=baseline.Copy();typeof(TestOnlySharedWorldPolicy).GetMethod("HoldCastingClub",BindingFlags.Static|BindingFlags.NonPublic)
+                .Invoke(null,new object[]{forged,actor});Throws<ArgumentException>(()=>new SnapshotCodec().Encode(forged));
+            File.WriteAllText(Path.Combine(directory,"tac08-club-detached-preflight.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                scope="Detached negative preflight only; actual authority and duplicate denials have separate canonical pairs",witnesses}));
+        }
+        private static void RetainGenuineRefrainAcrossIdleAndWeapon(string directory)
+        {
+            const string actor=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero;
+            var session=CastingFirstOwnTurn(pickupClub:true,directory:directory);var codec=new SnapshotCodec();
+            void NextCasterTurn(){
+                ClericEnd(session,actor);ClericGuard(session,hero);ClericEnd(session,hero);ClericDefender(session);
+                Require(ShortRestCapture(session).Encounter.CurrentActor==actor,"The actual calendar did not return to the caster.");
+                ClericGuard(session,actor);
+            }
+            void Guidance(string id)=>CommitVialRoute(session,new Command(id,actor,ShortRestCapture(session).Revision,
+                CommandKind.CastKnownSpell,actor,spellCast:new SpellCastRequest("guidance",willingTarget:true)));
+            Guidance("tac08.refrain.initial");NextCasterTurn();
+            Guidance("tac08.refrain.repeat");NextCasterTurn();
+            var beforeIdle=ShortRestCapture(session);var retained=beforeIdle.CastingStrain.Single();
+            Require(retained.Refrain==1&&retained.Dissonance==1&&retained.LastSpellId=="guidance",
+                "The genuine persistence branch must establish a nonzero counter before its idle interval.");
+            session.Save(Path.Combine(directory,"tac08-refrain-before-idle.ddsave"));
+            NextCasterTurn();var afterIdle=ShortRestCapture(session);
+            Require(afterIdle.CastingStrain.Single().Refrain==1&&afterIdle.CastingStrain.Single().LastCastRevision==retained.LastCastRevision
+                &&afterIdle.CastingStrain.Single().Dissonance==0&&afterIdle.RuleClock>beforeIdle.RuleClock
+                &&!afterIdle.CastingTurnEnds.Last().MagicalActivity,
+                "An actual caster idle End must decay dissonance without resetting the nonzero last-spell counter.");
+            string path=Path.Combine(directory,"tac08-refrain-after-idle.ddsave");session.Save(path);
+            var bytes=codec.Encode(afterIdle);session.Restore(path);
+            Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Nonzero refrain did not restore across the idle interval.");
+            var beforeWeapon=ShortRestCapture(session);
+            ClericCommit(session,actor,CommandKind.AttackClub,FrightenedProfile.Actor,
+                combat:new CombatRequest(session.View(ExpeditionSeat.Player).TurnId,TestOnlyClubAttackPolicy.CompanionClub));
+            var weapon=ShortRestCapture(session);var attack=weapon.MeleeAttacks.Last();
+            Require(attack.AttackerId==actor&&attack.WeaponId==TestOnlyClubAttackPolicy.CompanionClub
+                &&weapon.MeleeAttacks.Length==beforeWeapon.MeleeAttacks.Length+1
+                &&attack.Attack.RandomBefore==beforeWeapon.RandomState&&attack.Attack.Words>0
+                &&weapon.WorldIntervals.Single(x=>x.ActorId==actor).ActionSpent
+                &&weapon.CastingStrain.Single().Refrain==1&&weapon.CastingStrain.Single().LastCastRevision==retained.LastCastRevision,
+                "The Cleric's own actual paid weapon attack must retain nonzero refrain and record its real RNG.");
+            session.Save(Path.Combine(directory,"tac08-refrain-caster-weapon.ddsave"));
+            NextCasterTurn();var afterWeaponEnd=ShortRestCapture(session);
+            Require(afterWeaponEnd.CastingStrain.Single().Refrain==1
+                &&afterWeaponEnd.CastingStrain.Single().LastCastRevision==retained.LastCastRevision
+                &&afterWeaponEnd.CastingStrain.Single().Dissonance==0&&afterWeaponEnd.RuleClock>weapon.RuleClock
+                &&!afterWeaponEnd.CastingTurnEnds.Last().MagicalActivity,
+                "The caster's weapon interval End must preserve the same nonzero counter.");
+            path=Path.Combine(directory,"tac08-refrain-after-weapon-end.ddsave");session.Save(path);session.Restore(path);
+            Guidance("tac08.refrain.after-idle-and-weapon");var after=ShortRestCapture(session);var cast=after.SpellCasts.Last();
+            Require(cast.AppliedRefrain==2&&cast.DissonanceBefore==0&&cast.DissonanceAfter==2
+                &&after.CastingStrain.Single().Refrain==2&&after.ResonancePools.Single().Current==3
+                &&after.RandomState==afterWeaponEnd.RandomState&&after.WorldIntervals.Single(x=>x.ActorId==actor).ActionSpent,
+                "The next same-spell cast must use the retained counter, its actual Action and finite unchanged RP/RNG.");
+            path=Path.Combine(directory,"tac08-refrain-after-continuing-cast.ddsave");session.Save(path);bytes=codec.Encode(after);session.Restore(path);
+            Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Genuine idle/weapon/cast receipt replay differs.");
         }
         private static void AddSpellCastingCases(Dictionary<string, Action> cases,string directory)
         {
@@ -449,6 +595,7 @@ namespace Decennium.Foundation.Tests
                 Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Closure cadence failed independent replay.");
             });
             cases.Add("tac08_genuine_cadence_grounding_advancement_and_passive_concentration", () => {
+                RetainGenuineRefrainAcrossIdleAndWeapon(directory);
                 const string hero=ConnectedExpeditionSession.Hero,actor=ClericRpProfile.Actor;
                 var session=EarnClericObjective(false,selected:NewCastingExpedition());ReachClericOwnSlot(session);
                 var codec=new SnapshotCodec();int expected=0;
@@ -829,6 +976,36 @@ namespace Decennium.Foundation.Tests
                 var restored=NewCastingExpedition();restored.Restore(path);
                 Require(restored.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed
                     &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),"Restoring a pending carried reaction changed its exact continuation.");
+                // A distinct opportunity can occur before the defender's next Start.
+                // Its known failed ward save prohibits attacking, without paying or rerolling.
+                ClericCommit(session,hero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:2);
+                ClericCommit(session,hero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:1);
+                var second=ShortRestCapture(session);var secondMove=second.TacticalMoves.Single(x=>x.Status==TacticalMoveStatus.AwaitingReactions);
+                Require(secondMove.Id!=movement.Id&&second.SpellSaves.Length==1
+                    &&second.TacticalActors.Single(x=>x.ActorId==pending.ActorId).ReactionAvailable,
+                    "The second occurrence must retain the same failed interval cache and available Reaction.");
+                path=Path.Combine(directory,"tac08-sanctuary-second-opportunity.ddsave");session.Save(path);
+                decision=controller.Plan(authority);bytes=codec.Encode(second);
+                Require(decision.Intent.Kind==DefenderIntentKind.DeclineOpportunity
+                    &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),
+                    "The controller must purely decline a known prohibited opportunity instead of stalling its parent.");
+                Require(session.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed,
+                    "The cached second opportunity must decline through the existing automatic controller.");
+                var resumed=ShortRestCapture(session);
+                Require(resumed.TacticalMoves.Single(x=>x.Id==secondMove.Id).Status==TacticalMoveStatus.Completed
+                    &&resumed.Actors.Single(x=>x.Id==hero).Y==1
+                    &&resumed.RandomState==second.RandomState&&resumed.SpellSaves.Length==second.SpellSaves.Length
+                    &&resumed.MeleeAttacks.Length==second.MeleeAttacks.Length
+                    &&resumed.TacticalActors.Single(x=>x.ActorId==pending.ActorId).ReactionAvailable
+                    &&!resumed.WorldIntervals.Single(x=>x.ActorId==hero).ActionSpent,
+                    "Declining a cached prohibition must complete this parent without rerolling, attacking or spending Reaction/Action.");
+                bytes=codec.Encode(resumed);session.Save(Path.Combine(directory,"tac08-sanctuary-second-parent-resumed.ddsave"));
+                restored=NewCastingExpedition();restored.Restore(path);
+                Require(restored.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed
+                    &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),
+                    "The second opportunity must restore and continue to identical bytes.");
+                restored.Restore(Path.Combine(directory,"tac08-sanctuary-second-parent-resumed.ddsave"));
+                Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),"Second-parent receipt replay differs.");
             });
             cases.Add("tac08_genuine_concentration_damage_uses_actual_packet", () => {
                 var session=CastingFirstOwnTurn();const string hero=ConnectedExpeditionSession.Hero,actor=ClericRpProfile.Actor;

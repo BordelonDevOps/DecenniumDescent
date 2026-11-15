@@ -78,7 +78,7 @@ namespace Decennium.Foundation.Laboratory
                 :new DefenderIntent(DefenderIntentKind.RetargetSanctuary,view.SanctuaryTargets[0]);
             if (view.Slot == DefenderDecisionSlot.Opportunity) {
                 bool accept = view.EligibleOpportunity && view.HasClub && view.VisibleOpponents.Any(x =>
-                    x.ActorId == view.VisibleProvokerId && x.ClearLineOfEffect);
+                    x.ActorId == view.VisibleProvokerId && x.ClearLineOfEffect && x.DirectAttackAllowed);
                 return new DefenderIntent(accept ? DefenderIntentKind.AcceptOpportunity : DefenderIntentKind.DeclineOpportunity);
             }
             if (!view.StanceSelected && view.CanSelectStance) return new DefenderIntent(DefenderIntentKind.Guard);

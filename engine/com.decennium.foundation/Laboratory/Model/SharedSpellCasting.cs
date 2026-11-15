@@ -19,6 +19,8 @@ namespace Decennium.Foundation.Laboratory
                 string.Join("|",SpellSourceCatalog.Definitions.Select(x=>x.Id+":"+x.ProcedureSha256)),
                 SpellCastingProfile.FocusEquipmentSourceSha256,SpellCastingProfile.InitialPhysicalOrigin,
                 SpellCastingProfile.FocusId,SpellCastingProfile.FocusProfileId,"worn|1lb|no-purchase|no-packed-volume",
+                SpellCastingProfile.ClubPickupApproval,SpellCastingProfile.CompanionClubId,SpellCastingProfile.CompanionClubProfileId,
+                SpellCastingProfile.ClubSourceId,SpellCastingProfile.ClubRulebookSha256,"source-line6766|2lb|derived-load|owned-ground3,3|paid1sec-held|no-storage",
                 SpellCastingProfile.ContaminatedWaterId,SpellCastingProfile.ContaminationId,
                 "TEST_ONLY.plot-flask|1pint|ordinary-poison|no-new-acquisition|no-unclean-propagation",
                 "actual-reinforced-calendar|shared-rp-clock-rng|six-source-procedures|approval-amendments-v1"));

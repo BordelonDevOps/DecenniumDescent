@@ -124,12 +124,69 @@ namespace Decennium.Foundation.Laboratory
             if(interval.ActionSpent)return "ActionAlreadySpent";
             return null;
         }
+        // One shared ordinary-handling payment path; legacy Club admission uses exactly the
+        // same reservations, boundary denials and shared-time advancement as portable items.
+        private string PayOrdinaryPortableHandling(Snapshot s,Command c)
+        {
+            RuleTime start=s.RuleClock,end=start.AddSeconds(1);
+            var condition=NextConditionDeadline(s);if(condition.HasValue&&condition.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var formula=NextFormulaBoundary(s);if(formula.HasValue&&formula.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var dying=NextDyingMarker(s);if(dying.HasValue&&dying.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var recipe347Boundary=NextRecipe347Boundary(s);if(recipe347Boundary.HasValue&&recipe347Boundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            var pressureBoundary=NextExpeditionPressureBoundary(s);if(pressureBoundary.HasValue&&pressureBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
+            string id=OrdinaryInventory.Identity(s,"portable");
+            s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,start,end)},Array.Empty<ResourceReservation>());
+            string timeFailure=AdvanceTo(s,end,initiating:c);if(timeFailure!=null)return timeFailure;
+            return null;
+        }
+        private static void HoldCastingClub(Snapshot s,string actor)
+        {
+            var position=s.Actors.Single(x=>x.Id==actor);
+            s.Clubs=s.Clubs.Select(x=>x.Id==SpellCastingProfile.CompanionClubId
+                ?new ClubInstance(x.Id,x.ProfileId,x.OwnerId,x.CustodianId,actor,position.X,position.Y):x).ToArray();
+            s.Lives=s.Lives.Select(x=>x.ActorId==actor
+                ?ActorLifeRules.Record(actor,ActorLifeRules.Read(x),x.Prone,x.HeldItems.Append(SpellCastingProfile.CompanionClubId)):x).ToArray();
+        }
+        private string ResolveCastingClubPickup(Snapshot s,Command c)
+        {
+            if(c.Kind!=CommandKind.HandlePortableEquipment||c.Inventory==null||c.Inventory.Handling!=HandlingKind.Pickup
+                ||c.Inventory.Destination!="")return "CastingClubOperationUnsupported";
+            var club=s.Clubs.SingleOrDefault(x=>x.Id==c.Target);
+            if(club==null||club.ProfileId!=SpellCastingProfile.CompanionClubProfileId||c.Actor!=ClericRpProfile.Actor
+                ||club.OwnerId!=c.Actor||club.CustodianId!=c.Actor)return "CastingClubOwnershipRequired";
+            if(club.HeldBy!=""||s.Lives.Any(x=>x.HeldItems.Contains(club.Id)))return "CastingClubMustBeGrounded";
+            if(s.InventoryCombat)return "CastingClubPickupRequiresExploration";
+            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            var actor=s.Actors.Single(x=>x.Id==c.Actor);
+            if(Math.Abs((long)actor.X-club.CellX)+Math.Abs((long)actor.Y-club.CellY)>1)return "PortableItemOutOfReach";
+            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
+            if(!CapableWorker(s,c.Actor))return "WorkerCannotPerformTask";
+            if(AvailableHands(s,c.Actor)<1)return "HandlingHandRequired";
+            if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return "TraversalRequiresStationaryInteraction";
+            var projected=s.Copy();HoldCastingClub(projected,c.Actor);
+            string failure=CheckPortableProjectedState(projected);if(failure!=null)return failure;
+            RuleTime start=s.RuleClock;
+            failure=PayOrdinaryPortableHandling(s,c);if(failure!=null)return failure;
+            // Recheck the completed shared-time state before changing physical possession.
+            if(!CapableWorker(s,c.Actor)||AvailableHands(s,c.Actor)<1)return "WorkerCannotPerformTask";
+            HoldCastingClub(s,c.Actor);
+            string id=OrdinaryInventory.Identity(s,"portable");
+            s.PortableHandling=s.PortableHandling.Append(new PortableHandlingRecord(id,s.Revision+1,c.Actor,club.Id,"","","",
+                PortableOperation.Pickup,PortablePlacement.Ground,PortablePlacement.Carried,start,s.RuleClock,false)).ToArray();
+            // The transaction adds its receipt/revision before full structural validation.
+            // Recheck only carrying here; the just-completed handling row is revision+1.
+            return s.Actors.Any(x=>!PortableEquipmentRules.FitsCarrier(s,x.Id))?"CarryingCapacityExceeded":null;
+        }
         private string ResolvePortableEquipment(Snapshot s,Command c)
         {
             if(portableKit==null&&soldierCharacterBuild==null&&harvestFixture==null&&ordinaryReceptacles==null&&huntingTrapFixture==null)return "PortableEquipmentNotSelected";
             bool transfer=c.Kind==CommandKind.HandlePortableEquipment;
             if(transfer!=(c.Inventory!=null)||c.Combat!=null||c.X!=0||c.Y!=0)return "InvalidPortableRequest";
             if(transfer&&c.Inventory.Amount!=new RuleQuantity(1))return "PortableItemsAreIndivisible";
+            if(SpellCastingProfile.AdmitsCompanionClub(s,c.Target))return ResolveCastingClubPickup(s,c);
             var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.Target);if(item==null)return "UnknownPortableItem";
             bool focus=SpellCastingProfile.IsFocus(s,item);
             if(focus&&transfer&&(c.Inventory.Handling==HandlingKind.Stow||c.Inventory.Handling==HandlingKind.Retrieve))
@@ -292,18 +349,7 @@ namespace Decennium.Foundation.Laboratory
                 var spent=interval.SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
                 }
             } else {
-                RuleTime start=s.RuleClock,end=start.AddSeconds(1);
-                var condition=NextConditionDeadline(s);if(condition.HasValue&&condition.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var formula=NextFormulaBoundary(s);if(formula.HasValue&&formula.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var dying=NextDyingMarker(s);if(dying.HasValue&&dying.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var remedy=NextRemedyBoundary(s);if(remedy.HasValue&&remedy.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var repairBoundary=NextRepairBoundary(s);if(repairBoundary.HasValue&&repairBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var manufacturingBoundary=NextManufacturingBoundary(s);if(manufacturingBoundary.HasValue&&manufacturingBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var recipe347Boundary=NextRecipe347Boundary(s);if(recipe347Boundary.HasValue&&recipe347Boundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                var pressureBoundary=NextExpeditionPressureBoundary(s);if(pressureBoundary.HasValue&&pressureBoundary.Value<=end)return "TimedHandlingBoundaryUnsupported";
-                string id=OrdinaryInventory.Identity(s,"portable");
-                s.Work=s.Work.Reserve(id,new[]{new WorkerInterval(id+".labor",id,c.Actor,start,end)},Array.Empty<ResourceReservation>());
-                string timeFailure=AdvanceTo(s,end,initiating:c);if(timeFailure!=null)return timeFailure;
+                string timeFailure=PayOrdinaryPortableHandling(s,c);if(timeFailure!=null)return timeFailure;
             }
             // The action and any shared-time work finish before physical custody changes.
             item=s.PortableEquipment.Single(x=>x.Id==c.Target);

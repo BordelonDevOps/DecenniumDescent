@@ -377,8 +377,15 @@ namespace Decennium.Foundation
             }
             foreach(var eventRecord in s.PortableHandling) {
                 var item=items.SingleOrDefault(x=>x.Id==eventRecord.ItemId);
-                if(item==null||!Actor(eventRecord.ActorId)||eventRecord.Id!="inventory."+eventRecord.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+".portable")
+                bool castingClub=SpellCastingProfile.AdmitsCompanionClub(s,eventRecord.ItemId);
+                if(item==null&&!castingClub||!Actor(eventRecord.ActorId)||eventRecord.Id!="inventory."+eventRecord.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+".portable")
                     throw new ArgumentException("Invalid portable handling reference.");
+                if(castingClub && (item!=null || !s.Clubs.Any(x=>x.Id==eventRecord.ItemId
+                    &&x.ProfileId==SpellCastingProfile.CompanionClubProfileId&&x.OwnerId==ClericRpProfile.Actor&&x.CustodianId==ClericRpProfile.Actor)
+                    ||eventRecord.ActorId!=ClericRpProfile.Actor||eventRecord.Tactical||eventRecord.Operation!=PortableOperation.Pickup
+                    ||eventRecord.Before!=PortablePlacement.Ground||eventRecord.After!=PortablePlacement.Carried
+                    ||eventRecord.FromParentId!=""||eventRecord.ToParentId!=""||eventRecord.RecipientId!=""))
+                    throw new ArgumentException("Invalid casting Club pickup history.");
                 if(eventRecord.Operation==PortableOperation.ShieldDoff&&(s.SchemaVersion<Snapshot.SoldierInitialBuildSchema||!eventRecord.Tactical
                     ||eventRecord.Before!=PortablePlacement.Worn||eventRecord.After!=PortablePlacement.Carried
                     ||item.ProfileId!="armor-and-shields.shield"||!item.Wearable

@@ -19,6 +19,7 @@ namespace Decennium.Foundation
             if(!s.TestOnly || !s.ConnectedClericSettlement || s.SchemaVersion!=Snapshot.SurpriseEntrySchema
                 || s.CastingStrain.Length!=1 || s.CastingStrain[0].ActorId!=ClericRpProfile.Actor)
                 throw new ArgumentException("Casting requires its exact connected character and history.");
+            ValidateCompanionClubPickup(s);
             var focusItem=s.PortableEquipment.SingleOrDefault(x=>x.Id==FocusId);
             if(!IsFocus(s,focusItem) || focusItem.OwnerId!=ClericRpProfile.Actor || focusItem.ParentId!=""
                 || focusItem.LinkKind!=PortableLinkKind.None || focusItem.MassBasis!=PortableMassBasis.Fixed
@@ -243,6 +244,28 @@ namespace Decennium.Foundation
             }
             return turn.LocalStart==local && turn.GlobalStart==admission.Phase.GlobalTurn(local)
                 && (!ownAction || epoch.SlotAt(at)==local);
+        }
+        private static void ValidateCompanionClubPickup(Snapshot s)
+        {
+            var club=s.Clubs.SingleOrDefault(x=>x.Id==CompanionClubId);
+            var pickups=s.PortableHandling.Where(x=>x.ItemId==CompanionClubId).ToArray();
+            if(club==null||club.ProfileId!=CompanionClubProfileId||club.OwnerId!=ClericRpProfile.Actor
+                ||club.CustodianId!=ClericRpProfile.Actor||club.HeldBy!=""&&club.HeldBy!=ClericRpProfile.Actor
+                ||s.PortableEquipment.Any(x=>x.Id==CompanionClubId)
+                ||pickups.Length==0&&(club.HeldBy!=""||club.CellX!=3||club.CellY!=3))
+                throw new ArgumentException("Invalid casting Club physical authority.");
+            foreach(var pickup in pickups) {
+                var receipt=s.Receipts.SingleOrDefault(x=>x.Revision==pickup.Revision);
+                if(receipt==null)throw new ArgumentException("Missing casting Club pickup command.");
+                var command=CommandHistory.Read(receipt);
+                if(command.Kind!=CommandKind.HandlePortableEquipment||command.Actor!=pickup.ActorId||command.Target!=club.Id
+                    ||command.Inventory==null||command.Inventory.Amount!=new RuleQuantity(1)
+                    ||command.Inventory.Handling!=HandlingKind.Pickup||command.Inventory.Destination!=""
+                    ||command.Combat!=null||command.X!=0||command.Y!=0)
+                    throw new ArgumentException("Casting Club pickup command differs from handling.");
+            }
+            if(s.Receipts.Count(x=>{var c=CommandHistory.Read(x);return c.Kind==CommandKind.HandlePortableEquipment&&c.Target==club.Id;})!=pickups.Length)
+                throw new ArgumentException("Casting Club pickup receipts differ from handling.");
         }
         private static Command Receipt(Snapshot s,string id,long revision)
         {
