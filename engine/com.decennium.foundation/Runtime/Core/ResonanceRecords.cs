@@ -132,7 +132,8 @@ namespace Decennium.Foundation
         public const byte Marker = 10;
         public static IReadOnlyList<string> SelectedCards { get; } = Array.AsReadOnly(new[] {
             "cleric.base.consecrate", "cleric.base.consecrated-ground", "cleric.base.fervent-ritualist", HealingRite });
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || ClericRepertoireProfile.SelectedFingerprint(value));
         public static bool ValidInitialGrant(Snapshot s, CharacterFeatureGrantRecord grant)
             => s.ConnectedClericRp && grant.ActorId == Actor && grant.ClassName == "Cleric" && grant.ClassLevel == 1
                 && grant.Origin == CharacterFeatureGrantOrigin.InitialClassSelection && grant.MilestoneId == ""

@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||clericRepertoireSelection!=null&&ClericRepertoireProfile.IsCommand(kind)
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
             ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)

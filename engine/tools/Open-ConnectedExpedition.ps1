@@ -11,12 +11,13 @@ param(
     [switch]$ConsumeDecay,
     [switch]$ShortRest,
     [switch]$FleshWarden,
-    [switch]$ClericCompanion
+    [switch]$ClericCompanion,
+    [switch]$ClericRepertoire
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -26,7 +27,11 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($ClericCompanion) {
+$session = if ($ClericRepertoire) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericRepertoire(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
+} elseif ($ClericCompanion) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericCompanion(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample())
 } elseif ($FishingTrap) {
@@ -130,7 +135,8 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ClericCompanion) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericCompanion -and !$ClericRepertoire) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
             if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
             if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
             if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden) {

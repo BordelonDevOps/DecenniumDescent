@@ -19,6 +19,7 @@ namespace Decennium.Foundation.Tests
             AddConnectedRestCalendarCases(cases, directory);
             AddConnectedFleshWardenCases(cases, directory);
             AddConnectedClericRpCases(cases, directory);
+            AddConnectedClericRepertoireCases(cases, directory);
             cases.Add("int03_strict_restore_constructs_fresh_owned_prefix", () =>
             {
                 const ExpeditionSeat player = ExpeditionSeat.Player;

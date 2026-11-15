@@ -98,6 +98,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
 
+        public static ConnectedExpeditionSession StartWithClericRepertoire(ClericInitialSelection initial, ClericRepertoireSelection repertoire)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericRepertoire(initial, repertoire));
+
         public static ConnectedExpeditionSession StartWithShortRest()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());
 
@@ -304,7 +307,7 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
-            if (command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
+            if (ClericRepertoireProfile.IsCommand(command.Kind) || command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
                 return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
@@ -336,6 +339,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+                || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
                 || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion
@@ -489,6 +493,10 @@ namespace Decennium.Foundation.Laboratory
                     return state.ConnectedConsumeDecay && seat == ExpeditionSeat.Player && actor == Hero && target == ConsumeDecaySite.Id;
                 case CommandKind.UseHealingRite:
                     return state.ConnectedClericRp && seat == ExpeditionSeat.Player && actor == Companion && Party.Contains(target);
+                case CommandKind.CastKnownSpell:
+                case CommandKind.AcquireEarnedSpell:
+                    return state.ConnectedClericRepertoire && seat == ExpeditionSeat.Player && actor == Companion
+                        && SpellSourceCatalog.Get(target) != null;
                 case CommandKind.BeginMutationShortRest:
                     return state.ConnectedFleshWarden && seat == ExpeditionSeat.Player && actor == Hero && FleshWardenProfile.IsMutation(target);
                 case CommandKind.BeginShortRest:

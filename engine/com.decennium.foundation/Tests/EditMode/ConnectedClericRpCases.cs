@@ -34,9 +34,9 @@ namespace Decennium.Foundation.Tests
                 Require(count++ < 12 && session.AdvanceAutomaticDefender().Response == ExpeditionResponse.Committed,
                     "Actual defender decision did not commit.");
         }
-        private static ConnectedExpeditionSession ClericInjuredArrival()
+        private static ConnectedExpeditionSession ClericInjuredArrival(ConnectedExpeditionSession selected = null)
         {
-            var session = StartVialScenario(NewClericExpedition());
+            var session = StartVialScenario(selected ?? NewClericExpedition());
             const string hero = ConnectedExpeditionSession.Hero, ally = ConnectedExpeditionSession.Companion;
             ClericCommit(session, ally, CommandKind.BeginWorldStep, "walk", -1);
             ClericCommit(session, hero, CommandKind.AdvanceClock, x: 6, y: 1);

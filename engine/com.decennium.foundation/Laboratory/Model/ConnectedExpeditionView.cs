@@ -66,11 +66,14 @@ namespace Decennium.Foundation.Laboratory
         public string Travel { get; }
         public ExpeditionTraversalView Traversal { get; }
         public ExpeditionClericView Cleric { get; }
+        public ExpeditionRepertoireView Repertoire { get; }
 
         internal ExpeditionOwnActor(Snapshot state, ActorState actor, Authority grant)
         {
             Position = new ExpeditionVisibleActor(actor);
             if (state.ConnectedClericRp && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id)) Cleric = new ExpeditionClericView(state);
+            if (state.ConnectedClericRepertoire && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
+                Repertoire = new ExpeditionRepertoireView(state, actor.Id);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
             MaximumHp = state.ConnectedFleshWarden ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;

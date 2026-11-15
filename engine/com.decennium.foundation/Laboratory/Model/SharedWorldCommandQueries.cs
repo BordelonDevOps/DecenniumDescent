@@ -569,6 +569,8 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (ClericRepertoireProfile.IsCommand(c.Kind))
+                return new CommandQueryResult(true, false, ClericRepertoireProfile.CommandFailure(s, c), s.Revision);
             if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, "ClassRecoveryUnsupported", s.Revision);
