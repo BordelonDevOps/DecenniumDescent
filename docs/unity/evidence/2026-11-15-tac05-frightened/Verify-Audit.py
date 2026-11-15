@@ -201,7 +201,8 @@ def main():
     report = {"status": "PASS", "scope": "SOURCE_AND_CAPABILITY_AUDIT_ONLY", "baseline": BASELINE,
               "sourceRevision": SOURCE, "pinnedFiles": len(entries), "checks": checks,
               "engineChanged": False, "compilation": "NOT_RUN", "runtimeTests": "NOT_RUN", "connectedScenario": "NOT_RUN",
-              "predecessorCases": 1509, "contractApproval": "PENDING_ACTUAL_GPT_REVIEW"}
+              "predecessorCases": 1509, "contractApproval": "APPROVED_WITH_RECORDED_AMENDMENTS",
+              "actualReviewResponse": "226d668a-fd32-51b3-b64c-bbd74b67e64c"}
     write("AUDIT_VALIDATION.json", report)
     print(json.dumps({"status": "PASS", "pinnedFiles": len(entries), "sourceChecks": len(checks),
                       "engineChanged": False, "runtime": "NOT_RUN"}))

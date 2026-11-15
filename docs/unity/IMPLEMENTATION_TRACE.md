@@ -1,5 +1,9 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-15 — TAC-05 Frightened contract approved with amendments
+
+Actual response `226d668a-fd32-51b3-b64c-bbd74b67e64c` approves corrected contract `278c94163f980572b7a68b611c75aaaf70691f5e` for the bounded implementation attempt; Codex agrees. Mandatory source-target perception/line-of-effect and independent receipt-replay amendments are incorporated, together with before-expiry repeat saves, actor-owned recharge timing and own-displacement geometry clarifications. Reviewer independently checked53 blob/size/SHA bindings, three selected records, correction diff, unchanged engine and predecessor inventory; no build/runtime/verifier rerun. Source audit remains53 files/31 PASS checks. Engine implementation and its full connected/save/replay/build/regression evidence are now required before actual final acceptance and complete CHR-03 review. [Approval, agreement and amended contract](evidence/2026-11-15-tac05-frightened/GPT_CONTRACT_REVIEW.md).
+
 ## 2026-11-15 — TAC-05 Frightened source/API proposal
 
 Prepared the separate prerequisite requested by actual GPT response `aee19602-eb93-5f80-b5f7-90dd14d2fcee`: exact Intimidating Presence source, initial revision0 defender fixture access, bounded visual targeting, shared relationship/cure lifecycle, source-save/end/recharge cadence, actual observation and exact willing-movement constraints. Access/context/timing/geometry choices remain proposals requiring actual review. Fifty-three pinned source/baseline files and 31 source checks pass; no engine changes, compilation or runtime execution. The acceptance contract requires real connected fear behavior and subsequent play, full supported-save/replay evidence and all1,509 predecessors plus new controls. [Contract and source evidence](evidence/2026-11-15-tac05-frightened/README.md).
