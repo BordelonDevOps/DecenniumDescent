@@ -1,0 +1,7 @@
+# CHR-05 Cleric Divine Favor/Conviction source and API gate
+
+The selected TAC-08 predecessor is accepted at source `0e5928bddd5abce47c16ff86172f5613423a2460` and evidence `9d578350f1de1285ea2133b0e8a334191de4cb46`, in actual GPT response `4380847f-3bdc-5003-b5a1-1803a4fed501`. Codex agrees; acknowledgment is `9288439878476b8d130894d3af28302d7d535e86`. That review authorizes this bounded **source/API contract preparation and review only**. It does not authorize runtime implementation or a complete class/resurrection chain.
+
+[Source/API findings and dependency decision](SOURCE_API_FINDINGS.md) identify missing lawful funding and owned-spender paths in the preserved build. [The source audit](SOURCE_AUDIT.json) verifies43 pinned files and21 source/API assertions, with unchanged engine source. [Bindings](SOURCE_BINDINGS.json) distinguish historical source, accepted decisions and implementation inspection. [Derived extracts](SOURCE_EXTRACTS.json) retain exact relevant class records and map edges with source provenance; they are evidence, not another rules authority. [Verifier](support/Verify-SourceAudit.py).
+
+No compilation, runtime test or gameplay execution was run for this source-only audit. The accepted predecessor's1,551-case run remains the last complete qualification. A dependency decision and a complete reviewed implementation contract are still required. Unity remains deferred and whole-engine completion remains open.

@@ -1,0 +1,484 @@
+{
+  "classSource": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sourceStatus": "provisional-card-draft-not-balance-approved",
+  "engine": [
+    "PROVISIONAL PLAYTEST CONTRACT. Wisdom is the Cleric class ability. S = 1/2/3/4 at Cleric levels 1/5/11/17. M = max(1, Wisdom modifier) unless a feature explicitly substitutes another ability. Cleric technique attack = d20 + normal character proficiency bonus + Wisdom modifier. Cleric technique save DC = 8 + normal character proficiency bonus + Wisdom modifier.",
+    "Conviction is separate from Resonance Points. Base Conviction maximum is 3, automatically becoming 5 at Cleric 9; after a long rest you begin at your current maximum. A completed short rest restores 1 spent Conviction, to the maximum. A completed long rest restores all Conviction. Conviction Pool raises the maximum by 2. Conviction persists between encounters; simply declaring prayer, repeating a Rite, or performing harmless actions outside a real encounter never generates Conviction.",
+    "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+    "Cleric techniques use only their printed RP and Conviction costs. All RP is paid from the Cleric's Core Systems V 2 Resonance Point pool. A Cleric technique is not automatically an ordinary spell-rank cast and does not receive Overcast, spell-slot, cost-discount or spell-proc benefits unless a feature explicitly says otherwise. Ordinary spells continue to use Core V 2 spellcasting rules.",
+    "Protected Dissonance interaction: once on each of your regular turns, when you spend at least 2 Conviction on a Rite or Invocation, reduce Dissonance by 1, minimum 0. The expenditure must actually occur; waived Conviction costs do not vent Dissonance. A single feature expenditure vents at most once even if it spends more than 2 Conviction. No Cleric card automatically adds Dissonance unless explicitly written.",
+    "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+    "Round recharge counters are set after resolution and decrease once at the start of the Cleric's regular initiative turn, even if the Cleric cannot act. Extra Actions and extra turns do not create extra recharge ticks. Outside initiative, each uninterrupted 6 seconds counts as one recharge tick. Only a positive counter may be reset or shortened, and a named ability can receive at most one reset or shortening per round.",
+    "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+    "Invocation Attunement is gained automatically at Cleric level 2. Choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. Only the selected path bonus becomes active. Divine Invocation uses the mode belonging to that selected path unless another feature explicitly permits a different mode. Changing Invocation Path requires a future explicit retraining rule; this draft provides none.",
+    "PROPOSED ACQUISITION FOR PLAYTEST. Cleric 1: gain the Divine Favor engine and choose 4 Base cards, at least 2 Active. Cleric 2: automatically gain Invocation Attunement and the selected Invocation Path bonus, then choose 2 additional Base cards. Cleric 3: enter Bishop and choose 2 Arch cards, at least 1 Active. Levels 4-8 each grant one eligible Base/Arch choice, respecting each card's minimum class level. Level 9 grants one eligible Arch choice plus Bishop's Mandate automatically. Level 10 choose Saint, Priest or Cultist and gain 2 Hero choices from that path. Levels 12, 14, 16 and 18 each grant one additional Hero choice; levels 11, 13, 15, 17 and 19 grant one eligible unselected Base/Arch choice. The chosen Hero Finale is automatic at Cleric 20. ASI/feat milestones remain separate and do not consume these choices.",
+    "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+    "Capacity clarification: the automatic level 9 Conviction increase is a new draft completion so every Hero can pay its 5-Conviction Finale without buying Conviction Pool. Conviction Pool adds 2 at any level, yielding 5 early or 7 from 9. It never fills gained capacity immediately."
+  ],
+  "initialSelectedCards": [
+    "cleric.base.consecrate",
+    "cleric.base.consecrated-ground",
+    "cleric.base.fervent-ritualist",
+    "cleric.base.healing-rite"
+  ],
+  "earnedSelectedCards": [
+    "cleric.base.conviction-pool",
+    "cleric.base.judging-light"
+  ],
+  "earnedAutomaticCards": [
+    "cleric.base.invocation-attunement",
+    "cleric.base.radiance.radiance"
+  ],
+  "selectedBuildRecords": [
+    {
+      "id": "cleric.base.consecrate",
+      "name": "Consecrate",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "15-foot-radius fixed zone centered at a point within 30 feet",
+      "duration": "3 rounds",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Consecrate. Tags: rite, zone. Create sanctified terrain. Your Consecrated Ground feature recognizes this zone. Undead creatures in the zone have -1 on attack rolls. A creature leaving the zone loses that penalty immediately. Only one Consecrate zone created by you may exist at a time; creating another ends the first.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1985,
+        "originalText": "Consecrate: Sanctify the ground in a 15-foot radius, creating consecrated terrain that enhances your healing abilities and weakens undead enemies."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.consecrated-ground",
+      "name": "Consecrated Ground",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Consecrated Ground. Tags: rite, healing, passive. Whenever one of your healing Rites restores HP to a living creature standing in terrain created by your Consecrate feature, that creature regains S additional HP. Apply this once per creature per Rite pulse; it is flat healing and is not itself another healing trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1968,
+        "originalText": "Consecrated Ground: Healing allies on terrain you sanctify (via Rite) heals for +10%."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.fervent-ritualist",
+      "name": "Fervent Ritualist",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Fervent Ritualist. Tags: rite, ritual, passive. When a Rite with a Ritual activation normally requires at least 10 minutes, reduce its required time by 1 minute for each full 10 minutes of its printed casting time. This never reduces a Ritual below 1 minute and does not alter Action, Bonus Action or Reaction Rites.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1970,
+        "originalText": "Fervent Ritualist: +10% faster channel speed on all Rites."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.healing-rite",
+      "name": "Healing Rite",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 RP",
+      "rangeAndTarget": "One living ally within 30 feet",
+      "duration": "Instantaneous",
+      "frequency": "At will while RP remains",
+      "effect": "Healing Rite. Tags: rite, healing. One living ally regains S d8 + M HP. It cannot restore a dead creature or remove Wounds. Consecrated Ground and appropriate Invocation Path bonuses may modify this healing.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1983,
+        "originalText": "Healing Rite: A channeled ability that restores health to an ally, with increased effectiveness on consecrated ground."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.conviction-pool",
+      "name": "Conviction Pool",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Conviction Pool. Tags: conviction, passive. Increase your Conviction maximum by 2. This changes only the maximum; it does not immediately restore spent Conviction when acquired during play. A long rest restores Conviction to the new maximum.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1967,
+        "originalText": "Conviction Pool: +2 max Conviction cap."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.judging-light",
+      "name": "Judging Light",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Judging Light. Tags: smite, passive. When your Divine Smite damages a creature currently affected by a Cursed or Weakened condition, add S d4 radiant damage to that Smite. Roll these dice once as part of the Smite; they do not create a second hit or trigger.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1969,
+        "originalText": "Judging Light: Smite deals +20% bonus damage to enemies afflicted by Cursed or Weakened effects."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.invocation-attunement",
+      "name": "Invocation Attunement",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 2,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent",
+      "frequency": "Automatic at Cleric 2",
+      "effect": "Invocation Attunement. Tags: invocation, core. At Cleric level 2 choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. You automatically gain that path's listed bonus. Divine Invocation thereafter uses that path's mode unless another feature explicitly overrides it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1971,
+        "originalText": "Invocation Attunement: Choose one Invocation Path (see below); gain a permanent passive tied to it."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.radiance.radiance",
+      "name": "Radiance",
+      "className": "Cleric",
+      "band": "Base",
+      "path": "Radiance",
+      "sourceKind": "supplement",
+      "minimumClassLevel": 2,
+      "acquisition": "automatic",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Permanent",
+      "frequency": "Automatic only if Radiance was selected",
+      "effect": "Invocation Path — Radiance. Tags: invocation, radiance, healing. Once on each of your turns when one of your Rites restores HP to at least one living creature, choose one creature healed by that Rite. It regains S additional HP and may immediately end either Frightened or Poisoned on itself.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1974,
+        "originalText": "Radiance: +10% healing power and heals cleanse minor conditions."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "unownedRelevantRecords": [
+    {
+      "id": "cleric.base.sacred-chant",
+      "name": "Sacred Chant",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 RP to start; 0 RP maintenance",
+      "rangeAndTarget": "Self; audible 15-foot prayer aura",
+      "duration": "Concentration, maximum 3 Cleric turns",
+      "frequency": "At will while RP remains",
+      "effect": "Sacred Chant. Tags: chant, sustained, conviction. Pulse on start and once when maintained on each later regular turn with a Bonus Action. Under the base feature, the third pulse generates 1 Conviction. Only a real encounter can generate Conviction this way. Maintenance itself does not otherwise heal, damage or grant Conviction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1984,
+        "originalText": "Sacred Chant: A sustained prayer that generates 1 Conviction every 3 turns while maintained."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.arch.sermon-of-purpose",
+      "name": "Sermon of Purpose",
+      "className": "Cleric",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "passive",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Passive",
+      "cost": "0",
+      "rangeAndTarget": "Your Sacred Chant",
+      "duration": "Passive",
+      "frequency": "Always",
+      "effect": "Sermon of Purpose. Tags: chant, conviction, bishop. Sacred Chant generates its 1 Conviction on its second pulse instead of its third. A normal three-pulse Sacred Chant still generates only 1 Conviction total unless another feature explicitly extends it or grants an additional generation event.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1993,
+        "originalText": "Sermon of Purpose: Chants now generate 1 Conviction every 2 turns."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.hero.priest.doctrine-shield",
+      "name": "Doctrine Shield",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Priest",
+      "sourceKind": "passive",
+      "minimumClassLevel": 14,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "At most once per round",
+      "effect": "Doctrine Shield. Tags: priest, conviction, cleanse. During a real encounter, when one of your Cleric features successfully removes Charmed, Frightened, Poisoned or another explicitly removable condition from a living creature, gain 1 Conviction. Removing multiple conditions in the same event still grants only 1 Conviction.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2034,
+        "originalText": "Doctrine Shield: Gain 1 Conviction anytime a condition is removed."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.hero.cultist.dark-conviction",
+      "name": "Dark Conviction",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Cultist",
+      "sourceKind": "passive",
+      "minimumClassLevel": 12,
+      "acquisition": "selection",
+      "activation": "Triggered",
+      "cost": "0",
+      "rangeAndTarget": "Self",
+      "duration": "Instantaneous",
+      "frequency": "At most once on each of your turns",
+      "effect": "Dark Conviction. Tags: cultist, conviction. During a real encounter, when a hostile non-summoned creature that meaningfully threatened the party dies after taking damage from one of your Cleric features since the start of your current turn, gain 1 Conviction. Friendly creatures, summoned creatures, trivial staged creatures and repeated corpse destruction never qualify.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2050,
+        "originalText": "Dark Conviction: Killing an enemy grants 1 Conviction instantly."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.hero.cultist.blood-sacrifice",
+      "name": "Blood Sacrifice",
+      "className": "Cleric",
+      "band": "Hero",
+      "path": "Cultist",
+      "sourceKind": "active",
+      "minimumClassLevel": 10,
+      "acquisition": "selection",
+      "activation": "Bonus Action",
+      "cost": "Lose S+M actual HP from yourself or one willing ally within 5 ft",
+      "rangeAndTarget": "Self or one willing ally within 5 feet",
+      "duration": "Empowerment lasts until end of your next regular turn",
+      "frequency": "1/short rest",
+      "effect": "Blood Sacrifice. Tags: cultist, sacrifice, conviction. The chosen creature loses S+M actual HP; this loss cannot be reduced, redirected or transferred and cannot reduce it below 1 HP. The donor must have strictly more current HP than this cost before activation; otherwise it is illegal. You gain 1 Conviction. Your next damaging or healing Rite or Invocation before the end of your next regular turn adds 1d8 to one rolled damage or healing component. A creature must be willing unless the target is you.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2055,
+        "originalText": "Blood Sacrifice: Sacrifice a portion of your health or an ally's to generate Conviction and empower your next divine ability."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.base.divine-smite",
+      "name": "Divine Smite",
+      "className": "Cleric",
+      "band": "Base",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 1,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "1 Conviction",
+      "rangeAndTarget": "One enemy within 60 feet",
+      "duration": "Instantaneous",
+      "frequency": "At will",
+      "effect": "Divine Smite. Tags: smite, divine. Make a Cleric technique attack against one enemy. On a hit, deal S d8 + M radiant damage. This is one damage event. Invocation Path bonuses and features explicitly referring to Smite may modify it.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 1982,
+        "originalText": "Divine Smite: Channel divine energy into a powerful strike against a single enemy, dealing damage based on your Wisdom and consuming 1 Conviction."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.arch.divine-invocation",
+      "name": "Divine Invocation",
+      "className": "Cleric",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "2 Conviction + 3 RP",
+      "rangeAndTarget": "Mode-dependent; maximum 60 feet",
+      "duration": "Instantaneous unless mode states otherwise",
+      "frequency": "Recharge 3 rounds",
+      "effect": "Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2001,
+        "originalText": "Divine Invocation: Channel a powerful prayer based on your chosen Invocation Path, with effects ranging from mass healing to divine fire or protective barriers."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    },
+    {
+      "id": "cleric.arch.sacrament",
+      "name": "Sacrament",
+      "className": "Cleric",
+      "band": "Arch",
+      "path": null,
+      "sourceKind": "active",
+      "minimumClassLevel": 3,
+      "acquisition": "selection",
+      "activation": "Action",
+      "cost": "3 Conviction + 4 RP to start; 1 RP maintenance",
+      "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+      "duration": "Concentration, maximum 3 Cleric turns",
+      "frequency": "Recharge 4 rounds",
+      "effect": "Sacrament. Tags: sacrament, rite, sustained, zone. Pulse on start and on each paid Bonus Action maintenance. At each pulse, up to three allies in the zone gain +1 on saving throws until the start of your next regular turn or effect end, whichever is first. Up to three Undead or Fiends in the zone make Wisdom saves, taking S d6 radiant damage on failure or half on success. Maximum 3 pulses.",
+      "source": {
+        "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+        "line": 2002,
+        "originalText": "Sacrament: Perform a sacred ceremony that consumes Conviction to create a powerful, sustained effect in an area."
+      },
+      "designStatus": "provisional-playtest",
+      "spellRank": null
+    }
+  ],
+  "nextClassSchedule": {
+    "classLevel": 3,
+    "choose": 2,
+    "bands": [
+      "Arch"
+    ],
+    "minimumActives": 1,
+    "asiOrFeat": false
+  },
+  "dependencyNodes": [
+    {
+      "id": "CHR-03",
+      "title": "Advancement, ASIs, acquisition and retraining",
+      "areas": [
+        "DD-06",
+        "DD-07",
+        "DD-08"
+      ],
+      "sources": [
+        "character:Gain a level",
+        "class_rules:Reading a class card",
+        "class_manifest:classes"
+      ],
+      "csharpStatus": "NOT PORTED",
+      "remaining": "Process one earned level at a time, exact class schedules and explicit replacement procedures; no general free respec.",
+      "acceptance": "Each acquisition consumed once; gates use own class level; no rest/healing on advancement.",
+      "dependencies": [
+        "CHR-02"
+      ],
+      "code": [],
+      "tests": []
+    },
+    {
+      "id": "CHR-05",
+      "title": "Class engines, cards and specializations",
+      "areas": [
+        "DD-09",
+        "DD-10"
+      ],
+      "sources": [
+        "class_rules:shared rules",
+        "class_manifest:classes",
+        "class_index:class guide pointers"
+      ],
+      "csharpStatus": "NOT PORTED",
+      "remaining": "17 distinct engines and their card payloads, resource lifecycles and exceptions; names/data are not execution.",
+      "acceptance": "Every selected card has eligibility, payment, timing, effect and replay cases; preserve protected class differences.",
+      "dependencies": [
+        "CHR-03",
+        "TAC-02",
+        "TAC-05",
+        "TAC-08"
+      ],
+      "code": [],
+      "tests": []
+    },
+    {
+      "id": "MGT-03",
+      "title": "Supply, food/water, camps, rest and pressure",
+      "areas": [
+        "DD-40",
+        "DD-41"
+      ],
+      "sources": [
+        "expedition:FL-03 through FL-09",
+        "recovery:Exhaustion; Dependence and Withdrawal",
+        "class_rules:Action and timing limits"
+      ],
+      "csharpStatus": "NOT PORTED",
+      "remaining": "Real finite provisions, support, spoilage, fatigue/rest debt, valid recovery location/time and pressure exposure.",
+      "acceptance": "No duplicate elapsed hours, unearned recovery or resource refresh by opening a menu/declaring a scene.",
+      "dependencies": [
+        "MGT-02",
+        "TAC-05"
+      ],
+      "code": [],
+      "tests": []
+    }
+  ]
+}
