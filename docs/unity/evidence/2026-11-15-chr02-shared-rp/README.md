@@ -1,8 +1,8 @@
 # CHR-02 shared RP contract review
 
-Status: proposed; implementation not started. [Source/API contract](SOURCE_API_CONTRACT.md).
+Status: exact contract approved for bounded implementation in actual GPT response `009cd55a-2184-5e31-b093-b4b40b05e2d0`; Codex agrees. [Actual approval](GPT_CONTRACT_REVIEW.md) · [Source/API contract](SOURCE_API_CONTRACT.md). Runtime acceptance and evidence remain outstanding.
 
-This gate proposes a validated first-class Cleric companion construction and one real paid Healing Rite in the connected expedition. Three decisions remain explicitly pending actual GPT review: the precise dependency refinement for this paid witness, one-time starting RP funding, and the boundary between this class-portion initialization and the unfinished full character-creation pipeline. No existing Warrior is granted Cleric abilities and no predecessor save is altered.
+This gate approves a validated first-class Cleric companion construction and one real paid Healing Rite in the connected expedition. GPT resolved all three decisions: the precise dependency refinement, one-time TEST_ONLY starting RP funding, and scoped class-portion initialization. The initial submission files retain their PROPOSED/PENDING labels as historical submission evidence; the actual approval above supersedes those labels without claiming runtime acceptance. No existing Warrior is granted Cleric abilities and no predecessor save is altered.
 
 [Bindings](SOURCE_API_BINDINGS.json) retain exact source files, selected card/initial class row and baseline code evidence. [Validation](CONTRACT_VALIDATION.json) checks source identities, printed cost/acquisition, initial numerical facts, dependency edges and unchanged engine. It does not compile or execute this proposed feature. Run `python -X utf8 docs/unity/evidence/2026-11-15-chr02-shared-rp/Verify-Contract.py` from the repository root.
 
