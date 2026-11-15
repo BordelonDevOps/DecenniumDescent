@@ -19,9 +19,10 @@ namespace Decennium.Foundation.Laboratory
         public int AcquiredClassLevel { get; }
         public long AcquiredRevision { get; }
         public bool Known => true;
-        public bool CastingSupported => false;
-        internal ExpeditionKnownSpellView(KnownSpellRecord owned)
+        public bool CastingSupported { get; }
+        internal ExpeditionKnownSpellView(KnownSpellRecord owned,bool selectedCasting=false)
         {
+            CastingSupported=selectedCasting&&SpellCastingProfile.IsAdmittedSpell(owned.SpellId);
             var source = SpellSourceCatalog.Get(owned.SpellId);
             Id = owned.SpellId; Name = source.Name; CastingClass = owned.ClassName; School = owned.School; Rank = owned.Rank;
             SourceRevision = owned.SourceRevision; SourcePointer = SpellSourceCatalog.CatalogPath + "#" + source.WholeCardPointer;
@@ -40,9 +41,10 @@ namespace Decennium.Foundation.Laboratory
             "Other spell acquisition", "Preparation, spellbooks, replacement and respec", "Multiclass repertoire" });
         internal ExpeditionRepertoireView(Snapshot state, string actor)
         {
+            if(state.ConnectedClericCasting)UnsupportedCapabilities=ExpeditionCastingView.Unsupported;
             FutureChoiceOwned = state.KnownSpells.Any(x => x.ActorId == actor && x.SpellId == ClericRepertoireProfile.FutureChoice);
             KnownSpells = Array.AsReadOnly(state.KnownSpells.Where(x => x.ActorId == actor)
-                .OrderBy(x => x.SpellId, StringComparer.Ordinal).Select(x => new ExpeditionKnownSpellView(x)).ToArray());
+                .OrderBy(x => x.SpellId, StringComparer.Ordinal).Select(x => new ExpeditionKnownSpellView(x,state.ConnectedClericCasting)).ToArray());
         }
     }
 }

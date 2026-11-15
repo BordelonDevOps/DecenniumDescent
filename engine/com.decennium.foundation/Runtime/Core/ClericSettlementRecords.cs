@@ -170,7 +170,8 @@ namespace Decennium.Foundation
         public const string ConvictionPool = "cleric.base.conviction-pool";
         public const string RadianceCardSha256 = "35f3566de386bca746618537d03e3561d74b8a35e1633c073ddef7e77f507821";
         public static IReadOnlyList<string> SelectedCards { get; } = Array.AsReadOnly(new[] { ConvictionPool, JudgingLight });
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || SpellCastingProfile.SelectedFingerprint(value));
         public static bool ValidEarnedGrant(Snapshot state, CharacterFeatureGrantRecord grant)
         {
             if (!state.ConnectedClericSettlement || grant.ActorId != ClericRpProfile.Actor || grant.ClassName != "Cleric"

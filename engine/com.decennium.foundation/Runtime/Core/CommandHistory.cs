@@ -14,6 +14,11 @@ namespace Decennium.Foundation
                 || receipt.Revision < 1 || string.IsNullOrEmpty(receipt.Fingerprint) || receipt.Fingerprint.Length > 512)
                 throw new ArgumentException("Invalid command receipt.");
             var p = receipt.Fingerprint.Split('|');
+            GuidanceChoice guidance = null;
+            if (p.Length >= 8 && p[p.Length - 2] == "guidance-v1") {
+                guidance = new GuidanceChoice(p[p.Length - 1]);
+                p = p.Take(p.Length - 2).ToArray();
+            }
             if (p.Length != 6 && p.Length != 8 && p.Length != 9 && p.Length != 10 && p.Length != 11 && p.Length != 12 && p.Length != 13 && p.Length != 14 && p.Length != 16) throw new ArgumentException("Invalid receipt fields.");
             int Int(string value) => int.TryParse(value, NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out int n)
                 ? n : throw new ArgumentException("Invalid receipt integer.");
@@ -32,7 +37,20 @@ namespace Decennium.Foundation
             RouteMappingWorkRequest routeMappingWork=null;
             IntimidatingPresenceRequest intimidatingPresence=null;
             HealingRiteRequest healingRite=null;
+            SpellCastRequest spellCast=null;
+            SanctuaryResponseRequest sanctuaryResponse=null;
             OverwatchRider rider=OverwatchRider.None;
+            if (guidance != null && kind != CommandKind.Hide && kind != CommandKind.Search && kind != CommandKind.StabilizeCompanion)
+                throw new ArgumentException("Guidance receipt has no admitted check consumer.");
+            if (p.Length == 11 && p[6] == "spell-cast-v1") {
+                if (kind != CommandKind.CastKnownSpell || p[9] != "0" && p[9] != "1" || p[10] != "0" && p[10] != "1")
+                    throw new ArgumentException("Invalid ordinary spell receipt.");
+                spellCast = new SpellCastRequest(p[7], p[8], p[9] == "1", p[10] == "1");
+            }
+            if (p.Length == 9 && p[6] == "sanctuary-response-v1") {
+                if (kind != CommandKind.RespondSanctuary) throw new ArgumentException("Invalid Sanctuary response receipt.");
+                sanctuaryResponse = new SanctuaryResponseRequest((SanctuaryResponseKind)Int(p[7]), p[8]);
+            }
             if(p.Length==8&&p[6]=="overwatch-rider-v1") {
                 rider=(OverwatchRider)Int(p[7]);
                 if(kind!=CommandKind.ResolveOverwatchRider||p[6]!="overwatch-rider-v1"||rider==OverwatchRider.None
@@ -63,7 +81,7 @@ namespace Decennium.Foundation
                 string[] recipients=p[8].Length==0?Array.Empty<string>():p[8].Split(',');
                 defensiveFormation=new DefensiveFormationRequest(p[7],recipients);
             }
-            if(p.Length==9&&p[6]!="defensive-formation-v1"&&p[6]!="prospecting-exposure-v1") {
+            if(p.Length==9&&p[6]!="defensive-formation-v1"&&p[6]!="prospecting-exposure-v1"&&p[6]!="sanctuary-response-v1") {
                 if(kind!=CommandKind.AdvanceCharacterLevel||p[6]!="character-level-v1"||p[7]!=""&&!Validation.ValidId(p[7])||p[8]!=""&&!Validation.ValidId(p[8]))throw new ArgumentException("Invalid advancement receipt version or choices.");
                 advancement=new CharacterAdvancementRequest(p[7],p[8]);
             }
@@ -131,7 +149,9 @@ namespace Decennium.Foundation
             }
             if (kind == CommandKind.UseIntimidatingPresence && intimidatingPresence == null)
                 throw new ArgumentException("Intimidating Presence requires its immutable target selection.");
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite);
+            if (kind == CommandKind.RespondSanctuary && sanctuaryResponse == null)
+                throw new ArgumentException("Sanctuary response requires its immutable selection.");
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite,spellCast,guidance,sanctuaryResponse);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

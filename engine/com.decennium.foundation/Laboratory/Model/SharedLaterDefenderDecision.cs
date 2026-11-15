@@ -13,7 +13,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool IsDefenderAdmissionCommand(CommandKind kind)
             => kind == CommandKind.SelectCombatStance || kind == CommandKind.AttackClub
                 || kind == CommandKind.TacticalStep || kind == CommandKind.EndRegularTurn
-                || kind == CommandKind.RespondOpportunityAttack || kind == CommandKind.UseIntimidatingPresence;
+                || kind == CommandKind.RespondOpportunityAttack || kind == CommandKind.UseIntimidatingPresence || kind==CommandKind.RespondSanctuary;
 
         string ICommandAdmissionPolicy.AssessAdmission(Snapshot snapshot, Command command)
         {
@@ -35,6 +35,18 @@ namespace Decennium.Foundation.Laboratory
         {
             if (!UsesLaterDefenderController(state) || !LaterDefenderController.HasGrant(grant))
                 return new DefenderDecisionView();
+            var sanctuary=PendingSanctuary(state);
+            if(sanctuary!=null) {
+                if(sanctuary.ActorId!=LaterDefenderId)return new DefenderDecisionView();
+                var own=state.Actors.Single(x=>x.Id==LaterDefenderId);
+                var targets=state.Encounter.Order.Where(x=>x!=sanctuary.OriginalTargetId&&x!=LaterDefenderId
+                    &&!SoldierTacticalFeatures.IsAlly(state,LaterDefenderId,x)&&ObservationRules.CanSee(state,LaterDefenderId,x))
+                    .Where(x=>AssessSanctuaryResponse(state,new Command("sanctuary.probe",LaterDefenderId,state.Revision,
+                        CommandKind.RespondSanctuary,sanctuary.Id,sanctuaryResponse:new SanctuaryResponseRequest(SanctuaryResponseKind.Retarget,x)),out _)==null)
+                    .OrderBy(x=>{var actor=state.Actors.Single(a=>a.Id==x);return PlanarCombatGeometry.DistanceFeet(new CombatCell(own.X,own.Y),new CombatCell(actor.X,actor.Y));})
+                    .ThenBy(x=>x,StringComparer.Ordinal).ToArray();
+                return new DefenderDecisionView(DefenderDecisionSlot.Sanctuary,sanctuaryTargets:targets);
+            }
 
             // A live ordinary movement offer precedes queued post-step records. The body's
             // pending knockout and the shared calendar's earlier responses still take priority.
@@ -70,7 +82,8 @@ namespace Decennium.Foundation.Laboratory
                 && !SoldierTacticalFeatures.IsAlly(state, LaterDefenderId, actor.Id))
                 .OrderBy(actor => actor.Id, StringComparer.Ordinal)
                 .Select(actor => new DefenderVisibleOpponent(actor.Id, new CombatCell(actor.X, actor.Y),
-                    ObservationGeometry.LineOfEffectClear(state, LaterDefenderId, actor.Id))).ToArray();
+                    ObservationGeometry.LineOfEffectClear(state, LaterDefenderId, actor.Id),
+                    !SanctuaryTargetProhibited(state,LaterDefenderId,actor.Id))).ToArray();
             if (slot == DefenderDecisionSlot.Opportunity)
                 return new DefenderDecisionView(slot, ownCell, hasClub: hasClub, eligibleOpportunity: true,
                     visibleProvokerId: opponents.Any(actor => actor.ActorId == provoker) ? provoker : "",

@@ -283,7 +283,7 @@ namespace Decennium.Foundation.Laboratory
             PauseIncompatibleRemedies(s);PauseIncompatibleRepairs(s);PauseIncompatibleManufacturing(s);PauseIncompatibleRecipe347(s);
             PauseIncompatibleHarvesting(s);return null;
         }
-        internal static bool PendingCalendarChoice(Snapshot s)=>s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
+        internal static bool PendingCalendarChoice(Snapshot s)=>PendingSanctuary(s)!=null||s.MeleeAttacks.Any(x=>x.Pending)||TestOnlyClubAttackPolicy.PendingMove(s)!=null
             ||TestOnlyClubAttackPolicy.CurrentPressOffer(s)!=null||s.OverwatchOffers.Any(x=>x.Status==OverwatchOfferStatus.Pending)
             ||s.ReadyOccurrences.Any(x=>x.Status==ReadyOccurrenceStatus.Pending)
             ||s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)||PendingCommandStepOffer(s)!=null
@@ -322,7 +322,7 @@ namespace Decennium.Foundation.Laboratory
             if(riderChoice!=null) {
                 if(c.Kind!=CommandKind.ResolveOverwatchRider)return "OverwatchRiderChoicePending";
                 string riderError=ResolveOverwatchRiderChoice(s,c);if(riderError!=null)return riderError;
-                NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s,c);
                 bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
                 NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
                 FinishDefensiveFormationContinuation(s,c.Id);
@@ -334,22 +334,22 @@ namespace Decennium.Foundation.Laboratory
                 if(postStep==PostStepChoiceKind.Ready) {
                     if(c.Kind!=CommandKind.RespondReady)return "ReadyActionChoicePending";
                     string readyError=ResolveReadyResponse(s,c);if(readyError!=null)return readyError;
-                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s,c);
                     if(!s.MeleeAttacks.Any(x=>x.Pending)) {
                         bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
                         NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
-                        ResolveOrderedHuntingTrapTrigger(s);FinishDefensiveFormationContinuation(s,c.Id);
+                        ResolveOrderedHuntingTrapTrigger(s,c);FinishDefensiveFormationContinuation(s,c.Id);
                     }
                     return null;
                 }
                 if(postStep==PostStepChoiceKind.Overwatch) {
                     if(c.Kind!=CommandKind.RespondOverwatch)return "OverwatchChoicePending";
                     string responseError=ResolveOverwatchResponse(s,c);if(responseError!=null)return responseError;
-                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s);
+                    NormalizePendingReadyOccurrences(s);ResolveOrderedHuntingTrapTrigger(s,c);
                     if(!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)) {
                         bodies.ContinueTacticalFlow(s);string queueError=QueueCompletedMovementOverwatch(s);if(queueError!=null)return queueError;
                         NormalizePendingOverwatchOffers(s);NormalizePendingReadyOccurrences(s);
-                        ResolveOrderedHuntingTrapTrigger(s);
+                        ResolveOrderedHuntingTrapTrigger(s,c);
                         FinishDefensiveFormationContinuation(s,c.Id);
                     }
                     return null;

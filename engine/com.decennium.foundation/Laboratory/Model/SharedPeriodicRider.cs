@@ -123,7 +123,7 @@ namespace Decennium.Foundation.Laboratory
             var starts=s.PeriodicRiders.Where(x=>x.Present).Select(x=>s.WorldSchedule.Start(x.NextStartSlot)).Where(x=>x>s.RuleClock).ToArray();
             return starts.Length==0?(RuleTime?)null:starts.Min();
         }
-        private void ProcessPeriodicRiderMarker(Snapshot s,long previousSlot)
+        private void ProcessPeriodicRiderMarker(Snapshot s,long previousSlot,Command cause=null)
         {
             if(periodicRider==null||s.WorldSchedule.ProcessedSlot==previousSlot||s.WorldSchedule.Start(s.WorldSchedule.ProcessedSlot)!=s.RuleClock)return;
             long slot=s.WorldSchedule.ProcessedSlot;
@@ -162,6 +162,7 @@ namespace Decennium.Foundation.Laboratory
                     AppendPeriodicEvent(s,new PeriodicRiderEventRecord(EventIdentity("tick",rider.Id+"|"+slot.ToString(CultureInfo.InvariantCulture)),
                         PeriodicRiderEventKind.Tick,outcome,s.Revision+1,s.RuleClock,slot,rider.OwnerId,rider.TargetId,rider.Id,rider.SourceId,
                         rider.Id==winner,0,0,0,die,damage,0,beforeRandom,afterRandom,words));
+                    SettleSpellDamage(s,rider.TargetId,rider.OwnerId,cause?.Id,damage);
                 }
             }
         }

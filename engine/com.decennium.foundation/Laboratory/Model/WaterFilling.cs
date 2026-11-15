@@ -52,6 +52,9 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static string Prerequisite(Snapshot s,string actor,string source,string destination,RuleQuantity amount,string existingJob=null)
         {
+            if(SpellCastingProfile.HasUnsafeContamination(s,source)
+                ||s.VesselContents.Any(x=>x.VesselId==destination&&SpellCastingProfile.HasUnsafeContamination(s,x.LotId)))
+                return "ContaminationPropagationUnsupported";
             var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==source);var vessel=s.Vessels.SingleOrDefault(x=>x.Id==destination);
             var meta=s.InventoryLots.SingleOrDefault(x=>x.LotId==source);
             if(lot==null||vessel==null||meta==null)return "UnknownFillReference";

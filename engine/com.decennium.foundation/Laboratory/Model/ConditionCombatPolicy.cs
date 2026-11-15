@@ -58,13 +58,15 @@ namespace Decennium.Foundation.Laboratory
             bool drop = result.Consequences.Any(x => x.Kind == ConditionConsequenceKind.DropHeldItems);
             s.Lives = s.Lives.Select(x => x.ActorId == actor ? ActorLifeRules.Record(actor, ActorLifeRules.Read(before), prone, drop ? Array.Empty<string>() : before.HeldItems) : x).ToArray();
             if (drop) DropConditionEquipment(s, actor);
-            // This explicitly selected fixture admits no concentration. EndConcentration has
-            // no world target; admitting concentration later requires its actual lifecycle.
+            foreach(var consequence in result.Consequences.Where(x=>x.Kind==ConditionConsequenceKind.EndConcentration))
+                TestOnlySharedWorldPolicy.EndCastingConcentration(s,actor,result.State.Journal.Operations.Last().Id,
+                    consequence.At.Time,SpellEffectEndReason.Incapacitated);
         }
         private static void DropConditionEquipment(Snapshot s, string actor)
         {
             var body = s.Actors.Single(x => x.Id == actor);
             TestOnlySharedWorldPolicy.DropConnectedVial(s, body);
+            TestOnlySharedWorldPolicy.DropCastingFocus(s, body);
             s.Clubs = s.Clubs.Select(x => x.HeldBy == actor ? new ClubInstance(x.Id, x.ProfileId, x.OwnerId, x.CustodianId, "", body.X, body.Y) : x).ToArray();
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.HeldBy==actor?x.DropAt(body.X,body.Y):x).ToArray();
         }

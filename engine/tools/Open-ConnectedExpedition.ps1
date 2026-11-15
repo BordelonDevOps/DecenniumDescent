@@ -14,12 +14,13 @@ param(
     [switch]$ClericCompanion,
     [switch]$ClericRepertoire,
     [switch]$Frightened,
-    [switch]$ClericSettlement
+    [switch]$ClericSettlement,
+    [switch]$ClericCasting
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -29,7 +30,12 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($ClericSettlement) {
+$session = if ($ClericCasting) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericCasting(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample())
+} elseif ($ClericSettlement) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericSettlement(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -86,6 +92,31 @@ function New-SessionCommand($request, $view, $kind) {
     $intimidation = $null
     $advancement = $null
     $healingRite = $null
+    $spellCast = $null
+    $guidance = $null
+    $sanctuaryResponse = $null
+    if ($request.ContainsKey('spellCast')) {
+        $details = $request.spellCast
+        if ($null -eq $details -or @($details.Keys).Count -ne 4 -or !$details.ContainsKey('spellId') -or
+            !$details.ContainsKey('focusItemId') -or !$details.ContainsKey('willingTarget') -or !$details.ContainsKey('electFocusedDc') -or
+            $details.spellId -isnot [string] -or $details.focusItemId -isnot [string] -or
+            $details.willingTarget -isnot [bool] -or $details.electFocusedDc -isnot [bool]) { throw 'Invalid explicit spell choices.' }
+        $spellCast = [Decennium.Foundation.SpellCastRequest]::new($details.spellId,$details.focusItemId,$details.willingTarget,$details.electFocusedDc)
+    }
+    if ($request.ContainsKey('guidance')) {
+        $details = $request.guidance
+        if ($null -eq $details -or @($details.Keys).Count -ne 1 -or !$details.ContainsKey('effectId') -or
+            $details.effectId -isnot [string]) { throw 'Invalid pre-check Guidance choice.' }
+        $guidance = [Decennium.Foundation.GuidanceChoice]::new($details.effectId)
+    }
+    if ($request.ContainsKey('sanctuaryResponse')) {
+        $details = $request.sanctuaryResponse
+        if ($null -eq $details -or @($details.Keys).Count -ne 2 -or !$details.ContainsKey('kind') -or !$details.ContainsKey('targetId') -or
+            $details.kind -isnot [string] -or $details.kind -cnotin @('Retarget','Forgo') -or $details.targetId -isnot [string]) {
+            throw 'Invalid Sanctuary continuation choice.'
+        }
+        $sanctuaryResponse = [Decennium.Foundation.SanctuaryResponseRequest]::new($details.kind,$details.targetId)
+    }
     if ($request.ContainsKey('advancement')) {
         $details = $request.advancement
         if ($null -eq $details -or @($details.Keys).Count -ne 3 -or !$details.ContainsKey('features') -or
@@ -130,7 +161,8 @@ function New-SessionCommand($request, $view, $kind) {
             ($details.criticalRecovery ?? ''), ($details.assistant ?? ''))
     }
     [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
-        $inventory, $combat, $advancement, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation, $healingRite)
+        $inventory, $combat, $advancement, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation, $healingRite,
+        $spellCast,$guidance,$sanctuaryResponse)
 }
 
 function Get-SessionFilePath([string]$path) {
@@ -140,6 +172,12 @@ function Get-SessionFilePath([string]$path) {
 function Invoke-SessionInput($request) {
     switch ($request.op) {
         'view' { return $session.View(($request.seat ?? 'Player')) }
+        'query' {
+            $seat = $request.seat ?? 'Player'
+            $command = New-SessionCommand $request ($session.View($seat)) $request.kind
+            return $session.QueryCastingCommand($seat,$command)
+        }
+        'discover' { return $session.DiscoverCastingCommands(($request.seat ?? 'Player'),$request.actor) }
         'submit' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind
@@ -159,10 +197,16 @@ function Invoke-SessionInput($request) {
         }
         'auto' { return $session.AdvanceAutomaticDefender() }
         'defender-presence' {
-            if (!$Frightened -and !$ClericSettlement) { return @{ Response = 'Unavailable' } }
+            if (!$Frightened -and !$ClericSettlement -and !$ClericCasting) { return @{ Response = 'Unavailable' } }
             $command = New-SessionCommand $request ($session.View('Player')) 'UseIntimidatingPresence'
             return $session.SubmitDefenderIntimidatingPresence(
                 [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(), $command)
+        }
+        'defender-sanctuary' {
+            if (!$ClericCasting) { return @{ Response = 'Unavailable' } }
+            $command = New-SessionCommand $request ($session.View('Player')) 'RespondSanctuary'
+            return $session.SubmitDefenderSanctuary(
+                [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(),$command)
         }
         'save' { $session.Save((Get-SessionFilePath $request.path)); return @{ Response = 'Saved' } }
         'load' { $session.Restore((Get-SessionFilePath $request.path)); return @{ Response = 'Restored' } }
@@ -180,9 +224,10 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened -and !$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
-            if (!$ClericRepertoire -and !$Frightened -and !$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
-            if (!$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty ClericSettlement) }
+            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$ClericSettlement -and !$ClericCasting) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty ClericSettlement) }
+            if (!$ClericCasting) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Casting) }
             if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
             if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
             if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden) {
@@ -239,6 +284,11 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
             [Console]::WriteLine('Use HandlePortableEquipment to stow the held vial in the open Explorer pack and retrieve it before tactical use.')
         }
         [Console]::WriteLine('Files: {"op":"save","path":"expedition.ddsave"}. Use "load" to restore and "recover" to validate and recover the backup.')
+        if ($ClericCasting) {
+            [Console]::WriteLine('Use query or discover for current target legality. CastKnownSpell takes spellCast:{spellId,focusItemId,willingTarget,electFocusedDc}; all four fields are explicit.')
+            [Console]::WriteLine('Before an eligible Hide, Search or Medicine check choose guidance:{effectId}. Casting.Auras exposes opaque IDs for a later FocusDetectedAura Action.')
+            [Console]::WriteLine('RespondSanctuary takes sanctuaryResponse:{kind:"Retarget" or "Forgo",targetId}. Use auto for the defender controller, or the trusted defender-sanctuary path for an explicit response.')
+        }
     } elseif (-not [string]::IsNullOrWhiteSpace($line)) {
         Write-SessionResponse $line
     }

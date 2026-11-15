@@ -296,7 +296,7 @@ namespace Decennium.Foundation.Laboratory
                 kind==HuntingTrapActionKind.Free?c.Target:"",kind==HuntingTrapActionKind.Set?"":deployment.Id,start,null,
                 HuntingTrapActionStatus.Working,tactical);
             if(tactical) {
-                var resolved=ResolveHuntingTrapAction(s,action,definition,deployment,tether);
+                var resolved=ResolveHuntingTrapAction(s,action,definition,deployment,tether,c);
                 s.HuntingTrapActions=s.HuntingTrapActions.Concat(new[]{resolved}).ToArray();return null;
             }
             if(s.Work.WorkerIntervals.Count>=Snapshot.MaxWorkRecords)return "WorkHistoryCapacityReached";
@@ -306,7 +306,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private HuntingTrapActionRecord ResolveHuntingTrapAction(Snapshot s,HuntingTrapActionRecord action,
-            HuntingTrapDefinition definition,HuntingTrapDeploymentRecord deployment,HuntingTrapTetherRecord tether)
+            HuntingTrapDefinition definition,HuntingTrapDeploymentRecord deployment,HuntingTrapTetherRecord tether,Command cause)
         {
             if(action.Kind==HuntingTrapActionKind.Set) {
                 var item=s.PortableEquipment.Single(x=>x.Id==action.TrapItemId);
@@ -345,10 +345,11 @@ namespace Decennium.Foundation.Laboratory
             var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
             s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
             words=checked(words+hurt.WordsConsumed);after=s.RandomState;
+            SettleSpellDamage(s,target.Id,"",cause?.Id,damage,false);
             return action.Resolve(s.RuleClock,HuntingTrapActionStatus.Failed,deployment.Id,false,natural,modifier,13,total,false,1,before,after,words);
         }
 
-        private void CompleteHuntingTrapActions(Snapshot s)
+        private void CompleteHuntingTrapActions(Snapshot s,Command cause=null)
         {
             foreach(var action in s.HuntingTrapActions.Where(x=>x.Status==HuntingTrapActionStatus.Working
                 &&x.StartedAt.AddSeconds(6)==s.RuleClock).ToArray()) {
@@ -356,7 +357,7 @@ namespace Decennium.Foundation.Laboratory
                 var definition=huntingTrapFixture.Find(action.TrapItemId);var deployment=action.DeploymentId==""?LatestHuntingTrapDeployment(s,action.TrapItemId)
                     :s.HuntingTrapDeployments.SingleOrDefault(x=>x.Id==action.DeploymentId);
                 var tether=action.TargetActorId==""?null:ActiveHuntingTrapTether(s,action.TargetActorId);
-                SetHuntingTrapAction(s,ResolveHuntingTrapAction(s,action,definition,deployment,tether));
+                SetHuntingTrapAction(s,ResolveHuntingTrapAction(s,action,definition,deployment,tether,cause));
             }
         }
         private static RuleTime? NextHuntingTrapActionBoundary(Snapshot s)
@@ -417,29 +418,31 @@ namespace Decennium.Foundation.Laboratory
             }
             return null;
         }
-        private void ResolveWorldHuntingTrapTriggers(Snapshot s)
+        private void ResolveWorldHuntingTrapTriggers(Snapshot s,Command cause=null)
         {
             if(s.InventoryCombat)return;
             foreach(var trigger in s.HuntingTrapTriggers.Where(x=>x.Status==HuntingTrapTriggerStatus.Pending
                 &&(x.EntryKind==HuntingTrapEntryKind.ExplorationStep||x.EntryKind==HuntingTrapEntryKind.RouteTravelCheckpoint))
                 .OrderBy(x=>x.CreatedRevision).ThenBy(x=>x.SourceAppliedRevision).ThenBy(x=>x.Id,StringComparer.Ordinal).ToArray())
-                ResolveHuntingTrapTrigger(s,trigger);
+                ResolveHuntingTrapTrigger(s,trigger,cause);
         }
-        private void ResolveOrderedHuntingTrapTrigger(Snapshot s)
+        private void ResolveOrderedHuntingTrapTrigger(Snapshot s,Command cause=null)
         {
             while(s.InventoryCombat&&s.MeleeAttacks.All(x=>!x.Pending)
                 &&!s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending)) {
                 var next=NextPostStepChoice(s);if(next!=PostStepChoiceKind.HuntingTrap)break;
                 var trigger=PendingHuntingTrapTrigger(s);if(trigger==null)break;
-                ResolveHuntingTrapTrigger(s,trigger);
+                ResolveHuntingTrapTrigger(s,trigger,cause);
                 NormalizePendingReadyOccurrences(s);
             }
         }
-        private void ResolveHuntingTrapTrigger(Snapshot s,HuntingTrapTriggerRecord trigger)
+        private void ResolveHuntingTrapTrigger(Snapshot s,HuntingTrapTriggerRecord trigger,Command cause)
         {
             if(trigger==null||trigger.Status!=HuntingTrapTriggerStatus.Pending)return;
             var deployment=s.HuntingTrapDeployments.Single(x=>x.Id==trigger.DeploymentId);
             var target=s.Actors.Single(x=>x.Id==trigger.EntrantId);var life=s.Lives.Single(x=>x.ActorId==trigger.EntrantId);
+            if(!SoldierTacticalFeatures.IsAlly(s,deployment.SetterId,target.Id))
+                BreakSanctuaryForHostileSave(s,deployment.SetterId,cause?.Id);
             var character=CharacterRuleFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"DEX")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
@@ -465,6 +468,7 @@ namespace Decennium.Foundation.Laboratory
                     deployment.Id,deployment.TrapItemId,target.Id,deployment.AnchorX,deployment.AnchorY)}).ToArray();
             }
             SetHuntingTrapTrigger(s,trigger.Resolve(s.Revision+1,automatic,natural,modifier,total,success,rolled,applied,tetherId,before,s.RandomState,words));
+            SettleSpellDamage(s,target.Id,deployment.SetterId,cause?.Id,applied);
             if(!success&&trigger.EntryKind==HuntingTrapEntryKind.RouteTravelCheckpoint) {
                 var travel=s.RouteTravels.Single(x=>x.StartedRevision==trigger.RouteStartedRevision);
                 if(travel.Status==ExpeditionRouteTravelStatus.Moving)

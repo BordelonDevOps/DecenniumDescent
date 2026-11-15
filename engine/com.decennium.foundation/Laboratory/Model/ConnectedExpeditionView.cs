@@ -95,6 +95,7 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionTraversalView Traversal { get; }
         public ExpeditionClericView Cleric { get; }
         public ExpeditionRepertoireView Repertoire { get; }
+        public ExpeditionCastingView Casting { get; }
         public ExpeditionClericSettlementView ClericSettlement { get; }
 
         internal ExpeditionOwnActor(Snapshot state, ActorState actor, Authority grant)
@@ -103,6 +104,7 @@ namespace Decennium.Foundation.Laboratory
             if (state.ConnectedClericRp && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id)) Cleric = new ExpeditionClericView(state);
             if (state.ConnectedClericRepertoire && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
                 Repertoire = new ExpeditionRepertoireView(state, actor.Id);
+            if(state.ConnectedClericCasting&&grant.Controls(actor.Id))Casting=TestOnlySharedWorldPolicy.ObserveCasting(state,actor.Id);
             if (state.ConnectedClericSettlement && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
                 ClericSettlement = new ExpeditionClericSettlementView(state);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
@@ -511,10 +513,13 @@ namespace Decennium.Foundation.Laboratory
                     selected.Add(CommandKind.AdvanceCharacterLevel,state.ClericMilestone.MilestoneId);
                     targets = new ReadOnlyDictionary<CommandKind,string>(selected);
                 }
+                IEnumerable<ExpeditionWorkStatus> work=player?ProjectWork(state,grant):Array.Empty<ExpeditionWorkStatus>();
+                if(state.ConnectedClericCasting)work=work.OrderBy(x=>x.Kind,StringComparer.Ordinal).ThenBy(x=>x.Id,StringComparer.Ordinal);
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
                     ownedActing, turn, ownedDecision,
                     state.Actors.Where(x => grant.Controls(x.Id)).Select(x => new ExpeditionOwnActor(state, x, grant)),
-                    ProjectItems(state, grant), player ? ProjectWork(state, grant) : Array.Empty<ExpeditionWorkStatus>(),
+                    state.ConnectedClericCasting?ProjectItems(state,grant).OrderBy(x=>x.Id,StringComparer.Ordinal):ProjectItems(state, grant),
+                    work,
                     commands, targets,
                     player ? state.HavenSales.Where(x => grant.Controls(x.Basis.SellerId)).Sum(x => x.PaymentCopper ?? 0) : 0,
                     player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
@@ -550,6 +555,7 @@ namespace Decennium.Foundation.Laboratory
             var categories = state.MiningCategories.Where(x => x.DepositId == deposit.Id && x.Accessible);
             var units = observed ? state.MiningUnits.Where(x => x.DepositId == deposit.Id && categories.Any(c => c.Id == x.CategoryId))
                 .Select(x => new ExpeditionMiningUnitView(x)) : Enumerable.Empty<ExpeditionMiningUnitView>();
+            if(state.ConnectedClericCasting)units=units.OrderBy(x=>x.Id,StringComparer.Ordinal);
             bool? claimClosed = observed ? state.MiningAttempts.Any(x => x.DepositId == deposit.Id) : (bool?)null;
             return new ExpeditionMiningSiteView(deposit, observed, claimClosed, units);
         }

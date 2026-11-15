@@ -39,6 +39,11 @@ namespace Decennium.Foundation.Laboratory
         private readonly SharedRepairFixture repair;
         public IEnumerable<string> RequiredInventoryOwners(Snapshot s, Command c)
         {
+            if(s.ConnectedClericCasting && c.SpellCast!=null) {
+                var focus=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.SpellCast.FocusItemId);
+                var batch=c.SpellCast.SpellId=="purify-food-and-drink"?s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target):null;
+                return new[]{focus?.OwnerId,batch?.OwnerId}.Where(x=>x!=null).Distinct(StringComparer.Ordinal).ToArray();
+            }
             if(havenAppraisalProfile!=null&&IsHavenAppraisalCommand(c.Kind))
                 return new[]{TestOnlyHavenAppraisalProfile.WorkerId};
             if(havenSaleProfile!=null&&(c.Kind==CommandKind.StartHavenSale||c.Kind==CommandKind.ResumeHavenSale

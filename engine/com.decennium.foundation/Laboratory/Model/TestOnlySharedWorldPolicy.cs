@@ -239,6 +239,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeClericRepertoire(s);
             InitializeFrightened(s);
             InitializeClericSettlement(s);
+            InitializeClericCasting(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -488,6 +489,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileRouteTravel(s); ReconcileTraversal(s); ReconcileReinforcement(s, initiating);
                 ReconcileShortRest(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
+                var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
                 var hideDue = s.ExplorationHide?.Pending?.DueAt;
@@ -652,6 +654,7 @@ namespace Decennium.Foundation.Laboratory
                 // Existing procedures own crop/food/water completion and their local ordering.
                 // Movement duration was bounded before their advance, so they cannot over-credit it.
                 long previousSlot=s.WorldSchedule.ProcessedSlot;
+                SettleCastingTime(s,segmentStart,next,initiating);
                 var ready = new System.Collections.Generic.List<string>();
                 var routeMappingReady = new System.Collections.Generic.List<string>();
                 var routeReconnaissanceReady = new System.Collections.Generic.List<string>();
@@ -664,7 +667,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleHarvesting(world);PauseIncompatibleMining(world);PauseIncompatibleProspecting(world);PauseIncompatibleMiningAssay(world);PauseIncompatibleMineralPreparation(world);PauseIncompatibleRouteMappingWork(world);PauseIncompatibleRouteReconnaissance(world);PauseIncompatibleTemporaryCampConstruction(world);
-                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                    },(world,elapsedWork)=>{CreditHarvestWork(world,elapsedWork,initiating);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                     else {
                         OrdinaryInventory.AdvanceTo(s, next);
                         TestOnlyClubAttackPolicy.AdvanceConditions(s, "." + (++subevent).ToString(CultureInfo.InvariantCulture),
@@ -675,7 +678,7 @@ namespace Decennium.Foundation.Laboratory
                         TestOnlyClubAttackPolicy.AdvanceConditions(world,"."+(++subevent).ToString(CultureInfo.InvariantCulture),
                             onlyAtExpiry:s.SchemaVersion>=Snapshot.ExpeditionRouteSchema||miningFixture!=null||prospectingFixture!=null);
                         PauseIncompatibleWork(world,false);
-                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
+                    }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork,initiating);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
                 string deferredActivityActor = reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
                     : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
@@ -690,7 +693,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 SyncExpeditionAssignments(s);
                 ResolveDueFishingTrapChecks(s);
-                ResolveWorldHuntingTrapTriggers(s);
+                ResolveWorldHuntingTrapTriggers(s,initiating);
                 CompleteFishingTrapRetrievals(s);
                 SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
                 RefreshIntervals(s, laterArrival?.ActorId);
@@ -703,10 +706,10 @@ namespace Decennium.Foundation.Laboratory
                     long slot=s.WorldSchedule.ProcessedSlot;string actor=s.WorldSchedule.Order[(int)(slot%s.WorldSchedule.Order.Count)];
                     SaveWorldLifeMarker(s,actor,s.WorldSchedule.Id,s.WorldSchedule.Origin,slot,checked((int)slot));
                 }
-                ProcessPeriodicRiderMarker(s,previousSlot);
+                ProcessPeriodicRiderMarker(s,previousSlot,initiating);
                 if (!reinforcementEndRound) RefreshLaterEpoch(s);
                 if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);
-                ResolveReadyMining(s);
+                ResolveReadyMining(s,initiating);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
                 ResolveReadyMineralPreparations(s);
@@ -732,15 +735,15 @@ namespace Decennium.Foundation.Laboratory
                 }
                 foreach(string id in manufacturingReady){
                     var job=s.ManufacturingOrders.Single(x=>x.Id==id);
-                    if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job);
+                    if(ManufacturingAccess(s,job.WorkerId,false,true,job.RecipeId)==null)FinishManufacturingCheck(s,job,initiating);
                 }
                 foreach(string id in recipe347Ready){
                     var job=s.Recipe347WorkOrders.Single(x=>x.Id==id);
-                    if(Recipe347Access(s,job.WorkerId,job.Ability)==null){string checkError=FinishRecipe347Check(s,job);if(checkError!=null)return checkError;}
+                    if(Recipe347Access(s,job.WorkerId,job.Ability)==null){string checkError=FinishRecipe347Check(s,job,initiating);if(checkError!=null)return checkError;}
                 }
                 PauseIncompatibleWork(s); CompleteSupplyCacheAttempts(s); CompleteOrdinaryReceptacleAttempts(s);
                 ResolveReadyTemporaryCampChecks(s,campConstructionReady,initiating);
-                CompleteHuntingTrapActions(s); ReconcileTraversal(s);
+                CompleteHuntingTrapActions(s,initiating); ReconcileTraversal(s);
                 ResolveReadyRouteMappingWorkChecks(s, routeMappingReady, initiating);
                 ResolveReadyRouteReconnaissanceChecks(s, routeReconnaissanceReady, initiating);
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
@@ -805,9 +808,24 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
         private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false,
-            PlanningPassage? passage = null)
+            PlanningPassage? passage = null, bool sanctuaryChecked=false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(s.ConnectedClericCasting&&!sanctuaryChecked) {
+                if(PendingSanctuary(s)!=null || c.Kind==CommandKind.RespondSanctuary)
+                    return ResolveSanctuaryResponse(s,c,assessTactical);
+                if(SanctuaryAttackCommand(c)) {
+                    string gate=BeginSanctuaryGate(s,c,out bool suspended,assessTactical);
+                    if(gate!=null || suspended)return gate;
+                }
+            }
+            string guidanceFailure=GuidanceChoiceFailure(s,c);if(guidanceFailure!=null)return guidanceFailure;
+            string contaminationFailure=SpellCastingProfile.PhysicalFailure(s,c);
+            if(contaminationFailure!=null)return contaminationFailure;
+            if (s.ConnectedClericCasting && c.Kind==CommandKind.CastKnownSpell)
+                return assessTactical?AssessSpellCast(s,c):ResolveSpellCast(s,c);
+            if (s.ConnectedClericCasting && SpellCastingProfile.IsUtilityCommand(c.Kind))
+                return assessTactical?AssessCastingUtility(s,c):ResolveCastingUtility(s,c);
             if (ClericRepertoireProfile.IsCommand(c.Kind)) return ClericRepertoireProfile.CommandFailure(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
             if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
@@ -1095,9 +1113,9 @@ namespace Decennium.Foundation.Laboratory
             var existingLotIds=openingForPortion==null?null:new System.Collections.Generic.HashSet<string>(
                 s.InventoryLots.Select(x=>x.LotId),StringComparer.Ordinal);
             var before = s.RuleClock;
-            string failure = c.Kind==CommandKind.HandleVessel&&strainRecoveryProfile!=null
+            string failure = c.Kind==CommandKind.HandleVessel&&(strainRecoveryProfile!=null||s.ConnectedClericCasting)
                 ?VesselHandling.Resolve(s,c,actor=>AvailableHands(s,actor),id=>s.PortableEquipment.Length==0
-                    &&TestOnlyFillingPolicy.IsBaseFixtureVessel(id))
+                    &&TestOnlyFillingPolicy.IsBaseFixtureVessel(id)||s.ConnectedClericCasting&&id==TestOnlyFillingPolicy.FlaskId)
                 :inventory.Resolve(s, c);
             if (failure != null) return failure;
             if(openingForPortion!=null) {
@@ -1109,6 +1127,7 @@ namespace Decennium.Foundation.Laboratory
                 }).ToArray();
             }
             if (s.RuleClock > before) {
+                SettleCastingTime(s,before,s.RuleClock,c);
                 CreditFormulaWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());
                 CreditRemedyWork(s,CampGreens.Subtract(s.RuleClock,before));
                 CreditRepairWork(s,CampGreens.Subtract(s.RuleClock,before),new System.Collections.Generic.List<string>());

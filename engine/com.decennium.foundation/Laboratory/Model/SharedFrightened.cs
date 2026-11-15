@@ -97,6 +97,7 @@ namespace Decennium.Foundation.Laboratory
                 FrightenedProfile.SourceRevision, epoch.Id, local, state.RuleClock, dc, command.IntimidatingPresence.TargetIds);
             SetInterval(state, Interval(state, command.Actor).PayAction());
             state.FrightenedUses = state.FrightenedUses.Append(use).ToArray();
+            BreakSanctuaryForHostileSave(state,command.Actor,command.Id);
             state.AbilityRecharges = new[] { new CharacterAbilityRechargeRecord(command.Actor, FrightenedProfile.SourceId,
                 epoch.Id, local, epoch.Start(local), 3) };
             foreach (string target in use.TargetIds) {

@@ -8,8 +8,8 @@ using System.Text;
 
 namespace Decennium.Foundation.Laboratory
 {
-    public enum DefenderDecisionSlot { Waiting, RegularTurn, Opportunity }
-    public enum DefenderIntentKind { Wait, Guard, Attack, Step, End, AcceptOpportunity, DeclineOpportunity, IntimidatingPresence }
+    public enum DefenderDecisionSlot { Waiting, RegularTurn, Opportunity, Sanctuary }
+    public enum DefenderIntentKind { Wait, Guard, Attack, Step, End, AcceptOpportunity, DeclineOpportunity, IntimidatingPresence, RetargetSanctuary, ForgoSanctuary }
 
     public readonly struct DefenderIntent
     {
@@ -28,9 +28,10 @@ namespace Decennium.Foundation.Laboratory
         public string ActorId { get; }
         public CombatCell Cell { get; }
         public bool ClearLineOfEffect { get; }
+        public bool DirectAttackAllowed { get; }
 
-        internal DefenderVisibleOpponent(string actorId, CombatCell cell, bool clearLineOfEffect)
-        { ActorId = actorId; Cell = cell; ClearLineOfEffect = clearLineOfEffect; }
+        internal DefenderVisibleOpponent(string actorId, CombatCell cell, bool clearLineOfEffect,bool directAttackAllowed=true)
+        { ActorId = actorId; Cell = cell; ClearLineOfEffect = clearLineOfEffect; DirectAttackAllowed=directAttackAllowed; }
     }
 
     public sealed class DefenderDecisionView
@@ -47,12 +48,13 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyList<DefenderVisibleOpponent> VisibleOpponents { get; }
         public IReadOnlyList<CombatCell> ApproachCells { get; }
         public IReadOnlyList<string> IntimidationTargets { get; }
+        public IReadOnlyList<string> SanctuaryTargets { get; }
 
         internal DefenderDecisionView(DefenderDecisionSlot slot = DefenderDecisionSlot.Waiting, CombatCell ownCell = default,
             bool canSelectStance = false, bool stanceSelected = false, bool canAttack = false, bool canMove = false,
             bool hasClub = false, bool eligibleOpportunity = false, string visibleProvokerId = "",
             IEnumerable<DefenderVisibleOpponent> visibleOpponents = null, IEnumerable<CombatCell> approachCells = null,
-            IEnumerable<string> intimidationTargets = null)
+            IEnumerable<string> intimidationTargets = null,IEnumerable<string> sanctuaryTargets=null)
         {
             Slot = slot; OwnCell = ownCell; CanSelectStance = canSelectStance; StanceSelected = stanceSelected;
             CanAttack = canAttack; CanMove = canMove; HasClub = hasClub;
@@ -60,6 +62,7 @@ namespace Decennium.Foundation.Laboratory
             VisibleOpponents = Array.AsReadOnly(visibleOpponents?.ToArray() ?? Array.Empty<DefenderVisibleOpponent>());
             ApproachCells = Array.AsReadOnly(approachCells?.ToArray() ?? Array.Empty<CombatCell>());
             IntimidationTargets = Array.AsReadOnly(intimidationTargets?.ToArray() ?? Array.Empty<string>());
+            SanctuaryTargets=Array.AsReadOnly(sanctuaryTargets?.ToArray()??Array.Empty<string>());
         }
     }
 
@@ -70,6 +73,9 @@ namespace Decennium.Foundation.Laboratory
         {
             if (view == null) throw new ArgumentNullException(nameof(view));
             if (view.Slot == DefenderDecisionSlot.Waiting) return new DefenderIntent(DefenderIntentKind.Wait);
+            if(view.Slot==DefenderDecisionSlot.Sanctuary)return view.SanctuaryTargets.Count==0
+                ?new DefenderIntent(DefenderIntentKind.ForgoSanctuary)
+                :new DefenderIntent(DefenderIntentKind.RetargetSanctuary,view.SanctuaryTargets[0]);
             if (view.Slot == DefenderDecisionSlot.Opportunity) {
                 bool accept = view.EligibleOpportunity && view.HasClub && view.VisibleOpponents.Any(x =>
                     x.ActorId == view.VisibleProvokerId && x.ClearLineOfEffect);
@@ -82,7 +88,7 @@ namespace Decennium.Foundation.Laboratory
 
             var ranked = view.VisibleOpponents.OrderBy(x => PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell))
                 .ThenBy(x => x.ActorId, StringComparer.Ordinal).ToArray();
-            var attack = ranked.FirstOrDefault(x => x.ClearLineOfEffect && PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell) <= 5);
+            var attack = ranked.FirstOrDefault(x => x.DirectAttackAllowed && x.ClearLineOfEffect && PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell) <= 5);
             if (attack != null) return new DefenderIntent(DefenderIntentKind.Attack, attack.ActorId);
 
             var target = ranked.FirstOrDefault();
@@ -223,9 +229,17 @@ namespace Decennium.Foundation.Laboratory
             string turn = state.Encounter.CurrentTurnId;
             string target = turn;
             CombatRequest combat = null;
+            SanctuaryResponseRequest sanctuaryResponse=null;
             CombatCell cell = default;
             CommandKind kind;
             switch (intent.Kind) {
+                case DefenderIntentKind.RetargetSanctuary:
+                case DefenderIntentKind.ForgoSanctuary:
+                    kind=CommandKind.RespondSanctuary;
+                    target=TestOnlySharedWorldPolicy.PendingSanctuary(state).Id;
+                    sanctuaryResponse=new SanctuaryResponseRequest(intent.Kind==DefenderIntentKind.RetargetSanctuary
+                        ?SanctuaryResponseKind.Retarget:SanctuaryResponseKind.Forgo,intent.TargetId);
+                    break;
                 case DefenderIntentKind.IntimidatingPresence:
                     kind = CommandKind.UseIntimidatingPresence;
                     target = "";
@@ -258,11 +272,12 @@ namespace Decennium.Foundation.Laboratory
             }
             var key = FormattableString.Invariant($"{Principal}|{actor}|{state.Encounter.Id}|{turn}|{state.Revision}|{intent.Kind}|{target}|{cell.X}|{cell.Y}");
             if (intent.IntimidatingPresence != null) key += "|" + string.Join(",", intent.IntimidatingPresence.TargetIds);
+            if(sanctuaryResponse!=null)key+="|"+sanctuaryResponse.Kind+"|"+sanctuaryResponse.TargetId;
             using (var sha = SHA256.Create()) {
                 string id = "tac10." + string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(key))
                     .Select(value => value.ToString("x2", CultureInfo.InvariantCulture)));
                 return new Command(id, actor, state.Revision, kind, target, cell.X, cell.Y, combat: combat,
-                    intimidatingPresence: intent.IntimidatingPresence);
+                    intimidatingPresence: intent.IntimidatingPresence,sanctuaryResponse:sanctuaryResponse);
             }
         }
     }

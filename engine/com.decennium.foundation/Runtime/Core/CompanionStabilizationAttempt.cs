@@ -56,9 +56,9 @@ namespace Decennium.Foundation
         {
             var attempts = state.CompanionStabilizations;
             if (attempts == null || attempts.Length > Validation.MaxReceipts
-                || !state.ConnectedCompanionStabilization && attempts.Length != 0 || attempts.Any(x => x == null))
+                || !state.ConnectedCompanionStabilization && !state.ConnectedClericCasting && attempts.Length != 0 || attempts.Any(x => x == null))
                 throw new ArgumentException("Invalid companion stabilization history.");
-            if (!state.ConnectedCompanionStabilization) return;
+            if (!state.ConnectedCompanionStabilization && !state.ConnectedClericCasting) return;
 
             long previous = 0;
             foreach (var attempt in attempts) {
@@ -74,9 +74,10 @@ namespace Decennium.Foundation
                     || encounter.StartAt(attempt.TurnOrdinal) != attempt.At)
                     throw new ArgumentException("Companion stabilization has no owning regular turn.");
                 var receipt = state.Receipts.SingleOrDefault(x => x.Revision == attempt.Revision);
-                var command = new Command(attempt.CommandId, attempt.ActorId, attempt.Revision - 1,
+                var command = state.ConnectedClericCasting && receipt!=null ? CommandHistory.Read(receipt) : new Command(attempt.CommandId, attempt.ActorId, attempt.Revision - 1,
                     CommandKind.StabilizeCompanion, attempt.PatientId);
-                if (receipt?.Principal != "TEST_ONLY.host" || !command.MatchesReceipt(receipt))
+                if (receipt?.Principal != "TEST_ONLY.host" || command.Kind!=CommandKind.StabilizeCompanion || command.Actor!=attempt.ActorId
+                    ||command.Target!=attempt.PatientId || !command.MatchesReceipt(receipt))
                     throw new ArgumentException("Companion stabilization requires its exact command receipt.");
                 previous = attempt.Revision;
             }

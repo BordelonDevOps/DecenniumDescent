@@ -236,7 +236,7 @@ namespace Decennium.Foundation.Laboratory
             return ends.Length==0?(RuleTime?)null:ends.Min();
         }
 
-        private void CreditHarvestWork(Snapshot s,RuleTime elapsed)
+        private void CreditHarvestWork(Snapshot s,RuleTime elapsed,Command cause=null)
         {
             foreach(var attempt in s.HarvestAttempts.Where(x=>x.Status==HarvestAttemptStatus.Working).ToArray()) {
                 if(!s.Work.WorkerIntervals.Any(w=>w.JobId==attempt.Id&&w.Start<=attempt.UpdatedAt&&w.End>=s.RuleClock))continue;
@@ -249,12 +249,12 @@ namespace Decennium.Foundation.Laboratory
                         if(unit.Status==HarvestUnitStatus.Available)PutHarvestUnit(s,unit.WithStatus(HarvestUnitStatus.Forfeited));
                     }
                 }
-                if(work>=attempt.Duration)FinishHarvest(s,attempt,attempt.WithWork(s.RuleClock,attempt.Duration,HarvestAttemptStatus.Working));
+                if(work>=attempt.Duration)FinishHarvest(s,attempt,attempt.WithWork(s.RuleClock,attempt.Duration,HarvestAttemptStatus.Working),cause);
                 else PutHarvestAttempt(s,attempt.WithWork(s.RuleClock,work,HarvestAttemptStatus.Working));
             }
         }
 
-        private void FinishHarvest(Snapshot s,HarvestAttemptRecord prior,HarvestAttemptRecord completed)
+        private void FinishHarvest(Snapshot s,HarvestAttemptRecord prior,HarvestAttemptRecord completed,Command cause)
         {
             var actorFacts=CharacterStateFacts.ForActor(s,prior.WorkerId,"fishing-tackle");
             int injury=actorFacts.InjuryPenalty(CharacterAbility.Intelligence,toolCheck:true);
@@ -331,6 +331,7 @@ namespace Decennium.Foundation.Laboratory
                 roll.Selection==D20Selection.Normal?HarvestDiceSelection.Normal:HarvestDiceSelection.Disadvantage,
                 roll.First,roll.Second??0,roll.Natural,modifier,d4,damage,d4==0?"":"piercing",wound,injuryRoll,
                 randomBefore,s.RandomState,words));
+            SettleSpellDamage(s,prior.WorkerId,"",cause?.Id,damage,false);
             ReconcileDyingCadences(s);PauseIncompatibleWork(s);
         }
 

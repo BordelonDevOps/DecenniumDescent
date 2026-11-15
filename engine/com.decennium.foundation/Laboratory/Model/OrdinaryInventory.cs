@@ -26,6 +26,7 @@ namespace Decennium.Foundation.Laboratory
 
         public static void Descendant(Snapshot s,string sourceId,string childId,RuleQuantity amount,string location,string custodian,InventoryAccess access)
         {
+            if(SpellCastingProfile.HasUnsafeContamination(s,sourceId))throw new ArgumentException("ContaminationPropagationUnsupported");
             var source=s.InventoryLots.Single(x=>x.LotId==sourceId);var lot=s.Work.Lots.Single(x=>x.Id==sourceId);
             if(amount==default||amount>s.Work.AvailableAmount(sourceId)||s.InventoryLots.Any(x=>x.LotId==childId))
                 throw new ArgumentException("Invalid unreserved portion.");
@@ -38,6 +39,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public static void StartIntake(Snapshot s,string actor,string lotId,RuleQuantity amount)
         {
+            if(SpellCastingProfile.HasUnsafeContamination(s,lotId))throw new ArgumentException("UnsafeConsumableIntakeUnsupported");
             var item=s.InventoryLots.Single(x=>x.LotId==lotId);
             if(s.InventoryCombat||Busy(s,actor)||!Fresh(s,item)||amount==default)throw new ArgumentException("Intake unavailable.");
             long rate=SecondsPerUnit(item.Nutrition);string job=Identity(s,"intake"),reservation=job+".stock";

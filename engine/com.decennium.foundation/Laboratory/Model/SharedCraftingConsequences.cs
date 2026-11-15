@@ -246,9 +246,9 @@ namespace Decennium.Foundation.Laboratory
             if (fact == null) return "UnknownCraftingMishap";
             if (s.CraftingIncidents.Any(x => x.Id == fact.Id)) return "CraftingMishapAlreadyResolved";
             if (s.RuleClock != fact.At) return "WrongCraftingMishapTime";
-            return ApplyCraftingMishap(s,fact);
+            return ApplyCraftingMishap(s,fact,c);
         }
-        private string ApplyCraftingMishap(Snapshot s,CraftingMishapFact fact)
+        private string ApplyCraftingMishap(Snapshot s,CraftingMishapFact fact,Command cause)
         {
             if (s.CraftingIncidents.Length == CraftingConsequenceValidation.MaxIncidents) return "CraftingIncidentCapacityReached";
             if (s.WorldTraversals.Any(x => x.ActorId == fact.LeadId && x.DistanceFeet != default)) return "OffGridPhysicalConsequenceUnsupported";
@@ -276,6 +276,7 @@ namespace Decennium.Foundation.Laboratory
             var required = new RuleTime(fact.Result == 1 || fact.Result == 6 ? 3600 : fact.Result == 2 ? 7200 : fact.Result == 5 ? 3600 * fact.Participants.Count : 0);
             s.CraftingIncidents = s.CraftingIncidents.Concat(new[] { new CraftingIncidentRecord(fact.Id, fact.LeadId, fact.ToolId, fact.StationId,
                 fact.TradeId, fact.Result, fact.Participants, s.Revision + 1, s.RuleClock, s.RuleClock, required, default, Array.Empty<string>(), d4, damage, wound, injury, initial, s.RandomState, words) }).ToArray();
+            if(fact.Result==4)SettleSpellDamage(s,fact.LeadId,"",cause?.Id,damage,false);
             ReconcileDyingCadences(s); PauseIncompatibleWork(s); ReconcileTraversal(s); return null;
         }
         private static void PutIncident(Snapshot s, CraftingIncidentRecord incident) => s.CraftingIncidents = s.CraftingIncidents.Select(x => x.Id == incident.Id ? incident : x).ToArray();

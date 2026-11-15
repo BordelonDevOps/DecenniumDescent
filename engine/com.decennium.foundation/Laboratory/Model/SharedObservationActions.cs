@@ -16,6 +16,7 @@ namespace Decennium.Foundation.Laboratory
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c, passage: passage);
+            if(error==null&&PendingSanctuary(s)!=null)return null;
             if (error == null) ReconcileShortRest(s, c);
             if (error == null && ActiveBloodTreatment(s) is HarvestPreservationTreatmentAttemptRecord treatment) {
                 if (treatment.UpdatedAt < s.RuleClock) return "BloodTreatmentRequiresSharedAdvance";
@@ -37,7 +38,7 @@ namespace Decennium.Foundation.Laboratory
             if(error==null)ExpireReadyActionsAtStart(s,c);
             if(error==null&&s.InventoryCombat) {
                 error=QueueCompletedTacticalHuntingTrapEntries(s);
-                if(error==null)ResolveOrderedHuntingTrapTrigger(s);
+                if(error==null)ResolveOrderedHuntingTrapTrigger(s,c);
             }
             if (error == null && ObservationRules.Enabled(s))
                 ObservationRules.Refresh(s, s.RuleClock, s.Revision + 1);
@@ -167,7 +168,7 @@ namespace Decennium.Foundation.Laboratory
             }
         }
 
-        private string ResolveHide(Snapshot s, Command c)
+        private string ResolveHide(Snapshot s, Command c, bool assessOnly=false)
         {
             if (c.Target != s.Encounter.CurrentTurnId || c.X != 0 || c.Y != 0) return "InvalidHideRequest";
             var actor = s.Actors.Single(x => x.Id == c.Actor);
@@ -191,6 +192,7 @@ namespace Decennium.Foundation.Laboratory
             RuleTime at = s.RuleClock;
             if (observers.Length == 0)
             {
+                if(assessOnly)return null;
                 s.ObservationActions = s.ObservationActions.Concat(new[] { new ObservationActionRecord(attemptId, actor.Id, "",
                     ObservationActionKind.Hide, ObservationActionOutcome.NoEligibleObservers, at, revision, position.X, position.Y,
                     0, 0, 0, 0, 0, ObservationDieSelection.None, s.RandomState, s.RandomState, 0) }).ToArray();
@@ -204,7 +206,7 @@ namespace Decennium.Foundation.Laboratory
             var prior = s.ObservationActions.Where(x => x.ActorId == actor.Id && x.Kind == ObservationActionKind.Hide)
                 .OrderByDescending(x => x.Revision).FirstOrDefault();
             if (prior != null && prior.Outcome == ObservationActionOutcome.HideAttempted
-                && prior.X == position.X && prior.Y == position.Y && prior.Modifier == modifier
+                && prior.X == position.X && prior.Y == position.Y && prior.Modifier-HistoricalGuidance(s,prior.Id) == modifier
                 && prior.Selection == DieSelection(selection))
             {
                 var priorResults = s.ObservationHideResults.Where(x => x.AttemptId == prior.Id)
@@ -215,6 +217,8 @@ namespace Decennium.Foundation.Laboratory
                             && priorResults[i].ObserverX == x.Position.X && priorResults[i].ObserverY == x.Position.Y).All(x => x);
                 if (unchanged && priorResults.Any(x => !x.HiddenEstablished)) return "HideAttemptUnchanged";
             }
+            if(assessOnly)return null;
+            modifier=checked(modifier+ConsumeGuidance(s,c,attemptId,GuidanceCheckKind.Hide));
             RecordHideRoll(s, actor.Id, position, observerFacts, modifier, disadvantage);
             return null;
         }
@@ -266,7 +270,7 @@ namespace Decennium.Foundation.Laboratory
                 }).OrderBy(x => x.Id, StringComparer.Ordinal).ToArray();
             if (targets.Length > 1) return "SearchCandidateAmbiguous";
             var hide = targets.Length == 0 ? null : ActiveSearchHide(s, c.Actor, targets[0].Id);
-            RecordSearchResult(s, c.Actor, candidateCell, hide);
+            RecordSearchResult(s, c.Actor, candidateCell, hide,c);
             return null;
         }
 
@@ -277,7 +281,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static ObservationActionRecord RecordSearchResult(Snapshot s, string actor, ObservationPoint candidateCell,
-            ObservationActionRecord hide)
+            ObservationActionRecord hide,Command command=null)
         {
             long revision = s.Revision + 1;
             string attemptId = "observation." + revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".search";
@@ -293,7 +297,8 @@ namespace Decennium.Foundation.Laboratory
 
             int dc = checked((int)hide.Total);
             var actorFacts = CharacterStateFacts.ForActor(s, actor, "perception");
-            int modifier = actorFacts.TotalWithInjury(CharacterAbility.Wisdom, perception: true);
+            int modifier = checked(actorFacts.TotalWithInjury(CharacterAbility.Wisdom, perception: true)
+                +ConsumeGuidance(s,command,attemptId,GuidanceCheckKind.Search));
             int disadvantage = TestOnlyClubAttackPolicy.ConditionsFor(s, actor).View().Has(ConditionKind.Poisoned)
                 || FrightenedRules.VisibleSource(s, actor) ? 1 : 0;
             uint before = s.RandomState;

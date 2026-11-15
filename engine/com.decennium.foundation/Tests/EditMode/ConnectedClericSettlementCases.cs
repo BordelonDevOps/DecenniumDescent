@@ -44,9 +44,11 @@ namespace Decennium.Foundation.Tests
                 && before.SequenceEqual(after),"Actual Cleric denial disagreed with its query or changed canonical state: "+expected);
         }
 
-        private static ConnectedExpeditionSession EarnClericObjective(bool spendRite,string directory=null)
+        private static ConnectedExpeditionSession EarnClericObjective(bool spendRite,string directory=null,
+            ConnectedExpeditionSession selected=null,Action<ConnectedExpeditionSession> firstClericAction=null,
+            Action<ConnectedExpeditionSession> beforeClosure=null)
         {
-            var session = StartVialScenario(NewClericSettlement());
+            var session = StartVialScenario(selected??NewClericSettlement());
             const string routeHero = ConnectedExpeditionSession.Hero, routeAlly = ClericRpProfile.Actor;
             ClericCommit(session,routeAlly,CommandKind.BeginWorldStep,"walk",-1);
             ClericCommit(session,routeHero,CommandKind.AdvanceClock,x:6,y:1);
@@ -55,7 +57,7 @@ namespace Decennium.Foundation.Tests
             ClericCommit(session,routeAlly,CommandKind.BeginReinforcementApproach,"TEST_ONLY.companion-reinforcement.v1");
             ClericGuard(session,routeHero);ClericCommit(session,routeHero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:2);
             ClericDefender(session);ClericEnd(session,routeHero);ClericDefender(session);
-            ClericGuard(session,routeAlly);ClericEnd(session,routeAlly);ClericGuard(session,routeHero);
+            ClericGuard(session,routeAlly);firstClericAction?.Invoke(session);ClericEnd(session,routeAlly);ClericGuard(session,routeHero);
             ClericCommit(session,routeHero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:1);
             ClericDefender(session);ClericEnd(session,routeHero);ClericDefender(session);
             // The composed Frightened defender spends its first available Action on Presence.
@@ -84,6 +86,7 @@ namespace Decennium.Foundation.Tests
                 ClericEnd(session,hero); ClericDefender(session); ClericGuard(session,ally); ClericEnd(session,ally);
             }
             if(directory!=null)session.Save(Path.Combine(directory,"cleric-before-objective.ddsave"));
+            beforeClosure?.Invoke(session);
             ClericCommit(session,hero,CommandKind.EndFixedEncounter,session.View(ExpeditionSeat.Player).TurnId);
             Require(ShortRestCapture(session).ClericObjective != null,"Actual two-conflict/batch closure must earn the declared objective.");
             return session;

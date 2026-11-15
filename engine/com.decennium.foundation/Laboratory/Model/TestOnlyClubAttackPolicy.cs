@@ -252,6 +252,8 @@ namespace Decennium.Foundation.Laboratory
             if(ObservationRules.Enabled(s)&&!ObservationRules.LocationKnown(s,c.Actor,c.Target))return "TargetLocationUnknown";
             if(ObservationRules.Enabled(s)&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "BlockedLineOfEffect";
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return "TargetOutOfReach";
+            string spellCapacity=TestOnlySharedWorldPolicy.SpellDamageCapacityFailure(s,c.Target);
+            if(spellCapacity!=null)return spellCapacity;
             if (assessTactical) return SoldierTacticalFeatures.AttackAuditCapacityFailure(s);
             bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Target,c.Actor);
             bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,c.Actor,c.Target);
@@ -266,9 +268,8 @@ namespace Decennium.Foundation.Laboratory
             int modifier=checked(strengthModifier
                 +(attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
                 +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier); // STR10, explicitly no Club proficiency grant.
-            var defense=ActiveStance(s,c.Target);int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
-            int ac=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,dexterity)+(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
-                +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
+            int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
+            int ac=TestOnlySharedWorldPolicy.EffectiveArmorClass(s,c.Target,dexterity);
             string attackId="attack."+N(s.Revision+1);
             string captureFailure=SoldierTacticalFeatures.CaptureAndConsume(s,attackId,c.Actor,c.Target,"",out _);if(captureFailure!=null)return captureFailure;
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,advantage?1:0,disadvantage?1:0);
@@ -298,7 +299,9 @@ namespace Decennium.Foundation.Laboratory
             } else damage=new CombatDamageRoll(Array.Empty<int>(),0,0,next,next,0,0,0,0);
             s.RandomState=next;
             var record=new MeleeAttackRecord(attackId,s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
-            s.MeleeAttacks=s.MeleeAttacks.Concat(new[]{record}).ToArray();return null;
+            s.MeleeAttacks=s.MeleeAttacks.Concat(new[]{record}).ToArray();
+            if(!pending)TestOnlySharedWorldPolicy.SettleSpellDamage(s,c.Target,c.Actor,c.Id,damage.Total);
+            return null;
         }
         internal static string ResolveReadyAttack(Snapshot s,string commandId,string actorId,string targetId,string weaponId,
             AttackKnockoutMode knockout)
@@ -316,6 +319,8 @@ namespace Decennium.Foundation.Laboratory
             if(r==null||c.Actor!=pending.AttackerId||c.Target!=pending.Id||r.TurnId!=s.Encounter.CurrentTurnId||c.X!=0||c.Y!=0
                 ||r.WeaponId!=""||r.Stance!=0||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidKnockoutChoice";
             var before=s.Lives.Single(l=>l.ActorId==pending.TargetId);var d=pending.Damage;
+            string spellCapacity=TestOnlySharedWorldPolicy.SpellDamageCapacityFailure(s,pending.TargetId);
+            if(spellCapacity!=null)return spellCapacity;
             // Reconstruct the immutable continuation from its retained seed and unchanged target facts.
             // The prior rolls are verified, never applied to the world random stream a second time.
             int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
@@ -327,7 +332,8 @@ namespace Decennium.Foundation.Laboratory
             var result=prior.Pending.Complete(r.Choice);s.RandomState=result.NextRandomState;ApplyLife(s,before,result.Outcome.State);
             var resolved=new MeleeAttackRecord(pending.Id,pending.Revision,s.Revision+1,pending.TurnOrdinal,pending.AttackerId,pending.TargetId,pending.WeaponId,pending.At,
                 pending.Instruction,pending.Attack,DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,result),pending.Opportunity,pending.PressInstruction);
-            s.MeleeAttacks=s.MeleeAttacks.Select(a=>a.Id==pending.Id?resolved:a).ToArray();return null;
+            s.MeleeAttacks=s.MeleeAttacks.Select(a=>a.Id==pending.Id?resolved:a).ToArray();
+            TestOnlySharedWorldPolicy.SettleSpellDamage(s,pending.TargetId,pending.AttackerId,c.Id,d.Total);return null;
         }
         internal static void ApplyLife(Snapshot s,ActorLifeRecord before,LifeState after)
         {
@@ -338,12 +344,14 @@ namespace Decennium.Foundation.Laboratory
             s.Lives=s.Lives.Select(l=>l.ActorId==record.ActorId?record:l).ToArray();
             TestOnlySharedWorldPolicy.ReconcileTemporaryHpLoss(s, before, after);
             ExpeditionStrainRules.ClampLife(s, before.ActorId, s.RuleClock, s.Revision + 1);
+            TestOnlySharedWorldPolicy.EndCastingForLife(s,before,after);
             if(newlyUnconscious) {
                 if(WithConditions(s))AddPhysicalProne(s,before.ActorId,"zero-hp");
             }
             if(dropEquipment) {
                 var a=s.Actors.Single(x=>x.Id==before.ActorId);
                 TestOnlySharedWorldPolicy.DropConnectedVial(s, a);
+                TestOnlySharedWorldPolicy.DropCastingFocus(s, a);
                 s.Clubs=s.Clubs.Select(w=>w.HeldBy==a.Id?new ClubInstance(w.Id,w.ProfileId,w.OwnerId,w.CustodianId,"",a.X,a.Y):w).ToArray();
                 s.RepeatingCrossbows=s.RepeatingCrossbows.Select(w=>w.HeldBy==a.Id?w.DropAt(a.X,a.Y):w).ToArray();
             }

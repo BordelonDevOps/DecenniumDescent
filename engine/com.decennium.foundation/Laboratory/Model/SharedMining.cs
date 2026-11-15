@@ -890,17 +890,17 @@ namespace Decennium.Foundation.Laboratory
             PutMiningToolUse(s,use.CompletePreparation(s.RuleClock,retainedId,gangueId));
         }
 
-        private void ResolveReadyMining(Snapshot s)
+        private void ResolveReadyMining(Snapshot s,Command cause=null)
         {
             var ready=s.MiningAttempts.Where(x=>x.Status==MiningAttemptStatus.AwaitingCheck).ToArray();
             if(ready.Length>0)TestOnlyClubAttackPolicy.AdvanceConditions(s,".mining-ready",true);
             foreach(var attempt in ready) {
                 var deposit=s.MiningDeposits.Single(x=>x.Id==attempt.DepositId);
-                if(MiningAccess(s,attempt.WorkerId,deposit,attempt.Id,attempt.SelectedUnitIds)==null)FinishMiningCheck(s,attempt);
+                if(MiningAccess(s,attempt.WorkerId,deposit,attempt.Id,attempt.SelectedUnitIds)==null)FinishMiningCheck(s,attempt,cause);
             }
         }
 
-        private void FinishMiningCheck(Snapshot s,MiningAttemptRecord prior)
+        private void FinishMiningCheck(Snapshot s,MiningAttemptRecord prior,Command cause)
         {
             var actorFacts=CharacterStateFacts.ForActor(s,prior.WorkerId,"mining-tools");
             var toolUse=s.SchemaVersion>=Snapshot.MiningToolCandidateSchema
@@ -1021,6 +1021,7 @@ namespace Decennium.Foundation.Laboratory
                 roll.First,roll.Second??0,roll.Natural,modifier,d4,damage,d4==0?"":"bludgeoning",wound,injuryRoll,
                 randomBefore,s.RandomState,words,assistantBonus));
             if(toolUse!=null)PutMiningToolUse(s,toolUse.WithOutcome(toolQualified,reserveAwarded,dressedAwarded));
+            SettleSpellDamage(s,prior.WorkerId,"",cause?.Id,damage,false);
             ReconcileDyingCadences(s);PauseIncompatibleWork(s);
         }
 
@@ -1224,7 +1225,7 @@ namespace Decennium.Foundation.Laboratory
             }
             var current=facts.Current;
             if(c.Kind==CommandKind.PauseMining){PauseMining(s,current);return null;}
-            if(current.Status==MiningAttemptStatus.AwaitingCheck){FinishMiningCheck(s,current);return null;}
+            if(current.Status==MiningAttemptStatus.AwaitingCheck){FinishMiningCheck(s,current,c);return null;}
             BookMining(s,current);
             PutMiningAttempt(s,current.WithWork(s.RuleClock,current.WorkDone,MiningAttemptStatus.Working,current.CommittedAt));return null;
         }

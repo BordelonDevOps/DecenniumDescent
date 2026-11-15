@@ -574,6 +574,14 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            string contaminationFailure=SpellCastingProfile.PhysicalFailure(s,c);
+            if(contaminationFailure!=null)return new CommandQueryResult(true,false,contaminationFailure,s.Revision);
+            if(s.ConnectedClericCasting&&c.Kind==CommandKind.CastKnownSpell)return QuerySpellCast(s,c);
+            if(s.ConnectedClericCasting&&SpellCastingProfile.IsUtilityCommand(c.Kind))return QueryCastingUtility(s,c);
+            if(s.ConnectedClericCasting&&SpellCastingProfile.IsPhysicalCommand(c.Kind)) {
+                string failure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
+            }
             if (ClericRepertoireProfile.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, ClericRepertoireProfile.CommandFailure(s, c), s.Revision);
             if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);

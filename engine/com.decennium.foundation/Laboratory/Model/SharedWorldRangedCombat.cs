@@ -78,6 +78,8 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
+                ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack)
             ||clericMilestoneDeclaration!=null&&kind==CommandKind.UseHealingRite
             ||clericRepertoireSelection!=null&&ClericRepertoireProfile.IsCommand(kind)
             ||connectedFrightened&&kind==CommandKind.UseIntimidatingPresence
@@ -146,12 +148,14 @@ namespace Decennium.Foundation.Laboratory
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {
             if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            if(PendingSanctuary(s)!=null)return DiscoverCastingCommands(s,authority,actor);
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
-                    .Concat(DiscoverBloodTreatment(s, authority, actor));
+                    .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor));
             var options=new System.Collections.Generic.List<Command>();
+            options.AddRange(DiscoverCastingCommands(s,authority,actor));
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
             options.AddRange(DiscoverConnectedRecipe4(s,actor));
@@ -284,6 +288,21 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if(s.ConnectedClericCasting&&(PendingSanctuary(s)!=null||c.Kind==CommandKind.RespondSanctuary||SanctuaryAttackCommand(c)))
+                return QuerySanctuaryCommand(s,c);
+            string guidanceFailure=GuidanceChoiceFailure(s,c);
+            if(guidanceFailure!=null)return new CommandQueryResult(true,false,guidanceFailure,s.Revision);
+            if(s.ConnectedClericCasting&&c.Kind==CommandKind.StabilizeCompanion) {
+                string medicineFailure=ResolveCompanionStabilization(s,c,true);
+                return new CommandQueryResult(true,medicineFailure==null,medicineFailure??"Available",s.Revision,
+                    medicineFailure==null?new[]{new CommandCost("action","",1)}:null);
+            }
+            if(s.ConnectedClericCasting&&c.Kind==CommandKind.Hide&&s.InventoryCombat) {
+                string hideQueryFailure=AssessObservationAction(s,c,out _);
+                if(hideQueryFailure==null)hideQueryFailure=ResolveHide(s,c,true);
+                return new CommandQueryResult(true,hideQueryFailure==null,hideQueryFailure??"Available",s.Revision,
+                    hideQueryFailure==null?new[]{new CommandCost("action","",1)}:null);
+            }
             if (ShortRestBerth.IsCommand(c.Kind) || ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor) {
                 string restFailure = ResolveCore(s.Copy(), c);
                 return new CommandQueryResult(true, restFailure == null, restFailure ?? "Available", s.Revision);
@@ -546,6 +565,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveSuppressionFire(Snapshot s,Command c)
         {
             string failure=AssessSuppressionFire(s,c,out var facts);if(failure!=null)return failure;
+            BreakSanctuaryForHostileSave(s,c.Actor,c.Id);
             var weapon=facts.Weapon;
             s.RepeatingCrossbows=s.RepeatingCrossbows.Select(x=>x.Id==weapon.Id?x.WithMagazine(x.LoadedBoltLots.Skip(3).ToArray()):x).ToArray();
             uint damageBefore=s.RandomState,damageState=damageBefore;long damageWords=0;var dice=new int[facts.ClassLevel];
@@ -578,6 +598,7 @@ namespace Decennium.Foundation.Laboratory
                 s.RandomState=rolledDamage.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,rolledDamage.Outcome.State);
                 results.Add(new SuppressionFireTargetResult(targetId,actor.X,actor.Y,natural,modifier,total,success,targetDamage,afterDefense,
                     saveBefore,saveAfter,saveWords,lifeBefore,rolledDamage.NextRandomState,rolledDamage.WordsConsumed));
+                SettleSpellDamage(s,targetId,c.Actor,c.Id,afterDefense);
                 if(!success) {
                     if(s.SuppressionSlows.Length+slows.Count>=SoldierTacticalFeatureValidation.MaxSuppressionSlows)return "SuppressionSlowCapacityReached";
                     string slowId="suppression-slow."+N(s.Revision+1)+"."+N(slowIndex++);
@@ -688,10 +709,7 @@ namespace Decennium.Foundation.Laboratory
             var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
             var targetFacts=CharacterRuleFacts.ForActor(s,c.Target);
             int targetDex=targetFacts.AbilityScore(CharacterAbility.Dexterity);
-            var targetStance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Target);
-            int armorClass=checked(CharacterAdvancementRules.ArmorClass(s,c.Target,targetDex)
-                +(targetStance?.Kind==CombatStance.Aggressive?-2:targetStance?.Kind==CombatStance.Guarded?1:0)
-                +CharacterAdvancementRules.DefensivePositioningBonus(s,c.Target));
+            int armorClass=EffectiveArmorClass(s,c.Target,targetDex);
             bool targetLocationKnown=rangedCombat.TargetLocationKnown
                 &&(!ObservationRules.Enabled(s)||ObservationRules.LocationKnown(s,c.Actor,c.Target));
             bool lineOfFireClear=rangedCombat.LineOfFireClear
@@ -789,7 +807,8 @@ namespace Decennium.Foundation.Laboratory
                 c.Actor,c.Target,weapon.Id,ammunitionLot,s.RuleClock,recordedAttack,damage)}).ToArray();
             if(shot.Attack.Attack.Hit)SoldierTacticalFeatures.ApplyHit(s,attackId,c.Actor,c.Target,c.Kind);
             SoldierTacticalFeatures.StartRecharge(s,c.Actor,c.Kind);
-            s.RandomState=next;SetInterval(s,interval.PayAction());return null;
+            s.RandomState=next;SetInterval(s,interval.PayAction());
+            SettleSpellDamage(s,c.Target,c.Actor,c.Id,afterDefense);return null;
         }
 
         private static string ShotFailureCode(RepeatingCrossbowShotFailure failure)

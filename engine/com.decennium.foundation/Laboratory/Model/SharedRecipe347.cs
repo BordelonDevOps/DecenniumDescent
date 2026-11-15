@@ -534,7 +534,7 @@ namespace Decennium.Foundation.Laboratory
             }
             PutRecipe347Order(s,order.WithSettlement(s.RuleClock,status,choice,mishap,xp,incidentId,outputId));
         }
-        private string FinishRecipe347Check(Snapshot s,Recipe347WorkOrderRecord order)
+        private string FinishRecipe347Check(Snapshot s,Recipe347WorkOrderRecord order,Command cause)
         {
             if(s.Receipts.Length>=511||s.Revision>=long.MaxValue-1)return "Recipe347SettlementReceiptCapacityReached";
             var facts=CharacterStateFacts.ForActor(s,order.WorkerId,"mining-tools");
@@ -553,7 +553,7 @@ namespace Decennium.Foundation.Laboratory
                 incident=order.Id+".mishap";
                 var fact=new CraftingMishapFact(incident,mishap,order.WorkerId,s.RuleClock,new[]{order.WorkerId},
                     TestOnlyRecipe347Fixture.MiningToolsStructureId,TestOnlyRecipe347Fixture.StationId,"Mining");
-                string consequence=ApplyCraftingMishap(s,fact);if(consequence!=null)return consequence;
+                string consequence=ApplyCraftingMishap(s,fact,cause);if(consequence!=null)return consequence;
             }
             SettleRecipe347(s,order,CraftQualityChoice.StandardQuantity,mishap,incident);return null;
         }
@@ -576,7 +576,7 @@ namespace Decennium.Foundation.Laboratory
                 PutRecipe347Order(s,order.WithWork(s.RuleClock,order.Work.Interrupt(true),Recipe347OrderStatus.Cancelled));return null;
             }
             if(c.Kind==CommandKind.ResumeRecipe347) {
-                if(order.Status==Recipe347OrderStatus.AwaitingCheck)return FinishRecipe347Check(s,order);
+                if(order.Status==Recipe347OrderStatus.AwaitingCheck)return FinishRecipe347Check(s,order,c);
                 BookRecipe347(s,order,false);PutRecipe347Order(s,order.WithWork(s.RuleClock,order.Work,Recipe347OrderStatus.Working));return null;
             }
             if(c.Kind==CommandKind.ResolveRecipe347Quality) {

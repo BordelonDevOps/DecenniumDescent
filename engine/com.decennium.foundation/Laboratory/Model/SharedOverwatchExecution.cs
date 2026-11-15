@@ -141,11 +141,8 @@ namespace Decennium.Foundation.Laboratory
             long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));
             if(distance>RepeatingCrossbowShotRules.MaximumRangeFeet||!overwatchExecution.TargetVisible
                 ||!TestOnlyClubAttackPolicy.CanSee(s,offer.OwnerId,offer.TargetId))return false;
-            var defense=TestOnlyClubAttackPolicy.ActiveStance(s,offer.TargetId);
             int targetDexterity=targetFacts.AbilityScore(CharacterAbility.Dexterity);
-            int ac=checked(CharacterAdvancementRules.ArmorClass(s,offer.TargetId,targetDexterity)
-                +(defense?.Kind==CombatStance.Aggressive?-2:defense?.Kind==CombatStance.Guarded?1:0)
-                +CharacterAdvancementRules.DefensivePositioningBonus(s,offer.TargetId));
+            int ac=EffectiveArmorClass(s,offer.TargetId,targetDexterity);
             bool closeHostile=s.WorldSchedule.Order.Where(id=>id!=offer.OwnerId&&!SoldierTacticalFeatures.IsAlly(s,offer.OwnerId,id)).Any(id=>{
                 var other=s.Actors.Single(a=>a.Id==id);var otherLife=s.Lives.Single(l=>l.ActorId==id);
                 bool incapacitated=otherLife.Dead||otherLife.Hp==0||TestOnlyClubAttackPolicy.ConditionsFor(s,id).View().Clauses.Incapacitated;
@@ -234,6 +231,7 @@ namespace Decennium.Foundation.Laboratory
             var record=new RangedAttackRecord(attackId,s.Revision+1,s.Encounter.TurnOrdinal,offer.OwnerId,offer.TargetId,
                 facts.Weapon.Id,ammunitionId,s.RuleClock,attackRecord,damage);
             s.RangedAttacks=s.RangedAttacks.Concat(new[]{record}).ToArray();s.RandomState=next;
+            SettleSpellDamage(s,offer.TargetId,offer.OwnerId,c.Id,afterDefense);
             s.OverwatchOffers=s.OverwatchOffers.Select(x=>x.Id==offer.Id?x.Resolve(OverwatchOfferStatus.Accepted,s.Revision+1,attackId):x).ToArray();
             var targetLife=s.Lives.Single(x=>x.ActorId==offer.TargetId);
             if(shot.Attack.Hit&&!targetLife.Dead) {
@@ -264,6 +262,7 @@ namespace Decennium.Foundation.Laboratory
                     ApplyOverwatchBleed(s,pending);
                     break;
                 case OverwatchRider.Push:
+                    BreakSanctuaryForHostileSave(s,pending.OwnerId,c.Id);
                     if(TestOnlyClubAttackPolicy.ConditionsFor(s,pending.TargetId).View().Clauses.Has(ConditionClause.Staggered))return "UnsupportedStaggeredPush";
                     if(owner.X!=target.X&&owner.Y!=target.Y)return "UnsupportedOverwatchPushGeometry";
                     int directionX=Math.Sign(target.X-owner.X),directionY=Math.Sign(target.Y-owner.Y);

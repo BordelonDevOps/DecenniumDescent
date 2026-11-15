@@ -17,9 +17,9 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
 
-        private string ResolveCompanionStabilization(Snapshot state, Command command)
+        private string ResolveCompanionStabilization(Snapshot state, Command command,bool assessOnly=false)
         {
-            if (!state.ConnectedCompanionStabilization || !state.InventoryCombat
+            if (!state.ConnectedCompanionStabilization && !state.ConnectedClericCasting || !state.InventoryCombat
                 || state.Reinforcement?.Admission == null
                 || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId
                 || command.Actor != ConnectedVialRules.CarrierId || command.Target != ConnectedVialRules.CompanionRecipientId
@@ -49,9 +49,11 @@ namespace Decennium.Foundation.Laboratory
                 return "StabilizationTargetOutOfReach";
             var before = state.Lives.Single(x => x.ActorId == patient.Id);
             if (!Dying(before)) return "StabilizationTargetNotDying";
+            if(assessOnly)return null;
 
             var facts = CharacterStateFacts.ForActor(state, actor.Id, "medicine");
-            int modifier = facts.TotalWithInjury(CharacterAbility.Wisdom);
+            int modifier = checked(facts.TotalWithInjury(CharacterAbility.Wisdom)
+                +ConsumeGuidance(state,command,command.Id+".medicine",GuidanceCheckKind.MedicineStabilization));
             bool disadvantage = View(state, actor.Id).Has(ConditionKind.Poisoned)
                 || ExpeditionStrainRules.Current(state, actor.Id).ExpeditionCheckDisadvantage;
             uint randomBefore = state.RandomState;

@@ -65,8 +65,10 @@ namespace Decennium.Foundation
                 ||((fitRuleId!="")!=(members.Length!=0))||open&&(capacityPounds==null)
                 ||(linkKind==PortableLinkKind.AlchemyDose)!=(massBasis==PortableMassBasis.AlchemyDose)
                 ||heldHands<0||heldHands>2||heldHands>0&&(placement!=PortablePlacement.Carried||parentId!=""
-                    ||(linkKind==PortableLinkKind.AlchemyDose?heldHands!=1:profileId!="armor-and-shields.shield"||!wearable))
-                ||(wearable&&placement!=PortablePlacement.Worn&&profileId!="adventuring-gear.backpack"&&profileId!="armor-and-shields.shield"))
+                    ||(linkKind==PortableLinkKind.AlchemyDose?heldHands!=1:profileId==SpellCastingProfile.FocusProfileId
+                        ?heldHands!=1||!wearable:profileId!="armor-and-shields.shield"||!wearable))
+                ||(wearable&&placement!=PortablePlacement.Worn&&profileId!="adventuring-gear.backpack"&&profileId!="armor-and-shields.shield"
+                    &&profileId!=SpellCastingProfile.FocusProfileId))
                 throw new ArgumentException("Invalid portable equipment record.");
             Id=id;ProfileId=profileId;OwnerId=ownerId;CustodianId=custodianId;ParentId=parentId;Placement=placement;
             LinkKind=linkKind;LinkedId=linkedId;MassBasis=massBasis;SourceWeightLb=sourceWeightLb;OperationalWeightLb=operationalWeightLb;
@@ -299,6 +301,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Duplicate or future portable equipment history.");
             bool Actor(string id)=>s.Actors.Any(x=>x.Id==id);
             foreach(var item in items) {
+                if(item.ProfileId==SpellCastingProfile.FocusProfileId&&!SpellCastingProfile.IsFocus(s,item))
+                    throw new ArgumentException("The holy-symbol focus requires its explicit profile and origin.");
                 if(item.MassBasis==PortableMassBasis.Unmodeled&&s.SchemaVersion<Snapshot.OrdinaryReceptacleSchema)
                     throw new ArgumentException("Unmodeled mass requires schema50.");
                 if(!Actor(item.OwnerId)||!Actor(item.CustodianId))throw new ArgumentException("Portable owner or custodian is not an actor.");

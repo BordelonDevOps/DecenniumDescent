@@ -384,7 +384,7 @@ namespace Decennium.Foundation.Laboratory
             SettleConnectedRecipe4(s,j);
             if (s.ConnectedCarriedVial) RegisterConnectedVial(s);
         }
-        private void FinishManufacturingCheck(Snapshot s,ManufacturingOrderRecord j)
+        private void FinishManufacturingCheck(Snapshot s,ManufacturingOrderRecord j,Command cause)
         {
             // The accepted check may need one later quality command. Never commit a frozen
             // decision at the last available receipt/revision with no representable settlement.
@@ -408,7 +408,7 @@ namespace Decennium.Foundation.Laboratory
                 var d6=DiceStream.Draw(s.RandomState,6);s.RandomState=d6.NextState;
                 string id=j.Id+".mishap";int suffix=0;
                 while(s.CraftingIncidents.Any(x=>x.Id==id)||crafting.Events.Any(x=>x.Id==id))id=j.Id+".mishap."+(++suffix).ToString(CultureInfo.InvariantCulture);
-                string error=ApplyCraftingMishap(s,new CraftingMishapFact(id,d6.Value+1,j.WorkerId,s.RuleClock));
+                string error=ApplyCraftingMishap(s,new CraftingMishapFact(id,d6.Value+1,j.WorkerId,s.RuleClock),cause);
                 if(error!=null)throw new InvalidOperationException(error);
                 j=ChangeOrder(s,j,ManufacturingStatus.AwaitingChoice,incident:id);
                 SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1,d6.Value+1,true);
@@ -478,7 +478,7 @@ namespace Decennium.Foundation.Laboratory
                 PutOrder(s,ChangeOrder(s,controlled,ManufacturingStatus.Cancelled));SettleConnectedRecipe4(s,controlled);return null;
             }
             if(c.Kind==CommandKind.ResumeManufacturing){
-                if(controlled.Status==ManufacturingStatus.AwaitingCheck){FinishManufacturingCheck(s,controlled);
+                if(controlled.Status==ManufacturingStatus.AwaitingCheck){FinishManufacturingCheck(s,controlled,c);
                     if(ManufacturingChoicePending(s))s.ManufacturingAdvance=new ManufacturingAdvanceRecord(s.RuleClock,false,c.Id,s.Revision+1,"");return null;}
                 BookManufacturing(s,controlled);PutOrder(s,ChangeOrder(s,controlled,ManufacturingStatus.Working));return null;
             }
