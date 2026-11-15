@@ -4,6 +4,8 @@
 
 Read the [complete casting proposal](CASTING_CONTRACT.md). It selects the six currently relevant owned Cleric spell identities, exact component/target/payment/effect requirements, specific TAC-02/TAC-05/TAC-07 integrations, proposed commands/history, supported saves and genuine connected acceptance evidence. Ten labeled policy proposals require actual GPT agreement. No runtime approval is inferred from this document or source audit.
 
+The frozen proposal `a7942a590b079f76bd95aa7a68c1d8604173c255` has been submitted to **Unity Rules Engine Development Part 2**, request `57e5896c-8fd0-445b-bdb3-dabd94524248`. [Exact request and pending status](REVIEW_REQUEST.json). Actual review is in progress; do not send a duplicate or treat a user-only completed connector turn as GPT acceptance. Await the actual final response, resolve concrete amendments/blockers and record Codex agreement before implementation.
+
 ## Proposed bounded scope
 
 | Spell | Rank / base RP | Required actual behavior |
