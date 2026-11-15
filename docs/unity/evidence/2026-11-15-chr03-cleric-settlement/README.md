@@ -1,4 +1,14 @@
-# CHR-03 complete Cleric settlement contract
+# CHR-03 earned Cleric settlement
+
+**Implementation committed; actual final acceptance pending.** Source `34229ec6f19c9569dd35fd7b6013b99f37759c85` implements the approved bounded earned transaction and real paid Radiance producer. Actual interim response `9883d00f-464b-5e8b-8c44-97a6a4c103ad` found no concrete code blocker or mandatory correction; Codex agrees. Both genuine campaigns pass all five execution paths with85 canonical checkpoint comparisons. C#9 compilation, static checks, all seven new cases and21 authentic wire95–107 roundtrip/remaining-command continuations pass. The original1,524-case full regression and final evidence reconciliation remain in progress. No successor has started.
+
+[Implementation and actual numerical witnesses](IMPLEMENTATION_EVIDENCE.md) · [Actual interim review](GPT_INTERIM_IMPLEMENTATION_REVIEW.md) · [Exact source audit](implementation/SOURCE_AUDIT.json) · [Evidence reconciliation script](support/Retain-ImplementationEvidence.py).
+
+This bounded source-bound TEST_ONLY gameplay is not release promotion or whole-engine completion. Ordinary casting/preparation, wider advancement, RP/Conviction recovery, other card effects and Resurrection remain unavailable. Unity gameplay integration is deferred.
+
+## Historical approved contract and source record
+
+The following proposal-stage record preceded the implementation above; its original next-action statements describe that earlier checkpoint.
 
 **Complete CHR-03 contract approved for bounded TEST_ONLY implementation.** Actual response `dbb657df-4133-556e-bccc-a389145b7916` approves proposal `c600743971484404e8c618182ce56ec95cd49d06`, with no design blocker or mandatory correction; Codex agrees. [Actual complete-contract approval and exact scope](GPT_COMPLETE_CONTRACT_REVIEW.md). Baseline `91ede3a20dc1c2672bf431746ce143eb5d8a1951` records TAC-05 acceptance, with runtime `f5800818bfadb7c51865c96a6058f9af2deb75a3` and final evidence `e222a8663f0c74df886b4d927a5ec715e5fe34a5`. All1,517 predecessor cases passed. TAC-07 acceptance remains in force. Next is CHR-03 implementation, complete evidence and actual final review.
 
