@@ -1,0 +1,192 @@
+"""Verify and retain TAC-06 Flesh Warden exact source, focused evidence and full regression."""
+
+import argparse
+import hashlib
+import io
+import json
+from pathlib import Path
+import shutil
+import subprocess
+import zipfile
+
+
+def read_json(path):
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def lines(path):
+    return path.read_text(encoding="utf-8-sig").splitlines()
+
+
+def digest(payload):
+    return hashlib.sha256(payload).hexdigest()
+
+
+def require(test, message):
+    if not test:
+        raise ValueError(message)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("implementation")
+    for name in ("headless", "standalone", "static", "public", "compatibility", "direct", "run"):
+        parser.add_argument(f"--{name}", type=Path, required=True)
+    parser.add_argument("--complete", action="store_true")
+    args = parser.parse_args()
+    packet = Path(__file__).resolve().parent
+    previous = packet.parent / "2026-11-14-mgt03-rest-calendar"
+    archive_bytes = subprocess.check_output(["git", "archive", "--format=zip", args.implementation, "engine"])
+    archive = zipfile.ZipFile(io.BytesIO(archive_bytes))
+    artifacts = {}
+
+    def retain(source, relative):
+        target = packet / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
+        payload = target.read_bytes()
+        artifacts[relative] = {"bytes": len(payload), "sha256": digest(payload)}
+
+    def retain_compilation(source, relative):
+        report = read_json(source)
+        require(report["status"] == "PASS", f"Failed report: {source}")
+        for item in report["sourceHashes"]:
+            name = "engine/" + item["path"].replace("\\", "/")
+            require(digest(archive.read(name)) == item["sha256"].lower(), f"Wrong source hash: {name}")
+        retain(source, relative)
+        return report
+
+    source_bindings = read_json(packet / "SOURCE_API_BINDINGS.json")
+    for source in source_bindings["sources"]:
+        blob = subprocess.check_output(
+            ["git", "rev-parse", source_bindings["sourceRevision"] + ":" + source["path"]], text=True).strip()
+        require(blob == source["gitBlob"], f"Wrong pinned source blob: {source['path']}")
+        payload = subprocess.check_output(["git", "cat-file", "blob", blob])
+        require(digest(payload) == source["sha256"], f"Wrong pinned source hash: {source['path']}")
+
+    headless = retain_compilation(args.headless / "results.json", "compile/headless.json")
+    retain_compilation(args.standalone, "compile/standalone.json")
+    retain_compilation(args.static, "compile/static.json")
+    focused = [headless["cases"][0]]
+    focus_names = {"tac06_flesh_warden_connected_real_healing_and_rest_replacement", "tac06_flesh_warden_choice_interruption_identity_authority_and_forgery", "tac06_flesh_warden_shared_capacity_life_temp_and_strain_boundaries"}
+    require({row["Name"] for row in focused} == {"tac06_flesh_warden_shared_capacity_life_temp_and_strain_boundaries"} and all(row["Passed"] and not row["Error"] for row in focused),
+            "The exact focused case did not pass.")
+    for file in sorted((args.headless / "saves").rglob("*.ddsave")):
+        retain(file, f"focused/{file.name}")
+    assemblies = {}
+    for name in ("Core", "Persistence", "LabModel", "HeadlessTests"):
+        dll = f"Decennium.Foundation.{name}.dll"
+        relative = "assemblies/" + dll
+        retain(args.headless / dll, relative)
+        assemblies[dll] = artifacts[relative]
+
+    public = read_json(args.public / "results.json")
+    compatibility = read_json(args.compatibility / "results.json")
+    direct = read_json(args.direct / "results.json")
+    require(public["Status"] == compatibility["Status"] == direct["Status"] == "PASS", "Public, compatibility or typed replay failed.")
+    for name, branch in public["Branches"].items():
+        require(branch["DirectCheckpoints"] == direct["Branches"][name]["DirectCheckpoints"], "Typed and receipt checkpoint sets differ.")
+        details = direct["Branches"][name]
+        direct_folder = args.direct / name
+        console = args.public / name / "Restored"
+        requests = read_json(direct_folder / "requests.json")
+        require(len(requests) == details["Inputs"]
+                and digest((direct_folder / "requests.json").read_bytes()) == details["RequestsSha256"]
+                and digest((console / "inputs.jsonl").read_bytes()) == details["InputSha256"]
+                and digest((console / "responses.jsonl").read_bytes()) == details["ReferenceResponsesSha256"], "Typed request stream identity differs.")
+        for row in requests:
+            if "BeforeSnapshot" in row:
+                require(digest((direct_folder / row["BeforeSnapshot"]).read_bytes()) == row["UnchangedSha256"]
+                        == digest((direct_folder / row["AfterSnapshot"]).read_bytes()), "Denied/retried state pair differs.")
+        for mark, sha in details["DirectCheckpoints"].items():
+            require(digest((direct_folder / mark).read_bytes()) == sha == digest((console / mark).read_bytes()), "Typed checkpoint file differs.")
+    for folder, label in ((args.public, "public"), (args.compatibility, "compatibility"), (args.direct, "direct")):
+        retained = set()
+        if label == "direct":
+            for name in direct["Branches"]:
+                rows = read_json(folder / name / "requests.json")
+                for row in rows:
+                    for field in ("BeforeSnapshot", "AfterSnapshot"):
+                        if field in row: retained.add(name + "/" + row[field])
+                for mark in direct["Branches"][name]["DirectCheckpoints"]: retained.add(name + "/" + mark)
+        for file in sorted(folder.rglob("*")):
+            relative = file.relative_to(folder).as_posix()
+            if file.is_file() and not file.name.endswith(".bak") and (label != "direct" or file.suffix == ".json" or relative in retained):
+                retain(file, label + "/" + relative)
+
+    run = args.run
+    names = lines(run / "all-names.txt")
+    prior_names = lines(previous / "regression/inventory.txt")
+    require(len(names) == len(set(names)) == 1503 and [name for name in names if name not in focus_names] == prior_names,
+            "The exact inventory must preserve all 1,500 predecessors in order.")
+    launch = read_json(run / "launch.json")
+    expected = {name: value["sha256"] for name, value in assemblies.items()}
+    require(launch["assemblies"] == expected and launch["inventorySha256"] == digest((run / "all-names.txt").read_bytes()),
+            "Run launch differs from accepted bytes or exact inventory.")
+    process_rows = {entry["group"]: entry for entry in read_json(run / "processes.json")}
+    results = {}
+    assigned_union = []
+    modules = None
+    group_names = ["shard" + suffix for suffix in "ABCDEF"]
+    for group in group_names:
+        start = read_json(run / f"{group}.started.json")
+        assignment = run / f"{group}-names.txt"
+        assignment_sha = digest(assignment.read_bytes())
+        assigned = lines(assignment)
+        assigned_union.extend(assigned)
+        require(start["runId"] == launch["runId"] and start["group"] == group
+                and start["pid"] == process_rows[group]["pid"] and len(assigned) == process_rows[group]["cases"]
+                and start["inventorySha256"] == launch["inventorySha256"]
+                and start["assignmentSha256"] == assignment_sha == launch["assignments"][group]
+                and {name: item["sha256"] for name, item in start["assemblies"].items()} == expected,
+                f"Invalid worker start: {group}")
+        actual_modules = {name: entry["moduleId"] for name, entry in start["assemblies"].items()}
+        require(modules is None or actual_modules == modules, f"Inconsistent loaded modules: {group}")
+        modules = actual_modules
+        for file in (assignment, run / f"{group}.started.json"):
+            retain(file, "regression/" + file.name)
+        if not args.complete:
+            continue
+        completed = read_json(run / f"{group}.execution.json")
+        journal_file = run / f"{group}.jsonl"
+        journal = [json.loads(line) for line in lines(journal_file)]
+        require(all(completed.get(key) == value for key, value in start.items())
+                and completed["journalSha256"] == digest(journal_file.read_bytes())
+                and completed["cases"] == len(assigned) and lines(run / f"{group}.done") == ["DONE"]
+                and [row["Name"] for row in journal] == assigned,
+                f"Invalid completed execution: {group}")
+        for row in journal:
+            require(row["Passed"] and not row["Error"] and row["Name"] not in results, f"Failed or repeated case: {row}")
+            results[row["Name"]] = row
+        for suffix in (".execution.json", ".jsonl", ".done"):
+            retain(run / (group + suffix), "regression/" + group + suffix)
+    require(sorted(assigned_union) == sorted(names), "Assignments are not the complete exact inventory.")
+    for short_name, module in direct["Assemblies"].items():
+        dll = f"Decennium.Foundation.{short_name}.dll"
+        require(module["sha256"] == expected[dll] and module["moduleId"] == modules[dll], "Typed verifier used a different assembly.")
+
+    retain(run / "launch.json", "regression/launch.json")
+    retain(run / "processes.json", "regression/processes.json")
+    retain(run / "all-names.txt", "regression/inventory.txt")
+    identity = {"implementationCommit": args.implementation, "sourceArchiveSha256": digest(archive_bytes),
+                "executedAssemblies": assemblies, "moduleIds": modules, "runId": launch["runId"]}
+    if args.complete:
+        require(set(results) == set(names) and all(results[row["Name"]] == row for row in focused),
+                "The completed run must include the passing focused result and all predecessors.")
+        report = {"status": "PASS", **identity, "testsDiscovered": len(names), "passed": len(names), "failed": 0,
+                  "cases": [results[name] for name in names], "unity": "NOT RUN"}
+        result = packet / "regression/results.json"
+        result.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        artifacts["regression/results.json"] = {"bytes": result.stat().st_size, "sha256": digest(result.read_bytes())}
+    for pattern in ("*.ps1", "*.py", "*.jsonl", "*.md", "SOURCE_API_BINDINGS.json", "development/*.json"):
+        for file in sorted(packet.glob(pattern)):
+            relative = file.relative_to(packet).as_posix()
+            artifacts[relative] = {"bytes": file.stat().st_size, "sha256": digest(file.read_bytes())}
+    binding = {**identity, "sourceBindings": source_bindings, "contractReview": "74916fce-4f57-51ec-bd74-9d9b6d450c14", "newRegisteredCases": sorted(focus_names),
+               "focusedCases": focused, "regressionCases": len(results) if args.complete else None,
+               "public": {name: branch["DirectCheckpoints"] for name, branch in public["Branches"].items()}, "compatibility": compatibility, "artifacts": dict(sorted(artifacts.items()))}
+    (packet / "BINDINGS.json").write_text(json.dumps(binding, indent=2) + "\n", encoding="utf-8")
+
+
+if __name__ == "__main__":
+    main()

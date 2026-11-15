@@ -1,5 +1,10 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-15 — TAC-06 Flesh Warden (wire104 TEST_ONLY; implementation under review)
+
+Actual contract approval `74916fce-4f57-51ec-bd74-9d9b6d450c14` authorizes implementation `0742794a7c1f8e15dd4e38ff72ae21dd61762b4a`. Shared fixture entitlements and a typed Basic Vital qualification support one real rest-bound mutation slot; the first completed rest equips Flesh Warden, later genuine tactical healing exceeds the old capacity, and the second completed rest replaces it with dormant Spinal Buffer and clamps excess HP only. Source provenance, interruption, same-card identity, cadence, shared life/systemic resolution, wire104 persistence and filtered public commands/views are implemented. Final exact regression and connected evidence are in progress; acceptance remains open. [Contract and evidence](evidence/2026-11-14-tac06-maximum-hp/README.md) · [Actual contract review](evidence/2026-11-14-tac06-maximum-hp/GPT_CONTRACT_REVIEW.md)
+
+
 ## 2026-11-14 — Short Rest/calendar correction (wire103 TEST_ONLY; bounded correction accepted)
 
 Codex and GPT accepted source `999c969eb88e37cd9503b832f4fba45d89200b3b` and final evidence `a246a5ad1e54827ef6416816bdd62a08bf547697` in response `3e89a445-fe0f-500c-bd1b-d80610bac36d`. Short Rest uses actual combat mode for admission and interruption while preserving the ordinary sparse calendar. All 1,500 exact cases passed. The focused case, C# 9 compilation, 18 static checks, 69 new public checkpoints, all 571 typed inputs with 24 denial/retry pairs, and authentic wire95–103 compatibility pass. The predecessor's 75 checkpoints and transcripts remain unchanged. The approved successor is the separate TAC-06 Flesh Warden source/API contract; implementation awaits that review. [Correction evidence](evidence/2026-11-14-mgt03-rest-calendar/README.md) · [Actual final review](evidence/2026-11-14-mgt03-rest-calendar/GPT_FINAL_REVIEW.md)
