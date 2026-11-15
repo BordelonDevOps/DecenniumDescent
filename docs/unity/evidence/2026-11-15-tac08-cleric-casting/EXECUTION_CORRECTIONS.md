@@ -1,0 +1,23 @@
+# TAC08 execution corrections
+
+Runtime implementation `de2bc389d288b280ebb6387722da3d735b48cb03` changed exactly60 engine files. Correction `242108be4ee18f2e6a10d9cd03ba1f185df557e5` changes only `engine/com.decennium.foundation/Tests/EditMode/ConnectedVialCases.cs`: the detached stabilization guard probe now explicitly supplies `false` for the new optional `assessOnly` parameter. Reflection does not automatically fill an omitted optional argument. The old probe continues to exercise the same resolver and the same dead-target, occupied-hand and blocked-delivery denials; no assertion or gameplay behavior was removed.
+
+The first full run, `863350e3bb8c453db52cdf56967175b1`, recorded `TargetParameterCountException` in `tac06_connected_companion_stabilization_paid_failure_and_absolute_recovery`. Its six original workers were explicitly stopped after the actual failure. At stop their journals contained17/24/131/128/36/41 rows (377 total,376 passing and one failure). Launch, assignments, original loaded DLL identities, journals, failure and checked process-termination record are retained. This run is failed and incomplete. It is neither continued under replacement PIDs nor relabeled as the corrected run.
+
+`support/Compile-CorrectedFoundationTests.ps1` recompiles every Foundation test source with C#9/warnings-as-errors against the exact previously compiled Core, Persistence and LabModel DLL bytes. It rechecks every runtime source hash against the original successful compilation, copies those three DLLs without modification, captures all430 current source hashes and runs the failed predecessor case to a pass. This compilation chain is disclosed rather than described as a new runtime build. Standalone compilation remains applicable because its runtime inputs are unchanged. A fresh package-static run covers the corrected test source as well.
+
+Corrected full run `794e8537f2644c98a0b304abdd0eb6f2` starts from committed correction `242108be4ee18f2e6a10d9cd03ba1f185df557e5`, with fresh journals and original workers16308/15720/16588/18040/10160/12408. It must run all1,551 cases, preserving all1,524 predecessor names/order and27 new cases. The completed27-case development run and connected campaigns retain their own original test assembly identity; all use the identical three runtime DLLs. Final campaign saves must additionally match the independently executed corrected full-run cases.
+
+Three supplemental harness attempts had incorrect expected diagnostic codes. Their generated C# sources, partial unchanged-state files and explicit failed reports are retained separately from the successful fourth attempt:
+
+| Request | Original expectation | Actual governing boundary |
+| --- | --- | --- |
+| Attack with Combat and Guidance payloads | `GuidanceConsumerUnsupported` | `UnexpectedSpellPayload`: mixed legacy payload is rejected first. |
+| Ready with a spell payload | Identical query/execution codes | Query reports `UnsupportedOperation` because this profile does not admit Ready; execution rejects the malformed mixture with `UnexpectedSpellPayload`. Neither mutates state. |
+| Counterspell identity | `SpellNotKnown` | `SpellSourceAdmissionUnsupported`: the identity is outside the admitted source cohort before known-spell lookup. |
+
+These were test expectation corrections, not changes to command admission. The successful supplemental run verifies eight typed/history controls and three malformed console requests against the frozen runtime DLLs. It is counted separately from the1,551 Foundation inventory. Detached stale-epoch/known-origin/class-level mutations are invalid historical counterexamples rejected by the snapshot codec, not admitted saves or genuine acquisition.
+
+The completed legacy-console report contains23 cases and92 actual full-view comparisons through wire108. Its terminal-only success message still printed the predecessor's84/wire95–107 count. That display string was corrected to derive the count from the completed rows; the executed comparisons and retained JSON report already used the correct23-case inventory.
+
+Earlier implementation-development failures and their corrections remain in retained development reports. They include focus-onset contract clarification, selected-profile view ordering, explicit public handover willingness, actual paid handling/calendar timing, the test projection of fractional water and the new Sanctuary metadata GUID. Historical reports do not imply that their earlier source state can be reconstructed from the final archive. No failure is reclassified as a pass, and no evidence exception or final acceptance is inferred.

@@ -1,0 +1,478 @@
+{
+  "campaign": "guidance",
+  "checkpoint": "tac08-guidance-hidden.ddsave",
+  "sha256": "b06e128a8917c8163694014ffb94c0ece9f4762c1a871f5064f836d22cb78c8b",
+  "wire": 109,
+  "revision": 129,
+  "clock": "113329/2",
+  "randomState": 2949583773,
+  "testOnly": true,
+  "productionAuthority": false,
+  "inventoryCombat": true,
+  "activeEncounter": "TEST_ONLY.later-conflict",
+  "closedEncounterCount": 1,
+  "actorLife": [
+    {
+      "ActorId": "TEST_ONLY.actor",
+      "MaximumHp": 26,
+      "Hp": 21,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "MaximumHp": 8,
+      "Hp": 8,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.haven-copper-buyer",
+      "MaximumHp": 8,
+      "Hp": 8,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.later-defender",
+      "MaximumHp": 26,
+      "Hp": 8,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": false
+    },
+    {
+      "ActorId": "TEST_ONLY.third-combatant",
+      "MaximumHp": 26,
+      "Hp": 0,
+      "TemporaryHp": 0,
+      "Stable": false,
+      "Dead": true
+    }
+  ],
+  "pools": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "Current": 3,
+      "Maximum": 3
+    }
+  ],
+  "strain": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "Dissonance": 0,
+      "LastSpellId": "guidance",
+      "Refrain": 0
+    }
+  ],
+  "knownSpells": [
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "arcane-ward",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "guidance",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "purify-food-and-drink",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "sanctuary",
+      "AcquiredRevision": 0
+    },
+    {
+      "ActorId": "TEST_ONLY.companion",
+      "SpellId": "spare-the-dying",
+      "AcquiredRevision": 0
+    }
+  ],
+  "earnedObjective": null,
+  "characterAdvancements": [],
+  "casts": [
+    {
+      "command": "tac08.guidance.hero",
+      "revision": 123,
+      "actor": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.actor",
+      "spell": "guidance",
+      "at": "113325/2",
+      "classLevel": 1,
+      "rank": 0,
+      "dc": 12,
+      "focused": false,
+      "focus": "",
+      "turn": {
+        "ActorId": "TEST_ONLY.companion",
+        "EpochId": "TEST_ONLY.reinforced-calendar",
+        "LocalStart": 0,
+        "GlobalStart": 2,
+        "CarriedAdmissionRevision": 0,
+        "IsCarried": false,
+        "Binding": "TEST_ONLY.companion|TEST_ONLY.reinforced-calendar|0|2|0"
+      },
+      "rpBefore": 3,
+      "baseRp": 0,
+      "surcharge": 0,
+      "rpAfter": 3,
+      "strainBefore": 0,
+      "strainAfter": 0,
+      "refrain": 0,
+      "randomBefore": 4024505547,
+      "randomAfter": 4024505547,
+      "words": 0
+    }
+  ],
+  "effects": [
+    {
+      "id": "tac08.guidance.hero.effect",
+      "cast": "tac08.guidance.hero",
+      "spell": "guidance",
+      "caster": "TEST_ONLY.companion",
+      "target": "TEST_ONLY.actor",
+      "present": false,
+      "starts": "113325/2",
+      "expires": "113445/2",
+      "reason": "GuidanceConsumed",
+      "concentration": false
+    }
+  ],
+  "saves": [],
+  "pendingSanctuary": [],
+  "guidanceUses": [
+    {
+      "EffectId": "tac08.guidance.hero.effect",
+      "ActorId": "TEST_ONLY.actor",
+      "CommandId": "tac08.guidance.actual-hide",
+      "Revision": 129,
+      "CheckId": "observation.129.hide",
+      "CheckKind": "Hide",
+      "At": {
+        "Numerator": 113329,
+        "Denominator": 2
+      },
+      "D4": 3,
+      "RandomBefore": 1652186263,
+      "RandomAfter": 352166915,
+      "WordsConsumed": 1
+    }
+  ],
+  "detectFocuses": [],
+  "contamination": [
+    {
+      "Id": "TEST_ONLY.cleric-casting.ordinary-contamination",
+      "LotId": "TEST_ONLY.cleric-casting.contaminated-water",
+      "OriginId": "TEST_ONLY.cleric-casting.initial-physical.v1",
+      "OriginRevision": 0,
+      "Kind": "OrdinaryPoison",
+      "DestroyedByCastId": "",
+      "DestroyedRevision": 0,
+      "Present": true,
+      "Purifiable": true
+    }
+  ],
+  "stocks": [
+    {
+      "id": "TEST_ONLY.clean-pool",
+      "unit": "prototype.potable-water.pint",
+      "amount": "32/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.cleric-casting.contaminated-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "1/1",
+      "location": "TEST_ONLY.plot-flask",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.haven-buyer-two-copper-coins",
+      "unit": "TEST_ONLY.genuine-copper-piece",
+      "amount": "2/1",
+      "location": "TEST_ONLY.haven-copper-buyer",
+      "custodian": "TEST_ONLY.haven-copper-buyer"
+    },
+    {
+      "id": "TEST_ONLY.haven-cooked-serving",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.companion",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.mining.unit.copper",
+      "unit": "mass-pound",
+      "amount": "1/1",
+      "location": "ground.3.3",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.mining.unit.iron",
+      "unit": "mass-pound",
+      "amount": "1/1",
+      "location": "TEST_ONLY.haven-copper-buyer",
+      "custodian": "TEST_ONLY.haven-copper-buyer"
+    },
+    {
+      "id": "TEST_ONLY.pack-rations",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "20/1",
+      "location": "TEST_ONLY.actor",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.pack-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "4/1",
+      "location": "TEST_ONLY.pack-skin",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.preservation.supplies",
+      "unit": "mass-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.preservation.sealable-vessel",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.ready-rations",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "2/1",
+      "location": "TEST_ONLY.supply-cache",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.ready-water",
+      "unit": "prototype.potable-water.pint",
+      "amount": "4/1",
+      "location": "TEST_ONLY.actor-skin",
+      "custodian": "TEST_ONLY.actor"
+    },
+    {
+      "id": "TEST_ONLY.seed-packets",
+      "unit": "prototype.camp-greens.seed-packet",
+      "amount": "8/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "TEST_ONLY.water-pints",
+      "unit": "prototype.suitable-water.pint",
+      "amount": "512/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "inventory.35.lot",
+      "unit": "TEST_ONLY.ration-pound",
+      "amount": "0/1",
+      "location": "TEST_ONLY.companion",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.glass-vials",
+      "unit": "ordinary.glass-vial-1gp",
+      "amount": "3/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.recipe14.set0.component2",
+      "unit": "drop-black_blood_sample",
+      "amount": "0/1",
+      "location": "TEST_ONLY.recipe4.bench-apparatus.v1",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component0",
+      "unit": "ing-4-0-alchemical_catalyst",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component1",
+      "unit": "ing-4-1-crystal_vial",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component2",
+      "unit": "ing-4-2-alchemical_base",
+      "amount": "0/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set0.component3",
+      "unit": "drop-black_blood_sample",
+      "amount": "1/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component0",
+      "unit": "ing-4-0-alchemical_catalyst",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component1",
+      "unit": "ing-4-1-crystal_vial",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component2",
+      "unit": "ing-4-2-alchemical_base",
+      "amount": "5/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    },
+    {
+      "id": "manufacture.set1.component3",
+      "unit": "drop-black_blood_sample",
+      "amount": "1/1",
+      "location": "TEST_ONLY.prepared-plot",
+      "custodian": "TEST_ONLY.companion"
+    }
+  ],
+  "focus": [
+    {
+      "Id": "TEST_ONLY.cleric-casting.holy-symbol",
+      "OwnerId": "TEST_ONLY.companion",
+      "CustodianId": "TEST_ONLY.companion",
+      "Placement": "Worn",
+      "HeldHands": 0,
+      "GroundX": 0,
+      "GroundY": 0
+    }
+  ],
+  "intakes": [
+    {
+      "Id": "inventory.31.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "TEST_ONLY.haven-cooked-serving",
+      "ReservationId": "inventory.31.intake.stock",
+      "StartedAt": {
+        "Numerator": 5443,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 5593,
+        "Denominator": 1
+      },
+      "Status": "Interrupted"
+    },
+    {
+      "Id": "inventory.45.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "inventory.35.lot",
+      "ReservationId": "inventory.45.intake.stock",
+      "StartedAt": {
+        "Numerator": 5626,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 5776,
+        "Denominator": 1
+      },
+      "Status": "Complete"
+    },
+    {
+      "Id": "inventory.49.intake",
+      "ActorId": "TEST_ONLY.companion",
+      "LotId": "TEST_ONLY.haven-cooked-serving",
+      "ReservationId": "inventory.49.intake.stock",
+      "StartedAt": {
+        "Numerator": 5789,
+        "Denominator": 1
+      },
+      "EndedAt": {
+        "Numerator": 6089,
+        "Denominator": 1
+      },
+      "Status": "Complete"
+    }
+  ],
+  "manufacturing": [
+    {
+      "Id": "manufacture.order.104",
+      "WorkerId": "TEST_ONLY.companion",
+      "RecipeId": "recipe-4",
+      "MaterialSet": 0,
+      "ExtraVials": 2,
+      "TakeTen": false,
+      "Status": "Complete",
+      "Work": {
+        "Phases": [
+          {
+            "Numerator": 900,
+            "Denominator": 1
+          },
+          {
+            "Numerator": 13500,
+            "Denominator": 1
+          }
+        ],
+        "CompletedPhases": 2,
+        "Partial": {
+          "Numerator": 0,
+          "Denominator": 1
+        },
+        "Labor": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Complete": true,
+        "Retained": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Required": {
+          "Numerator": 14400,
+          "Denominator": 1
+        },
+        "Remaining": {
+          "Numerator": 0,
+          "Denominator": 1
+        }
+      },
+      "StartedAt": {
+        "Numerator": 42248,
+        "Denominator": 1
+      },
+      "UpdatedAt": {
+        "Numerator": 56648,
+        "Denominator": 1
+      },
+      "StabilizedAt": {
+        "Numerator": 43148,
+        "Denominator": 1
+      },
+      "First": 15,
+      "Second": 0,
+      "Natural": 15,
+      "Quality": "Exceptional",
+      "Choice": "FullYield",
+      "RetainedCatalyst": -1,
+      "Mishap": 0,
+      "XpAward": 4,
+      "FindingId": "",
+      "MishapIncidentId": "",
+      "Open": false
+    }
+  ]
+}

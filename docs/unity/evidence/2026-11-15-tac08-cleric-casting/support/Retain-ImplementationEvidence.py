@@ -1,0 +1,303 @@
+"""Retain and reconcile TAC08's exact implementation, original execution and connected evidence."""
+import argparse
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import zipfile
+
+PACKET = Path(__file__).resolve().parents[1]
+ROOT = PACKET.parents[3]
+ART = ROOT / 'engine/artifacts/tac08-cleric-casting'
+OUT = PACKET / 'implementation'
+if os.name == 'nt':
+    OUT = Path('\\\\?\\' + str(OUT))
+COMMIT = '242108be4ee18f2e6a10d9cd03ba1f185df557e5'
+REG = ART / 'regression-corrected-20261115'
+GROUPS = ['shard' + letter for letter in 'ABCDEF']
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+def lines(path):
+    return path.read_text(encoding='utf-8-sig').splitlines()
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def require(value, message):
+    if not value:
+        raise ValueError(message)
+
+def retain(source, relative):
+    target = OUT / relative
+    target.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(source, target)
+
+def tree(source, relative):
+    require(source.is_dir(), 'Missing evidence folder: ' + str(source))
+    for file in sorted(source.rglob('*')):
+        if file.is_file():
+            retain(file, str(Path(relative) / file.relative_to(source)))
+
+def passed(path):
+    value = read(path)
+    require(value.get('status', value.get('Status')) == 'PASS', 'Evidence has not passed: ' + str(path))
+    return value
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--checkpoint', action='store_true', help='Retain completed evidence and exact observed journal prefixes; never claim full-run completion.')
+    parser.add_argument('--static', type=Path, required=True, help='Completed frozen-source static report directory')
+    args = parser.parse_args()
+    checkpoint_stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+    launch = read(REG / 'launch.json')
+    require(launch['sourceCommit'] == COMMIT and launch['sourceCommitted'] and launch['requiredCount'] == 1551, 'Wrong source/run inventory')
+    require(sha(Path(launch['runner'])) == launch['runnerSha256'], 'Original execution runner changed')
+    names = lines(REG / 'all-names.txt')
+    prior = lines(PACKET.parent / '2026-11-15-chr03-cleric-settlement/implementation/regression/all-names.txt')
+    focus = [name for name in names if name.startswith('tac08_')]
+    require(len(names) == 1551 and len(focus) == 27 and [name for name in names if name not in focus] == prior
+            and len(prior) == 1524 and sha(REG / 'all-names.txt') == launch['inventorySha256'], 'Predecessor order changed')
+    processes = {row['group']: row for row in read(REG / 'processes.json')}
+    all_results = []
+    completed_workers = []
+    captured_journals = {}
+    for group in GROUPS:
+        assignment = lines(REG / (group + '-names.txt'))
+        journal_bytes = (REG / (group + '.jsonl')).read_bytes()
+        rows = [json.loads(row) for row in journal_bytes.decode('utf-8-sig').splitlines()]
+        captured_journals[group] = journal_bytes
+        started = read(REG / (group + '.started.json'))
+        done = REG / (group + '.done')
+        complete = done.exists() and lines(done) == ['DONE']
+        require(complete or args.checkpoint, 'Original worker has not completed: ' + group)
+        execution = read(REG / (group + '.execution.json')) if complete else started
+        if complete:
+            completed_workers.append(group)
+            require(execution['cases'] == len(assignment) == processes[group]['cases']
+                    and execution['journalSha256'] == hashlib.sha256(journal_bytes).hexdigest(), 'Completed worker journal/count differs')
+        else:
+            require(len(rows) <= len(assignment) == processes[group]['cases'], 'Observed journal exceeds assignment')
+        require(execution['runId'] == started['runId'] == launch['runId']
+                and execution['pid'] == started['pid'] == processes[group]['pid'], 'Worker identity/count mismatch')
+        require([row['Name'] for row in rows] == (assignment if complete else assignment[:len(rows)])
+                and all(row['Passed'] and not row['Error'] for row in rows),
+                'Original worker failed or differs from assignment: ' + group)
+        require(launch['assignments'][group] == sha(REG / (group + '-names.txt'))
+                and execution['assignmentSha256'] == launch['assignments'][group]
+                and execution['inventorySha256'] == launch['inventorySha256'], 'Execution hashes differ')
+        for name, digest in launch['assemblies'].items():
+            require(execution['assemblies'][name]['sha256'] == started['assemblies'][name]['sha256'] == digest
+                    and execution['assemblies'][name]['moduleId'] == started['assemblies'][name]['moduleId']
+                    and sha(REG / 'execution-assemblies' / name) == digest, 'Loaded binary identity differs')
+        all_results.extend(rows)
+    require(len(all_results) == len({row['Name'] for row in all_results})
+            and (args.checkpoint or len(all_results) == len(names)), 'Missing or duplicate full-suite result')
+    require(set(focus).issubset({row['Name'] for row in all_results}), 'New focused cases are not all complete')
+    # Captured prefixes are explicitly incomplete historical observations. A final
+    # reconciliation must prove every captured byte belongs to the original journal.
+    if args.checkpoint:
+        checkpoint_dir = OUT / 'regression-checkpoints' / checkpoint_stamp
+        checkpoint_dir.mkdir(parents=True)
+        for group, data in captured_journals.items():
+            (checkpoint_dir / (group + '.jsonl')).write_bytes(data)
+    else:
+        for prefix in (OUT / 'regression-checkpoints').glob('*/*.jsonl'):
+            require((REG / prefix.name).read_bytes().startswith(prefix.read_bytes()), 'Original journal diverged from a retained prefix')
+    for file in REG.iterdir():
+        if file.is_file() and (not args.checkpoint or file.name.endswith(('-names.txt', '.started.json'))
+                or file.name in {'launch.json', 'processes.json', 'all-names.txt', 'compiled-source-report.json'}):
+            retain(file, 'regression/' + file.name)
+    for name in focus:
+        tree(REG / 'saves' / name, 'focused/' + name)
+    dev = ART / 'focused-20261115T1858'
+    dev_launch = read(dev / 'launch.json')
+    dev_processes = {row['group']: row for row in read(dev / 'processes.json')}
+    runtime_names = [name for name in launch['assemblies'] if not name.endswith('.HeadlessTests.dll')]
+    require(dev_launch['requiredCount'] == 27 and not dev_launch['sourceCommitted']
+            and all(dev_launch['assemblies'][name] == launch['assemblies'][name] for name in runtime_names),
+            'Focused development runtime binary identity differs')
+    dev_names = []
+    for group in GROUPS:
+        assignment = lines(dev / (group + '-names.txt'))
+        journal = dev / (group + '.jsonl')
+        rows = [json.loads(row) for row in lines(journal)]
+        started = read(dev / (group + '.started.json'))
+        completed = read(dev / (group + '.execution.json'))
+        require(lines(dev / (group + '.done')) == ['DONE'] and [row['Name'] for row in rows] == assignment
+                and all(row['Passed'] and not row['Error'] for row in rows)
+                and completed['runId'] == started['runId'] == dev_launch['runId']
+                and completed['pid'] == started['pid'] == dev_processes[group]['pid']
+                and completed['cases'] == len(rows) == dev_processes[group]['cases']
+                and completed['journalSha256'] == sha(journal)
+                and completed['assignmentSha256'] == dev_launch['assignments'][group] == sha(dev / (group + '-names.txt')),
+                'Focused development worker identity/result differs')
+        for name, digest in dev_launch['assemblies'].items():
+            require(completed['assemblies'][name]['sha256'] == started['assemblies'][name]['sha256'] == digest
+                    and completed['assemblies'][name]['moduleId'] == started['assemblies'][name]['moduleId'],
+                    'Focused loaded binary identity differs')
+        dev_names.extend(assignment)
+    require(len(dev_names) == 27 and set(dev_names) == set(focus), 'Focused development inventory differs')
+    for file in dev.iterdir():
+        if file.is_file():
+            retain(file, 'focused-development/' + file.name)
+    corrected_build = ART / 'corrected-test-build'
+    corrected_report = passed(corrected_build / 'results.json')
+    original_build = ART / 'focus-handover-calendar-tests/run-20261115T185604581Z-a1e013ab'
+    original_report = passed(original_build / 'results.json')
+    require(corrected_report['originalReportSha256'] == sha(original_build / 'results.json')
+            and corrected_report['testsDiscovered'] == 1551 and corrected_report['passed'] == 1,
+            'Corrective compilation chain differs')
+    for row in corrected_report['reusedRuntimeAssemblies']:
+        require(row['sha256'] == launch['assemblies'][row['name']] == sha(original_build / row['name']),
+                'Corrected tests do not use the frozen runtime DLLs')
+    for row in original_report['sourceHashes']:
+        if '/Tests/' not in row['path'].replace('\\', '/'):
+            require(sha(ROOT / 'engine' / row['path'].replace('\\', '/')) == row['sha256'].lower(),
+                    'Original runtime compilation input changed')
+    retain(original_build / 'results.json', 'builds/original-runtime-compilation/results.json')
+    tree(corrected_build / 'corrected-case', 'builds/headless/corrected-case')
+    for folder, label in [
+        (corrected_build, 'headless'),
+        (ART / 'pre-freeze-standalone/compile-20261115T185311096Z-2aaf368f', 'standalone'),
+        (args.static, 'static')]:
+        report = passed(folder / 'results.json')
+        for source in report.get('sourceHashes', []):
+            require(sha(ROOT / 'engine' / source['path'].replace('\\', '/')) == source['sha256'].lower(), 'Build source changed')
+        for file in folder.iterdir():
+            if file.is_file() and file.suffix != '.dll':
+                retain(file, 'builds/' + label + '/' + file.name)
+    source_audit = passed(OUT / 'SOURCE_AUDIT.json')
+    require(source_audit['implementationCommit'] == COMMIT
+            and sha(OUT / source_audit['sourceArchive']) == source_audit['sourceArchiveSha256']
+            and sha(REG / 'compiled-source-report.json') == source_audit['buildReportSha256'], 'Source/archive/build identity differs')
+    with zipfile.ZipFile(OUT / 'execution-assemblies.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+        for name in launch['assemblies']:
+            archive.write(REG / 'execution-assemblies' / name, name)
+    comparisons = 0
+    view_comparisons = 0
+    checkpoint_count = 0
+    campaigns = {}
+    for route in ['sanctuary', 'purify', 'detect', 'guidance', 'concentration', 'focus']:
+        trace = ART / 'traces-20261115T1902' / route
+        executions = ART / 'paths-20261115T1905' / route
+        manifest = read(trace / 'manifest.json')
+        paths = passed(executions / 'results.json')
+        commands, marks = manifest['revision'], len(manifest['marks'])
+        expected = {row['name']: row['sha256'] for row in manifest['marks']}
+        require(commands > 0 and len(expected) == marks and marks >= 3, 'Campaign command/checkpoint inventory differs')
+        source = Path(manifest['finalSource'])
+        full_run_source = REG / 'saves' / source.parent.name / source.name
+        require(source.parent.name in focus and sha(source) == manifest['finalSha256'] == sha(full_run_source),
+                'Focused and original full-run campaign identities differ')
+        for mark in manifest['marks']:
+            require(set(mark['views']) == {'Player', 'FirstOpponent'}, 'Missing filtered seat view')
+            for view in mark['views'].values():
+                require(view['name'] not in expected, 'Duplicate checkpoint/view name')
+                expected[view['name']] = view['sha256']
+        require(len(expected) == marks * 3, 'Missing per-checkpoint canonical bytes or filtered views')
+        if route == 'sanctuary':
+            require(any('pending' in mark['name'] for mark in manifest['marks']), 'Mandatory pending Sanctuary save missing')
+        require(set(paths['paths']) == {'ConsoleUninterrupted', 'ConsoleRestored', 'TypedUninterrupted', 'TypedRestored', 'ReceiptReplay'}, 'Missing campaign execution mode')
+        require(paths['traceSha256'] == sha(trace / 'inputs.jsonl'), 'Changed typed command input')
+        for row in paths['assemblies']:
+            require(row['sha256'] == launch['assemblies']['Decennium.Foundation.' + row['name'] + '.dll'], 'Wrong campaign binary')
+        for mode, result in paths['paths'].items():
+            require(result['commands'] == commands and result['checkpoints'] == expected, 'Campaign checkpoint mismatch')
+            for name, digest in expected.items():
+                require(sha(trace / 'reference' / name) == sha(executions / mode / name) == digest, 'Checkpoint/view bytes differ')
+                if name.endswith('.ddsave'):
+                    comparisons += 1
+                else:
+                    view_comparisons += 1
+        checkpoint_count += marks
+        campaigns[route] = {'commands': commands, 'checkpoints': marks, 'modes': 5}
+        tree(trace, 'campaigns/' + route + '/trace')
+        tree(executions, 'campaigns/' + route + '/paths')
+    require(comparisons == checkpoint_count * 5 and view_comparisons == comparisons * 2, 'Incomplete connected comparisons')
+    compatibility_root = ART / 'compatibility-20261115T1859'
+    compatibility = passed(compatibility_root / 'results.json')
+    require(len(compatibility['Cases']) == compatibility['NewProfileRejections'] == 23, 'Missing authentic compatibility case')
+    for index, row in enumerate(compatibility['Cases']):
+        source = PACKET.parent / row['Source']
+        earlier = PACKET.parent / row['Earlier']
+        folder = compatibility_root / ('case-' + str(index) + '-wire' + str(row['Wire']))
+        require(row['Commands'] > 0 and sha(source) == row['SourceSha256'] == sha(folder / 'roundtrip.ddsave')
+                == sha(folder / 'continued.ddsave') and sha(earlier) == row['EarlierSha256'], 'Authentic save continuation changed')
+        retain(source, 'compatibility/authentic/case-' + str(index) + '-final.ddsave')
+        retain(earlier, 'compatibility/authentic/case-' + str(index) + '-earlier.ddsave')
+    tree(compatibility_root, 'compatibility')
+    projections = passed(ART / 'legacy-projections-final/results.json')
+    require(len(projections['cases']) == 23 and sum(row['views'] for row in projections['cases']) == 92, 'Missing old console views')
+    for file in (ART / 'legacy-projections-final').rglob('*'):
+        if file.is_file() and file.suffix != '.dll':
+            retain(file, str(Path('legacy-projections') / file.relative_to(ART / 'legacy-projections-final')))
+    witnesses = passed(ART / 'witnesses-final/results.json')
+    require(len(witnesses['checkpoints']) == checkpoint_count, 'Missing readable connected witness')
+    for row in witnesses['checkpoints']:
+        require(sha(ART / 'witnesses-final' / row['witness']) == row['sha256'], 'Readable witness changed')
+    tree(ART / 'witnesses-final', 'witnesses')
+    negatives = passed(ART / 'additional-negatives-v4/results.json')
+    require(len(negatives['typedControls']) == 8 and negatives['consoleMalformedControls'] == 3,
+            'Missing supplemental source/epoch/context/console controls')
+    require(sha(ART / 'additional-negatives-v4/CastingAdditionalNegatives.cs') == negatives['sourceSha256'],
+            'Supplemental control source changed')
+    for row in negatives['assemblies']:
+        require(row['sha256'] == launch['assemblies']['Decennium.Foundation.' + row['name'] + '.dll'],
+                'Supplemental controls used different engine binaries')
+    tree(ART / 'additional-negatives-v4', 'additional-negatives')
+    failed_run = ART / 'regression-20261115T1906'
+    halted = read(failed_run / 'HALTED_AFTER_FAILURE.json')
+    require(halted['status'] == 'FAILED_AND_REMAINING_WORKERS_STOPPED'
+            and halted['runId'] == '863350e3bb8c453db52cdf56967175b1'
+            and len(halted['failures']) == 1
+            and halted['failures'][0]['Name'] == 'tac06_connected_companion_stabilization_paid_failure_and_absolute_recovery',
+            'Original failed regression disclosure differs')
+    for file in failed_run.iterdir():
+        if file.is_file():
+            retain(file, 'failed-regression/' + file.name)
+    with zipfile.ZipFile(OUT / 'failed-regression/execution-assemblies.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
+        for file in (failed_run / 'execution-assemblies').glob('*.dll'):
+            archive.write(file, file.name)
+    tree(failed_run / 'saves' / halted['failures'][0]['Name'], 'failed-regression/failed-case')
+    for attempt in ['additional-negatives', 'additional-negatives-final', 'additional-negatives-corrected']:
+        tree(ART / attempt, 'supplemental-expectation-corrections/' + attempt)
+    # Retain exact before/after denial and retry bytes, independently reconciling every pair.
+    pairs = []
+    for before in sorted(list((OUT / 'focused').rglob('*-before.ddsave'))
+                         + list((OUT / 'additional-negatives').rglob('*-before.ddsave'))):
+        after = before.with_name(before.name.replace('-before.ddsave', '-after.ddsave'))
+        require(after.exists() and sha(before) == sha(after), 'Failed unchanged denial/retry pair: ' + str(before))
+        pairs.append({'before': before.relative_to(OUT).as_posix(), 'after': after.relative_to(OUT).as_posix(), 'sha256': sha(before)})
+    require(len(pairs) >= 25, 'Missing retained rejection/retry evidence')
+    # Preserve failures and corrections as historical reports, without passing
+    # them off as frozen implementation results or reconstructible old source.
+    for report in ART.rglob('results.json'):
+        if 'saves' not in report.parts:
+            retain(report, str(Path('development-reports') / report.relative_to(ART)))
+    summary = {'status': 'CHECKPOINT_ONLY_FULL_REGRESSION_INCOMPLETE' if args.checkpoint else 'EVIDENCE_READY_FOR_ACTUAL_FINAL_REVIEW', 'implementationCommit': COMMIT,
+        'atUtc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'contractApproval': '384b9c53-9d93-56f3-901b-cede1f7d3028',
+        'focusClarification': '94ea32c6-0c95-537d-83ec-732d1a0d171d',
+        'fullRegression': {'runId': launch['runId'], 'passed': len(all_results), 'required': len(names), 'failed': 0, 'predecessors': 1524,
+            'newCases': focus, 'workers': processes, 'completedWorkers': completed_workers,
+            'complete': not args.checkpoint and len(completed_workers) == len(GROUPS), 'originalJournalsAndMvidsVerified': True},
+        'campaigns': campaigns, 'canonicalCheckpointComparisons': comparisons, 'filteredViewComparisons': view_comparisons,
+        'authenticSaveContinuations': 23, 'legacyConsoleViews': 92, 'unchangedDenialRetryPairs': pairs,
+        'supplementaryControls': {'typedAndHistory': 8, 'malformedConsole': 3, 'separateFromFoundationInventory': True},
+        'originalFailedRun': {'runId': halted['runId'], 'status': halted['status'], 'failures': 1,
+            'correction': 'Test-only reflection call supplies the new optional false argument; runtime source and three runtime DLLs unchanged'},
+        'inheritedEvidenceExceptions': 'NONE', 'actualFinalGptReview': 'PENDING',
+        'unityIntegration': 'DEFERRED', 'wholeEngineCompletion': 'NOT COMPLETE'}
+    (OUT / ('REGRESSION_CHECKPOINT.json' if args.checkpoint else 'RESULTS.json')).write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
+    artifacts = {file.relative_to(OUT).as_posix(): {'bytes': file.stat().st_size, 'sha256': sha(file)}
+        for file in sorted(OUT.rglob('*')) if file.is_file() and file.name != 'ARTIFACT_INDEX.json'}
+    (OUT / 'ARTIFACT_INDEX.json').write_text(json.dumps({'artifacts': artifacts}, indent=2) + '\n', encoding='utf-8')
+    print(('CHECKPOINT ONLY: observed ' + str(len(all_results)) + '/1551 original cases; ' if args.checkpoint else 'PASS: reconciled all1551 original cases,')
+          + f'{comparisons} canonical comparisons,{view_comparisons} filtered views,23 authentic continuations,92 old console views, '
+          + str(len(pairs)) + ' unchanged pairs and ' + str(len(artifacts)) + ' retained artifacts')
+
+if __name__ == '__main__':
+    main()
