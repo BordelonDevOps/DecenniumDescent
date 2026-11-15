@@ -75,7 +75,7 @@ def main():
                             "authority": authority, "selectors": selectors})
         write_json(binding_path, {"baseline": BASELINE, "sourceRevision": SOURCE,
             "predecessorAcceptance": "84bd8644-f237-55a4-8d15-c8a18ddda017",
-            "status": "PENDING_SOURCE_API_REVIEW_NOT_RUNTIME_AUTHORITY", "sources": entries})
+            "status": "SOURCE_BINDINGS_ONLY_NOT_RUNTIME_AUTHORITY", "sources": entries})
     bindings = json.loads(binding_path.read_text(encoding="utf-8"))
     require(bindings["baseline"] == BASELINE and bindings["sourceRevision"] == SOURCE, "Wrong baseline.")
     require([(e["path"], e["revision"], e["authority"], e["selectors"]) for e in bindings["sources"]] == rows,
@@ -154,14 +154,17 @@ def main():
               "TAC-08": ["TAC-07", "TAC-02", "TAC-05"],
               "CHR-05": ["CHR-03", "TAC-02", "TAC-05", "TAC-08"]}.items()})
     artifacts = {}
-    for name in ["README.md", "SOURCE_API_CONTRACT.md", "SOURCE_API_BINDINGS.json", "Verify-Contract.py"]:
+    names = ["README.md", "SOURCE_API_CONTRACT.md", "SOURCE_API_BINDINGS.json", "Verify-Contract.py"]
+    if (PACKET / "GPT_CONTRACT_REVIEW.md").exists():
+        names.append("GPT_CONTRACT_REVIEW.md")
+    for name in names:
         data = (PACKET / name).read_bytes()
         artifacts[name] = {"bytes": len(data), "sha256": sha(data)}
     report = {"status": "PASS", "scope": "source and baseline contract audit only",
               "baseline": BASELINE, "sourceEntriesVerified": len(rows), "checks": checks,
               "engineChanged": False, "compilation": "NOT RUN; engine unchanged",
               "runtimeTests": "NOT RUN; engine unchanged", "runtimeImplementationAuthorized": False,
-              "reviewStatus": "PENDING", "artifacts": artifacts}
+              "reviewStatus": "Source audit only; actual reviewer decisions are recorded separately", "artifacts": artifacts}
     write_json(PACKET / "CONTRACT_VALIDATION.json", report)
     print(json.dumps({"status": "PASS", "sources": len(rows), "checks": len(checks),
                       "engineChanged": False, "runtimeTests": "NOT RUN"}))
