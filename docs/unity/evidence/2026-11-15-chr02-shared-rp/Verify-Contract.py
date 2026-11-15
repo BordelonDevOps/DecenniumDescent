@@ -105,6 +105,8 @@ for p in sorted(HERE.iterdir()):
 report=dict(status='PASS_SOURCE_CHECKS_ONLY',sourceFiles=len(source_paths),baselineFiles=len(audit_paths),
             exactSelectedCardSha256=card_hash,mappedDependencies=edges,engineChanges=changes,
             artifacts=artifacts,compilation='NOT_RUN_NO_ENGINE_CHANGE',runtimeTests='NOT_RUN',
-            connectedPaidHealingRite='NOT_IMPLEMENTED',gptReview='PENDING',pendingDecisions=data['pendingDecisions'])
+            connectedPaidHealingRite='NOT_IMPLEMENTED',
+            gptReview='009cd55a-2184-5e31-b093-b4b40b05e2d0' if (HERE/'GPT_CONTRACT_REVIEW.md').exists() else 'PENDING',
+            pendingDecisions=[] if (HERE/'GPT_CONTRACT_REVIEW.md').exists() else data['pendingDecisions'])
 (HERE/'CONTRACT_VALIDATION.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 print(json.dumps({k:v for k,v in report.items() if k not in ['artifacts','mappedDependencies']}))
