@@ -1,0 +1,120 @@
+diff --git a/engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs b/engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs
+index fb61b9a4b..a6a76a26c 100644
+--- a/engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs
++++ b/engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs
+@@ -78,7 +78,7 @@ namespace Decennium.Foundation.Laboratory
+                 :new DefenderIntent(DefenderIntentKind.RetargetSanctuary,view.SanctuaryTargets[0]);
+             if (view.Slot == DefenderDecisionSlot.Opportunity) {
+                 bool accept = view.EligibleOpportunity && view.HasClub && view.VisibleOpponents.Any(x =>
+-                    x.ActorId == view.VisibleProvokerId && x.ClearLineOfEffect);
++                    x.ActorId == view.VisibleProvokerId && x.ClearLineOfEffect && x.DirectAttackAllowed);
+                 return new DefenderIntent(accept ? DefenderIntentKind.AcceptOpportunity : DefenderIntentKind.DeclineOpportunity);
+             }
+             if (!view.StanceSelected && view.CanSelectStance) return new DefenderIntent(DefenderIntentKind.Guard);
+diff --git a/engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs b/engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs
+index 8ee4de4d7..647ad6ef0 100644
+--- a/engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs
++++ b/engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs
+@@ -30,6 +30,57 @@ namespace Decennium.Foundation.Tests
+             Require(ShortRestCapture(session).Reinforcement.Admission!=null,"The caster must enter by genuine paid reinforcement.");
+             if(selectStance)ClericGuard(session,ally);return session;
+         }
++        private static void RetainGenuineRefrainAcrossIdleAndWeapon(string directory)
++        {
++            const string actor=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero;
++            var session=CastingFirstOwnTurn();var codec=new SnapshotCodec();
++            void NextCasterTurn(){
++                ClericEnd(session,actor);ClericGuard(session,hero);ClericEnd(session,hero);ClericDefender(session);
++                Require(ShortRestCapture(session).Encounter.CurrentActor==actor,"The actual calendar did not return to the caster.");
++                ClericGuard(session,actor);
++            }
++            void Guidance(string id)=>CommitVialRoute(session,new Command(id,actor,ShortRestCapture(session).Revision,
++                CommandKind.CastKnownSpell,actor,spellCast:new SpellCastRequest("guidance",willingTarget:true)));
++            Guidance("tac08.refrain.initial");NextCasterTurn();
++            Guidance("tac08.refrain.repeat");NextCasterTurn();
++            var beforeIdle=ShortRestCapture(session);var retained=beforeIdle.CastingStrain.Single();
++            Require(retained.Refrain==1&&retained.Dissonance==1&&retained.LastSpellId=="guidance",
++                "The genuine persistence branch must establish a nonzero counter before its idle interval.");
++            session.Save(Path.Combine(directory,"tac08-refrain-before-idle.ddsave"));
++            NextCasterTurn();var afterIdle=ShortRestCapture(session);
++            Require(afterIdle.CastingStrain.Single().Refrain==1&&afterIdle.CastingStrain.Single().LastCastRevision==retained.LastCastRevision
++                &&afterIdle.CastingStrain.Single().Dissonance==0&&afterIdle.RuleClock>beforeIdle.RuleClock
++                &&!afterIdle.CastingTurnEnds.Last().MagicalActivity,
++                "An actual caster idle End must decay dissonance without resetting the nonzero last-spell counter.");
++            string path=Path.Combine(directory,"tac08-refrain-after-idle.ddsave");session.Save(path);
++            var bytes=codec.Encode(afterIdle);session.Restore(path);
++            Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Nonzero refrain did not restore across the idle interval.");
++            var beforeWeapon=ShortRestCapture(session);
++            ClericCommit(session,actor,CommandKind.AttackClub,FrightenedProfile.Actor,
++                combat:new CombatRequest(session.View(ExpeditionSeat.Player).TurnId,TestOnlyClubAttackPolicy.CompanionClub));
++            var weapon=ShortRestCapture(session);var attack=weapon.MeleeAttacks.Last();
++            Require(attack.AttackerId==actor&&attack.WeaponId==TestOnlyClubAttackPolicy.CompanionClub
++                &&weapon.MeleeAttacks.Length==beforeWeapon.MeleeAttacks.Length+1
++                &&attack.Attack.RandomBefore==beforeWeapon.RandomState&&attack.Attack.Words>0
++                &&weapon.WorldIntervals.Single(x=>x.ActorId==actor).ActionSpent
++                &&weapon.CastingStrain.Single().Refrain==1&&weapon.CastingStrain.Single().LastCastRevision==retained.LastCastRevision,
++                "The Cleric's own actual paid weapon attack must retain nonzero refrain and record its real RNG.");
++            session.Save(Path.Combine(directory,"tac08-refrain-caster-weapon.ddsave"));
++            NextCasterTurn();var afterWeaponEnd=ShortRestCapture(session);
++            Require(afterWeaponEnd.CastingStrain.Single().Refrain==1
++                &&afterWeaponEnd.CastingStrain.Single().LastCastRevision==retained.LastCastRevision
++                &&afterWeaponEnd.CastingStrain.Single().Dissonance==0&&afterWeaponEnd.RuleClock>weapon.RuleClock
++                &&!afterWeaponEnd.CastingTurnEnds.Last().MagicalActivity,
++                "The caster's weapon interval End must preserve the same nonzero counter.");
++            path=Path.Combine(directory,"tac08-refrain-after-weapon-end.ddsave");session.Save(path);session.Restore(path);
++            Guidance("tac08.refrain.after-idle-and-weapon");var after=ShortRestCapture(session);var cast=after.SpellCasts.Last();
++            Require(cast.AppliedRefrain==2&&cast.DissonanceBefore==0&&cast.DissonanceAfter==2
++                &&after.CastingStrain.Single().Refrain==2&&after.ResonancePools.Single().Current==3
++                &&after.RandomState==afterWeaponEnd.RandomState&&after.WorldIntervals.Single(x=>x.ActorId==actor).ActionSpent,
++                "The next same-spell cast must use the retained counter, its actual Action and finite unchanged RP/RNG.");
++            path=Path.Combine(directory,"tac08-refrain-after-continuing-cast.ddsave");session.Save(path);bytes=codec.Encode(after);session.Restore(path);
++            Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Genuine idle/weapon/cast receipt replay differs.");
++        }
+         private static void AddSpellCastingCases(Dictionary<string, Action> cases,string directory)
+         {
+             cases.Add("tac08_detached_purify_batches_contamination_and_enclosure", () => {
+@@ -449,6 +500,7 @@ namespace Decennium.Foundation.Tests
+                 Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Closure cadence failed independent replay.");
+             });
+             cases.Add("tac08_genuine_cadence_grounding_advancement_and_passive_concentration", () => {
++                RetainGenuineRefrainAcrossIdleAndWeapon(directory);
+                 const string hero=ConnectedExpeditionSession.Hero,actor=ClericRpProfile.Actor;
+                 var session=EarnClericObjective(false,selected:NewCastingExpedition());ReachClericOwnSlot(session);
+                 var codec=new SnapshotCodec();int expected=0;
+@@ -829,6 +881,36 @@ namespace Decennium.Foundation.Tests
+                 var restored=NewCastingExpedition();restored.Restore(path);
+                 Require(restored.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed
+                     &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),"Restoring a pending carried reaction changed its exact continuation.");
++                // A distinct opportunity can occur before the defender's next Start.
++                // Its known failed ward save prohibits attacking, without paying or rerolling.
++                ClericCommit(session,hero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:2);
++                ClericCommit(session,hero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,y:1);
++                var second=ShortRestCapture(session);var secondMove=second.TacticalMoves.Single(x=>x.Status==TacticalMoveStatus.AwaitingReactions);
++                Require(secondMove.Id!=movement.Id&&second.SpellSaves.Length==1
++                    &&second.TacticalActors.Single(x=>x.ActorId==pending.ActorId).ReactionAvailable,
++                    "The second occurrence must retain the same failed interval cache and available Reaction.");
++                path=Path.Combine(directory,"tac08-sanctuary-second-opportunity.ddsave");session.Save(path);
++                decision=controller.Plan(authority);bytes=codec.Encode(second);
++                Require(decision.Intent.Kind==DefenderIntentKind.DeclineOpportunity
++                    &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),
++                    "The controller must purely decline a known prohibited opportunity instead of stalling its parent.");
++                Require(session.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed,
++                    "The cached second opportunity must decline through the existing automatic controller.");
++                var resumed=ShortRestCapture(session);
++                Require(resumed.TacticalMoves.Single(x=>x.Id==secondMove.Id).Status==TacticalMoveStatus.Completed
++                    &&resumed.Actors.Single(x=>x.Id==hero).Y==1
++                    &&resumed.RandomState==second.RandomState&&resumed.SpellSaves.Length==second.SpellSaves.Length
++                    &&resumed.MeleeAttacks.Length==second.MeleeAttacks.Length
++                    &&resumed.TacticalActors.Single(x=>x.ActorId==pending.ActorId).ReactionAvailable
++                    &&!resumed.WorldIntervals.Single(x=>x.ActorId==hero).ActionSpent,
++                    "Declining a cached prohibition must complete this parent without rerolling, attacking or spending Reaction/Action.");
++                bytes=codec.Encode(resumed);session.Save(Path.Combine(directory,"tac08-sanctuary-second-parent-resumed.ddsave"));
++                restored=NewCastingExpedition();restored.Restore(path);
++                Require(restored.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed
++                    &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),
++                    "The second opportunity must restore and continue to identical bytes.");
++                restored.Restore(Path.Combine(directory,"tac08-sanctuary-second-parent-resumed.ddsave"));
++                Require(bytes.SequenceEqual(codec.Encode(ShortRestCapture(restored))),"Second-parent receipt replay differs.");
+             });
+             cases.Add("tac08_genuine_concentration_damage_uses_actual_packet", () => {
+                 var session=CastingFirstOwnTurn();const string hero=ConnectedExpeditionSession.Hero,actor=ClericRpProfile.Actor;
