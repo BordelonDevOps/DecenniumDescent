@@ -1,6 +1,10 @@
 # Foundation and provisional rules implementation trace
 
-## 2026-11-15 — TAC-08 initial source audit; complete contract pending
+## 2026-11-15 — TAC-08 complete casting proposal; actual review required
+
+The proposed bounded wire109/base90 casting increment selects all six owned Cleric procedures and their concrete action, component, focus, effect, concentration, RP, inventory and persistence integrations. Ten explicit prototype policies remain subject to actual GPT agreement. Guidance consumers and off-calendar availability are bounded and visibly incomplete; finite initial physical authoring supplies neither acquired authority nor extra runtime funding. The proposal requires genuine connected spell witnesses, independent save/replay paths, authentic95–108 continuations and all1,524 accepted predecessor cases before implementation acceptance. The source/API-only audit passes89 exact bindings, six procedures,12 baseline API anchors and dependency edges with the engine unchanged. No compilation/runtime/Unity qualification or implementation approval is claimed. [Complete source/API proposal](evidence/2026-11-15-tac08-cleric-casting/CASTING_CONTRACT.md) · [Audit](evidence/2026-11-15-tac08-cleric-casting/CONTRACT_AUDIT.json).
+
+## 2026-11-15 — TAC-08 initial source audit; complete contract pending (historical)
 
 **TAC-08 source audit in progress.** The initial audit binds 52 exact source/decision/runtime files and six complete owned-spell procedures; the source-only verifier passes with the accepted engine unchanged. The complete casting contract has not been submitted or approved. Concrete open integration work includes physical focus/hands, shared cast history and Dissonance/Refrain, actual concentration lifecycle, spell-specific consumers and genuine connected witnesses. No casting implementation has begun. [Audit findings and remaining contract work](evidence/2026-11-15-tac08-cleric-casting/README.md). No runtime, compilation, gameplay or Unity qualification is claimed for this source-only checkpoint.
 
