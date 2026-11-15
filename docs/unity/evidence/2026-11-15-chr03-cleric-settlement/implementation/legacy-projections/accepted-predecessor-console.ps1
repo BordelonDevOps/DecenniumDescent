@@ -1,0 +1,219 @@
+param(
+    [string]$AssemblyRoot,
+    [string]$InputPath,
+    [switch]$FishingTrap,
+    [switch]$CarriedVial,
+    [switch]$StowedVial,
+    [switch]$TacticalVial,
+    [switch]$CompanionDose,
+    [switch]$CompanionStabilization,
+    [switch]$WoundTreatment,
+    [switch]$ConsumeDecay,
+    [switch]$ShortRest,
+    [switch]$FleshWarden,
+    [switch]$ClericCompanion,
+    [switch]$ClericRepertoire,
+    [switch]$Frightened
+)
+
+$ErrorActionPreference = 'Stop'
+if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (-not $AssemblyRoot) {
+    $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
+    $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
+    $AssemblyRoot = Split-Path ($build -replace '^PASS: Core, Persistence and LabModel compilation; ', '')
+}
+foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
+    Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
+}
+
+$session = if ($Frightened) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFrightened(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
+} elseif ($ClericRepertoire) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericRepertoire(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
+} elseif ($ClericCompanion) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericCompanion(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample())
+} elseif ($FishingTrap) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFishingTrap()
+} elseif ($CarriedVial) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCarriedVial()
+} elseif ($FleshWarden) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFleshWarden()
+} elseif ($ShortRest) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithShortRest()
+} elseif ($ConsumeDecay) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConsumeDecay()
+} elseif ($WoundTreatment) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithWoundTreatment()
+} elseif ($CompanionStabilization) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCompanionStabilization()
+} elseif ($CompanionDose) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithCompanionDose()
+} elseif ($TacticalVial) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithTacticalVial()
+} elseif ($StowedVial) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithStowedVial()
+} else {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
+}
+
+function New-SessionCommand($request, $view, $kind) {
+    if (($kind -eq 'BeginShortRest' -or $kind -eq 'BeginMutationShortRest') -and (!$request.ContainsKey('x') -or
+        !($request.x -is [int] -or $request.x -is [long]) -or $request.x -ne 0 -or
+        ($request.ContainsKey('y') -and (!($request.y -is [int] -or $request.y -is [long]) -or $request.y -ne 0)))) {
+        throw 'Short Rest requires an explicit zero Hit Dice selection.'
+    }
+    if ($kind -eq 'BeginMutationShortRest' -and !$request.ContainsKey('y')) { throw 'Mutation rest requires explicit x:0 and y:0.' }
+    $id = $request.id ?? ('local.' + [guid]::NewGuid().ToString('N'))
+    $actor = $request.actor ?? $view.ActingActorId
+    $revision = $request.revision ?? $view.Revision
+    $target = $request.target ?? ''
+    $inventory = $null
+    $combat = $null
+    $mining = $null
+    $intimidation = $null
+    if ($request.ContainsKey('intimidatingPresence')) {
+        $details = $request.intimidatingPresence
+        if ($null -eq $details -or !$details.ContainsKey('targets') -or @($details.Keys).Count -ne 1 -or
+            $details.targets -is [string] -or @($details.targets | Where-Object { $_ -isnot [string] }).Count -ne 0) {
+            throw 'Intimidating Presence requires only a target identity array.'
+        }
+        $intimidation = [Decennium.Foundation.IntimidatingPresenceRequest]::new([string[]]$details.targets)
+    }
+    if ($null -ne $request.inventory) {
+        $details = $request.inventory
+        $amount = [Decennium.Foundation.RuleQuantity]::new($details.numerator, ($details.denominator ?? 1))
+        $inventory = [Decennium.Foundation.InventoryRequest]::new($amount, ($details.destination ?? ''),
+            ($details.handling ?? 'Pickup'))
+    }
+    if ($null -ne $request.combat) {
+        $details = $request.combat
+        $combat = [Decennium.Foundation.CombatRequest]::new(($details.turn ?? $view.TurnId),
+            ($details.weapon ?? ''), ($details.stance ?? 0), ($details.knockout ?? 'OrdinaryOutcome'),
+            ($details.choice ?? $false), ($details.press ?? 'ArmOrReplace'))
+    }
+    if ($null -ne $request.mining) {
+        $details = $request.mining
+        $mining = [Decennium.Foundation.MiningSelectionRequest]::new($details.version, [string[]]$details.categories,
+            ($details.ability ?? 'Wisdom'), ($details.hurried ?? $false), ($details.failureVictim ?? ''),
+            ($details.criticalRecovery ?? ''), ($details.assistant ?? ''))
+    }
+    [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
+        $inventory, $combat, $null, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation)
+}
+
+function Get-SessionFilePath([string]$path) {
+    $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($path)
+}
+
+function Invoke-SessionInput($request) {
+    switch ($request.op) {
+        'view' { return $session.View(($request.seat ?? 'Player')) }
+        'submit' {
+            $seat = $request.seat ?? 'Player'
+            $command = New-SessionCommand $request ($session.View($seat)) $request.kind
+            return $session.Submit($seat, $command)
+        }
+        'clock' {
+            $request.actor = [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Hero
+            $command = New-SessionCommand $request ($session.View('Player')) 'AdvanceClock'
+            return $session.SubmitSessionCommand($command)
+        }
+        'close' {
+            $request.actor = [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Hero
+            $view = $session.View('Player')
+            $request.target = $request.target ?? $view.TurnId
+            $command = New-SessionCommand $request $view 'EndFixedEncounter'
+            return $session.SubmitSessionCommand($command)
+        }
+        'auto' { return $session.AdvanceAutomaticDefender() }
+        'defender-presence' {
+            if (!$Frightened) { return @{ Response = 'Unavailable' } }
+            $command = New-SessionCommand $request ($session.View('Player')) 'UseIntimidatingPresence'
+            return $session.SubmitDefenderIntimidatingPresence(
+                [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(), $command)
+        }
+        'save' { $session.Save((Get-SessionFilePath $request.path)); return @{ Response = 'Saved' } }
+        'load' { $session.Restore((Get-SessionFilePath $request.path)); return @{ Response = 'Restored' } }
+        'recover' { return @{ Response = 'Recovered'; DisplacedPrimary = $session.RecoverBackup((Get-SessionFilePath $request.path)) } }
+        default { return @{ Response = 'Unavailable' } }
+    }
+}
+
+function Write-SessionResponse([string]$line) {
+    try {
+        $request = ConvertFrom-Json -AsHashtable -InputObject $line
+        $response = Invoke-SessionInput $request
+        if ($response -is [Decennium.Foundation.Laboratory.ExpeditionSeatView]) {
+            $targets = [ordered]@{}
+            foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
+            $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
+            $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
+            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
+            if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
+            if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden) {
+                $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty TemporaryHp,TemporaryHpUntil)
+            }
+        }
+        ConvertTo-Json -InputObject $response -Depth 8 -Compress -EnumsAsStrings
+    } catch {
+        # The resolver and save validator may know private state. The console only emits the bounded result.
+        '{"Response":"Unavailable"}'
+    }
+}
+
+if ($InputPath) {
+    foreach ($line in [IO.File]::ReadLines((Resolve-Path -LiteralPath $InputPath).Path)) {
+        if (-not [string]::IsNullOrWhiteSpace($line)) { Write-SessionResponse $line }
+    }
+    return
+}
+
+[Console]::WriteLine('Decennium Descent TEST_ONLY connected expedition. One JSON input per line. Type help or quit.')
+while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
+    if ($line -eq 'help') {
+        [Console]::WriteLine('View: {"op":"view","seat":"Player"} or use "FirstOpponent".')
+        [Console]::WriteLine('Walk: {"op":"submit","actor":"TEST_ONLY.actor","kind":"BeginWorldStep","target":"walk","x":1,"y":0}')
+        [Console]::WriteLine('Advance 2 seconds: {"op":"clock","x":2,"y":1}. Use "auto" for one automatic defender action and "close" for a legal encounter exit.')
+        [Console]::WriteLine('Use the in-reach Cache view for its target. Interact x=2 starts a pick, x=3 opens, x=4 interrupts. HandleInventory picks up visible stock.')
+        [Console]::WriteLine('Use Observation for the hero Hide start and companion Search start. Search takes candidate x/y. To cancel, target the actor''s pending attempt with CancelExplorationHide or CancelExplorationSearch.')
+        if ($FishingTrap) {
+            [Console]::WriteLine('Use FishingTrap for the companion''s site and receiver. Interact x=1 sets it. Interact x=6 retrieves it with inventory numerator=0, handling=Retrieve and the displayed receiver as destination.')
+        }
+        if ($CarriedVial) {
+            [Console]::WriteLine('Use the Player item view for the produced vial. Pick it up with HandlePortableEquipment when in reach, then use UseAlchemyDose on the hero''s regular turn.')
+        }
+        if ($CompanionStabilization) {
+            [Console]::WriteLine('Use StabilizeCompanion on the dying companion during the hero''s regular turn, with a free hand and within 5 feet.')
+        }
+        if ($ConsumeDecay -or $ShortRest -or $FleshWarden) {
+            [Console]::WriteLine('Use ConsumeDecay on the hero''s regular turn within reach of its known decay bed.')
+        }
+        if ($ShortRest -or $FleshWarden) {
+            [Console]::WriteLine('At the ShortRest berth, submit BeginShortRest with its SiteId and explicit x:0. Advance the shared clock for one uninterrupted hour. InterruptShortRest targets its ActiveIntervalId; a restart requires the full hour.')
+        }
+        if ($FleshWarden) {
+            [Console]::WriteLine('Choose a card from FleshWarden.EligibleMutations as BeginMutationShortRest target with explicit x:0,y:0. Equipment changes only at completed rest. Two beneficial completions are admitted.')
+        }
+        if ($CompanionDose -or $CompanionStabilization) {
+            [Console]::WriteLine('Use BeginReinforcementApproach with the companion and its known target. After admission, the hero can use the held vial on the eligible companion within 5 feet.')
+        }
+        if ($TacticalVial -or $CompanionDose -or $CompanionStabilization) {
+            [Console]::WriteLine('During the hero''s later encounter turn, open the packed vial''s Explorer pack if closed, retrieve the vial, and use it when the hero has an Action.')
+        }
+        if ($StowedVial) {
+            [Console]::WriteLine('Use HandlePortableEquipment to stow the held vial in the open Explorer pack and retrieve it before tactical use.')
+        }
+        [Console]::WriteLine('Files: {"op":"save","path":"expedition.ddsave"}. Use "load" to restore and "recover" to validate and recover the backup.')
+    } elseif (-not [string]::IsNullOrWhiteSpace($line)) {
+        Write-SessionResponse $line
+    }
+}

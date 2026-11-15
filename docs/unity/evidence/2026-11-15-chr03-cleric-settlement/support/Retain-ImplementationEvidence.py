@@ -1,4 +1,5 @@
 """Retain and reconcile the immutable CHR03 implementation's completed execution evidence."""
+import argparse
 import datetime
 import hashlib
 import json
@@ -44,8 +45,13 @@ def passed(path):
     return value
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--checkpoint', action='store_true', help='Retain completed evidence and exact observed journal prefixes; never claim full-run completion.')
+    args = parser.parse_args()
+    checkpoint_stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     launch = read(REG / 'launch.json')
     require(launch['sourceCommit'] == COMMIT and launch['requiredCount'] == 1524, 'Wrong source/run inventory')
+    require(sha(Path(launch['runner'])) == launch['runnerSha256'], 'Original execution runner changed')
     names = lines(REG / 'all-names.txt')
     prior = lines(PACKET.parent / '2026-11-15-tac05-frightened/retained-development/regression/all-names.txt')
     focus = [name for name in names if name.startswith('chr03_')]
@@ -53,19 +59,30 @@ def main():
             and len(prior) == 1517 and sha(REG / 'all-names.txt') == launch['inventorySha256'], 'Predecessor order changed')
     processes = {row['group']: row for row in read(REG / 'processes.json')}
     all_results = []
+    completed_workers = []
+    captured_journals = {}
     for group in GROUPS:
         assignment = lines(REG / (group + '-names.txt'))
-        rows = [json.loads(row) for row in lines(REG / (group + '.jsonl'))]
-        execution = read(REG / (group + '.execution.json'))
+        journal_bytes = (REG / (group + '.jsonl')).read_bytes()
+        rows = [json.loads(row) for row in journal_bytes.decode('utf-8-sig').splitlines()]
+        captured_journals[group] = journal_bytes
         started = read(REG / (group + '.started.json'))
-        require(lines(REG / (group + '.done')) == ['DONE'], 'Original worker has not completed: ' + group)
+        done = REG / (group + '.done')
+        complete = done.exists() and lines(done) == ['DONE']
+        require(complete or args.checkpoint, 'Original worker has not completed: ' + group)
+        execution = read(REG / (group + '.execution.json')) if complete else started
+        if complete:
+            completed_workers.append(group)
+            require(execution['cases'] == len(assignment) == processes[group]['cases']
+                    and execution['journalSha256'] == hashlib.sha256(journal_bytes).hexdigest(), 'Completed worker journal/count differs')
+        else:
+            require(len(rows) <= len(assignment) == processes[group]['cases'], 'Observed journal exceeds assignment')
         require(execution['runId'] == started['runId'] == launch['runId']
-                and execution['pid'] == started['pid'] == processes[group]['pid']
-                and execution['cases'] == len(assignment) == processes[group]['cases'], 'Worker identity/count mismatch')
-        require([row['Name'] for row in rows] == assignment and all(row['Passed'] and not row['Error'] for row in rows),
+                and execution['pid'] == started['pid'] == processes[group]['pid'], 'Worker identity/count mismatch')
+        require([row['Name'] for row in rows] == (assignment if complete else assignment[:len(rows)])
+                and all(row['Passed'] and not row['Error'] for row in rows),
                 'Original worker failed or differs from assignment: ' + group)
-        require(execution['journalSha256'] == sha(REG / (group + '.jsonl'))
-                and launch['assignments'][group] == sha(REG / (group + '-names.txt'))
+        require(launch['assignments'][group] == sha(REG / (group + '-names.txt'))
                 and execution['assignmentSha256'] == launch['assignments'][group]
                 and execution['inventorySha256'] == launch['inventorySha256'], 'Execution hashes differ')
         for name, digest in launch['assemblies'].items():
@@ -73,9 +90,22 @@ def main():
                     and execution['assemblies'][name]['moduleId'] == started['assemblies'][name]['moduleId']
                     and sha(REG / 'execution-assemblies' / name) == digest, 'Loaded binary identity differs')
         all_results.extend(rows)
-    require(len(all_results) == len({row['Name'] for row in all_results}) == len(names), 'Missing or duplicate full-suite result')
+    require(len(all_results) == len({row['Name'] for row in all_results})
+            and (args.checkpoint or len(all_results) == len(names)), 'Missing or duplicate full-suite result')
+    require(set(focus).issubset({row['Name'] for row in all_results}), 'New focused cases are not all complete')
+    # Captured prefixes are explicitly incomplete historical observations. A final
+    # reconciliation must prove every captured byte belongs to the original journal.
+    if args.checkpoint:
+        checkpoint_dir = OUT / 'regression-checkpoints' / checkpoint_stamp
+        checkpoint_dir.mkdir(parents=True)
+        for group, data in captured_journals.items():
+            (checkpoint_dir / (group + '.jsonl')).write_bytes(data)
+    else:
+        for prefix in (OUT / 'regression-checkpoints').glob('*/*.jsonl'):
+            require((REG / prefix.name).read_bytes().startswith(prefix.read_bytes()), 'Original journal diverged from a retained prefix')
     for file in REG.iterdir():
-        if file.is_file():
+        if file.is_file() and (not args.checkpoint or file.name.endswith(('-names.txt', '.started.json'))
+                or file.name in {'launch.json', 'processes.json', 'all-names.txt', 'compiled-source-report.json'}):
             retain(file, 'regression/' + file.name)
     for name in focus:
         tree(REG / 'saves' / name, 'focused/' + name)
@@ -89,7 +119,10 @@ def main():
         for file in (ART / folder).iterdir():
             if file.is_file() and file.suffix != '.dll':
                 retain(file, 'builds/' + label + '/' + file.name)
-    require(passed(OUT / 'SOURCE_AUDIT.json')['implementationCommit'] == COMMIT, 'Source archive belongs to another commit')
+    source_audit = passed(OUT / 'SOURCE_AUDIT.json')
+    require(source_audit['implementationCommit'] == COMMIT
+            and sha(OUT / source_audit['sourceArchive']) == source_audit['sourceArchiveSha256']
+            and sha(REG / 'compiled-source-report.json') == source_audit['buildReportSha256'], 'Source/archive/build identity differs')
     with zipfile.ZipFile(OUT / 'execution-assemblies.zip', 'w', zipfile.ZIP_DEFLATED) as archive:
         for name in launch['assemblies']:
             archive.write(REG / 'execution-assemblies' / name, name)
@@ -139,19 +172,21 @@ def main():
         require(after.exists() and sha(before) == sha(after), 'Failed unchanged denial/retry pair: ' + str(before))
         pairs.append({'before': before.relative_to(OUT).as_posix(), 'after': after.relative_to(OUT).as_posix(), 'sha256': sha(before)})
     require(len(pairs) > 25, 'Missing retained rejection/retry evidence')
-    summary = {'status': 'EVIDENCE_READY_FOR_ACTUAL_FINAL_REVIEW', 'implementationCommit': COMMIT,
+    summary = {'status': 'CHECKPOINT_ONLY_FULL_REGRESSION_INCOMPLETE' if args.checkpoint else 'EVIDENCE_READY_FOR_ACTUAL_FINAL_REVIEW', 'implementationCommit': COMMIT,
         'atUtc': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'contractApproval': 'dbb657df-4133-556e-bccc-a389145b7916',
-        'fullRegression': {'runId': launch['runId'], 'passed': len(all_results), 'failed': 0, 'predecessors': 1517,
-            'newCases': focus, 'workers': processes, 'originalJournalsAndMvidsVerified': True},
+        'fullRegression': {'runId': launch['runId'], 'passed': len(all_results), 'required': len(names), 'failed': 0, 'predecessors': 1517,
+            'newCases': focus, 'workers': processes, 'completedWorkers': completed_workers,
+            'complete': not args.checkpoint and len(completed_workers) == len(GROUPS), 'originalJournalsAndMvidsVerified': True},
         'campaigns': campaigns, 'canonicalCheckpointComparisons': comparisons, 'authenticSaveContinuations': 21,
         'legacyConsoleViews': 84, 'unchangedDenialRetryPairs': pairs,
         'conditionPresentPostAdvancementCure': 'not demonstrated; explicitly accepted CHR-03 evidence scope',
         'unityIntegration': 'DEFERRED', 'wholeEngineCompletion': 'NOT COMPLETE'}
-    (OUT / 'RESULTS.json').write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
+    (OUT / ('REGRESSION_CHECKPOINT.json' if args.checkpoint else 'RESULTS.json')).write_text(json.dumps(summary, indent=2) + '\n', encoding='utf-8')
     artifacts = {file.relative_to(OUT).as_posix(): {'bytes': file.stat().st_size, 'sha256': sha(file)}
         for file in sorted(OUT.rglob('*')) if file.is_file() and file.name != 'ARTIFACT_INDEX.json'}
     (OUT / 'ARTIFACT_INDEX.json').write_text(json.dumps({'artifacts': artifacts}, indent=2) + '\n', encoding='utf-8')
-    print('PASS: reconciled all1524 original cases,85 canonical comparisons,21 authentic continuations,84 old views, '
+    print(('CHECKPOINT ONLY: observed ' + str(len(all_results)) + '/1524 original cases; ' if args.checkpoint else 'PASS: reconciled all1524 original cases,')
+          + '85 canonical comparisons,21 authentic continuations,84 old views, '
           + str(len(pairs)) + ' unchanged pairs and ' + str(len(artifacts)) + ' retained artifacts')
 
 if __name__ == '__main__':

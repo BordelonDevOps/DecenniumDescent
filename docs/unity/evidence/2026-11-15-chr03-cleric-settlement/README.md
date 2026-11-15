@@ -4,6 +4,8 @@
 
 [Implementation and actual numerical witnesses](IMPLEMENTATION_EVIDENCE.md) · [Actual interim review](GPT_INTERIM_IMPLEMENTATION_REVIEW.md) · [Exact source audit](implementation/SOURCE_AUDIT.json) · [Evidence reconciliation script](support/Retain-ImplementationEvidence.py).
 
+[Retained execution checkpoint](implementation/REGRESSION_CHECKPOINT.json) reconciles543 artifacts: both five-path campaigns,21 authentic continuations,84 old console views,63 unchanged denial/retry pairs, builds/binaries and all seven focused cases. It captures767/1524 passing regression results as **incomplete journal prefixes**, not a completed suite or final acceptance. [Artifact hashes](implementation/ARTIFACT_INDEX.json). The final retainer must verify the original completed journals and every captured prefix before producing a final review result.
+
 This bounded source-bound TEST_ONLY gameplay is not release promotion or whole-engine completion. Ordinary casting/preparation, wider advancement, RP/Conviction recovery, other card effects and Resurrection remain unavailable. Unity gameplay integration is deferred.
 
 ## Historical approved contract and source record
