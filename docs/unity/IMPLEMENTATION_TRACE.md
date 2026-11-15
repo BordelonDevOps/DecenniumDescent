@@ -1,5 +1,9 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-15 — CHR-03 original full run and evidence complete; final review pending
+
+Original run `3a2f8db2bff84e198e266d25866e1649` passed all 1,524 cases with zero failures, preserving the 1,517 predecessors and all seven new cases. Final retention reconciles all six original workers, complete journals/DONE records, every captured prefix, source/binary identities and 574 artifacts against frozen engine source `34229ec6f19c9569dd35fd7b6013b99f37759c85`. Both genuine campaigns pass all five modes (85 canonical comparisons); 21 authentic continuations, 84 old views and 63 unchanged pairs pass. Prior source/checkpoint reviews found no concrete blocker but did not grant final acceptance. Actual final GPT review and Codex agreement remain required before an agreed successor. The explicit condition-present connected cure evidence limit remains; the broader engine is unfinished and Unity stays deferred. [Complete evidence](evidence/2026-11-15-chr03-cleric-settlement/IMPLEMENTATION_EVIDENCE.md) · [Final result](evidence/2026-11-15-chr03-cleric-settlement/implementation/RESULTS.json).
+
 ## 2026-11-15 — CHR-03 execution checkpoint reviewed; final acceptance pending
 
 Actual execution-checkpoint response `39eb57df-bf71-51d4-a70a-a0549fb6b486` independently reconciles all543 committed artifact hashes,85 campaign comparisons,21 authentic continuations,84 old console views and the original incomplete767-case prefixes, finding no concrete evidence blocker. Codex agrees. GPT did not execute the engine, campaigns, tests, builds or retainer. The original full regression and separate actual final review remain required; no successor is authorized. [Actual review](evidence/2026-11-15-chr03-cleric-settlement/GPT_EXECUTION_CHECKPOINT_REVIEW.md).
