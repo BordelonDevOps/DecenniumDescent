@@ -2,7 +2,7 @@
 
 ## 2026-11-15 — TAC-05 Frightened source/API proposal
 
-Prepared the separate prerequisite requested by actual GPT response `aee19602-eb93-5f80-b5f7-90dd14d2fcee`: exact Intimidating Presence source, deferred defender fixture access, bounded visual targeting, shared relationship/cure lifecycle, source-save/end/recharge cadence, actual observation and exact willing-movement constraints. Access/context/timing/geometry choices remain proposals requiring actual review. Fifty-two pinned source/baseline files and 30 source checks pass; no engine changes, compilation or runtime execution. The acceptance contract requires real connected fear behavior and subsequent play, full supported-save/replay evidence and all1,509 predecessors plus new controls. [Contract and source evidence](evidence/2026-11-15-tac05-frightened/README.md).
+Prepared the separate prerequisite requested by actual GPT response `aee19602-eb93-5f80-b5f7-90dd14d2fcee`: exact Intimidating Presence source, initial revision0 defender fixture access, bounded visual targeting, shared relationship/cure lifecycle, source-save/end/recharge cadence, actual observation and exact willing-movement constraints. Access/context/timing/geometry choices remain proposals requiring actual review. Fifty-three pinned source/baseline files and 31 source checks pass; no engine changes, compilation or runtime execution. The acceptance contract requires real connected fear behavior and subsequent play, full supported-save/replay evidence and all1,509 predecessors plus new controls. [Contract and source evidence](evidence/2026-11-15-tac05-frightened/README.md).
 
 ## 2026-11-15 — CHR-03 settlement audit selects Frightened prerequisite
 

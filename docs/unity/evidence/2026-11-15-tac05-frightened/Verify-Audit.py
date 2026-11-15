@@ -43,7 +43,7 @@ ROWS = [(p, BASELINE, "authority-and-accepted-baseline") for p in [
     "Laboratory/Model/SharedLaterEncounter.cs", "Laboratory/Model/SharedReinforcement.cs",
     "Laboratory/Model/SharedCharacterAdvancement.cs", "Laboratory/Model/ConnectedExpeditionSession.cs",
     "Laboratory/Model/LaterDefenderController.cs", "Laboratory/Model/SharedSpellRepertoire.cs",
-    "Laboratory/Model/RuleResolution.cs",
+    "Laboratory/Model/RuleResolution.cs", "Laboratory/Model/TestOnlySharedWorldPolicy.cs",
 ]]
 
 
@@ -154,8 +154,11 @@ def main():
     check("Existing tactical metric is Chebyshev5ft", "5*Math.Max(Math.Abs((long)to.X-from.X),Math.Abs((long)to.Y-from.Y))"
           in text(ENGINE + "Laboratory/Model/PlanarCombatGeometry.cs"))
     later = text(ENGINE + "Laboratory/Model/SharedLaterEncounter.cs")
-    check("Defender is deferred actual numericalWarrior3 with own condition target", '"TEST_ONLY.numeric-warrior3"' in later
+    check("Defender has actual numericalWarrior3 and own condition target", '"TEST_ONLY.numeric-warrior3"' in later
           and "bodies.RegisterDeferredConditionTarget(LaterDefenderId)" in later and "state.Characters = state.Characters.Append" in later)
+    initial = text(ENGINE + "Laboratory/Model/TestOnlySharedWorldPolicy.cs").split("public Snapshot Initial()", 1)[1]
+    check("Defender is created during initial world construction before encounter entry", "InitializeLaterEncounter(s);" in initial
+          and initial.index("InitializeLaterEncounter(s);") < initial.index("InitializeClericRepertoire(s);"))
     timing = text(ENGINE + "Runtime/Core/LaterEncounterRecords.cs")
     check("Actor timing retains reinforcement epoch", "phase.Epoch.Order.Contains(actor)) return phase.Epoch" in timing)
     check("Existing shared feature runtime already owns Soldier recharge", "TacticalAssessmentRechargeRemaining" in
