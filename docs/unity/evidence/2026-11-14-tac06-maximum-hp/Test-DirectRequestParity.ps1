@@ -73,7 +73,7 @@ foreach ($branch in 'split','whole') {
                 $view.Clock.Denominator -eq $reference.Clock.Denominator) "$branch typed view differs at $index."
             Require (($null -eq $view.ShortRest) -eq ($null -eq $reference.ShortRest)) "$branch typed view disclosure differs."
             $row.Response='ViewMatched'
-        } elseif ($request.kind -eq 'BeginShortRest' -and
+        } elseif ($request.kind -in @('BeginShortRest','BeginMutationShortRest') -and
             (!$request.ContainsKey('x') -or !($request.x -is [int] -or $request.x -is [long]))) {
             Require ($reference.Response -eq 'Unavailable') 'Console-only malformed dice input was accepted.'
             $row.Response='ConsoleParsingOnly'; $parsing++

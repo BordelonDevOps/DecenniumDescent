@@ -1,0 +1,11 @@
+{
+  "status": "FAILED_DEVELOPMENT_VERIFIER",
+  "implementationCommit": "0742794a7c1f8e15dd4e38ff72ae21dd61762b4a",
+  "run": "engine/artifacts/tac06-flesh-warden/direct",
+  "branch": "split",
+  "input": 261,
+  "id": "rest.control.fractional",
+  "reason": "Parser-only classification recognized BeginShortRest but omitted BeginMutationShortRest. The verifier incorrectly converted the console fractional dice input to the typed integer field.",
+  "correction": "Recognize both rest command kinds as separate console parsing controls before dispatching typed commands; rerun against the unchanged final assemblies and retained public responses.",
+  "runtimeChanged": false
+}

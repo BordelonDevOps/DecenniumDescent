@@ -178,7 +178,7 @@ def main():
         result = packet / "regression/results.json"
         result.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         artifacts["regression/results.json"] = {"bytes": result.stat().st_size, "sha256": digest(result.read_bytes())}
-    for pattern in ("*.ps1", "*.py", "*.jsonl", "*.md", "SOURCE_API_BINDINGS.json", "development/*.json"):
+    for pattern in ("*.ps1", "*.py", "*.jsonl", "*.md", "SOURCE_API_BINDINGS.json", "INITIAL_REVIEW_BINDINGS.json", "PUBLIC_TYPED_BINDINGS.json", "development/*.json"):
         for file in sorted(packet.glob(pattern)):
             relative = file.relative_to(packet).as_posix()
             artifacts[relative] = {"bytes": file.stat().st_size, "sha256": digest(file.read_bytes())}
