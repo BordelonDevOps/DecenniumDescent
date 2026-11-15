@@ -6,6 +6,8 @@
 
 [Retained execution checkpoint](implementation/REGRESSION_CHECKPOINT.json) reconciles543 artifacts: both five-path campaigns,21 authentic continuations,84 old console views,63 unchanged denial/retry pairs, builds/binaries and all seven focused cases. It captures767/1524 passing regression results as **incomplete journal prefixes**, not a completed suite or final acceptance. [Artifact hashes](implementation/ARTIFACT_INDEX.json). The final retainer must verify the original completed journals and every captured prefix before producing a final review result.
 
+Actual execution-checkpoint response `39eb57df-bf71-51d4-a70a-a0549fb6b486` independently reconciles all543 committed artifact hashes,85 campaign comparisons,21 authentic continuations,84 old console views and the original incomplete767-case prefixes, finding no concrete evidence blocker. Codex agrees. GPT did not execute the engine, campaigns, tests, builds or retainer. The original full regression and separate actual final review remain required; no successor is authorized. [Actual checkpoint review](GPT_EXECUTION_CHECKPOINT_REVIEW.md).
+
 This bounded source-bound TEST_ONLY gameplay is not release promotion or whole-engine completion. Ordinary casting/preparation, wider advancement, RP/Conviction recovery, other card effects and Resurrection remain unavailable. Unity gameplay integration is deferred.
 
 ## Historical approved contract and source record

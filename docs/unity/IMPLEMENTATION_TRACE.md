@@ -1,5 +1,9 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-15 — CHR-03 execution checkpoint reviewed; final acceptance pending
+
+Actual execution-checkpoint response `39eb57df-bf71-51d4-a70a-a0549fb6b486` independently reconciles all543 committed artifact hashes,85 campaign comparisons,21 authentic continuations,84 old console views and the original incomplete767-case prefixes, finding no concrete evidence blocker. Codex agrees. GPT did not execute the engine, campaigns, tests, builds or retainer. The original full regression and separate actual final review remain required; no successor is authorized. [Actual review](evidence/2026-11-15-chr03-cleric-settlement/GPT_EXECUTION_CHECKPOINT_REVIEW.md).
+
 ## 2026-11-15 — CHR-03 earned settlement implemented; final evidence pending
 
 Source `34229ec6f19c9569dd35fd7b6013b99f37759c85` connects genuine two-conflict/specimen/batch completion, trusted award and atomic Cleric2 advancement with preserved current HP/RP, a new unspent d8, selected versus earned-automatic grants, unavailable-current Conviction capacity and real Detect Magic acquisition. The alternate genuine branch pays one post-closure Rite and receives actual positive Radiance healing under the retained actor calendar. Both named cures execute through the real producer in disclosed detached controls. Both complete campaigns pass five execution paths with85 canonical checkpoint comparisons;21 authentic wire95–107 continuations, seven new cases, C#9 builds and static checks pass. Actual interim response `9883d00f-464b-5e8b-8c44-97a6a4c103ad` finds no concrete code blocker; Codex agrees. The original full1524-case run and final evidence review remain outstanding. No successor has begun. [Implementation and exact limits](evidence/2026-11-15-chr03-cleric-settlement/IMPLEMENTATION_EVIDENCE.md).

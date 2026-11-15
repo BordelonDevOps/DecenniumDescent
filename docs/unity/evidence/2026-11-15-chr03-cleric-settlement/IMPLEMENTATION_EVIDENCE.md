@@ -2,6 +2,8 @@
 
 Source commit: **`34229ec6f19c9569dd35fd7b6013b99f37759c85`**, 36 exact engine files on `Engine`. The complete contract was approved in actual response `dbb657df-4133-556e-bccc-a389145b7916`; Codex agrees. [Actual interim source review](GPT_INTERIM_IMPLEMENTATION_REVIEW.md), response `9883d00f-464b-5e8b-8c44-97a6a4c103ad`, finds no concrete code blocker or mandatory correction; Codex agrees. Final implementation acceptance is pending. No successor has started.
 
+Actual execution-checkpoint response `39eb57df-bf71-51d4-a70a-a0549fb6b486` independently reconciles all543 committed artifact hashes,85 campaign comparisons,21 authentic continuations,84 old console views and the original incomplete767-case prefixes, finding no concrete evidence blocker. Codex agrees. GPT did not execute the engine, campaigns, tests, builds or retainer. The original full regression and separate actual final review remain required; no successor is authorized. [Actual checkpoint review](GPT_EXECUTION_CHECKPOINT_REVIEW.md).
+
 ## Implemented gameplay
 
 The new opt-in wire108/base90 profile composes the accepted Frightened expedition. It declares one immutable TEST_ONLY milestone before play, derives completion from the real first closure, consumed specimen/settled recipe4 batch and normal later closure with the companion alive, and exposes completion, trusted award and consumption separately. The actual shared advancement transaction adds Cleric2/base5/d8, selected Judging Light/Conviction Pool and earned-automatic Attunement/Radiance, reconciles HP/RP capacities without recovery, records unavailable-current Conviction capacity3→5, and calls the existing earned repertoire settlement to acquire Detect Magic as the sixth spell. Existing revision0 automatic grants keep their old meaning.
@@ -48,6 +50,8 @@ Negative evidence includes illegal/missing/duplicate/automatic-as-selected cards
 During implementation, the insufficient-RP regression exposed a query-dispatch omission. The final source enables Healing Rite queries only in the new profile and proves both admissible query purity and matching rejection reasons. Earlier development failures and synthetic timing corrections are not counted as final passing evidence. The readable-witness exporter was corrected to preserve a null companion calendar before genuine reinforcement admission; this changed evidence projection only.
 
 The first compatibility harness successfully completed19 authentic wire95–106 cases, then exposed a harness dispatch error on wire107: at revision171 it replaced explicit Presence command `fear.reuse.1` with automatic stance `tac10.a1e41a6ae7923c13adb330c26d57450beb7bfb659ecedb262e3942198ee736f3`, changing RNG726103525 to768258485. The corrected harness distinguishes automatic controller IDs from explicit defender commands, as the five-path harness already did. The19 completed canonical results are hash-verified and retained; only the two affected wire107 continuations are rerun. This is an evidence-driver correction, with no engine source or frozen regression change.
+
+The initial legacy-console projection attempt returned Unavailable in both versions because a switch flag passed through a single string splat was not preserved correctly. The successful comparison uses explicit string argument arrays, requires actual restored views, and retains per-case invocation metadata. All84 final comparisons pass; the failed setup attempt is not counted. This correction changed only the evidence driver, with no engine-source or regression-worker change.
 
 ## Remaining scope
 
