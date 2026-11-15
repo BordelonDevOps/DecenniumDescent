@@ -1,0 +1,21 @@
+# TAC-07 actual interim implementation review
+
+Source: `8d90200ed57bd59e4d7814deea2b4c9fe1073dc5`. Evidence: `ce4c890f8fed240a716f29db44d01e78b079921d`.
+Actual review response: `76512c32-52e4-5f5a-9b4e-d311438ea4d4`; request turn `470c77ad-8f8c-4844-8582-65f94a512d36` in [Unity Rules Engine Development Part 2](https://chatgpt.com/g/g-p-67f17555a8dc8191a2b5b81e6d8adc12-dungeon-crawler/c/6af8ba86-20cc-83e9-bed0-c2d616fefcdf).
+
+## Actual GPT response
+
+**Interim review passes for TAC-07 implementation `8d90200ed57bd59e4d7814deea2b4c9fe1073dc5`.** I found no concrete correctness, source-authority, persistence, or evidence blocker in the committed packet. Final acceptance remains pending. [Implementation diff](https://github.com/BordelonDevOps/DecenniumDescent/commit/8d90200ed57bd59e4d7814deea2b4c9fe1073dc5) · [Evidence packet](https://github.com/BordelonDevOps/DecenniumDescent/tree/ce4c890f8fed240a716f29db44d01e78b079921d/docs/unity/evidence/2026-11-15-tac07-cleric-repertoire)
+
+- **Ownership and authority.** The typed constructor validates the fixed initial bundle before session creation or funding. I matched all six runtime card and procedure hashes to the selected bindings. Wire106 validates exactly five initial grants, and Detect Magic remains unowned. Public casting and premature acquisition reach explicit denial paths. The internal earned-settlement helper requires staged Cleric 2 facts, a consumed milestone, and a matching advancement record. Its detached tests establish the interface. Connected earned acquisition remains a CHR-03 obligation.
+- **Connected replay and compatibility.** I matched all **92 checkpoint hashes** across the four replay paths and checked the **39 unchanged denial or retry pairs** against their bound snapshot hashes. The retained route reaches r181 with genuine Healing Rite payment and healing, RP `3 → 1`, and six unspent doses. I reviewed the 18 authentic wire95–105 compatibility records and confirmed their recorded round-trip and continuation hashes match the original saves. [Public results](https://github.com/BordelonDevOps/DecenniumDescent/blob/ce4c890f8fed240a716f29db44d01e78b079921d/docs/unity/evidence/2026-11-15-tac07-cleric-repertoire/public/results.json) · [Compatibility results](https://github.com/BordelonDevOps/DecenniumDescent/blob/ce4c890f8fed240a716f29db44d01e78b079921d/docs/unity/evidence/2026-11-15-tac07-cleric-repertoire/compatibility/results.json)
+
+I inspected the source diff, repertoire records and codec, query and execution boundaries, focused tests, and committed reports. The reports record three new passing cases, C# 9 builds, and 18 passing static checks. I independently compared the inventories and confirmed that all 1,506 predecessor names remain in their original relative order. I did not rerun the builds or tests or independently rehash every artifact.
+
+**Final TAC-07 acceptance and all successor implementation remain held** until the completed 1,509-case run `d675fc819708471b9a01c32d18be42f9` is supplied and reviewed. After acceptance, the next deliverable is the **complete CHR-03 Radiance, Conviction-capacity, and earned-milestone settlement contract**, including atomic Detect Magic acquisition. TAC-08 casting and recovery, production authority, whole-engine completion, and Unity integration remain open.
+
+## Codex agreement and remaining gate
+
+Codex agrees with this interim review. No concrete code, source-authority, persistence or evidence blocker was identified. The completed four-path and compatibility evidence remains valid; no engine source change or rerun is called for by this review. Preserve the same immutable exact regression run `d675fc819708471b9a01c32d18be42f9`; do not restart it or count pending cases as passes.
+
+Final TAC-07 acceptance remains outstanding until all1,509 cases and all six worker completion identities/DONE markers/journals are retained, reconciled and actually reviewed by GPT. No successor implementation has begun. After that final acceptance, return to the complete CHR-03 Radiance/Conviction-capacity/earned-milestone settlement contract, including real atomic Detect Magic acquisition. Other acquisition/preparation, TAC-08 casting/recovery, production authority, whole-engine completion and Unity integration remain open.

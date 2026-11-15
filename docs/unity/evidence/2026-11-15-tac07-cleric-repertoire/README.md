@@ -1,6 +1,6 @@
 # TAC-07 connected Cleric repertoire
 
-**Implementation and connected evidence available; final runtime acceptance pending.** Source commit `8d90200ed57bd59e4d7814deea2b4c9fe1073dc5` implements the exact contract approved by actual GPT response `f17c9e06-7464-56da-8184-a5723befea81`. The frozen exact1,509-case regression is running; no final pass or next-module permission is claimed.
+**Implementation and connected evidence available; final runtime acceptance pending.** Source commit `8d90200ed57bd59e4d7814deea2b4c9fe1073dc5` implements the exact contract approved by actual GPT response `f17c9e06-7464-56da-8184-a5723befea81`. The frozen exact1,509-case regression is running; no final pass or next-module permission is claimed. Actual interim response `76512c32-52e4-5f5a-9b4e-d311438ea4d4` found no concrete blocker and explicitly held final acceptance; Codex agrees. [Actual interim review](GPT_INTERIM_REVIEW.md).
 
 The new explicit TEST_ONLY wire106/base90 profile owns Arcane Ward, Guidance, Spare the Dying, Sanctuary and Purify Food and Drink for the existing Cleric companion. Detect Magic remains unowned pending actual Cleric2 advancement. The six-identity source registry preserves global identity, every class binding and alternate school placement. Ordinary casting, including zero-cost cantrips, is unsupported. The internal earned settlement component is verified only with detached mechanical inputs; it cannot grant accepted connected ownership in this profile.
 
