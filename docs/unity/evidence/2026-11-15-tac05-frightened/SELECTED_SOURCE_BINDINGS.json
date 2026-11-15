@@ -1,0 +1,77 @@
+{
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "status": "PROPOSED_SOURCE_SELECTION_NOT_RUNTIME_APPROVAL",
+  "records": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "pointer": "/cards/8",
+      "id": "warrior.base.intimidating-presence",
+      "canonicalSha256": "33598398ee903d4696f3acad393828496b567b6df69ae6c28873346a7b571c73",
+      "value": {
+        "id": "warrior.base.intimidating-presence",
+        "name": "Intimidating Presence",
+        "className": "Warrior",
+        "band": "Base",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 2,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "0",
+        "rangeAndTarget": "Up to 3 enemies of your choice within 15 feet that can see or hear you",
+        "duration": "Maximum 2 rounds",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Intimidating Presence. Each target makes a Wisdom save. On failure it is Frightened of you until the end of its next turn, then repeats the save. A second failure extends the fear one final round. A creature that succeeds becomes immune to this use. This never forces surrender; NPC surrender remains a Director decision.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 4811,
+          "originalText": "Intimidating Presence: Use your mutated appearance to frighten enemies, potentially causing them to flee or surrender."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/warrior.json",
+      "pointer": "/engine/0",
+      "canonicalSha256": "2fe08c7c9a299c3943c0bec763ab9691821d89c0a35af4bb77b75f05cba77a71",
+      "value": "PROVISIONAL PLAYTEST CONTRACT. At Warrior level 1 choose Strength or Dexterity as your Warrior ability; this choice is permanent in this draft. S = 1/2/3/4 at Warrior levels 1/5/11/17. M = max(1, chosen Warrior ability modifier). Warrior technique attack = d20 + normal character proficiency bonus + chosen modifier. Warrior technique save DC = 8 + normal character proficiency bonus + chosen modifier. Source basis: approved Player Rulebook extract and preserved class registry."
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/playtest/condition_playtests.json",
+      "pointer": "/conditions/9",
+      "id": "frightened",
+      "canonicalSha256": "246e82c831c231581742bc3b04b50065697f6a9039d0afcd3ef7d6a244d055d9",
+      "value": {
+        "id": "frightened",
+        "name": "Frightened",
+        "coreText": "Disadvantage while source is visible and cannot willingly move closer.",
+        "compatibleV6Details": [
+          "V6 specifies disadvantage on ability checks and attack rolls while the source of fear is within line of sight, and prohibits willingly moving closer."
+        ],
+        "sourceConflicts": [],
+        "effect": "While the source of fear is visible/in line of sight, the creature has disadvantage on ability checks and attack rolls. While Frightened it cannot willingly move closer to that source.",
+        "application": "Each application records its fear source.",
+        "durationAndEnding": "Use the applying effect's duration and repeat-save procedure.",
+        "stacking": "Separate fear sources are tracked independently. Disadvantage does not stack.",
+        "immunitiesAndOverrides": "Fear immunity blocks application. Forced movement may move the creature closer because the prohibition is on willing movement.",
+        "provisionalDecisions": [],
+        "openDependencies": [],
+        "source": {
+          "path": "books/player/Decennium_Descent_Core_Systems_Bible_v2_Known_Descent.docx",
+          "sha256": "53db5a16af10bc351e1f59a8af6d4201579962a21fc61b9bf6e27255b11ee433",
+          "paragraph": 745,
+          "paragraphIndex": "zero-based all w:p descendants",
+          "paragraphKind": "condition heading",
+          "textParagraph": 746
+        },
+        "configuration": "active provisional overlay",
+        "reviewEvidence": [
+          "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FIRST_REVIEW.md",
+          "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_SECOND_REVIEW.md",
+          "docs/audit/2026-10-08/full-game/GPT_CONDITIONS_FINAL_CLOSURE.md"
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-15 — TAC-05 Frightened source/API proposal
+
+Prepared the separate prerequisite requested by actual GPT response `aee19602-eb93-5f80-b5f7-90dd14d2fcee`: exact Intimidating Presence source, deferred defender fixture access, bounded visual targeting, shared relationship/cure lifecycle, source-save/end/recharge cadence, actual observation and exact willing-movement constraints. Access/context/timing/geometry choices remain proposals requiring actual review. Fifty-two pinned source/baseline files and 30 source checks pass; no engine changes, compilation or runtime execution. The acceptance contract requires real connected fear behavior and subsequent play, full supported-save/replay evidence and all1,509 predecessors plus new controls. [Contract and source evidence](evidence/2026-11-15-tac05-frightened/README.md).
+
 ## 2026-11-15 — CHR-03 settlement audit selects Frightened prerequisite
 
 After actual TAC-07 acceptance, the complete Cleric settlement audit preserved the earned milestone/build/atomic knowledge obligations and obtained actual context guidance `68898ea2-4ba8-52e5-afe9-ac081a2dbd12` for finite post-closure Healing Rite. It found that Frightened lacks authoritative relationship/lifecycle/cure state despite an existing derived combat clause. Actual response `aee19602-eb93-5f80-b5f7-90dd14d2fcee` approves a separate bounded TAC-05 source/API contract, implementation and acceptance before complete CHR-03 review; Codex agrees. The map edges are unchanged and no fear-producing source/default mechanics are authorized. Forty-nine source/baseline bindings and 20 source checks pass; no engine edits, compilation or runtime tests occur. [Audit, draft and actual decisions](evidence/2026-11-15-chr03-cleric-settlement/README.md).
