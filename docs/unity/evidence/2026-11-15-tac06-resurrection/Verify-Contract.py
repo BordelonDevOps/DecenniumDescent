@@ -92,6 +92,7 @@ report = dict(status='PASS_SOURCE_BINDINGS_ONLY', sourceFileCount=len(sources), 
               allPinnedSourcesEqualBaseline=True, exactCardSelectorValidated=True, classifiedSourceObjectSha256=card_hash,
               engineChangesFromBaseline=changed, artifacts=packet,
               compilation='NOT_RUN_NO_ENGINE_CHANGE', runtimeTests='NOT_RUN_NO_RESURRECTION_IMPLEMENTATION',
-              connectedResurrection='NOT_IMPLEMENTED', gptContractReview='PENDING')
+              connectedResurrection='NOT_IMPLEMENTED',
+              gptContractReview='50395a8a-f1f7-58ac-81b6-a9e116e35f09' if (HERE/'GPT_CONTRACT_REVIEW.md').exists() else 'PENDING')
 (HERE/'CONTRACT_VALIDATION.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
 print(json.dumps({k:v for k,v in report.items() if k!='artifacts'}))
