@@ -6,6 +6,33 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
+    public sealed class ExpeditionClericSettlementView
+    {
+        public string MilestoneId { get; }
+        public string Objective => "Complete both conflicts and the specimen-to-recipe-4 batch; close the later conflict with the companion alive.";
+        public long DeclaredRevision { get; }
+        public long? CompletedRevision { get; }
+        public long? AwardedRevision { get; }
+        public long? ConsumedRevision { get; }
+        public string InvocationPath { get; }
+        public int ConvictionMaximum { get; }
+        public int? ConvictionCurrent => null;
+        public string ConvictionCurrentStatus => "Unavailable";
+        public IReadOnlyList<string> SelectedAdvancementCards => ClericSettlementProfile.SelectedCards;
+        public string SelectedInvocationPath => ClericSettlementProfile.Radiance;
+        public string SelectedEarnedSpell => ClericRepertoireProfile.FutureChoice;
+        public IReadOnlyList<RadianceUseRecord> RadianceHistory { get; }
+        internal ExpeditionClericSettlementView(Snapshot state)
+        {
+            MilestoneId=state.ClericMilestone.MilestoneId;DeclaredRevision=state.ClericMilestone.DeclaredRevision;
+            CompletedRevision=state.ClericObjective?.Revision;
+            var award=state.CharacterMilestones.SingleOrDefault(x=>x.ActorId==ClericRpProfile.Actor&&x.MilestoneId==MilestoneId);
+            AwardedRevision=award?.AwardedRevision;ConsumedRevision=award?.ConsumedRevision > 0 ? award.ConsumedRevision : (long?)null;
+            InvocationPath=state.ClericInvocationPath?.PathId;ConvictionMaximum=state.ConvictionCapacity.Maximum;
+            RadianceHistory=Array.AsReadOnly(state.RadianceUses.ToArray());
+        }
+    }
+
     public sealed class ExpeditionClericView
     {
         public string ClassName => "Cleric";
@@ -30,9 +57,10 @@ namespace Decennium.Foundation.Laboratory
             FavoredWeapon = entry.FavoredWeaponProfile; ArmorTraining = entry.ArmorTraining;
             WeaponTraining = entry.WeaponTraining; ToolTraining = entry.ToolTraining;
             SelectedSkills = entry.SelectedSkills; SavingThrows = entry.SavingThrows; AutomaticEngine = entry.AutomaticEngineName;
-            OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x))
+            OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x) || ClericSettlementProfile.ValidEarnedGrant(state,x))
                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
-            UnsupportedCapabilities = Array.AsReadOnly(new[] { "Conviction", "Class recovery", "Other selected card execution",
+            UnsupportedCapabilities = Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? "Conviction balance, generation, payment and recovery" : "Conviction", "Class recovery",
+                state.ConnectedClericSettlement ? "Consecrate terrain and other card triggers" : "Other selected card execution",
                 "Ordinary spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
                 "Starting equipment and wealth", "Periodic rider healing interactions" });
         }
@@ -67,6 +95,7 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionTraversalView Traversal { get; }
         public ExpeditionClericView Cleric { get; }
         public ExpeditionRepertoireView Repertoire { get; }
+        public ExpeditionClericSettlementView ClericSettlement { get; }
 
         internal ExpeditionOwnActor(Snapshot state, ActorState actor, Authority grant)
         {
@@ -74,6 +103,8 @@ namespace Decennium.Foundation.Laboratory
             if (state.ConnectedClericRp && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id)) Cleric = new ExpeditionClericView(state);
             if (state.ConnectedClericRepertoire && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
                 Repertoire = new ExpeditionRepertoireView(state, actor.Id);
+            if (state.ConnectedClericSettlement && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
+                ClericSettlement = new ExpeditionClericSettlementView(state);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
             MaximumHp = state.ConnectedFleshWarden ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
@@ -472,6 +503,13 @@ namespace Decennium.Foundation.Laboratory
                     selected.Add(CommandKind.BeginReinforcementApproach, state.Reinforcement.Definition.Id);
                     selected.Add(CommandKind.UseHealingRite, Hero);
                     targets = new ReadOnlyDictionary<CommandKind, string>(selected);
+                }
+                if (player && state.ConnectedClericSettlement) {
+                    commands = commands.Append(CommandKind.AwardCharacterMilestone).Append(CommandKind.AdvanceCharacterLevel);
+                    var selected = targets.ToDictionary(x => x.Key,x => x.Value);
+                    selected.Add(CommandKind.AwardCharacterMilestone,state.ClericMilestone.MilestoneId);
+                    selected.Add(CommandKind.AdvanceCharacterLevel,state.ClericMilestone.MilestoneId);
+                    targets = new ReadOnlyDictionary<CommandKind,string>(selected);
                 }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
                     ownedActing, turn, ownedDecision,

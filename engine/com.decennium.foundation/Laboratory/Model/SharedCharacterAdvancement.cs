@@ -192,7 +192,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool EmptyCommand(Command c)=>c.Inventory==null&&c.Combat==null&&c.X==0&&c.Y==0;
         private static string FeatureOne(string a,string b)=>string.CompareOrdinal(a,b)<0?a:b;
         private static string FeatureTwo(string a,string b)=>string.CompareOrdinal(a,b)<0?b:a;
-        private static bool Busy(Snapshot s,string actor)
+        internal static bool Busy(Snapshot s,string actor)
             =>s.WorldTraversals.Any(x=>x.ActorId==actor)
                 ||s.Crops.SelectMany(x=>x.Tasks).Any(x=>x.WorkerId==actor&&x.Status==CropWorkStatus.Working)
                 ||s.FormulaWork.Any(x=>x.WorkerId==actor&&x.Status==FormulaWorkStatus.Working)
@@ -514,6 +514,10 @@ namespace Decennium.Foundation.Laboratory
                 var actor=s.Characters.SingleOrDefault(x=>x.ActorId==actorId);
                 var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderBy(x=>x.Revision).ToArray();
                 if(actor==null||events.Length==0)return "InvalidAdvancementHistory";
+                if(s.ConnectedClericSettlement&&actorId==ClericRpProfile.Actor) {
+                    if(events.Length!=1||!ClericSettlementProfile.ValidAdvancement(s,events[0]))return "InvalidClericAdvancementHistory";
+                    continue;
+                }
                 int[] scores={10,10,10,10,10,10};
                 int level=1;
                 foreach(var advancement in events) {
@@ -778,7 +782,8 @@ namespace Decennium.Foundation.Laboratory
             overwatchFoundation=overwatch??throw new ArgumentNullException(nameof(overwatch));
             ContentFingerprint=overwatchFoundation.BindFingerprint(ContentFingerprint);
         }
-        private string ResolveCharacterAdvancement(Snapshot s,Command c)=>CharacterAdvancementRules.Resolve(s,c);
+        private string ResolveCharacterAdvancement(Snapshot s,Command c)=>IsClericAdvancement(s,c)
+            ? ResolveClericAdvancement(s,c) : CharacterAdvancementRules.Resolve(s,c);
     }
 }
 #endif

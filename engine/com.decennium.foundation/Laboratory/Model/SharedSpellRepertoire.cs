@@ -41,8 +41,8 @@ namespace Decennium.Foundation.Laboratory
                 id, SpellAcquisitionOrigin.InitialClassRepertoire, 1, 1, ClericRepertoireProfile.InitialEntitlement)).ToArray();
         }
 
-        /// <summary>Future CHR-03 transaction component. Detached mechanical tests only until actual advancement is admitted.
-        /// The trusted caller must stage all mandatory grants and consume the real milestone atomically before committing.</summary>
+        /// <summary>Shared earned-repertoire transaction component. The CHR-03 caller stages mandatory grants
+        /// and consumes the real milestone before invoking this component in the same atomic command.</summary>
         internal static void SettleClericEarnedRepertoire(Snapshot staged, string actor, string spell, CharacterAdvancementRecord advancement)
         {
             if (staged == null || advancement == null) throw new ArgumentException("Earned advancement required.");

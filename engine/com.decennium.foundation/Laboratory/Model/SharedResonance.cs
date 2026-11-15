@@ -100,20 +100,23 @@ namespace Decennium.Foundation.Laboratory
                 || command.DefensiveFormation != null || command.ExpeditionAssignment != null || command.HarvestSelection != null
                 || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return "InvalidHealingRiteRequest";
-            if (!state.InventoryCombat || state.Reinforcement?.Admission == null
+            bool postClosure = state.ConnectedClericSettlement && !state.InventoryCombat;
+            if (postClosure) {
+                string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;
+            } else if (!state.InventoryCombat || state.Reinforcement?.Admission == null
                 || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return "HealingRiteContextUnsupported";
             if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return "TacticalChoicePending";
-            if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor) return "WrongRegularTurn";
+            if (!postClosure && (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor)) return "WrongRegularTurn";
             if (!state.CharacterFeatureGrants.Any(x => x.FeatureId == ClericRpProfile.HealingRite && ClericRpProfile.ValidInitialGrant(state, x)))
                 return "HealingRiteNotOwned";
             var character = state.Characters.Single(x => x.ActorId == command.Actor);
-            if (character.Levels.Count(x => x.ClassName == "Cleric") != 1) return "HealingRiteClassUnsupported";
+            if (character.Levels.Count(x => x.ClassName == "Cleric") != (postClosure ? 2 : 1)) return "HealingRiteClassUnsupported";
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
             if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
                 return "HealingRiteRequiresStationaryAccess";
             if (command.Target != TestOnlyPolicy.ActorId && command.Target != TestOnlyPolicy.CompanionId
-                || !state.Encounter.Order.Contains(command.Target)) return "HealingRiteTargetUnavailable";
+                || !postClosure && !state.Encounter.Order.Contains(command.Target)) return "HealingRiteTargetUnavailable";
             var actor = state.Actors.Single(x => x.Id == command.Actor);
             var target = state.Actors.Single(x => x.Id == command.Target);
             if (state.Lives.Single(x => x.ActorId == command.Target).Dead) return "HealingRiteTargetUnavailable";
@@ -125,7 +128,7 @@ namespace Decennium.Foundation.Laboratory
             if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return "ResonancePoolUnavailable";
             if (pool.Current < 2) return "InsufficientResonance";
             if (state.HealingRites.Length >= 128) return "HealingRiteHistoryFull";
-            return null;
+            return state.ConnectedClericSettlement ? RadiancePreflight(state,command) : null;
         }
 
         private string ResolveHealingRite(Snapshot state, Command command)
@@ -144,10 +147,12 @@ namespace Decennium.Foundation.Laboratory
             state.ResonancePools = state.ResonancePools.Select(x => x.ActorId == command.Actor ? paid : x).ToArray();
             TestOnlyClubAttackPolicy.ApplyLife(state, before, healed);
             state.RandomState = draw.NextState;
-            state.HealingRites = state.HealingRites.Append(new HealingRiteRecord(command.Id, state.Revision + 1,
-                command.Actor, command.Target, ClericRpProfile.HealingRite, ClericRpProfile.SourceRevision, state.Encounter.TurnOrdinal,
+            var rite = new HealingRiteRecord(command.Id, state.Revision + 1,
+                command.Actor, command.Target, ClericRpProfile.HealingRite, ClericRpProfile.SourceRevision, state.InventoryCombat ? state.Encounter.TurnOrdinal : checked((int)Interval(state,command.Actor).LastStart),
                 state.RuleClock, pool.Current, 2, paid.Current, draw.Value + 1, modifier, potential, before.Hp, healed.Hp,
-                random, draw.NextState, draw.WordsConsumed)).ToArray();
+                random, draw.NextState, draw.WordsConsumed);
+            state.HealingRites = state.HealingRites.Append(rite).ToArray();
+            if (state.ConnectedClericSettlement) SettleRadiance(state,command,rite);
             ReconcileDyingCadences(state); PauseIncompatibleWork(state);
             return null;
         }

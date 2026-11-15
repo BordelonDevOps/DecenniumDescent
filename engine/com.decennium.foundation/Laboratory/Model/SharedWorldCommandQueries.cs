@@ -297,7 +297,8 @@ namespace Decennium.Foundation.Laboratory
             if (closeCommand != null) yield return closeCommand;
             foreach (var campCommand in DiscoverExpeditionCampUseCommands(s, actor)) yield return campCommand;
             foreach (var campBuildCommand in DiscoverTemporaryCampConstructionCommands(s, actor)) yield return campBuildCommand;
-            foreach(var advancement in CharacterAdvancementRules.Discover(s,actor))yield return advancement;
+            foreach(var advancement in s.ConnectedClericSettlement&&actor==ClericRpProfile.Actor
+                ? DiscoverClericAdvancement(s,actor) : CharacterAdvancementRules.Discover(s,actor))yield return advancement;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);
             if (pending != null)
@@ -627,7 +628,7 @@ namespace Decennium.Foundation.Laboratory
             if (IsTemporaryCampConstructionCommand(c.Kind)) return QueryTemporaryCampConstruction(s,c);
             if (IsExpeditionCampUseCommand(c.Kind)) return QueryExpeditionCampUse(s, c);
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel) {
-                string failure=CharacterAdvancementRules.Assess(s,c);
+                string failure=IsClericAdvancement(s,c)?AssessClericAdvancement(s,c):CharacterAdvancementRules.Assess(s,c);
                 return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision);
             }
             if (RouteMappingResultCommand(c.Kind)) return QueryRouteMappingResultCommand(s, c);

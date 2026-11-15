@@ -13,12 +13,13 @@ param(
     [switch]$FleshWarden,
     [switch]$ClericCompanion,
     [switch]$ClericRepertoire,
-    [switch]$Frightened
+    [switch]$Frightened,
+    [switch]$ClericSettlement
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -28,7 +29,12 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($Frightened) {
+$session = if ($ClericSettlement) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericSettlement(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample())
+} elseif ($Frightened) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFrightened(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample())
@@ -78,6 +84,25 @@ function New-SessionCommand($request, $view, $kind) {
     $combat = $null
     $mining = $null
     $intimidation = $null
+    $advancement = $null
+    $healingRite = $null
+    if ($request.ContainsKey('advancement')) {
+        $details = $request.advancement
+        if ($null -eq $details -or @($details.Keys).Count -ne 3 -or !$details.ContainsKey('features') -or
+            !$details.ContainsKey('invocationPath') -or !$details.ContainsKey('earnedSpell') -or $details.features -is [string] -or
+            @($details.features | Where-Object { $_ -isnot [string] }).Count -ne 0 -or
+            $details.invocationPath -isnot [string] -or $details.earnedSpell -isnot [string]) { throw 'Invalid earned Cleric choices.' }
+        $advancement = [Decennium.Foundation.CharacterAdvancementRequest]::new([string[]]$details.features,
+            [string]$details.invocationPath, [string]$details.earnedSpell)
+    }
+    if ($request.ContainsKey('healingRite')) {
+        $details = $request.healingRite
+        if ($null -eq $details -or @($details.Keys).Count -ne 1 -or !$details.ContainsKey('curePreference') -or
+            $details.curePreference -isnot [string] -or $details.curePreference -cnotin @('None','Frightened','Poisoned')) {
+            throw 'Invalid conditional Radiance cure preference.'
+        }
+        $healingRite = [Decennium.Foundation.HealingRiteRequest]::new($details.curePreference)
+    }
     if ($request.ContainsKey('intimidatingPresence')) {
         $details = $request.intimidatingPresence
         if ($null -eq $details -or !$details.ContainsKey('targets') -or @($details.Keys).Count -ne 1 -or
@@ -105,7 +130,7 @@ function New-SessionCommand($request, $view, $kind) {
             ($details.criticalRecovery ?? ''), ($details.assistant ?? ''))
     }
     [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
-        $inventory, $combat, $null, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation)
+        $inventory, $combat, $advancement, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation, $healingRite)
 }
 
 function Get-SessionFilePath([string]$path) {
@@ -134,7 +159,7 @@ function Invoke-SessionInput($request) {
         }
         'auto' { return $session.AdvanceAutomaticDefender() }
         'defender-presence' {
-            if (!$Frightened) { return @{ Response = 'Unavailable' } }
+            if (!$Frightened -and !$ClericSettlement) { return @{ Response = 'Unavailable' } }
             $command = New-SessionCommand $request ($session.View('Player')) 'UseIntimidatingPresence'
             return $session.SubmitDefenderIntimidatingPresence(
                 [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(), $command)
@@ -155,8 +180,9 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
-            if (!$ClericRepertoire -and !$Frightened) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened -and !$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire -and !$Frightened -and !$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$ClericSettlement) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty ClericSettlement) }
             if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
             if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
             if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden) {

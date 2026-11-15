@@ -33,13 +33,14 @@ namespace Decennium.Foundation.Laboratory
     {
         public IReadOnlyList<ExpeditionKnownSpellView> KnownSpells { get; }
         public string FutureEarnedChoice => ClericRepertoireProfile.FutureChoice;
-        public bool FutureChoiceOwned => false;
+        public bool FutureChoiceOwned { get; }
         public string FutureChoiceRequirement => "Actual Cleric 2 advancement and its earned ranked selection";
         public IReadOnlyList<string> UnsupportedCapabilities { get; } = Array.AsReadOnly(new[] {
             "Ordinary spellcasting, including cantrips", "Earned acquisition before Cleric advancement",
             "Other spell acquisition", "Preparation, spellbooks, replacement and respec", "Multiclass repertoire" });
         internal ExpeditionRepertoireView(Snapshot state, string actor)
         {
+            FutureChoiceOwned = state.KnownSpells.Any(x => x.ActorId == actor && x.SpellId == ClericRepertoireProfile.FutureChoice);
             KnownSpells = Array.AsReadOnly(state.KnownSpells.Where(x => x.ActorId == actor)
                 .OrderBy(x => x.SpellId, StringComparer.Ordinal).Select(x => new ExpeditionKnownSpellView(x)).ToArray());
         }

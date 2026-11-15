@@ -123,7 +123,8 @@ namespace Decennium.Foundation
         public static string CommandFailure(Snapshot state, Command command)
         {
             if (!state.ConnectedClericRepertoire || command.Actor != ClericRpProfile.Actor) return "SpellRepertoireUnavailable";
-            return command.Kind == CommandKind.CastKnownSpell ? "OrdinarySpellcastingUnsupported" : "ClericEarnedAdvancementUnavailable";
+            return command.Kind == CommandKind.CastKnownSpell ? "OrdinarySpellcastingUnsupported"
+                : state.ConnectedClericSettlement ? "EarnedSpellAcquisitionRequiresAdvancementTransaction" : "ClericEarnedAdvancementUnavailable";
         }
 
         public static string AssessChoice(string spell, int actualClericLevel)
@@ -158,13 +159,20 @@ namespace Decennium.Foundation
             if (state.KnownSpells == null || state.KnownSpells.Any(x => x == null) || state.ConnectedClericRepertoire != selected
                 || !selected && state.KnownSpells.Length != 0) throw new ArgumentException("Invalid repertoire envelope.");
             if (!selected) return;
+            bool earned = state.ConnectedClericSettlement && state.ClericInvocationPath != null;
+            var initial = state.KnownSpells.Where(x => x.Origin == SpellAcquisitionOrigin.InitialClassRepertoire).ToArray();
             if (!state.TestOnly || !state.ConnectedClericRp || state.SchemaVersion != Snapshot.SurpriseEntrySchema
-                || state.KnownSpells.Length != 5 || ValidateInitialChoices(state.KnownSpells.Select(x => x.SpellId)) != null
+                || state.KnownSpells.Length != (earned ? 6 : 5) || initial.Length != 5 || ValidateInitialChoices(initial.Select(x => x.SpellId)) != null
                 || state.InitialClassSelections.Count(x => ClericRpProfile.ValidInitialSelection(state, x)) != 1
-                || state.KnownSpells.Any(x => x.ActorId != ClericRpProfile.Actor || x.ClassName != "Cleric" || !x.MatchesSource()
+                || initial.Any(x => x.ActorId != ClericRpProfile.Actor || x.ClassName != "Cleric" || !x.MatchesSource()
                     || x.Origin != SpellAcquisitionOrigin.InitialClassRepertoire || x.ClassLevel != 1 || x.LevelOrdinal != 1
                     || x.EntitlementId != InitialEntitlement || x.MilestoneId != "" || x.AcquiredRevision != 0))
                 throw new ArgumentException("Invalid connected initial Cleric repertoire. Earned ownership requires a later profile.");
+            if (earned && state.KnownSpells.Count(x => x.ActorId == ClericRpProfile.Actor && x.ClassName == "Cleric"
+                && x.Origin == SpellAcquisitionOrigin.EarnedClassLevel && x.SpellId == FutureChoice && x.MatchesSource()
+                && x.ClassLevel == 2 && x.LevelOrdinal == 2 && x.EntitlementId == EarnedEntitlement
+                && x.MilestoneId == state.ClericInvocationPath.MilestoneId && x.AcquiredRevision == state.ClericInvocationPath.AcquiredRevision) != 1)
+                throw new ArgumentException("Invalid earned Cleric repertoire provenance.");
         }
     }
 }

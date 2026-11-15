@@ -293,6 +293,8 @@ namespace Decennium.Foundation.Tests
             AddDailyProvisioningCases(cases,directory);
             AddHavenCareCases(cases,directory);
             AddFrightenedLifecycleCases(cases, directory);
+            AddConnectedClericSettlementCases(cases, directory);
+            AddClericRadianceCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

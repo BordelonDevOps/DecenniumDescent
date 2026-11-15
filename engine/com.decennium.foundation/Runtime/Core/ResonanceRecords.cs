@@ -158,15 +158,16 @@ namespace Decennium.Foundation
             var character = state.Characters.Single(x => x.ActorId == Actor);
             var life = state.Lives.Single(x => x.ActorId == Actor);
             var pool = state.ResonancePools[0]; var funding = pool.InitialFunding;
+            bool earned = state.ConnectedClericSettlement && state.ClericInvocationPath != null;
             if (entry == null || entry.ActorId != Actor || entry.SourceRevision != SourceRevision || entry.PointBuyCost != 17
                 || entry.FavoredWeaponProfile != FavoredWeapon || entry.EngineSelector != EngineSelector
                 || !entry.SelectedSkills.SequenceEqual(new[] { "medicine", "religion" }, StringComparer.Ordinal)
                 || !entry.SavingThrows.SequenceEqual(new[] { "CHA", "WIS" }, StringComparer.Ordinal)
                 || character.ProfileId != CharacterProfile || !character.Abilities.SequenceEqual(new[] { 10, 10, 10, 10, 14, 10 })
-                || character.Levels.Count != 1 || character.Levels[0].ClassName != "Cleric" || character.Levels[0].BaseHp != 8
-                || life.MaximumHp != 8 || pool.ActorId != Actor || pool.Maximum != 3
+                || character.Levels.Count != (earned ? 2 : 1) || character.Levels[0].ClassName != "Cleric" || character.Levels[0].BaseHp != 8
+                || life.MaximumHp != (earned ? 13 : 8) || pool.ActorId != Actor || pool.Maximum != (earned ? 4 : 3)
                 || funding.Id != FundingId || funding.ActorId != Actor || funding.PolicyId != FundingPolicy || funding.Amount != 3 || funding.Revision != 0
-                || state.CharacterHitDice.Count(x => x.ActorId == Actor && x.LevelOrdinal == 1 && x.ClassName == "Cleric" && x.DieSize == 8 && !x.Spent) != 1
+                || state.CharacterHitDice.Count(x => x.ActorId == Actor && x.LevelOrdinal == 1 && x.ClassName == "Cleric" && x.DieSize == 8 && (state.ConnectedClericSettlement || !x.Spent)) != 1
                 || entry.SelectedSkills.Any(skill => state.SkillTraining.Count(x => x.ActorId == Actor && x.SkillId == skill && x.ProficiencyRank == 1) != 1)
                 || state.InitialClassSelections.Count(x => ValidInitialSelection(state, x)) != 1
                 || state.CharacterFeatureGrants.Count(x => ValidInitialGrant(state, x)) != 4)
@@ -178,7 +179,11 @@ namespace Decennium.Foundation
                     || result.RpPaid != 2 || result.Modifier != 2 || result.Revision > state.Revision || result.At > state.RuleClock
                     || result.RandomBefore == result.RandomAfter)
                     throw new ArgumentException("Invalid shared Healing Rite history.");
-                var command = new Command(result.CommandId, result.ActorId, result.Revision - 1, CommandKind.UseHealingRite, result.TargetId);
+                var receipt = state.Receipts.SingleOrDefault(x => x.Id == result.CommandId && x.Revision == result.Revision);
+                var command = state.ConnectedClericSettlement && receipt != null ? CommandHistory.Read(receipt)
+                    : new Command(result.CommandId, result.ActorId, result.Revision - 1, CommandKind.UseHealingRite, result.TargetId);
+                if (command.Kind != CommandKind.UseHealingRite || command.Actor != result.ActorId || command.Target != result.TargetId)
+                    throw new ArgumentException("Healing Rite receipt differs from its payment.");
                 if (!state.Receipts.Any(x => command.MatchesReceipt(x) && x.Principal == "TEST_ONLY.host"))
                     throw new ArgumentException("Unattributed Healing Rite payment.");
                 balance = result.RpAfter;

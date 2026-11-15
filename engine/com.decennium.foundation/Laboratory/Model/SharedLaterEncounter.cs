@@ -142,6 +142,7 @@ namespace Decennium.Foundation.Laboratory
             if (outgoing.Id == later.Definition.EncounterId || state.Reengagement?.IsSegment(outgoing.Id) == true) {
                 state.ClosedEncounters = state.ClosedEncounters.Append(closed).ToArray();
                 state.Encounter = null;
+                if (command.Kind == CommandKind.EndFixedEncounter) RecordClericObjectiveCompletion(state, closed);
             }
         }
 

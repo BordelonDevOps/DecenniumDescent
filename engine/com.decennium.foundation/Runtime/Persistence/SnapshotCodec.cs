@@ -156,6 +156,10 @@ namespace Decennium.Foundation
                     writer.Write(FrightenedProfile.Marker);
                     FrightenedCodec.Write(writer, state);
                 }
+                if (state.ConnectedClericSettlement) {
+                    writer.Write(ClericSettlementProfile.Marker);
+                    ClericSettlementCodec.Write(writer, state);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -193,6 +197,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedClericRpSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedClericRepertoireSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedFrightenedSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedClericSettlementSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -299,7 +304,8 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedFrightened = wireSchema == Snapshot.ConnectedFrightenedSchema;
+                    s.ConnectedClericSettlement = wireSchema == Snapshot.ConnectedClericSettlementSchema;
+                    s.ConnectedFrightened = s.ConnectedClericSettlement || wireSchema == Snapshot.ConnectedFrightenedSchema;
                     s.ConnectedClericRepertoire = s.ConnectedFrightened || wireSchema == Snapshot.ConnectedClericRepertoireSchema;
                     s.ConnectedClericRp = s.ConnectedClericRepertoire || wireSchema == Snapshot.ConnectedClericRpSchema;
                     s.ConnectedFleshWarden = wireSchema == Snapshot.ConnectedFleshWardenSchema;
@@ -362,6 +368,10 @@ namespace Decennium.Foundation
                     if (s.ConnectedFrightened) {
                         if (reader.ReadByte() != FrightenedProfile.Marker) throw new InvalidDataException("Invalid Frightened marker.");
                         FrightenedCodec.Read(reader, s);
+                    }
+                    if (s.ConnectedClericSettlement) {
+                        if (reader.ReadByte() != ClericSettlementProfile.Marker) throw new InvalidDataException("Invalid Cleric settlement marker.");
+                        ClericSettlementCodec.Read(reader, s);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

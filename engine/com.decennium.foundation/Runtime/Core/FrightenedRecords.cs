@@ -158,7 +158,7 @@ namespace Decennium.Foundation
         public const string WarriorEngineSha256 = "2fe08c7c9a299c3943c0bec763ab9691821d89c0a35af4bb77b75f05cba77a71";
         public const string ConditionSha256 = "246e82c831c231581742bc3b04b50065697f6a9039d0afcd3ef7d6a244d055d9";
         public const string Entitlement = "TEST_ONLY.frightened.initial-defender";
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ClericSettlementProfile.SelectedFingerprint(value));
         public static bool ValidFixtureGrant(Snapshot state, CharacterFeatureGrantRecord grant)
             => state.ConnectedFrightened && grant.ActorId == Actor && grant.FeatureId == SourceId
                 && grant.ClassName == "Warrior" && grant.ClassLevel == 2 && grant.MilestoneId == ""
@@ -256,7 +256,8 @@ namespace Decennium.Foundation
                         && x.ApplicationId == timing.ApplicationId && !x.Success && !x.AdmissionPrevented))
                     throw new ArgumentException("Invalid Frightened application endpoint or relationship.");
                 if (state.RuleClock >= timing.RepeatAt.Time
-                    && !state.FrightenedSaves.Any(x => x.Repeat && x.ApplicationId == timing.ApplicationId))
+                    && !state.FrightenedSaves.Any(x => x.Repeat && x.ApplicationId == timing.ApplicationId)
+                    && !ClericSettlementProfile.CuredBeforeRepeat(state,timing))
                     throw new ArgumentException("Missing due Frightened repeat save.");
                 if (state.RuleClock >= timing.FinalAt.Time
                     && !state.FrightenedSaves.Any(x => x.Repeat && x.ApplicationId == timing.ApplicationId && x.Success)
@@ -273,8 +274,9 @@ namespace Decennium.Foundation
                         && x.TargetId == journal.Target && x.At == operation.At.Time && operation.Id == x.Id + ".end"
                         && operation.Reason == "source-repeat-success"))
                         throw new ArgumentException("Unqualified Frightened source ending.");
-                // The source-qualified cure component has no connected producer in TAC-05.
-                if (journal.Operations.Any(x => x.Kind == ConditionOperationKind.Cure && x.Subject == "Frightened"))
+                // Old envelopes retain TAC-05's no-producer boundary. Wire108 must justify the actual paid Radiance cause.
+                if (journal.Operations.Any(x => x.Kind == ConditionOperationKind.Cure && x.Subject == "Frightened"
+                    && !ClericSettlementProfile.QualifiesCure(state,journal.Target,x)))
                     throw new ArgumentException("Frightened cure has no admitted gameplay producer.");
             }
             foreach (var recharge in state.AbilityRecharges) {

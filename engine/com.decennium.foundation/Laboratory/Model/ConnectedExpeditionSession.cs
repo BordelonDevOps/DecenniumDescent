@@ -56,6 +56,7 @@ namespace Decennium.Foundation.Laboratory
         private static readonly Authority HavenTransactionGrant = new Authority(PlayerPrincipal, new[] { Companion },
             inventoryOwners: new[] { Companion, TestOnlyHavenSaleProfile.BuyerId });
         private static readonly Authority ClockGrant = new Authority(SessionPrincipal, new[] { Hero }, canAdvanceClock: true);
+        private static readonly Authority ClericMilestoneGrant = new Authority(PlayerPrincipal, Party, canModifyWorld: true, inventoryOwners: Party);
         private static readonly Authority CloseGrant = new Authority(SessionPrincipal, new[] { Hero }, canModifyWorld: true);
         private static readonly Authority DefenderGrant = LaterDefenderController.DefenderAuthority();
 
@@ -94,6 +95,10 @@ namespace Decennium.Foundation.Laboratory
 
         public static ConnectedExpeditionSession StartWithFleshWarden()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFleshWarden());
+
+        public static ConnectedExpeditionSession StartWithClericSettlement(ClericInitialSelection initial,
+            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericSettlement(initial, repertoire, declaration));
 
         public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
@@ -188,6 +193,8 @@ namespace Decennium.Foundation.Laboratory
                     && ((command.Kind == CommandKind.StartHavenSale && command.Target == TestOnlyHavenSaleProfile.OfferVersionId)
                         || (command.Kind == CommandKind.PurchaseHavenMeal && command.Target == TestOnlyHavenMealProfile.OfferVersionId)))
                     grant = HavenTransactionGrant;
+                if (seat == ExpeditionSeat.Player && state.ConnectedClericSettlement && command.Kind == CommandKind.AwardCharacterMilestone)
+                    grant = ClericMilestoneGrant;
                 return Execute(state, grant, command, () => KnownTarget(state, seat, command),
                     seat == ExpeditionSeat.Player || FirstEncounterActive(state));
             }
@@ -319,10 +326,14 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedPayload(Snapshot state, Command command)
         {
-            if (command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
+            if (command.Advancement != null && (!state.ConnectedClericSettlement || command.Kind != CommandKind.AdvanceCharacterLevel)
+                || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
+            if (state.ConnectedClericSettlement && (command.Kind == CommandKind.AwardCharacterMilestone || command.Kind == CommandKind.AdvanceCharacterLevel))
+                return command.Actor == ClericRpProfile.Actor && command.X == 0 && command.Y == 0 && command.Inventory == null
+                    && command.Combat == null && command.MiningSelection == null && command.IntimidatingPresence == null && command.HealingRite == null;
             if (ClericRepertoireProfile.IsCommand(command.Kind) || command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
                 return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
@@ -356,6 +367,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
                 || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
+                || state.ConnectedClericSettlement && (kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel)
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
                 || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion
@@ -513,6 +525,10 @@ namespace Decennium.Foundation.Laboratory
                     return state.ConnectedConsumeDecay && seat == ExpeditionSeat.Player && actor == Hero && target == ConsumeDecaySite.Id;
                 case CommandKind.UseHealingRite:
                     return state.ConnectedClericRp && seat == ExpeditionSeat.Player && actor == Companion && Party.Contains(target);
+                case CommandKind.AwardCharacterMilestone:
+                case CommandKind.AdvanceCharacterLevel:
+                    return state.ConnectedClericSettlement && seat == ExpeditionSeat.Player && actor == Companion
+                        && target == state.ClericMilestone.MilestoneId;
                 case CommandKind.CastKnownSpell:
                 case CommandKind.AcquireEarnedSpell:
                     return state.ConnectedClericRepertoire && seat == ExpeditionSeat.Player && actor == Companion

@@ -178,6 +178,7 @@ namespace Decennium.Foundation
         public const int ConnectedClericRpSchema = 105;
         public const int ConnectedClericRepertoireSchema = 106;
         public const int ConnectedFrightenedSchema = 107;
+        public const int ConnectedClericSettlementSchema = 108;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -335,6 +336,12 @@ namespace Decennium.Foundation
         public bool ConnectedClericRp;
         public bool ConnectedClericRepertoire;
         public bool ConnectedFrightened;
+        public bool ConnectedClericSettlement;
+        public ClericMilestoneDeclaration ClericMilestone;
+        public ClericObjectiveCompletion ClericObjective;
+        public ClericInvocationPathRecord ClericInvocationPath;
+        public ConvictionCapacityRecord ConvictionCapacity;
+        public RadianceUseRecord[] RadianceUses = Array.Empty<RadianceUseRecord>();
         public WarriorAbilityChoiceRecord[] WarriorAbilityChoices = Array.Empty<WarriorAbilityChoiceRecord>();
         public CharacterAbilityRechargeRecord[] AbilityRecharges = Array.Empty<CharacterAbilityRechargeRecord>();
         public FrightenedUseRecord[] FrightenedUses = Array.Empty<FrightenedUseRecord>();
@@ -344,7 +351,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => ConnectedFrightened ? ConnectedFrightenedSchema
+        public int WireSchemaVersion => ConnectedClericSettlement ? ConnectedClericSettlementSchema
+            : ConnectedFrightened ? ConnectedFrightenedSchema
             : ConnectedClericRepertoire ? ConnectedClericRepertoireSchema
             : ConnectedClericRp ? ConnectedClericRpSchema
             : ConnectedFleshWarden ? ConnectedFleshWardenSchema
@@ -490,6 +498,8 @@ namespace Decennium.Foundation
             ConnectedFleshWarden = ConnectedFleshWarden, FleshWarden = FleshWarden,
             ConnectedClericRp = ConnectedClericRp, ClericEntry = ClericEntry,
             ConnectedClericRepertoire = ConnectedClericRepertoire, KnownSpells = KnownSpells.ToArray(),
+            ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
+            ClericInvocationPath = ClericInvocationPath, ConvictionCapacity = ConvictionCapacity, RadianceUses = RadianceUses.ToArray(),
             ConnectedFrightened = ConnectedFrightened, WarriorAbilityChoices = WarriorAbilityChoices.ToArray(),
             AbilityRecharges = AbilityRecharges.ToArray(), FrightenedUses = FrightenedUses.ToArray(),
             FrightenedSaves = FrightenedSaves.ToArray(), FrightenedTimings = FrightenedTimings.ToArray(),
@@ -709,22 +719,26 @@ namespace Decennium.Foundation
         public ProspectingExposureRequest ProspectingExposure { get; }
         public RouteMappingWorkRequest RouteMappingWork { get; }
         public IntimidatingPresenceRequest IntimidatingPresence { get; }
+        public HealingRiteRequest HealingRite { get; }
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
             CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
             SuppressionFireRequest suppressionFire = null,DefensiveFormationRequest defensiveFormation = null,
             ExpeditionAssignmentRequest expeditionAssignment = null,HarvestSelectionRequest harvestSelection = null,
             MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null,
-            RouteMappingWorkRequest routeMappingWork = null, IntimidatingPresenceRequest intimidatingPresence = null)
+            RouteMappingWorkRequest routeMappingWork = null, IntimidatingPresenceRequest intimidatingPresence = null,
+            HealingRiteRequest healingRite = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
-            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; IntimidatingPresence=intimidatingPresence; }
+            Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; IntimidatingPresence=intimidatingPresence; HealingRite=healingRite; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + (Inventory == null ? "" : "|inventory-v1|" + Inventory.Fingerprint)
             + (Combat == null ? "" : "|" + Combat.FingerprintVersion + "|" + Combat.Fingerprint)
-            + (Advancement == null ? "" : Advancement.UsesLegacyPairReceipt
+            + (Advancement == null ? "" : Advancement.UsesClericSettlementReceipt
+                ? "|character-level-v4|" + string.Join(",",Advancement.FeatureIds) + "|" + Advancement.InvocationPath + "|" + Advancement.EarnedSpell
+                : Advancement.UsesLegacyPairReceipt
                 ? "|character-level-v1|" + Advancement.FeatureOne + "|" + Advancement.FeatureTwo
                 : Advancement.AsiAbilityIncreases.Count != 0 || Advancement.FeatId != ""
                     ? "|character-level-v3|" + string.Join(",",Advancement.FeatureIds) + "|"
@@ -742,7 +756,8 @@ namespace Decennium.Foundation
             + (MiningSelection == null ? "" : "|" + MiningSelection.FingerprintVersion + "|" + MiningSelection.Fingerprint)
             + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint)
             + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint)
-            + (IntimidatingPresence == null ? "" : "|intimidating-presence-v1|" + IntimidatingPresence.Fingerprint);
+            + (IntimidatingPresence == null ? "" : "|intimidating-presence-v1|" + IntimidatingPresence.Fingerprint)
+            + (HealingRite == null ? "" : "|healing-rite-v1|" + ((int)HealingRite.CurePreference).ToString(System.Globalization.CultureInfo.InvariantCulture));
         // Structural history consistency only; receipts are not authentication credentials.
         public bool MatchesReceipt(CommandReceipt receipt) => receipt != null && ExpectedRevision >= 0
             && ExpectedRevision < long.MaxValue && receipt.Revision == ExpectedRevision + 1
@@ -1129,6 +1144,7 @@ namespace Decennium.Foundation
             FleshWardenProfile.Validate(s);
             ClericRpProfile.Validate(s);
             ClericRepertoireProfile.Validate(s);
+            ClericSettlementProfile.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
@@ -1235,6 +1251,16 @@ namespace Decennium.Foundation
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
+            if (command.HealingRite != null && (command.Kind != CommandKind.UseHealingRite || !state.ConnectedClericSettlement
+                || command.Inventory != null || command.Combat != null || command.Advancement != null || command.Ranged != null
+                || command.IntimidatingPresence != null || command.OverwatchRider != OverwatchRider.None
+                || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
+                || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
+                || command.RouteMappingWork != null)) return "UnexpectedHealingRitePayload";
+            if (command.Advancement?.UsesClericSettlementReceipt == true
+                && (!state.ConnectedClericSettlement || command.Actor != ClericRpProfile.Actor)) return "UnsupportedAdvancementPath";
+            if (command.HealingRite != null && command.HealingRite.CurePreference != RadianceCurePreference.None
+                && !authority.Controls(command.Target)) return "NotAuthorized";
             if ((command.Kind == CommandKind.UseIntimidatingPresence) != (command.IntimidatingPresence != null)
                 || command.IntimidatingPresence != null && (command.Target != "" || command.X != 0 || command.Y != 0
                     || command.Inventory != null || command.Combat != null || command.Advancement != null || command.Ranged != null

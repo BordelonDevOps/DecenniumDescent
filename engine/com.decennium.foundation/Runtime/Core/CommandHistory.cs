@@ -31,6 +31,7 @@ namespace Decennium.Foundation
             ProspectingExposureRequest prospectingExposure=null;
             RouteMappingWorkRequest routeMappingWork=null;
             IntimidatingPresenceRequest intimidatingPresence=null;
+            HealingRiteRequest healingRite=null;
             OverwatchRider rider=OverwatchRider.None;
             if(p.Length==8&&p[6]=="overwatch-rider-v1") {
                 rider=(OverwatchRider)Int(p[7]);
@@ -41,6 +42,14 @@ namespace Decennium.Foundation
                 if(kind!=CommandKind.AdvanceCharacterLevel)throw new ArgumentException("Invalid advancement choice-list receipt.");
                 string[] choices=p[7].Length==0?Array.Empty<string>():p[7].Split(',');
                 advancement=new CharacterAdvancementRequest(choices);
+            }
+            if(p.Length==10&&p[6]=="character-level-v4") {
+                if(kind!=CommandKind.AdvanceCharacterLevel)throw new ArgumentException("Invalid earned Cleric receipt.");
+                advancement=new CharacterAdvancementRequest(p[7].Length==0?Array.Empty<string>():p[7].Split(','),p[8],p[9]);
+            }
+            if(p.Length==8&&p[6]=="healing-rite-v1") {
+                if(kind!=CommandKind.UseHealingRite)throw new ArgumentException("Invalid Healing Rite choice receipt.");
+                healingRite=new HealingRiteRequest((RadianceCurePreference)Int(p[7]));
             }
             if(p.Length==10&&p[6]=="character-level-v3") {
                 if(kind!=CommandKind.AdvanceCharacterLevel)throw new ArgumentException("Invalid advancement operation receipt.");
@@ -122,7 +131,7 @@ namespace Decennium.Foundation
             }
             if (kind == CommandKind.UseIntimidatingPresence && intimidatingPresence == null)
                 throw new ArgumentException("Intimidating Presence requires its immutable target selection.");
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence);
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

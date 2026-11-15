@@ -7,8 +7,8 @@ using System.Linq;
 namespace Decennium.Foundation.Laboratory
 {
     /// <summary>Trusted producer boundary, never a command payload. A future gameplay
-    /// producer must add a factory that validates its real trigger, ownership, recipient,
-    /// choice and payment before issuing a context. No gameplay factory is admitted here.</summary>
+    /// producer validates its real trigger, ownership, recipient, choice and payment
+    /// before issuing a context. The bounded earned Radiance factory is separate from detached authority.</summary>
     internal sealed class ConditionCureInvocation
     {
         internal const string DetachedAuthority = "TEST_ONLY.detached-condition-cure.v1";
@@ -31,6 +31,14 @@ namespace Decennium.Foundation.Laboratory
             foreach (var kind in kinds) ConditionIdentity.Kind(kind);
             Id = id; SourceId = source; SourceRevision = sourceRevision; ApplyingActor = actor;
             Target = target; At = at; AllowedKinds = Array.AsReadOnly(kinds); TestOnly = testOnly;
+        }
+
+        internal static ConditionCureInvocation ForRadiance(Snapshot staged, Command command, HealingRiteRecord rite)
+        {
+            RadianceRules.ValidateCureTrigger(staged,command,rite);
+            var kind = command.HealingRite.CurePreference == RadianceCurePreference.Frightened ? ConditionKind.Frightened : ConditionKind.Poisoned;
+            return new ConditionCureInvocation(command.Id + ".radiance",ClericSettlementProfile.Radiance,ClericRpProfile.SourceRevision,
+                command.Actor,command.Target,RadianceRules.TargetStamp(staged,command.Target),new[] {kind},true);
         }
 
         // Explicit detached component authority. These facts cannot qualify a connected

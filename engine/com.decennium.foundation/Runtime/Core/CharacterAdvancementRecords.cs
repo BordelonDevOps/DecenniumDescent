@@ -24,7 +24,7 @@ namespace Decennium.Foundation
         public const string SuppressionFire="soldier.arch.suppression-fire";
         public const string DefensiveFormation="soldier.arch.defensive-formation";
     }
-    public enum CharacterFeatureGrantOrigin { SelectedCard, AutomaticClassFeature, InitialClassSelection, TestOnlyFixtureEntitlement }
+    public enum CharacterFeatureGrantOrigin { SelectedCard, AutomaticClassFeature, InitialClassSelection, TestOnlyFixtureEntitlement, EarnedAutomaticClassFeature }
     public enum HitPointGainMethod { FixedAverage }
 
     /// <summary>Explicit map marker for a solid feature or cover that qualifies for this one passive.</summary>
@@ -190,6 +190,7 @@ namespace Decennium.Foundation
             if(!Validation.ValidId(actorId)||!Validation.ValidId(featureId)||string.IsNullOrEmpty(className)||className.Length>96
                 ||className.Any(c=>c<32||c>126)||classLevel<1||classLevel>20||!Enum.IsDefined(typeof(CharacterFeatureGrantOrigin),origin)
                 ||origin==CharacterFeatureGrantOrigin.SelectedCard&&(!Validation.ValidId(milestoneId)||grantedRevision<1)
+                ||origin==CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature&&(!Validation.ValidId(milestoneId)||grantedRevision<1)
                 ||origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(milestoneId!=""||grantedRevision!=0)
                 ||origin==CharacterFeatureGrantOrigin.InitialClassSelection&&(milestoneId!=""||grantedRevision!=0)
                 ||origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&(milestoneId!=""||grantedRevision!=0))
@@ -421,6 +422,18 @@ namespace Decennium.Foundation
             FeatId=featId;UsesLegacyPairReceipt=false;FeatureOne=featureIds.Length>0?featureIds[0]:"";
             FeatureTwo=featureIds.Length>1?featureIds[1]:"";
         }
+        // Explicit version selection retains an incomplete path/spell as a rejectable request.
+        // Existing constructors retain their exact receipt representations.
+        public bool UsesClericSettlementReceipt { get; }
+        public string InvocationPath { get; } = "";
+        public string EarnedSpell { get; } = "";
+        public CharacterAdvancementRequest(string[] selectedFeatureIds,string invocationPath,string earnedSpell)
+            :this(selectedFeatureIds)
+        {
+            if(invocationPath==null||earnedSpell==null||invocationPath!=""&&!Validation.ValidId(invocationPath)
+                ||earnedSpell!=""&&!Validation.ValidId(earnedSpell))throw new ArgumentException("Invalid earned Cleric choices.");
+            UsesClericSettlementReceipt=true;InvocationPath=invocationPath;EarnedSpell=earnedSpell;
+        }
     }
 
     public static class CharacterAdvancementValidation
@@ -466,10 +479,11 @@ namespace Decennium.Foundation
                     ||g.Origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&!FleshWardenProfile.ValidFixtureGrant(s,g)
                         &&!FrightenedProfile.ValidFixtureGrant(s,g)
                     ||g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&(!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
-                        ||g.ClassName!="Soldier"||!ValidSelectedGrant(s,g)
+                        ||!(g.ClassName=="Soldier"&&ValidSelectedGrant(s,g)||ClericSettlementProfile.ValidEarnedGrant(s,g))
                         ||s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema&&!s.CharacterAdvancements.Any(a=>a.ActorId==g.ActorId
                             &&a.Revision==g.GrantedRevision&&a.ClassName==g.ClassName&&a.ClassLevel==g.ClassLevel&&a.SelectedFeatureIds.Contains(g.FeatureId))
                         ||g.ClassLevel> s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))
+                    ||g.Origin==CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature&&!ClericSettlementProfile.ValidEarnedGrant(s,g)
                     ||g.Origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(s.SchemaVersion<Snapshot.SharedBonusActionSchema||g.FeatureId!=CharacterFeatureIds.Overwatch
                         ||g.ClassName!="Soldier"||g.ClassLevel!=1||g.MilestoneId!=""||g.GrantedRevision!=0
                         ||(s.Characters.Single(c=>c.ActorId==g.ActorId).ProfileId!=CharacterAdvancementProfileIds.TestOnlySoldierLevel1
@@ -527,6 +541,7 @@ namespace Decennium.Foundation
 
         private static bool ValidAdvancementResult(Snapshot s,CharacterAdvancementRecord advancement)
         {
+            if(advancement.ClassName=="Cleric")return ClericSettlementProfile.ValidAdvancement(s,advancement);
             if(advancement.ClassName!="Soldier"||advancement.BaseHpGain!=6||advancement.HitPointMethod!=HitPointGainMethod.FixedAverage)
                 return false;
             if(s.SchemaVersion<Snapshot.CharacterAdvancementHistorySchema)
@@ -585,6 +600,13 @@ namespace Decennium.Foundation
                 var actor=s.Characters.SingleOrDefault(x=>x.ActorId==actorId);
                 var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderBy(x=>x.Revision).ToArray();
                 if(actor==null||events.Length==0)return false;
+                if(s.ConnectedClericSettlement&&actorId==ClericRpProfile.Actor) {
+                    if(events.Length!=1||!ClericSettlementProfile.ValidAdvancement(s,events[0])||actor.Levels.Count!=2
+                        ||actor.Levels[0].ClassName!="Cleric"||actor.Levels[0].BaseHp!=8
+                        ||actor.Levels[1].ClassName!="Cleric"||actor.Levels[1].BaseHp!=5
+                        ||!actor.Abilities.SequenceEqual(new[]{10,10,10,10,14,10}))return false;
+                    continue;
+                }
                 int total=1;
                 bool supportedProfile=actor.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1
                     ||s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema&&actor.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1InitialBuild;

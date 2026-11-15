@@ -238,6 +238,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeClericRp(s);
             InitializeClericRepertoire(s);
             InitializeFrightened(s);
+            InitializeClericSettlement(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);

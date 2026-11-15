@@ -49,7 +49,7 @@ namespace Decennium.Foundation.Laboratory
             var journal = s.Conditions.Single(x => x.Target == target);
             return journal.Operations.Count < ConditionJournal.MaxOperations && ConditionsFor(s, target).Applications.Count < ConditionLedger.MaxApplications;
         }
-        private static void CommitCondition(Snapshot s, ConditionHistoryTransition result)
+        internal static void CommitCondition(Snapshot s, ConditionHistoryTransition result)
         {
             var ledger = result.State.Ledger; string actor = ledger.Target;
             s.Conditions = s.Conditions.Select(x => x.Target == actor ? result.State.Journal : x).ToArray();
