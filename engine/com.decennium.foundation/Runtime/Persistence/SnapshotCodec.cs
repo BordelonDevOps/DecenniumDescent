@@ -140,6 +140,10 @@ namespace Decennium.Foundation
                     writer.Write(ShortRestBerth.Marker);
                     ShortRestCodec.Write(writer, state.ShortRests);
                 }
+                if (state.ConnectedFleshWarden) {
+                    writer.Write(FleshWardenProfile.Marker);
+                    FleshWardenCodec.Write(writer, state.FleshWarden);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -173,6 +177,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedWoundTreatmentSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedConsumeDecaySchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedShortRestSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedFleshWardenSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -279,7 +284,8 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedShortRest = wireSchema == Snapshot.ConnectedShortRestSchema;
+                    s.ConnectedFleshWarden = wireSchema == Snapshot.ConnectedFleshWardenSchema;
+                    s.ConnectedShortRest = s.ConnectedFleshWarden || wireSchema == Snapshot.ConnectedShortRestSchema;
                     s.ConnectedConsumeDecay = s.ConnectedShortRest || wireSchema == Snapshot.ConnectedConsumeDecaySchema;
                     s.ConnectedWoundTreatment = s.ConnectedConsumeDecay || wireSchema == Snapshot.ConnectedWoundTreatmentSchema;
                     bool carriedVialEnvelope = s.ConnectedWoundTreatment || wireSchema == Snapshot.ConnectedCarriedVialSchema
@@ -322,6 +328,10 @@ namespace Decennium.Foundation
                     if (s.ConnectedShortRest) {
                         if (reader.ReadByte() != ShortRestBerth.Marker) throw new InvalidDataException("Invalid Short Rest marker.");
                         s.ShortRests = ShortRestCodec.Read(reader);
+                    }
+                    if (s.ConnectedFleshWarden) {
+                        if (reader.ReadByte() != FleshWardenProfile.Marker) throw new InvalidDataException("Invalid Flesh Warden marker.");
+                        s.FleshWarden = FleshWardenCodec.Read(reader);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

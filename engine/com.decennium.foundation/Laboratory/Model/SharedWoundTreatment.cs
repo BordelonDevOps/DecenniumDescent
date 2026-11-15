@@ -23,6 +23,7 @@ namespace Decennium.Foundation.Laboratory
             state.ConnectedWoundTreatment = true;
             state.ConnectedConsumeDecay = connectedConsumeDecay;
             state.ConnectedShortRest = connectedShortRest;
+            InitializeFleshWarden(state);
             var stock = new[] { WoundTreatmentStation.Kit }.Concat(
                 Enumerable.Range(0, WoundTreatmentStation.BasketCount).SelectMany(WoundTreatmentStation.Stock)).ToArray();
             state.Work = new WorkLedger(state.Work.Lots.Concat(stock), state.Work.WorkerIntervals, state.Work.Reservations);

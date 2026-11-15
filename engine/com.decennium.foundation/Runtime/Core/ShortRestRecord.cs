@@ -79,8 +79,8 @@ namespace Decennium.Foundation
         public const int MaxAttempts = 1024; // Technical history capacity, not a rest-use rule.
         public const string SourceRevision = "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
 
-        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
-        public static bool IsCommand(CommandKind kind) => kind == CommandKind.BeginShortRest || kind == CommandKind.InterruptShortRest;
+        public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || FleshWardenProfile.SelectedFingerprint(fingerprint);
+        public static bool IsCommand(CommandKind kind) => kind == CommandKind.BeginShortRest || kind == CommandKind.InterruptShortRest || kind == CommandKind.BeginMutationShortRest;
         public static ShortRestRecord Active(Snapshot state)
             => state.ConnectedShortRest ? state.ShortRests.SingleOrDefault(x => x.Outcome == ShortRestOutcome.Active) : null;
         public static int BenefitsUsed(Snapshot state) => state.ShortRests.Count(x => x.Benefit == ShortRestBenefit.Eligible);
@@ -110,7 +110,9 @@ namespace Decennium.Foundation
                     || active && (index != rests.Length - 1 || rest.DueAt <= state.RuleClock)
                     || rest.EndRevision > state.Revision || rest.EndedAt > state.RuleClock)
                     throw new ArgumentException("Invalid Short Rest chronology.");
-                var start = new Command(rest.StartCommandId, Actor, rest.StartRevision - 1, CommandKind.BeginShortRest, Id);
+                var choice = FleshWardenProfile.Choice(state, rest.Id);
+                var start = new Command(rest.StartCommandId, Actor, rest.StartRevision - 1,
+                    choice == null ? CommandKind.BeginShortRest : CommandKind.BeginMutationShortRest, choice?.MutationId ?? Id);
                 if (!state.Receipts.Any(x => x.Revision == rest.StartRevision && x.Principal == "TEST_ONLY.host" && start.MatchesReceipt(x)))
                     throw new ArgumentException("Short Rest requires its exact start receipt.");
                 if (!active) {
@@ -138,7 +140,9 @@ namespace Decennium.Foundation
                 previousEnd = end;
             }
             string startKind = ((int)CommandKind.BeginShortRest).ToString(CultureInfo.InvariantCulture) + "|";
-            if (state.Receipts.Count(x => x.Fingerprint.StartsWith(startKind, StringComparison.Ordinal)) != rests.Length
+            string mutationKind = ((int)CommandKind.BeginMutationShortRest).ToString(CultureInfo.InvariantCulture) + "|";
+            if (state.Receipts.Count(x => x.Fingerprint.StartsWith(startKind, StringComparison.Ordinal)
+                    || x.Fingerprint.StartsWith(mutationKind, StringComparison.Ordinal)) != rests.Length
                 || state.Work.WorkerIntervals.Any(x => x.JobId.StartsWith(IntervalPrefix, StringComparison.Ordinal)
                     && !rests.Any(r => r.Id == x.JobId))
                 || state.Work.Reservations.Any(x => x.JobId.StartsWith(IntervalPrefix, StringComparison.Ordinal)))

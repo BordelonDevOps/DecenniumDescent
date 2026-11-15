@@ -39,7 +39,7 @@ namespace Decennium.Foundation.Laboratory
             Position = new ExpeditionVisibleActor(actor);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
-            MaximumHp = life.MaximumHp;
+            MaximumHp = state.ConnectedFleshWarden ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
             if (state.ConnectedConsumeDecay && actor.Id == ConsumeDecaySite.Actor) {
                 TemporaryHp = life.TemporaryHp;
                 TemporaryHpUntil = state.ConsumeDecay?.Active == true ? state.ConsumeDecay.Deadline : (RuleTime?)null;
@@ -163,13 +163,14 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionMiningSiteView MiningSite { get; }
         public ExpeditionFishingTrapView FishingTrap { get; }
         public ExpeditionShortRestView ShortRest { get; }
+        public ExpeditionMutationView FleshWarden { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
             string turnId, string decisionId, IEnumerable<ExpeditionOwnActor> actors,
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
             long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
-            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null)
+            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null, ExpeditionMutationView fleshWarden = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -190,7 +191,22 @@ namespace Decennium.Foundation.Laboratory
             Observation = observation;
             MiningSite = miningSite;
             FishingTrap = fishingTrap;
-            ShortRest = shortRest;
+            ShortRest = shortRest; FleshWarden = fleshWarden;
+        }
+    }
+
+    public sealed class ExpeditionMutationView
+    {
+        public string SlotSourceId => FleshWardenProfile.SlotI;
+        public IReadOnlyList<string> EligibleMutations { get; }
+        public FleshWardenRecord Loadout { get; }
+        public string PlanUnavailableReason { get; }
+        internal ExpeditionMutationView(Snapshot state)
+        {
+            Loadout = state.FleshWarden;
+            EligibleMutations = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => FleshWardenProfile.ValidFixtureGrant(state, x))
+                .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
+            PlanUnavailableReason = ShortRestBerth.BenefitsUsed(state) >= ShortRestBerth.InitialBenefits ? "MutationRestCadenceUnsupported" : "";
         }
     }
 
@@ -401,6 +417,10 @@ namespace Decennium.Foundation.Laboratory
                         commands = commands.Append(CommandKind.ConsumeDecay);
                         selected.Add(CommandKind.ConsumeDecay, ConsumeDecaySite.Id);
                     }
+                    if (state.ConnectedFleshWarden) {
+                        commands = commands.Append(CommandKind.BeginMutationShortRest);
+                        selected.Add(CommandKind.BeginMutationShortRest, FleshWardenProfile.FleshWarden);
+                    }
                     if (state.ConnectedShortRest) {
                         commands = commands.Append(CommandKind.BeginShortRest).Append(CommandKind.InterruptShortRest);
                         selected.Add(CommandKind.BeginShortRest, ShortRestBerth.Id);
@@ -418,7 +438,8 @@ namespace Decennium.Foundation.Laboratory
                     player ? ProjectCache(state) : null, player ? ProjectObservation(state, grant) : null,
                     player ? ProjectMiningSite(state, grant) : null,
                     player ? ProjectFishingTrap(state, grant) : null,
-                    player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null);
+                    player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null,
+                    player && state.ConnectedFleshWarden && grant.Controls(FleshWardenProfile.Actor) ? new ExpeditionMutationView(state) : null);
             }
         }
 

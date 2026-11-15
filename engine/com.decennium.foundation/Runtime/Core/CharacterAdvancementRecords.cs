@@ -24,7 +24,7 @@ namespace Decennium.Foundation
         public const string SuppressionFire="soldier.arch.suppression-fire";
         public const string DefensiveFormation="soldier.arch.defensive-formation";
     }
-    public enum CharacterFeatureGrantOrigin { SelectedCard, AutomaticClassFeature, InitialClassSelection }
+    public enum CharacterFeatureGrantOrigin { SelectedCard, AutomaticClassFeature, InitialClassSelection, TestOnlyFixtureEntitlement }
     public enum HitPointGainMethod { FixedAverage }
 
     /// <summary>Explicit map marker for a solid feature or cover that qualifies for this one passive.</summary>
@@ -191,7 +191,8 @@ namespace Decennium.Foundation
                 ||className.Any(c=>c<32||c>126)||classLevel<1||classLevel>20||!Enum.IsDefined(typeof(CharacterFeatureGrantOrigin),origin)
                 ||origin==CharacterFeatureGrantOrigin.SelectedCard&&(!Validation.ValidId(milestoneId)||grantedRevision<1)
                 ||origin==CharacterFeatureGrantOrigin.AutomaticClassFeature&&(milestoneId!=""||grantedRevision!=0)
-                ||origin==CharacterFeatureGrantOrigin.InitialClassSelection&&(milestoneId!=""||grantedRevision!=0))
+                ||origin==CharacterFeatureGrantOrigin.InitialClassSelection&&(milestoneId!=""||grantedRevision!=0)
+                ||origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&(milestoneId!=""||grantedRevision!=0))
                 throw new ArgumentException("Invalid feature grant.");
             ActorId=actorId;FeatureId=featureId;ClassName=className;ClassLevel=classLevel;MilestoneId=milestoneId;GrantedRevision=grantedRevision;Origin=origin;
         }
@@ -446,7 +447,7 @@ namespace Decennium.Foundation
                 ||s.TacticalCovers.Select(x=>x.X+","+x.Y).Distinct(StringComparer.Ordinal).Count()!=s.TacticalCovers.Length
                 ||s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1
                     ||s.CharacterHitDice.Any(d=>d.ActorId==c.ActorId)||s.CharacterMilestones.Any(m=>m.ActorId==c.ActorId)
-                    ||s.CharacterFeatureGrants.Any(g=>g.ActorId==c.ActorId)||s.CharacterAdvancements.Any(a=>a.ActorId==c.ActorId)
+                    ||s.CharacterFeatureGrants.Any(g=>g.ActorId==c.ActorId&&!FleshWardenProfile.ValidFixtureGrant(s,g))||s.CharacterAdvancements.Any(a=>a.ActorId==c.ActorId)
                     ||s.CharacterFeatureRuntime.Any(r=>r.ActorId==c.ActorId)||s.InitialClassSelections.Any(r=>r.ActorId==c.ActorId))
                     .Any(c=>s.CharacterHitDice.Count(d=>d.ActorId==c.ActorId)!=c.Levels.Count)
                 ||s.CharacterFeatureRuntime.Any(x=>!Actor(x.ActorId)||!s.CharacterFeatureGrants.Any(g=>g.ActorId==x.ActorId&&g.FeatureId==CharacterFeatureIds.TacticalReposition
@@ -461,6 +462,7 @@ namespace Decennium.Foundation
                     ||d.ClassName!=s.Characters.Single(c=>c.ActorId==d.ActorId).Levels[d.LevelOrdinal-1].ClassName)
                 ||s.CharacterHitDice.Select(d=>d.ActorId+"|"+d.LevelOrdinal).Distinct(StringComparer.Ordinal).Count()!=s.CharacterHitDice.Length
                 ||s.CharacterFeatureGrants.Any(g=>!Actor(g.ActorId)||g.GrantedRevision>s.Revision
+                    ||g.Origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&!FleshWardenProfile.ValidFixtureGrant(s,g)
                     ||g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&(!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
                         ||g.ClassName!="Soldier"||!ValidSelectedGrant(s,g)
                         ||s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema&&!s.CharacterAdvancements.Any(a=>a.ActorId==g.ActorId

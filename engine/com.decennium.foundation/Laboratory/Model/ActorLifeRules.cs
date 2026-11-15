@@ -12,7 +12,8 @@ namespace Decennium.Foundation.Laboratory
         public static LifeState Read(ActorLifeRecord r)=>new LifeState(r.MaximumHp,r.Hp,r.TemporaryHp,r.LinkedInjuries.Select(i=>(Injury)i),
             r.Stable,r.Dead,r.DeathSuccesses,r.DeathFailures,r.UsesDeathSaves,lastDeathTurn:r.LastDeathTurn,stableUntil:r.StableUntil);
         /// <summary>Projects the active, source-qualified effective HP ceiling for a life resolution.
-        /// The persisted ActorLifeRecord.MaximumHp remains the base character authority.</summary>
+        /// The persisted ActorLifeRecord.MaximumHp is pre-systemic capacity. Older profiles
+        /// contain base capacity only; the selected Flesh Warden profile derives its bonus separately.</summary>
         public static LifeState ReadForResolution(Snapshot s,ActorLifeRecord record)
         {
             if(s==null||record==null)throw new ArgumentNullException(s==null?nameof(s):nameof(record));

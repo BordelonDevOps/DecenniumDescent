@@ -92,6 +92,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithConsumeDecay()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedConsumeDecay());
 
+        public static ConnectedExpeditionSession StartWithFleshWarden()
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFleshWarden());
+
         public static ConnectedExpeditionSession StartWithShortRest()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());
 
@@ -480,6 +483,8 @@ namespace Decennium.Foundation.Laboratory
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
                 case CommandKind.ConsumeDecay:
                     return state.ConnectedConsumeDecay && seat == ExpeditionSeat.Player && actor == Hero && target == ConsumeDecaySite.Id;
+                case CommandKind.BeginMutationShortRest:
+                    return state.ConnectedFleshWarden && seat == ExpeditionSeat.Player && actor == Hero && FleshWardenProfile.IsMutation(target);
                 case CommandKind.BeginShortRest:
                     return state.ConnectedShortRest && seat == ExpeditionSeat.Player && actor == Hero && target == ShortRestBerth.Id;
                 case CommandKind.InterruptShortRest:

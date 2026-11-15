@@ -46,7 +46,7 @@ namespace Decennium.Foundation
         AcceptNextCharter, WithdrawNextCharter, InspectNextCharterAgreement,
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
-        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest }
+        DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -174,6 +174,7 @@ namespace Decennium.Foundation
         public const int ConnectedWoundTreatmentSchema = 101;
         public const int ConnectedConsumeDecaySchema = 102;
         public const int ConnectedShortRestSchema = 103;
+        public const int ConnectedFleshWardenSchema = 104;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -326,7 +327,10 @@ namespace Decennium.Foundation
         public ConsumeDecayRecord ConsumeDecay;
         public bool ConnectedShortRest;
         public ShortRestRecord[] ShortRests = Array.Empty<ShortRestRecord>();
-        public int WireSchemaVersion => ConnectedShortRest ? ConnectedShortRestSchema
+        public bool ConnectedFleshWarden;
+        public FleshWardenRecord FleshWarden;
+        public int WireSchemaVersion => ConnectedFleshWarden ? ConnectedFleshWardenSchema
+            : ConnectedShortRest ? ConnectedShortRestSchema
             : ConnectedConsumeDecay ? ConnectedConsumeDecaySchema
             : ConnectedWoundTreatment ? ConnectedWoundTreatmentSchema
             : ConnectedCompanionStabilization ? ConnectedCompanionStabilizationSchema
@@ -465,6 +469,7 @@ namespace Decennium.Foundation
             ConnectedConsumeDecay = ConnectedConsumeDecay,
             ConsumeDecay = ConsumeDecay,
             ConnectedShortRest = ConnectedShortRest,
+            ConnectedFleshWarden = ConnectedFleshWarden, FleshWarden = FleshWarden,
             ShortRests = ShortRests.ToArray(),
             ProspectingPatches = ProspectingPatches.ToArray(), ProspectingExposures = ProspectingExposures.ToArray(),
             ProspectingAttempts = ProspectingAttempts.ToArray(),
@@ -1095,6 +1100,7 @@ namespace Decennium.Foundation
             WoundTreatmentStation.Validate(s);
             ConsumeDecayRecord.Validate(s);
             ShortRestBerth.Validate(s);
+            FleshWardenProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
             TemporaryCampConstructionValidation.Validate(s);

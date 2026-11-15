@@ -55,7 +55,11 @@ namespace Decennium.Foundation.Laboratory
                 EndShortRest(state, active, command, ShortRestInterruption.Explicit);
                 return null;
             }
-            if (command.Target != ShortRestBerth.Id) return "ShortRestSiteUnavailable";
+            bool mutation = command.Kind == CommandKind.BeginMutationShortRest;
+            if (mutation) {
+                string failure = MutationRestAccess(state, command.Target);
+                if (failure != null) return failure;
+            } else if (command.Target != ShortRestBerth.Id) return "ShortRestSiteUnavailable";
             if (active != null) return "ShortRestAlreadyActive";
             string access = ShortRestAccess(state, null);
             if (access != null) return access;
@@ -67,6 +71,7 @@ namespace Decennium.Foundation.Laboratory
                 new WorkerInterval(ShortRestBerth.OccupancyId(rest.Id), rest.Id, command.Actor, rest.StartedAt, rest.DueAt)
             }, Array.Empty<ResourceReservation>());
             state.ShortRests = state.ShortRests.Append(rest).ToArray();
+            if (mutation) AddMutationRestChoice(state, rest, command.Target);
             return null;
         }
 
@@ -74,7 +79,8 @@ namespace Decennium.Foundation.Laboratory
         {
             var rest = ShortRestBerth.Active(state);
             if (rest == null) return;
-            if (ShortRestAccess(state, rest) != null) {
+            var choice = FleshWardenProfile.Choice(state, rest.Id);
+            if (ShortRestAccess(state, rest) != null || choice != null && MutationRestAccess(state, choice.MutationId) != null) {
                 EndShortRest(state, rest, command, ShortRestEncounter(state)
                     ? ShortRestInterruption.Encounter : ShortRestInterruption.AccessLost);
                 return;
@@ -95,6 +101,7 @@ namespace Decennium.Foundation.Laboratory
             var ended = new ShortRestRecord(rest.Sequence, rest.StartCommandId, rest.StartRevision, rest.StartedAt,
                 completed ? ShortRestOutcome.Completed : ShortRestOutcome.Interrupted, benefit, interruption,
                 command.Id, state.Revision + 1, state.RuleClock);
+            if (completed) CompleteMutationRest(state, ended);
             state.ShortRests = state.ShortRests.Select(x => x.Id == rest.Id ? ended : x).ToArray();
         }
     }

@@ -10,9 +10,9 @@ namespace Decennium.Foundation.Tests
 {
     public static partial class FoundationCases
     {
-        private static ConnectedExpeditionSession ShortRestArrival()
+        private static ConnectedExpeditionSession ShortRestArrival(ConnectedExpeditionSession supplied = null, bool equipFleshWarden = false)
         {
-            var session = StartVialScenario(ConnectedExpeditionSession.StartWithShortRest());
+            var session = StartVialScenario(supplied ?? ConnectedExpeditionSession.StartWithShortRest());
             const string hero = ConnectedExpeditionSession.Hero, ally = ConnectedExpeditionSession.Companion;
             const ExpeditionSeat player = ExpeditionSeat.Player;
             void Commit(string id, string actor, CommandKind kind, string target = "", int x = 0, int y = 0,
@@ -34,9 +34,23 @@ namespace Decennium.Foundation.Tests
             Commit("vial.stow", hero, CommandKind.HandlePortableEquipment, VialId,
                 inventory: new InventoryRequest(Q(1), ConnectedVialRules.PackId, HandlingKind.Stow));
             VialWalk(session, "tac.away", 112, -1);
+            if (equipFleshWarden) {
+                void Walk(string id, int x, int y) {
+                    Commit(id, hero, CommandKind.BeginWorldStep, "walk", x, y);
+                    Commit(id + ".paid", hero, CommandKind.AdvanceClock, x: 6, y: 1);
+                }
+                Walk("capacity.approach.0", 0, -1); Walk("capacity.approach.1", 0, -1); Walk("capacity.approach.2", -1, 0);
+                Commit("capacity.first-rest", hero, CommandKind.BeginMutationShortRest, FleshWardenProfile.FleshWarden);
+                Commit("capacity.first-hour", hero, CommandKind.AdvanceClock, x: 3600, y: 1);
+                var equipped = ShortRestCapture(session);
+                var life = equipped.Lives.Single(x => x.ActorId == hero);
+                Require(life.Hp == 26 && life.MaximumHp == 32 && equipped.FleshWarden.Applications.Single().Amount == 6,
+                    "First actual rest must grant sourced capacity without healing before later combat.");
+                Walk("capacity.return.0", 1, 0); Walk("capacity.return.1", 0, 1); Walk("capacity.return.2", 0, 1);
+            }
             Commit("ally.stage", ally, CommandKind.BeginWorldStep, "walk", -1);
             Commit("ally.stage-paid", hero, CommandKind.AdvanceClock, x: 6, y: 1);
-            VialWalk(session, "ally.entry", 116, -1, 12);
+            VialWalk(session, "ally.entry", checked((int)session.View(player).Revision), -1, 12);
             Commit("ally.reinforcement", ally, CommandKind.BeginReinforcementApproach, "TEST_ONLY.companion-reinforcement.v1");
             Commit("ally.retrieve", hero, CommandKind.HandlePortableEquipment, VialId, inventory: new InventoryRequest(Q(1), handling: HandlingKind.Retrieve));
             Guard(hero); Step(2); Defender(); End(hero); Defender();
