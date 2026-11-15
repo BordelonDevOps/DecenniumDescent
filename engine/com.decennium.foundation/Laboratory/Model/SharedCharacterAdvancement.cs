@@ -281,6 +281,8 @@ namespace Decennium.Foundation.Laboratory
                 &&(x.ClassLevel==3||x.ClassLevel==4&&s.SchemaVersion>=Snapshot.SharedCharacterAdvancementSchema));
         internal static int SaveProficiencyBonus(Snapshot s,string actor,string abilityId)
         {
+            if(s.ConnectedClericRp&&s.ClericEntry?.ActorId==actor&&s.ClericEntry.SavingThrows.Contains(abilityId,StringComparer.Ordinal))
+                return CharacterRuleFacts.ForActor(s,actor).ProficiencyBonus;
             var loadout=s.InitialCharacterLoadouts.SingleOrDefault(x=>x.ActorId==actor);
             if(loadout==null||!loadout.SavingThrowProficiencyIds.Contains(abilityId,StringComparer.Ordinal))return 0;
             return CharacterRuleFacts.ForActor(s,actor).ProficiencyBonus;

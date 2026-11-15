@@ -569,6 +569,9 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);
+            if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind))
+                return new CommandQueryResult(true, false, "ClassRecoveryUnsupported", s.Revision);
             if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
                 return QueryFishingTrapResponsibilityHandover(s,authority,c);
             if (IsHavenCareCommand(c.Kind)) return QueryHavenCareCommand(s, c);

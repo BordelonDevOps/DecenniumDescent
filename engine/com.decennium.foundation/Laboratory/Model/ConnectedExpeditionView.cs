@@ -6,6 +6,38 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
+    public sealed class ExpeditionClericView
+    {
+        public string ClassName => "Cleric";
+        public int ClassLevel { get; }
+        public int CurrentRp { get; }
+        public int MaximumRp { get; }
+        public string FavoredWeapon { get; }
+        public IReadOnlyList<string> ArmorTraining { get; }
+        public IReadOnlyList<string> WeaponTraining { get; }
+        public IReadOnlyList<string> ToolTraining { get; }
+        public IReadOnlyList<string> SelectedSkills { get; }
+        public IReadOnlyList<string> SavingThrows { get; }
+        public string AutomaticEngine { get; }
+        public IReadOnlyList<string> OwnedCards { get; }
+        public IReadOnlyList<string> UnsupportedCapabilities { get; }
+        internal ExpeditionClericView(Snapshot state)
+        {
+            ClassLevel = state.Characters.Single(x => x.ActorId == ClericRpProfile.Actor).Levels.Count(x => x.ClassName == "Cleric");
+            var pool = state.ResonancePools.Single(x => x.ActorId == ClericRpProfile.Actor);
+            CurrentRp = pool.Current; MaximumRp = pool.Maximum;
+            var entry = state.ClericEntry;
+            FavoredWeapon = entry.FavoredWeaponProfile; ArmorTraining = entry.ArmorTraining;
+            WeaponTraining = entry.WeaponTraining; ToolTraining = entry.ToolTraining;
+            SelectedSkills = entry.SelectedSkills; SavingThrows = entry.SavingThrows; AutomaticEngine = entry.AutomaticEngineName;
+            OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x))
+                .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
+            UnsupportedCapabilities = Array.AsReadOnly(new[] { "Conviction", "Class recovery", "Other selected card execution",
+                "Ordinary spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
+                "Starting equipment and wealth", "Periodic rider healing interactions" });
+        }
+    }
+
     public sealed class ExpeditionVisibleActor
     {
         public string Id { get; }
@@ -33,10 +65,12 @@ namespace Decennium.Foundation.Laboratory
         public IReadOnlyList<ExpeditionVisibleActor> VisibleOpponents { get; }
         public string Travel { get; }
         public ExpeditionTraversalView Traversal { get; }
+        public ExpeditionClericView Cleric { get; }
 
         internal ExpeditionOwnActor(Snapshot state, ActorState actor, Authority grant)
         {
             Position = new ExpeditionVisibleActor(actor);
+            if (state.ConnectedClericRp && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id)) Cleric = new ExpeditionClericView(state);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
             MaximumHp = state.ConnectedFleshWarden ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
@@ -428,6 +462,13 @@ namespace Decennium.Foundation.Laboratory
                         if (activeRest != null) selected.Add(CommandKind.InterruptShortRest, activeRest.Id);
                     }
                     targets = new System.Collections.ObjectModel.ReadOnlyDictionary<CommandKind, string>(selected);
+                }
+                if (player && state.ConnectedClericRp) {
+                    commands = commands.Append(CommandKind.BeginReinforcementApproach).Append(CommandKind.UseHealingRite);
+                    var selected = targets.ToDictionary(x => x.Key, x => x.Value);
+                    selected.Add(CommandKind.BeginReinforcementApproach, state.Reinforcement.Definition.Id);
+                    selected.Add(CommandKind.UseHealingRite, Hero);
+                    targets = new ReadOnlyDictionary<CommandKind, string>(selected);
                 }
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
                     ownedActing, turn, ownedDecision,

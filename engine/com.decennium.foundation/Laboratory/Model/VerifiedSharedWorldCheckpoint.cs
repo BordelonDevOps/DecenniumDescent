@@ -18,7 +18,8 @@ namespace Decennium.Foundation.Laboratory
 
         bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
 
-        private int VerifiedExpeditionWireSchema => connectedFleshWarden ? Snapshot.ConnectedFleshWardenSchema
+        private int VerifiedExpeditionWireSchema => clericInitialSelection != null ? Snapshot.ConnectedClericRpSchema
+            : connectedFleshWarden ? Snapshot.ConnectedFleshWardenSchema
             : connectedShortRest ? Snapshot.ConnectedShortRestSchema
             : connectedConsumeDecay ? Snapshot.ConnectedConsumeDecaySchema
             : connectedWoundTreatment ? Snapshot.ConnectedWoundTreatmentSchema

@@ -144,6 +144,10 @@ namespace Decennium.Foundation
                     writer.Write(FleshWardenProfile.Marker);
                     FleshWardenCodec.Write(writer, state.FleshWarden);
                 }
+                if (state.ConnectedClericRp) {
+                    writer.Write(ClericRpProfile.Marker);
+                    ResonanceCodec.Write(writer, state);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -178,6 +182,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedConsumeDecaySchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedShortRestSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedFleshWardenSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedClericRpSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -284,6 +289,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
+                    s.ConnectedClericRp = wireSchema == Snapshot.ConnectedClericRpSchema;
                     s.ConnectedFleshWarden = wireSchema == Snapshot.ConnectedFleshWardenSchema;
                     s.ConnectedShortRest = s.ConnectedFleshWarden || wireSchema == Snapshot.ConnectedShortRestSchema;
                     s.ConnectedConsumeDecay = s.ConnectedShortRest || wireSchema == Snapshot.ConnectedConsumeDecaySchema;
@@ -293,16 +299,16 @@ namespace Decennium.Foundation
                         || wireSchema == Snapshot.ConnectedCompanionDoseSchema || wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
                     if (wireSchema == Snapshot.ExplorationSearchSchema || wireSchema == Snapshot.ExplorationHideSchema
                         || wireSchema == Snapshot.ConnectedExplorationObservationSchema || wireSchema == Snapshot.ConnectedBloodSpecimenSchema
-                        || wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
+                        || wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope || s.ConnectedClericRp)
                         ExplorationSearchCodec.Read(reader, s);
                     if (wireSchema == Snapshot.ExplorationHideSchema || wireSchema == Snapshot.ConnectedExplorationObservationSchema
                         || wireSchema == Snapshot.ConnectedBloodSpecimenSchema || wireSchema == Snapshot.ConnectedRecipe4BatchSchema
-                        || carriedVialEnvelope)
+                        || carriedVialEnvelope || s.ConnectedClericRp)
                         ExplorationHideCodec.Read(reader, s);
                     if (wireSchema == Snapshot.ConnectedBloodSpecimenSchema || wireSchema == Snapshot.ConnectedRecipe4BatchSchema
-                        || carriedVialEnvelope)
+                        || carriedVialEnvelope || s.ConnectedClericRp)
                         s.BloodSpecimen = ConnectedBloodSpecimenCodec.Read(reader);
-                    if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope)
+                    if (wireSchema == Snapshot.ConnectedRecipe4BatchSchema || carriedVialEnvelope || s.ConnectedClericRp)
                         s.ConnectedBatch = ConnectedRecipe4BatchCodec.Read(reader);
                     if (carriedVialEnvelope) {
                         s.ConnectedCompanionStabilization = s.ConnectedWoundTreatment || wireSchema == Snapshot.ConnectedCompanionStabilizationSchema;
@@ -332,6 +338,10 @@ namespace Decennium.Foundation
                     if (s.ConnectedFleshWarden) {
                         if (reader.ReadByte() != FleshWardenProfile.Marker) throw new InvalidDataException("Invalid Flesh Warden marker.");
                         s.FleshWarden = FleshWardenCodec.Read(reader);
+                    }
+                    if (s.ConnectedClericRp) {
+                        if (reader.ReadByte() != ClericRpProfile.Marker) throw new InvalidDataException("Invalid Cleric RP marker.");
+                        ResonanceCodec.Read(reader, s);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

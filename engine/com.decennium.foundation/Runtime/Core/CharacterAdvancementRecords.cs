@@ -624,7 +624,7 @@ namespace Decennium.Foundation
         {
             const string sourceRevision="46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4";
             var valid= new[]{CharacterFeatureIds.WarningShot,CharacterFeatureIds.TacticalReposition,CharacterFeatureIds.ShieldTrained,CharacterFeatureIds.CoveringFire};
-            var selections=s.InitialClassSelections;
+            var selections=s.InitialClassSelections.Where(x=>!ClericRpProfile.ValidInitialSelection(s,x)).ToArray();
             var selectedProfiles=s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1WithInitialCards
                 ||s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema&&c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1InitialBuild).ToArray();
             if(s.SchemaVersion<Snapshot.SoldierInitialLoadoutSchema) {
@@ -650,7 +650,7 @@ namespace Decennium.Foundation
                         ||valid.Any(feature=>s.CharacterFeatureGrants.Count(g=>g.ActorId==selection.ActorId&&g.FeatureId==feature
                             &&g.ClassName=="Soldier"&&g.ClassLevel==1&&g.MilestoneId==""&&g.GrantedRevision==0
                             &&g.Origin==CharacterFeatureGrantOrigin.InitialClassSelection)!=1);
-                })||s.CharacterFeatureGrants.Any(g=>g.Origin==CharacterFeatureGrantOrigin.InitialClassSelection
+                })||s.CharacterFeatureGrants.Any(g=>g.Origin==CharacterFeatureGrantOrigin.InitialClassSelection&&!ClericRpProfile.ValidInitialGrant(s,g)
                     &&!selections.Any(selection=>selection.ActorId==g.ActorId&&selection.SelectedFeatureIds.Contains(g.FeatureId)))
                 ||selectedProfiles.Any(c=>!selections.Any(selection=>selection.ActorId==c.ActorId)))
                 throw new ArgumentException("Invalid source-scoped Soldier initial class-card selection.");

@@ -95,6 +95,9 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithFleshWarden()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFleshWarden());
 
+        public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
+
         public static ConnectedExpeditionSession StartWithShortRest()
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());
 
@@ -301,7 +304,7 @@ namespace Decennium.Foundation.Laboratory
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return false;
-            if (command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
+            if (command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
                 return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
@@ -333,7 +336,8 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
-                || state.ConnectedCompanionDose && kind == CommandKind.BeginReinforcementApproach
+                || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
+                || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
                 || state.ConnectedCompanionStabilization && kind == CommandKind.StabilizeCompanion
                 || state.ConnectedWoundTreatment && WoundTreatmentStation.IsCommand(kind)
                 || state.ConnectedConsumeDecay && kind == CommandKind.ConsumeDecay
@@ -483,10 +487,12 @@ namespace Decennium.Foundation.Laboratory
                     return state.Intakes.Any(x => x.Id == target && x.ActorId == actor);
                 case CommandKind.ConsumeDecay:
                     return state.ConnectedConsumeDecay && seat == ExpeditionSeat.Player && actor == Hero && target == ConsumeDecaySite.Id;
+                case CommandKind.UseHealingRite:
+                    return state.ConnectedClericRp && seat == ExpeditionSeat.Player && actor == Companion && Party.Contains(target);
                 case CommandKind.BeginMutationShortRest:
                     return state.ConnectedFleshWarden && seat == ExpeditionSeat.Player && actor == Hero && FleshWardenProfile.IsMutation(target);
                 case CommandKind.BeginShortRest:
-                    return state.ConnectedShortRest && seat == ExpeditionSeat.Player && actor == Hero && target == ShortRestBerth.Id;
+                    return (state.ConnectedShortRest || state.ConnectedClericRp) && seat == ExpeditionSeat.Player && actor == Hero && target == ShortRestBerth.Id;
                 case CommandKind.InterruptShortRest:
                     return state.ConnectedShortRest && seat == ExpeditionSeat.Player && actor == Hero
                         && state.ShortRests.Any(x => x.Id == target);
@@ -496,7 +502,7 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StabilizeCompanion:
                     return state.ConnectedCompanionStabilization && seat == ExpeditionSeat.Player && actor == Hero && target == Companion;
                 case CommandKind.BeginReinforcementApproach:
-                    return state.ConnectedCompanionDose && seat == ExpeditionSeat.Player && actor == Companion
+                    return (state.ConnectedCompanionDose || state.ConnectedClericRp) && seat == ExpeditionSeat.Player && actor == Companion
                         && target == state.Reinforcement?.Definition.Id;
                 case CommandKind.ObserveCharterApproach:
                     return target == state.CharterAttempt?.Id;

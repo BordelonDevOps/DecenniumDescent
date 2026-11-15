@@ -235,6 +235,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeConnectedBloodSpecimen(s);
             InitializeConnectedRecipe4Batch(s);
             InitializeWoundTreatment(s);
+            InitializeClericRp(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -793,6 +794,8 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
+            if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
             if (ShortRestBerth.IsCommand(c.Kind)) return ResolveShortRest(s, c);
             if (ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor
                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter

@@ -194,6 +194,7 @@ namespace Decennium.Foundation
                     &&!(s.SchemaVersion>=Snapshot.MiningSchema&&x.SkillId=="mining-tools")
                     &&!(s.SchemaVersion>=Snapshot.RouteMappingWorkSchema&&x.SkillId=="survival")
                     &&!(s.SchemaVersion>=Snapshot.HarvestPreservationTreatmentSchema&&x.SkillId=="cooking")
+                    &&!(s.ConnectedClericRp&&x.ActorId==ClericRpProfile.Actor&&x.SkillId=="religion")
                     &&!(s.SchemaVersion>=Snapshot.SoldierInitialBuildSchema&&s.InitialCharacterLoadouts.Any(b=>b.ActorId==x.ActorId&&b.SelectedSkillIds.Contains(x.SkillId)))))
                 throw new ArgumentException("Invalid periodic rider references.");
             foreach(var rider in s.PeriodicRiders.Where(x=>x.Present))
