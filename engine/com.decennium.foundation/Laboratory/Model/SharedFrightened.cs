@@ -37,13 +37,14 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessIntimidatingPresence(Snapshot state, Command command)
         {
-            if (!state.ConnectedFrightened || command.Actor != FrightenedProfile.Actor) return "IntimidatingPresenceUnavailable";
+            if (!state.ConnectedFrightened || command.Actor != FrightenedProfile.Actor && !(state.PostRecoveryEncounter != null && command.Actor == PostRecoveryEncounterDefinition.Actor)) return "IntimidatingPresenceUnavailable";
             if (command.IntimidatingPresence == null) return "InvalidIntimidatingPresenceRequest";
-            if (!state.InventoryCombat || state.Reinforcement?.Admission == null
-                || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return "IntimidatingPresenceContextUnsupported";
+            bool recovery=command.Actor==PostRecoveryEncounterDefinition.Actor && PostRecoveryProfile.Active(state);
+            if (!state.InventoryCombat || (!recovery && (command.Actor!=FrightenedProfile.Actor
+                || state.Reinforcement?.Admission == null || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId))) return "IntimidatingPresenceContextUnsupported";
             if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return "TacticalChoicePending";
             if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor) return "WrongRegularTurn";
-            if (!state.CharacterFeatureGrants.Any(x => FrightenedProfile.ValidFixtureGrant(state, x))) return "IntimidatingPresenceNotOwned";
+            if (!state.CharacterFeatureGrants.Any(x => x.ActorId==command.Actor && FrightenedProfile.ValidFixtureGrant(state, x))) return "IntimidatingPresenceNotOwned";
             var choice = state.WarriorAbilityChoices.SingleOrDefault(x => x.ActorId == command.Actor);
             if (choice == null || state.Characters.Single(x => x.ActorId == command.Actor).Levels.Count(x => x.ClassName == "Warrior") < 2)
                 return "IntimidatingPresenceClassUnavailable";
@@ -98,8 +99,9 @@ namespace Decennium.Foundation.Laboratory
             SetInterval(state, Interval(state, command.Actor).PayAction());
             state.FrightenedUses = state.FrightenedUses.Append(use).ToArray();
             BreakSanctuaryForHostileSave(state,command.Actor,command.Id);
-            state.AbilityRecharges = new[] { new CharacterAbilityRechargeRecord(command.Actor, FrightenedProfile.SourceId,
-                epoch.Id, local, epoch.Start(local), 3) };
+            state.AbilityRecharges = state.AbilityRecharges.Where(x=>x.ActorId!=command.Actor || x.AbilityId!=FrightenedProfile.SourceId)
+                .Append(new CharacterAbilityRechargeRecord(command.Actor, FrightenedProfile.SourceId,
+                    epoch.Id, local, epoch.Start(local), 3)).ToArray();
             foreach (string target in use.TargetIds) {
                 var save = RollFrightenedSave(state, use, target, false, "");
                 state.FrightenedSaves = state.FrightenedSaves.Append(save).ToArray();

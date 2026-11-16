@@ -135,6 +135,11 @@ namespace Decennium.Foundation.Laboratory
             var later = state.LaterEncounter;
             if (later == null) return;
             var closed = new ClosedEncounterRecord(outgoing, state.Revision + 1, state.RuleClock, command.Id);
+            if (PostRecoveryProfile.Active(state) && outgoing.Id == PostRecoveryEncounterDefinition.Encounter) {
+                state.ClosedEncounters = state.ClosedEncounters.Append(closed).ToArray();
+                state.Encounter = null;
+                return;
+            }
             if (later.Entry == null) {
                 if (later.FirstExit == null) state.LaterEncounter = later.WithFirstExit(closed);
                 return;

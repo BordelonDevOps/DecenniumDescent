@@ -182,6 +182,7 @@ namespace Decennium.Foundation
         public const int ConnectedClericSettlementSchema = 108;
         public const int ConnectedClericCastingSchema = 109;
         public const int ConnectedClericLongRestSchema = 110;
+        public const int PostRecoveryEncounterSchema = 111;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -342,6 +343,7 @@ namespace Decennium.Foundation
         public bool ConnectedClericSettlement;
         public bool ConnectedClericCasting;
         public bool ConnectedClericLongRest;
+        public PostRecoveryEncounterRecord PostRecoveryEncounter;
         public ClericLongRestRecord[] ClericLongRests = Array.Empty<ClericLongRestRecord>();
         public ClericLongRestSettlementRecord[] ClericLongRestSettlements = Array.Empty<ClericLongRestSettlementRecord>();
         public ConvictionBalanceRecord ConvictionBalance;
@@ -369,7 +371,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => ConnectedClericLongRest ? ConnectedClericLongRestSchema
+        public int WireSchemaVersion => PostRecoveryEncounter != null ? PostRecoveryEncounterSchema
+            : ConnectedClericLongRest ? ConnectedClericLongRestSchema
             : ConnectedClericCasting ? ConnectedClericCastingSchema
             : ConnectedClericSettlement ? ConnectedClericSettlementSchema
             : ConnectedFrightened ? ConnectedFrightenedSchema
@@ -521,6 +524,7 @@ namespace Decennium.Foundation
             ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
             ConnectedClericCasting = ConnectedClericCasting, CastingStrain = CastingStrain.ToArray(), SpellCasts = SpellCasts.ToArray(),
             ConnectedClericLongRest = ConnectedClericLongRest, ClericLongRests = ClericLongRests.ToArray(),
+            PostRecoveryEncounter = PostRecoveryEncounter,
             ClericLongRestSettlements = ClericLongRestSettlements.ToArray(), ConvictionBalance = ConvictionBalance,
             CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),
             GuidanceUses = GuidanceUses.ToArray(), SpellSaves = SpellSaves.ToArray(), SanctuaryAdmissions = SanctuaryAdmissions.ToArray(),
@@ -1181,6 +1185,7 @@ namespace Decennium.Foundation
             ClericSettlementProfile.Validate(s);
             SpellCastingProfile.Validate(s);
             ClericLongRestProfile.Validate(s);
+            PostRecoveryProfile.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);

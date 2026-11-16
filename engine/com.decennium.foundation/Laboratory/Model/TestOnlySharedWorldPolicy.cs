@@ -168,6 +168,7 @@ namespace Decennium.Foundation.Laboratory
             AddConfiguredActors(s);
             InitializeHavenBuyer(s);
             InitializeLaterEncounter(s);
+            InitializePostRecoveryActor(s);
             InitializeReinforcement(s);
             InitializeRetreat(s);
             InitializeReengagement(s);
@@ -241,6 +242,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeClericSettlement(s);
             InitializeClericCasting(s);
             InitializeClericLongRest(s);
+            InitializePostRecoverySource(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -551,7 +553,7 @@ namespace Decennium.Foundation.Laboratory
                 if (active.Length != 0 || s.InventoryCombat || s.Encounter!=null&&s.Lives.Any(x=>x.Hp==0&&!x.Stable&&!x.Dead&&x.UsesDeathSaves)) {
                     var boundary = s.WorldSchedule.Start(checked(s.WorldSchedule.ProcessedSlot + 1)); if (boundary < next) next = boundary;
                 }
-                var laterEpoch = s.Reinforcement?.Admission?.Phase.Epoch ?? s.LaterEncounter?.Entry?.Epoch;
+                var laterEpoch = s.PostRecoveryEncounter?.Admission?.Epoch ?? s.Reinforcement?.Admission?.Phase.Epoch ?? s.LaterEncounter?.Entry?.Epoch;
                 if (laterEpoch != null && (s.InventoryCombat || active.Any(edge => laterEpoch.Order.Contains(edge.ActorId)))) {
                     var boundary = laterEpoch.Start(checked(laterEpoch.ProcessedSlot + 1));
                     if (boundary < next) next = boundary;
@@ -578,6 +580,7 @@ namespace Decennium.Foundation.Laboratory
                 WorldTraversalRecord stagedPressureArrival = null;
                 WorldTraversalRecord charterArrival = null;
                 WorldTraversalRecord laterArrival = null;
+                WorldTraversalRecord postRecoveryArrival = null;
                 WorldTraversalRecord reinforcementArrival = null;
                 WorldTraversalRecord reengagementArrival = null;
                 RuleQuantity reengagementDistance = default;
@@ -619,6 +622,7 @@ namespace Decennium.Foundation.Laboratory
                     if (progress == new RuleQuantity(5)) {
                         if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
                         if (IsLaterApproach(s, edge)) laterArrival = edge;
+                        if (IsPostRecoveryApproach(s, edge)) postRecoveryArrival = edge;
                         if (IsReengagementEdge(s, edge)) {
                             reengagementArrival = edge;
                             reengagementDistance = progress;
@@ -646,6 +650,8 @@ namespace Decennium.Foundation.Laboratory
                     return "LaterEncounterRequiresExplicitClockAdvance";
                 if (reengagementArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
                     return "ReengagementRequiresExplicitClockAdvance";
+                if (postRecoveryArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
+                    return "PostRecoveryRequiresExplicitClockAdvance";
                 int reengagementMarker = reengagementArrival == null ? -1 : ReengagementHeroMarker(s, next);
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
                     .ToDictionary(x => x.StartedRevision, x => x.Progress);
@@ -682,7 +688,8 @@ namespace Decennium.Foundation.Laboratory
                         PauseIncompatibleWork(world,false);
                     }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork,initiating);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
-                string deferredActivityActor = reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
+                string deferredActivityActor = postRecoveryArrival != null ? PostRecoveryEncounterDefinition.Actor
+                    : reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
                     : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
                 RefreshActivityIntervals(s, deferredActivityActor);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -711,6 +718,7 @@ namespace Decennium.Foundation.Laboratory
                 ProcessPeriodicRiderMarker(s,previousSlot,initiating);
                 if (!reinforcementEndRound) RefreshLaterEpoch(s);
                 if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);
+                RefreshPostRecoveryEpoch(s);
                 ResolveReadyMining(s,initiating);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -778,6 +786,13 @@ namespace Decennium.Foundation.Laboratory
                     if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
                     ResolveReengagementArrival(s, reengagementArrival, initiating, reengagementMarker, reengagementDistance);
                     return ProcessClericLongRestBoundary(s,initiating);
+                }
+                if (postRecoveryArrival != null) {
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
+                    string contactRestFailure=ProcessClericLongRestBoundary(s,initiating);
+                    if(contactRestFailure!=null)return contactRestFailure;
+                    ResolvePostRecoveryArrival(s,postRecoveryArrival,initiating,target);
+                    return null;
                 }
                 if (laterArrival != null) {
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
@@ -1159,7 +1174,7 @@ namespace Decennium.Foundation.Laboratory
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
-                RefreshIntervals(s); PauseIncompatibleWork(s);
+                RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 string restDebtError=s.ConnectedClericLongRest?null:ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
@@ -1176,6 +1191,9 @@ namespace Decennium.Foundation.Laboratory
                 if ((s.SchemaVersion != SelectedSchema
                     && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema))
                     || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if ((postRecoveryDefinition == null) != (s.PostRecoveryEncounter == null)
+                    || postRecoveryDefinition != null && postRecoveryDefinition.Binding != s.PostRecoveryEncounter.Definition.Binding)
+                    return "PostRecoveryDefinitionMismatch";
                 if (surpriseEntryBinding != null && !surpriseEntryBinding.SameAs(s.SurpriseEntry?.Binding))
                     return "SurpriseEntryBindingMismatch";
                 if ((explorationSearchDefinition == null) != (s.ExplorationSearch == null)

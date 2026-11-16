@@ -46,7 +46,8 @@ namespace Decennium.Foundation
             bool offCalendar = owner == null;
             var admission = state.Reinforcement?.Admission;
             bool admittedLater = connected && state.LaterEncounter.Entry != null && admission != null
-                && state.Reinforcement.Definition.CompanionId == d.SearcherId && owner?.Id == admission.Phase.Epoch.Id;
+                && state.Reinforcement.Definition.CompanionId == d.SearcherId
+                && (owner?.Id == admission.Phase.Epoch.Id || PostRecoveryProfile.IsEpoch(state,owner?.Id));
             if (!state.Actors.Any(x => x.Id == d.SearcherId) || !state.Actors.Any(x => x.Id == d.ConcealedActorId)
                 || !offCalendar && !admittedLater
                 || new[] { d.Anchor, d.CueCandidate, d.Sign, d.Occlusion }.Any(x => !InMap(state, x))

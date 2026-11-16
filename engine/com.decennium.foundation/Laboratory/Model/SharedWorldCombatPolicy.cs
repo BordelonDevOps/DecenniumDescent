@@ -237,7 +237,7 @@ namespace Decennium.Foundation.Laboratory
         private static void ObserveCalendar(Snapshot s, bool completingExit = false)
         {
             var e=s.Encounter;if(e==null)return;
-            if (completingExit && WorldTiming.IsLaterActive(s) && ResolvedConflict(s) && !PendingCalendarChoice(s)) return;
+            if (completingExit && (WorldTiming.IsLaterActive(s) || PostRecoveryProfile.Active(s)) && ResolvedConflict(s) && !PendingCalendarChoice(s)) return;
             int slot=WorldTiming.EncounterOrdinal(s);
             if(slot!=e.TurnOrdinal)s.Encounter=e.Observe(s.Revision+1,slot);
             if(s.InventoryCombat)s.InventoryTurnActor=s.Encounter.CurrentActor;
@@ -292,7 +292,7 @@ namespace Decennium.Foundation.Laboratory
                 ||y.Status==DefensiveFormationShiftStatus.Moving));
         private static bool ResolvedConflict(Snapshot s)
         {
-            string opponent = WorldTiming.IsLaterActive(s) ? s.LaterEncounter.Definition.DefenderId : AdditionalTacticalActor.Id;
+            string opponent = PostRecoveryProfile.Active(s) ? PostRecoveryEncounterDefinition.Actor : WorldTiming.IsLaterActive(s) ? s.LaterEncounter.Definition.DefenderId : AdditionalTacticalActor.Id;
             return s.Lives.Single(x => x.ActorId == opponent).Dead;
         }
         private string ResolveCalendarCombat(Snapshot s, Command c, bool assessTactical = false)

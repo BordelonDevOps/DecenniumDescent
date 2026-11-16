@@ -16,14 +16,16 @@ namespace Decennium.Foundation.Laboratory
         internal static string OwnTurnFailure(Snapshot s, string actor)
         {
             if (!Owns(s,actor) || s.ClericObjective == null || s.ClericInvocationPath.AcquiredRevision <= s.ClericObjective.Revision
-                || s.InventoryCombat || s.Encounter != null || !s.ClosedEncounters.Any(x => x.Encounter.Id == s.ClericMilestone.LaterEncounterId))
+                || !PostRecoveryProfile.Active(s) && (s.InventoryCombat || s.Encounter != null)
+                || !s.ClosedEncounters.Any(x => x.Encounter.Id == s.ClericMilestone.LaterEncounterId))
                 return "HealingRiteContextUnsupported";
             var epoch = WorldTiming.ForActor(s,actor); var phase = s.Reinforcement?.Admission?.Phase;
-            if (epoch == null || epoch.Id != phase?.Epoch.Id) return "HealingRiteCalendarUnavailable";
+            if (epoch == null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id != phase?.Epoch.Id) return "HealingRiteCalendarUnavailable";
             long slot = epoch.SlotAt(s.RuleClock);
             if (slot != epoch.ProcessedSlot || slot < 0 || epoch.Order[(int)(slot % epoch.Order.Count)] != actor
                 || epoch.LatestStart(actor,slot) != slot
-                || s.WorldIntervals.Single(x => x.ActorId == actor).LastStart != phase.GlobalTurn(slot)) return "WrongRegularTurn";
+                || s.WorldIntervals.Single(x => x.ActorId == actor).LastStart != WorldTiming.TurnOrdinal(s,epoch.Id,slot)
+                || s.InventoryCombat && (s.Encounter.CurrentActor != actor || s.InventoryTurnActor != actor)) return "WrongRegularTurn";
             if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)
                 || s.FrightenedTimings.Any(x => x.RepeatAt.Time <= s.RuleClock
                     && !s.FrightenedSaves.Any(save => save.Repeat && save.ApplicationId == x.ApplicationId)
@@ -111,7 +113,8 @@ namespace Decennium.Foundation.Laboratory
             var epoch = WorldTiming.ForActor(state,command.Actor); var phase = state.Reinforcement.Admission.Phase;
             long local = epoch.LatestStart(command.Actor,epoch.ProcessedSlot);
             state.RadianceUses = state.RadianceUses.Append(new RadianceUseRecord(command.Id,state.Revision + 1,command.Actor,command.Target,
-                ClericRpProfile.SourceRevision,epoch.Id,local,phase.FirstTurn,phase.GlobalTurn(local),at,rite.HpAfter,potential,healed.Hp,
+                ClericRpProfile.SourceRevision,epoch.Id,local,epoch.Id==phase.Epoch.Id?phase.FirstTurn:0,
+                WorldTiming.TurnOrdinal(state,epoch.Id,local),at,rite.HpAfter,potential,healed.Hp,
                 preference,operation,ended)).ToArray();
         }
     }

@@ -34,14 +34,15 @@ namespace Decennium.Foundation
             var binding = state.SurpriseEntry?.Binding;
             var later = state.LaterEncounter?.Definition;
             var cells = state.ObservationCells;
+            var actors = state.PostRecoveryEncounter == null ? Actors : Actors.Append(PostRecoveryEncounterDefinition.Actor).ToArray();
             if (!state.TestOnly || state.SchemaVersion != Snapshot.SurpriseEntrySchema || state.ExplorationHide == null
                 || binding?.Outcome != SurpriseAwareness.Warned || binding.ParticipantId != Hero
                 || later?.HeroId != Hero || state.Reinforcement == null || state.Retreat == null || state.Reengagement == null
                 || state.WorldSchedule?.Id != "world.fixed-calendar" || state.ObservationMapWidth != 5
                 || state.ObservationMapHeight != 5 || cells.Length != 1 || cells[0].X != 2 || cells[0].Y != 1
                 || !cells[0].BlocksSight || cells[0].BlocksEffect || cells[0].BlocksMovement || cells[0].Solid
-                || !MatchesSearch(search) || state.ObservationProfiles.Length != Actors.Length
-                || !Actors.All(id => state.ObservationProfiles.Any(x => x.ActorId == id && x.SightRangeFeet == 30 && x.SearchRangeFeet == 30)))
+                || !MatchesSearch(search) || state.ObservationProfiles.Length != actors.Length
+                || !actors.All(id => state.ObservationProfiles.Any(x => x.ActorId == id && x.SightRangeFeet == 30 && x.SearchRangeFeet == 30)))
                 throw new ArgumentException("Invalid selected wire93 connected observation layout.");
         }
 

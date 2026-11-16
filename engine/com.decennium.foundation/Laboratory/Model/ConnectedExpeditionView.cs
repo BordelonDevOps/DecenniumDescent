@@ -215,7 +215,7 @@ namespace Decennium.Foundation.Laboratory
 
     public sealed class ExpeditionSeatView
     {
-        public string Profile => ConnectedExpeditionSession.Profile;
+        public string Profile { get; }
         public bool TestOnly => true;
         public bool Enabled { get; }
         public long Revision { get; }
@@ -247,8 +247,9 @@ namespace Decennium.Foundation.Laboratory
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
             long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
-            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null, ExpeditionMutationView fleshWarden = null, ExpeditionClericLongRestView longRest = null)
+            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null, ExpeditionMutationView fleshWarden = null, ExpeditionClericLongRestView longRest = null, string profile = null)
         {
+            Profile = profile ?? ConnectedExpeditionSession.Profile;
             Enabled = enabled;
             Revision = position.Revision;
             Clock = position.Clock;
@@ -494,12 +495,13 @@ namespace Decennium.Foundation.Laboratory
                 var state = simulation.Capture();
                 var grant = SeatGrant(seat);
                 bool player = seat == ExpeditionSeat.Player;
-                bool discloseTacticalSlot = grant != null && (player || FirstEncounterActive(state));
+                bool discloseTacticalSlot = grant != null && (player || seat==ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
+                    || seat==ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
                 var position = new ExpeditionActionResult(ExpeditionResponse.Waiting, state, discloseTacticalSlot);
                 if (grant == null)
                     return new ExpeditionSeatView(position, false, false, "", "", "", Array.Empty<ExpeditionOwnActor>(),
                         Array.Empty<ExpeditionOwnedItem>(), Array.Empty<ExpeditionWorkStatus>(), Array.Empty<CommandKind>(),
-                        NoKnownTargets, 0);
+                        NoKnownTargets, 0, profile:state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
                 string acting = ActingActor(state, out var decision, out string decisionId);
                 string ownedActing = grant.Controls(acting) ? acting : "";
                 string ownedDecision = ownedActing != "" ? decisionId : "";
@@ -508,6 +510,7 @@ namespace Decennium.Foundation.Laboratory
                 string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
                     ? state.Encounter.CurrentTurnId : "";
                 IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
+                if(seat==ExpeditionSeat.RecoveryOpponent)commands=commands.Append(CommandKind.UseIntimidatingPresence).Append(CommandKind.RespondSanctuary);
                 IReadOnlyDictionary<CommandKind, string> targets = player ? KnownServices : NoKnownTargets;
                 if (player && state.ConnectedCompanionDose) {
                     commands = commands.Append(CommandKind.BeginReinforcementApproach);
@@ -575,7 +578,8 @@ namespace Decennium.Foundation.Laboratory
                     player ? ProjectFishingTrap(state, grant) : null,
                     player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null,
                     player && state.ConnectedFleshWarden && grant.Controls(FleshWardenProfile.Actor) ? new ExpeditionMutationView(state) : null,
-                    player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor) ? new ExpeditionClericLongRestView(state,grant) : null);
+                    player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor) ? new ExpeditionClericLongRestView(state,grant) : null,
+                    state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
             }
         }
 

@@ -16,12 +16,13 @@ param(
     [switch]$Frightened,
     [switch]$ClericSettlement,
     [switch]$ClericCasting,
-    [switch]$ClericLongRest
+    [switch]$ClericLongRest,
+    [switch]$PostRecoveryEncounter
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -31,7 +32,12 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($ClericLongRest) {
+$session = if ($PostRecoveryEncounter) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithPostRecoveryEncounter(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample())
+} elseif ($ClericLongRest) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithClericLongRest(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -215,13 +221,13 @@ function Invoke-SessionInput($request) {
         }
         'auto' { return $session.AdvanceAutomaticDefender() }
         'defender-presence' {
-            if (!$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest) { return @{ Response = 'Unavailable' } }
+            if (!$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { return @{ Response = 'Unavailable' } }
             $command = New-SessionCommand $request ($session.View('Player')) 'UseIntimidatingPresence'
             return $session.SubmitDefenderIntimidatingPresence(
                 [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(), $command)
         }
         'defender-sanctuary' {
-            if (!$ClericCasting -and !$ClericLongRest) { return @{ Response = 'Unavailable' } }
+            if (!$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { return @{ Response = 'Unavailable' } }
             $command = New-SessionCommand $request ($session.View('Player')) 'RespondSanctuary'
             return $session.SubmitDefenderSanctuary(
                 [Decennium.Foundation.Laboratory.LaterDefenderController]::DefenderAuthority(),$command)
@@ -242,14 +248,14 @@ function Write-SessionResponse([string]$line) {
             foreach ($target in $response.KnownTargets.GetEnumerator()) { $targets[$target.Key.ToString()] = $target.Value }
             $response = $response | Select-Object -Property * -ExcludeProperty KnownTargets
             $response | Add-Member -NotePropertyName KnownTargets -NotePropertyValue $targets
-            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
-            if (!$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
-            if (!$ClericSettlement -and !$ClericCasting -and !$ClericLongRest) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty ClericSettlement) }
-            if (!$ClericCasting -and !$ClericLongRest) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Casting) }
-            if (!$ClericLongRest) { $response = $response | Select-Object -Property * -ExcludeProperty LongRest }
+            if (!$ClericCompanion -and !$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Cleric) }
+            if (!$ClericRepertoire -and !$Frightened -and !$ClericSettlement -and !$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Repertoire) }
+            if (!$ClericSettlement -and !$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty ClericSettlement) }
+            if (!$ClericCasting -and !$ClericLongRest -and !$PostRecoveryEncounter) { $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty Casting) }
+            if (!$ClericLongRest -and !$PostRecoveryEncounter) { $response = $response | Select-Object -Property * -ExcludeProperty LongRest }
             if (!$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty FleshWarden }
             if (!$ShortRest -and !$FleshWarden) { $response = $response | Select-Object -Property * -ExcludeProperty ShortRest }
-            if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden -and !$ClericLongRest) {
+            if (!$ConsumeDecay -and !$ShortRest -and !$FleshWarden -and !$ClericLongRest -and !$PostRecoveryEncounter) {
                 $response.Actors = @($response.Actors | Select-Object -Property * -ExcludeProperty TemporaryHp,TemporaryHpUntil)
             }
         }
@@ -303,12 +309,15 @@ while ($null -ne ($line = [Console]::ReadLine()) -and $line -ne 'quit') {
             [Console]::WriteLine('Use HandlePortableEquipment to stow the held vial in the open Explorer pack and retrieve it before tactical use.')
         }
         [Console]::WriteLine('Files: {"op":"save","path":"expedition.ddsave"}. Use "load" to restore and "recover" to validate and recover the backup.')
-        if ($ClericLongRest) {
+        if ($PostRecoveryEncounter) {
+            [Console]::WriteLine('The new defender exists from the start. RecoveryOpponent is its separate seat for view, query, discover and submit. After recovery, stage the companion at (3,4) and approach with the hero from (3,2) to (3,3) at the exact original later-defender Start. Mistimed contact spends travel and requires a fresh approach.')
+        }
+        if ($ClericLongRest -or $PostRecoveryEncounter) {
             [Console]::WriteLine('After earned Cleric level 2 and encounter closure, arrive at LongRest.SiteX,SiteY. BeginLongRest targets LongRest.SiteId with explicit x:0,y:0. Advance the shared clock for eight uninterrupted hours.')
             [Console]::WriteLine('InterruptLongRest targets LongRest.ActiveIntervalId with explicit x:0,y:0. Restarting requires the full eight hours. Daily provisioning and Rest Debt still apply to both companions.')
             [Console]::WriteLine('LongRest shows attempts and settled recovery. Conviction stays unavailable until the first eligible completion. Use query and discover for current legality.')
         }
-        if ($ClericCasting -or $ClericLongRest) {
+        if ($ClericCasting -or $ClericLongRest -or $PostRecoveryEncounter) {
             [Console]::WriteLine('Use query or discover for current target legality. CastKnownSpell takes spellCast:{spellId,focusItemId,willingTarget,electFocusedDc}; all four fields are explicit.')
             [Console]::WriteLine('Before an eligible Hide, Search or Medicine check choose guidance:{effectId}. Casting.Auras exposes opaque IDs for a later FocusDetectedAura Action.')
             [Console]::WriteLine('RespondSanctuary takes sanctuaryResponse:{kind:"Retarget" or "Forgo",targetId}. Use auto for the defender controller, or the trusted defender-sanctuary path for an explicit response.')

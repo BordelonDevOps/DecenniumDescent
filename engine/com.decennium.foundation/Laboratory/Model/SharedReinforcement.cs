@@ -330,6 +330,7 @@ namespace Decennium.Foundation.Laboratory
             if (slot == epoch.ProcessedSlot) return;
             state.Reinforcement = record.At(slot);
             foreach (string actor in epoch.Order.OrderBy(x => WorldTiming.LatestActorStart(state, x))) {
+                if (WorldTiming.ForActor(state, actor)?.Id != epoch.Id) continue;
                 long global = WorldTiming.LatestActorStart(state, actor);
                 if (global >= phase.FirstTurn && global != Interval(state, actor).LastStart)
                     ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global));

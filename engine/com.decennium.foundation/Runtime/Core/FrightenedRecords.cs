@@ -160,7 +160,8 @@ namespace Decennium.Foundation
         public const string Entitlement = "TEST_ONLY.frightened.initial-defender";
         public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ClericSettlementProfile.SelectedFingerprint(value));
         public static bool ValidFixtureGrant(Snapshot state, CharacterFeatureGrantRecord grant)
-            => state.ConnectedFrightened && grant.ActorId == Actor && grant.FeatureId == SourceId
+            => state.ConnectedFrightened && (grant.ActorId == Actor || state.PostRecoveryEncounter != null
+                && grant.ActorId == PostRecoveryEncounterDefinition.Actor) && grant.FeatureId == SourceId
                 && grant.ClassName == "Warrior" && grant.ClassLevel == 2 && grant.MilestoneId == ""
                 && grant.GrantedRevision == 0 && grant.Origin == CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement;
 
@@ -179,15 +180,21 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Frightened source state requires its explicit profile.");
                 return;
             }
-            var choice = state.WarriorAbilityChoices.Length == 1 ? state.WarriorAbilityChoices[0] : null;
+            var owners = state.PostRecoveryEncounter == null ? new[] { Actor }
+                : new[] { Actor, PostRecoveryEncounterDefinition.Actor };
+            bool choicesValid=state.WarriorAbilityChoices.Length==owners.Length
+                && owners.All(owner=>state.WarriorAbilityChoices.Count(x=>x.ActorId==owner
+                    && x.Ability==CharacterAbility.Strength && x.SourceRevision==SourceRevision && x.AcquiredRevision==0
+                    && x.EntitlementId==(owner==Actor?Entitlement:PostRecoveryEncounterDefinition.Entitlement))==1);
+            var choice = state.WarriorAbilityChoices.SingleOrDefault(x=>x.ActorId==Actor);
             if (!state.TestOnly || !state.ConnectedClericRepertoire || !state.ConnectedClericRp
-                || state.SchemaVersion != Snapshot.SurpriseEntrySchema || choice == null || choice.ActorId != Actor
+                || state.SchemaVersion != Snapshot.SurpriseEntrySchema || !choicesValid || choice == null || choice.ActorId != Actor
                 || choice.Ability != CharacterAbility.Strength || choice.SourceRevision != SourceRevision
                 || choice.EntitlementId != Entitlement || choice.AcquiredRevision != 0
-                || state.CharacterFeatureGrants.Count(x => ValidFixtureGrant(state, x)) != 1
+                || owners.Any(owner=>state.CharacterFeatureGrants.Count(x => x.ActorId==owner && ValidFixtureGrant(state, x)) != 1)
                 || state.Characters.Single(x => x.ActorId == Actor).Levels.Count(x => x.ClassName == "Warrior") != 3
                 || state.Conditions.Any(x => x.PolicyId != ConditionJournal.RelationshipPolicyId)
-                || state.AbilityRecharges.Length > 1 || state.FrightenedUses.Length > 128
+                || state.AbilityRecharges.Length > owners.Length || state.FrightenedUses.Length > 128
                 || state.FrightenedSaves.Length > 768 || state.FrightenedTimings.Length > 384)
                 throw new ArgumentException("Invalid bounded Frightened access or history.");
             if (state.FrightenedUses.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != state.FrightenedUses.Length
@@ -195,21 +202,23 @@ namespace Decennium.Foundation
                 || state.FrightenedTimings.Select(x => x.ApplicationId).Distinct(StringComparer.Ordinal).Count() != state.FrightenedTimings.Length
                 || state.FrightenedSaves.Select(x => x.UseId + "|" + x.TargetId + "|" + x.Repeat).Distinct(StringComparer.Ordinal).Count() != state.FrightenedSaves.Length)
                 throw new ArgumentException("Duplicate Frightened history identity.");
-            if ((state.AbilityRecharges.Length == 1) != (state.FrightenedUses.Length != 0)
+            if (state.AbilityRecharges.Length != state.FrightenedUses.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()
+                || state.AbilityRecharges.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()!=state.AbilityRecharges.Length
                 || !state.FrightenedUses.Select(x => x.Revision).SequenceEqual(state.FrightenedUses.Select(x => x.Revision).OrderBy(x => x)))
                 throw new ArgumentException("Missing recharge or unordered Frightened uses.");
-            FrightenedUseRecord previousUse = null;
+            var lastUses = new System.Collections.Generic.Dictionary<string,FrightenedUseRecord>(StringComparer.Ordinal);
             foreach (var use in state.FrightenedUses) {
+                lastUses.TryGetValue(use.ActorId,out var previousUse);
                 var receipt = state.Receipts.SingleOrDefault(x => x.Revision == use.Revision);
                 var command = receipt == null ? null : CommandHistory.Read(receipt);
                 var epoch = WorldTiming.FindEpoch(state, use.EpochId);
-                if (use.ActorId != Actor || use.SourceId != SourceId || use.SourceRevision != SourceRevision || use.Dc != 10
+                if (!owners.Contains(use.ActorId) || use.SourceId != SourceId || use.SourceRevision != SourceRevision || use.Dc != 10
                     || use.Id != "fear.use." + use.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)
                     || use.At > state.RuleClock || command?.Kind != CommandKind.UseIntimidatingPresence
                     || command.Actor != use.ActorId || command.Id != use.CommandId
                     || !command.IntimidatingPresence.TargetIds.SequenceEqual(use.TargetIds)
-                    || epoch == null || !epoch.Order.Contains(Actor) || epoch.LatestStart(Actor, use.LocalStart) != use.LocalStart
-                    || epoch.Id != state.Reinforcement?.Admission?.Phase.Epoch.Id
+                    || epoch == null || !epoch.Order.Contains(use.ActorId) || epoch.LatestStart(use.ActorId, use.LocalStart) != use.LocalStart
+                    || epoch.Id != (use.ActorId==Actor?state.Reinforcement?.Admission?.Phase.Epoch.Id:state.PostRecoveryEncounter?.Admission?.Epoch.Id)
                     || epoch.Start(use.LocalStart) > use.At || epoch.Start(use.LocalStart + 1) <= use.At
                     || !state.FrightenedSaves.Where(x => x.UseId == use.Id && !x.Repeat).Select(x => x.TargetId).SequenceEqual(use.TargetIds)
                     || previousUse != null && (previousUse.EpochId != use.EpochId
@@ -218,7 +227,7 @@ namespace Decennium.Foundation
                 var initial = state.FrightenedSaves.Where(x => x.UseId == use.Id && !x.Repeat).ToArray();
                 for (int i = 1; i < initial.Length; i++) if (initial[i].RandomBefore != initial[i - 1].RandomAfter)
                     throw new ArgumentException("Noncontiguous initial fear saves.");
-                previousUse = use;
+                lastUses[use.ActorId] = use;
             }
             foreach (var save in state.FrightenedSaves) {
                 var use = state.FrightenedUses.SingleOrDefault(x => x.Id == save.UseId);
@@ -261,7 +270,8 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Missing due Frightened repeat save.");
                 if (state.RuleClock >= timing.FinalAt.Time
                     && !state.FrightenedSaves.Any(x => x.Repeat && x.ApplicationId == timing.ApplicationId && x.Success)
-                    && state.Conditions.Single(x => x.Target == timing.TargetId).Now.Time < timing.FinalAt.Time)
+                    && state.Conditions.Single(x => x.Target == timing.TargetId).Now.Time < timing.FinalAt.Time
+                    && !ClericSettlementProfile.CuredBeforeFinal(state,timing))
                     throw new ArgumentException("Missing due Frightened final ending.");
             }
             foreach (var journal in state.Conditions) {
@@ -280,9 +290,10 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Frightened cure has no admitted gameplay producer.");
             }
             foreach (var recharge in state.AbilityRecharges) {
+                lastUses.TryGetValue(recharge.ActorId,out var previousUse);
                 var epoch = WorldTiming.FindEpoch(state, recharge.EpochId);
-                if (recharge.ActorId != Actor || recharge.AbilityId != SourceId || recharge.Remaining > 3 || epoch == null
-                    || epoch.LatestStart(Actor, recharge.LastLocalStart) != recharge.LastLocalStart
+                if (!owners.Contains(recharge.ActorId) || recharge.AbilityId != SourceId || recharge.Remaining > 3 || epoch == null
+                    || epoch.LatestStart(recharge.ActorId, recharge.LastLocalStart) != recharge.LastLocalStart
                     || epoch.Start(recharge.LastLocalStart) != recharge.LastStartAt || recharge.LastStartAt > state.RuleClock
                     || previousUse == null || previousUse.EpochId != recharge.EpochId || recharge.LastLocalStart < previousUse.LocalStart
                     || recharge.Remaining != Math.Max(0L, 3L - (recharge.LastLocalStart - previousUse.LocalStart) / epoch.Order.Count))

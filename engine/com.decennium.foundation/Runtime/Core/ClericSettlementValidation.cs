@@ -27,8 +27,14 @@ namespace Decennium.Foundation
                     && operation.Subject == x.CurePreference.ToString() && x.EndedApplicationIds.Count != 0);
 
         public static bool CuredBeforeRepeat(Snapshot s, FrightenedTimingRecord timing)
+            => CuredBefore(s,timing,timing.RepeatAt);
+
+        public static bool CuredBeforeFinal(Snapshot s, FrightenedTimingRecord timing)
+            => CuredBefore(s,timing,timing.FinalAt);
+
+        private static bool CuredBefore(Snapshot s,FrightenedTimingRecord timing,ConditionStamp deadline)
             => s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId
-                && x.CurePreference == RadianceCurePreference.Frightened && x.At.CompareTo(timing.RepeatAt) < 0
+                && x.CurePreference == RadianceCurePreference.Frightened && x.At.CompareTo(deadline) < 0
                 && x.EndedApplicationIds.Contains(timing.ApplicationId)
                 && s.Conditions.Single(j => j.Target == timing.TargetId).Operations.Any(o => o.Id == x.CureOperationId && QualifiesCure(s,timing.TargetId,o)));
 
@@ -106,9 +112,10 @@ namespace Decennium.Foundation
                 if (rite == null || rite.Revision != use.Revision || rite.ActorId != use.ActorId || rite.TargetId != use.TargetId
                     || rite.At != use.At.Time || rite.TurnOrdinal != use.GlobalStart || rite.HpAfter != use.BaseHpAfter || rite.ActualGain <= 0
                     || use.Revision <= s.ClericInvocationPath.AcquiredRevision || use.Revision > s.Revision || use.At.Time > s.RuleClock
-                    || epoch == null || phase?.Epoch.Id != epoch.Id || use.PhaseFirstTurn != phase.FirstTurn
+                    || epoch == null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && phase?.Epoch.Id != epoch.Id
+                    || use.PhaseFirstTurn != (PostRecoveryProfile.IsEpoch(s,epoch.Id)?0:phase.FirstTurn)
                     || epoch.SlotAt(use.At.Time) != use.LocalStart || epoch.LatestStart(use.ActorId,use.LocalStart) != use.LocalStart
-                    || phase.GlobalTurn(use.LocalStart) != use.GlobalStart || epoch.Start(use.LocalStart) > use.At.Time
+                    || WorldTiming.TurnOrdinal(s,epoch.Id,use.LocalStart) != use.GlobalStart || epoch.Start(use.LocalStart) > use.At.Time
                     || command?.Kind != CommandKind.UseHealingRite || command.Actor != use.ActorId || command.Target != use.TargetId
                     || (command.HealingRite?.CurePreference ?? RadianceCurePreference.None) != use.CurePreference)
                     throw new ArgumentException("Unqualified Radiance payment, ownership or calendar marker.");

@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    public enum ExpeditionSeat { Player, FirstOpponent }
-    public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable }
+    public enum ExpeditionSeat { Player, FirstOpponent, RecoveryOpponent }
+    public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable, RecoveryOpponent }
     public enum ExpeditionDecisionKind { None, Opportunity, ManufacturingQuality, Knockout, Press, Sanctuary }
     public enum ExpeditionResponse { Unavailable, NotAuthorized, StaleRevision, CommandIdConflict, Committed, Duplicate, Waiting }
 
@@ -59,6 +59,8 @@ namespace Decennium.Foundation.Laboratory
         private static readonly Authority ClockGrant = new Authority(SessionPrincipal, new[] { Hero }, canAdvanceClock: true);
         private static readonly Authority ClericMilestoneGrant = new Authority(PlayerPrincipal, Party, canModifyWorld: true, inventoryOwners: Party);
         private static readonly Authority CloseGrant = new Authority(SessionPrincipal, new[] { Hero }, canModifyWorld: true);
+        private static readonly Authority RecoveryOpponentGrant = new Authority(PostRecoveryEncounterDefinition.Controller,
+            new[] { PostRecoveryEncounterDefinition.Actor }, inventoryOwners: new[] { PostRecoveryEncounterDefinition.Actor });
         private static readonly Authority DefenderGrant = LaterDefenderController.DefenderAuthority();
 
         private readonly object gate = new object();
@@ -108,6 +110,12 @@ namespace Decennium.Foundation.Laboratory
         public static ConnectedExpeditionSession StartWithClericLongRest(ClericInitialSelection initial,
             ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericLongRest(initial, repertoire, declaration));
+
+        public static ConnectedExpeditionSession StartWithPostRecoveryEncounter(ClericInitialSelection initial,
+            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration,
+            bool companionConsents = true, bool directorAuthorizes = true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnablePostRecoveryEncounter(initial,repertoire,declaration,
+                companionConsents,directorAuthorizes));
 
         public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
@@ -197,7 +205,8 @@ namespace Decennium.Foundation.Laboratory
                     return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized, state, discloseTacticalSlot: false);
                 if (!ExposedCommand(state, seat, command.Kind))
                     return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state,
-                        seat == ExpeditionSeat.Player || FirstEncounterActive(state));
+                        seat == ExpeditionSeat.Player || seat == ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
+                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
                 if (seat == ExpeditionSeat.Player && command.Actor == Companion
                     && ((command.Kind == CommandKind.StartHavenSale && command.Target == TestOnlyHavenSaleProfile.OfferVersionId)
                         || (command.Kind == CommandKind.PurchaseHavenMeal && command.Target == TestOnlyHavenMealProfile.OfferVersionId)))
@@ -205,7 +214,8 @@ namespace Decennium.Foundation.Laboratory
                 if (seat == ExpeditionSeat.Player && state.ConnectedClericSettlement && command.Kind == CommandKind.AwardCharacterMilestone)
                     grant = ClericMilestoneGrant;
                 return Execute(state, grant, command, () => KnownTarget(state, seat, command),
-                    seat == ExpeditionSeat.Player || FirstEncounterActive(state));
+                    seat == ExpeditionSeat.Player || seat == ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
+                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
             }
         }
 
@@ -294,6 +304,7 @@ namespace Decennium.Foundation.Laboratory
             return seat switch {
                 ExpeditionSeat.Player => PlayerGrant,
                 ExpeditionSeat.FirstOpponent => FirstOpponentGrant,
+                ExpeditionSeat.RecoveryOpponent => simulation?.Capture().PostRecoveryEncounter != null ? RecoveryOpponentGrant : null,
                 _ => null
             };
         }
@@ -376,6 +387,7 @@ namespace Decennium.Foundation.Laboratory
                 Companion => ExpeditionTurnSeat.Player,
                 FirstOpponent => ExpeditionTurnSeat.FirstOpponent,
                 TestOnlySharedWorldPolicy.LaterDefenderId => ExpeditionTurnSeat.AutomaticDefender,
+                PostRecoveryEncounterDefinition.Actor => ExpeditionTurnSeat.RecoveryOpponent,
                 "" => ExpeditionTurnSeat.None,
                 _ => ExpeditionTurnSeat.Unavailable
             };
@@ -426,7 +438,10 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
-            => CombatCommands.Contains(kind) || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+            => CombatCommands.Contains(kind)
+                || seat == ExpeditionSeat.RecoveryOpponent && state.PostRecoveryEncounter != null
+                    && (kind == CommandKind.UseIntimidatingPresence || state.ConnectedClericCasting && kind == CommandKind.RespondSanctuary)
+                || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
                 || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
                 || state.ConnectedClericCasting && (SpellCastingProfile.IsUtilityCommand(kind)
                     || kind==CommandKind.EquipPortableItem || kind==CommandKind.RemovePortableItem || kind==CommandKind.HandleVessel)
@@ -526,9 +541,13 @@ namespace Decennium.Foundation.Laboratory
             string target = command.Target;
             string actor = command.Actor;
             if (seat == ExpeditionSeat.FirstOpponent && !FirstEncounterActive(state)) return false;
+            if (seat == ExpeditionSeat.RecoveryOpponent && !PostRecoveryProfile.Active(state)) return false;
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.UseIntimidatingPresence:
+                    return seat==ExpeditionSeat.RecoveryOpponent && actor==PostRecoveryEncounterDefinition.Actor
+                        && command.IntimidatingPresence!=null && command.IntimidatingPresence.TargetIds.All(Party.Contains);
                 case CommandKind.Hide:
                     return state.ConnectedFrightened && seat == ExpeditionSeat.Player && state.InventoryCombat
                         && Party.Contains(actor) && actor == state.Encounter.CurrentActor && target == state.Encounter.CurrentTurnId
@@ -613,14 +632,17 @@ namespace Decennium.Foundation.Laboratory
                     if(state.ConnectedClericCasting && command.SpellCast!=null)
                         return seat==ExpeditionSeat.Player && actor==Companion
                             && (Party.Contains(target) || target==TestOnlySharedWorldPolicy.LaterDefenderId
+                                || state.PostRecoveryEncounter!=null && target==PostRecoveryEncounterDefinition.Actor
                                 || state.InventoryLots.Any(x=>x.LotId==target&&Party.Contains(x.OwnerId)));
                     return state.ConnectedClericRepertoire && seat==ExpeditionSeat.Player && actor==Companion && SpellSourceCatalog.Get(target)!=null;
                 case CommandKind.RespondSanctuary:
-                    return state.ConnectedClericCasting&&seat==ExpeditionSeat.Player&&Party.Contains(actor)
+                    return state.ConnectedClericCasting&&(seat==ExpeditionSeat.Player&&Party.Contains(actor)
+                        || seat==ExpeditionSeat.RecoveryOpponent&&actor==PostRecoveryEncounterDefinition.Actor)
                         &&state.SanctuaryAdmissions.Any(x=>x.Pending&&x.ActorId==actor&&x.Id==target)
                         &&command.SanctuaryResponse!=null
                         &&(command.SanctuaryResponse.Kind==SanctuaryResponseKind.Forgo||Party.Contains(command.SanctuaryResponse.TargetId)
-                            ||command.SanctuaryResponse.TargetId==TestOnlySharedWorldPolicy.LaterDefenderId);
+                            ||command.SanctuaryResponse.TargetId==TestOnlySharedWorldPolicy.LaterDefenderId
+                            ||state.PostRecoveryEncounter!=null&&command.SanctuaryResponse.TargetId==PostRecoveryEncounterDefinition.Actor);
                 case CommandKind.AcquireEarnedSpell:
                     return state.ConnectedClericRepertoire && seat == ExpeditionSeat.Player && actor == Companion
                         && SpellSourceCatalog.Get(target) != null;

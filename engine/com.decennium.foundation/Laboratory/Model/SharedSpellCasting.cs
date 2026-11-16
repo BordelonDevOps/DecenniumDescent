@@ -54,6 +54,12 @@ namespace Decennium.Foundation.Laboratory
         private static SpellTurnIdentity CurrentCastingTurn(Snapshot s,string actor)
         {
             var epoch=WorldTiming.ForActor(s,actor); var admission=s.Reinforcement?.Admission;
+            if(PostRecoveryProfile.IsEpoch(s,epoch?.Id)) {
+                long current=epoch.LatestStart(actor,epoch.ProcessedSlot);
+                var recoveryEntry=s.PostRecoveryEncounter;
+                return current>=0 ? new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))
+                    :new SpellTurnIdentity(actor,epoch.Id,-1,recoveryEntry.Admission.CarriedInterval(actor).LastStart,recoveryEntry.Entered.Revision);
+            }
             if(epoch==null || epoch.Id!=admission?.Phase.Epoch.Id)return null;
             long local=epoch.LatestStart(actor,epoch.ProcessedSlot);
             if(local>=0)return new SpellTurnIdentity(actor,epoch.Id,local,admission.Phase.GlobalTurn(local));
@@ -65,13 +71,15 @@ namespace Decennium.Foundation.Laboratory
         {
             if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return "OrdinarySpellcastingUnsupported";
             var epoch=WorldTiming.ForActor(s,c.Actor); var phase=s.Reinforcement?.Admission?.Phase;
-            if(epoch==null || epoch.Id!=phase?.Epoch.Id)return "SpellcastingCalendarUnsupported";
-            if(s.InventoryCombat ? s.Encounter?.Id!=s.Reinforcement.Definition.EncounterId
-                :s.Encounter!=null || !s.ClosedEncounters.Any(x=>x.Encounter.Id==s.Reinforcement.Definition.EncounterId))
+            bool recovery=PostRecoveryProfile.IsEpoch(s,epoch?.Id);
+            if(epoch==null || !recovery && epoch.Id!=phase?.Epoch.Id)return "SpellcastingCalendarUnsupported";
+            string encounter=recovery?PostRecoveryEncounterDefinition.Encounter:s.Reinforcement.Definition.EncounterId;
+            if(s.InventoryCombat ? s.Encounter?.Id!=encounter
+                :s.Encounter!=null || !s.ClosedEncounters.Any(x=>x.Encounter.Id==encounter))
                 return "SpellcastingContextUnsupported";
             long local=epoch.SlotAt(s.RuleClock);
             if(local!=epoch.ProcessedSlot || epoch.LatestStart(c.Actor,local)!=local
-                || Interval(s,c.Actor).LastStart!=phase.GlobalTurn(local)
+                || Interval(s,c.Actor).LastStart!=WorldTiming.TurnOrdinal(s,epoch.Id,local)
                 || s.InventoryCombat && (s.Encounter.CurrentActor!=c.Actor || s.InventoryTurnActor!=c.Actor))return "WrongRegularTurn";
             if(PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s) || s.ManufacturingAdvance!=null)
                 return "TacticalChoicePending";
@@ -212,7 +220,7 @@ namespace Decennium.Foundation.Laboratory
             if(PersistentSpell(spell)) {
                 bool ward=spell=="arcane-ward"; var epoch=WorldTiming.ForActor(s,c.Actor); long local=turn.LocalStart+epoch.Order.Count;
                 var expiry=ward?epoch.Start(local):s.RuleClock.AddSeconds(spell=="detect-magic"?600:60);
-                var expiryTurn=ward?new SpellTurnIdentity(c.Actor,epoch.Id,local,s.Reinforcement.Admission.Phase.GlobalTurn(local)):null;
+                var expiryTurn=ward?new SpellTurnIdentity(c.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local)):null;
                 var effect=new SpellEffectRecord(effectId,c.Id,revision,spell,c.Actor,c.Target,s.RuleClock,expiry,
                     ward?SpellExpiryKind.NextCasterStart:SpellExpiryKind.Absolute,expiryTurn,ConcentratingSpell(spell));
                 foreach(var old in s.SpellEffects.Where(x=>x.Present&&x.SpellId==spell&&x.TargetId==c.Target).ToArray()) {
@@ -376,7 +384,7 @@ namespace Decennium.Foundation.Laboratory
             if(!s.ConnectedClericCasting)return null;
             RuleTime? due=s.SpellEffects.Where(x=>x.Present).Select(x=>(RuleTime?)x.ExpiresAt).OrderBy(x=>x).FirstOrDefault();
             var epoch=WorldTiming.ForActor(s,ClericRpProfile.Actor);
-            if(epoch==null || epoch.Id!=s.Reinforcement?.Admission?.Phase.Epoch.Id)return due;
+            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=s.Reinforcement?.Admission?.Phase.Epoch.Id)return due;
             long local=epoch.LatestStart(ClericRpProfile.Actor,epoch.SlotAt(s.RuleClock));
             if(local<0)return due;
             var end=epoch.Start(local+1);
@@ -395,12 +403,12 @@ namespace Decennium.Foundation.Laboratory
                 EndSpellEffect(s,effect,cause.Id,s.Revision+1,effect.ExpiresAt,SpellEffectEndReason.Expired);
             }
             var epoch=WorldTiming.ForActor(s,ClericRpProfile.Actor); var phase=s.Reinforcement?.Admission?.Phase;
-            if(epoch==null || epoch.Id!=phase?.Epoch.Id || from<epoch.Origin)return;
+            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=phase?.Epoch.Id || from<epoch.Origin)return;
             long local=epoch.LatestStart(ClericRpProfile.Actor,epoch.SlotAt(from));
             if(local<0)local=Enumerable.Range(0,epoch.Order.Count).Single(x=>epoch.Order[x]==ClericRpProfile.Actor);
             if(epoch.Start(local+1)<=from)local+=epoch.Order.Count;
             while(epoch.Start(local+1)<=to) {
-                var current=s.CastingStrain[0]; var turn=new SpellTurnIdentity(ClericRpProfile.Actor,epoch.Id,local,phase.GlobalTurn(local));
+                var current=s.CastingStrain[0]; var turn=new SpellTurnIdentity(ClericRpProfile.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local));
                 var activities=s.CastingActivities.Where(x=>x.Turn.SameAs(turn)).ToArray();
                 if(current.Dissonance==0 && activities.Length==0)break;
                 if(cause==null || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds)throw new ArgumentException("Casting End history capacity or command unavailable.");

@@ -158,6 +158,7 @@ namespace Decennium.Foundation.Laboratory
                     .Concat(DiscoverClericLongRest(s,actor));
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
+            options.AddRange(DiscoverPostRecoveryCommands(s,actor));
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
             options.AddRange(DiscoverConnectedRecipe4(s,actor));

@@ -166,7 +166,7 @@ namespace Decennium.Foundation
         public const int MaxAttempts = 1024; // Technical retained-history capacity, not a rest rule.
         public const byte Marker = 15;
         public static bool SelectedFingerprint(string value)
-            => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+            => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || PostRecoveryProfile.SelectedFingerprint(value));
         public static string OccupancyId(string restId) => restId + ".occupancy";
         public static long HealingRequest(long currentHp, long effectiveMaximumHp)
         {

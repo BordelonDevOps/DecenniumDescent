@@ -244,14 +244,20 @@ namespace Decennium.Foundation
         {
             if(turn==null)return false;
             var epoch=WorldTiming.FindEpoch(s,turn.EpochId); var admission=s.Reinforcement?.Admission;
-            if(epoch==null || epoch.Id!=admission?.Phase.Epoch.Id || !epoch.Order.Contains(turn.ActorId) || at<epoch.Origin)return false;
+            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=admission?.Phase.Epoch.Id
+                || !epoch.Order.Contains(turn.ActorId) || at<epoch.Origin)return false;
             long local=epoch.LatestStart(turn.ActorId,epoch.SlotAt(at));
+            if(turn.IsCarried && PostRecoveryProfile.IsEpoch(s,epoch.Id)) {
+                var entry=s.PostRecoveryEncounter;
+                return !ownAction && local<0 && turn.CarriedAdmissionRevision==entry.Entered.Revision
+                    && turn.GlobalStart==entry.Admission.CarriedInterval(turn.ActorId).LastStart;
+            }
             if(turn.IsCarried) {
                 var entered=s.Reinforcement.Events.SingleOrDefault(x=>x.Kind==ReinforcementEventKind.Admitted);
                 return !ownAction && local<0 && entered!=null && turn.CarriedAdmissionRevision==entered.Revision
                     && turn.GlobalStart==admission.Carried.Single(x=>x.Interval.ActorId==turn.ActorId).Interval.LastStart;
             }
-            return turn.LocalStart==local && turn.GlobalStart==admission.Phase.GlobalTurn(local)
+            return turn.LocalStart==local && turn.GlobalStart==WorldTiming.TurnOrdinal(s,epoch.Id,local)
                 && (!ownAction || epoch.SlotAt(at)==local);
         }
         private static void ValidateCompanionClubPickup(Snapshot s)

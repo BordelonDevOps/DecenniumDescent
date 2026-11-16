@@ -140,7 +140,7 @@ namespace Decennium.Foundation.Laboratory
             facts = new WorldStepFacts { Scheduled = scheduled, OffCalendar = offCalendar, StartsEncounter = startsEncounter,
                 DashAlreadyPaid = dashPaid, DetachesRoute = detachesRoute, InitialDistance = initialDistance,
                 ToX = toX, ToY = toY, Cost = movementCost };
-            return AssessLaterWorldStep(s, edge) ?? AssessReengagementDeparture(s, c) ?? AssessCharterWorldStep(s, c, facts);
+            return AssessPostRecoveryWorldStep(s, edge) ?? AssessLaterWorldStep(s, edge) ?? AssessReengagementDeparture(s, c) ?? AssessCharterWorldStep(s, c, facts);
         }
 
         private static WorldTraversalRecord AddOrdinaryWorldTraversal(Snapshot state, Command command, WorldStepFacts facts, bool running)

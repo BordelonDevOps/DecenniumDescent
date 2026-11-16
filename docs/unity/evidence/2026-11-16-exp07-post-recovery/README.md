@@ -1,5 +1,7 @@
 # EXP-07 post-recovery encounter-continuation contract gate
 
+**Implementation prepared; final qualification and actual review are pending.** The connected runtime now includes the new encounter, existing Cleric gameplay, genuine initiative ties and five-path authority evidence. [Implementation and qualification boundary](IMPLEMENTATION.md) / [Development evidence](DEVELOPMENT_STATUS.md). The contract history below remains authoritative; passing support checks is not module or engine completion.
+
 **Actual contract review approved bounded implementation; Codex agrees with all mandatory amendments.** Response `cb561b81-6fb9-5530-8c08-7a4233e8be12` approves proposal `540e500125559f48d83b568077cfba9a1b12c607`, with the exact old-defender-Start contact bound, actual off-calendar new-NPC provenance, no partial-turn/Grounding-credit transfer, strict single current epoch ownership and new-opponent five-path view/authority evidence. [Controlling approved contract](APPROVED_CONTRACT.md) · [Exact actual review and Codex agreement](GPT_CONTRACT_REVIEW.md). Engine implementation and actual runtime qualification remain outstanding. The source-only audit and submitted proposal below preserve their original pending-review context; they are not passing gameplay evidence.
 
 ## Submitted proposal and original evidence status

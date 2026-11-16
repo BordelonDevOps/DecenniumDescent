@@ -170,6 +170,7 @@ namespace Decennium.Foundation
     {
         public static WorldScheduleRecord ForActor(Snapshot state, string actor)
         {
+            if (PostRecoveryProfile.OwnsCurrent(state, actor)) return state.PostRecoveryEncounter.Admission.Epoch;
             var phase = state.Reinforcement?.Admission?.Phase;
             if (phase != null && phase.Epoch.Order.Contains(actor)) return phase.Epoch;
             var later = state.LaterEncounter?.Entry?.Epoch;
@@ -180,6 +181,7 @@ namespace Decennium.Foundation
 
         public static WorldScheduleRecord FindEpoch(Snapshot state, string id)
         {
+            if (state.PostRecoveryEncounter?.Admission?.Epoch.Id == id && id != null) return state.PostRecoveryEncounter.Admission.Epoch;
             if (state.WorldSchedule?.Id == id) return state.WorldSchedule;
             var later = state.LaterEncounter?.Entry?.Epoch;
             if (later?.Id == id) return later;
@@ -188,8 +190,15 @@ namespace Decennium.Foundation
         }
 
         public static WorldScheduleRecord ForEncounter(Snapshot state)
-            => IsLaterActive(state) ? state.Reinforcement?.Admission?.Phase.Epoch ?? state.LaterEncounter.Entry.Epoch
+            => PostRecoveryProfile.Active(state) ? state.PostRecoveryEncounter.Admission.Epoch
+                : IsLaterActive(state) ? state.Reinforcement?.Admission?.Phase.Epoch ?? state.LaterEncounter.Entry.Epoch
                 : state.WorldSchedule;
+
+        // Persisted ordinals are meaningful only together with their epoch. The reinforced
+        // calendar retains its historical offset; the fresh encounter starts at local zero.
+        public static int TurnOrdinal(Snapshot state, string epoch, long local)
+            => epoch == state.Reinforcement?.Admission?.Phase.Epoch.Id
+                ? state.Reinforcement.Admission.Phase.GlobalTurn(local) : checked((int)local);
 
         public static int EncounterOrdinal(Snapshot state)
         {
@@ -203,6 +212,7 @@ namespace Decennium.Foundation
             var owner = ForActor(state, actor);
             if (owner == null) return -1;
             long local = owner.LatestStart(actor, owner.ProcessedSlot);
+            if (PostRecoveryProfile.IsEpoch(state, owner.Id)) return local;
             var admission = state.Reinforcement?.Admission;
             if (owner.Id != admission?.Phase.Epoch.Id) return local;
             var exit = state.Retreat?.SuccessfulExit;
@@ -222,7 +232,7 @@ namespace Decennium.Foundation
             var later = state.LaterEncounter?.Entry?.Epoch;
             if (later == null) return state.WorldSchedule.Order;
             return state.WorldSchedule.Order.Union(state.Reinforcement?.Admission?.Phase.Epoch.Order ?? later.Order,
-                StringComparer.Ordinal);
+                StringComparer.Ordinal).Union(state.PostRecoveryEncounter?.Admission?.Epoch.Order ?? Array.Empty<string>(), StringComparer.Ordinal);
         }
     }
 
@@ -267,14 +277,15 @@ namespace Decennium.Foundation
             var first = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == later.FirstExit.Encounter.Id);
             if (!SameExit(first, later.FirstExit)) throw new ArgumentException("Invalid first encounter archive.");
             bool resumed = state.Reengagement?.IsSegment(state.Encounter?.Id) == true;
-            var live = resumed ? null : state.Encounter;
+            bool successor = PostRecoveryProfile.Active(state);
+            var live = resumed || successor ? null : state.Encounter;
             var closed = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == definition.EncounterId);
             if (closed != null) ValidateExit(state, closed);
             var encounter = live ?? closed?.Encounter;
             if (encounter == null || encounter.Id != definition.EncounterId || encounter.Origin != entry.Epoch.Origin
                 || encounter.StartRevisions[0] != entry.ArrivalRevision || encounter.ObservedOrdinals[0] != 0
                 || !encounter.InitialOrder.SequenceEqual(entry.Epoch.Order)
-                || (state.InventoryCombat && !resumed ? closed != null || live == null || live.TurnOrdinal != WorldTiming.EncounterOrdinal(state)
+                || (state.InventoryCombat && !resumed && !successor ? closed != null || live == null || live.TurnOrdinal != WorldTiming.EncounterOrdinal(state)
                     : closed == null || live != null))
                 throw new ArgumentException("Invalid later encounter history.");
         }

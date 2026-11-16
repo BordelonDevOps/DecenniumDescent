@@ -46,7 +46,7 @@ namespace Decennium.Foundation.Tests
 
         private static ConnectedExpeditionSession EarnClericObjective(bool spendRite,string directory=null,
             ConnectedExpeditionSession selected=null,Action<ConnectedExpeditionSession> firstClericAction=null,
-            Action<ConnectedExpeditionSession> beforeClosure=null)
+            Action<ConnectedExpeditionSession> beforeClosure=null,Func<int,int> heroStance=null)
         {
             var session = StartVialScenario(selected??NewClericSettlement());
             const string routeHero = ConnectedExpeditionSession.Hero, routeAlly = ClericRpProfile.Actor;
@@ -79,7 +79,9 @@ namespace Decennium.Foundation.Tests
             ClericEnd(session,hero); ClericDefender(session); ClericGuard(session,ally); ClericEnd(session,ally);
             for (int round=0;;round++) {
                 Require(round < 24,"Earned Cleric route failed to conclude genuine combat.");
-                ClericGuard(session,hero);
+                if(heroStance==null)ClericGuard(session,hero);
+                else ClericCommit(session,hero,CommandKind.SelectCombatStance,
+                    combat:new CombatRequest(session.View(ExpeditionSeat.Player).TurnId,stance:heroStance(round)));
                 if (ShortRestCapture(session).Lives.Single(x => x.ActorId == FrightenedProfile.Actor).Dead) break;
                 ClericCommit(session,hero,CommandKind.AttackClub,FrightenedProfile.Actor,
                     combat:new CombatRequest(session.View(ExpeditionSeat.Player).TurnId,"TEST_ONLY.actor-club"));
