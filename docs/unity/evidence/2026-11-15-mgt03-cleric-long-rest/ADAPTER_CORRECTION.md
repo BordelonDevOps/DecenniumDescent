@@ -1,0 +1,7 @@
+# Long Rest console payload correction
+
+Source checkpoint `27710eee7b1a5614500c8896fd21c7c165e083fd` admitted an extra JSON `duration` field at the console boundary: the adapter ignored it and submitted an otherwise valid BeginLongRest. The runtime still used the full source-defined duration, but accepting extra fields violated the approved command contract. The retained actual reproduction is `engine/artifacts/mgt03-cleric-long-rest/development/parser-before-20261116T0045Z/` and records the accepted command and changed canonical state.
+
+The adapter now accepts only operation/command, current identities, revision, seat, and explicit zero x/y fields for BeginLongRest and InterruptLongRest. Extra duration, HP, RP, Conviction, participants, and null inventory fields reject before dispatch; missing/nonzero/boolean coordinate controls also reject. The actual ten-control parser run at `engine/artifacts/mgt03-cleric-long-rest/qualification/parser-20261116T0048Z/results.json` passes with identical canonical before/after saves. Parser-only controls are counted separately from engine command rejection tests.
+
+No C# source or assembly changed. Original full regression `37e5a7d7399e40a795c4c982f5ada498` continues on the exact435 compiled inputs and1553-case inventory frozen at27710eee7; no worker is replaced and no results are mixed. Console execution-path qualification uses the corrected adapter. Final evidence must retain the parent-source/adapter bridge and both parser outcomes. This correction is not module acceptance; actual GPT review remains required.

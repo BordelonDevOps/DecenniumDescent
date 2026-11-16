@@ -82,6 +82,12 @@ $session = if ($ClericLongRest) {
 }
 
 function New-SessionCommand($request, $view, $kind) {
+    if ($kind -eq 'BeginLongRest' -or $kind -eq 'InterruptLongRest') {
+        $allowed=@('op','kind','id','actor','revision','target','seat','x','y')
+        if (@($request.Keys | Where-Object { $_ -cnotin $allowed }).Count) {
+            throw 'Long Rest accepts identities and explicit zero coordinates only.'
+        }
+    }
     if (($kind -eq 'BeginLongRest' -or $kind -eq 'InterruptLongRest') -and (
         !$request.ContainsKey('x') -or !$request.ContainsKey('y') -or
         !($request.x -is [int] -or $request.x -is [long]) -or $request.x -ne 0 -or
