@@ -1,5 +1,8 @@
 # Earned Bishop entry: complete contract preparation
 
+**Complete amended Bishop contract approved for runtime implementation.** Actual response `0a1c9139-3116-532b-8ee8-c436c82e4e27` independently reconciles the12-file survival packet and resolves its bounded reachability blocker; Codex agrees. [Actual review and agreement](GPT_SURVIVAL_REVIEW.json). No separate prerequisite is selected. Mandatory genuine positive cure, Invocation/Aura/Dispel operations, all1,566 predecessors, authentic95–111 continuations, five-path qualification and final review remain. This is not module acceptance. Earlier entries preserve historical states.
+
+
 **Earlier-rest feasibility now passes; survival amendment awaits actual GPT review.** Response `a8da8b2d-23e4-5e6c-b9e1-f1139f98a173` deferred a separate prerequisite and selected existing timing first; Codex agrees. The unchanged wire111 engine completes the genuine encounter, third rest at258320.5, Guidance on the living hero, individual Detect and paid continuation. Fifteen canonical checkpoints,25 views and222 non-load responses match uninterrupted/restore paths. The later259200 hero death remains visible. [Amendment, evidence and limits](SURVIVAL_AMENDMENT.md) supersede the earlier timing proposal below. No Bishop runtime, new compilation or full regression has run. Storage/Support remain held; Unity deferred.
 
 

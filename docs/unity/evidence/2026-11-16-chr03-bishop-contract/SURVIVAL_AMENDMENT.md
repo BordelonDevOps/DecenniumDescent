@@ -1,5 +1,7 @@
 # Earlier-rest survival amendment and executed feasibility
 
+**Subsequent actual verdict:** response `0a1c9139-3116-532b-8ee8-c436c82e4e27` approves this amendment and the complete contract for bounded implementation; Codex agrees. [Exact review](GPT_SURVIVAL_REVIEW.json). All acceptance obligations remain, including genuine positive cure. The proposal and execution details below are retained.
+
 **Existing-engine feasibility passes; Bishop implementation approval is requested, not assumed.** Actual GPT response `a8da8b2d-23e4-5e6c-b9e1-f1139f98a173` identified the earlier-rest schedule and deferred any separate prerequisite. Codex agrees. This amendment replaces the proposed 86400/172800/259200 witness schedule; it changes no rest, provisioning, debt, source, opposition or dependency rule. The complete mechanics contract and its actual review remain governing.
 
 ## Executed route and exact limits
@@ -51,7 +53,7 @@ After the third rest, Guidance on the living hero is followed by Detect on the c
 
 Use this earlier schedule in the new explicit Bishop profile, retaining its genesis-declared objective. At the first completed care/departure, the future atomic earned3 transaction preserves actual HP13 and RP2 while increasing capacities to18/7; known Conviction5 and actual Dissonance0 remain. The immediate Invocation insufficient-RP rejection is still mandatory. The second real rest at171920.5 must use the then-current level3 capacities, with historical first-rest HP13/RP4 retained at its own revision.
 
-One later funded7RP supplies Detect2 + Invocation3 + Rite2. The new execution must still prove genuine two-target Invocation, its independent cure where available, Aura's actual saving-throw and Rite effects, real concentration, finite Conviction/recharge and paid continuation. This unchanged-Cleric2 probe proves none of those unimplemented effects and does not guarantee identical RNG, initiative or HP after new draws. Adapt lawful command timing to actual state; do not force the predecessor outcomes. All stronger genuine-effect acceptance requirements remain.
+One later funded7RP supplies Detect2 + Invocation3 + Rite2. The new execution must still prove genuine two-target Invocation, its mandatory genuine positive condition cure, Aura's actual saving-throw and Rite effects, real concentration, finite Conviction/recharge and paid continuation. This unchanged-Cleric2 probe proves none of those unimplemented effects and does not guarantee identical RNG, initiative or HP after new draws. Adapt lawful command timing to actual state; do not force the predecessor outcomes. All stronger genuine-effect acceptance requirements remain.
 
 After actual death/closure and paid return, the third eligible rest at258320.5 can fund the future Guidance0→Detect2→Dispel3 sequence and paid continuation before259200. Use actual current own Starts and a still-live observed Guidance, not fixed calendar indices. Preserve every actual pressure consequence and replay through259200 as a boundary control; the Bishop run must determine its own life results. If the new sequence fails, retain the exact failure and seek review rather than resetting, adding stock or silently splitting the primary route.
 
