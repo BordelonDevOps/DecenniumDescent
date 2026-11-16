@@ -1,0 +1,408 @@
+{
+  "status": "SOURCE_RESEARCH_ONLY_NOT_CONTRACT_APPROVAL",
+  "selectionStatus": "Candidates pending complete source/API proposal and actual review",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "sources": {
+    "cleric": {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "bytes": 81863,
+      "gitBlob": "193ca1eaecd1c9fa1f26993dfe872f7da2a17b97",
+      "extracts": {
+        "engine": [
+          "PROVISIONAL PLAYTEST CONTRACT. Wisdom is the Cleric class ability. S = 1/2/3/4 at Cleric levels 1/5/11/17. M = max(1, Wisdom modifier) unless a feature explicitly substitutes another ability. Cleric technique attack = d20 + normal character proficiency bonus + Wisdom modifier. Cleric technique save DC = 8 + normal character proficiency bonus + Wisdom modifier.",
+          "Conviction is separate from Resonance Points. Base Conviction maximum is 3, automatically becoming 5 at Cleric 9; after a long rest you begin at your current maximum. A completed short rest restores 1 spent Conviction, to the maximum. A completed long rest restores all Conviction. Conviction Pool raises the maximum by 2. Conviction persists between encounters; simply declaring prayer, repeating a Rite, or performing harmless actions outside a real encounter never generates Conviction.",
+          "Only explicit features generate Conviction. Sacred Chant, Sermon of Purpose, Doctrine Shield, Dark Conviction and other printed cards are valid generators. A feature cannot generate more Conviction than its text permits, and Conviction can never exceed the current maximum. Summoned creatures, friendly creatures, trivial creatures, repeated corpse manipulation and staged out-of-combat actions cannot be used to farm Conviction.",
+          "Cleric techniques use only their printed RP and Conviction costs. All RP is paid from the Cleric's Core Systems V 2 Resonance Point pool. A Cleric technique is not automatically an ordinary spell-rank cast and does not receive Overcast, spell-slot, cost-discount or spell-proc benefits unless a feature explicitly says otherwise. Ordinary spells continue to use Core V 2 spellcasting rules.",
+          "Protected Dissonance interaction: once on each of your regular turns, when you spend at least 2 Conviction on a Rite or Invocation, reduce Dissonance by 1, minimum 0. The expenditure must actually occur; waived Conviction costs do not vent Dissonance. A single feature expenditure vents at most once even if it spends more than 2 Conviction. No Cleric card automatically adds Dissonance unless explicitly written.",
+          "One concentration effect may be maintained at a time. Starting another concentration effect immediately ends the previous one. Damage uses the current Core Systems concentration rule; for this pilot, if a division requires rounding, half damage is rounded down. Sustained Cleric effects use their printed maintenance cost and Bonus Action. A control effect that persists for multiple pulses or rounds gives the target a new save at each printed pulse or at the end of each affected turn as stated.",
+          "Round recharge counters are set after resolution and decrease once at the start of the Cleric's regular initiative turn, even if the Cleric cannot act. Extra Actions and extra turns do not create extra recharge ticks. Outside initiative, each uninterrupted 6 seconds counts as one recharge tick. Only a positive counter may be reset or shortened, and a named ability can receive at most one reset or shortening per round.",
+          "Healing cannot exceed maximum HP, does not remove Wounds, and does not restore a dead creature unless a card explicitly says it resurrects. No Cleric feature provides unlimited permanent HP or resource restoration outside encounters. Temporary HP does not stack with itself; use the higher value. Resurrection and corpse-based effects have explicit use limits and cannot generate repeatable corpses, XP, loot or Conviction.",
+          "Invocation Attunement is gained automatically at Cleric level 2. Choose exactly one Invocation Path: Radiance, Judgment, Renewal, Flame, Veil or Echoes. Only the selected path bonus becomes active. Divine Invocation uses the mode belonging to that selected path unless another feature explicitly permits a different mode. Changing Invocation Path requires a future explicit retraining rule; this draft provides none.",
+          "PROPOSED ACQUISITION FOR PLAYTEST. Cleric 1: gain the Divine Favor engine and choose 4 Base cards, at least 2 Active. Cleric 2: automatically gain Invocation Attunement and the selected Invocation Path bonus, then choose 2 additional Base cards. Cleric 3: enter Bishop and choose 2 Arch cards, at least 1 Active. Levels 4-8 each grant one eligible Base/Arch choice, respecting each card's minimum class level. Level 9 grants one eligible Arch choice plus Bishop's Mandate automatically. Level 10 choose Saint, Priest or Cultist and gain 2 Hero choices from that path. Levels 12, 14, 16 and 18 each grant one additional Hero choice; levels 11, 13, 15, 17 and 19 grant one eligible unselected Base/Arch choice. The chosen Hero Finale is automatic at Cleric 20. ASI/feat milestones remain separate and do not consume these choices.",
+          "All acquisition gates use Cleric class level, not total character level. Proficiency bonus still follows normal total-character-level rules. A multiclass character cannot use non-Cleric levels to unlock Bishop, Hero, Invocation or Finale features. Divine commands, visions and social abilities can influence actions only to the extent their exact mechanical text states; no Cleric feature can force a player character to adopt, abandon or profess a belief.",
+          "Capacity clarification: the automatic level 9 Conviction increase is a new draft completion so every Hero can pay its 5-Conviction Finale without buying Conviction Pool. Conviction Pool adds 2 at any level, yielding 5 early or 7 from 9. It never fills gained capacity immediately."
+        ],
+        "schedule2": {
+          "classLevel": 3,
+          "choose": 2,
+          "bands": [
+            "Arch"
+          ],
+          "minimumActives": 1,
+          "asiOrFeat": false
+        },
+        "rpByClassLevelFirst3": [
+          3,
+          4,
+          7
+        ],
+        "maxSpellRankByClassLevelFirst3": [
+          1,
+          1,
+          2
+        ],
+        "cards": {
+          "16": {
+            "id": "cleric.arch.aura-of-faith",
+            "name": "Aura of Faith",
+            "className": "Cleric",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Allies within 15 feet who can perceive you",
+            "duration": "Passive while conscious",
+            "frequency": "Always",
+            "effect": "Aura of Faith. Tags: aura, bishop. Allies in the aura gain +1 on saving throws. Whenever your Rite restores HP to an ally in the aura, that ally also regains 1 additional HP. Multiple Aura of Faith bonuses do not stack.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 1992,
+              "originalText": "Aura of Faith: Allies in range gain +5% healing received and +1 to saves."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          "17": {
+            "id": "cleric.arch.sermon-of-purpose",
+            "name": "Sermon of Purpose",
+            "className": "Cleric",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "passive",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Passive",
+            "cost": "0",
+            "rangeAndTarget": "Your Sacred Chant",
+            "duration": "Passive",
+            "frequency": "Always",
+            "effect": "Sermon of Purpose. Tags: chant, conviction, bishop. Sacred Chant generates its 1 Conviction on its second pulse instead of its third. A normal three-pulse Sacred Chant still generates only 1 Conviction total unless another feature explicitly extends it or grants an additional generation event.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 1993,
+              "originalText": "Sermon of Purpose: Chants now generate 1 Conviction every 2 turns."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          "23": {
+            "id": "cleric.arch.divine-invocation",
+            "name": "Divine Invocation",
+            "className": "Cleric",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "2 Conviction + 3 RP",
+            "rangeAndTarget": "Mode-dependent; maximum 60 feet",
+            "duration": "Instantaneous unless mode states otherwise",
+            "frequency": "Recharge 3 rounds",
+            "effect": "Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2001,
+              "originalText": "Divine Invocation: Channel a powerful prayer based on your chosen Invocation Path, with effects ranging from mass healing to divine fire or protective barriers."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          },
+          "24": {
+            "id": "cleric.arch.sacrament",
+            "name": "Sacrament",
+            "className": "Cleric",
+            "band": "Arch",
+            "path": null,
+            "sourceKind": "active",
+            "minimumClassLevel": 3,
+            "acquisition": "selection",
+            "activation": "Action",
+            "cost": "3 Conviction + 4 RP to start; 1 RP maintenance",
+            "rangeAndTarget": "15-foot-radius fixed zone centered within 30 feet",
+            "duration": "Concentration, maximum 3 Cleric turns",
+            "frequency": "Recharge 4 rounds",
+            "effect": "Sacrament. Tags: sacrament, rite, sustained, zone. Pulse on start and on each paid Bonus Action maintenance. At each pulse, up to three allies in the zone gain +1 on saving throws until the start of your next regular turn or effect end, whichever is first. Up to three Undead or Fiends in the zone make Wisdom saves, taking S d6 radiant damage on failure or half on success. Maximum 3 pulses.",
+            "source": {
+              "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+              "line": 2002,
+              "originalText": "Sacrament: Perform a sacred ceremony that consumes Conviction to create a powerful, sustained effect in an area."
+            },
+            "designStatus": "provisional-playtest",
+            "spellRank": null
+          }
+        }
+      }
+    },
+    "spells": {
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "bytes": 4945319,
+      "gitBlob": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "extracts": {
+        "33": {
+          "id": "dispel-magic-lesser",
+          "name": "Dispel Magic (Lesser)",
+          "schools": [
+            "Abjuration"
+          ],
+          "status": "operational-playtest-draft",
+          "visibility": "public-source-review",
+          "classAccess": {
+            "Cleric": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Druid": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Mage": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Monk": {
+              "rank": 2,
+              "minimumClassLevel": 8,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Tinker": {
+              "rank": 2,
+              "minimumClassLevel": 6,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Wizard": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Paladin": {
+              "rank": 2,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            }
+          },
+          "operational": {
+            "id": "dispel-magic-lesser",
+            "activation": "Action",
+            "rangeFeet": 30,
+            "targets": "One individually perceptible ongoing magical effect within range and line of effect, generated by a spell of actual recorded rank 0, 1 or 2.",
+            "duration": "Instantaneous",
+            "concentration": false,
+            "components": [
+              "V",
+              "S",
+              "F"
+            ],
+            "resolution": "Automatic for an eligible effect; no saving throw or check.",
+            "effect": "End only the selected effect and invoke its ordinary ending procedure and dependencies. Its original generating spell rank controls, using its caster's class placement when class-cast; RP cost, discount, caster level and the dispeller's access do not change that rank.",
+            "scaling": "None.",
+            "limitations": "No permanent enchantment or magic-item removal, class-engine or creature-trait removal, mass purge, retroactive healing/resource repair, or guessing an unknown spell rank. A curse qualifies only when it is itself an otherwise eligible ongoing spell effect within the rank ceiling and is not specially protected. Mere binary awareness of nearby magic does not identify a selectable individual effect. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+            "designNotes": "PRESERVED: Action, 30 feet, V/S/F, instantaneous and low-level dispelling. NEW CONFLICT RULING: ambiguous plural effects means one selected effect per cast; Core Tier 2 is reconciled to spell rank at most 2, not a broader character tier.",
+            "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+            "sourceCoreEntries": [
+              {
+                "index": 33,
+                "original": {
+                  "school": "Abjuration",
+                  "level": 2,
+                  "name": "Dispel Magic (Lesser)",
+                  "effect": "End magical effects of Tier 2 or lower.",
+                  "source_paragraph": 9020,
+                  "casting_time": "1 action",
+                  "range": "30 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 3
+                }
+              }
+            ],
+            "sourcePlacements": [
+              {
+                "name": "Dispel Magic (Lesser)",
+                "school": "Abjuration",
+                "level": 2,
+                "summary": "End magical effects of 2nd level or lower."
+              }
+            ],
+            "classAccessEvidence": {
+              "Cleric": {
+                "rank": 2,
+                "minimumClassLevel": 3,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Druid": {
+                "rank": 2,
+                "minimumClassLevel": 3,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Mage": {
+                "rank": 2,
+                "minimumClassLevel": 3,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Monk": {
+                "rank": 2,
+                "minimumClassLevel": 8,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Tinker": {
+                "rank": 2,
+                "minimumClassLevel": 6,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Wizard": {
+                "rank": 2,
+                "minimumClassLevel": 3,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              },
+              "Paladin": {
+                "rank": 2,
+                "minimumClassLevel": 5,
+                "school": "Abjuration",
+                "baseRpCost": 3
+              }
+            },
+            "sourceReview": [
+              "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+              "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+            ],
+            "reviewEvidence": [
+              "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+            ],
+            "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+          },
+          "additionalRpCost": 0,
+          "source": {
+            "catalogPath": "src/data/spells.js",
+            "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+            "catalogKey": "dispel-magic-lesser",
+            "original": {
+              "name": "Dispel Magic (Lesser)",
+              "level": 2,
+              "resonanceRank": 2,
+              "school": "Abjuration",
+              "schools": [
+                "Abjuration"
+              ],
+              "placements": [
+                {
+                  "name": "Dispel Magic (Lesser)",
+                  "school": "Abjuration",
+                  "level": 2,
+                  "summary": "End magical effects of 2nd level or lower."
+                }
+              ],
+              "classLevels": {
+                "Cleric": 2,
+                "Druid": 2,
+                "Mage": 2,
+                "Monk": 2,
+                "Tinker": 2,
+                "Wizard": 2,
+                "Paladin": 2
+              },
+              "classRanks": {
+                "Cleric": 2,
+                "Druid": 2,
+                "Mage": 2,
+                "Monk": 2,
+                "Tinker": 2,
+                "Wizard": 2,
+                "Paladin": 2
+              },
+              "classLearnLevels": {
+                "Cleric": 3,
+                "Druid": 3,
+                "Mage": 3,
+                "Monk": 8,
+                "Tinker": 6,
+                "Wizard": 3,
+                "Paladin": 5
+              },
+              "classSchools": {
+                "Cleric": "Abjuration",
+                "Druid": "Abjuration",
+                "Mage": "Abjuration",
+                "Monk": "Abjuration",
+                "Tinker": "Abjuration",
+                "Wizard": "Abjuration",
+                "Paladin": "Abjuration"
+              },
+              "castingTime": "Not specified in current rulebook",
+              "range": "Not specified in current rulebook",
+              "components": "Not specified in current rulebook",
+              "duration": "Not specified in current rulebook",
+              "description": "End magical effects of 2nd level or lower.",
+              "alternateSummaries": [],
+              "classes": [
+                "Cleric",
+                "Druid",
+                "Mage",
+                "Monk",
+                "Tinker",
+                "Wizard",
+                "Paladin"
+              ],
+              "status": "canon",
+              "source": "Player Rulebook — Spell Lists"
+            },
+            "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+            "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+            "coreEntries": [
+              {
+                "index": 33,
+                "original": {
+                  "school": "Abjuration",
+                  "level": 2,
+                  "name": "Dispel Magic (Lesser)",
+                  "effect": "End magical effects of Tier 2 or lower.",
+                  "source_paragraph": 9020,
+                  "casting_time": "1 action",
+                  "range": "30 feet",
+                  "duration": "Instantaneous",
+                  "components": "V, S, F",
+                  "resolution": "Automatic or opposed as described",
+                  "tags": [
+                    "Utility"
+                  ],
+                  "rp_cost": 3
+                }
+              }
+            ],
+            "possibleHistoricalAliases": []
+          },
+          "reviewFlags": [
+            "Core resolution requires an explicit operational interpretation"
+          ]
+        }
+      }
+    }
+  }
+}
