@@ -6,7 +6,8 @@ function New-TypedCommand($request){
     if($request['inventory']){$i=$request.inventory;$inventory=[Decennium.Foundation.InventoryRequest]::new(
         [Decennium.Foundation.RuleQuantity]::new($i.numerator,$i.denominator),$i.destination,$i.handling)}
     if($request['combat']){$c=$request.combat;$combat=[Decennium.Foundation.CombatRequest]::new(
-        $c.turn,$c.weapon,$c.stance,$c.knockout,$c.choice,$c.press)}
+        $c.turn,($c.weapon ?? ''),($c.stance ?? 0),($c.knockout ?? 'OrdinaryOutcome'),
+        ($c.choice ?? $false),($c.press ?? 'ArmOrReplace'))}
     if($request['mining']){$m=$request.mining;$mining=[Decennium.Foundation.MiningSelectionRequest]::new(
         $m.version,[string[]]$m.categories,$m.ability,$m.hurried,$m.failureVictim,$m.criticalRecovery,$m.assistant)}
     if($request['intimidatingPresence']){$presence=[Decennium.Foundation.IntimidatingPresenceRequest]::new([string[]]$request.intimidatingPresence.targets)}

@@ -36,6 +36,7 @@ def main():
     for name in ('run', 'qualification', 'output', 'correction'):
         parser.add_argument('--' + name, required=True, type=Path)
     parser.add_argument('--source', required=True)
+    parser.add_argument('--paths-dir', type=Path)
     args = parser.parse_args()
     run, qualification, output = (getattr(args, x).resolve() for x in ('run', 'qualification', 'output'))
     assert not output.exists(), 'Preserve prior qualification evidence'
@@ -103,7 +104,9 @@ def main():
         completed.append(ending)
     assert len(all_results) == 1570 and {x['Name'] for x in all_results} == set(names)
 
-    reference, paths = qualification / 'reference', qualification / 'paths'
+    reference = qualification / 'reference'
+    paths = args.paths_dir.resolve() if args.paths_dir else qualification / 'paths'
+    assert paths.is_relative_to(qualification)
     manifest, result = read(reference / 'manifest.json'), read(paths / 'results.json')
     assert manifest['status'] == 'PASS_REFERENCE' and manifest['revision'] == 457 and len(manifest['marks']) == 21
     assert result['status'] == 'PASS' and set(result['paths']) == MODES
@@ -226,7 +229,7 @@ def main():
     summary = dict(status='QUALIFICATION_PASS_AWAITING_ACTUAL_FINAL_REVIEW', sourceCommit=source_commit,
         reconciledUtc=datetime.now(timezone.utc).isoformat(), runId=launch['runId'], passed=1570, failed=0,
         predecessors=1566, newCases=new, originalWorkers=completed, compiledInputs=453, staticInputs=len(static['sourceHashes']), sourcePins=83,
-        campaign=dict(commands=457, checkpoints=21, paths=sorted(MODES), canonicalComparisons=105, filteredViewComparisons=315,
+        campaign=dict(commands=457, checkpoints=21, pathDirectory=paths.relative_to(qualification).as_posix(), paths=sorted(MODES), canonicalComparisons=105, filteredViewComparisons=315,
                       behaviorComparisons=5 * probe_count), authentic95Through110=dict(checkpoints=28, consoleViews=112, bishopRejections=28),
         authentic111=dict(checkpoints=13, commandsPerRole=330, canonicalAndViewComparisons=100, bishopRejections=13),
         restoreChecks=restore['checks'], archive=dict(path=archive.name, bytes=archive.stat().st_size, sha256=digest(archive), members=len(index)),
