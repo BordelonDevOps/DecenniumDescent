@@ -1,0 +1,165 @@
+{
+  "status": "PASS",
+  "startedUtc": "2026-11-16T01:11:17.2988441Z",
+  "assemblies": [
+    {
+      "sha256": "9dce52535c113d5c2c02781a8f7b92c2d80f1a98d4b436cb32844125662e05ae",
+      "name": "Core"
+    },
+    {
+      "sha256": "57e42e7a7f681ceea68cfd0a3d90bb79957287266a572bbe7cebb5d4933ca59e",
+      "name": "Persistence"
+    },
+    {
+      "sha256": "164d3baccd4b97de58f8f286473879171b39a92fccddf87ef60f7d88dc6ec65b",
+      "name": "LabModel"
+    }
+  ],
+  "sourceSha256": "7a69568d019ac709fbb0266db84edb0712c3f681e89157072d4a3061f5bf0244",
+  "readySha256": "812cfb0c8dc476d78f10401d092a5f44ee09caeab0319c2261448e18f272fb14",
+  "referenceSha256": "5c82e06ae466b62cc1254ac9f2a8e91d94ef1df0fdd645169ee55f3ee00e6afb",
+  "cases": [
+    {
+      "branch": "whole",
+      "gameplayParity": true,
+      "wholeRevision": 206,
+      "splitRevision": 207,
+      "distinction": "Command IDs, receipt/revision partitions and derived provenance IDs differ; gameplay, finite resources, clock and RNG agree."
+    },
+    {
+      "branch": "capped-debt",
+      "firstBenefit": "86401/1",
+      "last": {
+        "RestId": "TEST_ONLY.cleric-long-rest.2",
+        "CommandId": "long-rest.branch.211",
+        "Revision": 212,
+        "At": {
+          "Numerator": 345601,
+          "Denominator": 2
+        },
+        "Benefit": 2,
+        "BeneficialRestId": "",
+        "PreviousBeneficialRestId": "strain.benefit.r206.n0",
+        "CapacityAcquiredRevision": 195,
+        "HpBefore": 13,
+        "EffectiveMaximumHp": 13,
+        "HealingRequested": 0,
+        "HealingPotential": 0,
+        "HpAfter": 13,
+        "ActualHealing": 0,
+        "TemporaryHpBefore": 0,
+        "TemporaryHpAfter": 0,
+        "Wounds": 0,
+        "ExpendedHitDice": 0,
+        "HitDiceAllowance": 0,
+        "HitDiceRecovered": 0,
+        "RpBefore": 2,
+        "RpMaximum": 4,
+        "RpAfter": 2,
+        "ConvictionBefore": 5,
+        "ConvictionAfter": 5,
+        "ConvictionRestored": 0,
+        "DissonanceBefore": 0,
+        "DissonanceAfter": 0,
+        "LastSpellId": "guidance",
+        "Refrain": 1,
+        "LastCastRevision": 199,
+        "ResetsShortRestAllowance": false,
+        "ShortRestEpochId": "",
+        "ShortRestBenefitAllowance": 0
+      },
+      "debt": [
+        {
+          "Id": "rest.debt.TEST_ONLY.companion.r206.e0",
+          "ActorId": "TEST_ONLY.companion",
+          "Kind": 0,
+          "At": {
+            "Numerator": 86400,
+            "Denominator": 1
+          },
+          "Revision": 206,
+          "EventSequence": 0,
+          "EpisodeId": "rest.debt.TEST_ONLY.companion.r206.e0.episode",
+          "EvidenceId": "rest.watch.TEST_ONLY.companion.day.0",
+          "DeadlineBefore": {
+            "Numerator": 0,
+            "Denominator": 1
+          },
+          "DeadlineAfter": {
+            "Numerator": 144000,
+            "Denominator": 1
+          },
+          "StrainGainId": ""
+        },
+        {
+          "Id": "rest.debt.TEST_ONLY.companion.r206.e1",
+          "ActorId": "TEST_ONLY.companion",
+          "Kind": 3,
+          "At": {
+            "Numerator": 86401,
+            "Denominator": 1
+          },
+          "Revision": 206,
+          "EventSequence": 1,
+          "EpisodeId": "rest.debt.TEST_ONLY.companion.r206.e0.episode",
+          "EvidenceId": "TEST_ONLY.cleric-long-rest.1",
+          "DeadlineBefore": {
+            "Numerator": 144000,
+            "Denominator": 1
+          },
+          "DeadlineAfter": {
+            "Numerator": 0,
+            "Denominator": 1
+          },
+          "StrainGainId": ""
+        },
+        {
+          "Id": "rest.debt.TEST_ONLY.companion.r212.e0",
+          "ActorId": "TEST_ONLY.companion",
+          "Kind": 0,
+          "At": {
+            "Numerator": 172800,
+            "Denominator": 1
+          },
+          "Revision": 212,
+          "EventSequence": 0,
+          "EpisodeId": "rest.debt.TEST_ONLY.companion.r212.e0.episode",
+          "EvidenceId": "rest.watch.TEST_ONLY.companion.day.1",
+          "DeadlineBefore": {
+            "Numerator": 0,
+            "Denominator": 1
+          },
+          "DeadlineAfter": {
+            "Numerator": 230400,
+            "Denominator": 1
+          },
+          "StrainGainId": ""
+        },
+        {
+          "Id": "rest.debt.TEST_ONLY.companion.r212.e1",
+          "ActorId": "TEST_ONLY.companion",
+          "Kind": 3,
+          "At": {
+            "Numerator": 345601,
+            "Denominator": 2
+          },
+          "Revision": 212,
+          "EventSequence": 1,
+          "EpisodeId": "rest.debt.TEST_ONLY.companion.r212.e0.episode",
+          "EvidenceId": "TEST_ONLY.cleric-long-rest.2",
+          "DeadlineBefore": {
+            "Numerator": 230400,
+            "Denominator": 1
+          },
+          "DeadlineAfter": {
+            "Numerator": 0,
+            "Denominator": 1
+          },
+          "StrainGainId": ""
+        }
+      ],
+      "scope": "Actual missed Watch and public commands, with no synthetic strain/debt/support or inventory grants."
+    }
+  ],
+  "finishedUtc": "2026-11-16T01:12:58.6348757Z"
+}

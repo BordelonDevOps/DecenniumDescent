@@ -1,0 +1,101 @@
+{
+  "status": "PASS",
+  "startedUtc": "2026-11-16T01:11:17.4256555Z",
+  "assemblies": [
+    {
+      "sha256": "9dce52535c113d5c2c02781a8f7b92c2d80f1a98d4b436cb32844125662e05ae",
+      "name": "Core"
+    },
+    {
+      "sha256": "57e42e7a7f681ceea68cfd0a3d90bb79957287266a572bbe7cebb5d4933ca59e",
+      "name": "Persistence"
+    },
+    {
+      "sha256": "164d3baccd4b97de58f8f286473879171b39a92fccddf87ef60f7d88dc6ec65b",
+      "name": "LabModel"
+    }
+  ],
+  "sourceSha256": "2cfede1c508c3d4e7b831a17fac29b15f9de26ce63797754be31f4a07096c3da",
+  "readySha256": "812cfb0c8dc476d78f10401d092a5f44ee09caeab0319c2261448e18f272fb14",
+  "fundedSha256": "5c82e06ae466b62cc1254ac9f2a8e91d94ef1df0fdd645169ee55f3ee00e6afb",
+  "cases": [
+    {
+      "name": "wrong-participant",
+      "scope": "Actual typed query and command",
+      "query": "LongRestUnavailable",
+      "result": "LongRestUnavailable",
+      "unchanged": true
+    },
+    {
+      "name": "wrong-site",
+      "scope": "Actual typed query and command",
+      "query": "LongRestSiteUnavailable",
+      "result": "LongRestSiteUnavailable",
+      "unchanged": true
+    },
+    {
+      "name": "extra-payload",
+      "scope": "Actual typed query and command",
+      "query": "UnexpectedLongRestPayload",
+      "result": "UnexpectedLongRestPayload",
+      "unchanged": true
+    },
+    {
+      "name": "stale",
+      "scope": "Actual typed query and command",
+      "query": "StaleRevision",
+      "result": "StaleRevision",
+      "unchanged": true
+    },
+    {
+      "name": "active-concentration",
+      "scope": "Actual typed query and command",
+      "query": "LongRestRequiresConcentrationEnded",
+      "result": "LongRestRequiresConcentrationEnded",
+      "unchanged": true
+    },
+    {
+      "name": "revoked-retry",
+      "scope": "Actual typed query and command",
+      "query": "NotAuthorized",
+      "result": "NotAuthorized",
+      "unchanged": true
+    },
+    {
+      "name": "conflicting-id",
+      "scope": "Actual typed query and command",
+      "query": "CommandIdConflict",
+      "result": "CommandIdConflict",
+      "unchanged": true
+    },
+    {
+      "name": "already-active",
+      "scope": "Actual typed query and command",
+      "query": "LongRestAlreadyActive",
+      "result": "LongRestAlreadyActive",
+      "unchanged": true
+    },
+    {
+      "name": "wrong-interruption",
+      "scope": "Actual typed query and command",
+      "query": "NoMatchingActiveLongRest",
+      "result": "NoMatchingActiveLongRest",
+      "unchanged": true
+    },
+    {
+      "name": "resting-movement",
+      "scope": "Actual typed query and command",
+      "query": "LongRestRequiresInterruption",
+      "result": "LongRestRequiresInterruption",
+      "unchanged": true
+    },
+    {
+      "scope": "Genuine accepted cast, rest denial, voluntary concentration ending, full rest and paid resource retention",
+      "queryPure": true,
+      "authorizedRetryUnchanged": true,
+      "insufficientDuration": true,
+      "noDoubleSettlement": true
+    }
+  ],
+  "finishedUtc": "2026-11-16T01:12:31.6126446Z"
+}

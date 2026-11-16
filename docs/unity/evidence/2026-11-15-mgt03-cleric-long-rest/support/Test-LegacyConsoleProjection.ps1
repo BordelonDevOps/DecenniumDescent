@@ -50,6 +50,6 @@ foreach($case in $compat.Cases){
         newOutputSha256=(Digest (Join-Path $folder 'new.jsonl'))})
 }
 @{status='PASS';scope='Exact old public property shapes and values at initial and authentic continued checkpoints for both seats';
-    predecessorCommit='34229ec6f19c9569dd35fd7b6013b99f37759c85';oldConsoleSha256=(Digest $oldScript);
+    predecessorCommit='0e5928bddd5abce47c16ff86172f5613423a2460';oldConsoleSha256=(Digest $oldScript);
     newConsoleSha256=(Digest $newScript);cases=@($rows)}|ConvertTo-Json -Depth 8|Set-Content -LiteralPath (Join-Path $Run 'results.json') -Encoding utf8
-Write-Output "PASS: $($rows.Count*4) authentic old public projections across wire95-108."
+Write-Output "PASS: $($rows.Count*4) authentic old public projections across wire95-109."

@@ -1,0 +1,87 @@
+{
+  "status": "PASS",
+  "startedUtc": "2026-11-16T01:16:14.4300298Z",
+  "assemblies": [
+    {
+      "name": "Core",
+      "sha256": "9dce52535c113d5c2c02781a8f7b92c2d80f1a98d4b436cb32844125662e05ae"
+    },
+    {
+      "name": "Persistence",
+      "sha256": "57e42e7a7f681ceea68cfd0a3d90bb79957287266a572bbe7cebb5d4933ca59e"
+    },
+    {
+      "name": "LabModel",
+      "sha256": "164d3baccd4b97de58f8f286473879171b39a92fccddf87ef60f7d88dc6ec65b"
+    }
+  ],
+  "sourceSha256": "17cd12a659349a31a09d52ea5ee2c7d84a73ede91ee36a7b0aab81cbe3e96d12",
+  "cases": [
+    {
+      "kind": "mode",
+      "scope": "Detached setup; actual policy query and resolver; no supported mutated save or genuine external event claimed",
+      "expected": "LongRestRequiresSettledEncounterClosure",
+      "unchanged": true
+    },
+    {
+      "kind": "position",
+      "scope": "Detached setup; actual policy query and resolver; no supported mutated save or genuine external event claimed",
+      "expected": "LongRestRequiresStationaryBerthAccess",
+      "unchanged": true
+    },
+    {
+      "kind": "body",
+      "scope": "Detached setup; actual policy query and resolver; no supported mutated save or genuine external event claimed",
+      "expected": "LongRestBodyUnsupported",
+      "unchanged": true
+    },
+    {
+      "kind": "work",
+      "scope": "Detached setup; actual policy query and resolver; no supported mutated save or genuine external event claimed",
+      "expected": "LongRestActorOccupied",
+      "unchanged": true
+    },
+    {
+      "name": "long-rest-first-funded.ddsave",
+      "scope": "Genuine checkpoint and actual simulation command rejection",
+      "noOffer": true,
+      "noRemoval": true,
+      "restDebtClassificationUnresolved": true,
+      "unchanged": true
+    },
+    {
+      "name": "long-rest-cadence-172800.ddsave",
+      "scope": "Genuine checkpoint and actual simulation command rejection",
+      "noOffer": true,
+      "noRemoval": true,
+      "restDebtClassificationUnresolved": true,
+      "unchanged": true
+    },
+    {
+      "name": "long-rest-strain-five.ddsave",
+      "scope": "Genuine checkpoint and actual simulation command rejection",
+      "noOffer": true,
+      "noRemoval": true,
+      "restDebtClassificationUnresolved": true,
+      "unchanged": true
+    },
+    {
+      "name": "long-rest-terminal-provisioning.ddsave",
+      "scope": "Genuine checkpoint and actual simulation command rejection",
+      "noOffer": true,
+      "noRemoval": true,
+      "restDebtClassificationUnresolved": true,
+      "unchanged": true
+    },
+    {
+      "scope": "Genuine pending backup, explicit public recovery and continuation beyond completion",
+      "backupExact": true,
+      "displacedCorruptionPreserved": true,
+      "completedAt": "86400/1",
+      "continuedAt": "86401/1",
+      "noPendingChoice": true,
+      "limitation": "No positive Strain-point choice or held choice remainder is claimed: actual shortages block recovery, and Rest Debt removal classification remains unresolved."
+    }
+  ],
+  "finishedUtc": "2026-11-16T01:20:17.0548727Z"
+}
