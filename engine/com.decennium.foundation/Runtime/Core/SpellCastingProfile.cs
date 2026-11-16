@@ -41,7 +41,8 @@ namespace Decennium.Foundation
                 return "ContaminationPropagationUnsupported";
             return null;
         }
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || ClericLongRestProfile.SelectedFingerprint(value));
         public static bool IsUtilityCommand(CommandKind kind) => kind == CommandKind.GroundCastingStrain
             || kind == CommandKind.EndSpellConcentration || kind == CommandKind.FocusDetectedAura || kind == CommandKind.RespondSanctuary;
         public static bool IsPhysicalCommand(CommandKind kind) => kind==CommandKind.StartIntake || kind==CommandKind.InterruptIntake

@@ -240,6 +240,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeFrightened(s);
             InitializeClericSettlement(s);
             InitializeClericCasting(s);
+            InitializeClericLongRest(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -488,6 +489,7 @@ namespace Decennium.Foundation.Laboratory
             while (s.RuleClock < target) {
                 ReconcileRouteTravel(s); ReconcileTraversal(s); ReconcileReinforcement(s, initiating);
                 ReconcileShortRest(s, initiating);
+                ReconcileClericLongRestAccess(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
                 var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
@@ -559,7 +561,7 @@ namespace Decennium.Foundation.Laboratory
                     var horizon = target < boundary ? target : boundary;
                     bool activeOffCalendarWork = horizon > s.RuleClock
                         && (s.Work.WorkerIntervals.Any(w => w.WorkerId == activity.ActorId && w.Start < horizon && w.End > s.RuleClock
-                            && !WoundTreatmentStation.PatientOccupancy(s, w) && !ShortRestBerth.RestOccupancy(s, w))
+                            && !WoundTreatmentStation.PatientOccupancy(s, w) && !ShortRestBerth.RestOccupancy(s, w) && !ClericLongRestProfile.RestOccupancy(s, w))
                             || WorldActivityValidation.ActiveLaborReference(s, activity.ActorId, s.RuleClock, horizon) != "");
                     if ((active.Any(e => e.ActorId == activity.ActorId && e.Status == WorldTraversalStatus.Moving)
                         || activeOffCalendarWork) && boundary > s.RuleClock && boundary < next) next = boundary;
@@ -714,7 +716,7 @@ namespace Decennium.Foundation.Laboratory
                 ResolveReadyMiningAssays(s);
                 ResolveReadyMineralPreparations(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
-                string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
+                string restDebtError=s.ConnectedClericLongRest?null:ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
                 ClampExpeditionStrainLife(s);
                 FinalizeDueAppraisal(s);
                 SettleDueHavenSale(s);
@@ -762,7 +764,7 @@ namespace Decennium.Foundation.Laboratory
                 ProcessCampUseBoundary(s,initiating);
                 string moraleOfferError=OpenMoraleRestRecoveryOffers(s,initiating,
                     deferredMoraleRestOfferIntervals);if(moraleOfferError!=null)return moraleOfferError;
-                string recoveryOfferError=OpenStrainRecoveryOffers(s,initiating);
+                string recoveryOfferError=s.ConnectedClericLongRest?null:OpenStrainRecoveryOffers(s,initiating);
                 if(recoveryOfferError!=null)return recoveryOfferError;
                 FinishDueNextCharterPlan(s);
                 ReconcileCharterAttempt(s,initiating,charterArrival);
@@ -775,13 +777,15 @@ namespace Decennium.Foundation.Laboratory
                     TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
                     if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
                     ResolveReengagementArrival(s, reengagementArrival, initiating, reengagementMarker, reengagementDistance);
-                    return null;
+                    return ProcessClericLongRestBoundary(s,initiating);
                 }
                 if (laterArrival != null) {
                     ResolveLaterApproachArrival(s, laterArrival, initiating, target, carriedLater, previousSlot);
-                    return null;
+                    return ProcessClericLongRestBoundary(s,initiating);
                 }
                 if (FinishOrdinaryObservationAtAdvanceBoundary(s, initiating)) {
+                    string restObservationFailure=ProcessClericLongRestBoundary(s,initiating);
+                    if(restObservationFailure!=null)return restObservationFailure;
                     if (connectedCombat != null) {
                         ObserveCalendar(s);
                         ExpireReadyActionsAtStart(s, initiating);
@@ -789,6 +793,8 @@ namespace Decennium.Foundation.Laboratory
                     return null;
                 }
                 ReconcileShortRest(s, initiating);
+                string longRestFailure=ProcessClericLongRestBoundary(s,initiating);
+                if(longRestFailure!=null)return longRestFailure;
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -811,6 +817,10 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null, bool sanctuaryChecked=false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if (ClericLongRestProfile.IsCommand(c.Kind)) return assessTactical ? AssessClericLongRest(s,c) : ResolveClericLongRest(s,c);
+            if (ClericLongRestProfile.Active(s) != null && c.Actor == ClericRpProfile.Actor
+                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
+                && c.Kind != CommandKind.EnterInventoryCombat) return "LongRestRequiresInterruption";
             if(s.ConnectedClericCasting&&!sanctuaryChecked) {
                 if(PendingSanctuary(s)!=null || c.Kind==CommandKind.RespondSanctuary)
                     return ResolveSanctuaryResponse(s,c,assessTactical);
@@ -1152,9 +1162,9 @@ namespace Decennium.Foundation.Laboratory
                 RefreshIntervals(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
-                string restDebtError=ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
+                string restDebtError=s.ConnectedClericLongRest?null:ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;
                 ClampExpeditionStrainLife(s);
-                string recoveryOfferError=OpenStrainRecoveryOffers(s,c);if(recoveryOfferError!=null)return recoveryOfferError;
+                string recoveryOfferError=s.ConnectedClericLongRest?ProcessClericLongRestBoundary(s,c):OpenStrainRecoveryOffers(s,c);if(recoveryOfferError!=null)return recoveryOfferError;
             }
             return null;
         }

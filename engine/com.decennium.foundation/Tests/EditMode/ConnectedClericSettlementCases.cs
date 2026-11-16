@@ -211,7 +211,7 @@ namespace Decennium.Foundation.Tests
             simulation=(Simulation)typeof(ConnectedExpeditionSession).GetField("simulation",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(session);
             RetainClericDenial(simulation,authority,new Command("chr03.second-consumption",ally,advanced.Revision,CommandKind.AdvanceCharacterLevel,
                 ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices()),"MilestoneAlreadyConsumed",directory);
-            RetainClericDenial(simulation,authority,new Command("chr03.casting-unsupported",ally,advanced.Revision,CommandKind.CastKnownSpell,"detect-magic"),
+            if (!advanced.ConnectedClericCasting) RetainClericDenial(simulation,authority,new Command("chr03.casting-unsupported",ally,advanced.Revision,CommandKind.CastKnownSpell,"detect-magic"),
                 "OrdinarySpellcastingUnsupported",directory);
             RetainClericDenial(simulation,authority,new Command("chr03.independent-acquisition",ally,advanced.Revision,CommandKind.AcquireEarnedSpell,"detect-magic"),
                 "EarnedSpellAcquisitionRequiresAdvancementTransaction",directory);

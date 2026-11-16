@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||connectedClericLongRest&&ClericLongRestProfile.IsCommand(kind)
             ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
                 ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack)
             ||clericMilestoneDeclaration!=null&&kind==CommandKind.UseHealingRite
@@ -153,7 +154,8 @@ namespace Decennium.Foundation.Laboratory
             if(s.Encounter==null||!s.InventoryCombat)
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
-                    .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor));
+                    .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor))
+                    .Concat(DiscoverClericLongRest(s,actor));
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
             int optionIndex=0;
@@ -288,6 +290,10 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if (ClericLongRestProfile.IsCommand(c.Kind) || ClericLongRestProfile.Active(s) != null && c.Actor == ClericRpProfile.Actor) {
+                string longRestFailure=ResolveCore(s.Copy(),c);
+                return new CommandQueryResult(true,longRestFailure==null,longRestFailure??"Available",s.Revision);
+            }
             if(s.ConnectedClericCasting&&(PendingSanctuary(s)!=null||c.Kind==CommandKind.RespondSanctuary||SanctuaryAttackCommand(c)))
                 return QuerySanctuaryCommand(s,c);
             string guidanceFailure=GuidanceChoiceFailure(s,c);

@@ -96,7 +96,8 @@ namespace Decennium.Foundation.Laboratory
         private void InitializeStrainRecovery(Snapshot s)
         {
             if (strainRecoveryProfile == null) return;
-            int expectedSchema = havenCareProfile != null ? Snapshot.HavenCareSchema
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema : Snapshot.ExpeditionStrainRecoverySchema;
             if (s.SchemaVersion != expectedSchema)
                 throw new InvalidOperationException("StrainRecoveryRequiresSelectedSchema");
@@ -250,7 +251,7 @@ namespace Decennium.Foundation.Laboratory
             offer = null; gain = null;
             if (moraleRestProfile != null && s.SchemaVersion >= Snapshot.MoraleRestSchema)
                 return AssessSchema65RecoveryChoice(s, c, out offer, out gain);
-            if (strainRecoveryProfile == null || s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema)
+            if (strainRecoveryProfile == null || s.SchemaVersion != (connectedClericLongRest ? Snapshot.SurpriseEntrySchema : Snapshot.ExpeditionStrainRecoverySchema))
                 return "StrainRecoveryNotSelected";
             if (c.X != 0 || c.Y != 0 || c.Target == "" || c.Inventory != null || c.Combat != null
                 || c.Advancement != null || c.Ranged != null || c.OverwatchRider != OverwatchRider.None
@@ -351,7 +352,7 @@ namespace Decennium.Foundation.Laboratory
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
                     && s.ExpeditionStrainRecoveryOffers.Length == 0 && s.ExpeditionStrainRemovals.Length == 0
                     ? null : "StrainRecoveryProfileMissing";
-            if (s.SchemaVersion != Snapshot.ExpeditionStrainRecoverySchema || !s.TestOnly
+            if (s.SchemaVersion != (connectedClericLongRest ? Snapshot.SurpriseEntrySchema : Snapshot.ExpeditionStrainRecoverySchema) || !s.TestOnly
                 || s.ContentFingerprint != ContentFingerprint || strainRecoveryProfile.ValidateBindings(restDebtProfile) != null)
                 return "StrainRecoveryProfileMismatch";
             foreach (var offer in s.ExpeditionStrainRecoveryOffers)

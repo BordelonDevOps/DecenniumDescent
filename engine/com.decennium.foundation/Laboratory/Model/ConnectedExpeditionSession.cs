@@ -105,6 +105,10 @@ namespace Decennium.Foundation.Laboratory
             ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericCasting(initial, repertoire, declaration));
 
+        public static ConnectedExpeditionSession StartWithClericLongRest(ClericInitialSelection initial,
+            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericLongRest(initial, repertoire, declaration));
+
         public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
 
@@ -387,7 +391,7 @@ namespace Decennium.Foundation.Laboratory
             if (state.ConnectedClericSettlement && (command.Kind == CommandKind.AwardCharacterMilestone || command.Kind == CommandKind.AdvanceCharacterLevel))
                 return command.Actor == ClericRpProfile.Actor && command.X == 0 && command.Y == 0 && command.Inventory == null
                     && command.Combat == null && command.MiningSelection == null && command.IntimidatingPresence == null && command.HealingRite == null;
-            if (ClericRepertoireProfile.IsCommand(command.Kind) || command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind))
+            if (ClericRepertoireProfile.IsCommand(command.Kind) || command.Kind == CommandKind.UseHealingRite || command.Kind == CommandKind.ConsumeDecay || WoundTreatmentStation.IsCommand(command.Kind) || ShortRestBerth.IsCommand(command.Kind) || ClericLongRestProfile.IsCommand(command.Kind))
                 return command.X == 0 && command.Y == 0 && command.Inventory == null && command.Combat == null && command.MiningSelection == null;
             if (command.Kind == CommandKind.Hide || command.Kind == CommandKind.Search
                 || command.Kind == CommandKind.CancelExplorationHide || command.Kind == CommandKind.CancelExplorationSearch)
@@ -429,6 +433,7 @@ namespace Decennium.Foundation.Laboratory
                 || state.ConnectedClericSettlement && (kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel)
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
+                || state.ConnectedClericLongRest && (ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.ResolveExpeditionStrainRecovery)
                 || (state.ConnectedCompanionStabilization||state.ConnectedClericCasting) && kind == CommandKind.StabilizeCompanion
                 || state.ConnectedWoundTreatment && WoundTreatmentStation.IsCommand(kind)
                 || state.ConnectedConsumeDecay && kind == CommandKind.ConsumeDecay
@@ -619,6 +624,14 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.AcquireEarnedSpell:
                     return state.ConnectedClericRepertoire && seat == ExpeditionSeat.Player && actor == Companion
                         && SpellSourceCatalog.Get(target) != null;
+                case CommandKind.BeginLongRest:
+                    return state.ConnectedClericLongRest && seat == ExpeditionSeat.Player && actor == Companion && target == ClericLongRestProfile.SiteId;
+                case CommandKind.InterruptLongRest:
+                    return state.ConnectedClericLongRest && seat == ExpeditionSeat.Player && actor == Companion
+                        && state.ClericLongRests.Any(x => x.Id == target);
+                case CommandKind.ResolveExpeditionStrainRecovery:
+                    return state.ConnectedClericLongRest && seat == ExpeditionSeat.Player && actor == Companion
+                        && state.ExpeditionStrainRecoveryOffers.Any(x => x.Pending && x.ActorId == actor && x.PointIds.Contains(target));
                 case CommandKind.BeginMutationShortRest:
                     return state.ConnectedFleshWarden && seat == ExpeditionSeat.Player && actor == Hero && FleshWardenProfile.IsMutation(target);
                 case CommandKind.BeginShortRest:

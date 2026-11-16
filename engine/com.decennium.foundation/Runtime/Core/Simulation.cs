@@ -47,7 +47,7 @@ namespace Decennium.Foundation
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
         DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell, UseIntimidatingPresence,
-        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary }
+        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -181,6 +181,7 @@ namespace Decennium.Foundation
         public const int ConnectedFrightenedSchema = 107;
         public const int ConnectedClericSettlementSchema = 108;
         public const int ConnectedClericCastingSchema = 109;
+        public const int ConnectedClericLongRestSchema = 110;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -340,6 +341,10 @@ namespace Decennium.Foundation
         public bool ConnectedFrightened;
         public bool ConnectedClericSettlement;
         public bool ConnectedClericCasting;
+        public bool ConnectedClericLongRest;
+        public ClericLongRestRecord[] ClericLongRests = Array.Empty<ClericLongRestRecord>();
+        public ClericLongRestSettlementRecord[] ClericLongRestSettlements = Array.Empty<ClericLongRestSettlementRecord>();
+        public ConvictionBalanceRecord ConvictionBalance;
         public CastingStrainRecord[] CastingStrain = Array.Empty<CastingStrainRecord>();
         public SpellCastRecord[] SpellCasts = Array.Empty<SpellCastRecord>();
         public CastingActivityRecord[] CastingActivities = Array.Empty<CastingActivityRecord>();
@@ -364,7 +369,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => ConnectedClericCasting ? ConnectedClericCastingSchema
+        public int WireSchemaVersion => ConnectedClericLongRest ? ConnectedClericLongRestSchema
+            : ConnectedClericCasting ? ConnectedClericCastingSchema
             : ConnectedClericSettlement ? ConnectedClericSettlementSchema
             : ConnectedFrightened ? ConnectedFrightenedSchema
             : ConnectedClericRepertoire ? ConnectedClericRepertoireSchema
@@ -514,6 +520,8 @@ namespace Decennium.Foundation
             ConnectedClericRepertoire = ConnectedClericRepertoire, KnownSpells = KnownSpells.ToArray(),
             ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
             ConnectedClericCasting = ConnectedClericCasting, CastingStrain = CastingStrain.ToArray(), SpellCasts = SpellCasts.ToArray(),
+            ConnectedClericLongRest = ConnectedClericLongRest, ClericLongRests = ClericLongRests.ToArray(),
+            ClericLongRestSettlements = ClericLongRestSettlements.ToArray(), ConvictionBalance = ConvictionBalance,
             CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),
             GuidanceUses = GuidanceUses.ToArray(), SpellSaves = SpellSaves.ToArray(), SanctuaryAdmissions = SanctuaryAdmissions.ToArray(),
             DetectMagicFocuses = DetectMagicFocuses.ToArray(), ConsumableContamination = ConsumableContamination.ToArray(),
@@ -1172,6 +1180,7 @@ namespace Decennium.Foundation
             ClericRepertoireProfile.Validate(s);
             ClericSettlementProfile.Validate(s);
             SpellCastingProfile.Validate(s);
+            ClericLongRestProfile.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);

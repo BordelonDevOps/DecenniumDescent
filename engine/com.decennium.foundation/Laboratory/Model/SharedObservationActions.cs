@@ -16,6 +16,7 @@ namespace Decennium.Foundation.Laboratory
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;
             string error = ResolveCore(s, c, passage: passage);
+            if (error == null) ReconcileClericLongRestAccess(s,c);
             if(error==null&&PendingSanctuary(s)!=null)return null;
             if (error == null) ReconcileShortRest(s, c);
             if (error == null && ActiveBloodTreatment(s) is HarvestPreservationTreatmentAttemptRecord treatment) {
@@ -50,6 +51,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if (error == null && s.SurpriseEntry != null) CompleteSurpriseFirstEnd(s, c, pendingAdvance);
             if (error == null && ReconcileOrdinaryObservationActions(s, c)) RefreshActivityIntervals(s);
+            if (error == null) ReconcileClericLongRestAccess(s,c);
             return error;
         }
 

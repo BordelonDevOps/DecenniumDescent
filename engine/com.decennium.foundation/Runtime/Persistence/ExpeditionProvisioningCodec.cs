@@ -54,7 +54,7 @@ namespace Decennium.Foundation
             if (s.SchemaVersion >= Snapshot.HavenCareSchema) HavenCareStateCodec.Write(w, s);
         }
 
-        public static void Read(BinaryReader r, Snapshot s)
+        public static void Read(BinaryReader r, Snapshot s, bool allowLongRestBoundaryInterruption = false)
         {
             s.DailyProvisioningSettlements = new DailyProvisioningSettlementRecord[Count(r, ExpeditionProvisioningValidation.MaxSettlements)];
             for (int i = 0; i < s.DailyProvisioningSettlements.Length; i++)
@@ -81,7 +81,7 @@ namespace Decennium.Foundation
             s.ExpeditionDashLocks = new ExpeditionDashLockRecord[Count(r, ExpeditionProvisioningValidation.MaxDashLocks)];
             for (int i = 0; i < s.ExpeditionDashLocks.Length; i++)
                 s.ExpeditionDashLocks[i] = new ExpeditionDashLockRecord(Text(r), r.ReadInt64(), Time(r), Time(r), Text(r), Time(r));
-            if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s);
+            if (s.SchemaVersion >= Snapshot.RestDebtSchema) RestDebtStateCodec.Read(r, s, allowLongRestBoundaryInterruption);
             if (s.SchemaVersion >= Snapshot.ExpeditionStrainRecoverySchema) StrainRecoveryStateCodec.Read(r, s);
             if (s.SchemaVersion >= Snapshot.MoraleRestSchema) MoraleRestStateCodec.Read(r, s);
             if (s.SchemaVersion >= Snapshot.HavenCareSchema) HavenCareStateCodec.Read(r, s);
@@ -145,7 +145,7 @@ namespace Decennium.Foundation
             }
         }
 
-        public static void Read(BinaryReader r, Snapshot s)
+        public static void Read(BinaryReader r, Snapshot s, bool allowLongRestBoundaryInterruption = false)
         {
             s.RestWatchSchedules = new RestWatchScheduleRecord[Count(r, ExpeditionProvisioningValidation.MaxRestWatchSchedules)];
             for (int i = 0; i < s.RestWatchSchedules.Length; i++)
@@ -158,7 +158,7 @@ namespace Decennium.Foundation
                 RuleTime start = Time(r), end = Time(r);
                 RuleTime? endedAt = SnapshotCodec.ReadBool(r) ? (RuleTime?)Time(r) : null;
                 s.RestIntervals[i] = new RestIntervalRecord(id, actorId, siteId, start, end, endedAt,
-                    (RestIntervalStatus)r.ReadInt32(), r.ReadInt64());
+                    (RestIntervalStatus)r.ReadInt32(), r.ReadInt64(), allowLongRestBoundaryInterruption);
             }
             s.RestWatchOutcomes = new RestWatchOutcomeRecord[Count(r, ExpeditionProvisioningValidation.MaxRestWatchOutcomes)];
             for (int i = 0; i < s.RestWatchOutcomes.Length; i++)

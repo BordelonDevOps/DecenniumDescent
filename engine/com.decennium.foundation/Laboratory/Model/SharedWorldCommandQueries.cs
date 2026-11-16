@@ -253,7 +253,7 @@ namespace Decennium.Foundation.Laboratory
         private IEnumerable<Command> DiscoverSharedWorldCommands(Snapshot s, Authority authority, string actor)
         {
             var options = new List<Command>(); int index = 0;
-            if (restDebtProfile != null && restDebtProfile.IncludesActor(actor))
+            if (!s.ConnectedClericLongRest && restDebtProfile != null && restDebtProfile.IncludesActor(actor))
             {
                 var activeRest = s.RestIntervals.SingleOrDefault(x => x.ActorId == actor && x.Status == RestIntervalStatus.Active);
                 if (activeRest != null)

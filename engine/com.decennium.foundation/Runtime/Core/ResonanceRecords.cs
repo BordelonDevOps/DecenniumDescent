@@ -174,7 +174,8 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid shared Cleric class, training, grant or RP facts.");
             int balance = funding.Amount;
             foreach (var result in state.HealingRites) {
-                if (state.ConnectedClericCasting) balance = funding.Amount
+                if (state.ConnectedClericLongRest) balance = ClericLongRestProfile.RpBefore(state,result.Revision);
+                else if (state.ConnectedClericCasting) balance = funding.Amount
                     - state.HealingRites.Where(x => x.Revision < result.Revision).Sum(x => x.RpPaid)
                     - state.SpellCasts.Where(x => x.Revision < result.Revision).Sum(x => x.BaseRp + x.Surcharge);
                 if (result.ActorId != Actor || result.TargetId != Actor && result.TargetId != ConnectedVialRules.CarrierId
@@ -193,12 +194,14 @@ namespace Decennium.Foundation
             }
             if (state.ConnectedClericCasting) {
                 foreach (var cast in state.SpellCasts) {
-                    int before = funding.Amount - state.HealingRites.Where(x => x.Revision < cast.Revision).Sum(x => x.RpPaid)
+                    int before = state.ConnectedClericLongRest ? ClericLongRestProfile.RpBefore(state,cast.Revision)
+                        : funding.Amount - state.HealingRites.Where(x => x.Revision < cast.Revision).Sum(x => x.RpPaid)
                         - state.SpellCasts.Where(x => x.Revision < cast.Revision).Sum(x => x.BaseRp + x.Surcharge);
                     if (cast.ActorId != Actor || cast.RpBefore != before || cast.RpAfter != before - cast.BaseRp - cast.Surcharge)
                         throw new ArgumentException("Casting payment differs from the shared RP chronology.");
                 }
-                balance = funding.Amount - state.HealingRites.Sum(x => x.RpPaid) - state.SpellCasts.Sum(x => x.BaseRp + x.Surcharge);
+                balance = state.ConnectedClericLongRest ? ClericLongRestProfile.RpBefore(state,long.MaxValue)
+                    : funding.Amount - state.HealingRites.Sum(x => x.RpPaid) - state.SpellCasts.Sum(x => x.BaseRp + x.Surcharge);
             }
             string kind = ((int)CommandKind.UseHealingRite).ToString(CultureInfo.InvariantCulture) + "|";
             if (pool.Current != balance || state.HealingRites.Select(x => x.CommandId).Distinct(StringComparer.Ordinal).Count() != state.HealingRites.Length

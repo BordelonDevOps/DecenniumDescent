@@ -50,6 +50,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(!s.ConnectedClericCasting || damage<=0)return;
             if(!Validation.ValidId(cause))throw new ArgumentException("Spell damage requires the actual resolving command.");
+            InterruptClericLongRestForDamage(s,target,damage,cause,cause);
             if(intentional && attacker!="")foreach(var ward in s.SpellEffects.Where(x=>x.Present&&x.SpellId=="sanctuary"&&x.TargetId==attacker).ToArray())
                 EndSpellEffect(s,ward,cause,s.Revision+1,s.RuleClock,SpellEffectEndReason.SanctuaryDamage);
             var concentration=s.SpellEffects.SingleOrDefault(x=>x.Present&&x.RequiresConcentration&&x.CasterId==target);

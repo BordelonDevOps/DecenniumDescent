@@ -210,9 +210,10 @@ namespace Decennium.Foundation
         private static void ValidateStrain(Snapshot s)
         {
             var current=new CastingStrainRecord(ClericRpProfile.Actor);
-            var events=s.SpellCasts.Select(x=>(at:x.At,revision:x.Revision,cast:x,end:(CastingTurnEndRecord)null))
-                .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x)))
-                .OrderBy(x=>x.at).ThenBy(x=>x.revision).ToArray();
+            var events=s.SpellCasts.Select(x=>(at:x.At,revision:x.Revision,cast:x,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null))
+                .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null)))
+                .Concat(s.ClericLongRestSettlements.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:(CastingTurnEndRecord)null,rest:x)))
+                .OrderBy(x=>x.at).ThenBy(x=>x.revision).ThenBy(x=>x.rest==null?0:1).ToArray();
             foreach(var e in events) {
                 if(e.cast!=null) {
                     var cast=e.cast;
@@ -221,6 +222,14 @@ namespace Decennium.Foundation
                         throw new ArgumentException("Invalid historical spell strain cost.");
                     current=current.BeginAdmittedCast(cast.SpellId,cast.Rank,cast.Revision);
                     if(current.Dissonance!=cast.DissonanceAfter || current.Refrain!=cast.AppliedRefrain)throw new ArgumentException("Invalid Refrain history.");
+                } else if(e.rest!=null) {
+                    var rest=e.rest;
+                    if(rest.DissonanceBefore!=current.Dissonance || rest.LastSpellId!=current.LastSpellId
+                        || rest.Refrain!=current.Refrain || rest.LastCastRevision!=current.LastCastRevision)
+                        throw new ArgumentException("Invalid pre-rest casting history.");
+                    current=new CastingStrainRecord(current.ActorId,rest.Benefit==ClericLongRestBenefit.Eligible?0:current.Dissonance,
+                        current.LastSpellId,current.Refrain,current.LastCastRevision);
+                    if(rest.DissonanceAfter!=current.Dissonance)throw new ArgumentException("Invalid rest Dissonance settlement.");
                 } else {
                     if(e.end.Before!=current.Dissonance)throw new ArgumentException("Invalid Dissonance before End.");
                     current=current.ReduceAtSettledEnd(e.end.MagicalActivity?0:e.end.Grounding?e.end.Proficiency:1);

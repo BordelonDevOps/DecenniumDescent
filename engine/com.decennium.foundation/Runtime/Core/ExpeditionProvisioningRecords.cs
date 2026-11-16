@@ -161,6 +161,10 @@ namespace Decennium.Foundation
 
         public RestIntervalRecord(string id, string actorId, string siteId, RuleTime startedAt,
             RuleTime scheduledEnd, RuleTime? endedAt, RestIntervalStatus status, long revision)
+            : this(id,actorId,siteId,startedAt,scheduledEnd,endedAt,status,revision,false) { }
+
+        public RestIntervalRecord(string id, string actorId, string siteId, RuleTime startedAt,
+            RuleTime scheduledEnd, RuleTime? endedAt, RestIntervalStatus status, long revision, bool allowLongRestBoundaryInterruption)
         {
             if (!Validation.ValidId(id) || !Validation.ValidId(actorId) || !Validation.ValidId(siteId)
                 || scheduledEnd != startedAt.AddSeconds(8 * 60 * 60)
@@ -169,7 +173,9 @@ namespace Decennium.Foundation
                 || status != RestIntervalStatus.Active && !endedAt.HasValue
                 || endedAt.HasValue && (endedAt.Value < startedAt || endedAt.Value > scheduledEnd)
                 || status == RestIntervalStatus.Completed && endedAt.Value != scheduledEnd
-                || status == RestIntervalStatus.Interrupted && endedAt.Value >= scheduledEnd)
+                || status == RestIntervalStatus.Interrupted && endedAt.Value == scheduledEnd
+                    && (!allowLongRestBoundaryInterruption || actorId != ClericRpProfile.Actor || siteId != ClericLongRestProfile.SiteId
+                        || !id.StartsWith(ClericLongRestProfile.IntervalPrefix,StringComparison.Ordinal)))
                 throw new ArgumentException("Invalid actual Rest interval.");
             Id = id; ActorId = actorId; SiteId = siteId; StartedAt = startedAt; ScheduledEnd = scheduledEnd;
             EndedAt = endedAt; Status = status; Revision = revision;
@@ -436,6 +442,9 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid Rest Watch schedule history.");
             if (s.RestIntervals.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != s.RestIntervals.Length
                 || s.RestIntervals.Any(x => !actorExists(x.ActorId) || x.Revision > s.Revision
+                    || x.Status == RestIntervalStatus.Interrupted && x.EndedAt == x.ScheduledEnd
+                        && (!s.ConnectedClericLongRest || s.ClericLongRests?.Any(r => r.Id == x.Id
+                            && r.Outcome == ClericLongRestOutcome.Interrupted && r.EndedAt == x.EndedAt) != true)
                     || x.StartedAt > s.RuleClock || x.EndedAt.HasValue && x.EndedAt.Value > s.RuleClock
                     || x.Status == RestIntervalStatus.Active && x.ScheduledEnd <= s.RuleClock))
                 throw new ArgumentException("Invalid actual Rest interval history.");

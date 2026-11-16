@@ -164,6 +164,10 @@ namespace Decennium.Foundation
                     writer.Write(SpellCastingProfile.Marker);
                     SpellCastingCodec.Write(writer, state);
                 }
+                if (state.ConnectedClericLongRest) {
+                    writer.Write(ClericLongRestProfile.Marker);
+                    ClericLongRestCodec.Write(writer, state);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -203,6 +207,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedFrightenedSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedClericSettlementSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedClericCastingSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.ConnectedClericLongRestSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -287,7 +292,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.ReadyActionSchema)ReadyActionCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteMappingWorkSchema)ExpeditionRouteMappingWorkCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteReconnaissanceSchema)ExpeditionRouteReconnaissanceCodec.Read(reader,s);
-                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s);
+                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema);
                     if(schema >= Snapshot.ExpeditionPressureSchema)ExpeditionPressureCodec.Read(reader,s);
                     if(schema >= Snapshot.ExpeditionCampUseSchema)ExpeditionCampCodec.Read(reader,s);
                     if(schema >= Snapshot.TemporaryCampConstructionSchema)TemporaryCampConstructionCodec.Read(reader,s);
@@ -309,7 +314,8 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedClericCasting = wireSchema == Snapshot.ConnectedClericCastingSchema;
+                    s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema;
+                    s.ConnectedClericCasting = s.ConnectedClericLongRest || wireSchema == Snapshot.ConnectedClericCastingSchema;
                     s.ConnectedClericSettlement = s.ConnectedClericCasting || wireSchema == Snapshot.ConnectedClericSettlementSchema;
                     s.ConnectedFrightened = s.ConnectedClericSettlement || wireSchema == Snapshot.ConnectedFrightenedSchema;
                     s.ConnectedClericRepertoire = s.ConnectedFrightened || wireSchema == Snapshot.ConnectedClericRepertoireSchema;
@@ -382,6 +388,10 @@ namespace Decennium.Foundation
                     if (s.ConnectedClericCasting) {
                         if (reader.ReadByte() != SpellCastingProfile.Marker) throw new InvalidDataException("Invalid casting marker.");
                         SpellCastingCodec.Read(reader, s);
+                    }
+                    if (s.ConnectedClericLongRest) {
+                        if (reader.ReadByte() != ClericLongRestProfile.Marker) throw new InvalidDataException("Invalid Long Rest marker.");
+                        ClericLongRestCodec.Read(reader, s);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

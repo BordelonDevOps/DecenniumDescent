@@ -280,7 +280,8 @@ namespace Decennium.Foundation.Laboratory
             if (dailyProvisioning == null) return;
             string error = dailyProvisioning.ValidateBindings(s);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
                 : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema
@@ -316,7 +317,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.ExpeditionStrainRecoveryGateUpdates.Length == 0 && s.ExpeditionBeneficialRests.Length == 0
                     && s.ExpeditionStrainRecoveryOffers.Length == 0 && s.ExpeditionStrainRemovals.Length == 0
                     ? null : "DailyProvisioningProfileMissing";
-            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
                 : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema

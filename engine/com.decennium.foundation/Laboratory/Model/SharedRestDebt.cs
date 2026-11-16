@@ -102,7 +102,8 @@ namespace Decennium.Foundation.Laboratory
             if (restDebtProfile == null) return;
             string error = restDebtProfile.ValidateBindings(s, dailyProvisioning);
             if (error != null) throw new InvalidOperationException(error);
-            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
                 : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
@@ -178,7 +179,9 @@ namespace Decennium.Foundation.Laboratory
 
         private string ResolveRestDebtCommand(Snapshot s, Command c)
         {
-            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            if (s.ConnectedClericLongRest) return "UseSourceBoundLongRestCommand";
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
                 : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;
@@ -399,7 +402,8 @@ namespace Decennium.Foundation.Laboratory
                     && s.RestWatchOutcomes.Length == 0 && s.RestDebtEvents.Length == 0
                     && s.ExpeditionStrainGains.All(x => x.CauseKind == ExpeditionStrainCauseKind.DailyProvisioning)
                     ? null : "RestDebtProfileMissing";
-            int expectedSchema = recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
+            int expectedSchema = connectedClericLongRest ? Snapshot.SurpriseEntrySchema
+                : recipe347Fixture != null ? Snapshot.PortableCountedLotSchema
                 : havenCareProfile != null ? Snapshot.HavenCareSchema
                 : moraleRestProfile != null ? Snapshot.MoraleRestSchema
                 : strainRecoveryProfile != null ? Snapshot.ExpeditionStrainRecoverySchema : Snapshot.RestDebtSchema;

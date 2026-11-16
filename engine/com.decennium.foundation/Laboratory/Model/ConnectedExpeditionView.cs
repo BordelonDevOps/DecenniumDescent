@@ -16,8 +16,8 @@ namespace Decennium.Foundation.Laboratory
         public long? ConsumedRevision { get; }
         public string InvocationPath { get; }
         public int ConvictionMaximum { get; }
-        public int? ConvictionCurrent => null;
-        public string ConvictionCurrentStatus => "Unavailable";
+        public int? ConvictionCurrent { get; }
+        public string ConvictionCurrentStatus => ConvictionCurrent.HasValue ? "Known" : "Unavailable";
         public IReadOnlyList<string> SelectedAdvancementCards => ClericSettlementProfile.SelectedCards;
         public string SelectedInvocationPath => ClericSettlementProfile.Radiance;
         public string SelectedEarnedSpell => ClericRepertoireProfile.FutureChoice;
@@ -29,6 +29,7 @@ namespace Decennium.Foundation.Laboratory
             var award=state.CharacterMilestones.SingleOrDefault(x=>x.ActorId==ClericRpProfile.Actor&&x.MilestoneId==MilestoneId);
             AwardedRevision=award?.AwardedRevision;ConsumedRevision=award?.ConsumedRevision > 0 ? award.ConsumedRevision : (long?)null;
             InvocationPath=state.ClericInvocationPath?.PathId;ConvictionMaximum=state.ConvictionCapacity.Maximum;
+            ConvictionCurrent=state.ConnectedClericLongRest ? state.ConvictionBalance?.Current : null;
             RadianceHistory=Array.AsReadOnly(state.RadianceUses.ToArray());
         }
     }
@@ -59,7 +60,11 @@ namespace Decennium.Foundation.Laboratory
             SelectedSkills = entry.SelectedSkills; SavingThrows = entry.SavingThrows; AutomaticEngine = entry.AutomaticEngineName;
             OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x) || ClericSettlementProfile.ValidEarnedGrant(state,x))
                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
-            UnsupportedCapabilities = Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? "Conviction balance, generation, payment and recovery" : "Conviction", "Class recovery",
+            UnsupportedCapabilities = state.ConnectedClericLongRest ? Array.AsReadOnly(new[] {
+                "Conviction spending and other generation", "Cleric Short Rest", "General party recovery",
+                "Positive or mixed Hit Dice recovery", "Consecrate terrain and other card triggers",
+                "General spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
+                "Starting equipment and wealth", "Periodic rider healing interactions" }) : Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? "Conviction balance, generation, payment and recovery" : "Conviction", "Class recovery",
                 state.ConnectedClericSettlement ? "Consecrate terrain and other card triggers" : "Other selected card execution",
                 "Ordinary spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
                 "Starting equipment and wealth", "Periodic rider healing interactions" });
@@ -109,11 +114,12 @@ namespace Decennium.Foundation.Laboratory
                 ClericSettlement = new ExpeditionClericSettlementView(state);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
-            MaximumHp = state.ConnectedFleshWarden ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
+            MaximumHp = state.ConnectedFleshWarden || state.ConnectedClericLongRest ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
             if (state.ConnectedConsumeDecay && actor.Id == ConsumeDecaySite.Actor) {
                 TemporaryHp = life.TemporaryHp;
                 TemporaryHpUntil = state.ConsumeDecay?.Active == true ? state.ConsumeDecay.Deadline : (RuleTime?)null;
             }
+            if (state.ConnectedClericLongRest) TemporaryHp = life.TemporaryHp;
             Dead = life.Dead;
             Conditions = Array.AsReadOnly(TestOnlyClubAttackPolicy.CombatConditions(state, actor.Id).Active.ToArray());
             HeldItems = Array.AsReadOnly(life.HeldItems.ToArray());
@@ -233,6 +239,7 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionMiningSiteView MiningSite { get; }
         public ExpeditionFishingTrapView FishingTrap { get; }
         public ExpeditionShortRestView ShortRest { get; }
+        public ExpeditionClericLongRestView LongRest { get; }
         public ExpeditionMutationView FleshWarden { get; }
 
         internal ExpeditionSeatView(ExpeditionActionResult position, bool enabled, bool combat, string actorId,
@@ -240,7 +247,7 @@ namespace Decennium.Foundation.Laboratory
             IEnumerable<ExpeditionOwnedItem> items, IEnumerable<ExpeditionWorkStatus> work,
             IEnumerable<CommandKind> commands, IReadOnlyDictionary<CommandKind, string> knownTargets,
             long historicalSaleCopper, ExpeditionCacheView cache = null, ExpeditionObservationView observation = null,
-            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null, ExpeditionMutationView fleshWarden = null)
+            ExpeditionMiningSiteView miningSite = null, ExpeditionFishingTrapView fishingTrap = null, ExpeditionShortRestView shortRest = null, ExpeditionMutationView fleshWarden = null, ExpeditionClericLongRestView longRest = null)
         {
             Enabled = enabled;
             Revision = position.Revision;
@@ -261,7 +268,7 @@ namespace Decennium.Foundation.Laboratory
             Observation = observation;
             MiningSite = miningSite;
             FishingTrap = fishingTrap;
-            ShortRest = shortRest; FleshWarden = fleshWarden;
+            ShortRest = shortRest; FleshWarden = fleshWarden; LongRest = longRest;
         }
     }
 
@@ -277,6 +284,32 @@ namespace Decennium.Foundation.Laboratory
             EligibleMutations = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => FleshWardenProfile.ValidFixtureGrant(state, x))
                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
             PlanUnavailableReason = ShortRestBerth.BenefitsUsed(state) >= ShortRestBerth.InitialBenefits ? "MutationRestCadenceUnsupported" : "";
+        }
+    }
+
+    public sealed class ExpeditionClericLongRestView
+    {
+        public string SiteId => ClericLongRestProfile.SiteId;
+        public int SiteX => ClericLongRestProfile.X;
+        public int SiteY => ClericLongRestProfile.Y;
+        public string ActorId => ClericRpProfile.Actor;
+        public int DurationSeconds => ClericLongRestProfile.DurationSeconds;
+        public string ActiveIntervalId { get; }
+        public IReadOnlyList<ClericLongRestRecord> Attempts { get; }
+        public IReadOnlyList<ClericLongRestSettlementRecord> Settlements { get; }
+        public IReadOnlyList<DailyProvisioningSettlementRecord> DailyProvisioning { get; }
+        public IReadOnlyList<RestWatchOutcomeRecord> WatchOutcomes { get; }
+        public IReadOnlyList<RestDebtEventRecord> DebtHistory { get; }
+        public IReadOnlyList<ExpeditionStrainRecoveryOfferRecord> RecoveryOffers { get; }
+        internal ExpeditionClericLongRestView(Snapshot state, Authority grant)
+        {
+            ActiveIntervalId = ClericLongRestProfile.Active(state)?.Id ?? "";
+            Attempts = Array.AsReadOnly(state.ClericLongRests.ToArray());
+            Settlements = Array.AsReadOnly(state.ClericLongRestSettlements.ToArray());
+            DailyProvisioning = Array.AsReadOnly(state.DailyProvisioningSettlements.Where(x => grant.Controls(x.ActorId)).ToArray());
+            WatchOutcomes = Array.AsReadOnly(state.RestWatchOutcomes.Where(x => grant.Controls(x.ActorId)).ToArray());
+            DebtHistory = Array.AsReadOnly(state.RestDebtEvents.Where(x => grant.Controls(x.ActorId)).ToArray());
+            RecoveryOffers = Array.AsReadOnly(state.ExpeditionStrainRecoveryOffers.Where(x => grant.Controls(x.ActorId)).ToArray());
         }
     }
 
@@ -513,6 +546,15 @@ namespace Decennium.Foundation.Laboratory
                     selected.Add(CommandKind.AdvanceCharacterLevel,state.ClericMilestone.MilestoneId);
                     targets = new ReadOnlyDictionary<CommandKind,string>(selected);
                 }
+                if (player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor)) {
+                    commands = commands.Append(CommandKind.BeginLongRest).Append(CommandKind.InterruptLongRest)
+                        .Append(CommandKind.ResolveExpeditionStrainRecovery);
+                    var selected = targets.ToDictionary(x => x.Key,x => x.Value);
+                    selected.Add(CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
+                    var active = ClericLongRestProfile.Active(state);
+                    if (active != null) selected.Add(CommandKind.InterruptLongRest,active.Id);
+                    targets = new ReadOnlyDictionary<CommandKind,string>(selected);
+                }
                 IEnumerable<ExpeditionWorkStatus> work=player?ProjectWork(state,grant):Array.Empty<ExpeditionWorkStatus>();
                 if(state.ConnectedClericCasting)work=work.OrderBy(x=>x.Kind,StringComparer.Ordinal).ThenBy(x=>x.Id,StringComparer.Ordinal);
                 return new ExpeditionSeatView(position, true, discloseTacticalSlot && state.InventoryCombat,
@@ -526,7 +568,8 @@ namespace Decennium.Foundation.Laboratory
                     player ? ProjectMiningSite(state, grant) : null,
                     player ? ProjectFishingTrap(state, grant) : null,
                     player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null,
-                    player && state.ConnectedFleshWarden && grant.Controls(FleshWardenProfile.Actor) ? new ExpeditionMutationView(state) : null);
+                    player && state.ConnectedFleshWarden && grant.Controls(FleshWardenProfile.Actor) ? new ExpeditionMutationView(state) : null,
+                    player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor) ? new ExpeditionClericLongRestView(state,grant) : null);
             }
         }
 
@@ -621,6 +664,9 @@ namespace Decennium.Foundation.Laboratory
             foreach (var rest in state.ShortRests.Where(x => grant.Controls(x.ActorId)))
                 yield return new ExpeditionWorkStatus(rest.Id, rest.ActorId, "ShortRest", rest.Outcome.ToString(),
                     rest.Outcome == ShortRestOutcome.Active ? CampGreens.Subtract(rest.DueAt, state.RuleClock) : (RuleTime?)null);
+            foreach (var rest in state.ClericLongRests.Where(x => grant.Controls(x.ActorId)))
+                yield return new ExpeditionWorkStatus(rest.Id, rest.ActorId, "LongRest", rest.Outcome.ToString(),
+                    rest.Outcome == ClericLongRestOutcome.Active ? CampGreens.Subtract(rest.DueAt, state.RuleClock) : (RuleTime?)null);
             foreach (var job in state.MiningAttempts.Where(x => grant.Controls(x.WorkerId)))
                 yield return new ExpeditionWorkStatus(job.Id, job.WorkerId, "Mining", job.Status.ToString());
             foreach (var job in state.Intakes.Where(x => grant.Controls(x.ActorId)))
