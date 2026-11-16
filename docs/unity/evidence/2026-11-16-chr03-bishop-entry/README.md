@@ -1,0 +1,11 @@
+# CHR-03 earned Bishop-entry source/API gate
+
+**Actual source/API and dependency review pending; no runtime approval.** The immediate gate follows accepted Long Rest source `e0994929b444b15fc38957eb80cc34ab19d56db6`, final evidence `eeb3a803ef736b0827d123d4a88c8620234d1727`, actual response `0361603a-8572-5112-896a-d04663473407` and Codex agreement. The selected class transition is Cleric2→3/Bishop entry, with complete source obligations and a fresh earned objective.
+
+[Proposal and requested decisions](SOURCE_API_FINDINGS.md) binds the exact level3 schedule, proposed Divine Invocation/Aura of Faith, candidate Dispel Magic (Lesser), no-recovery advancement and connected acceptance. It identifies a concrete prerequisite: the accepted Cleric2 objective requires the existing opponent dead, so its living-opponent re-engagement cannot provide a later genuine source of saving throws/conditions. Current fear context and unsafe intake are independently restricted. No settled milestone is weakened and no condition is injected to evade this gap.
+
+Codex proposes review of a bounded EXP-07 post-recovery encounter-continuation source/API gate before earned3 runtime, preserving the existing map. This is a requested dependency decision, not permission to start EXP-07 or invent an actor/source. [Accepted-code findings](CONTINUATION_CAPABILITY_FINDINGS.json) and [authentic state inspection](BASELINE_STATE_INSPECTION.json) make the issue concrete.
+
+The [source-only audit](SOURCE_AUDIT.json) passes50 pinned blobs and22 source/API checks. [Bindings](SOURCE_BINDINGS.json), [candidate exact extracts](CANDIDATE_SOURCE_EXTRACTS.json) and [verifier](Verify-SourceAudit.py) retain source authority, actual acceptance and code evidence. Run the verifier from the repository root with `python -B docs/unity/evidence/2026-11-16-chr03-bishop-entry/Verify-SourceAudit.py`. It does not compile or run C# and does not approve the proposal. The original research notes retain their preparation context.
+
+Engine source is unchanged; the accepted1,553-case/wire95–110 baseline stands without rerun. The complete runtime contract, concrete continuation context and actual GPT/Codex agreement remain required. Whole-engine completion remains open and Unity is deferred.

@@ -1,0 +1,76 @@
+{
+  "status": "SOURCE_ONLY_CAPABILITY_FINDINGS",
+  "acceptedSource": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+  "runtimeExecuted": false,
+  "sources": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "1da23cac734de06225743752f507799bf4c3bd33",
+      "bytes": 35704,
+      "sha256": "844c4a416c60a3e816fc130535b450234f79d1a9aa2131261b20beff3896f953"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "ad43cb310046711445d7a6208268ddbfa577066e",
+      "bytes": 15863,
+      "sha256": "d1435c4a46b134aaa698e574572657c11c7d1c28965f1265e85c125d46d6f1d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "e61a0fb2e42894564dada21715aab3ffde3c69ef",
+      "bytes": 15149,
+      "sha256": "3d0f74d4061c65de1f4fde74f0cee35b352949fbf143a855cb00ce8b80771092"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "e04660246536e4b9dbf83eb504ecc8e3fc6736e3",
+      "bytes": 8078,
+      "sha256": "a90a83a92a1f40ee38cc2b743032c168bb061a5bf5080e41311ec6f673bba8c6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "090d16eccca8b6fa78caa8fc0ce803c287974529",
+      "bytes": 16077,
+      "sha256": "99dedd834e175bc6582a03ebcea543c3fcedc3da7bbf13ee4e605a3e3570b520"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "revision": "e0994929b444b15fc38957eb80cc34ab19d56db6",
+      "gitBlob": "05aeb60a5eed3f403c370add29aea9d265ac8ce3",
+      "bytes": 12429,
+      "sha256": "155836ab7e690e94a656d321389d1f94eeb941f6e3c5f63b5750f42db01f87a0"
+    }
+  ],
+  "findings": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "locator": "ResolvedConflict",
+      "requiredText": "return s.Lives.Single(x => x.ActorId == opponent).Dead;",
+      "finding": "Lawful resolved encounter end requires the existing opponent dead."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "locator": "RecordActualCombatExit",
+      "requiredText": "if (command.Kind == CommandKind.EndFixedEncounter) RecordClericObjectiveCompletion(state, closed);",
+      "finding": "Retreat closure does not call the accepted Cleric2 objective completion producer."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "locator": "AssessReengagement",
+      "requiredText": "CapableWorker(s, x) && TestOnlyClubAttackPolicy.Aware(s, x)",
+      "finding": "The same existing defender must be capable and aware for re-engagement."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "locator": "AssessIntimidatingPresence",
+      "requiredText": "state.Encounter?.Id != state.Reinforcement.Definition.EncounterId",
+      "finding": "Current fear producer is restricted to the original reinforced encounter."
+    }
+  ],
+  "conclusion": "Existing post-retreat re-engagement cannot furnish a genuine post-Cleric2 opponent without altering settled milestone semantics; later real source/context requires explicit review."
+}
