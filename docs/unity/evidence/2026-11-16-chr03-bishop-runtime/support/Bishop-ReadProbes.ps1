@@ -11,6 +11,9 @@ function Get-BishopProbeJson($session,$request) {
 function New-BishopProbes($snapshot,$markName) {
     $npc='TEST_ONLY.recovery-defender';$hero='TEST_ONLY.actor';$companion='TEST_ONLY.companion'
     foreach($seat in 'Player','FirstOpponent','RecoveryOpponent') {
+        @{op='discover';seat=$seat;actor=$companion;evidenceRead=$markName+'.'+$seat+'.companion-discovery.json'}
+        @{op='query';seat=$seat;id='probe.bishop-award.'+$snapshot.Revision;actor=$companion;revision=$snapshot.Revision;kind='AwardCharacterMilestone';target='TEST_ONLY.cleric3-recovery-care-departure';x=0;y=0;
+            evidenceRead=$markName+'.'+$seat+'.bishop-award-query.json'}
         @{op='query';seat=$seat;id='probe.invocation.'+$snapshot.Revision;actor=$companion;revision=$snapshot.Revision;kind='UseDivineInvocation';target='';x=0;y=0;
             divineInvocation=@{targets=@($hero,$companion);cureTarget=$hero;curePreference='Frightened'};evidenceRead=$markName+'.'+$seat+'.invocation-query.json'}
         @{op='query';seat=$seat;id='probe.dispel.'+$snapshot.Revision;actor=$companion;revision=$snapshot.Revision;kind='CastKnownSpell';target='aura.unknown';x=0;y=0;

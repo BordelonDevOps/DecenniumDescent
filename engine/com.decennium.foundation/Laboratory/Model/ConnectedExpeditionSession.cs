@@ -216,7 +216,7 @@ namespace Decennium.Foundation.Laboratory
                     && ((command.Kind == CommandKind.StartHavenSale && command.Target == TestOnlyHavenSaleProfile.OfferVersionId)
                         || (command.Kind == CommandKind.PurchaseHavenMeal && command.Target == TestOnlyHavenMealProfile.OfferVersionId)))
                     grant = HavenTransactionGrant;
-                if (seat == ExpeditionSeat.Player && state.ConnectedClericSettlement && command.Kind == CommandKind.AwardCharacterMilestone)
+                if (seat == ExpeditionSeat.Player && state.ConnectedClericSettlement && state.BishopEntry==null && command.Kind == CommandKind.AwardCharacterMilestone)
                     grant = ClericMilestoneGrant;
                 return Execute(state, grant, command, () => KnownTarget(state, seat, command),
                     seat == ExpeditionSeat.Player || seat == ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
@@ -240,8 +240,13 @@ namespace Decennium.Foundation.Laboratory
             lock(gate) {
                 var state=simulation.Capture();var grant=SeatGrant(seat);
                 if(!state.ConnectedClericCasting||grant==null||!grant.Controls(actor))return Array.AsReadOnly(Array.Empty<CommandOption>());
-                return Array.AsReadOnly(simulation.DiscoverCommands(grant,actor).Where(x=>ExposedCommand(state,seat,x.Command.Kind)
-                    &&ExposedPayload(state,x.Command)&&KnownTarget(state,seat,x.Command)).ToArray());
+                var options=simulation.DiscoverCommands(grant,actor).Where(x=>ExposedCommand(state,seat,x.Command.Kind)
+                    &&ExposedPayload(state,x.Command)&&KnownTarget(state,seat,x.Command));
+                // New-profile candidates use the same narrowly selected host grant as query/submission.
+                // Never grant world-modification authority to the whole discovery operation.
+                if(state.BishopEntry!=null)options=options.Select(x=>new CommandOption(x.Command,
+                    simulation.QueryCommand(SeatCommandGrant(state,seat,x.Command),x.Command)));
+                return Array.AsReadOnly(options.ToArray());
             }
         }
 
@@ -317,6 +322,9 @@ namespace Decennium.Foundation.Laboratory
         private Authority SeatCommandGrant(Snapshot state,ExpeditionSeat seat,Command command)
         {
             var grant=SeatGrant(seat);
+            if(grant!=null&&seat==ExpeditionSeat.Player&&state.BishopEntry!=null
+                &&command?.Kind==CommandKind.AwardCharacterMilestone&&grant.Controls(command.Actor))
+                return ClericMilestoneGrant;
             if(grant!=null&&seat==ExpeditionSeat.Player&&state.ConnectedClericCasting
                 &&command?.Inventory?.Handling==HandlingKind.Handover&&Party.Contains(command.Inventory.Destination)
                 &&(command.Kind==CommandKind.HandlePortableEquipment&&command.Target==SpellCastingProfile.FocusId

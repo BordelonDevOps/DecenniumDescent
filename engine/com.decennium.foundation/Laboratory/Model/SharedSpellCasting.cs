@@ -329,6 +329,9 @@ namespace Decennium.Foundation.Laboratory
         }
         private static bool AuraPerceived(Snapshot s,string actor,SpellEffectRecord effect)
         {
+            // Knowing an owned effect never replaces its current visible outline, including on self.
+            // Preserve the predecessor observation envelope; this qualification belongs to Bishop entry.
+            if(s.BishopEntry!=null&&(View(s,actor).BlocksSight||View(s,actor).Unaware))return false;
             if(!effect.Present || effect.ExpiresAt<=s.RuleClock || !SpellCastingProfile.IsAdmittedSpell(effect.SpellId)
                 || !s.SpellCasts.Any(x=>x.CommandId==effect.CastId&&x.EffectId==effect.Id))return false;
             var source=s.Actors.SingleOrDefault(x=>x.Id==effect.TargetId); var observer=s.Actors.Single(x=>x.Id==actor);

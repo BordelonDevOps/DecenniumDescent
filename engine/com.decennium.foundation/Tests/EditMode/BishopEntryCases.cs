@@ -74,7 +74,24 @@ namespace Decennium.Foundation.Tests
             ClericCommit(session,hero,CommandKind.AdvanceClock,x:1,y:1);
             var departed=ShortRestCapture(session);Require(departed.BishopEntry.Departure.Complete,"Paid departure did not complete objective.");
             BishopCheckpoint(session,directory,"departure-complete");
-            BishopCommit(session,new Command("bishop.typed.earned3.award",cleric,departed.Revision,CommandKind.AwardCharacterMilestone,BishopProfile.Milestone));
+            var award=new Command("bishop.typed.earned3.award",cleric,departed.Revision,CommandKind.AwardCharacterMilestone,BishopProfile.Milestone);
+            var awardQuery=session.QueryCastingCommand(ExpeditionSeat.Player,award);
+            var awardOption=session.DiscoverCastingCommands(ExpeditionSeat.Player,cleric).Single(x=>x.Command.Kind==CommandKind.AwardCharacterMilestone&&x.Command.Target==BishopProfile.Milestone);
+            Require(awardQuery.Admissible&&awardOption.Query.Admissible,"Genuine available Bishop award disagrees across query/discovery and submission.");
+            var beforeAward=new SnapshotCodec().Encode(departed);session.SetSeatEnabled(ExpeditionSeat.Player,false);
+            Require(session.QueryCastingCommand(ExpeditionSeat.Player,award).Code=="NotAuthorized"&&session.DiscoverCastingCommands(ExpeditionSeat.Player,cleric).Count==0
+                &&session.Submit(ExpeditionSeat.Player,award).Response==ExpeditionResponse.NotAuthorized
+                &&beforeAward.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),"Revoked Player received trusted milestone authority.");
+            session.SetSeatEnabled(ExpeditionSeat.Player,true);BishopCommit(session,award);
+            Require(session.QueryCastingCommand(ExpeditionSeat.Player,award).Code=="AlreadyCommitted"&&session.Submit(ExpeditionSeat.Player,award).Response==ExpeditionResponse.Duplicate,
+                "Bishop award query/submission retry protection differs.");
+            var awardedBytes=new SnapshotCodec().Encode(ShortRestCapture(session));session.SetSeatEnabled(ExpeditionSeat.Player,false);
+            Require(session.QueryCastingCommand(ExpeditionSeat.Player,award).Code=="NotAuthorized"&&session.Submit(ExpeditionSeat.Player,award).Response==ExpeditionResponse.NotAuthorized
+                &&session.DiscoverCastingCommands(ExpeditionSeat.Player,cleric).Count==0&&awardedBytes.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),
+                "Revocation disclosed an existing Bishop award or repeated it.");session.SetSeatEnabled(ExpeditionSeat.Player,true);
+            File.WriteAllText(Path.Combine(directory,"bishop-award-authority.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                scope="Genuine completed departure; command-specific host authority across public query, discovery, execution, duplicate and revoked-seat boundaries",awardQuery,awardOption.Query,
+                available=true,committed=true,duplicateProtected=true,revokedBeforeAndAfter=true,denialsUnchanged=true}));
             BishopCheckpoint(session,directory,"earned3-awarded");
             var beforeAdvance=ShortRestCapture(session);
             var advance=new Command("bishop.typed.earned3.advance",cleric,beforeAdvance.Revision,CommandKind.AdvanceCharacterLevel,BishopProfile.Milestone,advancement:BishopChoices());
@@ -131,6 +148,14 @@ namespace Decennium.Foundation.Tests
                 "Invocation missed suppressed eligible Poisoned or cured a protected application.");
             var poisonHistory=ConditionHistory.Restore(protectedCure.Conditions.Single(x=>x.Target==hero));
             Require(poisonHistory.Ledger.Applications.Single(x=>x.Id=="detached.protected").Present(poisonHistory.Ledger.Now),"Protected poison ended.");
+            var vented=ready.Copy();var priorStrain=vented.CastingStrain.Single(x=>x.ActorId==cleric);
+            vented.CastingStrain=vented.CastingStrain.Select(x=>x.ActorId==cleric?new CastingStrainRecord(cleric,3,x.LastSpellId,x.Refrain,x.LastCastRevision):x).ToArray();
+            Require(policy.Resolve(vented,new Command("bishop.supplement.positive-vent",cleric,vented.Revision,CommandKind.UseDivineInvocation,
+                divineInvocation:new DivineInvocationRequest(new[]{hero,cleric})))==null,"Positive vent paid producer failed.");
+            var vent=vented.BishopEntry.Invocations.Last();var afterStrain=vented.CastingStrain.Single(x=>x.ActorId==cleric);
+            Require(vent.DissonanceBefore==3&&vent.DissonanceAfter==2&&vent.ActualVent==1&&afterStrain.Dissonance==2
+                &&afterStrain.LastSpellId==priorStrain.LastSpellId&&afterStrain.Refrain==priorStrain.Refrain&&afterStrain.LastCastRevision==priorStrain.LastCastRevision,
+                "Actual Conviction payment did not vent positive Dissonance once or changed spell/Refrain history.");
             var denials=new List<object>();
             foreach(string kind in new[]{"rp","conviction","hostile","unknown","range","history"}) {
                 var denied=ready.Copy();string target=hero,expected="InvocationTargetUnavailable";
@@ -148,7 +173,7 @@ namespace Decennium.Foundation.Tests
             }
             File.WriteAllText(Path.Combine(directory,"supplemental-three-and-capped-cure.json"),System.Text.Json.JsonSerializer.Serialize(new{
                 scope="Detached allied third target, resource, condition and full-HP setup; actual paid producer and preflight; no connected acquisition or supported altered save",
-                three=use,capped=capped.BishopEntry.Invocations.Last(),protectedPoisoned=protectedCure.BishopEntry.Invocations.Last(),denials}));
+                three=use,capped=capped.BishopEntry.Invocations.Last(),protectedPoisoned=protectedCure.BishopEntry.Invocations.Last(),positiveVent=vent,denials}));
         }
         private static AuraOfFaithQualification BishopQualification(Snapshot state,string actor) => (AuraOfFaithQualification)typeof(TestOnlySharedWorldPolicy).Assembly
             .GetType("Decennium.Foundation.Laboratory.AuraOfFaithRules").GetMethod("Qualify",BindingFlags.Static|BindingFlags.NonPublic).Invoke(null,new object[]{state,actor});
@@ -198,6 +223,38 @@ namespace Decennium.Foundation.Tests
                 first.NextRandomState,first.WordsConsumed});
             File.WriteAllText(Path.Combine(directory,"supplemental-aura-boundaries.json"),System.Text.Json.JsonSerializer.Serialize(new{
                 scope="Detached qualification and numeric arbitration controls; genuine save and healing consumers are separately required",results,edge,beyond}));
+        }
+        private static void BishopSelfObservationBlindness(string directory)
+        {
+            const string cleric=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero;
+            var branch=NewBishopExpedition();branch.Restore(Path.Combine(directory,"third-rest.ddsave"));ReachClericOwnSlot(branch);
+            void Cast(string id,string spell)=>BishopCommit(branch,new Command(id,cleric,ShortRestCapture(branch).Revision,CommandKind.CastKnownSpell,cleric,
+                spellCast:new SpellCastRequest(spell,spell=="guidance"?"":"TEST_ONLY.cleric-casting.holy-symbol",spell=="guidance")));
+            Cast("bishop.sight.guidance","guidance");ClericCommit(branch,hero,CommandKind.AdvanceClock,x:6,y:1);
+            Cast("bishop.sight.detect","detect-magic");ClericCommit(branch,hero,CommandKind.AdvanceClock,x:6,y:1);
+            var option=branch.DiscoverCastingCommands(ExpeditionSeat.Player,cleric).Single(x=>x.Query.Admissible
+                &&x.Command.Kind==CommandKind.CastKnownSpell&&x.Command.SpellCast.SpellId==BishopProfile.Dispel);
+            Require(option.Query.Admissible&&branch.QueryCastingCommand(ExpeditionSeat.Player,option.Command).Admissible,"Sighted self-hosted Guidance is not observable/selectable.");
+            BishopCheckpoint(branch,directory,"self-guidance-observed");var ready=ShortRestCapture(branch);var candidate=ready.Copy();
+            var at=new ConditionStamp(candidate.RuleClock);var history=ConditionHistory.Restore(candidate.Conditions.Single(x=>x.Target==cleric));
+            if(!history.Journal.Now.Equals(at))history=history.Append(ConditionOperation.Advance("bishop.sight.sync",at)).State;
+            history=history.Append(ConditionOperation.Apply("bishop.sight.apply",at,new ConditionApplicationData("bishop.sight.blinded",
+                "TEST_ONLY.supplement","TEST_ONLY.sight-control","Blinded",null,"source-end",true))).State;
+            candidate.Conditions=candidate.Conditions.Select(x=>x.Target==cleric?history.Journal:x).ToArray();
+            var authority=new Authority("TEST_ONLY.host",new[]{hero,cleric},inventoryOwners:new[]{hero,cleric});var policy=ClericPolicy(branch);
+            var queryPolicy=(ICommandQueryPolicy)policy;string before=ClericRaw(candidate);
+            var observe=typeof(TestOnlySharedWorldPolicy).GetMethod("ObserveCasting",BindingFlags.NonPublic|BindingFlags.Static);
+            var view=(ExpeditionCastingView)observe.Invoke(null,new object[]{candidate,cleric});
+            var query=queryPolicy.QueryCommand(candidate.Copy(),authority,option.Command);
+            var discoveries=queryPolicy.DiscoverCommands(candidate.Copy(),authority,cleric).Where(x=>x.Kind==CommandKind.CastKnownSpell&&x.SpellCast.SpellId==BishopProfile.Dispel).ToArray();
+            string failure=policy.Resolve(candidate,option.Command);
+            Require(view.Auras.Count==0&&!query.Admissible&&query.Code=="AuraObservationUnavailable"&&discoveries.Length==0
+                &&failure=="AuraObservationUnavailable"&&before==ClericRaw(candidate),"Blinded self-hosted Guidance retained a selectable old observation or paid for Dispel.");
+            File.WriteAllText(Path.Combine(directory,"supplemental-self-observation-blinded.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                scope="Actual own Guidance/Detect and public observation token, then detached actual Blinded lifecycle; actual views/discovery/query/resolver reject; no connected blindness acquisition or altered save claimed",
+                tokenBeforeSightLoss=option.Command.Target,query,failure,outlineCount=view.Auras.Count,dispelOptions=discoveries.Length,
+                unchanged=true,rpBefore=ready.ResonancePools.Single().Current,rpAfter=candidate.ResonancePools.Single().Current,
+                randomBefore=ready.RandomState,randomAfter=candidate.RandomState}));
         }
         private static void RunBishopTypedCampaign(string directory)
         {
@@ -264,6 +321,7 @@ namespace Decennium.Foundation.Tests
                 BishopCommit(session,Make(CommandKind.EndSpellConcentration,target:effect.Id));
             PostRecoveryAdvanceTo(session,new RuleTime(459041,2));ClericCommit(session,cleric,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
             ClericCommit(session,hero,CommandKind.AdvanceClock,x:28800,y:1);BishopCheckpoint(session,directory,"third-rest");
+            BishopSelfObservationBlindness(directory);
             ReachClericOwnSlot(session);Cast("guidance",hero,true);ClericCommit(session,hero,CommandKind.AdvanceClock,x:6,y:1);Cast("detect-magic",cleric);
             BishopCheckpoint(session,directory,"guidance-detect");ClericCommit(session,hero,CommandKind.AdvanceClock,x:6,y:1);
             var view=session.View(ExpeditionSeat.Player);var position=view.Actors.Single(x=>x.Position.Id==hero).Position;
