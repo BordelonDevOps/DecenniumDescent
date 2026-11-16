@@ -1,4 +1,8 @@
-# MGT-03 public Cleric Long Rest contract gate
+# MGT-03 connected Cleric Long Rest
+
+**Actual implementation-checkpoint review found no concrete blocker; final acceptance remains pending.** Response `17a11090-14be-5355-9cae-536184b24f4e` reviewed frozen source `e0994929b444b15fc38957eb80cc34ab19d56db6` and checkpoint `153165540d9b4e7c3c9a5ddccebef46fd05920af`; Codex agrees. [Actual review and agreement](GPT_EXECUTION_CHECKPOINT_REVIEW.md) and [retained checkpoint](EXECUTION_CHECKPOINT.md) bind843 artifacts,55 historical pins/435 compiled inputs, two five-path campaigns,25 authentic older-save continuations and the original incomplete349/1553-case prefix. GPT explicitly agrees with the genuine shortage-blocked no-Strain-offer disposition while preserving its limits. Complete the original full run and remaining qualification, retain the final packet and obtain actual final review before any successor. Whole-engine completion remains open; Unity stays deferred.
+
+## Original source-contract gate (historical)
 
 **Bounded implementation approved by actual GPT response `8588491a-0698-50ec-9830-b4ad4208d1ce`; Codex agrees with all governing clarifications.** [Actual review and agreement](GPT_CONTRACT_REVIEW.md). The reviewed proposal is `d5a8ccffa4cc48e848986d2073647274d5d92133`. The preceding actual prerequisite review is `04e19c85-6b86-5529-9b34-edeb306fb1eb`, recorded at baseline `e3c6b7083d2d9393053d59fa02d5159103e2c7d3`. Accepted engine source remains `0e5928bddd5abce47c16ff86172f5613423a2460` with its frozen1,551/1,551 evidence; no new compilation or runtime test is claimed. Runtime implementation/evidence and actual final acceptance are still outstanding.
 
