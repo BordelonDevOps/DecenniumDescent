@@ -1,6 +1,6 @@
 # Connected Cleric Long Rest implementation review guide
 
-Status: **qualification in progress; no runtime acceptance or successor authorization**. Frozen C# source is `e0994929b444b15fc38957eb80cc34ab19d56db6` on Engine. The accepted predecessor remains `0e5928bddd5abce47c16ff86172f5613423a2460`. Actual contract approval `8588491a-0698-50ec-9830-b4ad4208d1ce` and [the governing contract](SOURCE_API_CONTRACT.md) define this bounded attempt. The whole reusable simulation is unfinished; Unity remains deferred.
+Status: **qualification complete; actual final review/acceptance and successor agreement remain pending**. See [the final evidence report](FINAL_IMPLEMENTATION.md); the original checkpoint descriptions below retain their scope. Frozen C# source is `e0994929b444b15fc38957eb80cc34ab19d56db6` on Engine. The accepted predecessor remains `0e5928bddd5abce47c16ff86172f5613423a2460`. Actual contract approval `8588491a-0698-50ec-9830-b4ad4208d1ce` and [the governing contract](SOURCE_API_CONTRACT.md) define this bounded attempt. The whole reusable simulation is unfinished; Unity remains deferred.
 
 ## Behavior implemented
 

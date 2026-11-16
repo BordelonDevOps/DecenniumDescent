@@ -75,6 +75,8 @@ def main():
     launch = read(regression/'launch.json')
     assert launch['sourceCommit'] == SOURCE and launch['requiredCount'] == 1553
     assert launch['retainedPredecessors'] == 1551 and launch['sourceCommitted']
+    assert digest(Path(launch['runner'])) == launch['runnerSha256']
+    assert digest(regression/'compiled-source-report.json') == launch['compiledSourceReportSha256'] == digest(build/'results.json')
     inventory = lines(regression/'all-names.txt')
     assert len(inventory) == len(set(inventory)) == 1553
     old = lines(PACKET.parent/'2026-11-15-tac08-cleric-casting/implementation-amended/regression/all-names.txt')
@@ -109,6 +111,9 @@ def main():
     if prefix_report.exists():
         prefix = read(prefix_report)
         assert prefix['runId'] == launch['runId'] and prefix['implementationCommit'] == SOURCE
+        for retained in (output/'regression-checkpoint').iterdir():
+            if retained.is_file() and retained.suffix != '.jsonl':
+                assert digest(retained) == digest(regression/retained.name), retained.name
         for worker in prefix['originalWorkers']:
             group = worker['group']
             journal = output/'regression-checkpoint'/(group+'.jsonl')
@@ -131,6 +136,8 @@ def main():
         result = passed(paths/'results.json')
         assert set(result['paths']) == expected_modes
         assert result['traceSha256'] == digest(trace/'inputs.jsonl')
+        for assembly in result['assemblies']:
+            assert assembly['sha256'] == launch['assemblies']['Decennium.Foundation.'+assembly['name']+'.dll']
         for mode, details in result['paths'].items():
             assert details['commands'] == manifest['revision']
             for mark in manifest['marks']:
@@ -145,6 +152,7 @@ def main():
         assert digest(Path(manifest['finalSource'])) == manifest['finalSha256']
         campaign_results.append({'name':name,'commands':manifest['revision'],'checkpoints':len(manifest['marks']),
             'paths':sorted(expected_modes),'finalSha256':manifest['finalSha256'],'resultSha256':digest(paths/'results.json')})
+    assert canonical_count == 205 and view_count == 410
     genuine = regression/'saves'/NEW_CASES[1]
     # The original full run and separately compiled focused execution must agree at every principal checkpoint.
     agreeing = []
@@ -152,6 +160,7 @@ def main():
         other = genuine/path.name
         assert other.exists() and digest(other) == digest(path), path.name
         agreeing.append({'name':path.name,'sha256':digest(path)})
+    assert len(agreeing) == 13
     compatibility = passed(qualification/'compatibility/results.json')
     assert len(compatibility['Cases']) == 25
     for case in compatibility['Cases']:
@@ -176,11 +185,16 @@ def main():
     for name in ('commands','branches','boundaries-corrected'):
         passed(qualification/name/'results.json')
     unchanged = []
-    for directory in ('commands','boundaries-corrected'):
-        for before in sorted((qualification/directory).glob('*-before.ddsave')):
+    denial_folders = [(name,qualification/name) for name in ('commands','boundaries-corrected')]
+    denial_folders += [('focused/'+name,regression/'saves'/name) for name in NEW_CASES]
+    for scope, directory in denial_folders:
+        for before in sorted(directory.glob('*-before.ddsave')):
             after = before.with_name(before.name.replace('-before.ddsave','-after.ddsave'))
             assert digest(before) == digest(after)
-            unchanged.append({'scope':directory,'before':before.name,'after':after.name,'sha256':digest(before)})
+            reused = scope.startswith('focused/') and before.name.startswith('chr03.')
+            unchanged.append({'scope':scope,'before':before.name,'after':after.name,'sha256':digest(before),
+                              'reusedAdvancementControl':reused})
+    assert len(unchanged) == 32 and sum(x['reusedAdvancementControl'] for x in unchanged) == 14
 
     # Retain originals byte-for-byte. Historical attempts never contribute to current pass counts.
     output.mkdir(parents=True,exist_ok=True)
@@ -214,14 +228,22 @@ def main():
     for directory in (ARTIFACTS/'qualification').iterdir():
         if directory.is_dir() and directory != old_run:
             tree(directory,output/'prior-attempts'/directory.name)
+    # Final retention must not change any artifact already inspected at checkpoint review.
+    preserved = read(output/'CHECKPOINT_ARTIFACT_INDEX.json')['artifacts']
+    assert len(preserved) == 843
+    for name, metadata in preserved.items():
+        retained = output/name
+        assert retained.stat().st_size == metadata['bytes'] and digest(retained) == metadata['sha256'], name
     write(output/'RESULTS.json',{
         'status':'EVIDENCE_READY_FOR_ACTUAL_FINAL_REVIEW','implementationCommit':SOURCE,
         'atUtc':datetime.now(timezone.utc).isoformat(),'contractApproval':'8588491a-0698-50ec-9830-b4ad4208d1ce',
         'fullRegression':{'runId':launch['runId'],'passed':1553,'required':1553,'failed':0,'predecessors':1551,
                           'newCases':NEW_CASES,'originalWorkers':completions},
         'campaigns':campaign_results,'canonicalCheckpointComparisons':canonical_count,'filteredViewComparisons':view_count,
+        'reviewedCheckpointArtifactsPreserved':len(preserved),
         'fullRunFocusedCheckpointsAgree':agreeing,'authenticSaveContinuations':25,'legacyConsoleViews':100,
         'unchangedCommandPairs':unchanged,'parserOnlyRejected':10,
+        'unchangedPairScope':'32 retained denial/retry/restore pairs:18 Long Rest controls and14 reused advancement controls, including its labeled rollback injection. Parser-only inputs and detached admission JSON are separate.',
         'supplementaryControls':{'commands':'qualification/commands/results.json','boundaries':'qualification/boundaries-corrected/results.json',
             'wholeSplitAndCappedDebt':'qualification/branches/results.json',
             'detached':'Explicitly labeled actual policy interruption/admission/completion and numeric HD controls; no genuine positive HD recovery or external encounter is claimed.'},
