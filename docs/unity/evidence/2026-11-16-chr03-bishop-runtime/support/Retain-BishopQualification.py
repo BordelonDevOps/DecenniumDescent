@@ -103,6 +103,14 @@ def main():
         all_results.extend(rows)
         completed.append(ending)
     assert len(all_results) == 1570 and {x['Name'] for x in all_results} == set(names)
+    focused_matches = []
+    for row in retained['evidence']['members']:
+        if row['path'].startswith('focused/saves/'):
+            relative = row['path'][len('focused/saves/'):]
+            actual = run / 'saves/chr03_bishop_connected_earned_funded_cure_aura_dispel_continue' / relative
+            assert actual.stat().st_size == row['bytes'] and digest(actual) == row['sha256'], relative
+            focused_matches.append(relative)
+    assert focused_matches
 
     reference = qualification / 'reference'
     paths = args.paths_dir.resolve() if args.paths_dir else qualification / 'paths'
@@ -192,6 +200,9 @@ def main():
     for name in ('live-before.ddsave', 'after-corrupt-rejections.ddsave', 'after-explicit-recovery.ddsave', 'after-forged-backup-rejection.ddsave'):
         assert digest(restores / name) == restore['canonicalLiveSha256']
     assert digest(restores / restore['displacedPrimary']) == restore['corruptPrimarySha256']
+    assert digest(restores / 'preserved-valid-backup.ddsave') == restore['validSourceSha256']
+    assert digest(restores / 'recovery.ddsave') == restore['corruptPrimarySha256']
+    assert digest(restores / 'recovery.ddsave.bak') == restore['forgedSourceSha256']
 
     members = {}
     queue_tree(members, qualification, 'qualification')
@@ -229,6 +240,7 @@ def main():
     summary = dict(status='QUALIFICATION_PASS_AWAITING_ACTUAL_FINAL_REVIEW', sourceCommit=source_commit,
         reconciledUtc=datetime.now(timezone.utc).isoformat(), runId=launch['runId'], passed=1570, failed=0,
         predecessors=1566, newCases=new, originalWorkers=completed, compiledInputs=453, staticInputs=len(static['sourceHashes']), sourcePins=83,
+        focusedArtifactMatches=len(focused_matches),
         campaign=dict(commands=457, checkpoints=21, pathDirectory=paths.relative_to(qualification).as_posix(), paths=sorted(MODES), canonicalComparisons=105, filteredViewComparisons=315,
                       behaviorComparisons=5 * probe_count), authentic95Through110=dict(checkpoints=28, consoleViews=112, bishopRejections=28),
         authentic111=dict(checkpoints=13, commandsPerRole=330, canonicalAndViewComparisons=100, bishopRejections=13),

@@ -1,6 +1,20 @@
 # CHR-03 Bishop implementation and qualification
 
-**Implementation candidate; acceptance pending.** This is the bounded earned Cleric2→3 module authorized by actual GPT response `0a1c9139-3116-532b-8ee8-c436c82e4e27`, under the [approved source/API contract](../2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md). No successor is authorized by this packet. Storage/Support remain held and Unity integration remains deferred.
+**Qualification complete; actual final acceptance pending.** This is the bounded earned Cleric2→3 module authorized by actual GPT response `0a1c9139-3116-532b-8ee8-c436c82e4e27`, under the [approved source/API contract](../2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md). No successor is authorized by this packet. Storage/Support remain held and Unity integration remains deferred.
+
+Frozen engine source `2733b9fd75e2159ad73312b9583311693b925598` has now passed all final qualification. Original run `9a2bfb198a114a62b97fd5257c0ab4b3` completed **1,570/1,570 cases, zero failures**, on its six original workers. All 1,566 predecessor cases retain their exact relative order and shard assignments; four new Bishop cases pass. Every original start/completion identity, loaded assembly hash, assignment, ordered journal and DONE marker reconciles. Neither stopped prefix contributes a pass. All 108 focused save/discovery artifacts match the new original connected case exactly.
+
+[Final reconciliation](final/FINAL_RECONCILIATION.json) and [artifact index](final/QUALIFICATION_MEMBERS.json) retain these checks:
+
+- All four frozen C#9 assemblies, 453 compilation-input hashes, 947 static-input hashes, 18 passing static checks and 83 pinned source blobs remain bound to the reviewed source.
+- All five complete execution paths run 457 commands and match 21 checkpoints each: 105 canonical comparisons, 315 filtered-view comparisons and 2,790 behavior comparisons. The failed typed-harness attempt and exact public-constructor-default correction remain separately retained; only the complete fresh `paths-v2` attempt qualifies.
+- Authentic wire95–110: 28 round trips/remaining-command continuations, 112 old public-view comparisons and 28 unchanged-state rejections by the new Bishop profile.
+- Authentic wire111: 13 checkpoints, 330 continuation commands per old/current role, 100 canonical/view comparisons and 13 unchanged-state Bishop-profile rejections.
+- Wire112: all five actual public restore/explicit backup controls pass, including structurally decodable causal-forgery rejection, corrupt-primary rejection, good-backup preservation and recovery, displaced-primary preservation and unchanged live state. Retained backup/primary bytes also reconcile.
+
+`final/qualification-evidence.zip` contains 6,321 indexed members: 16,409,027 bytes, SHA256 `3c07ef37de6d7be2ee7da3da633f95c6ed4348ea7a5f2c8c93fcb81c52453649`. The direct `final/regression/` inventory and original worker records support later exact-assignment checks. The latest frozen binaries and source/focused evidence remain in `discovery-correction/`; the final archive contains qualification and original new-case outputs. All 29 inherited canonical campaign artifacts still match the earlier candidate. This establishes qualification for the bounded module, not whole-engine completion, production authority, broader responsiveness or Unity readiness. Actual GPT final review and Codex agreement remain mandatory.
+
+The following implementation and correction history preserves its then-current execution statuses; the completed qualification above supersedes earlier statements that these runs are still pending.
 
 **Latest correction: deterministic Bishop discovery across restore.** Actual five-path execution on `4539aef99e8aba26df0440adaf730abc204f6b7a` found equal canonical r145 saves but different companion Purify option order between uninterrupted and restored execution. Inventory insertion order differed from persisted ordinal order. Actual GPT response `0d5b5751-3fac-5dee-9d87-f550565825e4` agrees with the diagnosis and bounded correction; Codex agrees. The common casting-target sequence now sorts ordinally before assigning option IDs only when `BishopEntry != null`, including before earned3. Eligibility, costs, authority, Sanctuary encounter order and historical profiles are preserved. [Exact scope review](GPT_DISCOVERY_REVIEW.json).
 
