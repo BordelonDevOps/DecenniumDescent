@@ -1,5 +1,9 @@
 # EXP-07 post-recovery encounter-continuation contract gate
 
+**Actual contract review approved bounded implementation; Codex agrees with all mandatory amendments.** Response `cb561b81-6fb9-5530-8c08-7a4233e8be12` approves proposal `540e500125559f48d83b568077cfba9a1b12c607`, with the exact old-defender-Start contact bound, actual off-calendar new-NPC provenance, no partial-turn/Grounding-credit transfer, strict single current epoch ownership and new-opponent five-path view/authority evidence. [Controlling approved contract](APPROVED_CONTRACT.md) · [Exact actual review and Codex agreement](GPT_CONTRACT_REVIEW.md). Engine implementation and actual runtime qualification remain outstanding. The source-only audit and submitted proposal below preserve their original pending-review context; they are not passing gameplay evidence.
+
+## Submitted proposal and original evidence status
+
 **Proposed contract pending actual GPT review. Engine unchanged; no runtime implementation approved or started.** This immediate gate is authorized by actual Bishop source response `a18c0728-47f3-5f33-8051-c89796f2864f` and Codex agreement at `0f96b0eea5822336f7933d3bc1a2428802611757`.
 
 [Concrete proposed contract](SOURCE_API_CONTRACT.md) binds one distinct revision0 numerical Warrior3 defender at `(4,4)`, separately owned Club and initial fear entitlement, real paid party approach, new three-person initiative, shared-state/epoch carry, actual existing fear/damage and earned-Cleric2 Rite/Radiance/six-spell contexts, real closure and ordinary continuation. Every new actor/stat/mandate fact remains a TEST_ONLY proposal. A concrete partial old casting interval/paid Grounding transfer decision remains for actual GPT/Codex agreement before runtime.
