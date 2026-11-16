@@ -1,10 +1,12 @@
 """Reconcile final EXP-07 evidence without rerunning or replacing any worker."""
 import argparse
 from datetime import datetime, timezone
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
 import subprocess
+import zipfile
 
 SUPPORT = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location('checkpoint', SUPPORT / 'Retain-ExecutionCheckpoint.py')
@@ -17,6 +19,37 @@ CAMPAIGNS = {'main', 'grounding', 'mistimed', 'reaction', 'old-effects', 'sanctu
 
 def lines(path):
     return path.read_text(encoding='utf-8-sig').splitlines()
+
+
+def queue_tree(source, prefix, members):
+    for path in sorted(source.rglob('*')):
+        if path.is_file() and path.suffix != '.dll':
+            name = prefix + '/' + path.relative_to(source).as_posix()
+            assert name not in members
+            members[name] = path
+
+
+def retain_bundle(output, members):
+    archive = output / 'qualification-evidence.zip'
+    assert not archive.exists(), 'Never replace retained qualification evidence'
+    entries = []
+    with zipfile.ZipFile(archive, 'x', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
+        for name, source in sorted(members.items()):
+            data = source.read_bytes()
+            info = zipfile.ZipInfo(name, (2026, 11, 16, 0, 0, 0))
+            info.compress_type = zipfile.ZIP_DEFLATED
+            bundle.writestr(info, data, compresslevel=9)
+            entries.append(dict(path=name, bytes=len(data), sha256=hashlib.sha256(data).hexdigest()))
+    with zipfile.ZipFile(archive) as bundle:
+        assert sorted(bundle.namelist()) == [entry['path'] for entry in entries]
+        for entry in entries:
+            data = bundle.read(entry['path'])
+            assert len(data) == entry['bytes'] and hashlib.sha256(data).hexdigest() == entry['sha256']
+    index = dict(status='EXACT_QUALIFICATION_BUNDLE', archive=archive.name, sha256=q.digest(archive),
+                 bytes=archive.stat().st_size, memberCount=len(entries),
+                 uncompressedBytes=sum(entry['bytes'] for entry in entries), members=entries)
+    q.write(output / 'QUALIFICATION_MEMBERS.json', index)
+    return {key: value for key, value in index.items() if key != 'members'}
 
 
 def main():
@@ -96,11 +129,13 @@ def main():
             matched_focused_files.append(dict(path=relative.as_posix(), sha256=q.digest(path)))
     assert len(matched_focused_files) == 130
 
-    campaigns = []
+    campaigns, bundle_members = [], {}
     for group in (1, 2):
         root = qualification / ('campaign-paths-' + str(group))
         report = q.read(root / 'results.json')
         assert report['status'] == 'PASS'
+        bundle_members['qualification/campaign-groups/group-' + str(group) + '-results.json'] = root / 'results.json'
+        bundle_members['qualification/campaign-groups/group-' + str(group) + '-config.json'] = qualification / ('campaigns-' + str(group) + '.json')
         for completed_campaign in report['campaigns']:
             name = completed_campaign['name']
             folder = root / name
@@ -108,12 +143,17 @@ def main():
             manifest = q.read(folder / 'trace/manifest.json')
             assert result['status'] == 'PASS' and set(result['paths']) == MODES
             assert q.digest(folder / 'trace/inputs.jsonl') == result['traceSha256']
+            assert {assembly['name'] for assembly in result['assemblies']} == {'Core', 'Persistence', 'LabModel'}
             for assembly in result['assemblies']:
                 assert launch['assemblies']['Decennium.Foundation.' + assembly['name'] + '.dll'] == assembly['sha256']
             probe_count = 0
             for mark in manifest['marks']:
                 assert q.digest(folder / 'trace/reference' / mark['name']) == mark['sha256']
                 assert set(mark['views']) == {'Player', 'FirstOpponent', 'RecoveryOpponent'}
+                for view in mark['views'].values():
+                    assert q.digest(folder / 'trace/reference' / view['name']) == view['sha256']
+                for probe in mark['probes']:
+                    assert q.digest(folder / 'trace/reference' / probe['request']['evidenceRead']) == probe['sha256']
                 probe_count += len(mark['probes'])
                 for mode in MODES:
                     mode_folder = folder / 'paths' / mode
@@ -130,7 +170,7 @@ def main():
             assert q.digest(final_source) == manifest['finalSha256']
             retained_source = output / 'focused' / final_source.relative_to(qualification / 'focused-01/saves')
             assert q.digest(retained_source) == manifest['finalSha256']
-            q.tree(folder, output / 'qualification/campaigns' / name)
+            queue_tree(folder, 'qualification/campaigns/' + name, bundle_members)
             campaigns.append(dict(name=name, commands=manifest['revision'], checkpoints=len(manifest['marks']),
                                   paths=sorted(MODES), canonicalComparisons=5 * len(manifest['marks']),
                                   filteredViewComparisons=15 * len(manifest['marks']), behaviorComparisons=5 * probe_count,
@@ -156,24 +196,35 @@ def main():
     legacy_root = qualification / 'legacy-projections'
     assert q.digest(legacy_root / 'accepted-predecessor-console.ps1') == legacy['oldConsoleSha256']
     assert q.digest(q.ROOT / 'engine/tools/Open-ConnectedExpedition.ps1') == legacy['newConsoleSha256']
+    old_console = subprocess.check_output(['git', 'show', legacy['predecessorCommit'] + ':engine/tools/Open-ConnectedExpedition.ps1'], cwd=q.ROOT)
+    assert lines(legacy_root / 'accepted-predecessor-console.ps1') == old_console.decode('utf-8-sig').splitlines()
     old_launch = q.read(prior / 'launch.json')
     for part in ('Core', 'Persistence', 'LabModel'):
         assembly = 'Decennium.Foundation.' + part + '.dll'
         assert q.digest(legacy_root / 'accepted-predecessor-assemblies' / assembly) == old_launch['assemblies'][assembly]
     for index, case in enumerate(legacy['cases']):
+        assert case['source'] == compat['Cases'][index]['Source']
+        assert case['wire'] == compat['Cases'][index]['Wire']
         folder = qualification / 'legacy-projections' / ('case-' + str(index) + '-wire' + str(case['wire']))
+        invocation = q.read(folder / 'invocations.json')['current']
+        current_assemblies = q.longpath(invocation[invocation.index('-AssemblyRoot') + 1])
+        for part in ('Core', 'Persistence', 'LabModel'):
+            assembly = 'Decennium.Foundation.' + part + '.dll'
+            assert q.digest(current_assemblies / assembly) == launch['assemblies'][assembly]
         assert case['views'] == 4
         assert q.digest(folder / 'old.jsonl') == case['oldOutputSha256']
         assert q.digest(folder / 'new.jsonl') == case['newOutputSha256']
         old, new = ([json.loads(line) for line in lines(folder / name)] for name in ('old.jsonl', 'new.jsonl'))
         assert len(old) == len(new) == 5 and old[2]['Response'] == new[2]['Response'] == 'Restored'
         assert all(old[index] == new[index] for index in (0, 1, 3, 4))
-    q.tree(qualification / 'compatibility', output / 'qualification/compatibility')
-    q.tree(qualification / 'legacy-projections', output / 'qualification/legacy-projections')
+    queue_tree(qualification / 'compatibility', 'qualification/compatibility', bundle_members)
+    queue_tree(qualification / 'legacy-projections', 'qualification/legacy-projections', bundle_members)
+    qualification_bundle = retain_bundle(output, bundle_members)
     result = dict(status='QUALIFICATION_COMPLETE_AWAITING_ACTUAL_FINAL_REVIEW', implementationCommit=q.SOURCE,
                   capturedUtc=datetime.now(timezone.utc).isoformat(), runId=launch['runId'], passed=1566, failed=0,
                   preservedPredecessors=1553, newCases=13, originalWorkerCompletions=completed,
                   originalRunMatchesFocusedFiles=matched_focused_files,
+                  qualificationBundle=qualification_bundle,
                   campaigns=campaigns, canonicalComparisons=sum(x['canonicalComparisons'] for x in campaigns),
                   filteredViewComparisons=sum(x['filteredViewComparisons'] for x in campaigns),
                   behaviorComparisons=sum(x['behaviorComparisons'] for x in campaigns),
