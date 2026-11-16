@@ -1,5 +1,8 @@
 # Existing provisioning and rest capability investigation
 
+**Historical capability finding; proposed prerequisite decision superseded by actual timing review.** Response `a8da8b2d-23e4-5e6c-b9e1-f1139f98a173` required testing earlier existing rests first. That finite route now executes through the actual wire111 encounter and surviving third-rest continuation: [survival amendment](SURVIVAL_AMENDMENT.md). The admission gaps below remain real, but are not unavoidable prerequisites for this bounded route. Runtime awaits actual amendment review.
+
+
 This is diagnostic execution of accepted, unchanged gameplay `6d840c4dfce268115904ea0dda6b475450f7be6f`, using its frozen assemblies and the authentic wire110 `cleric-advanced.ddsave`. It is not Bishop implementation, a new regression run or proof that all possible routes fail. Actual contract review `9730ae44-9e01-5291-a4b2-d3515fedf2f7` requested this investigation. Codex agrees with its hold.
 
 ## Executed stock access

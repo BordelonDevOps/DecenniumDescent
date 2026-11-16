@@ -1,5 +1,8 @@
 # Earned Bishop entry: complete contract preparation
 
+**Earlier-rest feasibility now passes; survival amendment awaits actual GPT review.** Response `a8da8b2d-23e4-5e6c-b9e1-f1139f98a173` deferred a separate prerequisite and selected existing timing first; Codex agrees. The unchanged wire111 engine completes the genuine encounter, third rest at258320.5, Guidance on the living hero, individual Detect and paid continuation. Fifteen canonical checkpoints,25 views and222 non-load responses match uninterrupted/restore paths. The later259200 hero death remains visible. [Amendment, evidence and limits](SURVIVAL_AMENDMENT.md) supersede the earlier timing proposal below. No Bishop runtime, new compilation or full regression has run. Storage/Support remain held; Unity deferred.
+
+
 **Funding reachability finding confirmed by actual review `13fafdf0-5161-5cc2-a0b3-6962015be8ca`:** the newly executed existing-engine probe shows that the unprovisioned third-rest branch kills the hero at259200 even though the companion's rest completes. [Exact scope, retained execution and required resolution](FUNDING_REACHABILITY_FINDING.md). This is a concrete candidate-route failure, not an exhaustive impossibility claim or Bishop implementation. Runtime remains held.
 
 The owner resumed Part 2 development on 2026-11-16 after EXP-07 acceptance. Storage cleanup and the GitHub Support inquiry remain on hold. This packet prepares the next CHR-03 contract; it is not runtime approval or gameplay completion.
