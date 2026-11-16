@@ -164,8 +164,9 @@ namespace Decennium.Foundation
                 || !entry.SelectedSkills.SequenceEqual(new[] { "medicine", "religion" }, StringComparer.Ordinal)
                 || !entry.SavingThrows.SequenceEqual(new[] { "CHA", "WIS" }, StringComparer.Ordinal)
                 || character.ProfileId != CharacterProfile || !character.Abilities.SequenceEqual(new[] { 10, 10, 10, 10, 14, 10 })
-                || character.Levels.Count != (earned ? 2 : 1) || character.Levels[0].ClassName != "Cleric" || character.Levels[0].BaseHp != 8
-                || life.MaximumHp != (earned ? 13 : 8) || pool.ActorId != Actor || pool.Maximum != (earned ? 4 : 3)
+                || character.Levels.Count != (BishopProfile.Earned(state) ? 3 : earned ? 2 : 1) || character.Levels[0].ClassName != "Cleric" || character.Levels[0].BaseHp != 8
+                || life.MaximumHp != (BishopProfile.Earned(state) ? 18 : earned ? 13 : 8) || pool.ActorId != Actor
+                || pool.Maximum != (BishopProfile.Earned(state) ? 7 : earned ? 4 : 3)
                 || funding.Id != FundingId || funding.ActorId != Actor || funding.PolicyId != FundingPolicy || funding.Amount != 3 || funding.Revision != 0
                 || state.CharacterHitDice.Count(x => x.ActorId == Actor && x.LevelOrdinal == 1 && x.ClassName == "Cleric" && x.DieSize == 8 && (state.ConnectedClericSettlement || !x.Spent)) != 1
                 || entry.SelectedSkills.Any(skill => state.SkillTraining.Count(x => x.ActorId == Actor && x.SkillId == skill && x.ProficiencyRank == 1) != 1)

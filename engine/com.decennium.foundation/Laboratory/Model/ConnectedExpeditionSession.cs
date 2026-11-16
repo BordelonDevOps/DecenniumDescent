@@ -117,6 +117,11 @@ namespace Decennium.Foundation.Laboratory
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnablePostRecoveryEncounter(initial,repertoire,declaration,
                 companionConsents,directorAuthorizes));
 
+        public static ConnectedExpeditionSession StartWithBishopEntry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
+            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
+                companionConsents,directorAuthorizes));
+
         public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));
 
@@ -395,6 +400,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedPayload(Snapshot state, Command command)
         {
+            if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;
             if (command.Advancement != null && (!state.ConnectedClericSettlement || command.Kind != CommandKind.AdvanceCharacterLevel)
                 || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
@@ -448,6 +454,7 @@ namespace Decennium.Foundation.Laboratory
                 || state.ConnectedClericSettlement && (kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel)
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
+                || state.BishopEntry!=null && kind==CommandKind.UseDivineInvocation
                 || state.ConnectedClericLongRest && (ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.ResolveExpeditionStrainRecovery)
                 || (state.ConnectedCompanionStabilization||state.ConnectedClericCasting) && kind == CommandKind.StabilizeCompanion
                 || state.ConnectedWoundTreatment && WoundTreatmentStation.IsCommand(kind)
@@ -545,6 +552,9 @@ namespace Decennium.Foundation.Laboratory
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.UseDivineInvocation:
+                    return state.BishopEntry!=null&&seat==ExpeditionSeat.Player&&actor==Companion&&target==""
+                        &&command.DivineInvocation!=null&&command.DivineInvocation.TargetIds.All(Party.Contains);
                 case CommandKind.UseIntimidatingPresence:
                     return seat==ExpeditionSeat.RecoveryOpponent && actor==PostRecoveryEncounterDefinition.Actor
                         && command.IntimidatingPresence!=null && command.IntimidatingPresence.TargetIds.All(Party.Contains);
@@ -627,11 +637,12 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.AwardCharacterMilestone:
                 case CommandKind.AdvanceCharacterLevel:
                     return state.ConnectedClericSettlement && seat == ExpeditionSeat.Player && actor == Companion
-                        && target == state.ClericMilestone.MilestoneId;
+                        && (target == state.ClericMilestone.MilestoneId || state.BishopEntry!=null && target==BishopProfile.Milestone);
                 case CommandKind.CastKnownSpell:
                     if(state.ConnectedClericCasting && command.SpellCast!=null)
                         return seat==ExpeditionSeat.Player && actor==Companion
-                            && (Party.Contains(target) || target==TestOnlySharedWorldPolicy.LaterDefenderId
+                            && (state.BishopEntry!=null&&command.SpellCast.SpellId==BishopProfile.Dispel?target.StartsWith("aura.",StringComparison.Ordinal)
+                                :Party.Contains(target) || target==TestOnlySharedWorldPolicy.LaterDefenderId
                                 || state.PostRecoveryEncounter!=null && target==PostRecoveryEncounterDefinition.Actor
                                 || state.InventoryLots.Any(x=>x.LotId==target&&Party.Contains(x.OwnerId)));
                     return state.ConnectedClericRepertoire && seat==ExpeditionSeat.Player && actor==Companion && SpellSourceCatalog.Get(target)!=null;

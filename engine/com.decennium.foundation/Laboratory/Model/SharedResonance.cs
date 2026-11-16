@@ -110,7 +110,7 @@ namespace Decennium.Foundation.Laboratory
             if (!state.CharacterFeatureGrants.Any(x => x.FeatureId == ClericRpProfile.HealingRite && ClericRpProfile.ValidInitialGrant(state, x)))
                 return "HealingRiteNotOwned";
             var character = state.Characters.Single(x => x.ActorId == command.Actor);
-            if (character.Levels.Count(x => x.ClassName == "Cleric") != (postClosure || PostRecoveryProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
+            if (character.Levels.Count(x => x.ClassName == "Cleric") != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
             if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
@@ -155,6 +155,7 @@ namespace Decennium.Foundation.Laboratory
             state.HealingRites = state.HealingRites.Append(rite).ToArray();
             RecordCastingActivity(state,command,CastingActivityKind.MagicalClassAbility);
             if (state.ConnectedClericSettlement) SettleRadiance(state,command,rite);
+            AuraOfFaithRules.HealAfterRite(state,command,rite);
             ReconcileDyingCadences(state); PauseIncompatibleWork(state);
             return null;
         }

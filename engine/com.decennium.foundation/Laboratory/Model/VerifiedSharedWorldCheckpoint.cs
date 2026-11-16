@@ -18,7 +18,8 @@ namespace Decennium.Foundation.Laboratory
 
         bool IVerifiedSimulationConstruction.SupportsVerifiedConstruction => verifiedPlanningPassage;
 
-        private int VerifiedExpeditionWireSchema => postRecoveryDefinition != null ? Snapshot.PostRecoveryEncounterSchema
+        private int VerifiedExpeditionWireSchema => bishopDeclaration != null ? Snapshot.BishopEntrySchema
+            : postRecoveryDefinition != null ? Snapshot.PostRecoveryEncounterSchema
             : connectedClericLongRest ? Snapshot.ConnectedClericLongRestSchema
             : connectedClericCasting ? Snapshot.ConnectedClericCastingSchema
             : clericMilestoneDeclaration != null ? Snapshot.ConnectedClericSettlementSchema

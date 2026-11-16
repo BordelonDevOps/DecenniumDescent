@@ -64,11 +64,13 @@ namespace Decennium.Foundation.Laboratory
             int dc=checked((int)Math.Max(10,damage/2));
             int modifier=checked(CharacterRuleFacts.ForActor(s,target).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target,"CON")+ExpeditionStrainRules.Current(s,target).SavingThrowModifier);
+            int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,target);modifier=AuraOfFaithRules.Modifier(aura,basis);
             uint random=s.RandomState;
             // This cohort has no CON-save advantage/disadvantage source. Incapacitation has already
             // ended the slot; Poisoned and Frightened check penalties are not save penalties.
             var roll=PlaytestDice.RollD20(random); bool success=(long)roll.Natural+modifier>=dc;
             string id="spell.save."+(s.Revision+1).ToString(CultureInfo.InvariantCulture)+"."+s.SpellSaves.Length.ToString(CultureInfo.InvariantCulture);
+            AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.Concentration,id,basis,dc,roll.Natural,false,success,random,roll.NextRandomState,roll.WordsConsumed);
             var save=new SpellSaveRecord(id,SpellSaveKind.ConcentrationConstitution,concentration.Id,target,cause,s.Revision+1,s.RuleClock,
                 null,damage,dc,modifier,roll.First,roll.Second??0,roll.Natural,success,random,roll.NextRandomState,roll.WordsConsumed);
             s.RandomState=roll.NextRandomState; s.SpellSaves=s.SpellSaves.Append(save).ToArray();

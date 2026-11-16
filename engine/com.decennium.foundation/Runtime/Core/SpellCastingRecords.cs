@@ -99,9 +99,9 @@ namespace Decennium.Foundation
             int limit = Limit(proficiency, actualCastingModifier);
             return Dissonance >= checked(limit + 6) ? 3 : Dissonance >= checked(limit + 3) ? 2 : Dissonance >= limit ? 1 : 0;
         }
-        public CastingStrainRecord BeginAdmittedCast(string spellId, int rank, long revision)
+        public CastingStrainRecord BeginAdmittedCast(string spellId, int rank, long revision, bool bishop = false)
         {
-            if (!Validation.ValidId(spellId) || rank < 0 || rank > 1 || revision <= LastCastRevision)
+            if (!Validation.ValidId(spellId) || rank < 0 || rank > (bishop?2:1) || revision <= LastCastRevision)
                 throw new ArgumentException("Invalid admitted casting cadence event.");
             int repeat = spellId == LastSpellId ? Math.Min(3, Refrain + 1) : 0;
             return new CastingStrainRecord(ActorId, checked(Dissonance + (rank == 0 ? 0 : 1) + repeat), spellId, repeat, revision);
@@ -153,7 +153,7 @@ namespace Decennium.Foundation
     }
 
     public enum SpellEffectEndReason { None, Expired, Replaced, Voluntary, Incapacitated, Dead, DamageSaveFailed,
-        GuidanceConsumed, SanctuaryDamage, SanctuaryHostileSave }
+        GuidanceConsumed, SanctuaryDamage, SanctuaryHostileSave, Dispelled }
     public enum SpellExpiryKind { Absolute, NextCasterStart }
     public sealed class SpellEffectRecord
     {

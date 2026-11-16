@@ -17,12 +17,13 @@ param(
     [switch]$ClericSettlement,
     [switch]$ClericCasting,
     [switch]$ClericLongRest,
-    [switch]$PostRecoveryEncounter
+    [switch]$PostRecoveryEncounter,
+    [switch]$BishopEntry
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -32,7 +33,13 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($PostRecoveryEncounter) {
+$session = if ($BishopEntry) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithBishopEntry(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),
+        [Decennium.Foundation.BishopEntryRecord]::Announced())
+} elseif ($PostRecoveryEncounter) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithPostRecoveryEncounter(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -87,6 +94,8 @@ $session = if ($PostRecoveryEncounter) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$PostRecoveryEncounter = $PostRecoveryEncounter -or $BishopEntry
+
 function New-SessionCommand($request, $view, $kind) {
     if ($kind -eq 'BeginLongRest' -or $kind -eq 'InterruptLongRest') {
         $allowed=@('op','kind','id','actor','revision','target','seat','x','y')
@@ -114,6 +123,7 @@ function New-SessionCommand($request, $view, $kind) {
     $combat = $null
     $mining = $null
     $intimidation = $null
+    $divineInvocation = $null
     $advancement = $null
     $healingRite = $null
     $spellCast = $null
@@ -140,6 +150,14 @@ function New-SessionCommand($request, $view, $kind) {
             throw 'Invalid Sanctuary continuation choice.'
         }
         $sanctuaryResponse = [Decennium.Foundation.SanctuaryResponseRequest]::new($details.kind,$details.targetId)
+    }
+    if ($request.ContainsKey('divineInvocation')) {
+        $details=$request.divineInvocation
+        if($null -eq $details -or @($details.Keys).Count -ne 3 -or !$details.ContainsKey('targets') -or
+            !$details.ContainsKey('cureTarget') -or !$details.ContainsKey('curePreference') -or $details.targets -is [string] -or
+            @($details.targets | Where-Object {$_ -isnot [string]}).Count -ne 0 -or
+            $details.cureTarget -isnot [string] -or $details.curePreference -isnot [string]) {throw 'Invalid Invocation choices.'}
+        $divineInvocation=[Decennium.Foundation.DivineInvocationRequest]::new([string[]]$details.targets,$details.cureTarget,$details.curePreference)
     }
     if ($request.ContainsKey('advancement')) {
         $details = $request.advancement
@@ -186,7 +204,7 @@ function New-SessionCommand($request, $view, $kind) {
     }
     [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
         $inventory, $combat, $advancement, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation, $healingRite,
-        $spellCast,$guidance,$sanctuaryResponse)
+        $spellCast,$guidance,$sanctuaryResponse,$divineInvocation)
 }
 
 function Get-SessionFilePath([string]$path) {

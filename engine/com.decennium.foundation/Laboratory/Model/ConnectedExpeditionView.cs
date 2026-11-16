@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    public sealed class ExpeditionClericSettlementView
+    public class ExpeditionClericSettlementView
     {
         public string MilestoneId { get; }
         public string Objective => "Complete both conflicts and the specimen-to-recipe-4 batch; close the later conflict with the companion alive.";
@@ -58,10 +58,10 @@ namespace Decennium.Foundation.Laboratory
             FavoredWeapon = entry.FavoredWeaponProfile; ArmorTraining = entry.ArmorTraining;
             WeaponTraining = entry.WeaponTraining; ToolTraining = entry.ToolTraining;
             SelectedSkills = entry.SelectedSkills; SavingThrows = entry.SavingThrows; AutomaticEngine = entry.AutomaticEngineName;
-            OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x) || ClericSettlementProfile.ValidEarnedGrant(state,x))
+            OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x) || ClericSettlementProfile.ValidEarnedGrant(state,x) || BishopProfile.ValidGrant(state,x))
                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
             UnsupportedCapabilities = state.ConnectedClericLongRest ? Array.AsReadOnly(new[] {
-                "Conviction spending and other generation", "Cleric Short Rest", "General party recovery",
+                state.BishopEntry!=null?"Other Conviction spending and generation":"Conviction spending and other generation", "Cleric Short Rest", "General party recovery",
                 "Positive or mixed Hit Dice recovery", "Consecrate terrain and other card triggers",
                 "General spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
                 "Starting equipment and wealth", "Periodic rider healing interactions" }) : Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? "Conviction balance, generation, payment and recovery" : "Conviction", "Class recovery",
@@ -111,7 +111,7 @@ namespace Decennium.Foundation.Laboratory
                 Repertoire = new ExpeditionRepertoireView(state, actor.Id);
             if(state.ConnectedClericCasting&&grant.Controls(actor.Id))Casting=TestOnlySharedWorldPolicy.ObserveCasting(state,actor.Id);
             if (state.ConnectedClericSettlement && actor.Id == ClericRpProfile.Actor && grant.Controls(actor.Id))
-                ClericSettlement = new ExpeditionClericSettlementView(state);
+                ClericSettlement = state.BishopEntry!=null?new ExpeditionBishopSettlementView(state):new ExpeditionClericSettlementView(state);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             Hp = life.Hp;
             MaximumHp = state.ConnectedFleshWarden || state.ConnectedClericLongRest ? ActorLifeRules.ReadForResolution(state, life).MaximumHp : life.MaximumHp;
@@ -501,7 +501,7 @@ namespace Decennium.Foundation.Laboratory
                 if (grant == null)
                     return new ExpeditionSeatView(position, false, false, "", "", "", Array.Empty<ExpeditionOwnActor>(),
                         Array.Empty<ExpeditionOwnedItem>(), Array.Empty<ExpeditionWorkStatus>(), Array.Empty<CommandKind>(),
-                        NoKnownTargets, 0, profile:state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
+                        NoKnownTargets, 0, profile:state.BishopEntry!=null?"TEST_ONLY.bishop-entry-v1":state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
                 string acting = ActingActor(state, out var decision, out string decisionId);
                 string ownedActing = grant.Controls(acting) ? acting : "";
                 string ownedDecision = ownedActing != "" ? decisionId : "";
@@ -551,8 +551,10 @@ namespace Decennium.Foundation.Laboratory
                 if (player && state.ConnectedClericSettlement) {
                     commands = commands.Append(CommandKind.AwardCharacterMilestone).Append(CommandKind.AdvanceCharacterLevel);
                     var selected = targets.ToDictionary(x => x.Key,x => x.Value);
-                    selected.Add(CommandKind.AwardCharacterMilestone,state.ClericMilestone.MilestoneId);
-                    selected.Add(CommandKind.AdvanceCharacterLevel,state.ClericMilestone.MilestoneId);
+                    string milestone=state.BishopEntry!=null&&state.ClericInvocationPath!=null?BishopProfile.Milestone:state.ClericMilestone.MilestoneId;
+                    selected.Add(CommandKind.AwardCharacterMilestone,milestone);
+                    selected.Add(CommandKind.AdvanceCharacterLevel,milestone);
+                    if(state.BishopEntry!=null){commands=commands.Append(CommandKind.UseDivineInvocation);selected.Add(CommandKind.UseDivineInvocation,"");}
                     targets = new ReadOnlyDictionary<CommandKind,string>(selected);
                 }
                 if (player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor)) {
@@ -579,7 +581,7 @@ namespace Decennium.Foundation.Laboratory
                     player && state.ConnectedShortRest && grant.Controls(ShortRestBerth.Actor) ? new ExpeditionShortRestView(state) : null,
                     player && state.ConnectedFleshWarden && grant.Controls(FleshWardenProfile.Actor) ? new ExpeditionMutationView(state) : null,
                     player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor) ? new ExpeditionClericLongRestView(state,grant) : null,
-                    state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
+                    state.BishopEntry!=null?"TEST_ONLY.bishop-entry-v1":state.PostRecoveryEncounter!=null?"TEST_ONLY.post-recovery-encounter-v1":null);
             }
         }
 

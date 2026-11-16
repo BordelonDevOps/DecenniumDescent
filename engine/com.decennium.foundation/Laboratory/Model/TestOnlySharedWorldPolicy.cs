@@ -243,6 +243,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeClericCasting(s);
             InitializeClericLongRest(s);
             InitializePostRecoverySource(s);
+            InitializeBishopEntry(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -581,6 +582,7 @@ namespace Decennium.Foundation.Laboratory
                 WorldTraversalRecord charterArrival = null;
                 WorldTraversalRecord laterArrival = null;
                 WorldTraversalRecord postRecoveryArrival = null;
+                WorldTraversalRecord bishopDeparture = null;
                 WorldTraversalRecord reinforcementArrival = null;
                 WorldTraversalRecord reengagementArrival = null;
                 RuleQuantity reengagementDistance = default;
@@ -620,6 +622,7 @@ namespace Decennium.Foundation.Laboratory
                         CreditCharterMovement(s,edge,elapsed);
                     }
                     if (progress == new RuleQuantity(5)) {
+                        if (BishopDepartureEdge(edge)) bishopDeparture = edge;
                         if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
                         if (IsLaterApproach(s, edge)) laterArrival = edge;
                         if (IsPostRecoveryApproach(s, edge)) postRecoveryArrival = edge;
@@ -801,6 +804,7 @@ namespace Decennium.Foundation.Laboratory
                 if (FinishOrdinaryObservationAtAdvanceBoundary(s, initiating)) {
                     string restObservationFailure=ProcessClericLongRestBoundary(s,initiating);
                     if(restObservationFailure!=null)return restObservationFailure;
+                    CompleteBishopDeparture(s,initiating,bishopDeparture);
                     if (connectedCombat != null) {
                         ObserveCalendar(s);
                         ExpireReadyActionsAtStart(s, initiating);
@@ -810,6 +814,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileShortRest(s, initiating);
                 string longRestFailure=ProcessClericLongRestBoundary(s,initiating);
                 if(longRestFailure!=null)return longRestFailure;
+                CompleteBishopDeparture(s,initiating,bishopDeparture);
                 if(ManufacturingChoicePending(s)||!legacyStrainRecoverySemantics&&HasPendingRecoveryOffer(s)){
                     TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",s.SchemaVersion<Snapshot.ExpeditionRouteSchema,
                         s.SchemaVersion>=Snapshot.ExpeditionRouteSchema);
@@ -853,6 +858,7 @@ namespace Decennium.Foundation.Laboratory
                 return assessTactical?AssessCastingUtility(s,c):ResolveCastingUtility(s,c);
             if (ClericRepertoireProfile.IsCommand(c.Kind)) return ClericRepertoireProfile.CommandFailure(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
+            if (c.Kind == CommandKind.UseDivineInvocation) return ResolveDivineInvocation(s,c);
             if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
             if (c.Kind == CommandKind.UseIntimidatingPresence) return assessTactical
                 ? AssessIntimidatingPresence(s, c) : ResolveIntimidatingPresence(s, c);
@@ -1044,6 +1050,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 var edge = AddOrdinaryWorldTraversal(s, c, facts, c.Target == "run");
                 AttachCharterWorldStep(s,c,edge,facts.CharterDeparture);
+                RecordBishopDepartureStart(s,c,edge);
                 SyncExpeditionAssignments(s,c.Actor); return null;
             }
             if (c.Kind == CommandKind.SuspendWorldStep || c.Kind == CommandKind.ResumeWorldStep) {

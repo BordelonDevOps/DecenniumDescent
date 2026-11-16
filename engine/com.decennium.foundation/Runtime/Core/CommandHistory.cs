@@ -39,6 +39,12 @@ namespace Decennium.Foundation
             HealingRiteRequest healingRite=null;
             SpellCastRequest spellCast=null;
             SanctuaryResponseRequest sanctuaryResponse=null;
+            DivineInvocationRequest divineInvocation=null;
+            if(p.Length==10&&p[6]=="divine-invocation-v1") {
+                if(kind!=CommandKind.UseDivineInvocation)throw new ArgumentException("Invalid Invocation receipt.");
+                divineInvocation=new DivineInvocationRequest(p[7].Split(','),p[8],(RadianceCurePreference)Int(p[9]));
+            }
+            if(kind==CommandKind.UseDivineInvocation&&divineInvocation==null)throw new ArgumentException("Missing Invocation selection.");
             OverwatchRider rider=OverwatchRider.None;
             if (guidance != null && kind != CommandKind.Hide && kind != CommandKind.Search && kind != CommandKind.StabilizeCompanion)
                 throw new ArgumentException("Guidance receipt has no admitted check consumer.");
@@ -151,7 +157,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Intimidating Presence requires its immutable target selection.");
             if (kind == CommandKind.RespondSanctuary && sanctuaryResponse == null)
                 throw new ArgumentException("Sanctuary response requires its immutable selection.");
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite,spellCast,guidance,sanctuaryResponse);
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite,spellCast,guidance,sanctuaryResponse,divineInvocation);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

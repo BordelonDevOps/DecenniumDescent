@@ -194,7 +194,8 @@ namespace Decennium.Foundation
                 || owners.Any(owner=>state.CharacterFeatureGrants.Count(x => x.ActorId==owner && ValidFixtureGrant(state, x)) != 1)
                 || state.Characters.Single(x => x.ActorId == Actor).Levels.Count(x => x.ClassName == "Warrior") != 3
                 || state.Conditions.Any(x => x.PolicyId != ConditionJournal.RelationshipPolicyId)
-                || state.AbilityRecharges.Length > owners.Length || state.FrightenedUses.Length > 128
+                || state.AbilityRecharges.Count(x=>x.AbilityId==SourceId) > owners.Length
+                || state.AbilityRecharges.Any(x=>x.AbilityId!=SourceId&&(state.BishopEntry==null||x.AbilityId!=BishopProfile.Invocation)) || state.FrightenedUses.Length > 128
                 || state.FrightenedSaves.Length > 768 || state.FrightenedTimings.Length > 384)
                 throw new ArgumentException("Invalid bounded Frightened access or history.");
             if (state.FrightenedUses.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != state.FrightenedUses.Length
@@ -202,8 +203,8 @@ namespace Decennium.Foundation
                 || state.FrightenedTimings.Select(x => x.ApplicationId).Distinct(StringComparer.Ordinal).Count() != state.FrightenedTimings.Length
                 || state.FrightenedSaves.Select(x => x.UseId + "|" + x.TargetId + "|" + x.Repeat).Distinct(StringComparer.Ordinal).Count() != state.FrightenedSaves.Length)
                 throw new ArgumentException("Duplicate Frightened history identity.");
-            if (state.AbilityRecharges.Length != state.FrightenedUses.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()
-                || state.AbilityRecharges.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()!=state.AbilityRecharges.Length
+            if (state.AbilityRecharges.Count(x=>x.AbilityId==SourceId) != state.FrightenedUses.Select(x=>x.ActorId).Distinct(StringComparer.Ordinal).Count()
+                || state.AbilityRecharges.Select(x=>x.ActorId+"|"+x.AbilityId).Distinct(StringComparer.Ordinal).Count()!=state.AbilityRecharges.Length
                 || !state.FrightenedUses.Select(x => x.Revision).SequenceEqual(state.FrightenedUses.Select(x => x.Revision).OrderBy(x => x)))
                 throw new ArgumentException("Missing recharge or unordered Frightened uses.");
             var lastUses = new System.Collections.Generic.Dictionary<string,FrightenedUseRecord>(StringComparer.Ordinal);
@@ -289,7 +290,7 @@ namespace Decennium.Foundation
                     && !ClericSettlementProfile.QualifiesCure(state,journal.Target,x)))
                     throw new ArgumentException("Frightened cure has no admitted gameplay producer.");
             }
-            foreach (var recharge in state.AbilityRecharges) {
+            foreach (var recharge in state.AbilityRecharges.Where(x=>x.AbilityId==SourceId)) {
                 lastUses.TryGetValue(recharge.ActorId,out var previousUse);
                 var epoch = WorldTiming.FindEpoch(state, recharge.EpochId);
                 if (!owners.Contains(recharge.ActorId) || recharge.AbilityId != SourceId || recharge.Remaining > 3 || epoch == null

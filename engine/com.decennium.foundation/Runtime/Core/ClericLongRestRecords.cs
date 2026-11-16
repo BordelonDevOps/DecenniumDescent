@@ -116,7 +116,7 @@ namespace Decennium.Foundation
             long healingPotential, long hpAfter, long temporaryHpBefore, long temporaryHpAfter,
             int wounds, int expendedHitDice, int hitDiceAllowance, int hitDiceRecovered,
             int rpBefore, int rpMaximum, int rpAfter, int? convictionBefore, int? convictionAfter,
-            int dissonanceBefore, int dissonanceAfter, string lastSpellId, int refrain, long lastCastRevision)
+            int dissonanceBefore, int dissonanceAfter, string lastSpellId, int refrain, long lastCastRevision, bool bishop = false)
         {
             bool eligible = benefit == ClericLongRestBenefit.Eligible;
             if (!Validation.ValidId(restId) || !Validation.ValidId(commandId) || revision < 1 || at < default(RuleTime)
@@ -128,9 +128,9 @@ namespace Decennium.Foundation
                 || healingRequested < 0 || healingPotential < 0 || healingPotential > healingRequested
                 || hpAfter - hpBefore > healingPotential || temporaryHpBefore < 0 || temporaryHpAfter < 0
                 || temporaryHpAfter > temporaryHpBefore || wounds < 0 || wounds > 3
-                || expendedHitDice < 0 || expendedHitDice > 2 || hitDiceAllowance < 0 || hitDiceRecovered < 0
+                || expendedHitDice < 0 || expendedHitDice > (bishop ? 3 : 2) || hitDiceAllowance < 0 || hitDiceRecovered < 0
                 || hitDiceRecovered > hitDiceAllowance || hitDiceRecovered > expendedHitDice
-                || rpMaximum != 4 || rpBefore < 0 || rpBefore > rpMaximum || rpAfter < rpBefore || rpAfter > rpMaximum
+                || (rpMaximum != 4 && (!bishop || rpMaximum != 7)) || rpBefore < 0 || rpBefore > rpMaximum || rpAfter < rpBefore || rpAfter > rpMaximum
                 || convictionBefore < 0 || convictionBefore > 5 || convictionAfter < 0 || convictionAfter > 5
                 || dissonanceBefore < 0 || dissonanceAfter < 0 || dissonanceAfter > dissonanceBefore
                 || lastSpellId == null || lastSpellId != "" && !Validation.ValidId(lastSpellId)

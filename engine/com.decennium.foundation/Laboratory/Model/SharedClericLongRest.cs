@@ -197,11 +197,11 @@ namespace Decennium.Foundation.Laboratory
             int? convictionBefore = s.ConvictionBalance?.Current;
             int? convictionAfter = eligible ? s.ConvictionCapacity.Maximum : convictionBefore;
             var settled = new ClericLongRestSettlementRecord(rest.Id,command.Id,s.Revision+1,s.RuleClock,status,
-                benefit?.Id ?? "",prior?.BeneficialRestId ?? "",s.ConvictionCapacity.PoolAcquiredRevision,
+                benefit?.Id ?? "",prior?.BeneficialRestId ?? "",BishopProfile.CapacityRevisionBefore(s,s.Revision+1),
                 life.Hp,life.MaximumHp,requested,potential,after.Hp,life.TemporaryHp,after.TemporaryHp,
                 life.Wounds.Count,0,eligible ? ClericLongRestProfile.HitDiceAllowance(0,life.Wounds.Count) : 0,0,
                 pool.Current,pool.Maximum,eligible ? pool.Maximum : pool.Current,convictionBefore,convictionAfter,
-                casting.Dissonance,eligible ? 0 : casting.Dissonance,casting.LastSpellId,casting.Refrain,casting.LastCastRevision);
+                casting.Dissonance,eligible ? 0 : casting.Dissonance,casting.LastSpellId,casting.Refrain,casting.LastCastRevision,s.BishopEntry!=null);
             TestOnlyClubAttackPolicy.ApplyLife(s,before,after);
             if (eligible) {
                 s.ResonancePools = s.ResonancePools.Select(x => x.ActorId == rest.ActorId

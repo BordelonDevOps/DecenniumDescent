@@ -287,7 +287,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
-                var result=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,target),total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
+                var result=AuraOfFaithRules.Damage(s,target,attackId,total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
                     critical:critical,melee:true,knockout:(KnockoutInstruction)request.Knockout);
                 damage=DamageRecord(dice,total,words,next,result);next=result.NextRandomState;pending=result.Pending!=null;
                 if(pending&&s.Receipts.Length>=511)return "ContinuationCapacityReached";
@@ -326,8 +326,8 @@ namespace Decennium.Foundation.Laboratory
             int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON")
                 +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
-            var prior=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,before),d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
-                critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible);
+            var prior=AuraOfFaithRules.Damage(s,before,pending.Id,d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,
+                critical:pending.Attack.Critical,melee:true,knockout:KnockoutInstruction.AskIfEligible,reconstructPending:true);
             if(prior.Pending==null||!d.SameAs(DamageRecord(d.Dice.ToArray(),d.Total,d.DiceWords,d.EffectsSeed,prior))||s.RandomState!=prior.NextRandomState)return "InvalidPendingKnockout";
             var result=prior.Pending.Complete(r.Choice);s.RandomState=result.NextRandomState;ApplyLife(s,before,result.Outcome.State);
             var resolved=new MeleeAttackRecord(pending.Id,pending.Revision,s.Revision+1,pending.TurnOrdinal,pending.AttackerId,pending.TargetId,pending.WeaponId,pending.At,

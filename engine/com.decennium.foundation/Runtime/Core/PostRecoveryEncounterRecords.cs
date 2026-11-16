@@ -147,7 +147,7 @@ namespace Decennium.Foundation
         public const string FingerprintPrefix = "TEST_ONLY.post-recovery-v1-";
         public const byte Marker = 16;
         public const string Approval = "cb561b81-6fb9-5530-8c08-7a4233e8be12";
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || BishopProfile.SelectedFingerprint(value));
         public static bool Active(Snapshot state) => state.PostRecoveryEncounter?.Admission != null
             && state.Encounter?.Id == PostRecoveryEncounterDefinition.Encounter;
         public static bool OwnsCurrent(Snapshot state, string actor) => state.PostRecoveryEncounter?.Admission != null

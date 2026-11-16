@@ -84,6 +84,7 @@ namespace Decennium.Foundation.Laboratory
             ||clericMilestoneDeclaration!=null&&kind==CommandKind.UseHealingRite
             ||clericRepertoireSelection!=null&&ClericRepertoireProfile.IsCommand(kind)
             ||connectedFrightened&&kind==CommandKind.UseIntimidatingPresence
+            ||bishopDeclaration!=null&&kind==CommandKind.UseDivineInvocation
             ||havenAppraisalProfile!=null&&IsHavenAppraisalCommand(kind)
             ||havenSaleProfile!=null&&IsHavenSaleCommand(kind)
             ||expeditionBillProfile!=null&&IsExpeditionBillCommand(kind)
@@ -586,12 +587,14 @@ namespace Decennium.Foundation.Laboratory
                 var character=CharacterRuleFacts.ForActor(s,targetId);
                 int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX")
                     +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
+                int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,targetId);modifier=AuraOfFaithRules.Modifier(aura,basis);
                 uint saveBefore=s.RandomState,saveAfter=saveBefore;long saveWords=0;int natural=0;long total=0;bool success=false;
                 bool automaticFailure=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().AutomaticStrengthDexterityFailure;
                 if(!automaticFailure) {
                     var save=PlaytestDice.RollD20(s.RandomState,TestOnlyClubAttackPolicy.DodgeEffective(s,targetId)?1:0);natural=save.Natural;saveAfter=save.NextRandomState;saveWords=save.WordsConsumed;
                     var rolled=PlaytestRolls.SavingThrow(natural,modifier,facts.SaveDc);total=rolled.Total;success=rolled.Success;s.RandomState=saveAfter;
                 }
+                AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.SuppressionFire,c.Id,basis,facts.SaveDc,natural,automaticFailure,success,saveBefore,saveAfter,saveWords);
                 long targetDamage=success?sharedDamage/2:sharedDamage;
                 long afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,targetId,targetDamage);
                 if(TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().Has(ConditionKind.Petrified))
@@ -600,7 +603,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON")
                     +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
-                var rolledDamage=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),afterDefense,s.RuleClock,lifeBefore,
+                var rolledDamage=AuraOfFaithRules.Damage(s,life,c.Id,afterDefense,s.RuleClock,lifeBefore,
                     constitutionSaveModifier:constitutionSave,critical:false,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 s.RandomState=rolledDamage.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,rolledDamage.Outcome.State);
                 results.Add(new SuppressionFireTargetResult(targetId,actor.X,actor.Y,natural,modifier,total,success,targetDamage,afterDefense,
@@ -799,7 +802,7 @@ namespace Decennium.Foundation.Laboratory
                 int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
-                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),afterDefense,s.RuleClock,effectsSeed,
+                rolled=AuraOfFaithRules.Damage(s,life,c.Id,afterDefense,s.RuleClock,effectsSeed,
                     constitutionSaveModifier:constitutionSave,critical:shot.Attack.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
             } else {dice=Array.Empty<int>();}

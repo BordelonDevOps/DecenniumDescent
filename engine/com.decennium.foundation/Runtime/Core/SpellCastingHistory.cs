@@ -43,12 +43,12 @@ namespace Decennium.Foundation
             long stanceRevision, bool focusedDcElected, string focusItemId, bool focusHeld, int availableHands,
             bool willingTarget, SpellTurnIdentity turn, RuleTime at, int rpBefore, int baseRp, int surcharge, int rpAfter,
             int dissonanceBefore, int dissonanceAfter, int appliedRefrain, string effectId, int stableRecoveryD4,
-            uint randomBefore, uint randomAfter, long wordsConsumed)
+            uint randomBefore, uint randomAfter, long wordsConsumed, bool bishop = false)
         {
             var access = SpellSourceCatalog.Get(spellId)?.AccessFor("Cleric");
             if (!Validation.ValidId(commandId) || revision < 1 || !Validation.ValidId(actorId) || !Validation.ValidId(targetId)
-                || !SpellCastingProfile.IsAdmittedSpell(spellId) || access == null || knownAcquiredRevision < 0 || knownAcquiredRevision >= revision
-                || classLevel < access.MinimumClassLevel || classLevel > 2 || rank != access.Rank || proficiency < 0
+                || !SpellCastingProfile.IsAdmittedSpell(spellId,bishop) || access == null || knownAcquiredRevision < 0 || knownAcquiredRevision >= revision
+                || classLevel < access.MinimumClassLevel || classLevel > (bishop?3:2) || rank != access.Rank || proficiency < 0
                 || spellDc != checked(8 + proficiency + castingModifier + (focusedDcElected ? 1 : 0)) || stanceRevision < 0
                 || focusedDcElected && (spellId != "sanctuary" || stanceRevision == 0)
                 || focusItemId == null || focusItemId != "" && !Validation.ValidId(focusItemId)

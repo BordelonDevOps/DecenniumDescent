@@ -63,6 +63,8 @@ namespace Decennium.Foundation
             }
             if(s.Receipts.Count(x=>CommandHistory.Read(x).Kind==CommandKind.CastKnownSpell)!=s.SpellCasts.Length)
                 throw new ArgumentException("Casting receipts differ from settled casts.");
+            if(s.BishopEntry==null&&(s.SpellCasts.Any(x=>x.ClassLevel>2||x.SpellId==BishopProfile.Dispel)
+                ||s.SpellEffects.Any(x=>x.EndReason==SpellEffectEndReason.Dispelled)))throw new ArgumentException("Bishop casting requires its explicit profile.");
             foreach(var effect in s.SpellEffects) {
                 var cast=s.SpellCasts.SingleOrDefault(x=>x.CommandId==effect.CastId);
                 bool concentration=effect.SpellId=="sanctuary" || effect.SpellId=="detect-magic";
@@ -96,7 +98,7 @@ namespace Decennium.Foundation
             foreach(var activity in s.CastingActivities) {
                 var command=Receipt(s,activity.CommandId,activity.Revision);
                 var kind=activity.Kind==CastingActivityKind.Spell?CommandKind.CastKnownSpell
-                    :activity.Kind==CastingActivityKind.MagicalClassAbility?CommandKind.UseHealingRite
+                    :activity.Kind==CastingActivityKind.MagicalClassAbility?(command.Kind==CommandKind.UseDivineInvocation&&s.BishopEntry!=null?CommandKind.UseDivineInvocation:CommandKind.UseHealingRite)
                     :activity.Kind==CastingActivityKind.DetectFocus?CommandKind.FocusDetectedAura:CommandKind.GroundCastingStrain;
                 if(command.Kind!=kind || command.Actor!=activity.Turn.ActorId || activity.Turn.ActorId!=ClericRpProfile.Actor
                     || activity.At>s.RuleClock || !ValidTurn(s,activity.Turn,activity.At,true))throw new ArgumentException("Unattributed magical activity.");
@@ -210,9 +212,10 @@ namespace Decennium.Foundation
         private static void ValidateStrain(Snapshot s)
         {
             var current=new CastingStrainRecord(ClericRpProfile.Actor);
-            var events=s.SpellCasts.Select(x=>(at:x.At,revision:x.Revision,cast:x,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null))
-                .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null)))
-                .Concat(s.ClericLongRestSettlements.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:(CastingTurnEndRecord)null,rest:x)))
+            var events=s.SpellCasts.Select(x=>(at:x.At,revision:x.Revision,cast:x,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null))
+                .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null)))
+                .Concat(s.ClericLongRestSettlements.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:(CastingTurnEndRecord)null,rest:x,vent:(DivineInvocationRecord)null)))
+                .Concat(BishopProfile.Invocations(s).Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null,vent:x)))
                 .OrderBy(x=>x.at).ThenBy(x=>x.revision).ThenBy(x=>x.rest==null?0:1).ToArray();
             foreach(var e in events) {
                 if(e.cast!=null) {
@@ -220,8 +223,12 @@ namespace Decennium.Foundation
                     if(cast.DissonanceBefore!=current.Dissonance || cast.Rank>0 && current.RankedBlocked(cast.Proficiency,cast.CastingModifier)
                         || cast.Surcharge!=(cast.Rank==0?0:current.RankedSurcharge(cast.Proficiency,cast.CastingModifier)))
                         throw new ArgumentException("Invalid historical spell strain cost.");
-                    current=current.BeginAdmittedCast(cast.SpellId,cast.Rank,cast.Revision);
+                    current=current.BeginAdmittedCast(cast.SpellId,cast.Rank,cast.Revision,s.BishopEntry!=null);
                     if(current.Dissonance!=cast.DissonanceAfter || current.Refrain!=cast.AppliedRefrain)throw new ArgumentException("Invalid Refrain history.");
+                } else if(e.vent!=null) {
+                    if(e.vent.DissonanceBefore!=current.Dissonance)throw new ArgumentException("Invalid pre-Invocation Dissonance.");
+                    current=current.ReduceAtSettledEnd(1);
+                    if(e.vent.DissonanceAfter!=current.Dissonance)throw new ArgumentException("Invalid protected Conviction vent.");
                 } else if(e.rest!=null) {
                     var rest=e.rest;
                     if(rest.DissonanceBefore!=current.Dissonance || rest.LastSpellId!=current.LastSpellId

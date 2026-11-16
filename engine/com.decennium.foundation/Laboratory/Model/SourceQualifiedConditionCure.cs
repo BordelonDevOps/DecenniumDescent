@@ -41,6 +41,15 @@ namespace Decennium.Foundation.Laboratory
                 command.Actor,command.Target,RadianceRules.TargetStamp(staged,command.Target),new[] {kind},true);
         }
 
+        internal static ConditionCureInvocation ForDivineInvocation(Snapshot staged,Command command,DivineInvocationRecord use)
+        {
+            DivineInvocationRules.ValidateCureTrigger(staged,command,use);
+            var kind=command.DivineInvocation.CurePreference==RadianceCurePreference.Frightened?ConditionKind.Frightened:ConditionKind.Poisoned;
+            string target=command.DivineInvocation.CureTargetId;
+            return new ConditionCureInvocation(command.Id+".invocation",BishopProfile.Invocation,ClericRpProfile.SourceRevision,
+                command.Actor,target,RadianceRules.TargetStamp(staged,target),new[]{kind},true);
+        }
+
         // Explicit detached component authority. These facts cannot qualify a connected
         // source, and the current gameplay profile rejects any Frightened cure operation.
         internal static ConditionCureInvocation ForDetachedTest(string authority, string id, string source,

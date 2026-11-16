@@ -172,6 +172,10 @@ namespace Decennium.Foundation
                     writer.Write(PostRecoveryProfile.Marker);
                     PostRecoveryEncounterCodec.Write(writer, state.PostRecoveryEncounter);
                 }
+                if (state.BishopEntry != null) {
+                    writer.Write(BishopProfile.Marker);
+                    BishopEntryCodec.Write(writer,state.BishopEntry);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -213,6 +217,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedClericCastingSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConnectedClericLongRestSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.PostRecoveryEncounterSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.BishopEntrySchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -297,7 +302,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.ReadyActionSchema)ReadyActionCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteMappingWorkSchema)ExpeditionRouteMappingWorkCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteReconnaissanceSchema)ExpeditionRouteReconnaissanceCodec.Read(reader,s);
-                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema || wireSchema == Snapshot.PostRecoveryEncounterSchema);
+                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema));
                     if(schema >= Snapshot.ExpeditionPressureSchema)ExpeditionPressureCodec.Read(reader,s);
                     if(schema >= Snapshot.ExpeditionCampUseSchema)ExpeditionCampCodec.Read(reader,s);
                     if(schema >= Snapshot.TemporaryCampConstructionSchema)TemporaryCampConstructionCodec.Read(reader,s);
@@ -319,7 +324,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema || wireSchema == Snapshot.PostRecoveryEncounterSchema;
+                    s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema);
                     s.ConnectedClericCasting = s.ConnectedClericLongRest || wireSchema == Snapshot.ConnectedClericCastingSchema;
                     s.ConnectedClericSettlement = s.ConnectedClericCasting || wireSchema == Snapshot.ConnectedClericSettlementSchema;
                     s.ConnectedFrightened = s.ConnectedClericSettlement || wireSchema == Snapshot.ConnectedFrightenedSchema;
@@ -392,15 +397,19 @@ namespace Decennium.Foundation
                     }
                     if (s.ConnectedClericCasting) {
                         if (reader.ReadByte() != SpellCastingProfile.Marker) throw new InvalidDataException("Invalid casting marker.");
-                        SpellCastingCodec.Read(reader, s);
+                        SpellCastingCodec.Read(reader, s,wireSchema==Snapshot.BishopEntrySchema);
                     }
                     if (s.ConnectedClericLongRest) {
                         if (reader.ReadByte() != ClericLongRestProfile.Marker) throw new InvalidDataException("Invalid Long Rest marker.");
-                        ClericLongRestCodec.Read(reader, s);
+                        ClericLongRestCodec.Read(reader, s, wireSchema == Snapshot.BishopEntrySchema);
                     }
-                    if (wireSchema == Snapshot.PostRecoveryEncounterSchema) {
+                    if ((wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema)) {
                         if (reader.ReadByte() != PostRecoveryProfile.Marker) throw new InvalidDataException("Invalid post-recovery encounter marker.");
                         s.PostRecoveryEncounter = PostRecoveryEncounterCodec.Read(reader);
+                    }
+                    if (wireSchema == Snapshot.BishopEntrySchema) {
+                        if (reader.ReadByte() != BishopProfile.Marker) throw new InvalidDataException("Invalid Bishop marker.");
+                        s.BishopEntry = BishopEntryCodec.Read(reader);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

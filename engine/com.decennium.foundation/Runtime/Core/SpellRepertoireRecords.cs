@@ -127,18 +127,18 @@ namespace Decennium.Foundation
                 : state.ConnectedClericSettlement ? "EarnedSpellAcquisitionRequiresAdvancementTransaction" : "ClericEarnedAdvancementUnavailable";
         }
 
-        public static string AssessChoice(string spell, int actualClericLevel)
+        public static string AssessChoice(string spell, int actualClericLevel, bool bishop = false)
         {
-            if (actualClericLevel < 1 || actualClericLevel > 2) return "ClericRepertoireLevelUnsupported";
+            if (actualClericLevel < 1 || actualClericLevel > (bishop?3:2)) return "ClericRepertoireLevelUnsupported";
             // Retain the distinct source boundaries, without admitting these controls into the supported catalog.
             if (spell == "flare-spark") return "SpellClassAccessDenied";
-            if (spell == "dispel-magic-lesser") return "SpellClassLevelDenied";
+            if (spell == BishopProfile.Dispel && (!bishop || actualClericLevel<3)) return "SpellClassLevelDenied";
             if (spell == "light") return "SpellSourceAdmissionUnsupported";
             var definition = SpellSourceCatalog.Get(spell);
             if (definition == null) return "SpellSourceAdmissionUnsupported";
             var access = definition.AccessFor("Cleric");
             if (access == null) return "SpellClassAccessDenied";
-            return access.MinimumClassLevel > actualClericLevel || access.Rank > 1 ? "SpellClassLevelDenied" : null;
+            return access.MinimumClassLevel > actualClericLevel || access.Rank > (bishop?2:1) ? "SpellClassLevelDenied" : null;
         }
 
         public static string ValidateInitialChoices(IEnumerable<string> choices)
@@ -162,7 +162,7 @@ namespace Decennium.Foundation
             bool earned = state.ConnectedClericSettlement && state.ClericInvocationPath != null;
             var initial = state.KnownSpells.Where(x => x.Origin == SpellAcquisitionOrigin.InitialClassRepertoire).ToArray();
             if (!state.TestOnly || !state.ConnectedClericRp || state.SchemaVersion != Snapshot.SurpriseEntrySchema
-                || state.KnownSpells.Length != (earned ? 6 : 5) || initial.Length != 5 || ValidateInitialChoices(initial.Select(x => x.SpellId)) != null
+                || state.KnownSpells.Length != (BishopProfile.Earned(state) ? 7 : earned ? 6 : 5) || initial.Length != 5 || ValidateInitialChoices(initial.Select(x => x.SpellId)) != null
                 || state.InitialClassSelections.Count(x => ClericRpProfile.ValidInitialSelection(state, x)) != 1
                 || initial.Any(x => x.ActorId != ClericRpProfile.Actor || x.ClassName != "Cleric" || !x.MatchesSource()
                     || x.Origin != SpellAcquisitionOrigin.InitialClassRepertoire || x.ClassLevel != 1 || x.LevelOrdinal != 1
@@ -173,6 +173,13 @@ namespace Decennium.Foundation
                 && x.ClassLevel == 2 && x.LevelOrdinal == 2 && x.EntitlementId == EarnedEntitlement
                 && x.MilestoneId == state.ClericInvocationPath.MilestoneId && x.AcquiredRevision == state.ClericInvocationPath.AcquiredRevision) != 1)
                 throw new ArgumentException("Invalid earned Cleric repertoire provenance.");
+            if(BishopProfile.Earned(state)) {
+                var a=BishopProfile.Advancement(state);
+                if(state.KnownSpells.Count(x=>x.SpellId==BishopProfile.Dispel && x.ActorId==ClericRpProfile.Actor && x.ClassName=="Cleric"
+                    && x.MatchesSource() && x.Origin==SpellAcquisitionOrigin.EarnedClassLevel && x.ClassLevel==3 && x.LevelOrdinal==3
+                    && x.EntitlementId==BishopProfile.RepertoireEntitlement && x.MilestoneId==BishopProfile.Milestone && x.AcquiredRevision==a.Revision)!=1)
+                    throw new ArgumentException("Invalid earned Bishop repertoire provenance.");
+            }
         }
     }
 }

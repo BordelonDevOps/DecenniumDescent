@@ -56,11 +56,13 @@ namespace Decennium.Foundation.Laboratory
             var cast=s.SpellCasts.Single(x=>x.CommandId==ward.CastId);
             int modifier=checked(CharacterRuleFacts.ForActor(s,c.Actor).AbilityModifier(CharacterAbility.Wisdom)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Actor,"WIS")+ExpeditionStrainRules.Current(s,c.Actor).SavingThrowModifier);
+            int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,c.Actor);modifier=AuraOfFaithRules.Modifier(aura,basis);
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before);
             string saveId="spell.save."+(s.Revision+1).ToString(CultureInfo.InvariantCulture)+"."+s.SpellSaves.Length.ToString(CultureInfo.InvariantCulture);
             var save=new SpellSaveRecord(saveId,SpellSaveKind.SanctuaryWisdom,ward.Id,c.Actor,c.Id,s.Revision+1,s.RuleClock,turn,0,
                 cast.SpellDc,modifier,roll.First,roll.Second??0,roll.Natural,(long)roll.Natural+modifier>=cast.SpellDc,
                 before,roll.NextRandomState,roll.WordsConsumed);
+            AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.Sanctuary,saveId,basis,cast.SpellDc,roll.Natural,false,save.Success,before,roll.NextRandomState,roll.WordsConsumed);
             s.SpellSaves=s.SpellSaves.Append(save).ToArray();s.RandomState=roll.NextRandomState;
             if(save.Success)return null;
             bool reaction=c.Kind==CommandKind.RespondOpportunityAttack;

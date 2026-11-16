@@ -218,7 +218,7 @@ namespace Decennium.Foundation.Laboratory
                 int con=checked(CharacterRuleFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON")
                     +ExpeditionStrainRules.Current(s,offer.TargetId).SavingThrowModifier);
-                rolled=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,facts.TargetLife),afterDefense,s.RuleClock,next,
+                rolled=AuraOfFaithRules.Damage(s,facts.TargetLife,c.Id,afterDefense,s.RuleClock,next,
                     constitutionSaveModifier:con,critical:shot.Critical,melee:false,knockout:KnockoutInstruction.OrdinaryOutcome);
                 next=rolled.NextRandomState;
                 TestOnlyClubAttackPolicy.ApplyLife(s,facts.TargetLife,rolled.Outcome.State);
@@ -279,12 +279,15 @@ namespace Decennium.Foundation.Laboratory
                         +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"STR")
                         +overwatchExecution.AdditionalStrengthSaveModifier
                         +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
+                    int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,pending.TargetId);modifier=AuraOfFaithRules.Modifier(aura,basis);
+                    uint saveBefore=s.RandomState;
                     bool automaticFailure=AutomaticPushStrengthSaveFailure(s,pending.TargetId);
                     if(automaticFailure) {success=false;}
                     else {
                         var save=PlaytestDice.RollD20(s.RandomState);natural=save.Natural;randomAfter=save.NextRandomState;words=save.WordsConsumed;
                         var result=PlaytestRolls.SavingThrow(natural,modifier,dc);total=result.Total;success=result.Success;s.RandomState=randomAfter;
                     }
+                    AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.Push,c.Id,basis,dc,natural,automaticFailure,success,saveBefore,randomAfter,words);
                     if(!success) {
                         toX=target.X+directionX;toY=target.Y+directionY;
                         if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)

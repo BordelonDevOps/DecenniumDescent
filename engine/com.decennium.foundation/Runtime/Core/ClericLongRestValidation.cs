@@ -19,6 +19,7 @@ namespace Decennium.Foundation
             int balance = s.ResonancePools.Single(x => x.ActorId == ClericRpProfile.Actor).InitialFunding.Amount;
             var events = s.HealingRites.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false))
                 .Concat(s.SpellCasts.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))
+                .Concat(BishopProfile.Invocations(s).Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))
                 .Concat(s.ClericLongRestSettlements.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:true)))
                 .Where(x => x.revision < revision).OrderBy(x => x.revision).ToArray();
             if (events.Select(x => x.revision).Distinct().Count() != events.Length)
@@ -31,6 +32,16 @@ namespace Decennium.Foundation
             return balance;
         }
 
+        public static int? ConvictionBefore(Snapshot s,long revision)
+        {
+            int? balance=null;
+            var events=s.ClericLongRestSettlements.Select(x=>(revision:x.Revision,before:x.ConvictionBefore,after:x.ConvictionAfter))
+                .Concat(BishopProfile.Invocations(s).Select(x=>(revision:x.Revision,before:(int?)x.ConvictionBefore,after:(int?)x.ConvictionAfter)))
+                .Where(x=>x.revision<revision).OrderBy(x=>x.revision).ToArray();
+            if(events.Select(x=>x.revision).Distinct().Count()!=events.Length)throw new ArgumentException("Duplicate Conviction event.");
+            foreach(var e in events){if(e.before!=balance)throw new ArgumentException("Invalid ordered Conviction history.");balance=e.after;}
+            return balance;
+        }
         internal static void Validate(Snapshot s)
         {
             bool selected = SelectedFingerprint(s.ContentFingerprint);
@@ -89,7 +100,7 @@ namespace Decennium.Foundation
                 previousRevision = active ? rest.StartRevision : rest.EndRevision;
                 previousEnd = active ? rest.DueAt : rest.EndedAt.Value;
             }
-            int? conviction = null;
+            int? conviction = ConvictionBefore(s,s.Revision+1);
             ClericLongRestSettlementRecord previousBenefit = null;
             long lastSettlementRevision = 0;
             foreach (var x in s.ClericLongRestSettlements) {
@@ -98,9 +109,10 @@ namespace Decennium.Foundation
                 if (rest == null || rest.Outcome != ClericLongRestOutcome.Completed || rest.Benefit != x.Benefit
                     || rest.EndRevision != x.Revision || rest.EndCommandId != x.CommandId || rest.EndedAt != x.At
                     || x.Revision <= lastSettlementRevision || x.Revision > s.Revision || x.At > s.RuleClock
-                    || x.CapacityAcquiredRevision != s.ConvictionCapacity.PoolAcquiredRevision
+                    || x.CapacityAcquiredRevision != BishopProfile.CapacityRevisionBefore(s,x.Revision)
+                    || x.RpMaximum != BishopProfile.RpMaximumBefore(s,x.Revision)
                     || x.PreviousBeneficialRestId != (previousBenefit?.BeneficialRestId ?? "")
-                    || x.ConvictionBefore != conviction || x.RpBefore != RpBefore(s,x.Revision)
+                    || x.ConvictionBefore != ConvictionBefore(s,x.Revision) || x.RpBefore != RpBefore(s,x.Revision)
                     || x.ExpendedHitDice != 0 || x.HitDiceRecovered != 0)
                     throw new ArgumentException("Unattributed Long Rest resource settlement.");
                 var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(b => b.RestIntervalId == x.RestId);
@@ -109,7 +121,6 @@ namespace Decennium.Foundation
                         || benefit.CompletedAt != x.At
                     : benefit != null || x.Benefit == ClericLongRestBenefit.CadenceLimited && cadence)
                     throw new ArgumentException("Invalid Long Rest benefit cadence or source link.");
-                conviction = x.ConvictionAfter;
                 if (eligible) previousBenefit = x;
                 lastSettlementRevision = x.Revision;
             }
@@ -118,7 +129,7 @@ namespace Decennium.Foundation
             var firstFunding = s.ClericLongRestSettlements.FirstOrDefault(x => x.Benefit == ClericLongRestBenefit.Eligible);
             if (firstFunding == null ? s.ConvictionBalance != null : s.ConvictionBalance == null
                 || s.ConvictionBalance.FundingRestId != firstFunding.RestId || s.ConvictionBalance.FundingRevision != firstFunding.Revision
-                || s.ConvictionBalance.Current != conviction || conviction != 5)
+                || s.ConvictionBalance.Current != conviction || s.BishopEntry==null && conviction != 5)
                 throw new ArgumentException("Current Conviction has no actual first eligible rest funding.");
         }
     }

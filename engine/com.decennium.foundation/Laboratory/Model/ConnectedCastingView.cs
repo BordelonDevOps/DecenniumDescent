@@ -37,7 +37,7 @@ namespace Decennium.Foundation.Laboratory
         public RuleTime? ConcentrationExpiresAt { get; }
         public IReadOnlyList<ExpeditionGuidanceBenefitView> GuidanceBenefits { get; }
         public IReadOnlyList<ExpeditionMagicAuraView> Auras { get; }
-        public IReadOnlyList<string> UnsupportedCapabilities => Unsupported;
+        public IReadOnlyList<string> UnsupportedCapabilities { get; }
         internal static readonly IReadOnlyList<string> Unsupported=Array.AsReadOnly(new[]{
             "Other spells, classes, ranks, upcasting, spell preparation and replacement",
             "Casting before actual reinforcement or outside the owned regular Action",
@@ -48,8 +48,12 @@ namespace Decennium.Foundation.Laboratory
             "Dormant or item magic, anti-divination and school-protection producers",
             "Retune, meditation, long-rest RP recovery and spendable Conviction venting",
             "Production authority"});
+        internal static IReadOnlyList<string> UnsupportedFor(Snapshot state) => state.BishopEntry==null?Unsupported:
+            Array.AsReadOnly(Unsupported.Select(x=>x=="Retune, meditation, long-rest RP recovery and spendable Conviction venting"
+                ?"Retune, meditation and Conviction spending outside owned Divine Invocation":x).ToArray());
         internal ExpeditionCastingView(Snapshot state,string actor,IEnumerable<ExpeditionMagicAuraView> auras)
         {
+            UnsupportedCapabilities=UnsupportedFor(state);
             CastingAdapterSupported=actor==ClericRpProfile.Actor;
             var strain=state.CastingStrain.SingleOrDefault(x=>x.ActorId==actor);
             Dissonance=strain?.Dissonance;LastSpellId=strain?.LastSpellId??"";Refrain=strain?.Refrain;

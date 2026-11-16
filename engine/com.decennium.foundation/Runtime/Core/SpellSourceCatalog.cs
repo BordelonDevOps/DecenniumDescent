@@ -93,6 +93,6 @@ namespace Decennium.Foundation
                     new SpellSourcePlacement("Universal", 1, "Sense magical auras within 30 feet.")
                 })
         });
-        public static SpellSourceDefinition Get(string id) => Definitions.SingleOrDefault(x => x.Id == id);
+        public static SpellSourceDefinition Get(string id) => Definitions.SingleOrDefault(x => x.Id == id) ?? (id == BishopProfile.Dispel ? BishopProfile.DispelSource : null);
     }
 }

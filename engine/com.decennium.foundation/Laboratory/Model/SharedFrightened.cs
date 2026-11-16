@@ -127,6 +127,7 @@ namespace Decennium.Foundation.Laboratory
             int modifier = checked(CharacterRuleFacts.ForActor(state, target).AbilityModifier(CharacterAbility.Wisdom)
                 + CharacterAdvancementRules.SaveProficiencyBonus(state, target, "WIS")
                 + ExpeditionStrainRules.Current(state, target).SavingThrowModifier);
+            int basis=modifier;var aura=AuraOfFaithRules.Qualify(state,target);modifier=AuraOfFaithRules.Modifier(aura,basis);
             // The admitted WIS save has no automatic failure or advantage/disadvantage source.
             // Fear affects attacks and checks only; the ordinary shared RNG/save rules own this roll.
             uint before = state.RandomState;
@@ -135,7 +136,9 @@ namespace Decennium.Foundation.Laboratory
             bool prevented = !repeat && !success && TestOnlyClubAttackPolicy.ConditionsFor(state, target).ImmuneTo(ConditionKind.Frightened);
             if (!repeat) application = success || prevented ? "" : use.Id + "." + target;
             state.RandomState = roll.NextRandomState;
-            return new FrightenedSaveRecord(use.Id + ".save." + target + (repeat ? ".repeat" : ".initial"), use.Id,
+            string saveId=use.Id+".save."+target+(repeat?".repeat":".initial");
+            AuraOfFaithRules.RecordSave(state,aura,AuraSaveConsumer.Frightened,saveId,basis,use.Dc,roll.Natural,false,success,before,roll.NextRandomState,roll.WordsConsumed);
+            return new FrightenedSaveRecord(saveId, use.Id,
                 target, application, state.Revision + 1, state.RuleClock, repeat, use.Dc, modifier, roll.First,
                 roll.Second ?? 0, roll.Natural, success, prevented, before, roll.NextRandomState, roll.WordsConsumed);
         }

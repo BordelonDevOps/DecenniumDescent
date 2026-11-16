@@ -479,7 +479,7 @@ namespace Decennium.Foundation
                     ||g.Origin==CharacterFeatureGrantOrigin.TestOnlyFixtureEntitlement&&!FleshWardenProfile.ValidFixtureGrant(s,g)
                         &&!FrightenedProfile.ValidFixtureGrant(s,g)
                     ||g.Origin==CharacterFeatureGrantOrigin.SelectedCard&&(!s.CharacterMilestones.Any(m=>m.ActorId==g.ActorId&&m.MilestoneId==g.MilestoneId&&m.ConsumedRevision==g.GrantedRevision)
-                        ||!(g.ClassName=="Soldier"&&ValidSelectedGrant(s,g)||ClericSettlementProfile.ValidEarnedGrant(s,g))
+                        ||!(g.ClassName=="Soldier"&&ValidSelectedGrant(s,g)||ClericSettlementProfile.ValidEarnedGrant(s,g)||BishopProfile.ValidGrant(s,g))
                         ||s.SchemaVersion>=Snapshot.CharacterAdvancementHistorySchema&&!s.CharacterAdvancements.Any(a=>a.ActorId==g.ActorId
                             &&a.Revision==g.GrantedRevision&&a.ClassName==g.ClassName&&a.ClassLevel==g.ClassLevel&&a.SelectedFeatureIds.Contains(g.FeatureId))
                         ||g.ClassLevel> s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))
@@ -601,9 +601,10 @@ namespace Decennium.Foundation
                 var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderBy(x=>x.Revision).ToArray();
                 if(actor==null||events.Length==0)return false;
                 if(s.ConnectedClericSettlement&&actorId==ClericRpProfile.Actor) {
-                    if(events.Length!=1||!ClericSettlementProfile.ValidAdvancement(s,events[0])||actor.Levels.Count!=2
-                        ||actor.Levels[0].ClassName!="Cleric"||actor.Levels[0].BaseHp!=8
-                        ||actor.Levels[1].ClassName!="Cleric"||actor.Levels[1].BaseHp!=5
+                    if(events.Length!=(BishopProfile.Earned(s)?2:1)||!ClericSettlementProfile.ValidAdvancement(s,events[0])
+                        ||events[0].ClassLevel!=2||events.Length==2&&!BishopProfile.ValidAdvancement(s,events[1])
+                        ||actor.Levels.Count!=events.Length+1||actor.Levels.Any(x=>x.ClassName!="Cleric")
+                        ||actor.Levels[0].BaseHp!=8||actor.Levels.Skip(1).Any(x=>x.BaseHp!=5)
                         ||!actor.Abilities.SequenceEqual(new[]{10,10,10,10,14,10}))return false;
                     continue;
                 }

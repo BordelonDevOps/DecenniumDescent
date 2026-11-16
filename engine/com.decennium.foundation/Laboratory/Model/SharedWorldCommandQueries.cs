@@ -299,6 +299,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (var campBuildCommand in DiscoverTemporaryCampConstructionCommands(s, actor)) yield return campBuildCommand;
             foreach(var advancement in s.ConnectedClericSettlement&&actor==ClericRpProfile.Actor
                 ? DiscoverClericAdvancement(s,actor) : CharacterAdvancementRules.Discover(s,actor))yield return advancement;
+            foreach(var invocation in DiscoverDivineInvocation(s,actor))yield return invocation;
             var pending = s.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
             var routeTravel = routeTravelFixture == null ? null : OpenRouteTravel(s, actor);
             if (pending != null)
@@ -584,6 +585,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if (ClericRepertoireProfile.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, ClericRepertoireProfile.CommandFailure(s, c), s.Revision);
+            if (c.Kind == CommandKind.UseDivineInvocation) return QueryDivineInvocation(s,c);
             if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);
             if (c.Kind == CommandKind.UseIntimidatingPresence) return QueryIntimidatingPresence(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind))

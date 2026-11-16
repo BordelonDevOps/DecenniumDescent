@@ -245,19 +245,25 @@ namespace Decennium.Foundation.Laboratory
         }
         private static void RefreshNamedAbilityRecharge(Snapshot state, string actor, int globalStart)
         {
-            var before = state.AbilityRecharges.SingleOrDefault(x => x.ActorId == actor);
-            if (before == null) return;
+            var owned = state.AbilityRecharges.Where(x => x.ActorId == actor).ToArray();
+            if (owned.Length == 0) return;
             var epoch = WorldTiming.ForActor(state, actor);
             var phase = state.Reinforcement?.Admission?.Phase;
             long local = epoch.Id == phase?.Epoch.Id ? globalStart - (long)phase.FirstTurn : globalStart;
-            if (epoch.Id != before.EpochId || local < 0 || epoch.LatestStart(actor, local) != local)
+            if (local < 0 || epoch.LatestStart(actor, local) != local)
                 throw new InvalidOperationException("Named ability recharge has no matching owner start.");
-            if (local <= before.LastLocalStart) return;
-            long elapsed = (local - before.LastLocalStart) / epoch.Order.Count;
-            if (elapsed < 1) throw new InvalidOperationException("Named ability recharge cadence is inconsistent.");
-            int remaining = checked((int)Math.Max(0, before.Remaining - elapsed));
-            var after = new CharacterAbilityRechargeRecord(actor, before.AbilityId, epoch.Id, local, epoch.Start(local), remaining);
-            state.AbilityRecharges = state.AbilityRecharges.Select(x => x == before ? after : x).ToArray();
+            foreach(var before in owned) {
+                bool transfer=epoch.Id!=before.EpochId;
+                if(transfer && (state.BishopEntry==null||before.AbilityId!=BishopProfile.Invocation||!PostRecoveryProfile.IsEpoch(state,epoch.Id)))
+                    throw new InvalidOperationException("Named ability recharge has no matching epoch.");
+                if(!transfer && local<=before.LastLocalStart)continue;
+                // Admission itself gives no tick. The first actual owner Start in the new epoch does.
+                long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;
+                if(elapsed<1)throw new InvalidOperationException("Named ability recharge cadence is inconsistent.");
+                int remaining=checked((int)Math.Max(0,before.Remaining-elapsed));
+                var after=new CharacterAbilityRechargeRecord(actor,before.AbilityId,epoch.Id,local,epoch.Start(local),remaining);
+                state.AbilityRecharges=state.AbilityRecharges.Select(x=>x==before?after:x).ToArray();
+            }
         }
         internal static void MarkMoved(Snapshot s,string actor)
         {
@@ -515,7 +521,9 @@ namespace Decennium.Foundation.Laboratory
                 var events=s.CharacterAdvancements.Where(x=>x.ActorId==actorId).OrderBy(x=>x.Revision).ToArray();
                 if(actor==null||events.Length==0)return "InvalidAdvancementHistory";
                 if(s.ConnectedClericSettlement&&actorId==ClericRpProfile.Actor) {
-                    if(events.Length!=1||!ClericSettlementProfile.ValidAdvancement(s,events[0]))return "InvalidClericAdvancementHistory";
+                    if(events.Length!=(BishopProfile.Earned(s)?2:1)||!ClericSettlementProfile.ValidAdvancement(s,events[0])
+                        ||events[0].ClassLevel!=2||events.Length==2&&!BishopProfile.ValidAdvancement(s,events[1]))
+                        return "InvalidClericAdvancementHistory";
                     continue;
                 }
                 int[] scores={10,10,10,10,10,10};

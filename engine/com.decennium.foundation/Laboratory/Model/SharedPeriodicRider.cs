@@ -151,7 +151,7 @@ namespace Decennium.Foundation.Laboratory
                         int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                             +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON")
                             +ExpeditionStrainRules.Current(s,rider.TargetId).SavingThrowModifier);
-                        var result=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,target),damage,s.RuleClock,afterRandom,
+                        var result=AuraOfFaithRules.Damage(s,target,cause?.Id??rider.Id,damage,s.RuleClock,afterRandom,
                             constitutionSaveModifier:constitutionSave,melee:false);
                         s.RandomState=result.NextRandomState;afterRandom=s.RandomState;words=checked(words+result.WordsConsumed);
                         TestOnlyClubAttackPolicy.ApplyLife(s,target,result.Outcome.State);

@@ -47,7 +47,7 @@ namespace Decennium.Foundation
             || kind == CommandKind.EndSpellConcentration || kind == CommandKind.FocusDetectedAura || kind == CommandKind.RespondSanctuary;
         public static bool IsPhysicalCommand(CommandKind kind) => kind==CommandKind.StartIntake || kind==CommandKind.InterruptIntake
             || kind==CommandKind.PortionInventory || kind==CommandKind.HandleInventory || kind==CommandKind.StartWaterFill || kind==CommandKind.HandleVessel;
-        public static bool IsAdmittedSpell(string id) => id == "arcane-ward" || id == "guidance" || id == "spare-the-dying"
+        public static bool IsAdmittedSpell(string id, bool bishop = false) => bishop && id==BishopProfile.Dispel || id == "arcane-ward" || id == "guidance" || id == "spare-the-dying"
             || id == "sanctuary" || id == "purify-food-and-drink" || id == "detect-magic";
         // Pure disclosure rules. These facts are supplied by registered source/observation adapters,
         // never by a command. The current cohort owns no blocking or school-protection producer.

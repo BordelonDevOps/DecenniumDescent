@@ -53,6 +53,7 @@ namespace Decennium.Foundation.Laboratory
                 || c.ExpeditionAssignment != null || c.HarvestSelection != null || c.MiningSelection != null
                 || c.ProspectingExposure != null || c.RouteMappingWork != null || c.IntimidatingPresence != null || c.HealingRite != null)
                 return "InvalidAdvancementCommand";
+            if (c.Target == BishopProfile.Milestone) return AssessBishopAdvancement(s,c);
             if (c.Target != s.ClericMilestone.MilestoneId) return "UndeclaredMilestone";
             if (s.ClericObjective == null) return "MilestoneObjectiveIncomplete";
             if (c.Kind == CommandKind.AwardCharacterMilestone) {
@@ -108,6 +109,7 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveClericAdvancement(Snapshot s, Command c)
         {
             string failure = AssessClericAdvancement(s,c); if (failure != null) return failure;
+            if(c.Target==BishopProfile.Milestone){SettleBishopAdvancement(s,c);return null;}
             long revision = checked(s.Revision + 1);
             if (c.Kind == CommandKind.AwardCharacterMilestone) {
                 s.CharacterMilestones = s.CharacterMilestones.Append(new CharacterMilestoneRecord(c.Target,c.Actor,revision)).ToArray();
@@ -149,6 +151,7 @@ namespace Decennium.Foundation.Laboratory
                         ClericSettlementProfile.Radiance,ClericRepertoireProfile.FutureChoice))
                 : new Command(id,actor,s.Revision,CommandKind.AwardCharacterMilestone,s.ClericMilestone.MilestoneId);
             if (AssessClericAdvancement(s,command) == null) yield return command;
+            foreach(var option in DiscoverBishopAdvancement(s,actor))yield return option;
         }
     }
 }

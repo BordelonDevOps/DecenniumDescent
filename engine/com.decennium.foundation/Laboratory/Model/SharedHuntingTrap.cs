@@ -342,7 +342,7 @@ namespace Decennium.Foundation.Laboratory
             int con=checked(CharacterRuleFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
-            var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
+            var hurt=AuraOfFaithRules.Damage(s,life,cause?.Id??action.Id,damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
             s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
             words=checked(words+hurt.WordsConsumed);after=s.RandomState;
             SettleSpellDamage(s,target.Id,"",cause?.Id,damage,false);
@@ -446,12 +446,14 @@ namespace Decennium.Foundation.Laboratory
             var character=CharacterRuleFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"DEX")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
+            int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,target.Id);modifier=AuraOfFaithRules.Modifier(aura,basis);
             bool automatic=life.Hp==0||life.Dead||TestOnlyClubAttackPolicy.ConditionsFor(s,target.Id).View().AutomaticStrengthDexterityFailure;
             uint before=s.RandomState,after=before;long words=0;int natural=0;long total=0;bool success=false;
             if(!automatic) {
                 var save=PlaytestDice.RollD20(before,TestOnlyClubAttackPolicy.DodgeEffective(s,target.Id)?1:0);natural=save.Natural;after=save.NextRandomState;words=save.WordsConsumed;
                 var result=PlaytestRolls.SavingThrow(natural,modifier,13);total=result.Total;success=result.Success;s.RandomState=after;
             }
+            AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.HuntingTrap,cause?.Id??trigger.Id,basis,13,natural,automatic,success,before,after,words);
             int rolled=0;long applied=0;string tetherId="";
             if(!success) {
                 var d4=DiceStream.Draw(s.RandomState,4);rolled=d4.Value+1;s.RandomState=d4.NextState;words=checked(words+d4.WordsConsumed);
@@ -459,7 +461,7 @@ namespace Decennium.Foundation.Laboratory
                 int con=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                     +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
-                var hurt=PlaytestDamageDice.Resolve(ActorLifeRules.ReadForResolution(s,life),applied,s.RuleClock,s.RandomState,
+                var hurt=AuraOfFaithRules.Damage(s,life,cause?.Id??trigger.Id,applied,s.RuleClock,s.RandomState,
                     constitutionSaveModifier:con,melee:false);
                 s.RandomState=hurt.NextRandomState;TestOnlyClubAttackPolicy.ApplyLife(s,life,hurt.Outcome.State);
                 words=checked(words+hurt.WordsConsumed);

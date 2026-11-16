@@ -32,7 +32,7 @@ namespace Decennium.Foundation
             }
         }
 
-        internal static void Read(BinaryReader r, Snapshot s)
+        internal static void Read(BinaryReader r, Snapshot s, bool bishop = false)
         {
             s.ClericLongRests = new ClericLongRestRecord[SnapshotCodec.ReadCount(r,ClericLongRestProfile.MaxAttempts)];
             for (int i=0;i<s.ClericLongRests.Length;i++) {
@@ -55,7 +55,7 @@ namespace Decennium.Foundation
                 s.ClericLongRestSettlements[i]=new ClericLongRestSettlementRecord(rest,command,revision,at,benefit,beneficial,previous,
                     capacityRevision,hpBefore,maximum,requested,potential,hpAfter,temporaryBefore,temporaryAfter,wounds,
                     expended,allowance,recovered,rpBefore,rpMaximum,rpAfter,convictionBefore,convictionAfter,
-                    dissonanceBefore,dissonanceAfter,lastSpell,refrain,lastCast);
+                    dissonanceBefore,dissonanceAfter,lastSpell,refrain,lastCast,bishop);
             }
             if (SnapshotCodec.ReadBool(r)) s.ConvictionBalance=new ConvictionBalanceRecord(Text(r),r.ReadInt64(),r.ReadInt32());
         }

@@ -48,7 +48,7 @@ namespace Decennium.Foundation
             CompanionStabilizationCodec.Write(w,s.CompanionStabilizations);
         }
 
-        internal static void Read(BinaryReader r, Snapshot s)
+        internal static void Read(BinaryReader r, Snapshot s, bool bishop = false)
         {
             if(Text(r)!=SpellCastingProfile.ApprovalResponse || Text(r)!=SpellSourceCatalog.SourceRevision)
                 throw new InvalidDataException("Unsupported casting policy or source revision.");
@@ -59,7 +59,7 @@ namespace Decennium.Foundation
                     throw new InvalidDataException("Casting source binding differs from the retained procedure.");
                 return new SpellCastRecord(id,revision,actor,target,spell,r.ReadInt64(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),
                     r.ReadInt32(),r.ReadInt64(),Bool(r),Text(r),Bool(r),r.ReadInt32(),Bool(r),Turn(r),Time(r),r.ReadInt32(),r.ReadInt32(),
-                    r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),Text(r),r.ReadInt32(),r.ReadUInt32(),r.ReadUInt32(),r.ReadInt64());
+                    r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),r.ReadInt32(),Text(r),r.ReadInt32(),r.ReadUInt32(),r.ReadUInt32(),r.ReadInt64(),bishop);
             });
             s.CastingActivities=Rows(r,SpellCastingProfile.MaxActivities,() =>
                 new CastingActivityRecord(Text(r),r.ReadInt64(),Turn(r),Time(r),(CastingActivityKind)r.ReadInt32()));

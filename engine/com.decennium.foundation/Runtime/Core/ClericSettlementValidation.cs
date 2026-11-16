@@ -6,7 +6,7 @@ namespace Decennium.Foundation
     public static partial class ClericSettlementProfile
     {
         public static bool ValidAdvancement(Snapshot s, CharacterAdvancementRecord a)
-            => s.ConnectedClericSettlement && a.ActorId == ClericRpProfile.Actor && a.MilestoneId == ClericMilestoneDeclaration.FixedId
+            => BishopProfile.ValidAdvancement(s,a) || s.ConnectedClericSettlement && a.ActorId == ClericRpProfile.Actor && a.MilestoneId == ClericMilestoneDeclaration.FixedId
                 && a.ClassName == "Cleric" && a.ClassLevel == 2 && a.PreviousTotalLevel == 1 && a.NewTotalLevel == 2
                 && a.BaseHpGain == 5 && a.HitPointMethod == HitPointGainMethod.FixedAverage
                 && a.MaximumHpBefore == 8 && a.MaximumHpAfter == 13 && a.CurrentHpBefore <= 8
@@ -21,7 +21,7 @@ namespace Decennium.Foundation
 
         // Structural causal links are also reconstructed by the selected policy's strict command replay.
         public static bool QualifiesCure(Snapshot s, string target, ConditionOperation operation)
-            => s.ConnectedClericSettlement && operation.Kind == ConditionOperationKind.Cure
+            => BishopProfile.QualifiesInvocationCure(s,target,operation) || s.ConnectedClericSettlement && operation.Kind == ConditionOperationKind.Cure
                 && s.RadianceUses.Any(x => x.TargetId == target && x.CureOperationId == operation.Id
                     && x.At.Equals(operation.At) && x.CurePreference != RadianceCurePreference.None
                     && operation.Subject == x.CurePreference.ToString() && x.EndedApplicationIds.Count != 0);
@@ -33,7 +33,7 @@ namespace Decennium.Foundation
             => CuredBefore(s,timing,timing.FinalAt);
 
         private static bool CuredBefore(Snapshot s,FrightenedTimingRecord timing,ConditionStamp deadline)
-            => s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId
+            => BishopProfile.InvocationCuredBefore(s,timing,deadline) || s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId
                 && x.CurePreference == RadianceCurePreference.Frightened && x.At.CompareTo(deadline) < 0
                 && x.EndedApplicationIds.Contains(timing.ApplicationId)
                 && s.Conditions.Single(j => j.Target == timing.TargetId).Operations.Any(o => o.Id == x.CureOperationId && QualifiesCure(s,timing.TargetId,o)));
@@ -53,11 +53,16 @@ namespace Decennium.Foundation
                 || s.ClericMilestone == null || s.ConvictionCapacity == null)
                 throw new ArgumentException("Missing announced Cleric objective or capacity provenance.");
             var actor = s.Characters.Single(x => x.ActorId == ClericRpProfile.Actor);
-            var advances = s.CharacterAdvancements.Where(x => x.ActorId == actor.ActorId).ToArray();
-            var awards = s.CharacterMilestones.Where(x => x.ActorId == actor.ActorId).ToArray();
-            if (advances.Length > 1 || awards.Length > 1 || actor.Levels.Count != 1 + advances.Length
+            var allAdvances = s.CharacterAdvancements.Where(x => x.ActorId == actor.ActorId).ToArray();
+            var allAwards = s.CharacterMilestones.Where(x => x.ActorId == actor.ActorId).ToArray();
+            var advances = allAdvances.Where(x=>x.MilestoneId==ClericMilestoneDeclaration.FixedId).ToArray();
+            var awards = allAwards.Where(x=>x.MilestoneId==ClericMilestoneDeclaration.FixedId).ToArray();
+            if(allAdvances.Any(x=>x.MilestoneId!=ClericMilestoneDeclaration.FixedId && !BishopProfile.ValidAdvancement(s,x))
+                || allAwards.Any(x=>x.MilestoneId!=ClericMilestoneDeclaration.FixedId && (s.BishopEntry==null || x.MilestoneId!=BishopProfile.Milestone)))
+                throw new ArgumentException("Unsupported Cleric milestone history.");
+            if (advances.Length > 1 || awards.Length > 1 || actor.Levels.Count != 1 + allAdvances.Length
                 || actor.Levels.Any(x => x.ClassName != "Cleric") || actor.Levels[0].BaseHp != 8
-                || actor.Levels.Count == 2 && actor.Levels[1].BaseHp != 5
+                || actor.Levels.Skip(1).Any(x=>x.BaseHp!=5)
                 || (s.ClericInvocationPath != null) != (advances.Length == 1))
                 throw new ArgumentException("Invalid earned Cleric chronology.");
             var completion = s.ClericObjective;
@@ -98,7 +103,7 @@ namespace Decennium.Foundation
             } else if (s.ConvictionCapacity.PoolAcquiredRevision != 0 || s.RadianceUses.Length != 0
                 || awards.Any(x => x.ConsumedRevision != 0)) throw new ArgumentException("Premature Cleric settlement effects.");
             if (s.CharacterFeatureGrants.Any(x => x.ActorId == actor.ActorId && x.Origin != CharacterFeatureGrantOrigin.InitialClassSelection
-                && !ValidEarnedGrant(s,x))) throw new ArgumentException("Unsupported earned Cleric grant.");
+                && !ValidEarnedGrant(s,x) && !BishopProfile.ValidGrant(s,x))) throw new ArgumentException("Unsupported earned Cleric grant.");
             if (s.RadianceUses.Select(x => x.RiteCommandId).Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length
                 || s.RadianceUses.Select(x => x.ActorId + "|" + x.EpochId + "|" + x.LocalStart.ToString(System.Globalization.CultureInfo.InvariantCulture))
                     .Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length

@@ -105,7 +105,7 @@ namespace Decennium.Foundation.Laboratory
             string action=CastingActionFailure(s,c); if(action!=null)return action;
             string spell=c.SpellCast.SpellId;
             var character=s.Characters.Single(x=>x.ActorId==c.Actor); int level=character.Levels.Count(x=>x.ClassName=="Cleric");
-            string access=ClericRepertoireProfile.AssessChoice(spell,level); if(access!=null)return access;
+            string access=ClericRepertoireProfile.AssessChoice(spell,level,BishopProfile.Earned(s)); if(access!=null)return access;
             var known=s.KnownSpells.SingleOrDefault(x=>x.ActorId==c.Actor && x.SpellId==spell && x.ClassName=="Cleric");
             if(known==null || known.AcquiredRevision>s.Revision || !known.MatchesSource())return "SpellNotKnown";
             // Every admitted spell has V. Use the shared active condition projection;
@@ -124,7 +124,9 @@ namespace Decennium.Foundation.Laboratory
                 || s.SpellCasts.Any(x=>x.FocusedDcElected&&x.StanceRevision==stance.Revision)))return "FocusedSpellBenefitUnavailable";
             bool willing=spell=="arcane-ward" || spell=="guidance" || spell=="sanctuary";
             if(c.SpellCast.WillingTarget!=willing)return "SpellWillingTargetSelectionRequired";
-            if(spell=="purify-food-and-drink") {
+            if(spell==BishopProfile.Dispel) {
+                string dispel=BishopDispelFailure(s,c,out _);if(dispel!=null)return dispel;
+            } else if(spell=="purify-food-and-drink") {
                 string batch=PurifyBatchFailure(s,c); if(batch!=null)return batch;
             } else {
                 var target=s.Actors.SingleOrDefault(x=>x.Id==c.Target);
@@ -205,7 +207,7 @@ namespace Decennium.Foundation.Laboratory
             string failure=AssessSpellCast(s,c); if(failure!=null)return failure;
             string spell=c.SpellCast.SpellId; long revision=s.Revision+1; var turn=CurrentCastingTurn(s,c.Actor);
             var source=SpellSourceCatalog.Get(spell).AccessFor("Cleric"); var facts=CharacterRuleFacts.ForActor(s,c.Actor);
-            var prior=s.CastingStrain.Single(x=>x.ActorId==c.Actor); var next=prior.BeginAdmittedCast(spell,source.Rank,revision);
+            var prior=s.CastingStrain.Single(x=>x.ActorId==c.Actor); var next=prior.BeginAdmittedCast(spell,source.Rank,revision,s.BishopEntry!=null);
             int modifier=facts.AbilityModifier(CharacterAbility.Wisdom),pb=facts.ProficiencyBonus;
             int surcharge=source.Rank==0?0:prior.RankedSurcharge(pb,modifier); var pool=s.ResonancePools.Single(x=>x.ActorId==c.Actor);
             var focus=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.SpellCast.FocusItemId); var stance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor);
@@ -233,6 +235,8 @@ namespace Decennium.Foundation.Laboratory
                 stableD4=draw.Value+1; words=draw.WordsConsumed; s.RandomState=draw.NextState;
                 TestOnlyClubAttackPolicy.ApplyLife(s,before,PlaytestLife.StabilizeAt(ActorLifeRules.ReadForResolution(s,before),stableD4,s.RuleClock));
                 ReconcileDyingCadences(s);
+            } else if(spell==BishopProfile.Dispel) {
+                ResolveBishopDispel(s,c);
             } else if(spell=="purify-food-and-drink") {
                 s.ConsumableContamination=s.ConsumableContamination.Select(x=>x.LotId==c.Target&&x.Present&&x.Purifiable?x.Destroy(c.Id,revision):x).ToArray();
             }
@@ -241,7 +245,7 @@ namespace Decennium.Foundation.Laboratory
                 s.Characters.Single(x=>x.ActorId==c.Actor).Levels.Count(x=>x.ClassName=="Cleric"),source.Rank,pb,modifier,
                 8+pb+modifier+(c.SpellCast.ElectFocusedDc?1:0),stance?.Revision??0,c.SpellCast.ElectFocusedDc,c.SpellCast.FocusItemId,
                 focus?.HeldHands==1,hands,c.SpellCast.WillingTarget,turn,s.RuleClock,pool.Current,source.BaseRpCost,surcharge,
-                pool.Current-source.BaseRpCost-surcharge,prior.Dissonance,next.Dissonance,next.Refrain,effectId,stableD4,random,s.RandomState,words)).ToArray();
+                pool.Current-source.BaseRpCost-surcharge,prior.Dissonance,next.Dissonance,next.Refrain,effectId,stableD4,random,s.RandomState,words,s.BishopEntry!=null)).ToArray();
             return null;
         }
 
@@ -273,7 +277,8 @@ namespace Decennium.Foundation.Laboratory
             if(actor==ClericRpProfile.Actor) {
                 foreach(var known in s.KnownSpells.Where(x=>x.ActorId==actor).OrderBy(x=>x.SpellId,StringComparer.Ordinal)) {
                     string spell=known.SpellId;bool willing=spell=="arcane-ward"||spell=="guidance"||spell=="sanctuary";
-                    IEnumerable<string> targets=spell=="detect-magic"?new[]{actor}:spell=="purify-food-and-drink"
+                    IEnumerable<string> targets=spell==BishopProfile.Dispel?ObserveCasting(s,actor).Auras.Select(x=>x.ObservationId)
+                        :spell=="detect-magic"?new[]{actor}:spell=="purify-food-and-drink"
                         ?s.InventoryLots.Where(x=>authority.MayUseInventory(x.OwnerId)&&(x.Nutrition==NutritionKind.WaterPints||x.Nutrition==NutritionKind.FoodPounds)).Select(x=>x.LotId)
                         :s.Actors.Where(x=>(x.Id==actor||ObservationRules.CanSee(s,actor,x.Id))
                             &&(!willing||authority.Controls(x.Id)&&(x.Id==TestOnlyPolicy.ActorId||x.Id==ClericRpProfile.Actor))).Select(x=>x.Id);
