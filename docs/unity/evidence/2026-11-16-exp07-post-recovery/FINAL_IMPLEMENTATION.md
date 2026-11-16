@@ -1,6 +1,6 @@
 # EXP-07 final implementation evidence
 
-**Frozen qualification is complete; actual final GPT review and Codex agreement remain pending.** Implementation is `6d840c4dfce268115904ea0dda6b475450f7be6f`. The later console evidence-array correction `249c942a4ef40462d1c13d650458da981af43d32` changes support only. The engine diff from the implementation commit remains empty. Actual checkpoint response `8dd7338b-1e44-54bc-b954-e5438436b580` found no concrete blocker in its inspected scope; this packet supplies the completed qualification it required.
+**The bounded module is accepted by actual final GPT review; Codex agrees.** Response `7ed650ba-0d52-5376-9188-7ee179d7d397` accepts the final qualification committed at `ab93f2f2b69d2830e41a06cb8fa5f55097428617`; [exact acceptance and agreement](GPT_FINAL_REVIEW.md). Implementation is `6d840c4dfce268115904ea0dda6b475450f7be6f`. The later console evidence-array correction `249c942a4ef40462d1c13d650458da981af43d32` changes support only. The engine diff from the implementation commit remains empty. Actual checkpoint response `8dd7338b-1e44-54bc-b954-e5438436b580` found no concrete blocker in its inspected scope; this packet supplies the completed qualification it required.
 
 ## Connected gameplay
 
@@ -34,7 +34,7 @@ The bounded new conflict preserves the exact old-defender-Start admission rule, 
 
 ## Retained evidence
 
-[RESULTS.json](implementation/RESULTS.json) records the reconciliation. [ARTIFACT_INDEX.json](implementation/ARTIFACT_INDEX.json) indexes **222 files / 63,079,339 bytes**, excluding the index itself. All **172 previously reviewed checkpoint artifacts** are unchanged; their original index and captured 54-case prefix remain intact.
+[RESULTS.json](implementation/RESULTS.json) records the reconciliation at its original pre-review capture point; the later acceptance is recorded separately above. [ARTIFACT_INDEX.json](implementation/ARTIFACT_INDEX.json) indexes **222 files / 63,079,339 bytes**, excluding the index itself. All **172 previously reviewed checkpoint artifacts** are unchanged; their original index and captured 54-case prefix remain intact.
 
 The final scenario, compatibility and legacy-view artifacts are retained without byte changes in [qualification-evidence.zip](implementation/qualification-evidence.zip): **14,013 members / 206,691,901 uncompressed bytes**, in a 39,503,035-byte bundle. [QUALIFICATION_MEMBERS.json](implementation/QUALIFICATION_MEMBERS.json) records every member's path, size and SHA256, plus the archive identity. The retainer reopened the archive and verified every member. Regression journals/completion identities and the previously retained focused/source/build evidence remain separately accessible under `implementation/`.
 
@@ -44,4 +44,4 @@ The final scenario, compatibility and legacy-view artifacts are retained without
 
 This is source-bound provisional **TEST_ONLY C#** qualification. Arbitrary-phase entry, partial-turn/Grounding-credit transfer, general encounters/dynamic rosters, new NPC provisioning, automatic loot/rewards, new levels, Bishop abilities, new spells and production promotion are outside this module. Broader engine completion remains open. Unity gameplay integration remains deferred.
 
-Actual final GPT review and Codex agreement must precede module acceptance. After acceptance is recorded and committed, **stop for owner review before any storage investigation, cleanup proposal or successor development**. GPT acknowledged that controlling stop in response `62efbf6e-ccd5-52c5-89f4-bdd3bd2ec540`; see [OWNER_REVIEW_STOP.md](OWNER_REVIEW_STOP.md). The dependency map is unchanged: EXP-07 depends on TAC-01/TAC-02/EXP-01/MGT-01. The prior Bishop source review does not authorize beginning a successor during this owner checkpoint.
+Actual final GPT acceptance and Codex agreement are recorded in [GPT_FINAL_REVIEW.md](GPT_FINAL_REVIEW.md). **Stop for owner review before any storage investigation, cleanup proposal or successor development.** GPT acknowledged that controlling stop in response `62efbf6e-ccd5-52c5-89f4-bdd3bd2ec540` and reaffirmed it in final acceptance; see [OWNER_REVIEW_STOP.md](OWNER_REVIEW_STOP.md). The dependency map is unchanged: EXP-07 depends on TAC-01/TAC-02/EXP-01/MGT-01. The prior Bishop source review does not authorize beginning a successor during this owner checkpoint.
