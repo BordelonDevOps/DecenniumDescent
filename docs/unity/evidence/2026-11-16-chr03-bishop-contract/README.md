@@ -1,5 +1,7 @@
 # Earned Bishop entry: complete contract preparation
 
+**Funding reachability finding pending actual review:** the newly executed existing-engine probe shows that the unprovisioned third-rest branch kills the hero at259200 even though the companion's rest completes. [Exact scope, retained execution and required resolution](FUNDING_REACHABILITY_FINDING.md). This is a concrete candidate-route failure, not an exhaustive impossibility claim or Bishop implementation. Runtime remains held.
+
 The owner resumed Part 2 development on 2026-11-16 after EXP-07 acceptance. Storage cleanup and the GitHub Support inquiry remain on hold. This packet prepares the next CHR-03 contract; it is not runtime approval or gameplay completion.
 
 Accepted gameplay is `6d840c4dfce268115904ea0dda6b475450f7be6f`, final qualification `ab93f2f2b69d2830e41a06cb8fa5f55097428617`, actual GPT acceptance `7ed650ba-0d52-5376-9188-7ee179d7d397`, with Codex agreement at `85957982d45d3f76c6e5f3243ae6e10b46407b83`. Current baseline `64e93efd1349998fb266096b1178f3cffebf2849` adds only accepted transport/cache maintenance. The 1,566-case acceptance remains intact.
