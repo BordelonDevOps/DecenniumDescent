@@ -1,0 +1,9 @@
+# Earned Bishop entry: complete contract preparation
+
+The owner resumed Part 2 development on 2026-11-16 after EXP-07 acceptance. Storage cleanup and the GitHub Support inquiry remain on hold. This packet prepares the next CHR-03 contract; it is not runtime approval or gameplay completion.
+
+Accepted gameplay is `6d840c4dfce268115904ea0dda6b475450f7be6f`, final qualification `ab93f2f2b69d2830e41a06cb8fa5f55097428617`, actual GPT acceptance `7ed650ba-0d52-5376-9188-7ee179d7d397`, with Codex agreement at `85957982d45d3f76c6e5f3243ae6e10b46407b83`. Current baseline `64e93efd1349998fb266096b1178f3cffebf2849` adds only accepted transport/cache maintenance. The 1,566-case acceptance remains intact.
+
+The controlling earlier Bishop source/dependency review is [the actual response and agreement](../2026-11-16-chr03-bishop-entry/GPT_SOURCE_REVIEW.md), response `a18c0728-47f3-5f33-8051-c89796f2864f`. EXP-07 supplied its missing post-recovery opposition context. Preserve the existing map and all previously settled rules.
+
+Actual successor response `be0e7bf2-3ae5-5493-92f9-7d98d80ca919` confirms complete contract preparation/review as the next gate; [Codex agrees](GPT_SUCCESSOR_REVIEW.json). No new prerequisite was established. The complete [SOURCE/API proposal](SOURCE_API_CONTRACT.md) binds the fresh announced objective, atomic Cleric2-to-3 advancement, Divine Invocation, Aura of Faith, earned Dispel acquisition and operation, actual funding and continuation, historical saves and deterministic replay. The source-only audit passes83 pinned blobs/27 checks and inventories15 save-consumer candidate files. No engine file has changed, and no new compilation or gameplay has executed for this preparation. Actual contract review remains required. Unity remains deferred; the broader C# simulation is unfinished.

@@ -1,0 +1,274 @@
+{
+  "scope": "Candidate audit from all tracked Laboratory/Model C#; requires semantic review at implementation",
+  "acceptedEngine": "6d840c4dfce268115904ea0dda6b475450f7be6f",
+  "files": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+      "hits": [
+        {
+          "line": 60,
+          "text": "SaveAtMarker(s,s.Encounter.ActorAt(ordinal),ordinal,(long)ordinal+1);"
+        },
+        {
+          "line": 62,
+          "text": "internal static void SaveAtMarker(Snapshot s,string actor,int ordinal,long marker)"
+        },
+        {
+          "line": 67,
+          "text": "int modifier=ExpeditionStrainRules.Current(s,actor).SavingThrowModifier;"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestDamageDice.cs",
+      "hits": [
+        {
+          "line": 29,
+          "text": "public int ConstitutionSaveModifier { get; }"
+        },
+        {
+          "line": 39,
+          "text": "{Before=before;ResolvedDamage=damage;At=at;ConstitutionSaveModifier=con;Critical=critical;Maiming=maiming;"
+        },
+        {
+          "line": 42,
+          "text": "=>PlaytestDamageDice.Finish(Before,ResolvedDamage,At,ConstitutionSaveModifier,Critical,Maiming,"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "hits": [
+        {
+          "line": 299,
+          "text": "internal static int SaveProficiencyBonus(Snapshot s,string actor,string abilityId)"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "hits": [
+        {
+          "line": 234,
+          "text": "ActorLifeRules.SaveAtMarker(s, actor, turnOrdinal, sequence);"
+        },
+        {
+          "line": 270,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,fact.LeadId,\"CON\")"
+        },
+        {
+          "line": 271,
+          "text": "+ExpeditionStrainRules.Current(s,fact.LeadId).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "hits": [
+        {
+          "line": 74,
+          "text": "public int SavingThrowModifier => Level >= 2 ? -1 : 0;"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "hits": [
+        {
+          "line": 128,
+          "text": "+ CharacterAdvancementRules.SaveProficiencyBonus(state, target, \"WIS\")"
+        },
+        {
+          "line": 129,
+          "text": "+ ExpeditionStrainRules.Current(state, target).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+      "hits": [
+        {
+          "line": 277,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,\"CON\")"
+        },
+        {
+          "line": 278,
+          "text": "+ExpeditionStrainRules.Current(s,prior.WorkerId).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+      "hits": [
+        {
+          "line": 343,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,\"CON\")"
+        },
+        {
+          "line": 344,
+          "text": "+ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);"
+        },
+        {
+          "line": 447,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,\"DEX\")"
+        },
+        {
+          "line": 448,
+          "text": "+ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);"
+        },
+        {
+          "line": 453,
+          "text": "var result=PlaytestRolls.SavingThrow(natural,modifier,13);total=result.Total;success=result.Success;s.RandomState=after;"
+        },
+        {
+          "line": 460,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,\"CON\")"
+        },
+        {
+          "line": 461,
+          "text": "+ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "hits": [
+        {
+          "line": 943,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,prior.WorkerId,\"CON\")"
+        },
+        {
+          "line": 944,
+          "text": "+ExpeditionStrainRules.Current(s,prior.WorkerId).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "hits": [
+        {
+          "line": 219,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,\"CON\")"
+        },
+        {
+          "line": 220,
+          "text": "+ExpeditionStrainRules.Current(s,offer.TargetId).SavingThrowModifier);"
+        },
+        {
+          "line": 279,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,\"STR\")"
+        },
+        {
+          "line": 281,
+          "text": "+ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);"
+        },
+        {
+          "line": 286,
+          "text": "var result=PlaytestRolls.SavingThrow(natural,modifier,dc);total=result.Total;success=result.Success;s.RandomState=randomAfter;"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPeriodicRider.cs",
+      "hits": [
+        {
+          "line": 152,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,\"CON\")"
+        },
+        {
+          "line": 153,
+          "text": "+ExpeditionStrainRules.Current(s,rider.TargetId).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "hits": [
+        {
+          "line": 58,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,c.Actor,\"WIS\")+ExpeditionStrainRules.Current(s,c.Actor).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellEffects.cs",
+      "hits": [
+        {
+          "line": 66,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,target,\"CON\")+ExpeditionStrainRules.Current(s,target).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "hits": [
+        {
+          "line": 587,
+          "text": "int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,\"DEX\")"
+        },
+        {
+          "line": 588,
+          "text": "+ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);"
+        },
+        {
+          "line": 593,
+          "text": "var rolled=PlaytestRolls.SavingThrow(natural,modifier,facts.SaveDc);total=rolled.Total;success=rolled.Success;s.RandomState=saveAfter;"
+        },
+        {
+          "line": 601,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,\"CON\")"
+        },
+        {
+          "line": 602,
+          "text": "+ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);"
+        },
+        {
+          "line": 800,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,\"CON\")"
+        },
+        {
+          "line": 801,
+          "text": "+ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "hits": [
+        {
+          "line": 288,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,\"CON\")"
+        },
+        {
+          "line": 289,
+          "text": "+ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);"
+        },
+        {
+          "line": 327,
+          "text": "+CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,\"CON\")"
+        },
+        {
+          "line": 328,
+          "text": "+ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);"
+        }
+      ]
+    }
+  ],
+  "fileCount": 15,
+  "mandatoryConsumers": [
+    "initial/repeat fear",
+    "Sanctuary",
+    "concentration",
+    "Wound saves for all admitted damage producers",
+    "Overwatch Push",
+    "Suppression Fire",
+    "trap DEX/CON",
+    "unconscious death saves: no perception, no Aura bonus"
+  ],
+  "notSaves": [
+    "attacks",
+    "Guidance ability checks",
+    "initiative unless explicitly a check",
+    "ordinary skills"
+  ]
+}

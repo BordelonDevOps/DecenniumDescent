@@ -1,0 +1,1082 @@
+{
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "authority": "provisional operational drafts; no production promotion",
+  "cards": [
+    {
+      "pointer": "/cards/16",
+      "card": {
+        "id": "cleric.arch.aura-of-faith",
+        "name": "Aura of Faith",
+        "className": "Cleric",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "passive",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Passive",
+        "cost": "0",
+        "rangeAndTarget": "Allies within 15 feet who can perceive you",
+        "duration": "Passive while conscious",
+        "frequency": "Always",
+        "effect": "Aura of Faith. Tags: aura, bishop. Allies in the aura gain +1 on saving throws. Whenever your Rite restores HP to an ally in the aura, that ally also regains 1 additional HP. Multiple Aura of Faith bonuses do not stack.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 1992,
+          "originalText": "Aura of Faith: Allies in range gain +5% healing received and +1 to saves."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    },
+    {
+      "pointer": "/cards/23",
+      "card": {
+        "id": "cleric.arch.divine-invocation",
+        "name": "Divine Invocation",
+        "className": "Cleric",
+        "band": "Arch",
+        "path": null,
+        "sourceKind": "active",
+        "minimumClassLevel": 3,
+        "acquisition": "selection",
+        "activation": "Action",
+        "cost": "2 Conviction + 3 RP",
+        "rangeAndTarget": "Mode-dependent; maximum 60 feet",
+        "duration": "Instantaneous unless mode states otherwise",
+        "frequency": "Recharge 3 rounds",
+        "effect": "Divine Invocation. Tags: invocation, bishop. Use only your selected Invocation Path. Radiance: up to 3 allies within 30 feet each regain S d8+M HP; one may end Frightened or Poisoned. Judgment: one enemy within 60 feet makes a Wisdom save, taking (S+1)d8 radiant on failure or half on success; failure also applies Judged for 2 rounds. Renewal: up to 2 allies within 30 feet each regain S d8+M HP and 5 Stamina. Flame: creatures in a 15-foot cone make Dexterity saves, taking (S+1)d8 fire on failure or half on success; failed targets also take 1d6 fire at the start of their next turn. Veil: up to 3 allies within 30 feet can see invisible/ethereal creatures within 30 feet and gain advantage on saves against illusions for 3 rounds. Echoes: choose one eligible Smite or Rite you resolved this turn or previous regular turn and one original target within 30 feet; repeat 50% of its immediate unmodified rolled damage or healing dice, rounded down once, minimum 1 for a positive source, with no copied conditions, resources or triggers.",
+        "source": {
+          "extract": "docs/reference/Player_Rulebook_v6_source_text.txt",
+          "line": 2001,
+          "originalText": "Divine Invocation: Channel a powerful prayer based on your chosen Invocation Path, with effects ranging from mass healing to divine fire or protective barriers."
+        },
+        "designStatus": "provisional-playtest",
+        "spellRank": null
+      }
+    }
+  ],
+  "spells": [
+    {
+      "pointer": "/spells/33",
+      "card": {
+        "id": "dispel-magic-lesser",
+        "name": "Dispel Magic (Lesser)",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Druid": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Mage": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Monk": {
+            "rank": 2,
+            "minimumClassLevel": 8,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Tinker": {
+            "rank": 2,
+            "minimumClassLevel": 6,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Wizard": {
+            "rank": 2,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          },
+          "Paladin": {
+            "rank": 2,
+            "minimumClassLevel": 5,
+            "school": "Abjuration",
+            "baseRpCost": 3
+          }
+        },
+        "operational": {
+          "id": "dispel-magic-lesser",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One individually perceptible ongoing magical effect within range and line of effect, generated by a spell of actual recorded rank 0, 1 or 2.",
+          "duration": "Instantaneous",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "Automatic for an eligible effect; no saving throw or check.",
+          "effect": "End only the selected effect and invoke its ordinary ending procedure and dependencies. Its original generating spell rank controls, using its caster's class placement when class-cast; RP cost, discount, caster level and the dispeller's access do not change that rank.",
+          "scaling": "None.",
+          "limitations": "No permanent enchantment or magic-item removal, class-engine or creature-trait removal, mass purge, retroactive healing/resource repair, or guessing an unknown spell rank. A curse qualifies only when it is itself an otherwise eligible ongoing spell effect within the rank ceiling and is not specially protected. Mere binary awareness of nearby magic does not identify a selectable individual effect. Apply SPELL_INTEGRATION_RULES.md for actual class access and repertoire, costs before resolution, components, concentration, Dissonance/Refrain and exact source cadence. No automatic scaling or generic upcast.",
+          "designNotes": "PRESERVED: Action, 30 feet, V/S/F, instantaneous and low-level dispelling. NEW CONFLICT RULING: ambiguous plural effects means one selected effect per cast; Core Tier 2 is reconciled to spell rank at most 2, not a broader character tier.",
+          "implementationStatus": "REVIEWED authored operational-playtest manuscript; runtime and balance validation pending",
+          "sourceCoreEntries": [
+            {
+              "index": 33,
+              "original": {
+                "school": "Abjuration",
+                "level": 2,
+                "name": "Dispel Magic (Lesser)",
+                "effect": "End magical effects of Tier 2 or lower.",
+                "source_paragraph": 9020,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "sourcePlacements": [
+            {
+              "name": "Dispel Magic (Lesser)",
+              "school": "Abjuration",
+              "level": 2,
+              "summary": "End magical effects of 2nd level or lower."
+            }
+          ],
+          "classAccessEvidence": {
+            "Cleric": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Druid": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Mage": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Monk": {
+              "rank": 2,
+              "minimumClassLevel": 8,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Tinker": {
+              "rank": 2,
+              "minimumClassLevel": 6,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Wizard": {
+              "rank": 2,
+              "minimumClassLevel": 3,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            },
+            "Paladin": {
+              "rank": 2,
+              "minimumClassLevel": 5,
+              "school": "Abjuration",
+              "baseRpCost": 3
+            }
+          },
+          "sourceReview": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_SOURCE_CONFERENCE.md",
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "reviewEvidence": [
+            "docs/audit/2026-10-08/full-game/GPT_ABJURATION_RANK2_3_EXACT_REVIEW.md"
+          ],
+          "authoringFile": "data/playtest/spell_drafts/batch_abjuration_rank2_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "dispel-magic-lesser",
+          "original": {
+            "name": "Dispel Magic (Lesser)",
+            "level": 2,
+            "resonanceRank": 2,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Dispel Magic (Lesser)",
+                "school": "Abjuration",
+                "level": 2,
+                "summary": "End magical effects of 2nd level or lower."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 2,
+              "Druid": 2,
+              "Mage": 2,
+              "Monk": 2,
+              "Tinker": 2,
+              "Wizard": 2,
+              "Paladin": 2
+            },
+            "classRanks": {
+              "Cleric": 2,
+              "Druid": 2,
+              "Mage": 2,
+              "Monk": 2,
+              "Tinker": 2,
+              "Wizard": 2,
+              "Paladin": 2
+            },
+            "classLearnLevels": {
+              "Cleric": 3,
+              "Druid": 3,
+              "Mage": 3,
+              "Monk": 8,
+              "Tinker": 6,
+              "Wizard": 3,
+              "Paladin": 5
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "End magical effects of 2nd level or lower.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 33,
+              "original": {
+                "school": "Abjuration",
+                "level": 2,
+                "name": "Dispel Magic (Lesser)",
+                "effect": "End magical effects of Tier 2 or lower.",
+                "source_paragraph": 9020,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Utility"
+                ],
+                "rp_cost": 3
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "pointer": "/spells/781",
+      "card": {
+        "id": "guidance",
+        "name": "Guidance",
+        "schools": [
+          "Universal"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Cleric": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Mage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Mirrorsage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Tinker": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 0
+          },
+          "Paladin": {
+            "rank": 0,
+            "minimumClassLevel": 2,
+            "school": "Universal",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "guidance",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing creature you can perceive within range",
+          "duration": "Until consumed or 1 minute passes",
+          "concentration": false,
+          "components": [
+            "V",
+            "S"
+          ],
+          "resolution": "None.",
+          "effect": "Before the target makes an ability check during the duration, it may choose to consume Guidance before rolling and add 1d4 to that single ability check.",
+          "scaling": "None.",
+          "limitations": "Must be present before the roll and consumed before the d20 is rolled. Applies to one ability check only, not an attack roll, saving throw, damage roll, initiative roll unless initiative is explicitly treated as an ability check by the campaign rules, or another Guidance roll. Multiple Guidance effects do not stack. Cantrip repeats use Refrain.",
+          "designNotes": "Core V2 Action, 30-foot range, and V/S components are retained. Core lists Instantaneous duration despite modifying a future check; the one-minute-or-consumed duration and before-roll timing are NEW provisional operational rules.",
+          "authoringFile": "data/playtest/spell_drafts/batch_3.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "guidance",
+          "original": {
+            "name": "Guidance",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Universal",
+            "schools": [
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Guidance",
+                "school": "Universal",
+                "level": 0,
+                "summary": "Target gains +1d4 on one ability check."
+              }
+            ],
+            "classLevels": {
+              "Bard": 0,
+              "Cleric": 0,
+              "Mage": 0,
+              "Mirrorsage": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classRanks": {
+              "Bard": 0,
+              "Cleric": 0,
+              "Mage": 0,
+              "Mirrorsage": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Cleric": 1,
+              "Mage": 1,
+              "Mirrorsage": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Universal",
+              "Mage": "Universal",
+              "Mirrorsage": "Universal",
+              "Tinker": "Universal",
+              "Wizard": "Universal",
+              "Paladin": "Universal"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Target gains +1d4 on one ability check.",
+            "alternateSummaries": [],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Mage",
+              "Mirrorsage",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 840,
+              "original": {
+                "school": "Universal",
+                "level": 0,
+                "name": "Guidance",
+                "effect": "Target gains +1d4 on one ability check.",
+                "source_paragraph": 10023,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Damage"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "pointer": "/spells/216",
+      "card": {
+        "id": "detect-magic",
+        "name": "Detect Magic",
+        "schools": [
+          "Divination",
+          "Universal"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Bard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 2
+          },
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Universal",
+            "baseRpCost": 2
+          },
+          "Mirrorsage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Ranger": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Shaman": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Universal",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Divination",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Divination",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "detect-magic",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "Self; magical auras on creatures, objects, and active effects within 30 feet that you can perceive",
+          "duration": "Concentration, up to 10 minutes",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "None.",
+          "effect": "For the duration, perceive the presence and visible outline of active magical auras within 30 feet. As an Action on a later turn, you may focus on one perceived aura to learn its broad magical school/category if that information is not protected.",
+          "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+          "limitations": "Total cover and explicit anti-divination effects block detection. Does not reveal exact spell names, ranks, statistics, owners, motives, hidden curses, dormant magic, secret Director information, or mundane invisible creatures. Detecting an aura does not grant line of effect or permission to target through barriers. Ranked casting causes normal Dissonance and Refrain.",
+          "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. Core instantaneous metadata cannot sustain the described perception; this pilot uses explicit concentration for up to10minutes. The30ft range limits perception of spell-granted information.",
+          "previousDraftDesignNotes": "NEW provisional 10-minute concentration duration and two-step information model. Source 30-foot magical detection is preserved.",
+          "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "detect-magic",
+          "original": {
+            "name": "Detect Magic",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Divination",
+            "schools": [
+              "Divination",
+              "Universal"
+            ],
+            "placements": [
+              {
+                "name": "Detect Magic",
+                "school": "Divination",
+                "level": 1,
+                "summary": "See magic within 30 ft (concentration)."
+              },
+              {
+                "name": "Detect Magic",
+                "school": "Universal",
+                "level": 1,
+                "summary": "Sense magical auras within 30 feet."
+              }
+            ],
+            "classLevels": {
+              "Bard": 1,
+              "Cleric": 1,
+              "Mage": 1,
+              "Mirrorsage": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Bard": 1,
+              "Cleric": 1,
+              "Mage": 1,
+              "Mirrorsage": 1,
+              "Ranger": 1,
+              "Shaman": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Bard": 1,
+              "Cleric": 1,
+              "Mage": 1,
+              "Mirrorsage": 1,
+              "Ranger": 2,
+              "Shaman": 1,
+              "Tinker": 2,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Bard": "Universal",
+              "Cleric": "Divination",
+              "Mage": "Universal",
+              "Mirrorsage": "Divination",
+              "Ranger": "Divination",
+              "Shaman": "Divination",
+              "Tinker": "Universal",
+              "Wizard": "Divination",
+              "Paladin": "Divination"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "See magic within 30 ft (concentration).",
+            "alternateSummaries": [
+              "Sense magical auras within 30 feet."
+            ],
+            "classes": [
+              "Bard",
+              "Cleric",
+              "Mage",
+              "Mirrorsage",
+              "Ranger",
+              "Shaman",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 225,
+              "original": {
+                "school": "Divination",
+                "level": 1,
+                "name": "Detect Magic",
+                "effect": "See magic within 30 ft (concentration).",
+                "source_paragraph": 9260,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Detection"
+                ],
+                "rp_cost": 2
+              }
+            },
+            {
+              "index": 856,
+              "original": {
+                "school": "Universal",
+                "level": 1,
+                "name": "Detect Magic",
+                "effect": "Sense magical auras within 30 feet.",
+                "source_paragraph": 10041,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Instantaneous",
+                "components": "V, S, F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Detection"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "pointer": "/spells/0",
+      "card": {
+        "id": "arcane-ward",
+        "name": "Arcane Ward",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Druid": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Mage": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Monk": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Tinker": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Wizard": {
+            "rank": 0,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          },
+          "Paladin": {
+            "rank": 0,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 0
+          }
+        },
+        "operational": {
+          "id": "arcane-ward",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing creature you can see within 30 feet, including yourself",
+          "duration": "Until the start of your next regular turn",
+          "concentration": false,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "None. The chosen target gains the AC bonus after this Action resolves.",
+          "effect": "The target gains +1 AC until the start of your next regular turn.",
+          "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+          "limitations": "Repeated Arcane Ward effects on one creature do not stack; keep the later expiry. It cannot retroactively change a resolved attack. Same-stat flat bonuses use the strongest under the integration rules. Refrain still applies.",
+          "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+          "previousDraftDesignNotes": "NEW provisional timing and self-only targeting; source specified only a temporary +1 AC barrier lasting 1 round.",
+          "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "arcane-ward",
+          "original": {
+            "name": "Arcane Ward",
+            "level": 0,
+            "resonanceRank": 0,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Arcane Ward",
+                "school": "Abjuration",
+                "level": 0,
+                "summary": "Create a temporary barrier granting +1 AC for 1 round."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classRanks": {
+              "Cleric": 0,
+              "Druid": 0,
+              "Mage": 0,
+              "Monk": 0,
+              "Tinker": 0,
+              "Wizard": 0,
+              "Paladin": 0
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Create a temporary barrier granting +1 AC for 1 round.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 0,
+              "original": {
+                "school": "Abjuration",
+                "level": 0,
+                "name": "Arcane Ward",
+                "effect": "Create a temporary barrier granting +1 AC for 1 round.",
+                "source_paragraph": 8983,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "1 round",
+                "components": "V, S, M/F",
+                "resolution": "Automatic or opposed as described",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 0
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": [
+          "Core resolution requires an explicit operational interpretation"
+        ]
+      }
+    },
+    {
+      "pointer": "/spells/21",
+      "card": {
+        "id": "sanctuary",
+        "name": "Sanctuary",
+        "schools": [
+          "Abjuration"
+        ],
+        "status": "operational-playtest-draft",
+        "visibility": "public-source-review",
+        "classAccess": {
+          "Cleric": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Druid": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Mage": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Monk": {
+            "rank": 1,
+            "minimumClassLevel": 3,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Tinker": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Wizard": {
+            "rank": 1,
+            "minimumClassLevel": 1,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          },
+          "Paladin": {
+            "rank": 1,
+            "minimumClassLevel": 2,
+            "school": "Abjuration",
+            "baseRpCost": 2
+          }
+        },
+        "operational": {
+          "id": "sanctuary",
+          "activation": "Action",
+          "rangeFeet": 30,
+          "targets": "One willing living creature you can perceive within range",
+          "duration": "Concentration, up to 1 minute",
+          "concentration": true,
+          "components": [
+            "V",
+            "S",
+            "F"
+          ],
+          "resolution": "The first time on each attacker's turn that it attempts a direct attack against the warded creature, the attacker makes a Wisdom save against your spell save DC. On success it may attack normally and does not save again against this Sanctuary during that turn. On failure that specific attack cannot target the warded creature; the attacker may choose another legal target for the same attack.",
+          "effect": "Ward one creature against direct attacks. Attackers that fail the required Wisdom save must redirect that attack to another legal target or forgo that specific attack.",
+          "scaling": "None. Damage dice, target count, range and duration do not automatically increase with character or class level.",
+          "limitations": "Does not block area effects, environmental hazards, effects that do not target the warded creature directly, or attacks from creatures immune to this ward. Sanctuary ends immediately if the warded creature intentionally deals damage or forces a hostile creature to make a saving throw. It never compels belief or allegiance and does not remove an attacker's entire Action unless no legal alternative exists. Ranked casting causes normal Dissonance and Refrain. This is defensive target restriction, not permission to impose another whole-Action denial: on a failed save the attacker may choose a legal different target or a different Action if its Action has not otherwise resolved.",
+          "designNotes": "Core V2 blocks and catalog summaries are preserved alongside this card. Components use the existing class focus where Core says F or M/F; this focus interpretation is provisional. Exact target eligibility, duration endpoints, saves where absent, concentration where unclear and anti-loop limits are provisional integration decisions. ",
+          "previousDraftDesignNotes": "NEW provisional activation, range, concentration, retarget procedure, and offensive-break clause. Source only specified that enemies must make a Wisdom save to attack the warded creature.",
+          "authoringFile": "data/playtest/spell_drafts/batch_1.json"
+        },
+        "additionalRpCost": 0,
+        "source": {
+          "catalogPath": "src/data/spells.js",
+          "catalogSha256": "3358a2e1afcbc340dbafd92e45e39a7d2d0a24fed5c0719a3d233263ce530078",
+          "catalogKey": "sanctuary",
+          "original": {
+            "name": "Sanctuary",
+            "level": 1,
+            "resonanceRank": 1,
+            "school": "Abjuration",
+            "schools": [
+              "Abjuration"
+            ],
+            "placements": [
+              {
+                "name": "Sanctuary",
+                "school": "Abjuration",
+                "level": 1,
+                "summary": "Enemies must make WIS save to attack warded creature."
+              }
+            ],
+            "classLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classRanks": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 1,
+              "Tinker": 1,
+              "Wizard": 1,
+              "Paladin": 1
+            },
+            "classLearnLevels": {
+              "Cleric": 1,
+              "Druid": 1,
+              "Mage": 1,
+              "Monk": 3,
+              "Tinker": 2,
+              "Wizard": 1,
+              "Paladin": 2
+            },
+            "classSchools": {
+              "Cleric": "Abjuration",
+              "Druid": "Abjuration",
+              "Mage": "Abjuration",
+              "Monk": "Abjuration",
+              "Tinker": "Abjuration",
+              "Wizard": "Abjuration",
+              "Paladin": "Abjuration"
+            },
+            "castingTime": "Not specified in current rulebook",
+            "range": "Not specified in current rulebook",
+            "components": "Not specified in current rulebook",
+            "duration": "Not specified in current rulebook",
+            "description": "Enemies must make WIS save to attack warded creature.",
+            "alternateSummaries": [],
+            "classes": [
+              "Cleric",
+              "Druid",
+              "Mage",
+              "Monk",
+              "Tinker",
+              "Wizard",
+              "Paladin"
+            ],
+            "status": "canon",
+            "source": "Player Rulebook — Spell Lists"
+          },
+          "corePath": "data/public/Decennium_Descent_Core_Systems_Data_v2_Known_Descent.json",
+          "coreSha256": "50c3e9683349e93192191381ab6354ca7d675a24fcc9bb9b039c23e67fecca4f",
+          "coreEntries": [
+            {
+              "index": 21,
+              "original": {
+                "school": "Abjuration",
+                "level": 1,
+                "name": "Sanctuary",
+                "effect": "Enemies must make WIS save to attack warded creature.",
+                "source_paragraph": 9006,
+                "casting_time": "1 action",
+                "range": "30 feet",
+                "duration": "Concentration, up to 1 minute",
+                "components": "V, S, M/F",
+                "resolution": "Wisdom save",
+                "tags": [
+                  "Ward"
+                ],
+                "rp_cost": 2
+              }
+            }
+          ],
+          "possibleHistoricalAliases": []
+        },
+        "reviewFlags": []
+      }
+    }
+  ]
+}
