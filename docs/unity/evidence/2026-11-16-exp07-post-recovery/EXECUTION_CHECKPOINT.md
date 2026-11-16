@@ -1,0 +1,13 @@
+# EXP-07 implementation execution checkpoint
+
+This is an explicitly incomplete checkpoint for actual GPT implementation review. It does not request final acceptance or authorize a successor.
+
+Frozen implementation: `6d840c4dfce268115904ea0dda6b475450f7be6f` (35 engine files,16 documentation/support files). The console evidence-array correction is the documentation/support-only commit `249c942a4`; gameplay sources are unchanged. [Implementation](IMPLEMENTATION.md) and [controlling approval](APPROVED_CONTRACT.md) define the scope.
+
+All65 historical source/API blobs and440 compilation inputs reconcile to the committed source, archive and four execution DLLs. C#9 compilation treats warnings as errors. Static package checks pass. The frozen focused run `1831bc60b85a431ba808fb629b22680e` passed all13 new cases, with both original completion identities and DONE markers verified. This includes actual paid Grounding, failed contact/fresh approach, source initial Reaction, carried spending, historical effect endpoints, six owned spells, actual fear/injury/paid cure, strict restoration controls, genuine player/player and NPC ties, real death/closure and continued paid gameplay. [Source/binary audit](implementation/SOURCE_AUDIT.json), [focused completion and case evidence](implementation/execution-checkpoint-01/RESULTS.json), [artifact index](implementation/CHECKPOINT_ARTIFACT_INDEX.json).
+
+Original full run `0dd2832aa9ac4e8fa5005ddc23b087d0` is still active. The captured prefix contains54/1,566 passing rows, zero failures, across the six original workers; no worker has been replaced and no completion is claimed. The launch preserves all1,553 predecessor names in order and their prior shard assignments, adding13 new cases. The captured prefix will remain immutable while the live journals continue.
+
+Thirteen five-path campaigns, authentic wire95–110 continuations and112 older console projections are running against the same frozen DLLs. Earlier development runs passed the330-command main route with13 canonical checkpoints,39 filtered views and171 query/discovery/denial/duplicate response comparisons per path, and28 authentic save continuations. Those separate binaries and development results are not substituted for the outstanding frozen qualification.
+
+The packet currently contains172 indexed artifacts plus the index. The evidence retainer verifies source/archive/DLL identities, exact assignments, worker identities, case prefixes, all13 focused completions and every retained artifact hash. Final full regression, all campaign/compatibility results, final retention and actual GPT acceptance remain required. Bishop, production promotion, Unity gameplay integration and whole-engine completion remain deferred.
