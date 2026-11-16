@@ -23,8 +23,14 @@ namespace Decennium.Foundation.Tests
         }
         private static void BishopCheckpoint(ConnectedExpeditionSession session,string directory,string name,bool restore=true)
         {
-            var before=new SnapshotCodec().Encode(ShortRestCapture(session));string path=Path.Combine(directory,name+".ddsave");session.Save(path);
+            var before=new SnapshotCodec().Encode(ShortRestCapture(session));
+            string discovery=System.Text.Json.JsonSerializer.Serialize(session.DiscoverCastingCommands(ExpeditionSeat.Player,ClericRpProfile.Actor));
+            string path=Path.Combine(directory,name+".ddsave");session.Save(path);
             if(restore)session.Restore(path);
+            string restoredDiscovery=System.Text.Json.JsonSerializer.Serialize(session.DiscoverCastingCommands(ExpeditionSeat.Player,ClericRpProfile.Actor));
+            File.WriteAllText(Path.Combine(directory,name+".discovery-before.json"),discovery);
+            File.WriteAllText(Path.Combine(directory,name+".discovery-after.json"),restoredDiscovery);
+            Require(discovery==restoredDiscovery,"Bishop public command discovery changed across strict restore: "+name);
             Require(before.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),"Bishop save/strict restore changed "+name);
             File.WriteAllText(Path.Combine(directory,name+".player.json"),System.Text.Json.JsonSerializer.Serialize(session.View(ExpeditionSeat.Player)));
             File.WriteAllText(Path.Combine(directory,name+".opponent.json"),System.Text.Json.JsonSerializer.Serialize(session.View(ExpeditionSeat.RecoveryOpponent)));
@@ -46,7 +52,12 @@ namespace Decennium.Foundation.Tests
         private static ConnectedExpeditionSession FundBishop(string directory,bool controls=false)
         {
             const string hero=ConnectedExpeditionSession.Hero,cleric=ClericRpProfile.Actor;
-            var session=EarnClericObjective(true,directory,NewBishopExpedition());
+            var session=EarnClericObjective(true,directory,NewBishopExpedition(),beforeInitialRite:live=>{
+                if(controls) {
+                    Require(ShortRestCapture(live).Revision==145,"Discovery regression must reach genuine uninterrupted revision145.");
+                    BishopCheckpoint(live,directory,"r145-companion-discovery");
+                }
+            });
             BishopCommit(session,new Command("bishop.typed.earned2.award",cleric,ShortRestCapture(session).Revision,CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId));
             BishopCommit(session,new Command("bishop.typed.earned2.advance",cleric,ShortRestCapture(session).Revision,CommandKind.AdvanceCharacterLevel,ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices()));
             ClericCommit(session,cleric,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);

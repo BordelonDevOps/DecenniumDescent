@@ -46,7 +46,8 @@ namespace Decennium.Foundation.Tests
 
         private static ConnectedExpeditionSession EarnClericObjective(bool spendRite,string directory=null,
             ConnectedExpeditionSession selected=null,Action<ConnectedExpeditionSession> firstClericAction=null,
-            Action<ConnectedExpeditionSession> beforeClosure=null,Func<int,int> heroStance=null)
+            Action<ConnectedExpeditionSession> beforeClosure=null,Func<int,int> heroStance=null,
+            Action<ConnectedExpeditionSession> beforeInitialRite=null)
         {
             var session = StartVialScenario(selected??NewClericSettlement());
             const string routeHero = ConnectedExpeditionSession.Hero, routeAlly = ClericRpProfile.Actor;
@@ -69,6 +70,7 @@ namespace Decennium.Foundation.Tests
             Require(ShortRestCapture(session).Lives.Single(x=>x.ActorId==routeAlly).Hp==7,"Real defender attack must supply the selected injury.");
             const string hero = ConnectedExpeditionSession.Hero, ally = ClericRpProfile.Actor;
             ClericGuard(session,ally);
+            beforeInitialRite?.Invoke(session);
             if(directory!=null)session.Save(Path.Combine(directory,"cleric-before-initial-rite.ddsave"));
             if (spendRite) {
                 ClericCommit(session,ally,CommandKind.UseHealingRite,ally);

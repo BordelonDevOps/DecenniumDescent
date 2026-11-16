@@ -5,14 +5,19 @@ $AssemblyRoot=(Resolve-Path -LiteralPath $AssemblyRoot).Path
 $ValidSource=(Resolve-Path -LiteralPath $ValidSource).Path;$ForgedSource=(Resolve-Path -LiteralPath $ForgedSource).Path
 if(Test-Path -LiteralPath $Run){throw 'Use a fresh restore-control directory.'}
 $Run=(New-Item -ItemType Directory -Path $Run).FullName
-foreach($part in 'Core','Persistence','LabModel'){Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$part.dll")}
 function Digest($path){(Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()}
 function Require($value,$message){if(!$value){throw $message}}
+$loaded=[ordered]@{}
+foreach($part in 'Core','Persistence','LabModel'){
+    $file=Join-Path $AssemblyRoot "Decennium.Foundation.$part.dll";$assembly=[Reflection.Assembly]::LoadFrom($file)
+    Require ($assembly.Location-ceq$file) 'Unexpected loaded assembly.'
+    $loaded[$part]=@{sha256=(Digest $file);moduleId=$assembly.ManifestModule.ModuleVersionId.ToString()}
+}
 function Rejected([scriptblock]$operation){$failed=$false;try{& $operation}catch{$failed=$true};Require $failed 'Expected explicit rejection.'}
 $session=[Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithBishopEntry(
     [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),[Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
     [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),[Decennium.Foundation.BishopEntryRecord]::Announced())
-$store=[Decennium.Foundation.FileSaveStore]::new();$report=[ordered]@{status='FAIL';scope='Actual wire112 public restore and explicit backup recovery; disposable test files only';pid=$PID}
+$store=[Decennium.Foundation.FileSaveStore]::new();$report=[ordered]@{status='FAIL';scope='Actual wire112 public restore and explicit backup recovery; disposable test files only';pid=$PID;assemblies=$loaded}
 try{
     Require ($store.Load($ValidSource).WireSchemaVersion-eq112) 'Current valid source must be wire112.'
     Require ($store.Load($ForgedSource).WireSchemaVersion-eq112) 'Causal forgery must pass structural/checksum decoding.'

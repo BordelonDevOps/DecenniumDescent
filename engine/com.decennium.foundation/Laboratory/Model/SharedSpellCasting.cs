@@ -282,6 +282,9 @@ namespace Decennium.Foundation.Laboratory
                         ?s.InventoryLots.Where(x=>authority.MayUseInventory(x.OwnerId)&&(x.Nutrition==NutritionKind.WaterPints||x.Nutrition==NutritionKind.FoodPounds)).Select(x=>x.LotId)
                         :s.Actors.Where(x=>(x.Id==actor||ObservationRules.CanSee(s,actor,x.Id))
                             &&(!willing||authority.Controls(x.Id)&&(x.Id==TestOnlyPolicy.ActorId||x.Id==ClericRpProfile.Actor))).Select(x=>x.Id);
+                    // Snapshot encoding canonicalizes collection order. Assign option IDs from
+                    // stable target identity in the new profile, not incidental insertion order.
+                    if(s.BishopEntry!=null)targets=targets.OrderBy(x=>x,StringComparer.Ordinal);
                     foreach(string target in targets) {
                         yield return new Command(Id(),actor,s.Revision,CommandKind.CastKnownSpell,target,
                             spellCast:new SpellCastRequest(spell,UsesSpellFocus(spell)?SpellCastingProfile.FocusId:"",willing));

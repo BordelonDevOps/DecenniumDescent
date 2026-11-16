@@ -1,0 +1,13 @@
+{
+  "threadId": "6af8ba86-20cc-83e9-bed0-c2d616fefcdf",
+  "request": {
+    "type": "userMessage",
+    "id": "b0ecf1a9-0f08-4951-82c4-ee01808304f2",
+    "content": [
+      {
+        "type": "text",
+        "text": "Actual five-path execution found a new concrete Bishop qualification blocker after your correction review fa024acb-69b0-5193-b9ca-1f8fe371ec1d. Corrected4539aef... reference passes457commands/21checkpoints, but ConsoleUninterrupted differs from restored reference at cleric-before-initial-rite.ddsave.Player.companion-discovery.json (r145). JSON lengths equal50743, but discovered Purify target order differs: entries4/5/6/9/10 reorder clean-pool, contaminated-water, haven-cooked-serving, ready-rations, ready-water; attached Query.Code follows target. Canonical saves match. SharedSpellCasting.DiscoverCastingCommands currently enumerates s.InventoryLots in incidental array order; strict restore canonicalizes that order. Newly required companion discovery probes exposed this pre-existing discovery-order instability in the new Bishop profile. Proposed bounded fix: order candidate spell targets with StringComparer.Ordinal only when BishopEntry!=null, before assigning option IDs; keep all older profiles unchanged. This is deterministic UI/API ordering, no gameplay/source mechanic change. Preserve original corrected run d30c8a7f5d4447bfb7ef1bdc3307ff8f under actual workers as SUPERSEDED_PARTIAL_NOT_PASS, failed path evidence and completed wire111330-command/100comparison and112restore controls; no qualification pass transferred. Inspect related discovery enumeration for other restore-order dependencies, add a direct actual before/after restore companion-discovery regression to the connected case, then freeze/recompile/retain exact change and restart all required qualification on corrected binaries. Please confer on this diagnosis/bounded scope and identify any overlooked dependency. No acceptance/successor, Unity deferred, storage/Support held."
+      }
+    ]
+  }
+}

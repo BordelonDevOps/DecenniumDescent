@@ -39,6 +39,10 @@ def main():
     parser = argparse.ArgumentParser()
     for name in ('build', 'focused', 'failed', 'static', 'audit', 'superseded', 'output'):
         parser.add_argument('--' + name, required=True, type=Path)
+    parser.add_argument('--review-response', default='74094c3b-2b1e-553c-ae02-ece6685d80d5')
+    parser.add_argument('--failed-scope', default='failed-test-setup')
+    parser.add_argument('--extra-evidence', type=Path)
+    parser.add_argument('--development', type=Path)
     args = parser.parse_args()
     build, focused, failed, static, audit, superseded, output = (
         getattr(args, name).resolve() for name in ('build', 'focused', 'failed', 'static', 'audit', 'superseded', 'output'))
@@ -60,15 +64,24 @@ def main():
     old_rows = []
     for worker in stopped['workers']:
         group = worker['group']
-        assert worker['stopped'] and digest(superseded / (group + '.jsonl')) == worker['journalSha256']
-        rows = [json.loads(line) for line in (superseded / (group + '.jsonl')).read_text(encoding='utf-8-sig').splitlines()]
+        assert worker['stopped']
+        journal = superseded / (group + '.jsonl')
+        assert (digest(journal) if journal.exists() else None) == worker['journalSha256']
+        rows = [json.loads(line) for line in journal.read_text(encoding='utf-8-sig').splitlines()] if journal.exists() else []
         assigned = (superseded / (group + '-names.txt')).read_text(encoding='utf-8-sig').splitlines()
         assert [r['Name'] for r in rows] == assigned[:len(rows)]
         old_rows.extend(rows)
     output.mkdir(parents=True)
     members = {}
     add_tree(members, focused, 'focused')
-    add_tree(members, failed, 'failed-test-setup')
+    add_tree(members, failed, args.failed_scope)
+    if args.extra_evidence:
+        extra = args.extra_evidence.resolve()
+        for path in sorted(extra.rglob('*')):
+            if path.is_file() and path.suffix != '.dll' and not path.is_relative_to(failed):
+                members['superseded-qualification/' + path.relative_to(extra).as_posix()] = path
+    if args.development:
+        add_tree(members, args.development.resolve(), 'preliminary-development')
     for path in superseded.iterdir():
         if path.is_file():
             members['superseded-regression/' + path.name] = path
@@ -83,7 +96,7 @@ def main():
         (output / name).write_bytes(source.read_bytes())
     result = dict(status='CORRECTED_CANDIDATE_NOT_ACCEPTED',
                   parentCommit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-                  reviewResponse='74094c3b-2b1e-553c-ae02-ece6685d80d5',
+                  reviewResponse=args.review_response,
                   frozenBuild=str(build), focusedValidationBuild=str(focused),
                   compiledInputs=len(report['sourceHashes']),
                   supersededRun=dict(runId=launch['runId'], completed=len(old_rows),
