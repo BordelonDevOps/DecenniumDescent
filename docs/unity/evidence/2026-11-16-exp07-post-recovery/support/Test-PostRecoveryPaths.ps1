@@ -57,11 +57,10 @@ try{
         try{& $launcher -PostRecoveryEncounter -AssemblyRoot $AssemblyRoot -InputPath (Join-Path $folder 'inputs.jsonl')|Set-Content -LiteralPath (Join-Path $folder 'responses.jsonl') -Encoding utf8}
         finally{Pop-Location}
         $responseLines=@(Get-Content -LiteralPath (Join-Path $folder 'responses.jsonl'))
-        $responses=@($responseLines|ConvertFrom-Json)
-        Require ($responses.Count-eq$trace.Count) "$mode response count differs."
+        Require ($responseLines.Count-eq$trace.Count) "$mode response count differs."
         $revision=0
         for($index=0;$index-lt$trace.Count;$index++){
-            $request=$trace[$index];$response=$responses[$index]
+            $request=$trace[$index];$response=ConvertFrom-Json -InputObject $responseLines[$index] -NoEnumerate
             if($request.op-eq'view'){
                 $responseLines[$index]|Set-Content -LiteralPath (Join-Path $folder $request.evidenceView) -Encoding utf8 -NoNewline
                 continue
