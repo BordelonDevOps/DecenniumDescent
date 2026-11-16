@@ -1,0 +1,11 @@
+# Long Rest public-history correction
+
+The first terminal five-path qualification found a real public-view discrepancy. At revision216, the uninterrupted runtime appended the companion's debt-clearance event before the hero's simultaneous missed-Watch event. Canonical persistence orders these events by time, revision, actor and event sequence. Restoring therefore changed the public `LongRest.DebtHistory` array even though canonical save bytes were identical.
+
+The new Long Rest view now explicitly orders its histories, including the debt event's full canonical tie-breakers. The genuine Strain5 checkpoint regression compares the complete Player view immediately before and after strict save/restore. No gameplay event, save format, receipt, authority or older-profile view changes.
+
+The failed qualification is retained at `engine/artifacts/mgt03-cleric-long-rest/qualification/paths-terminal-20261116T0057Z/results.json`. The earlier full regression `37e5a7d7399e40a795c4c982f5ada498` was stopped with verified original worker identities and marked `ABANDONED_AFTER_EXTERNAL_QUALIFICATION_FAILURE`; its partial journals remain evidence of that attempt only. The concurrent additional-campaign attempt was also stopped. Neither run is a complete pass, and neither will be combined with the corrected run.
+
+Separate C#9 compilation `compile-20261116T010636603Z-02e8ea1d` and static package checks `static-20261116T010636701Z-3d958d6a` pass for the corrected source. The genuine case passes with the new assertion in435-input build `run-20261116T010636592Z-828c8674`. Final qualification requires all1553 cases on this frozen build, all five paths for each principal campaign, authentic compatibility and the remaining acceptance controls. Runtime acceptance remains pending actual GPT review and Codex agreement.
+
+This checkpoint also retains the qualification drivers already exercised against the preceding source: genuine whole-versus-split and capped-debt branches, actual command/authority/concentration controls, and the additional-campaign orchestrator. Their earlier results are development evidence; final results must identify the corrected assemblies. The trace exporter adds the branch checkpoint names without deriving or changing commands.

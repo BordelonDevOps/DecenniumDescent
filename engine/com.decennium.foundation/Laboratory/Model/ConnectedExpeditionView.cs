@@ -304,12 +304,18 @@ namespace Decennium.Foundation.Laboratory
         internal ExpeditionClericLongRestView(Snapshot state, Authority grant)
         {
             ActiveIntervalId = ClericLongRestProfile.Active(state)?.Id ?? "";
-            Attempts = Array.AsReadOnly(state.ClericLongRests.ToArray());
-            Settlements = Array.AsReadOnly(state.ClericLongRestSettlements.ToArray());
-            DailyProvisioning = Array.AsReadOnly(state.DailyProvisioningSettlements.Where(x => grant.Controls(x.ActorId)).ToArray());
-            WatchOutcomes = Array.AsReadOnly(state.RestWatchOutcomes.Where(x => grant.Controls(x.ActorId)).ToArray());
-            DebtHistory = Array.AsReadOnly(state.RestDebtEvents.Where(x => grant.Controls(x.ActorId)).ToArray());
-            RecoveryOffers = Array.AsReadOnly(state.ExpeditionStrainRecoveryOffers.Where(x => grant.Controls(x.ActorId)).ToArray());
+            Attempts = Array.AsReadOnly(state.ClericLongRests.OrderBy(x => x.Sequence).ToArray());
+            Settlements = Array.AsReadOnly(state.ClericLongRestSettlements.OrderBy(x => x.At).ThenBy(x => x.Revision)
+                .ThenBy(x => x.RestId, StringComparer.Ordinal).ToArray());
+            DailyProvisioning = Array.AsReadOnly(state.DailyProvisioningSettlements.Where(x => grant.Controls(x.ActorId))
+                .OrderBy(x => x.DayOrdinal).ThenBy(x => x.ActorId, StringComparer.Ordinal).ToArray());
+            WatchOutcomes = Array.AsReadOnly(state.RestWatchOutcomes.Where(x => grant.Controls(x.ActorId))
+                .OrderBy(x => x.End).ThenBy(x => x.Revision).ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.DayOrdinal).ToArray());
+            DebtHistory = Array.AsReadOnly(state.RestDebtEvents.Where(x => grant.Controls(x.ActorId))
+                .OrderBy(x => x.At).ThenBy(x => x.Revision).ThenBy(x => x.ActorId, StringComparer.Ordinal)
+                .ThenBy(x => x.EventSequence).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray());
+            RecoveryOffers = Array.AsReadOnly(state.ExpeditionStrainRecoveryOffers.Where(x => grant.Controls(x.ActorId))
+                .OrderBy(x => x.CompletedAt).ThenBy(x => x.ActorId, StringComparer.Ordinal).ThenBy(x => x.Id, StringComparer.Ordinal).ToArray());
         }
     }
 

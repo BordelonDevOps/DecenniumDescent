@@ -257,7 +257,11 @@ namespace Decennium.Foundation.Tests
                 Require(ExpeditionStrainRules.Current(exhausted,ClericRpProfile.Actor).Level==5
                     &&!exhausted.Lives.Single(x=>x.ActorId==ClericRpProfile.Actor).Dead,
                     "Actual missed Watch, unpaid debt and provisioning must establish the level-5 Rest-permission witness.");
-                session.Save(Path.Combine(directory,"long-rest-strain-five.ddsave"));
+                var viewBeforeRestore=System.Text.Json.JsonSerializer.Serialize(session.View(ExpeditionSeat.Player));
+                string strainFivePath=Path.Combine(directory,"long-rest-strain-five.ddsave");
+                session.Save(strainFivePath);session.Restore(strainFivePath);
+                Require(viewBeforeRestore==System.Text.Json.JsonSerializer.Serialize(session.View(ExpeditionSeat.Player)),
+                    "Simultaneous actors' debt events must keep the public view identical across strict restore.");
                 LongRestAdvanceTo(session,403200);
                 ClericCommit(session,ClericRpProfile.Actor,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
                 var beforeLethal=ShortRestCapture(session);

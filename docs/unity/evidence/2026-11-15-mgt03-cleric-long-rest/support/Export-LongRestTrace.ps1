@@ -22,7 +22,8 @@ $checkpointNames=@('cleric-after-initial-rite.ddsave','cleric-before-objective.d
     'cleric-advanced.ddsave','long-rest-interrupted.ddsave','long-rest-pending.ddsave','long-rest-first-funded.ddsave',
     'long-rest-paid-continuation.ddsave','long-rest-cadence-172799.ddsave','long-rest-cadence-172800.ddsave',
     'long-rest-cadence-172801.ddsave','long-rest-strain-five.ddsave','long-rest-before-lethal-provisioning.ddsave',
-    'long-rest-terminal-provisioning.ddsave')
+    'long-rest-terminal-provisioning.ddsave','long-rest-whole-funded.ddsave','long-rest-debt-first-funded.ddsave',
+    'long-rest-debt-before-capped.ddsave','long-rest-debt-capped.ddsave')
 foreach($file in Get-ChildItem -LiteralPath $CheckpointDirectory -File -Filter '*.ddsave'|Where-Object Name -In $checkpointNames){
     $s=$store.Load($file.FullName)
     if(!$s.ConnectedClericLongRest-or$s.Revision-gt$final.Revision){continue}
