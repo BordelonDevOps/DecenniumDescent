@@ -1,12 +1,14 @@
 # Pre-Unity C# completion contract
 
-As of **2026-11-17**. Criteria: **DRAFT_CRITERIA_GPT_AGREED_FINAL_PUBLICATION_REVIEW_PENDING**. Qualification: **NOT_QUALIFIED**. Implementation remains **paused**.
+As of **2026-11-17**. Criteria: **ACCEPTED_PLANNING_CRITERIA_ONLY**. Qualification: **NOT_QUALIFIED**. Implementation remains **paused**.
 
 Complete the reusable source-bound C# simulation across all 49 mapped workstreams before Unity gameplay integration. This defines completion; it does not implement or qualify any missing capability.
 
 **First integration:** Development/TEST_ONLY unless separately promoted. Required engine coverage is not reduced to the current connected minimum or the initial UI content selection. Production authority, release performance and network transport remain separate.
 
 [Current implementation map](IMPLEMENTATION_MAP.md) · [Machine-readable contract](PRE_UNITY_COMPLETION_CONTRACT.json) · [Actual GPT consultation](evidence/2026-11-17-pre-unity-contract/GPT_CONSULTATION.json)
+
+[Final published-contract review](evidence/2026-11-17-pre-unity-contract/GPT_FINAL_REVIEW.json)
 
 ## What counts as complete
 

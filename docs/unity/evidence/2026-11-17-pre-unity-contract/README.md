@@ -15,7 +15,7 @@ This packet is documentation only. It preserves the accepted runtime and console
 
 ## Review and execution status
 
-GPT response `946f7003-ac3b-5ad1-bfab-5d4c4b1feecf` agreed to the proposed criteria. Actual final review of the published candidate is pending. The criteria are prospective: no timing result, coverage-ledger closure or whole-engine acceptance is claimed. The existing reference machine was inspected read-only; retained timing evidence informed the target selection.
+GPT response `946f7003-ac3b-5ad1-bfab-5d4c4b1feecf` agreed to the proposed criteria. GPT accepted published candidate `62a44f0e814180c1958390553e2f306d464364ec` with no substantive correction in actual response `2d90bdd9-503c-5648-89f3-424284a2647e`; Codex concurs. [Exact final review and agreement](GPT_FINAL_REVIEW.json). Only the planning documentation review is closed. The criteria are prospective: no timing result, coverage-ledger closure or whole-engine acceptance is claimed. The existing reference machine was inspected read-only; retained timing evidence informed the target selection.
 
 The input baseline is `65e6153a8c1511290bd68d47c5ce6a636ecec821`; the accepted implementation evidence baseline remains `9f6db082990be8a96cc38a77863f93a4b2d38d93`. C# runtime remains `c8ffee78d5047131317ff923c8e3a575b6c51f3a`, and qualified console host remains `3d0afc12d2444d2d6d77e3ff3729f2ff8236be3d`.
 

@@ -2,7 +2,7 @@
 
 As of **2026-11-17**, reconciled against Engine `9f6db082990be8a96cc38a77863f93a4b2d38d93`. **Unity gameplay integration is not ready. Development remains paused.** This update changes documentation only; it does not start the next module.
 
-**Documentation review:** CRITERIA_UPDATE_PENDING_FINAL_DOCUMENTATION_REVIEW. Actual review of this concrete map is pending.
+**Documentation review:** ACCEPTED_DOCUMENTATION_ONLY. [Actual final map review](evidence/2026-11-17-pre-unity-contract/GPT_FINAL_REVIEW.json)
 
 **What is complete:** the shared technical baseline and the named source-bound slices below, including the accepted INT-03 connected minimum, independent recipe-4 verification, C# quality explanation, Cleric/Bishop progression and casting, declared geometry and Ferry-Wraith encounter. Those completed slices stay accepted. Each broader workstream retains its own unfinished scope.
 
@@ -961,4 +961,4 @@ Keep these separate from completion of the C# prerequisite; the Editor template 
 - Do not reuse stale NOT PORTED labels for accepted casting, repertoire, geometry or creature slices. Do not claim all 17 classes, all spells/feats/recipes or general AI from those slices.
 - No C# build, gameplay, save restore, regression suite or Unity qualification is rerun by this documentation updater.
 
-Consultation: [Exact GPT consultation and Codex disposition](evidence/2026-11-17-implementation-map/GPT_CONSULTATION.json).
+Initial reconciliation consultation: [Exact GPT consultation and Codex disposition](evidence/2026-11-17-implementation-map/GPT_CONSULTATION.json). Completion-criteria consultation: [Exact criteria proposals and agreement](evidence/2026-11-17-pre-unity-contract/GPT_CONSULTATION.json).

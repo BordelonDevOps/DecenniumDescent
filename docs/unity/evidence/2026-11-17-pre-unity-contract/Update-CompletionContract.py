@@ -184,6 +184,12 @@ def main():
     assert host['runtime'] == '.NET ' + c['performance']['referenceHost']['dotnet']
     assert c['implementation'] == m['hold']['implementation'] == 'PAUSED_BY_OWNER'
     assert c['qualificationStatus'] == 'NOT_QUALIFIED'
+    if c['evidence']['finalReview']:
+        review = read(c['evidence']['finalReview'])
+        assert c['contractStatus'] == 'ACCEPTED_PLANNING_CRITERIA_ONLY'
+        assert review['status'] == 'ACCEPTED_PLANNING_DOCUMENTATION_ONLY'
+        assert any(item['type'] == 'agentMessage' and item['id'] == review['responseId']
+                   for item in review['turn']['items'])
     assert len(c['interactions']) == len({x['id'] for x in c['interactions']}) == 10
     assert len(c['performance']['targets']) == 10
     for t in c['performance']['targets']:

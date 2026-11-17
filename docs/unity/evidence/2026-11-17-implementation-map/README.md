@@ -1,5 +1,7 @@
 # Current implementation-map reconciliation
 
+Subsequent planning update (2026-11-17): the [pre-Unity completion contract](../../PRE_UNITY_COMPLETION_CONTRACT.md) now specifies capability coverage and performance criteria, accepted by GPT/Codex ([actual review](../2026-11-17-pre-unity-contract/GPT_FINAL_REVIEW.json)). UR-01/UR-04 remain unqualified. The earlier findings below describe the preceding map review; the renderer/report now also validate the 100 criterion links. No implementation resumes.
+
 Status: **documentation reconciliation accepted by GPT and Codex**. Actual response `d295363c-eda4-5830-8726-bc32efacdbf3` accepts candidate `1bcd551fee331c55da44e4d2969642fdaa2947d7` with one evidence-link closeout correction, now applied. No engine module is started by this work.
 
 The owner asked Codex to confer with GPT and update the implementation map to show completed work and what remains before Unity, explicitly holding the next module. The implementation baseline is Engine `9f6db082990be8a96cc38a77863f93a4b2d38d93`, the final accepted TAC-10 record. Frozen C# remains `c8ffee78d5047131317ff923c8e3a575b6c51f3a`; qualified console host remains `3d0afc12d2444d2d6d77e3ff3729f2ff8236be3d`.

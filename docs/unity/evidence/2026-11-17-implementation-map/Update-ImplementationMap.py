@@ -133,7 +133,8 @@ def render(m):
               '- TAC-10\'s entirely genuine fear-through-entry cure remains unproved, not impossible. Its approved mechanical allocation is accepted and is not a new open blocker. Modified mechanical full states reject at encoding; component-only roundtrips and direct repeat denials retain their limits.',
               '- Do not reuse stale NOT PORTED labels for accepted casting, repertoire, geometry or creature slices. Do not claim all 17 classes, all spells/feats/recipes or general AI from those slices.',
               '- No C# build, gameplay, save restore, regression suite or Unity qualification is rerun by this documentation updater.', '',
-              'Consultation: ' + link(m['consultationRecord'], 'Exact GPT consultation and Codex disposition') + '.', '']
+              'Initial reconciliation consultation: ' + link(m['consultationRecord'], 'Exact GPT consultation and Codex disposition')
+              + '. Completion-criteria consultation: ' + link(m['completionContract']['consultation'], 'Exact criteria proposals and agreement') + '.', '']
     return '\n'.join(lines)
 
 
