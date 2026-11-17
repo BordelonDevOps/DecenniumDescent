@@ -496,7 +496,8 @@ namespace Decennium.Foundation.Laboratory
                 var grant = SeatGrant(seat);
                 bool player = seat == ExpeditionSeat.Player;
                 bool discloseTacticalSlot = grant != null && (player || seat==ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
-                    || seat==ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
+                    || seat==ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state)
+                    || seat==ExpeditionSeat.FerryOpponent && FerryWraithProfile.Active(state));
                 var position = new ExpeditionActionResult(ExpeditionResponse.Waiting, state, discloseTacticalSlot);
                 if (grant == null)
                     return new ExpeditionSeatView(position, false, false, "", "", "", Array.Empty<ExpeditionOwnActor>(),
@@ -511,6 +512,8 @@ namespace Decennium.Foundation.Laboratory
                     ? state.Encounter.CurrentTurnId : "";
                 IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
                 if(seat==ExpeditionSeat.RecoveryOpponent)commands=commands.Append(CommandKind.UseIntimidatingPresence).Append(CommandKind.RespondSanctuary);
+                if(seat==ExpeditionSeat.FerryOpponent)commands=commands.Where(x=>x!=CommandKind.AttackClub)
+                    .Append(CommandKind.AttackCreatureFeature).Append(CommandKind.RespondSanctuary);
                 IReadOnlyDictionary<CommandKind, string> targets = player ? KnownServices : NoKnownTargets;
                 if (player && state.ConnectedCompanionDose) {
                     commands = commands.Append(CommandKind.BeginReinforcementApproach);

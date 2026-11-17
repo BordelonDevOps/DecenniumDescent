@@ -13,14 +13,16 @@ namespace Decennium.Foundation.Laboratory
         private static bool IsDefenderAdmissionCommand(CommandKind kind)
             => kind == CommandKind.SelectCombatStance || kind == CommandKind.AttackClub
                 || kind == CommandKind.TacticalStep || kind == CommandKind.EndRegularTurn
-                || kind == CommandKind.RespondOpportunityAttack || kind == CommandKind.UseIntimidatingPresence || kind==CommandKind.RespondSanctuary;
+                || kind == CommandKind.RespondOpportunityAttack || kind == CommandKind.UseIntimidatingPresence || kind==CommandKind.RespondSanctuary
+                || kind==CommandKind.AttackCreatureFeature || kind==CommandKind.RespondPress;
 
         string ICommandAdmissionPolicy.AssessAdmission(Snapshot snapshot, Command command)
         {
             // ResolveCore shares the outer admission gates. These five commands stop before the
             // first tactical write, payment, clock advance or draw in their existing resolver.
             if (command == null || !IsDefenderAdmissionCommand(command.Kind)
-                || !UsesLaterDefenderController(snapshot) || command.Actor != LaterDefenderId)
+                || !(UsesLaterDefenderController(snapshot)&&command.Actor==LaterDefenderId
+                    || snapshot.ContentFingerprint==ContentFingerprint&&FerryWraithProfile.Active(snapshot)&&command.Actor==FerryWraithProfile.Actor))
                 return "DefenderAdmissionUnavailable";
             return ResolveCore(snapshot, command, assessTactical: true);
         }

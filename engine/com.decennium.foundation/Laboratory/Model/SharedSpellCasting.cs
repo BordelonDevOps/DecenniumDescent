@@ -273,7 +273,8 @@ namespace Decennium.Foundation.Laboratory
                 if(pending.ActorId!=actor)yield break;
                 yield return new Command(Id(),actor,s.Revision,CommandKind.RespondSanctuary,pending.Id,
                     sanctuaryResponse:new SanctuaryResponseRequest(SanctuaryResponseKind.Forgo));
-                if(pending.Source==SanctuaryAttackSource.RegularMelee||pending.Source==SanctuaryAttackSource.RegularUnarmed)
+                if(pending.Source==SanctuaryAttackSource.RegularMelee||pending.Source==SanctuaryAttackSource.RegularUnarmed
+                    ||pending.Source==SanctuaryAttackSource.RegularCreatureFeature)
                     foreach(string target in s.Encounter.Order.Where(x=>x!=actor&&x!=pending.OriginalTargetId&&ObservationRules.CanSee(s,actor,x)))
                         yield return new Command(Id(),actor,s.Revision,CommandKind.RespondSanctuary,pending.Id,
                             sanctuaryResponse:new SanctuaryResponseRequest(SanctuaryResponseKind.Retarget,target));

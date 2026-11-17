@@ -80,7 +80,8 @@ namespace Decennium.Foundation.Laboratory
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
             ||connectedClericLongRest&&ClericLongRestProfile.IsCommand(kind)
             ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
-                ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack)
+                ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack
+                ||ferryDeclaration!=null&&kind==CommandKind.AttackCreatureFeature)
             ||clericMilestoneDeclaration!=null&&kind==CommandKind.UseHealingRite
             ||clericRepertoireSelection!=null&&ClericRepertoireProfile.IsCommand(kind)
             ||connectedFrightened&&kind==CommandKind.UseIntimidatingPresence
@@ -150,6 +151,7 @@ namespace Decennium.Foundation.Laboratory
         public IEnumerable<Command> DiscoverCommands(Snapshot s,Authority authority,string actor)
         {
             if(s==null||authority==null||!authority.Controls(actor)||!Validation.ValidId(actor))return Array.Empty<Command>();
+            if(s.FerryWraith!=null&&actor==FerryWraithProfile.Actor)return DiscoverFerryCommands(s,authority);
             if(PendingSanctuary(s)!=null)return DiscoverCastingCommands(s,authority,actor);
             if(HasPendingRecoveryOffer(s))return DiscoverStrainRecoveryChoices(s,actor);
             if(s.Encounter==null||!s.InventoryCombat)

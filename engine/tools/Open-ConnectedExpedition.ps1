@@ -209,7 +209,7 @@ function New-SessionCommand($request, $view, $kind) {
         $details = $request.combat
         $combat = [Decennium.Foundation.CombatRequest]::new(($details.turn ?? $view.TurnId),
             ($details.weapon ?? ''), ($details.stance ?? 0), ($details.knockout ?? 'OrdinaryOutcome'),
-            ($details.choice ?? $false), ($details.press ?? 'ArmOrReplace'))
+            ($details.choice ?? $false), ($details.press ?? 'ArmOrReplace'), ($details.feature ?? ''))
     }
     if ($null -ne $request.mining) {
         $details = $request.mining
@@ -229,6 +229,7 @@ function Get-SessionFilePath([string]$path) {
 function Invoke-SessionInput($request) {
     switch ($request.op) {
         'view' { return $session.View(($request.seat ?? 'Player')) }
+        'ferry' { return $session.ObserveFerryDecision(($request.seat ?? 'Player')) }
         'query' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind

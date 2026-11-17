@@ -6,8 +6,8 @@ using System.Linq;
 
 namespace Decennium.Foundation.Laboratory
 {
-    public enum ExpeditionSeat { Player, FirstOpponent, RecoveryOpponent }
-    public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable, RecoveryOpponent }
+    public enum ExpeditionSeat { Player, FirstOpponent, RecoveryOpponent, FerryOpponent }
+    public enum ExpeditionTurnSeat { None, Player, FirstOpponent, AutomaticDefender, Unavailable, RecoveryOpponent, FerryOpponent }
     public enum ExpeditionDecisionKind { None, Opportunity, ManufacturingQuality, Knockout, Press, Sanctuary }
     public enum ExpeditionResponse { Unavailable, NotAuthorized, StaleRevision, CommandIdConflict, Committed, Duplicate, Waiting }
 
@@ -69,6 +69,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly HashSet<ExpeditionSeat> revoked = new HashSet<ExpeditionSeat>();
         private Simulation simulation;
         private LaterDefenderController defender;
+        private FerryWraithController ferryController;
 
         private ConnectedExpeditionSession(TestOnlySharedWorldPolicy policy)
         {
@@ -180,6 +181,7 @@ namespace Decennium.Foundation.Laboratory
         {
             simulation = replacement;
             defender = new LaterDefenderController(replacement, policy);
+            ferryController = new FerryWraithController(replacement, policy);
         }
 
         public void Save(string path)
@@ -221,7 +223,8 @@ namespace Decennium.Foundation.Laboratory
                 if (!ExposedCommand(state, seat, command.Kind))
                     return new ExpeditionActionResult(ExpeditionResponse.Unavailable, state,
                         seat == ExpeditionSeat.Player || seat == ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
-                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
+                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state)
+                        || seat == ExpeditionSeat.FerryOpponent && FerryWraithProfile.Active(state));
                 if (seat == ExpeditionSeat.Player && command.Actor == Companion
                     && ((command.Kind == CommandKind.StartHavenSale && command.Target == TestOnlyHavenSaleProfile.OfferVersionId)
                         || (command.Kind == CommandKind.PurchaseHavenMeal && command.Target == TestOnlyHavenMealProfile.OfferVersionId)))
@@ -230,7 +233,8 @@ namespace Decennium.Foundation.Laboratory
                     grant = ClericMilestoneGrant;
                 return Execute(state, grant, command, () => KnownTarget(state, seat, command),
                     seat == ExpeditionSeat.Player || seat == ExpeditionSeat.FirstOpponent && FirstEncounterActive(state)
-                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state));
+                        || seat == ExpeditionSeat.RecoveryOpponent && PostRecoveryProfile.Active(state)
+                        || seat == ExpeditionSeat.FerryOpponent && FerryWraithProfile.Active(state));
             }
         }
 
@@ -280,6 +284,17 @@ namespace Decennium.Foundation.Laboratory
         public ExpeditionActionResult AdvanceAutomaticDefender()
         {
             lock (gate) {
+                var current=simulation.Capture();
+                if(FerryWraithProfile.Active(current)) {
+                    var grant=SeatGrant(ExpeditionSeat.FerryOpponent);
+                    if(grant==null)return new ExpeditionActionResult(ExpeditionResponse.NotAuthorized,current,false);
+                    var planned=ferryController.Plan(grant);var dispatched=ferryController.Dispatch(grant,planned);
+                    var mapped=dispatched==DefenderDispatchStatus.Committed?ExpeditionResponse.Committed
+                        :dispatched==DefenderDispatchStatus.Duplicate?ExpeditionResponse.Duplicate
+                        :dispatched==DefenderDispatchStatus.Stale?ExpeditionResponse.StaleRevision
+                        :dispatched==DefenderDispatchStatus.Waiting?ExpeditionResponse.Waiting:ExpeditionResponse.Unavailable;
+                    return new ExpeditionActionResult(mapped,simulation.Capture());
+                }
                 var decision = defender.Plan(DefenderGrant);
                 var result = defender.Dispatch(DefenderGrant, decision);
                 var response = result switch {
@@ -291,6 +306,11 @@ namespace Decennium.Foundation.Laboratory
                 };
                 return new ExpeditionActionResult(response, simulation.Capture());
             }
+        }
+
+        public FerryDecisionView ObserveFerryDecision(ExpeditionSeat seat)
+        {
+            lock(gate)return ferryController.Plan(seat==ExpeditionSeat.FerryOpponent?SeatGrant(seat):null).View;
         }
 
         /// <summary>Trusted host path for a later source reuse. Player seats do not receive this authority.</summary>
@@ -325,6 +345,7 @@ namespace Decennium.Foundation.Laboratory
                 ExpeditionSeat.Player => PlayerGrant,
                 ExpeditionSeat.FirstOpponent => FirstOpponentGrant,
                 ExpeditionSeat.RecoveryOpponent => simulation?.Capture().PostRecoveryEncounter != null ? RecoveryOpponentGrant : null,
+                ExpeditionSeat.FerryOpponent => simulation?.Capture().FerryWraith!=null?FerryWraithController.CreatureAuthority():null,
                 _ => null
             };
         }
@@ -411,6 +432,7 @@ namespace Decennium.Foundation.Laboratory
                 FirstOpponent => ExpeditionTurnSeat.FirstOpponent,
                 TestOnlySharedWorldPolicy.LaterDefenderId => ExpeditionTurnSeat.AutomaticDefender,
                 PostRecoveryEncounterDefinition.Actor => ExpeditionTurnSeat.RecoveryOpponent,
+                FerryWraithProfile.Actor => ExpeditionTurnSeat.FerryOpponent,
                 "" => ExpeditionTurnSeat.None,
                 _ => ExpeditionTurnSeat.Unavailable
             };
@@ -472,6 +494,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedCommand(Snapshot state, ExpeditionSeat seat, CommandKind kind)
             => CombatCommands.Contains(kind)
+                || seat==ExpeditionSeat.FerryOpponent&&state.FerryWraith!=null&&(kind==CommandKind.AttackCreatureFeature||kind==CommandKind.RespondSanctuary)
                 || seat == ExpeditionSeat.RecoveryOpponent && state.PostRecoveryEncounter != null
                     && (kind == CommandKind.UseIntimidatingPresence || state.ConnectedClericCasting && kind == CommandKind.RespondSanctuary)
                 || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
@@ -577,6 +600,7 @@ namespace Decennium.Foundation.Laboratory
             string actor = command.Actor;
             if (seat == ExpeditionSeat.FirstOpponent && !FirstEncounterActive(state)) return false;
             if (seat == ExpeditionSeat.RecoveryOpponent && !PostRecoveryProfile.Active(state)) return false;
+            if (seat == ExpeditionSeat.FerryOpponent && !FerryWraithProfile.Active(state)) return false;
             if (state.DeclaredGeometry != null && command.Kind == CommandKind.BeginWorldStep)
                 return seat == ExpeditionSeat.Player && Party.Contains(actor) && (target == "walk" || target == "run");
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
@@ -612,6 +636,10 @@ namespace Decennium.Foundation.Laboratory
                     return state.InventoryCombat && command.Combat != null && command.Combat.TurnId == state.Encounter?.CurrentTurnId
                         && state.Clubs.Any(x => x.Id == command.Combat.WeaponId && x.OwnerId == actor && x.CustodianId == actor)
                         && state.Encounter.Order.Contains(target) && ObservationRules.CanSee(state, actor, target);
+                case CommandKind.AttackCreatureFeature:
+                    return seat==ExpeditionSeat.FerryOpponent&&actor==FerryWraithProfile.Actor&&FerryWraithProfile.Active(state)
+                        &&command.Combat?.FeatureId==FerryWraithProfile.Feature&&command.Combat.TurnId==state.Encounter.CurrentTurnId
+                        &&state.Encounter.Order.Contains(target)&&ObservationRules.CanSee(state,actor,target);
                 case CommandKind.RespondOpportunityAttack:
                     var pending = TestOnlyClubAttackPolicy.PendingMove(state);
                     return pending != null && pending.ResponseIndex < pending.Reactors.Count && target == pending.Id
@@ -681,7 +709,8 @@ namespace Decennium.Foundation.Laboratory
                     return state.ConnectedClericRepertoire && seat==ExpeditionSeat.Player && actor==Companion && SpellSourceCatalog.Get(target)!=null;
                 case CommandKind.RespondSanctuary:
                     return state.ConnectedClericCasting&&(seat==ExpeditionSeat.Player&&Party.Contains(actor)
-                        || seat==ExpeditionSeat.RecoveryOpponent&&actor==PostRecoveryEncounterDefinition.Actor)
+                        || seat==ExpeditionSeat.RecoveryOpponent&&actor==PostRecoveryEncounterDefinition.Actor
+                        || seat==ExpeditionSeat.FerryOpponent&&actor==FerryWraithProfile.Actor)
                         &&state.SanctuaryAdmissions.Any(x=>x.Pending&&x.ActorId==actor&&x.Id==target)
                         &&command.SanctuaryResponse!=null
                         &&(command.SanctuaryResponse.Kind==SanctuaryResponseKind.Forgo||Party.Contains(command.SanctuaryResponse.TargetId)
