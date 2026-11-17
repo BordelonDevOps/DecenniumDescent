@@ -104,7 +104,7 @@ namespace Decennium.Foundation.Laboratory
         {
             foreach (var route in routes)
             {
-                if (route.Positions.Any(p => !TestOnlyPolicy.Walkable(p.X, p.Y))) return "RouteGeometryOutsideFixtureMap";
+                if (route.Positions.Any(p => !SharedDeclaredGeometry.SupportsAnchorAt(s, p.X, p.Y))) return "RouteGeometryOutsideFixtureMap";
                 RuleQuantity ordinaryAward = ExpeditionRouteTravelRules.BaseProgress(route.Mapping);
                 if (ordinaryAward != default)
                 {
@@ -228,7 +228,7 @@ namespace Decennium.Foundation.Laboratory
             string error = ValidateRoutes(routes);
             if (error != null) return error;
             foreach (var leg in legs)
-                if (!TestOnlyPolicy.Walkable(leg.FromX, leg.FromY) || !TestOnlyPolicy.Walkable(leg.ToX, leg.ToY)
+                if (!SharedDeclaredGeometry.SupportsAnchorAt(s, leg.FromX, leg.FromY) || !SharedDeclaredGeometry.SupportsAnchorAt(s, leg.ToX, leg.ToY)
                     || s.ObservationMapWidth < 1 || !ObservationGeometry.SupportsAnchorAt(s, leg.FromX, leg.FromY)
                     || !ObservationGeometry.SupportsAnchorAt(s, leg.ToX, leg.ToY))
                     return "RouteMotionGeometryOutsideObservationMap";

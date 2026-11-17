@@ -116,7 +116,7 @@ namespace Decennium.Foundation.Laboratory
                 return "InvalidHuntingTrapFixture";
             foreach(var definition in huntingTrapFixture.Devices) {
                 if(!s.Actors.Any(x=>x.Id==definition.OwnerId)||definition.CompatibleActorIds.Any(actor=>!s.Actors.Any(x=>x.Id==actor))
-                    ||!TestOnlyPolicy.Walkable(definition.AnchorX,definition.AnchorY))return "InvalidHuntingTrapFixture";
+                    ||!SharedDeclaredGeometry.SupportsAnchorAt(s,definition.AnchorX,definition.AnchorY))return "InvalidHuntingTrapFixture";
                 var item=s.PortableEquipment.SingleOrDefault(x=>x.Id==definition.ItemId);
                 if(item==null||item.ProfileId!="adventuring-gear.hunting-trap"||item.OwnerId!=definition.OwnerId
                     ||item.MassBasis!=PortableMassBasis.Fixed||item.SourceWeightLb!=new RuleQuantity(25)

@@ -110,7 +110,7 @@ namespace Decennium.Foundation.Laboratory
         {
             // The selected arena's authored floor and side walls are known to this resident
             // defender. Dynamic occupancy and reservations are visible only through direct sight.
-            bool Walkable(int x, int y) => TestOnlyPolicy.Walkable(x, y) && ObservationGeometry.SupportsAnchorAt(state, x, y);
+            bool Walkable(int x, int y) => SharedDeclaredGeometry.SupportsAnchorAt(state, x, y, true);
             for (int x = origin.X - 1; x <= origin.X + 1; x++)
                 for (int y = origin.Y - 1; y <= origin.Y + 1; y++) {
                     if (!WorldSpatialQueries.Neighbor(origin.X, origin.Y, x, y, diagonals: true)

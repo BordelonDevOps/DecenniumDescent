@@ -117,6 +117,11 @@ namespace Decennium.Foundation.Laboratory
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnablePostRecoveryEncounter(initial,repertoire,declaration,
                 companionConsents,directorAuthorizes));
 
+        public static ConnectedExpeditionSession StartWithDeclaredGeometry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
+            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
+                companionConsents,directorAuthorizes).EnableDeclaredGeometry());
+
         public static ConnectedExpeditionSession StartWithBishopEntry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
             ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
@@ -409,6 +414,15 @@ namespace Decennium.Foundation.Laboratory
         private static bool ExposedPayload(Snapshot state, Command command)
         {
             if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;
+            if (state.DeclaredGeometry != null && (command.Kind == CommandKind.BeginWorldStep
+                || command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep))
+                return command.Inventory == null && command.Combat == null && command.Advancement == null
+                    && command.Ranged == null && command.OverwatchRider == OverwatchRider.None
+                    && command.SuppressionFire == null && command.DefensiveFormation == null && command.ExpeditionAssignment == null
+                    && command.HarvestSelection == null && command.MiningSelection == null && command.ProspectingExposure == null
+                    && command.RouteMappingWork == null && command.IntimidatingPresence == null && command.HealingRite == null
+                    && command.SpellCast == null && command.Guidance == null && command.SanctuaryResponse == null
+                    && command.DivineInvocation == null;
             if (command.Advancement != null && (!state.ConnectedClericSettlement || command.Kind != CommandKind.AdvanceCharacterLevel)
                 || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
@@ -456,6 +470,7 @@ namespace Decennium.Foundation.Laboratory
                 || seat == ExpeditionSeat.RecoveryOpponent && state.PostRecoveryEncounter != null
                     && (kind == CommandKind.UseIntimidatingPresence || state.ConnectedClericCasting && kind == CommandKind.RespondSanctuary)
                 || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+                || state.DeclaredGeometry != null && (kind == CommandKind.SuspendWorldStep || kind == CommandKind.ResumeWorldStep)
                 || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
                 || state.ConnectedClericCasting && (SpellCastingProfile.IsUtilityCommand(kind)
                     || kind==CommandKind.EquipPortableItem || kind==CommandKind.RemovePortableItem || kind==CommandKind.HandleVessel)
@@ -557,9 +572,14 @@ namespace Decennium.Foundation.Laboratory
             string actor = command.Actor;
             if (seat == ExpeditionSeat.FirstOpponent && !FirstEncounterActive(state)) return false;
             if (seat == ExpeditionSeat.RecoveryOpponent && !PostRecoveryProfile.Active(state)) return false;
+            if (state.DeclaredGeometry != null && command.Kind == CommandKind.BeginWorldStep)
+                return seat == ExpeditionSeat.Player && Party.Contains(actor) && (target == "walk" || target == "run");
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.SuspendWorldStep:
+                case CommandKind.ResumeWorldStep:
+                    return state.DeclaredGeometry != null && seat == ExpeditionSeat.Player && Party.Contains(actor) && target == "";
                 case CommandKind.UseDivineInvocation:
                     return state.BishopEntry!=null&&seat==ExpeditionSeat.Player&&actor==Companion&&target==""
                         &&command.DivineInvocation!=null&&command.DivineInvocation.TargetIds.All(Party.Contains);

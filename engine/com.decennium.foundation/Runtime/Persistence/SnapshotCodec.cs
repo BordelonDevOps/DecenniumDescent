@@ -176,6 +176,10 @@ namespace Decennium.Foundation
                     writer.Write(BishopProfile.Marker);
                     BishopEntryCodec.Write(writer,state.BishopEntry);
                 }
+                if (state.DeclaredGeometry != null) {
+                    writer.Write(DeclaredGeometryProfile.Marker);
+                    DeclaredGeometryCodec.Write(writer, state.DeclaredGeometry);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -194,6 +198,7 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int wireSchema = reader.ReadInt32();
+                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema;
                     // The selected ordinary observation extensions use the schema51 feature payload.
                     int schema = wireSchema switch {
                         Snapshot.ExplorationSearchSchema => Snapshot.ObservationSchema,
@@ -218,6 +223,7 @@ namespace Decennium.Foundation
                         Snapshot.ConnectedClericLongRestSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.PostRecoveryEncounterSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.BishopEntrySchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.DeclaredGeometrySchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -302,7 +308,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.ReadyActionSchema)ReadyActionCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteMappingWorkSchema)ExpeditionRouteMappingWorkCodec.Read(reader,s);
                     if(schema >= Snapshot.RouteReconnaissanceSchema)ExpeditionRouteReconnaissanceCodec.Read(reader,s);
-                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema));
+                    if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || bishopEnvelope));
                     if(schema >= Snapshot.ExpeditionPressureSchema)ExpeditionPressureCodec.Read(reader,s);
                     if(schema >= Snapshot.ExpeditionCampUseSchema)ExpeditionCampCodec.Read(reader,s);
                     if(schema >= Snapshot.TemporaryCampConstructionSchema)TemporaryCampConstructionCodec.Read(reader,s);
@@ -324,7 +330,7 @@ namespace Decennium.Foundation
                     if(schema >= Snapshot.RetreatSchema)s.Retreat=RetreatCodec.Read(reader);
                     if (schema >= Snapshot.ReengagementSchema) ReengagementCodec.Read(reader, s);
                     if (schema == Snapshot.SurpriseEntrySchema) SurpriseEntryCodec.Read(reader, s);
-                    s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema);
+                    s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || bishopEnvelope);
                     s.ConnectedClericCasting = s.ConnectedClericLongRest || wireSchema == Snapshot.ConnectedClericCastingSchema;
                     s.ConnectedClericSettlement = s.ConnectedClericCasting || wireSchema == Snapshot.ConnectedClericSettlementSchema;
                     s.ConnectedFrightened = s.ConnectedClericSettlement || wireSchema == Snapshot.ConnectedFrightenedSchema;
@@ -397,19 +403,23 @@ namespace Decennium.Foundation
                     }
                     if (s.ConnectedClericCasting) {
                         if (reader.ReadByte() != SpellCastingProfile.Marker) throw new InvalidDataException("Invalid casting marker.");
-                        SpellCastingCodec.Read(reader, s,wireSchema==Snapshot.BishopEntrySchema);
+                        SpellCastingCodec.Read(reader, s,bishopEnvelope);
                     }
                     if (s.ConnectedClericLongRest) {
                         if (reader.ReadByte() != ClericLongRestProfile.Marker) throw new InvalidDataException("Invalid Long Rest marker.");
-                        ClericLongRestCodec.Read(reader, s, wireSchema == Snapshot.BishopEntrySchema);
+                        ClericLongRestCodec.Read(reader, s, bishopEnvelope);
                     }
-                    if ((wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema)) {
+                    if ((wireSchema == Snapshot.PostRecoveryEncounterSchema || bishopEnvelope)) {
                         if (reader.ReadByte() != PostRecoveryProfile.Marker) throw new InvalidDataException("Invalid post-recovery encounter marker.");
                         s.PostRecoveryEncounter = PostRecoveryEncounterCodec.Read(reader);
                     }
-                    if (wireSchema == Snapshot.BishopEntrySchema) {
+                    if (bishopEnvelope) {
                         if (reader.ReadByte() != BishopProfile.Marker) throw new InvalidDataException("Invalid Bishop marker.");
                         s.BishopEntry = BishopEntryCodec.Read(reader);
+                    }
+                    if (wireSchema == Snapshot.DeclaredGeometrySchema) {
+                        if (reader.ReadByte() != DeclaredGeometryProfile.Marker) throw new InvalidDataException("Invalid declared geometry marker.");
+                        s.DeclaredGeometry = DeclaredGeometryCodec.Read(reader);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

@@ -9,7 +9,7 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private bool WorldWalkable(Snapshot s, int x, int y)
-            => TestOnlyPolicy.Walkable(x, y) && (observationFixture == null || ObservationGeometry.SupportsAnchorAt(s, x, y));
+            => SharedDeclaredGeometry.SupportsAnchorAt(s, x, y, observationFixture != null);
 
         private sealed class WorldStepFacts
         {

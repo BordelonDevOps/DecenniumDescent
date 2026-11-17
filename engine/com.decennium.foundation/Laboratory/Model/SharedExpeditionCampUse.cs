@@ -241,7 +241,7 @@ namespace Decennium.Foundation.Laboratory
                 || physical.X != new RuleQuantity(site.RouteX) || physical.Y != new RuleQuantity(site.RouteY)
                 || actor.X != site.RouteX || actor.Y != site.RouteY)
                 return "CampUseRequiresPhysicalCheckpointPresence";
-            if (!TestOnlyPolicy.Walkable(site.RouteX, site.RouteY)
+            if (!SharedDeclaredGeometry.SupportsAnchorAt(s, site.RouteX, site.RouteY)
                 || WorldSpatialQueries.Occupied(s, member, site.RouteX, site.RouteY))
                 return "CampSiteAccessBlockedOrOccupied";
             return null;

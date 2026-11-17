@@ -49,10 +49,10 @@ namespace Decennium.Foundation.Tests
             File.WriteAllBytes(Path.Combine(directory,"forged-invocation-before.ddsave"),before);
             File.WriteAllBytes(Path.Combine(directory,"forged-invocation-after.ddsave"),codec.Encode(ShortRestCapture(session)));
         }
-        private static ConnectedExpeditionSession FundBishop(string directory,bool controls=false)
+        private static ConnectedExpeditionSession FundBishop(string directory,bool controls=false,ConnectedExpeditionSession expedition=null)
         {
             const string hero=ConnectedExpeditionSession.Hero,cleric=ClericRpProfile.Actor;
-            var session=EarnClericObjective(true,directory,NewBishopExpedition(),beforeInitialRite:live=>{
+            var session=EarnClericObjective(true,directory,expedition??NewBishopExpedition(),beforeInitialRite:live=>{
                 if(controls) {
                     Require(ShortRestCapture(live).Revision==145,"Discovery regression must reach genuine uninterrupted revision145.");
                     BishopCheckpoint(live,directory,"r145-companion-discovery");

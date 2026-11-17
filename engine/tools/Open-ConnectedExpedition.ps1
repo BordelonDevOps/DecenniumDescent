@@ -18,12 +18,13 @@ param(
     [switch]$ClericCasting,
     [switch]$ClericLongRest,
     [switch]$PostRecoveryEncounter,
-    [switch]$BishopEntry
+    [switch]$BishopEntry,
+    [switch]$DeclaredGeometry
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -33,7 +34,13 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($BishopEntry) {
+$session = if ($DeclaredGeometry) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithDeclaredGeometry(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),
+        [Decennium.Foundation.BishopEntryRecord]::Announced())
+} elseif ($BishopEntry) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithBishopEntry(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -94,6 +101,7 @@ $session = if ($BishopEntry) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$BishopEntry = $BishopEntry -or $DeclaredGeometry
 $PostRecoveryEncounter = $PostRecoveryEncounter -or $BishopEntry
 
 function New-SessionCommand($request, $view, $kind) {

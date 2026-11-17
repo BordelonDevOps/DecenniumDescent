@@ -567,8 +567,7 @@ namespace Decennium.Foundation.Laboratory
                 used.Remove(actor.X+","+actor.Y);
                 int[][] adjacent={new[]{deposit.SiteX-1,deposit.SiteY},new[]{deposit.SiteX+1,deposit.SiteY},
                     new[]{deposit.SiteX,deposit.SiteY-1},new[]{deposit.SiteX,deposit.SiteY+1}};
-                var point=adjacent.FirstOrDefault(p=>p[0]>=0&&p[1]>=0&&p[0]<5&&p[1]<5
-                    &&TestOnlyPolicy.Walkable(p[0],p[1])&&!used.Contains(p[0]+","+p[1]));
+                var point=adjacent.FirstOrDefault(p=>SharedDeclaredGeometry.SupportsAnchorAt(s,p[0],p[1])&&!used.Contains(p[0]+","+p[1]));
                 if(point==null)throw new InvalidOperationException("MiningAssistantSiteHasNoFixtureWorkerSpace");
                 actor.X=point[0];actor.Y=point[1];used.Add(actor.X+","+actor.Y);
                 s.Clubs=s.Clubs.Select(c=>c.HeldBy==id?new ClubInstance(c.Id,c.ProfileId,c.OwnerId,c.CustodianId,"",actor.X,actor.Y):c).ToArray();

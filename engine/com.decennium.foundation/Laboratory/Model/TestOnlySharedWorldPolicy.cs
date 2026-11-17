@@ -160,6 +160,7 @@ namespace Decennium.Foundation.Laboratory
             initializationStarted = true;
             if(contentManifest!=null&&contentManifest.ValidateBindings()!=null)throw new InvalidOperationException("ContentManifestBuildMismatch");
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
+            s.DeclaredGeometry = declaredGeometry;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
             // ground at the plot; the two calendar actors begin holding their one-handed Clubs.
@@ -348,7 +349,7 @@ namespace Decennium.Foundation.Laboratory
             return available > a.MovementSpent ? available - a.MovementSpent : default;
         }
         private long CostPerFoot(Snapshot s, WorldTraversalRecord edge) => PrototypeTraversal.MovementCost(1, OrdinaryTraversal.Walk,
-            terrain: terrain.At(edge.ToX, edge.ToY), crawling: View(s, edge.ActorId).Has(ConditionKind.Prone));
+            terrain: SharedDeclaredGeometry.TerrainAt(s, terrain, edge.ToX, edge.ToY), crawling: View(s, edge.ActorId).Has(ConditionKind.Prone));
         private static bool CapableWorker(Snapshot s, string actor)
         {
             var view = View(s, actor);
@@ -1198,6 +1199,9 @@ namespace Decennium.Foundation.Laboratory
                 if ((s.SchemaVersion != SelectedSchema
                     && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema))
                     || s.Receipts.Length != s.Revision) return "InvalidSharedWorldHeader";
+                if ((declaredGeometry == null) != (s.DeclaredGeometry == null)
+                    || declaredGeometry != null && !declaredGeometry.SameAs(s.DeclaredGeometry))
+                    return "DeclaredGeometryBindingMismatch";
                 if ((postRecoveryDefinition == null) != (s.PostRecoveryEncounter == null)
                     || postRecoveryDefinition != null && postRecoveryDefinition.Binding != s.PostRecoveryEncounter.Definition.Binding)
                     return "PostRecoveryDefinitionMismatch";

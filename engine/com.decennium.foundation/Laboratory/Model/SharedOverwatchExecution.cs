@@ -290,8 +290,7 @@ namespace Decennium.Foundation.Laboratory
                     AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.Push,c.Id,basis,dc,natural,automaticFailure,success,saveBefore,randomAfter,words);
                     if(!success) {
                         toX=target.X+directionX;toY=target.Y+directionY;
-                        if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)
-                            &&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,toX,toY))
+                        if((directionX!=0||directionY!=0)&&SharedDeclaredGeometry.SupportsAnchorAt(s,toX,toY,ObservationRules.Enabled(s))
                             &&!s.Actors.Any(x=>x.Id!=target.Id&&x.X==toX&&x.Y==toY)) {
                             target.X=toX;target.Y=toY;moved=5;
                             CharacterAdvancementRules.MarkMoved(s,target.Id);

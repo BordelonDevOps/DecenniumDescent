@@ -299,6 +299,7 @@ namespace Decennium.Foundation.Tests
             AddClericLongRestCases(cases,directory);
             AddPostRecoveryEncounterCases(cases,directory);
             AddBishopEntryCases(cases,directory);
+            AddDeclaredGeometryCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

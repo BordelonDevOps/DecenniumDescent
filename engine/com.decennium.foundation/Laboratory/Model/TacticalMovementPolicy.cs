@@ -34,7 +34,7 @@ namespace Decennium.Foundation.Laboratory
         private static void SetMove(Snapshot s,TacticalMoveRecord move)=>s.TacticalMoves=s.TacticalMoves.Select(m=>m.Id==move.Id?move:m).ToArray();
         private static void SetOffer(Snapshot s,PressOfferRecord offer)=>s.PressOffers=s.PressOffers.Select(p=>p.Id==offer.Id?offer:p).ToArray();
         private static bool Adjacent(int ax,int ay,int bx,int by)=>WorldSpatialQueries.DistanceInCells(ax,ay,bx,by)==1;
-        private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,tactical.At(x,y),EffectiveProne(s,actor));
+        private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,SharedDeclaredGeometry.TerrainAt(s,tactical,x,y),EffectiveProne(s,actor));
         internal bool DefensiveFormationCanMove(Snapshot s,string actor)
             =>ActorLifeRules.CanAct(s,actor)&&WalkingSpeed(s,actor)>0
                 &&(!WithConditions(s)||Aware(s,actor)&&CurrentPermissions(s,actor).VoluntarySpeed);
@@ -48,7 +48,7 @@ namespace Decennium.Foundation.Laboratory
             string pressureFailure=pressureMovementAssessment?.Invoke(s,actor,fromX,fromY,x,y,true);
             if(pressureFailure!=null)return pressureFailure;
             var spatial=WorldSpatialQueries.Step(s,actor,fromX,fromY,x,y,true,true,
-                (px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));
+                (px,py)=>SharedDeclaredGeometry.SupportsAnchorAt(s,px,py,ObservationRules.Enabled(s)));
             if(spatial==SpatialStepFailure.NotNeighbor)return "InvalidTacticalStep";
             if(spatial==SpatialStepFailure.Blocked)return "BlockedTacticalStep";
             if(spatial==SpatialStepFailure.Occupied)return "OccupiedTacticalStep";

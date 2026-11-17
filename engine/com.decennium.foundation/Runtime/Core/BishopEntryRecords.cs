@@ -90,7 +90,7 @@ namespace Decennium.Foundation
             using(var sha=SHA256.Create())return string.Concat(sha.ComputeHash(Encoding.UTF8.GetBytes(value))
                 .Select(x=>x.ToString("x2",System.Globalization.CultureInfo.InvariantCulture)));
         }
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix,StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix,StringComparison.Ordinal) || DeclaredGeometryProfile.SelectedFingerprint(value));
         public static CharacterAdvancementRecord Advancement(Snapshot s) => s.BishopEntry == null ? null
             : s.CharacterAdvancements.SingleOrDefault(x=>x.ActorId==ClericRpProfile.Actor && x.MilestoneId==Milestone);
         public static bool Earned(Snapshot s) => Advancement(s)!=null;
