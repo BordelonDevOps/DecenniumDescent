@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 spell-consumer evidence:** [checkpoint](evidence/2026-11-16-tac10-ferry-wraith-runtime/SPELL_CONSUMERS_CHECKPOINT.md), runtime948b9bff0/Ward927782ae2/Guidance-Refrain77718577c. Ward AC, successful source OA, actual Guidance Hide consumption, Refrain/ranked thresholds and positive Invocation vent pass through85 alternate commands and15 selected strict restore pairs.98 members retain six failed attempts. One actual typed Dash exposes a session-wrapper omission; unchanged PlayerGrant/engine transaction, no all-console qualification or new authority. Actual checkpoint review and host-gap disposition pending. Full regression latest1505/0 with one original worker still live; remaining acceptance gates open.
+
+
 **Care review and Ward consumer progress:** actual GPT6a916724/Codex agreement closes only the bounded care/recharge checkpoint at065a6ab12; [review limits](evidence/2026-11-16-tac10-ferry-wraith-runtime/GPT_CARE_REVIEW.json) retain Invocation nonowner/vent/cure/transfer and later Stable-recovery gaps. Genuine Ward comparison driver927782ae2 passes locally:17 alternate commands, Focused hero AC10 versus11 under matching actual Claw rolls, original next caster Start5 expiry, five strict restore pairs. Evidence archive/review pending. Failed Mobile-stance probe remains retained as existing unsupported capability; no runtime change. Full regression latest979/0 with shardE257 terminal, five live workers. No module acceptance/successor.
 
 

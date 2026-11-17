@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Latest: Ward, Guidance/OA and Refrain/positive vent execute genuinely.** [Spell-consumer evidence](SPELL_CONSUMERS_CHECKPOINT.md) retains85 actual alternate commands,15 selected restore pairs,98 members and six failed aggregate attempts. One existing typed-engine Dash uses the unchanged player grant because the session wrapper omits Dash; this is explicit and awaits GPT disposition, not an all-console/five-path pass. Main r462/3RP unchanged. Full regression latest1505/0 with shardA still live; actual checkpoint review and remaining module gates stay open.
+
+
 **Actual care review closes only its bounded scope; Ward consumer passes locally.** [GPT care review/agreement](GPT_CARE_REVIEW.json) records response6a916724 with no bounded blocker and precise execution/coverage limits. Driver927782ae2 demonstrates actual AC10→11 under matching Claw attacks, original expiry and five restore pairs; local ward-consumer-20261117T100325Z awaits retained archive/review. Its earlier Mobile-stance attempt remains a failed unsupported-capability probe. Full1583 regression latest979/0, shardE257 terminal and five workers live; other acceptance gates remain open.
 
 

@@ -1,0 +1,80 @@
+{
+  "status": "PASS_RETAINED_GENUINE_FERRY_SPELL_CONSUMERS_NOT_MODULE_ACCEPTANCE",
+  "runtimeCommit": "948b9bff0604e15cfb2d5419be9658392bcb2bcf",
+  "sourceBindings": {
+    "Probe-FerryWardConsumer": {
+      "commit": "927782ae277606e8bf75b548787125694bf4e269",
+      "sha256": "6a59bc7ce6f7ab5002466505b0d87850c68255cf791ee71c28aff8439145b641"
+    },
+    "Probe-FerryGuidanceConsumer": {
+      "commit": "77718577c6423fe233612565041a9a4f6ed4a7cf",
+      "sha256": "9fe3247085066ff84af55113fa8e88181eea5aa5888216fa3b43e907e22ac428"
+    },
+    "Probe-FerryRefrain": {
+      "commit": "77718577c6423fe233612565041a9a4f6ed4a7cf",
+      "sha256": "63d19503a3a60f00667a1d20f7a9e4e749f636c012173d6eeadf1781d654be51"
+    }
+  },
+  "additionalCompilation": false,
+  "compiledSourceInputs": 468,
+  "actualAlternateCommands": 85,
+  "typedEngineDashCommands": 1,
+  "sessionDashSupported": false,
+  "selectedRestorePairs": {
+    "ward/WithoutWard/after-claw.ddsave": "5ff2cc7cffae9799728bfd29c808f96e361d293d91a01031d3277f0c8d47878e",
+    "ward/WithoutWard/next-caster-start.ddsave": "c4f964dab261afdef8f166f5e80e962ccf91bbdae0fdc210c6d825775e87ff49",
+    "ward/WithWard/active-ward.ddsave": "8c788bd667d618c44c2ca88c2e926d681d8974fed3e43bb55d71961815f1b77e",
+    "ward/WithWard/after-claw.ddsave": "39e72b60f7d36f769d52bbe00b5d54ffd9f19bec15c390db304d3a55f77fc879",
+    "ward/WithWard/next-caster-start.ddsave": "8ba0e1a5a9e0a20282dfaa5c8b5a58cc3b5d2368207366306674b1b2ecb8ba93",
+    "guidance/claw-opportunity-completed.ddsave": "e441993772cd09b3710e5d559eae508460ddb4b990db0905d8752e66ae1f1643",
+    "guidance/claw-opportunity-pending.ddsave": "7dbe52a6c293fd844be7d410e33509f5882f5f0cbb2c48dd735b7f366c0e69fe",
+    "guidance/continued.ddsave": "2c17d1985d452d6e52175a92341382b5cd3ec8053fde20028967d2b6a55d8539",
+    "guidance/guidance-active.ddsave": "0a4d778d972f7c4e98f4db3204841f457416706587b70e01e9cd5d80d03caeb8",
+    "guidance/guidance-consumed.ddsave": "dd2f3bb292b686da017598fcd48fb35546cdbaa2a4d58473989d110b639699ec",
+    "guidance/screened-route-completed.ddsave": "b3e4e54ba9bb585f671fa2ac8af53fbccacb1421c0970a98f4b7b6dc1b2f49eb",
+    "refrain/continued.ddsave": "5f3877d5c154390a55a60da57eba318870e4a3f50efeaad52231b530fb0ba9f8",
+    "refrain/positive-invocation-vent.ddsave": "a49ecaab509bcbf22df4c6e5453d0a8a2a08bc90d5114bb17bd31739301ce9ae",
+    "refrain/ranked-threshold.ddsave": "4f4bad6e01069d376253dac16102f8aae5b3f96510d5b041e5bcdac2dc6481e5",
+    "refrain/surcharge-one.ddsave": "9610ed026f44d8487ce42917ea445d9db7d24210e3586eae753dd27457ecf996"
+  },
+  "failedAttempts": [
+    {
+      "directory": "ward-consumer-20261117T095943Z",
+      "error": "System.Management.Automation.RuntimeException: Ward branch rejected SelectCombatStance: {\"Response\":0,\"Revision\":354,\"Clock\":{\"Numerator\":344081,\"Denominator\":2},\"NextSeat\":1,\"PendingDecision\":0,\"OpportunityPending\":false}",
+      "reportSha256": "afcdec2aacd972e7c2d4374648c094979f928524639adb49ae223b1db18c2c34"
+    },
+    {
+      "directory": "guidance-consumer-20261117T101333Z",
+      "error": "System.Management.Automation.RuntimeException: Guidance branch rejected TacticalStep: {\"Response\":0,\"Revision\":357,\"Clock\":{\"Numerator\":344081,\"Denominator\":2},\"NextSeat\":1,\"PendingDecision\":0,\"OpportunityPending\":false}",
+      "reportSha256": "fa4e8c88ae55147384216da6e683a88bb6301c08e2e0f789e6979d11c2bebccb"
+    },
+    {
+      "directory": "guidance-consumer-20261117T102213Z",
+      "error": "System.Management.Automation.RuntimeException: Guidance branch rejected EncounterDash: {\"Response\":0,\"Revision\":357,\"Clock\":{\"Numerator\":344081,\"Denominator\":2},\"NextSeat\":1,\"PendingDecision\":0,\"OpportunityPending\":false}",
+      "reportSha256": "c9a5b73ad2231554b755cb726a2043f3ec0aa088d7115c91547414ae46da2cfd"
+    },
+    {
+      "directory": "guidance-consumer-20261117T102826Z",
+      "error": "System.Management.Automation.RuntimeException: Guidance branch rejected TacticalStep: {\"Response\":0,\"Revision\":361,\"Clock\":{\"Numerator\":344081,\"Denominator\":2},\"NextSeat\":1,\"PendingDecision\":0,\"OpportunityPending\":false}",
+      "reportSha256": "60420127dab43f1ceb1a5033b296fe3fbdd453e3c03140bfd9b67a77ba5923fe"
+    },
+    {
+      "directory": "guidance-consumer-20261117T103003Z",
+      "error": "System.Management.Automation.RuntimeException: Actual screened Guidance Hide unavailable: {\"Command\":{\"Id\":\"option.373.casting.3\",\"Actor\":\"TEST_ONLY.actor\",\"Target\":\"TEST_ONLY.ferry-encounter.turn.6\",\"ExpectedRevision\":373,\"Kind\":105,\"X\":0,\"Y\":0,\"Inventory\":null,\"Combat\":null,\"Advancement\":null,\"Ranged\":null,\"OverwatchRider\":0,\"SuppressionFire\":null,\"DefensiveFormation\":null,\"ExpeditionAssignment\":null,\"HarvestSelection\":null,\"MiningSelection\":null,\"ProspectingExposure\":null,\"RouteMappingWork\":null,\"IntimidatingPresence\":null,\"HealingRite\":null,\"SpellCast\":null,\"Guidance\":{\"EffectId\":\"option.354.casting.4.effect\"},\"SanctuaryResponse\":null,\"DivineInvocation\":null},\"Query\":{\"Supported\":true,\"Admissible\":false,\"Code\":\"HideWhileClearlyObserved\",\"ObservedRevision\":373,\"Costs\":[],\"RequiredChoices\":[],\"HavenSaleOffer\":null,\"HavenMealOffer\":null,\"ExpeditionBillDraft\":null,\"NextCharterPlanAssessment\":null,\"NextCharterAgreementAssessment\":null,\"CharterAttemptAssessment\":null}}",
+      "reportSha256": "0c7e8c03b3b3356ce03b5a9941ee2ed37571671d8e40cdd96b59aeb0a9927ca0"
+    },
+    {
+      "directory": "refrain-probe-20261117T102413Z",
+      "error": "System.Management.Automation.RuntimeException: Actual funded Invocation was unavailable while ranked spells were blocked.",
+      "reportSha256": "1f3ab3f5f6d810f997625ad63b7e029a86c7d07bac1019296bad37058c7bb265"
+    }
+  ],
+  "canonicalContinuationChanged": false,
+  "members": 98,
+  "archiveBytes": 2127376,
+  "archiveSha256": "2c50c661bc83413d6f2d321c06dbaaa23ed1d755a5d7b03132fff1ea65981504",
+  "scriptSha256": "56da5426d941e460c2403e8af9039ffe9e387e7c725acb7c8a82d16850ae41a6",
+  "moduleAccepted": false,
+  "fivePaths": false,
+  "fullRegression": false
+}
