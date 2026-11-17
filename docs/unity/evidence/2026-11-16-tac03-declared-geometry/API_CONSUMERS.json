@@ -1,0 +1,2193 @@
+{
+  "searchedTrackedCsharpFiles": 457,
+  "searches": {
+    "fixed-walkable": {
+      "pattern": "TestOnlyPolicy\\.Walkable",
+      "excludesTests": true,
+      "matchedFiles": 12,
+      "matchedLines": 15,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+          "hits": [
+            {
+              "line": 17,
+              "text": "|| charterAttemptProfile?.Key != new TestOnlyCharterAttemptProfile().Key || TestOnlyPolicy.Walkable(2, 1))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+          "hits": [
+            {
+              "line": 244,
+              "text": "if (!TestOnlyPolicy.Walkable(site.RouteX, site.RouteY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+          "hits": [
+            {
+              "line": 107,
+              "text": "if (route.Positions.Any(p => !TestOnlyPolicy.Walkable(p.X, p.Y))) return \"RouteGeometryOutsideFixtureMap\";"
+            },
+            {
+              "line": 231,
+              "text": "if (!TestOnlyPolicy.Walkable(leg.FromX, leg.FromY) || !TestOnlyPolicy.Walkable(leg.ToX, leg.ToY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+          "hits": [
+            {
+              "line": 119,
+              "text": "||!TestOnlyPolicy.Walkable(definition.AnchorX,definition.AnchorY))return \"InvalidHuntingTrapFixture\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterDefenderDecision.cs",
+          "hits": [
+            {
+              "line": 113,
+              "text": "bool Walkable(int x, int y) => TestOnlyPolicy.Walkable(x, y) && ObservationGeometry.SupportsAnchorAt(state, x, y);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "hits": [
+            {
+              "line": 571,
+              "text": "&&TestOnlyPolicy.Walkable(p[0],p[1])&&!used.Contains(p[0]+\",\"+p[1]));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+          "hits": [
+            {
+              "line": 293,
+              "text": "if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "=> TestOnlyPolicy.Walkable(x, y) && (observationFixture == null || ObservationGeometry.SupportsAnchorAt(s, x, y));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+          "hits": [
+            {
+              "line": 103,
+              "text": "|| this.actors.Any(x => !TestOnlyPolicy.Walkable(x.X, x.Y))"
+            },
+            {
+              "line": 104,
+              "text": "|| !TestOnlyPolicy.Walkable(workSite.X, workSite.Y)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalCombatFixture.cs",
+          "hits": [
+            {
+              "line": 14,
+              "text": "{if(!TestOnlyPolicy.Walkable(x,y)||walkingSpeed<0||hp<1||maximumHp<hp||maximumHp>26)throw new ArgumentException(\"Invalid third actor fixture facts.\");X=x;Y=y;WalkingSpeed=walkingSpeed;Hp=hp;MaximumHp=maximumHp;}"
+            },
+            {
+              "line": 20,
+              "text": "{if(!TestOnlyPolicy.Walkable(x,y)||!Enum.IsDefined(typeof(TerrainCost),terrain))throw new ArgumentException(\"Invalid supplied terrain.\");X=x;Y=y;Terrain=terrain;}"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+          "hits": [
+            {
+              "line": 51,
+              "text": "(px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Unity/FoundationLab.cs",
+          "hits": [
+            {
+              "line": 117,
+              "text": "for(int x=0;x<5;x++)for(int y=0;y<5;y++)MakeSquare(\"TEST_ONLY_tile\",x,y,1,TestOnlyPolicy.Walkable(x,y)?new Color(0.13f,0.19f,0.22f):Color.gray,0.94f);"
+            }
+          ]
+        }
+      ]
+    },
+    "explicit-map-bounds": {
+      "pattern": "ObservationMapWidth|ObservationMapHeight|p\\[0\\]\\s*<\\s*5|p\\[1\\]\\s*<\\s*5|x\\s*<\\s*5\\s*&&\\s*y",
+      "excludesTests": true,
+      "matchedFiles": 14,
+      "matchedLines": 38,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+          "hits": [
+            {
+              "line": 111,
+              "text": "if (s.ObservationMapWidth != Width || s.ObservationMapHeight != Height"
+            },
+            {
+              "line": 126,
+              "text": "s.ObservationMapWidth = Width; s.ObservationMapHeight = Height;"
+            },
+            {
+              "line": 197,
+              "text": "if (s == null || s.ObservationMapWidth < 1) return false;"
+            },
+            {
+              "line": 215,
+              "text": "=> s != null && s.ObservationMapWidth > 0"
+            },
+            {
+              "line": 226,
+              "text": "=> s != null && x >= 0 && x < s.ObservationMapWidth && y >= 0 && y < s.ObservationMapHeight"
+            },
+            {
+              "line": 235,
+              "text": "=> s != null && x >= 0 && x < s.ObservationMapWidth && y >= 0 && y < s.ObservationMapHeight"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "&& s.ObservationMapWidth > 0 && s.ObservationMapHeight > 0"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+          "hits": [
+            {
+              "line": 232,
+              "text": "|| s.ObservationMapWidth < 1 || !ObservationGeometry.SupportsAnchorAt(s, leg.FromX, leg.FromY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+          "hits": [
+            {
+              "line": 68,
+              "text": "|| command.X >= state.ObservationMapWidth || command.Y >= state.ObservationMapHeight)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "hits": [
+            {
+              "line": 570,
+              "text": "var point=adjacent.FirstOrDefault(p=>p[0]>=0&&p[1]>=0&&p[0]<5&&p[1]<5"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+          "hits": [
+            {
+              "line": 107,
+              "text": "|| c.X >= s.ObservationMapWidth || c.Y >= s.ObservationMapHeight) return \"InvalidSearchRequest\";"
+            },
+            {
+              "line": 161,
+              "text": "for (int y = 0; y < s.ObservationMapHeight; y++)"
+            },
+            {
+              "line": 162,
+              "text": "for (int x = 0; x < s.ObservationMapWidth; x++)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyPolicy.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": "public static bool Walkable(int x, int y) => x >= 0 && x < 5 && y >= 0 && y < 5 && !(x == 2 && y == 1);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedExplorationObservation.cs",
+          "hits": [
+            {
+              "line": 41,
+              "text": "|| state.WorldSchedule?.Id != \"world.fixed-calendar\" || state.ObservationMapWidth != 5"
+            },
+            {
+              "line": 42,
+              "text": "|| state.ObservationMapHeight != 5 || cells.Length != 1 || cells[0].X != 2 || cells[0].Y != 1"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteSpatialRecord.cs",
+          "hits": [
+            {
+              "line": 53,
+              "text": "|| s.ObservationMapWidth > 0 && (x.X >= new RuleQuantity(s.ObservationMapWidth)"
+            },
+            {
+              "line": 54,
+              "text": "|| x.Y >= new RuleQuantity(s.ObservationMapHeight))))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideValidation.cs",
+          "hits": [
+            {
+              "line": 30,
+              "text": "|| new[] { d.Recess, d.Alternate }.Any(x => x.X >= state.ObservationMapWidth || x.Y >= state.ObservationMapHeight"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchValidation.cs",
+          "hits": [
+            {
+              "line": 41,
+              "text": "|| state.ObservationMapWidth == 0 || state.LaterEncounter != null || state.CharterAttempt != null"
+            },
+            {
+              "line": 97,
+              "text": "=> cell.X < state.ObservationMapWidth && cell.Y < state.ObservationMapHeight;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ObservationRecords.cs",
+          "hits": [
+            {
+              "line": 201,
+              "text": "if (s.ObservationMapWidth != 0 || s.ObservationMapHeight != 0 || s.ObservationCells.Length != 0"
+            },
+            {
+              "line": 209,
+              "text": "if (s.SchemaVersion > Snapshot.ObservationSchema && s.ObservationMapWidth == 0"
+            },
+            {
+              "line": 210,
+              "text": "&& s.ObservationMapHeight == 0 && s.ObservationCells.Length == 0"
+            },
+            {
+              "line": 213,
+              "text": "if (s.ObservationMapWidth < 1 || s.ObservationMapWidth > 64 || s.ObservationMapHeight < 1 || s.ObservationMapHeight > 64"
+            },
+            {
+              "line": 215,
+              "text": "|| s.ObservationCells.Any(x => x.X >= s.ObservationMapWidth || x.Y >= s.ObservationMapHeight)"
+            },
+            {
+              "line": 221,
+              "text": "|| s.Actors.Any(x => x.X < 0 || x.X >= s.ObservationMapWidth || x.Y < 0 || x.Y >= s.ObservationMapHeight)"
+            },
+            {
+              "line": 222,
+              "text": "|| s.Objects.Any(x => x.X < 0 || x.X >= s.ObservationMapWidth || x.Y < 0 || x.Y >= s.ObservationMapHeight)"
+            },
+            {
+              "line": 223,
+              "text": "|| s.WorldTraversals.Any(x => x.FromX < 0 || x.FromX >= s.ObservationMapWidth || x.ToX < 0 || x.ToX >= s.ObservationMapWidth"
+            },
+            {
+              "line": 224,
+              "text": "|| x.FromY < 0 || x.FromY >= s.ObservationMapHeight || x.ToY < 0 || x.ToY >= s.ObservationMapHeight"
+            },
+            {
+              "line": 236,
+              "text": "|| !WithinMap(action.X, s.ObservationMapWidth) || !WithinMap(action.Y, s.ObservationMapHeight))"
+            },
+            {
+              "line": 244,
+              "text": "|| !WithinMap(result.ObserverX, s.ObservationMapWidth) || !WithinMap(result.ObserverY, s.ObservationMapHeight))"
+            },
+            {
+              "line": 251,
+              "text": "|| knowledge.HasLastKnownLocation && (!WithinMap(knowledge.LastKnownX, s.ObservationMapWidth)"
+            },
+            {
+              "line": 252,
+              "text": "|| !WithinMap(knowledge.LastKnownY, s.ObservationMapHeight)))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "hits": [
+            {
+              "line": 420,
+              "text": "public int ObservationMapWidth, ObservationMapHeight;"
+            },
+            {
+              "line": 557,
+              "text": "ObservationMapWidth = ObservationMapWidth, ObservationMapHeight = ObservationMapHeight,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/ObservationCodec.cs",
+          "hits": [
+            {
+              "line": 14,
+              "text": "writer.Write(snapshot.ObservationMapWidth); writer.Write(snapshot.ObservationMapHeight);"
+            },
+            {
+              "line": 52,
+              "text": "snapshot.ObservationMapWidth = reader.ReadInt32(); snapshot.ObservationMapHeight = reader.ReadInt32();"
+            }
+          ]
+        }
+      ]
+    },
+    "spatial-consumers": {
+      "pattern": "ObservationGeometry\\.|WorldSpatialQueries\\.|PlanarCombatGeometry\\.|CostPerFoot|terrain\\.At\\(|tactical\\.At\\(",
+      "excludesTests": true,
+      "matchedFiles": 49,
+      "matchedLines": 148,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "hits": [
+            {
+              "line": 609,
+              "text": "&& WorldSpatialQueries.WithinCardinalRange(worker.X, worker.Y, deposit.SiteX, deposit.SiteY, 1);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs",
+          "hits": [
+            {
+              "line": 89,
+              "text": "var ranked = view.VisibleOpponents.OrderBy(x => PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell))"
+            },
+            {
+              "line": 91,
+              "text": "var attack = ranked.FirstOrDefault(x => x.DirectAttackAllowed && x.ClearLineOfEffect && PlanarCombatGeometry.DistanceFeet(view.OwnCell, x.Cell) <= 5);"
+            },
+            {
+              "line": 96,
+              "text": "long distance = PlanarCombatGeometry.DistanceFeet(view.OwnCell, target.Cell);"
+            },
+            {
+              "line": 97,
+              "text": "var steps = view.ApproachCells.Select(cell => (Cell: cell, Distance: PlanarCombatGeometry.DistanceFeet(cell, target.Cell)))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+          "hits": [
+            {
+              "line": 60,
+              "text": "ObservationGeometry.Position(s, observer.Id), ObservationGeometry.Position(s, target.Id)))"
+            },
+            {
+              "line": 61,
+              "text": "Set(s, NewKnowledge(s, observer.Id, target.Id, true, ObservationGeometry.Position(s, target.Id),"
+            },
+            {
+              "line": 74,
+              "text": "var targetPosition = ObservationGeometry.Position(s, target.Id);"
+            },
+            {
+              "line": 76,
+              "text": "if (DirectSightAt(s, observer.Id, target.Id, ObservationGeometry.Position(s, observer.Id), targetPosition))"
+            },
+            {
+              "line": 105,
+              "text": "var point = ObservationGeometry.Position(s, target.Id);"
+            },
+            {
+              "line": 120,
+              "text": "if (!DirectSightAt(s, observerId, targetId, ObservationGeometry.Position(s, observerId), ObservationGeometry.Position(s, targetId)))"
+            },
+            {
+              "line": 131,
+              "text": "var actual = ObservationGeometry.Position(s, targetId);"
+            },
+            {
+              "line": 140,
+              "text": "return !DirectSightAt(s, observerId, targetId, ObservationGeometry.Position(s, observerId), ObservationGeometry.Position(s, targetId));"
+            },
+            {
+              "line": 196,
+              "text": "&& ObservationGeometry.GeometricSight(s, observerId, observerPosition, targetPosition);"
+            },
+            {
+              "line": 207,
+              "text": "&& ObservationGeometry.GeometricSight(s, observerId, ObservationGeometry.Position(s, observerId),"
+            },
+            {
+              "line": 208,
+              "text": "ObservationGeometry.Position(s, targetId));"
+            },
+            {
+              "line": 216,
+              "text": "var position = ObservationGeometry.Position(s, targetId);"
+            },
+            {
+              "line": 250,
+              "text": "var fixedPoint = ObservationGeometry.Position(s, other.Id);"
+            },
+            {
+              "line": 268,
+              "text": "var movingPoint = ObservationGeometry.AtEdge(segment.Edge.FromX, segment.Edge.FromY,"
+            },
+            {
+              "line": 280,
+              "text": "var samples = ObservationGeometry.ObservationSamples(s, fixedPoint, segment.Edge.FromX, segment.Edge.FromY,"
+            },
+            {
+              "line": 291,
+              "text": "var boundaries = ObservationGeometry.VisibilityBreakpoints(s, fixedPoint, segment.Edge.FromX,"
+            },
+            {
+              "line": 316,
+              "text": "RuleTime evidenceAt = ObservationGeometry.AtTime(start, end, subsegment);"
+            },
+            {
+              "line": 317,
+              "text": "var movingTarget = ObservationGeometry.AtEdge(segment.Edge.FromX, segment.Edge.FromY,"
+            },
+            {
+              "line": 320,
+              "text": "var actualTarget = ObservationGeometry.Position(s, target);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/RangedAttackResolution.cs",
+          "hits": [
+            {
+              "line": 111,
+              "text": "var cover=PlanarCombatGeometry.BestCover(new[]{request.TargetCover});"
+            },
+            {
+              "line": 113,
+              "text": "var range=PlanarCombatGeometry.RangedRange(request.DistanceFeet,request.NormalRangeFeet,request.MaximumRangeFeet);"
+            },
+            {
+              "line": 122,
+              "text": "var cover=PlanarCombatGeometry.BestCover(new[]{request.TargetCover});"
+            },
+            {
+              "line": 123,
+              "text": "var range=PlanarCombatGeometry.RangedRange(request.DistanceFeet,request.NormalRangeFeet,request.MaximumRangeFeet);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedAuraOfFaith.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "var a=ObservationGeometry.Position(s,owner);var b=ObservationGeometry.Position(s,target);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+          "hits": [
+            {
+              "line": 326,
+              "text": "return partner!=null&&PlanarCombatGeometry.DistanceFeet(new CombatCell(target.X,target.Y),new CombatCell(partner.X,partner.Y))==5;"
+            },
+            {
+              "line": 372,
+              "text": "return s.TacticalCovers.Any(x=>PlanarCombatGeometry.DistanceFeet(new CombatCell(body.X,body.Y),new CombatCell(x.X,x.Y))==5)?1:0;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+          "hits": [
+            {
+              "line": 183,
+              "text": "return WorldSpatialQueries.Step(state, actor, fromX, fromY, toX, toY, false, false, (x, y) => WorldWalkable(state, x, y))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandStep.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(source.X,source.Y),new CombatCell(ally.X,ally.Y))!=5)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+          "hits": [
+            {
+              "line": 47,
+              "text": "if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(patient.X, patient.Y)) > 5"
+            },
+            {
+              "line": 48,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(state, actor.Id, patient.Id))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "hits": [
+            {
+              "line": 73,
+              "text": "if (PlanarCombatGeometry.DistanceFeet(new CombatCell(user.X, user.Y), new CombatCell(recipient.X, recipient.Y)) > 5)"
+            },
+            {
+              "line": 75,
+              "text": "if (!ObservationGeometry.LineOfEffectClear(state, user.Id, recipient.Id))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+          "hits": [
+            {
+              "line": 43,
+              "text": "|| PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), bed) != 5"
+            },
+            {
+              "line": 45,
+              "text": "|| !ObservationGeometry.LineOfEffectClearToCell(state, actor.Id, bed.X, bed.Y))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+          "hits": [
+            {
+              "line": 298,
+              "text": "||!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,workshop.SiteX,workshop.SiteY,1))return false;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDefensiveFormation.cs",
+          "hits": [
+            {
+              "line": 46,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(source.X,source.Y),new CombatCell(recipient.X,recipient.Y))>15)"
+            },
+            {
+              "line": 183,
+              "text": "&&PlanarCombatGeometry.DistanceFeet(new CombatCell(s.Actors.Single(a=>a.Id==actor).X,s.Actors.Single(a=>a.Id==actor).Y),"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "hits": [
+            {
+              "line": 51,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(target.X,target.Y))>30"
+            },
+            {
+              "line": 52,
+              "text": "||!ObservationGeometry.LineOfEffectClear(s,c.Actor,id)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+          "hits": [
+            {
+              "line": 245,
+              "text": "|| WorldSpatialQueries.Occupied(s, member, site.RouteX, site.RouteY))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+          "hits": [
+            {
+              "line": 178,
+              "text": "long distance = actor == null ? long.MaxValue : WorldSpatialQueries.CardinalDistance(actor.X, actor.Y, route.FromX, route.FromY);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+          "hits": [
+            {
+              "line": 260,
+              "text": "|| !ObservationGeometry.GeometricSight(s, actorId, ObservationGeometry.Position(s, actorId), target))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+          "hits": [
+            {
+              "line": 57,
+              "text": "|| WorldSpatialQueries.CardinalDistance(this.positions[this.positions.Length - 1].X,"
+            },
+            {
+              "line": 60,
+              "text": "&& WorldSpatialQueries.CardinalDistance(a.X, a.Y, b.X, b.Y) == 1).Any(ok => !ok))"
+            },
+            {
+              "line": 150,
+              "text": "|| WorldSpatialQueries.CardinalDistance(fromX, fromY, toX, toY) != 1)"
+            },
+            {
+              "line": 232,
+              "text": "|| s.ObservationMapWidth < 1 || !ObservationGeometry.SupportsAnchorAt(s, leg.FromX, leg.FromY)"
+            },
+            {
+              "line": 233,
+              "text": "|| !ObservationGeometry.SupportsAnchorAt(s, leg.ToX, leg.ToY))"
+            },
+            {
+              "line": 407,
+              "text": "if (WorldSpatialQueries.Occupied(s, c.Actor, binding.X, binding.Y)) return \"RouteGeometryOccupied\";"
+            },
+            {
+              "line": 411,
+              "text": "return WorldSpatialQueries.WithinRange(binding.X, binding.Y, other.X, other.Y, 1);"
+            },
+            {
+              "line": 461,
+              "text": "var actualPose = ObservationGeometry.Position(s, c.Actor);"
+            },
+            {
+              "line": 468,
+              "text": "|| ObservationGeometry.Position(s, c.Actor).X != expectedPose.X"
+            },
+            {
+              "line": 469,
+              "text": "|| ObservationGeometry.Position(s, c.Actor).Y != expectedPose.Y)"
+            },
+            {
+              "line": 482,
+              "text": "if (WorldSpatialQueries.Occupied(s, c.Actor, binding.X, binding.Y)) return \"RouteGeometryOccupied\";"
+            },
+            {
+              "line": 486,
+              "text": "return WorldSpatialQueries.WithinRange(binding.X, binding.Y, other.X, other.Y, 1);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+          "hits": [
+            {
+              "line": 31,
+              "text": "|| !ObservationGeometry.SupportsAnchorAt(state, d.Recess.X, d.Recess.Y)"
+            },
+            {
+              "line": 32,
+              "text": "|| !ObservationGeometry.SupportsAnchorAt(state, d.Alternate.X, d.Alternate.Y))"
+            },
+            {
+              "line": 191,
+              "text": "var observerPosition = ObservationGeometry.Position(state, actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+          "hits": [
+            {
+              "line": 34,
+              "text": "if (!ObservationGeometry.SupportsAnchorAt(state, d.Anchor.X, d.Anchor.Y)"
+            },
+            {
+              "line": 35,
+              "text": "|| !ObservationGeometry.SupportsAnchorAt(state, d.CueCandidate.X, d.CueCandidate.Y)"
+            },
+            {
+              "line": 36,
+              "text": "|| !ObservationGeometry.SupportsAnchorAt(state, d.Sign.X, d.Sign.Y)"
+            },
+            {
+              "line": 38,
+              "text": "|| !ObservationGeometry.GeometricSight(state, d.SearcherId, SearchPoint(d.Anchor), SearchPoint(d.Sign))"
+            },
+            {
+              "line": 39,
+              "text": "|| ObservationGeometry.GeometricSight(state, d.SearcherId, SearchPoint(d.Anchor), SearchPoint(d.CueCandidate)))"
+            },
+            {
+              "line": 46,
+              "text": "var position = ObservationGeometry.Position(state, actor);"
+            },
+            {
+              "line": 146,
+              "text": "|| !ObservationGeometry.GeometricSight(state, d.SearcherId, SearchPoint(d.Anchor), SearchPoint(d.Sign)))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(target.X, target.Y)) > 15"
+            },
+            {
+              "line": 66,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(state, actor.Id, target.Id)) return \"IntimidatingPresenceTargetUnavailable\";"
+            },
+            {
+              "line": 181,
+              "text": "long multiplier = CostPerFoot(state, edge);"
+            },
+            {
+              "line": 215,
+              "text": "var duration = (new RuleQuantity(5) - edge.DistanceFeet).Scale(6 * CostPerFoot(state, edge),"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+          "hits": [
+            {
+              "line": 188,
+              "text": "if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,HarvestSiteX,HarvestSiteY,1))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+          "hits": [
+            {
+              "line": 159,
+              "text": "=>PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(x,y))<=5;"
+            },
+            {
+              "line": 502,
+              "text": "return PlanarCombatGeometry.DistanceFeet(new CombatCell(x,y),new CombatCell(tether.AnchorX,tether.AnchorY))>tether.MaximumDistanceFeet;"
+            },
+            {
+              "line": 510,
+              "text": "if(deployment!=null&&PlanarCombatGeometry.DistanceFeet(new CombatCell(x,y),"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterDefenderDecision.cs",
+          "hits": [
+            {
+              "line": 46,
+              "text": ".OrderBy(x=>{var actor=state.Actors.Single(a=>a.Id==x);return PlanarCombatGeometry.DistanceFeet(new CombatCell(own.X,own.Y),new CombatCell(actor.X,actor.Y));})"
+            },
+            {
+              "line": 85,
+              "text": "ObservationGeometry.LineOfEffectClear(state, LaterDefenderId, actor.Id),"
+            },
+            {
+              "line": 113,
+              "text": "bool Walkable(int x, int y) => TestOnlyPolicy.Walkable(x, y) && ObservationGeometry.SupportsAnchorAt(state, x, y);"
+            },
+            {
+              "line": 116,
+              "text": "if (!WorldSpatialQueries.Neighbor(origin.X, origin.Y, x, y, diagonals: true)"
+            },
+            {
+              "line": 119,
+              "text": "if (PlanarCombatGeometry.NeighborPassesCornerRule(origin, cell,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+          "hits": [
+            {
+              "line": 96,
+              "text": "|| ObservationRules.Enabled(state) && !ObservationGeometry.LineOfEffectClear(state, definition.HeroId, definition.DefenderId))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "hits": [
+            {
+              "line": 629,
+              "text": "if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return \"MiningWorksiteOutOfReach\";"
+            },
+            {
+              "line": 671,
+              "text": "if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return \"MiningWorksiteOutOfReach\";"
+            },
+            {
+              "line": 1254,
+              "text": "if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return \"MineralPreparationWorksiteOutOfReach\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+          "hits": [
+            {
+              "line": 39,
+              "text": "if (!WorldSpatialQueries.WithinCardinalRange(worker.X, worker.Y, deposit.SiteX, deposit.SiteY, 1))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+          "hits": [
+            {
+              "line": 322,
+              "text": "bool occupied = WorldSpatialQueries.Occupied(state, scout, terms.StageX, terms.StageY)"
+            },
+            {
+              "line": 323,
+              "text": "|| WorldSpatialQueries.Occupied(state, scout, terms.ApproachX, terms.ApproachY);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+          "hits": [
+            {
+              "line": 109,
+              "text": "var searcher = ObservationGeometry.Position(s, c.Actor);"
+            },
+            {
+              "line": 160,
+              "text": "var searcher = ObservationGeometry.Position(s, actor);"
+            },
+            {
+              "line": 177,
+              "text": "var position = ObservationGeometry.Position(s, actor.Id);"
+            },
+            {
+              "line": 182,
+              "text": "&& WithinRange(ObservationGeometry.Position(s, x.Id), position,"
+            },
+            {
+              "line": 186,
+              "text": "ObservationGeometry.Position(s, x.Id), position))) return \"HideWhileClearlyObserved\";"
+            },
+            {
+              "line": 235,
+              "text": "=> observers.Select(x => (x, ObservationGeometry.Position(s, x), PassivePerception(s, x))).ToArray();"
+            },
+            {
+              "line": 270,
+              "text": "var point = ObservationGeometry.Position(s, x.Id);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchDesignation.cs",
+          "hits": [
+            {
+              "line": 103,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(body.X,body.Y),new CombatCell(checked(x0+x),checked(y0+y)))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+          "hits": [
+            {
+              "line": 141,
+              "text": "long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));"
+            },
+            {
+              "line": 149,
+              "text": "return PlanarCombatGeometry.CloseHostileDisadvantage(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),"
+            },
+            {
+              "line": 294,
+              "text": "&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,toX,toY))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+          "hits": [
+            {
+              "line": 108,
+              "text": "if(!ObservationRules.CanSee(s,observer,target) || !ObservationGeometry.LineOfEffectClear(s,observer,target))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+          "hits": [
+            {
+              "line": 262,
+              "text": "if (!WorldSpatialQueries.WithinCardinalRange(worker.X, worker.Y, patch.X, patch.Y, 1)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReadyAction.cs",
+          "hits": [
+            {
+              "line": 71,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(owner.X,owner.Y),new CombatCell(target.X,target.Y))>action.TriggerDistanceFeet"
+            },
+            {
+              "line": 102,
+              "text": "long before=PlanarCombatGeometry.DistanceFeet(new CombatCell(move.FromX,move.FromY),new CombatCell(owner.X,owner.Y));"
+            },
+            {
+              "line": 103,
+              "text": "long after=PlanarCombatGeometry.DistanceFeet(new CombatCell(move.ToX,move.ToY),new CombatCell(owner.X,owner.Y));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs",
+          "hits": [
+            {
+              "line": 353,
+              "text": "if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,workshop.SiteX,workshop.SiteY,1))return \"Recipe347WorkshopOutOfReach\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+          "hits": [
+            {
+              "line": 90,
+              "text": "|| WorldSpatialQueries.Occupied(s, d.LeadId, 0, 1))"
+            },
+            {
+              "line": 100,
+              "text": "&& (!ObservationRules.Enabled(s) || ObservationGeometry.LineOfEffectClear(s, participant, defender));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+          "hits": [
+            {
+              "line": 207,
+              "text": "if (WorldSpatialQueries.Step(state, edge.ActorId, edge.FromX, edge.FromY, edge.ToX, edge.ToY, false, false,"
+            },
+            {
+              "line": 262,
+              "text": "if (WorldSpatialQueries.Occupied(state, actor.Id, actor.X, actor.Y) || !WorldWalkable(state, actor.X, actor.Y))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "hits": [
+            {
+              "line": 123,
+              "text": "if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(target.X, target.Y)) > 30"
+            },
+            {
+              "line": 124,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(state, actor.Id, target.Id)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+          "hits": [
+            {
+              "line": 86,
+              "text": "if (!WorldWalkable(s, at.X, y) || WorldSpatialQueries.Occupied(s, actor, at.X, y)) return false;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "hits": [
+            {
+              "line": 137,
+              "text": "if(life.Dead || PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(target.X,target.Y))>30"
+            },
+            {
+              "line": 138,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return \"SpellTargetUnavailable\";"
+            },
+            {
+              "line": 186,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(x,y))>30"
+            },
+            {
+              "line": 187,
+              "text": "|| !ObservationGeometry.LineOfEffectClearToCell(s,c.Actor,x,y))return \"SpellTargetUnavailable\";"
+            },
+            {
+              "line": 188,
+              "text": "if(View(s,c.Actor).Has(ConditionKind.Blinded) || !ObservationGeometry.GeometricSight(s,c.Actor,ObservationGeometry.Position(s,c.Actor),"
+            },
+            {
+              "line": 342,
+              "text": "|| PlanarCombatGeometry.DistanceFeet(new CombatCell(observer.X,observer.Y),new CombatCell(source.X,source.Y))>30"
+            },
+            {
+              "line": 343,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(s,actor,source.Id))return false;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTemporaryCampConstruction.cs",
+          "hits": [
+            {
+              "line": 347,
+              "text": "long distance = WorldSpatialQueries.CardinalDistance(actor.X, actor.Y, site.RouteX, site.RouteY);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+          "hits": [
+            {
+              "line": 229,
+              "text": "|| !WorldSpatialQueries.WithinRange(body.X, body.Y, RepairSiteX, RepairSiteY, 1)) return \"RepairStationOutOfReach\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "=> TestOnlyPolicy.Walkable(x, y) && (observationFixture == null || ObservationGeometry.SupportsAnchorAt(s, x, y));"
+            },
+            {
+              "line": 37,
+              "text": "|| !WorldSpatialQueries.Neighbor(0, 0, dx, dy, false)) return \"InvalidWorldStep\";"
+            },
+            {
+              "line": 91,
+              "text": "var spatial = WorldSpatialQueries.Step(s, actor.Id, actor.X, actor.Y, toX, toY, false, false, (x, y) => WorldWalkable(s, x, y));"
+            },
+            {
+              "line": 124,
+              "text": "try { movementCost = checked(CostPerFoot(s, edge) * 5); }"
+            },
+            {
+              "line": 160,
+              "text": "return WorldSpatialQueries.WithinRange(fromX, fromY, enemy.X, enemy.Y, 1)"
+            },
+            {
+              "line": 161,
+              "text": "|| WorldSpatialQueries.WithinRange(toX, toY, enemy.X, enemy.Y, 1);"
+            },
+            {
+              "line": 375,
+              "text": "&& WorldSpatialQueries.CardinalDistance(x.X, x.Y, route.FromX, route.FromY) == 1"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+          "hits": [
+            {
+              "line": 198,
+              "text": "if (cornerRule && !PlanarCombatGeometry.NeighborPassesCornerRule(new CombatCell(fromX, fromY), new CombatCell(toX, toY),"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+          "hits": [
+            {
+              "line": 502,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y))>60)"
+            },
+            {
+              "line": 546,
+              "text": "long range=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(c.X,c.Y));"
+            },
+            {
+              "line": 551,
+              "text": "&&(!ObservationRules.Enabled(s)||ObservationGeometry.LineOfEffectClear(s,c.Actor,rangedCombat.TargetId));"
+            },
+            {
+              "line": 726,
+              "text": "&&(!ObservationRules.Enabled(s)||ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target));"
+            },
+            {
+              "line": 728,
+              "text": "long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));"
+            },
+            {
+              "line": 741,
+              "text": "return PlanarCombatGeometry.CloseHostileDisadvantage(PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(other.X,other.Y)),true,incapacitated,TestOnlyClubAttackPolicy.CanSee(s,id,c.Actor));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "hits": [
+            {
+              "line": 43,
+              "text": "|| !ObservationGeometry.LineOfEffectClear(state, healer, patient))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+          "hits": [
+            {
+              "line": 36,
+              "text": "private static bool Adjacent(int ax,int ay,int bx,int by)=>WorldSpatialQueries.DistanceInCells(ax,ay,bx,by)==1;"
+            },
+            {
+              "line": 37,
+              "text": "private long StepCost(Snapshot s,string actor,int x,int y)=>PlaytestCombatBudgets.MovementCost(5,tactical.At(x,y),EffectiveProne(s,actor));"
+            },
+            {
+              "line": 50,
+              "text": "var spatial=WorldSpatialQueries.Step(s,actor,fromX,fromY,x,y,true,true,"
+            },
+            {
+              "line": 51,
+              "text": "(px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+          "hits": [
+            {
+              "line": 253,
+              "text": "if(ObservationRules.Enabled(s)&&!ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return \"BlockedLineOfEffect\";"
+            },
+            {
+              "line": 254,
+              "text": "if(PlanarCombatGeometry.DistanceFeet(new CombatCell(a.X,a.Y),new CombatCell(t.X,t.Y))>5)return \"TargetOutOfReach\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "hits": [
+            {
+              "line": 350,
+              "text": "private long CostPerFoot(Snapshot s, WorldTraversalRecord edge) => PrototypeTraversal.MovementCost(1, OrdinaryTraversal.Walk,"
+            },
+            {
+              "line": 351,
+              "text": "terrain: terrain.At(edge.ToX, edge.ToY), crawling: View(s, edge.ActorId).Has(ConditionKind.Prone));"
+            },
+            {
+              "line": 452,
+              "text": "bool blocked = WorldSpatialQueries.Step(s, edge.ActorId, edge.FromX, edge.FromY, edge.ToX, edge.ToY,"
+            },
+            {
+              "line": 591,
+              "text": "long multiplier = CostPerFoot(s, edge); var distance = new RuleQuantity(5) - edge.DistanceFeet;"
+            },
+            {
+              "line": 613,
+              "text": "long multiplier = CostPerFoot(s, edge);"
+            }
+          ]
+        }
+      ]
+    },
+    "profile-save-gates": {
+      "pattern": "BishopEntrySchema|BishopProfile\\.|ConnectedExplorationObservation\\.|ContentFingerprint\\.StartsWith|SelectedFingerprint\\(",
+      "excludesTests": true,
+      "matchedFiles": 52,
+      "matchedLines": 179,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+          "hits": [
+            {
+              "line": 411,
+              "text": "if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;"
+            },
+            {
+              "line": 648,
+              "text": "&& (target == state.ClericMilestone.MilestoneId || state.BishopEntry!=null && target==BishopProfile.Milestone);"
+            },
+            {
+              "line": 652,
+              "text": "&& (state.BishopEntry!=null&&command.SpellCast.SpellId==BishopProfile.Dispel?target.StartsWith(\"aura.\",StringComparison.Ordinal)"
+            },
+            {
+              "line": 707,
+              "text": "=> !state.InventoryCombat && ConnectedExplorationObservation.StageOpen(state);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "hits": [
+            {
+              "line": 61,
+              "text": "OwnedCards = Array.AsReadOnly(state.CharacterFeatureGrants.Where(x => ClericRpProfile.ValidInitialGrant(state, x) || ClericSettlementProfile.ValidEarnedGrant(state,x) || BishopProfile.ValidGrant(state,x))"
+            },
+            {
+              "line": 554,
+              "text": "string milestone=state.BishopEntry!=null&&state.ClericInvocationPath!=null?BishopProfile.Milestone:state.ClericMilestone.MilestoneId;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ExpeditionBishopView.cs",
+          "hits": [
+            {
+              "line": 10,
+              "text": "public string BishopMilestoneId => BishopProfile.Milestone;"
+            },
+            {
+              "line": 24,
+              "text": "var award=s.CharacterMilestones.SingleOrDefault(x=>x.ActorId==ClericRpProfile.Actor&&x.MilestoneId==BishopProfile.Milestone);"
+            },
+            {
+              "line": 26,
+              "text": "DivineInvocationOwned=BishopProfile.Earned(s);"
+            },
+            {
+              "line": 27,
+              "text": "DivineInvocationRecharge=DivineInvocationOwned?s.AbilityRecharges.SingleOrDefault(x=>x.ActorId==ClericRpProfile.Actor&&x.AbilityId==BishopProfile.Invocation)?.Remaining??0:(int?)null;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedAuraOfFaith.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "if(!BishopProfile.Earned(s)||!s.CharacterFeatureGrants.Any(x=>x.FeatureId==BishopProfile.Aura&&BishopProfile.ValidGrant(s,x)))return null;"
+            },
+            {
+              "line": 22,
+              "text": "return new AuraOfFaithQualification(BishopProfile.Advancement(s).Revision,target,conscious,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "if(!BishopProfile.Earned(s)||c.Actor!=ClericRpProfile.Actor||c.SpellCast?.SpellId!=BishopProfile.Dispel)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "hits": [
+            {
+              "line": 17,
+              "text": "ContentFingerprint=BishopProfile.FingerprintPrefix+RetreatHash(string.Join(\"|\",ContentFingerprint,"
+            },
+            {
+              "line": 18,
+              "text": "declaration.DeclarationDigest,BishopProfile.Approval,BishopProfile.MechanicsApproval,"
+            },
+            {
+              "line": 19,
+              "text": "BishopProfile.InvocationCardSha256,BishopProfile.AuraCardSha256,"
+            },
+            {
+              "line": 51,
+              "text": "if(s.BishopEntry==null || c.Actor!=ClericRpProfile.Actor || c.Target!=BishopProfile.Milestone)return \"UndeclaredMilestone\";"
+            },
+            {
+              "line": 71,
+              "text": "if(!BishopProfile.ValidChoices(c.Advancement))return \"BishopAdvancementChoiceUnsupported\";"
+            },
+            {
+              "line": 92,
+              "text": "if(known.Length!=6 || known.Any(x=>!x.MatchesSource()) || known.Any(x=>x.SpellId==BishopProfile.Dispel)"
+            },
+            {
+              "line": 93,
+              "text": "|| BishopProfile.DispelSource.AccessFor(\"Cleric\").MinimumClassLevel!=3)return \"ClericEarnedRepertoireChoiceUnavailable\";"
+            },
+            {
+              "line": 109,
+              "text": "life.MaximumHp,maximum,life.Hp,current,BishopProfile.SelectedCards.ToArray());"
+            },
+            {
+              "line": 114,
+              "text": "s.CharacterFeatureGrants=s.CharacterFeatureGrants.Concat(BishopProfile.SelectedCards.Select(id=>"
+            },
+            {
+              "line": 119,
+              "text": "s.KnownSpells=s.KnownSpells.Append(KnownSpellRecord.FromSource(c.Actor,BishopProfile.Dispel,SpellAcquisitionOrigin.EarnedClassLevel,"
+            },
+            {
+              "line": 120,
+              "text": "3,3,BishopProfile.RepertoireEntitlement,c.Target,revision)).ToArray();"
+            },
+            {
+              "line": 126,
+              "text": "var command=s.CharacterMilestones.Any(x=>x.ActorId==actor && x.MilestoneId==BishopProfile.Milestone)"
+            },
+            {
+              "line": 127,
+              "text": "?new Command(id,actor,s.Revision,CommandKind.AdvanceCharacterLevel,BishopProfile.Milestone,"
+            },
+            {
+              "line": 128,
+              "text": "advancement:new CharacterAdvancementRequest(BishopProfile.SelectedCards.ToArray(),\"\",BishopProfile.Dispel))"
+            },
+            {
+              "line": 129,
+              "text": ":new Command(id,actor,s.Revision,CommandKind.AwardCharacterMilestone,BishopProfile.Milestone);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+          "hits": [
+            {
+              "line": 257,
+              "text": "if(transfer && (state.BishopEntry==null||before.AbilityId!=BishopProfile.Invocation||!PostRecoveryProfile.IsEpoch(state,epoch.Id)))"
+            },
+            {
+              "line": 524,
+              "text": "if(events.Length!=(BishopProfile.Earned(s)?2:1)||!ClericSettlementProfile.ValidAdvancement(s,events[0])"
+            },
+            {
+              "line": 525,
+              "text": "||events[0].ClassLevel!=2||events.Length==2&&!BishopProfile.ValidAdvancement(s,events[1]))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "hits": [
+            {
+              "line": 200,
+              "text": "benefit?.Id ?? \"\",prior?.BeneficialRestId ?? \"\",BishopProfile.CapacityRevisionBefore(s,s.Revision+1),"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "hits": [
+            {
+              "line": 56,
+              "text": "if (c.Target == BishopProfile.Milestone) return AssessBishopAdvancement(s,c);"
+            },
+            {
+              "line": 112,
+              "text": "if(c.Target==BishopProfile.Milestone){SettleBishopAdvancement(s,c);return null;}"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+          "hits": [
+            {
+              "line": 16,
+              "text": "|| !ContentFingerprint.StartsWith(ConnectedExplorationObservation.FingerprintPrefix, StringComparison.Ordinal))"
+            },
+            {
+              "line": 125,
+              "text": "if (!ConnectedExplorationObservation.StageOpen(s) || !IsOffCalendarActivity(s, c.Actor))"
+            },
+            {
+              "line": 177,
+              "text": "if (!ConnectedExplorationObservation.StageOpen(s) && s.LaterEncounter?.Entry == null)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+          "hits": [
+            {
+              "line": 26,
+              "text": "var search = new ExplorationSearchDefinition(ExplorationSearchDefinition.Source, ConnectedExplorationObservation.SearchDirector,"
+            },
+            {
+              "line": 27,
+              "text": "ConnectedExplorationObservation.VisibleFringe, TestOnlyPolicy.CompanionId, TestOnlyPolicy.ActorId,"
+            },
+            {
+              "line": 30,
+              "text": "var hide = new ExplorationHideDefinition(search.SourceRevision, ConnectedExplorationObservation.HideDirector,"
+            },
+            {
+              "line": 34,
+              "text": "ContentFingerprint = ConnectedExplorationObservation.FingerprintPrefix + RetreatHash(string.Join(\"|\", ContentFingerprint,"
+            },
+            {
+              "line": 42,
+              "text": "=> ConnectedExplorationObservation.IsSelected(state) && !ConnectedExplorationObservation.StageOpen(state);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "|| explorationSearchDefinition?.DirectorId != ConnectedExplorationObservation.SearchDirector"
+            },
+            {
+              "line": 22,
+              "text": "|| !ContentFingerprint.StartsWith(ConnectedExplorationObservation.FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 38,
+              "text": "ContentFingerprint = ConnectedExplorationObservation.FingerprintPrefix + RetreatHash(string.Join(\"|\","
+            },
+            {
+              "line": 56,
+              "text": "&& ConnectedExplorationObservation.StageOpen(state) ? null : \"ConnectedResearchStageClosed\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+          "hits": [
+            {
+              "line": 35,
+              "text": "|| !ContentFingerprint.StartsWith(ConnectedBloodSpecimen.FingerprintPrefix, StringComparison.Ordinal))"
+            },
+            {
+              "line": 79,
+              "text": "&& !s.InventoryCombat && ConnectedExplorationObservation.StageOpen(s);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "hits": [
+            {
+              "line": 17,
+              "text": "|| !ContentFingerprint.StartsWith(ConnectedRecipe4Batch.FingerprintPrefix, StringComparison.Ordinal))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "hits": [
+            {
+              "line": 13,
+              "text": "||use==null||!BishopProfile.Invocations(s).Contains(use)||use.CommandId!=c.Id||use.Revision!=s.Revision+1"
+            },
+            {
+              "line": 15,
+              "text": "||RadianceRules.OwnTurnFailure(s,c.Actor)!=null||!BishopProfile.Earned(s)"
+            },
+            {
+              "line": 30,
+              "text": "string shape=BishopProfile.InvocationPayloadFailure(s,c);if(shape!=null)return shape;"
+            },
+            {
+              "line": 31,
+              "text": "if(s.BishopEntry==null||c.Actor!=ClericRpProfile.Actor||!BishopProfile.Earned(s)"
+            },
+            {
+              "line": 32,
+              "text": "||!s.CharacterFeatureGrants.Any(x=>x.FeatureId==BishopProfile.Invocation&&BishopProfile.ValidGrant(s,x))"
+            },
+            {
+              "line": 41,
+              "text": "if(s.AbilityRecharges.Any(x=>x.ActorId==c.Actor&&x.AbilityId==BishopProfile.Invocation&&x.Remaining>0))return \"DivineInvocationRecharging\";"
+            },
+            {
+              "line": 109,
+              "text": "s.AbilityRecharges=s.AbilityRecharges.Where(x=>x.ActorId!=c.Actor||x.AbilityId!=BishopProfile.Invocation)"
+            },
+            {
+              "line": 110,
+              "text": ".Append(new CharacterAbilityRechargeRecord(c.Actor,BishopProfile.Invocation,epoch.Id,turn.LocalStart,epoch.Start(turn.LocalStart),3)).ToArray();"
+            },
+            {
+              "line": 116,
+              "text": "if(s.BishopEntry==null||actor!=ClericRpProfile.Actor||!BishopProfile.Earned(s))yield break;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "hits": [
+            {
+              "line": 270,
+              "text": "if(s.InventoryCombat||!IsOffCalendarActivity(s,actor)||!ConnectedExplorationObservation.StageOpen(s))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "hits": [
+            {
+              "line": 113,
+              "text": "if (character.Levels.Count(x => x.ClassName == \"Cleric\") != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) ? 2 : 1)) return \"HealingRiteClassUnsupported\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "hits": [
+            {
+              "line": 108,
+              "text": "string access=ClericRepertoireProfile.AssessChoice(spell,level,BishopProfile.Earned(s)); if(access!=null)return access;"
+            },
+            {
+              "line": 127,
+              "text": "if(spell==BishopProfile.Dispel) {"
+            },
+            {
+              "line": 238,
+              "text": "} else if(spell==BishopProfile.Dispel) {"
+            },
+            {
+              "line": 280,
+              "text": "IEnumerable<string> targets=spell==BishopProfile.Dispel?ObserveCasting(s,actor).Auras.Select(x=>x.ObservationId)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "hits": [
+            {
+              "line": 653,
+              "text": "if (failure == null && ConnectedExplorationObservation.IsSelected(s)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "return new ConditionCureInvocation(command.Id+\".invocation\",BishopProfile.Invocation,ClericRpProfile.SourceRevision,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+          "hits": [
+            {
+              "line": 34,
+              "text": "if(inventory.ContentFingerprint.StartsWith(\"TEST_ONLY.inventory-v1-f\",StringComparison.Ordinal))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "private int VerifiedExpeditionWireSchema => bishopDeclaration != null ? Snapshot.BishopEntrySchema"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+          "hits": [
+            {
+              "line": 10,
+              "text": "public string SourceId => BishopProfile.Aura;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": "if (declarationDigest != BishopProfile.DeclarationDigest) throw new ArgumentException(\"Unsupported Bishop objective declaration.\");"
+            },
+            {
+              "line": 35,
+              "text": "public static BishopEntryRecord Announced() => new BishopEntryRecord(BishopProfile.DeclarationDigest);"
+            },
+            {
+              "line": 93,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix,StringComparison.Ordinal);"
+            },
+            {
+              "line": 116,
+              "text": "if ((s.BishopEntry!=null)!=SelectedFingerprint(s.ContentFingerprint))throw new ArgumentException(\"Invalid Bishop profile envelope.\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+          "hits": [
+            {
+              "line": 482,
+              "text": "||!(g.ClassName==\"Soldier\"&&ValidSelectedGrant(s,g)||ClericSettlementProfile.ValidEarnedGrant(s,g)||BishopProfile.ValidGrant(s,g))"
+            },
+            {
+              "line": 604,
+              "text": "if(events.Length!=(BishopProfile.Earned(s)?2:1)||!ClericSettlementProfile.ValidAdvancement(s,events[0])"
+            },
+            {
+              "line": 605,
+              "text": "||events[0].ClassLevel!=2||events.Length==2&&!BishopProfile.ValidAdvancement(s,events[1])"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+          "hits": [
+            {
+              "line": 168,
+              "text": "public static bool SelectedFingerprint(string value)"
+            },
+            {
+              "line": 169,
+              "text": "=> value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || PostRecoveryProfile.SelectedFingerprint(value));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": ".Concat(BishopProfile.Invocations(s).Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))"
+            },
+            {
+              "line": 39,
+              "text": ".Concat(BishopProfile.Invocations(s).Select(x=>(revision:x.Revision,before:(int?)x.ConvictionBefore,after:(int?)x.ConvictionAfter)))"
+            },
+            {
+              "line": 47,
+              "text": "bool selected = SelectedFingerprint(s.ContentFingerprint);"
+            },
+            {
+              "line": 112,
+              "text": "|| x.CapacityAcquiredRevision != BishopProfile.CapacityRevisionBefore(s,x.Revision)"
+            },
+            {
+              "line": 113,
+              "text": "|| x.RpMaximum != BishopProfile.RpMaximumBefore(s,x.Revision)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+          "hits": [
+            {
+              "line": 173,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 174,
+              "text": "|| SpellCastingProfile.SelectedFingerprint(value));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+          "hits": [
+            {
+              "line": 9,
+              "text": "=> BishopProfile.ValidAdvancement(s,a) || s.ConnectedClericSettlement && a.ActorId == ClericRpProfile.Actor && a.MilestoneId == ClericMilestoneDeclaration.FixedId"
+            },
+            {
+              "line": 24,
+              "text": "=> BishopProfile.QualifiesInvocationCure(s,target,operation) || s.ConnectedClericSettlement && operation.Kind == ConditionOperationKind.Cure"
+            },
+            {
+              "line": 36,
+              "text": "=> BishopProfile.InvocationCuredBefore(s,timing,deadline) || s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId"
+            },
+            {
+              "line": 43,
+              "text": "bool selected = SelectedFingerprint(s.ContentFingerprint);"
+            },
+            {
+              "line": 60,
+              "text": "if(allAdvances.Any(x=>x.MilestoneId!=ClericMilestoneDeclaration.FixedId && !BishopProfile.ValidAdvancement(s,x))"
+            },
+            {
+              "line": 61,
+              "text": "|| allAwards.Any(x=>x.MilestoneId!=ClericMilestoneDeclaration.FixedId && (s.BishopEntry==null || x.MilestoneId!=BishopProfile.Milestone)))"
+            },
+            {
+              "line": 106,
+              "text": "&& !ValidEarnedGrant(s,x) && !BishopProfile.ValidGrant(s,x))) throw new ArgumentException(\"Unsupported earned Cleric grant.\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs",
+          "hits": [
+            {
+              "line": 67,
+              "text": "=> s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ConnectedRecipe4Batch.IsSelected(s);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedExplorationObservation.cs",
+          "hits": [
+            {
+              "line": 19,
+              "text": "=> state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedRecipe4Batch.cs",
+          "hits": [
+            {
+              "line": 64,
+              "text": "=> s.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 65,
+              "text": "|| s.ContentFingerprint.StartsWith(ConnectedVialRules.FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 66,
+              "text": "|| s.ContentFingerprint.StartsWith(ConnectedVialRules.StowFingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 67,
+              "text": "|| s.ContentFingerprint.StartsWith(ConnectedVialRules.TacticalFingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 68,
+              "text": "|| s.ContentFingerprint.StartsWith(ConnectedVialRules.CompanionFingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 69,
+              "text": "|| s.ContentFingerprint.StartsWith(ConnectedVialRules.StabilizationFingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 70,
+              "text": "|| WoundTreatmentStation.SelectedFingerprint(s.ContentFingerprint)"
+            },
+            {
+              "line": 71,
+              "text": "|| ClericRpProfile.SelectedFingerprint(s.ContentFingerprint);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedVialRules.cs",
+          "hits": [
+            {
+              "line": 46,
+              "text": "bool stowFingerprint = state.ContentFingerprint.StartsWith(StowFingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 47,
+              "text": "bool tacticalFingerprint = state.ContentFingerprint.StartsWith(TacticalFingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 48,
+              "text": "bool stabilizationFingerprint = state.ContentFingerprint.StartsWith(StabilizationFingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 49,
+              "text": "|| WoundTreatmentStation.SelectedFingerprint(state.ContentFingerprint);"
+            },
+            {
+              "line": 50,
+              "text": "bool companionFingerprint = stabilizationFingerprint || state.ContentFingerprint.StartsWith(CompanionFingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 51,
+              "text": "bool selectedFingerprint = state.ContentFingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+          "hits": [
+            {
+              "line": 45,
+              "text": "bool selected = ConsumeDecaySite.SelectedFingerprint(state.ContentFingerprint);"
+            },
+            {
+              "line": 84,
+              "text": "public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 85,
+              "text": "|| ShortRestBerth.SelectedFingerprint(fingerprint);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "public string SourceId => BishopProfile.Invocation;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs",
+          "hits": [
+            {
+              "line": 25,
+              "text": "bool connected = director == ConnectedExplorationObservation.HideDirector"
+            },
+            {
+              "line": 26,
+              "text": "&& hider == ConnectedExplorationObservation.Hero && witness == ConnectedExplorationObservation.Buyer;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideValidation.cs",
+          "hits": [
+            {
+              "line": 11,
+              "text": "bool connected = ConnectedExplorationObservation.IsSelected(state);"
+            },
+            {
+              "line": 12,
+              "text": "bool selected = connected || state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 25,
+              "text": "|| d.DirectorId != (connected ? ConnectedExplorationObservation.HideDirector : ExplorationHideDefinition.Director)"
+            },
+            {
+              "line": 44,
+              "text": "if (connected) ConnectedExplorationObservation.ValidateDeclaration(state, attempt.Revision, attempt.StartedAt);"
+            },
+            {
+              "line": 47,
+              "text": "if (connected) ConnectedExplorationObservation.ValidateTerminal(state, attempt.End.Revision,"
+            },
+            {
+              "line": 61,
+              "text": "if (state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchRecords.cs",
+          "hits": [
+            {
+              "line": 47,
+              "text": "bool connected = director == ConnectedExplorationObservation.SearchDirector && cue == ConnectedExplorationObservation.VisibleFringe;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchValidation.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": "&& !ConnectedExplorationObservation.IsSelected(state))"
+            },
+            {
+              "line": 32,
+              "text": "bool connected = ConnectedExplorationObservation.IsSelected(state);"
+            },
+            {
+              "line": 33,
+              "text": "bool selected = connected || state.ContentFingerprint.StartsWith(ExplorationSearchDefinition.FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 34,
+              "text": "|| state.ContentFingerprint.StartsWith(ExplorationHideDefinition.FingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 39,
+              "text": "if (connected) ConnectedExplorationObservation.ValidateLayout(state, d);"
+            },
+            {
+              "line": 66,
+              "text": "if (connected) ConnectedExplorationObservation.ValidateDeclaration(state, attempt.Revision, attempt.StartedAt);"
+            },
+            {
+              "line": 69,
+              "text": "if (connected) ConnectedExplorationObservation.ValidateTerminal(state, end.Revision, end.CommandId, end.At,"
+            },
+            {
+              "line": 87,
+              "text": "if (!offCalendar || state.InventoryCombat || connected && !ConnectedExplorationObservation.StageOpen(state)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+          "hits": [
+            {
+              "line": 136,
+              "text": "public static bool SelectedFingerprint(string value) => value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);"
+            },
+            {
+              "line": 143,
+              "text": "&& SelectedFingerprint(s.ContentFingerprint) && q?.ActorId == Actor && q.SourceRevision == SourceRevision"
+            },
+            {
+              "line": 163,
+              "text": "if (s.ConnectedFleshWarden != SelectedFingerprint(s.ContentFingerprint)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+          "hits": [
+            {
+              "line": 161,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ClericSettlementProfile.SelectedFingerprint(value));"
+            },
+            {
+              "line": 170,
+              "text": "bool selected = SelectedFingerprint(state.ContentFingerprint);"
+            },
+            {
+              "line": 198,
+              "text": "|| state.AbilityRecharges.Any(x=>x.AbilityId!=SourceId&&(state.BishopEntry==null||x.AbilityId!=BishopProfile.Invocation)) || state.FrightenedUses.Length > 128"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+          "hits": [
+            {
+              "line": 150,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || BishopProfile.SelectedFingerprint(value));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterValidation.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": "if((record!=null)!=SelectedFingerprint(s.ContentFingerprint))throw new ArgumentException(\"Invalid post-recovery envelope selection.\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+          "hits": [
+            {
+              "line": 135,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 136,
+              "text": "|| ClericRepertoireProfile.SelectedFingerprint(value));"
+            },
+            {
+              "line": 147,
+              "text": "bool selected = SelectedFingerprint(state.ContentFingerprint);"
+            },
+            {
+              "line": 167,
+              "text": "|| character.Levels.Count != (BishopProfile.Earned(state) ? 3 : earned ? 2 : 1) || character.Levels[0].ClassName != \"Cleric\" || character.Levels[0].BaseHp != 8"
+            },
+            {
+              "line": 168,
+              "text": "|| life.MaximumHp != (BishopProfile.Earned(state) ? 18 : earned ? 13 : 8) || pool.ActorId != Actor"
+            },
+            {
+              "line": 169,
+              "text": "|| pool.Maximum != (BishopProfile.Earned(state) ? 7 : earned ? 4 : 3)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+          "hits": [
+            {
+              "line": 82,
+              "text": "public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || FleshWardenProfile.SelectedFingerprint(fingerprint);"
+            },
+            {
+              "line": 96,
+              "text": "|| state.ConnectedShortRest != SelectedFingerprint(state.ContentFingerprint)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "hits": [
+            {
+              "line": 186,
+              "text": "public const int BishopEntrySchema = 112;"
+            },
+            {
+              "line": 376,
+              "text": "public int WireSchemaVersion => BishopEntry != null ? BishopEntrySchema"
+            },
+            {
+              "line": 395,
+              "text": "? ConnectedExplorationObservation.IsSelected(this) ? ConnectedExplorationObservationSchema : ExplorationHideSchema"
+            },
+            {
+              "line": 1194,
+              "text": "BishopProfile.Validate(s);"
+            },
+            {
+              "line": 1301,
+              "text": "string invocationShape = BishopProfile.InvocationPayloadFailure(state,command);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+          "hits": [
+            {
+              "line": 15,
+              "text": "&& SelectedFingerprint(s.ContentFingerprint) && id==CompanionClubId;"
+            },
+            {
+              "line": 44,
+              "text": "public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)"
+            },
+            {
+              "line": 45,
+              "text": "|| ClericLongRestProfile.SelectedFingerprint(value));"
+            },
+            {
+              "line": 50,
+              "text": "public static bool IsAdmittedSpell(string id, bool bishop = false) => bishop && id==BishopProfile.Dispel || id == \"arcane-ward\" || id == \"guidance\" || id == \"spare-the-dying\""
+            },
+            {
+              "line": 80,
+              "text": "if (!s.TestOnly || !SelectedFingerprint(s.ContentFingerprint)) return \"OrdinarySpellcastingUnsupported\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingValidation.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "bool selected=SelectedFingerprint(s.ContentFingerprint);"
+            },
+            {
+              "line": 66,
+              "text": "if(s.BishopEntry==null&&(s.SpellCasts.Any(x=>x.ClassLevel>2||x.SpellId==BishopProfile.Dispel)"
+            },
+            {
+              "line": 218,
+              "text": ".Concat(BishopProfile.Invocations(s).Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null,vent:x)))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+          "hits": [
+            {
+              "line": 118,
+              "text": "public static bool SelectedFingerprint(string value) => value != null"
+            },
+            {
+              "line": 119,
+              "text": "&& (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || FrightenedProfile.SelectedFingerprint(value));"
+            },
+            {
+              "line": 135,
+              "text": "if (spell == BishopProfile.Dispel && (!bishop || actualClericLevel<3)) return \"SpellClassLevelDenied\";"
+            },
+            {
+              "line": 158,
+              "text": "bool selected = SelectedFingerprint(state.ContentFingerprint);"
+            },
+            {
+              "line": 165,
+              "text": "|| state.KnownSpells.Length != (BishopProfile.Earned(state) ? 7 : earned ? 6 : 5) || initial.Length != 5 || ValidateInitialChoices(initial.Select(x => x.SpellId)) != null"
+            },
+            {
+              "line": 176,
+              "text": "if(BishopProfile.Earned(state)) {"
+            },
+            {
+              "line": 177,
+              "text": "var a=BishopProfile.Advancement(state);"
+            },
+            {
+              "line": 178,
+              "text": "if(state.KnownSpells.Count(x=>x.SpellId==BishopProfile.Dispel && x.ActorId==ClericRpProfile.Actor && x.ClassName==\"Cleric\""
+            },
+            {
+              "line": 180,
+              "text": "&& x.EntitlementId==BishopProfile.RepertoireEntitlement && x.MilestoneId==BishopProfile.Milestone && x.AcquiredRevision==a.Revision)!=1)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+          "hits": [
+            {
+              "line": 96,
+              "text": "public static SpellSourceDefinition Get(string id) => Definitions.SingleOrDefault(x => x.Id == id) ?? (id == BishopProfile.Dispel ? BishopProfile.DispelSource : null);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+          "hits": [
+            {
+              "line": 143,
+              "text": "public static bool SelectedFingerprint(string fingerprint) => fingerprint.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || ConsumeDecaySite.SelectedFingerprint(fingerprint);"
+            },
+            {
+              "line": 155,
+              "text": "|| state.ConnectedWoundTreatment != SelectedFingerprint(state.ContentFingerprint)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+          "hits": [
+            {
+              "line": 176,
+              "text": "writer.Write(BishopProfile.Marker);"
+            },
+            {
+              "line": 220,
+              "text": "Snapshot.BishopEntrySchema => Snapshot.SurpriseEntrySchema,"
+            },
+            {
+              "line": 305,
+              "text": "if(schema >= Snapshot.DailyProvisioningSchema)ExpeditionProvisioningCodec.Read(reader,s,wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema));"
+            },
+            {
+              "line": 327,
+              "text": "s.ConnectedClericLongRest = wireSchema == Snapshot.ConnectedClericLongRestSchema || (wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema);"
+            },
+            {
+              "line": 400,
+              "text": "SpellCastingCodec.Read(reader, s,wireSchema==Snapshot.BishopEntrySchema);"
+            },
+            {
+              "line": 404,
+              "text": "ClericLongRestCodec.Read(reader, s, wireSchema == Snapshot.BishopEntrySchema);"
+            },
+            {
+              "line": 406,
+              "text": "if ((wireSchema == Snapshot.PostRecoveryEncounterSchema || wireSchema == Snapshot.BishopEntrySchema)) {"
+            },
+            {
+              "line": 410,
+              "text": "if (wireSchema == Snapshot.BishopEntrySchema) {"
+            },
+            {
+              "line": 411,
+              "text": "if (reader.ReadByte() != BishopProfile.Marker) throw new InvalidDataException(\"Invalid Bishop marker.\");"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "limits": "Lexical candidate inventory, with inspected behavior recorded in the contract. Not a semantic completeness proof. Unity host rows are inventory only; Unity qualification is deferred."
+}
