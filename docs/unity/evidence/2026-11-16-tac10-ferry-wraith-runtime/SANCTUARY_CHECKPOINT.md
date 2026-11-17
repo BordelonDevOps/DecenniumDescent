@@ -1,5 +1,8 @@
 # Genuine Sanctuary retains the Claw through pending choices and cached reactions
 
+**Actual review received:** GPT responseefbd304b-da5b-5fd8-b108-54d2ca61f7ab and Codex agreement are retained in [GPT_SANCTUARY_REVIEW.json](GPT_SANCTUARY_REVIEW.json). No concrete blocker was found within this checkpoint. The conservative capacity reservation remains a broader reusable-engine limitation for these demonstrated branches; it does not authorize increased limits, history pruning or omitted mandatory witnesses. The reviewer checked all70 members,468 source bindings, selected save pairs and source/RNG/capacity arithmetic, but did not compile, execute C#/PowerShell, perform engine restores/causal replay or observe workers. TAC-10 remains unaccepted.
+
+
 The owned Sanctuary cast, a real failed non-class WIS save, pending source preservation, legal regular retarget/forgo, cached opportunity decline and next-owner-Start refresh now execute through the existing Ferry simulation. These are genuine alternate gameplay branches with actual costs, geometry, RNG and strict restores. They do not change the main r462/3RP continuation, complete every reaction/ability requirement or accept TAC-10.
 
 Unchanged runtime `948b9bff0604e15cfb2d5419be9658392bcb2bcf`; exact executed [regular driver](support/Probe-FerrySanctuary.ps1) and [cached-opportunity driver](support/Probe-FerrySanctuaryOpportunity.ps1) at `cbc6f4ef03e3f28288d8ac0594d561508635872a`. The468-input build/report and three loaded runtime DLLs bind to the earlier immutable seal archive. No new runtime compilation or engine change is claimed for these probes.

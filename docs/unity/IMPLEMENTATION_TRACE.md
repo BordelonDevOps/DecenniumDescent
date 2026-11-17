@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 care continuation checkpoint:** [evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/CARE_CHECKPOINT.md), runtime948b9bff0/driversbfdea90f3. Genuine Purify, Dying-to-Stable Spare, and two paid Divine Invocations with own-Start recharge execute73 alternate commands plus three actual outgoing Ends.41 members/seven selected strict restore pairs; no runtime edit/new compilation. Actual Sanctuary reviewefbd304b and Codex agreement retain conservative capacity as a broader limitation, not a waived requirement. Care review, remaining source interactions/ability boundaries/consumer audit/full regression/five paths/compatibility/final acceptance stay open. Main r462/3RP unchanged; no successor; Unity/storage/Support held.
+
+
 **TAC-10 genuine Sanctuary source/cached-reaction checkpoint retained; full regression launched.** [Evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/SANCTUARY_CHECKPOINT.md): runtime948b9bff0/drivercbc6f4ef0; actual Sanctuary, non-class WIS0 failure, full pending Claw payload, lawful retarget/forgo, real3fire/concentration consequence, cached opportunity decline and next source Start refresh.70 members/nine selected restore pairs; four failed aggregate probes retained, including explicit conservative history-capacity rejection. Actual four-spell reviewc1221e78/Codex agreement closes partial lifecycle scope only. Full1583 run9d490d26 at engine/artifacts/ferry-wraith/full-regression-20261117T091322Z retains original1576 order/shards and seven new cases, exactdb91 source/frozen DLLs; six live processes observed, no final pass claimed. Remaining module/engine requirements open; no successor, Unity/storage/Support held.
 
 

@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Latest: genuine Purify, Spare and Invocation/recharge branches pass.** [Care evidence](CARE_CHECKPOINT.md) binds driversbfdea90f3 to unchanged runtime948b9bff0,76 actual alternate commands including three real Ends,41 archive members and seven selected strict restore pairs. Actual Sanctuary reviewefbd304b/Codex agreement closes only that bounded scope and retains the conservative capacity limit. Care review pending; full1583 regression remains live, not completed. Remaining ability/Claw OA/Press/KO/boundary/consumer/five-path/compatibility/final-review gates stay open. Main r462/3RP unchanged; no successor; Unity/storage/Support held.
+
+
 **Latest: genuine Sanctuary source choices and cached opportunity pass.** [Sanctuary evidence](SANCTUARY_CHECKPOINT.md) binds unchanged runtime948b9bff0/drivercbc6f4ef0, actual paid Sanctuary, WIS0/9vs12 failure, full saved Claw payload, regular forgo and actual3fire retarget with a separate successful concentration save, cached opportunity decline with no Reaction/RNG and actual next-owner-Start refresh.70 rehashed members/nine selected restore pairs; distinct branch lineages and four failed aggregate attempts are explicit. Existing conservative history-capacity reservation remains tracked. Actual four-spell GPT reviewc1221e78/Codex agreement closes only its lifecycle scope. Full1583 regression9d490d26 is running in six workers from exactdb91 engine/frozen DLLs; no full pass claimed. Remaining ability/reaction/source/privacy/consumer/five-path/compatibility/final-review gates stay open; no successor.
 
 
