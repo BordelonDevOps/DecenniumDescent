@@ -1,0 +1,116 @@
+{
+  "status": "PASS_EXACT_BOUNDED_RUN_RETENTION_NOT_MODULE_ACCEPTANCE",
+  "scope": "Genuine paid late tear, actual source death and paid closure while suppression remains active, then original before/at/after expiry and destroyed-paper denial; preserve all unsuccessful deterministic witness branches and one harness error",
+  "runtimeCommit": "c8ffee78d5047131317ff923c8e3a575b6c51f3a",
+  "compileInputs": 468,
+  "collectorSha256": "0e1e89dafcaeb65f26f2256c4191bbcff7f364e8b506d7ea0c56ab32fb16bbe8",
+  "manifestSha256": "2c82dac0684fa9b796856e81d96237f281d9a348318deacaacd287f19b952509",
+  "archive": {
+    "path": "bounded-runs.zip",
+    "members": 88,
+    "bytes": 1933282,
+    "sha256": "c5adc97e18efedeaccee3c80ce9b7861ac1b6a10275e5de5a99c21adfe36397a"
+  },
+  "runs": [
+    {
+      "label": "failed-initial",
+      "status": "FAIL",
+      "scriptCommit": "dbeeb34ed",
+      "executedSha256": "d18e16885a36dab6394f2e9f1b3ff1c1eb8ba7e227982ea37b2fcb08f78756f8",
+      "commands": 62,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after3",
+      "status": "FAIL",
+      "scriptCommit": "b23cd0988",
+      "executedSha256": "f3338ad5aaeef628b17ffe8ab4db05ee45271b51b17d1bb9d12b8990e13ff9e6",
+      "commands": 62,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after4",
+      "status": "FAIL",
+      "scriptCommit": "b23cd0988",
+      "executedSha256": "f3338ad5aaeef628b17ffe8ab4db05ee45271b51b17d1bb9d12b8990e13ff9e6",
+      "commands": 62,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after7",
+      "status": "FAIL",
+      "scriptCommit": "b23cd0988",
+      "executedSha256": "f3338ad5aaeef628b17ffe8ab4db05ee45271b51b17d1bb9d12b8990e13ff9e6",
+      "commands": 71,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after8",
+      "status": "FAIL",
+      "scriptCommit": "b23cd0988",
+      "executedSha256": "f3338ad5aaeef628b17ffe8ab4db05ee45271b51b17d1bb9d12b8990e13ff9e6",
+      "commands": 120,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after8-aggressive",
+      "status": "FAIL",
+      "scriptCommit": "4e782bf59",
+      "executedSha256": "e554f94faf0f1fe232df65af94a291932b0c21686980c4117398bf6d4ef71d38",
+      "commands": 87,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-after5-aggressive",
+      "status": "FAIL",
+      "scriptCommit": "4e782bf59",
+      "executedSha256": "e554f94faf0f1fe232df65af94a291932b0c21686980c4117398bf6d4ef71d38",
+      "commands": 62,
+      "restorePairs": 2,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.RuntimeException: Death was not within actual suppression."
+    },
+    {
+      "label": "failed-negative-comparison-offset",
+      "status": "FAIL",
+      "scriptCommit": "4e782bf59",
+      "executedSha256": "e554f94faf0f1fe232df65af94a291932b0c21686980c4117398bf6d4ef71d38",
+      "commands": 56,
+      "restorePairs": 4,
+      "privatePairs": 0,
+      "finalRevision": null,
+      "error": "System.Management.Automation.MethodInvocationException: Exception calling \"AddSeconds\" with \"1\" argument(s): \"Specified argument was out of the range of valid values. (Parameter 'seconds')\"\r\n ---> System.ArgumentOutOfRangeException: Specified argument was out of the range of valid values. (Parameter 'seconds')\r\n   at Decennium.Foundation.RuleTime.AddSeconds(Int64 seconds)\r\n   at CallSite.Target(Closure, CallSite, Object, Object)\r\n   --- End of inner exception stack trace ---\r\n   at System.Management.Automation.ExceptionHandlingOps.CheckActionPreference(FunctionContext funcContext, Exception exception)\r\n   at System.Management.Automation.Interpreter.ActionCallInstruction`2.Run(InterpretedFrame frame)\r\n   at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)\r\n   at System.Management.Automation.Interpreter.EnterTryCatchFinallyInstruction.Run(InterpretedFrame frame)"
+    },
+    {
+      "label": "genuine-suppressed-closure",
+      "status": "PASS_GENUINE_ACTIVE_SUPPRESSION_DEATH_CLOSURE_ORIGINAL_EXPIRY",
+      "scriptCommit": "fb25ddaf5",
+      "executedSha256": "9c97794194b16e8ddbb835fe70d62054986ddad3bae576c2054f657fc0637f37",
+      "commands": 59,
+      "restorePairs": 7,
+      "privatePairs": 0,
+      "finalRevision": 410,
+      "error": null
+    }
+  ],
+  "limits": "Seven genuine branches killed after expiry and do not satisfy the requested active-suppression witness. The eighth achieved actual suppressed death/closure but its harness passed -1 to nonnegative AddSeconds; retained exactly. Corrected final run uses ordinary RuleTime construction for a comparison timestamp and only real public clock commands. No gameplay RNG, HP, source or resources are fabricated. No final acceptance claimed."
+}
