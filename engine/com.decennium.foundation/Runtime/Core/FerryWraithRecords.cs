@@ -186,6 +186,7 @@ namespace Decennium.Foundation
                 companionConsents?"consent":"no-consent",directorAuthorizes?"mandate":"no-mandate",
                 "source-origin|no-PB|ordinary-monster|not-living-recipient|AC10-HP9-Speed40|12,14,14,9,11,16",
                 "necrotic-half-poison-zero-Poisoned-prevention|claw-action-melee5-plus3-d4fire-crit2d4|no-fallback",
+                "Petrified-poison-zero|event-time-condition-prefix-and-application-provenance",
                 "bright-ordinary-sight30|actor10,2|post-seal9,3-nonblocking|paid8,1-to8,2-companion8,3",
                 "current-recovery-defender-start|settled-party-ends|carry-owned-ledgers|hero-companion-creature-ties",
                 "paid-exposed-paper-once|original-next-round-or-world-six-seconds|no-extra-action-or-clock",

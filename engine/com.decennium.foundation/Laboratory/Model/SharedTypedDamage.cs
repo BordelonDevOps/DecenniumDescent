@@ -15,16 +15,36 @@ namespace Decennium.Foundation.Laboratory
             var creature=s.Creatures.SingleOrDefault(x=>x.ActorId==target);
             string resistance=creature!=null&&creature.DamageResistances.Contains(type)?creature.SourceId:"";
             string immunity=creature!=null&&creature.DamageImmunities.Contains(type)?creature.SourceId:"";
-            bool petrified=s.SchemaVersion>=Snapshot.ConditionSchema
-                &&TestOnlyClubAttackPolicy.ConditionsFor(s,target).View().Has(ConditionKind.Petrified);
+            var view=s.SchemaVersion>=Snapshot.ConditionSchema?TestOnlyClubAttackPolicy.ConditionsFor(s,target).View():null;
+            bool petrified=view?.Has(ConditionKind.Petrified)==true;
+            var journal=s.Conditions.SingleOrDefault(x=>x.Target==target);
+            // The additive Ferry path supplies condition poison immunity. Supported95-113
+            // profiles retain their historical behavior and wire representation.
+            if(s.FerryWraith!=null&&petrified&&type=="poison"&&immunity=="")immunity=TypedDamageRecord.PetrifiedPoisonSource;
             var record=new TypedDamageRecord(eventId,s.Revision+1,s.RuleClock,target,type,raw,
-                CharacterAdvancementRules.ReduceIncomingDamage(s,target,successfulSaveHalf?raw/2:raw),successfulSaveHalf,resistance,immunity,petrified);
+                CharacterAdvancementRules.ReduceIncomingDamage(s,target,successfulSaveHalf?raw/2:raw),successfulSaveHalf,resistance,immunity,petrified,
+                s.FerryWraith==null?-1:journal.Operations.Count,s.FerryWraith==null?null:view.Sources(ConditionKind.Petrified).OrderBy(x=>x,StringComparer.Ordinal));
             if(s.FerryWraith!=null) {
                 if(s.TypedDamage.Length>=TypedDamageRecord.MaxRecords||s.TypedDamage.Any(x=>x.EventId==eventId&&x.TargetId==target))
                     throw new InvalidOperationException("Typed damage history unavailable.");
                 s.TypedDamage=s.TypedDamage.Append(record).ToArray();
             }
             return record;
+        }
+        public static void ValidateConditionHistory(Snapshot s)
+        {
+            foreach(var damage in s.TypedDamage) {
+                var journal=s.Conditions.Single(x=>x.Target==damage.TargetId);
+                if(damage.ConditionOperationCount<0||damage.ConditionOperationCount>journal.Operations.Count)
+                    throw new ArgumentException("Typed damage lacks its event-time condition prefix.");
+                var prefix=new ConditionJournal(journal.PolicyId,journal.Target,journal.Origin,journal.Operations.Take(damage.ConditionOperationCount));
+                var ledger=ConditionHistory.Restore(prefix).Ledger;var at=new EffectClockMarker(damage.At);
+                if(ledger.Now.CompareTo(at)<0)ledger=ledger.AdvanceTo(at).State;
+                var view=ledger.View();
+                if(view.Has(ConditionKind.Petrified)!=damage.Petrified
+                    ||!view.Sources(ConditionKind.Petrified).OrderBy(x=>x,StringComparer.Ordinal).SequenceEqual(damage.PetrifiedApplicationIds))
+                    throw new ArgumentException("Typed damage condition protection differs from its event-time journal prefix.");
+            }
         }
     }
 }

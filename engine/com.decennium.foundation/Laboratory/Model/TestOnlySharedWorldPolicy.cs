@@ -1225,6 +1225,7 @@ namespace Decennium.Foundation.Laboratory
                     || ferryDeclaration!=null&&(ferryDeclaration.PredecessorFingerprint!=s.FerryWraith.PredecessorFingerprint
                         ||ferryDeclaration.CompanionConsents!=s.FerryWraith.CompanionConsents||ferryDeclaration.DirectorAuthorizes!=s.FerryWraith.DirectorAuthorizes))
                     return "FerrySourceDeclarationMismatch";
+                if(s.FerryWraith!=null)SharedTypedDamage.ValidateConditionHistory(s);
                 if ((postRecoveryDefinition == null) != (s.PostRecoveryEncounter == null)
                     || postRecoveryDefinition != null && postRecoveryDefinition.Binding != s.PostRecoveryEncounter.Definition.Binding)
                     return "PostRecoveryDefinitionMismatch";

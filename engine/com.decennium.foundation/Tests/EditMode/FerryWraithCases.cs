@@ -23,6 +23,74 @@ namespace Decennium.Foundation.Tests
         }
         private static void AddFerryWraithCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("tac10_petrified_poison_immunity_retains_event_condition_provenance",()=>{
+                // Supplied poison packets, temporary HP and condition events on detached states.
+                // No new connected poison/Petrified producer or supported mechanical save is claimed.
+                var session=NewFerryExpedition();var initial=ShortRestCapture(session);var codec=new SnapshotCodec();
+                var unchanged=codec.Encode(initial);var rows=new List<object>();
+                var damage=typeof(TestOnlySharedWorldPolicy).Assembly.GetType("Decennium.Foundation.Laboratory.AuraOfFaithRules")
+                    .GetMethod("Damage",BindingFlags.Static|BindingFlags.NonPublic);
+                var apply=typeof(TestOnlyClubAttackPolicy).GetMethod("ApplyLife",BindingFlags.Static|BindingFlags.NonPublic);
+                void Operation(Snapshot s,string actor,Func<ConditionJournal,ConditionOperation> operation) {
+                    var journal=s.Conditions.Single(x=>x.Target==actor);
+                    var next=ConditionHistory.Restore(journal).Append(operation(journal)).State.Journal;
+                    s.Conditions=s.Conditions.Select(x=>x.Target==actor?next:x).ToArray();
+                }
+                foreach(string actor in new[]{FerryWraithProfile.Hero,FerryWraithProfile.Actor})
+                    foreach(string mode in new[]{"absent","active","suppressed","parent-immune","ended","incapacitated-immune"})
+                        foreach(bool rolledPacket in new[]{false,true}) {
+                            var s=initial.Copy();bool innate=actor==FerryWraithProfile.Actor;
+                            if(mode!="absent")FerryMechanicalCondition(s,"Petrified",actor);
+                            if(mode=="suppressed")Operation(s,actor,j=>ConditionOperation.Suppress("probe.suppress",j.Now,"ferry.mechanical.Petrified",true));
+                            if(mode=="ended")Operation(s,actor,j=>ConditionOperation.End("probe.end",j.Now,"ferry.mechanical.Petrified","supplied-end"));
+                            if(mode=="parent-immune"||mode=="incapacitated-immune")Operation(s,actor,j=>ConditionOperation.Grant("probe.grant",j.Now,
+                                new ConditionImmunityData("probe.immunity","TEST_ONLY.owner","TEST_ONLY.supplied-event",
+                                    new[]{mode=="parent-immune"?"Petrified":"Incapacitated"},null,"supplied-end")));
+                            var view=TestOnlyClubAttackPolicy.ConditionsFor(s,actor).View();
+                            bool operative=mode=="active"||mode=="incapacitated-immune";
+                            Require(view.Has(ConditionKind.Petrified)==operative,"Unexpected actual Petrified component state.");
+                            if(mode=="incapacitated-immune")Require(!view.Has(ConditionKind.Incapacitated),"Inherited component was not independently suppressed.");
+                            var old=s.Lives.Single(x=>x.ActorId==actor);
+                            var life=new ActorLifeRecord(actor,old.MaximumHp,8,3,Array.Empty<int>(),false,false,old.UsesDeathSaves,0,0,null,0,false,old.HeldItems);
+                            s.Lives=s.Lives.Select(x=>x.ActorId==actor?life:x).ToArray();
+                            uint before=s.RandomState,afterRoll=before;long raw=4,sourceWords=0;
+                            if(rolledPacket){var die=DiceStream.Draw(before,4);raw=die.Value+1;afterRoll=die.NextState;sourceWords=die.WordsConsumed;s.RandomState=afterRoll;}
+                            var resolved=SharedTypedDamage.Resolve(s,"probe.poison",actor,"poison",raw);
+                            long expected=innate||operative?0:raw;
+                            Require(resolved.Effective==expected&&resolved.Petrified==operative
+                                &&resolved.ImmunitySource==(innate?FerryWraithProfile.SourceId:operative?TypedDamageRecord.PetrifiedPoisonSource:""),
+                                "Poison immunity was conflated with resistance, innate immunity or the Poisoned condition.");
+                            var settled=(RolledDamage)damage.Invoke(null,new object[]{s,life,resolved.EventId,resolved.Effective,s.RuleClock,afterRoll,
+                                0,false,false,false,KnockoutInstruction.OrdinaryOutcome,false});
+                            apply.Invoke(null,new object[]{s,life,settled.Outcome.State});s.RandomState=settled.NextRandomState;
+                            var after=s.Lives.Single(x=>x.ActorId==actor);
+                            Require(after.Hp==8-Math.Max(0,expected-3)&&after.TemporaryHp==Math.Max(0,3-expected)
+                                &&s.RandomState==afterRoll&&settled.WordsConsumed==0&&s.TypedDamage.Length==1,
+                                "Poison protection changed the actual HP/tempHP or consumed damage-triggered RNG.");
+                            SharedTypedDamage.ValidateConditionHistory(s);
+                            if(operative) {
+                                Operation(s,actor,j=>ConditionOperation.End("probe.later.end",j.Now,"ferry.mechanical.Petrified","supplied-end"));
+                                Require(!TestOnlyClubAttackPolicy.ConditionsFor(s,actor).View().Has(ConditionKind.Petrified),"Later ending failed.");
+                                SharedTypedDamage.ValidateConditionHistory(s);
+                                var forged=s.Copy();forged.TypedDamage=new[]{new TypedDamageRecord(resolved.EventId,resolved.Revision,resolved.At,
+                                    actor,"poison",raw,raw,false,"",innate?FerryWraithProfile.SourceId:"",false,resolved.ConditionOperationCount)};
+                                Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(forged));
+                            } else {
+                                var forged=s.Copy();forged.TypedDamage=new[]{new TypedDamageRecord(resolved.EventId,resolved.Revision,resolved.At,
+                                    actor,"poison",raw,raw,false,"",TypedDamageRecord.PetrifiedPoisonSource,true,resolved.ConditionOperationCount,
+                                    new[]{"ferry.mechanical.Petrified"})};
+                                Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(forged));
+                            }
+                            rows.Add(new{actor,mode,rolledPacket,raw,sourceWords,before,afterRoll,resolved,after,settled.WordsConsumed});
+                        }
+                var legacy=ShortRestCapture(NewDeclaredGeometryExpedition());FerryMechanicalCondition(legacy,"Petrified",FerryWraithProfile.Hero);
+                var oldResult=SharedTypedDamage.Resolve(legacy,"probe.legacy",FerryWraithProfile.Hero,"poison",4);
+                Require(oldResult.Effective==2&&legacy.TypedDamage.Length==0,"Supported predecessor behavior was changed by the selected correction.");
+                Require(unchanged.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Detached condition controls changed the genuine session.");
+                File.WriteAllText(Path.Combine(directory,"petrified-poison-controls.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="24 labeled shared-pipeline controls; actual condition ledger, event-prefix validation, life/tempHP and RNG; no new connected producer",rows,
+                    legacyEffective=oldResult.Effective}));
+            });
             cases.Add("tac10_ferry_paid_current_epoch_admission_from_fresh_campaign",()=>{
                 // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new
                 // selected profile. Never adopt an old save or replace its life/RNG state.
