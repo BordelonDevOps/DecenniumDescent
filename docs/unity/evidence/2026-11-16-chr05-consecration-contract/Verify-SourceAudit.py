@@ -183,7 +183,7 @@ def main():
           and ferry['statBlock']['actions'] == [{'name': 'Hellfire Claw', 'sourceText': '*Attack:* +3 to hit, one target. *Hit:* 1d4 fire damage (average 2).'}])
     check('Ferry Contract-Bound trait cannot be silently omitted', len(ferry['statBlock']['traits']) == 1
           and ferry['statBlock']['traits'][0]['name'] == 'Contract-Bound')
-    check('Printed attack alone does not supply reach or action kind', not re.search(r'\breach\b|\bmelee\b|\branged\b|\bAction\b', ferry['statBlock']['actions'][0]['sourceText'], re.I))
+    check('Actions heading supplies context but attack category and reach remain unbound', '### Actions' in decode(ferry_path) and not re.search(r'\breach\b|\bmelee\b|\branged\b', ferry['statBlock']['actions'][0]['sourceText'], re.I))
 
     index = parse(BISHOP + 'final/QUALIFICATION_MEMBERS.json')
     archive = ROOT / BISHOP / 'final' / index['archive']
@@ -220,7 +220,7 @@ def main():
                   sourceRevision=SOURCE, pinnedBlobs=len(bindings), searchedCsharpFiles=len(all_cs),
                   canonicalVolumeEntries=len(inventory), canonicalUndead=len(undead), checks=checks,
                   engineUnchanged=True, newCsharpCompilation=False, newRuntimeExecution=False, runtimeAuthorized=False,
-                  reviewRequired=['Consecrate timing/geometry/passive-trigger order contract',
+                  reviewRequired=['Amended complete terrain contract after qualified Undead prerequisite; see SOURCE_API_DECISIONS.md',
                                   'Lawful Undead classification, operational source/actor/context and actual attack witness prerequisite',
                                   'Actual revised finite-funding route and full qualification design'],
                   limits='Source/API findings only. Existing1570 acceptance remains unchanged; no new module or whole-engine completion.')
