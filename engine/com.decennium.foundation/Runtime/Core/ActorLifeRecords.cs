@@ -95,13 +95,15 @@ namespace Decennium.Foundation
     {
         public static void Validate(Snapshot s)
         {
-            if(s.Characters==null||s.Lives==null||s.LifeEvents==null||s.Characters.Length>64||s.Lives.Length>64||s.LifeEvents.Length>256
-                ||s.Characters.Any(x=>x==null)||s.Lives.Any(x=>x==null)||s.LifeEvents.Any(x=>x==null))throw new ArgumentException("Invalid actor life collections.");
+            if(s.Characters==null||s.Creatures==null||s.Lives==null||s.LifeEvents==null||s.Characters.Length>64||s.Creatures.Length>64||s.Lives.Length>64||s.LifeEvents.Length>256
+                ||s.Characters.Any(x=>x==null)||s.Creatures.Any(x=>x==null)||s.Lives.Any(x=>x==null)||s.LifeEvents.Any(x=>x==null))throw new ArgumentException("Invalid actor life collections.");
             if(s.SchemaVersion<Snapshot.ActorLifeSchema) {
-                if(s.Characters.Length!=0||s.Lives.Length!=0||s.LifeEvents.Length!=0)throw new ArgumentException("Actor life requires schema8.");return;
+                if(s.Characters.Length!=0||s.Creatures.Length!=0||s.Lives.Length!=0||s.LifeEvents.Length!=0)throw new ArgumentException("Actor life requires schema8.");return;
             }
             var actors=s.Actors.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
-            if(!actors.SequenceEqual(s.Characters.Select(x=>x.ActorId).OrderBy(x=>x,StringComparer.Ordinal))
+            if(s.FerryWraith==null&&s.Creatures.Length!=0)throw new ArgumentException("Creature origins require their selected version.");
+            var origins=s.Characters.Select(x=>x.ActorId).Concat(s.Creatures.Select(x=>x.ActorId)).OrderBy(x=>x,StringComparer.Ordinal);
+            if(!actors.SequenceEqual(origins)
                 ||!actors.SequenceEqual(s.Lives.Select(x=>x.ActorId).OrderBy(x=>x,StringComparer.Ordinal))
                 ||s.LifeEvents.Any(x=>!actors.Contains(x.ActorId)||x.Revision>s.Revision||x.At>s.RuleClock))throw new ArgumentException("Invalid actor life references.");
         }

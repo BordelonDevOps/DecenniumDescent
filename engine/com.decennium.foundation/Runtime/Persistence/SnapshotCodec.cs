@@ -180,6 +180,10 @@ namespace Decennium.Foundation
                     writer.Write(DeclaredGeometryProfile.Marker);
                     DeclaredGeometryCodec.Write(writer, state.DeclaredGeometry);
                 }
+                if (state.FerryWraith != null) {
+                    writer.Write(FerryWraithProfile.Marker);
+                    FerryWraithCodec.Write(writer,state);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -198,7 +202,7 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int wireSchema = reader.ReadInt32();
-                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema;
+                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema;
                     // The selected ordinary observation extensions use the schema51 feature payload.
                     int schema = wireSchema switch {
                         Snapshot.ExplorationSearchSchema => Snapshot.ObservationSchema,
@@ -224,6 +228,7 @@ namespace Decennium.Foundation
                         Snapshot.PostRecoveryEncounterSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.BishopEntrySchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.DeclaredGeometrySchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.FerryWraithSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -417,9 +422,13 @@ namespace Decennium.Foundation
                         if (reader.ReadByte() != BishopProfile.Marker) throw new InvalidDataException("Invalid Bishop marker.");
                         s.BishopEntry = BishopEntryCodec.Read(reader);
                     }
-                    if (wireSchema == Snapshot.DeclaredGeometrySchema) {
+                    if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema) {
                         if (reader.ReadByte() != DeclaredGeometryProfile.Marker) throw new InvalidDataException("Invalid declared geometry marker.");
                         s.DeclaredGeometry = DeclaredGeometryCodec.Read(reader);
+                    }
+                    if (wireSchema == Snapshot.FerryWraithSchema) {
+                        if (reader.ReadByte() != FerryWraithProfile.Marker) throw new InvalidDataException("Invalid Ferry-Wraith marker.");
+                        FerryWraithCodec.Read(reader,s);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

@@ -170,6 +170,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeHavenBuyer(s);
             InitializeLaterEncounter(s);
             InitializePostRecoveryActor(s);
+            InitializeFerryActor(s);
             InitializeReinforcement(s);
             InitializeRetreat(s);
             InitializeReengagement(s);
@@ -245,6 +246,7 @@ namespace Decennium.Foundation.Laboratory
             InitializeClericLongRest(s);
             InitializePostRecoverySource(s);
             InitializeBishopEntry(s);
+            InitializeFerrySource(s);
             if(contentManifest!=null) {
                 string bindingError=contentManifest.ValidatePortableSnapshot(s);
                 if(bindingError!=null)throw new InvalidOperationException(bindingError);
@@ -358,7 +360,7 @@ namespace Decennium.Foundation.Laboratory
             return ActorLifeRules.CanAct(s, actor) && !ExpeditionStrainRules.Current(s, actor).Incapacitated
                 && !view.Unaware && !view.Clauses.Incapacitated && !view.Clauses.Immobile;
         }
-        private static int AvailableHands(Snapshot s, string actor) => 2 - s.Clubs.Where(c => c.HeldBy == actor).Count()
+        private static int AvailableHands(Snapshot s, string actor) => s.Creatures.Any(x=>x.ActorId==actor) ? 0 : 2 - s.Clubs.Where(c => c.HeldBy == actor).Count()
             - s.RepeatingCrossbows.Where(c => c.HeldBy == actor).Sum(c => c.GripHands)
             - s.PortableEquipment.Where(x=>x.CustodianId==actor&&x.ParentId==""&&x.Placement==PortablePlacement.Carried).Sum(x=>x.HeldHands)
             - (CharacterAdvancementRules.ShieldOccupiesHand(s,actor)?1:0);
@@ -1206,6 +1208,10 @@ namespace Decennium.Foundation.Laboratory
                 if ((declaredGeometry == null) != (s.DeclaredGeometry == null)
                     || declaredGeometry != null && !declaredGeometry.SameAs(s.DeclaredGeometry))
                     return "DeclaredGeometryBindingMismatch";
+                if ((ferryDeclaration==null)!=(s.FerryWraith==null)
+                    || ferryDeclaration!=null&&(ferryDeclaration.PredecessorFingerprint!=s.FerryWraith.PredecessorFingerprint
+                        ||ferryDeclaration.CompanionConsents!=s.FerryWraith.CompanionConsents||ferryDeclaration.DirectorAuthorizes!=s.FerryWraith.DirectorAuthorizes))
+                    return "FerrySourceDeclarationMismatch";
                 if ((postRecoveryDefinition == null) != (s.PostRecoveryEncounter == null)
                     || postRecoveryDefinition != null && postRecoveryDefinition.Binding != s.PostRecoveryEncounter.Definition.Binding)
                     return "PostRecoveryDefinitionMismatch";

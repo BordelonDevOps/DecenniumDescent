@@ -122,6 +122,11 @@ namespace Decennium.Foundation.Laboratory
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
                 companionConsents,directorAuthorizes).EnableDeclaredGeometry());
 
+        public static ConnectedExpeditionSession StartWithFerryWraith(ClericInitialSelection initial,ClericRepertoireSelection repertoire,
+            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)
+                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes));
+
         public static ConnectedExpeditionSession StartWithBishopEntry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
             ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,

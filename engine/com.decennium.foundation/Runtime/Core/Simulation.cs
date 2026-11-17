@@ -185,6 +185,7 @@ namespace Decennium.Foundation
         public const int PostRecoveryEncounterSchema = 111;
         public const int BishopEntrySchema = 112;
         public const int DeclaredGeometrySchema = 113;
+        public const int FerryWraithSchema = 114;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -217,6 +218,7 @@ namespace Decennium.Foundation
         public WaterFillRecord[] WaterFills = Array.Empty<WaterFillRecord>();
         public VesselHandlingRecord[] VesselMoves = Array.Empty<VesselHandlingRecord>();
         public ActorCharacterRecord[] Characters = Array.Empty<ActorCharacterRecord>();
+        public CreatureActorRecord[] Creatures = Array.Empty<CreatureActorRecord>();
         public ActorLifeRecord[] Lives = Array.Empty<ActorLifeRecord>();
         public ActorLifeEvent[] LifeEvents = Array.Empty<ActorLifeEvent>();
         public ActorMovementRecord[] ActorMovement = Array.Empty<ActorMovementRecord>();
@@ -348,6 +350,7 @@ namespace Decennium.Foundation
         public PostRecoveryEncounterRecord PostRecoveryEncounter;
         public BishopEntryRecord BishopEntry;
         public DeclaredGeometryRecord DeclaredGeometry;
+        public FerryWraithRecord FerryWraith;
         public ClericLongRestRecord[] ClericLongRests = Array.Empty<ClericLongRestRecord>();
         public ClericLongRestSettlementRecord[] ClericLongRestSettlements = Array.Empty<ClericLongRestSettlementRecord>();
         public ConvictionBalanceRecord ConvictionBalance;
@@ -375,7 +378,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => DeclaredGeometry != null ? DeclaredGeometrySchema
+        public int WireSchemaVersion => FerryWraith != null ? FerryWraithSchema
+            : DeclaredGeometry != null ? DeclaredGeometrySchema
             : BishopEntry != null ? BishopEntrySchema
             : PostRecoveryEncounter != null ? PostRecoveryEncounterSchema
             : ConnectedClericLongRest ? ConnectedClericLongRestSchema
@@ -530,7 +534,7 @@ namespace Decennium.Foundation
             ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
             ConnectedClericCasting = ConnectedClericCasting, CastingStrain = CastingStrain.ToArray(), SpellCasts = SpellCasts.ToArray(),
             ConnectedClericLongRest = ConnectedClericLongRest, ClericLongRests = ClericLongRests.ToArray(),
-            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry,
+            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry, FerryWraith = FerryWraith,
             ClericLongRestSettlements = ClericLongRestSettlements.ToArray(), ConvictionBalance = ConvictionBalance,
             CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),
             GuidanceUses = GuidanceUses.ToArray(), SpellSaves = SpellSaves.ToArray(), SanctuaryAdmissions = SanctuaryAdmissions.ToArray(),
@@ -594,7 +598,7 @@ namespace Decennium.Foundation
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
             TacticalActors = TacticalActors.ToArray(), TacticalMoves = TacticalMoves.ToArray(), PressOffers = PressOffers.ToArray(),
             ActorMovement = ActorMovement.ToArray(), Clubs = Clubs.ToArray(), Stances = Stances.ToArray(), Dodges = Dodges.ToArray(), MeleeAttacks = MeleeAttacks.ToArray(), Presses = Presses.ToArray(),
-            Characters = Characters.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
+            Characters = Characters.ToArray(), Creatures = Creatures.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
             Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
@@ -1196,6 +1200,7 @@ namespace Decennium.Foundation
             PostRecoveryProfile.Validate(s);
             BishopProfile.Validate(s);
             DeclaredGeometryProfile.Validate(s);
+            FerryWraithProfile.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);

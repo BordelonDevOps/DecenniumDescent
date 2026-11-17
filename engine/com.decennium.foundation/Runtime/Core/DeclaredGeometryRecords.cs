@@ -87,7 +87,7 @@ namespace Decennium.Foundation
         }
         public static DeclaredGeometryRecord Create(string predecessor)
             => new DeclaredGeometryRecord(predecessor, DeclarationDigest, Terrain);
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal) || FerryWraithProfile.SelectedFingerprint(value));
         public static bool Selected(Snapshot s) => s.DeclaredGeometry != null || SelectedFingerprint(s.ContentFingerprint);
         public static bool HasExpectedLayout(Snapshot s) => s.ObservationMapWidth == Width && s.ObservationMapHeight == Height
             && s.ObservationCells != null && s.ObservationCells.Length == Cells.Count
@@ -110,7 +110,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Declared geometry profile envelope mismatch.");
             if (s.DeclaredGeometry == null) return;
             if (!s.TestOnly || s.SchemaVersion != Snapshot.SurpriseEntrySchema || s.BishopEntry == null
-                || s.ContentFingerprint != BindFingerprint(s.DeclaredGeometry.PredecessorFingerprint) || !HasExpectedLayout(s))
+                || (s.FerryWraith==null?s.ContentFingerprint:s.FerryWraith.PredecessorFingerprint) != BindFingerprint(s.DeclaredGeometry.PredecessorFingerprint) || !HasExpectedLayout(s))
                 throw new ArgumentException("Invalid trusted declared geometry composition.");
         }
     }

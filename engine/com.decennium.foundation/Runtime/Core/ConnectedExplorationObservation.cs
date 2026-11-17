@@ -35,6 +35,7 @@ namespace Decennium.Foundation
             var later = state.LaterEncounter?.Definition;
             var cells = state.ObservationCells;
             var actors = state.PostRecoveryEncounter == null ? Actors : Actors.Append(PostRecoveryEncounterDefinition.Actor).ToArray();
+            if(state.FerryWraith!=null)actors=actors.Append(FerryWraithProfile.Actor).ToArray();
             if (!state.TestOnly || state.SchemaVersion != Snapshot.SurpriseEntrySchema || state.ExplorationHide == null
                 || binding?.Outcome != SurpriseAwareness.Warned || binding.ParticipantId != Hero
                 || later?.HeroId != Hero || state.Reinforcement == null || state.Retreat == null || state.Reengagement == null
