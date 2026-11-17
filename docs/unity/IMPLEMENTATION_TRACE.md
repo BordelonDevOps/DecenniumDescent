@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**2026-11-17: TAC-10 partial target/check and typed-damage integration.** Frozen9cbac60e builds465 C#9 inputs;22 selected cases, seven genesis checks and static validation pass. [Exact checkpoint and limits](evidence/2026-11-16-tac10-ferry-wraith-runtime/TARGET_CHECKPOINT.md);89-member archive SHA256 e74645206cfee63d176bea9381e4dd361cbc777aff3cf6025d48903e12489a56. Actual GPT damage-order response8280e942-e79a-5b05-a17c-bea59dcaef4e plus Codex agreement preserves accepted save/flat/defense order. No full-suite or genuine Ferry encounter claim. Paid admission and epoch work continue in this same module; accepted engine7261052ae, successor closed, Unity deferred, storage/Support held.
+
+
 **TAC-10 partial combat checkpoint; same module remains in progress.** The [checkpoint](evidence/2026-11-16-tac10-ferry-wraith-runtime/COMBAT_CHECKPOINT.md) retains source-preserving natural-attack/OA/Sanctuary command paths, printed creature combat numerics and the first shared typed damage consumer. Actual C#9/headless compilation465 inputs, nine selected cases (two new/seven predecessors), static validation and seven fresh typed/console genesis checks pass. The69-member archive retains19 engine files, four DLLs, exact results/saves and corrected test compilation failures. These are partial implementation controls: genuine creature combat/paid admission/seal/epoch/controller, remaining consumer/living-recipient work, full1576-plus-new/five-path/95-113 qualification and actual final GPT review remain required. No module acceptance/successor; accepted engine remains7261052ae. Whole-engine/P1/production open, Unity deferred, storage/Support held. Earlier entries preserve historical states.
 
 
