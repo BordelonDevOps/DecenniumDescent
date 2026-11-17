@@ -31,6 +31,21 @@ namespace Decennium.Foundation.Tests
                 var damage=typeof(TestOnlySharedWorldPolicy).Assembly.GetType("Decennium.Foundation.Laboratory.AuraOfFaithRules")
                     .GetMethod("Damage",BindingFlags.Static|BindingFlags.NonPublic);
                 var apply=typeof(TestOnlyClubAttackPolicy).GetMethod("ApplyLife",BindingFlags.Static|BindingFlags.NonPublic);
+                var wire=typeof(SnapshotCodec).Assembly.GetType("Decennium.Foundation.FerryWraithCodec");
+                var write=wire.GetMethod("Write",BindingFlags.Static|BindingFlags.NonPublic);
+                var read=wire.GetMethod("Read",BindingFlags.Static|BindingFlags.NonPublic);int wireRoundtrips=0;
+                void Roundtrip(Snapshot s) {
+                    // Actual selected codec payload on an explicitly mechanical state, not a supported save.
+                    using(var bytes=new MemoryStream()) {
+                        using(var writer=new BinaryWriter(bytes,System.Text.Encoding.UTF8,true))write.Invoke(null,new object[]{writer,s});
+                        bytes.Position=0;var restored=s.Copy();
+                        using(var reader=new BinaryReader(bytes,System.Text.Encoding.UTF8,true))read.Invoke(null,new object[]{reader,restored});
+                        Require(bytes.Position==bytes.Length,"Selected condition-provenance codec left unread bytes.");
+                        Require(System.Text.Json.JsonSerializer.Serialize(s.TypedDamage)==System.Text.Json.JsonSerializer.Serialize(restored.TypedDamage),
+                            "Selected codec lost condition policy, origin, prefix, applications or evaluation marker.");
+                        SharedTypedDamage.ValidateConditionHistory(restored);wireRoundtrips++;
+                    }
+                }
                 void Operation(Snapshot s,string actor,Func<ConditionJournal,ConditionOperation> operation) {
                     var journal=s.Conditions.Single(x=>x.Target==actor);
                     var next=ConditionHistory.Restore(journal).Append(operation(journal)).State.Journal;
@@ -73,23 +88,46 @@ namespace Decennium.Foundation.Tests
                                 Require(!TestOnlyClubAttackPolicy.ConditionsFor(s,actor).View().Has(ConditionKind.Petrified),"Later ending failed.");
                                 SharedTypedDamage.ValidateConditionHistory(s);
                                 var forged=s.Copy();forged.TypedDamage=new[]{new TypedDamageRecord(resolved.EventId,resolved.Revision,resolved.At,
-                                    actor,"poison",raw,raw,false,"",innate?FerryWraithProfile.SourceId:"",false,resolved.ConditionOperationCount)};
+                                    actor,"poison",raw,raw,false,"",innate?FerryWraithProfile.SourceId:"",false,resolved.ConditionOperationCount,
+                                    conditionPolicyId:resolved.ConditionPolicyId,conditionOrigin:resolved.ConditionOrigin,conditionEvaluation:resolved.ConditionEvaluation)};
                                 Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(forged));
                             } else {
                                 var forged=s.Copy();forged.TypedDamage=new[]{new TypedDamageRecord(resolved.EventId,resolved.Revision,resolved.At,
                                     actor,"poison",raw,raw,false,"",TypedDamageRecord.PetrifiedPoisonSource,true,resolved.ConditionOperationCount,
-                                    new[]{"ferry.mechanical.Petrified"})};
+                                    new[]{"ferry.mechanical.Petrified"},resolved.ConditionPolicyId,resolved.ConditionOrigin,resolved.ConditionEvaluation)};
                                 Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(forged));
                             }
+                            Roundtrip(s);
                             rows.Add(new{actor,mode,rolledPacket,raw,sourceWords,before,afterRoll,resolved,after,settled.WordsConsumed});
                         }
+                var phased=initial.Copy();const string phaseActor=FerryWraithProfile.Hero;
+                Operation(phased,phaseActor,j=>ConditionOperation.Advance("probe.phase",new ConditionStamp(phased.RuleClock,3)));
+                FerryMechanicalCondition(phased,"Petrified",phaseActor);
+                var protectedAtPhase=SharedTypedDamage.Resolve(phased,"probe.phase.protected",phaseActor,"poison",4);
+                Operation(phased,phaseActor,j=>ConditionOperation.End("probe.phase.end",j.Now,"ferry.mechanical.Petrified","supplied-end"));
+                var unprotectedAtPhase=SharedTypedDamage.Resolve(phased,"probe.phase.unprotected",phaseActor,"poison",4);
+                Require(protectedAtPhase.At==unprotectedAtPhase.At&&protectedAtPhase.ConditionEvaluation.Equals(unprotectedAtPhase.ConditionEvaluation)
+                    &&protectedAtPhase.ConditionEvaluation.Phase==3&&protectedAtPhase.ConditionOperationCount+1==unprotectedAtPhase.ConditionOperationCount
+                    &&protectedAtPhase.Effective==0&&unprotectedAtPhase.Effective==4,
+                    "Same-time same-phase ordered prefixes did not distinguish operative and ended protection.");
+                SharedTypedDamage.ValidateConditionHistory(phased);Roundtrip(phased);
+                var badMarker=phased.Copy();badMarker.TypedDamage=new[]{new TypedDamageRecord(protectedAtPhase.EventId,protectedAtPhase.Revision,
+                    protectedAtPhase.At,phaseActor,"poison",4,4,false,"",TypedDamageRecord.PetrifiedPoisonSource,true,
+                    protectedAtPhase.ConditionOperationCount,protectedAtPhase.PetrifiedApplicationIds,protectedAtPhase.ConditionPolicyId,
+                    protectedAtPhase.ConditionOrigin,new ConditionStamp(protectedAtPhase.At,2))};
+                Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(badMarker));
+                var badPolicy=phased.Copy();badPolicy.TypedDamage=new[]{new TypedDamageRecord(protectedAtPhase.EventId,protectedAtPhase.Revision,
+                    protectedAtPhase.At,phaseActor,"poison",4,4,false,"",TypedDamageRecord.PetrifiedPoisonSource,true,
+                    protectedAtPhase.ConditionOperationCount,protectedAtPhase.PetrifiedApplicationIds,"TEST_ONLY.wrong-policy",
+                    protectedAtPhase.ConditionOrigin,protectedAtPhase.ConditionEvaluation)};
+                Throws<ArgumentException>(()=>SharedTypedDamage.ValidateConditionHistory(badPolicy));
                 var legacy=ShortRestCapture(NewDeclaredGeometryExpedition());FerryMechanicalCondition(legacy,"Petrified",FerryWraithProfile.Hero);
                 var oldResult=SharedTypedDamage.Resolve(legacy,"probe.legacy",FerryWraithProfile.Hero,"poison",4);
                 Require(oldResult.Effective==2&&legacy.TypedDamage.Length==0,"Supported predecessor behavior was changed by the selected correction.");
                 Require(unchanged.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Detached condition controls changed the genuine session.");
                 File.WriteAllText(Path.Combine(directory,"petrified-poison-controls.json"),System.Text.Json.JsonSerializer.Serialize(new{
                     scope="24 labeled shared-pipeline controls; actual condition ledger, event-prefix validation, life/tempHP and RNG; no new connected producer",rows,
-                    legacyEffective=oldResult.Effective}));
+                    legacyEffective=oldResult.Effective,wireRoundtrips,protectedAtPhase,unprotectedAtPhase}));
             });
             cases.Add("tac10_ferry_paid_current_epoch_admission_from_fresh_campaign",()=>{
                 // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new

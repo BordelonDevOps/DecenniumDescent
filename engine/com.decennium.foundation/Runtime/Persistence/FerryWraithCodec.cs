@@ -51,6 +51,8 @@ namespace Decennium.Foundation
                 Text(w,d.InnateResistanceSource);Text(w,d.ImmunitySource);w.Write(d.Petrified);
                 w.Write(d.ConditionOperationCount);w.Write(d.PetrifiedApplicationIds.Count);
                 foreach(string id in d.PetrifiedApplicationIds)Text(w,id);
+                Text(w,d.ConditionPolicyId);Time(w,d.ConditionOrigin.Time);w.Write(d.ConditionOrigin.Phase);
+                Time(w,d.ConditionEvaluation.Time);w.Write(d.ConditionEvaluation.Phase);
             }
         }
         internal static void Read(BinaryReader r,Snapshot state)
@@ -85,7 +87,8 @@ namespace Decennium.Foundation
             var damage=new TypedDamageRecord[SnapshotCodec.ReadCount(r,TypedDamageRecord.MaxRecords)];
             for(int i=0;i<damage.Length;i++)damage[i]=new TypedDamageRecord(Text(r),r.ReadInt64(),Time(r),Text(r),Text(r),
                 r.ReadInt64(),r.ReadInt64(),Flag(r),Text(r),Text(r),Flag(r),r.ReadInt32(),
-                Enumerable.Range(0,SnapshotCodec.ReadCount(r,ConditionJournal.MaxOperations)).Select(_=>Text(r)).ToArray());
+                Enumerable.Range(0,SnapshotCodec.ReadCount(r,ConditionJournal.MaxOperations)).Select(_=>Text(r)).ToArray(),
+                Text(r),new ConditionStamp(Time(r),r.ReadInt32()),new ConditionStamp(Time(r),r.ReadInt32()));
             state.TypedDamage=damage;
         }
         private static void Names(BinaryWriter w,System.Collections.Generic.IReadOnlyList<string> rows)

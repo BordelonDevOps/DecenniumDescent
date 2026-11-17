@@ -83,7 +83,37 @@ try {
     $session.Restore((Join-Path $Run 'first-fire-hit.ddsave'))
     $session.Save((Join-Path $Run 'first-fire-hit-restored.ddsave'))
     Require ((Digest (Join-Path $Run 'first-fire-hit.ddsave'))-ceq(Digest (Join-Path $Run 'first-fire-hit-restored.ddsave'))) 'Actual creature fire hit changed across verified restore/replay.'
+    # Deliberately counterfeit condition history on the actual fire event. Both added
+    # prefixes share its marker; the earlier one protects and the later one does not.
+    # Structural consistency is deliberately allowed before real causal restore rejects it.
+    $forged=$final.Copy()
+    $actualDamage=$typed[0]
+    $journal=$forged.Conditions|Where-Object Target -eq $actualDamage.TargetId
+    $marker=$actualDamage.ConditionEvaluation
+    Require ($journal.Now.CompareTo($marker)-le0) 'Forgery control requires the actual final damage marker.'
+    $history=[Decennium.Foundation.Laboratory.ConditionHistory]::Restore($journal)
+    if($journal.Now.CompareTo($marker)-lt0){$history=$history.Append([Decennium.Foundation.ConditionOperation]::Advance('forged.poison.advance',$marker)).State}
+    $application=[Decennium.Foundation.ConditionApplicationData]::new('forged.petrified','TEST_ONLY.caller','TEST_ONLY.unbound-event','Petrified',$null,'supplied-end',$true)
+    $history=$history.Append([Decennium.Foundation.ConditionOperation]::Apply('forged.petrified.apply',$marker,$application)).State
+    $earlierPrefix=$history.Journal.Operations.Count
+    Require ($history.Ledger.View().Has('Petrified')) 'Earlier forged prefix did not protect.'
+    $history=$history.Append([Decennium.Foundation.ConditionOperation]::End('forged.petrified.end',$marker,'forged.petrified','supplied-end')).State
+    Require (!$history.Ledger.View().Has('Petrified')) 'Later forged prefix still protected.'
+    $forged.Conditions=[Decennium.Foundation.ConditionJournal[]]@($forged.Conditions|ForEach-Object {if($_.Target-eq$journal.Target){$history.Journal}else{$_}})
+    $falseProtection=[Decennium.Foundation.TypedDamageRecord]::new($actualDamage.EventId,$actualDamage.Revision,$actualDamage.At,$actualDamage.TargetId,$actualDamage.DamageType,$actualDamage.Raw,$actualDamage.AfterFlatReduction,$actualDamage.SuccessfulSaveHalf,$actualDamage.InnateResistanceSource,$actualDamage.ImmunitySource,$true,$earlierPrefix,[string[]]@('forged.petrified'),$journal.PolicyId,$journal.Origin,$marker)
+    $forged.TypedDamage=[Decennium.Foundation.TypedDamageRecord[]]@($forged.TypedDamage|ForEach-Object {if($_.EventId-eq$actualDamage.EventId-and$_.TargetId-eq$actualDamage.TargetId){$falseProtection}else{$_}})
+    [Decennium.Foundation.Laboratory.SharedTypedDamage]::ValidateConditionHistory($forged)
+    $forgedPath=Join-Path $Run 'forged-earlier-prefix.ddsave'
+    [IO.File]::WriteAllBytes($forgedPath,$codec.Encode($forged))
+    $forgedHash=Digest $forgedPath
+    $liveBefore=[Convert]::ToBase64String($codec.Encode((Capture)))
+    $rejected=$false;$rejection=''
+    try{$session.Restore($forgedPath)}catch{$rejected=$true;$rejection=$_.Exception.GetBaseException().Message}
+    Require ($rejected-and$rejection-eq'InvalidSharedWorldReplay') "Earlier-prefix forgery was not rejected by actual causal replay: $rejection"
+    Require ($liveBefore-ceq[Convert]::ToBase64String($codec.Encode((Capture)))-and$forgedHash-ceq(Digest $forgedPath)) 'Rejected restore mutated/repaired live state or the counterfeit input.'
+    $report.forgery=@{scope='Counterfeit same-marker Petrified apply/end history and earlier protected prefix on the actual fire record; structural codec and historical ledger pass, causal command replay rejects';earlierPrefix=$earlierPrefix;laterPrefix=$history.Journal.Operations.Count;marker=$marker;rejection=$rejection;sha256=$forgedHash}
     $report.checks+=@('Actual source controller selected Guarded, moved toward seen hostiles and produced a genuine Claw fire hit','Printed+3/d4 or critical2d4; single typed fire settlement, no STR damage or fabricated weapon','Actual first fire hit save and verified restore/replay have identical bytes')
+    $report.checks+='Structurally encodable same-marker earlier-prefix forgery passes pure history consistency but fails actual causal restore without mutation or repair'
     $report.attack=$hit;$report.typedDamage=$typed;$report.finalRevision=$final.Revision;$report.finalClock=$final.RuleClock
     $report.status='PASS_FIRST_GENUINE_CREATURE_FIRE_NOT_MODULE_ACCEPTANCE'
 } catch {$report.error=$_.Exception.ToString()}
