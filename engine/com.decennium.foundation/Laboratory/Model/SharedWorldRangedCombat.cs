@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||consecrationDeclaration!=null&&kind==CommandKind.UseConsecrate
             ||ferryDeclaration!=null&&(kind==CommandKind.TearExposedSeal||kind==CommandKind.EncounterDash)
             ||connectedClericLongRest&&ClericLongRestProfile.IsCommand(kind)
             ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
@@ -159,10 +160,11 @@ namespace Decennium.Foundation.Laboratory
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
                     .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor))
-                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor));
+                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor)).Concat(DiscoverConsecrate(s,actor));
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
             options.AddRange(DiscoverFerrySeal(s,actor));
+            options.AddRange(DiscoverConsecrate(s,actor));
             if(FerryWraithProfile.Active(s)&&s.Encounter.CurrentActor==actor
                 &&(actor==FerryWraithProfile.Hero||actor==FerryWraithProfile.Companion))
                 options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ferry.dash",actor,s.Revision,
@@ -759,7 +761,7 @@ namespace Decennium.Foundation.Laboratory
             var attackerLife=s.Lives.Single(x=>x.ActorId==c.Actor);
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             int flatAttack=checked((attackerLife.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
-                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier);
+                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier+ConsecrationRules.AttackModifier(s,c.Actor));
             var rangedFacts=new RangedAttackRequest(distance,
                 RepeatingCrossbowShotRules.NormalRangeFeet,RepeatingCrossbowShotRules.MaximumRangeFeet,armorClass,
                 attackerFacts.AbilityModifier(CharacterAbility.Dexterity),attackerFacts.ProficiencyBonus,combatant.CrossbowProficient,flatAttack,
@@ -829,6 +831,7 @@ namespace Decennium.Foundation.Laboratory
                 randomBefore,shot.Attack.Roll.NextRandomState,shot.Attack.Roll.WordsConsumed);
             s.RangedAttacks=s.RangedAttacks.Concat(new[]{new RangedAttackRecord(attackId,s.Revision+1,s.Encounter.TurnOrdinal,
                 c.Actor,c.Target,weapon.Id,ammunitionLot,s.RuleClock,recordedAttack,damage)}).ToArray();
+            ConsecrationRules.RecordAttack(s,attackId,c.Actor,recordedAttack.Modifier);
             if(shot.Attack.Attack.Hit)SoldierTacticalFeatures.ApplyHit(s,attackId,c.Actor,c.Target,c.Kind);
             SoldierTacticalFeatures.StartRecharge(s,c.Actor,c.Kind);
             s.RandomState=next;SetInterval(s,interval.PayAction());

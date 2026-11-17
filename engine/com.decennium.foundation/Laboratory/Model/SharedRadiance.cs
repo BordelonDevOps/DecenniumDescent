@@ -56,7 +56,7 @@ namespace Decennium.Foundation.Laboratory
                 || rite.RpPaid != 2 || rite.Modifier != 2 || s.RandomState != rite.RandomAfter
                 || s.ResonancePools.Single(x => x.ActorId == c.Actor).Current != rite.RpAfter
                 || !s.WorldIntervals.Single(x => x.ActorId == c.Actor).ActionSpent
-                || s.Lives.Single(x => x.ActorId == c.Target).Dead || s.Lives.Single(x => x.ActorId == c.Target).Hp != rite.HpAfter)
+                || s.Lives.Single(x => x.ActorId == c.Target).Dead || s.Lives.Single(x => x.ActorId == c.Target).Hp != ConsecrationProfile.AfterGround(s,rite))
                 throw new ArgumentException("Radiance requires its actual staged paid healing trigger.");
             var draw = DiceStream.Draw(rite.RandomBefore,8);
             if (draw.Value + 1 != rite.Die || draw.NextState != rite.RandomAfter || draw.WordsConsumed != rite.WordsConsumed)
@@ -115,7 +115,7 @@ namespace Decennium.Foundation.Laboratory
             state.RadianceUses = state.RadianceUses.Append(new RadianceUseRecord(command.Id,state.Revision + 1,command.Actor,command.Target,
                 ClericRpProfile.SourceRevision,epoch.Id,local,epoch.Id==phase.Epoch.Id?phase.FirstTurn:0,
                 WorldTiming.TurnOrdinal(state,epoch.Id,local),at,rite.HpAfter,potential,healed.Hp,
-                preference,operation,ended)).ToArray();
+                preference,operation,ended,before.Hp)).ToArray();
         }
     }
 }

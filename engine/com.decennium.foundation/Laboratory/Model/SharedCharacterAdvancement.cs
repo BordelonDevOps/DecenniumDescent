@@ -254,12 +254,21 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException("Named ability recharge has no matching owner start.");
             foreach(var before in owned) {
                 bool transfer=epoch.Id!=before.EpochId;
-                if(transfer && (state.BishopEntry==null||before.AbilityId!=BishopProfile.Invocation
+                if(transfer && (state.BishopEntry==null||(before.AbilityId!=BishopProfile.Invocation
+                    &&(state.Consecration==null||before.AbilityId!=ConsecrationProfile.Consecrate))
                     ||!PostRecoveryProfile.IsEpoch(state,epoch.Id)&&!FerryWraithProfile.IsEpoch(state,epoch.Id)))
                     throw new InvalidOperationException("Named ability recharge has no matching epoch.");
                 if(!transfer && local<=before.LastLocalStart)continue;
                 // Admission itself gives no tick. The first actual owner Start in the new epoch does.
                 long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;
+                if(state.Consecration!=null && before.AbilityId==ConsecrationProfile.Consecrate) {
+                    int ownerIndex=epoch.Order.ToList().IndexOf(actor);
+                    if(ownerIndex<0 || local<ownerIndex || (local-ownerIndex)%epoch.Order.Count!=0)
+                        throw new InvalidOperationException("Consecrate transfer has no actual owner cadence.");
+                    // Sparse observation may first visit a later owner Start. Count every actual
+                    // new-schedule Start through that marker, never admission or old virtual Starts.
+                    elapsed=ConsecrationProfile.CountRechargeStarts(state,epoch,actor,transfer?-1:before.LastLocalStart,local);
+                }
                 if(elapsed<1)throw new InvalidOperationException("Named ability recharge cadence is inconsistent.");
                 int remaining=checked((int)Math.Max(0,before.Remaining-elapsed));
                 var after=new CharacterAbilityRechargeRecord(actor,before.AbilityId,epoch.Id,local,epoch.Start(local),remaining);

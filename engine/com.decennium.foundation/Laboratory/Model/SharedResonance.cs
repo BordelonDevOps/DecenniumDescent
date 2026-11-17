@@ -130,6 +130,7 @@ namespace Decennium.Foundation.Laboratory
             if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return "ResonancePoolUnavailable";
             if (pool.Current < 2) return "InsufficientResonance";
             if (state.HealingRites.Length >= 128) return "HealingRiteHistoryFull";
+            if (state.Consecration?.Healing.Count >= ConsecrationRecord.MaxHealing) return "GroundHealingHistoryFull";
             if (state.ConnectedClericCasting && state.CastingActivities.Length >= SpellCastingProfile.MaxActivities) return "CastingHistoryFull";
             return state.ConnectedClericSettlement ? RadiancePreflight(state,command) : null;
         }
@@ -156,6 +157,7 @@ namespace Decennium.Foundation.Laboratory
                 random, draw.NextState, draw.WordsConsumed);
             state.HealingRites = state.HealingRites.Append(rite).ToArray();
             RecordCastingActivity(state,command,CastingActivityKind.MagicalClassAbility);
+            ConsecrationRules.HealAfterRite(state,command,rite);
             if (state.ConnectedClericSettlement) SettleRadiance(state,command,rite);
             AuraOfFaithRules.HealAfterRite(state,command,rite);
             ReconcileDyingCadences(state); PauseIncompatibleWork(state);

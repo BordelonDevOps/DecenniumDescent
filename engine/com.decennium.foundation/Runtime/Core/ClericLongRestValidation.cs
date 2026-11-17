@@ -20,6 +20,8 @@ namespace Decennium.Foundation
             var events = s.HealingRites.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false))
                 .Concat(s.SpellCasts.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))
                 .Concat(BishopProfile.Invocations(s).Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))
+                .Concat((s.Consecration?.Zones ?? Array.Empty<ConsecrationZone>())
+                    .Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:false)))
                 .Concat(s.ClericLongRestSettlements.Select(x => (revision:x.Revision, before:x.RpBefore, after:x.RpAfter, recovery:true)))
                 .Where(x => x.revision < revision).OrderBy(x => x.revision).ToArray();
             if (events.Select(x => x.revision).Distinct().Count() != events.Length)

@@ -21,11 +21,11 @@ namespace Decennium.Foundation.Tests
                     kind,null,"supplied-end",true))).State;
             s.Conditions=s.Conditions.Select(x=>x.Target==journal.Target?history.Journal:x).ToArray();
         }
-        private static ConnectedExpeditionSession RunFerryAdmission(string directory)
+        private static ConnectedExpeditionSession RunFerryAdmission(string directory, ConnectedExpeditionSession supplied = null)
         {
             // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new
             // selected profile. Never adopt an old save or replace its life/RNG state.
-            var session=RunDeclaredGeometryCampaign(directory,NewFerryExpedition());
+            var session=RunDeclaredGeometryCampaign(directory,supplied ?? NewFerryExpedition());
             const string hero=FerryWraithProfile.Hero,companion=FerryWraithProfile.Companion;
             int sequence=0;
             void Walk(string actor,int dx,int dy) {

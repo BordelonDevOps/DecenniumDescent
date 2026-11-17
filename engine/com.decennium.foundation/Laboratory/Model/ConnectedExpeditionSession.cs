@@ -123,6 +123,11 @@ namespace Decennium.Foundation.Laboratory
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
                 companionConsents,directorAuthorizes).EnableDeclaredGeometry());
 
+        public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,
+            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)
+                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes).EnableConsecration());
+
         public static ConnectedExpeditionSession StartWithFerryWraith(ClericInitialSelection initial,ClericRepertoireSelection repertoire,
             ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)
@@ -441,6 +446,7 @@ namespace Decennium.Foundation.Laboratory
         private static bool ExposedPayload(Snapshot state, Command command)
         {
             if(command.Kind==CommandKind.EncounterDash)return state.FerryWraith!=null&&FerryWraithProfile.DashPayloadValid(command);
+            if(command.Kind==CommandKind.UseConsecrate)return state.Consecration!=null&&ConsecrationRules.PayloadValid(command);
             if(command.Kind==CommandKind.TearExposedSeal)return state.FerryWraith!=null&&FerryWraithProfile.SealPayloadValid(command);
             if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;
             if (state.DeclaredGeometry != null && (command.Kind == CommandKind.BeginWorldStep
@@ -509,6 +515,7 @@ namespace Decennium.Foundation.Laboratory
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
                 || state.FerryWraith!=null && kind==CommandKind.TearExposedSeal
+                || state.Consecration!=null && kind==CommandKind.UseConsecrate
                 || state.BishopEntry!=null && kind==CommandKind.UseDivineInvocation
                 || state.ConnectedClericLongRest && (ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.ResolveExpeditionStrainRecovery)
                 || (state.ConnectedCompanionStabilization||state.ConnectedClericCasting) && kind == CommandKind.StabilizeCompanion
@@ -620,6 +627,8 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.SuspendWorldStep:
                 case CommandKind.ResumeWorldStep:
                     return state.DeclaredGeometry != null && seat == ExpeditionSeat.Player && Party.Contains(actor) && target == "";
+                case CommandKind.UseConsecrate:
+                    return state.Consecration!=null&&seat==ExpeditionSeat.Player&&actor==Companion&&target==""&&command.GetConsecrateRequest()!=null;
                 case CommandKind.UseDivineInvocation:
                     return state.BishopEntry!=null&&seat==ExpeditionSeat.Player&&actor==Companion&&target==""
                         &&command.DivineInvocation!=null&&command.DivineInvocation.TargetIds.All(Party.Contains);

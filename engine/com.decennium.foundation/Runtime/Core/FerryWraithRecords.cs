@@ -173,7 +173,7 @@ namespace Decennium.Foundation
         public static int TieOrder(string actor)=>actor==Hero?0:actor==Companion?1:2;
         public static bool MatchesApproach(WorldTraversalRecord edge)=>edge!=null&&edge.ActorId==Hero&&!edge.Running
             &&edge.FromX==8&&edge.FromY==1&&edge.ToX==8&&edge.ToY==2;
-        public static bool SelectedFingerprint(string value)=>value!=null&&value.StartsWith(FingerprintPrefix,StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value)=>value!=null&&(value.StartsWith(FingerprintPrefix,StringComparison.Ordinal)||ConsecrationProfile.SelectedFingerprint(value));
         public static bool Active(Snapshot state)=>state.FerryWraith?.Admission!=null&&state.Encounter?.Id==Encounter;
         public static bool OwnsCurrent(Snapshot state,string actor)=>state.FerryWraith?.Admission!=null&&IsParticipant(actor);
         public static bool IsEpoch(Snapshot state,string epoch)=>epoch!=null&&state.FerryWraith?.Admission?.Epoch.Id==epoch;
@@ -204,7 +204,7 @@ namespace Decennium.Foundation
             var record=state.FerryWraith;
             if(!state.TestOnly||state.SchemaVersion!=Snapshot.SurpriseEntrySchema||state.DeclaredGeometry==null||state.BishopEntry==null
                 ||record.PredecessorFingerprint!=DeclaredGeometryProfile.BindFingerprint(state.DeclaredGeometry.PredecessorFingerprint)
-                ||state.ContentFingerprint!=BindFingerprint(record.PredecessorFingerprint,record.CompanionConsents,record.DirectorAuthorizes)
+                ||(state.Consecration?.PredecessorFingerprint??state.ContentFingerprint)!=BindFingerprint(record.PredecessorFingerprint,record.CompanionConsents,record.DirectorAuthorizes)
                 ||state.Creatures.Length!=1||!CreateCreature().SameAs(state.Creatures[0])
                 ||record.Contacts.Any(x=>x.Revision>state.Revision||x.At>state.RuleClock)
                 ||record.Rupture!=null&&(record.Rupture.Revision>state.Revision||record.Rupture.At>state.RuleClock)

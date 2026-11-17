@@ -113,7 +113,7 @@ namespace Decennium.Foundation
                 var rite=s.HealingRites.SingleOrDefault(x=>x.CommandId==heal.RiteCommandId);
                 var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==heal.RiteCommandId);
                 if(rite==null||rite.Revision!=heal.Revision||rite.At!=heal.At||rite.TargetId!=heal.Qualification.TargetId
-                    ||rite.ActualGain!=heal.BaseGain||heal.HpBefore!=(radiance?.HpAfter??rite.HpAfter))throw new ArgumentException("Aura healing did not follow its positive base Rite and Radiance.");
+                    ||rite.ActualGain!=heal.BaseGain||heal.HpBefore!=(radiance?.HpAfter??ConsecrationProfile.AfterGround(s,rite)))throw new ArgumentException("Aura healing did not follow its positive base Rite and Radiance.");
             }
         }
     }

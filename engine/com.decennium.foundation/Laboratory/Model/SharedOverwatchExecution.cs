@@ -152,7 +152,7 @@ namespace Decennium.Foundation.Laboratory
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,offer.OwnerId,offer.TargetId);
             int flatAttack=checked((s.Lives.Single(x=>x.ActorId==offer.OwnerId).LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)
                 -incomingEffects.CoveringFirePenalty+incomingEffects.TacticalAssessmentBonus
-                +ExpeditionStrainRules.Current(s,offer.OwnerId).AttackModifier);
+                +ExpeditionStrainRules.Current(s,offer.OwnerId).AttackModifier+ConsecrationRules.AttackModifier(s,offer.OwnerId));
             bool attackerInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.TargetId,offer.OwnerId);
             bool targetInvisibleKnown=!ObservationRules.Enabled(s)||ObservationRules.InvisibleRevealed(s,offer.OwnerId,offer.TargetId);
             bool attackerUnseen=!TestOnlyClubAttackPolicy.CanSee(s,offer.TargetId,offer.OwnerId);
@@ -229,6 +229,7 @@ namespace Decennium.Foundation.Laboratory
             var record=new RangedAttackRecord(attackId,s.Revision+1,s.Encounter.TurnOrdinal,offer.OwnerId,offer.TargetId,
                 facts.Weapon.Id,ammunitionId,s.RuleClock,attackRecord,damage);
             s.RangedAttacks=s.RangedAttacks.Concat(new[]{record}).ToArray();s.RandomState=next;
+            ConsecrationRules.RecordAttack(s,attackId,offer.OwnerId,attackRecord.Modifier);
             SettleSpellDamage(s,offer.TargetId,offer.OwnerId,c.Id,afterDefense);
             s.OverwatchOffers=s.OverwatchOffers.Select(x=>x.Id==offer.Id?x.Resolve(OverwatchOfferStatus.Accepted,s.Revision+1,attackId):x).ToArray();
             var targetLife=s.Lives.Single(x=>x.ActorId==offer.TargetId);

@@ -98,7 +98,8 @@ namespace Decennium.Foundation
             foreach(var activity in s.CastingActivities) {
                 var command=Receipt(s,activity.CommandId,activity.Revision);
                 var kind=activity.Kind==CastingActivityKind.Spell?CommandKind.CastKnownSpell
-                    :activity.Kind==CastingActivityKind.MagicalClassAbility?(command.Kind==CommandKind.UseDivineInvocation&&s.BishopEntry!=null?CommandKind.UseDivineInvocation:CommandKind.UseHealingRite)
+                    :activity.Kind==CastingActivityKind.MagicalClassAbility?(command.Kind==CommandKind.UseConsecrate&&s.Consecration!=null?CommandKind.UseConsecrate
+                        :command.Kind==CommandKind.UseDivineInvocation&&s.BishopEntry!=null?CommandKind.UseDivineInvocation:CommandKind.UseHealingRite)
                     :activity.Kind==CastingActivityKind.DetectFocus?CommandKind.FocusDetectedAura:CommandKind.GroundCastingStrain;
                 if(command.Kind!=kind || command.Actor!=activity.Turn.ActorId || activity.Turn.ActorId!=ClericRpProfile.Actor
                     || activity.At>s.RuleClock || !ValidTurn(s,activity.Turn,activity.At,true))throw new ArgumentException("Unattributed magical activity.");

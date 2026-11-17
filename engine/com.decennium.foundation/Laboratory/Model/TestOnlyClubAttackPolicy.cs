@@ -273,7 +273,7 @@ namespace Decennium.Foundation.Laboratory
             int strengthModifier=attackerFacts.AbilityModifier(CharacterAbility.Strength);
             int modifier=checked((creatureAttack?3:strengthModifier)
                 +(attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
-                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier); // STR10, explicitly no Club proficiency grant.
+                +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier+ConsecrationRules.AttackModifier(s,c.Actor)); // STR10, explicitly no Club proficiency grant.
             int dexterity=ActorNumericFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
             int ac=TestOnlySharedWorldPolicy.EffectiveArmorClass(s,c.Target,dexterity);
             string attackId="attack."+N(s.Revision+1);
@@ -281,6 +281,7 @@ namespace Decennium.Foundation.Laboratory
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before,advantage?1:0,disadvantage?1:0);
             var hit=PlaytestRolls.AttackRoll(roll.Natural,modifier,ac);bool critical=hit.Hit&&(hit.Critical||modifiers.CriticalIfHit);
             var attack=new CombatAttackRoll(roll.First,roll.Second??0,roll.Natural,modifier,ac,hit.Hit,critical,before,roll.NextRandomState,roll.WordsConsumed);
+            ConsecrationRules.RecordAttack(s,attackId,c.Actor,modifier);
             uint next=roll.NextRandomState;CombatDamageRoll damage;bool pending=false;
             if(hit.Hit) {
                 var dice=new int[unarmed?0:critical?2:1];long words=0;

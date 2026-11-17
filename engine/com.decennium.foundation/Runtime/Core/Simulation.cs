@@ -47,7 +47,7 @@ namespace Decennium.Foundation
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
         DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell, UseIntimidatingPresence,
-        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation, AttackCreatureFeature, TearExposedSeal }
+        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation, AttackCreatureFeature, TearExposedSeal, UseConsecrate }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -186,6 +186,7 @@ namespace Decennium.Foundation
         public const int BishopEntrySchema = 112;
         public const int DeclaredGeometrySchema = 113;
         public const int FerryWraithSchema = 114;
+        public const int ConsecrationSchema = 115;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -352,6 +353,7 @@ namespace Decennium.Foundation
         public BishopEntryRecord BishopEntry;
         public DeclaredGeometryRecord DeclaredGeometry;
         public FerryWraithRecord FerryWraith;
+        public ConsecrationRecord Consecration;
         public ClericLongRestRecord[] ClericLongRests = Array.Empty<ClericLongRestRecord>();
         public ClericLongRestSettlementRecord[] ClericLongRestSettlements = Array.Empty<ClericLongRestSettlementRecord>();
         public ConvictionBalanceRecord ConvictionBalance;
@@ -379,7 +381,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => FerryWraith != null ? FerryWraithSchema
+        public int WireSchemaVersion => Consecration != null ? ConsecrationSchema
+            : FerryWraith != null ? FerryWraithSchema
             : DeclaredGeometry != null ? DeclaredGeometrySchema
             : BishopEntry != null ? BishopEntrySchema
             : PostRecoveryEncounter != null ? PostRecoveryEncounterSchema
@@ -535,7 +538,7 @@ namespace Decennium.Foundation
             ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
             ConnectedClericCasting = ConnectedClericCasting, CastingStrain = CastingStrain.ToArray(), SpellCasts = SpellCasts.ToArray(),
             ConnectedClericLongRest = ConnectedClericLongRest, ClericLongRests = ClericLongRests.ToArray(),
-            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry, FerryWraith = FerryWraith,
+            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry, FerryWraith = FerryWraith, Consecration = Consecration,
             ClericLongRestSettlements = ClericLongRestSettlements.ToArray(), ConvictionBalance = ConvictionBalance,
             CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),
             GuidanceUses = GuidanceUses.ToArray(), SpellSaves = SpellSaves.ToArray(), SanctuaryAdmissions = SanctuaryAdmissions.ToArray(),
@@ -765,6 +768,8 @@ namespace Decennium.Foundation
         public GuidanceChoice Guidance { get; }
         public SanctuaryResponseRequest SanctuaryResponse { get; }
         public DivineInvocationRequest DivineInvocation { get; }
+        private readonly ConsecrateRequest consecrateRequest;
+        public ConsecrateRequest GetConsecrateRequest() => consecrateRequest;
         public Command(string id, string actor, long revision, CommandKind kind,
             string target = "", int x = 0, int y = 0, InventoryRequest inventory = null, CombatRequest combat = null,
             CharacterAdvancementRequest advancement = null, RangedRequest ranged = null, OverwatchRider overwatchRider = OverwatchRider.None,
@@ -773,10 +778,10 @@ namespace Decennium.Foundation
             MiningSelectionRequest miningSelection = null, ProspectingExposureRequest prospectingExposure = null,
             RouteMappingWorkRequest routeMappingWork = null, IntimidatingPresenceRequest intimidatingPresence = null,
             HealingRiteRequest healingRite = null, SpellCastRequest spellCast = null, GuidanceChoice guidance = null,
-            SanctuaryResponseRequest sanctuaryResponse = null, DivineInvocationRequest divineInvocation = null)
+            SanctuaryResponseRequest sanctuaryResponse = null, DivineInvocationRequest divineInvocation = null, ConsecrateRequest consecrate = null)
         { if(!Enum.IsDefined(typeof(OverwatchRider),overwatchRider))throw new ArgumentException("Invalid Overwatch rider selection.");
             Id = id; Actor = actor; ExpectedRevision = revision; Kind = kind; Target = target; X = x; Y = y; Inventory = inventory; Combat = combat; Advancement=advancement; Ranged=ranged; OverwatchRider=overwatchRider; SuppressionFire=suppressionFire;DefensiveFormation=defensiveFormation; ExpeditionAssignment=expeditionAssignment;HarvestSelection=harvestSelection;MiningSelection=miningSelection;ProspectingExposure=prospectingExposure;RouteMappingWork=routeMappingWork; IntimidatingPresence=intimidatingPresence; HealingRite=healingRite;
-            SpellCast = spellCast; Guidance = guidance; SanctuaryResponse = sanctuaryResponse; DivineInvocation = divineInvocation; }
+            SpellCast = spellCast; Guidance = guidance; SanctuaryResponse = sanctuaryResponse; DivineInvocation = divineInvocation; consecrateRequest = consecrate; }
         internal string Fingerprint => ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + Actor + "|" + Target + "|" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)
             + "|" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)
@@ -804,6 +809,7 @@ namespace Decennium.Foundation
             + (ProspectingExposure == null ? "" : "|prospecting-exposure-v1|" + ProspectingExposure.Fingerprint)
             + (RouteMappingWork == null ? "" : "|route-map-team-v1|" + RouteMappingWork.Fingerprint)
             + (IntimidatingPresence == null ? "" : "|intimidating-presence-v1|" + IntimidatingPresence.Fingerprint)
+            + (consecrateRequest == null ? "" : "|consecrate-v1|" + consecrateRequest.Fingerprint)
             + (DivineInvocation == null ? "" : "|divine-invocation-v1|" + DivineInvocation.Fingerprint)
             + (HealingRite == null ? "" : "|healing-rite-v1|" + ((int)HealingRite.CurePreference).ToString(System.Globalization.CultureInfo.InvariantCulture))
             + (SpellCast == null ? "" : "|spell-cast-v1|" + SpellCast.Fingerprint)
@@ -1202,6 +1208,7 @@ namespace Decennium.Foundation
             BishopProfile.Validate(s);
             DeclaredGeometryProfile.Validate(s);
             FerryWraithProfile.Validate(s);
+            ConsecrationProfile.Validate(s);
             TypedDamageRecord.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
@@ -1315,6 +1322,7 @@ namespace Decennium.Foundation
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
+            if((command.Kind==CommandKind.UseConsecrate)!=(command.GetConsecrateRequest()!=null))return "UnexpectedConsecratePayload";
             string invocationShape = BishopProfile.InvocationPayloadFailure(state,command);
             if(invocationShape!=null)return invocationShape;
             if(command.DivineInvocation!=null && command.DivineInvocation.TargetIds.Any(x=>!authority.Controls(x)))return "NotAuthorized";

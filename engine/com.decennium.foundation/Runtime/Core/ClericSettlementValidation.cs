@@ -116,6 +116,7 @@ namespace Decennium.Foundation
                 var command = receipt == null ? null : CommandHistory.Read(receipt);
                 if (rite == null || rite.Revision != use.Revision || rite.ActorId != use.ActorId || rite.TargetId != use.TargetId
                     || rite.At != use.At.Time || rite.TurnOrdinal != use.GlobalStart || rite.HpAfter != use.BaseHpAfter || rite.ActualGain <= 0
+                    || use.PreRadianceHp() != ConsecrationProfile.AfterGround(s,rite)
                     || use.Revision <= s.ClericInvocationPath.AcquiredRevision || use.Revision > s.Revision || use.At.Time > s.RuleClock
                     || epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && phase?.Epoch.Id != epoch.Id
                     || use.PhaseFirstTurn != (FerryWraithProfile.IsEpoch(s,epoch.Id)||PostRecoveryProfile.IsEpoch(s,epoch.Id)?0:phase.FirstTurn)

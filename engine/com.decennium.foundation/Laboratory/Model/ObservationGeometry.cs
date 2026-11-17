@@ -215,6 +215,9 @@ namespace Decennium.Foundation.Laboratory
             => s != null && s.ObservationMapWidth > 0
                 && ClearLine(s, Point.From(Position(s, sourceId)), Point.From(Position(s, targetId)), ObservationChannel.Effect);
 
+        internal static bool LineOfEffectClearFromCell(Snapshot state, int x, int y, string actor)
+            => SupportsAnchorAt(state,x,y) && ClearLine(state,Point.Cell(x,y),Point.From(Position(state,actor)),ObservationChannel.Effect);
+
         internal static bool LineOfEffectClearToCell(Snapshot state, string actor, int x, int y)
             => SupportsAnchorAt(state, x, y)
                 && ClearLine(state, Point.From(Position(state, actor)), Point.Cell(x, y), ObservationChannel.Effect);

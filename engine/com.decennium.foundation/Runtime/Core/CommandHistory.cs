@@ -40,6 +40,12 @@ namespace Decennium.Foundation
             SpellCastRequest spellCast=null;
             SanctuaryResponseRequest sanctuaryResponse=null;
             DivineInvocationRequest divineInvocation=null;
+            ConsecrateRequest consecrate=null;
+            if(p.Length==9&&p[6]=="consecrate-v1") {
+                if(kind!=CommandKind.UseConsecrate)throw new ArgumentException("Invalid Consecrate receipt.");
+                consecrate=new ConsecrateRequest(Int(p[7]),Int(p[8]));
+            }
+            if(kind==CommandKind.UseConsecrate&&consecrate==null)throw new ArgumentException("Missing Consecrate center.");
             if(p.Length==10&&p[6]=="divine-invocation-v1") {
                 if(kind!=CommandKind.UseDivineInvocation)throw new ArgumentException("Invalid Invocation receipt.");
                 divineInvocation=new DivineInvocationRequest(p[7].Split(','),p[8],(RadianceCurePreference)Int(p[9]));
@@ -87,7 +93,7 @@ namespace Decennium.Foundation
                 string[] recipients=p[8].Length==0?Array.Empty<string>():p[8].Split(',');
                 defensiveFormation=new DefensiveFormationRequest(p[7],recipients);
             }
-            if(p.Length==9&&p[6]!="defensive-formation-v1"&&p[6]!="prospecting-exposure-v1"&&p[6]!="sanctuary-response-v1") {
+            if(p.Length==9&&p[6]!="defensive-formation-v1"&&p[6]!="prospecting-exposure-v1"&&p[6]!="sanctuary-response-v1"&&p[6]!="consecrate-v1") {
                 if(kind!=CommandKind.AdvanceCharacterLevel||p[6]!="character-level-v1"||p[7]!=""&&!Validation.ValidId(p[7])||p[8]!=""&&!Validation.ValidId(p[8]))throw new ArgumentException("Invalid advancement receipt version or choices.");
                 advancement=new CharacterAdvancementRequest(p[7],p[8]);
             }
@@ -165,7 +171,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Intimidating Presence requires its immutable target selection.");
             if (kind == CommandKind.RespondSanctuary && sanctuaryResponse == null)
                 throw new ArgumentException("Sanctuary response requires its immutable selection.");
-            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite,spellCast,guidance,sanctuaryResponse,divineInvocation);
+            var command = new Command(receipt.Id, p[1], receipt.Revision - 1, kind, p[2], Int(p[4]), Int(p[5]), inventory, combat,advancement,ranged,rider,suppression,defensiveFormation,expeditionAssignment,harvestSelection,miningSelection,prospectingExposure,routeMappingWork,intimidatingPresence,healingRite,spellCast,guidance,sanctuaryResponse,divineInvocation,consecrate);
             // Includes expected revision and exact canonical numeric representation, versions and fields.
             if (!command.MatchesReceipt(receipt)) throw new ArgumentException("Noncanonical or inconsistent command receipt.");
             return command;

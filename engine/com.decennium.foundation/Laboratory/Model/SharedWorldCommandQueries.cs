@@ -564,6 +564,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if (ClericRepertoireProfile.IsCommand(c.Kind))
                 return new CommandQueryResult(true, false, ClericRepertoireProfile.CommandFailure(s, c), s.Revision);
+            if (c.Kind == CommandKind.UseConsecrate) return QueryConsecrate(s,c);
             if (c.Kind == CommandKind.UseDivineInvocation) return QueryDivineInvocation(s,c);
             if (c.Kind == CommandKind.UseHealingRite) return QueryHealingRite(s, c);
             if (c.Kind == CommandKind.UseIntimidatingPresence) return QueryIntimidatingPresence(s, c);

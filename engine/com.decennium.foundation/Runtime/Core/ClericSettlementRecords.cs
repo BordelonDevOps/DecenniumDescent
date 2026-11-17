@@ -130,23 +130,27 @@ namespace Decennium.Foundation
         public int GlobalStart { get; }
         public ConditionStamp At { get; }
         public long BaseHpAfter { get; }
+        private readonly long hpBefore;
+        public long PreRadianceHp() => hpBefore;
         public long AdditionalPotential { get; }
         public long HpAfter { get; }
-        public long AdditionalGain => HpAfter - BaseHpAfter;
+        public long AdditionalGain => HpAfter - hpBefore;
         public RadianceCurePreference CurePreference { get; }
         public string CureOperationId { get; }
         public ReadOnlyCollection<string> EndedApplicationIds { get; }
         public RadianceUseRecord(string riteCommand, long revision, string actor, string target, string sourceRevision,
             string epoch, long localStart, int phaseFirstTurn, int globalStart, ConditionStamp at,
             long baseHpAfter, long additionalPotential, long hpAfter, RadianceCurePreference preference,
-            string cureOperation, IEnumerable<string> endedApplications)
+            string cureOperation, IEnumerable<string> endedApplications, long? hpBefore = null)
         {
             var ids = endedApplications?.ToArray();
+            long predecessor = hpBefore ?? baseHpAfter;
             if (!Validation.ValidId(riteCommand) || revision < 1 || actor != ClericRpProfile.Actor || !Validation.ValidId(target)
                 || sourceRevision != ClericRpProfile.SourceRevision || !Validation.ValidId(epoch) || localStart < 0
                 || phaseFirstTurn < 0 || globalStart != checked(localStart + phaseFirstTurn)
-                || baseHpAfter < 1 || additionalPotential < 0 || additionalPotential > 1 || hpAfter < baseHpAfter
-                || hpAfter - baseHpAfter > additionalPotential || !Enum.IsDefined(typeof(RadianceCurePreference), preference)
+                || baseHpAfter < 1 || predecessor < baseHpAfter || predecessor - baseHpAfter > 1
+                || additionalPotential < 0 || additionalPotential > 1 || hpAfter < predecessor
+                || hpAfter - predecessor > additionalPotential || !Enum.IsDefined(typeof(RadianceCurePreference), preference)
                 || ids == null || ids.Length > ConditionJournal.MaxOperations || ids.Any(x => !Validation.ValidId(x))
                 || ids.Distinct(StringComparer.Ordinal).Count() != ids.Length
                 || (ids.Length == 0 ? cureOperation != "" : !Validation.ValidId(cureOperation))
@@ -154,7 +158,7 @@ namespace Decennium.Foundation
                 throw new ArgumentException("Invalid paid Radiance result.");
             RiteCommandId = riteCommand; Revision = revision; ActorId = actor; TargetId = target; SourceRevision = sourceRevision;
             EpochId = epoch; LocalStart = localStart; PhaseFirstTurn = phaseFirstTurn; GlobalStart = globalStart; At = at;
-            BaseHpAfter = baseHpAfter; AdditionalPotential = additionalPotential; HpAfter = hpAfter;
+            BaseHpAfter = baseHpAfter; this.hpBefore = predecessor; AdditionalPotential = additionalPotential; HpAfter = hpAfter;
             CurePreference = preference; CureOperationId = cureOperation;
             EndedApplicationIds = Array.AsReadOnly(ids.OrderBy(x => x, StringComparer.Ordinal).ToArray());
         }

@@ -62,7 +62,7 @@ namespace Decennium.Foundation.Laboratory
                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());
             UnsupportedCapabilities = state.ConnectedClericLongRest ? Array.AsReadOnly(new[] {
                 state.BishopEntry!=null?"Other Conviction spending and generation":"Conviction spending and other generation", "Cleric Short Rest", "General party recovery",
-                "Positive or mixed Hit Dice recovery", "Consecrate terrain and other card triggers",
+                "Positive or mixed Hit Dice recovery", state.Consecration!=null?"Consecrate after the owner slot; other card triggers":"Consecrate terrain and other card triggers",
                 "General spellcasting", "Multiclass entry", "Resurrection", "Ancestry and background creation",
                 "Starting equipment and wealth", "Periodic rider healing interactions" }) : Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? "Conviction balance, generation, payment and recovery" : "Conviction", "Class recovery",
                 state.ConnectedClericSettlement ? "Consecrate terrain and other card triggers" : "Other selected card execution",
@@ -562,6 +562,7 @@ namespace Decennium.Foundation.Laboratory
                     selected.Add(CommandKind.AwardCharacterMilestone,milestone);
                     selected.Add(CommandKind.AdvanceCharacterLevel,milestone);
                     if(state.BishopEntry!=null){commands=commands.Append(CommandKind.UseDivineInvocation);selected.Add(CommandKind.UseDivineInvocation,"");}
+                    if(state.Consecration!=null){commands=commands.Append(CommandKind.UseConsecrate);selected.Add(CommandKind.UseConsecrate,"");}
                     targets = new ReadOnlyDictionary<CommandKind,string>(selected);
                 }
                 if (player && state.ConnectedClericLongRest && grant.Controls(ClericRpProfile.Actor)) {

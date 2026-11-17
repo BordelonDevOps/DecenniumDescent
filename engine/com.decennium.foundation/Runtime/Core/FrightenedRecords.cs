@@ -195,7 +195,8 @@ namespace Decennium.Foundation
                 || state.Characters.Single(x => x.ActorId == Actor).Levels.Count(x => x.ClassName == "Warrior") != 3
                 || state.Conditions.Any(x => x.PolicyId != ConditionJournal.RelationshipPolicyId)
                 || state.AbilityRecharges.Count(x=>x.AbilityId==SourceId) > owners.Length
-                || state.AbilityRecharges.Any(x=>x.AbilityId!=SourceId&&(state.BishopEntry==null||x.AbilityId!=BishopProfile.Invocation)) || state.FrightenedUses.Length > 128
+                || state.AbilityRecharges.Any(x=>x.AbilityId!=SourceId&&(state.BishopEntry==null||x.AbilityId!=BishopProfile.Invocation)
+                    &&(state.Consecration==null||x.AbilityId!=ConsecrationProfile.Consecrate)) || state.FrightenedUses.Length > 128
                 || state.FrightenedSaves.Length > 768 || state.FrightenedTimings.Length > 384)
                 throw new ArgumentException("Invalid bounded Frightened access or history.");
             if (state.FrightenedUses.Select(x => x.Id).Distinct(StringComparer.Ordinal).Count() != state.FrightenedUses.Length

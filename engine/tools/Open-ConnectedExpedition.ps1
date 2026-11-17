@@ -20,12 +20,13 @@ param(
     [switch]$PostRecoveryEncounter,
     [switch]$BishopEntry,
     [switch]$DeclaredGeometry,
-    [switch]$FerryWraith
+    [switch]$FerryWraith,
+    [switch]$Consecration
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith,$Consecration).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -35,7 +36,13 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($FerryWraith) {
+$session = if ($Consecration) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConsecration(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),
+        [Decennium.Foundation.BishopEntryRecord]::Announced())
+} elseif ($FerryWraith) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithFerryWraith(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -108,6 +115,7 @@ $session = if ($FerryWraith) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$FerryWraith = $FerryWraith -or $Consecration
 $DeclaredGeometry = $DeclaredGeometry -or $FerryWraith
 $BishopEntry = $BishopEntry -or $DeclaredGeometry
 $PostRecoveryEncounter = $PostRecoveryEncounter -or $BishopEntry
@@ -141,6 +149,18 @@ function New-SessionCommand($request, $view, $kind) {
     $intimidation = $null
     $divineInvocation = $null
     $advancement = $null
+    $consecrate = $null
+    if ($request.ContainsKey('consecrate')) {
+        $details = $request.consecrate
+        $allowed = @('op','kind','id','actor','revision','seat','target','x','y','consecrate')
+        if ($kind -cne 'UseConsecrate' -or @($request.Keys | Where-Object { $_ -cnotin $allowed }).Count -ne 0 -or
+            $null -eq $details -or $details -isnot [System.Collections.IDictionary] -or @($details.Keys).Count -ne 2 -or
+            !$details.ContainsKey('x') -or !$details.ContainsKey('y') -or
+            !($details.x -is [int] -or $details.x -is [long]) -or !($details.y -is [int] -or $details.y -is [long])) {
+            throw 'Consecrate accepts only its explicit supported center.'
+        }
+        $consecrate = [Decennium.Foundation.ConsecrateRequest]::new($details.x,$details.y)
+    }
     $healingRite = $null
     $spellCast = $null
     $guidance = $null
@@ -220,7 +240,7 @@ function New-SessionCommand($request, $view, $kind) {
     }
     [Decennium.Foundation.Command]::new($id, $actor, $revision, $kind, $target, ($request.x ?? 0), ($request.y ?? 0),
         $inventory, $combat, $advancement, $null, 'None', $null, $null, $null, $null, $mining, $null, $null, $intimidation, $healingRite,
-        $spellCast,$guidance,$sanctuaryResponse,$divineInvocation)
+        $spellCast,$guidance,$sanctuaryResponse,$divineInvocation,$consecrate)
 }
 
 function Get-SessionFilePath([string]$path) {
@@ -231,13 +251,24 @@ function Invoke-SessionInput($request) {
     switch ($request.op) {
         'view' { return $session.View(($request.seat ?? 'Player')) }
         'ferry' { return $session.ObserveFerryDecision(($request.seat ?? 'Player')) }
+        'terrain' { return ,@($session.ObserveConsecration(($request.seat ?? 'Player'),$request.actor)) }
+        'terrain-healing' { return ,@($session.ObserveConsecrationHealing(($request.seat ?? 'Player'),$request.actor)) }
         'seal' { return $session.ObserveExposedSeal(($request.seat ?? 'Player'),$request.actor) }
         'query' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind
             return $session.QueryCastingCommand($seat,$command)
         }
-        'discover' { return $session.DiscoverCastingCommands(($request.seat ?? 'Player'),$request.actor) }
+        'discover' {
+            $options = $session.DiscoverCastingCommands(($request.seat ?? 'Player'),$request.actor)
+            if (!$Consecration) { return $options }
+            return ,@($options | ForEach-Object {
+                $projected = $_.Command | Select-Object -Property *
+                $center = $_.Command.GetConsecrateRequest()
+                if ($null -ne $center) { $projected | Add-Member -NotePropertyName Consecrate -NotePropertyValue $center }
+                [pscustomobject]@{ Command=$projected; Query=$_.Query }
+            })
+        }
         'submit' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind

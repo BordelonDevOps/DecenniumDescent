@@ -161,6 +161,7 @@ namespace Decennium.Foundation.Laboratory
             if(contentManifest!=null&&contentManifest.ValidateBindings()!=null)throw new InvalidOperationException("ContentManifestBuildMismatch");
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
             s.DeclaredGeometry = declaredGeometry;
+            s.Consecration = consecrationDeclaration;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
             // ground at the plot; the two calendar actors begin holding their one-handed Clubs.
@@ -501,6 +502,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileShortRest(s, initiating);
                 ReconcileClericLongRestAccess(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
+                var groundDue=NextConsecrationBoundary(s);if(groundDue.HasValue&&groundDue.Value<next)next=groundDue.Value;
                 var sealDue=NextFerrySealBoundary(s);if(sealDue.HasValue&&sealDue.Value<next)next=sealDue.Value;
                 var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
@@ -708,6 +710,7 @@ namespace Decennium.Foundation.Laboratory
                     : reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
                     : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
                 if(s.FerryWraith!=null)SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
+                ExpireConsecration(s);
                 ExpireFerrySealSuppression(s);
                 RefreshActivityIntervals(s, deferredActivityActor);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
@@ -890,6 +893,7 @@ namespace Decennium.Foundation.Laboratory
                 return assessTactical?AssessCastingUtility(s,c):ResolveCastingUtility(s,c);
             if (ClericRepertoireProfile.IsCommand(c.Kind)) return ClericRepertoireProfile.CommandFailure(s, c);
             if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
+            if (c.Kind == CommandKind.UseConsecrate) return ResolveConsecrate(s,c);
             if (c.Kind == CommandKind.UseDivineInvocation) return ResolveDivineInvocation(s,c);
             if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
             if (c.Kind == CommandKind.UseIntimidatingPresence) return assessTactical
@@ -1133,6 +1137,8 @@ namespace Decennium.Foundation.Laboratory
                 if (bufferDeadline.HasValue && bufferDeadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var shortRest = ShortRestBerth.Active(s);
                 if (shortRest != null && shortRest.DueAt <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var groundDeadline=NextConsecrationBoundary(s);
+                if(groundDeadline.HasValue&&groundDeadline.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var sealDeadline=NextFerrySealBoundary(s);
                 if(sealDeadline.HasValue&&sealDeadline.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);

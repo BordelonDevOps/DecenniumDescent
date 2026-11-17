@@ -1,4 +1,4 @@
-param([string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts'), [string]$CaseName = '')
+param([string]$ResultsRoot = (Join-Path $PSScriptRoot '../artifacts'), [string]$CaseName = '', [string]$CompilerPath = '', [string]$DotNetHost = 'dotnet')
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh), not Windows PowerShell 5.' }
 $engineRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -14,6 +14,9 @@ $report = [ordered]@{ status='FAIL'; runner='PowerShell Roslyn shared-source reg
 try {
     $referenceAssemblies = @(Get-ChildItem -LiteralPath (Join-Path $PSHOME 'ref') -Filter '*.dll' | ForEach-Object FullName)
     if ($referenceAssemblies.Count -eq 0) { throw 'PowerShell reference assemblies unavailable.' }
+    if ($CompilerPath) {
+        $report.compiler = @{ path=(Resolve-Path -LiteralPath $CompilerPath).Path; sha256=(Get-FileHash -LiteralPath $CompilerPath -Algorithm SHA256).Hash.ToLowerInvariant(); host=$DotNetHost; isolated=$true }
+    }
     $options = @('/langversion:9.0','/warnaserror','/define:DECENNIUM_TEST_ONLY,HEADLESS_TESTS')
     $groups = @(
         @{Name='Decennium.Foundation.Core'; Pattern='Runtime/Core/*.cs'},
@@ -26,7 +29,12 @@ try {
         if ($files.Count -eq 0) { throw ('No sources for ' + $group.Name) }
         $sources += $files
         $assembly = Join-Path $runDirectory ($group.Name + '.dll')
-        Add-Type -Path $files -OutputAssembly $assembly -ReferencedAssemblies $referenceAssemblies -CompilerOptions $options
+        if ($CompilerPath) {
+            & (Join-Path $PSScriptRoot 'Invoke-IsolatedCSharp.ps1') -Sources $files -References $referenceAssemblies `
+                -CompilerOptions $options -OutputAssembly $assembly -CompilerPath $CompilerPath -DotNetHost $DotNetHost
+        } else {
+            Add-Type -Path $files -OutputAssembly $assembly -ReferencedAssemblies $referenceAssemblies -CompilerOptions $options
+        }
         Add-Type -Path $assembly
         $referenceAssemblies += $assembly
     }

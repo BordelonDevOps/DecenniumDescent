@@ -31,9 +31,10 @@ namespace Decennium.Foundation
                 Text(w,x.EpochId); w.Write(x.LocalStart); w.Write(x.PhaseFirstTurn); w.Write(x.GlobalStart); Time(w,x.At.Time); w.Write(x.At.Phase);
                 w.Write(x.BaseHpAfter); w.Write(x.AdditionalPotential); w.Write(x.HpAfter); w.Write((int)x.CurePreference); Text(w,x.CureOperationId);
                 w.Write(x.EndedApplicationIds.Count); foreach (string id in x.EndedApplicationIds) Text(w,id);
+                if(s.Consecration!=null)w.Write(x.PreRadianceHp());
             }
         }
-        internal static void Read(BinaryReader r, Snapshot s)
+        internal static void Read(BinaryReader r, Snapshot s, bool consecration = false)
         {
             s.ClericMilestone = new ClericMilestoneDeclaration(Text(r),Text(r),Text(r),Text(r),r.ReadInt64(),
                 Text(r),Text(r),Text(r),Text(r),Text(r));
@@ -51,7 +52,7 @@ namespace Decennium.Foundation
                 string operation=Text(r); var ids=new string[SnapshotCodec.ReadCount(r,ConditionJournal.MaxOperations)];
                 for(int j=0;j<ids.Length;j++)ids[j]=Text(r);
                 if(!ids.SequenceEqual(ids.OrderBy(x=>x,StringComparer.Ordinal)))throw new InvalidDataException("Noncanonical Radiance cure identities.");
-                s.RadianceUses[i]=new RadianceUseRecord(rite,revision,actor,target,source,epoch,local,first,global,at,baseHp,potential,hp,preference,operation,ids);
+                s.RadianceUses[i]=new RadianceUseRecord(rite,revision,actor,target,source,epoch,local,first,global,at,baseHp,potential,hp,preference,operation,ids,consecration?r.ReadInt64():baseHp);
             }
         }
         private static void Text(BinaryWriter w,string value)=>SnapshotCodec.WriteText(w,value);
