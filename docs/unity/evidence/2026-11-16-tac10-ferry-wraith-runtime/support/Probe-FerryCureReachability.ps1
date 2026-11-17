@@ -42,7 +42,7 @@ try{
         $actor=$s.Encounter.CurrentActor;$body=$s.Lives|Where-Object ActorId -eq $enemy
         $report.observations+=@{revision=$s.Revision;clock=$s.RuleClock;actor=$actor;sourceLife=$body;companionFrightened=(HasFear $s $comp)}
         if($body.Dead-and!$deadSaved){Checkpoint 'actual-source-dead';$deadSaved=$true;$report.sourceDead=@{revision=$s.Revision;clock=$s.RuleClock;life=$body}}
-        $aware=[Decennium.Foundation.Laboratory.TestOnlyClubAttackPolicy]::Aware($s,$actor)
+        $aware=[Decennium.Foundation.Laboratory.TestOnlyClubAttackPolicy].GetMethod('Aware',[Reflection.BindingFlags]'Static,NonPublic').Invoke($null,[object[]]@($s,$actor))
         $stance=@($s.Stances|Where-Object {$_.ActorId-eq$actor-and$_.TurnOrdinal-eq$s.Encounter.TurnOrdinal-and[Decennium.Foundation.EncounterHistory]::InCurrent($s,$_.Revision)}).Count-gt0
         if($aware-and!$stance){$kind=if($actor-eq$hero){'Aggressive'}elseif($actor-eq$comp){'Focused'}else{'Guarded'};$combat=[Decennium.Foundation.CombatRequest]::new($s.Encounter.CurrentTurnId,'',[int][Decennium.Foundation.CombatStance]$kind);Send ([Decennium.Foundation.Command]::new("ferry.stage.stance.$($s.Revision)",$actor,$s.Revision,'SelectCombatStance','',0,0,$null,$combat));continue}
         if($body.Dead-and$actor-eq$hero){Send ([Decennium.Foundation.Command]::new("ferry.stage.close.$($s.Revision)",$hero,$s.Revision,'EndFixedEncounter',$s.Encounter.CurrentTurnId)) $true;Checkpoint 'actual-staged-closure';$report.closure=@{revision=(Capture).Revision;clock=(Capture).RuleClock};$closed=$true;break}
