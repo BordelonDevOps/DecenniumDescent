@@ -1,5 +1,7 @@
 # TAC-10 original frozen regression completion
 
+Actual GPT response `b28a0806-1def-5f16-8e13-7a0259c07b09` independently reconciles this packet and closes the terminal evidence check for db91 only. [Exact response, limits and Codex agreement](GPT_REGRESSION_REVIEW.json). GPT inspected retained artifacts and embedded DLL MVIDs; it did not execute C#/PowerShell, restore saves or observe the live processes. No TAC-10 acceptance or corrected-build qualification is implied.
+
 The original run `9d490d26ac3c4e57931b50ab9a6dd34b` completed **1,583/1,583 cases, zero failures** on engine tree `db91c9ce8711be802674762d458bca9782207833`. All six original workers exited. This qualifies that frozen tree only. The subsequently reviewed public Dash correction changes the host/runtime and requires renewed qualification; TAC-10 remains unaccepted.
 
 The [collector](support/Retain-FerryRegression.py), committed at `b4c2e5d6d`, reconciled:
