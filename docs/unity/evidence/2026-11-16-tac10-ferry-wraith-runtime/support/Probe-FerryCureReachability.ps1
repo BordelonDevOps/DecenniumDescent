@@ -61,7 +61,13 @@ try{
         if($null-ne$fear-and$actor-in@($hero,$comp)-and!$spent-and!$body.Dead){
             $kind=if($actor-eq$hero){'AttackClub'}else{'AttackUnarmed'};$weapon=if($actor-eq$hero){'TEST_ONLY.actor-club'}else{''}
             $combat=[Decennium.Foundation.CombatRequest]::new($s.Encounter.CurrentTurnId,$weapon,0,'OrdinaryOutcome',$false,'KeepExisting')
-            $command=[Decennium.Foundation.Command]::new("ferry.stage.attack.$($s.Revision)",$actor,$s.Revision,$kind,$enemy,0,0,$null,$combat);Require ($session.QueryCastingCommand((Seat $actor),$command).Admissible) 'Staged real attack unavailable.'
+            $command=[Decennium.Foundation.Command]::new("ferry.stage.attack.$($s.Revision)",$actor,$s.Revision,$kind,$enemy,0,0,$null,$combat);$attackQuery=$session.QueryCastingCommand((Seat $actor),$command)
+            if(!$attackQuery.Admissible){
+                Require ($actor-eq$comp-and$attackQuery.Code-eq'UnsupportedOperation') "Staged real attack unavailable: $($attackQuery|ConvertTo-Json -Compress)"
+                $before=Bytes;$denied=$session.Submit('Player',$command);Require ($denied.Response-ne'Committed'-and$before-ceq(Bytes)) 'Unsupported unarmed request changed state.'
+                $report.probes+=@{name='existing-public-companion-unarmed-boundary';command=$command;query=$attackQuery;response=$denied}
+                Send ([Decennium.Foundation.Command]::new("ferry.stage.end.$($s.Revision)",$actor,$s.Revision,'EndRegularTurn',$s.Encounter.CurrentTurnId));continue
+            }
             Send $command
             if($actor-eq$hero){$after=Capture;$probe=[Decennium.Foundation.Command]::new("ferry.stage.probe-close.$($after.Revision)",$hero,$after.Revision,'EndFixedEncounter',$after.Encounter.CurrentTurnId);if(!($after.Lives|Where-Object ActorId -eq $enemy).Dead){$before=Bytes;$response=$session.SubmitSessionCommand($probe);Require ($response.Response-ne'Committed'-and$before-ceq(Bytes)) 'Dying source incorrectly allowed closure.';$report.probes+=@{name='actual-nonDead-closure';revision=$after.Revision;clock=$after.RuleClock;sourceLife=($after.Lives|Where-Object ActorId -eq $enemy);response=$response}}}
             continue
