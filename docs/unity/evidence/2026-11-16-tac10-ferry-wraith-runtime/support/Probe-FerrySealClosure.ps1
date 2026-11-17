@@ -90,7 +90,7 @@ try{
     # Actual public source cannot be readmitted by ordinary paid clock advancement.
     $beforeContacts=$s.FerryWraith.Contacts.Count;$beforeAdmission=$s.FerryWraith.Admission.Epoch.Id
     foreach($offset in -1,0,1){
-        $target=$tear.ExpiresAt.AddSeconds($offset);$s=Capture
+        $target=[Decennium.Foundation.RuleTime]::new($tear.ExpiresAt.Numerator+$offset*$tear.ExpiresAt.Denominator,$tear.ExpiresAt.Denominator);$s=Capture
         $n=$target.Numerator*$s.RuleClock.Denominator-$s.RuleClock.Numerator*$target.Denominator;$d=$target.Denominator*$s.RuleClock.Denominator
         if($n-gt0){Send ([Decennium.Foundation.Command]::new("ferry.seal-close.clock.$offset",$hero,$s.Revision,'AdvanceClock','',[int]$n,[int]$d)) $true}
         $s=Capture;Require ($s.RuleClock.Equals($target)-and$s.FerryWraith.SealDestroyed-and$s.FerryWraith.Rupture.ExpiresAt.Equals($tear.ExpiresAt)) 'Post-close original deadline changed.'
