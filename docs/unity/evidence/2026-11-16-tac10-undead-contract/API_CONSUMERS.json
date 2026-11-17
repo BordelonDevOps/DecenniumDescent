@@ -1,0 +1,1830 @@
+{
+  "searchedTrackedCsharpFiles": 457,
+  "searches": {
+    "numeric": {
+      "pattern": "CharacterRuleFacts|CharacterStateFacts|\\.Characters\\b|PrototypeArmor|UnarmoredBaseAc",
+      "nonTestOnly": true,
+      "matchedFiles": 59,
+      "matchedLines": 170,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+          "hits": [
+            {
+              "line": 34,
+              "text": "public int TotalWithInjury(CharacterStateFacts character, bool toolCheck = false, bool manipulatesObject = false,"
+            },
+            {
+              "line": 54,
+              "text": "return CharacterStateFacts.ForActor(snapshot, actorId, skillId).DeriveCheck(ability);"
+            },
+            {
+              "line": 65,
+              "text": "var facts = CharacterRuleFacts.From(character);"
+            },
+            {
+              "line": 79,
+              "text": "return Derive(CharacterRuleFacts.From(character), (CharacterAbility)abilityIndex, proficiencyRank);"
+            },
+            {
+              "line": 85,
+              "text": "private static AbilityCheckModifier Derive(CharacterRuleFacts facts, CharacterAbility ability, int proficiencyRank)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+          "hits": [
+            {
+              "line": 109,
+              "text": "s.Characters=s.Actors.Select(a=>Character(a.Id)).ToArray();s.Lives=initialLives.ToArray();return s;"
+            },
+            {
+              "line": 129,
+              "text": "foreach(var character in s.Characters) {"
+            },
+            {
+              "line": 134,
+              "text": "CharacterRuleFacts.From(character).AbilityScore(CharacterAbility.Constitution)).BaseMaximum;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "public readonly struct CharacterRuleFacts"
+            },
+            {
+              "line": 16,
+              "text": "private CharacterRuleFacts(ActorCharacterRecord character)"
+            },
+            {
+              "line": 39,
+              "text": "public static CharacterRuleFacts From(ActorCharacterRecord character)"
+            },
+            {
+              "line": 40,
+              "text": "=> new CharacterRuleFacts(character);"
+            },
+            {
+              "line": 42,
+              "text": "public static CharacterRuleFacts ForActor(Snapshot snapshot, string actorId)"
+            },
+            {
+              "line": 46,
+              "text": "if (snapshot.Characters == null) throw new InvalidOperationException(\"Character state is unavailable.\");"
+            },
+            {
+              "line": 47,
+              "text": "var matches = snapshot.Characters.Where(x => x != null && x.ActorId == actorId).Take(2).ToArray();"
+            },
+            {
+              "line": 49,
+              "text": "return new CharacterRuleFacts(matches[0]);"
+            },
+            {
+              "line": 69,
+              "text": "public readonly struct CharacterStateFacts"
+            },
+            {
+              "line": 75,
+              "text": "private CharacterStateFacts(ActorCharacterRecord character, ActorLifeRecord life, SkillTrainingRecord training)"
+            },
+            {
+              "line": 89,
+              "text": "public CharacterRuleFacts Rules => CharacterRuleFacts.From(RequireCharacter());"
+            },
+            {
+              "line": 115,
+              "text": "public static CharacterStateFacts ForActor(Snapshot snapshot, string actorId, string skillId = null)"
+            },
+            {
+              "line": 120,
+              "text": "var character = CharacterRuleFacts.ForActor(snapshot, actorId).Source;"
+            },
+            {
+              "line": 124,
+              "text": "return new CharacterStateFacts(character, lives[0], skill);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedCastingView.cs",
+          "hits": [
+            {
+              "line": 61,
+              "text": "var facts=CharacterRuleFacts.ForActor(state,actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "hits": [
+            {
+              "line": 54,
+              "text": "ClassLevel = state.Characters.Single(x => x.ActorId == ClericRpProfile.Actor).Levels.Count(x => x.ClassName == \"Cleric\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PeriodicRiderFixture.cs",
+          "hits": [
+            {
+              "line": 140,
+              "text": "s.SkillTraining=s.Characters.Select(c=>new SkillTrainingRecord(c.ActorId,\"medicine\",0)).ToArray();"
+            },
+            {
+              "line": 143,
+              "text": "if(periodicRider.Medicine.Any(x=>!s.Characters.Any(c=>c.ActorId==x.ActorId)))throw new ArgumentException(\"Medicine training references an unknown character.\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestDamageDice.cs",
+          "hits": [
+            {
+              "line": 90,
+              "text": "public static class PrototypeArmor"
+            },
+            {
+              "line": 92,
+              "text": "public static long UnarmoredBaseAc(int dexterity)=>10L+PlaytestCharacters.AbilityModifier(dexterity);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "hits": [
+            {
+              "line": 67,
+              "text": "var character=s.Characters.Single(x=>x.ActorId==c.Actor);"
+            },
+            {
+              "line": 102,
+              "text": "var before=s.Characters.Single(x=>x.ActorId==c.Actor);"
+            },
+            {
+              "line": 110,
+              "text": "s.Characters=s.Characters.Select(x=>x.ActorId==c.Actor?character:x).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+          "hits": [
+            {
+              "line": 276,
+              "text": "int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(dexterity));"
+            },
+            {
+              "line": 289,
+              "text": "return armor!=null&&CharacterRuleFacts.ForActor(s,actor).AbilityScore(CharacterAbility.Strength)<13?10:0;"
+            },
+            {
+              "line": 308,
+              "text": "return CharacterRuleFacts.ForActor(s,actor).ProficiencyBonus;"
+            },
+            {
+              "line": 311,
+              "text": "return CharacterRuleFacts.ForActor(s,actor).ProficiencyBonus;"
+            },
+            {
+              "line": 444,
+              "text": "var character=s.Characters.SingleOrDefault(x=>x.ActorId==c.Actor);"
+            },
+            {
+              "line": 503,
+              "text": "var character=s.Characters.SingleOrDefault(x=>x.ActorId==actorId)"
+            },
+            {
+              "line": 520,
+              "text": "var actor=s.Characters.SingleOrDefault(x=>x.ActorId==actorId);"
+            },
+            {
+              "line": 585,
+              "text": "var character=s.Characters.SingleOrDefault(x=>x.ActorId==actor);"
+            },
+            {
+              "line": 630,
+              "text": "s.Characters=s.Characters.Select(x=>x.ActorId==c.Actor?new ActorCharacterRecord(x.ActorId,x.ProfileId,assessment.AbilitiesAfter,levels):x).ToArray();"
+            },
+            {
+              "line": 669,
+              "text": "s.Characters=s.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId"
+            },
+            {
+              "line": 679,
+              "text": "||s.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count!=1)"
+            },
+            {
+              "line": 699,
+              "text": "s.Characters=s.Characters.Select(x=>x.ActorId==TestOnlyPolicy.ActorId"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "hits": [
+            {
+              "line": 72,
+              "text": "var character = s.Characters.Single(x => x.ActorId == c.Actor);"
+            },
+            {
+              "line": 118,
+              "text": "var prior = s.Characters.Single(x => x.ActorId == c.Actor);"
+            },
+            {
+              "line": 127,
+              "text": "s.Characters = s.Characters.Select(x => x.ActorId == c.Actor ? character : x).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+          "hits": [
+            {
+              "line": 54,
+              "text": "var facts = CharacterStateFacts.ForActor(state, actor.Id, \"medicine\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "int offer = state.Characters.Single(x => x.ActorId == actor.Id).Levels.Count;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+          "hits": [
+            {
+              "line": 268,
+              "text": "var character = s.Characters.Single(x => x.ActorId == fact.LeadId);"
+            },
+            {
+              "line": 269,
+              "text": "int constitutionSave=checked(CharacterRuleFacts.From(character).AbilityModifier(CharacterAbility.Constitution)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "hits": [
+            {
+              "line": 35,
+              "text": "if(pool==null||pool.Maximum!=DeriveResonanceMaximum(s.Characters.Single(x=>x.ActorId==c.Actor)))return \"ResonancePoolUnavailable\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+          "hits": [
+            {
+              "line": 90,
+              "text": "|| !state.Characters.Any(x => x.ActorId == id) || !state.Conditions.Any(x => x.Target == id)))"
+            },
+            {
+              "line": 178,
+              "text": "state.Characters.Single(x => x.ActorId == actor).Levels.Count, current);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+          "hits": [
+            {
+              "line": 390,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);"
+            },
+            {
+              "line": 480,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteMappingWorkFixture.SkillId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+          "hits": [
+            {
+              "line": 465,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);"
+            },
+            {
+              "line": 562,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, attempt.LeadId, TestOnlyExpeditionRouteReconnaissanceFixture.SkillId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+          "hits": [
+            {
+              "line": 142,
+              "text": "var current=s.Characters.Single(x=>x.ActorId==profile.SetterId);"
+            },
+            {
+              "line": 146,
+              "text": "s.Characters=s.Characters.Select(x=>x.ActorId==profile.SetterId"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+          "hits": [
+            {
+              "line": 54,
+              "text": "var character = CharacterRuleFacts.ForActor(state, FleshWardenProfile.Actor).Source;"
+            },
+            {
+              "line": 77,
+              "text": "var character = CharacterRuleFacts.ForActor(state, actor).Source;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+          "hits": [
+            {
+              "line": 216,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, job.WorkerId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "if (choice == null || state.Characters.Single(x => x.ActorId == command.Actor).Levels.Count(x => x.ClassName == \"Warrior\") < 2)"
+            },
+            {
+              "line": 91,
+              "text": "var facts = CharacterRuleFacts.ForActor(state, command.Actor);"
+            },
+            {
+              "line": 127,
+              "text": "int modifier = checked(CharacterRuleFacts.ForActor(state, target).AbilityModifier(CharacterAbility.Wisdom)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvest.cs",
+          "hits": [
+            {
+              "line": 259,
+              "text": "var actorFacts=CharacterStateFacts.ForActor(s,prior.WorkerId,\"fishing-tackle\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs",
+          "hits": [
+            {
+              "line": 474,
+              "text": "var facts=CharacterStateFacts.ForActor(s,attempt.WorkerId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "hits": [
+            {
+              "line": 94,
+              "text": "s.Characters = s.Characters.Append(new ActorCharacterRecord(buyer, TestOnlyHavenSaleProfile.BuyerCharacterProfile,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+          "hits": [
+            {
+              "line": 330,
+              "text": "var actor=s.Characters.Single(x=>x.ActorId==action.ActorId);var target=s.Actors.Single(x=>x.Id==tether.ActorId);"
+            },
+            {
+              "line": 331,
+              "text": "int modifier=CharacterRuleFacts.From(actor).AbilityModifier(CharacterAbility.Strength);int natural=0;long total=0;bool success=false;"
+            },
+            {
+              "line": 342,
+              "text": "int con=checked(CharacterRuleFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)"
+            },
+            {
+              "line": 446,
+              "text": "var character=CharacterRuleFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+          "hits": [
+            {
+              "line": 44,
+              "text": "var body = state.Characters.Single(a => a.ActorId == AdditionalTacticalActor.Id);"
+            },
+            {
+              "line": 46,
+              "text": "state.Characters = state.Characters.Append(new ActorCharacterRecord(defender, definition.CharacterProfileId,"
+            },
+            {
+              "line": 123,
+              "text": "var character = CharacterStateFacts.ForActor(state, actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "hits": [
+            {
+              "line": 394,
+              "text": "var actorFacts=CharacterStateFacts.ForActor(s,j.WorkerId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "hits": [
+            {
+              "line": 521,
+              "text": "s.Characters=s.Characters.Select(x=>{"
+            },
+            {
+              "line": 905,
+              "text": "var actorFacts=CharacterStateFacts.ForActor(s,prior.WorkerId,\"mining-tools\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMiningAssay.cs",
+          "hits": [
+            {
+              "line": 279,
+              "text": "int injury = CharacterStateFacts.ForActor(s, prior.WorkerId, \"mining-tools\")"
+            },
+            {
+              "line": 303,
+              "text": "int injury = CharacterStateFacts.ForActor(s, prior.WorkerId, \"mining-tools\")"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+          "hits": [
+            {
+              "line": 229,
+              "text": "=> CharacterStateFacts.ForActor(s, actor, \"stealth\").TotalWithInjury(CharacterAbility.Dexterity);"
+            },
+            {
+              "line": 301,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, actor, \"perception\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryReceptacle.cs",
+          "hits": [
+            {
+              "line": 165,
+              "text": "var character=CharacterStateFacts.ForActor(s,attempt.ActorId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+          "hits": [
+            {
+              "line": 22,
+              "text": "public CharacterRuleFacts Attacker;"
+            },
+            {
+              "line": 139,
+              "text": "var attackerFacts=CharacterRuleFacts.ForActor(s,offer.OwnerId);"
+            },
+            {
+              "line": 140,
+              "text": "var targetFacts=CharacterRuleFacts.ForActor(s,offer.TargetId);"
+            },
+            {
+              "line": 218,
+              "text": "int con=checked(CharacterRuleFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)"
+            },
+            {
+              "line": 275,
+              "text": "var targetFacts=CharacterRuleFacts.ForActor(s,pending.TargetId);"
+            },
+            {
+              "line": 276,
+              "text": "var ownerFacts=CharacterRuleFacts.ForActor(s,pending.OwnerId);"
+            },
+            {
+              "line": 324,
+              "text": "var character=CharacterRuleFacts.ForActor(s,choice.OwnerId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPeriodicRider.cs",
+          "hits": [
+            {
+              "line": 150,
+              "text": "var character=CharacterRuleFacts.ForActor(s,rider.TargetId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+          "hits": [
+            {
+              "line": 33,
+              "text": "var body=s.Characters.Single(x=>x.ActorId==AdditionalTacticalActor.Id);"
+            },
+            {
+              "line": 36,
+              "text": "s.Characters=s.Characters.Append(new ActorCharacterRecord(actor,\"TEST_ONLY.numeric-warrior3\",body.Abilities,body.Levels)).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedProspecting.cs",
+          "hits": [
+            {
+              "line": 154,
+              "text": "s.Characters = s.Characters.Select(x => {"
+            },
+            {
+              "line": 395,
+              "text": "int injury = CharacterStateFacts.ForActor(s, prior.ActorId, \"mining-tools\")"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs",
+          "hits": [
+            {
+              "line": 540,
+              "text": "var facts=CharacterStateFacts.ForActor(s,order.WorkerId,\"mining-tools\");"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "hits": [
+            {
+              "line": 68,
+              "text": "state.Characters = state.Characters.Select(x => x.ActorId != actor ? x : new ActorCharacterRecord(actor,"
+            },
+            {
+              "line": 81,
+              "text": "var character = state.Characters.Single(x => x.ActorId == actor);"
+            },
+            {
+              "line": 112,
+              "text": "var character = state.Characters.Single(x => x.ActorId == command.Actor);"
+            },
+            {
+              "line": 143,
+              "text": "int modifier = Math.Max(1, CharacterRuleFacts.ForActor(state, command.Actor).AbilityModifier(CharacterAbility.Wisdom));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+          "hits": [
+            {
+              "line": 149,
+              "text": "var facts = CharacterStateFacts.ForActor(s, d.LeadId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+          "hits": [
+            {
+              "line": 57,
+              "text": "int modifier=checked(CharacterRuleFacts.ForActor(s,c.Actor).AbilityModifier(CharacterAbility.Wisdom)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "hits": [
+            {
+              "line": 107,
+              "text": "var character=s.Characters.Single(x=>x.ActorId==c.Actor); int level=character.Levels.Count(x=>x.ClassName==\"Cleric\");"
+            },
+            {
+              "line": 143,
+              "text": "var facts=CharacterRuleFacts.ForActor(s,c.Actor); var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);"
+            },
+            {
+              "line": 209,
+              "text": "var source=SpellSourceCatalog.Get(spell).AccessFor(\"Cleric\"); var facts=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 245,
+              "text": "s.Characters.Single(x=>x.ActorId==c.Actor).Levels.Count(x=>x.ClassName==\"Cleric\"),source.Rank,pb,modifier,"
+            },
+            {
+              "line": 255,
+              "text": "var source=SpellSourceCatalog.Get(c.SpellCast.SpellId).AccessFor(\"Cleric\"); var facts=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 427,
+              "text": "int pb=CharacterRuleFacts.ForActor(s,ClericRpProfile.Actor).ProficiencyBonus;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellEffects.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "int modifier=checked(CharacterRuleFacts.ForActor(s,target).AbilityModifier(CharacterAbility.Constitution)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+          "hits": [
+            {
+              "line": 49,
+              "text": "var character = staged.Characters.SingleOrDefault(x => x.ActorId == actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+          "hits": [
+            {
+              "line": 37,
+              "text": "public static int PickCheckModifier(CharacterStateFacts character,bool proficient)"
+            },
+            {
+              "line": 103,
+              "text": "var character=CharacterStateFacts.ForActor(s,attempt.ActorId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTemporaryCampConstruction.cs",
+          "hits": [
+            {
+              "line": 217,
+              "text": "var facts = CharacterStateFacts.ForActor(s, attempt.LeadId, attempt.SkillId);"
+            },
+            {
+              "line": 456,
+              "text": "var facts = CharacterStateFacts.ForActor(s, attempt.LeadId, attempt.SkillId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+          "hits": [
+            {
+              "line": 268,
+              "text": "var actorFacts = CharacterStateFacts.ForActor(s, job.WorkerId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+          "hits": [
+            {
+              "line": 128,
+              "text": "var templateCharacter = template.Characters.SingleOrDefault(x => x.ActorId == TestOnlyPolicy.CompanionId);"
+            },
+            {
+              "line": 274,
+              "text": "var templateCharacter = s.Characters.Single(x => x.ActorId == TestOnlyPolicy.CompanionId);"
+            },
+            {
+              "line": 285,
+              "text": "s.Characters = s.Characters.Concat(new[] { new ActorCharacterRecord(instance.Id, templateCharacter.ProfileId,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+          "hits": [
+            {
+              "line": 565,
+              "text": "var character=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 587,
+              "text": "var character=CharacterRuleFacts.ForActor(s,targetId);"
+            },
+            {
+              "line": 644,
+              "text": "||s.Actors.All(a=>a.Id!=rangedCombat.TargetId)||s.Characters.All(c=>c.ActorId!=rangedCombat.ShooterId)"
+            },
+            {
+              "line": 645,
+              "text": "||CharacterRuleFacts.ForActor(s,rangedCombat.ShooterId).AbilityScore(CharacterAbility.Dexterity)!=10)"
+            },
+            {
+              "line": 654,
+              "text": "var shooterFacts=CharacterRuleFacts.ForActor(s,rangedCombat.ShooterId);"
+            },
+            {
+              "line": 719,
+              "text": "var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 720,
+              "text": "var targetFacts=CharacterRuleFacts.ForActor(s,c.Target);"
+            },
+            {
+              "line": 782,
+              "text": "var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 802,
+              "text": "int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "hits": [
+            {
+              "line": 115,
+              "text": "int modifier = CharacterStateFacts.ForActor(state, healer, \"medicine\").TotalWithInjury(CharacterAbility.Wisdom);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "var third=tactical.Third;var original=s.Characters[0];"
+            },
+            {
+              "line": 67,
+              "text": "s.Characters=s.Characters.Concat(new[]{new ActorCharacterRecord(AdditionalTacticalActor.Id,original.ProfileId,original.Abilities,original.Levels)}).ToArray();"
+            },
+            {
+              "line": 266,
+              "text": "var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);"
+            },
+            {
+              "line": 271,
+              "text": "int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);"
+            },
+            {
+              "line": 287,
+              "text": "int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)"
+            },
+            {
+              "line": 326,
+              "text": "int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)"
+            },
+            {
+              "line": 388,
+              "text": "&&Tables(s.Characters,r.Characters,(a,b)=>a.ActorId==b.ActorId&&a.ProfileId==b.ProfileId&&a.Abilities.SequenceEqual(b.Abilities)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+          "hits": [
+            {
+              "line": 98,
+              "text": "if(s.Characters==null||s.Lives==null||s.LifeEvents==null||s.Characters.Length>64||s.Lives.Length>64||s.LifeEvents.Length>256"
+            },
+            {
+              "line": 99,
+              "text": "||s.Characters.Any(x=>x==null)||s.Lives.Any(x=>x==null)||s.LifeEvents.Any(x=>x==null))throw new ArgumentException(\"Invalid actor life collections.\");"
+            },
+            {
+              "line": 101,
+              "text": "if(s.Characters.Length!=0||s.Lives.Length!=0||s.LifeEvents.Length!=0)throw new ArgumentException(\"Actor life requires schema8.\");return;"
+            },
+            {
+              "line": 104,
+              "text": "if(!actors.SequenceEqual(s.Characters.Select(x=>x.ActorId).OrderBy(x=>x,StringComparer.Ordinal))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+          "hits": [
+            {
+              "line": 458,
+              "text": "bool Actor(string id)=>s.Characters.Any(c=>c.ActorId==id);"
+            },
+            {
+              "line": 461,
+              "text": "||s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1"
+            },
+            {
+              "line": 475,
+              "text": "||s.CharacterHitDice.Any(d=>!Actor(d.ActorId)||d.LevelOrdinal>s.Characters.Single(c=>c.ActorId==d.ActorId).Levels.Count"
+            },
+            {
+              "line": 476,
+              "text": "||d.ClassName!=s.Characters.Single(c=>c.ActorId==d.ActorId).Levels[d.LevelOrdinal-1].ClassName)"
+            },
+            {
+              "line": 485,
+              "text": "||g.ClassLevel> s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))"
+            },
+            {
+              "line": 489,
+              "text": "||(s.Characters.Single(c=>c.ActorId==g.ActorId).ProfileId!=CharacterAdvancementProfileIds.TestOnlySoldierLevel1"
+            },
+            {
+              "line": 490,
+              "text": "&&s.Characters.Single(c=>c.ActorId==g.ActorId).ProfileId!=CharacterAdvancementProfileIds.TestOnlySoldierLevel1WithInitialCards"
+            },
+            {
+              "line": 491,
+              "text": "&&s.Characters.Single(c=>c.ActorId==g.ActorId).ProfileId!=CharacterAdvancementProfileIds.TestOnlySoldierLevel1InitialBuild))"
+            },
+            {
+              "line": 492,
+              "text": "||g.ClassLevel>s.Characters.Single(c=>c.ActorId==g.ActorId).Levels.Count(x=>x.ClassName==g.ClassName))"
+            },
+            {
+              "line": 496,
+              "text": "||s.SchemaVersion<Snapshot.CharacterAdvancementHistorySchema&&a.NewTotalLevel!=s.Characters.Single(c=>c.ActorId==a.ActorId).Levels.Count"
+            },
+            {
+              "line": 507,
+              "text": "if(dice.Length!=s.Characters.Single(x=>x.ActorId==actor).Levels.Count"
+            },
+            {
+              "line": 518,
+              "text": "foreach(var soldier in s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1"
+            },
+            {
+              "line": 554,
+              "text": "||advancement.NewTotalLevel>s.Characters.Single(c=>c.ActorId==advancement.ActorId).Levels.Count"
+            },
+            {
+              "line": 570,
+              "text": "var actor=s.Characters.Single(c=>c.ActorId==advancement.ActorId);"
+            },
+            {
+              "line": 600,
+              "text": "var actor=s.Characters.SingleOrDefault(x=>x.ActorId==actorId);"
+            },
+            {
+              "line": 653,
+              "text": "var selectedProfiles=s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1WithInitialCards"
+            },
+            {
+              "line": 667,
+              "text": "var character=s.Characters.SingleOrDefault(c=>c.ActorId==selection.ActorId);"
+            },
+            {
+              "line": 696,
+              "text": "||!buildActors.SequenceEqual(s.Characters.Where(c=>c.ProfileId==CharacterAdvancementProfileIds.TestOnlySoldierLevel1InitialBuild)"
+            },
+            {
+              "line": 702,
+              "text": "var character=s.Characters.Single(x=>x.ActorId==build.ActorId);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+          "hits": [
+            {
+              "line": 55,
+              "text": "var actor = s.Characters.Single(x => x.ActorId == ClericRpProfile.Actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+          "hits": [
+            {
+              "line": 141,
+              "text": "var c = s.Characters.SingleOrDefault(x => x.ActorId == Actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+          "hits": [
+            {
+              "line": 195,
+              "text": "|| state.Characters.Single(x => x.ActorId == Actor).Levels.Count(x => x.ClassName == \"Warrior\") != 3"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+          "hits": [
+            {
+              "line": 254,
+              "text": "|| !state.Characters.Any(x => x.ActorId == definition.DefenderId && x.ProfileId == definition.CharacterProfileId)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterValidation.cs",
+          "hits": [
+            {
+              "line": 26,
+              "text": "var character=s.Characters.SingleOrDefault(x=>x.ActorId==npc);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/RangedCombatRecords.cs",
+          "hits": [
+            {
+              "line": 161,
+              "text": "||s.RangedCombatants.Any(x=>!Actor(x.ActorId)||!s.Characters.Any(c=>c.ActorId==x.ActorId&&c.Abilities[1]==x.DexterityScore))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+          "hits": [
+            {
+              "line": 158,
+              "text": "var character = state.Characters.Single(x => x.ActorId == Actor);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/ActorLifeCodec.cs",
+          "hits": [
+            {
+              "line": 13,
+              "text": "w.Write(s.Characters.Length);"
+            },
+            {
+              "line": 14,
+              "text": "foreach(var c in s.Characters.OrderBy(x=>x.ActorId,StringComparer.Ordinal)) {"
+            },
+            {
+              "line": 28,
+              "text": "s.Characters=new ActorCharacterRecord[Count(r,64)];"
+            },
+            {
+              "line": 29,
+              "text": "for(int i=0;i<s.Characters.Length;i++) {"
+            },
+            {
+              "line": 32,
+              "text": "s.Characters[i]=new ActorCharacterRecord(actor,profile,scores,levels);"
+            }
+          ]
+        }
+      ]
+    },
+    "damage-defense": {
+      "pattern": "Resistan|Immunit|DamageType|DamageFlavor",
+      "nonTestOnly": true,
+      "matchedFiles": 20,
+      "matchedLines": 118,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ClassAdvancementOptionCatalog.cs",
+          "hits": [
+            {
+              "line": 305,
+              "text": "\"Druid|druid.base.winterfang.cold-resistance|Cold Resistance|Base|Winterfang|2|automatic|sourceKind|feature|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/druid.json|/cards/42\","
+            },
+            {
+              "line": 367,
+              "text": "\"Mage|mage.hero.lich.undead-immunities|Undead Immunities|Hero|Lich|16|selection|sourceKind|passive|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json|/cards/45\","
+            },
+            {
+              "line": 709,
+              "text": "\"Paladin|paladin.hero.divine-resistance-level-13|Divine Resistance (Level 13)|Hero||13|automatic|sourceKind|feature|Long-rest choice|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/paladin.json|/cards/10\","
+            },
+            {
+              "line": 932,
+              "text": "\"Shaman|shaman.hero.bloodcaller.spell-resistance|Spell Resistance|Hero|Bloodcaller|10|selection|sourceKind|passive|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/shaman.json|/cards/41\","
+            },
+            {
+              "line": 1009,
+              "text": "\"Thief|thief.hero.arcane-trickster.arcane-resistance|Arcane Resistance|Hero|Arcane Trickster|10|selection|sourceKind|passive|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/thief.json|/cards/21\","
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+          "hits": [
+            {
+              "line": 57,
+              "text": "public sealed class ConditionImmunity"
+            },
+            {
+              "line": 68,
+              "text": "public ConditionImmunity(string id, string owner, string source, string target,"
+            },
+            {
+              "line": 80,
+              "text": "throw new ArgumentException(\"Immunity expiry must follow application.\");"
+            },
+            {
+              "line": 122,
+              "text": "public sealed class ConditionImmunityInstance"
+            },
+            {
+              "line": 124,
+              "text": "public ConditionImmunity Grant { get; }"
+            },
+            {
+              "line": 127,
+              "text": "internal ConditionImmunityInstance(ConditionImmunity grant, EffectClockMarker? ended = null, string reason = null)"
+            },
+            {
+              "line": 132,
+              "text": "internal ConditionImmunityInstance End(EffectClockMarker at, string reason) => new ConditionImmunityInstance(Grant, at, reason);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatFixture.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "|| operation.Application?.Expires?.Phase > 0 || operation.Immunity?.Expires?.Phase > 0)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+          "hits": [
+            {
+              "line": 114,
+              "text": "||ledger.Immunities.Any(x=>!x.EndedAt.HasValue&&x.Grant.Expires.HasValue"
+            },
+            {
+              "line": 127,
+              "text": "|| ledger.Immunities.Any(x => !x.EndedAt.HasValue && x.Grant.Expires.HasValue"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+          "hits": [
+            {
+              "line": 66,
+              "text": "case ConditionOperationKind.GrantImmunity:"
+            },
+            {
+              "line": 67,
+              "text": "var g = operation.Immunity;"
+            },
+            {
+              "line": 68,
+              "text": "return ledger.GrantImmunity(new ConditionImmunity(g.Id, g.Owner, g.Source, ledger.Target,"
+            },
+            {
+              "line": 72,
+              "text": "case ConditionOperationKind.EndImmunity: return ledger.EndImmunity(operation.Subject, operation.Reason);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+          "hits": [
+            {
+              "line": 79,
+              "text": "public const int MaxApplications = 128, MaxImmunities = 64;"
+            },
+            {
+              "line": 83,
+              "text": "public IReadOnlyList<ConditionImmunityInstance> Immunities { get; }"
+            },
+            {
+              "line": 85,
+              "text": ": this(target, now, Array.Empty<ConditionInstance>(), Array.Empty<ConditionImmunityInstance>()) { }"
+            },
+            {
+              "line": 87,
+              "text": "IEnumerable<ConditionImmunityInstance> immunities)"
+            },
+            {
+              "line": 90,
+              "text": "Applications = Array.AsReadOnly(applications.ToArray()); Immunities = Array.AsReadOnly(immunities.ToArray());"
+            },
+            {
+              "line": 93,
+              "text": "IEnumerable<ConditionImmunityInstance> immunities = null, EffectClockMarker? now = null)"
+            },
+            {
+              "line": 94,
+              "text": "=> new ConditionLedger(Target, now ?? Now, applications ?? Applications, immunities ?? Immunities);"
+            },
+            {
+              "line": 98,
+              "text": "if (Applications.Any(x => x.Id == id) || Immunities.Any(x => x.Grant.Id == id))"
+            },
+            {
+              "line": 101,
+              "text": "private bool NamedImmunity(ConditionKind kind) => Immunities.Any(x => x.Present(Now) && x.Grant.Kinds.Contains(kind));"
+            },
+            {
+              "line": 103,
+              "text": "&& !NamedImmunity(instance.Application.Kind);"
+            },
+            {
+              "line": 107,
+              "text": "return ImmunitySources(kind).Count != 0;"
+            },
+            {
+              "line": 109,
+              "text": "public IReadOnlyList<string> ImmunitySources(ConditionKind kind)"
+            },
+            {
+              "line": 112,
+              "text": "var ids = Immunities.Where(x => x.Present(Now) && x.Grant.Kinds.Contains(kind)).Select(x => x.Grant.Id);"
+            },
+            {
+              "line": 170,
+              "text": "public ConditionTransition GrantImmunity(ConditionImmunity immunity)"
+            },
+            {
+              "line": 176,
+              "text": "if (Immunities.Count == MaxImmunities) throw new InvalidOperationException(\"Immunity history capacity reached.\");"
+            },
+            {
+              "line": 177,
+              "text": "return Transition(Copy(immunities: Immunities.Concat(new[] { new ConditionImmunityInstance(immunity) })), immunity.Id);"
+            },
+            {
+              "line": 195,
+              "text": "public ConditionTransition EndImmunity(string id, string reason)"
+            },
+            {
+              "line": 198,
+              "text": "var instance = Immunities.SingleOrDefault(x => x.Grant.Id == id && x.Present(Now))"
+            },
+            {
+              "line": 200,
+              "text": "return Transition(Copy(immunities: Immunities.Select(x => x == instance ? x.End(Now, reason) : x)), id);"
+            },
+            {
+              "line": 219,
+              "text": ".Concat(Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))"
+            },
+            {
+              "line": 227,
+              "text": "immunities: state.Immunities.Select(x => !x.EndedAt.HasValue && x.Grant.Expires.HasValue"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PeriodicRiderFixture.cs",
+          "hits": [
+            {
+              "line": 82,
+              "text": "||x.DamageType!=\"piercing\"||x.RemainingTicks!=1||x.ApplicationOrder!=0||x.AppliedAt!=default)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+          "hits": [
+            {
+              "line": 122,
+              "text": "public static long PetrifiedDamage(long damage,bool corruptionDamage=false,bool explicitCorruptionResistance=false,bool immune=false)"
+            },
+            {
+              "line": 125,
+              "text": "return immune?0:!corruptionDamage||explicitCorruptionResistance?damage/2:damage;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/RepeatingCrossbowShot.cs",
+          "hits": [
+            {
+              "line": 30,
+              "text": "public string DamageType=>\"piercing\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPeriodicRider.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "private const string PeriodicImmunitySource=\"TEST_ONLY.periodic-family-immunity\";"
+            },
+            {
+              "line": 14,
+              "text": "||kind==CommandKind.SetPeriodicRiderSuppression||kind==CommandKind.SetPeriodicFamilyImmunity"
+            },
+            {
+              "line": 27,
+              "text": "=>s.PeriodicImmunities.Any(x=>x.TargetId==target&&x.FamilyId==family&&x.Present);"
+            },
+            {
+              "line": 83,
+              "text": "if(c.Kind==CommandKind.SetPeriodicFamilyImmunity) {"
+            },
+            {
+              "line": 84,
+              "text": "if(c.Target!=c.Actor||(c.X!=0&&c.X!=1)||c.Y!=0)return \"InvalidPeriodicImmunity\";"
+            },
+            {
+              "line": 85,
+              "text": "var active=s.PeriodicImmunities.SingleOrDefault(x=>x.TargetId==c.Actor&&x.FamilyId==PeriodicRiderFixture.FamilyId&&x.Present);"
+            },
+            {
+              "line": 87,
+              "text": "if(active!=null)return \"PeriodicImmunityAlreadyPresent\";"
+            },
+            {
+              "line": 88,
+              "text": "if(s.PeriodicImmunities.Length==PeriodicRiderValidation.MaxImmunities)return \"PeriodicImmunityCapacityReached\";"
+            },
+            {
+              "line": 89,
+              "text": "var grant=new PeriodicFamilyImmunityRecord(\"periodic.immunity.\"+N(s.Revision+1),c.Actor,PeriodicRiderFixture.FamilyId,PeriodicImmunitySource,s.RuleClock);"
+            },
+            {
+              "line": 90,
+              "text": "s.PeriodicImmunities=s.PeriodicImmunities.Concat(new[]{grant}).ToArray();"
+            },
+            {
+              "line": 92,
+              "text": "if(active==null)return \"PeriodicImmunityUnavailable\";"
+            },
+            {
+              "line": 93,
+              "text": "s.PeriodicImmunities=s.PeriodicImmunities.Select(x=>x.Id==active.Id?x.End(s.RuleClock):x).ToArray();"
+            },
+            {
+              "line": 95,
+              "text": "AppendPeriodicEvent(s,new PeriodicRiderEventRecord(EventIdentity(\"immunity\",N(s.Revision+1)),PeriodicRiderEventKind.FamilyImmunity,"
+            },
+            {
+              "line": 96,
+              "text": "PeriodicRiderOutcome.None,s.Revision+1,s.RuleClock,-1,c.Actor,c.Actor,\"\",PeriodicImmunitySource,c.X==1,0,0,0,0,0,0,s.RandomState,s.RandomState,0));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "hits": [
+            {
+              "line": 482,
+              "text": ".Concat(l.Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))).Where(x => x.HasValue && x.Value.Time > s.RuleClock).Select(x => x.Value.Time).ToArray();"
+            },
+            {
+              "line": 1284,
+              "text": "||x.FamilyId!=PeriodicRiderFixture.FamilyId||x.SourceId!=PeriodicRiderFixture.SourceId||x.DamageType!=\"piercing\"||x.RemainingTicks>1)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "public sealed class ConditionImmunityData"
+            },
+            {
+              "line": 73,
+              "text": "public ConditionImmunityData(string id, string owner, string source, IEnumerable<string> kinds,"
+            },
+            {
+              "line": 89,
+              "text": "public enum ConditionOperationKind { Apply, GrantImmunity, Suppress, EndApplication, EndImmunity, Cure, Advance }"
+            },
+            {
+              "line": 98,
+              "text": "public ConditionImmunityData Immunity { get; }"
+            },
+            {
+              "line": 103,
+              "text": "ConditionApplicationData application = null, ConditionImmunityData immunity = null,"
+            },
+            {
+              "line": 107,
+              "text": "Id = id; At = at; Kind = kind; Application = application; Immunity = immunity;"
+            },
+            {
+              "line": 117,
+              "text": "public static ConditionOperation Grant(string id, ConditionStamp at, ConditionImmunityData immunity)"
+            },
+            {
+              "line": 121,
+              "text": "return new ConditionOperation(id, at, ConditionOperationKind.GrantImmunity, immunity: immunity);"
+            },
+            {
+              "line": 136,
+              "text": "return new ConditionOperation(id, at, ConditionOperationKind.EndImmunity, subject: immunityId, reason: reason);"
+            },
+            {
+              "line": 149,
+              "text": "var a = Application; var g = Immunity;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+          "hits": [
+            {
+              "line": 247,
+              "text": "public string AccidentDamageType { get; }"
+            },
+            {
+              "line": 261,
+              "text": "int checkModifier,int d4Rolled,long damageApplied,string accidentDamageType,int woundRoll,int injuryRoll,uint randomBefore,uint randomAfter,long wordsConsumed,"
+            },
+            {
+              "line": 270,
+              "text": "||injuryRoll<0||injuryRoll>6||wordsConsumed<0||accidentDamageType==null"
+            },
+            {
+              "line": 274,
+              "text": "||(d4Rolled==0)!=(accidentDamageType==\"\")||d4Rolled!=0&&accidentDamageType!=\"piercing\")"
+            },
+            {
+              "line": 305,
+              "text": "DamageApplied=damageApplied;AccidentDamageType=accidentDamageType;WoundRoll=woundRoll;InjuryRoll=injuryRoll;RandomBefore=randomBefore;RandomAfter=randomAfter;WordsConsumed=wordsConsumed;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+          "hits": [
+            {
+              "line": 137,
+              "text": "public string AccidentDamageType { get; }"
+            },
+            {
+              "line": 150,
+              "text": "long damageApplied,string accidentDamageType,int woundRoll,int injuryRoll,uint randomBefore,uint randomAfter,long wordsConsumed,"
+            },
+            {
+              "line": 172,
+              "text": "||damageApplied<0||accidentDamageType==null||woundRoll<0||woundRoll>20||injuryRoll<0||injuryRoll>6||wordsConsumed<0)"
+            },
+            {
+              "line": 196,
+              "text": "||(d4Rolled==0&&(damageApplied!=0||accidentDamageType!=\"\"||woundRoll!=0||injuryRoll!=0))"
+            },
+            {
+              "line": 197,
+              "text": "||(d4Rolled!=0&&accidentDamageType!=\"bludgeoning\")"
+            },
+            {
+              "line": 210,
+              "text": "D4Rolled=d4Rolled;DamageApplied=damageApplied;AccidentDamageType=accidentDamageType;WoundRoll=woundRoll;InjuryRoll=injuryRoll;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PeriodicRiderRecords.cs",
+          "hits": [
+            {
+              "line": 17,
+              "text": "public string DamageType { get; }"
+            },
+            {
+              "line": 39,
+              "text": "DamageType=damageType;ApplyingDc=applyingDc;ApplicationOrder=applicationOrder;AppliedAt=appliedAt;NextStartSlot=nextStartSlot;"
+            },
+            {
+              "line": 46,
+              "text": "return new PeriodicRiderRecord(Id,ProfileId,FamilyId,OwnerId,SourceId,TargetId,OriginEventId,DamageType,"
+            },
+            {
+              "line": 52,
+              "text": "return new PeriodicRiderRecord(Id,ProfileId,FamilyId,OwnerId,SourceId,TargetId,OriginEventId,DamageType,"
+            },
+            {
+              "line": 58,
+              "text": "return new PeriodicRiderRecord(Id,ProfileId,FamilyId,OwnerId,SourceId,TargetId,OriginEventId,DamageType,"
+            },
+            {
+              "line": 62,
+              "text": "&&SourceId==x.SourceId&&TargetId==x.TargetId&&OriginEventId==x.OriginEventId&&DamageType==x.DamageType&&ApplyingDc==x.ApplyingDc"
+            },
+            {
+              "line": 67,
+              "text": "public sealed class PeriodicFamilyImmunityRecord"
+            },
+            {
+              "line": 75,
+              "text": "public PeriodicFamilyImmunityRecord(string id,string targetId,string familyId,string sourceId,RuleTime grantedAt,RuleTime? endedAt=null)"
+            },
+            {
+              "line": 82,
+              "text": "public PeriodicFamilyImmunityRecord End(RuleTime at)"
+            },
+            {
+              "line": 83,
+              "text": "{if(!Present||at<GrantedAt)throw new InvalidOperationException(\"Only a present immunity can end.\");return new PeriodicFamilyImmunityRecord(Id,TargetId,FamilyId,SourceId,GrantedAt,at);}"
+            },
+            {
+              "line": 84,
+              "text": "public bool SameAs(PeriodicFamilyImmunityRecord x)=>x!=null&&Id==x.Id&&TargetId==x.TargetId&&FamilyId==x.FamilyId"
+            },
+            {
+              "line": 103,
+              "text": "public enum PeriodicRiderEventKind { Applied, Refreshed, Prevented, Tick, Medicine, Suppression, FamilyImmunity, MagicalHealing }"
+            },
+            {
+              "line": 169,
+              "text": "public const int MaxRiders=128,MaxEvents=512,MaxImmunities=64,MaxSkillRecords=64;"
+            },
+            {
+              "line": 172,
+              "text": "if(s.PeriodicRiders==null||s.PeriodicRiderEvents==null||s.PeriodicImmunities==null||s.SkillTraining==null"
+            },
+            {
+              "line": 173,
+              "text": "||s.PeriodicRiders.Length>MaxRiders||s.PeriodicRiderEvents.Length>MaxEvents||s.PeriodicImmunities.Length>MaxImmunities"
+            },
+            {
+              "line": 175,
+              "text": "||s.PeriodicImmunities.Any(x=>x==null)||s.SkillTraining.Any(x=>x==null))throw new ArgumentException(\"Invalid periodic rider collections.\");"
+            },
+            {
+              "line": 177,
+              "text": "if(s.PeriodicRiders.Length+s.PeriodicRiderEvents.Length+s.PeriodicImmunities.Length+s.SkillTraining.Length!=0)"
+            },
+            {
+              "line": 184,
+              "text": "||s.PeriodicImmunities.Select(x=>x.Id).Distinct(StringComparer.Ordinal).Count()!=s.PeriodicImmunities.Length"
+            },
+            {
+              "line": 191,
+              "text": "||s.PeriodicImmunities.Any(x=>!Actor(x.TargetId)||x.GrantedAt>s.RuleClock||x.EndedAt>s.RuleClock)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "SetPeriodicRiderSuppression, SetPeriodicFamilyImmunity, ApplyFixtureMagicalHealing, DesignateOverwatch,"
+            },
+            {
+              "line": 269,
+              "text": "public PeriodicFamilyImmunityRecord[] PeriodicImmunities = Array.Empty<PeriodicFamilyImmunityRecord>();"
+            },
+            {
+              "line": 474,
+              "text": "PeriodicImmunities = PeriodicImmunities.ToArray(), SkillTraining = SkillTraining.ToArray(),"
+            },
+            {
+              "line": 1390,
+              "text": "||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/ConditionJournalCodec.cs",
+          "hits": [
+            {
+              "line": 39,
+              "text": "case ConditionOperationKind.GrantImmunity:"
+            },
+            {
+              "line": 40,
+              "text": "var g = operation.Immunity;"
+            },
+            {
+              "line": 47,
+              "text": "case ConditionOperationKind.EndImmunity: Text(w, operation.Subject); Text(w, operation.Reason); break;"
+            },
+            {
+              "line": 84,
+              "text": "case ConditionOperationKind.GrantImmunity:"
+            },
+            {
+              "line": 88,
+              "text": "new ConditionImmunityData(grantId, grantOwner, grantSource, kinds, OptionalStamp(r), Text(r), version == 2)); break;"
+            },
+            {
+              "line": 91,
+              "text": "case ConditionOperationKind.EndImmunity: operations[i] = ConditionOperation.EndGrant(id, at, Text(r), Text(r)); break;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestCodec.cs",
+          "hits": [
+            {
+              "line": 56,
+              "text": "w.Write(x.CheckModifier);w.Write(x.D4Rolled);w.Write(x.DamageApplied);Text(w,x.AccidentDamageType);w.Write(x.WoundRoll);w.Write(x.InjuryRoll);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/MiningCodec.cs",
+          "hits": [
+            {
+              "line": 54,
+              "text": "w.Write(x.CheckModifier);w.Write(x.D4Rolled);w.Write(x.DamageApplied);Text(w,x.AccidentDamageType);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/PeriodicRiderCodec.cs",
+          "hits": [
+            {
+              "line": 16,
+              "text": "Text(w,x.OriginEventId);Text(w,x.DamageType);w.Write(x.ApplyingDc);w.Write(x.ApplicationOrder);Time(w,x.AppliedAt);"
+            },
+            {
+              "line": 20,
+              "text": "w.Write(s.PeriodicImmunities.Length);"
+            },
+            {
+              "line": 21,
+              "text": "foreach(var x in s.PeriodicImmunities.OrderBy(x=>x.Id,StringComparer.Ordinal)) {"
+            },
+            {
+              "line": 45,
+              "text": "s.PeriodicImmunities=new PeriodicFamilyImmunityRecord[Count(r,PeriodicRiderValidation.MaxImmunities)];"
+            },
+            {
+              "line": 46,
+              "text": "for(int i=0;i<s.PeriodicImmunities.Length;i++) {"
+            },
+            {
+              "line": 48,
+              "text": "s.PeriodicImmunities[i]=new PeriodicFamilyImmunityRecord(id,target,family,source,granted,ended);"
+            }
+          ]
+        }
+      ]
+    },
+    "life": {
+      "pattern": "UsesDeathSaves|ActorLifeValidation",
+      "nonTestOnly": true,
+      "matchedFiles": 18,
+      "matchedLines": 39,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+          "hits": [
+            {
+              "line": 13,
+              "text": "r.Stable,r.Dead,r.DeathSuccesses,r.DeathFailures,r.UsesDeathSaves,lastDeathTurn:r.LastDeathTurn,stableUntil:r.StableUntil);"
+            },
+            {
+              "line": 25,
+              "text": "baseLife.DeathSuccesses,baseLife.DeathFailures,baseLife.UsesDeathSaves,lastDeathTurn:baseLife.LastDeathTurn,"
+            },
+            {
+              "line": 29,
+              "text": "state.Wounds.Select(i=>(int)i),state.Stable,state.Dead,state.UsesDeathSaves,state.DeathSuccesses,state.DeathFailures,state.StableUntil,"
+            },
+            {
+              "line": 36,
+              "text": "state.Wounds.Select(i=>(int)i),state.Stable,state.Dead,state.UsesDeathSaves,state.DeathSuccesses,"
+            },
+            {
+              "line": 65,
+              "text": "if(life.Dead||life.Stable||life.Hp!=0||!life.UsesDeathSaves)return;"
+            },
+            {
+              "line": 76,
+              "text": "+\"|\"+r.TemporaryHp.ToString(CultureInfo.InvariantCulture)+\"|\"+string.Join(\",\",r.LinkedInjuries)+\"|\"+r.Stable+\"|\"+r.Dead+\"|\"+r.UsesDeathSaves"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+          "hits": [
+            {
+              "line": 78,
+              "text": "deathFailures:next.DeathFailures,usesDeathSaves:next.UsesDeathSaves,lastDeathTurn:next.LastDeathTurn);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestLife.cs",
+          "hits": [
+            {
+              "line": 21,
+              "text": "public bool UsesDeathSaves { get; }"
+            },
+            {
+              "line": 56,
+              "text": "UsesDeathSaves=usesDeathSaves; StableUntil=deadline; LastDeathTurn=lastDeathTurn;"
+            },
+            {
+              "line": 95,
+              "text": "deathFailures:failures,usesDeathSaves:s.UsesDeathSaves,lastDeathTurn:s.LastDeathTurn);"
+            },
+            {
+              "line": 107,
+              "text": "usesDeathSaves:state.UsesDeathSaves,stableUntil:deadline,lastDeathTurn:state.LastDeathTurn);"
+            },
+            {
+              "line": 119,
+              "text": "usesDeathSaves:state.UsesDeathSaves,lastDeathTurn:state.LastDeathTurn);"
+            },
+            {
+              "line": 165,
+              "text": "if (!state.UsesDeathSaves) dead=true;"
+            },
+            {
+              "line": 178,
+              "text": "} else if (!state.UsesDeathSaves) dead=true;"
+            },
+            {
+              "line": 181,
+              "text": "state.UsesDeathSaves,lastDeathTurn:state.LastDeathTurn,stableUntil:deadline);"
+            },
+            {
+              "line": 195,
+              "text": "if (state.Dead || state.Stable || state.Hp != 0 || !state.UsesDeathSaves)"
+            },
+            {
+              "line": 205,
+              "text": "usesDeathSaves:state.UsesDeathSaves,lastDeathTurn:regularTurnId);"
+            },
+            {
+              "line": 238,
+              "text": "state.Stable,state.Dead,state.DeathSuccesses,state.DeathFailures,state.UsesDeathSaves,"
+            },
+            {
+              "line": 251,
+              "text": "state.Stable,state.Dead,state.DeathSuccesses,state.DeathFailures,state.UsesDeathSaves,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestMaximumHp.cs",
+          "hits": [
+            {
+              "line": 258,
+              "text": "deathSuccesses: state.DeathSuccesses, deathFailures: state.DeathFailures, usesDeathSaves: state.UsesDeathSaves,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "hits": [
+            {
+              "line": 112,
+              "text": "x.Stable,x.Dead,x.UsesDeathSaves,x.DeathSuccesses,x.DeathFailures,x.StableUntil,x.LastDeathTurn,x.Prone,x.HeldItems)).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+          "hits": [
+            {
+              "line": 82,
+              "text": "string.Join(\",\",HeroLife.LinkedInjuries),HeroLife.Stable?\"1\":\"0\",HeroLife.Dead?\"1\":\"0\",HeroLife.UsesDeathSaves?\"1\":\"0\","
+            },
+            {
+              "line": 632,
+              "text": "x.Stable,x.Dead,x.UsesDeathSaves,x.DeathSuccesses,x.DeathFailures,x.StableUntil,x.LastDeathTurn,x.Prone,x.HeldItems):x).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "hits": [
+            {
+              "line": 195,
+              "text": "healed.DeathSuccesses,healed.DeathFailures,healed.UsesDeathSaves,lastDeathTurn:healed.LastDeathTurn,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "hits": [
+            {
+              "line": 129,
+              "text": "x.Stable,x.Dead,x.UsesDeathSaves,x.DeathSuccesses,x.DeathFailures,x.StableUntil,x.LastDeathTurn,x.Prone,x.HeldItems)).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+          "hits": [
+            {
+              "line": 87,
+              "text": "before.Stable, before.Dead, before.UsesDeathSaves, before.DeathSuccesses, before.DeathFailures,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+          "hits": [
+            {
+              "line": 184,
+              "text": "private static bool Dying(ActorLifeRecord life) => life.Hp == 0 && !life.Dead && !life.Stable && life.UsesDeathSaves;"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+          "hits": [
+            {
+              "line": 214,
+              "text": "before.LinkedInjuries, before.Stable, before.Dead, before.UsesDeathSaves,"
+            },
+            {
+              "line": 487,
+              "text": "deathFailures: before.DeathFailures, usesDeathSaves: before.UsesDeathSaves,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+          "hits": [
+            {
+              "line": 90,
+              "text": "x.TemporaryHp, x.LinkedInjuries, x.Stable, x.Dead, x.UsesDeathSaves, x.DeathSuccesses, x.DeathFailures,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+          "hits": [
+            {
+              "line": 391,
+              "text": "deathFailures: before.DeathFailures, usesDeathSaves: before.UsesDeathSaves,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "hits": [
+            {
+              "line": 124,
+              "text": "before.Stable, before.Dead, before.UsesDeathSaves, before.DeathSuccesses, before.DeathFailures,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "hits": [
+            {
+              "line": 554,
+              "text": "if (active.Length != 0 || s.InventoryCombat || s.Encounter!=null&&s.Lives.Any(x=>x.Hp==0&&!x.Stable&&!x.Dead&&x.UsesDeathSaves)) {"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+          "hits": [
+            {
+              "line": 45,
+              "text": "public bool UsesDeathSaves { get; }"
+            },
+            {
+              "line": 62,
+              "text": "Stable=stable;Dead=dead;UsesDeathSaves=usesDeathSaves;DeathSuccesses=successes;DeathFailures=failures;"
+            },
+            {
+              "line": 67,
+              "text": "&&UsesDeathSaves==other.UsesDeathSaves&&DeathSuccesses==other.DeathSuccesses&&DeathFailures==other.DeathFailures"
+            },
+            {
+              "line": 94,
+              "text": "public static class ActorLifeValidation"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "hits": [
+            {
+              "line": 1126,
+              "text": "ActorLifeValidation.Validate(s);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/ActorLifeCodec.cs",
+          "hits": [
+            {
+              "line": 44,
+              "text": "w.Write(l.Stable);w.Write(l.Dead);w.Write(l.UsesDeathSaves);w.Write(l.DeathSuccesses);w.Write(l.DeathFailures);"
+            }
+          ]
+        }
+      ]
+    },
+    "physical-seal-commands": {
+      "pattern": "\\bDisarm\\b|\\bSunder\\b|\\bImprovise\\b|DestroySeal|InvalidateSeal",
+      "nonTestOnly": true,
+      "matchedFiles": 0,
+      "matchedLines": 0,
+      "rows": []
+    }
+  },
+  "limits": "Lexical inventory with direct inspection of actor validation, numeric projections, attack/defense targets, life, condition immunity, controller and context APIs. Not a semantic proof that every call site is safe; implementation must reconcile all rows and audit indirect consumers."
+}
