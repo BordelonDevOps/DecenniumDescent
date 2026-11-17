@@ -1,5 +1,8 @@
 # Genuine Ferry care abilities and outgoing turn continuation
 
+**Actual review received:** GPT response6a916724-cfbb-57a8-aadd-40cbb690bd91 and Codex agreement are retained in [GPT_CARE_REVIEW.json](GPT_CARE_REVIEW.json). No concrete blocker was found in this bounded checkpoint. The reviewer checked all41 members,468 source inputs, three DLL bindings,76 actual branch commands, seven selected pairs and limited decoding of26 saves, but did not compile/execute C#/PowerShell, restore/replay the engine or observe workers. The tested creature nonowner control proves only spell-request rejection, not Invocation nonowner denial. Positive venting, optional cure, cross-epoch recharge transfer, two-hour Stable recovery and later survival remain unproved; no TAC-10 acceptance or successor authorization.
+
+
 Purify Food and Drink, Spare the Dying, and two funded Divine Invocations now execute in separate genuine continuations of the r351 first-fire save. Each branch pays its actual costs, retains its actual outcomes, and continues through the final caster End and a byte-identical strict restore. This advances the current TAC-10 module; it does not accept the module or alter the main r462/3RP campaign.
 
 The unchanged runtime is `948b9bff0604e15cfb2d5419be9658392bcb2bcf`. Exact executed [care driver](support/Probe-FerryCareAbilities.ps1) and [outgoing-End driver](support/Continue-FerryCareEnds.ps1) are committed at `bfdea90f33f88517556c8626a66090392973536f`. The frozen compilation report has468 inputs; all three loaded DLL hashes and the report bytes match the earlier immutable seal archive. No new engine edit or compilation is claimed. Source procedures remain bound to `46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4` and their individual procedure hashes.

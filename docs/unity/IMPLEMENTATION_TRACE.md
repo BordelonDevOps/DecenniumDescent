@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**Care review and Ward consumer progress:** actual GPT6a916724/Codex agreement closes only the bounded care/recharge checkpoint at065a6ab12; [review limits](evidence/2026-11-16-tac10-ferry-wraith-runtime/GPT_CARE_REVIEW.json) retain Invocation nonowner/vent/cure/transfer and later Stable-recovery gaps. Genuine Ward comparison driver927782ae2 passes locally:17 alternate commands, Focused hero AC10 versus11 under matching actual Claw rolls, original next caster Start5 expiry, five strict restore pairs. Evidence archive/review pending. Failed Mobile-stance probe remains retained as existing unsupported capability; no runtime change. Full regression latest979/0 with shardE257 terminal, five live workers. No module acceptance/successor.
+
+
 **TAC-10 care continuation checkpoint:** [evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/CARE_CHECKPOINT.md), runtime948b9bff0/driversbfdea90f3. Genuine Purify, Dying-to-Stable Spare, and two paid Divine Invocations with own-Start recharge execute73 alternate commands plus three actual outgoing Ends.41 members/seven selected strict restore pairs; no runtime edit/new compilation. Actual Sanctuary reviewefbd304b and Codex agreement retain conservative capacity as a broader limitation, not a waived requirement. Care review, remaining source interactions/ability boundaries/consumer audit/full regression/five paths/compatibility/final acceptance stay open. Main r462/3RP unchanged; no successor; Unity/storage/Support held.
 
 

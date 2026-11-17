@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Actual care review closes only its bounded scope; Ward consumer passes locally.** [GPT care review/agreement](GPT_CARE_REVIEW.json) records response6a916724 with no bounded blocker and precise execution/coverage limits. Driver927782ae2 demonstrates actual AC10→11 under matching Claw attacks, original expiry and five restore pairs; local ward-consumer-20261117T100325Z awaits retained archive/review. Its earlier Mobile-stance attempt remains a failed unsupported-capability probe. Full1583 regression latest979/0, shardE257 terminal and five workers live; other acceptance gates remain open.
+
+
 **Latest: genuine Purify, Spare and Invocation/recharge branches pass.** [Care evidence](CARE_CHECKPOINT.md) binds driversbfdea90f3 to unchanged runtime948b9bff0,76 actual alternate commands including three real Ends,41 archive members and seven selected strict restore pairs. Actual Sanctuary reviewefbd304b/Codex agreement closes only that bounded scope and retains the conservative capacity limit. Care review pending; full1583 regression remains live, not completed. Remaining ability/Claw OA/Press/KO/boundary/consumer/five-path/compatibility/final-review gates stay open. Main r462/3RP unchanged; no successor; Unity/storage/Support held.
 
 
