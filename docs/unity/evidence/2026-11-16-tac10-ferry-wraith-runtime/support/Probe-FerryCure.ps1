@@ -80,7 +80,7 @@ try{
                 Send $cure;$after=Capture;$use=$after.BishopEntry.Invocations|Select-Object -Last 1
                 Require ($use.CommandId-eq$cure.Id-and$use.EndedApplicationIds.Count-gt0-and$use.CureOperationId-ne''-and!(HasFear $after $target)) 'Paid optional cure did not end actual fear.'
                 Require ($use.RpAfter-eq($use.RpBefore-3)-and$use.ConvictionAfter-eq($use.ConvictionBefore-2)-and$use.Turn.EpochId-eq'TEST_ONLY.post-recovery-calendar') 'Cure changed ownership/payment/context.'
-                $genuine=@($s.FrightenedSaves|Where-Object {$_.ApplicationId-in$use.EndedApplicationIds-and!$_.Success-and!$_.Prevented})
+                $genuine=@($s.FrightenedSaves|Where-Object {$_.ApplicationId-in$use.EndedApplicationIds-and!$_.Repeat-and!$_.Success-and!$_.AdmissionPrevented})
                 Require ($genuine.Count-eq$use.EndedApplicationIds.Count) 'Cure did not bind actual failed source saves.'
                 $report.cure=$use;$report.curedSourceSaves=$genuine;$report.cureTarget=$target
                 $unchanged=Bytes;$report.retry=$session.Submit('Player',$cure)
