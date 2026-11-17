@@ -76,7 +76,7 @@ try{
             'hidden-occupancy'{
                 Require (![Decennium.Foundation.Laboratory.ObservationRules]::CanSee($state,$ferry,$buyer)) 'Occupancy pair needs an actually unseen actor.'
                 $prior=$copy.Actors|Where-Object Id -eq $buyer;$change=@{actor=$buyer;before=@($prior.X,$prior.Y);after=@(1,4)}
-                $copy.Actors=[Decennium.Foundation.ActorState[]]@($copy.Actors|ForEach-Object{if($_.Id-eq$buyer){[Decennium.Foundation.ActorState]::new($_.Id,1,4,$_.Tokens)}else{$_}})
+                $copy.Actors=[Decennium.Foundation.ActorState[]]@($copy.Actors|ForEach-Object{if($_.Id-eq$buyer){$moved=$_.Copy();$moved.X=1;$moved.Y=4;$moved}else{$_}})
                 Require (![Decennium.Foundation.Laboratory.ObservationRules]::CanSee($copy,$ferry,$buyer)) 'Changed occupancy became observable.'
             }
         }
