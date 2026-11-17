@@ -1,5 +1,8 @@
 # Genuine paid seal tear, saved suppression and recovered Claw
 
+**Actual partial review complete.** Response28b6f6a5-57ae-5e7a-8779-a057a0f8dd40 independently reviews this checkpoint and finds no concrete blocker in its scope; Codex agrees. [Exact response and limits](GPT_SEAL_REVIEW.json). Genuine ordinary-world and full module qualification remain required; this is not TAC-10 acceptance. The [subsequent continuation](CONTINUATION_CHECKPOINT.md) now reaches real Dead/closure/management/preparation and awaits its own review.
+
+
 Runtime source `948b9bff0604e15cfb2d5419be9658392bcb2bcf` connects the exposed paper seal to real command authority, existing Action ledgers and the shared clock. Test source `db91c9ce8711be802674762d458bca9782207833` changes only `FerryWraithCases.cs` to add focused controls; runtime source is identical. **This is a partial TAC-10 checkpoint, not module acceptance or successor authorization.**
 
 Separately, actual GPT response `a4284371-f081-5cbb-8951-48b6d2c3e61d` and Codex agreement close the selected Petrified correction at aba482bf6/evidence3a41a97f5. [Exact correction review and limits](GPT_CORRECTION_REVIEW.json). GPT independently inspected source, rehashed302 archive members, reconciled source/DLL bindings and recomputed arithmetic; it did not execute C#, PowerShell, save restoration or observe workers.
