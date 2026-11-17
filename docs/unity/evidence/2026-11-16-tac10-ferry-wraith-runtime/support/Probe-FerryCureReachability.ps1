@@ -1,4 +1,4 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$EarnedSave,[Parameter(Mandatory)][string]$ReceiptSave,[Parameter(Mandatory)][string]$Run)
+param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$EarnedSave,[Parameter(Mandatory)][string]$ReceiptSave,[Parameter(Mandatory)][string]$Run,[string]$ResumeClosedRun='')
 $ErrorActionPreference='Stop'
 $AssemblyRoot=(Resolve-Path -LiteralPath $AssemblyRoot).Path;$EarnedSave=(Resolve-Path -LiteralPath $EarnedSave).Path;$ReceiptSave=(Resolve-Path -LiteralPath $ReceiptSave).Path
 if(Test-Path -LiteralPath $Run){throw 'Use a fresh genuine staged-cure branch.'}
@@ -31,6 +31,18 @@ try{
         return $false
     }
     $start=Capture;Require ($start.Revision-eq213) 'Expected genuine earned checkpoint213.'
+    if($ResumeClosedRun-ne''){
+        $ResumeClosedRun=(Resolve-Path -LiteralPath $ResumeClosedRun).Path;$priorPath=Join-Path $ResumeClosedRun 'RESULT.json';$prior=Get-Content -LiteralPath $priorPath -Raw|ConvertFrom-Json
+        Require ($prior.status-eq'FAIL'-and$prior.error.Contains('Staged final paid edge did not admit Ferry')-and$prior.input.sha256-ceq$report.input.sha256) 'Resume requires the exact genuine staged-closure diagnostic.'
+        foreach($dll in $report.assemblies){Require (($prior.assemblies|Where-Object name -eq $dll.name).sha256-ceq$dll.sha256) 'Resume runtime differs.'}
+        foreach($pair in $prior.restorePairs){foreach($suffix in '.ddsave','-restored.ddsave'){$source=Join-Path $ResumeClosedRun ($pair.name+$suffix);Require ((Digest $source)-ceq$pair.sha256) 'Prior selected restore bytes differ.';Copy-Item -LiteralPath $source -Destination (Join-Path $Run ($pair.name+$suffix))}}
+        $session.Restore((Join-Path $Run 'actual-staged-closure.ddsave'));$resumed=Capture
+        Require (!$resumed.InventoryCombat-and($resumed.Lives|Where-Object ActorId -eq $enemy).Dead-and$resumed.Revision-eq$prior.closure.revision) 'Resume is not the actual closed source checkpoint.'
+        $report.commands=@($prior.commands|Where-Object {$_.response.Revision-le$resumed.Revision});$report.restorePairs=@($prior.restorePairs);$report.observations=@($prior.observations);$report.probes=@($prior.probes);$report.fearAttempts=@($prior.fearAttempts)
+        $report.originalFear=$prior.originalFear;$report.beforeStagingLife=$prior.beforeStagingLife;$report.stagedActors=$prior.stagedActors;$report.sourceDead=$prior.sourceDead;$report.closure=$prior.closure
+        $fear=$resumed.FrightenedTimings|Where-Object ApplicationId -eq $prior.originalFear.ApplicationId;$closed=$true
+        $report.resumedFrom=@{resultPath=$priorPath;resultSha256=(Digest $priorPath);executedScriptSha256=$prior.script.sha256;closedSha256=(Digest (Join-Path $Run 'actual-staged-closure.ddsave'));actualPriorCommittedCommands=$report.commands.Count;scope='Reuse the exact genuine prior execution through its strict-restored closed checkpoint; not a rerun or a generated history'}
+    }else{
     $receipts=([Decennium.Foundation.FileSaveStore]::new().Load($ReceiptSave)).Receipts
     foreach($receipt in $receipts|Where-Object {$_.Revision-gt213-and$_.Revision-le290}){Send ([Decennium.Foundation.CommandHistory]::Read($receipt))}
     Checkpoint 'actual-before-staging';$report.beforeStagingLife=(Capture).Lives|Where-Object ActorId -eq $enemy
@@ -74,7 +86,12 @@ try{
         }
         Send ([Decennium.Foundation.Command]::new("ferry.stage.end.$($s.Revision)",$actor,$s.Revision,'EndRegularTurn',$s.Encounter.CurrentTurnId))
     }
+    }
     Require ($closed-and$null-ne$fear) 'Staged source branch did not reach genuine fear and actual Dead closure.'
+    # Closure pays Hero End into the companion slot. At actual speed20 the final
+    # five-foot edge takes3/2 seconds; wait1/2 so its real arrival is the next defender Start.
+    $s=Capture;Require ([Decennium.Foundation.Laboratory.TestOnlyClubAttackPolicy]::Speed($s,$hero)-eq20) 'Staged final edge speed changed.'
+    Send ([Decennium.Foundation.Command]::new("ferry.stage.align.$($s.Revision)",$hero,$s.Revision,'AdvanceClock','',1,2)) $true
     $s=Capture;Send ([Decennium.Foundation.Command]::new("ferry.stage.final-edge.$($s.Revision)",$hero,$s.Revision,'BeginWorldStep','walk',0,1))
     for($i=0;$i-lt12;$i++){$s=Capture;if($null-ne$s.FerryWraith.Admission){break};Send ([Decennium.Foundation.Command]::new("ferry.stage.clock.$($s.Revision)",$hero,$s.Revision,'AdvanceClock','',1,2)) $true}
     $s=Capture;Require ($null-ne$s.FerryWraith.Admission) 'Staged final paid edge did not admit Ferry.'
