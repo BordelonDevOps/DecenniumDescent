@@ -230,6 +230,7 @@ function Invoke-SessionInput($request) {
     switch ($request.op) {
         'view' { return $session.View(($request.seat ?? 'Player')) }
         'ferry' { return $session.ObserveFerryDecision(($request.seat ?? 'Player')) }
+        'seal' { return $session.ObserveExposedSeal(($request.seat ?? 'Player'),$request.actor) }
         'query' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind

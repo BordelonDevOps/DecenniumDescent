@@ -223,6 +223,37 @@ namespace Decennium.Foundation
                 ||journal.Operations.Any(x=>x.Kind==ConditionOperationKind.EndImmunity))
                 throw new ArgumentException("Ferry named immunity requires its immutable genesis source.");
             ValidateAdmission(state);
+            ValidateSeal(state);
+        }
+        public static bool SealPayloadValid(Command c)
+            =>c!=null&&c.Kind==CommandKind.TearExposedSeal&&c.Target==Seal&&c.X==0&&c.Y==0
+                &&c.Inventory==null&&c.Combat==null&&c.Advancement==null&&c.Ranged==null&&c.OverwatchRider==OverwatchRider.None
+                &&c.SuppressionFire==null&&c.DefensiveFormation==null&&c.ExpeditionAssignment==null&&c.HarvestSelection==null
+                &&c.MiningSelection==null&&c.ProspectingExposure==null&&c.RouteMappingWork==null&&c.IntimidatingPresence==null
+                &&c.HealingRite==null&&c.SpellCast==null&&c.Guidance==null&&c.SanctuaryResponse==null&&c.DivineInvocation==null;
+
+        private static void ValidateSeal(Snapshot s)
+        {
+            var seal=s.FerryWraith.Rupture;if(seal==null)return;
+            var command=ContactReceipt(s,seal.Revision);
+            if(!SealPayloadValid(command)||command.Actor!=seal.ActorId||command.Id!=seal.CommandId
+                ||!s.Characters.Any(x=>x.ActorId==seal.ActorId)
+                ||Math.Max(Math.Abs((long)seal.ActorX-9),Math.Abs((long)seal.ActorY-3))>1
+                ||!DeclaredGeometryProfile.SupportsAnchorAt(s,seal.ActorX,seal.ActorY)
+                ||s.FerryWraith.ClawSuppressed&&s.RuleClock>=seal.ExpiresAt)
+                throw new ArgumentException("Invalid physical seal rupture history.");
+            var calendar=WorldTiming.FindEpoch(s,seal.ActionCalendarId);
+            if(calendar==null)throw new ArgumentException("Seal Action calendar unavailable.");
+            if(seal.ActionLedger==SealActionLedger.OffCalendar) {
+                if(seal.ActionCalendarId!=s.WorldSchedule.Id
+                    ||seal.ActionInterval!=WorldActivityIntervalRecord.IndexAt(s.WorldSchedule,seal.At))
+                    throw new ArgumentException("Seal Action activity interval mismatch.");
+            } else if(!calendar.Order.Contains(seal.ActorId))throw new ArgumentException("Seal Action owner absent from calendar.");
+            if(seal.InInitiative) {
+                var original=WorldTiming.FindEpoch(s,seal.OriginalEpochId);
+                if(original==null||original.Id!=seal.ActionCalendarId||original.Origin!=seal.OriginalEpochOrigin)
+                    throw new ArgumentException("Seal original initiative basis unavailable.");
+            }
         }
         private static void ValidateAdmission(Snapshot s)
         {

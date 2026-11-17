@@ -511,6 +511,8 @@ namespace Decennium.Foundation.Laboratory
                 string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
                     ? state.Encounter.CurrentTurnId : "";
                 IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
+                if(player&&state.FerryWraith!=null&&Party.Any(x=>TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,x)))
+                    commands=commands.Append(CommandKind.TearExposedSeal);
                 if(seat==ExpeditionSeat.RecoveryOpponent)commands=commands.Append(CommandKind.UseIntimidatingPresence).Append(CommandKind.RespondSanctuary);
                 if(seat==ExpeditionSeat.FerryOpponent)commands=commands.Where(x=>x!=CommandKind.AttackClub)
                     .Append(CommandKind.AttackCreatureFeature).Append(CommandKind.RespondSanctuary);
@@ -568,6 +570,11 @@ namespace Decennium.Foundation.Laboratory
                     var active = ClericLongRestProfile.Active(state);
                     if (active != null) selected.Add(CommandKind.InterruptLongRest,active.Id);
                     targets = new ReadOnlyDictionary<CommandKind,string>(selected);
+                }
+                if(player&&state.FerryWraith!=null&&Party.Any(x=>TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,x))) {
+                    var physical=targets.ToDictionary(x=>x.Key,x=>x.Value);
+                    physical.Add(CommandKind.TearExposedSeal,FerryWraithProfile.Seal);
+                    targets=new ReadOnlyDictionary<CommandKind,string>(physical);
                 }
                 IEnumerable<ExpeditionWorkStatus> work=player?ProjectWork(state,grant):Array.Empty<ExpeditionWorkStatus>();
                 if(state.ConnectedClericCasting)work=work.OrderBy(x=>x.Kind,StringComparer.Ordinal).ThenBy(x=>x.Id,StringComparer.Ordinal);

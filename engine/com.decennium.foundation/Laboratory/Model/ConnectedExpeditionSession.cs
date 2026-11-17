@@ -440,6 +440,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedPayload(Snapshot state, Command command)
         {
+            if(command.Kind==CommandKind.TearExposedSeal)return state.FerryWraith!=null&&FerryWraithProfile.SealPayloadValid(command);
             if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;
             if (state.DeclaredGeometry != null && (command.Kind == CommandKind.BeginWorldStep
                 || command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep))
@@ -505,6 +506,7 @@ namespace Decennium.Foundation.Laboratory
                 || state.ConnectedClericSettlement && (kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel)
                 || (state.ConnectedCompanionDose || state.ConnectedClericRp) && kind == CommandKind.BeginReinforcementApproach
                 || state.ConnectedClericRp && (kind == CommandKind.UseHealingRite || ShortRestBerth.IsCommand(kind))
+                || state.FerryWraith!=null && kind==CommandKind.TearExposedSeal
                 || state.BishopEntry!=null && kind==CommandKind.UseDivineInvocation
                 || state.ConnectedClericLongRest && (ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.ResolveExpeditionStrainRecovery)
                 || (state.ConnectedCompanionStabilization||state.ConnectedClericCasting) && kind == CommandKind.StabilizeCompanion
@@ -606,6 +608,9 @@ namespace Decennium.Foundation.Laboratory
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.TearExposedSeal:
+                    return state.FerryWraith!=null&&seat==ExpeditionSeat.Player&&target==FerryWraithProfile.Seal
+                        &&TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,actor);
                 case CommandKind.SuspendWorldStep:
                 case CommandKind.ResumeWorldStep:
                     return state.DeclaredGeometry != null && seat == ExpeditionSeat.Player && Party.Contains(actor) && target == "";

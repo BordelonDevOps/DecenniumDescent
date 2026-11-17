@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Decennium.Foundation
 {
-    public enum WorldActionCommitment { None, Dash, ActiveLabor, Search }
+    public enum WorldActionCommitment { None, Dash, ActiveLabor, Search, SealTear }
     public enum WorldProcedureKind { Crop, WaterFill, Intake, FormulaWork, Repair, Manufacturing, FishingTrapRetrieval, SupplyCache, FishingTrapSetup, Harvest, Mining, Prospecting, MiningAssay, MineralPreparation, CacheExcavation, RouteMappingWork, RouteReconnaissance, HarvestRequirementWork, HavenAppraisal, HavenSale, ExpeditionBill, NextCharterPlan }
 
     /// <summary>Derived activity projection over the existing procedure records. It is never saved
@@ -343,7 +343,7 @@ namespace Decennium.Foundation
             if (!Validation.ValidId(calendarId) || !Validation.ValidId(actorId) || intervalIndex < 0
                 || !Enum.IsDefined(typeof(WorldActionCommitment), action)
                 || action == WorldActionCommitment.None && (actionReference != "" || actionReferenceRevision != 0)
-                || (action == WorldActionCommitment.Dash || action == WorldActionCommitment.Search)
+                || (action == WorldActionCommitment.Dash || action == WorldActionCommitment.Search || action == WorldActionCommitment.SealTear)
                     && (!Validation.ValidId(actionReference) || actionReferenceRevision < 1)
                 || action == WorldActionCommitment.ActiveLabor && (!Validation.ValidId(actionReference) || actionReferenceRevision < 0))
                 throw new ArgumentException("Invalid off-calendar activity interval.");
@@ -374,11 +374,18 @@ namespace Decennium.Foundation
                 WorldActionCommitment.Search, commandId, commandRevision);
         }
 
+        public WorldActivityIntervalRecord PaySealTear(string commandId,long commandRevision)
+        {
+            if(Action!=WorldActionCommitment.None)throw new InvalidOperationException("Ordinary action already committed.");
+            return new WorldActivityIntervalRecord(CalendarId,ActorId,IntervalIndex,MovementSpent,
+                WorldActionCommitment.SealTear,commandId,commandRevision);
+        }
+
         public WorldActivityIntervalRecord CommitActiveLabor(string workReference)
         {
             if (!Validation.ValidId(workReference)) throw new ArgumentException("Invalid active-labor reference.");
             if (Action == WorldActionCommitment.Dash) throw new InvalidOperationException("Dash already committed this activity interval.");
-            if (Action == WorldActionCommitment.Search) throw new InvalidOperationException("Search already committed this activity interval.");
+            if (Action == WorldActionCommitment.Search || Action == WorldActionCommitment.SealTear) throw new InvalidOperationException("Physical or search Action already committed this activity interval.");
             return new WorldActivityIntervalRecord(CalendarId, ActorId, IntervalIndex, MovementSpent,
                 WorldActionCommitment.ActiveLabor, workReference, 0);
         }
@@ -518,6 +525,13 @@ namespace Decennium.Foundation
                     ExplorationSearchValidation.ValidateCommitment(s, activity);
                     if (HasActiveLabor(s, activity.ActorId, start, end))
                         throw new ArgumentException("Search overlaps committed labor.");
+                } else if(activity.Action==WorldActionCommitment.SealTear) {
+                    var rupture=s.FerryWraith?.Rupture;
+                    if(rupture==null||rupture.ActionLedger!=SealActionLedger.OffCalendar||rupture.ActorId!=activity.ActorId
+                        ||rupture.CommandId!=activity.ActionReference||rupture.Revision!=activity.ActionReferenceRevision
+                        ||rupture.ActionCalendarId!=activity.CalendarId||rupture.ActionInterval!=activity.IntervalIndex
+                        ||rupture.At<start||rupture.At>=end||HasActiveLabor(s,activity.ActorId,start,end))
+                        throw new ArgumentException("Seal Action differs from its paid physical rupture.");
                 } else if (!HasReference(s, activity, start, end)) {
                     throw new ArgumentException("Active labor must reference its work history.");
                 }

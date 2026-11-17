@@ -78,6 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
+            ||ferryDeclaration!=null&&kind==CommandKind.TearExposedSeal
             ||connectedClericLongRest&&ClericLongRestProfile.IsCommand(kind)
             ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
                 ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack
@@ -158,9 +159,10 @@ namespace Decennium.Foundation.Laboratory
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
                     .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor))
-                    .Concat(DiscoverClericLongRest(s,actor));
+                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor));
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
+            options.AddRange(DiscoverFerrySeal(s,actor));
             options.AddRange(DiscoverPostRecoveryCommands(s,actor));
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
@@ -294,6 +296,11 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if(c.Kind==CommandKind.TearExposedSeal) {
+                string sealFailure=ResolveCore(s.Copy(),c,assessTactical:true);
+                return new CommandQueryResult(true,sealFailure==null,sealFailure??"Available",s.Revision,
+                    sealFailure==null?new[]{new CommandCost("action","",1)}:null);
+            }
             if (ClericLongRestProfile.IsCommand(c.Kind) || ClericLongRestProfile.Active(s) != null && c.Actor == ClericRpProfile.Actor) {
                 string longRestFailure=ResolveCore(s.Copy(),c);
                 return new CommandQueryResult(true,longRestFailure==null,longRestFailure??"Available",s.Revision);

@@ -47,7 +47,7 @@ namespace Decennium.Foundation
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
         DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell, UseIntimidatingPresence,
-        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation, AttackCreatureFeature }
+        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation, AttackCreatureFeature, TearExposedSeal }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.

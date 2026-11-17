@@ -287,7 +287,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var activity = ActivityInterval(s, actor);
             if (activity.Action == WorldActionCommitment.None) return true;
-            if (activity.Action == WorldActionCommitment.Dash || activity.Action == WorldActionCommitment.Search) return false;
+            if (activity.Action == WorldActionCommitment.Dash || activity.Action == WorldActionCommitment.Search || activity.Action == WorldActionCommitment.SealTear) return false;
             var prior = s.Work.WorkerIntervals.SingleOrDefault(x => x.Id == activity.ActionReference
                 && x.WorkerId == actor && x.End == s.RuleClock);
             return prior != null;
@@ -501,6 +501,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileShortRest(s, initiating);
                 ReconcileClericLongRestAccess(s, initiating);
                 RuleTime segmentStart = s.RuleClock; RuleTime next = target;
+                var sealDue=NextFerrySealBoundary(s);if(sealDue.HasValue&&sealDue.Value<next)next=sealDue.Value;
                 var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;
                 var searchDue = s.ExplorationSearch?.Pending?.DueAt;
                 if (searchDue.HasValue && searchDue.Value > segmentStart && searchDue.Value < next) next = searchDue.Value;
@@ -706,6 +707,8 @@ namespace Decennium.Foundation.Laboratory
                     : postRecoveryArrival != null ? PostRecoveryEncounterDefinition.Actor
                     : reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
                     : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
+                if(s.FerryWraith!=null)SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
+                ExpireFerrySealSuppression(s);
                 RefreshActivityIntervals(s, deferredActivityActor);
                 foreach (var activity in s.WorldActivityIntervals.ToArray()) {
                     string reference = activityLabor[activity.ActorId];
@@ -719,7 +722,7 @@ namespace Decennium.Foundation.Laboratory
                 ResolveDueFishingTrapChecks(s);
                 ResolveWorldHuntingTrapTriggers(s,initiating);
                 CompleteFishingTrapRetrievals(s);
-                SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
+                if(s.FerryWraith==null)SoldierTacticalFeatures.ExpireEndMarkers(s,previousSlot,s.WorldSchedule.SlotAt(s.RuleClock),s.Revision+1);
                 RefreshIntervals(s, laterArrival?.ActorId);
                 if(s.SchemaVersion>=Snapshot.CraftingConsequenceSchema)ProcessSharedLifeMarkers(s,previousSlot,laterArrival?.ActorId);
                 else if(connectedCombat!=null&&s.Encounter!=null&&s.WorldSchedule.ProcessedSlot!=previousSlot) {
@@ -857,6 +860,9 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null, bool sanctuaryChecked=false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(s.FerryWraith!=null&&IsOffCalendarActivity(s,c.Actor)
+                &&ActivityInterval(s,c.Actor).Action==WorldActionCommitment.SealTear&&StartsOrResumesActivityWork(c))
+                return "OffCalendarActionAlreadySpent";
             if (ClericLongRestProfile.IsCommand(c.Kind)) return assessTactical ? AssessClericLongRest(s,c) : ResolveClericLongRest(s,c);
             if (ClericLongRestProfile.Active(s) != null && c.Actor == ClericRpProfile.Actor
                 && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
@@ -986,6 +992,7 @@ namespace Decennium.Foundation.Laboratory
                 &&c.Kind!=CommandKind.ResolveRecipe347Quality)return "ManufacturingChoicePending";
             if(c.Kind==CommandKind.AssignExpeditionWork||c.Kind==CommandKind.CancelExpeditionWork||c.Kind==CommandKind.StartExpeditionWork)
                 return ResolveExpeditionAssignment(s,c);
+            if(c.Kind==CommandKind.TearExposedSeal)return ResolveFerrySeal(s,c,assessTactical);
             if(CacheExcavationCommand(c))return ResolveCacheExcavationControl(s,c);
             if(PortableCommand(c.Kind)) {
                 string preservationHandlingError=HarvestPreservationTreatmentPortableHandlingFailure(s,c);
@@ -1120,6 +1127,8 @@ namespace Decennium.Foundation.Laboratory
                 if (bufferDeadline.HasValue && bufferDeadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var shortRest = ShortRestBerth.Active(s);
                 if (shortRest != null && shortRest.DueAt <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
+                var sealDeadline=NextFerrySealBoundary(s);
+                if(sealDeadline.HasValue&&sealDeadline.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
                 var deadline = NextConditionDeadline(s);
                 if (deadline.HasValue && deadline.Value <= s.RuleClock.AddSeconds(1)) return "TimedHandlingBoundaryUnsupported";
                 var fearDeadline = NextFrightenedRepeatDeadline(s);
