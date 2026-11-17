@@ -1,4 +1,4 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$FirstFireSave,[Parameter(Mandatory)][string]$Run,[int]$TearAfterAttempts=3)
+param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$FirstFireSave,[Parameter(Mandatory)][string]$Run,[int]$TearAfterAttempts=3,[switch]$AggressiveAfterTear)
 $ErrorActionPreference='Stop'
 $AssemblyRoot=(Resolve-Path -LiteralPath $AssemblyRoot).Path;$FirstFireSave=(Resolve-Path -LiteralPath $FirstFireSave).Path
 if(Test-Path -LiteralPath $Run){throw 'Use a fresh seal-closure branch.'}
@@ -29,7 +29,7 @@ try{
         Require ($response.Response-eq'Committed') "Seal closure command rejected: $($command.Kind) / $($response.Response) / $($response.Code)"
     }
     $hero='TEST_ONLY.actor';$comp='TEST_ONLY.companion';$enemy='TEST_ONLY.ferry-wraith';$tear=$null;$deathSaved=$false;$attackAttempts=0
-    $report.strategy=@{tearAfterActualObservedPartyAttackAttempts=$TearAfterAttempts;maximumEnemyHpBeforeTear=4}
+    $report.strategy=@{tearAfterActualObservedPartyAttackAttempts=$TearAfterAttempts;maximumEnemyHpBeforeTear=4;heroAggressiveAfterTear=[bool]$AggressiveAfterTear}
     $start=Capture;Require ($start.Revision-eq351-and!$start.FerryWraith.SealDestroyed) 'Expected genuine first-fire intact-seal checkpoint351.'
     Checkpoint 'first-fire'
     for($step=0;$step-lt140;$step++){
@@ -59,7 +59,8 @@ try{
         }
         $guarded=@($s.Stances|Where-Object {$_.ActorId-eq$actor-and$_.TurnOrdinal-eq$s.Encounter.TurnOrdinal-and[Decennium.Foundation.EncounterHistory]::InCurrent($s,$_.Revision)}).Count-gt0
         if(!$guarded){
-            $combat=[Decennium.Foundation.CombatRequest]::new($s.Encounter.CurrentTurnId,'',[int][Decennium.Foundation.CombatStance]::Guarded)
+            $stance=if($AggressiveAfterTear-and$null-ne$tear-and$actor-eq$hero){[Decennium.Foundation.CombatStance]::Aggressive}else{[Decennium.Foundation.CombatStance]::Guarded}
+            $combat=[Decennium.Foundation.CombatRequest]::new($s.Encounter.CurrentTurnId,'',[int]$stance)
             Send ([Decennium.Foundation.Command]::new("ferry.seal-close.guard.$($s.Revision)",$actor,$s.Revision,'SelectCombatStance','',0,0,$null,$combat));continue
         }
         $spent=($s.WorldIntervals|Where-Object ActorId -eq $actor).ActionSpent
