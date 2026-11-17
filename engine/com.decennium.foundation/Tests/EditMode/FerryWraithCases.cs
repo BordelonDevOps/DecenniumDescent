@@ -23,6 +23,80 @@ namespace Decennium.Foundation.Tests
         }
         private static void AddFerryWraithCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("tac10_seal_uses_owned_action_and_original_deadline",()=>{
+                // Detached, explicitly mechanical arrangements. Genuine gameplay and verified saves
+                // are retained by Probe-FerrySeal; these do not manufacture a playable campaign.
+                var session=NewFerryExpedition();var initial=ShortRestCapture(session);var policy=ClericPolicy(session);
+                var codec=new SnapshotCodec();var unchanged=codec.Encode(initial);var rows=new List<object>();
+                var resolve=typeof(TestOnlySharedWorldPolicy).GetMethod("ResolveFerrySeal",BindingFlags.Instance|BindingFlags.NonPublic);
+                var expire=typeof(TestOnlySharedWorldPolicy).GetMethod("ExpireFerrySealSuppression",BindingFlags.Static|BindingFlags.NonPublic);
+                string Resolve(Snapshot s,Command c,bool assess=false)=>(string)resolve.Invoke(policy,new object[]{s,c,assess});
+                Snapshot Arrange(string actor,long slot=0) {
+                    var s=initial.Copy();s.InventoryCombat=false;s.InventoryTurnActor="";
+                    s.WorldSchedule=s.WorldSchedule.At(slot);s.RuleClock=s.WorldSchedule.Start(slot);
+                    var body=s.Actors.Single(x=>x.Id==actor);body.X=8;body.Y=3;
+                    s.WorldIntervals=s.WorldIntervals.Select(x=>x.ActorId==actor?new WorldIntervalRecord(actor,x.LastStart):x).ToArray();
+                    return s;
+                }
+                Command Tear(Snapshot s,string actor,string suffix="")=>new Command("seal.mechanical"+suffix,actor,s.Revision,
+                    CommandKind.TearExposedSeal,FerryWraithProfile.Seal);
+                const string hero=FerryWraithProfile.Hero;
+                int own=initial.WorldSchedule.Order.ToList().IndexOf(hero);
+                Require(own>=0,"Mechanical scheduled control has no actual hero calendar.");
+                string off=initial.WorldActivityIntervals.Select(x=>x.ActorId).First(x=>initial.Characters.Any(y=>y.ActorId==x)
+                    &&WorldTiming.ForActor(initial,x)==null);
+                foreach(var spec in new[]{(Actor:hero,Slot:(long)own,Initiative:false),
+                    (Actor:hero,Slot:(long)((own+1)%initial.WorldSchedule.Order.Count),Initiative:false),
+                    (Actor:off,Slot:0L,Initiative:false),(Actor:hero,Slot:(long)own+initial.WorldSchedule.Order.Count,Initiative:true)}) {
+                    var s=Arrange(spec.Actor,spec.Slot);
+                    if(spec.Initiative) {
+                        s.InventoryCombat=true;s.InventoryTurnActor=spec.Actor;
+                        s.Encounter=new FixedEncounterRecord("TEST_ONLY.mechanical-seal",s.WorldSchedule.Origin,s.WorldSchedule.Order,
+                            new[]{s.Revision+1},new[]{checked((int)spec.Slot)});
+                    }
+                    var command=Tear(s,spec.Actor);var beforeClock=s.RuleClock;uint beforeRng=s.RandomState;
+                    Require(Resolve(s,command,true)==null&&s.FerryWraith.Rupture==null,"Seal assessment mutated or rejected a valid arrangement.");
+                    Require(Resolve(s,command)==null,"Owned Action seal control rejected.");
+                    var rupture=s.FerryWraith.Rupture;
+                    bool scheduled=WorldTiming.ForActor(s,spec.Actor)!=null;
+                    Require(rupture!=null&&s.RuleClock==beforeClock&&s.RandomState==beforeRng
+                        &&rupture.ActionLedger==(scheduled?SealActionLedger.Scheduled:SealActionLedger.OffCalendar),"Seal changed time/RNG or chose a new Action ledger.");
+                    Require(scheduled?s.WorldIntervals.Single(x=>x.ActorId==spec.Actor).ActionSpent
+                        :s.WorldActivityIntervals.Single(x=>x.ActorId==spec.Actor).Action==WorldActionCommitment.SealTear,"Seal did not debit its owned Action.");
+                    Require(rupture.ExpiresAt==(spec.Initiative?s.WorldSchedule.Origin.AddSeconds(18):beforeClock.AddSeconds(6)),
+                        "Seal used the wrong original cycle/world deadline.");
+                    Require(Resolve(s,Tear(s,spec.Actor,".again"))=="ExposedSealAlreadyTorn"&&ReferenceEquals(rupture,s.FerryWraith.Rupture),
+                        "Second rupture renewed or replaced the original timer.");
+                    s.Revision++;
+                    s.RuleClock=new RuleTime(checked(rupture.ExpiresAt.Numerator*2-rupture.ExpiresAt.Denominator),
+                        checked(rupture.ExpiresAt.Denominator*2));expire.Invoke(null,new object[]{s});
+                    Require(s.FerryWraith.ClawSuppressed,"Claw suppression expired before its endpoint.");
+                    s.InventoryCombat=false;s.InventoryTurnActor=""; // Mode closure does not replace the saved basis.
+                    s.RuleClock=rupture.ExpiresAt;expire.Invoke(null,new object[]{s});
+                    Require(!s.FerryWraith.ClawSuppressed&&s.FerryWraith.SealDestroyed&&ReferenceEquals(rupture,s.FerryWraith.Rupture),
+                        "Original endpoint did not expire suppression while retaining destruction.");
+                    long expired=s.FerryWraith.SuppressionExpiredRevision;s.RuleClock=s.RuleClock.AddSeconds(1);expire.Invoke(null,new object[]{s});
+                    Require(s.FerryWraith.SuppressionExpiredRevision==expired,"Already expired suppression was renewed or expired twice.");
+                    if(!scheduled)Throws<InvalidOperationException>(()=>s.WorldActivityIntervals.Single(x=>x.ActorId==spec.Actor).CommitActiveLabor("probe.work"));
+                    rows.Add(new{spec.Actor,spec.Slot,spec.Initiative,rupture,beforeRng,afterRng=s.RandomState,expired});
+                }
+                var spent=Arrange(hero,own);spent.WorldIntervals=spent.WorldIntervals.Select(x=>x.ActorId==hero?x.PayAction():x).ToArray();
+                Require(Resolve(spent,Tear(spent,hero))=="ActionAlreadySpent"&&spent.FerryWraith.Rupture==null,"Spent scheduled Action was reset.");
+                var noHand=Arrange(FerryWraithProfile.Actor);Require(Resolve(noHand,Tear(noHand,FerryWraithProfile.Actor))=="UsableHandRequired",
+                    "Printed natural Claw invented a free grasping hand.");
+                var far=Arrange(hero);far.Actors.Single(x=>x.Id==hero).X=7;
+                Require(Resolve(far,Tear(far,hero))=="SealOutOfReach","Out-of-reach seal was torn.");
+                var unseen=Arrange(hero);unseen.Actors.Single(x=>x.Id==hero).X=0;
+                Require(Resolve(unseen,Tear(unseen,hero))=="ExposedSealUnavailable","Unseen physical object leaked or was torn.");
+                var blind=Arrange(hero);FerryMechanicalCondition(blind,"Blinded",hero);
+                Require(Resolve(blind,Tear(blind,hero))=="ExposedSealUnavailable","Blind actor used remembered physical position as direct perception.");
+                var malformed=Arrange(hero);
+                Require(Resolve(malformed,new Command("seal.bad-payload",hero,malformed.Revision,CommandKind.TearExposedSeal,
+                    FerryWraithProfile.Seal,x:1))=="InvalidSealRequest","Extraneous seal payload accepted.");
+                Require(unchanged.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Mechanical seal controls mutated the genuine session.");
+                File.WriteAllText(Path.Combine(directory,"seal-mechanical-controls.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="Four labeled detached Action/basis arrangements with before/at/after expiry, closure, no time/RNG and repeat controls; six negative access/payload controls; no manufactured gameplay",rows}));
+            });
             cases.Add("tac10_petrified_poison_immunity_retains_event_condition_provenance",()=>{
                 // Supplied poison packets, temporary HP and condition events on detached states.
                 // No new connected poison/Petrified producer or supported mechanical save is claimed.
