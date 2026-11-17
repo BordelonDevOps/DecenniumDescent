@@ -25,6 +25,8 @@ def main():
     parser.add_argument('--phase', choices=['before', 'after'], required=True)
     parser.add_argument('--host-commit', required=True)
     parser.add_argument('--run', action='append', required=True)
+    parser.add_argument('--adapter-run')
+    parser.add_argument('--static-report')
     args = parser.parse_args()
     compiled = read(BUILD / 'results.json')
     assert compiled['coreCompilation'] == compiled['status'] == 'PASS' and len(compiled['sourceHashes']) == 468
@@ -56,6 +58,43 @@ def main():
     assert len(reports[-1]['seats']) == 4
     for row in reports[-1]['seats']:
         assert bool(row['missing']) == (args.phase == 'before')
+    adapter_result, static_result = None, None
+    if args.adapter_run:
+        assert args.phase == 'after'
+        directory = ROOT / args.adapter_run
+        adapter = read(directory / 'RESULT.json')
+        assert adapter['status'] == 'PASS_ACTUAL_INHERITED_PRESENCE_AND_SANCTUARY_ADAPTERS'
+        assert adapter['launcher']['sha256'] == sha(host)
+        assert (directory / 'Open-ConnectedExpedition.executed.ps1').read_bytes() == host
+        assert adapter['script']['sha256'] == sha((directory / 'Probe-FerryInheritedAdapters.executed.ps1').read_bytes())
+        assert adapter['input']['sha256'] == sha((directory / 'source-inputs.jsonl').read_bytes())
+        for dll in adapter['assemblies']:
+            assert dll['sha256'] == sha((BUILD / ('Decennium.Foundation.' + dll['name'] + '.dll')).read_bytes())
+        pairs = {}
+        for restored in directory.glob('*-restored.ddsave'):
+            original = restored.with_name(restored.name.replace('-restored.ddsave', '.ddsave'))
+            assert original.read_bytes() == restored.read_bytes()
+            pairs[original.name] = sha(original.read_bytes())
+        assert len(pairs) == 4
+        requests = [json.loads(line) for line in (directory / 'executed-inputs.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+        responses = [json.loads(line) for line in (directory / 'responses.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+        assert len(requests) == len(responses)
+        committed = [row for row in responses if row.get('Response') == 'Committed']
+        assert [row['Revision'] for row in committed] == list(range(1, adapter['finalRevision'] + 1))
+        assert adapter['presenceReceipt']['Revision'] == 129
+        assert any(request['op'] == 'defender-sanctuary' and response.get('Response') == 'Committed' for request, response in zip(requests, responses))
+        for path in sorted(directory.iterdir()):
+            assert path.is_file()
+            members['adapters/' + path.name] = path.read_bytes()
+        adapter_result = dict(directory=args.adapter_run, finalRevision=adapter['finalRevision'], commands=len(committed), restorePairs=pairs, pureProbes=len(adapter['probes']))
+    if args.static_report:
+        static_path = ROOT / args.static_report
+        static = read(static_path)
+        assert static['status'] == 'PASS' and all(row['passed'] for row in static['checks'])
+        for row in static['sourceHashes']:
+            assert sha((ROOT / 'engine' / row['path'].replace('\\', '/')).read_bytes()) == row['sha256']
+        members['static/results.json'] = static_path.read_bytes()
+        static_result = dict(inputs=len(static['sourceHashes']), sha256=sha(static_path.read_bytes()), hostIncludedInStaticInputs=False)
     members['support/Retain-FerryConsoleProjection.py'] = Path(__file__).read_bytes()
     members['references/public-dash-RETENTION.json'] = (PACKET / 'public-dash-checkpoint/RETENTION.json').read_bytes()
     manifest = [dict(path=name, bytes=len(raw), sha256=sha(raw)) for name, raw in sorted(members.items())]
@@ -74,6 +113,8 @@ def main():
                   hostSha256=sha(host), compilationInputs=468, additionalCompilation=False, executions=reports,
                   members=len(manifest), archiveBytes=output.stat().st_size, archiveSha256=sha(output.read_bytes()),
                   collectorSha256=sha(Path(__file__).read_bytes()), moduleAccepted=False, fivePaths=False)
+    result['inheritedAdapters'] = adapter_result
+    result['staticPackage'] = static_result
     (out / 'MEMBERS.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     (out / 'RETENTION.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({k: v for k, v in result.items() if k != 'executions'}))
