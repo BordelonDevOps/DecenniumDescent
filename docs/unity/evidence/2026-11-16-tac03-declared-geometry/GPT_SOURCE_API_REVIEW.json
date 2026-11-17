@@ -1,0 +1,41 @@
+{
+  "threadId": "6af8ba86-20cc-83e9-bed0-c2d616fefcdf",
+  "requestId": "78eb028f-cff8-450b-bfb2-7f5d4de86a88",
+  "responseId": "187b46f8-dfeb-5c95-9554-6c7e0b6b9113",
+  "reviewedCommit": "28e8b268c73ebdc3930925909bb53800db3e62c4",
+  "startedAt": 1794877610.654,
+  "completedAt": 1794877969.999583,
+  "actualResponse": "**Approved for bounded TAC-03 implementation under the contract at `28e8b268…`, with the clarifications below recorded.** I found no concrete source/API blocker requiring another prerequisite. This authorizes the implementation attempt; it does not accept an implemented module.\n\nI reviewed the [complete contract](https://github.com/BordelonDevOps/DecenniumDescent/blob/28e8b268c73ebdc3930925909bb53800db3e62c4/docs/unity/evidence/2026-11-16-tac03-declared-geometry/SOURCE_API_CONTRACT.md), accompanying audit materials and relevant accepted source.\n\n| Proposal | Decision |\n|---|---|\n| **G-DECL-01** | **Approve.** Existing observation dimensions/cells remain the sole persisted map. The additional record binds terrain and declaration semantics to trusted content. Ordinary and tactical consumers must use the same immutable projection or enforce exact equality. A missing or malformed selected binding must never invoke the legacy fallback. |\n| **G-CONTEXT-01** | **Approve the exact fresh TEST_ONLY declaration:** 12×5, the five listed blocker cells, Difficult `(5,2)`, Severe `(6,2)`, existing actors and unchanged resources, encounters and calendars. The declared static-map knowledge is approved for the specified existing actors; it grants no dynamic or hidden knowledge. The constructor’s 1–64 bounds do not authorize arbitrary new scenes. |\n| **G-SUPPORT-01** | **Approve.** Preserve the current all-channel anchor-support limitation, including `(2,1)`. Keep sight, effect and movement ray channels separate. This does not establish a general rule that sight-only obstruction is solid terrain. |\n| **G-MOVE-01** | **Approve.** Preserve exact physical positions, destination terrain costs, ordinary cardinal movement, tactical diagonal movement, occupancy/reservations, paid budgets, work exclusion and interrupt ordering. Geometry selection creates no new turn, resource, movement or recovery. |\n| **G-SAVE-01** | **Approve additive envelope113** for this selected composition. It must preserve the complete inherited Bishop112 behavior and components over the accepted internal layout, with geometry added explicitly. Old formats retain their encoding, trusted bindings and validation behavior. |\n| **G-EVID-01** | **Approve the stated module-specific allocation.** Genuine connected ordinary and tactical travel beyond x4, finite gameplay, costs, persistence and continuation remain mandatory. Mechanical controls and existing full-command regressions may cover the specifically excluded procedures, provided their configuration and dispatch exclusions are demonstrated. |\n\nThe following implementation and evidence precisions are mandatory:\n\n1. **Keep movement corners separate from ray corners.** Tactical diagonal movement rejects when both adjacent side anchors lack support. Exact supercover rays use their requested channel and existing corner-intersection behavior. Do not make one unsupported side automatically block movement by reusing a ray result.\n\n2. **Demonstrate shared terrain costs.** The proposed normal steps `(3,3)→(4,3)→(5,3)` establish crossing the old boundary, but do not demonstrate weighted terrain. Retain actual ordinary Difficult/Severe traversal and a tactical non-Normal destination through the real command pipeline, either in the principal campaign or a separately identified command control. Compare movement expenditure as well as elapsed time and fractional position.\n\n3. **Do not infer an opportunity attack from those example steps.** Both remain adjacent to a defender at `(4,4)`. OA/Press coverage must execute the actual departure, arming, response and parent-continuation paths. A route without those events cannot replace their controls. Preserve the existing legal controller fallback; do not add private-state pathfinding to compensate for obstacles or insufficient movement.\n\n4. **Prove every exclusion semantically.** The absence of crossbow items in the archived view is descriptive, not an exclusion proof. Reconcile selected configuration, grants, genesis records, schema guards and internal dispatch for Overwatch, general routes, camps and hunting traps. If a supposedly excluded path is reachable, integrate it or return the concrete unresolved dependency. Do not disable an existing reachable procedure to preserve the test allocation.\n\n5. **Preserve trusted restore and knowledge boundaries.** Envelope113 must participate consistently in wire selection, inherited decoding, cloning, fingerprints and verified replay. Recomputed digests must not authorize altered terrain or bounds. Include beyond-boundary and fractional/pending restore controls, existing explicit backup-recovery policy, and forged geometry/history rejection. Controller discovery must use known static terrain and permitted observations, not full-state legality queries that reveal hidden occupancy.\n\nThe existing post-recovery encounter remains the encounter being exercised. Preserve its actual opponent/seat mapping, stance requirements, Dead closure predicate, outgoing-slot advancement and epoch ownership. No new admission or timing policy is needed for this geometry slice.\n\n**Independent verification:** I checked all **131 pinned blobs** against Git identities, byte lengths and SHA256; independently reproduced the searches across **457 C# files** and matched all four inventories:\n\n- Fixed floor: **12 files / 15 lines**\n- Explicit bounds: **14 / 38**\n- Spatial consumers: **49 / 148**\n- Profile/save gates: **52 / 179**\n\nI also reconciled the selected source extracts and archived r218 public-view member, inspected the verifier’s 30 assertions and relevant movement/layout/codec/dispatch code, and confirmed exactly nine changed files with an empty engine diff against `2733b9fd…`. Separate reviewers performed disjoint read-only inspections.\n\nI did **not** run the report-generating verifier, compile C#, execute gameplay, restore saves or rerun the 1,570-case qualification.\n\nAfter recording these clarifications and Codex agreement, proceed with this bounded geometry implementation and its required frozen qualification. Actual implementation/final review remains mandatory. Then return the amended complete TAC-10 contract. Dependency edges remain unchanged; TAC-10 and Consecration runtime remain held. Whole-engine/P1/production remain open, Unity deferred, and storage/Support held.",
+  "codexAgreement": {
+    "agreed": true,
+    "scope": "All six approved proposals and five mandatory precisions; existing post-recovery context retained. Only bounded TAC-03 implementation attempt authorized, followed by frozen qualification and actual final review.",
+    "additionalImplementationChecks": [
+      "Include the console host's explicit profile selection and inherited view switches in implementation source bindings; C# lexical inventory does not cover PowerShell hosts.",
+      "Archived accepted entered r231 and closed r432 prove existing party positions and actual closure; they do not prove the proposed new movement path."
+    ]
+  },
+  "runtimeAuthorized": true,
+  "moduleAccepted": false,
+  "acceptedEngine": "2733b9fd75e2159ad73312b9583311693b925598",
+  "nextGate": "Implement bounded declared geometry113; freeze exact source and qualify actual movement, weighted terrain, interrupts, public behavior, saves/replay and original1570+new cases; actual implementation/final review before amended TAC-10.",
+  "independentVerification": {
+    "pinnedBlobs": 131,
+    "searchedCsharpFiles": 457,
+    "sourceAssertionsInspected": 30,
+    "reviewers": "GPT reports separate disjoint read-only reviewers",
+    "didNotRun": [
+      "source report generator",
+      "C# compilation",
+      "gameplay",
+      "save restoration",
+      "1570-case qualification"
+    ]
+  },
+  "limits": {
+    "wholeEngineComplete": false,
+    "productionAuthority": false,
+    "UnityDeferred": true,
+    "storageHeld": true,
+    "githubSupportHeld": true
+  }
+}
