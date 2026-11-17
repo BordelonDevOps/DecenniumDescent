@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 genuine paid admission passes; same module continues.** Frozen84d0913c74ac9995a32476ad05ea97cb8cf2f492 compiles465 C#9 inputs and passes the fresh new-profile campaign through the earlier connected gameplay, nine paid walking edges, current post-recovery defender Start admission and exact verified save/restore at revision346/time344069/2. The [checkpoint](evidence/2026-11-16-tac10-ferry-wraith-runtime/ADMISSION_CHECKPOINT.md) retains174 rehashed source/DLL/result/save members. Owned calendars, carried Action/movement/interactions/BonusAction/Reaction and existing casting/recharge paths are integrated. Creature controller/actions and seal work after this source remain in progress; full original1576-plus-new/five-path/95-113 qualification, consumer reconciliation and actual final GPT review remain. Accepted engine7261052ae, no module acceptance or successor. Whole-engine/P1/production open, Unity deferred, storage/Support held.
+
+
 **2026-11-17: TAC-10 partial target/check and typed-damage integration.** Frozen9cbac60e builds465 C#9 inputs;22 selected cases, seven genesis checks and static validation pass. [Exact checkpoint and limits](evidence/2026-11-16-tac10-ferry-wraith-runtime/TARGET_CHECKPOINT.md);89-member archive SHA256 e74645206cfee63d176bea9381e4dd361cbc777aff3cf6025d48903e12489a56. Actual GPT damage-order response8280e942-e79a-5b05-a17c-bea59dcaef4e plus Codex agreement preserves accepted save/flat/defense order. No full-suite or genuine Ferry encounter claim. Paid admission and epoch work continue in this same module; accepted engine7261052ae, successor closed, Unity deferred, storage/Support held.
 
 
