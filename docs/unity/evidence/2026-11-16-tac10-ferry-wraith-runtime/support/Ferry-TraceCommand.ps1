@@ -4,7 +4,7 @@ function ConvertTo-FerryRequest($receipt) {
     $c=[Decennium.Foundation.CommandHistory]::Read($receipt)
     $r=@{op='submit';id=$c.Id;actor=$c.Actor;revision=$c.ExpectedRevision;kind=$c.Kind.ToString();target=$c.Target;x=$c.X;y=$c.Y;
         seat=$(if($c.Actor-eq'TEST_ONLY.third-combatant'){'FirstOpponent'}elseif($c.Actor-eq'TEST_ONLY.recovery-defender'){'RecoveryOpponent'}elseif($c.Actor-eq'TEST_ONLY.ferry-wraith'){'FerryOpponent'}else{'Player'})}
-    if($receipt.Principal-eq'TEST_ONLY.tac10-later-defender.v1'-and$c.Id.StartsWith('tac10.')){$r.op='auto';return $r}
+    if($receipt.Principal-eq'TEST_ONLY.tac10-later-defender.v1'-and$c.Id.StartsWith('tac10.')-and$c.Kind-notin'UseIntimidatingPresence','RespondSanctuary'){$r.op='auto';return $r}
     if($receipt.Principal-eq'TEST_ONLY.ferry-controller'-and$c.Id-match'^ferry\.[0-9a-f]{64}$'){$r.op='auto';return $r}
     if($c.Kind-eq'AdvanceClock'){$r.op='clock'}
     elseif($c.Kind-eq'EndFixedEncounter'){$r.op='close'}

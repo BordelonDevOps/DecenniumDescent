@@ -108,6 +108,7 @@ $session = if ($FerryWraith) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$DeclaredGeometry = $DeclaredGeometry -or $FerryWraith
 $BishopEntry = $BishopEntry -or $DeclaredGeometry
 $PostRecoveryEncounter = $PostRecoveryEncounter -or $BishopEntry
 
