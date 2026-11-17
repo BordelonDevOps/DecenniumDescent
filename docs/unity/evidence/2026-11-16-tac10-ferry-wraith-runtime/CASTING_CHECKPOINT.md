@@ -1,5 +1,8 @@
 # Four owned spells execute on actual Ferry turns
 
+Actual GPT responsec1221e78-80be-550c-83bf-3e38414875ee and Codex agreement find no concrete blocker within this four-spell lifecycle scope; [exact review](GPT_CASTING_REVIEW.json). Ward activation/expiry is proved here, not its isolated AC contribution; Guidance lifecycle/observed Dispel is proved, not check consumption. Refrain/adverse casting/broader consumers remain. Four casts are RNG-free, but the intervening real creature attack is not. This partial review does not accept TAC-10.
+
+
 The preceding ordinary-world seal checkpoint now has actual GPT reviewf0bf31cb-f321-5453-8fe3-ad7b6050d70d and Codex agreement, with no concrete blocker within that partial scope. [Exact limits](GPT_WORLD_SEAL_REVIEW.json). The present four-spell checkpoint is separately published at4a79a45a14817d6ddee98c099b5ef661de01b598 and remains pending actual review.
 
 

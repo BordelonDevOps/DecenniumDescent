@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 genuine Sanctuary source/cached-reaction checkpoint retained; full regression launched.** [Evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/SANCTUARY_CHECKPOINT.md): runtime948b9bff0/drivercbc6f4ef0; actual Sanctuary, non-class WIS0 failure, full pending Claw payload, lawful retarget/forgo, real3fire/concentration consequence, cached opportunity decline and next source Start refresh.70 members/nine selected restore pairs; four failed aggregate probes retained, including explicit conservative history-capacity rejection. Actual four-spell reviewc1221e78/Codex agreement closes partial lifecycle scope only. Full1583 run9d490d26 at engine/artifacts/ferry-wraith/full-regression-20261117T091322Z retains original1576 order/shards and seven new cases, exactdb91 source/frozen DLLs; six live processes observed, no final pass claimed. Remaining module/engine requirements open; no successor, Unity/storage/Support held.
+
+
 **TAC-10 actual ordinary-world seal review closes its partial witness.** GPT responsef0bf31cb/Codex agreement confirms own-slot/other-slot Action qualification at evidencef4140a16f; [retained review](evidence/2026-11-16-tac10-ferry-wraith-runtime/GPT_WORLD_SEAL_REVIEW.json). Correct original deadline and legitimate old-calendar Start53 refresh are preserved. Independent checks are source/artifact/limited binary extraction, not execution. Subsequent four-spell driver7c8b7347a/evidence4a79a45a1 awaits actual review. Full TAC-10/engine acceptance remains open; no successor.
 
 

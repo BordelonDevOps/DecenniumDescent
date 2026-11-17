@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Latest: genuine Sanctuary source choices and cached opportunity pass.** [Sanctuary evidence](SANCTUARY_CHECKPOINT.md) binds unchanged runtime948b9bff0/drivercbc6f4ef0, actual paid Sanctuary, WIS0/9vs12 failure, full saved Claw payload, regular forgo and actual3fire retarget with a separate successful concentration save, cached opportunity decline with no Reaction/RNG and actual next-owner-Start refresh.70 rehashed members/nine selected restore pairs; distinct branch lineages and four failed aggregate attempts are explicit. Existing conservative history-capacity reservation remains tracked. Actual four-spell GPT reviewc1221e78/Codex agreement closes only its lifecycle scope. Full1583 regression9d490d26 is running in six workers from exactdb91 engine/frozen DLLs; no full pass claimed. Remaining ability/reaction/source/privacy/consumer/five-path/compatibility/final-review gates stay open; no successor.
+
+
 **Actual ordinary-world review received.** GPT responsef0bf31cb and Codex agreement confirm the genuine own-slot/other-slot seal Action witness; [exact review](GPT_WORLD_SEAL_REVIEW.json) states its source/artifact/binary-extraction limits and no execution/causal-replay claim. Other-slot Action refresh occurs at actual old-calendar Start53, not admission. The subsequent four-spell packet is published at4a79a45a1 and awaits actual review. Same TAC-10 module remains open; no successor.
 
 
