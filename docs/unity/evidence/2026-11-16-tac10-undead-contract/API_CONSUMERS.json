@@ -1824,6 +1824,134 @@
       "matchedFiles": 0,
       "matchedLines": 0,
       "rows": []
+    },
+    "fixed-fixture-geometry": {
+      "pattern": "TestOnlyPolicy\\.Walkable",
+      "nonTestOnly": true,
+      "matchedFiles": 12,
+      "matchedLines": 15,
+      "rows": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+          "hits": [
+            {
+              "line": 17,
+              "text": "|| charterAttemptProfile?.Key != new TestOnlyCharterAttemptProfile().Key || TestOnlyPolicy.Walkable(2, 1))"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+          "hits": [
+            {
+              "line": 244,
+              "text": "if (!TestOnlyPolicy.Walkable(site.RouteX, site.RouteY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+          "hits": [
+            {
+              "line": 107,
+              "text": "if (route.Positions.Any(p => !TestOnlyPolicy.Walkable(p.X, p.Y))) return \"RouteGeometryOutsideFixtureMap\";"
+            },
+            {
+              "line": 231,
+              "text": "if (!TestOnlyPolicy.Walkable(leg.FromX, leg.FromY) || !TestOnlyPolicy.Walkable(leg.ToX, leg.ToY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHuntingTrap.cs",
+          "hits": [
+            {
+              "line": 119,
+              "text": "||!TestOnlyPolicy.Walkable(definition.AnchorX,definition.AnchorY))return \"InvalidHuntingTrapFixture\";"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterDefenderDecision.cs",
+          "hits": [
+            {
+              "line": 113,
+              "text": "bool Walkable(int x, int y) => TestOnlyPolicy.Walkable(x, y) && ObservationGeometry.SupportsAnchorAt(state, x, y);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "hits": [
+            {
+              "line": 571,
+              "text": "&&TestOnlyPolicy.Walkable(p[0],p[1])&&!used.Contains(p[0]+\",\"+p[1]));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+          "hits": [
+            {
+              "line": 293,
+              "text": "if((directionX!=0||directionY!=0)&&TestOnlyPolicy.Walkable(toX,toY)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "hits": [
+            {
+              "line": 12,
+              "text": "=> TestOnlyPolicy.Walkable(x, y) && (observationFixture == null || ObservationGeometry.SupportsAnchorAt(s, x, y));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+          "hits": [
+            {
+              "line": 103,
+              "text": "|| this.actors.Any(x => !TestOnlyPolicy.Walkable(x.X, x.Y))"
+            },
+            {
+              "line": 104,
+              "text": "|| !TestOnlyPolicy.Walkable(workSite.X, workSite.Y)"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalCombatFixture.cs",
+          "hits": [
+            {
+              "line": 14,
+              "text": "{if(!TestOnlyPolicy.Walkable(x,y)||walkingSpeed<0||hp<1||maximumHp<hp||maximumHp>26)throw new ArgumentException(\"Invalid third actor fixture facts.\");X=x;Y=y;WalkingSpeed=walkingSpeed;Hp=hp;MaximumHp=maximumHp;}"
+            },
+            {
+              "line": 20,
+              "text": "{if(!TestOnlyPolicy.Walkable(x,y)||!Enum.IsDefined(typeof(TerrainCost),terrain))throw new ArgumentException(\"Invalid supplied terrain.\");X=x;Y=y;Terrain=terrain;}"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+          "hits": [
+            {
+              "line": 51,
+              "text": "(px,py)=>TestOnlyPolicy.Walkable(px,py)&&(!ObservationRules.Enabled(s)||ObservationGeometry.SupportsAnchorAt(s,px,py)));"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Unity/FoundationLab.cs",
+          "hits": [
+            {
+              "line": 117,
+              "text": "for(int x=0;x<5;x++)for(int y=0;y<5;y++)MakeSquare(\"TEST_ONLY_tile\",x,y,1,TestOnlyPolicy.Walkable(x,y)?new Color(0.13f,0.19f,0.22f):Color.gray,0.94f);"
+            }
+          ]
+        }
+      ]
     }
   },
   "limits": "Lexical inventory with direct inspection of actor validation, numeric projections, attack/defense targets, life, condition immunity, controller and context APIs. Not a semantic proof that every call site is safe; implementation must reconcile all rows and audit indirect consumers."

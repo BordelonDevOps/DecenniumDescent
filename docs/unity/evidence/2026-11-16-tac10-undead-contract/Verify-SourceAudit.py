@@ -55,6 +55,7 @@ def main():
         'damage-defense': r'Resistan|Immunit|DamageType|DamageFlavor',
         'life': r'UsesDeathSaves|ActorLifeValidation',
         'physical-seal-commands': r'\bDisarm\b|\bSunder\b|\bImprovise\b|DestroySeal|InvalidateSeal',
+        'fixed-fixture-geometry': r'TestOnlyPolicy\.Walkable',
     }
     texts, searches = {}, {}
     for p in cs:
@@ -81,6 +82,7 @@ def main():
         'Laboratory/Model/PlanarCombatGeometry.cs', 'Laboratory/Model/PlaytestTiming.cs',
         'Laboratory/Model/SharedWorldCombatPolicy.cs', 'Laboratory/Model/SharedAuraOfFaith.cs',
         'Laboratory/Model/SharedRadiance.cs',
+        'Laboratory/Model/TestOnlyPolicy.cs',
     ]
     for p in extra:
         sources[CODE+p] = ENGINE
@@ -133,6 +135,8 @@ def main():
     check('No current named Disarm Sunder Improvise or seal command in non-test Csharp scan', searches['physical-seal-commands']['matchedLines']==0)
     check('Generic object durability remains an unresolved source dependency', 'No invented durability' in text(RB+'docs/mechanics/COMBAT_ACTION_PLAYTEST.md'))
     check('Geometry can declare larger bounded maps without changing units', 'width > 64' in text(CODE+'Laboratory/Model/ObservationGeometry.cs') and 'height > 64' in text(CODE+'Laboratory/Model/ObservationGeometry.cs'))
+    check('World movement still intersects fixed5x5 fallback', '=> TestOnlyPolicy.Walkable(x, y) &&' in text(CODE+'Laboratory/Model/SharedWorldCommandQueries.cs'))
+    check('Tactical movement and fixed bounds also require integration', 'x < 5 && y >= 0 && y < 5' in text(CODE+'Laboratory/Model/TestOnlyPolicy.cs') and 'TestOnlyPolicy.Walkable(px,py)' in text(CODE+'Laboratory/Model/TacticalMovementPolicy.cs'))
     check('Existing recovery actor remains fixed humanoid-style class body', 'Warrior12,7,7' in text(CODE+'Runtime/Core/PostRecoveryEncounterRecords.cs'))
     check('New actor must be registered from genesis rather than entry', 'Entry never creates its actor' in text(CODE+'Runtime/Core/PostRecoveryEncounterRecords.cs'))
     check('Accepted engine is unchanged', not git('diff',ENGINE,'--','engine').strip())
@@ -147,7 +151,7 @@ def main():
                 pinnedBlobs=len(bindings),searchedTrackedCsharpFiles=len(cs),numericCandidateFiles=searches['numeric']['matchedFiles'],
                 numericCandidateLines=searches['numeric']['matchedLines'],checks=checks,engineUnchanged=True,
                 newCompilation=False,newGameplay=False,runtimeAuthorized=False,
-                unresolved=['Attack category/reach operational consensus','Non-class actor consumer integration and life eligibility',
+                unresolved=['TAC-03 shared geometry prerequisite for12x5 context', 'Attack category/reach operational consensus','Non-class actor consumer integration and life eligibility',
                             'Physical seal destruction/invalidation and suppression clock','Fresh connected context and finite route approval',
                             'Required direct defense/trait/compatibility evidence, without an inherited exception'])
     write('SOURCE_AUDIT.json',report)
