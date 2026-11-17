@@ -1,5 +1,8 @@
 # Genuine Ferry combat closes into paid management and preparation
 
+Actual GPT response3165bc12-577b-5364-84fd-7104847d300e found no concrete blocker within this partial continuation scope; [exact review and Codex agreement](GPT_CONTINUATION_REVIEW.json). Its independent source/artifact/arithmetic checks did not include execution or compilation. TAC-10 remains unaccepted. The subsequent [ordinary-world seal branches](WORLD_SEAL_CHECKPOINT.md) preserve the main continuation and its actual3RP.
+
+
 The actual source-bound continuation now reaches **Dead, paid encounter closure, retrieval of an existing owned weapon, preparation and continued movement**, with identical save/restore and real backup recovery. This is a connected gameplay witness within the approved TAC-10 module. It does not complete module qualification, authorize a successor, or complete the engine.
 
 The runtime remains frozen `948b9bff0604e15cfb2d5419be9658392bcb2bcf`; the driver is committed at `e744c04a35cfb94e0f77207e3f35610b77b9868b`. No new runtime compilation is claimed. The existing468-input/four-DLL runtime build and its exact source remain in the committed [seal packet](seal-checkpoint/RETENTION.json); only the subsequently added focused test differs in engine source. Actual GPT response `28b6f6a5-57ae-5e7a-8779-a057a0f8dd40` found no concrete blocker in that partial seal checkpoint, and Codex agrees. [Exact review and limits](GPT_SEAL_REVIEW.json). This is not final TAC-10 acceptance.
