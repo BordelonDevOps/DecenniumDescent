@@ -54,6 +54,9 @@ def main():
                               executedSha256=sha(committed), commands=len(result.get('commands', [])),
                               restorePairs=len(result.get('restorePairs', [])), privatePairs=len(result.get('pairs', [])),
                               finalRevision=result.get('finalRevision'), error=result.get('error')))
+    for extra in manifest.get('additionalFiles', []):
+        assert extra['member'] not in members and '..' not in Path(extra['member']).parts
+        members[extra['member']] = (ROOT / extra['source']).read_bytes()
     output.mkdir()
     archive = output / 'bounded-runs.zip'
     with zipfile.ZipFile(archive, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as bundle:
