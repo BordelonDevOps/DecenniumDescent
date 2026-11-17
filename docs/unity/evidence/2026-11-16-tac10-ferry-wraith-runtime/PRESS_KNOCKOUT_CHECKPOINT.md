@@ -1,0 +1,22 @@
+# TAC-10 genuine Press and pending knockout checkpoint
+
+The source Claw now has retained, passing genuine Press-follow and pending-knockout continuations on unchanged runtime `c8ffee78d5047131317ff923c8e3a575b6c51f3a`, using [driver](support/Probe-FerryPressKnockout.ps1) `6fcad393427fa1376b0c26f70ce21cd4d2d8003a`. These are alternate continuations of the authentic r351 first-fire save, not one combined campaign or TAC-10 acceptance.
+
+The Press branch executes 15 commands to r366/time344097/2. A real source Claw at r358/Start4 rolls9+3 againstAC11 and arms Press until the original next owning Start7. Hero departure from8,2 to7,2 produces the actual opportunity and then a public Press decision. The source seat explicitly accepts its offered choice; the source follows9,1→8,2 into the actually vacated anchor. Its once-per-interval Press allowance is consumed, while shared Action, Reaction and ordinary movement records, clock, RNG and attack count remain unchanged. Exact retry does not repeat movement. The actual next source Start7 refreshes the interval. Four selected save/restore pairs match bytes.
+
+The knockout prefix executes 42 commands to r393. Real repeated Claw attacks reduce the hero to3HP, then an actual natural10+3 hit rolls4fire. That event records one raw4/effective4 typed-damage boundary and the already-rolled Wound d20=4/injury d6=2. The retained `AskIfEligible` choice leaves the prior3HP life state pending until the source owner decides. The pending save strictly restores.
+
+Two separately restored branches each execute four further commands to r397/time344153/2:
+
+- Ordinary outcome resolves to0HP/Dying, retaining the prior rolls and RNG4126952768. At the actual following hero Start, its real death save records one failure and advances RNG to4141489706.
+- Knockout resolves to0HP/Stable. It retains the same attack/damage/Wound/injury and draws only the new recovery d4=2, advancing RNG to4141489706. Its deadline is344145/2+7200=358545/2. The following hero Start preserves Stable life and RNG, with no death save or early recovery.
+
+Neither branch appends or changes the typed-damage boundary, redraws prior dice, repeats life settlement on retry, or grants the party ownership of the source decision. Revoked source authority is rejected. Five knockout save/restore pairs match. This particular fire event has no resistance reduction; the wider typed-defense mechanical evidence remains separate.
+
+An interface limit is explicit: public `Submit` and the public decision view support both choices, but generic query returns `UnsupportedOperation` for `RespondPress` and `ResolveKnockout`; Press discovery returns no candidates. The driver records those results and does not claim query/discovery support or use a private execution/grant fallback. Actual GPT review should assess this limit against the approved public-interface acceptance requirements before treating it as settled.
+
+[RETENTION.json](press-knockout-checkpoint/RETENTION.json), [MEMBERS.json](press-knockout-checkpoint/MEMBERS.json), and the [49-member archive](press-knockout-checkpoint/press-knockout.zip) retain65 alternate commands, nine matching save pairs, exact executed script/input, all outputs and frozen build references. Archive:731,588bytes; SHA256 `766d54f7e6c6058c112b1456cb3e3b50b38445cab2204d184f7e099403b527a1`. The collector authenticates468 source inputs and all three loaded runtime DLLs against the retained public-Dash build; no new compilation or engine change occurred.
+
+Following [actual GPT Dash correction review](GPT_PUBLIC_DASH_REVIEW.json), the corrected full regression started in original run `72f6bdda13924fad8eb5b516ec19018b`, at `engine/artifacts/ferry-wraith/dash-regression-20261117T112529Z`, launcher source `fc2cf1b76`. It retains the exact1,576 predecessor order/shard membership plus eight explicitly named new cases. Six original workers were observed live and their launch/start/source/DLL bindings retained: A16160/281, B1972/268, C16484/263, D19712/259, E3424/257, F12208/256. This is an in-progress launch, not a full pass; do not restart on an observation timeout.
+
+Actual Press/KO review, after-exit Dash retry/fresh denial, remaining source/ability/consumer/privacy/forgery gates, full corrected regression, five paths, authentic95–113 compatibility and final agreement remain required. The main r462/3RP continuation is unchanged. No successor; Unity integration, storage cleanup and GitHub Support remain held.
