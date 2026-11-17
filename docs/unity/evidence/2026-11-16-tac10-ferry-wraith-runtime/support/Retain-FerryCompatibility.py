@@ -70,16 +70,15 @@ def main():
         wire_reports[str(wire)] = {k: result[k] for k in ('sourceArchiveSha256','authenticCheckpoints','actualContinuationCommandsPerRole','comparedCanonicalAndViews','newProfileRejections')}
     # Bind the authentic predecessor archives, not just their extracted filenames.
     archive_paths = {
-        '111': '2026-11-16-chr03-bishop-runtime',
-        '112': '2026-11-16-exp07-post-recovery',
-        '113': '2026-11-16-tac03-declared-geometry-runtime',
+        '111': '2026-11-16-exp07-post-recovery/implementation/qualification-evidence.zip',
+        '112': '2026-11-16-chr03-bishop-runtime/final/qualification-evidence.zip',
+        '113': '2026-11-16-tac03-declared-geometry-runtime/qualification-checkpoint/qualification-checkpoint.zip',
     }
     authenticated_archives = []
-    for wire, folder in archive_paths.items():
+    for wire, relative_path in archive_paths.items():
         expected = wire_reports[wire]['sourceArchiveSha256']
-        candidates = sorted((PACKET.parent / folder).glob('*.zip')) + sorted((PACKET.parent / folder).glob('*/*.zip'))
-        found = next((p for p in candidates if sha(p.read_bytes()) == expected), None)
-        assert found is not None, 'Authentic predecessor archive missing: ' + wire
+        found = PACKET.parent / relative_path
+        assert sha(found.read_bytes()) == expected, 'Authentic predecessor archive differs: ' + wire
         authenticated_archives.append(dict(wire=wire, path=found.relative_to(ROOT).as_posix(), sha256=expected))
     for root in (LEGACY, WIRE113):
         for before_path in root.rglob('execution-sources.before.json'):
@@ -138,6 +137,8 @@ def main():
                  sourceBindings=bindings,authenticatedPredecessorArchives=authenticated_archives,omittedDuplicateAssemblies=omitted_dlls,
                  members=len(manifest),archiveBytes=output.stat().st_size,archiveSha256=sha(output.read_bytes()),
                  collectorSha256=sha(Path(__file__).read_bytes()),moduleAccepted=False,
+                 collectorAttempts=[dict(sourceCommit='22938e6c3',outcome='Failed before output creation: wrong111/112 archive-parent mapping'),
+                                    dict(sourceCommit='0b9ebd367',outcome='Failed before output creation: expanding archive lookup did not correct the wrong parent mapping')],
                  limits='Original95-112 predecessor drivers also reject their own then-new profiles; those counts are not Ferry rejection claims. The separate actual Ferry control rejects all113 selected old endpoints/checkpoints unchanged. Detached controller pairs vary RNG, living enemy HP and enemy STR/DEX only; they are pure projection controls, never gameplay/adopted saves. No claim about untested private-state dimensions.')
     (OUT/'MEMBERS.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
     (OUT/'RETENTION.json').write_text(json.dumps(summary,indent=2)+'\n',encoding='utf-8')
