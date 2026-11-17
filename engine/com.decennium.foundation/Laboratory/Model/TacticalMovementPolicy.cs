@@ -81,8 +81,9 @@ namespace Decennium.Foundation.Laboratory
             if (!CanReactToOrdinaryDeparture(s, reactor, move.ActorId)) return false;
             var body=s.Actors.Single(a=>a.Id==reactor);
             // This admitted fixture supplies hostility and sight for legal adjacent melee attacks.
-            // Every reactor has a usable ordinary unarmed attack, even after dropping a Club.
-            return Adjacent(body.X,body.Y,move.FromX,move.FromY)&&!Adjacent(body.X,body.Y,move.ToX,move.ToY);
+            // A creature must own an available source; suppression cannot fall back to unarmed.
+            return TestOnlySharedWorldPolicy.HasOrdinaryMeleeSource(s,reactor)
+                &&Adjacent(body.X,body.Y,move.FromX,move.FromY)&&!Adjacent(body.X,body.Y,move.ToX,move.ToY);
         }
         private static bool CanReactToOrdinaryDeparture(Snapshot state, string reactor, string traveler)
         {
@@ -276,9 +277,9 @@ namespace Decennium.Foundation.Laboratory
             var request = response.Combat;
             bool unarmed = request.WeaponId == CombatProfileIds.OrdinaryUnarmed;
             return new Command(response.Id, response.Actor, response.ExpectedRevision,
-                unarmed ? CommandKind.AttackUnarmed : CommandKind.AttackClub, move.ActorId,
+                request.FeatureId!=""?CommandKind.AttackCreatureFeature:unarmed ? CommandKind.AttackUnarmed : CommandKind.AttackClub, move.ActorId,
                 combat: new CombatRequest(request.TurnId, unarmed ? "" : request.WeaponId,
-                    knockout: request.Knockout, pressInstruction: request.PressInstruction));
+                    knockout: request.Knockout, pressInstruction: request.PressInstruction,featureId:request.FeatureId));
         }
         private string ResolveTacticalChoice(Snapshot s, Command c, bool assessTactical)
         {
@@ -288,7 +289,7 @@ namespace Decennium.Foundation.Laboratory
                 if(r==null||r.TurnId!=s.Encounter.CurrentTurnId||c.Target!=move.Id||c.X!=0||c.Y!=0||r.Stance!=0)return "InvalidOpportunityResponse";
                 if(move.ResponseIndex>=move.Reactors.Count||c.Actor!=move.Reactors[move.ResponseIndex])return "WrongReactionController";
                 if(!EligibleOpportunity(s,c.Actor,move))return "OpportunityNoLongerEligible";
-                if(!r.Choice&&(r.WeaponId!=""||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace))return "InvalidOpportunityResponse";
+                if(!r.Choice&&(r.WeaponId!=""||r.FeatureId!=""||r.Knockout!=AttackKnockoutMode.OrdinaryOutcome||r.PressInstruction!=PressHitInstruction.ArmOrReplace))return "InvalidOpportunityResponse";
                 var attack = r.Choice ? OpportunityAttackCommand(c, move) : null;
                 if (assessTactical) return attack == null ? null : Attack(s, attack, opportunity: true, assessTactical: true);
                 SetMove(s,move.Progress(move.ResponseIndex+1,move.Status));

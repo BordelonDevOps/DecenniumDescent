@@ -44,6 +44,12 @@ namespace Decennium.Foundation
                 w.Write(rupture.OriginalCycle);Time(w,rupture.ExpiresAt);
             }
             w.Write(record.SuppressionExpiredRevision);
+            w.Write(state.TypedDamage.Length);
+            foreach(var d in state.TypedDamage) {
+                Text(w,d.EventId);w.Write(d.Revision);Time(w,d.At);Text(w,d.TargetId);Text(w,d.DamageType);
+                w.Write(d.Raw);w.Write(d.AfterFlatReduction);w.Write(d.SuccessfulSaveHalf);
+                Text(w,d.InnateResistanceSource);Text(w,d.ImmunitySource);w.Write(d.Petrified);
+            }
         }
         internal static void Read(BinaryReader r,Snapshot state)
         {
@@ -74,6 +80,10 @@ namespace Decennium.Foundation
                 (SealActionLedger)r.ReadInt32(),Text(r),r.ReadInt64(),Flag(r),Text(r),Time(r),r.ReadInt64(),Time(r));
             state.Creatures=creatures;
             state.FerryWraith=new FerryWraithRecord(predecessor,consent,mandate,contacts,admission,rupture,r.ReadInt64());
+            var damage=new TypedDamageRecord[SnapshotCodec.ReadCount(r,TypedDamageRecord.MaxRecords)];
+            for(int i=0;i<damage.Length;i++)damage[i]=new TypedDamageRecord(Text(r),r.ReadInt64(),Time(r),Text(r),Text(r),
+                r.ReadInt64(),r.ReadInt64(),Flag(r),Text(r),Text(r),Flag(r));
+            state.TypedDamage=damage;
         }
         private static void Names(BinaryWriter w,System.Collections.Generic.IReadOnlyList<string> rows)
         {w.Write(rows.Count);foreach(string value in rows)Text(w,value);}

@@ -406,7 +406,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if(!s.Encounter.Order.Contains(c.Actor))return "ActorOutsideEncounter";
             if(c.Kind==CommandKind.SelectCombatStance&&c.Combat?.Stance==(int)CombatStance.Mobile)return "SharedMobileDistanceNotImplemented";
-            if ((c.Kind == CommandKind.AttackClub || c.Kind == CommandKind.AttackUnarmed) && !s.Encounter.Order.Contains(c.Target))
+            if ((c.Kind == CommandKind.AttackClub || c.Kind == CommandKind.AttackUnarmed || c.Kind==CommandKind.AttackCreatureFeature) && !s.Encounter.Order.Contains(c.Target))
                 return s.Reinforcement?.Pending == true && c.Target == s.Reinforcement.Definition.CompanionId
                     ? "ReinforcementPreAdmissionCombatUnsupported" : "TargetOutsideEncounter";
             if(c.Kind==CommandKind.EncounterDash) {
@@ -442,9 +442,9 @@ namespace Decennium.Foundation.Laboratory
                 var spent=Interval(s,c.Actor).SpendInteraction();SetInterval(s,spent);s.InventoryInteractions=spent.Interactions;
                 PauseIncompatibleWork(s);return null;
             }
-            if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed)&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))
+            if((c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.AttackCreatureFeature)&&AttackingFromActiveOverwatchZone(s,c.Actor,c.Target))
                 return "OverwatchAttackTriggerNotImplemented";
-            bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.Disengage||c.Kind==CommandKind.Dodge;
+            bool action=c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.AttackCreatureFeature||c.Kind==CommandKind.Disengage||c.Kind==CommandKind.Dodge;
             string failure = bodies.Resolve(s, c, assessTactical);
             if (failure != null || assessTactical) return failure;
             string triggerError=QueueCompletedMovementOverwatch(s);if(triggerError!=null)return triggerError;

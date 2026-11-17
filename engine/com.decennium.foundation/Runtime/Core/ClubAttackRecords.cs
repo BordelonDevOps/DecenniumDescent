@@ -32,14 +32,17 @@ namespace Decennium.Foundation
         public AttackKnockoutMode Knockout { get; }
         public bool Choice { get; }
         public PressHitInstruction PressInstruction { get; }
-        public CombatRequest(string turnId,string weaponId="",int stance=0,AttackKnockoutMode knockout=AttackKnockoutMode.OrdinaryOutcome,bool choice=false,PressHitInstruction pressInstruction=PressHitInstruction.ArmOrReplace)
+        public string FeatureId { get; }
+        public CombatRequest(string turnId,string weaponId="",int stance=0,AttackKnockoutMode knockout=AttackKnockoutMode.OrdinaryOutcome,bool choice=false,PressHitInstruction pressInstruction=PressHitInstruction.ArmOrReplace,string featureId="")
         {
             if(!Validation.ValidId(turnId)||weaponId==null||weaponId!=""&&!Validation.ValidId(weaponId)||stance<0||stance>5
+                ||featureId==null||featureId!=""&&(!Validation.ValidId(featureId)||weaponId!="")
                 ||!Enum.IsDefined(typeof(AttackKnockoutMode),knockout)||!Enum.IsDefined(typeof(PressHitInstruction),pressInstruction))throw new ArgumentException("Invalid combat request.");
-            TurnId=turnId;WeaponId=weaponId;Stance=stance;Knockout=knockout;Choice=choice;PressInstruction=pressInstruction;
+            TurnId=turnId;WeaponId=weaponId;Stance=stance;Knockout=knockout;Choice=choice;PressInstruction=pressInstruction;FeatureId=featureId;
         }
-        internal string FingerprintVersion=>PressInstruction==PressHitInstruction.ArmOrReplace?"combat-v1":"combat-v2";
-        internal string Fingerprint=>TurnId+"|"+WeaponId+"|"+Stance.ToString(CultureInfo.InvariantCulture)+"|"+((int)Knockout).ToString(CultureInfo.InvariantCulture)+"|"+(Choice?"1":"0")+(PressInstruction==PressHitInstruction.ArmOrReplace?"":"|1");
+        internal string FingerprintVersion=>FeatureId!=""?"combat-v3":PressInstruction==PressHitInstruction.ArmOrReplace?"combat-v1":"combat-v2";
+        internal string Fingerprint=>TurnId+"|"+WeaponId+"|"+Stance.ToString(CultureInfo.InvariantCulture)+"|"+((int)Knockout).ToString(CultureInfo.InvariantCulture)+"|"+(Choice?"1":"0")
+            +(FeatureId!=""?"|"+((int)PressInstruction).ToString(CultureInfo.InvariantCulture)+"|"+FeatureId:PressInstruction==PressHitInstruction.ArmOrReplace?"":"|1");
     }
     public sealed class ClubInstance
     {
@@ -182,7 +185,10 @@ namespace Decennium.Foundation
                 ||s.Dodges.Any(d=>!Actor(d.ActorId)||d.Revision>s.Revision)
                 ||s.Clubs.Any(w=>w.HeldBy!=""&&!Actor(w.HeldBy))||s.Stances.Any(t=>!Actor(t.ActorId)||t.Revision>s.Revision)
                 ||s.MeleeAttacks.Count(a=>a.Pending)>1||s.MeleeAttacks.Select(a=>a.Id).Distinct(StringComparer.Ordinal).Count()!=s.MeleeAttacks.Length
-                ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)||!s.Clubs.Any(w=>w.Id==a.WeaponId)&&!(s.SchemaVersion>=Snapshot.TacticalMovementSchema&&a.WeaponId==CombatProfileIds.OrdinaryUnarmed)||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)
+                ||s.MeleeAttacks.Any(a=>!Actor(a.AttackerId)||!Actor(a.TargetId)
+                    ||!s.Clubs.Any(w=>w.Id==a.WeaponId)&&!(s.SchemaVersion>=Snapshot.TacticalMovementSchema&&a.WeaponId==CombatProfileIds.OrdinaryUnarmed)
+                        &&!(s.FerryWraith!=null&&a.AttackerId==FerryWraithProfile.Actor&&a.WeaponId==FerryWraithProfile.Feature)
+                    ||a.Revision>s.Revision||a.ResolvedRevision>s.Revision||a.At>s.RuleClock)
                 ||s.SchemaVersion>=Snapshot.SharedWorldSchema&&s.MeleeAttacks.Any(a=>EncounterHistory.AtRevision(s,a.Revision)==null
                     ||a.Pending&&!EncounterHistory.InCurrent(s,a.Revision)||!a.Pending&&EncounterHistory.AtRevision(s,a.Revision)?.Id!=EncounterHistory.AtRevision(s,a.ResolvedRevision)?.Id)
                 ||s.Presses.Any(p=>!Actor(p.ActorId)||!Actor(p.TargetId)||p.ArmedRevision>s.Revision))throw new ArgumentException("Invalid combat references.");

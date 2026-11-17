@@ -134,7 +134,7 @@ namespace Decennium.Foundation
         }
     }
 
-    public enum SanctuaryAttackSource { RegularMelee, RegularUnarmed, RegularRanged, Opportunity, Overwatch, Ready }
+    public enum SanctuaryAttackSource { RegularMelee, RegularUnarmed, RegularRanged, Opportunity, Overwatch, Ready, RegularCreatureFeature }
     public enum SanctuaryAdmissionStatus { Pending, Retargeted, Forgone, Invalidated }
     /// <summary>A suspended real attack request, never a new attack budget or target entitlement.</summary>
     public sealed class SanctuaryAdmissionRecord

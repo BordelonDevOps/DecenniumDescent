@@ -11,6 +11,7 @@ namespace Decennium.Foundation.Laboratory
             ?s.SanctuaryAdmissions.SingleOrDefault(x=>x.Pending):null;
 
         private static bool SanctuaryAttackCommand(Command c)=>c.Kind==CommandKind.AttackClub || c.Kind==CommandKind.AttackUnarmed
+            || c.Kind==CommandKind.AttackCreatureFeature
             || c.Kind==CommandKind.RespondOpportunityAttack&&c.Combat?.Choice==true;
 
         private static string SanctuaryAttackTarget(Snapshot s,Command c)=>c.Kind==CommandKind.RespondOpportunityAttack
@@ -54,7 +55,7 @@ namespace Decennium.Foundation.Laboratory
             if(s.SpellSaves.Any(x=>x.Kind==SpellSaveKind.SanctuaryWisdom&&x.EffectId==ward.Id
                 &&x.SubjectId==c.Actor&&x.AttackerTurn.SameAs(turn)))return null;
             var cast=s.SpellCasts.Single(x=>x.CommandId==ward.CastId);
-            int modifier=checked(CharacterRuleFacts.ForActor(s,c.Actor).AbilityModifier(CharacterAbility.Wisdom)
+            int modifier=checked(ActorNumericFacts.ForActor(s,c.Actor).AbilityModifier(CharacterAbility.Wisdom)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Actor,"WIS")+ExpeditionStrainRules.Current(s,c.Actor).SavingThrowModifier);
             int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,c.Actor);modifier=AuraOfFaithRules.Modifier(aura,basis);
             uint before=s.RandomState;var roll=PlaytestDice.RollD20(before);
@@ -67,7 +68,8 @@ namespace Decennium.Foundation.Laboratory
             if(save.Success)return null;
             bool reaction=c.Kind==CommandKind.RespondOpportunityAttack;
             var source=reaction?SanctuaryAttackSource.Opportunity:c.Kind==CommandKind.AttackUnarmed
-                ?SanctuaryAttackSource.RegularUnarmed:SanctuaryAttackSource.RegularMelee;
+                ?SanctuaryAttackSource.RegularUnarmed:c.Kind==CommandKind.AttackCreatureFeature
+                    ?SanctuaryAttackSource.RegularCreatureFeature:SanctuaryAttackSource.RegularMelee;
             s.SanctuaryAdmissions=s.SanctuaryAdmissions.Append(SanctuaryAdmissionRecord.Begin(
                 "sanctuary."+(s.Revision+1).ToString(CultureInfo.InvariantCulture),save.Id,ward.TargetId,c,
                 source,reaction?c.Target:"")).ToArray();
@@ -96,14 +98,16 @@ namespace Decennium.Foundation.Laboratory
                 // The sole target of this actual opportunity occurrence is its provoker.
                 // Its failed ward gate cannot grant a different reaction target or an Action.
                 if(pending.Source==SanctuaryAttackSource.Opportunity)return "SanctuaryRetargetOutsideOriginalSource";
-                if(pending.Source!=SanctuaryAttackSource.RegularMelee&&pending.Source!=SanctuaryAttackSource.RegularUnarmed)
+                if(pending.Source!=SanctuaryAttackSource.RegularMelee&&pending.Source!=SanctuaryAttackSource.RegularUnarmed
+                    &&pending.Source!=SanctuaryAttackSource.RegularCreatureFeature)
                     return "SanctuaryAttackSourceUnsupported";
                 if(c.SanctuaryResponse.TargetId==pending.OriginalTargetId)return "SanctuaryTargetProhibitedThisInterval";
                 continuation=new Command(c.Id,c.Actor,s.Revision,source.Kind,c.SanctuaryResponse.TargetId,combat:source.Combat);
             } else if(pending.Source==SanctuaryAttackSource.Opportunity) {
                 continuation=new Command(c.Id,c.Actor,s.Revision,CommandKind.RespondOpportunityAttack,pending.OpportunityId,
                     combat:new CombatRequest(source.Combat.TurnId));
-            } else if(pending.Source!=SanctuaryAttackSource.RegularMelee&&pending.Source!=SanctuaryAttackSource.RegularUnarmed)
+            } else if(pending.Source!=SanctuaryAttackSource.RegularMelee&&pending.Source!=SanctuaryAttackSource.RegularUnarmed
+                &&pending.Source!=SanctuaryAttackSource.RegularCreatureFeature)
                 return "SanctuaryAttackSourceUnsupported";
             var save=s.SpellSaves.Single(x=>x.Id==pending.SaveId);
             if(!save.AttackerTurn.SameAs(CurrentCastingTurn(s,c.Actor)))return "SanctuarySourceIntervalExpired";

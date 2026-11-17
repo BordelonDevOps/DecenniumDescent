@@ -7,6 +7,17 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private FerryWraithRecord ferryDeclaration;
+        internal static string CreatureAttackFailure(Snapshot s,string actor,string feature)
+        {
+            if(s.FerryWraith==null||actor!=FerryWraithProfile.Actor||feature!=FerryWraithProfile.Feature
+                ||!s.Creatures.Any(x=>x.ActorId==actor))return "CreatureAttackSourceUnavailable";
+            if(s.FerryWraith.Admission==null)return "FerryWraithHoldsAuthoredPosition";
+            if(s.FerryWraith.ClawSuppressed)return "CreatureAttackSourceSuppressed";
+            return null;
+        }
+        internal static bool HasOrdinaryMeleeSource(Snapshot s,string actor)
+            =>s.Creatures.Any(x=>x.ActorId==actor)
+                ?CreatureAttackFailure(s,actor,FerryWraithProfile.Feature)==null:s.Characters.Any(x=>x.ActorId==actor);
         internal TestOnlySharedWorldPolicy EnableFerryWraith(bool companionConsents=true,bool directorAuthorizes=true)
         {
             if(initializationStarted||ferryDeclaration!=null||declaredGeometry==null||bishopDeclaration==null||observationFixture==null)

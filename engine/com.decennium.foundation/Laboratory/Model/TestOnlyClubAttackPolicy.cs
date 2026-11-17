@@ -104,7 +104,7 @@ namespace Decennium.Foundation.Laboratory
             ||k==CommandKind.EncounterDash||k==CommandKind.SelectCombatStance||k==CommandKind.AttackClub||k==CommandKind.ResolveKnockout||k==CommandKind.Dodge
             ||Posture&&(k==CommandKind.StandFromProne||k==CommandKind.DropProne)
             ||conditions!=null&&k==CommandKind.DispatchConditionEvent
-            ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.TacticalStep||k==CommandKind.TacticalRepositionStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
+            ||tactical!=null&&(k==CommandKind.AttackUnarmed||k==CommandKind.AttackCreatureFeature||k==CommandKind.TacticalStep||k==CommandKind.TacticalRepositionStep||k==CommandKind.RespondOpportunityAttack||k==CommandKind.RespondPress||k==CommandKind.Disengage);
         public static long WalkingSpeed(Snapshot s,string actor)
         {
             var m=s.ActorMovement.Single(x=>x.ActorId==actor);var l=s.Lives.Single(x=>x.ActorId==actor);
@@ -157,7 +157,7 @@ namespace Decennium.Foundation.Laboratory
         {
             if(!Admitted(c.Kind))return "ClubCommandNotImplemented";
             bool combat=c.Kind==CommandKind.SelectCombatStance||c.Kind==CommandKind.AttackClub||c.Kind==CommandKind.ResolveKnockout
-                ||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress||c.Kind==CommandKind.Dodge;
+                ||c.Kind==CommandKind.AttackUnarmed||c.Kind==CommandKind.AttackCreatureFeature||c.Kind==CommandKind.RespondOpportunityAttack||c.Kind==CommandKind.RespondPress||c.Kind==CommandKind.Dodge;
             if(c.Inventory!=null||combat!=(c.Combat!=null))return "UnexpectedCombatPayload";
             var pending=s.MeleeAttacks.SingleOrDefault(a=>a.Pending);
             if(pending!=null) {
@@ -240,11 +240,17 @@ namespace Decennium.Foundation.Laboratory
             var request=c.Combat;
             if(request.Stance!=0||request.Choice||s.SchemaVersion<Snapshot.TacticalMovementSchema&&request.PressInstruction!=PressHitInstruction.ArmOrReplace)return "InvalidAttackRequest";
             if(s.MeleeAttacks.Length==128)return "AttackHistoryCapacityReached";
-            bool unarmed=c.Kind==CommandKind.AttackUnarmed;
+            if(s.FerryWraith!=null&&s.TypedDamage.Length>=TypedDamageRecord.MaxRecords)return "TypedDamageHistoryCapacityReached";
+            bool unarmed=c.Kind==CommandKind.AttackUnarmed,creatureAttack=c.Kind==CommandKind.AttackCreatureFeature;
+            if(creatureAttack) {
+                string source=TestOnlySharedWorldPolicy.CreatureAttackFailure(s,c.Actor,request.FeatureId);
+                if(source!=null)return source;
+                if(request.WeaponId!="")return "InvalidCreatureAttackRequest";
+            } else if(request.FeatureId!=""||s.Creatures.Any(x=>x.ActorId==c.Actor))return "CreatureAttackSourceRequired";
             if(unarmed&&(s.SchemaVersion<Snapshot.TacticalMovementSchema||request.WeaponId!=""))return "InvalidUnarmedRequest";
             var weapon=s.Clubs.SingleOrDefault(w=>w.Id==request.WeaponId);
             var attacker=s.Lives.Single(l=>l.ActorId==c.Actor);
-            if(!unarmed&&(weapon==null||weapon.ProfileId!=ClubProfile||weapon.HeldBy!=c.Actor||weapon.CustodianId!=c.Actor||!attacker.HeldItems.Contains(weapon.Id)))return "ClubNotHeld";
+            if(!unarmed&&!creatureAttack&&(weapon==null||weapon.ProfileId!=ClubProfile||weapon.HeldBy!=c.Actor||weapon.CustodianId!=c.Actor||!attacker.HeldItems.Contains(weapon.Id)))return "ClubNotHeld";
             var target=s.Lives.SingleOrDefault(l=>l.ActorId==c.Target);
             if(target==null||target.ActorId==c.Actor||target.Dead)return "InvalidLivingTarget";
             if(!DamageConditionCapacity(s,c.Target))return "ConditionHistoryCapacityReached";
@@ -263,12 +269,12 @@ namespace Decennium.Foundation.Laboratory
             var incomingEffects=SoldierTacticalFeatures.ForAttack(s,c.Actor,c.Target);
             bool advantage=modifiers.AdvantagePresent,disadvantage=modifiers.DisadvantagePresent||incomingEffects.WarningShot
                 ||DodgeEffective(s,c.Target)&&CanSee(s,c.Target,c.Actor);
-            var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
+            var attackerFacts=ActorNumericFacts.ForActor(s,c.Actor);
             int strengthModifier=attackerFacts.AbilityModifier(CharacterAbility.Strength);
-            int modifier=checked(strengthModifier
+            int modifier=checked((creatureAttack?3:strengthModifier)
                 +(attacker.LinkedInjuries.Contains((int)Injury.OffensiveTrauma)?-1:0)-incomingEffects.CoveringFirePenalty
                 +incomingEffects.TacticalAssessmentBonus+ExpeditionStrainRules.Current(s,c.Actor).AttackModifier); // STR10, explicitly no Club proficiency grant.
-            int dexterity=CharacterRuleFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
+            int dexterity=ActorNumericFacts.ForActor(s,c.Target).AbilityScore(CharacterAbility.Dexterity);
             int ac=TestOnlySharedWorldPolicy.EffectiveArmorClass(s,c.Target,dexterity);
             string attackId="attack."+N(s.Revision+1);
             string captureFailure=SoldierTacticalFeatures.CaptureAndConsume(s,attackId,c.Actor,c.Target,"",out _);if(captureFailure!=null)return captureFailure;
@@ -281,10 +287,9 @@ namespace Decennium.Foundation.Laboratory
                 for(int i=0;i<dice.Length;i++){var d=DiceStream.Draw(next,4);dice[i]=d.Value+1;next=d.NextState;words=checked(words+d.WordsConsumed);}
                 int flat=ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
                 long total=unarmed?PrototypeUnarmed.Damage(attackerFacts.AbilityScore(CharacterAbility.Strength),flat)
-                    :Math.Max(0L,dice.Sum(x=>(long)x)+strengthModifier+flat);
-                total=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,total);
-                if(WithConditions(s)&&ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))total=PlaytestConditions.PetrifiedDamage(total);
-                int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
+                    :Math.Max(0L,dice.Sum(x=>(long)x)+(creatureAttack?0:strengthModifier)+flat);
+                total=SharedTypedDamage.Resolve(s,attackId,c.Target,creatureAttack?"fire":"bludgeoning",total).Effective;
+                int constitutionSave=checked(ActorNumericFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
                 var result=AuraOfFaithRules.Damage(s,target,attackId,total,s.RuleClock,next,constitutionSaveModifier:constitutionSave,
@@ -298,7 +303,7 @@ namespace Decennium.Foundation.Laboratory
                 }
             } else damage=new CombatDamageRoll(Array.Empty<int>(),0,0,next,next,0,0,0,0);
             s.RandomState=next;
-            var record=new MeleeAttackRecord(attackId,s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
+            var record=new MeleeAttackRecord(attackId,s.Revision+1,pending?0:s.Revision+1,s.Encounter.TurnOrdinal,c.Actor,c.Target,creatureAttack?request.FeatureId:unarmed?CombatProfileIds.OrdinaryUnarmed:weapon.Id,s.RuleClock,request.Knockout,attack,damage,opportunity,request.PressInstruction);
             s.MeleeAttacks=s.MeleeAttacks.Concat(new[]{record}).ToArray();
             if(!pending)TestOnlySharedWorldPolicy.SettleSpellDamage(s,c.Target,c.Actor,c.Id,damage.Total);
             return null;
@@ -323,7 +328,7 @@ namespace Decennium.Foundation.Laboratory
             if(spellCapacity!=null)return spellCapacity;
             // Reconstruct the immutable continuation from its retained seed and unchanged target facts.
             // The prior rolls are verified, never applied to the world random stream a second time.
-            int constitutionSave=checked(CharacterRuleFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
+            int constitutionSave=checked(ActorNumericFacts.ForActor(s,pending.TargetId).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,pending.TargetId,"CON")
                 +ExpeditionStrainRules.Current(s,pending.TargetId).SavingThrowModifier);
             var prior=AuraOfFaithRules.Damage(s,before,pending.Id,d.Total,pending.At,d.EffectsSeed,constitutionSaveModifier:constitutionSave,

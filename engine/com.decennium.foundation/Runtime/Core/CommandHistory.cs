@@ -119,10 +119,18 @@ namespace Decennium.Foundation
             }
             if (p.Length >= 12 && p[6] != "mining-selection-v1" && p[6] != "mining-selection-v2"
                 && p[6] != "expedition-mining-assignment-v1") {
-                if (p[6] != (p.Length == 12 ? "combat-v1" : "combat-v2") || p.Length == 13 && p[12] != "1"
-                    || p[11] != "0" && p[11] != "1") throw new ArgumentException("Invalid combat receipt version or flag.");
-                combat = new CombatRequest(p[7], p[8], Int(p[9]), (AttackKnockoutMode)Int(p[10]), p[11] == "1",
-                    p.Length == 13 ? PressHitInstruction.KeepExisting : PressHitInstruction.ArmOrReplace);
+                if(p[6]=="combat-v3") {
+                    if(p.Length!=14||p[11]!="0"&&p[11]!="1"||p[12]!="0"&&p[12]!="1"||!Validation.ValidId(p[13])
+                        ||kind!=CommandKind.AttackCreatureFeature&&kind!=CommandKind.RespondOpportunityAttack)
+                        throw new ArgumentException("Invalid source attack receipt.");
+                    combat=new CombatRequest(p[7],p[8],Int(p[9]),(AttackKnockoutMode)Int(p[10]),p[11]=="1",
+                        (PressHitInstruction)Int(p[12]),p[13]);
+                } else {
+                    if (p[6] != (p.Length == 12 ? "combat-v1" : "combat-v2") || p.Length == 13 && p[12] != "1"
+                        || p[11] != "0" && p[11] != "1") throw new ArgumentException("Invalid combat receipt version or flag.");
+                    combat = new CombatRequest(p[7], p[8], Int(p[9]), (AttackKnockoutMode)Int(p[10]), p[11] == "1",
+                        p.Length == 13 ? PressHitInstruction.KeepExisting : PressHitInstruction.ArmOrReplace);
+                }
             }
             if(p.Length==11&&p[6]=="harvest-selection-v1") {
                 if(kind!=CommandKind.StartHarvest)throw new ArgumentException("Harvest selection payload has the wrong command kind.");

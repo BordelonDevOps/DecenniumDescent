@@ -165,13 +165,18 @@ namespace Decennium.Foundation
                     || save.Kind!=SpellSaveKind.SanctuaryWisdom || save.SubjectId!=pending.ActorId || save.Revision!=pending.SourceRevision
                     || !s.SpellEffects.Any(x=>x.Id==save.EffectId && x.TargetId==pending.OriginalTargetId))throw new ArgumentException("Invalid pending ward admission.");
                 var expected=pending.Source==SanctuaryAttackSource.RegularMelee?CommandKind.AttackClub
-                    :pending.Source==SanctuaryAttackSource.RegularUnarmed?CommandKind.AttackUnarmed:CommandKind.RespondOpportunityAttack;
+                    :pending.Source==SanctuaryAttackSource.RegularUnarmed?CommandKind.AttackUnarmed
+                    :pending.Source==SanctuaryAttackSource.RegularCreatureFeature?CommandKind.AttackCreatureFeature:CommandKind.RespondOpportunityAttack;
                 if(pending.Source!=SanctuaryAttackSource.RegularMelee&&pending.Source!=SanctuaryAttackSource.RegularUnarmed
-                    &&pending.Source!=SanctuaryAttackSource.Opportunity || source.Kind!=expected || source.Combat==null
+                    &&pending.Source!=SanctuaryAttackSource.RegularCreatureFeature&&pending.Source!=SanctuaryAttackSource.Opportunity
+                    || source.Kind!=expected || source.Combat==null
                     ||(pending.Source==SanctuaryAttackSource.Opportunity
                         ? source.Kind!=CommandKind.RespondOpportunityAttack || source.Combat?.Choice!=true || source.Target!=pending.OpportunityId
                         : source.Target!=pending.OriginalTargetId))
                     throw new ArgumentException("Sanctuary continuation changed its original attack source.");
+                if((pending.Source==SanctuaryAttackSource.RegularCreatureFeature||source.Combat.FeatureId!="")
+                    &&(s.FerryWraith==null||source.Actor!=FerryWraithProfile.Actor||source.Combat.FeatureId!=FerryWraithProfile.Feature
+                        ||source.Combat.WeaponId!=""))throw new ArgumentException("Sanctuary lost the owned creature attack payload.");
                 if(s.MeleeAttacks.Any(x=>x.Revision==pending.SourceRevision))throw new ArgumentException("A failed ward gate also resolved an attack.");
                 if(!pending.Pending) {
                     var response=Receipt(s,pending.ResolutionCauseId,pending.ResolvedRevision);
@@ -182,7 +187,10 @@ namespace Decennium.Foundation
                         throw new ArgumentException("Unattributed Sanctuary response.");
                     if(pending.Status==SanctuaryAdmissionStatus.Retargeted && (pending.Source==SanctuaryAttackSource.Opportunity
                         || !s.MeleeAttacks.Any(x=>x.Revision==pending.ResolvedRevision&&x.AttackerId==pending.ActorId
-                            &&x.TargetId==pending.ResolvedTargetId&&x.Attack.RandomBefore==save.RandomAfter)))
+                            &&x.TargetId==pending.ResolvedTargetId&&x.Attack.RandomBefore==save.RandomAfter
+                            &&x.Instruction==source.Combat.Knockout&&x.PressInstruction==source.Combat.PressInstruction
+                            &&x.WeaponId==(source.Combat.FeatureId!=""?source.Combat.FeatureId
+                                :source.Kind==CommandKind.AttackUnarmed?CombatProfileIds.OrdinaryUnarmed:source.Combat.WeaponId))))
                         throw new ArgumentException("Sanctuary retarget did not settle the original attack entitlement.");
                 } else if(s.RuleClock!=save.At || !s.Receipts.Any(x=>x.Revision==s.Revision&&x.Id==pending.SourceCommandId))
                     throw new ArgumentException("A voluntary command passed an unresolved Sanctuary admission.");

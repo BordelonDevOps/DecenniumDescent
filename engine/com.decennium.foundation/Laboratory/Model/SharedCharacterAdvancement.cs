@@ -273,6 +273,8 @@ namespace Decennium.Foundation.Laboratory
         }
         internal static int ArmorClass(Snapshot s,string actor,int dexterity)
         {
+            var creature=s.Creatures.SingleOrDefault(x=>x.ActorId==actor);
+            if(creature!=null)return creature.ArmorClass;
             int ac=checked((int)PrototypeArmor.UnarmoredBaseAc(dexterity));
             var armor=s.PortableEquipment.SingleOrDefault(x=>x.CustodianId==actor&&x.ParentId==""
                 &&x.Placement==PortablePlacement.Worn&&x.ProfileId=="armor-and-shields.chain-mail");

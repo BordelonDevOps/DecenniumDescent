@@ -47,7 +47,7 @@ namespace Decennium.Foundation
         StartCharterAttempt, ObserveCharterApproach, AbortCharterAttempt, InspectCharterAttempt,
         BeginReinforcementApproach, CancelReinforcementApproach,
         DeclareRetreat, AttemptRetreatEscape, AbandonRetreat, CancelExplorationSearch, CancelExplorationHide, StabilizeCompanion, StartWoundTreatment, InterruptWoundTreatment, ConsumeDecay, BeginShortRest, InterruptShortRest, BeginMutationShortRest, UseHealingRite, CastKnownSpell, AcquireEarnedSpell, UseIntimidatingPresence,
-        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation }
+        GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary, BeginLongRest, InterruptLongRest, UseDivineInvocation, AttackCreatureFeature }
     public enum Outcome { Rejected, Committed, Duplicate }
 
     // DTOs are detached copies. No caller ever receives the owned simulation state.
@@ -219,6 +219,7 @@ namespace Decennium.Foundation
         public VesselHandlingRecord[] VesselMoves = Array.Empty<VesselHandlingRecord>();
         public ActorCharacterRecord[] Characters = Array.Empty<ActorCharacterRecord>();
         public CreatureActorRecord[] Creatures = Array.Empty<CreatureActorRecord>();
+        public TypedDamageRecord[] TypedDamage = Array.Empty<TypedDamageRecord>();
         public ActorLifeRecord[] Lives = Array.Empty<ActorLifeRecord>();
         public ActorLifeEvent[] LifeEvents = Array.Empty<ActorLifeEvent>();
         public ActorMovementRecord[] ActorMovement = Array.Empty<ActorMovementRecord>();
@@ -598,7 +599,7 @@ namespace Decennium.Foundation
             Conditions = Conditions.ToArray(), ClosedEncounters = ClosedEncounters.ToArray(),
             TacticalActors = TacticalActors.ToArray(), TacticalMoves = TacticalMoves.ToArray(), PressOffers = PressOffers.ToArray(),
             ActorMovement = ActorMovement.ToArray(), Clubs = Clubs.ToArray(), Stances = Stances.ToArray(), Dodges = Dodges.ToArray(), MeleeAttacks = MeleeAttacks.ToArray(), Presses = Presses.ToArray(),
-            Characters = Characters.ToArray(), Creatures = Creatures.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
+            Characters = Characters.ToArray(), Creatures = Creatures.ToArray(), TypedDamage = TypedDamage.ToArray(), Lives = Lives.ToArray(), LifeEvents = LifeEvents.ToArray(),
             Encounter = Encounter, EncounterDashes = EncounterDashes.ToArray(), VesselMoves = VesselMoves.ToArray(), Vessels = Vessels.ToArray(), VesselContents = VesselContents.ToArray(), WaterFills = WaterFills.ToArray(),
             InventoryLots = InventoryLots.ToArray(), Intakes = Intakes.ToArray(), Handling = Handling.ToArray(),
             InventoryCombat = InventoryCombat, InventoryTurnActor = InventoryTurnActor, InventoryInteractions = InventoryInteractions,
@@ -1201,6 +1202,7 @@ namespace Decennium.Foundation
             BishopProfile.Validate(s);
             DeclaredGeometryProfile.Validate(s);
             FerryWraithProfile.Validate(s);
+            TypedDamageRecord.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);
             ExpeditionCampValidation.Validate(s);
@@ -1299,11 +1301,17 @@ namespace Decennium.Foundation
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
                 || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return "InvalidCommand";
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout||command.Kind==CommandKind.Dodge
+                ||command.Kind==CommandKind.AttackCreatureFeature
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
                 ||command.Kind==CommandKind.RespondOverwatch||command.Kind==CommandKind.Ready||command.Kind==CommandKind.RespondReady
                 ||command.Kind==CommandKind.TacticalAssessment
                 ||command.Kind==CommandKind.OfferCommandStep||command.Kind==CommandKind.RespondCommandStep||command.Kind==CommandKind.RespondDefensiveFormation;
             if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return "UnexpectedCombatPayload";
+            if(command.Kind==CommandKind.AttackCreatureFeature&&command.Combat?.FeatureId=="")return "CreatureAttackSourceRequired";
+            if(command.Combat!=null&&command.Combat.FeatureId!=""&&(state.FerryWraith==null||command.Actor!=FerryWraithProfile.Actor
+                ||command.Combat.FeatureId!=FerryWraithProfile.Feature
+                ||command.Kind!=CommandKind.AttackCreatureFeature&&(command.Kind!=CommandKind.RespondOpportunityAttack||!command.Combat.Choice)))
+                return "CreatureAttackSourceUnavailable";
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
                 ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
             if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
