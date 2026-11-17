@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Actual ordinary-world review received.** GPT responsef0bf31cb and Codex agreement confirm the genuine own-slot/other-slot seal Action witness; [exact review](GPT_WORLD_SEAL_REVIEW.json) states its source/artifact/binary-extraction limits and no execution/causal-replay claim. Other-slot Action refresh occurs at actual old-calendar Start53, not admission. The subsequent four-spell packet is published at4a79a45a1 and awaits actual review. Same TAC-10 module remains open; no successor.
+
+
 **Latest: four owned spells execute in the Ferry epoch.** [Casting evidence](CASTING_CHECKPOINT.md) binds unchanged runtime948b9bff0 and driver7c8b7347a. An actual27-command branch from r351 casts Arcane Ward/Guidance/Detect Magic/Dispel Magic Lesser at owning local Starts2/5/8/11, pays7→5→2RP, observes and dispels its own rank0 Guidance, settles four actual casting Ends and restores r378 identically.14 rehashed archive members; no new runtime compilation. All-seven/Invocation/recharge and full module qualification remain open. This branch does not change the main r462/3RP continuation. World-seal review is submitted; casting review still pending; no successor.
 
 

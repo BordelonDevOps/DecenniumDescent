@@ -1,5 +1,8 @@
 # Genuine ordinary-world seal Actions preserve their deadline through entry
 
+Actual GPT responsef0bf31cb-f321-5453-8fe3-ad7b6050d70d finds no concrete blocker and confirms the genuine own-slot/other-slot Action witness is met. [Exact review and Codex agreement](GPT_WORLD_SEAL_REVIEW.json). Other-slot companion Action refresh is the actual old-calendar Start53 before entry, not an entry grant. Own-slot expiry remains172039 despite the later command checkpoint172040.5. GPT independently rehashed41 members,468 source inputs/three loaded DLLs and16 commands/eight save pairs, with limited binary extraction; it did not compile, execute, restore through the engine or run causal replay. This is partial acceptance only; TAC-10 remains open.
+
+
 Two alternate continuations of the actual paid pre-contact save now exercise ordinary-world seal use through public commands. They cover the companion's own virtual slot and another actor's virtual slot, actual Action payment, a fresh paid encounter approach, saved suppression, original expiry and persistent destruction. They do not replace the canonical r462 continuation, grant resources or establish complete TAC-10 acceptance.
 
 Runtime remains `948b9bff0604e15cfb2d5419be9658392bcb2bcf`. The exact executed [driver](support/Probe-FerryWorldSeal.ps1) is committed at `ea7e25dc89042a1aebf346efd32004b30ddd59a4`. The existing468-input runtime build/DLLs are referenced and rehashed against the previously retained seal archive; no new compilation or runtime change is claimed. The genuine r344 input matches the earlier provenance archive exactly: SHA256 `54fc97d2e7ee3ceea76a2737392594870fd2cdb345d2e7327735eacd167509fa`.

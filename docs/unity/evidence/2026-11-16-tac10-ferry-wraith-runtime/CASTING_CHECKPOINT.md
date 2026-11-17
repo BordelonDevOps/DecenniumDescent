@@ -1,5 +1,8 @@
 # Four owned spells execute on actual Ferry turns
 
+The preceding ordinary-world seal checkpoint now has actual GPT reviewf0bf31cb-f321-5453-8fe3-ad7b6050d70d and Codex agreement, with no concrete blocker within that partial scope. [Exact limits](GPT_WORLD_SEAL_REVIEW.json). The present four-spell checkpoint is separately published at4a79a45a14817d6ddee98c099b5ef661de01b598 and remains pending actual review.
+
+
 A genuine alternate continuation of the first-fire save executes Arcane Ward, Guidance, Detect Magic and Dispel Magic (Lesser), using the companion's existing ownership, RP, Action, casting state and new Ferry calendar. It ends after the fourth real casting End and restores byte-identically. This qualifies a bounded four-spell path; it does not qualify all seven abilities, complete TAC-10 or change the main r462/3RP continuation.
 
 Unchanged runtime: `948b9bff0604e15cfb2d5419be9658392bcb2bcf`. Exact executed [driver](support/Probe-FerryCasting.ps1): `7c8b7347a32a50fd20b1f6340dc83ba07a31333d`. The prior468-input build/report/DLLs are referenced from the immutable seal archive, not claimed as a new compilation. Input r351 bytes match that archive and strict current restore: SHA256 `6a69b36f95e4435705fb175030f7f16aebbfa76bb0752168af65f321d7ab2687`.

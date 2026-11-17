@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 actual ordinary-world seal review closes its partial witness.** GPT responsef0bf31cb/Codex agreement confirms own-slot/other-slot Action qualification at evidencef4140a16f; [retained review](evidence/2026-11-16-tac10-ferry-wraith-runtime/GPT_WORLD_SEAL_REVIEW.json). Correct original deadline and legitimate old-calendar Start53 refresh are preserved. Independent checks are source/artifact/limited binary extraction, not execution. Subsequent four-spell driver7c8b7347a/evidence4a79a45a1 awaits actual review. Full TAC-10/engine acceptance remains open; no successor.
+
+
 **TAC-10 actual four-spell branch retained.** [Casting evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/CASTING_CHECKPOINT.md): runtime948b9bff0, driver7c8b7347a,27 genuine commands from first-fire r351, actual Ward/Guidance/Detect/Dispel on companion Ferry Starts2/5/8/11, costs0/0/2/3RP, four actual Ends, observed own rank0 Guidance selectively dispelled, final r378/2RP/Dissonance2 identical restore.14 archive members rehashed; no new runtime compilation or all-seven/module claim. Main r462/3RP unchanged. World-seal review submitted and pending actual response; casting review pending. Remaining ability/reaction/source/privacy/consumer/full regression/five paths/95-113/final review requirements stay open; no successor; Unity/storage/Support held.
 
 
