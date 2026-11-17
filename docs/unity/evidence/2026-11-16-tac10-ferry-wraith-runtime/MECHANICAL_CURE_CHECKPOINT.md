@@ -1,0 +1,27 @@
+# Approved supplemental cure integration
+
+Actual GPT response `55f63234-661c-50ed-a5ab-fecd765bfbe7` and Codex agreement explicitly approve this additional bounded allocation, replacing an entirely genuine fear-through-Ferry-entry cure requirement for this TAC-10 slice. That genuine intersection remains unproved, not impossible. `GPT_CURE_ALLOCATION_REVIEW.json` retains the exact decision. No C# change or qualification restart was needed.
+
+The corrected executed driver is `5a17d2e60`, SHA-256 `7b4310d42aff381018601802151c1d1e28a281d4d48f33af273e563bcd21b5bb`. `mechanical-cure-checkpoint/bounded-runs.zip` contains33 members /543,638 bytes, SHA-256 `5315071c3896cca866ec8efa87b08e57604c138f6dd6d8bba071ed0f36b4ad1a`. Collector dc2d251b6 and manifest905bdb204 bind executed scripts, frozen468-input compilation/DLL identities, raw inputs/results, selected components and genuine saves. This is executed supplemental evidence, not final acceptance.
+
+The genuine baseline is the guarded companion owning context r376/time344081/2, after admission r375. Canonical SHA-256 is `0ea378812dcd3c65d62326400997f5f5ebe2b322c5835066a4aaeeb98aaf2501`. Actual strict restore/save matches; the live save after all controls still matches. Each recipient control independently decodes that genuine baseline, retaining every original journal operation, source record, fear deadline, RNG and earned ability grant.
+
+| Boundary | Actual observed result in both independent recipient controls |
+| --- | --- |
+| Supplied condition | Explicit TEST_ONLY mechanical Frightened application through real ConditionHistory/relationship lifecycle, appended at the actual current journal marker: companion344033/2 or hero1815. No insertion, backdating or original-history rewrite. Finite supplied expiry344093/2 and relationship provenance remain unchanged. No claim that the Wraith or dead recovery defender generated it. |
+| Actual producer | Existing private ResolveDivineInvocation called on the detached snapshot through reflection; its normal assessment, paid producer, ForDivineInvocation qualified trigger, journal synchronization and cure settlement all execute. No direct ledger cure or detached-cure authority substitute. |
+| Payment | Genuine available companion Action becomes spent; RP7->4 and Conviction5->3. Source-owned Ferry turn0 retained. Dissonance is0, so this control claims no positive vent; that genuine witness remains in the earlier spell-consumer packet. |
+| Shared healing | One actual d8=8 plus2, RNG939775708->433488304, one word. Hero17->26 receives9 because of maximum26; companion18->18 receives0 because already at maximum18. Both recipients use the same draw. |
+| Synchronization and cure | Actual producer adds exactly one target sync to344081/2 and one qualified cure; ends exactly the supplied self/hero application at that marker. Original finite expiry and all genuine journal prefix operations remain unchanged. |
+| Recharge | Actual producer binds remaining3 to TEST_ONLY.ferry-calendar, localStart0 and actual ownerStart344081/2. Genuine later owner-Start ticking is independently qualified in the lifecycle packet. |
+| Owner/context denial | Separate copied contexts return DivineInvocationNotOwned and WrongRegularTurn without mutation, twice each. These are direct actual producer gates, not fabricated public session submissions. |
+| Paid-trigger boundary | Corrected reflection first reaches and accepts the actual paid factory. The original unpaid baseline then returns exactly "Invocation cure requires its actual staged paid producer." with unchanged input, twice. |
+| No repeated staged effect | A subsequent direct producer call returns ActionAlreadySpent and leaves all staged bytes unchanged. This is not persisted command idempotency; genuine public retry evidence retains that responsibility. |
+| Component persistence | Four legitimate condition-component before/after roundtrips and two actual Bishop-entry component-codec roundtrips preserve bytes. These are component records, not supported full gameplay saves. |
+| Unsupported full state | Both supplied-condition snapshots reject at **encoding** with "Unqualified Frightened application." No modified full save is produced, decoded or restored. No source-use/timing/receipt was fabricated to force replay. Original live/input bytes remain unchanged. |
+
+The direct mechanical producer leaves snapshot revision376, clock and genuine receipts unchanged, while producing a staged Invocation record for candidate revision377. No committed gameplay command or supported modified save is claimed. Raw before/after mechanical JSON is retained explicitly as test input/results.
+
+The initial c8823fc69 run's report said PASS, but its extra unpaid-trigger negative stopped at PowerShell PSObject argument conversion. That negative did not reach the engine and is explicitly unqualified. Its original report/script/output remain intact. Corrected5a17d2e60 unwraps the real record, proves actual paid-factory acceptance first and requires the exact source rejection, then passes both full controls. This was a harness correction, not a runtime defect or a reason to repeat the complete regression.
+
+Combined allocation: genuine earlier positive cure, genuine new-Ferry-epoch producer/payment/recharge/authority, actual staged reachability finding, and this separately labeled mechanical integration supplement. Final combined GPT review and Codex acceptance agreement remain required. Then stop; no successor, Unity, storage or Support.
