@@ -2,7 +2,7 @@
 
 As of **2026-11-17**, reconciled against Engine `9f6db082990be8a96cc38a77863f93a4b2d38d93`. **Unity gameplay integration is not ready. Development remains paused.** This update changes documentation only; it does not start the next module.
 
-**Documentation review:** DRAFT_PENDING_ACTUAL_GPT_MAP_REVIEW. Actual review of this concrete map is pending.
+**Documentation review:** ACCEPTED_DOCUMENTATION_ONLY. [Actual final map review](evidence/2026-11-17-implementation-map/GPT_FINAL_MAP_REVIEW.json)
 
 **What is complete:** the shared technical baseline and the named source-bound slices below, including the accepted INT-03 connected minimum, independent recipe-4 verification, C# quality explanation, Cleric/Bishop progression and casting, declared geometry and Ferry-Wraith encounter. Those completed slices stay accepted. Each broader workstream retains its own unfinished scope.
 
@@ -684,7 +684,7 @@ The five terrain interpretations remain settled. The held contract must retain r
 
 **Original acceptance criterion:** Reserve/commit actual materials once, honor active time and interruption, quality/yield/failure/salvage and allowed output effect.
 
-**Evidence:** [2026-11-05-manufacturing-recipe14/README.md](evidence/2026-11-05-manufacturing-recipe14/README.md) · [2026-11-09-mgt04-recipe347/README.md](evidence/2026-11-09-mgt04-recipe347/README.md) · [2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md)
+**Evidence:** [2026-11-05-manufacturing-recipe14/README.md](evidence/2026-11-05-manufacturing-recipe14/README.md) · [2026-11-10-mgt04-gpt-corrections/README.md](evidence/2026-11-10-mgt04-gpt-corrections/README.md) · [2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md)
 
 #### MGT-05 — Harvesting, foraging, gathering and preservation
 
