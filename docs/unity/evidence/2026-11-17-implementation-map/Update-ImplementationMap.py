@@ -59,10 +59,11 @@ def render(m):
         'including the accepted INT-03 connected minimum, independent recipe-4 verification, C# quality explanation, '
         'Cleric/Bishop progression and casting, declared geometry and Ferry-Wraith encounter. '
         'Those completed slices stay accepted. Each broader workstream retains its own unfinished scope.', '',
-        '**What is left:** the concrete known gaps in all 49 rows, plus two unresolved planning contracts: '
-        'the finite required capability/content coverage (UR-01) and operating envelope (UR-04). '
-        'Until those contracts are explicit, no exact remaining module count, percentage or delivery date is justified. '
-        'This is the complete 49-workstream status reconciliation, not a claim to have exhaustively audited every source clause.', '',
+        '**What is left:** complete and qualify the required capabilities in all 49 rows. '
+        'UR-01 and UR-04 now have concrete agreed criteria: 100 capability obligations, source-family/identity/interaction '
+        'closure rules and measured performance requirements through 10,000 receipts. Their qualification remains open. '
+        'Criteria are not module counts or a completion percentage. '
+        + link(m['completionContract']['document'], 'Pre-Unity completion contract') + '.', '',
         'The last accepted qualification is **1,584/1,584 registered cases** and five matching 463-command paths. '
         'These are retained TAC-10 executions, not tests run for this documentation update. '
         + link('docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md', 'TAC-10 acceptance'), '',
@@ -81,8 +82,9 @@ def render(m):
               '[Pinned evidence index](evidence/2026-11-17-implementation-map/BASELINE_SOURCE_INDEX.json).', '',
               '## Before Unity: explicit remaining gates', '',
               m['readiness']['scopePolicy'], '',
-              'These gates organize the existing mandate and identify unresolved contracts. '
-              'They grant no new mechanics, change no prior acceptance, and set no invented universal performance threshold.', '']
+              'These gates organize the existing mandate. The completion contract defines prospective headless '
+              'qualification targets; no new measurement or whole-engine pass is claimed. '
+              'Source authority, prior exact acceptances and the owner hold remain unchanged.', '']
     for gate in m['readiness']['gates']:
         lines += [f"### {gate['id']} — {gate['title']}", '', f"**Status: {gate['status']}.**", '',
                   '**Remaining:** ' + gate['remaining'], '', '**Closure evidence:** ' + gate['closure'], '',
@@ -115,6 +117,8 @@ def render(m):
                   '**Remaining:** ' + row['remainingCapabilityOrQualification'], '',
                   '**Gap types:** ' + ', '.join(row['gapKinds']) + '. Implementation is held.', '',
                   '**Original acceptance criterion:** ' + row['acceptance'], '',
+                  '**Concrete completion criteria:** [' + ', '.join(row['completionCriteria'])
+                  + '](PRE_UNITY_COMPLETION_CONTRACT.md#' + row['id'].lower() + ').', '',
                   '**Evidence:** ' + (' · '.join(link(p, f'{Path(p).parent.name}/{Path(p).name}') for p in row['evidence'])
                     if row['evidence'] else 'No accepted runtime record identified. Baseline map/trace coverage finding; not a claim that no related code exists.') , '']
     lines += ['## Later Unity and product work', '',
@@ -150,6 +154,12 @@ def main():
         assert row['implementedOrAcceptedScope'] and row['remainingCapabilityOrQualification']
         assert not row['wholeWorkstreamComplete']
     assert sum(len(w['dependencies']) for w in rows) == 120
+    contract = json.loads((ROOT / m['completionContract']['machineReadable']).read_text(encoding='utf-8-sig'))
+    assert len(contract['requirements']) == 49
+    by_work = {g['workItem']: [x['id'] for x in g['criteria']] for g in contract['requirements']}
+    for row in rows:
+        assert row['completionCriteria'] == by_work[row['id']]
+    assert sum(len(x) for x in by_work.values()) == 100
     visited = set()
     while len(visited) < 49:
         ready = {w['id'] for w in rows if w['id'] not in visited and set(w['dependencies']) <= visited}
