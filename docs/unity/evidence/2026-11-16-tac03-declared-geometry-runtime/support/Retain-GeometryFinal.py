@@ -118,13 +118,35 @@ def main():
         assert digest(run/(group+'.jsonl'))==end['journalSha256'] and lines(run/(group+'.done'))==['DONE']
         all_results.extend(rows);completions.append(end)
     assert len(all_results)==1576 and {x['Name'] for x in all_results}==set(names)
+    focused_report=read(focused/'results.json')
+    assert focused_report['status']=='PASS' and len(focused_report['cases'])==6
+    assert {x['Name'] for x in focused_report['cases']}==set(new) and all(x['Passed'] and not x['Error'] for x in focused_report['cases'])
+    assert focused_report['compiledReportSha256']==launch['compiledSourceReportSha256'] and focused_report['sourceHashes']==compiled['sourceHashes']
+    assert {'Decennium.Foundation.'+part+'.dll':row['sha256'] for part,row in focused_report['assemblies'].items()}==launch['assemblies']
+    bind(focused)
+    expected_artifacts={
+        'tac03_declared_geometry_connected_weighted_interrupts_and_continue':97,
+        'tac03_declared_geometry_genesis_and_verified_restore':1,
+        'tac03_declared_geometry_paid_dash_suspend_authority_and_restore':10,
+        'tac03_declared_geometry_strain_dash_queries_cross_actual_start':22,
+        'tac03_declared_geometry_support_cost_and_corner_controls':0,
+        'tac03_declared_geometry_trusted_layout_and_terrain_rejection':0,
+    }
+    assert set(expected_artifacts)==set(new)=={x.name for x in (focused/'saves').iterdir() if x.is_dir()}
+    for name,count in expected_artifacts.items():
+        a,b=focused/'saves'/name,run/'saves'/name
+        assert a.is_dir() and b.is_dir()
+        left={x.relative_to(a).as_posix() for x in a.rglob('*') if x.is_file()}
+        right={x.relative_to(b).as_posix() for x in b.rglob('*') if x.is_file()}
+        assert left==right and len(left)==count,(name,count,len(left),len(right))
     focused_matches=[]
     for path in sorted((focused/'saves').rglob('*')):
         if path.is_file():
             relative=path.relative_to(focused/'saves');actual=run/'saves'/relative
             assert actual.stat().st_size==path.stat().st_size and digest(actual)==digest(path),str(relative)
             focused_matches.append(str(relative).replace('\\','/'))
-    assert focused_matches and {Path(x).parts[0] for x in focused_matches}==set(new)
+    assert len(focused_matches)==sum(expected_artifacts.values())==130
+    assert {Path(x).parts[0] for x in focused_matches}=={name for name,count in expected_artifacts.items() if count}
 
     reference,paths=q/'connected-reference',q/'connected-paths'
     manifest,result=read(reference/'manifest.json'),read(paths/'results.json')
@@ -235,6 +257,7 @@ def main():
     report=dict(status='PASS_FINAL_EVIDENCE_RECONCILIATION',scope='Bounded TEST_ONLY geometry113 qualification; actual final GPT review and whole-engine completion remain open',
         at=datetime.now(timezone.utc).isoformat(),sourceCommit=SOURCE,runId=launch['runId'],passed=1576,failed=0,originalCompletions=completions,
         historicalSourcePins=pinned,compilationInputs=457,staticInputs=len(static['sourceHashes']),focusedArtifactsMatched=len(focused_matches),
+        focusedCaseArtifacts=expected_artifacts,
         retainedExecutionSources=len(bound_sources),
         consumerReconciliation=dict(path='../CONSUMER_RECONCILIATION.json',sha256=digest(consumer_path),rows=consumer_rows,uniqueFiles=len(consumer_files)),
         connected=dict(commandsPerPath=327,paths=sorted(MODES),canonicalComparisons=115,filteredViewComparisons=345,readDenialDuplicateComparisons=5*probes),

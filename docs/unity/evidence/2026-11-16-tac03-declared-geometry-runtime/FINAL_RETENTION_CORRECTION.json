@@ -1,0 +1,16 @@
+{
+  "scope": "Evidence collector correction only; no engine, compiled binary or regression worker was changed or restarted",
+  "originalRunId": "c961a29293a14693bf95e2db72465a9d",
+  "originalRegressionResult": "1576 passing cases, zero failures, all six original completions observed",
+  "firstCollectorCommit": "c3c08462f58531909a290e611e6e3d3fd754623c",
+  "firstCollectorSha256": "f93755f4435a0642ca2f7e662d2bf46ca2f658fb456fab3bdc11b0222c5bfebf",
+  "observedFailure": "AssertionError at Retain-GeometryFinal.py line127: the set of case names derived from saved files was required to equal all six focused case names",
+  "outputDirectoryCreatedByFailedAttempt": false,
+  "cause": "The support/cost/corner and trusted-layout/terrain-rejection cases execute in-memory assertions and intentionally write no files. All six focused results passed; four cases wrote 97,1,10,22 artifacts, totaling130, which already matched the full run before the incorrect assertion.",
+  "correction": "Check all six focused terminal results, their compiled-source and assembly bindings and before/after support-source bindings. Require the exact six case directories, explicit per-case artifact counts97/1/10/22/0/0 and equal complete file sets in focused and original full execution. Compare all130 actual artifact lengths and SHA256 values. Retain both zero-artifact cases explicitly in the final reconciliation.",
+  "frozenEngine": "7261052ae4dec908f8c0ac38e0a2c5f4b831065b",
+  "acceptance": "Corrected final retention passed; actual GPT final review remains required",
+  "correctedCollectorSha256": "b50f2e6c418d7c2016b628c04e52870260d06bce25feec661cd3ca78b7aaeff9",
+  "correctedCollectorResult": "PASS_FINAL_EVIDENCE_RECONCILIATION",
+  "finalReconciliationSha256": "810fd2c3ee73bbf764d6525bceed0e9397e8ef28098faf56ecd2c8f275736045"
+}
