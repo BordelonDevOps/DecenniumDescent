@@ -68,7 +68,7 @@ def main():
                   currentBroadQualification=dict(regression='dash-regression-checkpoint', runId='72f6bdda13924fad8eb5b516ec19018b',
                       passed=1584, failed=0, fivePaths='five-path-checkpoint', commandsPerPath=463,
                       comparisons=10185, authenticCompatibility='compatibility-checkpoint', supportedProfiles='95-113'),
-                  limits='Archive verification is supporting evidence, not execution, final review, whole-engine completion or production authority. Historical failed attempts and earlier runtime builds remain historical. Positive new-epoch cure allocation/execution and actual final GPT/Codex agreement remain open. Finish TAC-10 then stop; no successor, Unity, storage or Support work.')
+                  limits='Archive verification is supporting evidence, not execution, final review, whole-engine completion or production authority. Historical failed attempts and earlier runtime builds remain historical. Actual GPT55f63234 approved the additional mechanical new-epoch cure allocation; its completed producer supplement remains separate from an entirely genuine fear-through-entry route, which is unproved. Actual final GPT/Codex acceptance remains required. Finish TAC-10 then stop; no successor, Unity, storage or Support work.')
     (PACKET / 'ACCEPTANCE_INDEX.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(dict(status=report['status'], archives=len(archives), members=report['archiveMembers'], sourceInputs=468)))
 
