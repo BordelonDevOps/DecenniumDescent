@@ -71,8 +71,10 @@ try{
     for($step=0;$step-lt70;$step++){
         $s=Capture;$interval=$s.WorldIntervals|Where-Object ActorId -eq $comp
         $current=$s.AbilityRecharges|Where-Object {$_.ActorId-eq$comp-and$_.AbilityId-eq$ability}
-        Require ($null-ne$current-and$current.EpochId-eq'TEST_ONLY.ferry-calendar') 'Invocation recharge did not transfer to the exact new epoch.'
+        Require ($null-ne$current) 'Invocation recharge disappeared at entry.'
         if($interval.LastStart-ge0-and$interval.LastStart-ne$last){$observedStarts++;$last=$interval.LastStart}
+        $expectedEpoch=if($observedStarts-eq0){'TEST_ONLY.post-recovery-calendar'}else{'TEST_ONLY.ferry-calendar'}
+        Require ($current.EpochId-eq$expectedEpoch) 'Recharge history must retain its last actual owner Start until the first new owner Start transfers it.'
         $expected=[Math]::Max(0,3-$observedStarts)
         Require ($current.Remaining-eq$expected) 'Admission/End/nonowner Start reset or double-ticked recharge.'
         Require (($s.ResonancePools|Where-Object ActorId -eq $comp).Current-eq4-and$s.ConvictionBalance.Current-eq3) 'Admission or turn progress changed paid pools.'
