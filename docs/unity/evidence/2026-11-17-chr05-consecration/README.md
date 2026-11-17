@@ -1,6 +1,6 @@
 # CHR-05 Consecrate / Consecrated Ground implementation
 
-Status: **QUALIFICATION COMPLETE; ACTUAL FINAL MODULE REVIEW OPEN.** See the [complete acceptance candidate](ACCEPTANCE_CANDIDATE.md), [qualification index](QUALIFICATION_INDEX.json) and [per-case reconciliation](REGRESSION_RECONCILIATION.json).
+Status: **ACCEPTED BOUNDED; STOP AFTER FINAL PUSH.** Actual GPT response `a34a0fba-bc6a-51c7-96d3-3a142e4028a7` and Codex agreement accept unchanged implementation `3c5135ae0d664d79528fff1f2676fae2198beb28` with evidence candidate `2bc17643fc505add7960b476b7bd19f4192b7bcb`. See [final acceptance](FINAL_ACCEPTANCE.md), [exact review and agreement](GPT_FINAL_REVIEW.json), [qualification index](QUALIFICATION_INDEX.json) and [per-case reconciliation](REGRESSION_RECONCILIATION.json). Historical candidate/import statuses remain preserved at their original capture times.
 
 The owner resumed C# development with “implement it.” The prior documentation-only pause is superseded for implementation. The accepted pre-Unity completion contract, full reusable-engine goal, source authority and prior exact module acceptances remain unchanged. Unity integration and production promotion are not authorized by this implementation.
 
@@ -10,7 +10,7 @@ The new six-actor Humanoid/Living roster is an explicit TEST_ONLY fixture declar
 
 The [consumer audit](CONSUMER_AUDIT.md) is a read-only review with exact scope. The [new cap/cure allocation review](CAP_CURE_ALLOCATION_REVIEW.md) permits the retained genuine positive-Ground and genuine capped-zero cure histories plus a narrowly detached one-HP paid-producer integration control. The entirely genuine combined intersection remains **UNPROVED**, not impossible. No modified campaign save is adopted; helper repeat denial is not persisted idempotency.
 
-The existing cloud qualification is preserved at its exact source/DLL identities. Codex completed only the 109 unresolved registry cases and all five previously incomplete 428-command paths in the authenticated Windows environment. The combined packet reconciles all 1,587 names with two explicit corrections and zero missing cases; all 784 cross-path comparisons match. Separate current-source C#9 warnings-as-errors compilation, one smoke case and package validation pass. This is functional qualification, not reference-host performance, Unity compilation or UR-04 qualification. Actual final module acceptance remains open.
+The existing cloud qualification is preserved at its exact source/DLL identities. Codex completed only the 109 unresolved registry cases and all five previously incomplete 428-command paths in the authenticated Windows environment. The combined packet reconciles all 1,587 names with two explicit corrections and zero missing cases; all 784 cross-path comparisons match. Separate current-source C#9 warnings-as-errors compilation, one smoke case and package validation pass. This is functional qualification, not reference-host performance, Unity compilation or UR-04 qualification. Actual final bounded module acceptance is retained separately; broader workstreams remain incomplete.
 
 ## Segment 1 handoff
 
