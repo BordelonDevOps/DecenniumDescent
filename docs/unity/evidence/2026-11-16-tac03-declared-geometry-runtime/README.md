@@ -1,8 +1,8 @@
 # TAC-03 declared geometry qualification
 
-**Final qualification and retention passed; actual final GPT review remains required.** All 1,576 cases passed with zero failures on all six original workers. The connected, compatibility, supplemental and source/artifact reconciliations below have also completed. Frozen engine: `7261052ae4dec908f8c0ac38e0a2c5f4b831065b`. This is not module acceptance or whole-engine completion.
+**The bounded TAC-03 declared-geometry113 module is accepted after actual GPT final review and Codex agreement.** Response `9e7360a4-f81d-5f06-8884-49e8ef8eda0a` accepts frozen engine `7261052ae4dec908f8c0ac38e0a2c5f4b831065b` with final evidence commit `cd60eacd075b8ed4b4738fd9effed19ecf6c1237`, finding no remaining concrete acceptance blocker. [Exact response and Codex agreement](GPT_FINAL_REVIEW.json). All 1,576 cases passed with zero failures on all six original workers. This accepts the selected geometry slice, not the whole engine or every prerequisite node.
 
-Codex performed the execution and separate artifact reconciliation described below. Earlier GPT reviews report source and retained-artifact inspection; they did not execute these C# binaries or observe the live regression workers. Final GPT review remains a separate required gate.
+Codex performed the execution and separate artifact reconciliation described below. GPT independently inspected source and reconciled the retained archives, bindings, original run, five paths, focused parity and compatibility evidence. GPT did not compile C#, execute gameplay or PowerShell qualification, restore saves through the engine, rerun the suite or observe live workers. These limits are explicit in the retained final response. Earlier pending-review statements in immutable qualification records describe their state when generated, before this acceptance.
 
 ## Implemented behavior and authority
 
@@ -51,6 +51,6 @@ python -B -X utf8 docs/unity/evidence/2026-11-16-tac03-declared-geometry-runtime
 
 ## Acceptance and successor boundary
 
-Commit the exact completed evidence, obtain an actual final response from Unity Rules Engine Development Part 2, resolve any concrete blockers and record Codex agreement. Only then can this bounded module be accepted. The immediate successor is the amended complete TAC-10 Undead source/API contract, preserving TAC-03<-CHR-01/TAC-01 and TAC-10<-TAC-03/TAC-04/TAC-05/TAC-02; creature runtime is not automatic. CHR-05 remains dependent on its actual prerequisites.
+Actual final review and Codex agreement are recorded. The immediate successor is preparation and actual review of the amended complete TAC-10 Undead source/API contract, preserving TAC-03<-CHR-01/TAC-01 and TAC-10<-TAC-03/TAC-04/TAC-05/TAC-02. This acceptance does not authorize creature or Consecration runtime, or complete every prerequisite node. CHR-05 remains dependent on its actual prerequisites.
 
 Whole-engine completion, broader P1 responsiveness and production authority remain open. Dynamic terrain, doors, elevation, expanded traversal, arbitrary scenes, new creatures and Consecration are not supplied by this module. Unity integration remains deferred. Storage cleanup and GitHub Support remain held.
