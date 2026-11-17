@@ -1,5 +1,8 @@
 # TAC-10 Ferry-Wraith implementation: development in progress
 
+**Latest: four owned spells execute in the Ferry epoch.** [Casting evidence](CASTING_CHECKPOINT.md) binds unchanged runtime948b9bff0 and driver7c8b7347a. An actual27-command branch from r351 casts Arcane Ward/Guidance/Detect Magic/Dispel Magic Lesser at owning local Starts2/5/8/11, pays7→5→2RP, observes and dispels its own rank0 Guidance, settles four actual casting Ends and restores r378 identically.14 rehashed archive members; no new runtime compilation. All-seven/Invocation/recharge and full module qualification remain open. This branch does not change the main r462/3RP continuation. World-seal review is submitted; casting review still pending; no successor.
+
+
 **Latest: genuine ordinary-world seal qualification.** [Two alternate branches](WORLD_SEAL_CHECKPOINT.md) use actual scheduled Actions during the companion own slot and the hero virtual slot, preserve rupture+6seconds through real paid entry, and pass eight strict restore pairs. Sixteen alternate commands/41 rehashed archive members; unchanged runtime948b9bff0, driverea7e25dc8. Actual hero walking speed20ft requires1.5seconds per final edge. Two corrected driver failures are retained. Actual GPT continuation review3165bc12 and Codex agreement find no concrete blocker in the preceding Dead/closure/manage/prepare continuation; this new seal checkpoint awaits review. Main r462 state/actual3RP remain unchanged. No module acceptance or successor; remaining ability/reaction/source/privacy/consumer/full regression/five paths/95-113/final review gates remain.
 
 

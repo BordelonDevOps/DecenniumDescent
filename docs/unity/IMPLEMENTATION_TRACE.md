@@ -1,5 +1,8 @@
 # Foundation and provisional rules implementation trace
 
+**TAC-10 actual four-spell branch retained.** [Casting evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/CASTING_CHECKPOINT.md): runtime948b9bff0, driver7c8b7347a,27 genuine commands from first-fire r351, actual Ward/Guidance/Detect/Dispel on companion Ferry Starts2/5/8/11, costs0/0/2/3RP, four actual Ends, observed own rank0 Guidance selectively dispelled, final r378/2RP/Dissonance2 identical restore.14 archive members rehashed; no new runtime compilation or all-seven/module claim. Main r462/3RP unchanged. World-seal review submitted and pending actual response; casting review pending. Remaining ability/reaction/source/privacy/consumer/full regression/five paths/95-113/final review requirements stay open; no successor; Unity/storage/Support held.
+
+
 **TAC-10 ordinary-world seal: genuine alternate branches, qualification still open.** [World seal evidence](evidence/2026-11-16-tac10-ferry-wraith-runtime/WORLD_SEAL_CHECKPOINT.md) retains driverea7e25dc8 against runtime948b9bff0, two actual scheduled-Action branches from genuine r344,16 commands and eight byte-identical strict restore pairs. Own-slot and another virtual actor slot both retain original world+6 deadlines across paid entry; actual speed20ft/1.5second edge.41 rehashed archive members include corrected failed drivers. Actual GPT continuation response3165bc12 and Codex agreement found no blocker within the preceding partial connected continuation; world-seal review pending. Main r462/3RP unchanged. Full remaining TAC-10 acceptance and whole-engine requirements remain; no successor, Unity deferred, storage/Support held.
 
 
