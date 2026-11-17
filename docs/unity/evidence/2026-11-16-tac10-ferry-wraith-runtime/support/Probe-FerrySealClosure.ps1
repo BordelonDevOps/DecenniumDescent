@@ -1,4 +1,4 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$FirstFireSave,[Parameter(Mandatory)][string]$Run)
+param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$FirstFireSave,[Parameter(Mandatory)][string]$Run,[int]$TearAfterAttempts=3)
 $ErrorActionPreference='Stop'
 $AssemblyRoot=(Resolve-Path -LiteralPath $AssemblyRoot).Path;$FirstFireSave=(Resolve-Path -LiteralPath $FirstFireSave).Path
 if(Test-Path -LiteralPath $Run){throw 'Use a fresh seal-closure branch.'}
@@ -28,7 +28,8 @@ try{
         $report.commands+=@{command=$command;response=$response}
         Require ($response.Response-eq'Committed') "Seal closure command rejected: $($command.Kind) / $($response.Response) / $($response.Code)"
     }
-    $hero='TEST_ONLY.actor';$comp='TEST_ONLY.companion';$enemy='TEST_ONLY.ferry-wraith';$tear=$null;$deathSaved=$false
+    $hero='TEST_ONLY.actor';$comp='TEST_ONLY.companion';$enemy='TEST_ONLY.ferry-wraith';$tear=$null;$deathSaved=$false;$attackAttempts=0
+    $report.strategy=@{tearAfterActualObservedPartyAttackAttempts=$TearAfterAttempts;maximumEnemyHpBeforeTear=4}
     $start=Capture;Require ($start.Revision-eq351-and!$start.FerryWraith.SealDestroyed) 'Expected genuine first-fire intact-seal checkpoint351.'
     Checkpoint 'first-fire'
     for($step=0;$step-lt140;$step++){
@@ -63,7 +64,7 @@ try{
         }
         $spent=($s.WorldIntervals|Where-Object ActorId -eq $actor).ActionSpent
         if(!$spent-and$actor-eq$comp){
-            if($null-eq$tear-and$body.Hp-le4){
+            if($null-eq$tear-and$body.Hp-le4-and$attackAttempts-ge$TearAfterAttempts){
                 $command=[Decennium.Foundation.Command]::new("ferry.seal-close.tear.$($s.Revision)",$comp,$s.Revision,'TearExposedSeal','TEST_ONLY.ferry-seal')
                 Require ($session.QueryCastingCommand('Player',$command).Admissible) 'Late physical seal tear unavailable.'
                 Send $command;$after=Capture;$tear=$after.FerryWraith.Rupture;$report.rupture=$tear
@@ -80,7 +81,7 @@ try{
             $combat=[Decennium.Foundation.CombatRequest]::new($s.Encounter.CurrentTurnId,'TEST_ONLY.actor-club',0,'OrdinaryOutcome',$false,'KeepExisting')
             $attack=[Decennium.Foundation.Command]::new("ferry.seal-close.attack.$($s.Revision)",$hero,$s.Revision,'AttackClub',$enemy,0,0,$null,$combat)
             Require ($session.QueryCastingCommand('Player',$attack).Admissible) 'Actual party attack unavailable.'
-            Send $attack;continue
+            Send $attack;$attackAttempts++;continue
         }
         Send ([Decennium.Foundation.Command]::new("ferry.seal-close.end.$($s.Revision)",$actor,$s.Revision,'EndRegularTurn',$s.Encounter.CurrentTurnId))
     }
