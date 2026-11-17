@@ -440,6 +440,7 @@ namespace Decennium.Foundation.Laboratory
 
         private static bool ExposedPayload(Snapshot state, Command command)
         {
+            if(command.Kind==CommandKind.EncounterDash)return state.FerryWraith!=null&&FerryWraithProfile.DashPayloadValid(command);
             if(command.Kind==CommandKind.TearExposedSeal)return state.FerryWraith!=null&&FerryWraithProfile.SealPayloadValid(command);
             if (BishopProfile.InvocationPayloadFailure(state,command)!=null)return false;
             if (state.DeclaredGeometry != null && (command.Kind == CommandKind.BeginWorldStep
@@ -499,6 +500,7 @@ namespace Decennium.Foundation.Laboratory
                 || seat == ExpeditionSeat.RecoveryOpponent && state.PostRecoveryEncounter != null
                     && (kind == CommandKind.UseIntimidatingPresence || state.ConnectedClericCasting && kind == CommandKind.RespondSanctuary)
                 || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+                || state.FerryWraith!=null && kind==CommandKind.EncounterDash
                 || state.DeclaredGeometry != null && (kind == CommandKind.SuspendWorldStep || kind == CommandKind.ResumeWorldStep)
                 || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
                 || state.ConnectedClericCasting && (SpellCastingProfile.IsUtilityCommand(kind)
@@ -608,6 +610,10 @@ namespace Decennium.Foundation.Laboratory
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {
+                case CommandKind.EncounterDash:
+                    // Fresh context/turn legality belongs to the shared resolver. Static host
+                    // admission lets an authorized exact receipt retry survive a later turn/exit.
+                    return state.FerryWraith!=null&&seat==ExpeditionSeat.Player&&Party.Contains(actor);
                 case CommandKind.TearExposedSeal:
                     return state.FerryWraith!=null&&seat==ExpeditionSeat.Player&&target==FerryWraithProfile.Seal
                         &&TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,actor);

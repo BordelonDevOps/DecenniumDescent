@@ -860,6 +860,12 @@ namespace Decennium.Foundation.Laboratory
             PlanningPassage? passage = null, bool sanctuaryChecked=false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
+            if(s.FerryWraith!=null&&c.Kind==CommandKind.EncounterDash) {
+                if(!FerryWraithProfile.DashPayloadValid(c))return "InvalidFerryDashPayload";
+                if(!s.InventoryCombat||!FerryWraithProfile.Active(s)
+                    ||c.Actor!=FerryWraithProfile.Hero&&c.Actor!=FerryWraithProfile.Companion)return "FerryDashRequiresPartyCombat";
+                if(c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
+            }
             if(s.FerryWraith!=null&&IsOffCalendarActivity(s,c.Actor)
                 &&ActivityInterval(s,c.Actor).Action==WorldActionCommitment.SealTear&&StartsOrResumesActivityWork(c))
                 return "OffCalendarActionAlreadySpent";

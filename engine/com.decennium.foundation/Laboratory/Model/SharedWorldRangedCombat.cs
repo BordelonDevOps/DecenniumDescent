@@ -78,7 +78,7 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public bool SupportsCommand(CommandKind kind)=>kind==CommandKind.AttackRepeatingCrossbow||kind==CommandKind.ReloadRepeatingCrossbow
-            ||ferryDeclaration!=null&&kind==CommandKind.TearExposedSeal
+            ||ferryDeclaration!=null&&(kind==CommandKind.TearExposedSeal||kind==CommandKind.EncounterDash)
             ||connectedClericLongRest&&ClericLongRestProfile.IsCommand(kind)
             ||connectedClericCasting&&(SpellCastingProfile.IsUtilityCommand(kind)||SpellCastingProfile.IsPhysicalCommand(kind)||kind==CommandKind.StabilizeCompanion
                 ||kind==CommandKind.AttackClub||kind==CommandKind.AttackUnarmed||kind==CommandKind.RespondOpportunityAttack
@@ -163,6 +163,10 @@ namespace Decennium.Foundation.Laboratory
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
             options.AddRange(DiscoverFerrySeal(s,actor));
+            if(FerryWraithProfile.Active(s)&&s.Encounter.CurrentActor==actor
+                &&(actor==FerryWraithProfile.Hero||actor==FerryWraithProfile.Companion))
+                options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ferry.dash",actor,s.Revision,
+                    CommandKind.EncounterDash,s.Encounter.CurrentTurnId));
             options.AddRange(DiscoverPostRecoveryCommands(s,actor));
             int optionIndex=0;
             options.AddRange(DiscoverManufacturingCommands(s,actor));
@@ -296,6 +300,11 @@ namespace Decennium.Foundation.Laboratory
 
         public CommandQueryResult QueryCommand(Snapshot s,Authority authority,Command c)
         {
+            if(c.Kind==CommandKind.EncounterDash&&ferryDeclaration!=null) {
+                string dashFailure=ResolveCore(s.Copy(),c,assessTactical:true);
+                return new CommandQueryResult(true,dashFailure==null,dashFailure??"Available",s.Revision,
+                    dashFailure==null?new[]{new CommandCost("action","",1)}:null);
+            }
             if(c.Kind==CommandKind.TearExposedSeal) {
                 string sealFailure=ResolveCore(s.Copy(),c,assessTactical:true);
                 return new CommandQueryResult(true,sealFailure==null,sealFailure??"Available",s.Revision,

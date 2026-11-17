@@ -232,6 +232,13 @@ namespace Decennium.Foundation
                 &&c.MiningSelection==null&&c.ProspectingExposure==null&&c.RouteMappingWork==null&&c.IntimidatingPresence==null
                 &&c.HealingRite==null&&c.SpellCast==null&&c.Guidance==null&&c.SanctuaryResponse==null&&c.DivineInvocation==null;
 
+        public static bool DashPayloadValid(Command c)
+            =>c!=null&&c.Kind==CommandKind.EncounterDash&&c.X==0&&c.Y==0
+                &&c.Inventory==null&&c.Combat==null&&c.Advancement==null&&c.Ranged==null&&c.OverwatchRider==OverwatchRider.None
+                &&c.SuppressionFire==null&&c.DefensiveFormation==null&&c.ExpeditionAssignment==null&&c.HarvestSelection==null
+                &&c.MiningSelection==null&&c.ProspectingExposure==null&&c.RouteMappingWork==null&&c.IntimidatingPresence==null
+                &&c.HealingRite==null&&c.SpellCast==null&&c.Guidance==null&&c.SanctuaryResponse==null&&c.DivineInvocation==null;
+
         private static void ValidateSeal(Snapshot s)
         {
             var seal=s.FerryWraith.Rupture;if(seal==null)return;

@@ -413,7 +413,7 @@ namespace Decennium.Foundation.Laboratory
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";
                 if(c.Inventory!=null||c.Combat!=null||c.X!=0||c.Y!=0||c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
                 if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
-                return PayRun(s,c.Actor);
+                return assessTactical?AssessDashPayment(s,c.Actor,false):PayRun(s,c.Actor);
             }
             if(c.Kind==CommandKind.ActivateTacticalReposition) {
                 if(PendingCalendarChoice(s))return "TacticalChoicePending";

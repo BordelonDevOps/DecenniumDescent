@@ -511,6 +511,8 @@ namespace Decennium.Foundation.Laboratory
                 string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
                     ? state.Encounter.CurrentTurnId : "";
                 IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
+                if(player&&state.InventoryCombat&&FerryWraithProfile.Active(state)&&Party.Contains(state.Encounter.CurrentActor))
+                    commands=commands.Append(CommandKind.EncounterDash);
                 if(player&&state.FerryWraith!=null&&Party.Any(x=>TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,x)))
                     commands=commands.Append(CommandKind.TearExposedSeal);
                 if(seat==ExpeditionSeat.RecoveryOpponent)commands=commands.Append(CommandKind.UseIntimidatingPresence).Append(CommandKind.RespondSanctuary);

@@ -21,8 +21,155 @@ namespace Decennium.Foundation.Tests
                     kind,null,"supplied-end",true))).State;
             s.Conditions=s.Conditions.Select(x=>x.Target==journal.Target?history.Journal:x).ToArray();
         }
+        private static ConnectedExpeditionSession RunFerryAdmission(string directory)
+        {
+            // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new
+            // selected profile. Never adopt an old save or replace its life/RNG state.
+            var session=RunDeclaredGeometryCampaign(directory,NewFerryExpedition());
+            const string hero=FerryWraithProfile.Hero,companion=FerryWraithProfile.Companion;
+            int sequence=0;
+            void Walk(string actor,int dx,int dy) {
+                var before=ShortRestCapture(session);var body=before.Actors.Single(x=>x.Id==actor);
+                int speed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(before,actor));
+                BishopCommit(session,new Command("ferry.approach."+(++sequence),actor,before.Revision,CommandKind.BeginWorldStep,"walk",dx,dy));
+                ClericCommit(session,hero,CommandKind.AdvanceClock,x:30,y:speed);
+                var after=ShortRestCapture(session);var moved=after.Actors.Single(x=>x.Id==actor);
+                Require(moved.X==body.X+dx&&moved.Y==body.Y+dy&&!after.WorldTraversals.Any(x=>x.ActorId==actor),
+                    "Ferry approach did not complete its actual paid edge.");
+            }
+            for(int step=0;step<5;step++)Walk(companion,1,0);
+            Walk(companion,0,-1);Walk(hero,1,0);Walk(hero,0,-1);
+            var staged=ShortRestCapture(session);var prior=staged.PostRecoveryEncounter.Admission.Epoch;
+            int actualSpeed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(staged,hero));
+            long slot=prior.SlotAt(staged.RuleClock);
+            RuleTime Departure(long local) {
+                var arrival=prior.Start(local);
+                return new RuleTime(checked(arrival.Numerator*actualSpeed-30L*arrival.Denominator),checked(arrival.Denominator*actualSpeed));
+            }
+            while(prior.Order[(int)(slot%prior.Order.Count)]!=PostRecoveryEncounterDefinition.Actor||Departure(slot)<staged.RuleClock)slot++;
+            PostRecoveryAdvanceTo(session,Departure(slot));
+            BishopCheckpoint(session,directory,"ferry-before-paid-contact");
+            var beforeContact=ShortRestCapture(session);Walk(hero,0,1);
+            var admitted=ShortRestCapture(session);var admission=admitted.FerryWraith.Admission;
+            Require(admission!=null&&admitted.Encounter.Id==FerryWraithProfile.Encounter
+                &&admission.PreviousPartyEpochId==prior.Id&&admission.PriorDefenderLocalStart==slot
+                &&admission.Epoch.Origin==prior.Start(slot)&&admitted.FerryWraith.Contacts.Count==1,
+                "Paid Ferry contact did not enter at the actual post-recovery nonparty Start.");
+            Require(admitted.Creatures.Single().ActorId==FerryWraithProfile.Actor
+                &&admitted.Lives.Single(x=>x.ActorId==FerryWraithProfile.Actor).Hp==9
+                &&admitted.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum))
+                    .SequenceEqual(beforeContact.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum)))
+                &&admitted.ConvictionBalance.Current==beforeContact.ConvictionBalance.Current,
+                "Ferry entry replaced the creature or granted party resources.");
+            BishopCheckpoint(session,directory,"ferry-admitted");
+            var restored=ShortRestCapture(session);
+            Require(new SnapshotCodec().Encode(admitted).SequenceEqual(new SnapshotCodec().Encode(restored)),
+                "Ferry admission changed across verified restore and deterministic replay.");
+            return session;
+        }
         private static void AddFerryWraithCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("tac10_ferry_public_dash_paid_movement_and_authorized_retry",()=>{
+                var ordinary=NewFerryExpedition();var ordinaryCodec=new SnapshotCodec();var ordinaryBefore=ordinaryCodec.Encode(ShortRestCapture(ordinary));
+                var outside=new Command("ferry.public.outside",FerryWraithProfile.Hero,ShortRestCapture(ordinary).Revision,CommandKind.EncounterDash,"TEST_ONLY.turn");
+                Require(!ordinary.View(ExpeditionSeat.Player).Commands.Contains(CommandKind.EncounterDash)
+                    &&!ordinary.QueryCastingCommand(ExpeditionSeat.Player,outside).Admissible
+                    &&ordinary.Submit(ExpeditionSeat.Player,outside).Response==ExpeditionResponse.Unavailable
+                    &&ordinaryBefore.SequenceEqual(ordinaryCodec.Encode(ShortRestCapture(ordinary))),"Selected profile alone admitted Dash outside actual Ferry combat.");
+                var session=RunFerryAdmission(directory);var codec=new SnapshotCodec();var checks=new List<string>();
+                const string hero=FerryWraithProfile.Hero,companion=FerryWraithProfile.Companion;
+                Snapshot State()=>ShortRestCapture(session);
+                byte[] Bytes()=>codec.Encode(State());
+                Command Dash(string id,string actor=null,string turn=null,long? revision=null,int x=0,int y=0,
+                    CombatRequest combat=null,SpellCastRequest spell=null)
+                    =>new Command("ferry.public.dash."+id,actor??State().Encounter.CurrentActor,revision??State().Revision,
+                        CommandKind.EncounterDash,turn??State().Encounter.CurrentTurnId,x,y,combat:combat,spellCast:spell);
+                void PureDenied(string label,Command command,ExpeditionSeat seat=ExpeditionSeat.Player,
+                    ExpeditionResponse expected=ExpeditionResponse.Unavailable) {
+                    var before=Bytes();var query=session.QueryCastingCommand(seat,command);
+                    Require(!query.Admissible&&session.Submit(seat,command).Response==expected&&before.SequenceEqual(Bytes()),
+                        "Public Dash denial changed state or admitted "+label);checks.Add(label);
+                }
+                void Guard(bool focused=false) {
+                    var s=State();BishopCommit(session,new Command("ferry.public.stance."+s.Revision,s.Encounter.CurrentActor,s.Revision,
+                        CommandKind.SelectCombatStance,combat:new CombatRequest(s.Encounter.CurrentTurnId,stance:(int)(focused?CombatStance.Focused:CombatStance.Guarded))));
+                }
+                void End() {var s=State();BishopCommit(session,new Command("ferry.public.end."+s.Revision,s.Encounter.CurrentActor,s.Revision,CommandKind.EndRegularTurn,s.Encounter.CurrentTurnId));}
+                void Auto() {Require(session.AdvanceAutomaticDefender().Response==ExpeditionResponse.Committed,"Actual Ferry controller failed during public Dash route.");}
+                void Step(string actor,int x,int y) {var s=State();BishopCommit(session,new Command("ferry.public.step."+s.Revision,actor,s.Revision,CommandKind.TacticalStep,s.Encounter.CurrentTurnId,x,y));}
+                Require(State().Encounter.CurrentActor==hero&&State().Encounter.TurnOrdinal==0,"Expected actual hero admission Start0.");
+                Guard();End();
+                for(int i=0;i<16&&session.View(ExpeditionSeat.Player).NextSeat==ExpeditionTurnSeat.FerryOpponent;i++)Auto();
+                Require(State().Encounter.CurrentActor==companion,"Public Dash route missed the actual companion Start.");
+                Guard();
+                Require(session.View(ExpeditionSeat.Player).Commands.Contains(CommandKind.EncounterDash)
+                    &&!session.View(ExpeditionSeat.FerryOpponent).Commands.Contains(CommandKind.EncounterDash),"Public command views expose the wrong Dash seats.");
+                var companionOptions=session.DiscoverCastingCommands(ExpeditionSeat.Player,companion).Where(x=>x.Command.Kind==CommandKind.EncounterDash).ToArray();
+                Require(companionOptions.Length==1&&companionOptions[0].Query.Admissible,"Party companion has no actual Dash discovery.");
+                BishopCheckpoint(session,directory,"dash-companion-before");
+                BishopCommit(session,companionOptions[0].Command);BishopCheckpoint(session,directory,"dash-companion-paid");
+                session.Restore(Path.Combine(directory,"dash-companion-before.ddsave"));
+                // Alternate genuine branch: retain both saves, then continue the original unspent Action.
+                Step(companion,9,3);Step(companion,10,2);
+                var guidance=session.DiscoverCastingCommands(ExpeditionSeat.Player,companion)
+                    .Single(x=>x.Command.Kind==CommandKind.CastKnownSpell&&x.Command.SpellCast.SpellId=="guidance"&&x.Command.Target==hero);
+                Require(guidance.Query.Admissible,"Actual Guidance setup unavailable.");BishopCommit(session,guidance.Command);
+                PureDenied("spent Action",Dash("spent"));End();Guard(true);
+                Step(hero,7,2);
+                Require(State().TacticalMoves.Any(x=>x.Pending),"Expected genuine source opportunity before paying Dash.");
+                PureDenied("pending opportunity",Dash("pending"));BishopCheckpoint(session,directory,"dash-pending-opportunity");Auto();
+                Require(!State().TacticalMoves.Any(x=>x.Pending),"Actual source opportunity did not finish.");
+                var beforeDash=State();var beforeInterval=beforeDash.WorldIntervals.Single(x=>x.ActorId==hero);
+                Require(beforeInterval.MovementSpent==new RuleQuantity(5),"The first actual edge did not spend5ft.");
+                PureDenied("wrong turn",Dash("wrong-turn",turn:"TEST_ONLY.wrong-turn"));
+                PureDenied("old epoch",Dash("wrong-epoch",turn:"TEST_ONLY.recovery-turn"));
+                PureDenied("wrong current party actor",Dash("wrong-actor",actor:companion));
+                PureDenied("nonzero x",Dash("x",x:1));PureDenied("nonzero y",Dash("y",y:1));
+                PureDenied("unrelated combat",Dash("combat",combat:new CombatRequest(beforeDash.Encounter.CurrentTurnId)));
+                PureDenied("unrelated spell",Dash("spell",spell:new SpellCastRequest("guidance")));
+                PureDenied("unauthorized opponent seat",Dash("opponent"),ExpeditionSeat.FerryOpponent,ExpeditionResponse.NotAuthorized);
+                PureDenied("creature cannot acquire party Dash",Dash("creature",actor:FerryWraithProfile.Actor),ExpeditionSeat.FerryOpponent);
+                PureDenied("stale revision",Dash("stale",revision:beforeDash.Revision-1),expected:ExpeditionResponse.StaleRevision);
+                var beforeQuery=Bytes();var options=session.DiscoverCastingCommands(ExpeditionSeat.Player,hero).Where(x=>x.Command.Kind==CommandKind.EncounterDash).ToArray();
+                Require(options.Length==1&&beforeQuery.SequenceEqual(Bytes()),"Dash discovery is absent, duplicated or impure.");
+                var dash=options[0].Command;var query=session.QueryCastingCommand(ExpeditionSeat.Player,dash);
+                Require(query.Supported&&query.Admissible&&query.Costs.Count==1&&query.Costs[0].Kind=="action"
+                    &&query.Costs[0].Amount==1&&beforeQuery.SequenceEqual(Bytes()),"Dash query did not expose the pure shared one-Action payment.");
+                session.SetSeatEnabled(ExpeditionSeat.Player,false);
+                PureDenied("revoked fresh request",dash,expected:ExpeditionResponse.NotAuthorized);
+                session.SetSeatEnabled(ExpeditionSeat.Player,true);BishopCommit(session,dash);
+                var paid=State();var interval=paid.WorldIntervals.Single(x=>x.ActorId==hero);
+                Require(interval.ActionSpent&&interval.DashPaid&&interval.MovementSpent==beforeInterval.MovementSpent
+                    &&paid.RuleClock==beforeDash.RuleClock&&paid.RandomState==beforeDash.RandomState,"Dash changed movement already spent, time or RNG, or omitted its Action.");
+                var stable=Bytes();Require(session.Submit(ExpeditionSeat.Player,dash).Response==ExpeditionResponse.Duplicate&&stable.SequenceEqual(Bytes()),"Immediate Dash retry repaid.");
+                var conflict=new Command(dash.Id,dash.Actor,dash.ExpectedRevision,CommandKind.EncounterDash,"TEST_ONLY.conflicting-turn");
+                PureDenied("conflicting receipt ID",conflict,expected:ExpeditionResponse.CommandIdConflict);
+                BishopCheckpoint(session,directory,"dash-hero-paid");
+                foreach(var cell in new[]{new CombatCell(6,3),new CombatCell(5,2),new CombatCell(4,2),new CombatCell(3,1),new CombatCell(2,0)})Step(hero,cell.X,cell.Y);
+                var routed=State();var spent=routed.WorldIntervals.Single(x=>x.ActorId==hero).MovementSpent;
+                Require(spent==new RuleQuantity(35)&&spent>new RuleQuantity(TestOnlyClubAttackPolicy.WalkingSpeed(routed,hero)),"Actual route did not use movement beyond the undashed allowance.");
+                End();stable=Bytes();
+                Require(session.Submit(ExpeditionSeat.Player,dash).Response==ExpeditionResponse.Duplicate
+                    &&session.QueryCastingCommand(ExpeditionSeat.Player,dash).Code=="AlreadyCommitted"&&stable.SequenceEqual(Bytes()),"Exact Dash retry failed after the turn changed.");
+                session.SetSeatEnabled(ExpeditionSeat.Player,false);
+                PureDenied("revoked exact retry",dash,expected:ExpeditionResponse.NotAuthorized);
+                session.SetSeatEnabled(ExpeditionSeat.Player,true);
+                for(int i=0;i<16&&session.View(ExpeditionSeat.Player).NextSeat==ExpeditionTurnSeat.FerryOpponent;i++)Auto();
+                Require(State().Encounter.CurrentActor==companion,"Dash route did not reach companion Start5.");Guard();End();Guard(true);
+                var hide=session.DiscoverCastingCommands(ExpeditionSeat.Player,hero).Single(x=>x.Command.Kind==CommandKind.Hide&&x.Command.Guidance!=null);
+                Require(hide.Query.Admissible,"The public Dash route did not reach an eligible guided Hide.");BishopCommit(session,hide.Command);
+                Require(State().GuidanceUses.Any(x=>x.CheckKind==GuidanceCheckKind.Hide),"Public route did not consume Guidance on the actual check.");
+                End();BishopCheckpoint(session,directory,"dash-guidance-continued");
+                var legacy=NewDeclaredGeometryExpedition();var legacyBefore=codec.Encode(ShortRestCapture(legacy));
+                var unsupported=new Command("ferry.public.legacy",hero,ShortRestCapture(legacy).Revision,CommandKind.EncounterDash,"TEST_ONLY.turn");
+                Require(!legacy.View(ExpeditionSeat.Player).Commands.Contains(CommandKind.EncounterDash)
+                    &&!legacy.QueryCastingCommand(ExpeditionSeat.Player,unsupported).Supported
+                    &&legacy.Submit(ExpeditionSeat.Player,unsupported).Response==ExpeditionResponse.Unavailable
+                    &&legacyBefore.SequenceEqual(codec.Encode(ShortRestCapture(legacy))),"Historical geometry host acquired new Dash behavior.");
+                File.WriteAllText(Path.Combine(directory,"public-dash-checks.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="Genuine public party Dash and Guided Hide continuation; alternate paid companion branch retained separately; not five paths or whole-module acceptance",
+                    checks,beforeInterval,paidInterval=interval,spent,query,finalRevision=State().Revision,finalClock=State().RuleClock}));
+            });
             cases.Add("tac10_seal_uses_owned_action_and_original_deadline",()=>{
                 // Detached, explicitly mechanical arrangements. Genuine gameplay and verified saves
                 // are retained by Probe-FerrySeal; these do not manufacture a playable campaign.
@@ -204,48 +351,7 @@ namespace Decennium.Foundation.Tests
                     legacyEffective=oldResult.Effective,wireRoundtrips,protectedAtPhase,unprotectedAtPhase}));
             });
             cases.Add("tac10_ferry_paid_current_epoch_admission_from_fresh_campaign",()=>{
-                // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new
-                // selected profile. Never adopt an old save or replace its life/RNG state.
-                var session=RunDeclaredGeometryCampaign(directory,NewFerryExpedition());
-                const string hero=FerryWraithProfile.Hero,companion=FerryWraithProfile.Companion;
-                int sequence=0;
-                void Walk(string actor,int dx,int dy) {
-                    var before=ShortRestCapture(session);var body=before.Actors.Single(x=>x.Id==actor);
-                    int speed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(before,actor));
-                    BishopCommit(session,new Command("ferry.approach."+(++sequence),actor,before.Revision,CommandKind.BeginWorldStep,"walk",dx,dy));
-                    ClericCommit(session,hero,CommandKind.AdvanceClock,x:30,y:speed);
-                    var after=ShortRestCapture(session);var moved=after.Actors.Single(x=>x.Id==actor);
-                    Require(moved.X==body.X+dx&&moved.Y==body.Y+dy&&!after.WorldTraversals.Any(x=>x.ActorId==actor),
-                        "Ferry approach did not complete its actual paid edge.");
-                }
-                for(int step=0;step<5;step++)Walk(companion,1,0);
-                Walk(companion,0,-1);Walk(hero,1,0);Walk(hero,0,-1);
-                var staged=ShortRestCapture(session);var prior=staged.PostRecoveryEncounter.Admission.Epoch;
-                int actualSpeed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(staged,hero));
-                long slot=prior.SlotAt(staged.RuleClock);
-                RuleTime Departure(long local) {
-                    var arrival=prior.Start(local);
-                    return new RuleTime(checked(arrival.Numerator*actualSpeed-30L*arrival.Denominator),checked(arrival.Denominator*actualSpeed));
-                }
-                while(prior.Order[(int)(slot%prior.Order.Count)]!=PostRecoveryEncounterDefinition.Actor||Departure(slot)<staged.RuleClock)slot++;
-                PostRecoveryAdvanceTo(session,Departure(slot));
-                BishopCheckpoint(session,directory,"ferry-before-paid-contact");
-                var beforeContact=ShortRestCapture(session);Walk(hero,0,1);
-                var admitted=ShortRestCapture(session);var admission=admitted.FerryWraith.Admission;
-                Require(admission!=null&&admitted.Encounter.Id==FerryWraithProfile.Encounter
-                    &&admission.PreviousPartyEpochId==prior.Id&&admission.PriorDefenderLocalStart==slot
-                    &&admission.Epoch.Origin==prior.Start(slot)&&admitted.FerryWraith.Contacts.Count==1,
-                    "Paid Ferry contact did not enter at the actual post-recovery nonparty Start.");
-                Require(admitted.Creatures.Single().ActorId==FerryWraithProfile.Actor
-                    &&admitted.Lives.Single(x=>x.ActorId==FerryWraithProfile.Actor).Hp==9
-                    &&admitted.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum))
-                        .SequenceEqual(beforeContact.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum)))
-                    &&admitted.ConvictionBalance.Current==beforeContact.ConvictionBalance.Current,
-                    "Ferry entry replaced the creature or granted party resources.");
-                BishopCheckpoint(session,directory,"ferry-admitted");
-                var restored=ShortRestCapture(session);
-                Require(new SnapshotCodec().Encode(admitted).SequenceEqual(new SnapshotCodec().Encode(restored)),
-                    "Ferry admission changed across verified restore and deterministic replay.");
+                var session=RunFerryAdmission(directory);var admitted=ShortRestCapture(session);
                 File.WriteAllText(Path.Combine(directory,"ferry-paid-admission.json"),System.Text.Json.JsonSerializer.Serialize(new{
                     scope="Genuine new-profile prefix and nine paid approach edges; creature combat and seal qualification remain pending",
                     admitted.Revision,admitted.RuleClock,admitted.FerryWraith,admitted.WorldIntervals,admitted.BonusActions,
