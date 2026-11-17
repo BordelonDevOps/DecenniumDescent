@@ -104,19 +104,8 @@ namespace Decennium.Foundation.Laboratory
             if (mode == "run")
             {
                 dashPaid = scheduled ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
-                if (scheduled)
-                {
-                    var interval = Interval(s, c.Actor);
-                    if (!dashPaid && interval.ActionSpent) return "ActionAlreadySpent";
-                    if (!dashPaid && !Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
-                }
-                else
-                {
-                    var activity = ActivityInterval(s, c.Actor);
-                    if (!dashPaid && ActivityHasLabor(s, c.Actor)) return "OffCalendarLaborOverlapsActivity";
-                    if (!dashPaid && activity.Action != WorldActionCommitment.None) return "ActionAlreadySpent";
-                    if (!dashPaid && !Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
-                }
+                string dashFailure = AssessDashPayment(s, c.Actor, !scheduled);
+                if (dashFailure != null) return dashFailure;
             }
             var edge = new WorldTraversalRecord(c.Actor, s.Revision + 1, actor.X, actor.Y, toX, toY,
                 initialDistance, running: mode == "run");
@@ -194,21 +183,8 @@ namespace Decennium.Foundation.Laboratory
             if (!Permissions(s, c.Actor).VoluntarySpeed || Speed(s, c.Actor) == 0) return "ConditionPreventsMovement";
             if (edge.Running)
             {
-                bool dashPaid = WorldTiming.ForActor(s, c.Actor) != null ? Interval(s, c.Actor).DashPaid : ActivityInterval(s, c.Actor).DashPaid;
-                if (!dashPaid)
-                {
-                    if (WorldTiming.ForActor(s, c.Actor) != null)
-                    {
-                        if (Interval(s, c.Actor).ActionSpent) return "ActionAlreadySpent";
-                        if (!Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
-                    }
-                    else
-                    {
-                        if (ActivityHasLabor(s, c.Actor)) return "OffCalendarLaborOverlapsActivity";
-                        if (ActivityInterval(s, c.Actor).Action != WorldActionCommitment.None) return "ActionAlreadySpent";
-                        if (!Permissions(s, c.Actor).Dash) return "ConditionPreventsDash";
-                    }
-                }
+                string dashFailure = AssessDashPayment(s, c.Actor, offCalendarActivity);
+                if (dashFailure != null) return dashFailure;
             }
             return AssessCharterTraversalResume(s, edge);
         }
@@ -563,13 +539,16 @@ namespace Decennium.Foundation.Laboratory
         private IEnumerable<Command> DiscoverTacticalMovementCommands(Snapshot s, string actor)
         {
             int index = 0; string turnId = s.Encounter.CurrentTurnId;
+            var body = s.Actors.Single(a => a.Id == actor);
             foreach (var delta in new[] { new[] { -1, -1 }, new[] { -1, 0 }, new[] { -1, 1 }, new[] { 0, -1 },
                 new[] { 0, 1 }, new[] { 1, -1 }, new[] { 1, 0 }, new[] { 1, 1 } })
             {
+                int x = delta[0], y = delta[1];
+                if (s.DeclaredGeometry != null) { x = checked(body.X + x); y = checked(body.Y + y); }
                 yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".tactical-step." + (index++).ToString(CultureInfo.InvariantCulture),
-                    actor, s.Revision, CommandKind.TacticalStep, turnId, delta[0], delta[1]);
+                    actor, s.Revision, CommandKind.TacticalStep, turnId, x, y);
                 yield return new Command("option." + s.Revision.ToString(CultureInfo.InvariantCulture) + ".tactical-reposition." + (index++).ToString(CultureInfo.InvariantCulture),
-                    actor, s.Revision, CommandKind.TacticalRepositionStep, turnId, delta[0], delta[1]);
+                    actor, s.Revision, CommandKind.TacticalRepositionStep, turnId, x, y);
             }
         }
 

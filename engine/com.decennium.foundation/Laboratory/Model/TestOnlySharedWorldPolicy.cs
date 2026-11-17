@@ -406,28 +406,32 @@ namespace Decennium.Foundation.Laboratory
             s.WorldSchedule = schedule.At(slot);
             if(s.SchemaVersion>=Snapshot.CalendarCombatSchema)SyncCalendarBodies(s);
         }
-        private static string PayRun(Snapshot s, string actor)
+        private static string AssessDashPayment(Snapshot s, string actor, bool activity)
         {
             var strain = ExpeditionStrainRules.Current(s, actor);
-            if (Interval(s, actor).DashPaid) return strain.DashProhibited ? "ExpeditionStrainPreventsDash" : null;
-            if (Interval(s, actor).ActionSpent) return "ActionAlreadySpent";
+            bool paid = activity ? ActivityInterval(s, actor).DashPaid : Interval(s, actor).DashPaid;
+            if (paid) return strain.DashProhibited ? "ExpeditionStrainPreventsDash" : null;
+            if (activity && ActivityHasLabor(s, actor)) return "OffCalendarLaborOverlapsActivity";
+            if (activity ? ActivityInterval(s, actor).Action != WorldActionCommitment.None : Interval(s, actor).ActionSpent)
+                return "ActionAlreadySpent";
             if (ExpeditionStrainRules.DashLocked(s, actor)) return "ExpeditionStrainDashLocked";
             if (strain.DashProhibited) return "ExpeditionStrainPreventsDash";
             if (!Permissions(s, actor).Dash) return "ConditionPreventsDash";
+            return null;
+        }
+        private static string PayRun(Snapshot s, string actor)
+        {
+            string failure = AssessDashPayment(s, actor, false);
+            if (failure != null || Interval(s, actor).DashPaid) return failure;
             SetInterval(s, Interval(s, actor).PayDash());
             ExpeditionStrainRules.RecordDash(s, actor, s.Revision + 1);
             return null;
         }
         private static string PayActivityDash(Snapshot s, string actor, string commandId, long commandRevision)
         {
+            string failure = AssessDashPayment(s, actor, true);
             var activity = ActivityInterval(s, actor);
-            var strain = ExpeditionStrainRules.Current(s, actor);
-            if (activity.DashPaid) return strain.DashProhibited ? "ExpeditionStrainPreventsDash" : null;
-            if (ActivityHasLabor(s, actor)) return "OffCalendarLaborOverlapsActivity";
-            if (activity.Action != WorldActionCommitment.None) return "ActionAlreadySpent";
-            if (ExpeditionStrainRules.DashLocked(s, actor)) return "ExpeditionStrainDashLocked";
-            if (strain.DashProhibited) return "ExpeditionStrainPreventsDash";
-            if (!Permissions(s, actor).Dash) return "ConditionPreventsDash";
+            if (failure != null || activity.DashPaid) return failure;
             SetActivityInterval(s, activity.PayDash(commandId, commandRevision));
             ExpeditionStrainRules.RecordDash(s, actor, commandRevision);
             return null;

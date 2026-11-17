@@ -29,7 +29,7 @@ try {
 } finally {$zip.Dispose()}
 $old=@(Get-Content -LiteralPath (Join-Path $prior 'all-names.txt'))
 $predecessors=@($names|Where-Object {$_-cnotin$focus})
-if($names.Count-ne1575-or$focus.Count-ne5-or$old.Count-ne1570-or
+if($names.Count-ne1576-or$focus.Count-ne6-or$old.Count-ne1570-or
     [string]::Join("`n",$predecessors)-cne[string]::Join("`n",$old)){throw 'Unexpected geometry or predecessor inventory.'}
 if(!$FocusedOnly){
     & git -C $repository diff --quiet HEAD -- engine

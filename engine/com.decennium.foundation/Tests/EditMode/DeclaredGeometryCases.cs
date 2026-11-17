@@ -15,6 +15,54 @@ namespace Decennium.Foundation.Tests
 
         private static void AddDeclaredGeometryCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("tac03_declared_geometry_strain_dash_queries_cross_actual_start", () => {
+                const string hero = ConnectedExpeditionSession.Hero;
+                foreach (bool resume in new[] { false, true }) {
+                    var session = NewDeclaredGeometryExpedition(); var codec = new SnapshotCodec();
+                    // Two genuine missed provisioning boundaries yield Strain4. No state injection.
+                    ClericCommit(session, hero, CommandKind.AdvanceClock, x: 172804, y: 1);
+                    var late = ShortRestCapture(session);
+                    Require(ExpeditionStrainRules.Current(late, hero).Level == 4 && late.RuleClock == new RuleTime(172804),
+                        "The real provisioning route did not reach the expected late Strain4 interval.");
+                    string suffix = resume ? "resume" : "begin";
+                    Command Move(CommandKind kind, string id, int dx = 0) => new Command("geometry.lock." + suffix + "." + id,
+                        hero, ShortRestCapture(session).Revision, kind, kind == CommandKind.BeginWorldStep ? "run" : "", dx, 0);
+                    var run = Move(CommandKind.BeginWorldStep, "paid", 1);
+                    Require(session.QueryCastingCommand(ExpeditionSeat.Player, run).Admissible, "Initial strained run was unavailable.");
+                    BishopCommit(session, run);
+                    var paid = ShortRestCapture(session); var locked = paid.ExpeditionDashLocks.Single(x => x.ActorId == hero);
+                    Require(!locked.InitiativeAnchored && locked.AppliedAt == late.RuleClock && locked.Deadline == late.RuleClock.AddSeconds(6),
+                        "Paid ordinary run did not retain its actual six-second lock.");
+                    if (resume) {
+                        BishopCommit(session, Move(CommandKind.SuspendWorldStep, "suspend"));
+                        var reuse = Move(CommandKind.ResumeWorldStep, "same-interval-reuse");
+                        Require(session.QueryCastingCommand(ExpeditionSeat.Player, reuse).Admissible, "Already-paid same-interval reuse was locked.");
+                        BishopCommit(session, reuse); BishopCommit(session, Move(CommandKind.SuspendWorldStep, "suspend-again"));
+                        Require(ShortRestCapture(session).ExpeditionDashLocks.Single(x => x.ActorId == hero).AppliedAt == locked.AppliedAt,
+                            "Same-interval resume repaid or moved the lock.");
+                    } else {
+                        int speed = checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(paid, hero));
+                        ClericCommit(session, hero, CommandKind.AdvanceClock, x: 15, y: speed);
+                        Require(ShortRestCapture(session).WorldTraversals.Length == 0, "The actual run did not finish before the next Start.");
+                    }
+                    PostRecoveryAdvanceTo(session, new RuleTime(172806));
+                    var fresh = ShortRestCapture(session); var interval = fresh.WorldIntervals.Single(x => x.ActorId == hero);
+                    Require(interval.LastStart > late.WorldIntervals.Single(x => x.ActorId == hero).LastStart
+                        && !interval.ActionSpent && !interval.DashPaid && ExpeditionStrainRules.DashLocked(fresh, hero),
+                        "The control did not cross an actual refreshed Start while the paid lock remained active.");
+                    BishopCheckpoint(session, directory, "geometry-lock-" + suffix);
+                    var denied = Move(resume ? CommandKind.ResumeWorldStep : CommandKind.BeginWorldStep, "locked", resume ? 0 : -1);
+                    var bytes = codec.Encode(ShortRestCapture(session)); var query = session.QueryCastingCommand(ExpeditionSeat.Player, denied);
+                    File.WriteAllText(Path.Combine(directory, "geometry-lock-" + suffix + ".query.json"), System.Text.Json.JsonSerializer.Serialize(query));
+                    Require(!query.Admissible && query.Code == "ExpeditionStrainDashLocked", "Run/resume query omitted the actual cross-Start Strain lock: " + query.Code);
+                    Require(session.Submit(ExpeditionSeat.Player, denied).Response == ExpeditionResponse.Unavailable
+                        && bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))), "Locked query/execution changed canonical state.");
+                    PostRecoveryAdvanceTo(session, locked.Deadline);
+                    var expiry = Move(resume ? CommandKind.ResumeWorldStep : CommandKind.BeginWorldStep, "expiry", resume ? 0 : -1);
+                    Require(session.QueryCastingCommand(ExpeditionSeat.Player, expiry).Admissible, "Dash was not admitted at exact lock expiry.");
+                    BishopCommit(session, expiry); BishopCheckpoint(session, directory, "geometry-lock-" + suffix + "-expired");
+                }
+            });
             cases.Add("tac03_declared_geometry_connected_weighted_interrupts_and_continue", () => RunDeclaredGeometryCampaign(directory));
             cases.Add("tac03_declared_geometry_paid_dash_suspend_authority_and_restore", () => {
                 const string hero = ConnectedExpeditionSession.Hero;
@@ -112,7 +160,22 @@ namespace Decennium.Foundation.Tests
             void Step(int x, int y)
             {
                 var state = ShortRestCapture(session);
-                Commit(Make(CommandKind.TacticalStep, hero, state.Encounter.CurrentTurnId, x, y));
+                if (state.Actors.Single(a => a.Id == hero).X > 4) {
+                    var bytes = new SnapshotCodec().Encode(state);
+                    var options = session.DiscoverCastingCommands(ExpeditionSeat.Player, hero);
+                    string beforeDiscovery = System.Text.Json.JsonSerializer.Serialize(options);
+                    Require(bytes.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))), "Acting hero discovery mutated state.");
+                    string save = Path.Combine(directory, "geometry-acting-hero-discovery.ddsave"); session.Save(save); session.Restore(save);
+                    string afterDiscovery = System.Text.Json.JsonSerializer.Serialize(session.DiscoverCastingCommands(ExpeditionSeat.Player, hero));
+                    File.WriteAllText(Path.Combine(directory, "geometry-acting-hero-discovery.before.json"), beforeDiscovery);
+                    File.WriteAllText(Path.Combine(directory, "geometry-acting-hero-discovery.after.json"), afterDiscovery);
+                    Require(beforeDiscovery == afterDiscovery && bytes.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),
+                        "Acting hero discovery changed across actual restore.");
+                    var chosen = options.SingleOrDefault(o => o.Command.Kind == CommandKind.TacticalStep && o.Command.X == x && o.Command.Y == y);
+                    Require(chosen != null && chosen.Query.Admissible && chosen.Query.Costs.Single(c => c.Kind == "movement-feet").Amount == 10,
+                        "Discovery did not offer the actual beyond-boundary Difficult destination and cost.");
+                    sequence++; Commit(chosen.Command);
+                } else Commit(Make(CommandKind.TacticalStep, hero, state.Encounter.CurrentTurnId, x, y));
                 for (int pending = 0; pending < 16; pending++) {
                     state = ShortRestCapture(session);
                     var move = TestOnlyClubAttackPolicy.PendingMove(state);
@@ -176,6 +239,13 @@ namespace Decennium.Foundation.Tests
                             && after.Actors.Single(x => x.Id == npc).X == 5 && after.Actors.Single(x => x.Id == npc).Y == 3,
                             "Actual attack-armed OA/Press did not follow through the paid movement parent.");
                         weighted = true; BishopCheckpoint(session, directory, "geometry-weighted-interrupt-complete");
+                        var stable = new SnapshotCodec().Encode(ShortRestCapture(session));
+                        var options = session.DiscoverCastingCommands(ExpeditionSeat.Player, hero);
+                        var blocked = options.SingleOrDefault(o => o.Command.Kind == CommandKind.TacticalStep && o.Command.X == 6 && o.Command.Y == 1);
+                        Require(blocked != null && !blocked.Query.Admissible && blocked.Query.Code == "BlockedTacticalStep",
+                            "Acting hero discovery did not retain the declared blocked destination.");
+                        Require(stable.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))), "Blocked discovery changed state.");
+                        File.WriteAllText(Path.Combine(directory, "geometry-acting-hero-blocked.json"), System.Text.Json.JsonSerializer.Serialize(options));
                     } else if (actor == hero && weighted && !enemy.Dead) {
                         Commit(Make(CommandKind.AttackClub, hero, npc,
                             combat: new CombatRequest(encounter.CurrentTurnId, "TEST_ONLY.actor-club")));
