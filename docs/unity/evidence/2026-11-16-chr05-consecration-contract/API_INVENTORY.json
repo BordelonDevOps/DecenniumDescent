@@ -1,0 +1,159 @@
+{
+  "searches": {
+    "creature-type-candidates": {
+      "pattern": "\\bUndead\\b|CreatureType|CreatureKind|CreatureClassification",
+      "searchedFiles": 457,
+      "hits": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ClassAdvancementOptionCatalog.cs",
+          "hits": [
+            {
+              "line": 367,
+              "text": "\"Mage|mage.hero.lich.undead-immunities|Undead Immunities|Hero|Lich|16|selection|sourceKind|passive|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/mage.json|/cards/45\","
+            }
+          ]
+        }
+      ],
+      "limit": "Lexical candidates, combined with direct ActorState/profile/API inspection; not a semantic completeness proof."
+    },
+    "consecration-candidates": {
+      "pattern": "Consecrate|ConsecratedGround|consecrated-ground",
+      "searchedFiles": 457,
+      "hits": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ClassAdvancementOptionCatalog.cs",
+          "hits": [
+            {
+              "line": 102,
+              "text": "\"Cleric|cleric.base.consecrated-ground|Consecrated Ground|Base||1|selection|sourceKind|passive|Passive|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json|/cards/1\","
+            },
+            {
+              "line": 115,
+              "text": "\"Cleric|cleric.base.consecrate|Consecrate|Base||1|selection|sourceKind|active|Action|bnVsbA==|bnVsbA==|provisional-playtest|DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json|/cards/14\","
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "hits": [
+            {
+              "line": 65,
+              "text": "\"Positive or mixed Hit Dice recovery\", \"Consecrate terrain and other card triggers\","
+            },
+            {
+              "line": 68,
+              "text": "state.ConnectedClericSettlement ? \"Consecrate terrain and other card triggers\" : \"Other selected card execution\","
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+          "hits": [
+            {
+              "line": 134,
+              "text": "\"cleric.base.consecrate\", \"cleric.base.consecrated-ground\", \"cleric.base.fervent-ritualist\", HealingRite });"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRpCases.cs",
+          "hits": [
+            {
+              "line": 97,
+              "text": "new[] { \"medicine\", \"religion\" }, new[] { \"cleric.base.consecrate\", \"cleric.base.consecrated-ground\","
+            }
+          ]
+        }
+      ],
+      "limit": "Lexical candidates, combined with direct ActorState/profile/API inspection; not a semantic completeness proof."
+    },
+    "recharge-consumers": {
+      "pattern": "CharacterAbilityRechargeRecord|TickAbilityRecharge",
+      "searchedFiles": 457,
+      "hits": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+          "hits": [
+            {
+              "line": 264,
+              "text": "var after=new CharacterAbilityRechargeRecord(actor,before.AbilityId,epoch.Id,local,epoch.Start(local),remaining);"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "hits": [
+            {
+              "line": 110,
+              "text": ".Append(new CharacterAbilityRechargeRecord(c.Actor,BishopProfile.Invocation,epoch.Id,turn.LocalStart,epoch.Start(turn.LocalStart),3)).ToArray();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+          "hits": [
+            {
+              "line": 103,
+              "text": ".Append(new CharacterAbilityRechargeRecord(command.Actor, FrightenedProfile.SourceId,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+          "hits": [
+            {
+              "line": 27,
+              "text": "public sealed class CharacterAbilityRechargeRecord"
+            },
+            {
+              "line": 35,
+              "text": "public CharacterAbilityRechargeRecord(string actor, string ability, string epoch, long lastLocalStart,"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "hits": [
+            {
+              "line": 368,
+              "text": "public CharacterAbilityRechargeRecord[] AbilityRecharges = Array.Empty<CharacterAbilityRechargeRecord>();"
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Persistence/FrightenedCodec.cs",
+          "hits": [
+            {
+              "line": 42,
+              "text": "state.AbilityRecharges = new CharacterAbilityRechargeRecord[SnapshotCodec.ReadCount(r,128)];"
+            },
+            {
+              "line": 43,
+              "text": "for(int i=0;i<state.AbilityRecharges.Length;i++) state.AbilityRecharges[i]=new CharacterAbilityRechargeRecord("
+            }
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Tests/EditMode/FrightenedLifecycleCases.cs",
+          "hits": [
+            {
+              "line": 87,
+              "text": "recharging.AbilityRecharges = new[] { new CharacterAbilityRechargeRecord(cursor.ActorId, cursor.AbilityId,"
+            },
+            {
+              "line": 311,
+              "text": "forgery = applied.Copy(); forgery.AbilityRecharges = Array.Empty<CharacterAbilityRechargeRecord>();"
+            },
+            {
+              "line": 314,
+              "text": "forgery.AbilityRecharges = new[] { new CharacterAbilityRechargeRecord(cursor.ActorId, cursor.AbilityId,"
+            }
+          ]
+        }
+      ],
+      "limit": "Lexical candidates, combined with direct ActorState/profile/API inspection; not a semantic completeness proof."
+    }
+  },
+  "actorStateDeclaration": "public sealed class ActorState\n    {\n        public string Id;\n        public int X, Y, Tokens;\n        public ActorState Copy() => (ActorState)MemberwiseClone();\n    }\n    ",
+  "caveat": "Direct source inspection is summarized in SOURCE_API_CONTRACT.md. Search hits alone do not certify completeness."
+}
