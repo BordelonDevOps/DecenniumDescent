@@ -120,3 +120,32 @@ These remaining focused cases are a bounded implementation-control allocation un
 No additional material runtime defect was found in this inspection. The rows distinguish missing assertions from proved defects. Completing their actual evidence, the allocated cap control, and the other existing contract qualification records is still necessary before the complete module acceptance review. This addendum does not assert terminal regression, compatibility, console replay or whole-module completion, and it contains no new gameplay execution by this reviewer.
 
 Subsequent update: the actual V3 cap supplement has now been inspected against its driver and accepted as satisfying the specific allocation, with the genuine conjunction still UNPROVED. See the separate subsequent review in [CAP_CURE_ALLOCATION_REVIEW.md](CAP_CURE_ALLOCATION_REVIEW.md). The other missing distinctions in the table are unchanged by that result.
+
+## Subsequent qualification-driver and retained-result inspection
+
+At this later inspection the runtime source was committed as `3c5135ae` on Engine. I recomputed all30 source hashes in this audit; none differed. This check identifies source continuity, not terminal execution or a new compiled-build qualification.
+
+I read the complete `FocusedControlsV5.cs`, `OwnerMovement.cs`, `Compatibility.cs`, `support/TypedCommand.ps1`, `support/TraceCommand.ps1` and `support/Test-ConnectedPaths.ps1`, and the retained result files identified below. These are source/result inspections only. I did not run any driver, restore any save, execute gameplay or compile anything.
+
+The V5 record reports **25 focused mechanical controls**. Its assertions now include actual fractional physical-position radius samples, inclusive creation range, Blinded creation denial, owner Stunned/Unconscious/Dead survival, creation incapacity denials, exact-End/post-slot/already-settled-End denial, RP/pending/source/history guards, five negative Ground helper controls, sparse recharge count/refresh cursor and the genuine retreat skip marker. The sparse assertion checks remaining0, exact epoch/local Start/time and the unchanged original deadline; it remains explicitly a component control on a detached state, not a coherent future full snapshot or full-advance campaign. The retreat assertion exercises the counting helper with a genuine historical retreat marker; it does not claim a new115 retreat campaign. The zero-base result is correctly named Ground-only. Owner-life survival and original-expiry behavior are component assertions, not a newly executed source-death campaign.
+
+The movement record and driver show three genuine public commands from revision346 to349, an actual2.5ft fractional traversal, one completed five-foot creator step, fixed zone center and original deadline, and exact canonical strict-restore equality at both intermediate and completed checkpoints. Its separate constructor rejection of two active same-owner zones is explicitly mechanical. It does not invent a second lawful terrain owner or claim multiplayer overlap gameplay.
+
+The two compatibility results report one representative authentic same-lineage continuation for each wire95–114, including canonical byte equality after continuation and rejection by a new115 session. The driver checks exact receipt identity/principal/fingerprint/revision during continuation. This is not all legacy variants, all older views, or a rerun of every prior accepted suite. The backup record reports115 recovery from revision352, preserved displaced corrupt primary, and continued equality at361. The actual archive/member provenance must remain bound by the enclosing evidence index; these result records alone do not establish authenticity.
+
+The typed trace exporter verifies the independently reconstructed command fingerprint against each retained receipt, except auto requests, which deliberately invoke the actual automatic controller. The complete path driver requires428 commits,14 checkpoints and four seats; it captures public view, terrain and healing projections and verifies reads leave canonical saves unchanged. Its own report correctly says that cross-path equality needs a separate comparison. It does **not** by itself compare discovery/query/denial/retry behavior. The original carried-forward contract explicitly requires five complete modes and those additional public behavior comparisons; see [SOURCE_API_REVIEW.md](SOURCE_API_REVIEW.md) for the actual five-mode clarification and Codex concurrence. The implementer was notified that paired original-versus-strict-restored discovery/query/probe evidence must be retained rather than calling the existing three projections proof of those operations.
+
+No material driver defect was identified in this inspection. No five-path, terminal regression, complete public behavior, final module or whole-engine acceptance is asserted here. The earlier gap table is historical to its review time; the specific later assertions above and the separate accepted cap allocation supersede its corresponding pending distinctions.
+
+Paths below are relative to `engine/artifacts/consecration/frozen-qualification-02/`.
+
+| Inspected retained artifact | SHA256 |
+| --- | --- |
+| `focused-controls-v5/result.json` | `15a80ae0ff6b141000e88bd9b24477350f68e925192ecf88935fc9773c71dd95` |
+| `owner-movement/result.json` | `6ffd00a43c1c56f93e1e25a1f11c83c74d30092970cdf7f466e1f2432bb7001b` |
+| `compatibility95-104/result.json` | `09d61d5775c3e4df40358c8219dff35e114701d779f26496f36e3a9e4ff7167d` |
+| `compatibility105-114/result.json` | `2cd6542c74394a78ebb7dcbf9f746d6ea2b41e811693df12938baedbf2005b1b` |
+| `backup/result.json` | `c26240e09aacf939431a0fced7596792ecc5f583c0a41599cbdfe1fa7aac1bb9` |
+| `build/run-20261117T185236951Z-452d89f7/FocusedControlsV5.cs` | `b32f28d14607efdc140e4fee23a55c05c5f16223ee7b5cc4b85a69759ecec385` |
+| `build/run-20261117T185236951Z-452d89f7/OwnerMovement.cs` | `66c15fc465c47fc3e371fcd2aeda229edf7cc9fea392f1382716c1df12ac1def` |
+| `build/run-20261117T185236951Z-452d89f7/Compatibility.cs` | `b590de02b89e6209d3b5e5f88e945024b87b07ce0f16d07054de39ac282adf4b` |

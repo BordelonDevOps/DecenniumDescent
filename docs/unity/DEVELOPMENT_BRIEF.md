@@ -1,5 +1,7 @@
 # Decennium Descent — Unity Development Directions for Codex
 
+Current implementation update (2026-11-17): the owner said **implement it**, superseding the earlier documentation-only pause. Consecration115 is now an implemented TEST_ONLY candidate with accepted source/API review; qualification and actual final module review remain open. See [active packet](evidence/2026-11-17-chr05-consecration/README.md) and [current map](IMPLEMENTATION_MAP.md). All prior exact acceptances and the accepted pre-Unity criteria stand; UR qualification, full-engine completion, Unity and production remain open. Earlier pause/status paragraphs below are historical.
+
 **Purpose:** Execution brief for the Unity game framework and its continuing AI-assisted engineering review.
 **Prepared:** October 20, 2026.
 **Status:** Proposed development instructions. Supplying this brief as an execution task authorizes its bounded first assignment, not new gameplay canon or release promotion.

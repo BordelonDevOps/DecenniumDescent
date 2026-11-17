@@ -73,3 +73,21 @@ One documentation correction remains: `SOURCE_API_CONTRACT.md` still labels the 
 
 The retained review record accurately separates source/API approval from runtime acceptance. Sparse-transfer, skipped-Start, compatibility and genuine cap/cure witnesses remain execution obligations. I performed source/document inspection only; no builds, tests, gameplay or runtime acceptance.
 ```
+
+## Actual five-mode qualification requirement clarification
+
+The controlling sentence is in the original contract's **section8, Genuine funding and connected acceptance plan** (line98 at inspection), carried forward by this amendment. The later reference to “original§9” in the concurrence below is a section-number slip; amended section9 is the qualification boundary. No evidence-method amendment was adopted.
+
+Actual reviewer finding:
+
+```text
+Important literal-contract finding: amended §9 alone does not mandate five, but the carried-forward original SOURCE_API_CONTRACT.md line98 explicitly says “Execute uninterrupted/restored console, independently constructed typed uninterrupted/restored and receipt replay paths.” That is this module’s own original requirement, not inherited TAC10. Therefore I cannot honestly call THREE compliance with the complete unamended contract by interpretation alone. I can agree to an explicit prospective qualification amendment selecting these three complete complementary paths, preserving all actual comparisons/privacy/discovery/rollback/restore obligations and labeling the two omitted full modes unexecuted. This is a documented evidence-method adjustment, not module acceptance or scope closure; no extra owner question is needed under the existing delegation.
+```
+
+Actual Codex disposition:
+
+```text
+Thank you for catching original§9's explicit five modes. I will execute both remaining complete modes and retain the original contract requirement; no method amendment needed. Owner request conserves Codex's later usage, not this cloud qualification. Keep actual three running and add TypedUninterrupted/ConsoleRestored. Current V5PASS25controls, ownermovementPASS3actualcommands plus two strictrestore checkpoints and separately labeled duplicate-active-zone constructor rejection. Please retain your precise source finding and my concurrence in review doc to avoid later three-path overclaim.
+```
+
+Accordingly the qualification plan remains console uninterrupted/restored, independently constructed typed uninterrupted/restored, and receipt replay. The quoted run statuses are Codex's reports at this checkpoint, not new execution by the reviewer or a terminal five-path comparison result. Final acceptance still requires review of the actual terminal records and their real comparison scope, including the original discovery/query/denial/retry and privacy obligations. This clarification changes no source rule, runtime or prior acceptance.
