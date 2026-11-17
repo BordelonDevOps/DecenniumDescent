@@ -172,6 +172,7 @@ namespace Decennium.Foundation.Laboratory
             long slot=epoch.SlotAt(s.RuleClock);if(slot==epoch.ProcessedSlot)return;
             s.PostRecoveryEncounter=record.At(slot);
             foreach(string actor in epoch.Order.OrderBy(x=>epoch.LatestStart(x,slot))) {
+                if(WorldTiming.ForActor(s,actor)?.Id!=epoch.Id)continue;
                 long start=epoch.LatestStart(actor,slot);
                 if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);
             }

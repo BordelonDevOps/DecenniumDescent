@@ -561,7 +561,7 @@ namespace Decennium.Foundation.Laboratory
                 if (active.Length != 0 || s.InventoryCombat || s.Encounter!=null&&s.Lives.Any(x=>x.Hp==0&&!x.Stable&&!x.Dead&&x.UsesDeathSaves)) {
                     var boundary = s.WorldSchedule.Start(checked(s.WorldSchedule.ProcessedSlot + 1)); if (boundary < next) next = boundary;
                 }
-                var laterEpoch = s.PostRecoveryEncounter?.Admission?.Epoch ?? s.Reinforcement?.Admission?.Phase.Epoch ?? s.LaterEncounter?.Entry?.Epoch;
+                var laterEpoch = s.FerryWraith?.Admission?.Epoch ?? s.PostRecoveryEncounter?.Admission?.Epoch ?? s.Reinforcement?.Admission?.Phase.Epoch ?? s.LaterEncounter?.Entry?.Epoch;
                 if (laterEpoch != null && (s.InventoryCombat || active.Any(edge => laterEpoch.Order.Contains(edge.ActorId)))) {
                     var boundary = laterEpoch.Start(checked(laterEpoch.ProcessedSlot + 1));
                     if (boundary < next) next = boundary;
@@ -589,6 +589,7 @@ namespace Decennium.Foundation.Laboratory
                 WorldTraversalRecord charterArrival = null;
                 WorldTraversalRecord laterArrival = null;
                 WorldTraversalRecord postRecoveryArrival = null;
+                WorldTraversalRecord ferryArrival = null;
                 WorldTraversalRecord bishopDeparture = null;
                 WorldTraversalRecord reinforcementArrival = null;
                 WorldTraversalRecord reengagementArrival = null;
@@ -633,6 +634,7 @@ namespace Decennium.Foundation.Laboratory
                         if (s.CharterAttempt != null && IsCharterEdge(s.CharterAttempt, edge)) charterArrival = edge;
                         if (IsLaterApproach(s, edge)) laterArrival = edge;
                         if (IsPostRecoveryApproach(s, edge)) postRecoveryArrival = edge;
+                        if (IsFerryApproach(s, edge)) ferryArrival = edge;
                         if (IsReengagementEdge(s, edge)) {
                             reengagementArrival = edge;
                             reengagementDistance = progress;
@@ -662,6 +664,8 @@ namespace Decennium.Foundation.Laboratory
                     return "ReengagementRequiresExplicitClockAdvance";
                 if (postRecoveryArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
                     return "PostRecoveryRequiresExplicitClockAdvance";
+                if (ferryArrival != null && initiating?.Kind != CommandKind.AdvanceClock)
+                    return "FerryRequiresExplicitClockAdvance";
                 int reengagementMarker = reengagementArrival == null ? -1 : ReengagementHeroMarker(s, next);
                 var routeProgressBefore = s.RouteTravels.Where(x => x.Status == ExpeditionRouteTravelStatus.Moving)
                     .ToDictionary(x => x.StartedRevision, x => x.Progress);
@@ -698,7 +702,8 @@ namespace Decennium.Foundation.Laboratory
                         PauseIncompatibleWork(world,false);
                     }, (world,elapsedWork)=>{CreditFormulaWork(world,elapsedWork,ready);CreditRemedyWork(world,elapsedWork);CreditRepairWork(world,elapsedWork,repairsReady);CreditManufacturing(world,elapsedWork,manufacturingReady);CreditRecipe347(world,elapsedWork,recipe347Ready);CreditFishingTrapWork(world,elapsedWork);CreditHarvestWork(world,elapsedWork,initiating);CreditHarvestRequirementWork(world,elapsedWork);CreditHarvestPreservationTreatment(world,elapsedWork);CreditMiningWork(world,elapsedWork);CreditHavenAppraisal(world,elapsedWork);CreditHavenSaleWork(world,elapsedWork);CreditExpeditionBill(world,elapsedWork);CreditNextCharterPlan(world,elapsedWork);CreditProspectingWork(world,elapsedWork);CreditMiningAssayWork(world,elapsedWork);CreditMineralPreparationWork(world,elapsedWork);CreditCacheExcavationWork(world,elapsedWork);CreditRouteMappingWork(world,elapsedWork,initiating,routeMappingReady);CreditRouteReconnaissance(world,elapsedWork,routeReconnaissanceReady);CreditTemporaryCampConstruction(world,elapsedWork,campConstructionReady);});
                 }
-                string deferredActivityActor = postRecoveryArrival != null ? PostRecoveryEncounterDefinition.Actor
+                string deferredActivityActor = ferryArrival != null ? FerryWraithProfile.Actor
+                    : postRecoveryArrival != null ? PostRecoveryEncounterDefinition.Actor
                     : reinforcementEndRound ? s.Reinforcement.Definition.CompanionId
                     : s.ExplorationSearch?.Pending?.DueAt == s.RuleClock ? s.ExplorationSearch.Definition.SearcherId : null;
                 RefreshActivityIntervals(s, deferredActivityActor);
@@ -729,6 +734,7 @@ namespace Decennium.Foundation.Laboratory
                 if (!reinforcementEndRound) RefreshLaterEpoch(s);
                 if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);
                 RefreshPostRecoveryEpoch(s);
+                RefreshFerryEpoch(s);
                 ResolveReadyMining(s,initiating);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -796,6 +802,13 @@ namespace Decennium.Foundation.Laboratory
                     if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
                     ResolveReengagementArrival(s, reengagementArrival, initiating, reengagementMarker, reengagementDistance);
                     return ProcessClericLongRestBoundary(s,initiating);
+                }
+                if (ferryArrival != null) {
+                    TestOnlyClubAttackPolicy.AdvanceConditions(s,".clock-final",onlyAtExpiry:true);
+                    string contactRestFailure=ProcessClericLongRestBoundary(s,initiating);
+                    if(contactRestFailure!=null)return contactRestFailure;
+                    ResolveFerryArrival(s,ferryArrival,initiating,target);
+                    return null;
                 }
                 if (postRecoveryArrival != null) {
                     TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
@@ -1188,7 +1201,7 @@ namespace Decennium.Foundation.Laboratory
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
-                RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); PauseIncompatibleWork(s);
+                RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); RefreshFerryEpoch(s); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 string restDebtError=s.ConnectedClericLongRest?null:ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;

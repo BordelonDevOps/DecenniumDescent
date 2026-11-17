@@ -221,6 +221,70 @@ namespace Decennium.Foundation
                 ||grants[0].Immunity.EndingMethod!="source-profile-only"
                 ||journal.Operations.Any(x=>x.Kind==ConditionOperationKind.EndImmunity))
                 throw new ArgumentException("Ferry named immunity requires its immutable genesis source.");
+            ValidateAdmission(state);
+        }
+        private static void ValidateAdmission(Snapshot s)
+        {
+            var record=s.FerryWraith;
+            foreach(var contact in record.Contacts) {
+                var approach=ContactReceipt(s,contact.ApproachRevision);var arrival=ContactReceipt(s,contact.Revision);
+                if(approach.Kind!=CommandKind.BeginWorldStep||approach.Actor!=Hero||approach.Target!="walk"||approach.X!=0||approach.Y!=1
+                    ||arrival.Kind!=CommandKind.AdvanceClock||arrival.Id!=contact.CommandId)
+                    throw new ArgumentException("Invalid Ferry paid-contact provenance.");
+            }
+            var admission=record.Admission;var closed=s.ClosedEncounters.SingleOrDefault(x=>x.Encounter.Id==Encounter);
+            if(admission==null) {
+                if(closed!=null||s.Encounter?.Id==Encounter||s.WorldIntervals.Any(x=>x.ActorId==Actor)
+                    ||s.WorldActivityIntervals.Count(x=>x.ActorId==Actor)!=1)
+                    throw new ArgumentException("Premature Ferry encounter or allowance.");
+                return;
+            }
+            var entry=record.Entered;var epoch=admission.Epoch;var prior=s.PostRecoveryEncounter?.Admission?.Epoch;
+            if(prior==null||admission.PreviousPartyEpochId!=prior.Id||epoch.Origin!=entry.At
+                ||prior.Start(admission.PriorDefenderLocalStart)!=entry.At
+                ||prior.LatestStart(PostRecoveryEncounterDefinition.Actor,admission.PriorDefenderLocalStart)!=admission.PriorDefenderLocalStart
+                ||epoch.ProcessedSlot!=epoch.SlotAt(s.RuleClock)||s.WorldActivityIntervals.Any(x=>x.ActorId==Actor)
+                ||!s.ClosedEncounters.Any(x=>x.Encounter.Id==PostRecoveryEncounterDefinition.Encounter&&x.ClosedRevision<entry.Revision)
+                ||!s.Lives.Single(x=>x.ActorId==PostRecoveryEncounterDefinition.Actor).Dead)
+                throw new ArgumentException("Ferry admission lacks settled prior closure and exact recovery Start.");
+            var activity=admission.CreatureActivity;long index=WorldActivityIntervalRecord.IndexAt(s.WorldSchedule,entry.At);
+            if(activity.CalendarId!=s.WorldSchedule.Id||activity.IntervalIndex!=index
+                &&(activity.IntervalIndex!=index-1||WorldActivityIntervalRecord.EndAt(s.WorldSchedule,activity.IntervalIndex)!=entry.At))
+                throw new ArgumentException("Ferry admission lacks the actual creature activity interval.");
+            foreach(var carry in admission.PartyCarried) {
+                long local=prior.LatestStart(carry.Interval.ActorId,admission.PriorDefenderLocalStart);
+                if(local<0||prior.Start(local+1)>entry.At||carry.Interval.LastStart!=WorldTiming.TurnOrdinal(s,prior.Id,local)
+                    ||admission.InitialReactionActors.Contains(carry.Interval.ActorId)&&!carry.Interval.ReactionAvailable)
+                    throw new ArgumentException("Ferry admission invented or refunded a carried party allowance.");
+                if(carry.Interval.ActorId==ClericRpProfile.Actor
+                    &&s.CastingActivities.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local)
+                    &&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local
+                        &&x.At==prior.Start(local+1)&&x.Revision<=entry.Revision))
+                    throw new ArgumentException("Ferry admission bypassed an eligible old casting End.");
+            }
+            foreach(var draw in admission.Draws) {
+                var die=DiceStream.Draw(draw.RandomBefore,20);
+                if(draw.Natural!=die.Value+1||draw.RandomAfter!=die.NextState||draw.WordsConsumed!=die.WordsConsumed)
+                    throw new ArgumentException("Ferry initiative differs from its actual RNG words.");
+            }
+            var encounter=Active(s)?s.Encounter:closed?.Encounter;
+            if(encounter==null||encounter.Id!=Encounter||encounter.Origin!=epoch.Origin||encounter.RosterPhase!=null||encounter.InheritedPhase!=null
+                ||!encounter.InitialOrder.SequenceEqual(epoch.Order)||encounter.StartRevisions[0]!=entry.Revision||encounter.ObservedOrdinals[0]!=0
+                ||Active(s)&&(closed!=null||!s.InventoryCombat||encounter.TurnOrdinal!=epoch.ProcessedSlot)
+                ||!Active(s)&&(s.InventoryCombat||s.Encounter!=null||closed==null))
+                throw new ArgumentException("Invalid independent Ferry encounter history.");
+            if(closed!=null) {
+                var cause=ContactReceipt(s,closed.ClosedRevision);
+                if(!s.Lives.Single(x=>x.ActorId==Actor).Dead||cause.Kind!=CommandKind.EndFixedEncounter||cause.Id!=closed.Reason
+                    ||cause.Actor!=encounter.CurrentActor||cause.Target!=encounter.CurrentTurnId
+                    ||closed.ClosedAt!=epoch.Start(encounter.TurnOrdinal+1)||closed.ClosedAt>s.RuleClock)
+                    throw new ArgumentException("Invalid Ferry death and outgoing-End closure.");
+            }
+        }
+        private static Command ContactReceipt(Snapshot s,long revision)
+        {
+            var row=s.Receipts.SingleOrDefault(x=>x.Revision==revision);
+            return row==null?throw new ArgumentException("Missing Ferry command receipt."):CommandHistory.Read(row);
         }
     }
 }

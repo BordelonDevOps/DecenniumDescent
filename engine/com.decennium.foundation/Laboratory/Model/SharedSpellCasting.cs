@@ -54,6 +54,11 @@ namespace Decennium.Foundation.Laboratory
         private static SpellTurnIdentity CurrentCastingTurn(Snapshot s,string actor)
         {
             var epoch=WorldTiming.ForActor(s,actor); var admission=s.Reinforcement?.Admission;
+            if(FerryWraithProfile.IsEpoch(s,epoch?.Id)) {
+                long current=epoch.LatestStart(actor,epoch.ProcessedSlot);var ferryEntry=s.FerryWraith;
+                return current>=0?new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))
+                    :new SpellTurnIdentity(actor,epoch.Id,-1,ferryEntry.Admission.CarriedInterval(actor).LastStart,ferryEntry.Entered.Revision);
+            }
             if(PostRecoveryProfile.IsEpoch(s,epoch?.Id)) {
                 long current=epoch.LatestStart(actor,epoch.ProcessedSlot);
                 var recoveryEntry=s.PostRecoveryEncounter;
@@ -71,9 +76,9 @@ namespace Decennium.Foundation.Laboratory
         {
             if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return "OrdinarySpellcastingUnsupported";
             var epoch=WorldTiming.ForActor(s,c.Actor); var phase=s.Reinforcement?.Admission?.Phase;
-            bool recovery=PostRecoveryProfile.IsEpoch(s,epoch?.Id);
-            if(epoch==null || !recovery && epoch.Id!=phase?.Epoch.Id)return "SpellcastingCalendarUnsupported";
-            string encounter=recovery?PostRecoveryEncounterDefinition.Encounter:s.Reinforcement.Definition.EncounterId;
+            bool recovery=PostRecoveryProfile.IsEpoch(s,epoch?.Id),ferry=FerryWraithProfile.IsEpoch(s,epoch?.Id);
+            if(epoch==null || !recovery && !ferry && epoch.Id!=phase?.Epoch.Id)return "SpellcastingCalendarUnsupported";
+            string encounter=ferry?FerryWraithProfile.Encounter:recovery?PostRecoveryEncounterDefinition.Encounter:s.Reinforcement.Definition.EncounterId;
             if(s.InventoryCombat ? s.Encounter?.Id!=encounter
                 :s.Encounter!=null || !s.ClosedEncounters.Any(x=>x.Encounter.Id==encounter))
                 return "SpellcastingContextUnsupported";
@@ -395,7 +400,7 @@ namespace Decennium.Foundation.Laboratory
             if(!s.ConnectedClericCasting)return null;
             RuleTime? due=s.SpellEffects.Where(x=>x.Present).Select(x=>(RuleTime?)x.ExpiresAt).OrderBy(x=>x).FirstOrDefault();
             var epoch=WorldTiming.ForActor(s,ClericRpProfile.Actor);
-            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=s.Reinforcement?.Admission?.Phase.Epoch.Id)return due;
+            if(epoch==null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=s.Reinforcement?.Admission?.Phase.Epoch.Id)return due;
             long local=epoch.LatestStart(ClericRpProfile.Actor,epoch.SlotAt(s.RuleClock));
             if(local<0)return due;
             var end=epoch.Start(local+1);
@@ -414,7 +419,7 @@ namespace Decennium.Foundation.Laboratory
                 EndSpellEffect(s,effect,cause.Id,s.Revision+1,effect.ExpiresAt,SpellEffectEndReason.Expired);
             }
             var epoch=WorldTiming.ForActor(s,ClericRpProfile.Actor); var phase=s.Reinforcement?.Admission?.Phase;
-            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=phase?.Epoch.Id || from<epoch.Origin)return;
+            if(epoch==null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=phase?.Epoch.Id || from<epoch.Origin)return;
             long local=epoch.LatestStart(ClericRpProfile.Actor,epoch.SlotAt(from));
             if(local<0)local=Enumerable.Range(0,epoch.Order.Count).Single(x=>epoch.Order[x]==ClericRpProfile.Actor);
             if(epoch.Start(local+1)<=from)local+=epoch.Order.Count;

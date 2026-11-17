@@ -16,11 +16,11 @@ namespace Decennium.Foundation.Laboratory
         internal static string OwnTurnFailure(Snapshot s, string actor)
         {
             if (!Owns(s,actor) || s.ClericObjective == null || s.ClericInvocationPath.AcquiredRevision <= s.ClericObjective.Revision
-                || !PostRecoveryProfile.Active(s) && (s.InventoryCombat || s.Encounter != null)
+                || !PostRecoveryProfile.Active(s) && !FerryWraithProfile.Active(s) && (s.InventoryCombat || s.Encounter != null)
                 || !s.ClosedEncounters.Any(x => x.Encounter.Id == s.ClericMilestone.LaterEncounterId))
                 return "HealingRiteContextUnsupported";
             var epoch = WorldTiming.ForActor(s,actor); var phase = s.Reinforcement?.Admission?.Phase;
-            if (epoch == null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id != phase?.Epoch.Id) return "HealingRiteCalendarUnavailable";
+            if (epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id != phase?.Epoch.Id) return "HealingRiteCalendarUnavailable";
             long slot = epoch.SlotAt(s.RuleClock);
             if (slot != epoch.ProcessedSlot || slot < 0 || epoch.Order[(int)(slot % epoch.Order.Count)] != actor
                 || epoch.LatestStart(actor,slot) != slot

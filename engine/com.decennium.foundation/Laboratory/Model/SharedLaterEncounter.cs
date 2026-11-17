@@ -135,7 +135,8 @@ namespace Decennium.Foundation.Laboratory
             var later = state.LaterEncounter;
             if (later == null) return;
             var closed = new ClosedEncounterRecord(outgoing, state.Revision + 1, state.RuleClock, command.Id);
-            if (PostRecoveryProfile.Active(state) && outgoing.Id == PostRecoveryEncounterDefinition.Encounter) {
+            if (PostRecoveryProfile.Active(state) && outgoing.Id == PostRecoveryEncounterDefinition.Encounter
+                || FerryWraithProfile.Active(state) && outgoing.Id == FerryWraithProfile.Encounter) {
                 state.ClosedEncounters = state.ClosedEncounters.Append(closed).ToArray();
                 state.Encounter = null;
                 return;

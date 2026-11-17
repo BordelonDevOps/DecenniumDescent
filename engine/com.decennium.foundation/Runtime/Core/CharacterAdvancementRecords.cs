@@ -511,7 +511,7 @@ namespace Decennium.Foundation
                 if(s.BonusActions.Length!=0)throw new ArgumentException("Shared Bonus Action ledger requires schema24.");
             } else {
                 if(s.WorldSchedule==null||s.BonusActions.Length!=s.WorldIntervals.Length
-                    ||s.BonusActions.Any(b=>!Actor(b.ActorId)||WorldTiming.ForActor(s,b.ActorId)==null
+                    ||s.BonusActions.Any(b=>!s.Actors.Any(a=>a.Id==b.ActorId)||WorldTiming.ForActor(s,b.ActorId)==null
                         ||b.LastRegularStart!=s.WorldIntervals.Single(x=>x.ActorId==b.ActorId).LastStart)
                     ||s.BonusActions.Select(b=>b.ActorId).Distinct(StringComparer.Ordinal).Count()!=s.BonusActions.Length)
                     throw new ArgumentException("Shared Bonus Action ledger must cover each calendar actor at the current regular start.");

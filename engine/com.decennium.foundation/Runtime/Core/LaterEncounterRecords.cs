@@ -170,6 +170,7 @@ namespace Decennium.Foundation
     {
         public static WorldScheduleRecord ForActor(Snapshot state, string actor)
         {
+            if (FerryWraithProfile.OwnsCurrent(state, actor)) return state.FerryWraith.Admission.Epoch;
             if (PostRecoveryProfile.OwnsCurrent(state, actor)) return state.PostRecoveryEncounter.Admission.Epoch;
             var phase = state.Reinforcement?.Admission?.Phase;
             if (phase != null && phase.Epoch.Order.Contains(actor)) return phase.Epoch;
@@ -181,6 +182,7 @@ namespace Decennium.Foundation
 
         public static WorldScheduleRecord FindEpoch(Snapshot state, string id)
         {
+            if (state.FerryWraith?.Admission?.Epoch.Id == id && id != null) return state.FerryWraith.Admission.Epoch;
             if (state.PostRecoveryEncounter?.Admission?.Epoch.Id == id && id != null) return state.PostRecoveryEncounter.Admission.Epoch;
             if (state.WorldSchedule?.Id == id) return state.WorldSchedule;
             var later = state.LaterEncounter?.Entry?.Epoch;
@@ -190,7 +192,8 @@ namespace Decennium.Foundation
         }
 
         public static WorldScheduleRecord ForEncounter(Snapshot state)
-            => PostRecoveryProfile.Active(state) ? state.PostRecoveryEncounter.Admission.Epoch
+            => FerryWraithProfile.Active(state) ? state.FerryWraith.Admission.Epoch
+                : PostRecoveryProfile.Active(state) ? state.PostRecoveryEncounter.Admission.Epoch
                 : IsLaterActive(state) ? state.Reinforcement?.Admission?.Phase.Epoch ?? state.LaterEncounter.Entry.Epoch
                 : state.WorldSchedule;
 
@@ -212,7 +215,7 @@ namespace Decennium.Foundation
             var owner = ForActor(state, actor);
             if (owner == null) return -1;
             long local = owner.LatestStart(actor, owner.ProcessedSlot);
-            if (PostRecoveryProfile.IsEpoch(state, owner.Id)) return local;
+            if (FerryWraithProfile.IsEpoch(state, owner.Id) || PostRecoveryProfile.IsEpoch(state, owner.Id)) return local;
             var admission = state.Reinforcement?.Admission;
             if (owner.Id != admission?.Phase.Epoch.Id) return local;
             var exit = state.Retreat?.SuccessfulExit;
@@ -232,7 +235,8 @@ namespace Decennium.Foundation
             var later = state.LaterEncounter?.Entry?.Epoch;
             if (later == null) return state.WorldSchedule.Order;
             return state.WorldSchedule.Order.Union(state.Reinforcement?.Admission?.Phase.Epoch.Order ?? later.Order,
-                StringComparer.Ordinal).Union(state.PostRecoveryEncounter?.Admission?.Epoch.Order ?? Array.Empty<string>(), StringComparer.Ordinal);
+                StringComparer.Ordinal).Union(state.PostRecoveryEncounter?.Admission?.Epoch.Order ?? Array.Empty<string>(), StringComparer.Ordinal)
+                .Union(state.FerryWraith?.Admission?.Epoch.Order ?? Array.Empty<string>(),StringComparer.Ordinal);
         }
     }
 
@@ -277,7 +281,7 @@ namespace Decennium.Foundation
             var first = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == later.FirstExit.Encounter.Id);
             if (!SameExit(first, later.FirstExit)) throw new ArgumentException("Invalid first encounter archive.");
             bool resumed = state.Reengagement?.IsSegment(state.Encounter?.Id) == true;
-            bool successor = PostRecoveryProfile.Active(state);
+            bool successor = PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state);
             var live = resumed || successor ? null : state.Encounter;
             var closed = state.ClosedEncounters.SingleOrDefault(x => x.Encounter.Id == definition.EncounterId);
             if (closed != null) ValidateExit(state, closed);

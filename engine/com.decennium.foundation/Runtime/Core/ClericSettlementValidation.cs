@@ -117,8 +117,8 @@ namespace Decennium.Foundation
                 if (rite == null || rite.Revision != use.Revision || rite.ActorId != use.ActorId || rite.TargetId != use.TargetId
                     || rite.At != use.At.Time || rite.TurnOrdinal != use.GlobalStart || rite.HpAfter != use.BaseHpAfter || rite.ActualGain <= 0
                     || use.Revision <= s.ClericInvocationPath.AcquiredRevision || use.Revision > s.Revision || use.At.Time > s.RuleClock
-                    || epoch == null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && phase?.Epoch.Id != epoch.Id
-                    || use.PhaseFirstTurn != (PostRecoveryProfile.IsEpoch(s,epoch.Id)?0:phase.FirstTurn)
+                    || epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && phase?.Epoch.Id != epoch.Id
+                    || use.PhaseFirstTurn != (FerryWraithProfile.IsEpoch(s,epoch.Id)||PostRecoveryProfile.IsEpoch(s,epoch.Id)?0:phase.FirstTurn)
                     || epoch.SlotAt(use.At.Time) != use.LocalStart || epoch.LatestStart(use.ActorId,use.LocalStart) != use.LocalStart
                     || WorldTiming.TurnOrdinal(s,epoch.Id,use.LocalStart) != use.GlobalStart || epoch.Start(use.LocalStart) > use.At.Time
                     || command?.Kind != CommandKind.UseHealingRite || command.Actor != use.ActorId || command.Target != use.TargetId

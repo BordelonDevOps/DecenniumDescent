@@ -259,9 +259,14 @@ namespace Decennium.Foundation
         {
             if(turn==null)return false;
             var epoch=WorldTiming.FindEpoch(s,turn.EpochId); var admission=s.Reinforcement?.Admission;
-            if(epoch==null || !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=admission?.Phase.Epoch.Id
+            if(epoch==null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id!=admission?.Phase.Epoch.Id
                 || !epoch.Order.Contains(turn.ActorId) || at<epoch.Origin)return false;
             long local=epoch.LatestStart(turn.ActorId,epoch.SlotAt(at));
+            if(turn.IsCarried&&FerryWraithProfile.IsEpoch(s,epoch.Id)) {
+                var ferryEntry=s.FerryWraith;
+                return !ownAction&&local<0&&turn.CarriedAdmissionRevision==ferryEntry.Entered.Revision
+                    &&turn.GlobalStart==ferryEntry.Admission.CarriedInterval(turn.ActorId).LastStart;
+            }
             if(turn.IsCarried && PostRecoveryProfile.IsEpoch(s,epoch.Id)) {
                 var entry=s.PostRecoveryEncounter;
                 return !ownAction && local<0 && turn.CarriedAdmissionRevision==entry.Entered.Revision

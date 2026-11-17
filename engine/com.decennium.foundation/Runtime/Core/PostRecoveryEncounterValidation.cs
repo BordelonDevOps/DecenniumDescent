@@ -9,6 +9,10 @@ namespace Decennium.Foundation
         // epoch separately; a superseded epoch can never produce a new current-turn payment.
         public static bool OwnsEvent(Snapshot s,string actor,string epoch,long revision)
         {
+            var ferry=s.FerryWraith?.Entered;
+            if(FerryWraithProfile.IsParticipant(actor)&&ferry!=null&&revision>ferry.Revision)
+                return epoch==FerryWraithProfile.Calendar;
+            if(epoch==FerryWraithProfile.Calendar)return false;
             var entry=s.PostRecoveryEncounter?.Entered;
             if(entry==null)return epoch!=PostRecoveryEncounterDefinition.Calendar;
             if(!PostRecoveryEncounterDefinition.IsParticipant(actor))return true;
@@ -89,7 +93,7 @@ namespace Decennium.Foundation
                 || encounter.RosterPhase!=null || encounter.InheritedPhase!=null || !encounter.InitialOrder.SequenceEqual(epoch.Order)
                 || encounter.StartRevisions[0]!=entry.Revision || encounter.ObservedOrdinals[0]!=0
                 || Active(s) && (closed!=null || !s.InventoryCombat || encounter.TurnOrdinal!=epoch.ProcessedSlot)
-                || !Active(s) && (s.InventoryCombat || s.Encounter!=null || closed==null))
+                || !Active(s) && (closed==null || !FerryWraithProfile.Active(s) && (s.InventoryCombat || s.Encounter!=null)))
                 throw new ArgumentException("Invalid independent post-recovery encounter history.");
             if(closed!=null) {
                 var cause=Receipt(s,closed.ClosedRevision);

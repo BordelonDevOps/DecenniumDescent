@@ -23,6 +23,54 @@ namespace Decennium.Foundation.Tests
         }
         private static void AddFerryWraithCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("tac10_ferry_paid_current_epoch_admission_from_fresh_campaign",()=>{
+                // Re-execute the genuine acquire/manage/prepare/recovery prefix in the new
+                // selected profile. Never adopt an old save or replace its life/RNG state.
+                var session=RunDeclaredGeometryCampaign(directory,NewFerryExpedition());
+                const string hero=FerryWraithProfile.Hero,companion=FerryWraithProfile.Companion;
+                int sequence=0;
+                void Walk(string actor,int dx,int dy) {
+                    var before=ShortRestCapture(session);var body=before.Actors.Single(x=>x.Id==actor);
+                    int speed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(before,actor));
+                    BishopCommit(session,new Command("ferry.approach."+(++sequence),actor,before.Revision,CommandKind.BeginWorldStep,"walk",dx,dy));
+                    ClericCommit(session,hero,CommandKind.AdvanceClock,x:30,y:speed);
+                    var after=ShortRestCapture(session);var moved=after.Actors.Single(x=>x.Id==actor);
+                    Require(moved.X==body.X+dx&&moved.Y==body.Y+dy&&!after.WorldTraversals.Any(x=>x.ActorId==actor),
+                        "Ferry approach did not complete its actual paid edge.");
+                }
+                for(int step=0;step<5;step++)Walk(companion,1,0);
+                Walk(companion,0,-1);Walk(hero,1,0);Walk(hero,0,-1);
+                var staged=ShortRestCapture(session);var prior=staged.PostRecoveryEncounter.Admission.Epoch;
+                int actualSpeed=checked((int)TestOnlyClubAttackPolicy.WalkingSpeed(staged,hero));
+                long slot=prior.SlotAt(staged.RuleClock);
+                RuleTime Departure(long local) {
+                    var arrival=prior.Start(local);
+                    return new RuleTime(checked(arrival.Numerator*actualSpeed-30L*arrival.Denominator),checked(arrival.Denominator*actualSpeed));
+                }
+                while(prior.Order[(int)(slot%prior.Order.Count)]!=PostRecoveryEncounterDefinition.Actor||Departure(slot)<staged.RuleClock)slot++;
+                PostRecoveryAdvanceTo(session,Departure(slot));
+                BishopCheckpoint(session,directory,"ferry-before-paid-contact");
+                var beforeContact=ShortRestCapture(session);Walk(hero,0,1);
+                var admitted=ShortRestCapture(session);var admission=admitted.FerryWraith.Admission;
+                Require(admission!=null&&admitted.Encounter.Id==FerryWraithProfile.Encounter
+                    &&admission.PreviousPartyEpochId==prior.Id&&admission.PriorDefenderLocalStart==slot
+                    &&admission.Epoch.Origin==prior.Start(slot)&&admitted.FerryWraith.Contacts.Count==1,
+                    "Paid Ferry contact did not enter at the actual post-recovery nonparty Start.");
+                Require(admitted.Creatures.Single().ActorId==FerryWraithProfile.Actor
+                    &&admitted.Lives.Single(x=>x.ActorId==FerryWraithProfile.Actor).Hp==9
+                    &&admitted.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum))
+                        .SequenceEqual(beforeContact.ResonancePools.Select(x=>(x.ActorId,x.Current,x.Maximum)))
+                    &&admitted.ConvictionBalance.Current==beforeContact.ConvictionBalance.Current,
+                    "Ferry entry replaced the creature or granted party resources.");
+                BishopCheckpoint(session,directory,"ferry-admitted");
+                var restored=ShortRestCapture(session);
+                Require(new SnapshotCodec().Encode(admitted).SequenceEqual(new SnapshotCodec().Encode(restored)),
+                    "Ferry admission changed across verified restore and deterministic replay.");
+                File.WriteAllText(Path.Combine(directory,"ferry-paid-admission.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="Genuine new-profile prefix and nine paid approach edges; creature combat and seal qualification remain pending",
+                    admitted.Revision,admitted.RuleClock,admitted.FerryWraith,admitted.WorldIntervals,admitted.BonusActions,
+                    admitted.ResonancePools,admitted.ConvictionBalance,admitted.RandomState}));
+            });
             cases.Add("tac10_damage_order_preserves_source_save_flat_resistance_and_life",()=>{
                 // Earn the existing shield source through real predecessor commands. The following
                 // damage packets/Petrified applications are explicitly supplied mechanical controls.

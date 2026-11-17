@@ -254,7 +254,8 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException("Named ability recharge has no matching owner start.");
             foreach(var before in owned) {
                 bool transfer=epoch.Id!=before.EpochId;
-                if(transfer && (state.BishopEntry==null||before.AbilityId!=BishopProfile.Invocation||!PostRecoveryProfile.IsEpoch(state,epoch.Id)))
+                if(transfer && (state.BishopEntry==null||before.AbilityId!=BishopProfile.Invocation
+                    ||!PostRecoveryProfile.IsEpoch(state,epoch.Id)&&!FerryWraithProfile.IsEpoch(state,epoch.Id)))
                     throw new InvalidOperationException("Named ability recharge has no matching epoch.");
                 if(!transfer && local<=before.LastLocalStart)continue;
                 // Admission itself gives no tick. The first actual owner Start in the new epoch does.

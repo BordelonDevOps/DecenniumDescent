@@ -101,7 +101,7 @@ namespace Decennium.Foundation.Laboratory
                 || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return "InvalidHealingRiteRequest";
             bool postClosure = state.ConnectedClericSettlement && !state.InventoryCombat;
-            if (postClosure || PostRecoveryProfile.Active(state)) {
+            if (postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state)) {
                 string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;
             } else if (!state.InventoryCombat || state.Reinforcement?.Admission == null
                 || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return "HealingRiteContextUnsupported";
@@ -110,7 +110,7 @@ namespace Decennium.Foundation.Laboratory
             if (!state.CharacterFeatureGrants.Any(x => x.FeatureId == ClericRpProfile.HealingRite && ClericRpProfile.ValidInitialGrant(state, x)))
                 return "HealingRiteNotOwned";
             var character = state.Characters.Single(x => x.ActorId == command.Actor);
-            if (character.Levels.Count(x => x.ClassName == "Cleric") != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
+            if (character.Levels.Count(x => x.ClassName == "Cleric") != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
             if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
