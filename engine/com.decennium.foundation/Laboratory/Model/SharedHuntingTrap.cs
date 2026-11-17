@@ -338,8 +338,10 @@ namespace Decennium.Foundation.Laboratory
                 var released=tether.Release(s.Revision+1,action.Id);SetHuntingTrapTether(s,released);
                 return action.Resolve(s.RuleClock,HuntingTrapActionStatus.Succeeded,deployment.Id,false,natural,modifier,13,total,true,0,before,after,words);
             }
-            var life=s.Lives.Single(x=>x.ActorId==target.Id);long damage=CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,1);
-            int con=checked(CharacterRuleFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)
+            var life=s.Lives.Single(x=>x.ActorId==target.Id);
+            long damage=s.FerryWraith!=null?SharedTypedDamage.Resolve(s,action.Id,target.Id,"piercing",1).Effective
+                :CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,1);
+            int con=checked(ActorNumericFacts.ForActor(s,target.Id).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
             var hurt=AuraOfFaithRules.Damage(s,life,cause?.Id??action.Id,damage,s.RuleClock,s.RandomState,constitutionSaveModifier:con,melee:false);
@@ -443,7 +445,7 @@ namespace Decennium.Foundation.Laboratory
             var target=s.Actors.Single(x=>x.Id==trigger.EntrantId);var life=s.Lives.Single(x=>x.ActorId==trigger.EntrantId);
             if(!SoldierTacticalFeatures.IsAlly(s,deployment.SetterId,target.Id))
                 BreakSanctuaryForHostileSave(s,deployment.SetterId,cause?.Id);
-            var character=CharacterRuleFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)
+            var character=ActorNumericFacts.ForActor(s,trigger.EntrantId);int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"DEX")
                 +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);
             int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,target.Id);modifier=AuraOfFaithRules.Modifier(aura,basis);
@@ -457,7 +459,8 @@ namespace Decennium.Foundation.Laboratory
             int rolled=0;long applied=0;string tetherId="";
             if(!success) {
                 var d4=DiceStream.Draw(s.RandomState,4);rolled=d4.Value+1;s.RandomState=d4.NextState;words=checked(words+d4.WordsConsumed);
-                applied=CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,rolled);
+                applied=s.FerryWraith!=null?SharedTypedDamage.Resolve(s,trigger.Id,target.Id,"piercing",rolled).Effective
+                    :CharacterAdvancementRules.ReduceIncomingDamage(s,target.Id,rolled);
                 int con=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,target.Id,"CON")
                     +ExpeditionStrainRules.Current(s,target.Id).SavingThrowModifier);

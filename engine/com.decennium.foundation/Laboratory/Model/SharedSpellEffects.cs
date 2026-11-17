@@ -62,7 +62,7 @@ namespace Decennium.Foundation.Laboratory
             }
             if(s.SpellSaves.Length>=SpellCastingProfile.MaxSaves)throw new ArgumentException("CastingHistoryFull");
             int dc=checked((int)Math.Max(10,damage/2));
-            int modifier=checked(CharacterRuleFacts.ForActor(s,target).AbilityModifier(CharacterAbility.Constitution)
+            int modifier=checked(ActorNumericFacts.ForActor(s,target).AbilityModifier(CharacterAbility.Constitution)
                 +CharacterAdvancementRules.SaveProficiencyBonus(s,target,"CON")+ExpeditionStrainRules.Current(s,target).SavingThrowModifier);
             int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,target);modifier=AuraOfFaithRules.Modifier(aura,basis);
             uint random=s.RandomState;

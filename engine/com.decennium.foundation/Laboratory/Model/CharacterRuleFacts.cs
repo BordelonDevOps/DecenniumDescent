@@ -62,39 +62,42 @@ namespace Decennium.Foundation.Laboratory
     }
 
     /// <summary>
-    /// Ephemeral actor-scoped join over the existing character, skill-training and life records.
+    /// Ephemeral actor-scoped join over disjoint numeric origin, skill-training and life records.
+    /// The legacy Character/Rules accessors still require a real character; generic checks do not.
     /// It owns no gameplay state; the immutable records in Snapshot remain authoritative. Resolve
     /// it at the point of use rather than caching it across a command that replaces snapshot records.
     /// </summary>
     public readonly struct CharacterStateFacts
     {
         private readonly ActorCharacterRecord character;
+        private readonly ActorNumericFacts numeric;
         private readonly ActorLifeRecord life;
         private readonly SkillTrainingRecord training;
 
-        private CharacterStateFacts(ActorCharacterRecord character, ActorLifeRecord life, SkillTrainingRecord training)
+        private CharacterStateFacts(ActorNumericFacts numeric,ActorCharacterRecord character, ActorLifeRecord life, SkillTrainingRecord training)
         {
-            this.character = character ?? throw new ArgumentNullException(nameof(character));
+            this.character = character;this.numeric=numeric;
             this.life = life ?? throw new ArgumentNullException(nameof(life));
-            if (character.ActorId != life.ActorId || training != null && training.ActorId != character.ActorId)
+            if (numeric.ActorId != life.ActorId || training != null && training.ActorId != numeric.ActorId)
                 throw new ArgumentException("Character, life, and training facts must belong to the same actor.");
             this.training = training;
         }
 
-        public string ActorId => RequireCharacter().ActorId;
+        public string ActorId => numeric.ActorId;
         public ActorCharacterRecord Character => RequireCharacter();
         public ActorLifeRecord Life => life ?? throw new InvalidOperationException("Character-state query is uninitialized.");
         public SkillTrainingRecord Training => training;
         public int ProficiencyRank => training?.ProficiencyRank ?? 0;
         public CharacterRuleFacts Rules => CharacterRuleFacts.From(RequireCharacter());
+        public ActorNumericFacts Numeric => numeric;
 
         public AbilityCheckModifier DeriveCheck(CharacterAbility ability)
-            => AbilityCheckRules.Derive(RequireCharacter(), training, ability);
+            => new AbilityCheckModifier(ActorId,(int)ability,numeric.AbilityModifier(ability),ProficiencyRank,numeric.ProficiencyContribution(ProficiencyRank));
 
         public int InjuryPenalty(CharacterAbility ability, bool toolCheck = false, bool manipulatesObject = false,
             bool initiative = false, bool perception = false)
         {
-            Rules.AbilityScore(ability);
+            numeric.AbilityScore(ability);
             return PlaytestLife.AbilityCheckInjuryPenalty(ActorLifeRules.Read(Life), (int)ability,
                 toolCheck, manipulatesObject, initiative, perception);
         }
@@ -117,15 +120,16 @@ namespace Decennium.Foundation.Laboratory
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
             if (!Validation.ValidId(actorId)) throw new ArgumentException("Actor identity is required.", nameof(actorId));
             if (snapshot.Lives == null) throw new InvalidOperationException("Actor life state is unavailable.");
-            var character = CharacterRuleFacts.ForActor(snapshot, actorId).Source;
+            var numeric=ActorNumericFacts.ForActor(snapshot,actorId);
+            var character = snapshot.Characters.SingleOrDefault(x=>x.ActorId==actorId);
             var lives = snapshot.Lives.Where(x => x != null && x.ActorId == actorId).Take(2).ToArray();
             if (lives.Length != 1) throw new InvalidOperationException("Actor life state must resolve exactly once.");
             var skill = skillId == null ? null : CharacterSkillTrainingFacts.Find(snapshot, actorId, skillId);
-            return new CharacterStateFacts(character, lives[0], skill);
+            return new CharacterStateFacts(numeric,character, lives[0], skill);
         }
 
         private ActorCharacterRecord RequireCharacter()
-            => character ?? throw new InvalidOperationException("Character-state query is uninitialized.");
+            => character ?? throw new InvalidOperationException("A real character origin is required for character-only facts.");
     }
 }
 #endif

@@ -1,0 +1,33 @@
+{
+  "status": "ACTUAL_SOURCE_ORDER_CLARIFICATION_NOT_MODULE_ACCEPTANCE",
+  "threadId": "6af8ba86-20cc-83e9-bed0-c2d616fefcdf",
+  "reviewedCheckpoint": "a46eab14ef2ae9f0f1fef7153781d10a00028e4c",
+  "requestId": "d158369d-b252-418d-8456-e898e5f3da24",
+  "responseId": "8280e942-e79a-5b05-a17c-bea59dcaef4e",
+  "codexAgreement": "Agree: preserve accepted save-half, applicable flat reduction, then one resistance halving; retain source-specific exceptions and supported95–113 behavior. Correct new unaccepted114 helper/record and qualify actual consumers. This is no module acceptance.",
+  "turn": {
+    "id": "d158369d-b252-418d-8456-e898e5f3da24",
+    "status": "completed",
+    "error": null,
+    "startedAt": 1794895154.347,
+    "completedAt": 1794895333.868061,
+    "durationMs": null,
+    "items": [
+      {
+        "type": "userMessage",
+        "id": "d158369d-b252-418d-8456-e898e5f3da24",
+        "content": [
+          {
+            "type": "text",
+            "text": "TAC-10 implementation clarification, not acceptance request. Engine checkpoint a46eab14ef2ae9f0f1fef7153781d10a00028e4c is pushed. It adds creature genesis plus source attack payload paths and a first shared typed-defense consumer (melee). Its packet docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/COMBAT_CHECKPOINT.md explicitly retains only partial compilation/nine selected cases/genesis evidence; genuine admission/seal/creature campaign and all full qualification remain pending.\n\nOne ordering detail needs your source review while I continue independent numeric and target-path work. U-DEF-01 and complete contract section3 require lawful flat reduction and successful-save reduction before one applicable resistance halving, but do not explicitly state the order between flat reduction and the save half. Existing accepted SharedWorldRangedCombat.cs Suppression Fire computes targetDamage = success ? sharedDamage/2 : sharedDamage, then CharacterAdvancementRules.ReduceIncomingDamage, then Petrified. The initial new SharedTypedDamage.Resolve helper at a46eab14e currently models flat reduction then optional successful-save half; no connected save-half consumer has been switched to it yet. Changing existing Suppression Fire order could change an odd/even result, e.g. raw6, flat1, successful half: existing 6/2−1=2 versus (6−1)/2=2; raw5 gives existing 5/2−1=1 versus (5−1)/2=2 (before resistance).\n\nCodex proposes preserving the already accepted Suppression Fire save-half→flat→single-resistance order for all profiles, including Ferry, and making the new evidence record explicitly retain the actual ordered stages. No new source ruling would be inferred from the helper's incidental initial API. Please confirm this preservation or identify the authoritative contrary ordering and narrowly required versioning. Also confirm that the amended phrase did not intend to rewrite supported95–113 behavior. I will retain your actual response and the exact source decision; no next module begins."
+          }
+        ]
+      },
+      {
+        "type": "agentMessage",
+        "id": "8280e942-e79a-5b05-a17c-bea59dcaef4e",
+        "text": "**Confirmed: preserve Suppression Fire’s accepted save-half → applicable flat reduction → single resistance-half order, including its integration with Ferry’s typed defenses.** The amended wording did **not** authorize rewriting supported95–113 behavior.\n\nI checked the [accepted Suppression Fire implementation](https://github.com/BordelonDevOps/DecenniumDescent/blob/7261052ae4dec908f8c0ac38e0a2c5f4b831065b/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs#L598), which is unchanged at this checkpoint. The pinned [class damage rules](https://github.com/BordelonDevOps/DecenniumDescent/blob/46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4/DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md#L33) require successful-save halving and flat reduction before resistance, without explicitly reversing their accepted relative order.\n\nRecord the governing clarification as:\n\n1. Resolve the source’s damage and successful save.\n2. If that source specifies half damage on success, halve once, rounding down.\n3. Apply the lawful flat reduction to that result, respecting its eligibility/stacking rules and minimum zero.\n4. Apply matching immunity as zero; otherwise apply one applicable resistance halving, rounding down.\n5. Pass the effective amount into the existing life, temporary-HP and concentration processing.\n\nFor raw5, successful half and flat1, the stages are **5 → 2 → 1**, then **0** if applicable resistance halves that result. The initial helper’s **5 → 4 → 2** ordering must be corrected before connecting this consumer.\n\nThis is an explicit preservation of the admitted pipeline, **not a universal override of source-specific ordering**. An expressly after-resistance reduction retains that source’s order when separately admitted.\n\nUpdate both `SharedTypedDamage.Resolve` and `TypedDamageRecord` so their stage names, calculations, persistence and causal validation reflect the actual sequence. Retain regression coverage for odd/even values, zero floors, no-save cases and resistance/immunity handling. Pending knockout must continue consuming the already-resolved amount without another defense pass or RNG draw. No historical95–113 behavior or encoding change is authorized; preserve superseded development114 evidence honestly.\n\nI inspected the checkpoint report, helper, record, accepted consumer, reduction implementation and governing source wording, and checked the arithmetic. I did **not** compile or execute C#, restore saves, or independently reconcile the checkpoint’s nine test results or archives.\n\nThis resolves the ordering question. TAC-10 implementation and qualification continue within the approved scope; module acceptance and successor authorization remain pending."
+      }
+    ]
+  }
+}

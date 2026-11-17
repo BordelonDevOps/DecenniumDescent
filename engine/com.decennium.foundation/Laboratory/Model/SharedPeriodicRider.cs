@@ -145,9 +145,9 @@ namespace Decennium.Foundation.Laboratory
                     else if(rider.Id!=winner)outcome=PeriodicRiderOutcome.FamilyLost;
                     else {
                         var draw=DiceStream.Draw(s.RandomState,4);die=draw.Value+1;afterRandom=draw.NextState;words=draw.WordsConsumed;
-                        damage=CharacterAdvancementRules.ReduceIncomingDamage(s,rider.TargetId,die);
-                        if(View(s,rider.TargetId).Has(ConditionKind.Petrified))damage=PlaytestConditions.PetrifiedDamage(damage);
-                        var character=CharacterRuleFacts.ForActor(s,rider.TargetId);
+                        damage=SharedTypedDamage.Resolve(s,EventIdentity("tick",rider.Id+"|"+slot.ToString(CultureInfo.InvariantCulture)),
+                            rider.TargetId,rider.DamageType,die).Effective;
+                        var character=ActorNumericFacts.ForActor(s,rider.TargetId);
                         int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                             +CharacterAdvancementRules.SaveProficiencyBonus(s,rider.TargetId,"CON")
                             +ExpeditionStrainRules.Current(s,rider.TargetId).SavingThrowModifier);

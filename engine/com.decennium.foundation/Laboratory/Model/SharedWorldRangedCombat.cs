@@ -584,7 +584,7 @@ namespace Decennium.Foundation.Laboratory
             int slowIndex=0;
             foreach(string targetId in facts.TargetIds.OrderBy(x=>x,StringComparer.Ordinal)) {
                 var actor=s.Actors.Single(x=>x.Id==targetId);var life=s.Lives.Single(x=>x.ActorId==targetId);
-                var character=CharacterRuleFacts.ForActor(s,targetId);
+                var character=ActorNumericFacts.ForActor(s,targetId);
                 int modifier=checked(character.AbilityModifier(CharacterAbility.Dexterity)+CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"DEX")
                     +ExpeditionStrainRules.Current(s,targetId).SavingThrowModifier);
                 int basis=modifier;var aura=AuraOfFaithRules.Qualify(s,targetId);modifier=AuraOfFaithRules.Modifier(aura,basis);
@@ -596,9 +596,7 @@ namespace Decennium.Foundation.Laboratory
                 }
                 AuraOfFaithRules.RecordSave(s,aura,AuraSaveConsumer.SuppressionFire,c.Id,basis,facts.SaveDc,natural,automaticFailure,success,saveBefore,saveAfter,saveWords);
                 long targetDamage=success?sharedDamage/2:sharedDamage;
-                long afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,targetId,targetDamage);
-                if(TestOnlyClubAttackPolicy.ConditionsFor(s,targetId).View().Has(ConditionKind.Petrified))
-                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
+                long afterDefense=SharedTypedDamage.Resolve(s,c.Id,targetId,"piercing",sharedDamage,success).Effective;
                 uint lifeBefore=s.RandomState;
                 int constitutionSave=checked(character.AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,targetId,"CON")
@@ -717,7 +715,7 @@ namespace Decennium.Foundation.Laboratory
             string physicalFailure=TestOnlyClubAttackPolicy.PhysicalAttackFailure(s,c.Actor);if(physicalFailure!=null)return physicalFailure;
             var combatant=s.RangedCombatants.Single(x=>x.ActorId==c.Actor);
             var attackerFacts=CharacterRuleFacts.ForActor(s,c.Actor);
-            var targetFacts=CharacterRuleFacts.ForActor(s,c.Target);
+            var targetFacts=ActorNumericFacts.ForActor(s,c.Target);
             int targetDex=targetFacts.AbilityScore(CharacterAbility.Dexterity);
             int armorClass=EffectiveArmorClass(s,c.Target,targetDex);
             bool targetLocationKnown=rangedCombat.TargetLocationKnown
@@ -796,10 +794,8 @@ namespace Decennium.Foundation.Laboratory
                 int aggressive=c.Kind==CommandKind.WarningShot?0:TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor)?.Kind==CombatStance.Aggressive?2:0;
                 flatDamage=c.Kind==CommandKind.WarningShot?0:checked(attackerFacts.AbilityModifier(CharacterAbility.Dexterity)+aggressive);
                 damageTotal=Math.Max(0L,dice.Sum(x=>(long)x)+flatDamage);
-                afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,c.Target,damageTotal);
-                if(TestOnlyClubAttackPolicy.ConditionsFor(s,c.Target).View().Has(ConditionKind.Petrified))
-                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
-                int constitutionSave=checked(CharacterRuleFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
+                afterDefense=SharedTypedDamage.Resolve(s,attackId,c.Target,"piercing",damageTotal).Effective;
+                int constitutionSave=checked(ActorNumericFacts.ForActor(s,c.Target).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,c.Target,"CON")
                     +ExpeditionStrainRules.Current(s,c.Target).SavingThrowModifier);
                 rolled=AuraOfFaithRules.Damage(s,life,c.Id,afterDefense,s.RuleClock,effectsSeed,

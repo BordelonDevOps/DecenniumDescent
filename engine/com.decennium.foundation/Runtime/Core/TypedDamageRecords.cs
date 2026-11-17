@@ -16,17 +16,17 @@ namespace Decennium.Foundation
         public long Raw { get; }
         public long AfterFlatReduction { get; }
         public bool SuccessfulSaveHalf { get; }
-        public long AfterSave => SuccessfulSaveHalf?AfterFlatReduction/2:AfterFlatReduction;
+        public long AfterSave => SuccessfulSaveHalf?Raw/2:Raw;
         public string InnateResistanceSource { get; }
         public string ImmunitySource { get; }
         public bool Petrified { get; }
         public bool ResistanceApplies => InnateResistanceSource!=""||Petrified&&DamageType!="corruption";
-        public long Effective => ImmunitySource!=""?0:ResistanceApplies?AfterSave/2:AfterSave;
+        public long Effective => ImmunitySource!=""?0:ResistanceApplies?AfterFlatReduction/2:AfterFlatReduction;
         public TypedDamageRecord(string eventId,long revision,RuleTime at,string targetId,string damageType,
             long raw,long afterFlatReduction,bool successfulSaveHalf,string innateResistanceSource,string immunitySource,bool petrified)
         {
             if(!Validation.ValidId(eventId)||revision<1||!Validation.ValidId(targetId)||!SupportedType(damageType)
-                ||raw<0||afterFlatReduction<0||afterFlatReduction>raw
+                ||raw<0||afterFlatReduction<0||afterFlatReduction>(successfulSaveHalf?raw/2:raw)
                 ||innateResistanceSource==null||innateResistanceSource!=""&&!Validation.ValidId(innateResistanceSource)
                 ||immunitySource==null||immunitySource!=""&&!Validation.ValidId(immunitySource))
                 throw new ArgumentException("Invalid typed damage resolution.");

@@ -115,6 +115,8 @@ namespace Decennium.Foundation.Laboratory
             if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
                 return "HealingRiteRequiresStationaryAccess";
+            if(state.Creatures.Any(x=>x.ActorId==command.Target&&x.LivingRecipient!=LivingRecipientQualification.Living))
+                return "HealingRiteTargetUnavailable";
             if (command.Target != TestOnlyPolicy.ActorId && command.Target != TestOnlyPolicy.CompanionId
                 || !postClosure && !state.Encounter.Order.Contains(command.Target)) return "HealingRiteTargetUnavailable";
             var actor = state.Actors.Single(x => x.Id == command.Actor);

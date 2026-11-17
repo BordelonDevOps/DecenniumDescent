@@ -13,9 +13,9 @@ namespace Decennium.Foundation.Tests
         private static ConnectedExpeditionSession NewFerryExpedition()=>ConnectedExpeditionSession.StartWithFerryWraith(
             ClericInitialSelection.AuthoredExample(),ClericRepertoireSelection.AuthoredExample(),
             ClericMilestoneDeclaration.AuthoredExample(),BishopEntryRecord.Announced());
-        private static void FerryMechanicalCondition(Snapshot s,string kind)
+        private static void FerryMechanicalCondition(Snapshot s,string kind,string actor=FerryWraithProfile.Actor)
         {
-            var journal=s.Conditions.Single(x=>x.Target==FerryWraithProfile.Actor);
+            var journal=s.Conditions.Single(x=>x.Target==actor);
             var history=ConditionHistory.Restore(journal).Append(ConditionOperation.Apply("ferry.mechanical.apply."+kind,
                 journal.Now,new ConditionApplicationData("ferry.mechanical."+kind,"TEST_ONLY.owner","TEST_ONLY.supplied-event",
                     kind,null,"supplied-end",true))).State;
@@ -23,6 +23,61 @@ namespace Decennium.Foundation.Tests
         }
         private static void AddFerryWraithCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("tac10_damage_order_preserves_source_save_flat_resistance_and_life",()=>{
+                // Earn the existing shield source through real predecessor commands. The following
+                // damage packets/Petrified applications are explicitly supplied mechanical controls.
+                var simulation=World(DefensiveFormationPolicy());AdvanceSoldierToDefensiveFormation(simulation);BeginEncounter(simulation);
+                var ready=simulation.Capture();const string actor=TestOnlyPolicy.ActorId;
+                Require(CharacterAdvancementRules.ReduceIncomingDamage(ready,actor,10)==9,"Actual Shield Trained reduction was not established.");
+                var damage=typeof(TestOnlySharedWorldPolicy).Assembly.GetType("Decennium.Foundation.Laboratory.AuraOfFaithRules")
+                    .GetMethod("Damage",BindingFlags.Static|BindingFlags.NonPublic);
+                var apply=typeof(TestOnlyClubAttackPolicy).GetMethod("ApplyLife",BindingFlags.Static|BindingFlags.NonPublic);
+                long[] noSave={0,0,1,2,3,4,5,6},saved={0,0,0,0,1,1,2,2};var rows=new List<object>();
+                foreach(bool half in new[]{false,true})foreach(bool stone in new[]{false,true})for(int raw=0;raw<=7;raw++) {
+                    var s=ready.Copy();if(stone)FerryMechanicalCondition(s,"Petrified",actor);
+                    var life=s.Lives.Single(x=>x.ActorId==actor);long afterFlat=(half?saved:noSave)[raw];
+                    long effective=stone?afterFlat/2:afterFlat;
+                    var resolved=SharedTypedDamage.Resolve(s,"mechanical.ordered",actor,"fire",raw,half);
+                    var rolled=(RolledDamage)damage.Invoke(null,new object[]{s,life,resolved.EventId,resolved.Effective,s.RuleClock,s.RandomState,
+                        0,false,false,false,KnockoutInstruction.OrdinaryOutcome,false});
+                    apply.Invoke(null,new object[]{s,life,rolled.Outcome.State});
+                    Require(resolved.Raw==raw&&resolved.AfterSave==(half?raw/2:raw)&&resolved.AfterFlatReduction==afterFlat
+                        &&resolved.Effective==effective&&s.Lives.Single(x=>x.ActorId==actor).Hp==life.Hp-effective,
+                        "Source save/flat/resistance order or zero-floor life settlement changed.");
+                    rows.Add(new{half,stone,resolved,afterHp=s.Lives.Single(x=>x.ActorId==actor).Hp});
+                }
+                bool malformed=false;try{new TypedDamageRecord("mechanical.wrong-order",1,ready.RuleClock,actor,"fire",5,4,true,"","",false);}
+                catch(ArgumentException){malformed=true;}Require(malformed,"Typed damage accepted a flat-stage amount larger than the already halved packet.");
+                File.WriteAllText(Path.Combine(directory,"ordered-damage-controls.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="Real earned Shield Trained source plus detached supplied packets through actual typed, flat-reduction and life pipelines; not a new connected producer",rows}));
+            });
+            cases.Add("tac10_ferry_shared_untrained_checks_and_actual_initiative",()=>{
+                var session=NewFerryExpedition();var state=ShortRestCapture(session);var original=new SnapshotCodec().Encode(state);
+                const string actor=FerryWraithProfile.Actor;
+                var perception=CharacterStateFacts.ForActor(state,actor,"perception");
+                var stealth=AbilityCheckRules.Derive(state,actor,"stealth",CharacterAbility.Dexterity);
+                Require(perception.Training==null&&perception.ProficiencyRank==0&&perception.Numeric.ProficiencyBonus==null
+                    &&perception.TotalWithInjury(CharacterAbility.Wisdom,perception:true)==0
+                    &&stealth.AbilityModifier==2&&stealth.ProficiencyBonus==0&&stealth.Total==2,
+                    "Generic creature checks inferred training/PB or lost source ability modifiers.");
+                bool strict=false;try{var unused=perception.Rules.TotalLevel;}catch(InvalidOperationException){strict=true;}
+                Require(strict,"Character-only level accessor fabricated a class for the creature.");
+                var supplied=state.Copy();var before=supplied.Lives.Single(x=>x.ActorId==actor);
+                supplied.Lives=supplied.Lives.Select(x=>x.ActorId==actor?new ActorLifeRecord(actor,9,9,0,
+                    new[]{(int)Injury.Concussion,(int)Injury.CognitiveTrauma},false,false,false,0,0,null,0,false,Array.Empty<string>()):x).ToArray();
+                var injured=CharacterStateFacts.ForActor(supplied,actor,"perception");
+                Require(injured.TotalWithInjury(CharacterAbility.Wisdom,perception:true)==-1,
+                    "Overlapping source injuries stacked or were ignored on creature perception.");
+                var rollMethod=typeof(TestOnlySharedWorldPolicy).GetMethod("RollWorldInitiative",BindingFlags.NonPublic|BindingFlags.Static);
+                uint random=supplied.RandomState;var expected=PlaytestDice.RollD20(random);
+                var rolled=(LaterInitiativeDraw)rollMethod.Invoke(null,new object[]{supplied,actor});
+                Require(rolled.DexterityModifier==2&&rolled.Bonus==-1&&rolled.Natural==expected.Natural
+                    &&supplied.RandomState==expected.NextRandomState&&rolled.WordsConsumed==expected.WordsConsumed,
+                    "Actual shared initiative did not use source DEX, one injury penalty and the owned RNG draw.");
+                Require(original.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(session))),"Detached numeric control changed live gameplay.");
+                File.WriteAllText(Path.Combine(directory,"creature-checks.json"),System.Text.Json.JsonSerializer.Serialize(new{
+                    scope="Actual fresh source facts and detached supplied-injury execution of the shared initiative producer; not encounter admission",stealth,rolled}));
+            });
             cases.Add("tac10_ferry_numeric_origin_and_source_payload_roundtrip",()=>{
                 var session=NewFerryExpedition();var s=ShortRestCapture(session);var codec=new SnapshotCodec();
                 var before=codec.Encode(s);var facts=ActorNumericFacts.ForActor(s,FerryWraithProfile.Actor);

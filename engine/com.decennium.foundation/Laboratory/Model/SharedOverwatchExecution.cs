@@ -137,7 +137,7 @@ namespace Decennium.Foundation.Laboratory
             var attacker=s.RangedCombatants.SingleOrDefault(x=>x.ActorId==offer.OwnerId);
             if(ammunition==null||attacker==null||ammunition.CustodianId!=offer.OwnerId)return false;
             var attackerFacts=CharacterRuleFacts.ForActor(s,offer.OwnerId);
-            var targetFacts=CharacterRuleFacts.ForActor(s,offer.TargetId);
+            var targetFacts=ActorNumericFacts.ForActor(s,offer.TargetId);
             long distance=PlanarCombatGeometry.DistanceFeet(new CombatCell(shooter.X,shooter.Y),new CombatCell(target.X,target.Y));
             if(distance>RepeatingCrossbowShotRules.MaximumRangeFeet||!overwatchExecution.TargetVisible
                 ||!TestOnlyClubAttackPolicy.CanSee(s,offer.OwnerId,offer.TargetId))return false;
@@ -212,10 +212,8 @@ namespace Decennium.Foundation.Laboratory
                 int count=shot.Critical?2:1;dice=new int[count];
                 for(int i=0;i<count;i++){var die=DiceStream.Draw(next,8);dice[i]=die.Value+1;next=die.NextState;diceWords=checked(diceWords+die.WordsConsumed);}
                 total=Math.Max(0L,dice.Sum(x=>(long)x)+flatDamage);
-                afterDefense=CharacterAdvancementRules.ReduceIncomingDamage(s,offer.TargetId,total);
-                if(TestOnlyClubAttackPolicy.ConditionsFor(s,offer.TargetId).View().Has(ConditionKind.Petrified))
-                    afterDefense=PlaytestConditions.PetrifiedDamage(afterDefense);
-                int con=checked(CharacterRuleFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)
+                afterDefense=SharedTypedDamage.Resolve(s,attackId,offer.TargetId,"piercing",total).Effective;
+                int con=checked(ActorNumericFacts.ForActor(s,offer.TargetId).AbilityModifier(CharacterAbility.Constitution)
                     +CharacterAdvancementRules.SaveProficiencyBonus(s,offer.TargetId,"CON")
                     +ExpeditionStrainRules.Current(s,offer.TargetId).SavingThrowModifier);
                 rolled=AuraOfFaithRules.Damage(s,facts.TargetLife,c.Id,afterDefense,s.RuleClock,next,
@@ -272,7 +270,7 @@ namespace Decennium.Foundation.Laboratory
                     if((directionX!=0||directionY!=0)
                         &&HuntingTrapValidation.BlocksGridMove(s,pending.TargetId,target.X+directionX,target.Y+directionY))
                         return "HuntingTrapTetherPreventsPush";
-                    var targetFacts=CharacterRuleFacts.ForActor(s,pending.TargetId);
+                    var targetFacts=ActorNumericFacts.ForActor(s,pending.TargetId);
                     var ownerFacts=CharacterRuleFacts.ForActor(s,pending.OwnerId);
                     dc=checked(8+ownerFacts.ProficiencyBonus+ownerFacts.AbilityModifier(CharacterAbility.Constitution));
                     modifier=checked(targetFacts.AbilityModifier(CharacterAbility.Strength)

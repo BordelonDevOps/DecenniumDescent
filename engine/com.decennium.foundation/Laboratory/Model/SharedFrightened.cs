@@ -124,7 +124,7 @@ namespace Decennium.Foundation.Laboratory
         private static FrightenedSaveRecord RollFrightenedSave(Snapshot state, FrightenedUseRecord use, string target,
             bool repeat, string application)
         {
-            int modifier = checked(CharacterRuleFacts.ForActor(state, target).AbilityModifier(CharacterAbility.Wisdom)
+            int modifier = checked(ActorNumericFacts.ForActor(state, target).AbilityModifier(CharacterAbility.Wisdom)
                 + CharacterAdvancementRules.SaveProficiencyBonus(state, target, "WIS")
                 + ExpeditionStrainRules.Current(state, target).SavingThrowModifier);
             int basis=modifier;var aura=AuraOfFaithRules.Qualify(state,target);modifier=AuraOfFaithRules.Modifier(aura,basis);

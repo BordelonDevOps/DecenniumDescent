@@ -121,7 +121,7 @@ namespace Decennium.Foundation.Laboratory
         private static LaterInitiativeDraw RollWorldInitiative(Snapshot state, string actor)
         {
             var character = CharacterStateFacts.ForActor(state, actor);
-            int dexterity = character.Rules.AbilityModifier(CharacterAbility.Dexterity);
+            int dexterity = character.Numeric.AbilityModifier(CharacterAbility.Dexterity);
             int legalModifier = character.InjuryPenalty(CharacterAbility.Dexterity, initiative: true);
             uint before = state.RandomState;
             var roll = PlaytestDice.RollD20(before);

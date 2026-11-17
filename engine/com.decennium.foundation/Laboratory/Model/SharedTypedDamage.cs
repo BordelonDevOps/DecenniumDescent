@@ -18,7 +18,7 @@ namespace Decennium.Foundation.Laboratory
             bool petrified=s.SchemaVersion>=Snapshot.ConditionSchema
                 &&TestOnlyClubAttackPolicy.ConditionsFor(s,target).View().Has(ConditionKind.Petrified);
             var record=new TypedDamageRecord(eventId,s.Revision+1,s.RuleClock,target,type,raw,
-                CharacterAdvancementRules.ReduceIncomingDamage(s,target,raw),successfulSaveHalf,resistance,immunity,petrified);
+                CharacterAdvancementRules.ReduceIncomingDamage(s,target,successfulSaveHalf?raw/2:raw),successfulSaveHalf,resistance,immunity,petrified);
             if(s.FerryWraith!=null) {
                 if(s.TypedDamage.Length>=TypedDamageRecord.MaxRecords||s.TypedDamage.Any(x=>x.EventId==eventId&&x.TargetId==target))
                     throw new InvalidOperationException("Typed damage history unavailable.");
