@@ -106,10 +106,13 @@ try{
         Require ($copy.Revision-eq$revisionBefore-and$copy.RuleClock-eq$clockBefore-and$receiptBefore-ceq(Raw $copy.Receipts)) 'Detached producer fabricated a committed revision/receipt or clock advancement.'
         $post=Raw $copy;$again=$resolve.Invoke($policy,[object[]]@($copy,$command))
         Require (![string]::IsNullOrEmpty($again)-and$post-ceq(Raw $copy)) 'Unavailable repeat paid or applied effects again.'
+        # Prove the reflection argument reaches the actual factory before exercising its unpaid rejection.
+        $paidTrigger=$factory.Invoke($null,[object[]]@($copy,$command,$use.PSObject.BaseObject))
+        Require ($null-ne$paidTrigger) 'Actual paid producer factory did not accept its staged result.'
         # The actual producer already called ForDivineInvocation. Its factory must also reject an unpaid original copy.
         $unpaid=CopyGenuine;$unpaidBefore=Raw $unpaid;$triggerRejection=''
-        try{$null=$factory.Invoke($null,[object[]]@($unpaid,$command,$use))}catch{$triggerRejection=$_.Exception.GetBaseException().Message}
-        Require ($triggerRejection-ne''-and$unpaidBefore-ceq(Raw $unpaid)) 'Unpaid producer trigger was accepted or mutated.'
+        try{$null=$factory.Invoke($null,[object[]]@($unpaid,$command,$use.PSObject.BaseObject))}catch{$triggerRejection=$_.Exception.GetBaseException().Message}
+        Require ($triggerRejection-ceq'Invocation cure requires its actual staged paid producer.'-and$unpaidBefore-ceq(Raw $unpaid)) 'Actual unpaid producer trigger rejection was not reached or mutated input.'
         $afterComponent=JournalRoundtrip "$label.after" $afterJournal
         $stream=[IO.MemoryStream]::new();$writer=[IO.BinaryWriter]::new($stream)
         $null=$bishopWrite.Invoke($null,[object[]]@($writer,$copy.BishopEntry));$writer.Flush();$entryBytes=$stream.ToArray();$stream.Position=0
