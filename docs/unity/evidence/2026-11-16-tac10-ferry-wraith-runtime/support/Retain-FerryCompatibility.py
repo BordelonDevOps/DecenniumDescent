@@ -77,7 +77,7 @@ def main():
     authenticated_archives = []
     for wire, folder in archive_paths.items():
         expected = wire_reports[wire]['sourceArchiveSha256']
-        candidates = sorted((PACKET.parent / folder).glob('*/*.zip'))
+        candidates = sorted((PACKET.parent / folder).glob('*.zip')) + sorted((PACKET.parent / folder).glob('*/*.zip'))
         found = next((p for p in candidates if sha(p.read_bytes()) == expected), None)
         assert found is not None, 'Authentic predecessor archive missing: ' + wire
         authenticated_archives.append(dict(wire=wire, path=found.relative_to(ROOT).as_posix(), sha256=expected))
