@@ -90,7 +90,7 @@ try{
     Require ($closed-and$null-ne$fear) 'Staged source branch did not reach genuine fear and actual Dead closure.'
     # Closure pays Hero End into the companion slot. At actual speed20 the final
     # five-foot edge takes3/2 seconds; wait1/2 so its real arrival is the next defender Start.
-    $s=Capture;Require ([Decennium.Foundation.Laboratory.TestOnlyClubAttackPolicy]::Speed($s,$hero)-eq20) 'Staged final edge speed changed.'
+    $s=Capture;Require ([Decennium.Foundation.Laboratory.TestOnlyClubAttackPolicy]::WalkingSpeed($s,$hero)-eq20) 'Staged final edge speed changed.'
     Send ([Decennium.Foundation.Command]::new("ferry.stage.align.$($s.Revision)",$hero,$s.Revision,'AdvanceClock','',1,2)) $true
     $s=Capture;Send ([Decennium.Foundation.Command]::new("ferry.stage.final-edge.$($s.Revision)",$hero,$s.Revision,'BeginWorldStep','walk',0,1))
     for($i=0;$i-lt12;$i++){$s=Capture;if($null-ne$s.FerryWraith.Admission){break};Send ([Decennium.Foundation.Command]::new("ferry.stage.clock.$($s.Revision)",$hero,$s.Revision,'AdvanceClock','',1,2)) $true}
