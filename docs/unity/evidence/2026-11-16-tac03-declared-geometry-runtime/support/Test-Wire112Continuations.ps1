@@ -13,12 +13,12 @@ if(!$Worker){
     $prior=Join-Path $repository 'docs/unity/evidence/2026-11-16-chr03-bishop-runtime'
     $old=(New-Item -ItemType Directory -Path (Join-Path $Run 'accepted-assemblies')).FullName
     Expand-Archive -LiteralPath (Join-Path $prior 'discovery-correction/execution-assemblies.zip') -DestinationPath $old
-    $launch=Get-Content -LiteralPath (Join-Path $repository 'engine/artifacts/bishop-entry/regression-discovery/launch.json') -Raw|ConvertFrom-Json -AsHashtable
+    $launch=Get-Content -LiteralPath (Join-Path $prior 'final/regression/launch.json') -Raw|ConvertFrom-Json -AsHashtable
     foreach($part in 'Core','Persistence','LabModel','HeadlessTests'){
         $dll="Decennium.Foundation.$part.dll";Require ((Digest (Join-Path $old $dll))-ceq$launch.assemblies[$dll]) "Accepted assembly changed: $dll"
     }
     $SourcesRoot=(New-Item -ItemType Directory -Path (Join-Path $Run 'sources')).FullName
-    $archive=Join-Path $prior 'qualification-evidence.zip';if((Digest $archive)-cne'3c07ef37de6d7be2ee7da3da633f95c6ed4348ea7a5f2c8c93fcb81c52453649'){throw 'Accepted112 archive changed'};$zip=[IO.Compression.ZipFile]::OpenRead($archive)
+    $archive=Join-Path $prior 'final/qualification-evidence.zip';if((Digest $archive)-cne'3c07ef37de6d7be2ee7da3da633f95c6ed4348ea7a5f2c8c93fcb81c52453649'){throw 'Accepted112 archive changed'};$zip=[IO.Compression.ZipFile]::OpenRead($archive)
     try{
         $entry=$zip.GetEntry('qualification/reference/manifest.json');$reader=[IO.StreamReader]::new($entry.Open())
         try{$manifest=$reader.ReadToEnd()|ConvertFrom-Json -AsHashtable}finally{$reader.Dispose()}

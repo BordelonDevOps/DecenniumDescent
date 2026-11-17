@@ -1,6 +1,16 @@
 param([Parameter(Mandatory)][string]$AssemblyRoot,[Parameter(Mandatory)][string]$OutputPath,[string]$Checkpoint)
 $ErrorActionPreference='Stop'
-foreach($assembly in 'Core','Persistence','LabModel'){Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")}
+$auditRoot=Split-Path -Parent ([IO.Path]::GetFullPath($OutputPath))
+if(!(Test-Path -LiteralPath $auditRoot)){New-Item -ItemType Directory -Path $auditRoot|Out-Null}
+. (Join-Path $PSScriptRoot 'Execution-SourceBinding.ps1')
+$executionSourceBinding=Start-GeometryExecutionBinding $auditRoot @($PSCommandPath)
+$loaded=[ordered]@{}
+foreach($part in 'Core','Persistence','LabModel'){
+    $path=(Resolve-Path -LiteralPath (Join-Path $AssemblyRoot "Decennium.Foundation.$part.dll")).Path
+    $assembly=[Reflection.Assembly]::LoadFrom($path)
+    if($assembly.Location-cne$path){throw 'Unexpected loaded exclusion-audit assembly'}
+    $loaded[$part]=@{sha256=(Get-FileHash -LiteralPath $path).Hash.ToLowerInvariant();moduleId=$assembly.ManifestModule.ModuleVersionId.ToString()}
+}
 $geometrySession=[Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithDeclaredGeometry(
     [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
     [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -37,5 +47,7 @@ if($trapGate){throw 'Unselected hunting trap entered internal dispatch'}
 $after=$codec.Encode($state)
 if(![Linq.Enumerable]::SequenceEqual[byte]($before,$after)){throw 'Boundary queries modified state'}
 $report=[ordered]@{status='PASS';scope='Selected configuration, actual grants/genesis or restored records and internal dispatch probes; combine with source control-flow review';checkpoint=$Checkpoint;revision=$state.Revision;wire=$state.WireSchemaVersion;fingerprint=$state.ContentFingerprint;selected=$selected;recordCounts=$counts;overwatchGrants=$overwatchGrants;internalQueries=$probes.ToArray();huntingTrapDispatch=$trapGate;queriesUnchanged=$true}
+$report.assemblies=$loaded
+Complete-GeometryExecutionBinding $auditRoot $executionSourceBinding
 $report|ConvertTo-Json -Depth 10|Set-Content -LiteralPath $OutputPath -Encoding utf8
 $report|ConvertTo-Json -Depth 10

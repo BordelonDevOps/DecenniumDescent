@@ -5,9 +5,17 @@ $AssemblyRoot=(Resolve-Path -LiteralPath $AssemblyRoot).Path
 $geometrySourceInputPath=(Resolve-Path -LiteralPath $InputPath).Path
 if(Test-Path -LiteralPath $Run){throw 'Use a fresh geometry baseline output directory.'}
 $Run=(New-Item -ItemType Directory -Path $Run).FullName
+. (Join-Path $PSScriptRoot 'Execution-SourceBinding.ps1')
+$executionSourceBinding=Start-GeometryExecutionBinding $Run @($PSCommandPath,(Join-Path $repository 'engine/tools/Open-ConnectedExpedition.ps1'),$geometrySourceInputPath)
+Copy-Item -LiteralPath $geometrySourceInputPath -Destination (Join-Path $Run 'source-inputs.jsonl')
 $empty=Join-Path $Run 'empty.jsonl';[IO.File]::WriteAllText($empty,'')
 . (Join-Path $repository 'engine/tools/Open-ConnectedExpedition.ps1') -DeclaredGeometry -AssemblyRoot $AssemblyRoot -InputPath $empty
 $report=[ordered]@{status='FAIL';scope='Fresh declared-geometry execution of retained Bishop command route; no beyond-boundary claim';commands=0;saves=0;startedUtc=[DateTime]::UtcNow.ToString('o')}
+$report.assemblies=@(foreach($part in 'Core','Persistence','LabModel'){
+    $file=Join-Path $AssemblyRoot "Decennium.Foundation.$part.dll";$loaded=[Reflection.Assembly]::LoadFrom($file)
+    if($loaded.Location-cne$file){throw 'Unexpected loaded baseline assembly'}
+    @{name=$part;sha256=(Get-FileHash -LiteralPath $file).Hash.ToLowerInvariant();moduleId=$loaded.ManifestModule.ModuleVersionId.ToString()}
+})
 $inputWriter=[IO.StreamWriter]::new((Join-Path $Run 'executed-inputs.jsonl'))
 $responseWriter=[IO.StreamWriter]::new((Join-Path $Run 'responses.jsonl'))
 Push-Location $Run
@@ -45,6 +53,7 @@ try {
 } catch {$report.error=$_.ToString();throw}
 finally {
     Pop-Location;$inputWriter.Dispose();$responseWriter.Dispose()
+    Complete-GeometryExecutionBinding $Run $executionSourceBinding
     $report.finishedUtc=[DateTime]::UtcNow.ToString('o')
     $report|ConvertTo-Json -Depth 10|Set-Content -LiteralPath (Join-Path $Run 'results.json') -Encoding utf8
 }
