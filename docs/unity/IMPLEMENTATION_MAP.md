@@ -1,6 +1,6 @@
 # Current C# implementation map and Unity entry checklist
 
-As of **2026-11-17**, reconciled against Engine `2bc17643fc505add7960b476b7bd19f4192b7bcb`. **Unity gameplay integration is not ready. Development remains paused.** Consecration115 is accepted within its bounded contract. The owner directs stop after the final push; no next module is started.
+As of **2026-11-18**, accepted runtime/evidence remain as recorded below; successor planning is based on Engine `e7378d055f8bb354312e48de8fb0d70314f4d05d`. **Unity gameplay integration is not ready. Implementation remains paused.** The owner now authorizes defining, reviewing and publishing the next module only.
 
 **Current status:** ACCEPTED_BOUNDED_IMPLEMENTATION. **Prior planning review:** [Accepted pre-Unity planning review](evidence/2026-11-17-pre-unity-contract/GPT_FINAL_REVIEW.json)
 
@@ -11,6 +11,16 @@ As of **2026-11-17**, reconciled against Engine `2bc17643fc505add7960b476b7bd19f
 Consecration115 reconciles **1,587/1,587 registered cases**, including two separately retained corrections, and five complete matching 428-command paths. [Actual final Consecration acceptance](evidence/2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.json). Prior TAC-10 qualification remains preserved: 1,584 cases and five 463-command paths were not restarted. [TAC-10 acceptance](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md)
 
 **Last accepted module:** Consecrate / Consecrated Ground profile115 at `3c5135ae0d664d79528fff1f2676fae2198beb28`. [Evidence and exact review](evidence/2026-11-17-chr05-consecration/README.md). CHR-05 remains PARTIAL. Whole-engine closure, reference performance and Unity readiness remain unqualified.
+
+## Next defined module: ordinary-world magical activity
+
+**Accepted module definition; calendar amendment OPEN:** TAC-01-ORDINARY-MAGICAL-ACTIVITY, affecting TAC-02/TAC-08/CHR-05. [Concrete scope and ten acceptance criteria](evidence/2026-11-17-next-module-contract/MODULE_DEFINITION.md). [Actual consultation](evidence/2026-11-17-next-module-contract/GPT_CONSULTATION.json) and [planning verdict](evidence/2026-11-17-next-module-contract/PLANNING_ACCEPTANCE.json) distinguish selection from implementation approval.
+
+The successor addresses CG-CONTEXT-01 in the three existing admitted post-encounter calendars. Required witness: a genuinely paid Consecrate after the old owner slot ends (s+2) but before ordinary Action refresh (s+6), for example at s+3, followed by meaningful terrain use, real transition and paid continuation. All six affected magical/Grounding commands must preserve their own source restrictions and shared state. Five complete execution modes, strict saves/replay, source/build/regression evidence and actual final acceptance are mandatory.
+
+**Preimplementation gate: OPEN.** CAL-01–05 must settle interval identity, idle/Grounding settlement, transitions/allowance carry, event order and exact consumer/API/codec changes without rewriting history. The module definition does not settle those mechanics. Further owner instruction must also lift the implementation pause. No new profile number is reserved, code changed or execution claimed. Saint/resurrection and Unity remain held.
+
+The planned operational order extends geometry113 → Ferry114 → Consecration115 with this one bounded module under actual GPT response `5321231d-a0f2-528d-9816-f4c0815a9a6b` and Codex concurrence. All 49 workstreams, 120 formal edges, 100 completion obligations, prior acceptances and UR qualification statuses remain unchanged. The accepted implementation remains Consecration115; this successor is not an accepted runtime or whole-workstream completion. This planning entry supersedes older no-successor-selection wording, while all implementation holds remain in force.
 
 ## Read this map
 

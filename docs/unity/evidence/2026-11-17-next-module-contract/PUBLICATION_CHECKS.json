@@ -1,0 +1,32 @@
+{
+  "checkedUtc": "2026-11-18T06:09:16.308419+00:00",
+  "initialStagedWhitespaceCheck": {
+    "exitCode": 2,
+    "finding": "Windows stdout CRLF in two newly captured validation results was treated as trailing whitespace by repository attributes. Initial verifier had checked tracked changes before these new files were staged.",
+    "evidence": "Actual failed terminal output retained in Codex task tool history."
+  },
+  "correction": [
+    {
+      "path": "docs/unity/evidence/2026-11-17-next-module-contract/INITIAL_VALIDATION.txt",
+      "originalSha256": "b20e08693e79c59d005dbba7bb6afdca755358321f4404d4b58aa72da13f5de1",
+      "normalizedSha256": "dad55950b171fa7db6769bc2db297bc6a8233c6fe81eaf4b78f2d0d8c9e3fbb8",
+      "crlfCount": 111,
+      "parsedResultUnchanged": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-17-next-module-contract/FINAL_VALIDATION.json",
+      "originalSha256": "342a6d2b76af468d28f6b666ef4a5711026532ccc7dd7c04e5c8d19cee2862f8",
+      "normalizedSha256": "45b1c9f28a920cb930692606ffcffdf2dc66e92d35c31d642a3c7995a8d757e8",
+      "crlfCount": 114,
+      "parsedResultUnchanged": true
+    }
+  ],
+  "correctedStagedWhitespaceCheck": {
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "definitionChanged": false,
+  "runtimeChanged": false,
+  "note": "Line-ending normalization only; both parsed validation results and all underlying checks unchanged."
+}
