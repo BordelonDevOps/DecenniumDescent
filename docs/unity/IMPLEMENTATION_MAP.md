@@ -12,7 +12,7 @@ The fresh TEST_ONLY composition exposes all 16 existing filling, mining, recipe-
 
 **Prior acceptances remain intact:** declared geometry113 → Ferry-Wraith114 → Consecration115 → ordinary magical activity116 → connected work control. OMA-CARRY-ALLOCATION-01 still requires the entirely genuine carried-before-first-new-owner-Start outside-use intersection for broader completion. [OMA acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md), [exact carried-use allocation](evidence/2026-11-23-tac01-ordinary-magic/CARRIED_OUTSIDE_USE_ALLOCATION.json). These are operational predecessors; the formal dependency graph is unchanged.
 
-**Current development gate:** select the next module with actual GPT/Codex agreement on source/API scope, acceptance criteria and approved dependency order. No successor is selected or started by this acceptance. The detailed rows below retain partial workstream status and now include the accepted work-control contribution to MGT-02 and INT-05.
+**Current development gate:** INT-05-ADMITTED-COMMAND-AND-CHOICE-SURFACE is selected for source/API design by actual GPT response `e5e0261e-f693-5c9c-92f3-1be2225d25bf` and Codex concurrence. Complete HC-01–05 and the exact operation/profile/payload/source/evidence inventory before runtime implementation. The static census is 78 command candidates across 24 startup factories plus two separate operator kinds; it is not executable coverage. [Selected module and open contract](evidence/2026-11-23-int05-admitted-command-surface/MODULE_DEFINITION.md). The detailed FND-02, MGT-02, INT-04 and INT-05 rows retain their existing whole-workstream statuses while recording later accepted scope.
 
 **What remains before Unity:** all mandatory capability, identity and interaction gaps across 49 workstreams, 120 dependency edges and 100 obligations; the agreed operating envelope, including measurement through 10,000 receipts; supported persistence/API/source authority and final whole-engine review. These are not equal-sized tasks or a completion percentage. [Pre-Unity completion contract](PRE_UNITY_COMPLETION_CONTRACT.md). No UR gate is promoted here. Unity, storage cleanup and GitHub Support remain deferred.
 
@@ -170,7 +170,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **TECHNICAL_BASELINE** · Dependencies: FND-01.
 
-**Implemented / accepted scope:** Versioned canonical saves, strict causal restore, pending-state continuation, atomic invalid-save rejection and explicit backup recovery are accepted for the named profiles; latest Ferry qualification covers authentic95–113 predecessors and current114.
+**Implemented / accepted scope:** Versioned canonical saves, strict causal restore, pending-state continuation, atomic invalid-save rejection and explicit backup recovery are accepted for the named profiles. Historical Ferry qualification covers authentic95–113 and current114; later Consecration115, ordinary magical activity116 and connected work control remain separately accepted. Latest MGT-02 qualification includes 22 authentic original-policy continuations and strict current-profile pending work/quality/receipt/backup continuation, with same-wire birthplace limits retained.
 
 **Remaining:** Maintain an explicit supported-profile/migration matrix for future changes; qualify larger histories and load-time limits under UR-04. No universal migration or arbitrary-profile compatibility claim.
 
@@ -180,7 +180,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Concrete completion criteria:** [FND-02-C1, FND-02-C2](PRE_UNITY_COMPLETION_CONTRACT.md#fnd-02).
 
-**Evidence:** [2026-11-16-tac10-ferry-wraith-runtime/COMPATIBILITY_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/COMPATIBILITY_CHECKPOINT.md) · [2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md)
+**Evidence:** [2026-11-16-tac10-ferry-wraith-runtime/COMPATIBILITY_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/COMPATIBILITY_CHECKPOINT.md) · [2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md) · [Later accepted modules and exact qualification](evidence/2026-11-23-mgt02-connected-work-control/ACCEPTANCE_EVIDENCE_MATRIX.md)
 
 #### FND-03 — Versioned random-state primitive
 
@@ -918,7 +918,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **PARTIAL** · Dependencies: INT-03.
 
-**Implemented / accepted scope:** The independent recipe4 semantic/parity verifier is accepted; current TAC-10 qualification retains 1,584 passing registered cases and five matching 463-command paths.
+**Implemented / accepted scope:** The independent recipe4 semantic/parity verifier remains accepted. Historical TAC-10 retains 1,584 passing cases and five matching 463-command paths; Consecration and OMA retain their exact later acceptance. Latest MGT-02 has five complete 244-command paths and 4,256 exact comparisons. Its raw regression is 1,600 PASS / one retained I/O FAIL, actual exits 0/0/1/0; the separately reviewed exact same-binary recheck reconciles 1,601 unique passing cases. No raw failure is erased and the I/O cause remains unresolved.
 
 **Remaining:** Independent source expectations and branching coverage for remaining required systems, declared larger operating envelopes and measured reliability/scaling remain. Human balance evidence is a later product activity. Assertion counts are not new registered tests or completion percentages.
 
@@ -928,7 +928,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Concrete completion criteria:** [INT-04-C1, INT-04-C2](PRE_UNITY_COMPLETION_CONTRACT.md#int-04).
 
-**Evidence:** [2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md) · [2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md)
+**Evidence:** [2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int04-recipe4-parity/GPT_FINAL_REVIEW.md) · [2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int03-strict-restoration/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md) · [Later accepted modules and exact qualification](evidence/2026-11-23-mgt02-connected-work-control/ACCEPTANCE_EVIDENCE_MATRIX.md)
 
 #### INT-05 — Player explanations, accessibility and Unity presentation
 

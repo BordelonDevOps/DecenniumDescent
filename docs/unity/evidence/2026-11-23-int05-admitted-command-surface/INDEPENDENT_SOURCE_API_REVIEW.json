@@ -1,0 +1,28 @@
+{
+  "reviewer": "/root/review_consecration",
+  "baseline": "4abfdd598b48225002fabdec2f8121ce23fb4d49",
+  "scope": "Actual independent read-only source/API design review; this file summarizes the returned findings. No patch, build, test or gameplay execution by the reviewer.",
+  "verdict": "ADDITIVE_API_FEASIBLE_SOURCE_API_DECISIONS_AND_COMPLETE_INVENTORY_REMAIN_OPEN",
+  "confirmedCensus": {"seatCommandCandidates": 78, "startupFactories": 24, "operatorKinds": 2},
+  "findings": [
+    {"id": "HC-REVIEW-01", "finding": "The static census is the union of host and helper predicates, not executable coverage. Intersect actual profile, payload, grant, visible target and native guard.", "sources": ["ConnectedExpeditionSession.cs:80", "ConnectedExpeditionSession.cs:287", "ConnectedExpeditionSession.cs:532", "ConnectedWorkControlHost.cs:13"]},
+    {"id": "HC-REVIEW-02", "finding": "Legacy QueryCastingCommand rejects noncasting profiles and generic queries are work-control-only. SupportsCommand omits stance/knockout/Press, ConsumeDecay, both wound-treatment and all three short-rest kinds; older intake/inventory/club/OA/stabilization support is also narrower than submission. Preserve legacy contracts while adding complete assessment routing.", "sources": ["ConnectedExpeditionSession.cs:257", "ConnectedWorkControlHost.cs:22", "SharedWorldRangedCombat.cs:80"]},
+    {"id": "HC-REVIEW-03", "finding": "Knockout resolution invokes Complete and tactical continuation before checking assessTactical; Press writes state and continues without an assessment branch. ResolveCore assessment flags are family-specific. Current queries use copied state; this is not a live mutation finding. Extract pure guards shared with execution.", "sources": ["TestOnlyClubAttackPolicy.cs:162", "TacticalMovementPolicy.cs:303", "TestOnlySharedWorldPolicy.cs:863", "Simulation.cs:1636"]},
+    {"id": "HC-REVIEW-04", "finding": "Standalone earned-spell acquisition, repertoire-only casting, Cleric Short Rest and mining AssistantId in these connected factories retain deliberate native denials. CancelMining and native-but-unadmitted AttackUnarmed remain outside the census.", "sources": ["SpellRepertoireRecords.cs:123", "TestOnlySharedWorldPolicy.cs:896", "SharedMining.cs:1128"]},
+    {"id": "HC-REVIEW-05", "finding": "SeatCommandGrant alone omits Submit's all-profile exact Haven transaction exceptions and pre-Bishop milestone exception. Preserve narrow grants, enabled seats and actual host/core guard order. Current authority must precede receipt disclosure/duplicate recognition; no broad buyer or Director grant.", "sources": ["ConnectedExpeditionSession.cs:244", "ConnectedExpeditionSession.cs:373", "ConnectedExpeditionSession.cs:398", "Simulation.cs:1557"]},
+    {"id": "HC-REVIEW-06", "finding": "Inventory needs semantic payload rows: cache vs seven trap operations, zero-amount Retrieve receiver, item handling/placement/quantities, geometry coordinates, knockout/Press modes, tactical Guidance, spell focus/willing/Focused-DC choices, Rite and Invocation cure choices, mining failure-victim/recovery preferences. Constructors alone do not establish host/native admission. WillingTarget is not authority.", "sources": ["ConnectedExpeditionSession.cs:467", "ConnectedExpeditionSession.cs:600", "SharedGuidance.cs:9", "SharedMining.cs:1100"]},
+    {"id": "HC-REVIEW-07", "finding": "Choices include strain recovery and embedded elections beyond five decision enum values. Recovery submits point ID rather than offer ID. Sanctuary Opportunity cannot retarget. Bind actual owner/revision/pending identity and source priority.", "sources": ["ConnectedExpeditionSession.cs:778", "SharedStrainRecovery.cs:338", "SharedSanctuary.cs:97", "ConnectedExpeditionQualityExplanation.cs:66"]},
+    {"id": "HC-REVIEW-08", "finding": "Raw receipts/records are not safe result DTOs: fingerprints, hidden mining values/tier/DC and RNG must be filtered. Core accepted results retain more detail than legacy host; suspended status is observed against current pending state, so retain receipt and observation revision separately. Do not claim absent immutable historical outcomes.", "sources": ["Simulation.cs:67", "Simulation.cs:1522", "ConnectedExpeditionView.cs:615"]}
+  ],
+  "principalWorkingSha256": {
+    "ConnectedExpeditionSession.cs": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+    "SharedWorldRangedCombat.cs": "42cf0f850e6ab67f1c3bc25175a3a676859e941704111c1e281bec40d748021e",
+    "TestOnlySharedWorldPolicy.cs": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+    "TestOnlyClubAttackPolicy.cs": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+    "TacticalMovementPolicy.cs": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+    "Simulation.cs": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903"
+  },
+  "reviewerTranscriptionCorrection": "Before publication, the reviewer confirmed that its original TestOnlyClubAttackPolicy SHA string omitted two hex characters. Codex independently recomputed the file hash and recorded the full 64-character value above. No source change occurred.",
+  "codexDisposition": "Concur with the concrete findings after inspecting the cited host, core, tactical, mining, Guidance and Sanctuary paths. Incorporated the design constraints and corrected the initial worklist's trap Abandon and arbitrary Press-destination assumptions before publication. Exact full matrix/source/API agreement is still open; no gameplay semantics changed.",
+  "runtimeAcceptance": false
+}
