@@ -160,11 +160,14 @@ namespace Decennium.Foundation.Laboratory
                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))
                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))
                     .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor))
-                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor)).Concat(DiscoverConsecrate(s,actor));
+                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor)).Concat(DiscoverConsecrate(s,actor))
+                    .Concat(DiscoverOrdinaryHealingRite(s,actor));
             var options=new System.Collections.Generic.List<Command>();
             options.AddRange(DiscoverCastingCommands(s,authority,actor));
             options.AddRange(DiscoverFerrySeal(s,actor));
             options.AddRange(DiscoverConsecrate(s,actor));
+            options.AddRange(DiscoverOrdinaryHealingRite(s,actor));
+            if(s.OrdinaryMagic!=null)options.AddRange(DiscoverDivineInvocation(s,actor));
             if(FerryWraithProfile.Active(s)&&s.Encounter.CurrentActor==actor
                 &&(actor==FerryWraithProfile.Hero||actor==FerryWraithProfile.Companion))
                 options.Add(new Command("option."+s.Revision.ToString(CultureInfo.InvariantCulture)+".ferry.dash",actor,s.Revision,

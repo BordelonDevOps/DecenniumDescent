@@ -30,6 +30,8 @@ namespace Decennium.Foundation.Tests
                 Require(state.WireSchemaVersion == 116 && state.OrdinaryMagic != null && state.OrdinaryMagic.Current == null
                     && state.OrdinaryMagic.Activities.Count == 0 && state.OrdinaryMagic.Settlements.Count == 0,
                     "Fresh ordinary-magic profile invented an allowance or activity.");
+                Require(!session.View(ExpeditionSeat.Player).Actors.Single(x => x.Position.Id == ClericRpProfile.Actor).Cleric
+                    .UnsupportedCapabilities.Any(x => x.Contains("Consecrate after")), "New profile retained the superseded late-Consecrate capability restriction.");
                 BishopCheckpoint(session, directory, "ordinary-magic-genesis");
                 var old = NewConsecrationExpedition();
                 var codec = new SnapshotCodec(); var oldBytes = codec.Encode(ShortRestCapture(old));
@@ -39,7 +41,14 @@ namespace Decennium.Foundation.Tests
                 Require(rejected && oldBytes.SequenceEqual(codec.Encode(ShortRestCapture(old))), "A115 session adopted116 state or changed after rejection.");
             });
             cases.Add("tac01_ordinary_magic_genuine_c1_late_rite_and_settlement", () => {
-                var session = EarnClericObjective(false, directory, NewOrdinaryMagicExpedition());
+                var session = EarnClericObjective(false, directory, NewOrdinaryMagicExpedition(), beforeInitialRite: active => {
+                    var state = ShortRestCapture(active); var unchanged = new SnapshotCodec().Encode(state);
+                    var choices = active.DiscoverCastingCommands(ExpeditionSeat.Player, ClericRpProfile.Actor);
+                    Require(choices.Any(x => x.Query.Admissible && x.Command.Kind == CommandKind.UseHealingRite
+                        && x.Command.Target == ClericRpProfile.Actor && x.Command.HealingRite == null), "Genuine tactical C1 Rite was omitted by discovery.");
+                    Require(!choices.Any(x => x.Command.Kind == CommandKind.UseHealingRite && x.Command.HealingRite != null)
+                        && unchanged.SequenceEqual(new SnapshotCodec().Encode(ShortRestCapture(active))), "C1 discovery invented an unowned cure or mutated state.");
+                });
                 var before = ShortRestCapture(session);
                 Require(!before.InventoryCombat && before.Characters.Single(x => x.ActorId == ClericRpProfile.Actor).Levels.Count == 1
                     && before.ResonancePools.Single().Current == 3 && before.HealingRites.Length == 0
@@ -95,7 +104,10 @@ namespace Decennium.Foundation.Tests
                     && session.Submit(ExpeditionSeat.Player, unowned).Response == ExpeditionResponse.Unavailable
                     && unchanged.SequenceEqual(codec.Encode(ShortRestCapture(session))), "Unowned Radiance cure did not reject atomically.");
                 var rite = new Command("oma.c1.rite", ClericRpProfile.Actor, ready.Revision, CommandKind.UseHealingRite, ConnectedExpeditionSession.Hero);
-                Require(session.QueryCastingCommand(ExpeditionSeat.Player, rite).Admissible, "Genuine C1 late base Rite was not discoverable/admissible.");
+                Require(session.QueryCastingCommand(ExpeditionSeat.Player, rite).Admissible
+                    && session.DiscoverCastingCommands(ExpeditionSeat.Player, ClericRpProfile.Actor).Any(x => x.Query.Admissible
+                        && x.Command.Kind == CommandKind.UseHealingRite && x.Command.Target == ConnectedExpeditionSession.Hero
+                        && x.Command.HealingRite == null), "Genuine C1 late base Rite was not discoverable/admissible.");
                 BishopCommit(session, rite);
                 var paid = ShortRestCapture(session);
                 var use = paid.HealingRites.Single(x => x.CommandId == rite.Id);

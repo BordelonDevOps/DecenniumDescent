@@ -1,0 +1,86 @@
+{
+  "schema": "ordinary-magic-partition-normalization-review-v1",
+  "createdUtc": "2026-11-23T15:35:36.286023+00:00",
+  "reviewer": "independent agent /root/review_consecration",
+  "candidateCommit": "03e601962f518f175251e7f9881ee6a75bc04608",
+  "disposition": "NO_BLOCKER_FOUND_FOR_THE_TWO_RETAINED_CASES",
+  "comparisonScript": {
+    "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/support/Compare-Partitions.py",
+    "sha256": "52d9169da843c8ea86ecb3a04a09bd7d7eb71ddf9aaee0b3ff2f98a529d6ed40"
+  },
+  "retainedArtifacts": [
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/PartitionProbe.cs",
+      "sha256": "2245674e223476139d528c45ffefe99b0bad7016ea7e94ac94dc7e4fbdf520b9"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/execution.json",
+      "sha256": "1f83dde45850a6c74ed473a2f029023435fcb71fbc16800245fd513cb6427b2a"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/comparison.json",
+      "sha256": "9b76b540351e83a3dbb4cf87ad7bed08e5a53cc3b192c55941732b0e18e8d0f3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/sparse-whole-after.ddsave",
+      "sha256": "18f31873348c36509455b30d5d5561d086b3da9aa9d3f94306fc3a44738f85e6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/sparse-partitioned-after.ddsave",
+      "sha256": "272c6e615cf5cbc04182cc8bbcf6eff9d5249ca935a9cdd65f43aa0fdcfd6aa3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/sparse-whole-after.json",
+      "sha256": "0b8245bb90308c5e4e82e8ea660f717a984f19bf050f2d07a6a56cb1f75af3bb"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/sparse-partitioned-after.json",
+      "sha256": "1ba81ef03f797daec8336ab214f5ac61430fec83f2824e4273740600755945c0"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/eight-hour-whole.ddsave",
+      "sha256": "383dd921b2053602c740766147d2449b20baaa2eda5f2f95dde5f0b916b9f93e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/eight-hour-parts.ddsave",
+      "sha256": "bf60e0297e4b068fe4b3ed12884774ed87f9e27a41c60ddee761667126a73fca"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/eight-hour-whole.ddsave.json",
+      "sha256": "7c5decbd4d783984b46a7ada1b5e773bb0b833568d24a98b8b535d168041ac47"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/partition-02/eight-hour-parts.ddsave.json",
+      "sha256": "d255259f319e77c130bc7e44b40babf865b6cd053304141e07071a0223a6bc5a"
+    }
+  ],
+  "checks": [
+    "Inspected comparator, partition driver, retained execution and actual raw projections.",
+    "Recomputed only pure normalize/differences functions in memory; did not execute the file-writing main or gameplay. Both recomputations exactly matched retained normalized outputs.",
+    "Shared-prefix receipts and historical activity/settlement/transition rows were equal before normalization in both cases.",
+    "ResourceLot.Quantity and ResourceReservation.Quantity are throwing integral aliases (WorkLedger32/54); exact Amount,ConsumedAmount,ReleasedAmount,RemainingAmount are preserved.",
+    "Current/source identity, deadline, numerical mechanical fields, RNG and ordered events remain; equivalent zero ranges expand in exact rational time to the selected companion/PB2 cadence."
+  ],
+  "cases": [
+    {
+      "name": "nonzero-24-seconds",
+      "topLevelFields": 253,
+      "events": 49,
+      "rngEqual": true,
+      "readOnlyRecomputation": "MATCHES_RETAINED_OUTPUTS"
+    },
+    {
+      "name": "eight-hours",
+      "topLevelFields": 253,
+      "events": 9649,
+      "rngEqual": true,
+      "readOnlyRecomputation": "MATCHES_RETAINED_OUTPUTS"
+    }
+  ],
+  "normalizationLimits": [
+    "event() removes historical as well as post-branch calendar command/revision provenance. This is not a claim that every historical provenance field is compared; shared-prefix equality was checked separately for receipts/activity/settlement/transition rows.",
+    "Numeric event ordinals and SegmentOrdinal references are removed; ordered event position and CurrentSegment are retained. Their original causal validity comes from independent strict save validation/replay, not this comparer.",
+    "Expansion is bounded to the qualified selected-profile companion/PB2 zero-idle representation. This script is not a general gameplay causal validator or proof for unrelated profiles.",
+    "No mutation of raw saves, histories or runtime; no gameplay or qualification execution performed by reviewer."
+  ]
+}

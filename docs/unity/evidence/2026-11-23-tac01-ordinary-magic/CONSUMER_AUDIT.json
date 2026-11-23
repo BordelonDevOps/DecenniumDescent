@@ -1,0 +1,2990 @@
+{
+  "candidateCommit": "03e601962f518f175251e7f9881ee6a75bc04608",
+  "reviewer": "independent agent /root/review_consecration",
+  "status": "CHANGES_REQUIRED",
+  "schema": "ordinary-magic-consumer-audit-v1",
+  "createdUtc": "2026-11-23T15:28:22.677663+00:00",
+  "reviewMode": "READ_ONLY_SOURCE_REVIEW_NO_GAMEPLAY_OR_TEST_EXECUTION",
+  "inventoryBaselineCommit": "7c084e96db51d74b48ec57a207c7ceaf221e4c11",
+  "inventoryPath": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/BASELINE_CONSUMER_INVENTORY.json",
+  "inventorySha256": "8c3bd6428a835912d7bfe4c0087c7d4387b29bc4f3b8cc94558829831a3858da",
+  "contract": {
+    "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/SOURCE_API_CONTRACT.md",
+    "sha256": "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d",
+    "sourceApiApproval": "07b5b8fe-e82f-5d53-b4ed-42087afbd942",
+    "representationApproval": "8bd7afb5-3691-50e2-ac9a-1faaa9179ccf"
+  },
+  "inventoryFilesReviewed": 39,
+  "inventoryMatchesDisposed": 185,
+  "dispositionCounts": {
+    "INTENTIONALLY_PREDECESSOR_OR_GENERIC": 114,
+    "SHARED_CALENDAR_ROUTED": 71
+  },
+  "files": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "baselineInventorySha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "baselineGitBlobSha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "candidateGitBlobSha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "inspectedFileSha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "01.01",
+          "baselineLine": 114,
+          "baselineText": "var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==heal.RiteCommandId);",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 114,
+          "candidateAnchorText": "                var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==heal.RiteCommandId);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Aura joins actual Rite/Radiance by command and intermediate HP; no own-slot predicate."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "baselineInventorySha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "baselineGitBlobSha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "candidateGitBlobSha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "inspectedFileSha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "02.01",
+          "baselineLine": 134,
+          "baselineText": "public long PreRadianceHp() => hpBefore;",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 134,
+          "candidateAnchorText": "        public long PreRadianceHp() => hpBefore;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Immutable pre-Radiance HP accessor preserves actual Ground-before-Radiance ordering."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "baselineInventorySha256": "f41ad5279d702a3c02ca9d7355551c2dc0f5aa24304b8e20aa2c1608dcfb0e12",
+      "baselineGitBlobSha256": "f41ad5279d702a3c02ca9d7355551c2dc0f5aa24304b8e20aa2c1608dcfb0e12",
+      "candidateGitBlobSha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3",
+      "inspectedFileSha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "03.01",
+          "baselineLine": 25,
+          "baselineText": "&& s.RadianceUses.Any(x => x.TargetId == target && x.CureOperationId == operation.Id",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 25,
+          "candidateAnchorText": "                && s.RadianceUses.Any(x => x.TargetId == target && x.CureOperationId == operation.Id",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Cure operation joins actual Radiance source and timestamp."
+        },
+        {
+          "inventoryMatchId": "03.02",
+          "baselineLine": 36,
+          "baselineText": "=> BishopProfile.InvocationCuredBefore(s,timing,deadline) || s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 36,
+          "candidateAnchorText": "            => BishopProfile.InvocationCuredBefore(s,timing,deadline) || s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Cure-before-deadline uses captured condition time, independent of outside settlement."
+        },
+        {
+          "inventoryMatchId": "03.03",
+          "baselineLine": 44,
+          "baselineText": "if (s.ConnectedClericSettlement != selected || s.RadianceUses == null || s.RadianceUses.Length > 128 || s.RadianceUses.Any(x => x == null))",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 44,
+          "candidateAnchorText": "            if (s.ConnectedClericSettlement != selected || s.RadianceUses == null || s.RadianceUses.Length > 128 || s.RadianceUses.Any(x => x == null))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Inherited earned-settlement envelope and128-row capacity remain required."
+        },
+        {
+          "inventoryMatchId": "03.04",
+          "baselineLine": 48,
+          "baselineText": "|| s.RadianceUses.Length != 0 || s.CharacterFeatureGrants.Any(x => x.Origin == CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature))",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 48,
+          "candidateAnchorText": "                    || s.RadianceUses.Length != 0 || s.CharacterFeatureGrants.Any(x => x.Origin == CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Unselected profiles prohibit earned grants and Radiance history."
+        },
+        {
+          "inventoryMatchId": "03.05",
+          "baselineLine": 103,
+          "baselineText": "} else if (s.ConvictionCapacity.PoolAcquiredRevision != 0 || s.RadianceUses.Length != 0",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 103,
+          "candidateAnchorText": "            } else if (s.ConvictionCapacity.PoolAcquiredRevision != 0 || s.RadianceUses.Length != 0",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Without earned advancement, Radiance remains prohibited;116 base Rite does not grant it."
+        },
+        {
+          "inventoryMatchId": "03.06",
+          "baselineLine": 107,
+          "baselineText": "if (s.RadianceUses.Select(x => x.RiteCommandId).Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 107,
+          "candidateAnchorText": "            if (s.RadianceUses.Select(x => x.RiteCommandId).Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "One Radiance row per actual Rite remains required."
+        },
+        {
+          "inventoryMatchId": "03.07",
+          "baselineLine": 108,
+          "baselineText": "|| s.RadianceUses.Select(x => x.ActorId + \"|\" + x.EpochId + \"|\" + x.LocalStart.ToString(System.Globalization.CultureInfo.InvariantCulture))",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 108,
+          "candidateAnchorText": "                || s.RadianceUses.Select(x => x.ActorId + \"|\" + x.EpochId + \"|\" + x.LocalStart.ToString(System.Globalization.CultureInfo.InvariantCulture))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Uniqueness tuple now carries the stable real origin written by SettleRadiance."
+        },
+        {
+          "inventoryMatchId": "03.08",
+          "baselineLine": 109,
+          "baselineText": ".Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 109,
+          "candidateAnchorText": "                    .Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Distinct tuple cardinality enforces once-use across mode/epoch carry."
+        },
+        {
+          "inventoryMatchId": "03.09",
+          "baselineLine": 110,
+          "baselineText": "|| !s.RadianceUses.Select(x => x.Revision).SequenceEqual(s.RadianceUses.Select(x => x.Revision).OrderBy(x => x)))",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 110,
+          "candidateAnchorText": "                || !s.RadianceUses.Select(x => x.Revision).SequenceEqual(s.RadianceUses.Select(x => x.Revision).OrderBy(x => x)))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual command revision ordering remains required."
+        },
+        {
+          "inventoryMatchId": "03.10",
+          "baselineLine": 112,
+          "baselineText": "foreach (var use in s.RadianceUses) {",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 112,
+          "candidateAnchorText": "            foreach (var use in s.RadianceUses) {",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Each producer joins the Rite and116 ValidActivityContext rather than requiring current short slot."
+        },
+        {
+          "inventoryMatchId": "03.11",
+          "baselineLine": 119,
+          "baselineText": "|| use.PreRadianceHp() != ConsecrationProfile.AfterGround(s,rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 119,
+          "candidateAnchorText": "                    || use.PreRadianceHp() != ConsecrationProfile.AfterGround(s,rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual pre-Radiance HP still equals AfterGround of the paid Rite."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "baselineInventorySha256": "592c8c4c96a4ba1ac5df439d849eea78890cce7dfd06bb6aebe98940b717413a",
+      "baselineGitBlobSha256": "592c8c4c96a4ba1ac5df439d849eea78890cce7dfd06bb6aebe98940b717413a",
+      "candidateGitBlobSha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "inspectedFileSha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "04.01",
+          "baselineLine": 188,
+          "baselineText": "public static long AfterGround(Snapshot s, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 189,
+          "candidateAnchorText": "        public static long AfterGround(Snapshot s, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "AfterGround joins actual paid Rite command; no calendar derivation."
+        },
+        {
+          "inventoryMatchId": "04.02",
+          "baselineLine": 213,
+          "baselineText": "if (s.RadianceUses.Any(x => x.PreRadianceHp() != x.BaseHpAfter))",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 214,
+          "candidateAnchorText": "                if (s.RadianceUses.Any(x => x.PreRadianceHp() != x.BaseHpAfter))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Without Consecration the old base/pre-Radiance equality remains required."
+        },
+        {
+          "inventoryMatchId": "04.03",
+          "baselineLine": 299,
+          "baselineText": "long count=CountRechargeStarts(s,epoch,last.OwnerId,after,latest);",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 304,
+          "candidateAnchorText": "                long count=CountRechargeStarts(s,epoch,last.OwnerId,after,latest);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "This count call remains115-only after116 ValidateRecharge early dispatch."
+        },
+        {
+          "inventoryMatchId": "04.04",
+          "baselineLine": 304,
+          "baselineText": "if (recharge.EpochId != current.Id || recharge.LastLocalStart != cursor",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 309,
+          "candidateAnchorText": "            if (recharge.EpochId != current.Id || recharge.LastLocalStart != cursor",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "This cursor check remains115-only;116 validates actual post-use Starts separately."
+        },
+        {
+          "inventoryMatchId": "04.05",
+          "baselineLine": 309,
+          "baselineText": "public static long CountRechargeStarts(Snapshot s,WorldScheduleRecord epoch,string actor,long after,long through)",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 314,
+          "candidateAnchorText": "        public static long CountRechargeStarts(Snapshot s,WorldScheduleRecord epoch,string actor,long after,long through)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Shared CountRechargeStarts is skip-aware and reused by116 refresh/validation."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "baselineInventorySha256": "d382cee506c1379317c3d830758c114678b1dacaffa6b266525482b56a5e2ac8",
+      "baselineGitBlobSha256": "d382cee506c1379317c3d830758c114678b1dacaffa6b266525482b56a5e2ac8",
+      "candidateGitBlobSha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "inspectedFileSha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "05.01",
+          "baselineLine": 46,
+          "baselineText": "public SpellTurnIdentity Turn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 46,
+          "candidateAnchorText": "        public SpellTurnIdentity Turn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Invocation Turn remains immutable identity;116 supplies real origin."
+        },
+        {
+          "inventoryMatchId": "05.02",
+          "baselineLine": 71,
+          "baselineText": "public DivineInvocationRecord(string command,long revision,SpellTurnIdentity turn,RuleTime at,DivineInvocationRequest choice,",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 71,
+          "candidateAnchorText": "        public DivineInvocationRecord(string command,long revision,SpellTurnIdentity turn,RuleTime at,DivineInvocationRequest choice,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Constructor retains actual source/payment fields; current context is separate."
+        },
+        {
+          "inventoryMatchId": "05.03",
+          "baselineLine": 129,
+          "baselineText": "||command.DivineInvocation?.Fingerprint!=use.Choice.Fingerprint||!SpellCastingProfile.ValidTurn(s,use.Turn,use.At,true)",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 129,
+          "candidateAnchorText": "                    ||command.DivineInvocation?.Fingerprint!=use.Choice.Fingerprint||!(s.OrdinaryMagic==null ? SpellCastingProfile.ValidTurn(s,use.Turn,use.At,true) : OrdinaryMagicProfile.ValidActivity(s,use.CommandId,use.Turn,use.At))",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 uses ValidActivity; predecessors retain own-slot ValidTurn."
+        },
+        {
+          "inventoryMatchId": "05.04",
+          "baselineLine": 152,
+          "baselineText": "||epoch.LatestStart(recharge.ActorId,recharge.LastLocalStart)!=recharge.LastLocalStart",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 153,
+          "candidateAnchorText": "                    ||epoch.LatestStart(recharge.ActorId,recharge.LastLocalStart)!=recharge.LastLocalStart",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old cursor arithmetic is bypassed only for116."
+        },
+        {
+          "inventoryMatchId": "05.05",
+          "baselineLine": 153,
+          "baselineText": "||epoch.Start(recharge.LastLocalStart)!=recharge.LastStartAt||recharge.LastStartAt>s.RuleClock",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 154,
+          "candidateAnchorText": "                    ||epoch.Start(recharge.LastLocalStart)!=recharge.LastStartAt||recharge.LastStartAt>s.RuleClock",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old LastStartAt check remains for old profiles;116 uses shared validation."
+        },
+        {
+          "inventoryMatchId": "05.06",
+          "baselineLine": 155,
+          "baselineText": "||recharge.EpochId==last.Turn.EpochId&&recharge.Remaining!=Math.Max(0L,3L-(recharge.LastLocalStart-last.Turn.LocalStart)/epoch.Order.Count))",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 156,
+          "candidateAnchorText": "                    ||recharge.EpochId==last.Turn.EpochId&&recharge.Remaining!=Math.Max(0L,3L-(recharge.LastLocalStart-last.Turn.LocalStart)/epoch.Order.Count))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old same-epoch formula remains predecessor-only;116 counts actual post-use Starts."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "baselineInventorySha256": "92a8a1b534184748d8ceadcffd38aa10274e35daea66bd8ed337c57c0a994480",
+      "baselineGitBlobSha256": "92a8a1b534184748d8ceadcffd38aa10274e35daea66bd8ed337c57c0a994480",
+      "candidateGitBlobSha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "inspectedFileSha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "06.01",
+          "baselineLine": 176,
+          "baselineText": "public static bool SelectedFingerprint(string value)=>value!=null&&(value.StartsWith(FingerprintPrefix,StringComparison.Ordinal)||ConsecrationProfile.SelectedFingerprint(value));",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 176,
+          "candidateAnchorText": "        public static bool SelectedFingerprint(string value)=>value!=null&&(value.StartsWith(FingerprintPrefix,StringComparison.Ordinal)||ConsecrationProfile.SelectedFingerprint(value));",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Fingerprint chain now reaches explicit116 via Consecration selection; old prefixes unchanged."
+        },
+        {
+          "inventoryMatchId": "06.02",
+          "baselineLine": 300,
+          "baselineText": "&&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 300,
+          "candidateAnchorText": "                    &&s.OrdinaryMagic==null&&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End-row requirement is guarded by OrdinaryMagic==null;116 has separate carry proof."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "baselineInventorySha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "baselineGitBlobSha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "candidateGitBlobSha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "inspectedFileSha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "07.01",
+          "baselineLine": 32,
+          "baselineText": "public long LastLocalStart { get; }",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 32,
+          "candidateAnchorText": "        public long LastLocalStart { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Generic LastLocalStart remains an actual processed-start cursor, not settlement count."
+        },
+        {
+          "inventoryMatchId": "07.02",
+          "baselineLine": 40,
+          "baselineText": "ActorId = actor; AbilityId = ability; EpochId = epoch; LastLocalStart = lastLocalStart;",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 40,
+          "candidateAnchorText": "            ActorId = actor; AbilityId = ability; EpochId = epoch; LastLocalStart = lastLocalStart;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Generic recharge constructor retains actual producer/refresh cursor."
+        },
+        {
+          "inventoryMatchId": "07.03",
+          "baselineLine": 298,
+          "baselineText": "|| epoch.LatestStart(recharge.ActorId, recharge.LastLocalStart) != recharge.LastLocalStart",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 298,
+          "candidateAnchorText": "                    || epoch.LatestStart(recharge.ActorId, recharge.LastLocalStart) != recharge.LastLocalStart",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Validator is filtered to Frightened SourceId, outside the six-producer amendment."
+        },
+        {
+          "inventoryMatchId": "07.04",
+          "baselineLine": 299,
+          "baselineText": "|| epoch.Start(recharge.LastLocalStart) != recharge.LastStartAt || recharge.LastStartAt > state.RuleClock",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 299,
+          "candidateAnchorText": "                    || epoch.Start(recharge.LastLocalStart) != recharge.LastStartAt || recharge.LastStartAt > state.RuleClock",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Frightened captured start-time check intentionally unchanged."
+        },
+        {
+          "inventoryMatchId": "07.05",
+          "baselineLine": 300,
+          "baselineText": "|| previousUse == null || previousUse.EpochId != recharge.EpochId || recharge.LastLocalStart < previousUse.LocalStart",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 300,
+          "candidateAnchorText": "                    || previousUse == null || previousUse.EpochId != recharge.EpochId || recharge.LastLocalStart < previousUse.LocalStart",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Same-epoch prior-use check applies only to Frightened SourceId."
+        },
+        {
+          "inventoryMatchId": "07.06",
+          "baselineLine": 301,
+          "baselineText": "|| recharge.Remaining != Math.Max(0L, 3L - (recharge.LastLocalStart - previousUse.LocalStart) / epoch.Order.Count))",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 301,
+          "candidateAnchorText": "                    || recharge.Remaining != Math.Max(0L, 3L - (recharge.LastLocalStart - previousUse.LocalStart) / epoch.Order.Count))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Frightened recharge formula stays source-specific;116 cleric abilities use their routed validators."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterValidation.cs",
+      "baselineInventorySha256": "6d65bf1c2b56ad3c3a7f2f13d1fff2f2b691530f0cda4c046d3318b007284a47",
+      "baselineGitBlobSha256": "6d65bf1c2b56ad3c3a7f2f13d1fff2f2b691530f0cda4c046d3318b007284a47",
+      "candidateGitBlobSha256": "d1992c8d7498553f57fcc2a1902028d9bfd1479f32f664e546ffd74b05e8dab7",
+      "inspectedFileSha256": "d1992c8d7498553f57fcc2a1902028d9bfd1479f32f664e546ffd74b05e8dab7",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "08.01",
+          "baselineLine": 10,
+          "baselineText": "public static bool OwnsEvent(Snapshot s,string actor,string epoch,long revision)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 10,
+          "candidateAnchorText": "        public static bool OwnsEvent(Snapshot s,string actor,string epoch,long revision)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "OwnsEvent retains revision-sensitive current ownership; no global relaxation."
+        },
+        {
+          "inventoryMatchId": "08.02",
+          "baselineLine": 82,
+          "baselineText": "&& !s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 82,
+          "candidateAnchorText": "                    && s.OrdinaryMagic==null && !s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End requirement remains predecessor-only."
+        },
+        {
+          "inventoryMatchId": "08.03",
+          "baselineLine": 105,
+          "baselineText": "if(s.CastingActivities.Any(x=>!OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 105,
+          "candidateAnchorText": "            if(s.CastingActivities.Any(x=>!OwnsEvent(s,x.Turn.ActorId,s.OrdinaryMagic==null ? x.Turn.EpochId : OrdinaryMagicProfile.Activity(s,x.CommandId)?.ContextEpoch,x.Revision))",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 casting supplies activity ContextEpoch to unchanged OwnsEvent."
+        },
+        {
+          "inventoryMatchId": "08.04",
+          "baselineLine": 106,
+          "baselineText": "|| s.CastingTurnEnds.Any(x=>x.At>entry.At && !OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))",
+          "baselineGroups": [
+            "legacy_settlement",
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 106,
+          "candidateAnchorText": "                || s.CastingTurnEnds.Any(x=>x.At>entry.At && !OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End ownership stays unchanged;116 forbids nonempty old End ledger."
+        },
+        {
+          "inventoryMatchId": "08.05",
+          "baselineLine": 107,
+          "baselineText": "|| s.RadianceUses.Any(x=>!OwnsEvent(s,x.ActorId,x.EpochId,x.Revision)))",
+          "baselineGroups": [
+            "transition_ownership",
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 107,
+          "candidateAnchorText": "                || s.RadianceUses.Any(x=>!OwnsEvent(s,x.ActorId,s.OrdinaryMagic==null ? x.EpochId : OrdinaryMagicProfile.Activity(s,x.RiteCommandId)?.ContextEpoch,x.Revision)))",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 Radiance supplies actual Rite activity ContextEpoch to ownership check."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "baselineInventorySha256": "7628253190f98e7d5ab37c5eef61d92c5712bfe15c975044935de0e1a4ef5b88",
+      "baselineGitBlobSha256": "7628253190f98e7d5ab37c5eef61d92c5712bfe15c975044935de0e1a4ef5b88",
+      "candidateGitBlobSha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "inspectedFileSha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "09.01",
+          "baselineLine": 82,
+          "baselineText": "public sealed class HealingRiteRecord",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 82,
+          "candidateAnchorText": "    public sealed class HealingRiteRecord",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Paid Rite record remains producer evidence;116 writes its real origin ordinal."
+        },
+        {
+          "inventoryMatchId": "09.02",
+          "baselineLine": 105,
+          "baselineText": "public HealingRiteRecord(string command, long revision, string actor, string target, string source, string sourceRevision,",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 105,
+          "candidateAnchorText": "        public HealingRiteRecord(string command, long revision, string actor, string target, string source, string sourceRevision,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Record shape unchanged; new validation binds TurnOrdinal/time to116 activity origin."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "baselineInventorySha256": "2b3a3b1916444b8650f3e0e2daddffb4eaf2f5fb546c2b36179aafabcdc17a0a",
+      "baselineGitBlobSha256": "2b3a3b1916444b8650f3e0e2daddffb4eaf2f5fb546c2b36179aafabcdc17a0a",
+      "candidateGitBlobSha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "inspectedFileSha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "10.01",
+          "baselineLine": 189,
+          "baselineText": "public const int ConsecrationSchema = 115;",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 189,
+          "candidateAnchorText": "        public const int ConsecrationSchema = 115;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Schema115 constant preserved;116 receives a separate constant."
+        },
+        {
+          "inventoryMatchId": "10.02",
+          "baselineLine": 363,
+          "baselineText": "public CastingTurnEndRecord[] CastingTurnEnds = Array.Empty<CastingTurnEndRecord>();",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 365,
+          "candidateAnchorText": "        public CastingTurnEndRecord[] CastingTurnEnds = Array.Empty<CastingTurnEndRecord>();",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End array retained for predecessors;116 requires empty array."
+        },
+        {
+          "inventoryMatchId": "10.03",
+          "baselineLine": 374,
+          "baselineText": "public RadianceUseRecord[] RadianceUses = Array.Empty<RadianceUseRecord>();",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 376,
+          "candidateAnchorText": "        public RadianceUseRecord[] RadianceUses = Array.Empty<RadianceUseRecord>();",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual Radiance history retained."
+        },
+        {
+          "inventoryMatchId": "10.04",
+          "baselineLine": 383,
+          "baselineText": "public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 385,
+          "candidateAnchorText": "        public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual paid Rite history retained."
+        },
+        {
+          "inventoryMatchId": "10.05",
+          "baselineLine": 384,
+          "baselineText": "public int WireSchemaVersion => Consecration != null ? ConsecrationSchema",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 386,
+          "candidateAnchorText": "        public int WireSchemaVersion => OrdinaryMagic != null ? OrdinaryMagicSchema",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "WireSchemaVersion now selects116 before the retained115 fallback."
+        },
+        {
+          "inventoryMatchId": "10.06",
+          "baselineLine": 543,
+          "baselineText": "CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 546,
+          "candidateAnchorText": "            CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Copy retains old histories and also copies immutable OrdinaryMagic in same initializer."
+        },
+        {
+          "inventoryMatchId": "10.07",
+          "baselineLine": 546,
+          "baselineText": "ClericInvocationPath = ClericInvocationPath, ConvictionCapacity = ConvictionCapacity, RadianceUses = RadianceUses.ToArray(),",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 549,
+          "candidateAnchorText": "            ClericInvocationPath = ClericInvocationPath, ConvictionCapacity = ConvictionCapacity, RadianceUses = RadianceUses.ToArray(),",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Radiance array defensively copied;116 context retained separately."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "baselineInventorySha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "baselineGitBlobSha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "candidateGitBlobSha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "inspectedFileSha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "11.01",
+          "baselineLine": 27,
+          "baselineText": "public SpellTurnIdentity Turn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 27,
+          "candidateAnchorText": "        public SpellTurnIdentity Turn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Cast Turn is a value carrier;116 writer/validator bind real origin."
+        },
+        {
+          "inventoryMatchId": "11.02",
+          "baselineLine": 44,
+          "baselineText": "bool willingTarget, SpellTurnIdentity turn, RuleTime at, int rpBefore, int baseRp, int surcharge, int rpAfter,",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 44,
+          "candidateAnchorText": "            bool willingTarget, SpellTurnIdentity turn, RuleTime at, int rpBefore, int baseRp, int surcharge, int rpAfter,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Cast constructor preserves source/payment/RNG;116 context is separate."
+        },
+        {
+          "inventoryMatchId": "11.03",
+          "baselineLine": 109,
+          "baselineText": "public SpellTurnIdentity AttackerTurn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 109,
+          "candidateAnchorText": "        public SpellTurnIdentity AttackerTurn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "AttackerTurn is Sanctuary/save identity, deliberately unchanged."
+        },
+        {
+          "inventoryMatchId": "11.04",
+          "baselineLine": 121,
+          "baselineText": "long revision, RuleTime at, SpellTurnIdentity attackerTurn, long damage, int dc, int modifier,",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 121,
+          "candidateAnchorText": "            long revision, RuleTime at, SpellTurnIdentity attackerTurn, long damage, int dc, int modifier,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Save constructor preserves attacker interval, not magical-action origin."
+        },
+        {
+          "inventoryMatchId": "11.05",
+          "baselineLine": 198,
+          "baselineText": "public SpellTurnIdentity Turn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 198,
+          "candidateAnchorText": "        public SpellTurnIdentity Turn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Focus Turn is producer identity;116 writes real origin."
+        },
+        {
+          "inventoryMatchId": "11.06",
+          "baselineLine": 203,
+          "baselineText": "string observationId, SpellTurnIdentity turn, RuleTime at, bool schoolWithheld, string broadSchool)",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 203,
+          "candidateAnchorText": "            string observationId, SpellTurnIdentity turn, RuleTime at, bool schoolWithheld, string broadSchool)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Focus constructor preserves source/observation identity;116 validation adds context."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "baselineInventorySha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "baselineGitBlobSha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "candidateGitBlobSha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "inspectedFileSha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "12.01",
+          "baselineLine": 51,
+          "baselineText": "public sealed class SpellTurnIdentity",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 51,
+          "candidateAnchorText": "    public sealed class SpellTurnIdentity",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "SpellTurnIdentity semantics remain unchanged for Sanctuary and old profiles."
+        },
+        {
+          "inventoryMatchId": "12.02",
+          "baselineLine": 59,
+          "baselineText": "public SpellTurnIdentity(string actorId, string epochId, long localStart, long globalStart, long carriedAdmissionRevision = 0)",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 59,
+          "candidateAnchorText": "        public SpellTurnIdentity(string actorId, string epochId, long localStart, long globalStart, long carriedAdmissionRevision = 0)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Constructor unchanged;116 RequireOrigin rejects synthetic carried Start."
+        },
+        {
+          "inventoryMatchId": "12.03",
+          "baselineLine": 68,
+          "baselineText": "public bool SameAs(SpellTurnIdentity other) => other != null && ActorId == other.ActorId && EpochId == other.EpochId",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 68,
+          "candidateAnchorText": "        public bool SameAs(SpellTurnIdentity other) => other != null && ActorId == other.ActorId && EpochId == other.EpochId",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "SameAs retains exact identity comparison used by stable-origin cadence."
+        },
+        {
+          "inventoryMatchId": "12.04",
+          "baselineLine": 121,
+          "baselineText": "public SpellTurnIdentity Turn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 121,
+          "candidateAnchorText": "        public SpellTurnIdentity Turn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Activity carries producer origin;116 sidecar supplies current segment/epoch."
+        },
+        {
+          "inventoryMatchId": "12.05",
+          "baselineLine": 124,
+          "baselineText": "public CastingActivityRecord(string commandId, long revision, SpellTurnIdentity turn, RuleTime at, CastingActivityKind kind)",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 124,
+          "candidateAnchorText": "        public CastingActivityRecord(string commandId, long revision, SpellTurnIdentity turn, RuleTime at, CastingActivityKind kind)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Activity constructor retains actual command/time/classification."
+        },
+        {
+          "inventoryMatchId": "12.06",
+          "baselineLine": 135,
+          "baselineText": "public SpellTurnIdentity Turn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 135,
+          "candidateAnchorText": "        public SpellTurnIdentity Turn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End record is not overloaded for outside/partial settlement."
+        },
+        {
+          "inventoryMatchId": "12.07",
+          "baselineLine": 144,
+          "baselineText": "public CastingTurnEndRecord(SpellTurnIdentity turn, string causeId, long revision, RuleTime at,",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 144,
+          "candidateAnchorText": "        public CastingTurnEndRecord(SpellTurnIdentity turn, string causeId, long revision, RuleTime at,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End constructor retained;116 uses separate settlement type."
+        },
+        {
+          "inventoryMatchId": "12.08",
+          "baselineLine": 169,
+          "baselineText": "public SpellTurnIdentity ExpiryTurn { get; }",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 169,
+          "candidateAnchorText": "        public SpellTurnIdentity ExpiryTurn { get; }",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "ExpiryTurn remains captured source deadline, separate from allowance origin."
+        },
+        {
+          "inventoryMatchId": "12.09",
+          "baselineLine": 177,
+          "baselineText": "RuleTime startedAt, RuleTime expiresAt, SpellExpiryKind expiryKind, SpellTurnIdentity expiryTurn, bool concentration,",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 177,
+          "candidateAnchorText": "            RuleTime startedAt, RuleTime expiresAt, SpellExpiryKind expiryKind, SpellTurnIdentity expiryTurn, bool concentration,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Effect constructor retains fixed expiry;116 producer captures current-context next Start."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingValidation.cs",
+      "baselineInventorySha256": "9455b7918ed15b2ac9214f5c019951af42faadfd20771425f954a4656b9d1c25",
+      "baselineGitBlobSha256": "9455b7918ed15b2ac9214f5c019951af42faadfd20771425f954a4656b9d1c25",
+      "candidateGitBlobSha256": "e5625a633765377f416590f83f3bb1f57d2089842eca62b6ef4e971edc821200",
+      "inspectedFileSha256": "e5625a633765377f416590f83f3bb1f57d2089842eca62b6ef4e971edc821200",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "13.01",
+          "baselineLine": 15,
+          "baselineText": "Rows(s.CastingTurnEnds,MaxTurnEnds,selected); Rows(s.SpellEffects,MaxEffects,selected); Rows(s.GuidanceUses,MaxGuidanceUses,selected);",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 15,
+          "candidateAnchorText": "            Rows(s.CastingTurnEnds,MaxTurnEnds,selected); Rows(s.SpellEffects,MaxEffects,selected); Rows(s.GuidanceUses,MaxGuidanceUses,selected);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Generic old End row bound preserved;116 rejects nonempty old End history."
+        },
+        {
+          "inventoryMatchId": "13.02",
+          "baselineLine": 36,
+          "baselineText": "Unique(s.CastingActivities.Select(x=>x.CommandId)); Unique(s.CastingTurnEnds.Select(x=>x.Turn.Binding));",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 36,
+          "candidateAnchorText": "            Unique(s.CastingActivities.Select(x=>x.CommandId)); Unique(s.CastingTurnEnds.Select(x=>x.Turn.Binding));",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End uniqueness preserved;116 validates new uniqueness separately."
+        },
+        {
+          "inventoryMatchId": "13.03",
+          "baselineLine": 40,
+          "baselineText": "Ordered(s.CastingTurnEnds.Select(x=>x.Revision)); Ordered(s.SpellSaves.Select(x=>x.Revision));",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 40,
+          "candidateAnchorText": "            Ordered(s.CastingTurnEnds.Select(x=>x.Revision)); Ordered(s.SpellSaves.Select(x=>x.Revision));",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End revisions remain ordered for predecessors."
+        },
+        {
+          "inventoryMatchId": "13.04",
+          "baselineLine": 52,
+          "baselineText": "|| !ValidTurn(s,cast.Turn,cast.At,true))throw new ArgumentException(\"Unqualified casting payment or historical access.\");",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 52,
+          "candidateAnchorText": "                    || !(s.OrdinaryMagic==null ? ValidTurn(s,cast.Turn,cast.At,true) : OrdinaryMagicProfile.ValidActivity(s,cast.CommandId,cast.Turn,cast.At)))throw new ArgumentException(\"Unqualified casting payment or historical access.\");",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 cast validation selects exact activity origin/time binding."
+        },
+        {
+          "inventoryMatchId": "13.05",
+          "baselineLine": 79,
+          "baselineText": "|| effect.ExpiryTurn.LocalStart!=next || !ValidTurn(s,effect.ExpiryTurn,effect.ExpiresAt,true)",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 80,
+          "candidateAnchorText": "                        || effect.ExpiryTurn.LocalStart!=next || !ValidTurn(s,effect.ExpiryTurn,effect.ExpiresAt,true)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 Ward uses current ContextEpoch next Start; ValidTurn validates captured marker."
+        },
+        {
+          "inventoryMatchId": "13.06",
+          "baselineLine": 105,
+          "baselineText": "|| activity.At>s.RuleClock || !ValidTurn(s,activity.Turn,activity.At,true))throw new ArgumentException(\"Unattributed magical activity.\");",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 106,
+          "candidateAnchorText": "                    || activity.At>s.RuleClock || !(s.OrdinaryMagic==null ? ValidTurn(s,activity.Turn,activity.At,true) : OrdinaryMagicProfile.ValidActivity(s,activity.CommandId,activity.Turn,activity.At)))throw new ArgumentException(\"Unattributed magical activity.\");",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 activity validation selects its exact command-context binding."
+        },
+        {
+          "inventoryMatchId": "13.07",
+          "baselineLine": 107,
+          "baselineText": "foreach(var end in s.CastingTurnEnds) {",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 108,
+          "candidateAnchorText": "            foreach(var end in s.CastingTurnEnds) {",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End iteration retained but empty for116."
+        },
+        {
+          "inventoryMatchId": "13.08",
+          "baselineLine": 110,
+          "baselineText": "if(epoch==null || !ValidTurn(s,end.Turn,epoch.Start(end.Turn.LocalStart),true)",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 111,
+          "candidateAnchorText": "                if(epoch==null || !ValidTurn(s,end.Turn,epoch.Start(end.Turn.LocalStart),true)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End marker validation unchanged;116 writes no old End records."
+        },
+        {
+          "inventoryMatchId": "13.09",
+          "baselineLine": 145,
+          "baselineText": "|| save.Kind==SpellSaveKind.SanctuaryWisdom && (effect.SpellId!=\"sanctuary\" || !ValidTurn(s,save.AttackerTurn,save.At,false))",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 146,
+          "candidateAnchorText": "                    || save.Kind==SpellSaveKind.SanctuaryWisdom && (effect.SpellId!=\"sanctuary\" || !ValidTurn(s,save.AttackerTurn,save.At,false))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Sanctuary attacker ValidTurn(false) deliberately unchanged."
+        },
+        {
+          "inventoryMatchId": "13.10",
+          "baselineLine": 205,
+          "baselineText": "|| !ValidTurn(s,focus.Turn,focus.At,true) || detection==null || detection.SpellId!=\"detect-magic\" || detection.CasterId!=focus.ActorId",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 206,
+          "candidateAnchorText": "                    || !(s.OrdinaryMagic==null ? ValidTurn(s,focus.Turn,focus.At,true) : OrdinaryMagicProfile.ValidActivity(s,focus.CommandId,focus.Turn,focus.At)) || detection==null || detection.SpellId!=\"detect-magic\" || detection.CasterId!=focus.ActorId",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 focus validation uses ValidActivity; old own-slot predicate retained."
+        },
+        {
+          "inventoryMatchId": "13.11",
+          "baselineLine": 225,
+          "baselineText": ".Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null)))",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 227,
+          "candidateAnchorText": "                .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null)))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old strain merge is bypassed by116 ValidateStrain dispatch."
+        },
+        {
+          "inventoryMatchId": "13.12",
+          "baselineLine": 259,
+          "baselineText": "internal static bool ValidTurn(Snapshot s,SpellTurnIdentity turn,RuleTime at,bool ownAction)",
+          "baselineGroups": [
+            "allowance_identity",
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 261,
+          "candidateAnchorText": "        internal static bool ValidTurn(Snapshot s,SpellTurnIdentity turn,RuleTime at,bool ownAction)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "ValidTurn retains old own-action/carried-attacker meanings; only scoped callers branch."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/BishopEntryCodec.cs",
+      "baselineInventorySha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "baselineGitBlobSha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "candidateGitBlobSha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "inspectedFileSha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "14.01",
+          "baselineLine": 42,
+          "baselineText": "string command=Text(r);long revision=r.ReadInt64();var turn=new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64());",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 42,
+          "candidateAnchorText": "                string command=Text(r);long revision=r.ReadInt64();var turn=new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64());",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Invocation codec retains real actor/epoch/local/global;116 forbids synthetic carry and stores context separately."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClericSettlementCodec.cs",
+      "baselineInventorySha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "baselineGitBlobSha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "candidateGitBlobSha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "inspectedFileSha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "15.01",
+          "baselineLine": 7,
+          "baselineText": "internal static class ClericSettlementCodec",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 7,
+          "candidateAnchorText": "    internal static class ClericSettlementCodec",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Existing Cleric producer codec preserved;116 inherits Consecration layout flag."
+        },
+        {
+          "inventoryMatchId": "15.02",
+          "baselineLine": 28,
+          "baselineText": "w.Write(s.RadianceUses.Length);",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 28,
+          "candidateAnchorText": "            w.Write(s.RadianceUses.Length);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Writes actual producer count, not inferred activity count."
+        },
+        {
+          "inventoryMatchId": "15.03",
+          "baselineLine": 29,
+          "baselineText": "foreach (var x in s.RadianceUses) {",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 29,
+          "candidateAnchorText": "            foreach (var x in s.RadianceUses) {",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Serializes actual Radiance origin without rebinding current epoch."
+        },
+        {
+          "inventoryMatchId": "15.04",
+          "baselineLine": 34,
+          "baselineText": "if(s.Consecration!=null)w.Write(x.PreRadianceHp());",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 34,
+          "candidateAnchorText": "                if(s.Consecration!=null)w.Write(x.PreRadianceHp());",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "PreRadianceHp written for Consecration including116."
+        },
+        {
+          "inventoryMatchId": "15.05",
+          "baselineLine": 47,
+          "baselineText": "s.RadianceUses = new RadianceUseRecord[SnapshotCodec.ReadCount(r,128)];",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 47,
+          "candidateAnchorText": "            s.RadianceUses = new RadianceUseRecord[SnapshotCodec.ReadCount(r,128)];",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "128-row bound preserved."
+        },
+        {
+          "inventoryMatchId": "15.06",
+          "baselineLine": 48,
+          "baselineText": "for (int i=0;i<s.RadianceUses.Length;i++) {",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 48,
+          "candidateAnchorText": "            for (int i=0;i<s.RadianceUses.Length;i++) {",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Read preserves encoded origin."
+        },
+        {
+          "inventoryMatchId": "15.07",
+          "baselineLine": 55,
+          "baselineText": "s.RadianceUses[i]=new RadianceUseRecord(rite,revision,actor,target,source,epoch,local,first,global,at,baseHp,potential,hp,preference,operation,ids,consecration?r.ReadInt64():baseHp);",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 55,
+          "candidateAnchorText": "                s.RadianceUses[i]=new RadianceUseRecord(rite,revision,actor,target,source,epoch,local,first,global,at,baseHp,potential,hp,preference,operation,ids,consecration?r.ReadInt64():baseHp);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "SnapshotCodec passes consecration=true for116 extra-HP decode symmetry."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConsecrationCodec.cs",
+      "baselineInventorySha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "baselineGitBlobSha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "candidateGitBlobSha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "inspectedFileSha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "16.01",
+          "baselineLine": 6,
+          "baselineText": "internal static class ConsecrationCodec",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 6,
+          "candidateAnchorText": "    internal static class ConsecrationCodec",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Inherited115 zone/healing/attack codec retained;116 appends a separate calendar section."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FrightenedCodec.cs",
+      "baselineInventorySha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "baselineGitBlobSha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "candidateGitBlobSha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "inspectedFileSha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "17.01",
+          "baselineLine": 17,
+          "baselineText": "Text(w,x.ActorId); Text(w,x.AbilityId); Text(w,x.EpochId); w.Write(x.LastLocalStart); Time(w,x.LastStartAt); w.Write(x.Remaining);",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 17,
+          "candidateAnchorText": "                Text(w,x.ActorId); Text(w,x.AbilityId); Text(w,x.EpochId); w.Write(x.LastLocalStart); Time(w,x.LastStartAt); w.Write(x.Remaining);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Generic recharge wire fields preserved;116 use-context validation supplies semantics."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ResonanceCodec.cs",
+      "baselineInventorySha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "baselineGitBlobSha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "candidateGitBlobSha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "inspectedFileSha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "18.01",
+          "baselineLine": 24,
+          "baselineText": "Text(w, result.SourceId); Text(w, result.SourceRevision); w.Write(result.TurnOrdinal); Time(w, result.At);",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 24,
+          "candidateAnchorText": "                Text(w, result.SourceId); Text(w, result.SourceRevision); w.Write(result.TurnOrdinal); Time(w, result.At);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Rite TurnOrdinal serialized unchanged;116 writer supplies real origin."
+        },
+        {
+          "inventoryMatchId": "18.02",
+          "baselineLine": 42,
+          "baselineText": "state.HealingRites = new HealingRiteRecord[SnapshotCodec.ReadCount(r, 128)];",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 42,
+          "candidateAnchorText": "            state.HealingRites = new HealingRiteRecord[SnapshotCodec.ReadCount(r, 128)];",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual Rite read count remains bounded128."
+        },
+        {
+          "inventoryMatchId": "18.03",
+          "baselineLine": 44,
+          "baselineText": "state.HealingRites[i] = new HealingRiteRecord(Text(r), r.ReadInt64(), Text(r), Text(r), Text(r), Text(r),",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 44,
+          "candidateAnchorText": "                state.HealingRites[i] = new HealingRiteRecord(Text(r), r.ReadInt64(), Text(r), Text(r), Text(r), Text(r),",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Paid producer record reconstructed unchanged;116 context validated after decode."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "baselineInventorySha256": "0deed36037d8f5b7695fd597a69a21eba07b5fd28726bb8442ea44648981ecca",
+      "baselineGitBlobSha256": "0deed36037d8f5b7695fd597a69a21eba07b5fd28726bb8442ea44648981ecca",
+      "candidateGitBlobSha256": "45a4ba347df663816cb78287379b4314fde5b4b7fa0a061e91838962910ba52e",
+      "inspectedFileSha256": "45a4ba347df663816cb78287379b4314fde5b4b7fa0a061e91838962910ba52e",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "19.01",
+          "baselineLine": 161,
+          "baselineText": "ClericSettlementCodec.Write(writer, state);",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 161,
+          "candidateAnchorText": "                    ClericSettlementCodec.Write(writer, state);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Inherited Cleric payload write position preserved."
+        },
+        {
+          "inventoryMatchId": "19.02",
+          "baselineLine": 189,
+          "baselineText": "ConsecrationCodec.Write(writer,state.Consecration);",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 189,
+          "candidateAnchorText": "                    ConsecrationCodec.Write(writer,state.Consecration);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Inherited Consecration write followed by separate116 marker/section."
+        },
+        {
+          "inventoryMatchId": "19.03",
+          "baselineLine": 209,
+          "baselineText": "bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema;",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 213,
+          "candidateAnchorText": "                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Bishop-envelope dispatch explicitly includes116."
+        },
+        {
+          "inventoryMatchId": "19.04",
+          "baselineLine": 236,
+          "baselineText": "Snapshot.ConsecrationSchema => Snapshot.SurpriseEntrySchema,",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 240,
+          "candidateAnchorText": "                        Snapshot.ConsecrationSchema => Snapshot.SurpriseEntrySchema,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 maps to internal SurpriseEntry payload with distinct outer wire schema."
+        },
+        {
+          "inventoryMatchId": "19.05",
+          "baselineLine": 412,
+          "baselineText": "ClericSettlementCodec.Read(reader, s, wireSchema == Snapshot.ConsecrationSchema);",
+          "baselineGroups": [
+            "wire_and_profile",
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 417,
+          "candidateAnchorText": "                        ClericSettlementCodec.Read(reader, s, (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema));",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Cleric extra-HP decode enabled for115 and116."
+        },
+        {
+          "inventoryMatchId": "19.06",
+          "baselineLine": 430,
+          "baselineText": "if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 435,
+          "candidateAnchorText": "                    if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Declared geometry decode includes116 and marker check."
+        },
+        {
+          "inventoryMatchId": "19.07",
+          "baselineLine": 434,
+          "baselineText": "if (wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 439,
+          "candidateAnchorText": "                    if (wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Ferry decode includes116 and marker check."
+        },
+        {
+          "inventoryMatchId": "19.08",
+          "baselineLine": 438,
+          "baselineText": "if (wireSchema == Snapshot.ConsecrationSchema) {",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 443,
+          "candidateAnchorText": "                    if ((wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Consecration decode includes116;115 preserved separately."
+        },
+        {
+          "inventoryMatchId": "19.09",
+          "baselineLine": 440,
+          "baselineText": "s.Consecration=ConsecrationCodec.Read(reader);",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 445,
+          "candidateAnchorText": "                        s.Consecration=ConsecrationCodec.Read(reader);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 section decoded after inherited payload; trailing bytes and final schema still checked."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SpellCastingCodec.cs",
+      "baselineInventorySha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "baselineGitBlobSha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "candidateGitBlobSha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "inspectedFileSha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "20.01",
+          "baselineLine": 22,
+          "baselineText": "Rows(w,s.CastingTurnEnds,x => { Turn(w,x.Turn); Text(w,x.CauseId); w.Write(x.Revision); Time(w,x.At);",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 22,
+          "candidateAnchorText": "            Rows(w,s.CastingTurnEnds,x => { Turn(w,x.Turn); Text(w,x.CauseId); w.Write(x.Revision); Time(w,x.At);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End wire array unchanged;116 writes empty old ledger."
+        },
+        {
+          "inventoryMatchId": "20.02",
+          "baselineLine": 66,
+          "baselineText": "s.CastingTurnEnds=Rows(r,SpellCastingProfile.MaxTurnEnds,() =>",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 66,
+          "candidateAnchorText": "            s.CastingTurnEnds=Rows(r,SpellCastingProfile.MaxTurnEnds,() =>",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End decode compatible;116 rejects nonempty results."
+        },
+        {
+          "inventoryMatchId": "20.03",
+          "baselineLine": 94,
+          "baselineText": "private static void Turn(BinaryWriter w,SpellTurnIdentity x){Text(w,x.ActorId);Text(w,x.EpochId);w.Write(x.LocalStart);w.Write(x.GlobalStart);w.Write(x.CarriedAdmissionRevision);}",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 94,
+          "candidateAnchorText": "        private static void Turn(BinaryWriter w,SpellTurnIdentity x){Text(w,x.ActorId);Text(w,x.EpochId);w.Write(x.LocalStart);w.Write(x.GlobalStart);w.Write(x.CarriedAdmissionRevision);}",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Turn writer preserves carried-admission revision for Sanctuary compatibility."
+        },
+        {
+          "inventoryMatchId": "20.04",
+          "baselineLine": 95,
+          "baselineText": "private static SpellTurnIdentity Turn(BinaryReader r)=>new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64(),r.ReadInt64());",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 95,
+          "candidateAnchorText": "        private static SpellTurnIdentity Turn(BinaryReader r)=>new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64(),r.ReadInt64());",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Turn reader preserves existing identity shape."
+        },
+        {
+          "inventoryMatchId": "20.05",
+          "baselineLine": 96,
+          "baselineText": "private static void OptionalTurn(BinaryWriter w,SpellTurnIdentity x){w.Write(x!=null);if(x!=null)Turn(w,x);}",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 96,
+          "candidateAnchorText": "        private static void OptionalTurn(BinaryWriter w,SpellTurnIdentity x){w.Write(x!=null);if(x!=null)Turn(w,x);}",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Optional source expiry identity remains separate and nullable."
+        },
+        {
+          "inventoryMatchId": "20.06",
+          "baselineLine": 97,
+          "baselineText": "private static SpellTurnIdentity OptionalTurn(BinaryReader r)=>Bool(r)?Turn(r):null;",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 97,
+          "candidateAnchorText": "        private static SpellTurnIdentity OptionalTurn(BinaryReader r)=>Bool(r)?Turn(r):null;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Optional identity reader unchanged;116 calendar section separate."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "baselineInventorySha256": "91ea07eac5a154687177e06dd64d10f29b8eadfb48a6ae919acf86b1ad5b5e5b",
+      "baselineGitBlobSha256": "91ea07eac5a154687177e06dd64d10f29b8eadfb48a6ae919acf86b1ad5b5e5b",
+      "candidateGitBlobSha256": "36a2022eb850ab3634d9a66f58f1e0b830500de11715547101b08c5fa416c80d",
+      "inspectedFileSha256": "36a2022eb850ab3634d9a66f58f1e0b830500de11715547101b08c5fa416c80d",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "21.01",
+          "baselineLine": 126,
+          "baselineText": "public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 131,
+          "candidateAnchorText": "        public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "StartWithConsecration stays115; adjacent explicit116 entry constructs fresh successor declarations."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "baselineInventorySha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "baselineGitBlobSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "candidateGitBlobSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "inspectedFileSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "22.01",
+          "baselineLine": 33,
+          "baselineText": "RadianceHistory=Array.AsReadOnly(state.RadianceUses.ToArray());",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 33,
+          "candidateAnchorText": "            RadianceHistory=Array.AsReadOnly(state.RadianceUses.ToArray());",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Controlled-seat RadianceHistory returns immutable producer rows; separate nearby capability defect CA-01 recorded."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedAuraOfFaith.cs",
+      "baselineInventorySha256": "d70cc20bebf8c83b2349a5dfc1655ed52d5e1c2b4385cb69a1fe2fd83f2b904f",
+      "baselineGitBlobSha256": "d70cc20bebf8c83b2349a5dfc1655ed52d5e1c2b4385cb69a1fe2fd83f2b904f",
+      "candidateGitBlobSha256": "d70cc20bebf8c83b2349a5dfc1655ed52d5e1c2b4385cb69a1fe2fd83f2b904f",
+      "inspectedFileSha256": "d70cc20bebf8c83b2349a5dfc1655ed52d5e1c2b4385cb69a1fe2fd83f2b904f",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "23.01",
+          "baselineLine": 62,
+          "baselineText": "internal static void HealAfterRite(Snapshot s,Command c,HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 62,
+          "candidateAnchorText": "        internal static void HealAfterRite(Snapshot s,Command c,HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Aura uses actual positive base Rite and recipient source facts after Ground/Radiance; no short-slot gate."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "baselineInventorySha256": "f5fd15f477ad259748722b5fc3763fb05917c5c7310887b31b69891bb0f55fff",
+      "baselineGitBlobSha256": "f5fd15f477ad259748722b5fc3763fb05917c5c7310887b31b69891bb0f55fff",
+      "candidateGitBlobSha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "inspectedFileSha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "24.01",
+          "baselineLine": 224,
+          "baselineText": "RefreshNamedAbilityRecharge(s, actor, ordinal);",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 224,
+          "candidateAnchorText": "            RefreshNamedAbilityRecharge(s, actor, ordinal);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Actual CharacterAdvancementStart invokes recharge after pre-refresh calendar hook."
+        },
+        {
+          "inventoryMatchId": "24.02",
+          "baselineLine": 246,
+          "baselineText": "private static void RefreshNamedAbilityRecharge(Snapshot state, string actor, int globalStart)",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 246,
+          "candidateAnchorText": "        private static void RefreshNamedAbilityRecharge(Snapshot state, string actor, int globalStart)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Shared actual-Start recharge includes116 Invocation in skip-aware counting."
+        },
+        {
+          "inventoryMatchId": "24.03",
+          "baselineLine": 261,
+          "baselineText": "if(!transfer && local<=before.LastLocalStart)continue;",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 261,
+          "candidateAnchorText": "                if(!transfer && local<=before.LastLocalStart)continue;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Already processed same-epoch cursor does not tick again."
+        },
+        {
+          "inventoryMatchId": "24.04",
+          "baselineLine": 263,
+          "baselineText": "long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 263,
+          "candidateAnchorText": "                long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Generic predecessor elapsed formula retained;116 cleric branch overrides it."
+        },
+        {
+          "inventoryMatchId": "24.05",
+          "baselineLine": 270,
+          "baselineText": "elapsed=ConsecrationProfile.CountRechargeStarts(state,epoch,actor,transfer?-1:before.LastLocalStart,local);",
+          "baselineGroups": [
+            "recharge"
+          ],
+          "candidateAnchorLine": 271,
+          "candidateAnchorText": "                    elapsed=ConsecrationProfile.CountRechargeStarts(state,epoch,actor,transfer?-1:before.LastLocalStart,local);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "CountRechargeStarts includes real sparse/transfer Starts and excludes retreat skip."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "baselineInventorySha256": "5870882901e3ca34df095c0cb3fe8880e6430b12084d6487e6b0d427b7701851",
+      "baselineGitBlobSha256": "5870882901e3ca34df095c0cb3fe8880e6430b12084d6487e6b0d427b7701851",
+      "candidateGitBlobSha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "inspectedFileSha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "25.01",
+          "baselineLine": 50,
+          "baselineText": "internal static void HealAfterRite(Snapshot s, Command c, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 50,
+          "candidateAnchorText": "        internal static void HealAfterRite(Snapshot s, Command c, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Ground passive requires actual paid positive Rite and owned zone."
+        },
+        {
+          "inventoryMatchId": "25.02",
+          "baselineLine": 70,
+          "baselineText": "private static void ValidatePaidTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 70,
+          "candidateAnchorText": "        private static void ValidatePaidTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Ground trigger rechecks actual Action/RP/RNG/HP; no slot predicate."
+        },
+        {
+          "inventoryMatchId": "25.03",
+          "baselineLine": 97,
+          "baselineText": "private ConsecrationRecord consecrationDeclaration;",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 97,
+          "candidateAnchorText": "        private ConsecrationRecord consecrationDeclaration;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Inherited declaration retained; explicit ordinaryMagicDeclaration opts into116."
+        },
+        {
+          "inventoryMatchId": "25.04",
+          "baselineLine": 100,
+          "baselineText": "if (initializationStarted || ferryDeclaration == null || consecrationDeclaration != null)",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 100,
+          "candidateAnchorText": "            if (initializationStarted || ferryDeclaration == null || consecrationDeclaration != null)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Declaration remains pre-initialization only; no115 runtime adoption."
+        },
+        {
+          "inventoryMatchId": "25.05",
+          "baselineLine": 102,
+          "baselineText": "consecrationDeclaration = new ConsecrationRecord(ContentFingerprint,ConsecrationProfile.HumanoidActors);",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 102,
+          "candidateAnchorText": "            consecrationDeclaration = new ConsecrationRecord(ContentFingerprint,ConsecrationProfile.HumanoidActors);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Inherited declaration fingerprint retained as predecessor provenance."
+        },
+        {
+          "inventoryMatchId": "25.06",
+          "baselineLine": 115,
+          "baselineText": "var turn = CurrentCastingTurn(s,c.Actor);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 118,
+          "candidateAnchorText": "                var turn = CurrentCastingTurn(s,c.Actor);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "CurrentCastingTurn now lies only in predecessor branch."
+        },
+        {
+          "inventoryMatchId": "25.07",
+          "baselineLine": 121,
+          "baselineText": "|| s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return \"ConsecrateOpenOwnerSlotRequired\";",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 124,
+          "candidateAnchorText": "                    || s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return \"ConsecrateOpenOwnerSlotRequired\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old short-slot/open-End gate retained only for predecessors;116 uses shared context."
+        },
+        {
+          "inventoryMatchId": "25.08",
+          "baselineLine": 209,
+          "baselineText": "internal ConsecrationHealingView(Snapshot s, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 215,
+          "candidateAnchorText": "        internal ConsecrationHealingView(Snapshot s, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Healing view uses actual paid Rite and ordered passive records."
+        },
+        {
+          "inventoryMatchId": "25.09",
+          "baselineLine": 213,
+          "baselineText": "var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==rite.CommandId);",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 219,
+          "candidateAnchorText": "            var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==rite.CommandId);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "View joins Radiance by actual Rite ID."
+        },
+        {
+          "inventoryMatchId": "25.10",
+          "baselineLine": 214,
+          "baselineText": "RadianceBefore=radiance?.PreRadianceHp()??Ground?.HpAfter??rite.HpAfter;",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 220,
+          "candidateAnchorText": "            RadianceBefore=radiance?.PreRadianceHp()??Ground?.HpAfter??rite.HpAfter;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "View intermediate HP fallback follows Ground then base."
+        },
+        {
+          "inventoryMatchId": "25.11",
+          "baselineLine": 221,
+          "baselineText": "public IReadOnlyList<ConsecrationHealingView> ObserveConsecrationHealing(ExpeditionSeat seat, string actor)",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 227,
+          "candidateAnchorText": "        public IReadOnlyList<ConsecrationHealingView> ObserveConsecrationHealing(ExpeditionSeat seat, string actor)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Healing observation requires controlled actor and target."
+        },
+        {
+          "inventoryMatchId": "25.12",
+          "baselineLine": 231,
+          "baselineText": "public IReadOnlyList<ConsecrationZoneView> ObserveConsecration(ExpeditionSeat seat, string actor)",
+          "baselineGroups": [
+            "host_and_envelope"
+          ],
+          "candidateAnchorLine": 237,
+          "candidateAnchorText": "        public IReadOnlyList<ConsecrationZoneView> ObserveConsecration(ExpeditionSeat seat, string actor)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Zone observation requires controlled observer/perceived center; captured expiry unchanged."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "baselineInventorySha256": "149bf48a7121b6de4c5ac82531e38680fd4acf87085157fa75a3126a3becc7cf",
+      "baselineGitBlobSha256": "149bf48a7121b6de4c5ac82531e38680fd4acf87085157fa75a3126a3becc7cf",
+      "candidateGitBlobSha256": "eb1f6b76d6db27f27d74ff472d4031ba44c2d15316a1ef8b1dbfa31604d0e53a",
+      "inspectedFileSha256": "eb1f6b76d6db27f27d74ff472d4031ba44c2d15316a1ef8b1dbfa31604d0e53a",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "26.01",
+          "baselineLine": 15,
+          "baselineText": "||RadianceRules.OwnTurnFailure(s,c.Actor)!=null||!BishopProfile.Earned(s)",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 15,
+          "candidateAnchorText": "                ||RadianceRules.OwnTurnFailure(s,c.Actor)!=null||!BishopProfile.Earned(s)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Cure trigger OwnTurnFailure routes116 context while retaining real ownership/payment checks."
+        },
+        {
+          "inventoryMatchId": "26.02",
+          "baselineLine": 39,
+          "baselineText": "string context=RadianceRules.OwnTurnFailure(s,c.Actor);if(context!=null)return context;",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 39,
+          "candidateAnchorText": "            string context=RadianceRules.OwnTurnFailure(s,c.Actor);if(context!=null)return context;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Invocation preflight routes116 context and keeps earned Bishop/cost checks."
+        },
+        {
+          "inventoryMatchId": "26.03",
+          "baselineLine": 43,
+          "baselineText": "var turn=CurrentCastingTurn(s,c.Actor);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 43,
+          "candidateAnchorText": "            var turn=CurrentMagicalActionOrigin(s,c.Actor);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Once-use uses CurrentMagicalActionOrigin across carry."
+        },
+        {
+          "inventoryMatchId": "26.04",
+          "baselineLine": 75,
+          "baselineText": "var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);var turn=CurrentCastingTurn(s,c.Actor);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 75,
+          "candidateAnchorText": "            var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);var turn=CurrentMagicalActionOrigin(s,c.Actor);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Paid Invocation and recharge initialization use stable origin plus current-context sidecar."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "baselineInventorySha256": "8157b2d51966a64d2eded343f43a0b7d4ade889d1d567f3451b39699fc15fc5b",
+      "baselineGitBlobSha256": "8157b2d51966a64d2eded343f43a0b7d4ade889d1d567f3451b39699fc15fc5b",
+      "candidateGitBlobSha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3",
+      "inspectedFileSha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "27.01",
+          "baselineLine": 62,
+          "baselineText": "private static bool FerryOldEndsSettled(Snapshot s)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 62,
+          "candidateAnchorText": "        private static bool FerryOldEndsSettled(Snapshot s)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Old disposition gate branches116 to pending/consumed calendar state."
+        },
+        {
+          "inventoryMatchId": "27.02",
+          "baselineLine": 71,
+          "baselineText": "if(required&&!s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor&&x.Turn.EpochId==prior.Id",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 72,
+          "candidateAnchorText": "                if(required&&!s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor&&x.Turn.EpochId==prior.Id",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End-row check remains only after116 continue."
+        },
+        {
+          "inventoryMatchId": "27.03",
+          "baselineLine": 105,
+          "baselineText": "if(arrival&&(FerryContactMarker(s)<0||!FerryOldEndsSettled(s)))return \"FerryArrivalOutsideSettledRecoveryStart\";",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 106,
+          "candidateAnchorText": "            if(arrival&&(FerryContactMarker(s)<0||!FerryOldEndsSettled(s)))return \"FerryArrivalOutsideSettledRecoveryStart\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Arrival retains unrelated gates and uses versioned old disposition."
+        },
+        {
+          "inventoryMatchId": "27.04",
+          "baselineLine": 143,
+          "baselineText": "ProcessLaterRegularStart(s,epoch,0);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 145,
+          "candidateAnchorText": "            ProcessLaterRegularStart(s,epoch,0,cause: cause,magicalInitiative: true);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Admission records context then passes tactical mode/cause to index-zero Start."
+        },
+        {
+          "inventoryMatchId": "27.05",
+          "baselineLine": 148,
+          "baselineText": "private static void RefreshFerryEpoch(Snapshot s)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 150,
+          "candidateAnchorText": "        private static void RefreshFerryEpoch(Snapshot s, Command cause = null)",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Refresh now accepts actual advancing cause."
+        },
+        {
+          "inventoryMatchId": "27.06",
+          "baselineLine": 155,
+          "baselineText": "if(start>=0&&start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 157,
+          "candidateAnchorText": "                if(start>=0&&start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start,cause: cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Actual owner Starts reach BeforeMagicalOwnerStart before budget replacement."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "baselineInventorySha256": "1b4d5b3e46d4ec4d55c303f20cc12f8baa077a465e4026228963e7a41f8caa3e",
+      "baselineGitBlobSha256": "1b4d5b3e46d4ec4d55c303f20cc12f8baa077a465e4026228963e7a41f8caa3e",
+      "candidateGitBlobSha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+      "inspectedFileSha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "28.01",
+          "baselineLine": 204,
+          "baselineText": "ProcessLaterRegularStart(state, epoch, 0);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 205,
+          "candidateAnchorText": "            ProcessLaterRegularStart(state, epoch, 0, cause: cause, magicalInitiative: true);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Initial later Start supplies cause/mode; magic hook inert before supported reinforcement."
+        },
+        {
+          "inventoryMatchId": "28.02",
+          "baselineLine": 224,
+          "baselineText": "private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 225,
+          "candidateAnchorText": "        private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null, Command cause = null, bool? magicalInitiative = null)",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "ProcessLaterRegularStart calls calendar hook before interval/recharge/life refresh."
+        },
+        {
+          "inventoryMatchId": "28.03",
+          "baselineLine": 248,
+          "baselineText": "if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 250,
+          "candidateAnchorText": "                if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start, cause: cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Refresh forwards cause and respects authoritative current epoch."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "baselineInventorySha256": "f3ae6ca3b860a721df49e87b07b03da50b2427b62860bdfe161ff7e6d7bb6886",
+      "baselineGitBlobSha256": "f3ae6ca3b860a721df49e87b07b03da50b2427b62860bdfe161ff7e6d7bb6886",
+      "candidateGitBlobSha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24",
+      "inspectedFileSha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "29.01",
+          "baselineLine": 64,
+          "baselineText": "private static bool PostRecoveryOldEndsSettled(Snapshot s)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 64,
+          "candidateAnchorText": "        private static bool PostRecoveryOldEndsSettled(Snapshot s)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Recovery old disposition uses116 calendar and preserves arrival constraints."
+        },
+        {
+          "inventoryMatchId": "29.02",
+          "baselineLine": 73,
+          "baselineText": "if(required && !s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor && x.Turn.EpochId==epoch.Id && x.Turn.LocalStart==local))return false;",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 74,
+          "candidateAnchorText": "                if(required && !s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor && x.Turn.EpochId==epoch.Id && x.Turn.LocalStart==local))return false;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End-row check remains predecessor-only."
+        },
+        {
+          "inventoryMatchId": "29.03",
+          "baselineLine": 110,
+          "baselineText": "if(arrival && (PostRecoveryContactMarker(s)<0 || !PostRecoveryOldEndsSettled(s)))return \"PostRecoveryArrivalOutsideSettledDefenderStart\";",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 111,
+          "candidateAnchorText": "            if(arrival && (PostRecoveryContactMarker(s)<0 || !PostRecoveryOldEndsSettled(s)))return \"PostRecoveryArrivalOutsideSettledDefenderStart\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Arrival uses versioned old disposition, not invented short End."
+        },
+        {
+          "inventoryMatchId": "29.04",
+          "baselineLine": 152,
+          "baselineText": "ProcessLaterRegularStart(s,epoch,0);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 154,
+          "candidateAnchorText": "            ProcessLaterRegularStart(s,epoch,0,cause: cause,magicalInitiative: true);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Admission records context before interval copy and actual index-zero Start."
+        },
+        {
+          "inventoryMatchId": "29.05",
+          "baselineLine": 169,
+          "baselineText": "private static void RefreshPostRecoveryEpoch(Snapshot s)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 171,
+          "candidateAnchorText": "        private static void RefreshPostRecoveryEpoch(Snapshot s, Command cause = null)",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Refresh accepts actual cause; no lazy query settlement."
+        },
+        {
+          "inventoryMatchId": "29.06",
+          "baselineLine": 177,
+          "baselineText": "if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 179,
+          "candidateAnchorText": "                if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start,cause: cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Current-epoch actual owner Starts reach common pre-refresh hook."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "baselineInventorySha256": "8a9c3f82b1974183ea2b1a935ac9f945bebfb04f3f2096bc0a75b814f0a41298",
+      "baselineGitBlobSha256": "8a9c3f82b1974183ea2b1a935ac9f945bebfb04f3f2096bc0a75b814f0a41298",
+      "candidateGitBlobSha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "inspectedFileSha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "30.01",
+          "baselineLine": 45,
+          "baselineText": "return epoch != null && s.RadianceUses.Any(x => x.ActorId == actor && x.EpochId == epoch.Id",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 54,
+          "candidateAnchorText": "            return epoch != null && s.RadianceUses.Any(x => x.ActorId == actor && x.EpochId == epoch.Id",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old current-epoch Used branch retained after116 stable-origin branch."
+        },
+        {
+          "inventoryMatchId": "30.02",
+          "baselineLine": 49,
+          "baselineText": "internal static void ValidateCureTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 58,
+          "candidateAnchorText": "        internal static void ValidateCureTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Cure validation uses routed OwnTurnFailure and stable-origin Used with actual payment checks."
+        },
+        {
+          "inventoryMatchId": "30.03",
+          "baselineLine": 75,
+          "baselineText": "string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 84,
+          "candidateAnchorText": "            string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Owned Radiance preflight uses116 context; unowned base Rite remains allowed."
+        },
+        {
+          "inventoryMatchId": "30.04",
+          "baselineLine": 77,
+          "baselineText": "if (state.RadianceUses.Length >= 128) return \"RadianceHistoryFull\";",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 86,
+          "candidateAnchorText": "            if (state.RadianceUses.Length >= 128) return \"RadianceHistoryFull\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Actual Radiance history remains bounded128."
+        },
+        {
+          "inventoryMatchId": "30.05",
+          "baselineLine": 89,
+          "baselineText": "private static void SettleRadiance(Snapshot state, Command command, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 98,
+          "candidateAnchorText": "        private static void SettleRadiance(Snapshot state, Command command, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "SettleRadiance writes real origin and actual Rite time after Ground."
+        },
+        {
+          "inventoryMatchId": "30.06",
+          "baselineLine": 115,
+          "baselineText": "state.RadianceUses = state.RadianceUses.Append(new RadianceUseRecord(command.Id,state.Revision + 1,command.Actor,command.Target,",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 126,
+          "candidateAnchorText": "            state.RadianceUses = state.RadianceUses.Append(new RadianceUseRecord(command.Id,state.Revision + 1,command.Actor,command.Target,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Radiance writer derives epoch/local from real116 origin with old fallback retained."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "baselineInventorySha256": "53aa19c871f28e7e79bc71004ae4f469b77542cfa0e13d819e8475d054194ce8",
+      "baselineGitBlobSha256": "53aa19c871f28e7e79bc71004ae4f469b77542cfa0e13d819e8475d054194ce8",
+      "candidateGitBlobSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "inspectedFileSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "31.01",
+          "baselineLine": 318,
+          "baselineText": "ProcessLaterRegularStart(state, epoch, 0, phase.FirstTurn);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 318,
+          "candidateAnchorText": "            ChangeMagicalContext(state, epoch, true, cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Admission records truthful bootstrap then actual index-zero tactical Start."
+        },
+        {
+          "inventoryMatchId": "31.02",
+          "baselineLine": 323,
+          "baselineText": "private static void RefreshReinforcementEpoch(Snapshot state)",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 324,
+          "candidateAnchorText": "        private static void RefreshReinforcementEpoch(Snapshot state, Command cause = null)",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Refresh accepts cause and retains skip/current-epoch logic."
+        },
+        {
+          "inventoryMatchId": "31.03",
+          "baselineLine": 336,
+          "baselineText": "ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global));",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 337,
+          "candidateAnchorText": "                    ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global), cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Only actual non-skipped markers reach refresh with phase mapping/cause."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "baselineInventorySha256": "22834faaef411bf3f369e86534b233bb12868af6c0a011bbe9b11f6dfee4a670",
+      "baselineGitBlobSha256": "22834faaef411bf3f369e86534b233bb12868af6c0a011bbe9b11f6dfee4a670",
+      "candidateGitBlobSha256": "c8c36296b3a0dabbb0ea72360d6c4ee6bfb7eb77398149bac3dcda1ae1c57b97",
+      "inspectedFileSha256": "c8c36296b3a0dabbb0ea72360d6c4ee6bfb7eb77398149bac3dcda1ae1c57b97",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "32.01",
+          "baselineLine": 105,
+          "baselineText": "string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "baselineGroups": [
+            "producer_calendar"
+          ],
+          "candidateAnchorLine": 107,
+          "candidateAnchorText": "                string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old Radiance-derived outside assumption remains only predecessor branch;116 has context and Cleric1-3/grant checks."
+        },
+        {
+          "inventoryMatchId": "32.02",
+          "baselineLine": 154,
+          "baselineText": "var rite = new HealingRiteRecord(command.Id, state.Revision + 1,",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 158,
+          "candidateAnchorText": "            var rite = new HealingRiteRecord(command.Id, state.Revision + 1,",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "116 Rite uses origin.GlobalStart; sidecar binds context and passive order remains."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "baselineInventorySha256": "3d0f74d4061c65de1f4fde74f0cee35b352949fbf143a855cb00ce8b80771092",
+      "baselineGitBlobSha256": "3d0f74d4061c65de1f4fde74f0cee35b352949fbf143a855cb00ce8b80771092",
+      "candidateGitBlobSha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd",
+      "inspectedFileSha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "33.01",
+          "baselineLine": 252,
+          "baselineText": "RefreshReinforcementEpoch(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 252,
+          "candidateAnchorText": "            RefreshReinforcementEpoch(s, cause);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Retreat continuation forwards actual cause; successful skipped-Start closure remains separate."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "baselineInventorySha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "baselineGitBlobSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "candidateGitBlobSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "inspectedFileSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "34.01",
+          "baselineLine": 26,
+          "baselineText": "var turn=CurrentCastingTurn(s,actor);if(turn==null)return false;",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 26,
+          "candidateAnchorText": "            var turn=CurrentCastingTurn(s,actor);if(turn==null)return false;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Sanctuary failed-target cache uses unchanged current attacker interval."
+        },
+        {
+          "inventoryMatchId": "34.02",
+          "baselineLine": 33,
+          "baselineText": "private string AssessSanctuaryGate(Snapshot s,Command c,out SpellEffectRecord ward,out SpellTurnIdentity turn)",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 33,
+          "candidateAnchorText": "        private string AssessSanctuaryGate(Snapshot s,Command c,out SpellEffectRecord ward,out SpellTurnIdentity turn)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Sanctuary gate identity is unrelated to six magical producers."
+        },
+        {
+          "inventoryMatchId": "34.03",
+          "baselineLine": 39,
+          "baselineText": "turn=CurrentCastingTurn(s,c.Actor);if(turn==null)return \"SanctuaryAttackerCalendarUnsupported\";",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 39,
+          "candidateAnchorText": "            turn=CurrentCastingTurn(s,c.Actor);if(turn==null)return \"SanctuaryAttackerCalendarUnsupported\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Sanctuary uses CurrentCastingTurn after existing pure attack assessment."
+        },
+        {
+          "inventoryMatchId": "34.04",
+          "baselineLine": 113,
+          "baselineText": "if(!save.AttackerTurn.SameAs(CurrentCastingTurn(s,c.Actor)))return \"SanctuarySourceIntervalExpired\";",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 113,
+          "candidateAnchorText": "            if(!save.AttackerTurn.SameAs(CurrentCastingTurn(s,c.Actor)))return \"SanctuarySourceIntervalExpired\";",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Pending response remains bound to original attacker interval."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "baselineInventorySha256": "ae0fd5bc5849cd48942134b4030db36eaa52aaf98677766dd56c0bd3970a1712",
+      "baselineGitBlobSha256": "ae0fd5bc5849cd48942134b4030db36eaa52aaf98677766dd56c0bd3970a1712",
+      "candidateGitBlobSha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "inspectedFileSha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "35.01",
+          "baselineLine": 54,
+          "baselineText": "private static SpellTurnIdentity CurrentCastingTurn(Snapshot s,string actor)",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 54,
+          "candidateAnchorText": "        private static SpellTurnIdentity CurrentCastingTurn(Snapshot s,string actor)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "CurrentCastingTurn retained for Sanctuary; six producers use separate origin helper."
+        },
+        {
+          "inventoryMatchId": "35.02",
+          "baselineLine": 59,
+          "baselineText": "return current>=0?new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 59,
+          "candidateAnchorText": "                return current>=0?new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Ferry current-Start constructor retains generic attacker semantics."
+        },
+        {
+          "inventoryMatchId": "35.03",
+          "baselineLine": 60,
+          "baselineText": ":new SpellTurnIdentity(actor,epoch.Id,-1,ferryEntry.Admission.CarriedInterval(actor).LastStart,ferryEntry.Entered.Revision);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 60,
+          "candidateAnchorText": "                    :new SpellTurnIdentity(actor,epoch.Id,-1,ferryEntry.Admission.CarriedInterval(actor).LastStart,ferryEntry.Entered.Revision);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Ferry carried attacker identity is not116 magical origin."
+        },
+        {
+          "inventoryMatchId": "35.04",
+          "baselineLine": 65,
+          "baselineText": "return current>=0 ? new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 65,
+          "candidateAnchorText": "                return current>=0 ? new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Recovery current-Start helper preserved."
+        },
+        {
+          "inventoryMatchId": "35.05",
+          "baselineLine": 66,
+          "baselineText": ":new SpellTurnIdentity(actor,epoch.Id,-1,recoveryEntry.Admission.CarriedInterval(actor).LastStart,recoveryEntry.Entered.Revision);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 66,
+          "candidateAnchorText": "                    :new SpellTurnIdentity(actor,epoch.Id,-1,recoveryEntry.Admission.CarriedInterval(actor).LastStart,recoveryEntry.Entered.Revision);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Recovery carried attacker identity not reused for116 magic."
+        },
+        {
+          "inventoryMatchId": "35.06",
+          "baselineLine": 70,
+          "baselineText": "if(local>=0)return new SpellTurnIdentity(actor,epoch.Id,local,admission.Phase.GlobalTurn(local));",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 70,
+          "candidateAnchorText": "            if(local>=0)return new SpellTurnIdentity(actor,epoch.Id,local,admission.Phase.GlobalTurn(local));",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Reinforcement generic current-turn phase mapping preserved."
+        },
+        {
+          "inventoryMatchId": "35.07",
+          "baselineLine": 72,
+          "baselineText": "return new SpellTurnIdentity(actor,epoch.Id,-1,admission.Carried.Single(x=>x.Interval.ActorId==actor).Interval.LastStart,entry.Revision);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 72,
+          "candidateAnchorText": "            return new SpellTurnIdentity(actor,epoch.Id,-1,admission.Carried.Single(x=>x.Interval.ActorId==actor).Interval.LastStart,entry.Revision);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Reinforcement carried attacker identity retained;116 bootstrap origin null."
+        },
+        {
+          "inventoryMatchId": "35.08",
+          "baselineLine": 156,
+          "baselineText": "|| s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds || strain.Dissonance>int.MaxValue-4",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 160,
+          "candidateAnchorText": "                || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds || strain.Dissonance>int.MaxValue-4",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Old End cap harmless with empty116 array; new context preflight caps new histories."
+        },
+        {
+          "inventoryMatchId": "35.09",
+          "baselineLine": 202,
+          "baselineText": "CurrentCastingTurn(s,c.Actor),s.RuleClock,kind)).ToArray();",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 206,
+          "candidateAnchorText": "                CurrentMagicalActionOrigin(s,c.Actor),s.RuleClock,kind)).ToArray();",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Activity writes real origin then matching116 context."
+        },
+        {
+          "inventoryMatchId": "35.10",
+          "baselineLine": 213,
+          "baselineText": "string spell=c.SpellCast.SpellId; long revision=s.Revision+1; var turn=CurrentCastingTurn(s,c.Actor);",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 218,
+          "candidateAnchorText": "            string spell=c.SpellCast.SpellId; long revision=s.Revision+1; var turn=CurrentMagicalActionOrigin(s,c.Actor);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Cast writes stable origin; source/cost/strain/RNG preserved."
+        },
+        {
+          "inventoryMatchId": "35.11",
+          "baselineLine": 230,
+          "baselineText": "var expiryTurn=ward?new SpellTurnIdentity(c.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local)):null;",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 235,
+          "candidateAnchorText": "                var expiryTurn=ward?new SpellTurnIdentity(c.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local)):null;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Ward captures next Start in actual current context for116."
+        },
+        {
+          "inventoryMatchId": "35.12",
+          "baselineLine": 389,
+          "baselineText": "c.Target,CurrentCastingTurn(s,c.Actor),s.RuleClock,schoolWithheldForDetachedControl,school)).ToArray();",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 397,
+          "candidateAnchorText": "                c.Target,CurrentMagicalActionOrigin(s,c.Actor),s.RuleClock,schoolWithheldForDetachedControl,school)).ToArray();",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Focus writes real origin with existing detection/perception/Action proof."
+        },
+        {
+          "inventoryMatchId": "35.13",
+          "baselineLine": 399,
+          "baselineText": "private static RuleTime? NextCastingBoundary(Snapshot s)",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 407,
+          "candidateAnchorText": "        private static RuleTime? NextCastingBoundary(Snapshot s)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Boundary selector merges shared116 accounting with spell expiry."
+        },
+        {
+          "inventoryMatchId": "35.14",
+          "baselineLine": 415,
+          "baselineText": "private static void SettleCastingTime(Snapshot s,RuleTime from,RuleTime to,Command cause)",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 427,
+          "candidateAnchorText": "        private static void SettleCastingTime(Snapshot s,RuleTime from,RuleTime to,Command cause)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Time settlement invokes116 before tied effect expiry then skips old ledger."
+        },
+        {
+          "inventoryMatchId": "35.15",
+          "baselineLine": 428,
+          "baselineText": "var current=s.CastingStrain[0]; var turn=new SpellTurnIdentity(ClericRpProfile.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local));",
+          "baselineGroups": [
+            "allowance_identity"
+          ],
+          "candidateAnchorLine": 442,
+          "candidateAnchorText": "                var current=s.CastingStrain[0]; var turn=new SpellTurnIdentity(ClericRpProfile.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local));",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End identity construction occurs only after116 early return."
+        },
+        {
+          "inventoryMatchId": "35.16",
+          "baselineLine": 431,
+          "baselineText": "if(cause==null || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds)throw new ArgumentException(\"Casting End history capacity or command unavailable.\");",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 445,
+          "candidateAnchorText": "                if(cause==null || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds)throw new ArgumentException(\"Casting End history capacity or command unavailable.\");",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End cap/cause check is predecessor-only."
+        },
+        {
+          "inventoryMatchId": "35.17",
+          "baselineLine": 436,
+          "baselineText": "s.CastingTurnEnds=s.CastingTurnEnds.Append(new CastingTurnEndRecord(turn,cause.Id,s.Revision+1,epoch.Start(local+1),",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 450,
+          "candidateAnchorText": "                s.CastingTurnEnds=s.CastingTurnEnds.Append(new CastingTurnEndRecord(turn,cause.Id,s.Revision+1,epoch.Start(local+1),",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "Legacy End append is predecessor-only;116 uses new settlement type."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "baselineInventorySha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "baselineGitBlobSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "candidateGitBlobSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "inspectedFileSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "36.01",
+          "baselineLine": 81,
+          "baselineText": "||consecrationDeclaration!=null&&kind==CommandKind.UseConsecrate",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 81,
+          "candidateAnchorText": "            ||consecrationDeclaration!=null&&kind==CommandKind.UseConsecrate",
+          "anchorKind": "exact_retained_text",
+          "disposition": "INTENTIONALLY_PREDECESSOR_OR_GENERIC",
+          "reason": "SupportsCommand inherits Consecrate in116; missing Rite/tactical Invocation discovery is recorded separately as CA-02."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+      "baselineInventorySha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "baselineGitBlobSha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "candidateGitBlobSha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "inspectedFileSha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "37.01",
+          "baselineLine": 36,
+          "baselineText": "internal static ConditionCureInvocation ForRadiance(Snapshot staged, Command command, HealingRiteRecord rite)",
+          "baselineGroups": [
+            "downstream_producer"
+          ],
+          "candidateAnchorLine": 36,
+          "candidateAnchorText": "        internal static ConditionCureInvocation ForRadiance(Snapshot staged, Command command, HealingRiteRecord rite)",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Cure factory delegates to routed actual paid trigger and retains source/target/time authority."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineInventorySha256": "a150d6b562f97c87c8644653ba3e5e45f8ff8153a1ef4b78d0789b1c53338e83",
+      "baselineGitBlobSha256": "a150d6b562f97c87c8644653ba3e5e45f8ff8153a1ef4b78d0789b1c53338e83",
+      "candidateGitBlobSha256": "19e38ef7eaee1604c78b1b4fe9d2555cf6d1c083f05a9e851bf13bade1834793",
+      "inspectedFileSha256": "19e38ef7eaee1604c78b1b4fe9d2555cf6d1c083f05a9e851bf13bade1834793",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "38.01",
+          "baselineLine": 164,
+          "baselineText": "s.Consecration = consecrationDeclaration;",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 164,
+          "candidateAnchorText": "            s.Consecration = consecrationDeclaration;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Initial snapshot assigns inherited Consecration and explicit ordinaryMagicDeclaration."
+        },
+        {
+          "inventoryMatchId": "38.02",
+          "baselineLine": 507,
+          "baselineText": "var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 508,
+          "candidateAnchorText": "                var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "AdvanceTo consults versioned casting/accounting boundary."
+        },
+        {
+          "inventoryMatchId": "38.03",
+          "baselineLine": 682,
+          "baselineText": "SettleCastingTime(s,segmentStart,next,initiating);",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 683,
+          "candidateAnchorText": "                SettleCastingTime(s,segmentStart,next,initiating);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "AdvanceTo settlement receives real endpoint and initiating command before refreshed use."
+        },
+        {
+          "inventoryMatchId": "38.04",
+          "baselineLine": 741,
+          "baselineText": "if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 741,
+          "candidateAnchorText": "                if (!reinforcementEndRound) RefreshLaterEpoch(s, initiating);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Reinforcement refresh receives cause; retreat/reentry conditions unchanged."
+        },
+        {
+          "inventoryMatchId": "38.05",
+          "baselineLine": 742,
+          "baselineText": "RefreshPostRecoveryEpoch(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 741,
+          "candidateAnchorText": "                if (!reinforcementEndRound) RefreshLaterEpoch(s, initiating);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Recovery refresh receives actual cause."
+        },
+        {
+          "inventoryMatchId": "38.06",
+          "baselineLine": 743,
+          "baselineText": "RefreshFerryEpoch(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 741,
+          "candidateAnchorText": "                if (!reinforcementEndRound) RefreshLaterEpoch(s, initiating);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Ferry refresh receives actual cause."
+        },
+        {
+          "inventoryMatchId": "38.07",
+          "baselineLine": 808,
+          "baselineText": "if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 809,
+          "candidateAnchorText": "                    if (reengagementMarker >= 0) RefreshReinforcementEpoch(s, initiating);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Reentry refresh receives cause without a second allowance."
+        },
+        {
+          "inventoryMatchId": "38.08",
+          "baselineLine": 1203,
+          "baselineText": "SettleCastingTime(s,before,s.RuleClock,c);",
+          "baselineGroups": [
+            "legacy_settlement"
+          ],
+          "candidateAnchorLine": 1204,
+          "candidateAnchorText": "                SettleCastingTime(s,before,s.RuleClock,c);",
+          "anchorKind": "exact_retained_text",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Direct inventory time path invokes same accounting with actual command."
+        },
+        {
+          "inventoryMatchId": "38.09",
+          "baselineLine": 1225,
+          "baselineText": "RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); RefreshFerryEpoch(s); PauseIncompatibleWork(s);",
+          "baselineGroups": [
+            "transition_ownership"
+          ],
+          "candidateAnchorLine": 1226,
+          "candidateAnchorText": "                RefreshIntervals(s); RefreshLaterEpoch(s, c); RefreshReinforcementEpoch(s, c); RefreshPostRecoveryEpoch(s, c); RefreshFerryEpoch(s, c); PauseIncompatibleWork(s);",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Direct-path encounter refreshes pass cause while preserving work/condition order."
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "baselineInventorySha256": "e002ee1108abd09d28763b38d1a06e8179f3ec8b9451f201dfe348bbd922bb85",
+      "baselineGitBlobSha256": "e002ee1108abd09d28763b38d1a06e8179f3ec8b9451f201dfe348bbd922bb85",
+      "candidateGitBlobSha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a",
+      "inspectedFileSha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true,
+      "matches": [
+        {
+          "inventoryMatchId": "39.01",
+          "baselineLine": 21,
+          "baselineText": "private int VerifiedExpeditionWireSchema => consecrationDeclaration != null ? Snapshot.ConsecrationSchema",
+          "baselineGroups": [
+            "wire_and_profile"
+          ],
+          "candidateAnchorLine": 21,
+          "candidateAnchorText": "        private int VerifiedExpeditionWireSchema => ordinaryMagicDeclaration != null ? Snapshot.OrdinaryMagicSchema",
+          "anchorKind": "replacement_hunk_anchor",
+          "disposition": "SHARED_CALENDAR_ROUTED",
+          "reason": "Verified construction/sealing select116 only for explicit declaration; full canonical replay required."
+        }
+      ]
+    }
+  ],
+  "supplementalInspectedFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicRecords.cs",
+      "candidateGitBlobSha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "inspectedFileSha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+      "candidateGitBlobSha256": "cca91cff33ebef72cb6e8c126c0e6b693b26bb03c8b07c024c16df76889ae283",
+      "inspectedFileSha256": "cca91cff33ebef72cb6e8c126c0e6b693b26bb03c8b07c024c16df76889ae283",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicValidation.cs",
+      "candidateGitBlobSha256": "b2d79c9fd72f5428b4acd98c07d50b21b4cf15b94b64b274be079c0234a84d8f",
+      "inspectedFileSha256": "b2d79c9fd72f5428b4acd98c07d50b21b4cf15b94b64b274be079c0234a84d8f",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicCoverageValidation.cs",
+      "candidateGitBlobSha256": "bdaa2f30b0b48de372ec53290703a77d5192dcfaba124c0e7c64d716bd911390",
+      "inspectedFileSha256": "bdaa2f30b0b48de372ec53290703a77d5192dcfaba124c0e7c64d716bd911390",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/OrdinaryMagicCodec.cs",
+      "candidateGitBlobSha256": "6fcf6808a27980a985d5923ca26a508ac7c0a0d4192dc32ccbb5611b2a99169c",
+      "inspectedFileSha256": "6fcf6808a27980a985d5923ca26a508ac7c0a0d4192dc32ccbb5611b2a99169c",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "candidateGitBlobSha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e",
+      "inspectedFileSha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "candidateGitBlobSha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147",
+      "inspectedFileSha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedCastingView.cs",
+      "candidateGitBlobSha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "inspectedFileSha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "candidateGitBlobSha256": "e2dbfea6bb581a07e3cd83ffe5676a4f95b9b623b513102544c8e1e6aaffed45",
+      "inspectedFileSha256": "e2dbfea6bb581a07e3cd83ffe5676a4f95b9b623b513102544c8e1e6aaffed45",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    },
+    {
+      "path": "engine/tools/Open-ConnectedExpedition.ps1",
+      "candidateGitBlobSha256": "368ee9c110cdaeb83c86d1c33f3c682848858f1b568dd9635b267f516e9074a6",
+      "inspectedFileSha256": "368ee9c110cdaeb83c86d1c33f3c682848858f1b568dd9635b267f516e9074a6",
+      "diskMatchesCandidateIgnoringBomAndLineEndings": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "CA-01",
+      "priority": "P2",
+      "kind": "MISSED_READ_MODEL_CONSUMER",
+      "status": "OPEN_AT_REVIEWED_CANDIDATE",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "lines": [
+        63,
+        65,
+        109
+      ],
+      "finding": "Schema116 still advertises Consecrate after the owner slot as unsupported, despite the accepted late outside operation.",
+      "reproduction": "At a genuine116 late outside checkpoint with available Action and2RP, compare Player View companion Cleric.UnsupportedCapabilities to a legal UseConsecrate query. The list contains the obsolete restriction.",
+      "correction": "Branch text only for116, preserve115 wording, and assert the view alongside the real late action query."
+    },
+    {
+      "id": "CA-02",
+      "priority": "P2",
+      "kind": "MISSED_DISCOVERY_CONSUMERS",
+      "status": "OPEN_AT_REVIEWED_CANDIDATE",
+      "paths": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+          "lines": [
+            153,
+            159,
+            164,
+            253,
+            300
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "lines": [
+            229,
+            278
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+          "lines": [
+            262,
+            267
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "lines": [
+            552,
+            555
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "lines": [
+            114,
+            123,
+            124
+          ]
+        }
+      ],
+      "finding": "Healing Rite has no generated CommandOption in either mode. Invocation generation is reached only through outside DiscoverSharedWorldCommands, leaving legal tactical Invocation absent. Command-kind/service hints are not queried options.",
+      "reproduction": "Compare legal116 Rite queries in tactical/outside states against DiscoverCastingCommands(Player, Companion). At an earned Bishop own turn with Action+3RP+2Conviction and ready recharge, compare legal Invocation query against the same discovery list.",
+      "correction": "Add116-only deterministic candidate generation through existing query/authority/target gates in both modes, preserving predecessors, and assert actual available-state discovery/query agreement.",
+      "additionalChoiceGap": "Invocation generator always uses new DivineInvocationRequest(selected), hence exposes no optional Frightened/Poisoned cure preference or cure-target choice. New Rite discovery should likewise account for actual supported cure preference variants. Whether discovery must enumerate every optional payload is a completeness criterion; this source observation does not authorize new cure mechanics or claim a positive cure witness.",
+      "preexistingBoundary": "These are inherited wiring gaps assessed against the accepted116 six-consumer discovery obligation; predecessor acceptance is not reopened."
+    }
+  ],
+  "frozenCandidateRuntime": [
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/runtime/Decennium.Foundation.Core.dll",
+      "sha256": "46ee184f6a066b4fc8c7d24a9dbbf5b551d24d80cb8f89c7dd2c576336f92560",
+      "bytes": 1691136
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/runtime/Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "e2414cda87a7a87d59176d450f4e2df04ba0064739e7cf17a0b0924002319986",
+      "bytes": 3376128
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/runtime/Decennium.Foundation.LabModel.dll",
+      "sha256": "893470ecee9a2b51ef080f11c7edbdd56579b6816f6a64b8c7cce71ba79ed3ff",
+      "bytes": 3139072
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/runtime/Decennium.Foundation.Persistence.dll",
+      "sha256": "3aec5d99fc90aad76f1f233d5e89546afd86270e080ba5c1803d3791bfeb705e",
+      "bytes": 326144
+    }
+  ],
+  "boundedConclusions": [
+    "All185 inventory matches individually disposed; no PENDING entry remains.",
+    "Six admission paths and producer validation route to the calendar; current-context ownership, actual-Start recharge, Sanctuary identity, schema dispatch and copy are documented per match.",
+    "Concrete blockers: obsolete capability text and missing Rite/tactical-Invocation discovery. Optional cure-choice discovery omission also identified.",
+    "No additional calendar/recharge/persistence blocker identified in this bounded review. This is not executed coverage or module acceptance."
+  ],
+  "limits": [
+    "No build, test or gameplay command launched by this audit.",
+    "Only designated audit artifacts written; runtime/source remain unchanged.",
+    "Candidate01 execution identities must be preserved if a successor correction is made.",
+    "Prior TAC10/Consecration acceptance and cure allocations not reopened.",
+    "Finite early-witness arithmetic is separate from gameplay execution or a general impossibility/allocation claim."
+  ]
+}

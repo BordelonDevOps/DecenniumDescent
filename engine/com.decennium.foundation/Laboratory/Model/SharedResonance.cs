@@ -92,6 +92,19 @@ namespace Decennium.Foundation.Laboratory
             return PlaytestCharacters.MergedRp(levels, order).Maximum;
         }
 
+        private System.Collections.Generic.IEnumerable<Command> DiscoverOrdinaryHealingRite(Snapshot state,string actor)
+        {
+            if(state.OrdinaryMagic==null||actor!=ClericRpProfile.Actor)yield break;
+            int index=0;
+            foreach(string target in new[]{TestOnlyPolicy.ActorId,ClericRpProfile.Actor}.OrderBy(x=>x,StringComparer.Ordinal))
+                foreach(RadianceCurePreference preference in new[]{RadianceCurePreference.None,RadianceCurePreference.Frightened,RadianceCurePreference.Poisoned}) {
+                    var command=new Command("option."+state.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+".rite."
+                        +(index++).ToString(System.Globalization.CultureInfo.InvariantCulture),actor,state.Revision,CommandKind.UseHealingRite,target,
+                        healingRite:preference==RadianceCurePreference.None?null:new HealingRiteRequest(preference));
+                    if(AssessHealingRite(state,command)==null)yield return command;
+                }
+        }
+
         private string AssessHealingRite(Snapshot state, Command command)
         {
             if (!state.ConnectedClericRp || command.Actor != ClericRpProfile.Actor) return "HealingRiteUnavailable";

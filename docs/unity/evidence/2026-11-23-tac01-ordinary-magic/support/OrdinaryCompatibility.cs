@@ -1,0 +1,35 @@
+using System;using System.IO;using System.Linq;using System.Reflection;using System.Collections.Generic;using System.Text.Json;using Decennium.Foundation;using Decennium.Foundation.Laboratory;using Decennium.Foundation.Tests;
+public static class OrdinaryCompatibility {
+ static readonly JsonSerializerOptions J=new JsonSerializerOptions{IncludeFields=true,WriteIndented=true};static readonly SnapshotCodec Codec=new SnapshotCodec();
+ static Snapshot S(ConnectedExpeditionSession s)=>(Snapshot)typeof(FoundationCases).GetMethod("ShortRestCapture",BindingFlags.Static|BindingFlags.NonPublic).Invoke(null,new object[]{s});
+ static void Check(bool ok,string why){if(!ok)throw new Exception(why);}
+ static ConnectedExpeditionSession New(int w){var i=ClericInitialSelection.AuthoredExample();var r=ClericRepertoireSelection.AuthoredExample();var m=ClericMilestoneDeclaration.AuthoredExample();var b=BishopEntryRecord.Announced();return w switch{95=>ConnectedExpeditionSession.Start(),96=>ConnectedExpeditionSession.StartWithCarriedVial(),97=>ConnectedExpeditionSession.StartWithStowedVial(),98=>ConnectedExpeditionSession.StartWithTacticalVial(),99=>ConnectedExpeditionSession.StartWithCompanionDose(),100=>ConnectedExpeditionSession.StartWithCompanionStabilization(),101=>ConnectedExpeditionSession.StartWithWoundTreatment(),102=>ConnectedExpeditionSession.StartWithConsumeDecay(),103=>ConnectedExpeditionSession.StartWithShortRest(),104=>ConnectedExpeditionSession.StartWithFleshWarden(),105=>ConnectedExpeditionSession.StartWithClericCompanion(i),106=>ConnectedExpeditionSession.StartWithClericRepertoire(i,r),107=>ConnectedExpeditionSession.StartWithFrightened(i,r),108=>ConnectedExpeditionSession.StartWithClericSettlement(i,r,m),109=>ConnectedExpeditionSession.StartWithClericCasting(i,r,m),110=>ConnectedExpeditionSession.StartWithClericLongRest(i,r,m),111=>ConnectedExpeditionSession.StartWithPostRecoveryEncounter(i,r,m),112=>ConnectedExpeditionSession.StartWithBishopEntry(i,r,m,b),113=>ConnectedExpeditionSession.StartWithDeclaredGeometry(i,r,m,b),114=>ConnectedExpeditionSession.StartWithFerryWraith(i,r,m,b),115=>ConnectedExpeditionSession.StartWithConsecration(i,r,m,b),116=>ConnectedExpeditionSession.StartWithOrdinaryMagicalActivity(i,r,m,b),_=>throw new Exception("wire")};}
+ static void Replay(ConnectedExpeditionSession s,CommandReceipt receipt){var c=CommandHistory.Read(receipt);ExpeditionActionResult r;
+ if(receipt.Principal=="TEST_ONLY.session-operator")r=s.SubmitSessionCommand(c);
+ else if(c.Kind==CommandKind.UseIntimidatingPresence&&c.Actor=="TEST_ONLY.later-defender")r=s.SubmitDefenderIntimidatingPresence(LaterDefenderController.DefenderAuthority(),c);
+ else if(c.Kind==CommandKind.RespondSanctuary&&receipt.Principal=="TEST_ONLY.tac10-later-defender.v1")r=s.SubmitDefenderSanctuary(LaterDefenderController.DefenderAuthority(),c);
+ else if(c.Actor=="TEST_ONLY.later-defender"||receipt.Principal=="TEST_ONLY.ferry-controller")r=s.AdvanceAutomaticDefender();
+ else r=s.Submit(c.Actor=="TEST_ONLY.third-combatant"?ExpeditionSeat.FirstOpponent:c.Actor=="TEST_ONLY.recovery-defender"?ExpeditionSeat.RecoveryOpponent:ExpeditionSeat.Player,c);
+ Check(r.Response==ExpeditionResponse.Committed&&r.Revision==receipt.Revision,"Continuation failed "+receipt.Revision+" "+c.Id+" "+r.Response);var actual=S(s).Receipts.Last();Check(actual.Fingerprint==receipt.Fingerprint&&actual.Principal==receipt.Principal&&actual.Id==receipt.Id,"Receipt mismatch");}
+
+ public static void Run(string dir,string[] args){
+   var rows=new List<object>();var records=JsonDocument.Parse(File.ReadAllText(args[0])).RootElement.EnumerateArray().ToArray();
+   foreach(var input in records){
+    int wire=input.GetProperty("wire").GetInt32();string path=input.GetProperty("path").GetString();byte[] authentic=File.ReadAllBytes(path);var final=Codec.Decode(authentic);Check(final.WireSchemaVersion==wire,"Authentic wire mismatch");Check(authentic.SequenceEqual(Codec.Encode(final)),"Codec altered authentic bytes");
+    var restored=New(wire);restored.Restore(path);Check(authentic.SequenceEqual(Codec.Encode(S(restored))),"Strict restore altered authentic bytes");
+    var replay=New(wire);long cutoff=final.Revision/2;string middle=Path.Combine(dir,"wire"+wire+"-middle.ddsave");
+    foreach(var receipt in final.Receipts){Replay(replay,receipt);if(receipt.Revision==cutoff){var bytes=Codec.Encode(S(replay));replay.Save(middle);replay=New(wire);replay.Restore(middle);Check(bytes.SequenceEqual(Codec.Encode(S(replay))),"Mid replay restore mismatch");}}
+    Check(authentic.SequenceEqual(Codec.Encode(S(replay))),"Continued authentic history differs wire"+wire);replay.Save(Path.Combine(dir,"wire"+wire+"-continued.ddsave"));
+    var successor=New(116);byte[] before=Codec.Encode(S(successor));bool rejected=false;try{successor.Restore(path);}catch(Exception e)when(e is ArgumentException||e is InvalidDataException){rejected=true;}Check(rejected&&before.SequenceEqual(Codec.Encode(S(successor))),"116 adopted legacy profile");
+    rows.Add(new{wire,commands=final.Revision,cutoff,strictRestore=true,canonicalEqual=true,continuedReplay=true,rejectedBy116=true});File.WriteAllText(Path.Combine(dir,"progress.json"),JsonSerializer.Serialize(rows,J));Console.WriteLine("PASS authentic "+wire+" r"+final.Revision);Console.Out.Flush();
+   }
+   Check(rows.Count==21,"Incomplete95–115 coverage");File.WriteAllText(Path.Combine(dir,"result.json"),JsonSerializer.Serialize(new{status="PASS",cases=rows,scope="Authentic predecessor bytes restored and reproduced by current runtime; midpoint restore/continued receipt execution. No migration or predecessor module acceptance restart."},J));
+ }
+ public static void Backup(string dir,string[] args){
+   var s=New(116);s.Restore(Path.Combine(args[0],"ferry-admitted.ddsave"));var before=S(s);byte[] bytes=Codec.Encode(before);string path=Path.Combine(dir,"primary.ddsave");s.Save(path);s.Restore(Path.Combine(args[0],"continued.ddsave"));var final=S(s);s.Save(path);
+   byte[] corrupt=File.ReadAllBytes(path);corrupt[corrupt.Length-1]^=1;File.WriteAllBytes(path,corrupt);byte[] live=Codec.Encode(S(s));bool rejected=false;try{s.Restore(path);}catch(Exception e)when(e is ArgumentException||e is InvalidDataException){rejected=true;}Check(rejected&&live.SequenceEqual(Codec.Encode(S(s))),"Corrupt primary changed live state");
+   string displaced=s.RecoverBackup(path);Check(bytes.SequenceEqual(Codec.Encode(S(s)))&&bytes.SequenceEqual(File.ReadAllBytes(path))&&corrupt.SequenceEqual(File.ReadAllBytes(displaced)),"Recovery lost original or displaced bytes");
+   foreach(var receipt in final.Receipts.Where(x=>x.Revision>before.Revision))Replay(s,receipt);Check(Codec.Encode(final).SequenceEqual(Codec.Encode(S(s))),"Recovered gameplay continuation differs");s.Save(Path.Combine(dir,"continued.ddsave"));
+   File.WriteAllText(Path.Combine(dir,"result.json"),JsonSerializer.Serialize(new{status="PASS",wire=116,from=before.Revision,to=final.Revision,canonicalEqual=true,displacedPrimaryPreserved=true,scope="Windows explicit backup recovery and actual paid gameplay continuation; not crash-safety proof."},J));
+ }
+}

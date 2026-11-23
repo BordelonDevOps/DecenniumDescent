@@ -1,0 +1,112 @@
+{
+  "schema": "ordinary-magic-correction-review-v1",
+  "createdUtc": "2026-11-23T15:35:36.257836+00:00",
+  "reviewer": "independent agent /root/review_consecration",
+  "baseCandidateCommit": "03e601962f518f175251e7f9881ee6a75bc04608",
+  "candidateIdentity": "uncommitted bounded correction, compiled in the explicitly bound candidate02 build",
+  "disposition": "NO_BLOCKER_FOUND_IN_BOUNDED_CORRECTION",
+  "reviewMode": "READ_ONLY_SOURCE_AND_TEST_INSPECTION_NO_EXECUTION",
+  "changedFiles": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "inspectedSha256": "c111b93678a87de4cba6a0be6d2616d9705020bdaebe9a8d3313c859a2d0ce5e",
+      "baseGitBlobSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "matchesCandidate02BuildSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "inspectedSha256": "0654a44bee4e155094ee31515e62fde79135a5338ed112bdf9f72b6037e0c9cb",
+      "baseGitBlobSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "matchesCandidate02BuildSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "inspectedSha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "baseGitBlobSha256": "c8c36296b3a0dabbb0ea72360d6c4ee6bfb7eb77398149bac3dcda1ae1c57b97",
+      "matchesCandidate02BuildSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "inspectedSha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "baseGitBlobSha256": "eb1f6b76d6db27f27d74ff472d4031ba44c2d15316a1ef8b1dbfa31604d0e53a",
+      "matchesCandidate02BuildSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicCases.cs",
+      "inspectedSha256": "3ab525d3fad91c87cfb6bfe10f583343dd11722e6c65db67776ca7611a4979f0",
+      "baseGitBlobSha256": "5f69e66e6f1574abd90d6edc26e1d5d69b84fde724645b5a25521720ad871504",
+      "matchesCandidate02BuildSourceHash": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicConsumerCases.cs",
+      "inspectedSha256": "dd29da72edfe5bf534aee95644b6c97ea57e13f57d215fdf21f7343156340c84",
+      "baseGitBlobSha256": "e0c70eb6825b3b0f619f21dad576fb4412e5d7d642f9440aa14a9b059f6ee9df",
+      "matchesCandidate02BuildSourceHash": true
+    }
+  ],
+  "exactGitDiffSha256": "6e4db68a0c0473606ca27f370990517d8bfdc6c79cbb90f4408fd7ede0176fdb",
+  "addressedFindings": [
+    {
+      "id": "CA-01",
+      "disposition": "RESOLVED_IN_REVIEWED_SOURCE",
+      "evidence": "OrdinaryMagic-specific capability text removes the obsolete late-Consecrate restriction; all predecessor fallback strings remain unchanged. Genesis test asserts the corrected controlled view."
+    },
+    {
+      "id": "CA-02",
+      "disposition": "RESOLVED_IN_REVIEWED_SOURCE",
+      "evidence": "Rite generator has an internal116 guard and is reached in both outside/tactical branches. Tactical Invocation append is116-only. Existing real assessors filter Action/resources/source/context/visibility and optional cure ownership. Existing host seat/known-target/query filters remain. Invocation cure variants are116-only and select one of the already-selected recipients; Rite variants use existing supported enum values. Sorted targets and deterministic variant loops yield stable distinct option IDs."
+    }
+  ],
+  "predecessorIsolation": [
+    "OrdinaryMagic==null preserves the exact old capability string branch.",
+    "New Rite enumerable immediately yields no entries for all old profiles.",
+    "Tactical Invocation append and added cure variants are guarded by OrdinaryMagic!=null.",
+    "The existing Invocation loop index increments exactly as before when the116 branch is false.",
+    "No producer, source grant, cost, calendar, persistence format or predecessor validator changed in this correction."
+  ],
+  "testReview": [
+    "Genuine C1 route checks tactical self-Rite discovery, absence of unowned cure variants and unchanged canonical state.",
+    "Genuine late C1 route now checks an admissible discovered Rite target as well as direct query.",
+    "Late Bishop consumer loop checks operation/target discovery and read purity.",
+    "New tactical case waits for an actual Cleric turn, checks Rite and Invocation availability/query agreement and optional cure choices, rejects other-seat discovery, checks unchanged canonical bytes, executes the discovered no-cure Invocation and retains checkpoint."
+  ],
+  "observedBuildEvidence": {
+    "path": "engine/artifacts/ordinary-magic-qualification/candidate-02-build/run-20261123T153031713Z-7d93fac5/results.json",
+    "sha256": "32b1f5ce5dcfc7e3fe868d2140dbfddf98129a22fee2a45a5e729c1076b4e3f2",
+    "status": "PASS",
+    "language": "C# 9",
+    "coreCompilation": "PASS",
+    "testsDiscovered": 1,
+    "cases": [
+      {
+        "Name": "tac01_ordinary_magic_fresh_profile_and_save_boundary",
+        "Passed": true,
+        "Error": ""
+      }
+    ],
+    "runtime": [
+      {
+        "path": "engine/artifacts/ordinary-magic-qualification/candidate-02-build/run-20261123T153031713Z-7d93fac5/Decennium.Foundation.Core.dll",
+        "sha256": "fe609b87969332e14596d93a6117c06fabee92325bf97b83681145c51dec3a45"
+      },
+      {
+        "path": "engine/artifacts/ordinary-magic-qualification/candidate-02-build/run-20261123T153031713Z-7d93fac5/Decennium.Foundation.HeadlessTests.dll",
+        "sha256": "dbb25553161e67f1e58dd0f31e2f9e3f710feb9472e897a1045c9f727ea3bb94"
+      },
+      {
+        "path": "engine/artifacts/ordinary-magic-qualification/candidate-02-build/run-20261123T153031713Z-7d93fac5/Decennium.Foundation.LabModel.dll",
+        "sha256": "39047c9ba89c795dc38e10226e149d2d1c87cce9747975ccb3a54f18503b0159"
+      },
+      {
+        "path": "engine/artifacts/ordinary-magic-qualification/candidate-02-build/run-20261123T153031713Z-7d93fac5/Decennium.Foundation.Persistence.dll",
+        "sha256": "05daebb2417262b6fae06b27c8ccf0a2aff1c3e18be8d2d3cdd7d70bc2d46755"
+      }
+    ]
+  },
+  "limits": [
+    "No build, test, gameplay command or process was launched/changed by this review.",
+    "Only retained build/genesis result was read; new focused discovery/consumer case execution is not claimed by this reviewer.",
+    "No overall module acceptance, successor authorization, engine completion or Unity readiness is inferred.",
+    "Original candidate01 source audit/findings and execution identities remain intact; correction and later runtime must be reconciled explicitly."
+  ]
+}

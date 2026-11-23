@@ -17,6 +17,37 @@ namespace Decennium.Foundation.Tests
         }
         private static void AddOrdinaryMagicConsumerCases(Dictionary<string, Action> cases, string directory)
         {
+            cases.Add("tac01_ordinary_magic_tactical_healing_discovery_and_seat_purity", () => {
+                var session = RunFerryAdmission(directory, NewOrdinaryMagicExpedition());
+                int turns = 0;
+                while (ShortRestCapture(session).Encounter.CurrentActor != ClericRpProfile.Actor) {
+                    Require(turns++ < 8, "No actual Cleric Start in finite discovery route.");
+                    if (session.View(ExpeditionSeat.Player).NextSeat == ExpeditionTurnSeat.FerryOpponent)
+                        Require(session.AdvanceAutomaticDefender().Response == ExpeditionResponse.Committed, "Ferry discovery prefix failed.");
+                    else { var actor = ShortRestCapture(session).Encounter.CurrentActor; ClericGuard(session, actor); ClericEnd(session, actor); }
+                }
+                ClericGuard(session, ClericRpProfile.Actor);
+                var state = ShortRestCapture(session); var codec = new SnapshotCodec(); var before = codec.Encode(state);
+                var options = session.DiscoverCastingCommands(ExpeditionSeat.Player, ClericRpProfile.Actor);
+                foreach (var kind in new[] { CommandKind.UseHealingRite, CommandKind.UseDivineInvocation }) {
+                    var selected = options.Where(x => x.Command.Kind == kind).ToArray();
+                    Require(selected.Any(x => x.Query.Admissible), "Available tactical healing operation was omitted: " + kind);
+                    foreach (var option in selected) Require(session.QueryCastingCommand(ExpeditionSeat.Player, option.Command).Admissible == option.Query.Admissible,
+                        "Discovery/query mismatch for tactical healing.");
+                }
+                Require(options.Any(x => x.Command.Kind == CommandKind.UseDivineInvocation && x.Command.DivineInvocation.CurePreference == RadianceCurePreference.Frightened)
+                    && options.Any(x => x.Command.Kind == CommandKind.UseHealingRite && x.Command.HealingRite?.CurePreference == RadianceCurePreference.Poisoned),
+                    "Existing optional cure choices were omitted from the116 discovery envelope.");
+                foreach (var seat in new[] { ExpeditionSeat.FirstOpponent, ExpeditionSeat.RecoveryOpponent, ExpeditionSeat.FerryOpponent })
+                    Require(session.DiscoverCastingCommands(seat, ClericRpProfile.Actor).Count == 0, "Other seat received controlled Cleric options.");
+                Require(before.SequenceEqual(codec.Encode(ShortRestCapture(session))), "Discovery/query reads changed gameplay or RNG.");
+                var invocation = options.First(x => x.Command.Kind == CommandKind.UseDivineInvocation && x.Query.Admissible
+                    && x.Command.DivineInvocation.CurePreference == RadianceCurePreference.None).Command;
+                BishopCommit(session, invocation);
+                Require(ShortRestCapture(session).BishopEntry.Invocations.Last().CommandId == invocation.Id,
+                    "Discovered Invocation did not execute through its real paid producer.");
+                BishopCheckpoint(session, directory, "ordinary-discovered-tactical-invocation");
+            });
             cases.Add("tac01_ordinary_magic_genuine_bishop_consumers_and_long_rest", () => {
                 const string actor = ClericRpProfile.Actor, hero = ConnectedExpeditionSession.Hero;
                 var session = FundBishop(directory, expedition: NewOrdinaryMagicExpedition());
@@ -47,6 +78,9 @@ namespace Decennium.Foundation.Tests
                     var before = codec.Encode(State());
                     Require(session.QueryCastingCommand(ExpeditionSeat.Player, command).Admissible
                         && before.SequenceEqual(codec.Encode(State())), "Late consumer query was unavailable or impure: " + command.Kind);
+                    var options = session.DiscoverCastingCommands(ExpeditionSeat.Player, actor);
+                    Require(options.Any(x => x.Query.Admissible && x.Command.Kind == command.Kind && x.Command.Target == command.Target)
+                        && before.SequenceEqual(codec.Encode(State())), "Late consumer discovery omitted a lawful operation or mutated state: " + command.Kind);
                     BishopCommit(session, command);
                     var activity = State().OrdinaryMagic.Activities.Single(x => x.CommandId == command.Id);
                     var epoch = WorldTiming.FindEpoch(State(), activity.Origin.EpochId);

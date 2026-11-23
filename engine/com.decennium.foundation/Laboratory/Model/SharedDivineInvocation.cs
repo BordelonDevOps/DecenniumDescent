@@ -123,6 +123,13 @@ namespace Decennium.Foundation.Laboratory
                 var command=new Command("option."+s.Revision+".invocation."+(index++),actor,s.Revision,CommandKind.UseDivineInvocation,
                     divineInvocation:new DivineInvocationRequest(selected));
                 if(AssessDivineInvocation(s,command)==null)yield return command;
+                if(s.OrdinaryMagic!=null)foreach(string target in selected)
+                    foreach(RadianceCurePreference preference in new[]{RadianceCurePreference.Frightened,RadianceCurePreference.Poisoned}) {
+                        var cure=new Command("option."+s.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+".invocation.cure."
+                            +(index++).ToString(System.Globalization.CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.UseDivineInvocation,
+                            divineInvocation:new DivineInvocationRequest(selected,target,preference));
+                        if(AssessDivineInvocation(s,cure)==null)yield return cure;
+                    }
             }
         }
     }
