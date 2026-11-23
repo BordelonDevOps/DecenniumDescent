@@ -68,6 +68,7 @@ namespace Decennium.Foundation.Laboratory
                 long local=epoch.LatestStart(actor,epoch.SlotAt(s.RuleClock));
                 if(local<0 || epoch.Start(local+1)>s.RuleClock)return false;
                 if(actor!=ClericRpProfile.Actor)continue;
+                if(s.OrdinaryMagic!=null) { if(!OrdinaryMagicOldDisposition(s,epoch.Id))return false; continue; }
                 bool required=s.CastingStrain.Single(x=>x.ActorId==actor).Dissonance>0
                     || s.CastingActivities.Any(x=>x.Turn.ActorId==actor && x.Turn.EpochId==epoch.Id && x.Turn.LocalStart==local);
                 if(required && !s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor && x.Turn.EpochId==epoch.Id && x.Turn.LocalStart==local))return false;
@@ -139,6 +140,7 @@ namespace Decennium.Foundation.Laboratory
             s.PostRecoveryEncounter=record.Append(contact,admission);
             s.Encounter=new FixedEncounterRecord(PostRecoveryEncounterDefinition.Encounter,s.RuleClock,order,new[]{s.Revision+1});
             s.WorldActivityIntervals=s.WorldActivityIntervals.Where(x=>x.ActorId!=PostRecoveryEncounterDefinition.Actor).ToArray();
+            ChangeMagicalContext(s,epoch,true,cause);
             foreach(string actor in actors) {
                 var carried=admission.CarriedInterval(actor);
                 var interval=new WorldIntervalRecord(actor,-1,carried.MovementSpent,carried.ActionSpent,carried.DashPaid,
@@ -149,7 +151,7 @@ namespace Decennium.Foundation.Laboratory
                 s.BonusActions=s.BonusActions.Where(x=>x.ActorId!=actor).Append(new ActorBonusActionRecord(actor,-1,bonus)).ToArray();
                 BindLaterIntervalBodies(s,actor,interval,true);
             }
-            ProcessLaterRegularStart(s,epoch,0);
+            ProcessLaterRegularStart(s,epoch,0,cause: cause,magicalInitiative: true);
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;
             s.InventoryInteractions=Interval(s,s.InventoryTurnActor).Interactions;
             foreach(string actor in actors)PauseParticipantWork(s,actor);
@@ -166,7 +168,7 @@ namespace Decennium.Foundation.Laboratory
                 .Where(command=>AssessIntimidatingPresence(s,command)==null).ToArray();
         }
 
-        private static void RefreshPostRecoveryEpoch(Snapshot s)
+        private static void RefreshPostRecoveryEpoch(Snapshot s, Command cause = null)
         {
             var record=s.PostRecoveryEncounter;var epoch=record?.Admission?.Epoch;if(epoch==null)return;
             long slot=epoch.SlotAt(s.RuleClock);if(slot==epoch.ProcessedSlot)return;
@@ -174,7 +176,7 @@ namespace Decennium.Foundation.Laboratory
             foreach(string actor in epoch.Order.OrderBy(x=>epoch.LatestStart(x,slot))) {
                 if(WorldTiming.ForActor(s,actor)?.Id!=epoch.Id)continue;
                 long start=epoch.LatestStart(actor,slot);
-                if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);
+                if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start,cause: cause);
             }
         }
     }

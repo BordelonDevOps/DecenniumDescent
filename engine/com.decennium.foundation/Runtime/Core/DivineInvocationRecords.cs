@@ -126,7 +126,7 @@ namespace Decennium.Foundation
                 var activity=s.CastingActivities.SingleOrDefault(x=>x.CommandId==use.CommandId);
                 if(!Earned(s)||use.ActorId!=ClericRpProfile.Actor||use.Revision<=Advancement(s).Revision||use.Revision>s.Revision
                     ||use.At>s.RuleClock||command?.Kind!=CommandKind.UseDivineInvocation||command.Actor!=use.ActorId
-                    ||command.DivineInvocation?.Fingerprint!=use.Choice.Fingerprint||!SpellCastingProfile.ValidTurn(s,use.Turn,use.At,true)
+                    ||command.DivineInvocation?.Fingerprint!=use.Choice.Fingerprint||!(s.OrdinaryMagic==null ? SpellCastingProfile.ValidTurn(s,use.Turn,use.At,true) : OrdinaryMagicProfile.ValidActivity(s,use.CommandId,use.Turn,use.At))
                     ||use.RpBefore!=ClericLongRestProfile.RpBefore(s,use.Revision)
                     ||use.ConvictionBefore!=ClericLongRestProfile.ConvictionBefore(s,use.Revision)
                     ||draw.Value+1!=use.Die||draw.NextState!=use.RandomAfter||draw.WordsConsumed!=use.WordsConsumed
@@ -148,6 +148,7 @@ namespace Decennium.Foundation
             if(recharges.Length!=(uses.Length==0?0:1))throw new ArgumentException("Missing Invocation recharge.");
             foreach(var recharge in recharges) {
                 var epoch=WorldTiming.FindEpoch(s,recharge.EpochId);var last=uses.Last();
+                if(s.OrdinaryMagic!=null) { OrdinaryMagicProfile.ValidateRecharge(s,last.CommandId,recharge); continue; }
                 if(recharge.ActorId!=ClericRpProfile.Actor||epoch==null||recharge.Remaining>3
                     ||epoch.LatestStart(recharge.ActorId,recharge.LastLocalStart)!=recharge.LastLocalStart
                     ||epoch.Start(recharge.LastLocalStart)!=recharge.LastStartAt||recharge.LastStartAt>s.RuleClock

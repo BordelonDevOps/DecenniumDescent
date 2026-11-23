@@ -297,7 +297,7 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Ferry admission invented or refunded a carried party allowance.");
                 if(carry.Interval.ActorId==ClericRpProfile.Actor
                     &&s.CastingActivities.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local)
-                    &&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local
+                    &&s.OrdinaryMagic==null&&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local
                         &&x.At==prior.Start(local+1)&&x.Revision<=entry.Revision))
                     throw new ArgumentException("Ferry admission bypassed an eligible old casting End.");
             }

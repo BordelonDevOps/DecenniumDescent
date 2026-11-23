@@ -302,6 +302,7 @@ namespace Decennium.Foundation.Tests
             AddDeclaredGeometryCases(cases,directory);
             AddFerryWraithCases(cases,directory);
             AddConsecrationCases(cases,directory);
+            AddOrdinaryMagicCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

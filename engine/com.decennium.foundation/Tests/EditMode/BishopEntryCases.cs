@@ -49,10 +49,11 @@ namespace Decennium.Foundation.Tests
             File.WriteAllBytes(Path.Combine(directory,"forged-invocation-before.ddsave"),before);
             File.WriteAllBytes(Path.Combine(directory,"forged-invocation-after.ddsave"),codec.Encode(ShortRestCapture(session)));
         }
-        private static ConnectedExpeditionSession FundBishop(string directory,bool controls=false,ConnectedExpeditionSession expedition=null)
+        private static ConnectedExpeditionSession FundBishop(string directory,bool controls=false,ConnectedExpeditionSession expedition=null,
+            Func<int,int> heroStance=null)
         {
             const string hero=ConnectedExpeditionSession.Hero,cleric=ClericRpProfile.Actor;
-            var session=EarnClericObjective(true,directory,expedition??NewBishopExpedition(),beforeInitialRite:live=>{
+            var session=EarnClericObjective(true,directory,expedition??NewBishopExpedition(),heroStance:heroStance,beforeInitialRite:live=>{
                 if(controls) {
                     Require(ShortRestCapture(live).Revision==145,"Discovery regression must reach genuine uninterrupted revision145.");
                     BishopCheckpoint(live,directory,"r145-companion-discovery");
@@ -61,12 +62,13 @@ namespace Decennium.Foundation.Tests
             BishopCommit(session,new Command("bishop.typed.earned2.award",cleric,ShortRestCapture(session).Revision,CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId));
             BishopCommit(session,new Command("bishop.typed.earned2.advance",cleric,ShortRestCapture(session).Revision,CommandKind.AdvanceCharacterLevel,ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices()));
             ClericCommit(session,cleric,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
+            var firstRestDue = ShortRestCapture(session).ClericLongRests.Last().DueAt;
             void Intake(string item,int amount,int seconds) {
                 BishopCommit(session,new Command("bishop.typed.intake."+item,hero,ShortRestCapture(session).Revision,CommandKind.StartIntake,item,inventory:new InventoryRequest(Q(amount))));
                 ClericCommit(session,hero,CommandKind.AdvanceClock,x:seconds,y:1);
             }
             Intake("TEST_ONLY.pack-rations",2,1800);Intake("TEST_ONLY.ready-water",4,240);Intake("TEST_ONLY.pack-water",4,240);
-            PostRecoveryStep(session,hero,1,0);PostRecoveryAdvanceTo(session,new RuleTime(171041,2));
+            PostRecoveryStep(session,hero,1,0);PostRecoveryAdvanceTo(session,firstRestDue);
             BishopCheckpoint(session,directory,"first-rest");
             Require(ShortRestCapture(session).ClericLongRestSettlements.Single().RpMaximum==4,"Historical level2 rest lost its own capacity.");
             ReachClericOwnSlot(session);LongRestGuidance(session,"bishop.typed.guidance.before-care");
@@ -123,7 +125,8 @@ namespace Decennium.Foundation.Tests
             RetainClericDenial(sim,authority,new Command("bishop.typed.unfunded",cleric,advanced.Revision,CommandKind.UseDivineInvocation,
                 divineInvocation:new DivineInvocationRequest(new[]{hero,cleric})),"InsufficientResonance",directory);
             Require(session.Submit(ExpeditionSeat.Player,advance).Response==ExpeditionResponse.Duplicate,"Earned3 retry was not idempotent.");
-            PostRecoveryStep(session,cleric,-1,0);PostRecoveryAdvanceTo(session,new RuleTime(286241,2));
+            PostRecoveryStep(session,cleric,-1,0);PostRecoveryAdvanceTo(session,firstRestDue.AddSeconds(
+                ClericLongRestProfile.BenefitCadenceSeconds-ClericLongRestProfile.DurationSeconds));
             ClericCommit(session,cleric,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);ClericCommit(session,hero,CommandKind.AdvanceClock,x:28800,y:1);
             var funded=ShortRestCapture(session);Require(funded.ResonancePools.Single().Current==7&&funded.ConvictionBalance.Current==5
                 &&funded.ClericLongRestSettlements.Last().RpMaximum==7,"Eligible level3 rest did not fund actual capacity.");

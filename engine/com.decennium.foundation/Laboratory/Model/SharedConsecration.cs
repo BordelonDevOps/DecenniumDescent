@@ -111,16 +111,20 @@ namespace Decennium.Foundation.Laboratory
             var character = s.Characters.Single(x => x.ActorId == c.Actor);
             int level = character.Levels.Count(x => x.ClassName == "Cleric");
             if (level < 1 || level > 3) return "ConsecrateClassUnsupported";
-            var epoch = WorldTiming.ForActor(s,c.Actor);
-            var turn = CurrentCastingTurn(s,c.Actor);
-            if (epoch == null || turn == null || turn.LocalStart < 0) return "ConsecrateCalendarUnavailable";
-            long slot = epoch.SlotAt(s.RuleClock);
-            if (slot != epoch.ProcessedSlot || epoch.LatestStart(c.Actor,slot) != slot
-                || s.RuleClock >= epoch.Start(checked(slot+1))
-                || Interval(s,c.Actor).LastStart != WorldTiming.TurnOrdinal(s,epoch.Id,slot)
-                || s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return "ConsecrateOpenOwnerSlotRequired";
-            if (s.InventoryCombat && (s.Encounter?.CurrentActor != c.Actor || s.InventoryTurnActor != c.Actor)) return "WrongRegularTurn";
-            if (!s.InventoryCombat && s.Encounter != null) return "ConsecrateContextUnsupported";
+            if(s.OrdinaryMagic!=null) {
+                string context=AssessMagicalActivityContext(s,c.Actor); if(context!=null)return context;
+            } else {
+                var epoch = WorldTiming.ForActor(s,c.Actor);
+                var turn = CurrentCastingTurn(s,c.Actor);
+                if (epoch == null || turn == null || turn.LocalStart < 0) return "ConsecrateCalendarUnavailable";
+                long slot = epoch.SlotAt(s.RuleClock);
+                if (slot != epoch.ProcessedSlot || epoch.LatestStart(c.Actor,slot) != slot
+                    || s.RuleClock >= epoch.Start(checked(slot+1))
+                    || Interval(s,c.Actor).LastStart != WorldTiming.TurnOrdinal(s,epoch.Id,slot)
+                    || s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return "ConsecrateOpenOwnerSlotRequired";
+                if (s.InventoryCombat && (s.Encounter?.CurrentActor != c.Actor || s.InventoryTurnActor != c.Actor)) return "WrongRegularTurn";
+                if (!s.InventoryCombat && s.Encounter != null) return "ConsecrateContextUnsupported";
+            }
             if (PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s) || s.ManufacturingAdvance != null)
                 return "TacticalChoicePending";
             if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)) return "ConditionBoundaryPending";
@@ -145,8 +149,10 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveConsecrate(Snapshot s, Command c)
         {
             string failure = AssessConsecrate(s,c); if (failure != null) return failure;
-            var epoch = WorldTiming.ForActor(s,c.Actor); var pool = s.ResonancePools.Single(x => x.ActorId == c.Actor);
-            long local = epoch.LatestStart(c.Actor,epoch.ProcessedSlot);
+            var origin=CurrentMagicalActionOrigin(s,c.Actor);
+            var epoch = s.OrdinaryMagic==null ? WorldTiming.ForActor(s,c.Actor) : WorldTiming.FindEpoch(s,origin.EpochId);
+            var pool = s.ResonancePools.Single(x => x.ActorId == c.Actor);
+            long local = s.OrdinaryMagic==null ? epoch.LatestStart(c.Actor,epoch.ProcessedSlot) : origin.LocalStart;
             var deadline = s.InventoryCombat ? epoch.Start(checked(local+3L*epoch.Order.Count)) : s.RuleClock.AddSeconds(18);
             var zone = new ConsecrationZone(c.Id,s.Revision+1,c.Actor,c.GetConsecrateRequest().X,c.GetConsecrateRequest().Y,s.RuleClock,
                 s.InventoryCombat,epoch.Id,local,deadline,pool.Current);

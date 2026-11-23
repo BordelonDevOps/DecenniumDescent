@@ -249,7 +249,7 @@ namespace Decennium.Foundation.Laboratory
                 return;
             }
 
-            RefreshReinforcementEpoch(s);
+            RefreshReinforcementEpoch(s, cause);
             if (result == RetreatOutcome.Continue)
                 s.Retreat = s.Retreat.Continue(new RetreatRound(round.Number + 1, encounter.TurnOrdinal + 1,
                     s.Revision + 1, s.RuleClock));

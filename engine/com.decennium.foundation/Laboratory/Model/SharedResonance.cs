@@ -101,7 +101,9 @@ namespace Decennium.Foundation.Laboratory
                 || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
                 return "InvalidHealingRiteRequest";
             bool postClosure = state.ConnectedClericSettlement && !state.InventoryCombat;
-            if (postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state)) {
+            if(state.OrdinaryMagic!=null) {
+                string context=AssessMagicalActivityContext(state,command.Actor); if(context!=null)return context;
+            } else if (postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state)) {
                 string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;
             } else if (!state.InventoryCombat || state.Reinforcement?.Admission == null
                 || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return "HealingRiteContextUnsupported";
@@ -110,7 +112,9 @@ namespace Decennium.Foundation.Laboratory
             if (!state.CharacterFeatureGrants.Any(x => x.FeatureId == ClericRpProfile.HealingRite && ClericRpProfile.ValidInitialGrant(state, x)))
                 return "HealingRiteNotOwned";
             var character = state.Characters.Single(x => x.ActorId == command.Actor);
-            if (character.Levels.Count(x => x.ClassName == "Cleric") != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
+            int clericLevel=character.Levels.Count(x=>x.ClassName=="Cleric");
+            if(state.OrdinaryMagic!=null ? clericLevel<1 || clericLevel>3 || clericLevel==3 && !BishopProfile.Earned(state)
+                : clericLevel != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
             if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
@@ -152,7 +156,8 @@ namespace Decennium.Foundation.Laboratory
             TestOnlyClubAttackPolicy.ApplyLife(state, before, healed);
             state.RandomState = draw.NextState;
             var rite = new HealingRiteRecord(command.Id, state.Revision + 1,
-                command.Actor, command.Target, ClericRpProfile.HealingRite, ClericRpProfile.SourceRevision, state.InventoryCombat ? state.Encounter.TurnOrdinal : checked((int)Interval(state,command.Actor).LastStart),
+                command.Actor, command.Target, ClericRpProfile.HealingRite, ClericRpProfile.SourceRevision, state.OrdinaryMagic!=null ? checked((int)CurrentMagicalActionOrigin(state,command.Actor).GlobalStart)
+                    : state.InventoryCombat ? state.Encounter.TurnOrdinal : checked((int)Interval(state,command.Actor).LastStart),
                 state.RuleClock, pool.Current, 2, paid.Current, draw.Value + 1, modifier, potential, before.Hp, healed.Hp,
                 random, draw.NextState, draw.WordsConsumed);
             state.HealingRites = state.HealingRites.Append(rite).ToArray();

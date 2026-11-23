@@ -134,6 +134,7 @@ namespace Decennium.Foundation.Laboratory
         {
             var later = state.LaterEncounter;
             if (later == null) return;
+            ChangeMagicalContext(state, WorldTiming.ForActor(state, ClericRpProfile.Actor), false, command);
             var closed = new ClosedEncounterRecord(outgoing, state.Revision + 1, state.RuleClock, command.Id);
             if (PostRecoveryProfile.Active(state) && outgoing.Id == PostRecoveryEncounterDefinition.Encounter
                 || FerryWraithProfile.Active(state) && outgoing.Id == FerryWraithProfile.Encounter) {
@@ -201,7 +202,7 @@ namespace Decennium.Foundation.Laboratory
                 .Append(new ActorBonusActionRecord(definition.DefenderId, -1)).ToArray();
             BindLaterIntervalBodies(state, definition.HeroId, Interval(state, definition.HeroId), preserveTurnState: true);
             BindLaterIntervalBodies(state, definition.DefenderId, Interval(state, definition.DefenderId), preserveTurnState: true);
-            ProcessLaterRegularStart(state, epoch, 0);
+            ProcessLaterRegularStart(state, epoch, 0, cause: cause, magicalInitiative: true);
 
             state.InventoryCombat = true;
             state.InventoryTurnActor = state.Encounter.CurrentActor;
@@ -221,10 +222,11 @@ namespace Decennium.Foundation.Laboratory
                 ? new ActorMovementRecord(actor, x.BaseWalkingSpeed, start) : x).ToArray();
         }
 
-        private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null)
+        private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null, Command cause = null, bool? magicalInitiative = null)
         {
             string actor = epoch.Order[(int)(ordinal % epoch.Order.Count)];
             int turn = globalTurn ?? checked((int)ordinal);
+            BeforeMagicalOwnerStart(state, epoch, ordinal, cause, magicalInitiative ?? state.InventoryCombat);
             var interval = RecordSurpriseFirstStart(state, epoch, ordinal, new WorldIntervalRecord(actor, turn));
             SetInterval(state, interval);
             BindLaterIntervalBodies(state, actor, interval, preserveTurnState: false);
@@ -233,7 +235,7 @@ namespace Decennium.Foundation.Laboratory
                 SaveWorldLifeMarker(state, actor, epoch.Id, epoch.Origin, ordinal, turn);
         }
 
-        private static void RefreshLaterEpoch(Snapshot state)
+        private static void RefreshLaterEpoch(Snapshot state, Command cause = null)
         {
             var later = state.LaterEncounter;
             var entry = later?.Entry;
@@ -245,7 +247,7 @@ namespace Decennium.Foundation.Laboratory
             foreach (string actor in epoch.Order.OrderBy(x => epoch.LatestStart(x, slot))) {
                 if (WorldTiming.ForActor(state, actor).Id != epoch.Id) continue;
                 long start = epoch.LatestStart(actor, slot);
-                if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start);
+                if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start, cause: cause);
             }
         }
     }

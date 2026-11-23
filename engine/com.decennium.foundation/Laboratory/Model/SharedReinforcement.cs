@@ -278,13 +278,13 @@ namespace Decennium.Foundation.Laboratory
                 string failure = ReinforcementAdmissionFailure(state, record.Definition);
                 if (failure == null) {
                     AdmitReinforcement(state, cause);
-                    RefreshLaterEpoch(state);
+                    RefreshLaterEpoch(state, cause);
                     return;
                 }
                 AppendReinforcementEvent(state, cause, ReinforcementEventKind.Deferred, failure, new RuleQuantity(5));
             }
             RefreshActivityIntervals(state);
-            RefreshLaterEpoch(state);
+            RefreshLaterEpoch(state, cause);
         }
 
         private void AdmitReinforcement(Snapshot state, Command cause)
@@ -315,12 +315,13 @@ namespace Decennium.Foundation.Laboratory
             state.WorldIntervals = state.WorldIntervals.Append(entrant).ToArray();
             state.BonusActions = state.BonusActions.Append(new ActorBonusActionRecord(entrant.ActorId, -1)).ToArray();
             BindLaterIntervalBodies(state, entrant.ActorId, entrant, preserveTurnState: true);
-            ProcessLaterRegularStart(state, epoch, 0, phase.FirstTurn);
+            ChangeMagicalContext(state, epoch, true, cause);
+            ProcessLaterRegularStart(state, epoch, 0, phase.FirstTurn, cause, true);
             state.InventoryTurnActor = state.Encounter.CurrentActor;
             state.InventoryInteractions = Interval(state, state.Encounter.CurrentActor).Interactions;
         }
 
-        private static void RefreshReinforcementEpoch(Snapshot state)
+        private static void RefreshReinforcementEpoch(Snapshot state, Command cause = null)
         {
             var record = state.Reinforcement;
             var phase = record?.Admission?.Phase;
@@ -333,7 +334,7 @@ namespace Decennium.Foundation.Laboratory
                 if (WorldTiming.ForActor(state, actor)?.Id != epoch.Id) continue;
                 long global = WorldTiming.LatestActorStart(state, actor);
                 if (global >= phase.FirstTurn && global != Interval(state, actor).LastStart)
-                    ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global));
+                    ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global), cause);
             }
         }
     }

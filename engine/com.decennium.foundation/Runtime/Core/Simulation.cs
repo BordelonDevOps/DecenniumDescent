@@ -187,6 +187,7 @@ namespace Decennium.Foundation
         public const int DeclaredGeometrySchema = 113;
         public const int FerryWraithSchema = 114;
         public const int ConsecrationSchema = 115;
+        public const int OrdinaryMagicSchema = 116;
         public const int MaxActors = 64;
         public const int MaxCropBatches = 8;
         public const int MaxCropWorkRecords = 128;
@@ -354,6 +355,7 @@ namespace Decennium.Foundation
         public DeclaredGeometryRecord DeclaredGeometry;
         public FerryWraithRecord FerryWraith;
         public ConsecrationRecord Consecration;
+        public MagicalActivityCalendarRecord OrdinaryMagic;
         public ClericLongRestRecord[] ClericLongRests = Array.Empty<ClericLongRestRecord>();
         public ClericLongRestSettlementRecord[] ClericLongRestSettlements = Array.Empty<ClericLongRestSettlementRecord>();
         public ConvictionBalanceRecord ConvictionBalance;
@@ -381,7 +383,8 @@ namespace Decennium.Foundation
         public ClericClassEntryRecord ClericEntry;
         public ResonancePoolRecord[] ResonancePools = Array.Empty<ResonancePoolRecord>();
         public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();
-        public int WireSchemaVersion => Consecration != null ? ConsecrationSchema
+        public int WireSchemaVersion => OrdinaryMagic != null ? OrdinaryMagicSchema
+            : Consecration != null ? ConsecrationSchema
             : FerryWraith != null ? FerryWraithSchema
             : DeclaredGeometry != null ? DeclaredGeometrySchema
             : BishopEntry != null ? BishopEntrySchema
@@ -538,7 +541,7 @@ namespace Decennium.Foundation
             ConnectedClericSettlement = ConnectedClericSettlement, ClericMilestone = ClericMilestone, ClericObjective = ClericObjective,
             ConnectedClericCasting = ConnectedClericCasting, CastingStrain = CastingStrain.ToArray(), SpellCasts = SpellCasts.ToArray(),
             ConnectedClericLongRest = ConnectedClericLongRest, ClericLongRests = ClericLongRests.ToArray(),
-            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry, FerryWraith = FerryWraith, Consecration = Consecration,
+            PostRecoveryEncounter = PostRecoveryEncounter, BishopEntry = BishopEntry, DeclaredGeometry = DeclaredGeometry, FerryWraith = FerryWraith, Consecration = Consecration, OrdinaryMagic = OrdinaryMagic,
             ClericLongRestSettlements = ClericLongRestSettlements.ToArray(), ConvictionBalance = ConvictionBalance,
             CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),
             GuidanceUses = GuidanceUses.ToArray(), SpellSaves = SpellSaves.ToArray(), SanctuaryAdmissions = SanctuaryAdmissions.ToArray(),
@@ -1209,6 +1212,7 @@ namespace Decennium.Foundation
             DeclaredGeometryProfile.Validate(s);
             FerryWraithProfile.Validate(s);
             ConsecrationProfile.Validate(s);
+            OrdinaryMagicProfile.Validate(s);
             TypedDamageRecord.Validate(s);
             FrightenedProfile.Validate(s);
             ExpeditionPressureValidation.Validate(s);

@@ -1,5 +1,5 @@
 {
-  "status": "AVAILABLE_NOT_YET_ASSIGNED",
+  "status": "ASSIGNED_IMPLEMENTATION_UNACCEPTED",
   "baseline": "cf02edf6154f79e6d3a7bc80f54dad4b122bde34",
   "proposedWireSchema": 116,
   "proposedFingerprintPrefix": "TEST_ONLY.ordinary-magical-activity-v1-",
@@ -16,5 +16,25 @@
     }
   ],
   "prefixMatches": [],
-  "note": "Broad numeric116 source hits were unrelated card indices/hash text, not schema registrations; no runtime edits."
+  "note": "Broad numeric116 source hits were unrelated card indices/hash text, not schema registrations; no runtime edits.",
+  "assignedWireSchema": 116,
+  "assignedFingerprintPrefix": "TEST_ONLY.ordinary-magic-v1-",
+  "identifierCorrection": {
+    "originalProposedLength": 103,
+    "assignedLength": 92,
+    "existingMaximum": 96,
+    "reason": "The original proposal passed collision inspection but exceeded Validation.ValidId96-character cap; first fresh-genesis test failed Invalid snapshot header. No116save had succeeded. Shortened prefix without changing the frozen policy contract or identifier limit.",
+    "failureRun": "engine/artifacts/ordinary-magic-development/run-20261123T135441199Z-f955837d",
+    "passingFreshRun": "engine/artifacts/ordinary-magic-development/run-20261123T140259933Z-da77351f",
+    "contractSha256Unchanged": "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d"
+  },
+  "shortenedPrefixAvailability": {
+    "baseline": "7c084e96db51d74b48ec57a207c7ceaf221e4c11",
+    "scope": "All tracked engine paths at published preimplementation baseline",
+    "matches": [],
+    "status": "AVAILABLE",
+    "assignedLength": 92
+  },
+  "representationApproval": "8bd7afb5-3691-50e2-ac9a-1faaa9179ccf",
+  "draftArtifactPolicy": "Earlier draft116 development saves remain tied to their exact retained source/assembly binding. They are not accepted supported releases. Final fingerprint and codec explicitly bind the representation amendment; no95-115 identity or layout changed."
 }

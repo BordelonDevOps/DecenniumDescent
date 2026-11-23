@@ -66,6 +66,7 @@ namespace Decennium.Foundation.Laboratory
                 long start=prior.LatestStart(actor,prior.SlotAt(s.RuleClock));
                 if(start<0||prior.Start(start+1)>s.RuleClock)return false;
                 if(actor!=ClericRpProfile.Actor)continue;
+                if(s.OrdinaryMagic!=null) { if(!OrdinaryMagicOldDisposition(s,prior.Id))return false; continue; }
                 bool required=s.CastingStrain.Single(x=>x.ActorId==actor).Dissonance>0
                     ||s.CastingActivities.Any(x=>x.Turn.ActorId==actor&&x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==start);
                 if(required&&!s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor&&x.Turn.EpochId==prior.Id
@@ -131,6 +132,7 @@ namespace Decennium.Foundation.Laboratory
             s.FerryWraith=record.Append(contact,admission);
             s.Encounter=new FixedEncounterRecord(FerryWraithProfile.Encounter,s.RuleClock,order,new[]{s.Revision+1});
             s.WorldActivityIntervals=s.WorldActivityIntervals.Where(x=>x.ActorId!=FerryWraithProfile.Actor).ToArray();
+            ChangeMagicalContext(s,epoch,true,cause);
             foreach(string actor in actors) {
                 var carried=admission.CarriedInterval(actor);
                 var interval=new WorldIntervalRecord(actor,-1,carried.MovementSpent,carried.ActionSpent,carried.DashPaid,
@@ -140,19 +142,19 @@ namespace Decennium.Foundation.Laboratory
                 s.BonusActions=s.BonusActions.Where(x=>x.ActorId!=actor).Append(new ActorBonusActionRecord(actor,-1,bonus)).ToArray();
                 BindLaterIntervalBodies(s,actor,interval,true);
             }
-            ProcessLaterRegularStart(s,epoch,0);
+            ProcessLaterRegularStart(s,epoch,0,cause: cause,magicalInitiative: true);
             s.InventoryCombat=true;s.InventoryTurnActor=s.Encounter.CurrentActor;s.InventoryInteractions=Interval(s,s.InventoryTurnActor).Interactions;
             foreach(string actor in actors)PauseParticipantWork(s,actor);
             PauseIncompatibleWork(s);
         }
-        private static void RefreshFerryEpoch(Snapshot s)
+        private static void RefreshFerryEpoch(Snapshot s, Command cause = null)
         {
             var record=s.FerryWraith;var epoch=record?.Admission?.Epoch;if(epoch==null)return;
             long slot=epoch.SlotAt(s.RuleClock);if(slot==epoch.ProcessedSlot)return;
             s.FerryWraith=record.At(slot);
             foreach(string actor in epoch.Order.OrderBy(x=>epoch.LatestStart(x,slot))) {
                 long start=epoch.LatestStart(actor,slot);
-                if(start>=0&&start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);
+                if(start>=0&&start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start,cause: cause);
             }
         }
     }

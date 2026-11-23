@@ -119,6 +119,7 @@ namespace Decennium.Foundation.Laboratory
             s.Encounter = new FixedEncounterRecord(d.SegmentId, s.RuleClock, phase.Epoch.Order,
                 new[] { s.Revision + 1 }, new[] { marker }, rosterPhase: null, inheritedPhase: phase);
             foreach (var actor in phase.Epoch.Order) PauseParticipantWork(s, actor);
+            ChangeMagicalContext(s, phase.Epoch, true, cause);
             s.InventoryCombat = true;
             s.InventoryTurnActor = d.LeadId;
             s.InventoryInteractions = Interval(s, d.LeadId).Interactions;

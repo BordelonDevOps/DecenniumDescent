@@ -1,0 +1,1737 @@
+{
+  "status": "BASELINE_CONSUMER_INVENTORY_NOT_RUNTIME_COVERAGE",
+  "baseline": "7c084e96db51d74b48ec57a207c7ceaf221e4c11",
+  "note": "Targeted exact text inventory for reviewing shared consumers. Every hit requires an implementation/no-change disposition and relevant executed evidence later; this file does not claim exhaustive semantic coverage or a passing test. Sanctuary identity helpers remain outside the six-producer calendar change.",
+  "patterns": {
+    "allowance_identity": "CurrentCastingTurn\\(|SpellTurnIdentity",
+    "legacy_settlement": "CastingTurnEnds|NextCastingBoundary|SettleCastingTime",
+    "producer_calendar": "RadianceRules\\.OwnTurnFailure|ValidTurn\\(",
+    "transition_ownership": "OldEndsSettled|OwnsEvent\\(|ProcessLaterRegularStart|RefreshReinforcementEpoch|RefreshPostRecoveryEpoch|RefreshFerryEpoch",
+    "recharge": "LastLocalStart|RefreshNamedAbilityRecharge|CountRechargeStarts",
+    "wire_and_profile": "ConsecrationSchema|consecrationDeclaration|ConsecrationProfile\\.SelectedFingerprint",
+    "downstream_producer": "RadianceUses|HealingRiteRecord|TurnOrdinal.*result|result\\.TurnOrdinal|PreRadianceHp",
+    "host_and_envelope": "StartWithConsecration|ObserveConsecration|ConsecrationCodec|ClericSettlementCodec"
+  },
+  "fileCount": 39,
+  "matchCount": 185,
+  "files": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "sha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "matches": [
+        {
+          "line": 114,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==heal.RiteCommandId);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "matches": [
+        {
+          "line": 134,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public long PreRadianceHp() => hpBefore;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "sha256": "f41ad5279d702a3c02ca9d7355551c2dc0f5aa24304b8e20aa2c1608dcfb0e12",
+      "matches": [
+        {
+          "line": 25,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "&& s.RadianceUses.Any(x => x.TargetId == target && x.CureOperationId == operation.Id",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 36,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "=> BishopProfile.InvocationCuredBefore(s,timing,deadline) || s.ConnectedClericSettlement && s.RadianceUses.Any(x => x.TargetId == timing.TargetId",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 44,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "if (s.ConnectedClericSettlement != selected || s.RadianceUses == null || s.RadianceUses.Length > 128 || s.RadianceUses.Any(x => x == null))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 48,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "|| s.RadianceUses.Length != 0 || s.CharacterFeatureGrants.Any(x => x.Origin == CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 103,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "} else if (s.ConvictionCapacity.PoolAcquiredRevision != 0 || s.RadianceUses.Length != 0",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 107,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "if (s.RadianceUses.Select(x => x.RiteCommandId).Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 108,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "|| s.RadianceUses.Select(x => x.ActorId + \"|\" + x.EpochId + \"|\" + x.LocalStart.ToString(System.Globalization.CultureInfo.InvariantCulture))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 109,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": ".Distinct(StringComparer.Ordinal).Count() != s.RadianceUses.Length",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 110,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "|| !s.RadianceUses.Select(x => x.Revision).SequenceEqual(s.RadianceUses.Select(x => x.Revision).OrderBy(x => x)))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 112,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "foreach (var use in s.RadianceUses) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 119,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "|| use.PreRadianceHp() != ConsecrationProfile.AfterGround(s,rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "sha256": "592c8c4c96a4ba1ac5df439d849eea78890cce7dfd06bb6aebe98940b717413a",
+      "matches": [
+        {
+          "line": 188,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public static long AfterGround(Snapshot s, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 213,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "if (s.RadianceUses.Any(x => x.PreRadianceHp() != x.BaseHpAfter))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 299,
+          "groups": [
+            "recharge"
+          ],
+          "text": "long count=CountRechargeStarts(s,epoch,last.OwnerId,after,latest);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 304,
+          "groups": [
+            "recharge"
+          ],
+          "text": "if (recharge.EpochId != current.Id || recharge.LastLocalStart != cursor",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 309,
+          "groups": [
+            "recharge"
+          ],
+          "text": "public static long CountRechargeStarts(Snapshot s,WorldScheduleRecord epoch,string actor,long after,long through)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "d382cee506c1379317c3d830758c114678b1dacaffa6b266525482b56a5e2ac8",
+      "matches": [
+        {
+          "line": 46,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity Turn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 71,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public DivineInvocationRecord(string command,long revision,SpellTurnIdentity turn,RuleTime at,DivineInvocationRequest choice,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 129,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "||command.DivineInvocation?.Fingerprint!=use.Choice.Fingerprint||!SpellCastingProfile.ValidTurn(s,use.Turn,use.At,true)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 152,
+          "groups": [
+            "recharge"
+          ],
+          "text": "||epoch.LatestStart(recharge.ActorId,recharge.LastLocalStart)!=recharge.LastLocalStart",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 153,
+          "groups": [
+            "recharge"
+          ],
+          "text": "||epoch.Start(recharge.LastLocalStart)!=recharge.LastStartAt||recharge.LastStartAt>s.RuleClock",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 155,
+          "groups": [
+            "recharge"
+          ],
+          "text": "||recharge.EpochId==last.Turn.EpochId&&recharge.Remaining!=Math.Max(0L,3L-(recharge.LastLocalStart-last.Turn.LocalStart)/epoch.Order.Count))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "sha256": "92a8a1b534184748d8ceadcffd38aa10274e35daea66bd8ed337c57c0a994480",
+      "matches": [
+        {
+          "line": 176,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "public static bool SelectedFingerprint(string value)=>value!=null&&(value.StartsWith(FingerprintPrefix,StringComparison.Ordinal)||ConsecrationProfile.SelectedFingerprint(value));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 300,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "&&!s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id&&x.Turn.LocalStart==local",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "sha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "matches": [
+        {
+          "line": 32,
+          "groups": [
+            "recharge"
+          ],
+          "text": "public long LastLocalStart { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 40,
+          "groups": [
+            "recharge"
+          ],
+          "text": "ActorId = actor; AbilityId = ability; EpochId = epoch; LastLocalStart = lastLocalStart;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 298,
+          "groups": [
+            "recharge"
+          ],
+          "text": "|| epoch.LatestStart(recharge.ActorId, recharge.LastLocalStart) != recharge.LastLocalStart",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 299,
+          "groups": [
+            "recharge"
+          ],
+          "text": "|| epoch.Start(recharge.LastLocalStart) != recharge.LastStartAt || recharge.LastStartAt > state.RuleClock",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 300,
+          "groups": [
+            "recharge"
+          ],
+          "text": "|| previousUse == null || previousUse.EpochId != recharge.EpochId || recharge.LastLocalStart < previousUse.LocalStart",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 301,
+          "groups": [
+            "recharge"
+          ],
+          "text": "|| recharge.Remaining != Math.Max(0L, 3L - (recharge.LastLocalStart - previousUse.LocalStart) / epoch.Order.Count))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterValidation.cs",
+      "sha256": "6d65bf1c2b56ad3c3a7f2f13d1fff2f2b691530f0cda4c046d3318b007284a47",
+      "matches": [
+        {
+          "line": 10,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "public static bool OwnsEvent(Snapshot s,string actor,string epoch,long revision)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 82,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "&& !s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 105,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if(s.CastingActivities.Any(x=>!OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 106,
+          "groups": [
+            "legacy_settlement",
+            "transition_ownership"
+          ],
+          "text": "|| s.CastingTurnEnds.Any(x=>x.At>entry.At && !OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 107,
+          "groups": [
+            "transition_ownership",
+            "downstream_producer"
+          ],
+          "text": "|| s.RadianceUses.Any(x=>!OwnsEvent(s,x.ActorId,x.EpochId,x.Revision)))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "sha256": "7628253190f98e7d5ab37c5eef61d92c5712bfe15c975044935de0e1a4ef5b88",
+      "matches": [
+        {
+          "line": 82,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public sealed class HealingRiteRecord",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 105,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public HealingRiteRecord(string command, long revision, string actor, string target, string source, string sourceRevision,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "2b3a3b1916444b8650f3e0e2daddffb4eaf2f5fb546c2b36179aafabcdc17a0a",
+      "matches": [
+        {
+          "line": 189,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "public const int ConsecrationSchema = 115;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 363,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "public CastingTurnEndRecord[] CastingTurnEnds = Array.Empty<CastingTurnEndRecord>();",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 374,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public RadianceUseRecord[] RadianceUses = Array.Empty<RadianceUseRecord>();",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 383,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "public HealingRiteRecord[] HealingRites = Array.Empty<HealingRiteRecord>();",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 384,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "public int WireSchemaVersion => Consecration != null ? ConsecrationSchema",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 543,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "CastingActivities = CastingActivities.ToArray(), CastingTurnEnds = CastingTurnEnds.ToArray(), SpellEffects = SpellEffects.ToArray(),",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 546,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "ClericInvocationPath = ClericInvocationPath, ConvictionCapacity = ConvictionCapacity, RadianceUses = RadianceUses.ToArray(),",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "matches": [
+        {
+          "line": 27,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity Turn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 44,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "bool willingTarget, SpellTurnIdentity turn, RuleTime at, int rpBefore, int baseRp, int surcharge, int rpAfter,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 109,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity AttackerTurn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 121,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "long revision, RuleTime at, SpellTurnIdentity attackerTurn, long damage, int dc, int modifier,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 198,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity Turn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 203,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "string observationId, SpellTurnIdentity turn, RuleTime at, bool schoolWithheld, string broadSchool)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "matches": [
+        {
+          "line": 51,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public sealed class SpellTurnIdentity",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 59,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity(string actorId, string epochId, long localStart, long globalStart, long carriedAdmissionRevision = 0)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 68,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public bool SameAs(SpellTurnIdentity other) => other != null && ActorId == other.ActorId && EpochId == other.EpochId",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 121,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity Turn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 124,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public CastingActivityRecord(string commandId, long revision, SpellTurnIdentity turn, RuleTime at, CastingActivityKind kind)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 135,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity Turn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 144,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public CastingTurnEndRecord(SpellTurnIdentity turn, string causeId, long revision, RuleTime at,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 169,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "public SpellTurnIdentity ExpiryTurn { get; }",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 177,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "RuleTime startedAt, RuleTime expiresAt, SpellExpiryKind expiryKind, SpellTurnIdentity expiryTurn, bool concentration,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingValidation.cs",
+      "sha256": "9455b7918ed15b2ac9214f5c019951af42faadfd20771425f954a4656b9d1c25",
+      "matches": [
+        {
+          "line": 15,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "Rows(s.CastingTurnEnds,MaxTurnEnds,selected); Rows(s.SpellEffects,MaxEffects,selected); Rows(s.GuidanceUses,MaxGuidanceUses,selected);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 36,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "Unique(s.CastingActivities.Select(x=>x.CommandId)); Unique(s.CastingTurnEnds.Select(x=>x.Turn.Binding));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 40,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "Ordered(s.CastingTurnEnds.Select(x=>x.Revision)); Ordered(s.SpellSaves.Select(x=>x.Revision));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 52,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "|| !ValidTurn(s,cast.Turn,cast.At,true))throw new ArgumentException(\"Unqualified casting payment or historical access.\");",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 79,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "|| effect.ExpiryTurn.LocalStart!=next || !ValidTurn(s,effect.ExpiryTurn,effect.ExpiresAt,true)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 105,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "|| activity.At>s.RuleClock || !ValidTurn(s,activity.Turn,activity.At,true))throw new ArgumentException(\"Unattributed magical activity.\");",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 107,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "foreach(var end in s.CastingTurnEnds) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 110,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "if(epoch==null || !ValidTurn(s,end.Turn,epoch.Start(end.Turn.LocalStart),true)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 145,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "|| save.Kind==SpellSaveKind.SanctuaryWisdom && (effect.SpellId!=\"sanctuary\" || !ValidTurn(s,save.AttackerTurn,save.At,false))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 205,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "|| !ValidTurn(s,focus.Turn,focus.At,true) || detection==null || detection.SpellId!=\"detect-magic\" || detection.CasterId!=focus.ActorId",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 225,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": ".Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null)))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 259,
+          "groups": [
+            "allowance_identity",
+            "producer_calendar"
+          ],
+          "text": "internal static bool ValidTurn(Snapshot s,SpellTurnIdentity turn,RuleTime at,bool ownAction)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/BishopEntryCodec.cs",
+      "sha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "matches": [
+        {
+          "line": 42,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "string command=Text(r);long revision=r.ReadInt64();var turn=new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64());",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClericSettlementCodec.cs",
+      "sha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "matches": [
+        {
+          "line": 7,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "internal static class ClericSettlementCodec",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 28,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "w.Write(s.RadianceUses.Length);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 29,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "foreach (var x in s.RadianceUses) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 34,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "if(s.Consecration!=null)w.Write(x.PreRadianceHp());",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 47,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "s.RadianceUses = new RadianceUseRecord[SnapshotCodec.ReadCount(r,128)];",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 48,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "for (int i=0;i<s.RadianceUses.Length;i++) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 55,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "s.RadianceUses[i]=new RadianceUseRecord(rite,revision,actor,target,source,epoch,local,first,global,at,baseHp,potential,hp,preference,operation,ids,consecration?r.ReadInt64():baseHp);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConsecrationCodec.cs",
+      "sha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "matches": [
+        {
+          "line": 6,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "internal static class ConsecrationCodec",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FrightenedCodec.cs",
+      "sha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "matches": [
+        {
+          "line": 17,
+          "groups": [
+            "recharge"
+          ],
+          "text": "Text(w,x.ActorId); Text(w,x.AbilityId); Text(w,x.EpochId); w.Write(x.LastLocalStart); Time(w,x.LastStartAt); w.Write(x.Remaining);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ResonanceCodec.cs",
+      "sha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "matches": [
+        {
+          "line": 24,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "Text(w, result.SourceId); Text(w, result.SourceRevision); w.Write(result.TurnOrdinal); Time(w, result.At);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 42,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "state.HealingRites = new HealingRiteRecord[SnapshotCodec.ReadCount(r, 128)];",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 44,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "state.HealingRites[i] = new HealingRiteRecord(Text(r), r.ReadInt64(), Text(r), Text(r), Text(r), Text(r),",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "0deed36037d8f5b7695fd597a69a21eba07b5fd28726bb8442ea44648981ecca",
+      "matches": [
+        {
+          "line": 161,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "ClericSettlementCodec.Write(writer, state);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 189,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "ConsecrationCodec.Write(writer,state.Consecration);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 209,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 236,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "Snapshot.ConsecrationSchema => Snapshot.SurpriseEntrySchema,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 412,
+          "groups": [
+            "wire_and_profile",
+            "host_and_envelope"
+          ],
+          "text": "ClericSettlementCodec.Read(reader, s, wireSchema == Snapshot.ConsecrationSchema);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 430,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 434,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "if (wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 438,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "if (wireSchema == Snapshot.ConsecrationSchema) {",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 440,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "s.Consecration=ConsecrationCodec.Read(reader);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SpellCastingCodec.cs",
+      "sha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "matches": [
+        {
+          "line": 22,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "Rows(w,s.CastingTurnEnds,x => { Turn(w,x.Turn); Text(w,x.CauseId); w.Write(x.Revision); Time(w,x.At);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 66,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "s.CastingTurnEnds=Rows(r,SpellCastingProfile.MaxTurnEnds,() =>",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 94,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private static void Turn(BinaryWriter w,SpellTurnIdentity x){Text(w,x.ActorId);Text(w,x.EpochId);w.Write(x.LocalStart);w.Write(x.GlobalStart);w.Write(x.CarriedAdmissionRevision);}",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 95,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private static SpellTurnIdentity Turn(BinaryReader r)=>new SpellTurnIdentity(Text(r),Text(r),r.ReadInt64(),r.ReadInt64(),r.ReadInt64());",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 96,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private static void OptionalTurn(BinaryWriter w,SpellTurnIdentity x){w.Write(x!=null);if(x!=null)Turn(w,x);}",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 97,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private static SpellTurnIdentity OptionalTurn(BinaryReader r)=>Bool(r)?Turn(r):null;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "91ea07eac5a154687177e06dd64d10f29b8eadfb48a6ae919acf86b1ad5b5e5b",
+      "matches": [
+        {
+          "line": 126,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "matches": [
+        {
+          "line": 33,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "RadianceHistory=Array.AsReadOnly(state.RadianceUses.ToArray());",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedAuraOfFaith.cs",
+      "sha256": "d70cc20bebf8c83b2349a5dfc1655ed52d5e1c2b4385cb69a1fe2fd83f2b904f",
+      "matches": [
+        {
+          "line": 62,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "internal static void HealAfterRite(Snapshot s,Command c,HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "f5fd15f477ad259748722b5fc3763fb05917c5c7310887b31b69891bb0f55fff",
+      "matches": [
+        {
+          "line": 224,
+          "groups": [
+            "recharge"
+          ],
+          "text": "RefreshNamedAbilityRecharge(s, actor, ordinal);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 246,
+          "groups": [
+            "recharge"
+          ],
+          "text": "private static void RefreshNamedAbilityRecharge(Snapshot state, string actor, int globalStart)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 261,
+          "groups": [
+            "recharge"
+          ],
+          "text": "if(!transfer && local<=before.LastLocalStart)continue;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 263,
+          "groups": [
+            "recharge"
+          ],
+          "text": "long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 270,
+          "groups": [
+            "recharge"
+          ],
+          "text": "elapsed=ConsecrationProfile.CountRechargeStarts(state,epoch,actor,transfer?-1:before.LastLocalStart,local);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "5870882901e3ca34df095c0cb3fe8880e6430b12084d6487e6b0d427b7701851",
+      "matches": [
+        {
+          "line": 50,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "internal static void HealAfterRite(Snapshot s, Command c, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 70,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "private static void ValidatePaidTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 97,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "private ConsecrationRecord consecrationDeclaration;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 100,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "if (initializationStarted || ferryDeclaration == null || consecrationDeclaration != null)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 102,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "consecrationDeclaration = new ConsecrationRecord(ContentFingerprint,ConsecrationProfile.HumanoidActors);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 115,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var turn = CurrentCastingTurn(s,c.Actor);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 121,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "|| s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return \"ConsecrateOpenOwnerSlotRequired\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 209,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "internal ConsecrationHealingView(Snapshot s, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 213,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "var radiance=s.RadianceUses.SingleOrDefault(x=>x.RiteCommandId==rite.CommandId);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 214,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "RadianceBefore=radiance?.PreRadianceHp()??Ground?.HpAfter??rite.HpAfter;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 221,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "public IReadOnlyList<ConsecrationHealingView> ObserveConsecrationHealing(ExpeditionSeat seat, string actor)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 231,
+          "groups": [
+            "host_and_envelope"
+          ],
+          "text": "public IReadOnlyList<ConsecrationZoneView> ObserveConsecration(ExpeditionSeat seat, string actor)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "149bf48a7121b6de4c5ac82531e38680fd4acf87085157fa75a3126a3becc7cf",
+      "matches": [
+        {
+          "line": 15,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "||RadianceRules.OwnTurnFailure(s,c.Actor)!=null||!BishopProfile.Earned(s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 39,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "string context=RadianceRules.OwnTurnFailure(s,c.Actor);if(context!=null)return context;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 43,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var turn=CurrentCastingTurn(s,c.Actor);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 75,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);var turn=CurrentCastingTurn(s,c.Actor);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "sha256": "8157b2d51966a64d2eded343f43a0b7d4ade889d1d567f3451b39699fc15fc5b",
+      "matches": [
+        {
+          "line": 62,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static bool FerryOldEndsSettled(Snapshot s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 71,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "if(required&&!s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor&&x.Turn.EpochId==prior.Id",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 105,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if(arrival&&(FerryContactMarker(s)<0||!FerryOldEndsSettled(s)))return \"FerryArrivalOutsideSettledRecoveryStart\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 143,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "ProcessLaterRegularStart(s,epoch,0);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 148,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static void RefreshFerryEpoch(Snapshot s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 155,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if(start>=0&&start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "sha256": "1b4d5b3e46d4ec4d55c303f20cc12f8baa077a465e4026228963e7a41f8caa3e",
+      "matches": [
+        {
+          "line": 204,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "ProcessLaterRegularStart(state, epoch, 0);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 224,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static void ProcessLaterRegularStart(Snapshot state, WorldScheduleRecord epoch, long ordinal, int? globalTurn = null)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 248,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if (start >= 0 && start != Interval(state, actor).LastStart) ProcessLaterRegularStart(state, epoch, start);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "sha256": "f3ae6ca3b860a721df49e87b07b03da50b2427b62860bdfe161ff7e6d7bb6886",
+      "matches": [
+        {
+          "line": 64,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static bool PostRecoveryOldEndsSettled(Snapshot s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 73,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "if(required && !s.CastingTurnEnds.Any(x=>x.Turn.ActorId==actor && x.Turn.EpochId==epoch.Id && x.Turn.LocalStart==local))return false;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 110,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if(arrival && (PostRecoveryContactMarker(s)<0 || !PostRecoveryOldEndsSettled(s)))return \"PostRecoveryArrivalOutsideSettledDefenderStart\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 152,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "ProcessLaterRegularStart(s,epoch,0);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 169,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static void RefreshPostRecoveryEpoch(Snapshot s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 177,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if(start>=0 && start!=Interval(s,actor).LastStart)ProcessLaterRegularStart(s,epoch,start);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "8a9c3f82b1974183ea2b1a935ac9f945bebfb04f3f2096bc0a75b814f0a41298",
+      "matches": [
+        {
+          "line": 45,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "return epoch != null && s.RadianceUses.Any(x => x.ActorId == actor && x.EpochId == epoch.Id",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 49,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "internal static void ValidateCureTrigger(Snapshot s, Command c, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 75,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 77,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "if (state.RadianceUses.Length >= 128) return \"RadianceHistoryFull\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 89,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "private static void SettleRadiance(Snapshot state, Command command, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 115,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "state.RadianceUses = state.RadianceUses.Append(new RadianceUseRecord(command.Id,state.Revision + 1,command.Actor,command.Target,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "sha256": "53aa19c871f28e7e79bc71004ae4f469b77542cfa0e13d819e8475d054194ce8",
+      "matches": [
+        {
+          "line": 318,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "ProcessLaterRegularStart(state, epoch, 0, phase.FirstTurn);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 323,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "private static void RefreshReinforcementEpoch(Snapshot state)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 336,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "ProcessLaterRegularStart(state, epoch, global - phase.FirstTurn, checked((int)global));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "22834faaef411bf3f369e86534b233bb12868af6c0a011bbe9b11f6dfee4a670",
+      "matches": [
+        {
+          "line": 105,
+          "groups": [
+            "producer_calendar"
+          ],
+          "text": "string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 154,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "var rite = new HealingRiteRecord(command.Id, state.Revision + 1,",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "sha256": "3d0f74d4061c65de1f4fde74f0cee35b352949fbf143a855cb00ce8b80771092",
+      "matches": [
+        {
+          "line": 252,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "RefreshReinforcementEpoch(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "sha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "matches": [
+        {
+          "line": 26,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var turn=CurrentCastingTurn(s,actor);if(turn==null)return false;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 33,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private string AssessSanctuaryGate(Snapshot s,Command c,out SpellEffectRecord ward,out SpellTurnIdentity turn)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 39,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "turn=CurrentCastingTurn(s,c.Actor);if(turn==null)return \"SanctuaryAttackerCalendarUnsupported\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 113,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "if(!save.AttackerTurn.SameAs(CurrentCastingTurn(s,c.Actor)))return \"SanctuarySourceIntervalExpired\";",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "ae0fd5bc5849cd48942134b4030db36eaa52aaf98677766dd56c0bd3970a1712",
+      "matches": [
+        {
+          "line": 54,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "private static SpellTurnIdentity CurrentCastingTurn(Snapshot s,string actor)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 59,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "return current>=0?new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 60,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": ":new SpellTurnIdentity(actor,epoch.Id,-1,ferryEntry.Admission.CarriedInterval(actor).LastStart,ferryEntry.Entered.Revision);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 65,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "return current>=0 ? new SpellTurnIdentity(actor,epoch.Id,current,checked((int)current))",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 66,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": ":new SpellTurnIdentity(actor,epoch.Id,-1,recoveryEntry.Admission.CarriedInterval(actor).LastStart,recoveryEntry.Entered.Revision);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 70,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "if(local>=0)return new SpellTurnIdentity(actor,epoch.Id,local,admission.Phase.GlobalTurn(local));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 72,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "return new SpellTurnIdentity(actor,epoch.Id,-1,admission.Carried.Single(x=>x.Interval.ActorId==actor).Interval.LastStart,entry.Revision);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 156,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "|| s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds || strain.Dissonance>int.MaxValue-4",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 202,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "CurrentCastingTurn(s,c.Actor),s.RuleClock,kind)).ToArray();",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 213,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "string spell=c.SpellCast.SpellId; long revision=s.Revision+1; var turn=CurrentCastingTurn(s,c.Actor);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 230,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var expiryTurn=ward?new SpellTurnIdentity(c.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local)):null;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 389,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "c.Target,CurrentCastingTurn(s,c.Actor),s.RuleClock,schoolWithheldForDetachedControl,school)).ToArray();",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 399,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "private static RuleTime? NextCastingBoundary(Snapshot s)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 415,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "private static void SettleCastingTime(Snapshot s,RuleTime from,RuleTime to,Command cause)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 428,
+          "groups": [
+            "allowance_identity"
+          ],
+          "text": "var current=s.CastingStrain[0]; var turn=new SpellTurnIdentity(ClericRpProfile.Actor,epoch.Id,local,WorldTiming.TurnOrdinal(s,epoch.Id,local));",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 431,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "if(cause==null || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds)throw new ArgumentException(\"Casting End history capacity or command unavailable.\");",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 436,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "s.CastingTurnEnds=s.CastingTurnEnds.Append(new CastingTurnEndRecord(turn,cause.Id,s.Revision+1,epoch.Start(local+1),",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "matches": [
+        {
+          "line": 81,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "||consecrationDeclaration!=null&&kind==CommandKind.UseConsecrate",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+      "sha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "matches": [
+        {
+          "line": 36,
+          "groups": [
+            "downstream_producer"
+          ],
+          "text": "internal static ConditionCureInvocation ForRadiance(Snapshot staged, Command command, HealingRiteRecord rite)",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "a150d6b562f97c87c8644653ba3e5e45f8ff8153a1ef4b78d0789b1c53338e83",
+      "matches": [
+        {
+          "line": 164,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "s.Consecration = consecrationDeclaration;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 507,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "var castingDue=NextCastingBoundary(s); if(castingDue.HasValue&&castingDue.Value<next)next=castingDue.Value;",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 682,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "SettleCastingTime(s,segmentStart,next,initiating);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 741,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 742,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "RefreshPostRecoveryEpoch(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 743,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "RefreshFerryEpoch(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 808,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 1203,
+          "groups": [
+            "legacy_settlement"
+          ],
+          "text": "SettleCastingTime(s,before,s.RuleClock,c);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        },
+        {
+          "line": 1225,
+          "groups": [
+            "transition_ownership"
+          ],
+          "text": "RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); RefreshFerryEpoch(s); PauseIncompatibleWork(s);",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "sha256": "e002ee1108abd09d28763b38d1a06e8179f3ec8b9451f201dfe348bbd922bb85",
+      "matches": [
+        {
+          "line": 21,
+          "groups": [
+            "wire_and_profile"
+          ],
+          "text": "private int VerifiedExpeditionWireSchema => consecrationDeclaration != null ? Snapshot.ConsecrationSchema",
+          "disposition": "PENDING_IMPLEMENTATION_AUDIT"
+        }
+      ]
+    }
+  ]
+}

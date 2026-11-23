@@ -120,7 +120,8 @@ namespace Decennium.Foundation
                     || use.Revision <= s.ClericInvocationPath.AcquiredRevision || use.Revision > s.Revision || use.At.Time > s.RuleClock
                     || epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && phase?.Epoch.Id != epoch.Id
                     || use.PhaseFirstTurn != (FerryWraithProfile.IsEpoch(s,epoch.Id)||PostRecoveryProfile.IsEpoch(s,epoch.Id)?0:phase.FirstTurn)
-                    || epoch.SlotAt(use.At.Time) != use.LocalStart || epoch.LatestStart(use.ActorId,use.LocalStart) != use.LocalStart
+                    || (s.OrdinaryMagic==null ? epoch.SlotAt(use.At.Time) != use.LocalStart || epoch.LatestStart(use.ActorId,use.LocalStart) != use.LocalStart
+                        : !OrdinaryMagicProfile.ValidActivityContext(s,use.RiteCommandId,use.EpochId,use.LocalStart,use.GlobalStart,use.At.Time))
                     || WorldTiming.TurnOrdinal(s,epoch.Id,use.LocalStart) != use.GlobalStart || epoch.Start(use.LocalStart) > use.At.Time
                     || command?.Kind != CommandKind.UseHealingRite || command.Actor != use.ActorId || command.Target != use.TargetId
                     || (command.HealingRite?.CurePreference ?? RadianceCurePreference.None) != use.CurePreference)

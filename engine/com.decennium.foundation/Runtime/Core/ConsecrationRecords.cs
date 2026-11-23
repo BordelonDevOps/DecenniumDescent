@@ -172,7 +172,8 @@ namespace Decennium.Foundation
         public static IReadOnlyList<string> HumanoidActors { get; } = Array.AsReadOnly(new[] {
             "TEST_ONLY.actor", "TEST_ONLY.companion", "TEST_ONLY.haven-copper-buyer",
             "TEST_ONLY.later-defender", "TEST_ONLY.recovery-defender", "TEST_ONLY.third-combatant" });
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || OrdinaryMagicProfile.SelectedFingerprint(value));
         public static bool IsPredecessor(string value) => value != null && value.StartsWith(FerryWraithProfile.FingerprintPrefix, StringComparison.Ordinal)
             && CreatureActorRecord.Hex(value.Substring(FerryWraithProfile.FingerprintPrefix.Length), 64);
         public static string BindFingerprint(string predecessor)
@@ -215,7 +216,7 @@ namespace Decennium.Foundation
                 return;
             }
             var record = s.Consecration;
-            if (!s.TestOnly || s.FerryWraith == null || s.ContentFingerprint != BindFingerprint(record.PredecessorFingerprint)
+            if (!s.TestOnly || s.FerryWraith == null || (s.OrdinaryMagic?.PredecessorFingerprint ?? s.ContentFingerprint) != BindFingerprint(record.PredecessorFingerprint)
                 || record.PredecessorFingerprint != FerryWraithProfile.BindFingerprint(s.FerryWraith.PredecessorFingerprint,
                     s.FerryWraith.CompanionConsents, s.FerryWraith.DirectorAuthorizes)
                 || !s.Actors.Select(x => x.Id).OrderBy(x => x, StringComparer.Ordinal).SequenceEqual(
@@ -232,7 +233,10 @@ namespace Decennium.Foundation
                     || !s.CharacterFeatureGrants.Any(x=>x.ActorId==zone.OwnerId && x.FeatureId==Consecrate
                         && ClericRpProfile.ValidInitialGrant(s,x))
                     || epoch.LatestStart(zone.OwnerId, zone.LocalStart) != zone.LocalStart || epoch.Start(zone.LocalStart) > zone.At
-                    || zone.At >= epoch.Start(checked(zone.LocalStart+1))
+                    || (s.OrdinaryMagic==null ? zone.At >= epoch.Start(checked(zone.LocalStart+1))
+                        : !OrdinaryMagicProfile.ValidActivityContext(s,zone.CommandId,zone.EpochId,zone.LocalStart,
+                            WorldTiming.TurnOrdinal(s,zone.EpochId,zone.LocalStart),zone.At)
+                            || OrdinaryMagicProfile.Activity(s,zone.CommandId).InInitiative!=zone.InInitiative)
                     || zone.RpBefore != ClericLongRestProfile.RpBefore(s,zone.Revision)
                     || zone.InInitiative && zone.ExpiresAt != epoch.Start(checked(zone.LocalStart + 3L * epoch.Order.Count))
                     || zone.End == ConsecrationEnd.Active && zone.ExpiresAt <= s.RuleClock
@@ -281,6 +285,7 @@ namespace Decennium.Foundation
         }
         private static void ValidateRecharge(Snapshot s, ConsecrationZone last, CharacterAbilityRechargeRecord recharge)
         {
+            if(s.OrdinaryMagic!=null) { OrdinaryMagicProfile.ValidateRecharge(s,last.CommandId,recharge); return; }
             var epochs = new[] { s.Reinforcement?.Admission?.Phase.Epoch, s.PostRecoveryEncounter?.Admission?.Epoch,
                 s.FerryWraith?.Admission?.Epoch }.Where(x => x != null).ToArray();
             int first = Array.FindIndex(epochs,x => x.Id == last.EpochId);

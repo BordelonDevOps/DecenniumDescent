@@ -191,6 +191,11 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Healing Rite receipt differs from its payment.");
                 if (!state.Receipts.Any(x => command.MatchesReceipt(x) && x.Principal == "TEST_ONLY.host"))
                     throw new ArgumentException("Unattributed Healing Rite payment.");
+                if(state.OrdinaryMagic!=null) {
+                    var context=OrdinaryMagicProfile.Activity(state,result.CommandId);
+                    if(context==null || context.Origin.GlobalStart!=result.TurnOrdinal || context.At!=result.At)
+                        throw new ArgumentException("Healing Rite lost its real allowance origin.");
+                }
                 balance = result.RpAfter;
             }
             if (state.ConnectedClericCasting) {

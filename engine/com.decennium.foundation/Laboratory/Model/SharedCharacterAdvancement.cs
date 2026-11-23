@@ -261,7 +261,8 @@ namespace Decennium.Foundation.Laboratory
                 if(!transfer && local<=before.LastLocalStart)continue;
                 // Admission itself gives no tick. The first actual owner Start in the new epoch does.
                 long elapsed=transfer?1:(local-before.LastLocalStart)/epoch.Order.Count;
-                if(state.Consecration!=null && before.AbilityId==ConsecrationProfile.Consecrate) {
+                if(state.Consecration!=null && before.AbilityId==ConsecrationProfile.Consecrate
+                    || state.OrdinaryMagic!=null && before.AbilityId==BishopProfile.Invocation) {
                     int ownerIndex=epoch.Order.ToList().IndexOf(actor);
                     if(ownerIndex<0 || local<ownerIndex || (local-ownerIndex)%epoch.Order.Count!=0)
                         throw new InvalidOperationException("Consecrate transfer has no actual owner cadence.");

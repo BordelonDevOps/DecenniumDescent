@@ -40,7 +40,7 @@ namespace Decennium.Foundation.Laboratory
             string action=CastingActionFailure(s,c);if(action!=null)return action;
             if(s.AbilityRecharges.Any(x=>x.ActorId==c.Actor&&x.AbilityId==BishopProfile.Invocation&&x.Remaining>0))return "DivineInvocationRecharging";
             if(s.BishopEntry.Invocations.Count>=128)return "InvocationHistoryFull";
-            var turn=CurrentCastingTurn(s,c.Actor);
+            var turn=CurrentMagicalActionOrigin(s,c.Actor);
             if(s.BishopEntry.Invocations.Any(x=>x.Turn.SameAs(turn)))return "InvocationAlreadyUsedThisTurn";
             foreach(string id in c.DivineInvocation.TargetIds) {
                 var target=s.Actors.SingleOrDefault(x=>x.Id==id);var life=s.Lives.SingleOrDefault(x=>x.ActorId==id);
@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
         {
             string failure=AssessDivineInvocation(s,c);if(failure!=null)return failure;
             var pool=s.ResonancePools.Single(x=>x.ActorId==c.Actor);var conviction=s.ConvictionBalance;
-            var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);var turn=CurrentCastingTurn(s,c.Actor);
+            var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);var turn=CurrentMagicalActionOrigin(s,c.Actor);
             var draw=DiceStream.Draw(s.RandomState,8);var rows=new List<InvocationHealingRecord>();
             uint random=s.RandomState;
             SetInterval(s,Interval(s,c.Actor).PayAction());
@@ -105,7 +105,7 @@ namespace Decennium.Foundation.Laboratory
                     s.BishopEntry=s.BishopEntry.WithInvocations(s.BishopEntry.Invocations.Select(x=>x==use?finished:x));
                 }
             }
-            var epoch=WorldTiming.ForActor(s,c.Actor);
+            var epoch=s.OrdinaryMagic==null ? WorldTiming.ForActor(s,c.Actor) : WorldTiming.FindEpoch(s,turn.EpochId);
             s.AbilityRecharges=s.AbilityRecharges.Where(x=>x.ActorId!=c.Actor||x.AbilityId!=BishopProfile.Invocation)
                 .Append(new CharacterAbilityRechargeRecord(c.Actor,BishopProfile.Invocation,epoch.Id,turn.LocalStart,epoch.Start(turn.LocalStart),3)).ToArray();
             ReconcileDyingCadences(s);PauseIncompatibleWork(s);

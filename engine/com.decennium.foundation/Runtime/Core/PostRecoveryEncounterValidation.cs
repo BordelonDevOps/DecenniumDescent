@@ -79,7 +79,7 @@ namespace Decennium.Foundation
                     throw new ArgumentException("Post-recovery party allowance came from an unfinished or invented old interval.");
                 if(carry.Interval.ActorId==ClericRpProfile.Actor
                     && s.CastingActivities.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local)
-                    && !s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local
+                    && s.OrdinaryMagic==null && !s.CastingTurnEnds.Any(x=>x.Turn.EpochId==prior.Id && x.Turn.LocalStart==local
                         && x.At==prior.Start(local+1) && x.Revision<=entry.Revision))
                     throw new ArgumentException("Post-recovery admission bypassed an eligible old casting End.");
             }
@@ -102,9 +102,9 @@ namespace Decennium.Foundation
                     || closed.ClosedAt!=epoch.Start(encounter.TurnOrdinal+1) || closed.ClosedAt>s.RuleClock)
                     throw new ArgumentException("Invalid post-recovery death and outgoing-End closure.");
             }
-            if(s.CastingActivities.Any(x=>!OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))
+            if(s.CastingActivities.Any(x=>!OwnsEvent(s,x.Turn.ActorId,s.OrdinaryMagic==null ? x.Turn.EpochId : OrdinaryMagicProfile.Activity(s,x.CommandId)?.ContextEpoch,x.Revision))
                 || s.CastingTurnEnds.Any(x=>x.At>entry.At && !OwnsEvent(s,x.Turn.ActorId,x.Turn.EpochId,x.Revision))
-                || s.RadianceUses.Any(x=>!OwnsEvent(s,x.ActorId,x.EpochId,x.Revision)))
+                || s.RadianceUses.Any(x=>!OwnsEvent(s,x.ActorId,s.OrdinaryMagic==null ? x.EpochId : OrdinaryMagicProfile.Activity(s,x.RiteCommandId)?.ContextEpoch,x.Revision)))
                 throw new ArgumentException("Superseded party epoch produced current casting or Radiance activity.");
         }
 

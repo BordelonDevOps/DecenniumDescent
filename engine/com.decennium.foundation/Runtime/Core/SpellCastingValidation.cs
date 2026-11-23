@@ -49,7 +49,7 @@ namespace Decennium.Foundation
                     || cast.ActorId!=ClericRpProfile.Actor || known==null || known.AcquiredRevision!=cast.KnownAcquiredRevision
                     || known.AcquiredRevision>=cast.Revision || cast.ClassLevel!=level || cast.Proficiency!=2 || cast.CastingModifier!=2
                     || cast.At>s.RuleClock || cast.FocusItemId!="" && cast.FocusItemId!=FocusId
-                    || !ValidTurn(s,cast.Turn,cast.At,true))throw new ArgumentException("Unqualified casting payment or historical access.");
+                    || !(s.OrdinaryMagic==null ? ValidTurn(s,cast.Turn,cast.At,true) : OrdinaryMagicProfile.ValidActivity(s,cast.CommandId,cast.Turn,cast.At)))throw new ArgumentException("Unqualified casting payment or historical access.");
                 var activity=s.CastingActivities.SingleOrDefault(x=>x.CommandId==cast.CommandId);
                 if(activity==null || activity.Kind!=CastingActivityKind.Spell || activity.Revision!=cast.Revision
                     || !activity.Turn.SameAs(cast.Turn) || activity.At!=cast.At)throw new ArgumentException("Missing cast activity.");
@@ -73,8 +73,9 @@ namespace Decennium.Foundation
                     || effect.RequiresConcentration!=concentration || effect.Present && effect.ExpiresAt<=s.RuleClock)
                     throw new ArgumentException("Unattributed or expired spell effect.");
                 if(effect.SpellId=="arcane-ward") {
-                    var epoch=WorldTiming.FindEpoch(s,cast.Turn.EpochId);
-                    long next=checked(cast.Turn.LocalStart+epoch.Order.Count);
+                    var context=s.OrdinaryMagic==null ? null : OrdinaryMagicProfile.Activity(s,cast.CommandId);
+                    var epoch=WorldTiming.FindEpoch(s,context?.ContextEpoch ?? cast.Turn.EpochId);
+                    long next=s.OrdinaryMagic==null ? checked(cast.Turn.LocalStart+epoch.Order.Count) : OrdinaryMagicProfile.NextOwnerStart(s,epoch,cast.At);
                     if(effect.ExpiryKind!=SpellExpiryKind.NextCasterStart || effect.ExpiryTurn.EpochId!=epoch.Id
                         || effect.ExpiryTurn.LocalStart!=next || !ValidTurn(s,effect.ExpiryTurn,effect.ExpiresAt,true)
                         || epoch.Start(next)!=effect.ExpiresAt)throw new ArgumentException("Ward expiry differs from its next caster Start.");
@@ -102,7 +103,7 @@ namespace Decennium.Foundation
                         :command.Kind==CommandKind.UseDivineInvocation&&s.BishopEntry!=null?CommandKind.UseDivineInvocation:CommandKind.UseHealingRite)
                     :activity.Kind==CastingActivityKind.DetectFocus?CommandKind.FocusDetectedAura:CommandKind.GroundCastingStrain;
                 if(command.Kind!=kind || command.Actor!=activity.Turn.ActorId || activity.Turn.ActorId!=ClericRpProfile.Actor
-                    || activity.At>s.RuleClock || !ValidTurn(s,activity.Turn,activity.At,true))throw new ArgumentException("Unattributed magical activity.");
+                    || activity.At>s.RuleClock || !(s.OrdinaryMagic==null ? ValidTurn(s,activity.Turn,activity.At,true) : OrdinaryMagicProfile.ValidActivity(s,activity.CommandId,activity.Turn,activity.At)))throw new ArgumentException("Unattributed magical activity.");
             }
             foreach(var end in s.CastingTurnEnds) {
                 Receipt(s,end.CauseId,end.Revision); var epoch=WorldTiming.FindEpoch(s,end.Turn.EpochId);
@@ -202,7 +203,7 @@ namespace Decennium.Foundation
                 var detection=s.SpellEffects.SingleOrDefault(x=>x.Id==focus.DetectionEffectId);
                 var observed=s.SpellEffects.SingleOrDefault(x=>x.Id==focus.ObservedEffectId);
                 if(command.Kind!=CommandKind.FocusDetectedAura || command.Actor!=focus.ActorId || command.Target!=focus.ObservationId
-                    || !ValidTurn(s,focus.Turn,focus.At,true) || detection==null || detection.SpellId!="detect-magic" || detection.CasterId!=focus.ActorId
+                    || !(s.OrdinaryMagic==null ? ValidTurn(s,focus.Turn,focus.At,true) : OrdinaryMagicProfile.ValidActivity(s,focus.CommandId,focus.Turn,focus.At)) || detection==null || detection.SpellId!="detect-magic" || detection.CasterId!=focus.ActorId
                     || observed==null || !PresentAt(detection,focus.At,focus.Revision) || !PresentAt(observed,focus.At,focus.Revision)
                     || !focus.SchoolWithheld && focus.BroadSchool!=SpellSourceCatalog.Get(observed.SpellId).AccessFor("Cleric").School
                     || !s.CastingActivities.Any(x=>x.CommandId==focus.CommandId && x.Kind==CastingActivityKind.DetectFocus))
@@ -220,6 +221,7 @@ namespace Decennium.Foundation
             && effect.CastRevision<revision && (effect.EndRevision==0 || effect.EndRevision>revision);
         private static void ValidateStrain(Snapshot s)
         {
+            if(s.OrdinaryMagic!=null) { OrdinaryMagicProfile.ValidateStrain(s); return; }
             var current=new CastingStrainRecord(ClericRpProfile.Actor);
             var events=s.SpellCasts.Select(x=>(at:x.At,revision:x.Revision,cast:x,end:(CastingTurnEndRecord)null,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null))
                 .Concat(s.CastingTurnEnds.Select(x=>(at:x.At,revision:x.Revision,cast:(SpellCastRecord)null,end:x,rest:(ClericLongRestSettlementRecord)null,vent:(DivineInvocationRecord)null)))

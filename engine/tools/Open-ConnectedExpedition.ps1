@@ -21,12 +21,13 @@ param(
     [switch]$BishopEntry,
     [switch]$DeclaredGeometry,
     [switch]$FerryWraith,
-    [switch]$Consecration
+    [switch]$Consecration,
+    [switch]$OrdinaryMagicalActivity
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith,$Consecration).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith,$Consecration,$OrdinaryMagicalActivity).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -36,7 +37,13 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($Consecration) {
+$session = if ($OrdinaryMagicalActivity) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithOrdinaryMagicalActivity(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),
+        [Decennium.Foundation.BishopEntryRecord]::Announced())
+} elseif ($Consecration) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConsecration(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -115,6 +122,7 @@ $session = if ($Consecration) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$Consecration = $Consecration -or $OrdinaryMagicalActivity
 $FerryWraith = $FerryWraith -or $Consecration
 $DeclaredGeometry = $DeclaredGeometry -or $FerryWraith
 $BishopEntry = $BishopEntry -or $DeclaredGeometry

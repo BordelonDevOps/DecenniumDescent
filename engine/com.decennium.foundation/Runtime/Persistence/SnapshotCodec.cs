@@ -188,6 +188,10 @@ namespace Decennium.Foundation
                     writer.Write(ConsecrationProfile.Marker);
                     ConsecrationCodec.Write(writer,state.Consecration);
                 }
+                if (state.OrdinaryMagic != null) {
+                    writer.Write(OrdinaryMagicProfile.Marker);
+                    OrdinaryMagicCodec.Write(writer,state.OrdinaryMagic);
+                }
                 writer.Flush(); payload = stream.ToArray();
             }
             if (payload.Length + 32 > Limit(state.WireSchemaVersion)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -206,7 +210,7 @@ namespace Decennium.Foundation
                 {
                     if (reader.ReadInt32() != Magic) throw new InvalidDataException("Unsupported save format.");
                     int wireSchema = reader.ReadInt32();
-                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema;
+                    bool bishopEnvelope = wireSchema == Snapshot.BishopEntrySchema || wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema);
                     // The selected ordinary observation extensions use the schema51 feature payload.
                     int schema = wireSchema switch {
                         Snapshot.ExplorationSearchSchema => Snapshot.ObservationSchema,
@@ -234,6 +238,7 @@ namespace Decennium.Foundation
                         Snapshot.DeclaredGeometrySchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.FerryWraithSchema => Snapshot.SurpriseEntrySchema,
                         Snapshot.ConsecrationSchema => Snapshot.SurpriseEntrySchema,
+                        Snapshot.OrdinaryMagicSchema => Snapshot.SurpriseEntrySchema,
                         _ => wireSchema
                     };
                     if (data.Length > Limit(wireSchema)) throw new InvalidDataException("Save exceeds schema size limit.");
@@ -409,7 +414,7 @@ namespace Decennium.Foundation
                     }
                     if (s.ConnectedClericSettlement) {
                         if (reader.ReadByte() != ClericSettlementProfile.Marker) throw new InvalidDataException("Invalid Cleric settlement marker.");
-                        ClericSettlementCodec.Read(reader, s, wireSchema == Snapshot.ConsecrationSchema);
+                        ClericSettlementCodec.Read(reader, s, (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema));
                     }
                     if (s.ConnectedClericCasting) {
                         if (reader.ReadByte() != SpellCastingProfile.Marker) throw new InvalidDataException("Invalid casting marker.");
@@ -427,17 +432,21 @@ namespace Decennium.Foundation
                         if (reader.ReadByte() != BishopProfile.Marker) throw new InvalidDataException("Invalid Bishop marker.");
                         s.BishopEntry = BishopEntryCodec.Read(reader);
                     }
-                    if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {
+                    if (wireSchema == Snapshot.DeclaredGeometrySchema || wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {
                         if (reader.ReadByte() != DeclaredGeometryProfile.Marker) throw new InvalidDataException("Invalid declared geometry marker.");
                         s.DeclaredGeometry = DeclaredGeometryCodec.Read(reader);
                     }
-                    if (wireSchema == Snapshot.FerryWraithSchema || wireSchema == Snapshot.ConsecrationSchema) {
+                    if (wireSchema == Snapshot.FerryWraithSchema || (wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {
                         if (reader.ReadByte() != FerryWraithProfile.Marker) throw new InvalidDataException("Invalid Ferry-Wraith marker.");
                         FerryWraithCodec.Read(reader,s);
                     }
-                    if (wireSchema == Snapshot.ConsecrationSchema) {
+                    if ((wireSchema == Snapshot.ConsecrationSchema || wireSchema == Snapshot.OrdinaryMagicSchema)) {
                         if (reader.ReadByte()!=ConsecrationProfile.Marker)throw new InvalidDataException("Invalid Consecration marker.");
                         s.Consecration=ConsecrationCodec.Read(reader);
+                    }
+                    if (wireSchema == Snapshot.OrdinaryMagicSchema) {
+                        if (reader.ReadByte() != OrdinaryMagicProfile.Marker) throw new InvalidDataException("Invalid ordinary-magic marker.");
+                        s.OrdinaryMagic = OrdinaryMagicCodec.Read(reader);
                     }
                     if (stream.Position != length) throw new InvalidDataException("Unexpected trailing save data.");
                     Validation.Snapshot(s);

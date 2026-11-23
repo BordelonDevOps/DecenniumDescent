@@ -162,6 +162,7 @@ namespace Decennium.Foundation.Laboratory
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
             s.DeclaredGeometry = declaredGeometry;
             s.Consecration = consecrationDeclaration;
+            s.OrdinaryMagic = ordinaryMagicDeclaration;
             var companion = s.Actors.Single(a => a.Id == TestOnlyPolicy.CompanionId); companion.X = 3; companion.Y = 3;
             // The remote worker starts with both hands available. Its supplied Club is on the
             // ground at the plot; the two calendar actors begin holding their one-handed Clubs.
@@ -737,10 +738,10 @@ namespace Decennium.Foundation.Laboratory
                     SaveWorldLifeMarker(s,actor,s.WorldSchedule.Id,s.WorldSchedule.Origin,slot,checked((int)slot));
                 }
                 ProcessPeriodicRiderMarker(s,previousSlot,initiating);
-                if (!reinforcementEndRound) RefreshLaterEpoch(s);
-                if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s);
-                RefreshPostRecoveryEpoch(s);
-                RefreshFerryEpoch(s);
+                if (!reinforcementEndRound) RefreshLaterEpoch(s, initiating);
+                if (!retreatEndRound && reengagementMarker < 0) RefreshReinforcementEpoch(s, initiating);
+                RefreshPostRecoveryEpoch(s, initiating);
+                RefreshFerryEpoch(s, initiating);
                 ResolveReadyMining(s,initiating);
                 ResolveReadyProspecting(s);
                 ResolveReadyMiningAssays(s);
@@ -805,7 +806,7 @@ namespace Decennium.Foundation.Laboratory
                 ReconcileWoundTreatment(s, initiating);
                 if (reengagementArrival != null) {
                     TestOnlyClubAttackPolicy.AdvanceConditions(s, ".clock-final", onlyAtExpiry: true);
-                    if (reengagementMarker >= 0) RefreshReinforcementEpoch(s);
+                    if (reengagementMarker >= 0) RefreshReinforcementEpoch(s, initiating);
                     ResolveReengagementArrival(s, reengagementArrival, initiating, reengagementMarker, reengagementDistance);
                     return ProcessClericLongRestBoundary(s,initiating);
                 }
@@ -1222,7 +1223,7 @@ namespace Decennium.Foundation.Laboratory
                 // No traversal or condition deadline can occur inside the admitted interval.
                 TestOnlyClubAttackPolicy.AdvanceConditions(s, ".handling"); RefreshActivityIntervals(s);
                 CommitActivityLabor(s, c.Actor, WorldActivityValidation.ActiveLaborReference(s, c.Actor, before, s.RuleClock));
-                RefreshIntervals(s); RefreshLaterEpoch(s); RefreshReinforcementEpoch(s); RefreshPostRecoveryEpoch(s); RefreshFerryEpoch(s); PauseIncompatibleWork(s);
+                RefreshIntervals(s); RefreshLaterEpoch(s, c); RefreshReinforcementEpoch(s, c); RefreshPostRecoveryEpoch(s, c); RefreshFerryEpoch(s, c); PauseIncompatibleWork(s);
                 if(connectedCombat!=null)ObserveCalendar(s);
                 string provisioningError=SettleDueProvisioning(s);if(provisioningError!=null)return provisioningError;
                 string restDebtError=s.ConnectedClericLongRest?null:ProcessRestDebtBoundary(s);if(restDebtError!=null)return restDebtError;

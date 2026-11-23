@@ -149,10 +149,11 @@ namespace Decennium.Foundation.Tests
             });
         }
 
-        private static ConnectedExpeditionSession RunDeclaredGeometryCampaign(string directory,ConnectedExpeditionSession expedition=null)
+        private static ConnectedExpeditionSession RunDeclaredGeometryCampaign(string directory,ConnectedExpeditionSession expedition=null,
+            Func<int,int> heroStance=null)
         {
             const string hero = ConnectedExpeditionSession.Hero, companion = ClericRpProfile.Actor, npc = PostRecoveryEncounterDefinition.Actor;
-            var session = FundBishop(directory, expedition: expedition??NewDeclaredGeometryExpedition());
+            var session = FundBishop(directory, expedition: expedition??NewDeclaredGeometryExpedition(), heroStance: heroStance);
             int sequence = 0, acceptedOpportunities = 0, acceptedPress = 0;
             Command Make(CommandKind kind, string actor, string target = "", int x = 0, int y = 0, CombatRequest combat = null)
                 => new Command("geometry.campaign." + (++sequence), actor, ShortRestCapture(session).Revision, kind, target, x, y, combat: combat);
