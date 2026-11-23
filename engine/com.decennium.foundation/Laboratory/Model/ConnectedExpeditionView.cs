@@ -511,6 +511,7 @@ namespace Decennium.Foundation.Laboratory
                 string turn = state.InventoryCombat && (ownsTacticalResponse || grant.Controls(state.Encounter.CurrentActor))
                     ? state.Encounter.CurrentTurnId : "";
                 IEnumerable<CommandKind> commands = player ? CombatCommands.Concat(PartyCommands) : CombatCommands;
+                if(player&&WorkControlSelected(state))commands=commands.Concat(Enum.GetValues(typeof(CommandKind)).Cast<CommandKind>().Where(WorkControlCommand)).Distinct();
                 if(player&&state.InventoryCombat&&FerryWraithProfile.Active(state)&&Party.Contains(state.Encounter.CurrentActor))
                     commands=commands.Append(CommandKind.EncounterDash);
                 if(player&&state.FerryWraith!=null&&Party.Any(x=>TestOnlySharedWorldPolicy.CanSeeFerrySeal(state,x)))
@@ -683,6 +684,8 @@ namespace Decennium.Foundation.Laboratory
 
         private static IEnumerable<ExpeditionWorkStatus> ProjectWork(Snapshot state, Authority grant)
         {
+            if(WorkControlSelected(state))foreach(var job in state.WaterFills.Where(x=>grant.Controls(x.WorkerId)))
+                yield return new ExpeditionWorkStatus(job.Id,job.WorkerId,"WaterFill",job.Status.ToString(),CampGreens.Subtract(new RuleTime(60),job.Progress));
             foreach (var job in state.WoundTreatments.Where(x => grant.Controls(WoundTreatmentStation.Healer)))
                 yield return new ExpeditionWorkStatus(job.Id, WoundTreatmentStation.Healer, "WoundTreatment", job.Outcome.ToString(),
                     job.Outcome == WoundTreatmentOutcome.Active ? CampGreens.Subtract(job.DueAt, state.RuleClock) : (RuleTime?)null);

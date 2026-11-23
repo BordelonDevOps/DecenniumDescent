@@ -22,12 +22,13 @@ param(
     [switch]$DeclaredGeometry,
     [switch]$FerryWraith,
     [switch]$Consecration,
-    [switch]$OrdinaryMagicalActivity
+    [switch]$OrdinaryMagicalActivity,
+    [switch]$ConnectedWorkControl
 )
 
 $ErrorActionPreference = 'Stop'
 if ($PSVersionTable.PSEdition -ne 'Core') { throw 'Run with PowerShell 7 (pwsh).' }
-if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith,$Consecration,$OrdinaryMagicalActivity).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
+if (@($FishingTrap,$CarriedVial,$StowedVial,$TacticalVial,$CompanionDose,$CompanionStabilization,$WoundTreatment,$ConsumeDecay,$ShortRest,$FleshWarden,$ClericCompanion,$ClericRepertoire,$Frightened,$ClericSettlement,$ClericCasting,$ClericLongRest,$PostRecoveryEncounter,$BishopEntry,$DeclaredGeometry,$FerryWraith,$Consecration,$OrdinaryMagicalActivity,$ConnectedWorkControl).Where({$_}).Count -gt 1) { throw 'Select one connected expedition profile.' }
 if (-not $AssemblyRoot) {
     $buildRoot = Join-Path ([IO.Path]::GetTempPath()) 'Decennium-connected-expedition'
     $build = & (Join-Path $PSScriptRoot 'Compile-Foundation.ps1') -ResultsRoot $buildRoot
@@ -37,7 +38,13 @@ foreach ($assembly in 'Core', 'Persistence', 'LabModel') {
     Add-Type -Path (Join-Path $AssemblyRoot "Decennium.Foundation.$assembly.dll")
 }
 
-$session = if ($OrdinaryMagicalActivity) {
+$session = if ($ConnectedWorkControl) {
+    [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithConnectedWorkControl(
+        [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
+        [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
+        [Decennium.Foundation.ClericMilestoneDeclaration]::AuthoredExample(),
+        [Decennium.Foundation.BishopEntryRecord]::Announced())
+} elseif ($OrdinaryMagicalActivity) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::StartWithOrdinaryMagicalActivity(
         [Decennium.Foundation.Laboratory.ClericInitialSelection]::AuthoredExample(),
         [Decennium.Foundation.Laboratory.ClericRepertoireSelection]::AuthoredExample(),
@@ -122,6 +129,7 @@ $session = if ($OrdinaryMagicalActivity) {
     [Decennium.Foundation.Laboratory.ConnectedExpeditionSession]::Start()
 }
 
+$OrdinaryMagicalActivity = $OrdinaryMagicalActivity -or $ConnectedWorkControl
 $Consecration = $Consecration -or $OrdinaryMagicalActivity
 $FerryWraith = $FerryWraith -or $Consecration
 $DeclaredGeometry = $DeclaredGeometry -or $FerryWraith
@@ -258,6 +266,7 @@ function Get-SessionFilePath([string]$path) {
 function Invoke-SessionInput($request) {
     switch ($request.op) {
         'view' { return $session.View(($request.seat ?? 'Player')) }
+        'work' { return $session.ObserveWork(($request.seat ?? 'Player'),$request.actor) }
         'ferry' { return $session.ObserveFerryDecision(($request.seat ?? 'Player')) }
         'terrain' { return ,@($session.ObserveConsecration(($request.seat ?? 'Player'),$request.actor)) }
         'terrain-healing' { return ,@($session.ObserveConsecrationHealing(($request.seat ?? 'Player'),$request.actor)) }
@@ -265,11 +274,13 @@ function Invoke-SessionInput($request) {
         'query' {
             $seat = $request.seat ?? 'Player'
             $command = New-SessionCommand $request ($session.View($seat)) $request.kind
+            if ($ConnectedWorkControl) { return $session.QueryCommand($seat,$command) }
             return $session.QueryCastingCommand($seat,$command)
         }
         'discover' {
-            $options = $session.DiscoverCastingCommands(($request.seat ?? 'Player'),$request.actor)
-            if (!$Consecration) { return $options }
+            $options = if ($ConnectedWorkControl) { $session.DiscoverCommands(($request.seat ?? 'Player'),$request.actor) }
+                else { $session.DiscoverCastingCommands(($request.seat ?? 'Player'),$request.actor) }
+            if (!$Consecration -and !$ConnectedWorkControl) { return $options }
             return ,@($options | ForEach-Object {
                 $projected = $_.Command | Select-Object -Property *
                 $center = $_.Command.GetConsecrateRequest()

@@ -72,7 +72,7 @@ namespace Decennium.Foundation.Laboratory
                 string error=WaterFilling.Prerequisite(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);if(error!=null)return error;
                 if(c.Inventory.Amount>s.Work.AvailableAmount(c.Target))return "FillSourceReservedOrInsufficient";
                 if(c.Inventory.Amount>WaterFilling.FreeCapacity(s,c.Inventory.Destination))return "FillCapacityUnavailable";
-                return null;
+                return FillRecordCapacity(s, starting: true);
             }
             if(c.Kind==CommandKind.PauseWaterFill||c.Kind==CommandKind.ResumeWaterFill||c.Kind==CommandKind.CancelWaterFill) {
                 if(c.Inventory!=null||c.X!=0||c.Y!=0)return "InvalidFillRequest";
@@ -88,9 +88,20 @@ namespace Decennium.Foundation.Laboratory
                 if(Hands(c.Actor)<2)return "TwoHandsRequired";
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
                 string error=WaterFilling.Prerequisite(s,c.Actor,job.SourceLotId,job.DestinationId,job.Amount,job.Id);if(error!=null)return error;
-                return null;
+                return FillRecordCapacity(s, starting: false);
             }
             return "UnsupportedFillCommand";
+        }
+
+        private static string FillRecordCapacity(Snapshot s, bool starting)
+        {
+            // Preserve historical profile admission. This opt-in query/execution surface uses
+            // the effective snapshot limits, not WorkLedger's larger construction bound.
+            if(!ConnectedWorkControlProfile.SelectedFingerprint(s.ContentFingerprint))return null;
+            if(starting&&s.WaterFills.Length>=32)return "FillRecordCapacityReached";
+            if(starting&&s.Work.Reservations.Count>=Snapshot.MaxCropWorkRecords)return "WorkReservationCapacityReached";
+            if(s.Work.WorkerIntervals.Count>=Snapshot.MaxCropWorkRecords)return "WorkBookingCapacityReached";
+            return null;
         }
 
         public string Resolve(Snapshot s,Command c)

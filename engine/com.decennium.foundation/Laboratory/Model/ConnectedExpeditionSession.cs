@@ -259,8 +259,11 @@ namespace Decennium.Foundation.Laboratory
             lock(gate) {
                 var state=simulation.Capture();var grant=SeatCommandGrant(state,seat,command);
                 if(grant==null||command==null||!grant.Controls(command.Actor))return new CommandQueryResult(true,false,"NotAuthorized",state.Revision);
+                // Existing work-control receipts no longer require fresh sight/range. Core query
+                // still checks current actor and inventory authority before matching the receipt.
+                bool retry=WorkControlSelected(state)&&state.Receipts.Any(r=>r.Principal==grant.Principal&&r.Id==command.Id);
                 if(!state.ConnectedClericCasting||!ExposedCommand(state,seat,command.Kind)||!ExposedPayload(state,command)
-                    ||!KnownTarget(state,seat,command))return new CommandQueryResult(false,false,"UnsupportedOperation",state.Revision);
+                    ||!retry&&!KnownTarget(state,seat,command))return new CommandQueryResult(false,false,"UnsupportedOperation",state.Revision);
                 return simulation.QueryCommand(grant,command);
             }
         }
@@ -270,6 +273,7 @@ namespace Decennium.Foundation.Laboratory
             lock(gate) {
                 var state=simulation.Capture();var grant=SeatGrant(seat);
                 if(!state.ConnectedClericCasting||grant==null||!grant.Controls(actor))return Array.AsReadOnly(Array.Empty<CommandOption>());
+                if(WorkControlSelected(state))return DiscoverWorkControlCommands(state,seat,actor,grant);
                 var options=simulation.DiscoverCommands(grant,actor).Where(x=>ExposedCommand(state,seat,x.Command.Kind)
                     &&ExposedPayload(state,x.Command)&&KnownTarget(state,seat,x.Command));
                 // New-profile candidates use the same narrowly selected host grant as query/submission.
