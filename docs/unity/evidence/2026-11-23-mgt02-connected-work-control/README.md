@@ -1,5 +1,7 @@
 # Connected work control planning packet
 
+Latest qualification: [supplement04](QUALIFICATION_SUPPLEMENT_04.md) retains final-build five paths, all16 host/console commands and22 authentic profile continuations. Full regression remains running; one raw Windows I/O failure and its exact passing isolated recheck await GPT disposition.
+
 Current runtime checkpoint: [genuine connected gameplay, lifecycle and persistence evidence](DEVELOPMENT_CHECKPOINT_03.md) is retained. The244-command route and eight lifecycle branches pass; final regression, compatibility and GPT acceptance remain open.
 
 **Historical initial implementation:** [initial checkpoint](DEVELOPMENT_CHECKPOINT_01.md) retains485-input C#9 compilation,59 selected passes and static checks. Discovery/observations/console and full connected qualification remain open.

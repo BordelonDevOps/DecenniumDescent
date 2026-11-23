@@ -1,0 +1,581 @@
+{
+  "status": "COMPLETED_NONREGRESSION_EVIDENCE_WITH_ONE_RAW_REGRESSION_IO_FAILURE_UNDER_REVIEW",
+  "module": "MGT-02-CONNECTED-WORK-CONTROL",
+  "runtimeCommit": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "frozenBuild": "development-10/run-20261123T200453593Z-83a83fc6",
+  "compiledInputs": 486,
+  "sourceArchiveSha256": "3236481a62a4b3f28858c56bfba7fdc6bf471b4afee2b5f7f0254427f2603326",
+  "actualGptCheckpoint03Response": "5d95cccf-254c-5eca-8c13-5197e4acd0ac",
+  "fivePaths": {
+    "status": "PASS",
+    "filesPerPath": 1064,
+    "crossPathComparisons": 4256,
+    "mismatches": [],
+    "paths": [
+      {
+        "mode": "ConsoleUninterrupted",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "e7464f80479aabcf0eac9946754e6c288009889e3f1f74221be4c6305ff97527"
+      },
+      {
+        "mode": "ConsoleRestored",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "afc9244f029e65f5afd5e2dba324f0c234f77ec1eea9e9210496c9bc1b4dc0e2"
+      },
+      {
+        "mode": "TypedUninterrupted",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "606ca7ee1a388262b5a48d5e3f1c53360a04e823b4b99bb96561655cf57dfc9d"
+      },
+      {
+        "mode": "TypedRestored",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "febd9d50672083d54253a4ec5fa152fdff83fb02634da184394e4d1349282ff2"
+      },
+      {
+        "mode": "ReceiptReplay",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "007877ee80d99acbc3007cf9282b8886dde97d4bffb47196f2fc3cc5db432c44"
+      }
+    ],
+    "scope": "Actual five244-command paths,28 checkpoints, four seats; inherited views plus both actors work/discovery projections; full raw canonical save bytes include RNG and receipts. Only exact named checkpoint artifacts are compared; run metadata correctly differs."
+  },
+  "commandCoverage": {
+    "status": "PASS16_INCLUDED_COMMANDS_HAVE_GENUINE_HOST_AND_CONSOLE_WITNESSES",
+    "commands": {
+      "CancelFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/responses.jsonl",
+          "line": 21,
+          "commandId": "wc.branch.103",
+          "revision": 104
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.94",
+          "revision": 95
+        }
+      ],
+      "CancelManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.106",
+          "revision": 107
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelZero/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.104",
+          "revision": 105
+        }
+      ],
+      "CancelWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/responses.jsonl",
+          "line": 13,
+          "commandId": "console.cancel-fill.cancel",
+          "revision": 2
+        }
+      ],
+      "PauseFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        }
+      ],
+      "PauseManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.105",
+          "revision": 106
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.105",
+          "revision": 106
+        }
+      ],
+      "PauseMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.16",
+          "revision": 17
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 21,
+          "commandId": "wc.branch.20",
+          "revision": 21
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 34,
+          "commandId": "wc.branch.23",
+          "revision": 24
+        }
+      ],
+      "PauseWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1111,
+          "commandId": "work-control.route.236",
+          "revision": 237
+        }
+      ],
+      "ResolveManufacturingQuality": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 639,
+          "commandId": "recipe4.batch.106",
+          "revision": 107
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 23,
+          "commandId": "wc.branch.110",
+          "revision": 111
+        }
+      ],
+      "ResumeFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 438,
+          "commandId": "option.95.connected-research.control",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.97",
+          "revision": 98
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 22,
+          "commandId": "wc.branch.99",
+          "revision": 100
+        }
+      ],
+      "ResumeManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.107",
+          "revision": 108
+        }
+      ],
+      "ResumeMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.18",
+          "revision": 19
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 27,
+          "commandId": "wc.branch.21",
+          "revision": 22
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 41,
+          "commandId": "wc.branch.25",
+          "revision": 26
+        }
+      ],
+      "ResumeWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1191,
+          "commandId": "work-control.route.240",
+          "revision": 241
+        }
+      ],
+      "StartFormulaResearch": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 360,
+          "commandId": "option.93.connected-research.start",
+          "revision": 94
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.97",
+          "revision": 98
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.96",
+          "revision": 97
+        }
+      ],
+      "StartManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 522,
+          "commandId": "recipe4.batch.103",
+          "revision": 104
+        }
+      ],
+      "StartMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 92,
+          "commandId": "mining.command.16",
+          "revision": 16
+        }
+      ],
+      "StartWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1070,
+          "commandId": "work-control.route.233",
+          "revision": 234
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/responses.jsonl",
+          "line": 7,
+          "commandId": "console.cancel-fill.start",
+          "revision": 1
+        }
+      ]
+    },
+    "consoleBranches": 9,
+    "branchCommands": 50,
+    "branchQueryDiscoveryWorkReadPairs": 23,
+    "branchResultSha256": "799f46030169e5ad99577bc0386ddde8f9407dc2dc5915f1fa8a723a66baa9c2",
+    "scope": "Principal and branches of genuine fresh work-control genesis. Each console branch matches its actual public-host final state, with strict restore and pure native query/discovery/work reads. MODEL_ONLY AwaitingCheck fixtures are deliberately excluded from these positive host witnesses."
+  },
+  "compatibility": {
+    "status": "PASS",
+    "cases": [
+      {
+        "wire": 95,
+        "commands": 223,
+        "cutoff": 111,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 96,
+        "commands": 164,
+        "cutoff": 82,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 97,
+        "commands": 168,
+        "cutoff": 84,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 98,
+        "commands": 167,
+        "cutoff": 83,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 99,
+        "commands": 183,
+        "cutoff": 91,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 100,
+        "commands": 350,
+        "cutoff": 175,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 101,
+        "commands": 323,
+        "cutoff": 161,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 102,
+        "commands": 202,
+        "cutoff": 101,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 103,
+        "commands": 214,
+        "cutoff": 107,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 104,
+        "commands": 226,
+        "cutoff": 113,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 105,
+        "commands": 181,
+        "cutoff": 90,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 106,
+        "commands": 181,
+        "cutoff": 90,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 107,
+        "commands": 216,
+        "cutoff": 108,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 108,
+        "commands": 222,
+        "cutoff": 111,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 109,
+        "commands": 124,
+        "cutoff": 62,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 110,
+        "commands": 210,
+        "cutoff": 105,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 111,
+        "commands": 330,
+        "cutoff": 165,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 112,
+        "commands": 457,
+        "cutoff": 228,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 113,
+        "commands": 327,
+        "cutoff": 163,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 114,
+        "commands": 463,
+        "cutoff": 231,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 115,
+        "commands": 428,
+        "cutoff": 214,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      },
+      {
+        "wire": 116,
+        "commands": 440,
+        "cutoff": 220,
+        "strictRestore": true,
+        "canonicalEqual": true,
+        "continuedReplay": true,
+        "rejectedByWorkControl": true,
+        "strictRestoredObservationsEqual": true
+      }
+    ],
+    "scope": "Authentic predecessor bytes restored and reproduced by current runtime; midpoint restore/continued receipt execution. No migration or predecessor module acceptance restart."
+  },
+  "ioFailureTriage": {
+    "status": "PASS_BOUNDED_TRIAGE",
+    "failedCase": {
+      "Name": "mgt02_work_control_native_fill_record_and_booking_caps",
+      "Passed": false,
+      "Error": "System.IO.IOException: Unable to remove the file to be replaced.\r\n   at System.IO.FileSystem.ReplaceFile(String sourceFullPath, String destFullPath, String destBackupFullPath, Boolean ignoreMetadataErrors)\r\n   at Decennium.Foundation.SameVolumeCommit.Commit(String temporary, String destination, String backup)\r\n   at Decennium.Foundation.FileSaveStore.WriteAndCommit(String full, Byte[] bytes, String backup)\r\n   at Decennium.Foundation.FileSaveStore.Save(String path, Snapshot snapshot)\r\n   at Decennium.Foundation.Laboratory.ConnectedExpeditionSession.Save(String path)\r\n   at Decennium.Foundation.Tests.FoundationCases.<AddConnectedWorkControlCases>g__Capture|177_13(<>c__DisplayClass177_3&)\r\n   at Decennium.Foundation.Tests.FoundationCases.<>c__DisplayClass177_0.<AddConnectedWorkControlCases>b__1()\r\n   at Decennium.Foundation.Tests.FoundationCases.Run(String name, String directory)",
+      "elapsedMilliseconds": 251
+    },
+    "failedCaseSha256": "77b10334a1ad32e39397677b0b945a363617d5f42b8abca25bd846ad3bcf6bdd",
+    "rerunResultSha256": "bce15efdb4c194e15b2e4d1a516c77419bbe81e612f9254300c3b0f268c5b627",
+    "sourceRun": "C:\\Users\\cbord\\Documents\\ChatGPT\\Decennium Descent\\github-delivery\\engine\\artifacts\\connected-work-control\\development-10\\run-20261123T200453593Z-83a83fc6",
+    "originalFiles": [
+      {
+        "strictRestoreExact": true,
+        "fillCount": 2,
+        "reservations": 2,
+        "file": "fill-record-cap.ddsave",
+        "sha256": "2efaeea24fc194c897c176136f78141cde5e8fa056cb944dcce527a6c209b9dd",
+        "revision": 5
+      },
+      {
+        "strictRestoreExact": true,
+        "fillCount": 2,
+        "reservations": 2,
+        "file": "fill-record-cap.ddsave.bak",
+        "sha256": "ce62c1cd3535b3fa6d76a814cfcfba3ab8dfdd34c45b0f7e8ee09f3d11a5b922",
+        "revision": 4
+      }
+    ],
+    "sameFrozenAssemblies": true,
+    "isolatedObservedExitCode": 0,
+    "disposition": "Original raw case and eventual worker failure remain failures. Exact same-DLL case passed once in a fresh directory. Both retained primary/backup strictly restore. No evidence identifies the OS handle/process cause; no runtime retry or persistence-policy change. GPT agreement on finite reconciliation remains pending."
+  },
+  "ioFailureDisposition": "PROPOSED_SINGLE_CASE_RECONCILIATION_REQUIRES_ACTUAL_GPT_AGREEMENT; raw case/worker failures must stay FAIL; no assertion of OS cause or broad persistence fix",
+  "remaining": [
+    "Full1601 raw regression completion and actual terminal results",
+    "Actual GPT disposition of exactsameDLL isolated fill-cap recheck versus retained File.Replace failure",
+    "Final transparent regression/source/evidence reconciliation and actual module review/concurrence"
+  ],
+  "evidenceArchive": {
+    "archive": "QUALIFICATION_SUPPLEMENT_04.zip",
+    "bytes": 9788232,
+    "sha256": "42a77c5eb41c23aa3326270b8b292dc388d4cd0c440e1cee0f6f8379c904e31a",
+    "memberCount": 5573
+  },
+  "runtimeAccepted": false,
+  "successorAuthorized": false,
+  "unityAuthorized": false
+}
