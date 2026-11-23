@@ -15,6 +15,94 @@ namespace Decennium.Foundation.Tests
 
         private static void AddConnectedWorkControlCases(Dictionary<string, Action> cases, string directory)
         {
+            foreach(bool nativeAdvance in new[] { false, true }) {
+                bool advance = nativeAdvance;
+                cases.Add("mgt02_work_control_model_mining_pending_" + (advance ? "native_advance" : "explicit_resume"), () => {
+                    // WC-PENDING-01: this policy truthfully authors condition events. It is NOT
+                    // the connected work-control profile or evidence of host reachability.
+                    var initial = TestOnlySharedWorldPolicy.WithMining(new SharedMiningFixture()).Initial();
+                    uint seed = MiningSeedFor(TaskDegree.Success, MiningModifier(initial));
+                    var conditions = new ConditionCombatFixture(new[] {
+                        CCApply("work-pending-stun", "Stunned", MiningWorker),
+                        CCGrant("work-pending-ward", MiningWorker, new ConditionStamp(new RuleTime(1800)), "Stunned"),
+                        new ConditionFixtureEvent(MiningWorker, ConditionOperation.Cure("event.work-pending-cure",
+                            new ConditionStamp(new RuleTime(1801)), "Stunned"))
+                    });
+                    var policy = new TestOnlySharedWorldPolicy(new SharedCombatFixture(seed: seed), conditions: conditions)
+                        .EnableMining(new SharedMiningFixture());
+                    var sim = World(policy); var host = TestOnlySharedWorldPolicy.Host();
+                    CCDispatch(sim, "work-pending-stun", MiningWorker);
+                    CCDispatch(sim, "work-pending-ward", MiningWorker);
+                    MiningCommit(sim, MiningCommand(sim, CommandKind.StartMining, SharedMiningFixture.DepositId,
+                        MiningSelection(SharedMiningFixture.CategoryA)));
+                    uint rng = sim.Capture().RandomState;
+                    WorldAdvance(sim, 1800);
+                    var pending = sim.Capture(); var job = pending.MiningAttempts.Single();
+                    Require(job.Status == MiningAttemptStatus.AwaitingCheck && job.WorkDone == new RuleTime(1800)
+                        && pending.RandomState == rng && !job.ResolvedAt.HasValue
+                        && pending.MiningUnits.Single(x => x.Id == SharedMiningFixture.UnitA).ReceivedLotId == "",
+                        "Due immunity expiry did not retain fully worked mining without drawing or producing output.");
+                    var before = Bytes(sim); var denied = MiningCommand(sim, CommandKind.ResumeMining, job.Id);
+                    Require(!sim.QueryCommand(host, denied).Admissible
+                        && sim.QueryCommand(host, denied).Code == "MiningWorkerIncapable"
+                        && sim.Execute(host, denied).Code == "MiningWorkerIncapable"
+                        && before.SequenceEqual(Bytes(sim)), "Ineligible pending mining query/execute changed state.");
+                    string path = Path.Combine(directory, "model-mining-pending-" + advance + ".ddsave");
+                    var store = new FileSaveStore(); store.Save(path, sim.Capture());
+                    var restored = new Simulation(policy, store.Load(path), ExecutionProfile.Laboratory);
+                    foreach(var run in new[] { sim, restored }) {
+                        WorldAdvance(run, 1);
+                        Require(run.Capture().RandomState == rng
+                            && run.Capture().MiningAttempts.Single().Status == MiningAttemptStatus.AwaitingCheck,
+                            "Native advancement resolved while the worker remained incapable.");
+                        CCDispatch(run, "work-pending-cure", MiningWorker);
+                        Require(run.Capture().RandomState == rng
+                            && run.Capture().MiningAttempts.Single().Status == MiningAttemptStatus.AwaitingCheck,
+                            "Cure alone resolved the pending extraction.");
+                        before = Bytes(run);
+                        var resume = MiningCommand(run, CommandKind.ResumeMining, job.Id);
+                        Require(run.QueryCommand(host, resume).Admissible && before.SequenceEqual(Bytes(run)),
+                            "Eligible pending query changed state or was rejected.");
+                        var resolve = advance ? IC(run, CommandKind.AdvanceClock, x: 1, y: 2) : resume;
+                        MiningCommit(run, resolve);
+                        var final = run.Capture(); var completed = final.MiningAttempts.Single();
+                        var draw = PlaytestDice.RollD20(rng);
+                        Require(completed.Status == MiningAttemptStatus.Success && completed.WorkDone == new RuleTime(1800)
+                            && completed.RandomBefore == rng && completed.RandomAfter == draw.NextRandomState
+                            && completed.Natural == draw.Natural && final.RandomState == draw.NextRandomState
+                            && final.MiningUnits.Single(x => x.Id == SharedMiningFixture.UnitA).Status == MiningUnitStatus.Extracted
+                            && final.Work.Reservations.Where(x => x.JobId == job.Id).All(x => x.Status != ReservationStatus.Reserved),
+                            "Pending extraction did not settle exactly one native check without extra labor.");
+                        before = Bytes(run);
+                        Require(run.Execute(host, resolve).Outcome == Outcome.Duplicate && before.SequenceEqual(Bytes(run)),
+                            "Repeated pending resolution mutated state.");
+                    }
+                    Require(Bytes(sim).SequenceEqual(Bytes(restored)), "Pending mining changed across strict save/restore replay.");
+                    store.Save(path + ".complete", sim.Capture());
+                    File.WriteAllText(path + ".scope.txt", "MODEL_ONLY own declared condition fixture; no connected-profile host reachability claim.\n");
+                });
+            }
+            cases.Add("mgt02_work_control_existing_haven_transaction_query_grant", () => {
+                var session = NewWorkControlExpedition();
+                foreach(var command in QualityWalkthrough().Take(26))CommitVialRoute(session, command);
+                Require(session.View(ExpeditionSeat.Player).Revision == 26, "Transaction regression did not reach its genuine prefix.");
+                var commandToSell = new Command("work-control.haven-query", ConnectedExpeditionSession.Companion, 26,
+                    CommandKind.StartHavenSale, TestOnlyHavenSaleProfile.OfferVersionId);
+                string path = Path.Combine(directory, "haven-query-before.ddsave"); session.Save(path);
+                var before = File.ReadAllBytes(path);
+                Require(session.QueryCommand(ExpeditionSeat.Player, commandToSell).Admissible
+                    && session.DiscoverCommands(ExpeditionSeat.Player, ConnectedExpeditionSession.Companion)
+                        .Any(x => x.Command.Kind == CommandKind.StartHavenSale && x.Query.Admissible),
+                    "Query/discovery omitted the narrowly selected transaction grant used by submission.");
+                session.Save(path + ".after-reads");
+                Require(before.SequenceEqual(File.ReadAllBytes(path + ".after-reads")), "Transaction queries mutated the campaign.");
+                Require(session.Submit(ExpeditionSeat.Player, commandToSell).Response == ExpeditionResponse.Committed,
+                    "Admitted existing sale failed submission.");
+                session.SetSeatEnabled(ExpeditionSeat.Player, false);
+                Require(session.QueryCommand(ExpeditionSeat.Player, commandToSell).Code == "NotAuthorized"
+                    && session.Submit(ExpeditionSeat.Player, commandToSell).Response == ExpeditionResponse.NotAuthorized,
+                    "Transaction selection bypassed revoked seat authority.");
+            });
             cases.Add("mgt02_work_control_native_fill_record_and_booking_caps", () => {
                 var session = NewWorkControlExpedition(); var store = new FileSaveStore(); var codec = new SnapshotCodec();
                 string path = Path.Combine(directory, "fill-record-cap.ddsave"), actor = ConnectedExpeditionSession.Companion;

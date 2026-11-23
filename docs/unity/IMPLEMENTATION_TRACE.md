@@ -1,5 +1,7 @@
 # Foundation and provisional rules implementation trace
 
+2026-11-23 MGT-02 checkpoint03: genuine244-command connected gameplay and all four work-family lifecycle controls exercised. New-profile Haven query grant matches its existing transaction submission. Nine new cases now discovered with1,592 predecessors; final regression remains running. [Source, execution and persistence evidence](evidence/2026-11-23-mgt02-connected-work-control/DEVELOPMENT_CHECKPOINT_03.md). No final acceptance or successor.
+
 2026-11-23 MGT-02 checkpoint02: implemented exact work observations, owner-filtered claims, water/mining parameters and native-query controls/console. Corrected GPT312d397f receipt visibility and effective fill-cap admission defects; independent console inheritance blocker fixed.486-input C#9 build,63 selected cases, static checks and bounded console/save parity pass. [Evidence](evidence/2026-11-23-mgt02-connected-work-control/DEVELOPMENT_CHECKPOINT_02.md). Same module continues; full route/qualification/final acceptance remain open.
 
 Current implementation checkpoint: opt-in work-control identity, pure filling assessment and initial host forwarding are implemented; frozen C#9 compilation485 inputs,59 selected cases and static package checks pass. [Exact partial evidence](evidence/2026-11-23-mgt02-connected-work-control/DEVELOPMENT_CHECKPOINT_01.md). Full discovery/work views/console and connected/full-regression qualification remain in progress; no runtime module acceptance.

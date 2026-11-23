@@ -373,6 +373,12 @@ namespace Decennium.Foundation.Laboratory
         private Authority SeatCommandGrant(Snapshot state,ExpeditionSeat seat,Command command)
         {
             var grant=SeatGrant(seat);
+            // New generic query/discovery uses exactly the transaction grant already selected
+            // by submission, only for its existing companion/offer pairs. No general buyer access.
+            if(grant!=null&&WorkControlSelected(state)&&seat==ExpeditionSeat.Player&&command?.Actor==Companion
+                &&(command.Kind==CommandKind.StartHavenSale&&command.Target==TestOnlyHavenSaleProfile.OfferVersionId
+                    ||command.Kind==CommandKind.PurchaseHavenMeal&&command.Target==TestOnlyHavenMealProfile.OfferVersionId))
+                return HavenTransactionGrant;
             if(grant!=null&&seat==ExpeditionSeat.Player&&state.BishopEntry!=null
                 &&command?.Kind==CommandKind.AwardCharacterMilestone&&grant.Controls(command.Actor))
                 return ClericMilestoneGrant;
