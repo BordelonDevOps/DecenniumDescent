@@ -2,7 +2,7 @@
 
 The owner resumed the full C# engine goal on 2026-11-23. The accepted next module is TAC-01-ORDINARY-MAGICAL-ACTIVITY, following accepted Consecration115. Unity remains deferred.
 
-Current phase: **Implementation and final Candidate02 qualification complete; actual final acceptance OPEN.** All1,592 cases passed with four observed exit0 results. [Final review candidate](FINAL_REVIEW_CANDIDATE.md) and [final criterion reconciliation](FINAL_CRITERION_RECONCILIATION.json) supersede the intermediate qualification-status notes below. CAL-01–05 were accepted in actual GPT response `07b5b8fe-e82f-5d53-b4ed-42087afbd942`, with Codex concurrence before implementation. Runtime03e60196 and corrected candidatea713eb77 are pushed. The frozen source/API contract is unchanged.
+Current phase: **ACCEPTED BOUNDED MODULE.** Actual GPT response `8fa0906a-8135-5c9e-99c6-bd883a17ef17` and Codex concurrence accept all OMA-01–10 criteria at evidence candidatecaf552afa. [Final acceptance](FINAL_ACCEPTANCE.md) and [exact verdict](GPT_FINAL_ACCEPTANCE.json) supersede the historical qualification-status notes below. The full1,592-case regression and five complete440-command paths are retained. Whole-engine completion and Unity remain open.
 
 - [Resume record](START.json) and [approved module definition](../2026-11-17-next-module-contract/MODULE_DEFINITION.md).
 - [Actual GPT calendar proposal](GPT_CALENDAR_PROPOSAL.json), response `b5c97981-b381-5551-9bd0-1bdc52f7d12c`.
@@ -11,7 +11,7 @@ Current phase: **Implementation and final Candidate02 qualification complete; ac
 
 The candidate preserves actual tactical End settlement, separates allowance origin from activity segments/current epoch, permits lawful late outside Actions, and defines one settlement opportunity per real allowance. New Grounding/partial-interval integration policies are explicitly identified for GPT/Codex concurrence. Existing source/payment/access/transition rules and supported old profiles remain authoritative.
 
-Next: obtain actual final GPT module review and Codex concurrence against the complete retained source, compilation,1,592-case regression, genuine connected scenarios, five paths, save/restore/replay and compatibility evidence before any successor. The 49 formal workstreams,120 edges,100 completion obligations and UR gates remain unchanged.
+Next: agree the successor scope and approved dependency order with GPT before implementation. This acceptance selects no successor and preserves all broader mandatory gaps. The 49 formal workstreams,120 edges,100 completion obligations and UR gates remain unchanged.
 
 Focused development runs now compile and exercise genuine C1 late/remainder Rite, nonzero strain and Grounding, sparse partitioning, and funded Bishop long-rest/late-consumer paths. These are not frozen qualification or final module acceptance. See [development review log](DEVELOPMENT_REVIEW_LOG.json) and [accepted representation amendments](GPT_REPRESENTATION_AMENDMENT.json). Prior TAC-10 and Consecration qualifications and their bounded cure allocations remain preserved.
 

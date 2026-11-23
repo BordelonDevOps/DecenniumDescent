@@ -1,5 +1,11 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-23 — ordinary magical activity116 accepted
+
+Actual final GPT response8fa0906a and Codex concurrence accept all OMA-01–10 criteria for Candidate02, implementation03e60196/correctiona713eb77, evidencecaf552afa. The frozen runtime passes1,592 unique cases, including all1,587 predecessors plus five new cases; all four processes exited0. Five complete440-command paths/18 checkpoints/1,872 exact comparisons, source/build/static,18 boundaries,21 authentic compatibility paths and focused/partition/authority evidence are retained. [Final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md).
+
+CG-CONTEXT-01 closes only for fresh TEST_ONLY116, six operations and three existing post-encounter calendars under the unchanged contract and explicit carried-use allocation. The entirely genuine carried-outside-use intersection, work/host limits and all broader pre-Unity obligations remain open. No workstream or UR status is promoted. The full C# goal continues; successor scope/order requires agreement before coding. Unity, storage and Support remain deferred. Earlier candidate and pause notes below are historical.
+
 ## 2026-11-23 — ordinary magical activity116 candidate; final qualification open
 
 CAL-01–05 source/API review07b5b8fe and representation review8bd7afb5 preceded the corresponding implementation. Runtime03e60196 and116-only discovery/capability correctiona713eb77 are pushed to Engine. Candidate02 binds481 current C# input hashes and four separately frozen DLLs; it does not relabel earlier candidate binaries. It preserves genuine Action origin across late outside use and actual transition segments, settles one consumed/open accounting opportunity, and retains source payment, conditions, work, expiry/recharge and old-profile authority.
