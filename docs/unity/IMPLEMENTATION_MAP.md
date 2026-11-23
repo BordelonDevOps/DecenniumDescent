@@ -1,26 +1,20 @@
 # Current C# implementation map and Unity entry checklist
 
-Current acceptance (2026-11-23): **MGT-02 connected work control is accepted as a bounded C# module.** Actual GPT response `090f7d7d-ea51-5cc9-bfd4-90c5bbfa76dd` and Codex concurrence accept runtime `748c6debc` at evidence candidate `a14994004`. All 16 existing work commands are connected through host/console, with a genuine 244-command gameplay route, five complete paths, 4,256 exact comparisons and 22 original-profile continuations. Raw regression remains 1,600 PASS / 1 retained I/O FAIL with actual exits 0/0/1/0; the explicitly reviewed same-binary recheck supplies a separate reconciliation of 1,601 unique passing cases. [Final acceptance](evidence/2026-11-23-mgt02-connected-work-control/FINAL_ACCEPTANCE.md). Three genuine-host pending-check producers and the recorded I/O/representation limits remain visible. No whole workstream, readiness gate or engine completion is claimed. The full C# goal remains active; agree the successor scope and dependency order before implementation. Unity, storage cleanup and Support remain deferred. Earlier entries below are historical.
+As of **2026-11-23**, the full reusable C# engine goal is active. **Connected work control is accepted as a bounded module; the engine is not ready for Unity gameplay integration.**
 
-Current qualification checkpoint: all four original workers have completed 1,601 cases with actual exits **0/0/1/0**. The raw result is **1,600 PASS and one retained I/O FAIL**. GPT response `2697d400-e3e5-5f97-b26b-097159e1e35c` and Codex concurrence permit only that exact successful same-DLL recheck in a separate 1,601-case qualification reconciliation. Final-build five paths, all 16 host/console commands and all 22 authentic profile continuations pass. [Final candidate](evidence/2026-11-23-mgt02-connected-work-control/FINAL_REVIEW_CANDIDATE.json), [criterion matrix](evidence/2026-11-23-mgt02-connected-work-control/ACCEPTANCE_EVIDENCE_MATRIX.md). Actual final module review and acceptance remain open.
+**Last accepted module:** MGT-02-CONNECTED-WORK-CONTROL, runtime `748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb`, evidence candidate `a14994004df392b37b011b6eb794724705e370e2`. Actual GPT response `090f7d7d-ea51-5cc9-bfd4-90c5bbfa76dd` and Codex concurrence accept WC-A1–A10 within the unchanged contract and recorded allocations. [Final acceptance](evidence/2026-11-23-mgt02-connected-work-control/FINAL_ACCEPTANCE.md).
 
-Current module (2026-11-23): **MGT-02 connected work control is accepted for implementation.** Actual GPT response `0918e51d-0813-51e4-abd8-111b4c240ec3` and Codex concurrence accept the exact definition/WC-01–05 contract at82fa9554d, including wire116 reuse and the explicit WC-PENDING-01 allocation. [Accepted contract and review](evidence/2026-11-23-mgt02-connected-work-control/README.md). Implement the four existing work families through session/console/query/discovery/observations; preserve native rules and supported saves. WC-A1 is met; WC-A2–A10 and actual final runtime review remain open. Genuine host AwaitingCheck reachability for mining/research/manufacturing remains required for broader completion. OMA116 and all prior acceptances remain intact. The full C# goal is active; Unity, storage cleanup and Support remain deferred. Earlier entries below are historical.
+The fresh TEST_ONLY composition exposes all 16 existing filling, mining, recipe-4 research and manufacturing commands through the shared host and console. Query, ordered discovery and immutable work observations use native rules. A genuine 244-command route connects exploration, encounter, acquisition, work, useful output consumption, combat closure, filling, preparation and continuation. Mining has no cancellation command.
 
-As of **2026-11-23**, the full C# engine goal is active. **Ordinary magical activity116 is accepted as a bounded C# module. Unity gameplay integration remains deferred.**
+**Accepted qualification:** C#9 warnings-as-errors and static checks; five complete paths at 28 checkpoints with 4,256 exact comparisons; 22 authentic original-policy profile continuations. The raw regression remains **1,600 PASS / 1 retained I/O FAIL**, with actual worker exits **0/0/1/0**. The exact reviewed same-binary recheck supplies a separate reconciliation of **1,601 unique passing cases**. The I/O cause is unresolved; no persistence fix or crash-safety claim follows. [Evidence and criterion matrix](evidence/2026-11-23-mgt02-connected-work-control/ACCEPTANCE_EVIDENCE_MATRIX.md).
 
-**Last accepted module:** Ordinary magical activity116, Candidate02 implementation03e60196/correctiona713eb77, evidence `caf552afa606a460fc2cd5c560c8f2c6628d053a`. Actual GPT response8fa0906a and Codex concurrence accept all OMA-01–10 criteria within the recorded scope. [Final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md). Consecration115, TAC-10 and all prior exact acceptances remain intact. TAC-01, CHR-05 and the broader workstreams remain partial.
+**Remaining work-control limits:** the three genuine-host AwaitingCheck producers remain required for broader completion; four due-check fixtures remain MODEL_ONLY. General rosters, routing, reassignment, additional sites and global/multi-day scheduling remain open. Same-wire representation and mechanical-capacity evidence retain their documented limits. [Named gaps and exclusions](evidence/2026-11-23-mgt02-connected-work-control/UNRESOLVED_CAPABILITIES.json).
 
-**Accepted module:** TAC-01-ORDINARY-MAGICAL-ACTIVITY, primary TAC-01 with TAC-02/TAC-08/CHR-05 consumers. The approved operational order is geometry113 → Ferry114 → Consecration115 → ordinary magical activity116. CAL-01–05 are closed by actual GPT response `07b5b8fe-e82f-5d53-b4ed-42087afbd942` and Codex concurrence, before implementation. Representation amendments are separately accepted. [Contract and review packet](evidence/2026-11-23-tac01-ordinary-magic/README.md).
+**Prior acceptances remain intact:** declared geometry113 → Ferry-Wraith114 → Consecration115 → ordinary magical activity116 → connected work control. OMA-CARRY-ALLOCATION-01 still requires the entirely genuine carried-before-first-new-owner-Start outside-use intersection for broader completion. [OMA acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md), [exact carried-use allocation](evidence/2026-11-23-tac01-ordinary-magic/CARRIED_OUTSIDE_USE_ALLOCATION.json). These are operational predecessors; the formal dependency graph is unchanged.
 
-The pushed implementation (`03e60196`, corrected by `a713eb77`) permits lawful late outside magical Actions in the three existing admitted calendars, preserves genuine allowance origin and one accounting opportunity, and keeps tactical ownership and source restrictions. It does not change supported predecessor profiles. The correction fixes116 discovery and capability reporting; payment, calendar and persistence code are unchanged from the first candidate.
+**Current development gate:** select the next module with actual GPT/Codex agreement on source/API scope, acceptance criteria and approved dependency order. No successor is selected or started by this acceptance. The detailed rows below retain partial workstream status and now include the accepted work-control contribution to MGT-02 and INT-05.
 
-**Accepted evidence:** Full1,592/1,592 regression on frozen candidate02, all1,587 predecessors plus five new cases, four observed exit0 results; C#9 warnings-as-errors; required static package checks; genuine connected exploration/combat/acquisition/funding/preparation/continued play; all six affected consumers; five complete440-command paths with1,872 exact comparisons at18 checkpoints; whole versus partitioned24-second/eight-hour state/RNG/event comparison; actual permissions/capacity/pending controls; checksummed causal save rejection and backup continuation;18exact boundary cases, genuine productive-work accounting and21authentic save-format continuations. Actual source, binary and execution identities remain separate.
-
-**Current development gate:** implement and qualify MGT-02-CONNECTED-WORK-CONTROL after actual GPT contract acceptance0918e51d and Codex concurrence. WC-A2–A10 remain open; actual final review is required before another successor. [Actual final verdict and Codex concurrence](evidence/2026-11-23-tac01-ordinary-magic/GPT_FINAL_ACCEPTANCE.json). The completed [review candidate](evidence/2026-11-23-tac01-ordinary-magic/FINAL_REVIEW_CANDIDATE.md) preserves exact source, binary, scenario and regression identities; all broader exclusions below remain open.
-
-GPT allocation **OMA-CARRY-ALLOCATION-01** permits only a bounded detached closure/context test combined with genuine carried-parent and settlement histories. Its six producer paths execute on unchanged real rules; normal campaign validation rejects the hypothetical copies. **A completely genuine outside-use route before the first new owner Start remains required for broader engine completion.** [Exact allocation](evidence/2026-11-23-tac01-ordinary-magic/CARRIED_OUTSIDE_USE_ALLOCATION.json).
-
-**What remains before Unity:** all mandatory capability, identity and interaction gaps across the unchanged49 workstreams/120 dependency edges/100 obligations; measured performance through10,000 receipts; supported persistence/API/source authority and final whole-engine review. These are not equal-sized modules or a completion percentage. [Pre-Unity completion contract](PRE_UNITY_COMPLETION_CONTRACT.md). No UR gate is promoted by this bounded acceptance.
+**What remains before Unity:** all mandatory capability, identity and interaction gaps across 49 workstreams, 120 dependency edges and 100 obligations; the agreed operating envelope, including measurement through 10,000 receipts; supported persistence/API/source authority and final whole-engine review. These are not equal-sized tasks or a completion percentage. [Pre-Unity completion contract](PRE_UNITY_COMPLETION_CONTRACT.md). No UR gate is promoted here. Unity, storage cleanup and GitHub Support remain deferred.
 
 ## Read this map
 
@@ -730,9 +724,9 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **PARTIAL** · Dependencies: TAC-01, CHR-02, MGT-01.
 
-**Implemented / accepted scope:** Exclusive work bookings, site-aware assignments and compatible offscreen labor support connected crop, mining, repair and research jobs.
+**Implemented / accepted scope:** Exclusive work bookings, site-aware assignments and compatible offscreen labor support connected crop, mining, repair and research jobs. Accepted connected work control adds native filling, mining, recipe4 research and manufacturing to the shared host/console, with16 commands, query/discovery, immutable work observations, native pause/resume/cancel distinctions and a genuine connected useful-output route.
 
-**Remaining:** General recruitment/rosters, autonomous routing, started-work reassignment, multiple sites and global/multi-day scheduling remain. Registering a worker does not grant skill, equipment or access.
+**Remaining:** General recruitment/rosters, autonomous routing, started-work reassignment, multiple sites and global/multi-day scheduling remain. Registering a worker does not grant skill, equipment or access. Genuine host AwaitingCheck producers for mining, research and manufacturing remain unproved under WC-PENDING-01.
 
 **Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
@@ -740,7 +734,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Concrete completion criteria:** [MGT-02-C1, MGT-02-C2](PRE_UNITY_COMPLETION_CONTRACT.md#mgt-02).
 
-**Evidence:** [2026-11-06-connected-expedition-mining/README.md](evidence/2026-11-06-connected-expedition-mining/README.md) · [2026-11-08-expedition-tool-repair/README.md](evidence/2026-11-08-expedition-tool-repair/README.md) · [2026-11-08-expedition-worker-site-bindings/README.md](evidence/2026-11-08-expedition-worker-site-bindings/README.md)
+**Evidence:** [2026-11-06-connected-expedition-mining/README.md](evidence/2026-11-06-connected-expedition-mining/README.md) · [2026-11-08-expedition-tool-repair/README.md](evidence/2026-11-08-expedition-tool-repair/README.md) · [2026-11-08-expedition-worker-site-bindings/README.md](evidence/2026-11-08-expedition-worker-site-bindings/README.md) · [Connected work-control acceptance](evidence/2026-11-23-mgt02-connected-work-control/FINAL_ACCEPTANCE.json)
 
 #### MGT-03 — Supply, food/water, camps, rest and pressure
 
@@ -940,9 +934,9 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **MIXED_CSHARP_AND_LATER_UNITY** · Dependencies: FND-05, INT-03.
 
-**Implemented / accepted scope:** The pure pending recipe4 quality explanation and existing public command/query/filtered-view boundaries are accepted C# behavior.
+**Implemented / accepted scope:** The pure pending recipe4 quality explanation and existing public command/query/filtered-view boundaries are accepted C# behavior. Connected work control additionally qualifies all16 named work command kinds through authorized host/console queries, ordered discovery and immutable observations for the four existing work families.
 
-**Remaining:** Complete necessary C# explanation/query contracts for admitted procedures. Unity views/input/accessibility/audio/art, Editor import/tests and player builds remain a later phase; no presentation rules fork.
+**Remaining:** Complete necessary C# explanation/query contracts for all admitted procedures; the four-family work-control acceptance closes only its named slice. Unity views/input/accessibility/audio/art, Editor import/tests and player builds remain a later phase; no presentation rules fork.
 
 **Gap types:** CAPABILITY, LATER_UNITY. Implementation requires the agreed module gate.
 
@@ -950,7 +944,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Concrete completion criteria:** [INT-05-C1, INT-05-C2](PRE_UNITY_COMPLETION_CONTRACT.md#int-05).
 
-**Evidence:** [2026-11-13-int05-quality-explanation/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int05-quality-explanation/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md)
+**Evidence:** [2026-11-13-int05-quality-explanation/GPT_FINAL_REVIEW.md](evidence/2026-11-13-int05-quality-explanation/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md) · [Connected work-control acceptance](evidence/2026-11-23-mgt02-connected-work-control/FINAL_ACCEPTANCE.json)
 
 ## Later Unity and product work
 
