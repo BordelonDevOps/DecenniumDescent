@@ -1,0 +1,719 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/audit_management",
+  "status": "INDEPENDENT_READ_ONLY_SOURCE_AUDIT_NOT_RUNTIME_OR_FULL_CONTRACT_ACCEPTANCE",
+  "baseline": "6e70f4491b967fa71917544a606f7e2985664818",
+  "sourceRevision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+  "scope": [
+    "StartHavenAppraisal",
+    "StartHavenSale",
+    "PurchaseHavenMeal",
+    "StartExpeditionBill",
+    "CloseExpeditionEpisode",
+    "StartNextCharterPlan",
+    "AcceptNextCharter",
+    "StartCharterAttempt",
+    "ObserveCharterApproach"
+  ],
+  "commonHostBoundary": "Player seat only; all24 factories inherit selected base services. Native actor must match operation. X=Y=0, no ancillary payload; keep host ExposedPayload and original native payload order. No new pause/resume/finalize/withdraw/abort/inspect command kind becomes exposed.",
+  "operations": [
+    {
+      "kind": "StartHavenAppraisal",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "orderedAdmission": [
+        "153-161 selected profile/schema -> Companion worker -> empty payload",
+        "162-170 desk target -> no open service -> no completed report -> <8 history -> independent clearance/evidence/terms -> actual whole intact extracted iron and extraction history/current owner/custodian/Ground desk placement -> unreserved whole amount",
+        "180-191 actual desk/instruments/station restriction/finite appointment -> ordinary resolved context/pending choice -> capability/sight/hand -> stationary desk -> off-calendar Action -> incompatible worker/assignment/intake/future labor"
+      ],
+      "firstMutation": "BookAppraisal207 via Resolve232 reserves whole subject and active labor; record appended232, activity commitment233.",
+      "domain": "Companion; exact DeskId, same whole one-pound iron UnitA with10cp original base. 1800 active seconds; current appointment can cap booking; no roll or material consumption.",
+      "resultFacts": [
+        "HavenAppraisalRecords75-107: StartRevision joins real initiating receipt; immutable Basis40-72; StartedAt; current Work/Status/Reason/UpdatedRevision/UpdatedAt; nullable ResultCopper only at completion.",
+        "Exact completed result15/2cp is known valuation, not realized receipt. Current record replaces intermediate progress/status; do not fabricate each historical snapshot."
+      ],
+      "source": [
+        "PlayerBook FL19 lines379/387-389; FL20 lines398/404-427; accepted source/API packet haven-appraisal15-19, responsea0592e88-16ee-40b8-9a1f-b45a33b2c09e"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases217, QualityWalkthrough; native genuine case HavenAppraisalCases77 mgt10_haven_appraisal_connected_whole_iron_fractional_pause_restore_replay"
+      ],
+      "limits": [
+        "Uncertain appraisal/artifacts, other lots/general service authority not admitted. Native job controls exist but are omitted from connected host."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact desk/seller/stock",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedHavenAppraisal153-191: Companion, exact desk and actual whole iron extraction/title/ground placement; no arbitrary seller/lot.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough217 starts after actual extraction/retrieval/desk placement210-216; HavenAppraisalCases83 rejects pre-desk whole subject."
+        },
+        {
+          "axis": "actual appraisal completion/knowledge",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedHavenAppraisal225-242 then credit/finalize267-283;1800 active seconds, no RNG; ResultCopper15/2 retained only at completed job.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough217-219 includes start then actual1800sec clock; HavenAppraisalCases77 independently covers pause/restore/replay. No instant valuation-as-payment."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "StartHavenSale",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "orderedAdmission": [
+        "287-308 selected profile/schema -> exact seller (Companion) -> empty payload -> offer -> not already paid -> no open agreement -> <8 history",
+        "320-333 current half-open offer -> full1800sec endpoint strictly before expiry -> independent buyer consent/disposition/exemption/tender acceptance -> completed matching appraisal and intact extracted iron/tender title+custody+whole amount+portable links -> exact basis -> both lots fully available -> actual counter -> both stationary capable sight/hand participants -> incompatible labor/off-calendar Action -> projected bilateral capacity"
+      ],
+      "firstMutation": "BookHavenSale348 reserves two lots and two worker intervals via Resolve384; activity commitments349; record385. Start does not transfer title/payment.",
+      "domain": "Companion at(2,3), separately actor-backed buyer at(3,3); exact OfferVersionId. Independent7/3cp quote,2cp final sale receipt.1800 simultaneous active seconds for both.",
+      "resultFacts": [
+        "HavenSaleRecords67-112: StartRevision receipt join; immutable Basis8-64 binds parties, appraisal, goods/tender quantities, quote, mandate, exemption and validity; current labor/status/reason/update; PaymentCopper null until paid.",
+        "Paid settlement replaces current record at payment revision. The start receipt is not a payment receipt; retain later resolving clock/operation and terminal payment link. Do not expose unrelated buyer inventory or synthesize intermediate balances."
+      ],
+      "source": [
+        "PlayerBook FL19 line381; FL21 lines434-438; FL22 lines457-469; approved haven-sale SOURCE_API_REVIEW42-44 responsebf8ac7cb-33d6-477a-9a78-77b2873fd1a8"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases223 public route; ConnectedWorkControlCases86 mgt02_work_control_existing_haven_transaction_query_grant; native HavenSaleCases70 mgt10_haven_sale_connected_joint_work_pause_restore_pay_and_continue"
+      ],
+      "limits": [
+        "Actual Submit selects narrow HavenTransactionGrant for this Companion/exact offer on all profiles after initial seat/kind gates; SeatCommandGrant mirrors it for legacy query/discovery only WorkControlSelected. Preserve this asymmetry for legacy while V1 needs correct narrow authority.",
+        "AssessHavenSale333 calls PrepareSaleDelivery245-251: deterministic detached transfer/synchronization/capacity projection, not resolver/RNG. Explicitly audit transitive helpers/alias freedom rather than assuming pure by method name.",
+        "Host omits pause/resume/finalize/cancel; no general sale/fee/tax/payment authority."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact offer/Companion transaction grant",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "ConnectedExpeditionSession244-247 selects narrow seller+buyer inventory grant; only Companion/exact offer. Legacy helper378-381 onlyWorkControl.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough223 real submission; ConnectedWorkControlCases86/90-107 actual query/discovery+submission and revoked-seat denial."
+        },
+        {
+          "axis": "actual sale inventory/price/payment and custody",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedHavenSale287-333 exact parties/assets/quote/expiry/bilateral capacity; Book384 preserves both lots until actual settlement367-372.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough223-225 actual1800sec paired work/payment; HavenSaleCases70 restore/continuation validates custody/payment2cp from7/3cp once. Appraisal15/2 remains separate."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "orderedAdmission": [
+        "170-181 selected profile/schema -> Companion customer -> exact offer -> empty payload -> no prior purchase",
+        "182-195 one-second end strictly inside offer and freshness -> vendor mandate/title/spending/tender terms -> exact prior paid sale and genuine whole tender+meal stock/portable links -> fully unreserved amounts -> usable surface -> counter/participants -> paired labor/off-calendar -> conservative condition/dying/mining/remedy deadline fence -> projected bilateral capacity"
+      ],
+      "firstMutation": "Work.Reserve203, AdvanceTo204, then actual endpoint206-214 revalidates clock/terms/counter/labor/surface/assets/delivery before215-218 atomic title/custody/purchase installation.",
+      "domain": "Companion exact OfferVersionId; two actual received coins for2/3lb original cooked serving;1 shared second both participants. Purchase does not consume food; explicit later intake600sec.",
+      "resultFacts": [
+        "HavenMealPurchaseRecords57-85 immutable Id/Offer/PriorSaleId/PriorPaymentRevision/Revision/StartedAt/EndedAt/PaymentCopper; causal predecessor payment and exact quote retained.",
+        "Current stock/consumed amount belongs current inventory/intake, not original purchase amount. Later portion descendants preserve root/freshness. No synthetic HP/support or buyer balances."
+      ],
+      "source": [
+        "PlayerBook FL05, FL21 lines434-438, FL22 written exemption scope469, FL24; approved haven-meal SOURCE_API_REVIEW31-35 responsec2a91bfc-e473-437f-9680-bca18427a607"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases227 public route; native HavenMealCases47 mgt10_haven_meal_connected_sale_purchase_intake_restore_and_continue and239 actual unrelated intake/fence case"
+      ],
+      "limits": [
+        "Existing SharedWorldRangedCombat403 runs ResolveHavenMealPurchase(s.Copy()) for Query. New pure route must extract admission through195 and stop before203; must not reserve or AdvanceTo even on copy. Preserve execution-only endpoint checks and legacy meaning separately.",
+        "Same narrow transaction grant issue as sale. No new general purchase, change-making, takeaway or packing."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact offer/Companion transaction grant",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "ConnectedExpeditionSession244-247 exact Companion/meal offer narrow inventory grant; SharedHavenMeal173-195 independent vendor/spending/current stock.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough227 actual funded public purchase after prior sale; HavenMealCases120 independent vendor authority/paid tender controls are separate native-profile evidence."
+        },
+        {
+          "axis": "whole tender/one-use serving and native consumption",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedHavenMeal181 one purchase;203-218 one-second actual bilateral delivery;234-260 serving lineage/ready counter/no takeaway; StartIntake separately consumes600sec for2/3lb.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough227 purchase then portion/drop/retrieve/partial and completed intake234-256; HavenMealCases47/150 validate genuine partial consumption/root descendants. No duplicate purchase/refill."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "orderedAdmission": [
+        "158-175 selected profile/schema -> episode not closed -> Companion representative -> empty payload -> exact BillVersion -> no open job -> no prior report -> <8 attempts",
+        "186-197 full1800sec finish strictly inside authorization -> exact charter authority/complete coverage/no superior claim -> real paid sale+meal/appraisal+disposition chain and frozen receipt basis -> desk/station -> ordinary context -> capable/sight/hand/stationary worker -> off-calendar Action -> incompatible labor"
+      ],
+      "firstMutation": "Resolve242 appends job; BookExpeditionBill211 reserves worker interval and212 commits activity labor. No resource reservation/payment.",
+      "domain": "Companion exact bill,1800 active seconds, self/net/0% agreed charter and complete scoped calculation; no RNG.",
+      "resultFacts": [
+        "ExpeditionBillRecords87-158 freezes sale/meal payment revisions, appraisal and authority, cutoff time/revision. Gross2, tax0, mandatory0, sponsor base2/share0, NetExpedition2; discretionary meal2/accounted cash change0 are separate. TrueProfitAfterReserves null.",
+        "175-221 current job/status/labor/update and report160-173 tender owner+count observed at report time. Historical report observation does not change with later physical custody."
+      ],
+      "source": [
+        "PlayerBook FL19 line382; FL21 lines438-452; FL26 lines614-616; approved expedition-bill SOURCE_API_REVIEW33-38 responsecf5e8e2f-0b63-4f80-80bf-8c1a2a953090"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases257 public route; ExpeditionBillCases49 mgt10_expedition_bill_connected_reconciled_replay_and_continue"
+      ],
+      "limits": [
+        "Native controls not host-exposed. Reconciliation grants no payment, discharge, reward, rest or close. No blanket zero for wider costs/profit."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact bill and actual prior contributions/results",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedExpeditionBill162-197 and Inputs113-140 bind real paid sale/meal/appraisal; job has separate labor and report-time tender observation224-230.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough257-259 actual bill+1800sec; ExpeditionBillCases49 checks Gross/Net2, meal2, cashchange0 and current vendor title; profitafterreserves remains unknown."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "orderedAdmission": [
+        "60-76 selected profile/schema -> Hero+independent close mandate -> evidence -> empty payload -> exact episode and charter BindingKey -> not already closed",
+        "77-95 non-tactical/no pending -> original actual resolved world.fixed-conflict and successful EndFixedEncounter receipt since encounter start -> same episode reconciled bill and valid paid inputs -> bill start after exit -> acting aware nonincapacitated leader -> no unprocessed condition deadline -> all actual member records -> no unresolved member traversal",
+        "97-116 actual complete meal intake lineage -> successful/critical-success extraction closed before sale -> UnitA extracted and UnitB forfeited/no available unit -> no scoped open procedures/future work/remaining claims -> declared coverage not contradicted"
+      ],
+      "firstMutation": "Resolve136 assigns the assessed immutable close record. Constructors/capture in Assess118-129 only build detached values; no elapsed time or resource change.",
+      "domain": "Hero exact EpisodeId, unique zero-time close of existing authored episode. No new encounter, episode reset or advancement.",
+      "resultFacts": [
+        "ExpeditionEpisodeCloseRecords139-213 has exact CommandId, SourceRevision/CloseRevision, ClosedAt, bill/exit/mining/intake references, actual captured members/conditions/stock/equipment/vessels and explicit coverage states.",
+        "Outcome112-137: Net2 vs target3 unmet; gross2 vs2 met; profit target1 remains null. Captured closing facts are genuinely retained historic facts, not current values. Hostile private life/attributes are not generally disclosed by this record."
+      ],
+      "source": [
+        "PlayerBook FL26 lines614-616 and FL21; approved episode-close SOURCE_API_REVIEW44-50 response4ce97c92-f7cb-4596-88f1-7a719476ad83"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases260 public route; ExpeditionEpisodeCloseCases39 mgt10_episode_close_connected_actual_state_zero_time_and_replay; intake lineage variants199/208/219"
+      ],
+      "limits": [
+        "Do not equate scoped KnownNone/NotApplicable/Unresolved with zero. General Pressure/standing/liability/reward remains outside selected claim."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact episode and native settlement readiness",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedExpeditionEpisodeClose60-116 requires exact episode/leader mandate/resolved encounter exit/reconciled bill/complete meal lineage/terminal mining/no open commitments;136 assigns zero-time captured state.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough260 close after real bill/intake; ExpeditionEpisodeCloseCases39 checks actual state and zero-time/replay;199/208/219 isolate legitimate split-intake lineage."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "orderedAdmission": [
+        "163-186 selected profile/schema -> Hero planner -> empty payload -> exact VersionId -> no open slot -> no previous completed report -> <8 attempts",
+        "95-113/198 independent planning mandate/evidence -> distinct water roots/vessels -> exact prior close -> actual passage-witness member -> bound prior basis if any -> real completed prior walk crossing at/before close.SourceRevision",
+        "200-211 full3600sec endpoint strictly inside authority -> actual desk/permission/writing/station -> ordinary resolved context -> capable sight/hand and stationary planner at stage -> off-calendar Action -> incompatible labor -> current physical observation"
+      ],
+      "firstMutation": "Resolve246 appends job; BookNextCharterPlan218 reserves worker interval,220 commits activity. No supplies committed.",
+      "domain": "Hero exact planning definition;3600 active seconds; one5ft local out-and-back proposal;2lb intended+2lb reserve food and4pints in each distinct source. Inadequate readiness can be reported conditionally, not necessarily deny planning.",
+      "resultFacts": [
+        "NextCharterPlanRecords228-281: terms, prior close revision, actual passage revision, start/update/time/work/status/reason; Report167-225 immutable physical/resources observation at completion. Report revision differs from later current reassessment.",
+        "Pressure/Strain/RestDebt nullable/unrepresented, WiderObligations/HazardSafety/Accepted/Departure false for planning meaning; do not promote these to known zero/safe or rewrite historical report after preparing resources."
+      ],
+      "source": [
+        "PlayerBook FL19 line385 and FL26 line616; approved next-charter-plan SOURCE_API_REVIEW31-33 responses1c635281-e93e-4632-bc45-2a742988af1d and7fae50be-ab8d-4aef-a186-63af2e7e02fb"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases274 public route; ConnectedExpeditionSessionCases129 int03_verified_charter_passage_ownership_and_cutoff; NextCharterPlanCases75 genuine model and338 selected carried-reserve source control"
+      ],
+      "limits": [
+        "Critical impurity: NextCharterPlanBasisFailure109-112 falls back to FindPlanningPassage116-126 Initial+ReplayReceipt when absent/uncovered proof; no new read may use this fallback. Owning checkpoint proof design is parent work, not supplied/accepted here.",
+        "24 factories use reserveWaterStartsCarried:true; original model cached-reserve case is separate profile control. Native plan controls/inspection not host-exposed."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact plan and current resource/readiness assessment",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedNextCharterPlan163-211 checks exact terms+historic crossing proof+desk/labor; ObserveNextCharterPlan318-344 separately records current access/occupancy/carriage/ready food+water; planning may complete conditionally with deficits.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough274-276 starts/works3600sec then real preparation changes readiness277-287; ConnectedExpeditionSessionCases129 proofownership/cutoff; NextCharterPlanCases338 real carried-reserve variant. New pure owning proof still required."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "orderedAdmission": [
+        "145-174 selected profile/schema -> Hero participant -> empty payload -> exact offer -> no existing agreement -> independent assent/records/resource-use mandate -> exact grantor/permission evidence/scope/window -> no conflicting restriction",
+        "175-186 current half-open offer -> exact prior close -> completed matching plan+close -> fresh observation -> stable boundary (combat/pending/manufacturing choice) -> actual carry capacity -> acting aware participant -> stationary stage -> no inventory work -> no contrary approach access -> walkable/unoccupied/unreserved/no tactical transition -> ready amounts on all cumulative supply lines"
+      ],
+      "firstMutation": "Resolve199-200 assigns agreement with current observation and exact command/revision; zero clock/resource mutation.",
+      "domain": "Hero exact OfferId; nonexclusive designation of own4lb food +4pints each distinct vessel,0 cash. Finite conditional agreement; no exclusive stock claim.",
+      "resultFacts": [
+        "NextCharterAgreementRecords142-189 immutable terms/plan-report/prior-close/CommandId/AcceptedRevision+At/Observation and separate optional Withdrawal; status derives from current clock.",
+        "Retained accepted observation remains historical. Current assessment192-214 uses current observation and blocker independently; accepting cannot report departure executed."
+      ],
+      "source": [
+        "PlayerBook FL26 line616, FL02/04/05/08/10/21/22; approved next-charter-acceptance SOURCE_API_REVIEW33-35 responseb2811e1d-8518-4253-be9e-b591feba6d8b"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases289 public route; NextCharterAgreementCases62 mgt10_charter_assent_connected_zero_time_explicit_solo_agreement_and_replay"
+      ],
+      "limits": [
+        "Withdraw/Inspect exist natively, not these host commands. No new risk clearance, paid access, stock lock, refill or departure authority."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact offer and actual bill/plan agreement",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedNextCharterAgreement171-186 exactoffer/independentpermission/priorclose/completed matchingplan/current ready resources;199 records assent with fixed observation.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough289 actual acceptance after preparing food/water/occupancy; NextCharterAgreementCases62 checks zero-time/nonexclusive resources and replay. Departure not implied."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "orderedAdmission": [
+        "188-203 selected profile/schema -> Hero -> empty payload -> actual accepted agreement -> exact charter -> no existing attempt",
+        "143-164 accepted agreement still in force -> departure mandate/egress terms -> controlled local-site scope/no actual route/camp/pressure contradiction -> independent assent authority -> established current fatigue history/debt resolved/strain<=6 -> fresh physical observation -> stable/no tactical/pending -> carrying -> capable -> stationary stage -> no inventory busy -> access -> walkability/occupancy/reservations -> actual direct sight -> ready support"
+      ],
+      "firstMutation": "Resolve270 assigns new record with Admitted event command/revision/time and actual readiness. No movement/time/stock consumption.",
+      "domain": "Hero exact accepted CharterId; one zero-time local excursion admission; actual later BeginWorldStep must recheck departure and pay movement.",
+      "resultFacts": [
+        "CharterAttemptRecords161-245 binds agreement/plan/close, actual authority, Admission/Departure separately, moving times, ordered Events117-135 carrying command/revision/time/reason and separate Observation.",
+        "Record retains event provenance, unlike overwritten work-progress records. Current Outcome derived from events; do not attribute later outbound/observe/return events to admission."
+      ],
+      "source": [
+        "PlayerBook FL26 line616; scoped FL08/10; charter-execution SOURCE_API_REVIEW37-39 responsee8f621dc-4071-4548-b2a5-873918639aca; final acceptedc2cb62b9-c60a-45c0-ab33-08ca6e62827d"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases295 public route; CharterAttemptCases54 mgt10_charter_execution_connected_actual_steps_and_fractional_replay"
+      ],
+      "limits": [
+        "Controlled local site is not new general descent/route Pressure exemption. CurrentFatigueHistoryEstablished and finite FatigueUntil must remain source-qualified; no inferred rest/recovery."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "exact accepted charter and departure readiness",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "SharedCharterAttempt199-203 exactactual agreement;143-164 fresh in-force authority/fatigue/stationarycapacity/directsight/ready support;270 records admission only.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough295 admission,297 subsequent real outbound movement; CharterAttemptCases54 differentiates prior ordinary steps from admitted actual departure and saved fractional travel."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "nativePath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "orderedAdmission": [
+        "188-198 selected profile/schema -> Hero -> empty payload",
+        "205-229 exact existing attempt -> objective open -> not already observed -> actual outbound arrived/no return begun/stationary approach -> complete fresh objective readiness143-164 with requireStaging:false"
+      ],
+      "firstMutation": "Resolve278 ContinueCharterAttempt may append Continued event258, then283-284 appends Observed event+detached direct observation. Both events may share causing command revision; preserve actual order.",
+      "domain": "Target actual state.CharterAttempt.Id (host KnownTarget796-797). Zero-time direct surface observation at bound arrival, not arbitrary coordinates or a Search check.",
+      "resultFacts": [
+        "CharterAttemptRecord.Observed event carries exact command/revision/time; CharterApproachObservation137-158 stores only actual bound coordinates, stage/approach walkability, permission version and DirectVisibleSurface method.",
+        "HiddenConditionsEstablished and FuturePassageEstablished remain false. Return/completion depends later actual movement; current blockers/position remain separate."
+      ],
+      "source": [
+        "Same charter-execution contract37-39 and FL26; actual direct-visible surface scope explicitly bounded"
+      ],
+      "witness": [
+        "ConnectedExpeditionQualityCases299 public route; CharterAttemptCases54 full route and193 mgt10_charter_execution_actual_condition_interruption_and_direct_observation"
+      ],
+      "limits": [
+        "No generic search, hazard revelation, map/Progress/XP or new material. Inspect/Abort native commands remain outside connected admission."
+      ],
+      "semanticBranchDisposition": [
+        {
+          "axis": "actual attempt identity and approach state",
+          "disposition": "SOURCE_BOUND_EXISTING_ADMISSION_AND_REAL_PUBLIC_ROUTE_IDENTIFIED; V1_EXECUTION_NOT_RUN",
+          "nativeGuardsAndDomain": "ConnectedExpeditionSession796-797 exactcurrentattemptId; SharedCharterAttempt205-229 noobserved/realoutboundarrived/no return/stationaryapproach+freshreadiness;278/283 may append Continued then Observed.",
+          "result": "Retained facts and exact causal receipt/event bindings are enumerated in this operation resultFacts; V1 field DTO/privacy acceptance remains open.",
+          "witness": "QualityWalkthrough299 actual arrived observation; CharterAttemptCases54 denies prearrival/repeat;193 source-specific sight interruption. Observation stores direct surfaces only; later return supplies completion."
+        }
+      ],
+      "pendingChoice": "No distinct pending response choice created by this kind; work completion/command continuation remain separate actual operations."
+    }
+  ],
+  "resultDisclosure": [
+    "Existing connected View work projection is limited: ConnectedExpeditionView702-709 controls Worker/Seller/Hero and exposes work id/type/status/remaining; Sale paid total591 only player-owned seller. This is not blanket access to every retained record.",
+    "Proposed richer results must use fresh current seat/principal and an authorized native result/observation predicate; owning a historic command or controls(actor) alone does not authorize private buyer inventory, hidden hazard/occupancy explanation or other actors private facts.",
+    "Join StartRevision/UpdatedRevision/event Revision to actual retained command receipts without replay. Records with current overwritten status/labor do not retain every historical outcome; report retained causal facts versus current continuation separately. Original no-receipt rejection detail requires actual-attempt capture.",
+    "All nine public host operations have an existing genuine QualityWalkthrough command chain, called through actual ConnectedExpeditionSession.Start+Submit/SubmitSessionCommand in ReachQualityChoice157-177. This is a source-inspected witness allocation, not newly run V1 proof. Model-only variant/altered-profile controls must not be claimed as supported-factory public routes."
+  ],
+  "purity": [
+    "Existing Query purchase403 resolves one second on copy; mandatory extraction.",
+    "First planning query388 reaches history replay without owning proof; mandatory approved architecture integration.",
+    "Appraisal/bill/close/agreement/attempt native Assess methods do not themselves reserve/draw/advance; transitive helper audit and forbidden-call instrumentation remain required.",
+    "Sale and meal assess projected delivery by copying state then deterministic title/link transformation and carrying check. No command/clock/RNG in those helpers observed, but alias/callgraph proof must be explicit; use immutable projected inventory facts if necessary."
+  ],
+  "evidenceLimits": [
+    "No C# source edits, build, tests or gameplay execution performed.",
+    "Exact 9-kind review only; not all78 operations,204 axes,24-factory payload equivalence or full schema compatibility.",
+    "No new permission to implement; full source/API gate remains open.",
+    "No newgenuine positive gap found for these9 start/observe operations because QualityWalkthrough includes all9. Unsupported native control commands are not added.",
+    "Current records support bounded facts but do not eliminate remaining per-field DTO/privacy/witness review."
+  ],
+  "pins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303,
+      "gitBlob": "ed8658154c8bf82093dcbc9de475ee6640652acf",
+      "gitSha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727,
+      "gitBlob": "2f44cc56db33a3b0557383ce4b513063825592f6",
+      "gitSha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "42cf0f850e6ab67f1c3bc25175a3a676859e941704111c1e281bec40d748021e",
+      "bytes": 71748,
+      "gitBlob": "84797ae07152bf34b40e92aaf9526ca5d60c7b94",
+      "gitSha256": "42cf0f850e6ab67f1c3bc25175a3a676859e941704111c1e281bec40d748021e",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619,
+      "gitBlob": "396e10ebaacba5453028ad1eed5a9750f39ea612",
+      "gitSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "bytes": 19267,
+      "gitBlob": "781278735045d2691099f676eb1c534bc156c469",
+      "gitSha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336,
+      "gitBlob": "a21ab00cab8aeeee1dc97ef51206c3f05e675383",
+      "gitSha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "bytes": 17595,
+      "gitBlob": "8e1450d2c147cb9cab1b41126e73cbe5d36db8f8",
+      "gitSha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "bytes": 21382,
+      "gitBlob": "c0129bd323f5b8aefa76e36fc650443225f3c57a",
+      "gitSha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a",
+      "bytes": 16911,
+      "gitBlob": "0ee15be2280c7f876e6a67c3cab33447ebd7fdb0",
+      "gitSha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "bytes": 26565,
+      "gitBlob": "0d53a4fa2b5a821d6965825e0e7d635d9143c194",
+      "gitSha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "sha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e",
+      "bytes": 13738,
+      "gitBlob": "e46062ec726966f513f7a8db9dae30ce140ff0cf",
+      "gitSha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "bytes": 27175,
+      "gitBlob": "dd6188cb1f74fab83137e58b4ecce614498df13b",
+      "gitSha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749,
+      "gitBlob": "d88eff3b8f02b5e914d0f04e655ba0acb0ee7ae8",
+      "gitSha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "bytes": 9932,
+      "gitBlob": "fa921989132878c99ad16bec296e21e8d8aee3d2",
+      "gitSha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "sha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "bytes": 11298,
+      "gitBlob": "7fac04a10335ce80e2cddf9636223058c70811ef",
+      "gitSha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenMealPurchaseRecords.cs",
+      "sha256": "a0b749e94ecfb840e2583e925281d2e92bfada286fc9b239e5efaae3a89072cc",
+      "bytes": 7856,
+      "gitBlob": "7835a94cafc934bb86c4b89ce056704e88627a22",
+      "gitSha256": "a0b749e94ecfb840e2583e925281d2e92bfada286fc9b239e5efaae3a89072cc",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "bytes": 19032,
+      "gitBlob": "a5466e1df7d76e0d9ea92b96e40bf4fa9d21972c",
+      "gitSha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "bytes": 16250,
+      "gitBlob": "b87278bab51c32c42283bf56ea5b2108015ebfcc",
+      "gitSha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "bytes": 21112,
+      "gitBlob": "31a6d2f34f1fa537e43630fcb35ad23a8df9af7d",
+      "gitSha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "sha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "bytes": 13973,
+      "gitBlob": "50a46b3d86f551feef4776741cde34b10ae43cc2",
+      "gitSha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "sha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "bytes": 18396,
+      "gitBlob": "26d397bf2272478260e42b38ecad011bdc09529d",
+      "gitSha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionQualityCases.cs",
+      "sha256": "43aa7a98898f3f06c010a284097c81173d60db6b2351fd7c166f9993386dab57",
+      "bytes": 32328,
+      "gitBlob": "19b908c3e41c6f149729aace3d9c8e9fedec8ac5",
+      "gitSha256": "43aa7a98898f3f06c010a284097c81173d60db6b2351fd7c166f9993386dab57",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionSessionCases.cs",
+      "sha256": "b1533b437348f5ae85c3f1f8744a45a7d35f29a0f39c98eba41108adedf55b3f",
+      "bytes": 43017,
+      "gitBlob": "a55c9472cfdbf94d4e8fd592e60608f6ccb0e698",
+      "gitSha256": "b1533b437348f5ae85c3f1f8744a45a7d35f29a0f39c98eba41108adedf55b3f",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedWorkControlCases.cs",
+      "sha256": "9d105967a26720a2f572e7424746ea68dd2db1ad188488867d0e0b8cd479ef0c",
+      "bytes": 32133,
+      "gitBlob": "4c705068bd5ab203242a88bc17d34c3d68d4e173",
+      "gitSha256": "9d105967a26720a2f572e7424746ea68dd2db1ad188488867d0e0b8cd479ef0c",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/HavenAppraisalCases.cs",
+      "sha256": "4c42420e48703b9edae5f1a3413cd05770891dab4897a7df8799d7c0bdeba041",
+      "bytes": 29672,
+      "gitBlob": "b72bc4a3c48c327aac40065e0acaff44bf7eea52",
+      "gitSha256": "4c42420e48703b9edae5f1a3413cd05770891dab4897a7df8799d7c0bdeba041",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/HavenSaleCases.cs",
+      "sha256": "261add33b60417cb63b0e88441e1fa465272fe9be05f5673190b9dc8d0072279",
+      "bytes": 36972,
+      "gitBlob": "832419e89142bd108f32836880004b04f0842a88",
+      "gitSha256": "261add33b60417cb63b0e88441e1fa465272fe9be05f5673190b9dc8d0072279",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/HavenMealCases.cs",
+      "sha256": "3e94274a53f9ca105cc8efdd535215f397183b1a822fa06a4ae40bdc08ed8327",
+      "bytes": 26004,
+      "gitBlob": "6daede7cb188d80677f49031079271654d6f0b6b",
+      "gitSha256": "3e94274a53f9ca105cc8efdd535215f397183b1a822fa06a4ae40bdc08ed8327",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ExpeditionBillCases.cs",
+      "sha256": "922dd60a7a3e5b7d9f6e524a095a8cd1eab4f567063c539e67826ae1a0b074df",
+      "bytes": 31976,
+      "gitBlob": "dcfae8d3c21879195947ee9a96b3a35b5e8ef853",
+      "gitSha256": "922dd60a7a3e5b7d9f6e524a095a8cd1eab4f567063c539e67826ae1a0b074df",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ExpeditionEpisodeCloseCases.cs",
+      "sha256": "6035881fc67a1b9f8374b305eb0eeaca763ff4a10867271aac141e792e5ce82e",
+      "bytes": 35346,
+      "gitBlob": "b60a12f6da7698c33c999d038e952672fecfe71e",
+      "gitSha256": "6035881fc67a1b9f8374b305eb0eeaca763ff4a10867271aac141e792e5ce82e",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/NextCharterPlanCases.cs",
+      "sha256": "d2ead8b37df1182278a359b32a5b15b12231cc6b9cb951453bb10699be0ec181",
+      "bytes": 41453,
+      "gitBlob": "12f20c015360c5a07e534288a1800e039c487b18",
+      "gitSha256": "d2ead8b37df1182278a359b32a5b15b12231cc6b9cb951453bb10699be0ec181",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/NextCharterAgreementCases.cs",
+      "sha256": "3d4c67105fa289feb2eed07175be6e83602234e9ae40f9b2461597dec3033037",
+      "bytes": 33704,
+      "gitBlob": "5d875b565bd3104853ce103c69b18246fd8e96e9",
+      "gitSha256": "3d4c67105fa289feb2eed07175be6e83602234e9ae40f9b2461597dec3033037",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/CharterAttemptCases.cs",
+      "sha256": "c43f8e5072cf7309024a6ad9ee84d3346c292e7a7364b5456974d0d4c9440744",
+      "bytes": 32130,
+      "gitBlob": "3c2245bd1658fc9bacc347fd285573715067f94d",
+      "gitSha256": "c43f8e5072cf7309024a6ad9ee84d3346c292e7a7364b5456974d0d4c9440744",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-haven-appraisal/SOURCE_API_REVIEW.md",
+      "sha256": "691d62f6908cbe8dc21bb49c9dfe4259f81ca595ca114037c92ac47fbd2eb383",
+      "bytes": 6216,
+      "gitBlob": "47aa45e927c6de073be1ba814c0394a0c57ca846",
+      "gitSha256": "691d62f6908cbe8dc21bb49c9dfe4259f81ca595ca114037c92ac47fbd2eb383",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-haven-sale/SOURCE_API_REVIEW.md",
+      "sha256": "f786fce2060da665af9528088b03bc65108c35f9ee9ffbe56a200a2202bec419",
+      "bytes": 11797,
+      "gitBlob": "fa1618c0219930d4228f617b3c5caba5f226af74",
+      "gitSha256": "f786fce2060da665af9528088b03bc65108c35f9ee9ffbe56a200a2202bec419",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-haven-meal/SOURCE_API_REVIEW.md",
+      "sha256": "a7a877d10347ac9b1c0a01a3a9fc61286087cd2d574199c201637d07cfa13e62",
+      "bytes": 9569,
+      "gitBlob": "e92b1400ddf28ef4bc2a60d4220417ed2b27e6f3",
+      "gitSha256": "a7a877d10347ac9b1c0a01a3a9fc61286087cd2d574199c201637d07cfa13e62",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-expedition-bill/SOURCE_API_REVIEW.md",
+      "sha256": "6c204717221036ab71fecb195a05465d4713c9042ba93adc68ae435aaa5a2a5a",
+      "bytes": 10287,
+      "gitBlob": "31a291e7884249f01d6bd549b0583c80dcc8fe7c",
+      "gitSha256": "6c204717221036ab71fecb195a05465d4713c9042ba93adc68ae435aaa5a2a5a",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-episode-close/SOURCE_API_REVIEW.md",
+      "sha256": "7e1c0a742e1bc64483e14ce1e37e1bda56cef9a638b716f4c02e4b4d8e5f9dcc",
+      "bytes": 13681,
+      "gitBlob": "e82e194dea9f1f228a81b9d90585535f8e4ec20a",
+      "gitSha256": "7e1c0a742e1bc64483e14ce1e37e1bda56cef9a638b716f4c02e4b4d8e5f9dcc",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-next-charter-plan/SOURCE_API_REVIEW.md",
+      "sha256": "bc4982a133960379e44629ad7a3ed1abb6322fe5bead985b24b51ba08f823227",
+      "bytes": 9954,
+      "gitBlob": "9b639c62265403ce5a36e728efaddbdc079f5e87",
+      "gitSha256": "bc4982a133960379e44629ad7a3ed1abb6322fe5bead985b24b51ba08f823227",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-next-charter-acceptance/SOURCE_API_REVIEW.md",
+      "sha256": "d76ca77e8f0ddb21fd298a067d5b6ae654faf1aa14aefe72424cdff29d684a91",
+      "bytes": 10252,
+      "gitBlob": "d503f745316ba910bf07684da8f1d914f1310530",
+      "gitSha256": "d76ca77e8f0ddb21fd298a067d5b6ae654faf1aa14aefe72424cdff29d684a91",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-charter-execution/SOURCE_API_REVIEW.md",
+      "sha256": "a80e141b4f82989e56b9196c8974b640ec5a0c1d658d695c6acb77ed5ba3b519",
+      "bytes": 10685,
+      "gitBlob": "882f38f9dca97bf45391acf8052b1312642e4ae2",
+      "gitSha256": "a80e141b4f82989e56b9196c8974b640ec5a0c1d658d695c6acb77ed5ba3b519",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-11-mgt10-charter-execution/GPT_REVIEW.md",
+      "sha256": "420339686401cc5e09545b33b0b55e58119c41f9476ea5dfa9d64a3873e4eb97",
+      "bytes": 1849,
+      "gitBlob": "ca92ca5ddd98737a40adf01662d88b956352ed90",
+      "gitSha256": "420339686401cc5e09545b33b0b55e58119c41f9476ea5dfa9d64a3873e4eb97",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+      "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "bytes": 307717,
+      "gitBlob": "466871fc128dc5f06043a874da2b9c1d94ed80a5",
+      "gitSha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+      "workingMatchesGit": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415,
+      "gitBlob": "9e6b2c980e7ae51d77921eb10d16db52448b3dd5",
+      "gitSha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "workingMatchesGit": true
+    }
+  ],
+  "outerDispatch": "Per-kind guards follow authoritative preflight and actual ResolveCore prefix. TestOnlySharedWorldPolicy931-956 dispatches pending recovery, care/morale/rest conflicts, appraisal, close, then attempt/agreement/plan/bill/sale/meal in that order. Legacy query SharedWorldRangedCombat352-406 has its own preserved order, including RestingActor before MoraleRestingActor whereas ResolveCore941-945 checks MoraleRestingActor before RestingActor. Do not silently unify precedence.",
+  "capacityAuditFinding": "These native Haven/plan Assess functions check own history bounds but do not explicitly project generic ledger counts. New work adds intervals/claims then WorkLedger constructor validates4096 at WorkLedger83/93-95; candidate Snapshot validation imposes128 records at Simulation1100-1103 on these profiles. Inspect/reuse the same pure native count/overlap constraints at the actual original boundary; do not call Reserve or broaden gameplay capacity. Concrete genuine boundary witness allocation still OPEN. Scope here does not assert all generic capacity branches closed.",
+  "originalSourceVerification": {
+    "path": "DescentReviewChanges/ReviewBible/docs/mechanics/expedition/EXPEDITION_PLAYER_BOOK.md",
+    "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+    "sha256": "4c58b9f7063e562b785b8db6006699d3c4f68edd0e697d06db69662ba9b7e480",
+    "workingMatchesOriginal": true
+  }
+}

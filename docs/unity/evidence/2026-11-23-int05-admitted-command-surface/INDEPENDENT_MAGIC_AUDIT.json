@@ -1,0 +1,1113 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/audit_magic",
+  "status": "INDEPENDENT_READ_ONLY_NATIVE_SOURCE_AUDIT_NOT_FULL_CONTRACT_ACCEPTANCE",
+  "reviewedHead": "6e70f4491b967fa71917544a606f7e2985664818",
+  "runtimeChanges": false,
+  "buildsTestsOrGameplayRun": false,
+  "operations": [
+    {
+      "kind": "CastKnownSpell",
+      "native": [
+        [
+          "SharedSpellCasting.cs",
+          110,
+          199,
+          "pure assessor"
+        ],
+        [
+          "SharedSpellCasting.cs",
+          215,
+          269,
+          "resolver/query"
+        ],
+        [
+          "SharedBishopDispel.cs",
+          9,
+          31,
+          "selected Dispel"
+        ]
+      ],
+      "profile": "Casting109–116, including both116factories; repertoire106–108 preserves denial. Player/Companion only. Session753–760 admits party, LaterDefender, selected RecoveryOpponent or party-owned inventory lot; Bishop Dispel instead requires opaque aura ID.",
+      "guards": [
+        "Payload and non-null selection",
+        "CastingActionFailure75–103: selected caster; actual OMA context or exact reinforced/recovery/Ferry calendar/context/processed own turn; pending decisions/continuation; unprocessed condition boundary; unspent Action; capability/action permission; stationary nonbusy nonadvancing actor; combat stance; activity history",
+        "Actual Cleric level/source access/known provenance",
+        "Verbal availability; actual worn or focus-only held hand; no spurious focus for Guidance/Spare; somatic hand",
+        "Eligible unused Focused stance election only for Sanctuary; exact willing-target flag",
+        "Spell-specific current target, stationary/range30ft/LoE/perception/life or batch/Dispel checks",
+        "Ranked Dissonance block/surcharge; actual derived pool/payment",
+        "Cast/effect/end histories, strain arithmetic and effect-ID capacity"
+      ],
+      "firstForbidden": "Action payment225, RP226, strain227, activity228; Spare draws recovery d4 at244. No resolver-on-copy in new reads.",
+      "domain": [
+        "Initial Ward/Guidance/Spare/Sanctuary/Purify; earned Detect2; earned dispel-magic-lesser3",
+        "Focus is actual selected holy-symbol ID; WillingTarget is true exactly for Ward/Guidance/Sanctuary and independently requires recipient authority",
+        "Purify targets entire actual positive unreserved separated food<=5lb/water<=8pints; real physical location/enclosure, not stale lot label; no requested amount/split/mix",
+        "Detect self; Spare truly living/dying; Dispel current own Detect observation of source-proven own rank0 Guidance only"
+      ],
+      "costs": "One Action; rank0 base0, rank1 base2, rank2 base3 plus ranked surcharge. Exact strain/Refrain at commitment. Ward next actual caster Start; Guidance/Sanctuary60s; Detect600s. Sanctuary/Detect replace actual concentration. Spare stabilizes without healing; Purify removes actual purifiable contamination; Dispel ends selected effect only.",
+      "results": [
+        "SpellCastRecord CommandId/Revision: known origin, actual class/rank/modifier, chosen focus/willing/Focused, turn/time, RP before/base/surcharge/after, Dissonance before/after, applied Refrain, effect ID, Spare d4. Redact RNG and private DC.",
+        "SpellEffectRecord: cast ID/revision, target, expiry and later actual end cause/revision/time/reason. Separate later ending from initial commit.",
+        "Purify contamination removal cause/revision and BishopDispelRecord causal links exist. Do not infer historical batch quantity or target life from current state.",
+        "Generic target HP before/after is not retained by SpellCastRecord; exact immediate authorized pre/post is separate. Never reconstruct by executing.",
+        "Aura-facing result must not disclose underlying spell/rank/owner/source merely because diagnostic causal records contain them."
+      ],
+      "sourceRefs": [
+        "SPELLS",
+        "CAST_CONTRACT",
+        "BISHOP_CONTRACT",
+        "CAST_STRAIN",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+          "GENUINE_ROUTES_IDENTIFIED",
+          "SpellCastingCases:1191 Ward;708/735/1104 Guidance search/Medicine/hide;892 Purify finite water/intake;1040 Sanctuary pending/retarget/restore;862 Spare actual dying patient. New V1 adapt each; food/enclosure and extra condition variants remain detached supplements."
+        ],
+        [
+          "earned detect-magic",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "SpellCastingCases:769 earned Detect/Guidance aura/paid focus after real Cleric2."
+        ],
+        [
+          "earned Bishop dispel",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "BishopEntryCases:403 actual earned/funded3 campaign, own observed Guidance/Dispel/continuation; no generic rank<=2 target admission."
+        ],
+        [
+          "actual target/shape/payload",
+          "MIXED_GENUINE_AND_DETACHED",
+          "Actual routes above supply positive targets. SpellCastingCases:535 authority/source/payload controls and181 detached batch/enclosure controls remain classified. Exact new branch-specific checkpoint allocation open."
+        ],
+        [
+          "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+          "MIXED_GENUINE_AND_DETACHED",
+          "Actual focus handling and Sanctuary election route, plus source/authority/component controls. Simulation1335 requires current recipient control independently. Focus-drop correction preserves Unconscious vs Incapacitated distinction."
+        ],
+        [
+          "tactical vs admitted OMA calendar",
+          "GENUINE_ROUTES_WITH_NAMED_GAP",
+          "TAC08 tactical/postclosure routes plus OrdinaryMagicConsumerCases:51 late own-origin consumers on116. Retain actual context per profile; genuine carried-outside-use intersection remains OPEN."
+        ],
+        [
+          "repertoire-only OrdinarySpellcastingUnsupported",
+          "EXPLICIT_EXISTING_DENIAL",
+          "106–108: SpellRepertoireRecords123–127; no spell producer, no free casting. 105 lacks repertoire kind admission. Older other factories are host-unavailable."
+        ]
+      ]
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "native": [
+        [
+          "SharedSpellCasting.cs",
+          357,
+          404,
+          "assessor/resolver/query"
+        ],
+        [
+          "SharedOrdinaryMagic.cs",
+          63,
+          95,
+          "later settlement"
+        ]
+      ],
+      "profile": "109–116 Player/Companion, target empty; original calendar/OMA predicates retained.",
+      "guards": [
+        "Payload/selected caster",
+        "CastingActionFailure in native order",
+        "OMA settlement not already consumed",
+        "Empty target"
+      ],
+      "firstForbidden": "Action payment386 then Grounding activity388. No immediate Dissonance reduction.",
+      "domain": [
+        "Empty target, no amount/spell/focus choice"
+      ],
+      "costs": "One Action, no RP. PB reduction at actual native settlement only when not superseded by magical activity; never PB plus idle1. Refrain remains.",
+      "results": [
+        "CastingActivityRecord or OMA Activity binds actual command/revision/time/origin/segment.",
+        "Later CastingTurnEndRecord or MagicalSettlementRecord joins exact origin and has independent advancing cause/revision/time, before/after, magic/grounding flags/PB/reason.",
+        "Immediate result is committed activity with settlement pending; current strain is not historical before/after."
+      ],
+      "sourceRefs": [
+        "CAST_CONTRACT",
+        "CAST_STRAIN",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "Companion native Dissonance/context/action",
+          "GENUINE_ROUTES_IDENTIFIED",
+          "SpellCastingCases:597 genuine cadence/grounding/advancement/passive concentration; OrdinaryMagicConsumerCases:51 late consumers. Preserve denial of consumed OMA settlement and actual later zero/nonzero reduction."
+        ]
+      ]
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "native": [
+        [
+          "SharedSpellCasting.cs",
+          357,
+          384,
+          "early free-ending branch"
+        ]
+      ],
+      "profile": "109–116 Player/Companion; exact own present concentrating effect target.",
+      "guards": [
+        "Payload/selected caster",
+        "Pending calendar/manufacturing/recovery choice",
+        "Own present RequiresConcentration effect"
+      ],
+      "firstForbidden": "EndSpellEffect383. This branch intentionally does not run CastingActionFailure.",
+      "domain": [
+        "Exact own present concentration ID, no fabricated own-turn/focus/Action requirement"
+      ],
+      "costs": "No Action, RP, time or RNG. Actual voluntary ending, no refund or displaced-effect restoration.",
+      "results": [
+        "SpellEffectRecord EndCauseId/EndRevision/EndedAt/Voluntary reason; original cast is separately linked.",
+        "Do not infer ending cause from current absence; historical explanation uses exact retained terminal provenance."
+      ],
+      "sourceRefs": [
+        "CAST_CONTRACT",
+        "SPELLS"
+      ],
+      "branches": [
+        [
+          "actual own present concentration effect",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "SpellCastingCases:597 and BishopEntryCases:403 lawful actual end before continuation/rest; wrong/ended effect gives native denial."
+        ],
+        [
+          "native ending/carry semantics",
+          "GENUINE_AND_BOUNDARY_CONTROLS",
+          "Preserve free-ending branch and prior effect/carry provenance. Outer active-LongRest/Sanctuary restrictions still precede it. No generic Action check added."
+        ]
+      ]
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "native": [
+        [
+          "SharedSpellCasting.cs",
+          328,
+          404,
+          "observation/assessor/resolver"
+        ]
+      ],
+      "profile": "109–116 Player/Companion; aura-prefixed target is only host shape, not evidence of current observation.",
+      "guards": [
+        "Payload/selected caster",
+        "CastingActionFailure",
+        "Actual active own Detect",
+        "Target equals current individually perceived aura observation",
+        "Focus history capacity"
+      ],
+      "firstForbidden": "Action386, focus record396, activity398; no RNG.",
+      "domain": [
+        "Only current opaque aura observations with actual sight/LoE30ft/stationary bodies; Bishop sight/unaware checks",
+        "No item/dormant/unknown magic inference; no public school-withheld control"
+      ],
+      "costs": "One Action, no RP; broad school after paid focus; actual magical activity affects settlement.",
+      "results": [
+        "DetectMagicFocusRecord actual command/revision/observation/origin/time/broad school/withheld status.",
+        "Aura public projection is only ObservationId/X/Y/Focused/SchoolCategory; hidden detection/effect/spell/rank/owner/source identities are not aura alternatives.",
+        "Late explanation still needs current rights; do not generate a new current aura to explain history."
+      ],
+      "sourceRefs": [
+        "SPELLS",
+        "CAST_CONTRACT",
+        "BISHOP_CONTRACT",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "opaque authorized aura observation",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "SpellCastingCases:769 and BishopEntryCases:403; OrdinaryMagicConsumerCases:120 actual late paid focus. Unknown/prefix-only ID denies."
+        ],
+        [
+          "native detection/focus/school disclosure",
+          "GENUINE_PLUS_EXPLICIT_UNSUPPORTED",
+          "ObserveCasting328–355 and ConnectedCastingView8–17/54–69. Existing detached schoolWithheldForDetachedControl is not an admitted anti-divination producer; keep unsupported."
+        ]
+      ]
+    },
+    {
+      "kind": "UseHealingRite",
+      "native": [
+        [
+          "SharedResonance.cs",
+          108,
+          189,
+          "assessor/resolver/query"
+        ],
+        [
+          "SharedRadiance.cs",
+          78,
+          129,
+          "preflight and actual rider"
+        ]
+      ],
+      "profile": "105–116 selected Cleric RP; Player/Companion, party recipient. Cure payload only settlement108+; non-None cure independently requires recipient control.",
+      "guards": [
+        "Selected caster and empty ancillary payload",
+        "Actual OMA or reinforced/postclosure/recovery/Ferry context",
+        "Pending choices and actual own turn as applicable",
+        "Actual Healing Rite grant/selected Cleric level",
+        "Capability/action permission then unspent Action",
+        "Actor nonbusy and no actor/target traversal",
+        "Living qualification, party/context membership, not Dead,30ft/LoE/perception",
+        "No unsupported present periodic-rider interaction",
+        "Derived pool>=2",
+        "Rite128/GroundHealing/casting activity capacity",
+        "Radiance: ownership if chosen; when owned own-context and once-per-turn even None; history; cure identity/journal time/worst-case capacity"
+      ],
+      "firstForbidden": "d8 draw162 precedes Action167/RP168/life169/RNG170/history176. Paid trigger validators and riders occur only after actual staged producer.",
+      "domain": [
+        "Party recipient; optional None/Frightened/Poisoned; no requested healing/source override/free cure"
+      ],
+      "costs": "One Action and2RP,1d8+max(1,WIS). Shared life/condition/Critical/max caps. No Rite recharge. Exact settlement base Rite→Ground→Radiance→Aura; positive base gain required by riders. No spell Dissonance, resurrection/Wound removal or resource funding.",
+      "results": [
+        "HealingRiteRecord stores actual payment,die/modifier/potential,HPbefore/after and source/turn/time.",
+        "GroundHealing links Rite+Zone and stageHP; RadianceUse links Rite/origin/baseHP/pre-extraHP/extra/ended applications; AuraHealing links Rite/event-time qualification/stageHP.",
+        "Never double-count stages or derive why an absent rider did not trigger from current conditions.",
+        "Redact RNG/private event fields. Radiance70 and Consecration83 redraw retained d8 only in actual paid-trigger validation, never new reads."
+      ],
+      "sourceRefs": [
+        "CLERIC_CARDS",
+        "CLERIC_SETTLEMENT",
+        "BISHOP_CONTRACT",
+        "CONSECRATION_CONTRACT",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "Companion/party recipient",
+          "GENUINE_ROUTES_IDENTIFIED",
+          "ConnectedClericRpCases:101 chr02_cleric_connected_injury_payment_restore_and_continuation; ConnectedClericSettlementCases:311 paid Radiance; BishopEntryCases:403 two-party care; ConsecrationCases:79 actual zone/Rite."
+        ],
+        [
+          "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+          "GENUINE_PLUS_BOUNDARY_CONTROLS",
+          "Existing funded/insufficient RP/paid later-Action and OMA late Rite routes; full history/capacity edge controls require labelled detached state where no genuine producer. No ability-recharge field fabricated for Rite."
+        ],
+        [
+          "native cure preference and actual HP/condition gates",
+          "MIXED_GENUINE_AND_DETACHED",
+          "Genuine Frightened cure in Bishop campaign; ClericRadianceCases55/145 detached actual-producer named cure/cap/empty-cure controls. Consecration combined genuine cap/cure remains UNPROVED under exact accepted allocation, not impossible."
+        ]
+      ]
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "native": [
+        [
+          "SharedDivineInvocation.cs",
+          28,
+          112,
+          "assessor/resolver"
+        ],
+        [
+          "SharedDivineInvocation.cs",
+          114,
+          132,
+          "legacy discovery"
+        ]
+      ],
+      "profile": "112–116 Bishop profiles; Player/Companion,target empty; all recipient IDs in Party and currently controlled; actual earned3.",
+      "guards": [
+        "Payload",
+        "Actual earned Bishop Invocation grant and Radiance ownership",
+        "Derived RP>=3 and funded Conviction>=2",
+        "Radiance own-context then CastingActionFailure",
+        "Ready recharge",
+        "Invocation128 and no same-origin use",
+        "Each recipient living/allied/stationary/30ft/LoE/perceived/no periodic rider",
+        "Optional cure identity/journal-time/capacity"
+      ],
+      "firstForbidden": "Shared d8 draw76; Action78/RP79/Conviction80/vent81/activity82/life86; record94/cure96/recharge109.",
+      "domain": [
+        "Request permits1–3 distinct sorted allied IDs; current host has only Hero and Companion, so two singletons and their pair are the real positive subsets",
+        "At most one selected cure recipient, in targets, None/Frightened/Poisoned; no other path modes or unprinted V/S/F"
+      ],
+      "costs": "One Action,3RP,2Conviction; one shared d8+2 independently capped per recipient; cure independent of positive healing. Protected actual payment vents1Dissonance floor0 once per actual own turn. Recharge3 after resolution. No Rite riders or spell cadence/concentration change.",
+      "results": [
+        "DivineInvocationRecord stores actual choice/origin/time/payment/vent/shared die/per-recipient HP/cure operation/ended applications.",
+        "Current recharge counter is current observation; initial3 is source-fixed paid consequence.",
+        "Redact RNG and per-recipient private facts; do not pass raw legacy record. ValidateCureTrigger21 redraws retained d8 only for actual settlement."
+      ],
+      "sourceRefs": [
+        "CLERIC_CARDS",
+        "BISHOP_CONTRACT",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "actual Bishop feature entitlement",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "BishopEntryCases:403 genuine earned3/funded campaign;418 unearned denial; immutable declared source selections remain actual."
+        ],
+        [
+          "1–3 authorized targets and at most one selected cure recipient",
+          "GENUINE_SUBSETS_PLUS_HOST_UNAVAILABLE",
+          "Existing campaign/OMA pair and singleton variants to adapt; request cardinality404 controls. Third distinct authorized party recipient has no host producer. Preserve1–3 type/native source while marking actual host third target unavailable; do not inject an actor. Cure empty/eligible/protected/suppressed branches need explicit genuine vs detached allocation."
+        ],
+        [
+          "native Conviction/RP/action/recharge",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "BishopEntryCases:365 actual outside Starts/epoch-transfer recharge and403 paid campaign; OrdinaryMagicConsumerCases:101 late pair payment. No counter readiness→funding inference."
+        ]
+      ]
+    },
+    {
+      "kind": "UseConsecrate",
+      "native": [
+        [
+          "SharedConsecration.cs",
+          106,
+          184,
+          "assessor/resolver/query/discovery"
+        ]
+      ],
+      "profile": "115 and both116factories; Player/Companion,target empty,exact ConsecrateRequest only.",
+      "guards": [
+        "Selected record",
+        "Payload",
+        "Actual grant",
+        "Cleric1–3",
+        "OMA actual context or actual open owner slot/calendar/turn/closed-context",
+        "Pending choices/continuation",
+        "Condition deadline",
+        "Capability/action then unused Action",
+        "Stationary/nonbusy/nonadvancing actor",
+        "Ready recharge",
+        "Supported perceived center within6cells/30ft and LoE",
+        "Derived RP>=2",
+        "Zone/activity history capacity"
+      ],
+      "firstForbidden": "Action162,RP163,zones164,activity165,recharge166. Earlier immutable zone construction has no ledger mutation.",
+      "domain": [
+        "All supported integer anchor centers passing native perception/range/LoE, including occupied centers; not merely own cell/example",
+        "Fixed15ft Chebyshev zone with actual exact/fractional body membership and center-to-bodyLoE; no input radius/duration/type/allegiance"
+      ],
+      "costs": "One Action,2RP; replaces own active zone. Captured3rounds ininitiative,18s ordinary; recharge3 actual owner Starts. Actual Undead inside suffers-1 attack; positive Rite/Ground living recipient rules remain separate.",
+      "results": [
+        "Zone command/revision/owner/center/time/context/epoch/localStart/expiry/RPbefore-after/endkind/revision/time.",
+        "Later AttackContribution or GroundHealing joins ZoneCommandId and separate attack/Rite cause; creation result cannot claim future effects.",
+        "Diagnostic enemy type/position/total modifier stays private unless actual current disclosure permits it. No RNG in zone creation."
+      ],
+      "sourceRefs": [
+        "CLERIC_CARDS",
+        "CONSECRATION_CONTRACT",
+        "MAGIC_CALENDAR"
+      ],
+      "branches": [
+        [
+          "admitted center geometry",
+          "GENUINE_PLUS_MECHANICAL_CONTROLS",
+          "ConsecrationCases:79 paid zone plus18 mechanical geometry/range/LoE/lifetime controls; new V1 description must represent full admitted center domain, not samplecell."
+        ],
+        [
+          "native terrain/allegiance/life/healing behavior",
+          "GENUINE_WITH_RETAINED_ALLOCATION",
+          "Accepted Consecration five428-command paths include actual zone/Ground/Undead attack; dynamic source-classification and cap/cure controls remain separately labelled. Combined genuine cap/cure UNPROVED remains."
+        ],
+        [
+          "tactical vs admitted ordinary calendar",
+          "GENUINE_ROUTES_IDENTIFIED",
+          "Consecration115 original owner-slot/ordinary18s route; OrdinaryMagicConsumerCases:90 late116 zone/expiry/recharge. Preserve profile-specific calendar rather than upgrading115."
+        ]
+      ]
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "native": [
+        [
+          "SharedClericSettlement.cs",
+          48,
+          63,
+          "original award assessor"
+        ],
+        [
+          "SharedBishopEntry.cs",
+          49,
+          56,
+          "Bishop award assessor"
+        ]
+      ],
+      "profile": "108–116 Player/Companion, exact original milestone or selected Bishop112+ milestone. Narrow trusted grant; pre-Bishop special selection lives in Submit248, not just SeatCommandGrant373.",
+      "guards": [
+        "Selected Companion path/empty ancillary payload",
+        "Dispatch Bishop target if selected",
+        "Exact declared target",
+        "Actual objective completion",
+        "No Advancement payload",
+        "No prior actor/target award",
+        "Milestone capacity256"
+      ],
+      "firstForbidden": "Append CharacterMilestoneRecord atSharedClericSettlement115 orSharedBishopEntry100.",
+      "domain": [
+        "Actual announced original encounter/manufacture/livingCompanion objective or Bishop firsteligibleLongRest→laterpositivebaseRiteHero→completed eastward paid edge/bothalive"
+      ],
+      "costs": "Trusted one-time award, no Action/time/RNG, capacity/funding or features. Advancement is separate.",
+      "results": [
+        "Milestone actor/id/AwardedRevision/ConsumedRevision; exact command/receipt joins cause.",
+        "ClericObjective and BishopDeparture retain prerequisite causes/times/revisions. Public declared objective/status differs from private digest/hash.",
+        "Award record has no timestamp: use exact retained command event if available, not current clock."
+      ],
+      "sourceRefs": [
+        "ADVANCEMENT_SOURCE",
+        "CLERIC_SETTLEMENT",
+        "BISHOP_CONTRACT"
+      ],
+      "branches": [
+        [
+          "actual Cleric milestone",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "ConnectedClericSettlementCases:293 actual objective/award;277 early denial."
+        ],
+        [
+          "Bishop selected later milestone",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "BishopEntryCases:403 actual care/departure completion and award; no repeatable healing/restXP."
+        ],
+        [
+          "narrow world-modification grant",
+          "ORDERED_AUTHORITY_CONTROL_REQUIRED",
+          "Submit232–250 current actor/kind then pre-Bishop grant; SeatCommandGrant382–384 for Bishop; Simulation1417–1422 world grant required. New assessment reconciles actual grant without changing legacy query behavior."
+        ]
+      ]
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "native": [
+        [
+          "SharedClericSettlement.cs",
+          48,
+          141,
+          "Cleric2"
+        ],
+        [
+          "SharedBishopEntry.cs",
+          49,
+          120,
+          "Bishop3"
+        ]
+      ],
+      "profile": "108–116 Player/Companion; exact original2 or selectedBishop3 milestone. Actor authority consumes actual award.",
+      "guards": [
+        "Shared selected path/payload/target/objective, then available unconsumed award",
+        "Cleric2: noInventoryCombat;pendingchoices/continuation;nonbusy;exactlevel1build;fixedchoices;schedule2Base;sourceoptions;noexistingselected/automatic/path;capacity;onecorrectd8;HPmax8;derivedpool;Convictioncapacitystate;exactinitialrepertoire/grants",
+        "Bishop3: noInventoryCombat and noEncounter;pendingchoices/continuation;nonbusy;capable/actionpermission;exactlevel2build;fixedchoices;schedule3Arch/activequota;sourcecards/notowned;priorRadiance/fundedConviction;capacity;twoorderedcorrectd8;HP13/RPmax4;sixknownspells/earnedDispelaccess"
+      ],
+      "firstForbidden": "Cleric2 s.Characters127; Bishop3 s.Characters110. All consequences in same actual atomic transaction.",
+      "domain": [
+        "Cleric2 ConvictionPool+JudgingLight; automaticAttunement and selectedRadiance; earnedDetect",
+        "Bishop3 AuraOfFaith+DivineInvocation; empty path selection retainsRadiance; earnedDispel",
+        "Fixedaveragebase5 and one unspentd8, no other class/choice/path/spell"
+      ],
+      "costs": "Capacity8→13→18; currentHP preserved subject to clamp. RPmax2→4→7 with current preserved. Level2 creates capacity5 without fictional Conviction balance;3 preserves actual funded balance. No clock/RNG/funding.",
+      "results": [
+        "AdvancementRecord actual actor/milestone/revision/level/class/baseHP/method/capacitybefore-after/currentHPbefore-after/selectedfeatures.",
+        "Grants/KnownSpell/HitDice acquired revision provides atomic provenance; initial/selected/automatic/earned distinctions retained.",
+        "No dedicated RPbefore/after fields in AdvancementRecord; immediate authorized snapshots or exact retained causal facts only. Current RP is not historical payment evidence."
+      ],
+      "sourceRefs": [
+        "ADVANCEMENT_SOURCE",
+        "CLERIC_CARDS",
+        "CLERIC_SETTLEMENT",
+        "BISHOP_CONTRACT"
+      ],
+      "branches": [
+        [
+          "exact Cleric2 settlement selection",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "ConnectedClericSettlementCases:293/311 actual chosen2; preserve branch's native order, no universal Bishop guards."
+        ],
+        [
+          "exact Bishop3 declaration/training/source choices",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "BishopEntryCases:403 actual announced objective/3/capacity-preserving advancement; source choices and training remain fixed. No supplied alternate class mechanics."
+        ],
+        [
+          "earned repertoire atomic transaction",
+          "GENUINE_ROUTE_IDENTIFIED",
+          "Detect acquired at actual2 and Dispel at3 in same advancement; malformed source/choice/forgery controls preserve rollback. Never attribute to standalone AcquireEarnedSpell."
+        ]
+      ]
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "native": [
+        [
+          "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+          120,
+          127,
+          "exact denial"
+        ],
+        [
+          "TestOnlySharedWorldPolicy.cs",
+          895,
+          895,
+          "resolver dispatch"
+        ]
+      ],
+      "profile": "106–116 repertoire candidates; Player/Companion,known catalog target. Candidate is not producer.",
+      "guards": [
+        "Core current authority/payload and host target ordering",
+        "Selected repertoire/Companion",
+        "Settlement-dependent exact denial"
+      ],
+      "firstForbidden": "None; no producer or mutation exists.",
+      "domain": [
+        "Known source ID candidates only; actual acquisition is atomic AdvanceCharacterLevel"
+      ],
+      "costs": "Rejected unchanged, no cost/time/RNG/receipt/free acquisition.",
+      "results": [
+        "Actual immediate rejection can have details without a receipt; historical committed Acquire result does not exist.",
+        "KnownSpell acquired at AdvanceCharacterLevel must join that actual receipt/revision."
+      ],
+      "sourceRefs": [
+        "ADVANCEMENT_SOURCE",
+        "CLERIC_SETTLEMENT",
+        "BISHOP_CONTRACT"
+      ],
+      "branches": [
+        [
+          "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+          "EXPLICIT_EXISTING_DENIAL",
+          "Settlement108–116; actual earned2/3 through advancement supplies positive acquisition witness, not this kind."
+        ],
+        [
+          "ClericEarnedAdvancementUnavailable; no new acquisition route",
+          "EXPLICIT_EXISTING_DENIAL",
+          "Repertoire106-107: ConnectedClericRepertoireCases:114 tac07_cleric_repertoire_connected_payment_restore_and_denials and148 tac07_cleric_repertoire_forgery_legacy_and_authority_boundaries. Pre-repertoire factories are host-unavailable."
+        ]
+      ]
+    }
+  ],
+  "axisCount": 29,
+  "sourceReferences": {
+    "SPELLS": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "pointers": {
+        "arcane-ward": "/spells/0/operational",
+        "guidance": "/spells/781/operational",
+        "spare-the-dying": "/spells/596/operational",
+        "sanctuary": "/spells/21/operational",
+        "purify-food-and-drink": "/spells/24/operational",
+        "detect-magic": "/spells/216/operational",
+        "dispel-magic-lesser": "/spells/33/operational"
+      },
+      "binding": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/SPELL_CANDIDATES.json",
+      "status": "Reviewed/provisional operational procedures, not older summary authority"
+    },
+    "CAST_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/APPROVED_CASTING_CONTRACT.md",
+      "sections": "3–8",
+      "review": "384b9c53-9d93-56f3-901b-cede1f7d3028",
+      "amendment": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/GPT_FOCUS_DROP_CLARIFICATION.md"
+    },
+    "CAST_STRAIN": {
+      "paths": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md:31-39",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md:43-55"
+      ]
+    },
+    "CLERIC_CARDS": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "pointers": {
+        "ConvictionPool": "/cards/0",
+        "ConsecratedGround": "/cards/1",
+        "Attunement": "/cards/4",
+        "Radiance": "/cards/5",
+        "HealingRite": "/cards/12",
+        "Consecrate": "/cards/14",
+        "AuraOfFaith": "/cards/16",
+        "DivineInvocation": "/cards/23",
+        "protectedVent": "/engine/4"
+      },
+      "status": "provisional-playtest; original PlayerRulebookv6 lines1967/1968/1971/1974/1983/1985/1992/2001 preserved distinctly"
+    },
+    "ADVANCEMENT_SOURCE": {
+      "paths": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md:21,93",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md:55,57"
+      ]
+    },
+    "CLERIC_SETTLEMENT": {
+      "path": "docs/unity/evidence/2026-11-15-chr03-cleric-settlement/SETTLEMENT_CONTRACT.md",
+      "sections": "15source/choices,30objective,42atomic,65capacity,71Radiance,91context,105public"
+    },
+    "BISHOP_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md",
+      "sections": "2advancement,4Invocation,5Aura,6Dispel"
+    },
+    "CONSECRATION_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-17-chr05-consecration/SOURCE_API_CONTRACT.md",
+      "sections": "2API,3geometry,4lifetime/recharge,5healingchain,6attack",
+      "allocation": "docs/unity/evidence/2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.md:9"
+    },
+    "MAGIC_CALENDAR": {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/SOURCE_API_CONTRACT.md",
+      "sections": "CAL01–05",
+      "acceptance": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md"
+    }
+  },
+  "commonBoundaries": [
+    "Native paths are relative to Laboratory/Model unless an explicit other path is supplied; source test witnesses are in Tests/EditMode. Line ranges are inspected against unchanged6e70.",
+    "Every row inherits exact host actor/kind/payload/receipt/stale/target and Simulation authority/receipt/revision preflight. Pure native assessor alone is not full endpoint admission.",
+    "ResolveCore863+: unknownactor,offcalendar conflicts,LongRest dispatch/activeRest,Sanctuary pending/gate,GuidanceChoiceFailure,PhysicalFailure precede magic. New assessment must preserve exact enclosing denial order without settling a pending action.",
+    "ResolveCore891–894 forwards assessTactical to cast/utility;897–899 does not for Consecrate/Invocation/Rite. Existing QuerySharedWorldCommand560–570 uses dedicated pure query methods. Generic resolver-on-copy remains forbidden for new reads.",
+    "Simulation1332 controls all Invocation recipients;1335 willing-target authority;1344 optionalRite cure recipient;1417–1422 milestone world grant. Payload willingness is never a grant.",
+    "Original factory parameters are immutable: Session115–124/147–150 pass caller consent/director to Recovery for111/112/113; Session126–145 passes them only to Ferry for114/115/both116, with underlying Bishop/Recovery defaulttrue,true. True/false combinations must remain exact profile/context controls; a false admission flag does not globally revoke earlier calendar abilities.",
+    "Caller initial Cleric selection/repertoire/objective/Bishop declaration remains actual selected content; descriptions cannot replace it with default authored examples. Invalid selection is a construction/source-boundary rejection, not a new mechanic.",
+    "Actual observed view route is required: ConnectedExpeditionView492+ gets seatgrant and selects own actors;106–114 gates Cleric/repertoire/casting/settlement. Operator control alone is not a character observation grant.",
+    "ConnectedCastingView8–17 excludes underlying aura effect/spell/rank/owner/source. ExpeditionBishopView28–32 exposes some raw histories to owned legacy view and filters AuraSave recipients; newV1 must explicitly redact RNG/private facts and preserve legacy separately.",
+    "Paid-trigger validation redraws retained d8 at SharedRadiance70,SharedDivineInvocation21,SharedConsecration83. Keep these in actual execution/restore validation, never new assessments/results.",
+    "No complete transitive helper/property purity proof, all-profile executable matrix, newV1 test or five-path qualification claimed. Every branch here is an evidence plan/source finding only.",
+    "Advancement dispatch is later at ResolveCore994/SharedCharacterAdvancement806: retain intervening ShortRest, Wound participant, Search/Hide, retreat, recovery, haven/morale/rest, route-detachment and activity-conflict checks when applicable. Early magic dispatch must not accidentally inherit these later guards. Per-factory removal of inapplicable branches needs the full common dispatch audit."
+  ],
+  "remaining": [
+    "Exact V1 DTO keys and per-field current rights",
+    "Full branch/profile evidence allocation including detached controls and named open intersections",
+    "Transitive purity audit/instrumentation and enclosing guard extraction",
+    "Actual GPT/Codex full source/API acceptance before runtime implementation"
+  ],
+  "sourcePins": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "bytes": 81863,
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "gitBlob": "193ca1eaecd1c9fa1f26993dfe872f7da2a17b97",
+      "gitSha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "bytes": 4945319,
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "gitBlob": "2d243b311cded8484630c12b6fcc2ae7f70cfddf",
+      "gitSha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "bytes": 17321,
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "gitBlob": "5a446dd0dabae096e51f419b5e71756e0169bb3b",
+      "gitSha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "bytes": 67451,
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "gitBlob": "771a8e5a35124d6ab3521a4c9a6538f00b4519e6",
+      "gitSha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "bytes": 4235,
+      "sha256": "f9c92adc2444f37bf0cabc0baabce4e37ab58781f0959bdce178c2266c8ebf01",
+      "gitBlob": "f16bbdf4f352aaccf8e8548e2b993ef338e9c05d",
+      "gitSha256": "f9c92adc2444f37bf0cabc0baabce4e37ab58781f0959bdce178c2266c8ebf01",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-15-chr03-cleric-settlement/SETTLEMENT_CONTRACT.md",
+      "bytes": 30673,
+      "sha256": "3cff3188cf6b61a976415e764c4fa41cd6ba9570096405c46ff104adcf3ff5a1",
+      "gitBlob": "5ab83cc9dbf2b6bd2571ad7a681f75d4af5e2543",
+      "gitSha256": "3cff3188cf6b61a976415e764c4fa41cd6ba9570096405c46ff104adcf3ff5a1",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/APPROVED_CASTING_CONTRACT.md",
+      "bytes": 41003,
+      "sha256": "c861896f6f90e7e9aa036788cb5c589a9f158921c6e29eb9eedbb37b59b4433d",
+      "gitBlob": "fe3db391b1d0da31f61b7da2151b97747ed0e367",
+      "gitSha256": "c861896f6f90e7e9aa036788cb5c589a9f158921c6e29eb9eedbb37b59b4433d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md",
+      "bytes": 29098,
+      "sha256": "129ebc88aa268dc14d5ff7e41ab4e1a06c5209377fd9fd146882a219152c5565",
+      "gitBlob": "7cb69de137f2aa162a2573c5e47a525ed63d52e1",
+      "gitSha256": "129ebc88aa268dc14d5ff7e41ab4e1a06c5209377fd9fd146882a219152c5565",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-17-chr05-consecration/SOURCE_API_CONTRACT.md",
+      "bytes": 28686,
+      "sha256": "69bd33260cafbf82d629675c4655d93382c8994124edeeb939ca668268636b3c",
+      "gitBlob": "a887e053c46c0566e67cf69018c237cd35b32648",
+      "gitSha256": "69bd33260cafbf82d629675c4655d93382c8994124edeeb939ca668268636b3c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/SOURCE_API_CONTRACT.md",
+      "bytes": 25975,
+      "sha256": "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d",
+      "gitBlob": "86fb851834e09986b3c2b261e7f55c144b1b0ffb",
+      "gitSha256": "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedCastingView.cs",
+      "bytes": 4298,
+      "sha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "gitBlob": "6a4f53c3b18ea1da7e5dd6fcbe30f5778f31a523",
+      "gitSha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "bytes": 60303,
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "gitBlob": "ed8658154c8bf82093dcbc9de475ee6640652acf",
+      "gitSha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "bytes": 44727,
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "gitBlob": "2f44cc56db33a3b0557383ce4b513063825592f6",
+      "gitSha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ExpeditionBishopView.cs",
+      "bytes": 2487,
+      "sha256": "cec0ac7f7759936c63abce3be18db81a8d9f40f5d5f27bbd189ca54710781da7",
+      "gitBlob": "729a844c09bb65deef68dadbe195c71b8ce0866e",
+      "gitSha256": "cec0ac7f7759936c63abce3be18db81a8d9f40f5d5f27bbd189ca54710781da7",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+      "bytes": 2184,
+      "sha256": "34556ced547f8f373792a59cec95468ab3f57bfda4e2035ee2236e1602ae2233",
+      "gitBlob": "7959ceb7edbef16f15c40c49a5f84d249a19a537",
+      "gitSha256": "34556ced547f8f373792a59cec95468ab3f57bfda4e2035ee2236e1602ae2233",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+      "bytes": 10874,
+      "sha256": "30a363f5bc0b5d4ce215ce6a816fcbfd768c24d3a437ae254a715640fab86578",
+      "gitBlob": "360c003ee64ce287fcc65b7f151d5e6e698b146e",
+      "gitSha256": "30a363f5bc0b5d4ce215ce6a816fcbfd768c24d3a437ae254a715640fab86578",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "bytes": 66331,
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "gitBlob": "0206ccbbf8043a07f0153cc5828aa77dfd096cb2",
+      "gitSha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "bytes": 12702,
+      "sha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "gitBlob": "41aa120c9e35536a6e97131dbe4ef0c031f60709",
+      "gitSha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "bytes": 17403,
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "gitBlob": "9a0ed7230e90feff2caa080e7972a9dea44c1265",
+      "gitSha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "bytes": 10988,
+      "sha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "gitBlob": "da97007bd1e83251b6f135ebb228eed82c43a110",
+      "gitSha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "bytes": 13703,
+      "sha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e",
+      "gitBlob": "1eed4badc54581fbf5a055f29f4bba320fe65006",
+      "gitSha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "bytes": 9603,
+      "sha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "gitBlob": "e3ff07dad2fb22e765d705b7b75db1672d1c6bbe",
+      "gitSha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "bytes": 15326,
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "gitBlob": "709b0c2d1a810ad1d9b41b934c6f5046544a79d1",
+      "gitSha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "bytes": 37055,
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "gitBlob": "9e41e664bb85d7a2c0275cb7f4528e38b7cd67d1",
+      "gitSha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellEffects.cs",
+      "bytes": 5822,
+      "sha256": "703ec61fa89f33f2ee5016ef5180cf16be083e755e400a233677ad1611fa1e9b",
+      "gitBlob": "bd2235fc05e88e728bc319cb3bde62336e4ddb6e",
+      "gitSha256": "703ec61fa89f33f2ee5016ef5180cf16be083e755e400a233677ad1611fa1e9b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+      "bytes": 5093,
+      "sha256": "31b38166dd615ce735a3f37cae9931abaf7971ae9aeb37470a57c7e530ec207a",
+      "gitBlob": "679e0009d0e38e8750c50cd0d0442052eb717f12",
+      "gitSha256": "31b38166dd615ce735a3f37cae9931abaf7971ae9aeb37470a57c7e530ec207a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "bytes": 59346,
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "gitBlob": "243987e3cdda13ab8d5e370106a8c0ff110c7079",
+      "gitSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "bytes": 130619,
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "gitBlob": "396e10ebaacba5453028ad1eed5a9750f39ea612",
+      "gitSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "bytes": 8110,
+      "sha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "gitBlob": "9a9cae19a39f8f2fb5682ea199ba5d4b9035e530",
+      "gitSha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopDispelRecord.cs",
+      "bytes": 4190,
+      "sha256": "0e4b1850b6987b3b20802c0bd75dc96a3e3f17cda0ccb5c06c481735da896b28",
+      "gitBlob": "f9a78a35a8993a7e85d94b26e75e9de229685896",
+      "gitSha256": "0e4b1850b6987b3b20802c0bd75dc96a3e3f17cda0ccb5c06c481735da896b28",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "bytes": 13178,
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e",
+      "gitBlob": "da502770aa55f339fa6d4e7bf360533a215bb0c9",
+      "gitSha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopSpellSource.cs",
+      "bytes": 1292,
+      "sha256": "39b53aff869a84de1327f54d40acf87c33db6e80639240404058b7d528fc096a",
+      "gitBlob": "1085e235fc9543e0570dbe87848783de53475cbe",
+      "gitSha256": "39b53aff869a84de1327f54d40acf87c33db6e80639240404058b7d528fc096a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "bytes": 64875,
+      "sha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524",
+      "gitBlob": "f3efc19fed0583d1bb29adc4751e19c9c736b417",
+      "gitSha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "bytes": 12340,
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "gitBlob": "c914fcd781f38e8df648cf0ffaf984dff1d6094e",
+      "gitSha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "bytes": 23443,
+      "sha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "gitBlob": "cb5d9e3210cc7ea7929ec3202edcd156dcffce9f",
+      "gitSha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "bytes": 12139,
+      "sha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "gitBlob": "950ceda37cafb40943c80243bfa83812ac61ce16",
+      "gitSha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+      "bytes": 8917,
+      "sha256": "1f9adef9d4c32b589d53b19ddc1fba989e5d3e82a604e388273a809b2d9240ae",
+      "gitBlob": "7683ac0109fd566b801f9c583dc1d5d0aadcdb61",
+      "gitSha256": "1f9adef9d4c32b589d53b19ddc1fba989e5d3e82a604e388273a809b2d9240ae",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicRecords.cs",
+      "bytes": 12738,
+      "sha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "gitBlob": "1cfa389360315fa3267c04051971c4cbdbba1748",
+      "gitSha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "bytes": 16049,
+      "sha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "gitBlob": "2966d4109bd0219cea497244d439a91539e0df57",
+      "gitSha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "bytes": 131749,
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "gitBlob": "d88eff3b8f02b5e914d0f04e655ba0acb0ee7ae8",
+      "gitSha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "bytes": 14572,
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "gitBlob": "3c11fca71ac41832176b7edbbf8d7879f4533b4a",
+      "gitSha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "bytes": 7418,
+      "sha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf",
+      "gitBlob": "da01868caf2c148d79177db4fa675cf9c2683898",
+      "gitSha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "bytes": 14418,
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "gitBlob": "1865f724425c140e630bf5f358443d84ed884a24",
+      "gitSha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "bytes": 12519,
+      "sha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "gitBlob": "a7e6f9ccca5441c2cb4c73706a6fb1041efebc3a",
+      "gitSha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/BishopEntryCases.cs",
+      "bytes": 48014,
+      "sha256": "b5c4bf81fa996660df22ffcd7fd9ab3237377829735bebf4e26de5eda32a77e4",
+      "gitBlob": "3073e4c6f41df8f9a955fcb51e0c92efe86708fc",
+      "gitSha256": "b5c4bf81fa996660df22ffcd7fd9ab3237377829735bebf4e26de5eda32a77e4",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ClericRadianceCases.cs",
+      "bytes": 19132,
+      "sha256": "68ee16ad488ed475c23ddbdb0bec007bf7526c54f4d3ff86fdaaa0deb33aea97",
+      "gitBlob": "e79630fd12d8191a6f39c008d069db7a2ddbd37f",
+      "gitSha256": "68ee16ad488ed475c23ddbdb0bec007bf7526c54f4d3ff86fdaaa0deb33aea97",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRepertoireCases.cs",
+      "bytes": 17975,
+      "sha256": "dbb7ff939e90595b4313d4cc1a1cadf323ddaacfb1ac1c1cf9118b256f02aafa",
+      "gitBlob": "38e8929f04f8231e79da23808fdc1ca31a968845",
+      "gitSha256": "dbb7ff939e90595b4313d4cc1a1cadf323ddaacfb1ac1c1cf9118b256f02aafa",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRpCases.cs",
+      "bytes": 19696,
+      "sha256": "50691c02c7ad5df3c1fdbc3a5dd84b2844fdfde30333c2b4b66c8a96a195bdae",
+      "gitBlob": "f6995c550ee52b9f4a96e42e299dd5fde8992860",
+      "gitSha256": "50691c02c7ad5df3c1fdbc3a5dd84b2844fdfde30333c2b4b66c8a96a195bdae",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericSettlementCases.cs",
+      "bytes": 33973,
+      "sha256": "1f67075a6ec3e6ee44181586ea2a99f1d0c3b94cc43fb581cb21334c9e558126",
+      "gitBlob": "d71f67f405f40e5e8e9d454cb874b083e2f37dc8",
+      "gitSha256": "1f67075a6ec3e6ee44181586ea2a99f1d0c3b94cc43fb581cb21334c9e558126",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConsecrationCases.cs",
+      "bytes": 11961,
+      "sha256": "6c887b45e5b49a20b79f864e983dfd547efc553f3889f910afef640713586ab7",
+      "gitBlob": "fe059fbc7a90bfd15c2d5d8e87abe0a77fb36107",
+      "gitSha256": "6c887b45e5b49a20b79f864e983dfd547efc553f3889f910afef640713586ab7",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicCases.cs",
+      "bytes": 18840,
+      "sha256": "3ab525d3fad91c87cfb6bfe10f583343dd11722e6c65db67776ca7611a4979f0",
+      "gitBlob": "27146b7a10092c29e5c973336c4c301ac71877a7",
+      "gitSha256": "3ab525d3fad91c87cfb6bfe10f583343dd11722e6c65db67776ca7611a4979f0",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicConsumerCases.cs",
+      "bytes": 13206,
+      "sha256": "dd29da72edfe5bf534aee95644b6c97ea57e13f57d215fdf21f7343156340c84",
+      "gitBlob": "12e83bd86502a647b0441fa225d77d156ebadf4a",
+      "gitSha256": "dd29da72edfe5bf534aee95644b6c97ea57e13f57d215fdf21f7343156340c84",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs",
+      "bytes": 148822,
+      "sha256": "fc9b5af629dedd224e8d1455344b7a351a5358897a5321c220516c5bbeb57aed",
+      "gitBlob": "ef0dbc8118ba24ebaba5bfd13d4e7179942eb53c",
+      "gitSha256": "fc9b5af629dedd224e8d1455344b7a351a5358897a5321c220516c5bbeb57aed",
+      "checkoutRelation": "exact"
+    }
+  ],
+  "staticVerification": {
+    "all10KindsAnd29AxesMatchInventoryExactly": true,
+    "sourcePinCount": 53,
+    "allPinsMatchReviewedGitBytesOrLineEndings": true,
+    "noRuntimeOrTestExecution": true
+  }
+}
