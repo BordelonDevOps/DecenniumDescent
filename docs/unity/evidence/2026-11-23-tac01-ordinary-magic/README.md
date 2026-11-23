@@ -26,3 +26,5 @@ The corrected candidate completes all five440-command paths,18 checkpoints and1,
 [Remaining capability dispositions](UNRESOLVED_CAPABILITIES.json) distinguish implemented candidate behavior from unproved joint gameplay and broader pre-Unity requirements. [Superseded regression disposition](REGRESSION_SUPERSESSION.json) records actual completed/unfinished cases without a pass claim.
 
 [Carried/work/pending/timing supplement](CARRIED_AND_WORK_SUPPLEMENT_INDEX.json) retains102 individually hashed members, including original failed attempts and corrected outcomes. [Independent review](INDEPENDENT_WORK_AND_CARRY_REVIEW.json) distinguishes genuine work from the assumed closure test and preserves all scope limits.
+
+[Completed focused qualification](QUALIFICATION_STATUS_03.md) and [OMA-01–10 candidate dispositions](ACCEPTANCE_MATRIX_03.json) now reconcile18boundary points, productive work,21authentic profiles, final five paths and partition proofs. [Segment03 index](QUALIFICATION_SEGMENT_03_INDEX.json) binds4,964verified members; running final workers are excluded. Full1,592-case regression and actual final review remain open.

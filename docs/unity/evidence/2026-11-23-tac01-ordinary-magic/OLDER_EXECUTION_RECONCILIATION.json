@@ -1,0 +1,85 @@
+{
+  "status": "PASS_BOUNDED_SOURCE_EQUIVALENCE",
+  "olderExecution": "run-20261123T142446107Z-a45d452c; genuine carry and retreat histories remain at original binary identity",
+  "finalExecution": "candidate-02",
+  "olderBuildReportSha256": "3c6c2a9b7bad98cc452fd62eb5ffbc0679f59d094fb97c0f0683e8a2ceaa646d",
+  "finalBuildReportSha256": "32b1f5ce5dcfc7e3fe868d2140dbfddf98129a22fee2a45a5e729c1076b4e3f2",
+  "sourceCount": 481,
+  "added": [],
+  "removed": [],
+  "unchangedCoreAndPersistenceInputs": 204,
+  "changedInputs": [
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "olderSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "finalSha256": "c111b93678a87de4cba6a0be6d2616d9705020bdaebe9a8d3313c859a2d0ce5e"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "olderSha256": "eb1f6b76d6db27f27d74ff472d4031ba44c2d15316a1ef8b1dbfa31604d0e53a",
+      "finalSha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "olderSha256": "c8c36296b3a0dabbb0ea72360d6c4ee6bfb7eb77398149bac3dcda1ae1c57b97",
+      "finalSha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487"
+    },
+    {
+      "path": "com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "olderSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "finalSha256": "0654a44bee4e155094ee31515e62fde79135a5338ed112bdf9f72b6037e0c9cb"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/BishopEntryCases.cs",
+      "olderSha256": "d09c0838f9e964357c8765dd6424d68a6dbf7baab9a565d38590dda0a1e575a9",
+      "finalSha256": "b5c4bf81fa996660df22ffcd7fd9ab3237377829735bebf4e26de5eda32a77e4"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/DeclaredGeometryCases.cs",
+      "olderSha256": "12a2aea1cf413d83161df604aef020a2767a79044cbbee2f68b5cf031b83c2eb",
+      "finalSha256": "f5577ccab2ad1114c5dcce2e2306fe828ab028fbcbec1487d3b6b7415de2ad75"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/FerryWraithCases.cs",
+      "olderSha256": "ca6567bfb5ed2965587b102136786d76fbee65146db6fd0d3e5f39233a6879d8",
+      "finalSha256": "6e1dd1d7502a42648ec05dd8131ac07760b94d8e320c9468cd2bae72d556f085"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/OrdinaryMagicCases.cs",
+      "olderSha256": "5f69e66e6f1574abd90d6edc26e1d5d69b84fde724645b5a25521720ad871504",
+      "finalSha256": "3ab525d3fad91c87cfb6bfe10f583343dd11722e6c65db67776ca7611a4979f0"
+    },
+    {
+      "path": "com.decennium.foundation/Tests/EditMode/OrdinaryMagicConsumerCases.cs",
+      "olderSha256": "e0c70eb6825b3b0f619f21dad576fb4412e5d7d642f9440aa14a9b059f6ee9df",
+      "finalSha256": "dd29da72edfe5bf534aee95644b6c97ea57e13f57d215fdf21f7343156340c84"
+    }
+  ],
+  "runtimeDiffs": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "olderSha256": "28aeb5a3fcfbc41403a239197c338f71f7ddefac99da2edfac05e71f718a8c67",
+      "finalSha256": "c111b93678a87de4cba6a0be6d2616d9705020bdaebe9a8d3313c859a2d0ce5e",
+      "exactDiff": "--- older/engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs\n+++ final/engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs\n@@ -62,7 +62,7 @@\n                 .Select(x => x.FeatureId).OrderBy(x => x, StringComparer.Ordinal).ToArray());\n             UnsupportedCapabilities = state.ConnectedClericLongRest ? Array.AsReadOnly(new[] {\n                 state.BishopEntry!=null?\"Other Conviction spending and generation\":\"Conviction spending and other generation\", \"Cleric Short Rest\", \"General party recovery\",\n-                \"Positive or mixed Hit Dice recovery\", state.Consecration!=null?\"Consecrate after the owner slot; other card triggers\":\"Consecrate terrain and other card triggers\",\n+                \"Positive or mixed Hit Dice recovery\", state.OrdinaryMagic!=null?\"Other card triggers\":state.Consecration!=null?\"Consecrate after the owner slot; other card triggers\":\"Consecrate terrain and other card triggers\",\n                 \"General spellcasting\", \"Multiclass entry\", \"Resurrection\", \"Ancestry and background creation\",\n                 \"Starting equipment and wealth\", \"Periodic rider healing interactions\" }) : Array.AsReadOnly(new[] { state.ConnectedClericSettlement ? \"Conviction balance, generation, payment and recovery\" : \"Conviction\", \"Class recovery\",\n                 state.ConnectedClericSettlement ? \"Consecrate terrain and other card triggers\" : \"Other selected card execution\",\n"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "olderSha256": "eb1f6b76d6db27f27d74ff472d4031ba44c2d15316a1ef8b1dbfa31604d0e53a",
+      "finalSha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "exactDiff": "--- older/engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs\n+++ final/engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs\n@@ -123,6 +123,13 @@\n                 var command=new Command(\"option.\"+s.Revision+\".invocation.\"+(index++),actor,s.Revision,CommandKind.UseDivineInvocation,\n                     divineInvocation:new DivineInvocationRequest(selected));\n                 if(AssessDivineInvocation(s,command)==null)yield return command;\n+                if(s.OrdinaryMagic!=null)foreach(string target in selected)\n+                    foreach(RadianceCurePreference preference in new[]{RadianceCurePreference.Frightened,RadianceCurePreference.Poisoned}) {\n+                        var cure=new Command(\"option.\"+s.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+\".invocation.cure.\"\n+                            +(index++).ToString(System.Globalization.CultureInfo.InvariantCulture),actor,s.Revision,CommandKind.UseDivineInvocation,\n+                            divineInvocation:new DivineInvocationRequest(selected,target,preference));\n+                        if(AssessDivineInvocation(s,cure)==null)yield return cure;\n+                    }\n             }\n         }\n     }\n"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "olderSha256": "c8c36296b3a0dabbb0ea72360d6c4ee6bfb7eb77398149bac3dcda1ae1c57b97",
+      "finalSha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "exactDiff": "--- older/engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs\n+++ final/engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs\n@@ -92,6 +92,19 @@\n             return PlaytestCharacters.MergedRp(levels, order).Maximum;\n         }\n \n+        private System.Collections.Generic.IEnumerable<Command> DiscoverOrdinaryHealingRite(Snapshot state,string actor)\n+        {\n+            if(state.OrdinaryMagic==null||actor!=ClericRpProfile.Actor)yield break;\n+            int index=0;\n+            foreach(string target in new[]{TestOnlyPolicy.ActorId,ClericRpProfile.Actor}.OrderBy(x=>x,StringComparer.Ordinal))\n+                foreach(RadianceCurePreference preference in new[]{RadianceCurePreference.None,RadianceCurePreference.Frightened,RadianceCurePreference.Poisoned}) {\n+                    var command=new Command(\"option.\"+state.Revision.ToString(System.Globalization.CultureInfo.InvariantCulture)+\".rite.\"\n+                        +(index++).ToString(System.Globalization.CultureInfo.InvariantCulture),actor,state.Revision,CommandKind.UseHealingRite,target,\n+                        healingRite:preference==RadianceCurePreference.None?null:new HealingRiteRequest(preference));\n+                    if(AssessHealingRite(state,command)==null)yield return command;\n+                }\n+        }\n+\n         private string AssessHealingRite(Snapshot state, Command command)\n         {\n             if (!state.ConnectedClericRp || command.Actor != ClericRpProfile.Actor) return \"HealingRiteUnavailable\";\n"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "olderSha256": "2152a93f6b86facbfeb91a8baf9138d4d1a251e63ec57e9c11143747956bc575",
+      "finalSha256": "0654a44bee4e155094ee31515e62fde79135a5338ed112bdf9f72b6037e0c9cb",
+      "exactDiff": "--- older/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs\n+++ final/engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs\n@@ -160,11 +160,14 @@\n                 return DiscoverSharedWorldCommands(s,authority,actor).Concat(DiscoverObservationSearchCommands(s, actor))\n                     .Concat(DiscoverExplorationHide(s, actor)).Concat(DiscoverConnectedFormulaWork(s, actor))\n                     .Concat(DiscoverBloodTreatment(s, authority, actor)).Concat(DiscoverCastingCommands(s,authority,actor))\n-                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor)).Concat(DiscoverConsecrate(s,actor));\n+                    .Concat(DiscoverClericLongRest(s,actor)).Concat(DiscoverFerrySeal(s,actor)).Concat(DiscoverConsecrate(s,actor))\n+                    .Concat(DiscoverOrdinaryHealingRite(s,actor));\n             var options=new System.Collections.Generic.List<Command>();\n             options.AddRange(DiscoverCastingCommands(s,authority,actor));\n             options.AddRange(DiscoverFerrySeal(s,actor));\n             options.AddRange(DiscoverConsecrate(s,actor));\n+            options.AddRange(DiscoverOrdinaryHealingRite(s,actor));\n+            if(s.OrdinaryMagic!=null)options.AddRange(DiscoverDivineInvocation(s,actor));\n             if(FerryWraithProfile.Active(s)&&s.Encounter.CurrentActor==actor\n                 &&(actor==FerryWraithProfile.Hero||actor==FerryWraithProfile.Companion))\n                 options.Add(new Command(\"option.\"+s.Revision.ToString(CultureInfo.InvariantCulture)+\".ferry.dash\",actor,s.Revision,\n"
+    }
+  ],
+  "scope": "Every Core/Persistence input and all other LabModel inputs are byte-identical. Four LabModel diffs are retained here and independently reviewed in CORRECTION_REVIEW.json: capability text/discovery only. The changed test helper/default timing source is separately retained; actual older histories are not relabeled. Final runtime strict-restores the genuine older carry parents in forgery-01; final five paths,21profilecompatibility,partition and focused gates execute independently on candidate02. This source reconciliation only covers retained older carry/retreat mechanical evidence, not a substitute for required final1592 execution."
+}

@@ -33,7 +33,7 @@ for candidate,folders in [('candidate-01',folders01),('candidate-02',folders02)]
         directory=base/candidate/folder
         assert directory.is_dir(),directory
         files.extend(p for p in directory.rglob('*') if p.is_file())
-files.extend([base/'candidate-01/SUPERSEDED_RUN_DISPOSITION.json',base/'candidate-02/CURRENT_SOURCE_RECONCILIATION.json',base/'candidate-02/parent-facts.json'])
+files.extend([base/'candidate-01/SUPERSEDED_RUN_DISPOSITION.json',base/'candidate-01/PROCESS_TERMINATION.json',base/'candidate-02/CURRENT_SOURCE_RECONCILIATION.json',base/'candidate-02/parent-facts.json'])
 static=repo/'engine/artifacts/static-20261123T161129770Z-1999ee6e'
 assert read(static/'results.json')['status']=='PASS'
 files.extend(p for p in static.rglob('*') if p.is_file())
