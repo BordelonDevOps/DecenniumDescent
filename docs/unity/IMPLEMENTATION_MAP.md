@@ -132,21 +132,21 @@ These gates organize the existing mandate. The completion contract defines prosp
 
 **Basis:** [DEVELOPMENT_BRIEF.md](DEVELOPMENT_BRIEF.md) · [FINAL_ACCEPTANCE.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FINAL_ACCEPTANCE.md)
 
-## Accepted dependency and owner stop
+## Accepted dependency sequence and successor gate
 
-Consecration115 is accepted within its amended contract and explicit allocations. Stop after the final push; no successor is started or newly selected. Broader required gaps remain in the workstream rows and pre-Unity contract.
+Consecration115 and ordinary magical activity116 are accepted within their exact contracts and allocations. The owner has resumed the full C# goal. Agree the next module and its dependency order with GPT before implementation; no further successor is selected yet. Broader required gaps remain in the workstream rows and pre-Unity contract.
 
-The selected operational sequence is accepted declared geometry → accepted Ferry-Wraith → accepted Consecration115 under the amended two-card contract. This is a scoped prerequisite sequence, not a new graph edge or authorization for the entire remaining class/resurrection chain.
+The selected operational sequence is accepted declared geometry → accepted Ferry-Wraith → accepted Consecration115 under the amended two-card contract → accepted ordinary magical activity116. This is a scoped prerequisite sequence, not a new graph edge or authorization for the entire remaining class/resurrection chain.
 
 - TAC-03 ← CHR-01, TAC-01.
 - TAC-10 ← TAC-03, TAC-04, TAC-05, TAC-02.
 - CHR-05 ← CHR-03, TAC-02, TAC-05, TAC-08.
 
-The five terrain interpretations remain settled. The accepted bounded implementation retains recharge registration, versioned base Rite → Ground → Radiance healing/cure → Aura ordering, final-HP cap/cure evidence, and a genuinely funded replacement route with original expiry. The genuine combined cap/cure intersection remains UNPROVED under its accepted mechanical allocation; CG-CONTEXT-01 remains a broader mandatory gap. No further successor work is performed here. [Existing decisions](evidence/2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md)
+The five terrain interpretations remain settled. The accepted bounded implementation retains recharge registration, versioned base Rite → Ground → Radiance healing/cure → Aura ordering, final-HP cap/cure evidence, and a genuinely funded replacement route with original expiry. The genuine combined cap/cure intersection remains UNPROVED under its accepted mechanical allocation; CG-CONTEXT-01 is closed within116’s bounded three-calendar scope. Its entirely genuine carried-outside-use intersection remains separately unproved for broader completion; the next module still requires scope/order agreement. [Existing decisions](evidence/2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md)
 
 ## Workstream-by-workstream status
 
-“Remaining” records known capability or qualification gaps, not a promise that all are authorized next. Source gaps require the existing source/Codex/GPT process; material scope reductions and production promotion remain owner decisions. Evidence gaps are not proof of a runtime defect. Every new implementation is held by the owner.
+“Remaining” records known capability or qualification gaps, not a promise that all are authorized next. Source gaps require the existing source/Codex/GPT process; material scope reductions and production promotion remain owner decisions. Evidence gaps are not proof of a runtime defect. The full C# goal is active; each new implementation requires its agreed scope/order and source/API gate.
 
 ### FND
 
@@ -158,7 +158,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Extend and requalify the same authority/rollback contracts for each newly admitted command family. Network identity/delegation is a later cooperative gate, not proven by local seat tests.
 
-**Gap types:** EXTENSION_QUALIFICATION. Implementation is held.
+**Gap types:** EXTENSION_QUALIFICATION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Rejected requests preserve state/RNG; retries cannot repeat committed effects.
 
@@ -174,7 +174,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Maintain an explicit supported-profile/migration matrix for future changes; qualify larger histories and load-time limits under UR-04. No universal migration or arbitrary-profile compatibility claim.
 
-**Gap types:** EXTENSION_QUALIFICATION. Implementation is held.
+**Gap types:** EXTENSION_QUALIFICATION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Persist every authoritative field; resume without duplicate awards; corrupt input cannot overwrite valid evidence.
 
@@ -190,7 +190,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** New procedures must bind exact draw ownership and preserve old replay mappings; this primitive does not supply missing gameplay procedures.
 
-**Gap types:** EXTENSION_QUALIFICATION. Implementation is held.
+**Gap types:** EXTENSION_QUALIFICATION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Known vectors and restored state agree; later legal dice selection consumes the declared draws only.
 
@@ -206,7 +206,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Keep fixture tokens/coordinates separate from gameplay authority. No additional synthetic fixture is a prerequisite merely to close an already accepted gameplay slice.
 
-**Gap types:** AUTHORITY_BOUNDARY. Implementation is held.
+**Gap types:** AUTHORITY_BOUNDARY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Keep fixture proofs distinct from real-time progression, terrain legality and item accounting.
 
@@ -222,7 +222,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Reconcile supported content/operation coverage across the required corpus; provide broad source/handler/visibility bindings and fail-closed unsupported dispositions. Production selection must retain its separate authority gate.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No name-based grants, silent defaults, pending-effect execution or secret leakage.
 
@@ -240,7 +240,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Reconcile every required task consumer's skill/training, eligible modifiers, cost and consequences. A correct roll helper does not prove all tasks.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Boundary DC +/-10 and natural shifts; collapse degrees only when the task directs it.
 
@@ -256,7 +256,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Reconcile remaining weapon/feature attack modifiers, eligibility and source-specific critical behavior as those operations enter scope.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Meet AC; natural 1/20; wider critical range still requires a hit where specified.
 
@@ -272,7 +272,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Reconcile remaining proficiency, automatic-result and source-specific save consequences; never infer a rolled margin for an automatic failure.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Binary meet-DC with no generic natural shift; retain exact margin.
 
@@ -288,7 +288,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General opposed-action legality, consequences and required gameplay callers still need source-bound coverage; helper parity alone is insufficient.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Higher total wins; tie preserves state; do not import task natural shifts.
 
@@ -304,7 +304,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Complete required source eligibility/modifier/automatic-result and unit-conversion coverage through actual consumers; no universal modifier dispatcher is certified.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** One advantage plus one disadvantage cancels regardless of counts; negative modifiers survive; automatic failure has no invented rolled margin.
 
@@ -322,7 +322,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Broader creation/grant/effect/resource consumers still require coverage; do not invent class levels or proficiency for creatures.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Scores8/13/16 => -1/+1/+3; PB uses total level; recompute HP floors individually; a capacity increase does not heal.
 
@@ -338,7 +338,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General character creation, arbitrary legal class entry, multiclass acquisition and complete training/grant choices remain. Earlier statements that all Conviction/funding is absent are superseded only for the accepted routes.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No second maximum-HD first level, duplicated PB, free equipment or rank access from pooled RP.
 
@@ -354,7 +354,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Other schedules, prerequisites, paths, retraining, feat choices, multiclassing and narrative exceptions require explicit coverage; selected advancement is not all 17 class engines.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Each acquisition consumed once; gates use own class level; no rest/healing on advancement.
 
@@ -370,7 +370,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Implement and qualify required trait/choice/training/communication behavior under exact sources. Inventory counts or labels cannot grant a trait.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** One actual variant, no alternate-source stacking; unresolved feature stays explicit.
 
@@ -382,17 +382,17 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **PARTIAL** · Dependencies: CHR-03, TAC-02, TAC-05, TAC-08.
 
-**Implemented / accepted scope:** Selected Soldier operations and Cleric Radiance, Divine Invocation and Aura of Faith execute with shared finite resources, timing, healing/cure/save effects and persistence. Consecration115 additionally accepts owned paid Consecrate, original terrain expiry/recharge, source-qualified Undead attack contributions and ordered capped Ground healing within its amended TEST_ONLY contract.
+**Implemented / accepted scope:** Selected Soldier operations and Cleric Radiance, Divine Invocation and Aura of Faith execute with shared finite resources, timing, healing/cure/save effects and persistence. Consecration115 additionally accepts owned paid Consecrate, original terrain expiry/recharge, source-qualified Undead attack contributions and ordered capped Ground healing within its amended TEST_ONLY contract. Ordinary magical activity116 closes late outside Consecrate/Rite/Invocation admission for the three existing post-encounter calendars under the accepted shared allowance and accounting contract.
 
-**Remaining:** Outside activation after the already-settled owner magical-activity slot remains a broader mandatory integration gap (CG-CONTEXT-01), not a source prohibition. The entirely genuine combined Ground/final-cap/zero-Radiance/cure intersection remains UNPROVED; the explicit bounded mechanical allocation is accepted, with no modified campaign adoption or persisted-idempotency claim from a direct repeat. Broader class engines/cards, resource lifecycles, higher-level scaling and source-specific exceptions remain; Saint resurrection ownership is not supplied by Bishop entry.
+**Remaining:** CG-CONTEXT-01 is closed only for fresh TEST_ONLY116 and its three admitted post-encounter calendars. The entirely genuine carried-before-first-new-Start outside-use intersection remains UNPROVED_REQUIRED_FOR_BROADER_ENGINE_COMPLETION under the accepted separate OMA-CARRY-ALLOCATION-01. The entirely genuine combined Ground/final-cap/zero-Radiance/cure intersection remains UNPROVED; the explicit bounded mechanical allocation is accepted, with no modified campaign adoption or persisted-idempotency claim from a direct repeat. Broader class engines/cards, resource lifecycles, higher-level scaling and source-specific exceptions remain; Saint resurrection ownership is not supplied by Bishop entry.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Every selected card has eligibility, payment, timing, effect and replay cases; preserve protected class differences.
 
 **Concrete completion criteria:** [CHR-05-C1, CHR-05-C2, CHR-05-C3](PRE_UNITY_COMPLETION_CONTRACT.md#chr-05).
 
-**Evidence:** [2026-11-16-chr03-bishop-runtime/GPT_FINAL_REVIEW.json](evidence/2026-11-16-chr03-bishop-runtime/GPT_FINAL_REVIEW.json) · [2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md](evidence/2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md) · [2026-11-15-tac06-resurrection/GPT_CONTRACT_REVIEW.md](evidence/2026-11-15-tac06-resurrection/GPT_CONTRACT_REVIEW.md) · [2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.json](evidence/2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.json)
+**Evidence:** [2026-11-16-chr03-bishop-runtime/GPT_FINAL_REVIEW.json](evidence/2026-11-16-chr03-bishop-runtime/GPT_FINAL_REVIEW.json) · [2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md](evidence/2026-11-16-chr05-consecration-contract/SOURCE_API_DECISIONS.md) · [2026-11-15-tac06-resurrection/GPT_CONTRACT_REVIEW.md](evidence/2026-11-15-tac06-resurrection/GPT_CONTRACT_REVIEW.md) · [2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.json](evidence/2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.json) · [Ordinary magic116 final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.json)
 
 #### CHR-06 — Feats and source-specific grants
 
@@ -402,7 +402,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Source-bound prerequisites, acquisition and complete selected feat payloads require implementation/qualification. Preserve pending/null wrappers as unsupported.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No ability granted by label; prerequisites and full payload audited; null/pending payload rejected.
 
@@ -420,7 +420,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General direct-movement geometry, followers and unsupported mode/anchor handoffs remain; Unity input/rendering is later presentation work.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Legal movement uses shared world state and cannot bypass occupancy or advance incompatible work.
 
@@ -436,7 +436,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Connected legal traversal, landing/obstruction checks, fractional debits and Falling consequences need coverage; unresolved environmental procedures cannot be invented from helper formulas.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No crossing solid barriers or illegal landing; preserve fall/encounter clocks and movement ownership.
 
@@ -452,7 +452,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General examination, marking, object authoring and broader lawful excavation remain. Map markers are distinct from route discovery; arbitrary tunnel/digging rates remain source gaps.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Open/deplete once; revisit/reload preserves state; map marker is distinct from route discovery; unsupported digging is visible.
 
@@ -468,7 +468,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General lighting, hearing, investigation/discovery sources and broader perception geometry remain beyond the admitted planar profiles.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Known location does not imply sight; hidden/internal information remains filtered.
 
@@ -484,7 +484,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Moving scouting, general cohorts/convoys, non-Secured and positive-Risk procedures, capacity settlement, dynamic discovery and autonomous routing remain.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Site depletion and travel progress survive save/reload; route mapping does not replace direct exploration.
 
@@ -500,7 +500,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Other traps, weather, fire/swim exposure and general hazards need individual source-backed behavior and timing; unadopted environment drafts supply no default mechanics.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Legal exposure causes one scheduled consequence; no invented DCs or immunity bypass.
 
@@ -516,7 +516,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General encounter composition, arbitrary rosters/membership and unsupported entry/exit geometries remain. Each added context needs its own legality, clock, authority and persistence proof.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No free movement, clock duplication, cooldown refresh or item duplication across mode changes.
 
@@ -532,7 +532,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Runtime bodies, seats, crews, cargo custody, transfers, travel, retreat and repair integration remain to be source-bound and qualified.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Every body/item remains accounted for through transfers, retreat and repair.
 
@@ -546,33 +546,33 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **PARTIAL** · Dependencies: FND-01, FND-02.
 
-**Implemented / accepted scope:** Shared rational clock, own regular Starts/Ends, actual initiative/ties, carried allowances, background work and multiple owned encounter epochs execute in accepted routes.
+**Implemented / accepted scope:** Shared rational clock, own regular Starts/Ends, actual initiative/ties, carried allowances, background work and multiple owned encounter epochs execute in accepted routes. Ordinary magical activity116 accepts late outside use, original allowance provenance and once-only activity/Grounding settlement across the three existing admitted post-encounter calendars.
 
 **Remaining:** Broader schedule membership/extra-turn sources and untested timing interactions remain; no arbitrary clock resets or duplicate regular refresh. Scale and long-advance operating limits remain UR-04.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Regular markers run once; extra turns do not refresh ordinary reaction/recharge/death-save intervals; offscreen time is not duplicated.
 
 **Concrete completion criteria:** [TAC-01-C1, TAC-01-C2](PRE_UNITY_COMPLETION_CONTRACT.md#tac-01).
 
-**Evidence:** [2026-11-16-exp07-post-recovery/GPT_FINAL_REVIEW.md](evidence/2026-11-16-exp07-post-recovery/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/LIFECYCLE_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/LIFECYCLE_CHECKPOINT.md) · [2026-11-16-tac10-ferry-wraith-runtime/FORGERY_TIED_BOUNDARY_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FORGERY_TIED_BOUNDARY_CHECKPOINT.md)
+**Evidence:** [2026-11-16-exp07-post-recovery/GPT_FINAL_REVIEW.md](evidence/2026-11-16-exp07-post-recovery/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/LIFECYCLE_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/LIFECYCLE_CHECKPOINT.md) · [2026-11-16-tac10-ferry-wraith-runtime/FORGERY_TIED_BOUNDARY_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/FORGERY_TIED_BOUNDARY_CHECKPOINT.md) · [Ordinary magic116 final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.json)
 
 #### TAC-02 — Actions, reactions, Ready and interruption
 
 **PARTIAL** · Dependencies: TAC-01, RUL-05.
 
-**Implemented / accepted scope:** Action/Reaction budgets, Dash, Dodge, Ready, ordinary OA/Press and selected source attack/pending Sanctuary/knockout commands execute with authority, costs and saved continuation.
+**Implemented / accepted scope:** Action/Reaction budgets, Dash, Dodge, Ready, ordinary OA/Press and selected source attack/pending Sanctuary/knockout commands execute with authority, costs and saved continuation. Profile116 additionally qualifies six-operation ordinary/tactical admission and discovery consistency, including actual pending, revoked-seat, capacity and persisted-retry boundaries.
 
 **Remaining:** General cross-source reaction arbitration, special grants, pending-choice discovery/query completeness and remaining action families need coverage. Source-only checks must not be mistaken for public command execution.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Illegal requests spend nothing; legal failed attempts pay their costs; one extra full Action cap and actual Ready timing.
 
 **Concrete completion criteria:** [TAC-02-C1, TAC-02-C2](PRE_UNITY_COMPLETION_CONTRACT.md#tac-02).
 
-**Evidence:** [2026-11-07-dodge-action/README.md](evidence/2026-11-07-dodge-action/README.md) · [2026-11-07-ready-action/README.md](evidence/2026-11-07-ready-action/README.md) · [2026-11-16-tac10-ferry-wraith-runtime/PRESS_KNOCKOUT_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/PRESS_KNOCKOUT_CHECKPOINT.md)
+**Evidence:** [2026-11-07-dodge-action/README.md](evidence/2026-11-07-dodge-action/README.md) · [2026-11-07-ready-action/README.md](evidence/2026-11-07-ready-action/README.md) · [2026-11-16-tac10-ferry-wraith-runtime/PRESS_KNOCKOUT_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/PRESS_KNOCKOUT_CHECKPOINT.md) · [Ordinary magic116 final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.json)
 
 #### TAC-03 — Combat geometry, movement, range, cover and targets
 
@@ -582,7 +582,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General geography/pathfinding, derived cover/area targeting, unsupported spatial modes and production authoring remain. Accepted declared geometry does not imply universal geometry support.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Mode changes retain expenditure, strongest terrain/cover only; no target selected through total obstruction.
 
@@ -598,7 +598,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Further damage/defense sources, reaction/replacement interactions and unsupported effect dispatch remain. Detached poison/necrotic/Petrified controls retain their allocated limits; unknown labels do not bypass defenses.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Temporary HP first, instant death before Wounds, one Wound save per packet, pre-event penalties, no same-packet duplicate death failures.
 
@@ -614,7 +614,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Remaining Core/custom track families, source acquisition/producers, hard-denial and periodic interactions require coverage. Generic PB-dependent Bleeding on the Ferry-Wraith remains Unsupported, not immune; no PB is invented.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Suppress without resetting clocks; consumed loser ticks cannot bank; cure exactly the permitted records.
 
@@ -630,7 +630,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Selected Saint resurrection is still source-contract/prerequisite work, with no lawful Cleric16/Saint ownership or completed body/soul/schedule integration. Broader treatment/restoration sources remain; capacity is not healing.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Capacity is not healing; dead is not downed; Wounds and independent conditions are not silently cured.
 
@@ -646,7 +646,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Other spell identities, placement/access, acquisition/preparation and prerequisite families remain; pooled RP never grants missing knowledge/rank. Historical NOT PORTED is superseded for these selected spells.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Rank/school/known/prepared/target eligibility stays distinct; more RP cannot unlock access.
 
@@ -658,17 +658,17 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **PARTIAL** · Dependencies: TAC-02, TAC-05, TAC-07.
 
-**Implemented / accepted scope:** Selected ordinary Cleric casting, finite RP/component handling, shared timing/concentration, interruptions and seven owned spells are connected through later encounters.
+**Implemented / accepted scope:** Selected ordinary Cleric casting, finite RP/component handling, shared timing/concentration, interruptions and seven owned spells are connected through later encounters. Profile116 additionally accepts late outside spell/focus/Grounding activity with meaningful strain, idle/consumed accounting, source restrictions and partition equivalence in three admitted calendars.
 
 **Remaining:** Broader spell handlers, casting/ritual families, maintenance and source-specific resource tracks remain; seven spells do not close the spell corpus. Historical NOT PORTED is superseded for accepted casting.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No unpaid effect, repeated start pulse, double concentration or merging unrelated Strain tracks.
 
 **Concrete completion criteria:** [TAC-08-C1, TAC-08-C2](PRE_UNITY_COMPLETION_CONTRACT.md#tac-08).
 
-**Evidence:** [2026-11-15-tac08-cleric-casting/GPT_FINAL_REVIEW.md](evidence/2026-11-15-tac08-cleric-casting/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/SPELL_CONSUMERS_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/SPELL_CONSUMERS_CHECKPOINT.md)
+**Evidence:** [2026-11-15-tac08-cleric-casting/GPT_FINAL_REVIEW.md](evidence/2026-11-15-tac08-cleric-casting/GPT_FINAL_REVIEW.md) · [2026-11-16-tac10-ferry-wraith-runtime/SPELL_CONSUMERS_CHECKPOINT.md](evidence/2026-11-16-tac10-ferry-wraith-runtime/SPELL_CONSUMERS_CHECKPOINT.md) · [Ordinary magic116 final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.json)
 
 #### TAC-09 — Summons, constructed devices, forms and temporal effects
 
@@ -678,7 +678,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Command ownership, body/item identity, caps, parent histories, restoration and temporal anti-duplication require source-specific runtime and replay coverage.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No duplicate creature/item/resources, unlimited restore loops or clock replays; preserve pending temporal gates.
 
@@ -694,7 +694,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Broader creatures, bosses, legal AI policies and encounter composition remain. Creature PB/physiology/object/knowledge/harvest/reward procedures remain unsupported where not sourced. The fully genuine fear-through-entry cure is unproved; its explicit mechanical allocation is accepted, not an open TAC-10 blocker.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Same legality path for humans/AI; no hidden-info omniscience or inferred generic boss immunities.
 
@@ -712,7 +712,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General item/loadout, container, ownership/trade and equipment procedures remain; additional bodies/charges/portions must join the existing ledger. Do not infer whole-inventory completion from the vial slice.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No double spend/output, source nulls preserved, bundle quantities correct, each physical body counted once.
 
@@ -728,7 +728,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General recruitment/rosters, autonomous routing, started-work reassignment, multiple sites and global/multi-day scheduling remain. Registering a worker does not grant skill, equipment or access.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No incompatible simultaneous work; advance one interval or equivalent chunks with identical ordered results.
 
@@ -744,7 +744,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General safe-site/roster/guard policies, further recovery/reward classifications, remaining Pressure producers/reductions and fatigue/Collapse need coverage. Zero-dice or no-Strain-offer controls do not establish positive Hit Dice/recovery branches.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No duplicate elapsed hours, unearned recovery or resource refresh by opening a menu/declaring a scene.
 
@@ -760,7 +760,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Other trades/recipes, acquisition/station authority and general product effects remain. The old 'two recipes' statement is stale after recipe347; this map does not claim an exhaustive handler/catalogue numerator.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Reserve/commit actual materials once, honor active time and interruption, quality/yield/failure/salvage and allowed output effect.
 
@@ -776,7 +776,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Broader source anatomies/categories/tools/hazards, general foraging, critical recovery/conversion and production source acquisition remain; no stock or material may be regenerated by re-entry.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No repeated harvest from exhausted stock or duplicate material/food conversion.
 
@@ -792,7 +792,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Rod/Net/attended methods, broad bait/assembly eligibility, cross-site access, moving prey, multi-candidate weighting, renewal and catch processing remain; trapped fish does not automatically become food.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Before commitment release unspent reservations only; afterward no bait/opportunity refund; trap resolves once and still needs actual retrieval.
 
@@ -808,7 +808,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General geology/catalogues/portions, sample preparation and residues, changing-evidence authentication, assistance variants, hazards, renewal/refining/excavation and production authority remain.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** One prior-selected finite claim, actual tools/time/body constraints; no arbitrary dig capability inferred.
 
@@ -824,7 +824,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General crops/plots, acquisition, seasons, scheduling and autonomous assignments need source decisions and runtime; Camp Greens is a prototype, not all agriculture.
 
-**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation is held.
+**Gap types:** CAPABILITY, SOURCE_OR_SCOPE_DISPOSITION. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Explicit source decision before growth or yield implementation; Druidcraft does not replace farming.
 
@@ -840,7 +840,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Broader discovery/training, arbitrary evidence/source acquisition, destructive research and multi-day/general project procedures remain; novel recipes are proposals until approved.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No unsupported recipe grants; consume finite resources/time, persist progress and acquisition once.
 
@@ -856,7 +856,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** General markets/title/tax/rewards, broader descent readiness/objectives and production settlement authority remain. Conditional plans do not grant resources, access or automatic rewards.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No duplicate loot/currency or repeated settlement rewards; preparations affect next expedition.
 
@@ -874,7 +874,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Actual communication, declared social goals/checks, relationship/standing/agreement records and finite faction work remain; descriptive lore cannot create standing or force player beliefs.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** No forced player beliefs, hidden data exposure or invented standing from a descriptive label.
 
@@ -890,7 +890,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Required persistent world/quest/cycle/endgame state and public-versus-internal knowledge behavior need exact source contracts and executable coverage.
 
-**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation is held.
+**Gap types:** CAPABILITY, COVERAGE_EVIDENCE. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Cycle/endgame triggers and lasting consequences persist; public knowledge stays distinct from internal world truth.
 
@@ -906,7 +906,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Broader required combinations/content/actor envelopes and whole-engine completion remain. Do not reopen the accepted minimum or add an unspecified optimization as its retroactive blocker.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Explore -> encounter -> acquire -> assign/craft/research -> prepare -> explore again; no reset or duplication at boundaries. Dependencies mean source-bound minimum slices, not completion of every boss or area.
 
@@ -922,7 +922,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Independent source expectations and branching coverage for remaining required systems, declared larger operating envelopes and measured reliability/scaling remain. Human balance evidence is a later product activity. Assertion counts are not new registered tests or completion percentages.
 
-**Gap types:** CAPABILITY. Implementation is held.
+**Gap types:** CAPABILITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Count actual discoveries/passes; source-model validation is not a C# pass; no completion percentage from test count.
 
@@ -938,7 +938,7 @@ The five terrain interpretations remain settled. The accepted bounded implementa
 
 **Remaining:** Complete necessary C# explanation/query contracts for admitted procedures. Unity views/input/accessibility/audio/art, Editor import/tests and player builds remain a later phase; no presentation rules fork.
 
-**Gap types:** CAPABILITY, LATER_UNITY. Implementation is held.
+**Gap types:** CAPABILITY, LATER_UNITY. Implementation requires the agreed module gate.
 
 **Original acceptance criterion:** Presentation reads the same resolver; no second rules implementation; Unity integration remains deferred.
 
