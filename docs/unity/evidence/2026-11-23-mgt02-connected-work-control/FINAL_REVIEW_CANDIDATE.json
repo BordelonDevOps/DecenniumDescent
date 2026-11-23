@@ -1,0 +1,402 @@
+{
+  "status": "QUALIFIED_CANDIDATE_AWAITING_ACTUAL_GPT_FINAL_REVIEW",
+  "module": "MGT-02-CONNECTED-WORK-CONTROL",
+  "runtimeCommit": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "frozenBuild": "engine/artifacts/connected-work-control/development-10/run-20261123T200453593Z-83a83fc6",
+  "sourceArchiveSha256": "3236481a62a4b3f28858c56bfba7fdc6bf471b4afee2b5f7f0254427f2603326",
+  "compiledInputs": 486,
+  "tests": {
+    "raw": {
+      "total": 1601,
+      "passed": 1600,
+      "failed": 1,
+      "status": "FAIL"
+    },
+    "reconciled": {
+      "status": "PASS_WITH_REVIEWED_SINGLE_CASE_RECHECK",
+      "uniquePassingCases": 1601,
+      "reviewResponseId": "2697d400-e3e5-5f97-b26b-097159e1e35c"
+    },
+    "preservedPredecessors": 1592,
+    "newCases": [
+      "mgt02_work_control_existing_haven_transaction_query_grant",
+      "mgt02_work_control_fill_retry_after_source_leaves_range",
+      "mgt02_work_control_fractional_fill_pause_resume_completion_and_retry",
+      "mgt02_work_control_fresh_identity_strict_restore_and_legacy_boundary",
+      "mgt02_work_control_model_mining_pending_explicit_resume",
+      "mgt02_work_control_model_mining_pending_native_advance",
+      "mgt02_work_control_native_fill_record_and_booking_caps",
+      "mgt02_work_control_reads_discovery_and_revoked_authority",
+      "mgt02_work_control_reservation_cap_mechanical_assessment"
+    ]
+  },
+  "fivePaths": {
+    "status": "PASS",
+    "filesPerPath": 1064,
+    "crossPathComparisons": 4256,
+    "mismatches": [],
+    "paths": [
+      {
+        "mode": "ConsoleUninterrupted",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "e7464f80479aabcf0eac9946754e6c288009889e3f1f74221be4c6305ff97527"
+      },
+      {
+        "mode": "ConsoleRestored",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "afc9244f029e65f5afd5e2dba324f0c234f77ec1eea9e9210496c9bc1b4dc0e2"
+      },
+      {
+        "mode": "TypedUninterrupted",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "606ca7ee1a388262b5a48d5e3f1c53360a04e823b4b99bb96561655cf57dfc9d"
+      },
+      {
+        "mode": "TypedRestored",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "febd9d50672083d54253a4ec5fa152fdff83fb02634da184394e4d1349282ff2"
+      },
+      {
+        "mode": "ReceiptReplay",
+        "commands": 244,
+        "checkpoints": 28,
+        "resultSha256": "007877ee80d99acbc3007cf9282b8886dde97d4bffb47196f2fc3cc5db432c44"
+      }
+    ],
+    "scope": "Actual five244-command paths,28 checkpoints, four seats; inherited views plus both actors work/discovery projections; full raw canonical save bytes include RNG and receipts. Only exact named checkpoint artifacts are compared; run metadata correctly differs."
+  },
+  "compatibilityProfiles": 22,
+  "commandCoverage": {
+    "status": "PASS16_INCLUDED_COMMANDS_HAVE_GENUINE_HOST_AND_CONSOLE_WITNESSES",
+    "commands": {
+      "CancelFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/responses.jsonl",
+          "line": 21,
+          "commandId": "wc.branch.103",
+          "revision": 104
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.94",
+          "revision": 95
+        }
+      ],
+      "CancelManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.106",
+          "revision": 107
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelZero/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.104",
+          "revision": 105
+        }
+      ],
+      "CancelWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/responses.jsonl",
+          "line": 13,
+          "commandId": "console.cancel-fill.cancel",
+          "revision": 2
+        }
+      ],
+      "PauseFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelTactical/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.95",
+          "revision": 96
+        }
+      ],
+      "PauseManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingCancelPositive/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.105",
+          "revision": 106
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 8,
+          "commandId": "wc.branch.105",
+          "revision": 106
+        }
+      ],
+      "PauseMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 7,
+          "commandId": "wc.branch.16",
+          "revision": 17
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 21,
+          "commandId": "wc.branch.20",
+          "revision": 21
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 34,
+          "commandId": "wc.branch.23",
+          "revision": 24
+        }
+      ],
+      "PauseWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1111,
+          "commandId": "work-control.route.236",
+          "revision": 237
+        }
+      ],
+      "ResolveManufacturingQuality": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 639,
+          "commandId": "recipe4.batch.106",
+          "revision": 107
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 23,
+          "commandId": "wc.branch.110",
+          "revision": 111
+        }
+      ],
+      "ResumeFormulaWork": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 438,
+          "commandId": "option.95.connected-research.control",
+          "revision": 96
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.97",
+          "revision": 98
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchResume/responses.jsonl",
+          "line": 22,
+          "commandId": "wc.branch.99",
+          "revision": 100
+        }
+      ],
+      "ResumeManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ManufacturingResume/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.107",
+          "revision": 108
+        }
+      ],
+      "ResumeMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.18",
+          "revision": 19
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 27,
+          "commandId": "wc.branch.21",
+          "revision": 22
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/MiningBoundary/responses.jsonl",
+          "line": 41,
+          "commandId": "wc.branch.25",
+          "revision": 26
+        }
+      ],
+      "ResumeWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1191,
+          "commandId": "work-control.route.240",
+          "revision": 241
+        }
+      ],
+      "StartFormulaResearch": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 360,
+          "commandId": "option.93.connected-research.start",
+          "revision": 94
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelPositive/responses.jsonl",
+          "line": 15,
+          "commandId": "wc.branch.97",
+          "revision": 98
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/ResearchCancelZero/responses.jsonl",
+          "line": 14,
+          "commandId": "wc.branch.96",
+          "revision": 97
+        }
+      ],
+      "StartManufacturing": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 522,
+          "commandId": "recipe4.batch.103",
+          "revision": 104
+        }
+      ],
+      "StartMining": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 92,
+          "commandId": "mining.command.16",
+          "revision": 16
+        }
+      ],
+      "StartWaterFill": [
+        {
+          "input": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/five-paths-02/ConsoleUninterrupted/responses.jsonl",
+          "line": 1070,
+          "commandId": "work-control.route.233",
+          "revision": 234
+        },
+        {
+          "input": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/inputs.jsonl",
+          "response": "engine/artifacts/connected-work-control/console-branches-01/FillingCancel/responses.jsonl",
+          "line": 7,
+          "commandId": "console.cancel-fill.start",
+          "revision": 1
+        }
+      ]
+    },
+    "consoleBranches": 9,
+    "branchCommands": 50,
+    "branchQueryDiscoveryWorkReadPairs": 23,
+    "branchResultSha256": "799f46030169e5ad99577bc0386ddde8f9407dc2dc5915f1fa8a723a66baa9c2",
+    "scope": "Principal and branches of genuine fresh work-control genesis. Each console branch matches its actual public-host final state, with strict restore and pure native query/discovery/work reads. MODEL_ONLY AwaitingCheck fixtures are deliberately excluded from these positive host witnesses."
+  },
+  "criteriaEvidence": {
+    "WC-A1": [
+      "GPT_SOURCE_API_ACCEPTANCE.json",
+      "SOURCE_API_CONTRACT.md",
+      "SOURCE_BINDINGS.json"
+    ],
+    "WC-A2": [
+      "command-coverage.json:16included kinds;9console branches/50commands",
+      "five-paths-02:five full paths; typed/console/native query/discovery/work parity"
+    ],
+    "WC-A3": [
+      "checkpoint03 principal fresh244-command lineage; actualdose1 heals5, earlierwasted dose0preserved",
+      "five-paths-02 finalexactcanonical matches genuineprincipal"
+    ],
+    "WC-A4": [
+      "checkpoint03 branches-01:eight lifecycle branches48commands30restorepairs",
+      "checkpoint03 pending-model-01:four MODEL_ONLY cases; no genuinehostpending closure",
+      "terminal-retries-02:cancellation/qualityonceonly"
+    ],
+    "WC-A5": [
+      "principal-work-01:Hero movement whileCompanionfill; active-worker magicdenied; pause/Guidance/resume60productive seconds",
+      "five-paths-02 orderedviews+RNG"
+    ],
+    "WC-A6": [
+      "finitewater0.5; recipe4learned,actualblood/ingredients,packaging/doses; nativeage/stabilization boundaries",
+      "cancelbranches zero/positive distinctsettlement; finalworkledgercaps retained"
+    ],
+    "WC-A7": [
+      "host-negative-03 exact25codes; terminal-retries-02; post-salecurrentownershipbeforeduplicate",
+      "full1601 includes actual32fill/128booking limits and labelledmechanical128reservations",
+      "filtered four-seat/bothactor observations and ordereddiscovery"
+    ],
+    "WC-A8": [
+      "five-paths-02 strictrestore at28checkpoints; lifecycle30restorepairs",
+      "MODEL_ONLY duechecks withtruthfulownpolicy",
+      "forgeries-reconciled14 checksumvalid rejectionassertions inclvalid-decode InvalidSharedWorldReplay",
+      "backup237->244 withdisplacedprimarypreserved",
+      "compatibility-04 originalprofiles95\u2013116 actualcontinuation andaccepted/current strict-restored observations"
+    ],
+    "WC-A9": [
+      "five-paths-02 all5 complete244commands;4256exactcomparisons/0mismatches",
+      "console-branches-01 genuinebranchparents preserved"
+    ],
+    "WC-A10": [
+      "frozen10 C#9warnings-as-errors486inputs/staticPASS",
+      "Raw full1601=1600PASS/1FAIL; actual worker exits0,0,1,0 retained. Actual GPT-reviewed exactsameDLL singlecase recheck gives1601 reconciled unique passing cases=1592predecessors+9new; no missingnames",
+      "final-source-pins:acceptedcontract/rules preserved",
+      "DEVELOPMENT_CHECKPOINT_03.json.build.runtimeSourceInputsEqualDevelopment08:365runtimeinputs stable08->10",
+      "FINAL_RUNTIME_REVIEW_PENDING"
+    ]
+  },
+  "priorEvidence": "DEVELOPMENT_CHECKPOINT_03.zip SHA2568b8909e1fa3151e55f02c9a7134a337abde18f261d27089f922ee5545d7b651c retains frozen10 source/DLLs, genuine lineage/branches/model/negative/backup/forgery evidence and all corrected failures; checkpoints01/02 preserve earlier implementation failures and review resolutions",
+  "supplement04": {
+    "archive": "QUALIFICATION_SUPPLEMENT_04.zip",
+    "sha256": "42a77c5eb41c23aa3326270b8b292dc388d4cd0c440e1cee0f6f8379c904e31a",
+    "contents": "Finalfrozen10 fivepaths, all16 consolecommands,22compatibility, rawIOfailure/recheck/triage"
+  },
+  "newArchive": {
+    "archive": "FINAL_QUALIFICATION_05.zip",
+    "bytes": 20088070,
+    "sha256": "f1c3a365bf07d97321b0e38c9dda34d9cfa6851f3a3015f403d69d335409d04d",
+    "memberCount": 3791
+  },
+  "actualCheckpoint03Review": "5d95cccf-254c-5eca-8c13-5197e4acd0ac",
+  "runtimeAccepted": false,
+  "genuineHostPendingChecks": "UNPROVED_REQUIRED_FOR_BROADER_ENGINE_COMPLETION",
+  "wholeWorkstreamComplete": false,
+  "performanceQualified": false,
+  "unityQualified": false,
+  "successorAuthorized": false
+}
