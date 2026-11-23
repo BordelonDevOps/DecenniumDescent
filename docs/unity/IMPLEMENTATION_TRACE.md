@@ -1,5 +1,13 @@
 # Foundation and provisional rules implementation trace
 
+## 2026-11-23 — ordinary magical activity116 candidate; final qualification open
+
+CAL-01–05 source/API review07b5b8fe and representation review8bd7afb5 preceded the corresponding implementation. Runtime03e60196 and116-only discovery/capability correctiona713eb77 are pushed to Engine. Candidate02 binds481 current C# input hashes and four separately frozen DLLs; it does not relabel earlier candidate binaries. It preserves genuine Action origin across late outside use and actual transition segments, settles one consumed/open accounting opportunity, and retains source payment, conditions, work, expiry/recharge and old-profile authority.
+
+The corrected candidate passes five complete440-command paths/18 checkpoints/1,872 exact comparisons,24-second/eight-hour full-state partition checks, source-owned consumers, actual pending/incapacity/revocation/capacity denials, eight checksummed causal forgeries and backup continuation. Full1,592-case regression, remaining focused evidence, final retention and actual GPT/Codex acceptance remain open. Candidate01's superseded partial regression was stopped with993 passes/zero failures; all unfinished cases remain incomplete and actual outputs are retained separately. Prior accepted TAC-10/Consecration qualification is unchanged.
+
+GPT allocationOMA-CARRY-ALLOCATION-01 permits a detached closure/context supplement with an authenticated genuinely unspent admitted parent. Six actual unchanged producer paths execute; normal campaign validation rejects the hypothetical states. No invented campaign history or new mechanics are admitted. Its full genuine joint witness remains required for broader engine completion. See [active packet](evidence/2026-11-23-tac01-ordinary-magic/README.md) and [remaining capability dispositions](evidence/2026-11-23-tac01-ordinary-magic/UNRESOLVED_CAPABILITIES.json). No successor or Unity acceptance follows.
+
 Current resumption (2026-11-23): the owner reactivated the full C# engine goal and explicitly said **start working bud**. Continue with accepted TAC-01-ORDINARY-MAGICAL-ACTIVITY; its CAL-01–05 source/API amendment is being resolved with GPT before runtime edits. [Active work record](evidence/2026-11-23-tac01-ordinary-magic/START.json). This instruction lifts the earlier implementation pause; source/review/dependency gates, prior accepted evidence and the full pre-Unity completion mandate remain in force. Unity remains deferred. Earlier pause wording below is historical.
 
 

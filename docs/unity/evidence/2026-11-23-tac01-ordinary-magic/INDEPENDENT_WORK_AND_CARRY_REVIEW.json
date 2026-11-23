@@ -1,0 +1,337 @@
+{
+  "kind": "bounded work source-equivalence and independent allocated carried-supplement review",
+  "createdUtc": "2026-11-23T16:34:47.666285+00:00",
+  "disposition": "NO_CONCRETE_BLOCKER_FOUND_WITHIN_THE_EXPLICIT_BOUNDS",
+  "moduleAcceptance": false,
+  "work": {
+    "evidence": "cleric-01/result.json and WORK_TIMING_EVIDENCE.json",
+    "status": "PASS_BOUNDED_CLERIC_FALLBACK",
+    "driverSha256": "bb8dbb1d72baf101aaac5202745b239677dd26f09849a4df405ec92b1b46b427",
+    "observed": {
+      "status": "PASS",
+      "scope": "Genuine116 simulation-level Cleric productive filling; exact2/3/6 active work through old End and owner Start, incompatible own magic rejects unchanged while active; pause retains6seconds/one-pint claim; later actual late Guidance succeeds while paused; further time does not credit paused work; cancel releases with no liquid transfer; separate strict-restored active checkpoint completes once at60seconds. Hero concurrent magic/work intersection is not claimed: Hero cannot release his held Club in this profile. Session water-fill exposure remains unsupported.",
+      "jobId": "inventory.398.fill",
+      "workActor": "TEST_ONLY.companion",
+      "busyDenial": "SpellcastingRequiresStationaryAccess",
+      "sourceBefore": "32/1",
+      "destinationBefore": "0/1",
+      "finalSource": "31/1",
+      "finalDestination": "1/1",
+      "boundaryRevision": 401,
+      "pausedMagicRevision": 404,
+      "cancelRevision": 406,
+      "completionRevision": 402
+    },
+    "actualIncompatibleFailure": {
+      "Code": "SpellcastingRequiresStationaryAccess",
+      "result": "SpellcastingRequiresStationaryAccess",
+      "unchanged": true,
+      "Revision": 400,
+      "progress": "3/1"
+    },
+    "sourceEquivalence": "The existing AdvanceTo dispatcher calls SettleCastingTime then OrdinaryInventory.AdvanceTo, whose existing WaterFilling.CreditWork/CompleteDue own the same real elapsed seconds. The actual job crosses old End and owner Start with progress2/3/6, and the strict-restored active branch reaches60 exactly once. This exercises the changed accounting with real productive work and existing shared Work/claims, not a synthetic counter. CastingActionFailure keeps the actual busy guard and produces SpellcastingRequiresStationaryAccess before mutation. Pause/cancel and subsequent late Guidance use existing APIs; no authority/mechanics change.",
+    "limits": [
+      "Hero concurrent-work/Cleric-magic intersection remains unproved: actual Hero job rejected TwoHandsRequired because original Club is held and no selected ordinary release exists.",
+      "The genuine fallback uses Cleric work, actual own magical rejection while active, and actual late magic only after lawful pause and a new owner allowance.",
+      "Simulation API only for water-fill; query/discovery/session-host exposure remains unsupported, explicitly retained.",
+      "Manual pause/cancel only; no automatic pause/cancel policy claim.",
+      "Intermediate saves prove normal codec roundtrip; strict campaign restores explicitly bound at input, active branch and final completion."
+    ]
+  },
+  "carriedSupplement": {
+    "allocation": "OMA-CARRY-ALLOCATION-01",
+    "actualGptResponse": "110ff9a2-fbbf-5b6f-9650-983a532beb18",
+    "status": "REVIEWED_CONCUR_WITH_BOUNDED_ALLOCATION_SUPPLEMENT",
+    "inspection": "Read actual GPT allocation response, retained driver and execution metadata, complete genuine parent JSON and all12 before/after JSON documents; independently compared all top-level fields and nested event/cost/identity differences; verified all four frozen DLL and driver hashes. Did not rerun carried gameplay.",
+    "genuineInput": {
+      "path": "engine/artifacts/ordinary-magic-development/transition-probe/execution-01/fresh116-before-contact.ddsave",
+      "sha256": "b34a75522dad015b4b137662993dfa9c581151bdf6e82d105db4adb5b761ff0e",
+      "originalRuntime": "run-20261123T142446107Z-a45d452c, preserved original identity",
+      "continuation": "Actual candidate02 seven-command Guidance, Detect, lawful departure/contact/arrival continuation r344\u2192351; retained script strict-restores parent before any detachment."
+    },
+    "genuineParent": {
+      "saveSha256": "f01ed6b7fd7c796f17e9e9fa4cce386a459824674d20352a856453738cd56f18",
+      "jsonSha256": "b8095dbacdeb2a94cdcf4e2b23de570ed62c2685cf4f88249f93cba1d1914499",
+      "revision": 351,
+      "clock": {
+        "Numerator": 344105,
+        "Denominator": 2
+      },
+      "rng": 3305511186,
+      "initiativeOrder": [
+        "TEST_ONLY.actor",
+        "TEST_ONLY.ferry-wraith",
+        "TEST_ONLY.companion"
+      ],
+      "processedSlot": 0,
+      "clericLocalStart": -1,
+      "unspentAction": true,
+      "consumed": false,
+      "rp": 5,
+      "conviction": 5,
+      "dissonance": 2,
+      "heroHp": "17/26 living",
+      "clericHp": "18/18 living",
+      "existingEffects": "Actual prior Guidance on Hero and paid Detect with worn real focus; known observed aura obtained from genuine player view."
+    },
+    "assumptionComparison": {
+      "semanticTopFields": [
+        "InventoryCombat",
+        "InventoryTurnActor",
+        "Encounter",
+        "ClosedEncounters",
+        "OrdinaryMagic"
+      ],
+      "canonicalOrderOnly": [
+        "WorldIntervals",
+        "BonusActions"
+      ],
+      "orderExplanation": "genuine-parent.json was serialized before a codec roundtrip; detached originals are Codec.Decode(Codec.Encode(parent)). Actor-keyed comparison proves WorldIntervals and BonusActions differ only in serialized order, with identical per-actor allowances/spending. The five-field statement is exact against that decoded original; no budget values change.",
+      "ordinaryMagicChanges": "Close existing Ferry tactical segment120 with assumed cause; append assumed same-epoch tactical\u2192outside transition121 and outside segment122; preserve old origin59, captured originAt344101/2, deadline344113/2, clock344105/2 and Consumed=false. No Start, activity, settlement, range, receipt or allowance invented by substitution.",
+      "allSixBeforeFilesSameSha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    "negativeControls": "All six unchanged genuine tactical parents reject WrongRegularTurn without JSON change. Every paid direct repeat rejects unchanged: five ActionAlreadySpent; Invocation InsufficientResonance after actual3RP payment. Normal Codec.Encode rejects all assumed before/after states with Invalid encounter archive sequence. No hypothetical binary save or campaign adoption; direct repeat is not persisted idempotency.",
+    "consumerFindings": [
+      {
+        "kind": "CastKnownSpell",
+        "changedProducerFields": [
+          "WorldIntervals",
+          "OrdinaryMagic",
+          "CastingStrain",
+          "SpellCasts",
+          "CastingActivities",
+          "SpellEffects"
+        ],
+        "rpPaid": 0,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3305511186
+      },
+      {
+        "kind": "FocusDetectedAura",
+        "changedProducerFields": [
+          "WorldIntervals",
+          "OrdinaryMagic",
+          "CastingActivities",
+          "DetectMagicFocuses"
+        ],
+        "rpPaid": 0,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3305511186
+      },
+      {
+        "kind": "GroundCastingStrain",
+        "changedProducerFields": [
+          "WorldIntervals",
+          "OrdinaryMagic",
+          "CastingActivities"
+        ],
+        "rpPaid": 0,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3305511186
+      },
+      {
+        "kind": "UseConsecrate",
+        "changedProducerFields": [
+          "WorldIntervals",
+          "Consecration",
+          "OrdinaryMagic",
+          "CastingActivities",
+          "AbilityRecharges",
+          "ResonancePools"
+        ],
+        "rpPaid": 2,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3305511186
+      },
+      {
+        "kind": "UseDivineInvocation",
+        "changedProducerFields": [
+          "RandomState",
+          "Lives",
+          "WorldIntervals",
+          "BishopEntry",
+          "OrdinaryMagic",
+          "ConvictionBalance",
+          "CastingStrain",
+          "CastingActivities",
+          "AbilityRecharges",
+          "ResonancePools"
+        ],
+        "rpPaid": 3,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3266255360
+      },
+      {
+        "kind": "UseHealingRite",
+        "changedProducerFields": [
+          "RandomState",
+          "Lives",
+          "WorldIntervals",
+          "BishopEntry",
+          "OrdinaryMagic",
+          "CastingActivities",
+          "RadianceUses",
+          "ResonancePools",
+          "HealingRites"
+        ],
+        "rpPaid": 2,
+        "actualCarriedActionPaid": true,
+        "oldOriginAndDeadlinePreserved": true,
+        "randomBefore": 3305511186,
+        "randomAfter": 3266255360
+      }
+    ],
+    "limits": [
+      "This is explicitly allocated detached caller integration, not genuine closure, kill, outside campaign, grant/authority facade proof, save/replay proof or overall module acceptance.",
+      "Rite heals actual damaged Hero17\u219226; Radiance/Aura records execute at real old origin but their additional HP gains are0 at cap. No claim of positive additional healing or curing an absent condition.",
+      "Optional Frightened preferences execute with zero ended applications; no condition was fabricated and prior cure allocations are not borrowed.",
+      "Ground creates a paid Grounding activity at preserved deadline; no detached later settlement or continuation is claimed.",
+      "A fully genuine joint pre-first-new-Start outside-use remains UNPROVED_REQUIRED_FOR_BROADER_ENGINE_COMPLETION."
+    ],
+    "documentationFollowup": "CARRIED_OUTSIDE_USE_ALLOCATION.json still says executedSupplement NOT YET at review time; update it to point to these completed/reviewed artifacts without implying final module acceptance."
+  },
+  "inspectedHashes": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/CARRIED_OUTSIDE_USE_ALLOCATION.json",
+      "sha256": "780d308d14b89d687b4fbef9b18ec64a7f6aea49f990110c156078d842e9c0aa"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/GPT_CANDIDATE_02_REVIEW.json",
+      "sha256": "a39e3f15190082deb744aa4b114dd870c4b4e3addce05b0ccbadcb5d482ecc0b"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/CarriedOutsideProbe.cs",
+      "sha256": "bb1c006a505d086cb4a8f79a16d632ef81d3f18ce35ca6bdf5fd4d1a8aab8d11"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/CastKnownSpell-hypothetical-after.json",
+      "sha256": "da33826febabbd0da65e8f20a8b55db497114fb536b3923a2eec3fea30f47411"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/CastKnownSpell-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/execution.json",
+      "sha256": "263fc295d9c2a3be78abb3180e27549b33faf1dbfb07578e0d5835b49332d3d0"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/FocusDetectedAura-hypothetical-after.json",
+      "sha256": "791d3965df4fd7252ef8b2c152ffbaf4426a44b280821d3ac70b944e7f9705f6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/FocusDetectedAura-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/genuine-parent.ddsave",
+      "sha256": "f01ed6b7fd7c796f17e9e9fa4cce386a459824674d20352a856453738cd56f18"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/genuine-parent.json",
+      "sha256": "b8095dbacdeb2a94cdcf4e2b23de570ed62c2685cf4f88249f93cba1d1914499"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/GroundCastingStrain-hypothetical-after.json",
+      "sha256": "2d187965ec2ac5c89442febcaca3e4395a9545dd3f3ea1a5834b496eb6c0beb8"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/GroundCastingStrain-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/progress.json",
+      "sha256": "64e2b255364e318cb02492e44d80b487a984696c02d92eead5113306023ecec6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/result.json",
+      "sha256": "aab7900bc6f9ab9476bf77f98a1b2985de118964bbc1676ab8774ad643d042a0"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/Run-QualificationProbe.ps1",
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseConsecrate-hypothetical-after.json",
+      "sha256": "d8a6a84e8e6b8d65ef95e9e0bab3015745271db0ae330870f0af6bc7d689f91b"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseConsecrate-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseDivineInvocation-hypothetical-after.json",
+      "sha256": "4fa34b74f78bfd5c6e80dfec5f316a81d84796dc84683c788b03a54447e8939e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseDivineInvocation-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseHealingRite-hypothetical-after.json",
+      "sha256": "c6422a1caf3a2d26bb9d56f3ede053ef2dcdcb2d48ec7019eb940e57fbd08328"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/carried-outside-02/UseHealingRite-hypothetical-before.json",
+      "sha256": "5d1ec8b6c74f1e144518397746cbf45395d5ef2306606ca3880f0e126f5dbb82"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/execution.json",
+      "sha256": "5bea9a6a8091354ed611670ae3ae5365e6673dd748df7ff2a8253e5d59449475"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/result.json",
+      "sha256": "b81a6ded31c36d5c77d175922c3d680da6493309ffc8abd9f76b1fd26905857c"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/WorkTimingProbe.cs",
+      "sha256": "bb8dbb1d72baf101aaac5202745b239677dd26f09849a4df405ec92b1b46b427"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "sha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "19e38ef7eaee1604c78b1b4fe9d2555cf6d1c083f05a9e851bf13bade1834793"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "sha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447"
+    }
+  ]
+}

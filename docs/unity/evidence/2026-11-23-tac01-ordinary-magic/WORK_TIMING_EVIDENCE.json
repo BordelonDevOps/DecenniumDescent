@@ -1,0 +1,333 @@
+{
+  "kind": "support-only work timing qualification",
+  "status": "PASS_BOUNDED_CLERIC_FALLBACK_HERO_INTERSECTION_UNSUPPORTED",
+  "createdUtc": "2026-11-23T16:32:52.733231+00:00",
+  "runtime": "candidate-02 frozen four DLLs, unchanged",
+  "acceptedRun": "cleric-01",
+  "acceptedDriverSha256": "bb8dbb1d72baf101aaac5202745b239677dd26f09849a4df405ec92b1b46b427",
+  "currentDriverSha256": "bb8dbb1d72baf101aaac5202745b239677dd26f09849a4df405ec92b1b46b427",
+  "genuineChain": [
+    "candidate-01/five-paths-01/TypedUninterrupted/r351.ddsave",
+    "work-timing-01/run-02/failed-command-state.ddsave r354",
+    "work-timing-01/run-03/failed-command-state.ddsave r374",
+    "work-timing-01/cleric-01 real commands"
+  ],
+  "failedAttempts": [
+    {
+      "run": "inspection-01",
+      "reason": "support compile: PortableEquipmentRecord uses ParentId, not LocationId"
+    },
+    {
+      "run": "inspection-02",
+      "reason": "support compile: Command.Fingerprint is not public to external support assembly"
+    },
+    {
+      "run": "run-01",
+      "reason": "support compile: internal CampGreens.Subtract replaced by exact rational difference in support"
+    },
+    {
+      "run": "run-02",
+      "reason": "actual declared movement blocked at6,1; corrected route through7,2; no geometry alteration"
+    },
+    {
+      "run": "run-03",
+      "reason": "actual Hero StartWaterFill rejected TwoHandsRequired because Hero still holds original Club; no ordinary release selected. No asset/state fabrication."
+    }
+  ],
+  "inspectionPass": "inspection-03",
+  "proof": {
+    "status": "PASS",
+    "scope": "Genuine116 simulation-level Cleric productive filling; exact2/3/6 active work through old End and owner Start, incompatible own magic rejects unchanged while active; pause retains6seconds/one-pint claim; later actual late Guidance succeeds while paused; further time does not credit paused work; cancel releases with no liquid transfer; separate strict-restored active checkpoint completes once at60seconds. Hero concurrent magic/work intersection is not claimed: Hero cannot release his held Club in this profile. Session water-fill exposure remains unsupported.",
+    "jobId": "inventory.398.fill",
+    "workActor": "TEST_ONLY.companion",
+    "busyDenial": "SpellcastingRequiresStationaryAccess",
+    "sourceBefore": "32/1",
+    "destinationBefore": "0/1",
+    "finalSource": "31/1",
+    "finalDestination": "1/1",
+    "boundaryRevision": 401,
+    "pausedMagicRevision": 404,
+    "cancelRevision": 406,
+    "completionRevision": 402
+  },
+  "branchSemantics": "commands.json records real chronological execution, then explicit strict restoration of cleric-boundary-working.ddsave at r401 for the separate completion branch. Cancellation r406 and completion r402 belong to separate genuine branches, not one monotonic receipt history. Raw saves retain each branch.",
+  "persistence": "Every checkpoint uses normal codec roundtrip; input, active-work branch checkpoint and final completion additionally use strict campaign restore. Intermediate binding files explicitly distinguish these.",
+  "scopeLimits": [
+    "No runtime or test files changed; no Git operations.",
+    "Existing Simulation.Execute authority is used. ConnectedExpeditionSession host and generic query/discovery do not expose water-fill commands; unsupported query logs are retained, not represented as discovery passes.",
+    "Hero concurrent-work/Cleric-magic witness was blocked, not proved; actual Cleric labor plus incompatible own magic and paused late magic is the finite source-faithful fallback.",
+    "Manual pause/cancel behavior is proved; no automatic interruption or new interruption policy claimed."
+  ],
+  "files": [
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/active-work-magic-denial.json",
+      "bytes": 171,
+      "sha256": "0c82a06d20388c2c9fdd979d2460d0974d491e7d67f85a5f1e407dcbdb00e8cc"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-boundary-working.binding.json",
+      "bytes": 355,
+      "sha256": "ed4aeae0ffe128b7a1e61a55c0cd003571436afcff38a1c899f2d5d5d8eabe18"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-boundary-working.ddsave",
+      "bytes": 186626,
+      "sha256": "97500bf1a30e9f9ec3b10c91a271c8a3f2a45cd0263674b56b8b524e35b78e64"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-cancelled.binding.json",
+      "bytes": 348,
+      "sha256": "6d2addec635b4782d763a60d2f8c0d33aec984199ff1ce24226887677a2d9681"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-cancelled.ddsave",
+      "bytes": 189564,
+      "sha256": "91bda3d7e81ba531cd4b98b5b073e9d4fe5c5fee41921eb65acd2c6ebc30e409"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-completed-once.binding.json",
+      "bytes": 352,
+      "sha256": "8b8d6f9376553b389db3cca5e74a019c76165df5c7d3f06de77373a21c6d3373"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-completed-once.ddsave",
+      "bytes": 188339,
+      "sha256": "6d4a3e6de56da76a7c6f14e5ed17ec804e50cf75db1ee50c542d3951848b4f2c"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-fill-started.binding.json",
+      "bytes": 351,
+      "sha256": "cf86e0747f5e80c58e9504afcfee557400b447875e7da503ff5706c4473eda68"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/cleric-fill-started.ddsave",
+      "bytes": 185929,
+      "sha256": "b76cc725b771cb0f6524557ecc732a613f1bcf99bb5df2519d538ae34ae04945"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/commands.json",
+      "bytes": 11718,
+      "sha256": "4e5f6c4c298e456267128c647729e6687dead2526d6b4043fee3662d41b919bb"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/execution.json",
+      "bytes": 2008,
+      "sha256": "5bea9a6a8091354ed611670ae3ae5365e6673dd748df7ff2a8253e5d59449475"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/final-inventory.json",
+      "bytes": 127384,
+      "sha256": "5fbcae5bca399e2587036111288ac4d6c1b81c4e5405af4796f77b040dae4fc5"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/initial-inventory.json",
+      "bytes": 115629,
+      "sha256": "127debe67fc2a8a757876a600acb46b6963597abcd30d8303956f2bcc75495be"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/input.json",
+      "bytes": 372,
+      "sha256": "1529ba27ff358b581d6bfc920e5827d50cbb156ca19c210f657558d29f93fc70"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/paused-late-magic.binding.json",
+      "bytes": 349,
+      "sha256": "06446306a73a074e35babd1d7a620c1c84e3ddab0816666ba96aa9af97de53e8"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/paused-late-magic.ddsave",
+      "bytes": 188453,
+      "sha256": "8d6259d3c3ab84ac78791b38b7ffd3d20f6694c083697bad426dd573bf48df6e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/result.json",
+      "bytes": 962,
+      "sha256": "b81a6ded31c36d5c77d175922c3d680da6493309ffc8abd9f76b1fd26905857c"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/cleric-01/WorkTimingProbe.cs",
+      "bytes": 22481,
+      "sha256": "bb8dbb1d72baf101aaac5202745b239677dd26f09849a4df405ec92b1b46b427"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/INDEPENDENT_WORK_AND_CARRY_REVIEW.json",
+      "bytes": 17695,
+      "sha256": "d2607f34b8c19583f496818f026d2e6673b37b5808a780f24a555f70996228d5"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-01/execution.json",
+      "bytes": 2832,
+      "sha256": "ac80ba7062524a0269ba0d5d37699d7383c14ef4304af6f7e1e9b6ec4e26b2a2"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-01/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-01/WorkTimingProbe.cs",
+      "bytes": 3751,
+      "sha256": "1ca755c778e7c23f27aa8dd7cd3111c3ee9b59dbb5b2232add08abf1367dedeb"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-02/execution.json",
+      "bytes": 2728,
+      "sha256": "48b79906d50b1d3b4a62d8697b525d74fb84a4528bbd8ec0c67ad163c517fafc"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-02/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-02/WorkTimingProbe.cs",
+      "bytes": 3749,
+      "sha256": "66f17120b2aaf38350a705ddcc6d96af64530f909b26936975f89c5246c0b30e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/discovery.json",
+      "bytes": 1972,
+      "sha256": "b5cfd535cad19f28738bc81570a16a0a84ea5c0bf690752116aff7f6c84f9832"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/execution.json",
+      "bytes": 2000,
+      "sha256": "36d2da4d98665a8b8bcafbd2725d6f26a6c0af26fbbe403ff6667aaa1541c8cd"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/input.json",
+      "bytes": 367,
+      "sha256": "23bd29dc3ca87532eb15a05e602e9f6d19fef09073da11c7f9c667ceaded1859"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/inventory.json",
+      "bytes": 107304,
+      "sha256": "7eb1dd533362e15c4879a0b5d433cfcf796c78db246f40028e4a7925e2cc2753"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/result.json",
+      "bytes": 158,
+      "sha256": "8813ffc575d56efe14250fdd4f7bb2b07b7755bfc5d91472222e2345b3d461a5"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/inspection-03/WorkTimingProbe.cs",
+      "bytes": 3776,
+      "sha256": "7430040dea6176dcc53c3a173337020404ff2506ccb3434c5b08c22ae0681040"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-01/execution.json",
+      "bytes": 2442,
+      "sha256": "ea734e18eff62d772da0a7e73c0a4b75fbaeb614976173d8339a4da074c39db6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-01/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-01/WorkTimingProbe.cs",
+      "bytes": 13268,
+      "sha256": "7d1c3abf42f1b7b756a5f620ad2bc45f2594c20f118541ed7042648b2999b875"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/commands.json",
+      "bytes": 1377,
+      "sha256": "dfc8ef05d09d68d042db2d5517d0329ef7203da98766dcd78637b609e2fbe34e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/execution.json",
+      "bytes": 3201,
+      "sha256": "4e1d55b3bb1b0445497e1f128999937b8208d42b3beb787ffaf7904183ce13c8"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/failed-command-inventory.json",
+      "bytes": 107304,
+      "sha256": "95a1ad07a6f8f5eca9504f7188e7d1566ea97a9881381e46c1e3268fc78face6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/failed-command-state.ddsave",
+      "bytes": 178556,
+      "sha256": "1b80de330bb3c5964ae7377486c87b9e913231167ac073fd27442b33c4957b4e"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/failure.json",
+      "bytes": 314,
+      "sha256": "04a2b8a65afdb9acc475fad894e9263945f2b35bd79373e03c0b31947d8ae4da"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/initial-inventory.json",
+      "bytes": 107304,
+      "sha256": "7eb1dd533362e15c4879a0b5d433cfcf796c78db246f40028e4a7925e2cc2753"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/input.json",
+      "bytes": 367,
+      "sha256": "23bd29dc3ca87532eb15a05e602e9f6d19fef09073da11c7f9c667ceaded1859"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-02/WorkTimingProbe.cs",
+      "bytes": 13454,
+      "sha256": "b7729f9ead6bce8738115da43409429e6cb8bb1f0783eb288db783df88111a5a"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/commands.json",
+      "bytes": 7274,
+      "sha256": "c9ab182e4a25e0e9a4bfd1522a1d8d858d2d4730de7080413610eb3d2a82216b"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/execution.json",
+      "bytes": 3172,
+      "sha256": "a0715ea53282b48417d4e885f88164be2494321dd6ddda19b585c3ac0829f62c"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/failed-command-inventory.json",
+      "bytes": 114325,
+      "sha256": "cc3dc51936d6b335d3c6b7e04128dd717ca844ec39bef0e0a9f212fd6d241a81"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/failed-command-state.ddsave",
+      "bytes": 181935,
+      "sha256": "373c99ce5a7a0d67c3ccb03862978f74a0c369eaea4862a15920b45aa2f06264"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/failure.json",
+      "bytes": 265,
+      "sha256": "8f8f017061f847440446017d88d48d603f7f803f71d6beb2df6cb2ae0a536e63"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/initial-inventory.json",
+      "bytes": 107304,
+      "sha256": "95a1ad07a6f8f5eca9504f7188e7d1566ea97a9881381e46c1e3268fc78face6"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/input.json",
+      "bytes": 372,
+      "sha256": "3df07a9e2feed8230324badc282718ff2931b07430dee1e3af78e999afb679ae"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/Run-QualificationProbe.ps1",
+      "bytes": 1963,
+      "sha256": "6085808dc61b592e96372e77449ac7b5cdf850fe5df9a683b1f9588ecb56c6e3"
+    },
+    {
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/work-timing-01/run-03/WorkTimingProbe.cs",
+      "bytes": 13589,
+      "sha256": "8af3316ccf37fe7a773f542806c4304ae0587d9f1920596182b931ed3e48b311"
+    }
+  ]
+}
