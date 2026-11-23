@@ -1,5 +1,7 @@
 # Current C# implementation map and Unity entry checklist
 
+Current implementation checkpoint: opt-in work-control identity, pure filling assessment and initial host forwarding are implemented; frozen C#9 compilation485 inputs,59 selected cases and static package checks pass. [Exact partial evidence](evidence/2026-11-23-mgt02-connected-work-control/DEVELOPMENT_CHECKPOINT_01.md). Full discovery/work views/console and connected/full-regression qualification remain in progress; no runtime module acceptance.
+
 Current module (2026-11-23): **MGT-02 connected work control is accepted for implementation.** Actual GPT response `0918e51d-0813-51e4-abd8-111b4c240ec3` and Codex concurrence accept the exact definition/WC-01–05 contract at82fa9554d, including wire116 reuse and the explicit WC-PENDING-01 allocation. [Accepted contract and review](evidence/2026-11-23-mgt02-connected-work-control/README.md). Implement the four existing work families through session/console/query/discovery/observations; preserve native rules and supported saves. WC-A1 is met; WC-A2–A10 and actual final runtime review remain open. Genuine host AwaitingCheck reachability for mining/research/manufacturing remains required for broader completion. OMA116 and all prior acceptances remain intact. The full C# goal is active; Unity, storage cleanup and Support remain deferred. Earlier entries below are historical.
 
 As of **2026-11-23**, the full C# engine goal is active. **Ordinary magical activity116 is accepted as a bounded C# module. Unity gameplay integration remains deferred.**

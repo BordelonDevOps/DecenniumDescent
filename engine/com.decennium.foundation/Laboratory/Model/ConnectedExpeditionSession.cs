@@ -123,6 +123,12 @@ namespace Decennium.Foundation.Laboratory
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,
                 companionConsents,directorAuthorizes).EnableDeclaredGeometry());
 
+        public static ConnectedExpeditionSession StartWithConnectedWorkControl(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
+            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
+            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)
+                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents, directorAuthorizes).EnableConsecration()
+                .EnableOrdinaryMagicalActivity().EnableConnectedWorkControl());
+
         public static ConnectedExpeditionSession StartWithOrdinaryMagicalActivity(ClericInitialSelection initial, ClericRepertoireSelection repertoire,
             ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)
             => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)
@@ -485,6 +491,14 @@ namespace Decennium.Foundation.Laboratory
             if (command.Kind == CommandKind.HandleInventory)
                 return command.X == 0 && command.Y == 0 && command.Combat == null && command.MiningSelection == null
                     && command.Inventory?.Destination == "";
+            if (WorkControlSelected(state) && TestOnlyFillingPolicy.IsWaterFillCommand(command.Kind))
+                return command.X == 0 && command.Y == 0 && command.Combat == null && command.MiningSelection == null
+                    && command.SpellCast == null && command.Guidance == null && command.SanctuaryResponse == null
+                    && command.HealingRite == null && command.IntimidatingPresence == null && command.Advancement == null
+                    && (command.Kind == CommandKind.StartWaterFill
+                        ? command.Inventory != null && command.Inventory.Amount != default && command.Inventory.Destination != ""
+                            && command.Inventory.Handling == HandlingKind.Pickup
+                        : command.Inventory == null);
             if (command.Inventory != null) {
                 if(state.ConnectedClericCasting && (command.Kind==CommandKind.HandlePortableEquipment && command.Target==SpellCastingProfile.FocusId
                     || command.Kind==CommandKind.HandleVessel && command.Target==TestOnlyFillingPolicy.FlaskId))
@@ -511,6 +525,7 @@ namespace Decennium.Foundation.Laboratory
                 || seat == ExpeditionSeat.RecoveryOpponent && state.PostRecoveryEncounter != null
                     && (kind == CommandKind.UseIntimidatingPresence || state.ConnectedClericCasting && kind == CommandKind.RespondSanctuary)
                 || seat == ExpeditionSeat.Player && (PartyCommands.Contains(kind)
+                || WorkControlSelected(state) && WorkControlCommand(kind)
                 || state.FerryWraith!=null && kind==CommandKind.EncounterDash
                 || state.DeclaredGeometry != null && (kind == CommandKind.SuspendWorldStep || kind == CommandKind.ResumeWorldStep)
                 || state.ConnectedClericRepertoire && ClericRepertoireProfile.IsCommand(kind)
@@ -619,6 +634,7 @@ namespace Decennium.Foundation.Laboratory
             if (seat == ExpeditionSeat.FerryOpponent && !FerryWraithProfile.Active(state)) return false;
             if (state.DeclaredGeometry != null && command.Kind == CommandKind.BeginWorldStep)
                 return seat == ExpeditionSeat.Player && Party.Contains(actor) && (target == "walk" || target == "run");
+            if (WorkControlSelected(state) && WorkControlCommand(command.Kind)) return KnownWorkControlTarget(state, seat, command);
             if (KnownServices.TryGetValue(command.Kind, out var service)) return target == service;
             bool KnownInventory(string owner) => seat == ExpeditionSeat.Player && Party.Contains(owner);
             switch (command.Kind) {

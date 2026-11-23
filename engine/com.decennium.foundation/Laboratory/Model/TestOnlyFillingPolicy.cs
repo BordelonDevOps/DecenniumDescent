@@ -56,10 +56,14 @@ namespace Decennium.Foundation.Laboratory
             s.InventoryLots=s.InventoryLots.Concat(new[]{new InventoryLotRecord(SupplyId,"",TestOnlyPolicy.CompanionId,new RuleQuantity(32),default,NutritionKind.WaterPints,null,InventoryAccess.Ground)}).ToArray();
             s.VesselContents=new[]{new VesselContentRecord(TestOnlyInventoryPolicy.WaterId,ActorSkinId)};return s;
         }
-        public string Resolve(Snapshot s,Command c)
+        internal static bool IsWaterFillCommand(CommandKind kind) => kind == CommandKind.StartWaterFill
+            || kind == CommandKind.PauseWaterFill || kind == CommandKind.ResumeWaterFill || kind == CommandKind.CancelWaterFill;
+
+        // The same pure family assessment serves execution and connected host queries.
+        // Outer authority, world context and dynamic hand checks remain at their existing boundaries.
+        internal string AssessWaterFill(Snapshot s, Command c, out WaterFillRecord job)
         {
-            if(c.Kind==CommandKind.HandleVessel)return movable?VesselHandling.Resolve(s,c,Hands):"VesselMovementNotSupported";
-            if(c.Kind==CommandKind.EnterInventoryCombat&&s.WaterFills.Any(j=>j.Pending))return "PendingFillEncounterTransitionUnsupported";
+            job = null;
             if(c.Kind==CommandKind.StartWaterFill) {
                 if(s.InventoryCombat)return "TacticalFillingUnsupported";
                 if(c.Inventory==null||c.Inventory.Amount==default||c.Inventory.Destination==""||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return "InvalidFillRequest";
@@ -68,23 +72,38 @@ namespace Decennium.Foundation.Laboratory
                 string error=WaterFilling.Prerequisite(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);if(error!=null)return error;
                 if(c.Inventory.Amount>s.Work.AvailableAmount(c.Target))return "FillSourceReservedOrInsufficient";
                 if(c.Inventory.Amount>WaterFilling.FreeCapacity(s,c.Inventory.Destination))return "FillCapacityUnavailable";
-                WaterFilling.Start(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);return null;
+                return null;
             }
             if(c.Kind==CommandKind.PauseWaterFill||c.Kind==CommandKind.ResumeWaterFill||c.Kind==CommandKind.CancelWaterFill) {
                 if(c.Inventory!=null||c.X!=0||c.Y!=0)return "InvalidFillRequest";
-                var job=s.WaterFills.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(job==null)return "UnknownWorkerFill";
+                job=s.WaterFills.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(job==null)return "UnknownWorkerFill";
                 if(c.Kind==CommandKind.PauseWaterFill) {
-                    if(job.Status!=WaterFillStatus.Working)return "FillNotWorking";WaterFilling.Pause(s,job);return null;
+                    if(job.Status!=WaterFillStatus.Working)return "FillNotWorking";return null;
                 }
                 if(c.Kind==CommandKind.CancelWaterFill) {
-                    if(!job.Pending)return "FillAlreadyTerminal";WaterFilling.Cancel(s,job);return null;
+                    if(!job.Pending)return "FillAlreadyTerminal";return null;
                 }
                 if(s.InventoryCombat)return "TacticalFillingUnsupported";
                 if(job.Status!=WaterFillStatus.Paused)return "FillNotPaused";
                 if(Hands(c.Actor)<2)return "TwoHandsRequired";
                 if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
                 string error=WaterFilling.Prerequisite(s,c.Actor,job.SourceLotId,job.DestinationId,job.Amount,job.Id);if(error!=null)return error;
-                WaterFilling.Resume(s,job);return null;
+                return null;
+            }
+            return "UnsupportedFillCommand";
+        }
+
+        public string Resolve(Snapshot s,Command c)
+        {
+            if(c.Kind==CommandKind.HandleVessel)return movable?VesselHandling.Resolve(s,c,Hands):"VesselMovementNotSupported";
+            if(c.Kind==CommandKind.EnterInventoryCombat&&s.WaterFills.Any(j=>j.Pending))return "PendingFillEncounterTransitionUnsupported";
+            if(IsWaterFillCommand(c.Kind)) {
+                string failure=AssessWaterFill(s,c,out var job);if(failure!=null)return failure;
+                if(c.Kind==CommandKind.StartWaterFill)WaterFilling.Start(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);
+                else if(c.Kind==CommandKind.PauseWaterFill)WaterFilling.Pause(s,job);
+                else if(c.Kind==CommandKind.CancelWaterFill)WaterFilling.Cancel(s,job);
+                else WaterFilling.Resume(s,job);
+                return null;
             }
             if(c.Kind==CommandKind.PortionInventory||c.Kind==CommandKind.StartIntake) {
                 var item=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);

@@ -10,7 +10,7 @@ namespace Decennium.Foundation
             var record = s.OrdinaryMagic;
             if ((record != null) != SelectedFingerprint(s.ContentFingerprint)) throw new ArgumentException("Ordinary-magic envelope mismatch.");
             if (record == null) return;
-            if (!s.TestOnly || s.Consecration == null || s.ContentFingerprint != BindFingerprint(record.PredecessorFingerprint)
+            if (!s.TestOnly || s.Consecration == null || !ConnectedWorkControlProfile.MatchesOrdinaryMagic(s.ContentFingerprint, record.PredecessorFingerprint)
                 || record.PredecessorFingerprint != ConsecrationProfile.BindFingerprint(s.Consecration.PredecessorFingerprint)
                 || s.CastingTurnEnds.Length != 0)
                 throw new ArgumentException("Invalid ordinary-magic source composition or legacy End mixing.");

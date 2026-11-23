@@ -13,7 +13,8 @@ namespace Decennium.Foundation
         public const string RepresentationApproval = "8bd7afb5-3691-50e2-ac9a-1faaa9179ccf";
         public const string ContractHash = "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d";
         public const byte Marker = 21;
-        public static bool SelectedFingerprint(string value) => value != null && value.StartsWith(FingerprintPrefix, StringComparison.Ordinal);
+        public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
+            || ConnectedWorkControlProfile.SelectedFingerprint(value));
         public static bool IsPredecessor(string value) => value != null && value.StartsWith(ConsecrationProfile.FingerprintPrefix, StringComparison.Ordinal)
             && CreatureActorRecord.Hex(value.Substring(ConsecrationProfile.FingerprintPrefix.Length), 64);
         public static string BindFingerprint(string predecessor)

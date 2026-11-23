@@ -145,6 +145,7 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.Search||explorationSearchDefinition!=null&&kind==CommandKind.CancelExplorationSearch
             ||explorationHideDefinition!=null&&(kind==CommandKind.Hide||kind==CommandKind.CancelExplorationHide)
             ||connectedCombat!=null&&(kind==CommandKind.EndRegularTurn||kind==CommandKind.EndFixedEncounter)
+            ||connectedWorkControl&&TestOnlyFillingPolicy.IsWaterFillCommand(kind)
             ||connectedFormulaResearch&&(FormulaCommand(kind)||ManufacturingCommand(kind))
             ||kind==CommandKind.ResolveManufacturingQuality||kind==CommandKind.PauseManufacturing
             ||kind==CommandKind.ResumeManufacturing||kind==CommandKind.CancelManufacturing

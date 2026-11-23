@@ -303,6 +303,7 @@ namespace Decennium.Foundation.Tests
             AddFerryWraithCases(cases,directory);
             AddConsecrationCases(cases,directory);
             AddOrdinaryMagicCases(cases,directory);
+            AddConnectedWorkControlCases(cases,directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

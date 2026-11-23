@@ -861,7 +861,7 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
         private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false,
-            PlanningPassage? passage = null, bool sanctuaryChecked=false)
+            PlanningPassage? passage = null, bool sanctuaryChecked=false, bool assessFilling=false)
         {
             if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
             if(s.FerryWraith!=null&&c.Kind==CommandKind.EncounterDash) {
@@ -1182,6 +1182,7 @@ namespace Decennium.Foundation.Laboratory
                 var campConstructionBoundary=NextTemporaryCampConstructionBoundary(s);
                 if(campConstructionBoundary.HasValue&&campConstructionBoundary.Value<=s.RuleClock.AddSeconds(1))return "TimedHandlingBoundaryUnsupported";
             }
+            if (assessFilling) return inventory.AssessWaterFill(s, c, out _);
             var openingForPortion=c.Kind==CommandKind.PortionInventory
                 ?HarvestPreservationExposureFixture.ActiveOpeningForPortion(s,c.Actor,c.Target):null;
             var existingLotIds=openingForPortion==null?null:new System.Collections.Generic.HashSet<string>(

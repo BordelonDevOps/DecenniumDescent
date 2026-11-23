@@ -554,6 +554,7 @@ namespace Decennium.Foundation.Laboratory
 
         private CommandQueryResult QuerySharedWorldCommand(Snapshot s, Authority authority, Command c)
         {
+            if (connectedWorkControl && TestOnlyFillingPolicy.IsWaterFillCommand(c.Kind)) return QueryConnectedWaterFill(s, c);
             string contaminationFailure=SpellCastingProfile.PhysicalFailure(s,c);
             if(contaminationFailure!=null)return new CommandQueryResult(true,false,contaminationFailure,s.Revision);
             if(s.ConnectedClericCasting&&c.Kind==CommandKind.CastKnownSpell)return QuerySpellCast(s,c);

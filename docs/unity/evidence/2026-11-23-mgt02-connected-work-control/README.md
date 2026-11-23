@@ -1,5 +1,7 @@
 # Connected work control planning packet
 
+**Implementation in progress:** [initial checkpoint](DEVELOPMENT_CHECKPOINT_01.md) retains485-input C#9 compilation,59 selected passes and static checks. Discovery/observations/console and full connected qualification remain open.
+
 **Definition and source/API contract accepted for implementation.** Actual GPT response `0918e51d-0813-51e4-abd8-111b4c240ec3` and Codex concurrence close WC-A1. [Exact review](GPT_SOURCE_API_ACCEPTANCE.json) and [planning disposition](PLANNING_ACCEPTANCE.json). Runtime implementation/qualification and final acceptance remain open. The reviewed definition and contract retain their original proposed headings and exact immutable bytes. Ordinary magical activity116 remains accepted with its evidence preserved.
 
 - [Module definition and ten acceptance criteria](MODULE_DEFINITION.md)
