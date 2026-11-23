@@ -1,5 +1,7 @@
 # Connected work control planning packet
 
+**Accepted bounded module.** Actual GPT response `090f7d7d-ea51-5cc9-bfd4-90c5bbfa76dd` and Codex concurrence close WC-A1–A10 within their recorded allocations. [Final acceptance](FINAL_ACCEPTANCE.md), [exact verdict](GPT_FINAL_ACCEPTANCE.json), [remaining capabilities and limits](UNRESOLVED_CAPABILITIES.json). The candidate and earlier checkpoint records below retain their historical review-time status. No successor or Unity integration is selected by this acceptance.
+
 Final candidate: [completed qualification and review request](FINAL_REVIEW_CANDIDATE.md) retains all 1,601 original case outcomes and actual worker exits 0/0/1/0. The raw suite remains FAIL; the actual GPT-agreed isolated recheck gives a separate reconciliation of 1,601 unique passing cases. Final module acceptance remains open.
 
 Focused qualification review: actual GPT response `2697d400-e3e5-5f97-b26b-097159e1e35c` and Codex concurrence accept [supplement04](QUALIFICATION_SUPPLEMENT_04.md) and its exact single-case I/O reconciliation. [Exact review](GPT_SUPPLEMENT_04_REVIEW.json), [criterion matrix](ACCEPTANCE_EVIDENCE_MATRIX.md). Final-build five paths, all 16 host/console commands and 22 authentic profile continuations pass. The now-completed raw regression and actual worker outcomes stay separate from the reviewed recheck in the final candidate.
