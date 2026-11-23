@@ -1,5 +1,8 @@
 # Decennium Descent — Unity Development Directions for Codex
 
+Current resumption (2026-11-23): the owner reactivated the full C# engine goal and explicitly said **start working bud**. Continue with accepted TAC-01-ORDINARY-MAGICAL-ACTIVITY; its CAL-01–05 source/API amendment is being resolved with GPT before runtime edits. [Active work record](evidence/2026-11-23-tac01-ordinary-magic/START.json). This instruction lifts the earlier implementation pause; source/review/dependency gates, prior accepted evidence and the full pre-Unity completion mandate remain in force. Unity remains deferred. Earlier pause wording below is historical.
+
+
 Current successor planning (2026-11-18): the owner authorizes defining and publishing the next module, then reporting GitHub confirmation to GPT. [TAC-01 ordinary-world magical-activity definition](evidence/2026-11-17-next-module-contract/MODULE_DEFINITION.md) is accepted as the next bounded module by actual GPT response `5321231d-a0f2-528d-9816-f4c0815a9a6b` and Codex concurrence; [planning disposition](evidence/2026-11-17-next-module-contract/PLANNING_ACCEPTANCE.json) retains the verdict. It addresses CG-CONTEXT-01 after accepted Consecration115, with CAL-01–05 source/API calendar decisions explicitly OPEN before coding. Implementation remains paused; no runtime, tests, builds, benchmarks, Unity, storage or Support work is authorized here. Accepted runtime3c5135ae, final Consecration response a34a0fba-bc6a-51c7-96d3-3a142e4028a7, prior qualifications, 49 workstreams/120 edges/100 obligations and UR gates remain intact. This entry supersedes older current-state/selection wording below; earlier records remain historical.
 
 

@@ -1,5 +1,8 @@
 # Current C# implementation map and Unity entry checklist
 
+Current resumption (2026-11-23): the owner reactivated the full C# engine goal and explicitly said **start working bud**. Continue with accepted TAC-01-ORDINARY-MAGICAL-ACTIVITY; its CAL-01–05 source/API amendment is being resolved with GPT before runtime edits. [Active work record](evidence/2026-11-23-tac01-ordinary-magic/START.json). This instruction lifts the earlier implementation pause; source/review/dependency gates, prior accepted evidence and the full pre-Unity completion mandate remain in force. Unity remains deferred. Earlier pause wording below is historical.
+
+
 As of **2026-11-18**, accepted runtime/evidence remain as recorded below; successor planning is based on Engine `e7378d055f8bb354312e48de8fb0d70314f4d05d`. **Unity gameplay integration is not ready. Implementation remains paused.** The owner now authorizes defining, reviewing and publishing the next module only.
 
 **Current status:** ACCEPTED_BOUNDED_IMPLEMENTATION. **Prior planning review:** [Accepted pre-Unity planning review](evidence/2026-11-17-pre-unity-contract/GPT_FINAL_REVIEW.json)
