@@ -1,0 +1,3696 @@
+{
+  "schemaVersion": 1,
+  "baseline": "c807ada65b296c4bde582808cd6c19a07babedda",
+  "status": "BOUNDED_STATIC_INHERITANCE_AND_KIND_GATE_AUDIT; FULL_NATIVE_MATRIX_OPEN",
+  "notQualification": "No simulation, construction, gameplay, tests or build executed. Candidate sets are not executable permission sets.",
+  "reviewer": "/root/review_consecration; bounded inheritance findings independently reviewed against source; generated expanded kind matrix still requires review",
+  "commonBase": {
+    "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+    "line": 170,
+    "exactDeclaration": "private static TestOnlySharedWorldPolicy ExpeditionPolicy() =>\n            new TestOnlySharedWorldPolicy(new PortableKitFixture(), new SharedCombatFixture(enemyHp: 1, seed: 8),\n                new SupplyCacheFixture())\n                .EnableMining(new SharedMiningFixture())\n                .EnableHavenAppraisal(new TestOnlyHavenAppraisalProfile())\n                .EnableHavenSale(new TestOnlyHavenSaleProfile())\n                .EnableHavenMeal(new TestOnlyHavenMealProfile())\n                .EnableExpeditionBill(new TestOnlyExpeditionBillProfile())\n                .EnableExpeditionClose(new TestOnlyExpeditionCloseProfile())\n                .EnableNextCharterPlan(new TestOnlyNextCharterPlanProfile(reserveWaterStartsCarried: true))\n                .EnableNextCharterAgreement(new TestOnlyNextCharterAgreementProfile())\n                .EnableCharterAttempt(new TestOnlyCharterAttemptProfile())\n                .EnableLaterEncounter()\n                .EnableCompanionReinforcement(new TestOnlyReinforcementProfile())\n                .EnableLivingOpponentRetreat(new TestOnlyLivingOpponentRetreatProfile())\n                .EnablePhysicalReengagement(true, true)\n                .EnableSurpriseAwareEntry(SurpriseAwareness.Warned)\n                .EnableConnectedExplorationObservation()\n                .EnableConnectedFormulaResearch()\n                .EnableConnectedBloodSpecimen()\n                .EnableConnectedRecipe4Batch()\n                .EnableVerifiedPlanningPassage();",
+    "directEnables": [
+      "EnableMining",
+      "EnableHavenAppraisal",
+      "EnableHavenSale",
+      "EnableHavenMeal",
+      "EnableExpeditionBill",
+      "EnableExpeditionClose",
+      "EnableNextCharterPlan",
+      "EnableNextCharterAgreement",
+      "EnableCharterAttempt",
+      "EnableLaterEncounter",
+      "EnableCompanionReinforcement",
+      "EnableLivingOpponentRetreat",
+      "EnablePhysicalReengagement",
+      "EnableSurpriseAwareEntry",
+      "EnableConnectedExplorationObservation",
+      "EnableConnectedFormulaResearch",
+      "EnableConnectedBloodSpecimen",
+      "EnableConnectedRecipe4Batch",
+      "EnableVerifiedPlanningPassage"
+    ],
+    "transitiveEnables": [
+      "EnableCharterAttempt",
+      "EnableCompanionReinforcement",
+      "EnableConnectedBloodSpecimen",
+      "EnableConnectedExplorationObservation",
+      "EnableConnectedFormulaResearch",
+      "EnableConnectedRecipe4Batch",
+      "EnableExpeditionBill",
+      "EnableExpeditionClose",
+      "EnableHavenAppraisal",
+      "EnableHavenMeal",
+      "EnableHavenSale",
+      "EnableLaterEncounter",
+      "EnableLivingOpponentRetreat",
+      "EnableMining",
+      "EnableNextCharterAgreement",
+      "EnableNextCharterPlan",
+      "EnableObservation",
+      "EnablePhysicalReengagement",
+      "EnableSurpriseAwareEntry",
+      "EnableVerifiedPlanningPassage"
+    ]
+  },
+  "factories": [
+    {
+      "factory": "Start",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 80,
+      "exactDeclaration": "public static ConnectedExpeditionSession Start() => new ConnectedExpeditionSession(ExpeditionPolicy());",
+      "explicitEnableCalls": [],
+      "transitiveSelectedEnables": [],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 95,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithFishingTrap",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 82,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFishingTrap()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFishingTrap(ConnectedTrapProfile));",
+      "explicitEnableCalls": [
+        "EnableConnectedFishingTrap"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedFishingTrap"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 95,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithCarriedVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 85,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCarriedVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCarriedVial());",
+      "explicitEnableCalls": [
+        "EnableConnectedCarriedVial"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 96,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithStowedVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 88,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithStowedVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedStowedVial());",
+      "explicitEnableCalls": [
+        "EnableConnectedStowedVial"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedStowedVial"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 97,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithTacticalVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 91,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithTacticalVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedTacticalVial());",
+      "explicitEnableCalls": [
+        "EnableConnectedTacticalVial"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 98,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithCompanionDose",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 94,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCompanionDose()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionDose());",
+      "explicitEnableCalls": [
+        "EnableConnectedCompanionDose"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 99,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginReinforcementApproach",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithConsumeDecay",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 97,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConsumeDecay()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedConsumeDecay());",
+      "explicitEnableCalls": [
+        "EnableConnectedConsumeDecay"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedCompanionStabilization",
+        "EnableConnectedConsumeDecay",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial",
+        "EnableConnectedWoundTreatment"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 102,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginReinforcementApproach",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "ConsumeDecay",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptWoundTreatment",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "StartWoundTreatment",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithFleshWarden",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 100,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFleshWarden()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFleshWarden());",
+      "explicitEnableCalls": [
+        "EnableConnectedFleshWarden"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedCompanionStabilization",
+        "EnableConnectedConsumeDecay",
+        "EnableConnectedFleshWarden",
+        "EnableConnectedShortRest",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial",
+        "EnableConnectedWoundTreatment"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 104,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "ConsumeDecay",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "InterruptWoundTreatment",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "StartWoundTreatment",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithClericSettlement",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 103,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericSettlement(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericSettlement(initial, repertoire, declaration));",
+      "explicitEnableCalls": [
+        "EnableConnectedClericSettlement"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 108,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "CastKnownSpell remains OrdinarySpellcastingUnsupported; knowledge is not casting coverage."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithClericCasting",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 107,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericCasting(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericCasting(initial, repertoire, declaration));",
+      "explicitEnableCalls": [
+        "EnableConnectedClericCasting"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 109,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithClericLongRest",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 111,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericLongRest(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericLongRest(initial, repertoire, declaration));",
+      "explicitEnableCalls": [
+        "EnableConnectedClericLongRest"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableDailyProvisioning",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 110,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithPostRecoveryEncounter",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 115,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithPostRecoveryEncounter(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration,\n            bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnablePostRecoveryEncounter(initial,repertoire,declaration,\n                companionConsents,directorAuthorizes));",
+      "explicitEnableCalls": [
+        "EnablePostRecoveryEncounter"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableDailyProvisioning",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 111,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "caller arguments",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithDeclaredGeometry",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 121,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithDeclaredGeometry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,\n                companionConsents,directorAuthorizes).EnableDeclaredGeometry());",
+      "explicitEnableCalls": [
+        "EnableBishopEntry",
+        "EnableDeclaredGeometry"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableDailyProvisioning",
+        "EnableDeclaredGeometry",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 113,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "caller arguments",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "ResumeWorldStep",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "SuspendWorldStep",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithConnectedWorkControl",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 126,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConnectedWorkControl(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents, directorAuthorizes).EnableConsecration()\n                .EnableOrdinaryMagicalActivity().EnableConnectedWorkControl());",
+      "explicitEnableCalls": [
+        "EnableBishopEntry",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnableConsecration",
+        "EnableOrdinaryMagicalActivity",
+        "EnableConnectedWorkControl"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableConnectedWorkControl",
+        "EnableConsecration",
+        "EnableDailyProvisioning",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnableOrdinaryMagicalActivity",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 116,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "fixed true/true via EnableBishopEntry defaults",
+        "ferryEncounterConsent": "caller arguments"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CancelFormulaWork",
+          "CancelManufacturing",
+          "CancelWaterFill",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EncounterDash",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PauseFormulaWork",
+          "PauseManufacturing",
+          "PauseMining",
+          "PauseWaterFill",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "ResumeManufacturing",
+          "ResumeMining",
+          "ResumeWaterFill",
+          "ResumeWorldStep",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "StartWaterFill",
+          "SuspendWorldStep",
+          "TacticalStep",
+          "TearExposedSeal",
+          "UseAlchemyDose",
+          "UseConsecrate",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "AttackCreatureFeature",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters.",
+        "KnownWorkControlTarget overrides KnownServices for these 16 kinds: observed mining, selected Companion research/recipe, actual owned jobs."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithOrdinaryMagicalActivity",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 132,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithOrdinaryMagicalActivity(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents, directorAuthorizes).EnableConsecration().EnableOrdinaryMagicalActivity());",
+      "explicitEnableCalls": [
+        "EnableBishopEntry",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnableConsecration",
+        "EnableOrdinaryMagicalActivity"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableConsecration",
+        "EnableDailyProvisioning",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnableOrdinaryMagicalActivity",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 116,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "fixed true/true via EnableBishopEntry defaults",
+        "ferryEncounterConsent": "caller arguments"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EncounterDash",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "ResumeWorldStep",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "SuspendWorldStep",
+          "TacticalStep",
+          "TearExposedSeal",
+          "UseAlchemyDose",
+          "UseConsecrate",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "AttackCreatureFeature",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithConsecration",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 137,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes).EnableConsecration());",
+      "explicitEnableCalls": [
+        "EnableBishopEntry",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnableConsecration"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableConsecration",
+        "EnableDailyProvisioning",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 115,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "fixed true/true via EnableBishopEntry defaults",
+        "ferryEncounterConsent": "caller arguments"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EncounterDash",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "ResumeWorldStep",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "SuspendWorldStep",
+          "TacticalStep",
+          "TearExposedSeal",
+          "UseAlchemyDose",
+          "UseConsecrate",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "AttackCreatureFeature",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithFerryWraith",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 142,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFerryWraith(ClericInitialSelection initial,ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes));",
+      "explicitEnableCalls": [
+        "EnableBishopEntry",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableDailyProvisioning",
+        "EnableDeclaredGeometry",
+        "EnableFerryWraith",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 114,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "fixed true/true via EnableBishopEntry defaults",
+        "ferryEncounterConsent": "caller arguments"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EncounterDash",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "ResumeWorldStep",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "SuspendWorldStep",
+          "TacticalStep",
+          "TearExposedSeal",
+          "UseAlchemyDose",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "AttackCreatureFeature",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithBishopEntry",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 147,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithBishopEntry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,\n                companionConsents,directorAuthorizes));",
+      "explicitEnableCalls": [
+        "EnableBishopEntry"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableBishopEntry",
+        "EnableConnectedCleric",
+        "EnableConnectedClericCasting",
+        "EnableConnectedClericLongRest",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedClericSettlement",
+        "EnableConnectedFrightened",
+        "EnableDailyProvisioning",
+        "EnablePostRecoveryEncounter",
+        "EnableRestDebt"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 112,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "caller companionConsents/directorAuthorizes",
+        "recoveryEncounterConsent": "caller arguments",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AdvanceCharacterLevel",
+          "AttackClub",
+          "AwardCharacterMilestone",
+          "BeginLongRest",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "EndSpellConcentration",
+          "EquipPortableItem",
+          "FocusDetectedAura",
+          "GroundCastingStrain",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "HandleVessel",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptLongRest",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "RemovePortableItem",
+          "ResolveExpeditionStrainRecovery",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseDivineInvocation",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "RespondSanctuary",
+          "SelectCombatStance",
+          "TacticalStep",
+          "UseIntimidatingPresence"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "Long rest needs actual earned Cleric 2 and settled closure; profile selection alone is insufficient.",
+        "Bishop declaration does not award rank 3; Invocation/Dispel need the actual earned advancement.",
+        "Casting stabilization targets Hero-to-Companion in the selected original reinforced encounter, not arbitrary Recovery/Ferry encounters."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithClericCompanion",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 152,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));",
+      "explicitEnableCalls": [
+        "EnableConnectedCleric"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 105,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithClericRepertoire",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 155,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericRepertoire(ClericInitialSelection initial, ClericRepertoireSelection repertoire)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericRepertoire(initial, repertoire));",
+      "explicitEnableCalls": [
+        "EnableConnectedClericRepertoire"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericRepertoire"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 106,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AttackClub",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "CastKnownSpell remains OrdinarySpellcastingUnsupported; knowledge is not casting coverage."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithFrightened",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 158,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFrightened(ClericInitialSelection initial, ClericRepertoireSelection repertoire)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFrightened(initial, repertoire));",
+      "explicitEnableCalls": [
+        "EnableConnectedFrightened"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCleric",
+        "EnableConnectedClericRepertoire",
+        "EnableConnectedFrightened"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 107,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AcquireEarnedSpell",
+          "AttackClub",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CastKnownSpell",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose",
+          "UseHealingRite"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "Cleric selection accepts only authored scores 10,10,10,10,14,10; medicine/religion; exact selected cards; Club. Alternate builds are constructor rejection.",
+        "This Cleric chain does not inherit the carried/stowed/tactical/Companion-dose or noncasting care chain.",
+        "BeginShortRest reaches native ClassRecoveryUnsupported; InterruptShortRest and BeginMutationShortRest fail host KnownTarget. Initial Consecrate ownership does not admit its producer.",
+        "Only fixed initial 3 rank-0 / 2 rank-1 spell selection; AcquireEarnedSpell remains explicit native transaction-only/unavailable denial.",
+        "CastKnownSpell remains OrdinarySpellcastingUnsupported; knowledge is not casting coverage."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithShortRest",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 161,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithShortRest()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());",
+      "explicitEnableCalls": [
+        "EnableConnectedShortRest"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedCompanionStabilization",
+        "EnableConnectedConsumeDecay",
+        "EnableConnectedShortRest",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial",
+        "EnableConnectedWoundTreatment"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 103,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginMutationShortRest",
+          "BeginReinforcementApproach",
+          "BeginShortRest",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "ConsumeDecay",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptShortRest",
+          "InterruptWoundTreatment",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "StartWoundTreatment",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory.",
+        "BeginMutationShortRest is kind-exposed but fails KnownTarget without ConnectedFleshWarden."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithWoundTreatment",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 164,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithWoundTreatment()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedWoundTreatment());",
+      "explicitEnableCalls": [
+        "EnableConnectedWoundTreatment"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedCompanionStabilization",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial",
+        "EnableConnectedWoundTreatment"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 101,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginReinforcementApproach",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "InterruptWoundTreatment",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "StartWoundTreatment",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    },
+    {
+      "factory": "StartWithCompanionStabilization",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 167,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCompanionStabilization()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionStabilization());",
+      "explicitEnableCalls": [
+        "EnableConnectedCompanionStabilization"
+      ],
+      "transitiveSelectedEnables": [
+        "EnableConnectedCarriedVial",
+        "EnableConnectedCompanionDose",
+        "EnableConnectedCompanionStabilization",
+        "EnableConnectedStowedVial",
+        "EnableConnectedTacticalVial"
+      ],
+      "commonBaseEnables": "commonBase.transitiveEnables",
+      "inMemorySchema": 90,
+      "wireEnvelope": 100,
+      "selectedParameterBinding": {
+        "publicConsentArguments": "not a public selection",
+        "recoveryEncounterConsent": "not selected",
+        "ferryEncounterConsent": "not selected"
+      },
+      "kindGateCandidates": {
+        "Player": [
+          "AcceptNextCharter",
+          "AttackClub",
+          "BeginReinforcementApproach",
+          "BeginWorldStep",
+          "CancelExplorationHide",
+          "CancelExplorationSearch",
+          "CloseExpeditionEpisode",
+          "ClosePortableContainer",
+          "EndRegularTurn",
+          "HandleInventory",
+          "HandlePortableEquipment",
+          "Hide",
+          "Interact",
+          "InterruptIntake",
+          "ObserveCharterApproach",
+          "OpenPortableContainer",
+          "PortionInventory",
+          "PurchaseHavenMeal",
+          "ResolveKnockout",
+          "ResolveManufacturingQuality",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "ResumeFormulaWork",
+          "Search",
+          "SelectCombatStance",
+          "StabilizeCompanion",
+          "StartCharterAttempt",
+          "StartExpeditionBill",
+          "StartFormulaResearch",
+          "StartHarvestPreservationTreatment",
+          "StartHavenAppraisal",
+          "StartHavenSale",
+          "StartIntake",
+          "StartManufacturing",
+          "StartMining",
+          "StartNextCharterPlan",
+          "TacticalStep",
+          "UseAlchemyDose"
+        ],
+        "FirstOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "RecoveryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ],
+        "FerryOpponent": [
+          "AttackClub",
+          "EndRegularTurn",
+          "ResolveKnockout",
+          "RespondOpportunityAttack",
+          "RespondPress",
+          "SelectCombatStance",
+          "TacticalStep"
+        ]
+      },
+      "seatExistenceAndFreshContext": {
+        "FirstOpponent": "actual first encounter",
+        "RecoveryOpponent": "selected recovery record + active recovery encounter",
+        "FerryOpponent": "selected Ferry record + active Ferry encounter"
+      },
+      "nativeTargetPayloadCaveats": [
+        "Exposed kind is only the first host gate; actor/seat enablement, payload, fresh known target, core authority and native context still apply.",
+        "Common base fixes reinforcement and earlier physical reengagement authorizations; selected later encounter flags do not replace them.",
+        "Ordinary observation and cache work have actual stage/position gates; no currently hidden target is a discovery entitlement.",
+        "Actual policy/root and records identify the setup; wire/prefix alone cannot authorize capabilities.",
+        "Fishing Trap Interact branches fail KnownTrapInteraction: no trap records in this factory."
+      ],
+      "fullOperationPayloadClauseWitnessMatrix": "OPEN; this artifact closes bounded inheritance and static kind-gate audit only",
+      "executed": false
+    }
+  ],
+  "enableMethods": {
+    "EnableBishopEntry": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "line": 11,
+          "normalizedMethodSha256": "f571f39f205d09db7070512ad85175477b3ae853776b4ca2453177dee1a82e7e"
+        }
+      ],
+      "calls": [
+        "EnablePostRecoveryEncounter"
+      ]
+    },
+    "EnableCharterAttempt": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+          "line": 61,
+          "normalizedMethodSha256": "6df5ee563f052be102f286b9ba850278a285325c474b72c76db3f5e3facb2eed"
+        }
+      ],
+      "calls": []
+    },
+    "EnableCompanionReinforcement": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+          "line": 40,
+          "normalizedMethodSha256": "5b07875b371f6159ca0695a683adb97104120af979089650492a4dd676b9b1ad"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedBloodSpecimen": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+          "line": 13,
+          "normalizedMethodSha256": "b0a9a600eb3854b4fc73cdf72b2f59a782e2067a6d16398916c7cc3f5d897635"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedCarriedVial": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "line": 14,
+          "normalizedMethodSha256": "5bf54800056955704a119be179fcce0d9e9181d0661012aa49b8069e57f22343"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedCleric": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "line": 47,
+          "normalizedMethodSha256": "75468793fd0eb6913fb4551afc0df130161575e2fbe6b732e63a3dbf68469c62"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedClericCasting": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "line": 12,
+          "normalizedMethodSha256": "db43ae7b978c7cbbb201dfeedfe96dd1daa75f1c270c3314301555f9b1ba8166"
+        }
+      ],
+      "calls": [
+        "EnableConnectedClericSettlement"
+      ]
+    },
+    "EnableConnectedClericLongRest": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "line": 11,
+          "normalizedMethodSha256": "3907cf24475cdfb790e3d857f69483f4a56921f0c893e872244acde19b4cb17d"
+        }
+      ],
+      "calls": [
+        "EnableConnectedClericCasting",
+        "EnableDailyProvisioning",
+        "EnableRestDebt"
+      ]
+    },
+    "EnableConnectedClericRepertoire": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+          "line": 25,
+          "normalizedMethodSha256": "62161bcbad6ffffaa58f4686a2fbe482567f95dfcddb76b12e2ea528179eaaf7"
+        }
+      ],
+      "calls": [
+        "EnableConnectedCleric"
+      ]
+    },
+    "EnableConnectedClericSettlement": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "line": 11,
+          "normalizedMethodSha256": "7cf51c27f8d493e079f0b255fa819a59d8de99002d7e7e8fa5e5448f3296c2c7"
+        }
+      ],
+      "calls": [
+        "EnableConnectedFrightened"
+      ]
+    },
+    "EnableConnectedCompanionDose": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "line": 53,
+          "normalizedMethodSha256": "daa759c7c699817d61d67fc8bf36a879f76a14a02c7023166f87455b08309626"
+        }
+      ],
+      "calls": [
+        "EnableConnectedTacticalVial"
+      ]
+    },
+    "EnableConnectedCompanionStabilization": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+          "line": 11,
+          "normalizedMethodSha256": "5f9839a2b98f45edf3a39e34df4e75f6b33cf9d0b37b0acf73f8cf6bc33e9a12"
+        }
+      ],
+      "calls": [
+        "EnableConnectedCompanionDose"
+      ]
+    },
+    "EnableConnectedConsumeDecay": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+          "line": 11,
+          "normalizedMethodSha256": "e1d7e33a11403990bbdeb2edf32b0c7c7af8509d464e73ea3bfab23e8b08177c"
+        }
+      ],
+      "calls": [
+        "EnableConnectedWoundTreatment"
+      ]
+    },
+    "EnableConnectedExplorationObservation": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+          "line": 10,
+          "normalizedMethodSha256": "a4c2dc07d45ba7f4432324b45672cfff0cb95b18f9ba23c051e618dbba7cae5a"
+        }
+      ],
+      "calls": [
+        "EnableObservation"
+      ]
+    },
+    "EnableConnectedFishingTrap": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+          "line": 93,
+          "normalizedMethodSha256": "d2fa996e5ddbfb7a597bea287ce43846313fb1fb663a99b63a7b618ee147dbb2"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedFleshWarden": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+          "line": 11,
+          "normalizedMethodSha256": "e250f901c7ba6936990dc23b839a0c423939a62cd8dc8d8e63c8be24c0d4dc28"
+        }
+      ],
+      "calls": [
+        "EnableConnectedShortRest"
+      ]
+    },
+    "EnableConnectedFormulaResearch": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs",
+          "line": 15,
+          "normalizedMethodSha256": "abab0a7230ad4b6cf61d7beb74d21106a5cd7aa281a4f8e06f115beab5ca033c"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedFrightened": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+          "line": 14,
+          "normalizedMethodSha256": "b46ac5c834fd9bf666d4d68e1733cbfcd21bde94d45e47a0f363e65149a9ce8d"
+        }
+      ],
+      "calls": [
+        "EnableConnectedClericRepertoire"
+      ]
+    },
+    "EnableConnectedRecipe4Batch": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+          "line": 32,
+          "normalizedMethodSha256": "954b5eefc83c5baa0c5e2dee077831e3200b4caf3bece985c290297f2d46cdda"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedShortRest": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+          "line": 11,
+          "normalizedMethodSha256": "a0ae90939e9f490ec0f97747f3b70c445ecdceaa8a3d827832df04e874072c0d"
+        }
+      ],
+      "calls": [
+        "EnableConnectedConsumeDecay"
+      ]
+    },
+    "EnableConnectedStowedVial": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "line": 30,
+          "normalizedMethodSha256": "3c3f23340c9137c47f8914cd15d6b84fb7ea24691e5550d1fc90153fde136479"
+        }
+      ],
+      "calls": [
+        "EnableConnectedCarriedVial"
+      ]
+    },
+    "EnableConnectedTacticalVial": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+          "line": 44,
+          "normalizedMethodSha256": "129fffc7de7c4bb56314f3d8d1f85d8f242487d1c0502cf8ad67c383a3f934ba"
+        }
+      ],
+      "calls": [
+        "EnableConnectedStowedVial"
+      ]
+    },
+    "EnableConnectedWorkControl": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedWorkControl.cs",
+          "line": 22,
+          "normalizedMethodSha256": "9cfdb429361b692bc865631c083b7986f8bff8e0ef934949fa83275244c58cd6"
+        }
+      ],
+      "calls": []
+    },
+    "EnableConnectedWoundTreatment": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "line": 11,
+          "normalizedMethodSha256": "248394b4991677a0d1addd24ce84708d688eb7e7a04bf1367046a79c14e0ef94"
+        }
+      ],
+      "calls": [
+        "EnableConnectedCompanionStabilization"
+      ]
+    },
+    "EnableConsecration": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+          "line": 98,
+          "normalizedMethodSha256": "6bfaf73879cb9c366875e73d47c46de809d4920c6249b6a767d0160f5e9ebd11"
+        }
+      ],
+      "calls": []
+    },
+    "EnableDailyProvisioning": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+          "line": 269,
+          "normalizedMethodSha256": "a9afa56a67b4645e6ef9d87bff3b9ecbfa01600acfd890304e090a21fb4cde55"
+        }
+      ],
+      "calls": []
+    },
+    "EnableDeclaredGeometry": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+          "line": 20,
+          "normalizedMethodSha256": "f7113ec24acc02fefe03f606271636f2dc8e20026556f875fd8432846c408a04"
+        }
+      ],
+      "calls": []
+    },
+    "EnableExpeditionBill": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+          "line": 55,
+          "normalizedMethodSha256": "0e7c336acc9b5bbbd367c5fbe885851b21094e39f9111cdad997c9d59bd68db3"
+        }
+      ],
+      "calls": []
+    },
+    "EnableExpeditionClose": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+          "line": 40,
+          "normalizedMethodSha256": "9c9f6b2fcbed024bd62bc65a297557588dcb86b5d84c315fbb20a1bd4c2e52b8"
+        }
+      ],
+      "calls": []
+    },
+    "EnableFerryWraith": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+          "line": 21,
+          "normalizedMethodSha256": "ac22bbee4eab6a0f297b1d0731fd58d7ac86b1f7f720ff48b3975e5fcd2dd1f4"
+        }
+      ],
+      "calls": []
+    },
+    "EnableHavenAppraisal": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+          "line": 53,
+          "normalizedMethodSha256": "d2e908751715438665ad0e09cbbbf81f6f8a597fec45306c9d10b0c45b3e66e1"
+        }
+      ],
+      "calls": []
+    },
+    "EnableHavenMeal": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+          "line": 71,
+          "normalizedMethodSha256": "d3ac236be20f7264d2f5fe30ea4e7d47afdc855f1a13c5091e273d3c79e941ee"
+        }
+      ],
+      "calls": []
+    },
+    "EnableHavenSale": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "line": 75,
+          "normalizedMethodSha256": "7888702c364d11d544fed896ec4b792540747efa632366f8db4ed62d35f53246"
+        }
+      ],
+      "calls": []
+    },
+    "EnableLaterEncounter": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+          "line": 16,
+          "normalizedMethodSha256": "df4f0d03cbf45f1af50fd1164bafe2b35f367d6e74cc8106943120f561210be9"
+        }
+      ],
+      "calls": []
+    },
+    "EnableLivingOpponentRetreat": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+          "line": 32,
+          "normalizedMethodSha256": "54412fd781d628d18ed387ce6882413d3d95106e1c19c5f3a9040675e6098092"
+        }
+      ],
+      "calls": []
+    },
+    "EnableMining": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "line": 485,
+          "normalizedMethodSha256": "dec704ce7d67466db0dfe8d1afddbd44da49c88d03a18bb0a3aef8e2c953fe4f"
+        }
+      ],
+      "calls": []
+    },
+    "EnableNextCharterAgreement": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+          "line": 69,
+          "normalizedMethodSha256": "64c9fce561710913969046a05dbcd6c6c07a833f0d7c01b52b27061557f0acca"
+        }
+      ],
+      "calls": []
+    },
+    "EnableNextCharterPlan": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+          "line": 53,
+          "normalizedMethodSha256": "cd62b8f674e19ed62fab9b2d89fbe766b518d6e1e6bed611b3e63888f17f5899"
+        }
+      ],
+      "calls": []
+    },
+    "EnableObservation": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+          "line": 48,
+          "normalizedMethodSha256": "ee753d371671457969248bc6996ffe740f0930c1413708a2614a127889ea660d"
+        },
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+          "line": 53,
+          "normalizedMethodSha256": "ba678b2f177bcabbfd92c405ba23148f06799970ffb4500be23f1763f6c52f35"
+        }
+      ],
+      "calls": [
+        "EnableObservation"
+      ]
+    },
+    "EnableOrdinaryMagicalActivity": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+          "line": 11,
+          "normalizedMethodSha256": "1f1ed43e7228bd2eded23eab4a010e973db010c91430a05cf16ec4dcee438404"
+        }
+      ],
+      "calls": []
+    },
+    "EnablePhysicalReengagement": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+          "line": 11,
+          "normalizedMethodSha256": "bdade062ff59136d9b98f8a33bd11654d6501b182b156d87493f75c6065bc4a6"
+        }
+      ],
+      "calls": []
+    },
+    "EnablePostRecoveryEncounter": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+          "line": 12,
+          "normalizedMethodSha256": "150aec349493c33939f41750547235651b590588d6eb44f3ac525b05280b4aa6"
+        }
+      ],
+      "calls": [
+        "EnableConnectedClericLongRest"
+      ]
+    },
+    "EnableRestDebt": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+          "line": 90,
+          "normalizedMethodSha256": "127617a907276372eda089e0e0aeb1ed0571d9b6ce5f497f209910227c3a28e1"
+        }
+      ],
+      "calls": []
+    },
+    "EnableSurpriseAwareEntry": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+          "line": 14,
+          "normalizedMethodSha256": "de5444b7a6e4a34742b5ba9703fa07b55b2961e7e0572b00f3a43c0fdabf6abc"
+        }
+      ],
+      "calls": []
+    },
+    "EnableVerifiedPlanningPassage": {
+      "declarations": [
+        {
+          "source": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+          "line": 11,
+          "normalizedMethodSha256": "79367fd8bbf69b33098c54527164eefbd01909129ba2062de17cd798bc9a2359"
+        }
+      ],
+      "calls": []
+    }
+  },
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+      "sha256": "ad12a333d1a36d4ffbab8ab054edde1342fd5cef20151f0b853410f40df40f21"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+      "sha256": "30a363f5bc0b5d4ce215ce6a816fcbfd768c24d3a437ae254a715640fab86578"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "sha256": "890399199e4c7ee47e9d1f01327cf6fa6535829dd7acbb29afd30bb0d87ea38a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "sha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+      "sha256": "32cbda7eef84f036e65eaa7826dc9cccdcf9a05bc234a099133b1a53ccbb83bc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+      "sha256": "bdf960cfcea0f11e9b8f8222cd13aaf33d420b96d0a633b1ccec7de868e1ebdf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs",
+      "sha256": "33b320645df1b51537f0da1f9dccaa46e149cf0ba24c1887a37bd07aee106e11"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+      "sha256": "aea01683f9a46a642c9d6022578f3fd7101320f1d94affe5a08b2d9c2b84652d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+      "sha256": "907501bc38fdebbc003cf89a31c15187bd511803f1e9bcf1117e9587fc37fb35"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedWorkControl.cs",
+      "sha256": "acf492ad33f102ebcfce1cc6f4dc55aa7cd68e75c68aae8e546eee7e1b01b621"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+      "sha256": "b8df69ff33439e0938f7807b023941d840c3894c67a06215248751cc1bffebdf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "503378500d5263f969329cd19f06ec019d222b6611b7d66bb11634bdab13d187"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "sha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "sha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "a7c6848af175dd7e0939febe7c067fed525bb15b1a45e41da881509860f5d52b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "sha256": "2b0a79a986af68d3eaa58a2c28f18069c4fc83595032ba676adece61faf0c24b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "sha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "sha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "sha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "sha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "sha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "sha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "sha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "sha256": "c1a94b86e4fc80871f037142751f2d5ba593bc7822ac5e7f53f8d45b0d077fad"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "sha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+      "sha256": "31b38166dd615ce735a3f37cae9931abaf7971ae9aeb37470a57c7e530ec207a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+      "sha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "sha256": "9619a3488b3c730314630ca9a07d11bf15f7368087a0c620d6d1d28024b565ea"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+      "sha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "sha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "sha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "sha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9"
+    }
+  ]
+}
