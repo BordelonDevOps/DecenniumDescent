@@ -25,13 +25,13 @@ def write(name, data):
 
 def main():
     assert (ROOT / "engine/AGENTS.md").is_file(), str(ROOT)
-    assert git("rev-parse", "HEAD").decode().strip() == BASE, "Audit requires the declared baseline checkout."
-    assert not git("diff", "--name-only", "HEAD", "--", "engine"), "Unexpected tracked runtime changes."
+    assert not git("diff", "--name-only", BASE, "--", "engine"), "Audit requires unchanged baseline engine inputs."
     tracked = git("ls-files", "engine/com.decennium.foundation").decode().splitlines()
     cs = [p for p in tracked if p.endswith(".cs")]
     inputs = []
 
     def pin(path, role, locator="", historical=False):
+        assert not git("diff", "--name-only", BASE, "--", path), "Changed baseline input: " + path
         data = (ROOT / path).read_bytes()
         blob = git("rev-parse", BASE + ":" + path).decode().strip()
         committed = git("cat-file", "blob", blob)

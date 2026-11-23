@@ -1,5 +1,7 @@
 # Foundation and provisional rules implementation trace
 
+Current module (2026-11-23): **MGT-02 connected work control is accepted for implementation.** Actual GPT response `0918e51d-0813-51e4-abd8-111b4c240ec3` and Codex concurrence accept the exact definition/WC-01–05 contract at82fa9554d, including wire116 reuse and the explicit WC-PENDING-01 allocation. [Accepted contract and review](evidence/2026-11-23-mgt02-connected-work-control/README.md). Implement the four existing work families through session/console/query/discovery/observations; preserve native rules and supported saves. WC-A1 is met; WC-A2–A10 and actual final runtime review remain open. Genuine host AwaitingCheck reachability for mining/research/manufacturing remains required for broader completion. OMA116 and all prior acceptances remain intact. The full C# goal is active; Unity, storage cleanup and Support remain deferred. Earlier entries below are historical.
+
 ## 2026-11-23 — ordinary magical activity116 accepted
 
 Actual final GPT response8fa0906a and Codex concurrence accept all OMA-01–10 criteria for Candidate02, implementation03e60196/correctiona713eb77, evidencecaf552afa. The frozen runtime passes1,592 unique cases, including all1,587 predecessors plus five new cases; all four processes exited0. Five complete440-command paths/18 checkpoints/1,872 exact comparisons, source/build/static,18 boundaries,21 authentic compatibility paths and focused/partition/authority evidence are retained. [Final acceptance](evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md).
