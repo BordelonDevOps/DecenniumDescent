@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_SOURCE_REVIEW_CONCRETE_CORRECTIONS_REQUIRED",
+  "reviewer": "independent agent /root/review_consecration",
+  "reviewedInput": {
+    "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PUBLIC_DENIAL_PHYSICAL_TACTICAL_ORIGINS.json",
+    "sha256": "47b524c098f7ce38b25f6b8d3db0d96b84369181491cf25fdc2ff6842232400b"
+  },
+  "counts": {
+    "exactOrigins": 198,
+    "distinctTokens": 148,
+    "sourceFiles": 9,
+    "allExactStatementsMatch": true,
+    "allCodesRegistered": true,
+    "nativeAbsenceProjectionUnavailableCount": 0
+  },
+  "findings": [
+    {
+      "id": "PTD-01",
+      "origins": [
+        "TestOnlyInventoryPolicy.cs:149"
+      ],
+      "severity": "CONCRETE_PREDICATE_CORRECTION",
+      "issue": "CountedInventoryMustBeWhole is not request-shape-only. Native applicability depends on current physical counted profile and ResourceLot.UnitId at139-147. REQUEST_SHAPE explicitly excludes state-dependent target domain.",
+      "correction": "Require authorized exact owned/current lot physical profile plus quantity unit and whole-count domain; otherwise fixed RequestUnavailable. Keep whole-tender outer refusal TestOnlySharedWorldPolicy959-960 and blood specimen983-984; no positive counted-lot route is asserted.",
+      "reachability": "HandleInventory is cache-ration Pickup only (session734-737). PortionInventory has broader owned known current lots741-742, but native outer whole-tender/specimen guards still win."
+    },
+    {
+      "id": "PTD-02",
+      "origins": [
+        "SharedWorldCommandQueries.cs:56",
+        "SharedWorldCommandQueries.cs:114"
+      ],
+      "severity": "CONCRETE_PREDICATE_CORRECTION",
+      "issue": "Same InvalidWorldStep token is shape-only at37 but current actor-coordinate checked addition at56 and current CostPerFoot multiplication at114. The latter reads current declared terrain and Prone via TestOnlySharedWorldPolicy355-356.",
+      "correction": "Bind complete actual public current position/cost inputs or use neutral RequestUnavailable; do not classify these origins REQUEST_SHAPE by token. An unreachable-overflow proof for selected numeric bounds may exclude a branch only when explicitly source-proved; this review does not invent an overflow witness."
+    },
+    {
+      "id": "PTD-03",
+      "origins": [
+        "TestOnlyInventoryPolicy.cs:99",
+        "TestOnlyInventoryPolicy.cs:110"
+      ],
+      "severity": "CONCRETE_SOURCE_ROLE_CORRECTION",
+      "issue": "WorkerBusy99 belongs to nonadmitted EnterInventoryCombat. WorkerBusy110 belongs to underlying Move/Interact fallback, while shared-world ResolveCore1118 rejects those generic kinds after earlier cache/trap Interact dispatch. Neighboring errors97/109 already excluded.",
+      "correction": "Exclude these exact origins from admitted generic inventory mapping, or explicitly tag broader native-only definitions; do not discard other legitimate WorkerBusy origins. No new host operations."
+    },
+    {
+      "id": "PTD-04",
+      "origins": [
+        "SharedFrightened.cs:56"
+      ],
+      "severity": "CONCRETE_PREDICATE_CORRECTION",
+      "issue": "OWN_MAGIC_EXACT_RECHARGE_FIELD does not bind native Warrior AbilityRecharges actor+FrightenedProfile.SourceId+Remaining. Frozen OWN_MAGIC is Cleric source-specific O/C/R/S/B/H.",
+      "correction": "Use exact approved tactical Presence own-use/current own-recharge P_PRESENCE route with current actual source subject/context; otherwise neutral. Do not let magic authority grant Warrior/enemy details."
+    },
+    {
+      "id": "PTD-05",
+      "origins": [
+        "SharedReinforcement.cs:260",
+        "SharedReinforcement.cs:261"
+      ],
+      "severity": "SUBJECT_BINDING_CLARIFICATION_REQUIRED",
+      "issue": "AdmissionFailure subject is definition.CompanionId, not necessarily current command.Actor (automatic clock/end-round continuation).",
+      "correction": "OWN_ACTOR permission/work predicates must bind actual Companion subject and all exact disclosed dependencies. Operator ClockGrant alone cannot authorize companion work/life. PassageFailure205-206 uses edge.ActorId. Preserve native at-contact/EndRound ordering."
+    },
+    {
+      "id": "PTD-06",
+      "origins": [
+        "TestOnlyInventoryPolicy.cs:188"
+      ],
+      "severity": "CONCRETE_PREDICATE_CORRECTION",
+      "issue": "RecipientHandsReserved reads receiver WaterFills; OWN_ACTOR_AND_OWN_ITEMS alone does not authorize recipient work.",
+      "correction": "Require current recipient work disclosure for actual predicate or neutral. Current HandleInventory Destination must empty501-503 and KnownTarget only cachePickup734-737, so generic Handover is native-only in selected surface; do not invent host reachability."
+    }
+  ],
+  "concurrenceWithinBounds": [
+    "Whole mixed/private gameplay guards may intentionally use reviewed RequestUnavailable with absent stage; independently authorized fields/domains/costs remain mandatory.",
+    "Source-role exclusions must be exact origin not global token suppression.",
+    "Hidden observer, reciprocal perception, Director mandates, private path/pressure and aggregate capacity details remain protected.",
+    "Successful current null assessor does not execute contact or imply future admission; returned failure, internal retained stop reason and rejected actual attempt remain distinct."
+  ],
+  "safeDiagnosticReview": {
+    "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SAFE_DIAGNOSTIC_CONTRACT_PROPOSAL.md",
+    "sha256": "88578170db8a62e54891c9d89aebf432531ad3146a0151856ecd6bb0cb964b83",
+    "scope": "Exact representation; whole mixed guard mapping; current rights; actual native result preservation; optional protected stage; no native absence technical relabel; receipt detail ordering.",
+    "verdict": "No contradiction found in these sections; this does not independently certify all source mappings or every proposed DTO."
+  },
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "sha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "sha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerrySeal.cs",
+      "sha256": "0d2a47f24082142c271334416673fccbda4554efc1bd4969b91584f6315b3b53"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "sha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "sha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9"
+    }
+  ],
+  "inputPins": [
+    {
+      "path": "engine/artifacts/admitted-command-surface/public-denial-vocabulary-proposal.json",
+      "sha256": "c2a05bd07e9b89f136c85916f669e8415ebda30248ca8bbe05d8f1d4d6601e5d"
+    }
+  ],
+  "limits": [
+    "Source-only review; no tests, build, gameplay, replay or runtime edits.",
+    "No actual new source/API or implementation approval. No successor work.",
+    "Full input198 statements and registered codes checked; direct native semantic review concentrated on mixed/private gates and corrected origins plus retained prior source audits."
+  ]
+}

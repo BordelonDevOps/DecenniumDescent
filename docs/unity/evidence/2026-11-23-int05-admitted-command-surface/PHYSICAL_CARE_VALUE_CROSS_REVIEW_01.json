@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_INDEPENDENT_REVIEW_WITH_CORRECTIONS_AND_OPEN_DECISIONS",
+  "scope": {
+    "input": "engine/artifacts/admitted-command-surface/physical-care-value-normalization.json",
+    "expectedSha256": "6d920c8bbbc4f272eb81495f1f76337493c6dc62d74657a6541563f29850984b",
+    "factDefinitions": 213,
+    "parameterDefinitions": 13,
+    "operationKinds": 23,
+    "variants": 50,
+    "axes": 64,
+    "runtime": false,
+    "builds": false,
+    "tests": false,
+    "fullHCAcceptance": false
+  },
+  "method": "Read all compact integer declarations and identity/code applicability summaries, all quantity bindings, all atomic parameter definitions, selected original predicates/fields, exact GPT05/06 decisions and finite source excerpts. Verified 99 input/source hashes. This is not a repeat of all field joins, all native guards, transitive purity, or execution qualification.",
+  "agreements": [
+    {
+      "id": "PCXR-01",
+      "disposition": "SOURCE_CONFIRMED",
+      "finding": "51 integer facts retain native 32/64 widths. Actual dose/ActorLife healing and long-rest HP fields are Int64; stabilization Total is Int64; ordinary check dice/modifiers, Wound LinkedInjury/clinical AddedAmount, short-rest HitDiceSpent/Healing, RP/Conviction and allowances are Int32. No generic widening or quantity reinterpretation is justified.",
+      "source": [
+        "Runtime/Core/ManufacturingRecords.cs:69-78",
+        "Runtime/Core/CompanionStabilizationAttempt.cs:16-23",
+        "Runtime/Core/ShortRestRecord.cs:28-33",
+        "Runtime/Core/ClericLongRestRecords.cs:85-108",
+        "Runtime/Core/ExpeditionProvisioningRecords.cs:88"
+      ]
+    },
+    {
+      "id": "PCXR-02",
+      "disposition": "SOURCE_CONFIRMED",
+      "finding": "Blood specimen amount1 is ResourceLot.UnitId drop-black_blood_sample. Supply is mass-pound. Portable per-unit mass is independent. Fixed wound stock claim-role bindings use medical-kit, dry-ration-pounds, clean-water-pints twice, lamp-oil-pints and sundries-pounds; claim/reservation identity and current disclosure gates remain required.",
+      "source": [
+        "Laboratory/Model/SharedConnectedBloodSpecimen.cs:44-57",
+        "Runtime/Core/WoundTreatmentRecord.cs:107-127"
+      ]
+    },
+    {
+      "id": "PCXR-03",
+      "disposition": "SOURCE_CONFIRMED_BOUNDED",
+      "finding": "GPT06 approved exactly whole portable1/1, whole vessel1/1 and trap retrieval0/1 CommandScalar request uses. Preserve zero-present trap request. No generic amount/count/dose permission follows.",
+      "source": [
+        "GPT_ARCHITECTURE_REVIEW_06.json",
+        "REPRESENTATION_DECISIONS_06.md:11-21"
+      ]
+    },
+    {
+      "id": "PCXR-04",
+      "disposition": "EXPLICIT_OPEN_DECISIONS_CORRECTLY_RETAINED",
+      "finding": "ItemCount for physical.portable.currentQuantity linked/unlinked dose0/1 and UseAlchemyDose CommandScalar1/1 remain unapproved. Source proves dimensionless-looking native counts/checks, not authority to register either dimension. Input PC-N04/05/06 correctly keep decisions open. Acquire agreement for exact branch binding or change contract before implementation; do not substitute mass, CopperValue or existing unrelated CommandScalar scope.",
+      "source": [
+        "Laboratory/Model/ConnectedExpeditionView.cs:659-682",
+        "Laboratory/Model/SharedManufacturing.cs:496-520"
+      ]
+    },
+    {
+      "id": "PCXR-05",
+      "disposition": "SOURCE_CONFIRMED_SENTINELS",
+      "finding": "MoraleRest RestIntervalId is empty; only SecureLongRest has real rest alias. LastCastRevision0 iff LastSpellId empty is native no-prior-cast; it is not genesis casting evidence. Input correctly retains final applicability decision OPEN. Nullable Conviction is not0; actual zero values remain available when applicable. Second==0 in stabilization/treatment is no-second-die sentinel and source-specific applicability overrides general zero preservation.",
+      "source": [
+        "Runtime/Core/ExpeditionStrainRecoveryRecords.cs:78-101",
+        "Runtime/Core/ClericLongRestRecords.cs:134-138"
+      ]
+    },
+    {
+      "id": "PCXR-06",
+      "disposition": "CARDINALITY_CONFORMS",
+      "finding": "All213 existing facts remain Scalar, including repeated subject rows. Actual pending recovery alternatives are a finite identity list domain, not an input array or new arbitrary fact object. Available/unavailable value shape and homogeneous list rules match GPT06."
+    }
+  ],
+  "corrections": [
+    {
+      "id": "PCXR-C01",
+      "severity": "CONTRACT_BLOCKER",
+      "keys": [
+        "physical.portable.currentQuantity"
+      ],
+      "finding": "The exact native UnitId join is valid but the current P_ITEM view does not disclose UnitId: ProjectItems emits Id, OwnerId, Available and placement/open only. The normalization preserves original claim that current lot quantity uses ResourceLot.UnitId under existing P_ITEM without separately establishing permission for the unit identity. GPT05 approves named N_ extensions, not automatic broadening of every P_ field. This mirrors the magic Purify quantity-unit gap.",
+      "required": "Freeze an explicit bounded quantity-unit disclosure rule for an otherwise authorized lot/linked lot, or an independently authorized selected source-unit binding, and reconcile the single fixed key's lot-unit versus proposed dose-dimension branches. Until then retain exact native source unit internally but mark public binding OPEN; do not claim legacy view already authorizes it or silently use generic item units.",
+      "source": [
+        "Laboratory/Model/ConnectedExpeditionView.cs:184-191",
+        "Laboratory/Model/ConnectedExpeditionView.cs:654-682",
+        "PHYSICAL_FACT_REGISTRY_PROPOSAL.json#/predicates/P_ITEM",
+        "PHYSICAL_FACT_REGISTRY_PROPOSAL.json field physical.portable.currentQuantity"
+      ]
+    },
+    {
+      "id": "PCXR-C02",
+      "severity": "REQUIRED_RECONCILIATION",
+      "keys": [
+        "physical.dose.id",
+        "physical.dose.usedAt",
+        "physical.dose.userId",
+        "physical.dose.recipientId",
+        "physical.dose.potentialHealing",
+        "physical.dose.actualHealing"
+      ],
+      "finding": "The original registry still spells N_DOSE_USE base as A + P_DOSE_ITEM/current actual dose owner and custody authority. Normalization preserves that registry but its boundedAgreement names GPT06 only, so a consumer reading the preserved predicate literally can still require P_DOSE_ITEM and hide consumed unlinked-dose history. Actual GPT05 explicitly supersedes this requirement.",
+      "required": "Add an explicit normalization override/reference: N_DOSE_USE = exact J_DOSE once-only receipt/use join + selected admitted profile + current retained dose owner/custody authorization + O(user), independent of P_DOSE_ITEM. N_DOSE_HEALING additionally requires O(recipient). Keep P_DOSE_ITEM for current inventory-list facts only. This implements already agreed GPT05 correction, not a new permission.",
+      "source": [
+        "GPT_ARCHITECTURE_REVIEW_05.json response e70be17d-6889-5e41-a22c-4a8dbe4b15b6 Spent-dose correction",
+        "PHYSICAL_FACT_REGISTRY_PROPOSAL.json#/predicates/N_DOSE_USE",
+        "Laboratory/Model/ConnectedExpeditionView.cs:680-682"
+      ]
+    },
+    {
+      "id": "PCXR-C03",
+      "severity": "APPLICABILITY_CLARIFICATION",
+      "keys": [
+        "all Identity facts with empty native sentinel"
+      ],
+      "finding": "The common emptyRule cannot alone assign NotApplicable to every missing Identity. A real parent/recipient/location failing current authorization remains Withheld, including when an existing view represents hiddenness by omission/empty. Genuine authorized absence uses exact source-specific applicability. Input's disclosure-first absentRule is correct but the shorter emptyRule needs explicit precedence.",
+      "required": "State that field-specific disclosure/redaction and missing-required-projection rules precede empty-sentinel mapping. No universal null/empty=>NotApplicable rule, no hidden parent existence flag. Preserve concrete no-prior-cast, no-selected-parent and pending-recovery source sentinels only after disclosure.",
+      "source": [
+        "GPT_ARCHITECTURE_REVIEW_05.json",
+        "DETAILED_RESULT_CONTRACT.md"
+      ]
+    }
+  ],
+  "remaining": [
+    "Resolve PC-N04/05/06 and PC-N08 via actual review; source checking does not approve new dimensions.",
+    "Per-field exact applicability, public unit binding and temporal meanings require final contract reconciliation.",
+    "No native V1 implementation, concrete five-path witnesses, transitive purity or full HC acceptance is established."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b",
+      "bytes": 17891,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "sha256": "595a7276d7ae6c6b2f2845f8edd261381380c55ce61cf3d9037ab08ddb6872b3",
+      "bytes": 12489,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 5262,
+      "sha256": "4fe40edcd064e66a8492911b2d3cb604ff90cf19346a4d0a864a47dbadc74062"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "bytes": 76959,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 8140,
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "bytes": 9318,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "bytes": 10073,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "bytes": 10206,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749,
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "bytes": 16491,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    }
+  ],
+  "inputPins": [
+    {
+      "path": "engine/artifacts/admitted-command-surface/physical-care-value-normalization.json",
+      "sha256": "6d920c8bbbc4f272eb81495f1f76337493c6dc62d74657a6541563f29850984b"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_FACT_REGISTRY_PROPOSAL.json",
+      "sha256": "ce5ad3cf1072039e2efa7fdff09dd71935ad00cea646f9e82ef42e864ed0984d",
+      "bytes": 116292
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CARE_REST_FACT_REGISTRY_PROPOSAL.json",
+      "sha256": "11e98daf02080c9b50346f964a42f5c9718dc5d5ec90291e7bacbb82ebf516dd",
+      "bytes": 56371
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CARE_FACT_REGISTRY_SUPPLEMENT.json",
+      "sha256": "65a0a3efd0f7bcec8ec2b638809b37bee280bb9c4a736ef18058d336d1f019cd",
+      "bytes": 22969
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "165003dc8417db417a7e2efaa6f37dc1331a80dcbc67ff60a38066d3df30f04d",
+      "bytes": 207666
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md",
+      "sha256": "d73751aa61dff01360a927638777273b83b5d68f7991b30f0f8c51df13b2cc9c",
+      "bytes": 4915
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652
+    }
+  ],
+  "verification": {
+    "inputShaMatched": true,
+    "all99PinnedFilesMatchedAtReview": true,
+    "staticOnly": true
+  }
+}

@@ -1,0 +1,496 @@
+{
+  "schemaVersion": 1,
+  "status": "Finite shared-helper implementation proposal. Bounded pure leaves identified; exact extracted signatures/equations/native stages specified. No runtime/source API/full HC acceptance.",
+  "reviewer": "/root/audit_management",
+  "scope": "Selected sale/meal delivery, work/manufacturing capacity, spill restrictions, closing evidence/capture and saved progress boundaries. Reuses prior closed leaf audits rather than repeating full25/80-kind review.",
+  "inputPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125",
+      "bytes": 99100
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded",
+      "bytes": 48395
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216",
+      "bytes": 15748
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634",
+      "bytes": 9904
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81",
+      "bytes": 10288
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703",
+      "bytes": 11380
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+      "sha256": "08fd9dc93f636e3481aa39b5811ed9ee2034b708787f1a4f96a4e1df1491dd99",
+      "bytes": 10666
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "sha256": "670df6356d342dd5f7c4d5f263d06fecb894ab081b5338be694f38b94ddc90fc",
+      "bytes": 37138
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "bytes": 3160
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "bytes": 16250
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+      "sha256": "6484e6890286c03cdc54698bb5a5335b9bf9b3112d0e66e18c5e891d9530f747",
+      "bytes": 14225
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "bytes": 9318
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CraftingConsequenceRecords.cs",
+      "sha256": "e5dd467f477c339d6fd308566a669661743b871f3b2130dde5868c821420caeb",
+      "bytes": 10576
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "bytes": 10073
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "bytes": 19267
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "bytes": 17595
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "sha256": "e33422430672992975426f5ea4eaee5153e772c043a311883c41a5fd4f55cfdc",
+      "bytes": 35223
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "bytes": 10620
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "bytes": 21382
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "bytes": 26565
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "sha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447",
+      "bytes": 13276
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "75bb1479d75f1193ad93611432f386420a8d2cc6aadea3455bfb5d7a77aab256",
+      "bytes": 24355
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339",
+      "bytes": 114333
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+      "sha256": "97de2c4084b634e8faf4bbbc34ae93547b3d286be1ae3ac6e1e67e6c90ad635d",
+      "bytes": 10909
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "503378500d5263f969329cd19f06ec019d222b6611b7d66bb11634bdab13d187",
+      "bytes": 29413
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a",
+      "bytes": 16911
+    }
+  ],
+  "commonContract": {
+    "privateReadOwner": "All helpers internal to selected owning policy or existing Core primitives; callers never receive Snapshot, Authority, condition context or a mutation-capable delegate. Use one current owner/stamp observation.",
+    "nativeOrdering": "Share exact bodies with execution and call only at existing guard stages. Native validators/constructors remain authoritative at construction/restore/commit; reads do not invoke global validation.",
+    "assessmentCarrier": "initialEligibility plus deterministic commitFeasibility plus nativeEnforcementStage; future execution-dependent facts are Unavailable/conditional descriptors, not false executed failure or observed result.",
+    "purity": "No trial Snapshot/ledger/title transfer/reservation, Resolve, AdvanceTo, settlement, lifecycle fold, RNG or replay. The agreed private pure canonical writer equality comparison for an already-owned checkpoint remains allowed.",
+    "visibility": "Internal feasibility may use private native inputs but exports only approved field-limited safe result; no private count/reason expansion or inventory authority from worker/operator control."
+  },
+  "seams": [
+    {
+      "id": "MH-WORK-APPEND",
+      "status": "EXTRACT_SHARED_PURE_CONSTRAINT_BODY",
+      "proposedSignatures": [
+        "internal static WorkDeltaConstraintAssessment CheckAppend(WorkLedger current, WorkReservationSpec addition, int snapshotSchema)",
+        "internal readonly struct WorkerIntervalSpec { string Id; string JobId; string WorkerId; RuleTime Start; RuleTime End; }",
+        "internal readonly struct ResourceClaimSpec { string Id; string JobId; string LotId; RuleQuantity Amount; }"
+      ],
+      "inputContract": "Only validated current owner ledger plus native selected operation additions. Specs are immutable scalar descriptors, not trial WorkerInterval/ResourceReservation/WorkLedger/Snapshot instances. No authority is carried in specs.",
+      "algorithm": [
+        "Retain native Reserve request checks first: valid jobId, nonnull additions, all same JobId, new claim settlement amounts exactly zero. Share WorkerInterval/ResourceReservation scalar constructor conditions without constructing a candidate ledger.",
+        "At component-constructor stage check resulting Lots/Intervals/Reservations separately <=4096, nulls, then identity uniqueness by each separate native collection. Check old-v-new and new-v-new only, because current ledger already validated; no cross-collection uniqueness restriction invented.",
+        "Check every added claim LotId exists in actual current Lots. For each touched lot, sum existing Reserved RemainingAmount plus all new Amount in exact BigInteger fractions; compare to unchanged stock Amount. Released/consumed rows remain in history and still count.",
+        "For each touched WorkerId, preserve half-open nonoverlap: any prior or new interval with start<other.end AND other.start<end conflicts; touching endpoints allowed. Validate native new End>Start. Do not substitute HasActiveLabor or exclude rest/patient occupancy here.",
+        "Predict owning Snapshot constraints separately: schema>=WorkSchema each collection<=256; schema>=CropSchema each<=128. Native final snapshot validation remains at its original stage; do not turn predicted failure into an earlier PolicyFailure.",
+        "Use checked count/ID/revision/RuleTime arithmetic. Preserve first relevant native constraint class and native enforcement stage; never invoke Reserve or global validator to discover the answer."
+      ],
+      "sharingWithExecution": "Factor scalar/new-row checks and exact append equations into the same internal implementation used by Reserve/constructor validation and V1 capacity assessment, preserving execution throw stages/messages. Existing strict save/restore validators remain authoritative and are not called by reads.",
+      "source": [
+        "Runtime/Core/WorkLedger.cs:88-146",
+        "Runtime/Core/Simulation.cs:193,196,1089-1103"
+      ],
+      "notPublic": "Raw collection counts, claims, private actors/intervals and failing private record identities remain internal. Public initial eligibility/commit feasibility/native stage follow current disclosure.",
+      "remainingProof": "Implementation and differential boundary witnesses are still required, but input set/equations/stages are fixed here."
+    },
+    {
+      "id": "MH-WORK-RELEASE-CANCEL",
+      "status": "EXTRACT_PURE_DELTA_ARITHMETIC",
+      "proposedSignatures": [
+        "internal static WorkCountDelta DescribeCancelledFutureIntervals(WorkLedger current, string jobId, RuleTime at)",
+        "internal static ClaimSettlementAssessment CheckClaimSettlement(ResourceReservation claim, ResourceLot lot, RuleQuantity consumedTotal, bool releaseRemaining)"
+      ],
+      "algorithm": [
+        "CancelFutureWork keeps other jobs and this job intervals whose End<=at; truncates this job Start<at<End without removing its row; removes only this job intervals with Start>=at and End>at. Count delta is negative actual removed rows only.",
+        "Release preserves each reservation row and its Id/JobId/LotId, changing released amount to Amount-ConsumedAmount. It never frees a reservation-history slot.",
+        "ConsumeThrough changes stock by newly consumed delta, not total already consumed; preserve monotonic consumed bounds and exact remaining/released consistency. Inspect actual existing claim, do not call ConsumeThrough/Release/CancelFutureWork in reads.",
+        "For selected research controls no supply claim is introduced; native copying remains unselected. For manufacturing cancellation, Labor==0 releases ingredient claims; Labor>0 consumes native full component inputs. Packaging release always retains its row; batch closes only in real execution."
+      ],
+      "source": [
+        "Runtime/Core/WorkLedger.cs:148-190",
+        "Laboratory/Model/SharedManufacturing.cs:470-483",
+        "Laboratory/Model/SharedFormulaResearch.cs:276-299"
+      ],
+      "nativeStage": "Execution mutation/ledger reconstruction after exact control assessor. Pure metadata must not hoist recipe-null/cancellation settlement failures before native early Pause/Cancel branches."
+    },
+    {
+      "id": "MH-BOOKING-SPECS",
+      "status": "EXTRACT_PURE_NATIVE_BOOKING_FACTORIES",
+      "proposedSignatures": [
+        "internal static WorkerIntervalSpec DescribeActiveBooking(string jobId, string workerId, RuleTime now, RuleTime remaining, RuleTime? nativeWindowEnd, long nextRevision, string nativeIdSuffix)",
+        "internal static WorkReservationSpec DescribeSelectedStartReservations(Snapshot current, Command command, SelectedWorkAdmission admitted)"
+      ],
+      "algorithm": [
+        "Use source-specific native booking Id format and exact after-guard endpoints. Do not create a universal work-window rule.",
+        "Appraisal min(now+Remaining, actual appointment end); sale now+Remaining for both seller and buyer, after exclusive expiry fence; bill/plan their native authorization window; fill now+(60-Progress).",
+        "Research/manufacturing min(now+Work.Remaining, ResearchWindowEnd(now)); source windows are <28800 then <57600 then absent. Only after native access branch requires window; AwaitingCheck bypass retains no booking.",
+        "Mining uses exact saved duration/WorkDone and native eligible workers/booking ordinal. Current selected profiles have no assistant; no assistant worker is invented.",
+        "Preserve all original worker capability/ownership/access and earlier errors; this factory describes additions after those guards. No progress credit, activity commitment, reservation or native job constructor in a read."
+      ],
+      "source": [
+        "Laboratory/Model/SharedHavenAppraisal.cs:195-207",
+        "Laboratory/Model/SharedHavenSale.cs:336-349",
+        "Laboratory/Model/SharedExpeditionBill.cs:208-211",
+        "Laboratory/Model/SharedNextCharterPlan.cs:217-220",
+        "Laboratory/Model/WaterFilling.cs:73-83",
+        "Laboratory/Model/SharedFormulaResearch.cs:148,171-175",
+        "Laboratory/Model/SharedMining.cs:751-765",
+        "Laboratory/Model/SharedManufacturing.cs:277-280"
+      ],
+      "outcome": "Pass specs to MH-WORK-APPEND. They are descriptions/reservation feasibility, never observed booked intervals."
+    },
+    {
+      "id": "MH-ROOT-DELIVERY",
+      "status": "EXTRACT_SELECTED_DELTA_WITH_FINITE_UNCHANGED_INVARIANT_PROOF",
+      "proposedSignatures": [
+        "internal static PortableDeliveryAssessment AssessWholeRootDelivery(Snapshot current, WholeRootTransfer first, WholeRootTransfer second)",
+        "internal readonly struct WholeRootTransfer { string ExistingLotId; string FromActorId; string ToActorId; }",
+        "internal static IEnumerable<BurdenItem> EnumerateCarriedBurdenInputs(Snapshot current, string actorId, RootCustodyReadOverrides selectedTransfers)"
+      ],
+      "preconditions": [
+        "Called only at the existing final delivery-feasibility tail after SaleAssets/MealAssets and other native initial guards. Exact SaleAssetAtParty proves whole unsplit original inventory lot, exact amount/unit/owner/custodian/Ready, root Carried linked portable item and no inventory or portable descendants.",
+        "Both recipients are exact existing selected actors. The two transferred assets are distinct selected goods/tender or meal/tender; no arbitrary transfer capability is introduced.",
+        "Current owner snapshot has already passed supported native validation at trusted establishment. Read does not repeat that validation or repair malformed state."
+      ],
+      "inputDelta": [
+        "Each root item keeps Id/ProfileId/LinkKind/LinkedId/MassBasis/SourceWeightLb/OperationalWeightLb/PrintedLoad. Native TransferWholePortableLotTitle sets OwnerId/CustodianId=recipient, ParentId empty, Placement Carried; omitted optional constructor fields reset to native defaults (capacity null, wearable/open false, fit rule/members empty, ground0, HeldHands0).",
+        "Same InventoryLot keeps Id/provenance amount/creation/nutrition/freshness, changes Owner and Ready access. Same ResourceLot keeps Id/UnitId/Amount, changes location/custodian to recipient. No row count/ID, amount, reservation or worker interval changes.",
+        "Express these as read-only input overrides to shared scalar selectors. Do not allocate a copied Snapshot, new ledger, candidate portable title record, call SetPortable/SynchronizeLinks or validate a trial state."
+      ],
+      "proofPartition": [
+        "Portable collection/schema/identity/profile facts and history rows do not change. Current selected asset profiles and exact source guards prevent holy-symbol/shield special history reinterpretation.",
+        "Each transferred root is childless; no containment edge/cycle/member fit or container contents change. The transfer removes no child and adds none. Optional root container metadata reset is applied in the logical delta; no affected contained-item geometry is inferred.",
+        "Linked lot owner/custodian/location/Ready changes agree exactly with the native synchronization equations. Existing unit/nutrition/counted-mass/profile checks remain satisfied; stock amounts and physical profiles are unchanged.",
+        "Unchanged portable/vessel/supply links and validated historical labor references remain unchanged. Meal execution alone additionally installs its real purchase before the existing portable validation; do not synthesize that purchase in an initial read.",
+        "Enumerate native burden inputs with only selected root custody membership overridden, preserving all other source mass/Load fallback and legacy unlinked-vessel/lot/default-pouch handling. Use shared PlaytestCarrying.Total/Limits/CanCarry; no assumption that a mass delta alone proves Load or unknown aggregate.",
+        "Check every actual actor in native Actors order, as CheckPortableProjectedState does. Unknown Pounds or Load yields FitsCarrier=false and exact CarryingCapacityExceeded, not an invented CarryingCapacityNotEstablished branch. Unchanged actors are still checked because native policy checks them."
+      ],
+      "errorOrder": "At the native delivery tail, preserve PortableEquipmentValidation structural/fit/capacity order by shared selected-delta checks and unchanged-input proof; then ValidateFixture unchanged water-content bound; then all-actor FitsCarrier. Preserve existing ArgumentException mapping: message contains fit -> ContainerFitNotEstablished; else contains capacity -> ContainerCapacityExceeded; else InvalidPortableTransition. Non-ArgumentException behavior is not silently remapped to these gameplay codes.",
+      "sharingWithExecution": "Share burden input selection and precise selected transfer constraint body with authoritative delivery. Actual writes still occur in existing execution branches, followed by strict native validation at its existing stage. V1 consumes only assessment, not a candidate state.",
+      "source": [
+        "Laboratory/Model/SharedHavenSale.cs:180-192,245-261,287-333",
+        "Laboratory/Model/SharedHavenMeal.cs:135-160",
+        "Laboratory/Model/SharedPortableEquipment.cs:81-100",
+        "Laboratory/Model/PortableEquipment.cs:81-159,239-282",
+        "Runtime/Core/PortableEquipmentRecords.cs:226-250,284-428,463-475",
+        "Laboratory/Model/PlaytestCarrying.cs:91-139"
+      ],
+      "technicalFallback": "If selected transfer preconditions cannot be proved for a supported composition, return technical commit-feasibility Unavailable while retaining initial guard result. Do not fall back to trial delivery/global validation or silently broaden this seam to arbitrary portable handling."
+    },
+    {
+      "id": "MH-MEAL-ENDPOINT",
+      "status": "SPLIT_CURRENT_DETERMINISTIC_CONSTRAINTS_FROM_EXECUTION_DEPENDENT_ENDPOINT",
+      "proposedSignatures": [
+        "internal MealInitialAssessment AssessHavenMealInitial(Snapshot current, Command command, NativeReadContext context)",
+        "internal string AssessHavenMealAtReachedEndpoint(Snapshot reached, HavenMealOffer exactOffer, RuleTime requestedEnd, NativeReadContext reachedContext)"
+      ],
+      "current": "Keep now+1, offer and freshness exclusive boundaries, original terms/assets/stock/surface/counter/labor and <=end deadline fences at lines173-195. Current root delivery/booking constraints use seams above. NextConditionDeadline uses materialized journal-time mode; no deadline is settled.",
+      "endpoint": "After actual AdvanceTo only, retain exact RuleClock==end and expiry/freshness, terms/counter/finalizing labor, surface, assets/prior sale, real purchase construction, delivery and release order206-218. Actual one second may trigger unrelated native changes and rollback; it is not paid time until commit.",
+      "classification": "Whole-command commit feasibility remains Unavailable for unexecuted advancing continuation when needed; initial eligible and current deterministic subconstraints remain reportable separately. Never mark predictive failure as executed PolicyFailure/InvalidResult.",
+      "source": [
+        "Laboratory/Model/SharedHavenMeal.cs:163-218",
+        "MANAGEMENT_READ_EXTRACTION_PLAN.json additionalBoundedHelperFindings MEAL_DEADLINES"
+      ]
+    },
+    {
+      "id": "MH-SPILL-RESTRICTIONS",
+      "status": "EXISTING_PURE_LEAVES_CLOSED_FOR_SELECTED_CALLS",
+      "reuseSignatures": [
+        "CraftingRestrictions.StationUseBlocked(Snapshot,string)",
+        "CraftingRestrictions.OrderWorkBlocked(Snapshot,string)",
+        "CraftingRestrictions.NewOrderBlocked(Snapshot,string,string,string)",
+        "CraftingRestrictions.CraftingCheckBlocked(Snapshot,string)"
+      ],
+      "exactBranches": [
+        "Station: any !Remedied incident same StationId Result1.",
+        "Order: StationUseBlocked OR !Remedied same station Result5.",
+        "New order: OrderWorkBlocked OR !Remedied Result6 same LeadId and TradeId.",
+        "Check: exact tool Structure.Broken OR !Remedied Result2 same ToolId. Broken is Hp==0; Remedied is saved Labor==RequiredLabor."
+      ],
+      "nativeStage": "Preserve source workshop/station/tool guard order; no new restriction on free Cancel/Pause paths. Existence/incident count/IDs are not public facts merely because an internal Boolean was checked.",
+      "source": [
+        "Laboratory/Model/SharedCraftingConsequences.cs:80-87",
+        "Runtime/Core/CraftingConsequenceRecords.cs:50,67-90"
+      ],
+      "excluded": "ApplyCraftingMishap, remedy advancement/credit, injury/death saves, resets or reconciliation."
+    },
+    {
+      "id": "MH-CLOSE-RECEIPTS",
+      "status": "PURE_RETAINED_PARSE_AND_SELECTION_WITH_EXISTING_CORE_CONSTRUCTOR_DEPENDENCY",
+      "reuseSignatures": [
+        "CommandHistory.Read(CommandReceipt)",
+        "ExpeditionEpisodeCloseValidation.TryReadMealIntakes(Snapshot,HavenMealPurchaseRecord,RuleTime,out string[])"
+      ],
+      "exactBranches": [
+        "CommandHistory.Read checks bounded receipt fields, native scalar parsing, exact payload/version/kind constructors and MatchesReceipt canonical equality. It reconstructs a Command value only; it does not replay, dispatch, resolve, validate Snapshot or supply authority. Keep this strict parser rather than a lossy prefix reader.",
+        "Exit receipt remains native LastOrDefault over existing receipt order where parsed Kind EndFixedEncounter, then original encounter revision bound. Latest actor movement remains native LastOrDefault parsed BeginWorldStep. Do not sort/replay history or infer causal binding from same clock.",
+        "TryReadMealIntakes checks actual paid root provenance and asOf; selects exact descendant family at asOf; considers customer intakes started after purchase and <=asOf. Working/unended/future-ended intake rejects; exact claim Id/JobId/LotId with no remaining required; skip zero-consumed, sum terminal consumed amounts exactly; require exact serving amount and sort returned IDs ordinal.",
+        "The method named Validation.TryReadMealIntakes is a pure selector/arithmetic leaf. Adjacent full Validate is excluded. Existing Core request-constructor/fingerprint purity audit remains a shared dependency, not a new historical replay license."
+      ],
+      "source": [
+        "Runtime/Core/CommandHistory.cs:11-177",
+        "Runtime/Core/ExpeditionEpisodeCloseRecords.cs:232-255",
+        "Runtime/Core/InventoryRecords.cs:83-94",
+        "Laboratory/Model/SharedExpeditionEpisodeClose.cs:79-100,160-164"
+      ],
+      "privacy": "Internal receipt/principal/fingerprint/meal lineage is not exported. Original current report/field rights apply independently."
+    },
+    {
+      "id": "MH-CLOSE-COMMITMENTS",
+      "status": "EXISTING_PURE_MEMBERSHIP_CLOSED_WITH_PRECOMPUTED_EMPTY_OPTIONS",
+      "reuseSignatures": [
+        "HasOpenExpeditionCloseCommitments(Snapshot,HashSet<string>,IEnumerable<ExpeditionCloseStock>)",
+        "ClosureCoverageContradicted(Snapshot,HashSet<string>)"
+      ],
+      "exactBranches": [
+        "HasOpen: OpenProcedures(state,empty CommandOption[]) actor membership OR any member WorkerInterval.End>clock OR member open ExpeditionAssignment OR remaining reservation on scoped lot. OpenProcedures is not CurrentWork; paused/awaiting procedure semantics remain exact.",
+        "Empty options are supplied; never call discovery/query to get them. Existing procedure-inventory read audit already closes membership/detail getters.",
+        "Coverage contradiction preserves native short-circuit order: profile no-recruited-companion flag plus Companion membership; any member RouteTravel; any CampActivities globally; member HarvestAttempt; member Milestone; member Advancement. Camp global Any must not be narrowed to members."
+      ],
+      "source": [
+        "Laboratory/Model/SharedExpeditionEpisodeClose.cs:140-156",
+        "PROCEDURE_INVENTORY_READ_AUDIT.json WorldActivityProjection entries"
+      ],
+      "privacy": "Boolean internal eligibility only; do not expose which hidden work/condition/event/count caused it."
+    },
+    {
+      "id": "MH-CLOSE-CAPTURE",
+      "status": "EXTRACT_CONTEXT_PARAMETER_KEEP_DETACHED_CAPTURE_SEPARATE_FROM_FACT_PUBLICATION",
+      "proposedSignatures": [
+        "internal static ExpeditionCloseMember CaptureClosingMember(Snapshot current,string actor,NativeReadContext context)",
+        "internal string AssessExpeditionCloseEligibility(Snapshot current,Command command,NativeReadContext context,out ClosingInputs inputs)",
+        "internal ExpeditionEpisodeCloseRecord BuildClosingRecord(ClosingInputs inputs,Command command,NativeReadContext context)"
+      ],
+      "algorithm": [
+        "Keep native guards63-116 and their first failure order; no full candidate close installation or history validation. ClosingInputs holds only exact already-selected internal joins, not new permission.",
+        "Member capture uses retained actual Life record, native current WorldPosition, latest movement receipt, character Levels.Count. Use current owner-bound materialized conditions for present and effective component flags; exact inheritance/expiry construction remains native lines165-176.",
+        "Build detached immutable close/outcome/coverage records only where needed by actual execution or deterministic constructor feasibility. Their existence is not an observed committed close result; no DTO publication without actual committed receipt.",
+        "Resolve alone installs state.ExpeditionEpisodeClose at line136. Never synthesize a close into Snapshot to test validation. Preserve frozen stock/resource units and all captured order/collection bounds."
+      ],
+      "source": [
+        "Laboratory/Model/SharedExpeditionEpisodeClose.cs:60-178",
+        "Runtime/Core/ExpeditionEpisodeCloseRecords.cs:55-225",
+        "CONDITION_READ_BOUNDARY.md"
+      ],
+      "externalDependencies": "Condition projection exactly current owner/stamp, native materialized mode, resolved-conflict and pending selectors remain shared parent contracts. No condition fold/Restore/AdvanceTo."
+    },
+    {
+      "id": "MH-PROGRESS-BOUNDARIES",
+      "status": "REUSE_CLOSED_GETTERS_AND_EXTRACT_SELECTED_DEADLINE_LEAF",
+      "proposedSignatures": [
+        "internal RuleTime? ReadNextManufacturingBoundary(Snapshot current,NativeReadContext context)"
+      ],
+      "algorithm": [
+        "Reuse ActiveWorkProgress Complete/Retained/Required/Remaining and native numeric Sum/Add/Subtract from the prior procedure audit; do not recompute elapsed progress.",
+        "NextManufacturingBoundary reads only Working jobs: exact currently active interval.End, clock+(current phase length-Partial), and if unstabilized and native saved blood age<BloodSpoils, clock+(BloodSpoils-age); return Min or null.",
+        "Blood age remains exact retained protection/opening/exposure/stabilization interval arithmetic already closed in management read plan. Do not credit or cure spoilage.",
+        "Preserve source ResearchWindowEnd strict <28800/<57600 behavior and true saved Labor versus retained completed/partial work. Pause discarding unfinished phase is an execution transition, not a read-time normalization."
+      ],
+      "source": [
+        "Runtime/Core/ActiveWorkProgress.cs:16-19,44-54",
+        "Laboratory/Model/SharedManufacturing.cs:290-299",
+        "Laboratory/Model/SharedFormulaResearch.cs:148",
+        "MANAGEMENT_READ_EXTRACTION_PLAN.json BLOOD_AGE"
+      ],
+      "excluded": "CreditManufacturing, Work.Credit/Interrupt, PauseIncompatibleManufacturing, stabilization, Ready-list mutation and check resolution."
+    },
+    {
+      "id": "MH-KNOWN-QUALITY-SETTLEMENT",
+      "status": "EXTRACT_DETERMINISTIC_KNOWN_CHOICE_CONSTRAINTS_ONLY",
+      "proposedSignatures": [
+        "internal static ManufacturingOutputSpec DescribeKnownOutput(ManufacturingRecipeDefinition recipe,CraftQuality actualQuality,CraftQualityChoice requestedChoice)",
+        "internal KnownSettlementAssessment AssessKnownManufacturingSettlement(Snapshot current,ManufacturingOrderRecord actualPendingOrder,CraftQualityChoice choice,int catalyst)"
+      ],
+      "algorithm": [
+        "Call only after exact AssessManufacturingQualityChoice: selected, payload, pending priority, actual owned open AwaitingChoice, X1/2, recipe, actual CatalystIndexes and CanYield. Retained Exceptional/Masterwork is already a real check result, not predicted RNG.",
+        "Share ManufacturingOutput: exact Yield; Durability+quality>=Exceptional VialHp2 else1; supplementaryConsumed=max(0,doses-sourceVesselCount). Share component consumption/packaging arithmetic; do not settle claims or append doses/trades.",
+        "Check actual dose-history count + known Doses <=MaxDoses and exact native output ID suffixes/collisions at their execution stage; include exact owned trade successor list/numeric bounds if exposed as known settlement feasibility. Do not run AdvanceTrade into a replacement trade record or manufacture an actual award fact.",
+        "DescribeManufacturingOutput reserved-consumed subtraction runs only after the actual funded choice branch; calling it for an unfunded FullYield can throw and must not manufacture a negative quantity or bypass native ManufacturingFullYieldUnavailable.",
+        "Saved ManufacturingAdvance may resume time after actual settlement. Assessment reports deterministic settlement subconstraints separately and unexecuted continuation feasibility Unavailable; never runs it or promises no elapsed time."
+      ],
+      "source": [
+        "Laboratory/Model/SharedManufacturing.cs:170-187,324-402,487-495",
+        "Laboratory/Model/ManufacturingRules.cs:106-134",
+        "Runtime/Core/ManufacturingRecords.cs:25-80"
+      ],
+      "executionDependent": "Before the check occurs (Working/Paused/AwaitingCheck), actual quality/output/mishap/incident/RNG-dependent descendants remain future obligations. Native conservative precheck at FinishManufacturingCheck391-393 stays its native stage."
+    }
+  ],
+  "perOperationWorkDelta": {
+    "StartHavenAppraisal": "+1 appraisal; +1 subject claim; +1 worker interval",
+    "StartHavenSale": "+1 sale; +2 claims; +2 participant intervals; no title transfer/payment",
+    "PurchaseHavenMeal": "+2 claims,+2 intervals before AdvanceTo; +1 purchase at successful actual endpoint; later unrelated deltas unknown until execution",
+    "StartExpeditionBill": "+1 bill,+1 interval; no added material claim",
+    "CloseExpeditionEpisode": "Set previously absent singleton close; no Work row additions or clock movement",
+    "StartNextCharterPlan": "+1 plan,+1 interval; no new stock claim",
+    "AcceptNextCharter": "Install actual singleton agreement; no Work additions/departure",
+    "StartCharterAttempt": "Install actual attempt and Admitted event; no Work additions",
+    "ObserveCharterApproach": "Actual observed event/observation on current attempt; no Work additions",
+    "StartWaterFill": "+1 fill,+1 source claim,+1 interval; no output lot until real completion",
+    "PauseWaterFill": "CancelFutureWork interval delta only; claims retained",
+    "ResumeWaterFill": "+1 interval; existing claim and amount retained",
+    "CancelWaterFill": "CancelFutureWork interval delta; release existing claim without removing row",
+    "StartMining": "+1 attempt,+selected unit claim count,+1 interval for selected worker; no assistant/tool-derived branch added",
+    "PauseMining": "CancelFutureWork interval delta; claims retained",
+    "ResumeMining": "Paused:+1 native interval; AwaitingCheck:no booking, outcome/RNG-dependent future deltas unexecuted",
+    "StartFormulaResearch": "+1 Research job,+1 interval; no copying-supply claim on admitted route",
+    "PauseFormulaWork": "CancelFutureWork interval delta; preserve research retained progress",
+    "ResumeFormulaWork": "Paused:+1 interval; AwaitingCheck:no booking, actual check not run",
+    "CancelFormulaWork": "CancelFutureWork interval delta; no new claim/output/knowledge",
+    "StartManufacturing": "+1 order,+4 recipe4 component claims,+optional packaging claim iff Y>0,+1 interval; separate native Reserve stages",
+    "PauseManufacturing": "CancelFutureWork interval delta; unfinished phase loss only actual transition",
+    "ResumeManufacturing": "Paused:+1 interval; AwaitingCheck:no booking; no predicted outcome",
+    "CancelManufacturing": "No added Work rows; exact cancelled-future interval count, ingredients consumption/release and packaging release preserve claims; batch closes only actual execution",
+    "ResolveManufacturingQuality": "No new Work claims/intervals from settlement itself; known actual Quality yields exact dose additions, release/consumption keeps claims; continuation may add unrelated rows only in execution"
+  },
+  "finiteImplementationSequence": [
+    "Extract scalar Work append/settlement/count constraints with original enforcement-stage metadata; wire both authoritative execution and read calculation.",
+    "Extract selected root-custody burden input selector and two-item delivery feasibility using exact childless-root asset proof; retain actual delivery writes only in execution.",
+    "Split meal initial/current checks from actual reached-endpoint rechecks; expose continuation Unavailable rather than resolving it.",
+    "Reuse spill/progress/meal-intake/closure membership leaves; inject existing current NativeReadContext into closing-member capture.",
+    "Extract deterministic already-rolled quality output/constraint descriptors; preserve real settlement/continuation as execution."
+  ],
+  "concreteRemainingBoundaries": [
+    {
+      "scope": "Delivery input invariants across installed compositions",
+      "required": "Bind selected validated profile/asset root-childless proof and all-actor burden behavior to each actual entry point; if unsupported logical override appears, technical Unavailable, never trial validation.",
+      "notClaimed": "No generic arbitrary container-transfer closure."
+    },
+    {
+      "scope": "Future meal/manufacturing advancement",
+      "required": "Remains execution-dependent by design; do not try to close by running it inside reads. Exact post-execution facts require actual carrier/receipt."
+    },
+    {
+      "scope": "Shared Core/condition/spatial infrastructure",
+      "required": "Parent exact constructor/getter/condition stamp and dispatcher propagation contracts are dependencies; this file supplies no new assembly friendship or read capability."
+    },
+    {
+      "scope": "Runtime qualification",
+      "required": "Prospective source/compile/purity/native-order/capacity and connected-path tests are still unexecuted. Three genuine AwaitingCheck producer gaps remain separate."
+    }
+  ],
+  "prospectiveFocusedChecks": [
+    "At exactly127/128 owning Work rows versus4095/4096 component rows, release preserves count; cancel removes only unused future intervals.",
+    "Two touching versus overlapping intervals, same-job mismatch, duplicate new IDs, split/fractional claims and already-reserved stock preserve exact failure stage.",
+    "Selected goods/tender and meal/tender root delivery: both-direction mass/Load, unknown burden, unchanged third actor over-capacity and native ArgumentException mapping; no copied candidate calls.",
+    "Working/Paused/AwaitingCheck/AwaitingChoice cancellation/resume cases preserve source early branches and no extra access rights.",
+    "Closed report meal lineage/terminal partial intakes/current stamp flags and strict receipt parsing preserve exact prior behavior without replay.",
+    "Known FullYield unfunded versus Durability and saved continuation expose only real retained choice facts; no new RNG/time during reads."
+  ],
+  "runtimeChanged": false,
+  "buildsTestsOrGameplayRun": false,
+  "sourceApiAccepted": false,
+  "fullHcAccepted": false
+}

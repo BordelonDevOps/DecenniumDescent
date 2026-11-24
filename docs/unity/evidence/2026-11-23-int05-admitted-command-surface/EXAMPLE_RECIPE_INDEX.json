@@ -1,0 +1,1768 @@
+{
+  "schemaVersion": 1,
+  "status": "FINITE_RECIPE_ALLOCATION_NOT_EXECUTED_OR_FULL_CONTRACT_ACCEPTANCE",
+  "counts": {
+    "candidateKinds": 78,
+    "operatorKinds": 2,
+    "candidateAxes": 204,
+    "registeredVariants": 145,
+    "executedExampleRecipes": 0
+  },
+  "inputs": [
+    {
+      "path": "PHYSICAL_CARE_EXAMPLE_RECIPES.json",
+      "sha256": "a18bae883d3935194af164c6eab1e4af49b6dd5f668d4df99d4e14ecc2382020"
+    },
+    {
+      "path": "MAGIC_EXAMPLE_RECIPES.json",
+      "sha256": "a1249da0e095950e85c77cf9dc75995e11ac7684f2881616fe187dd251104db5"
+    },
+    {
+      "path": "MANAGEMENT_EXAMPLE_RECIPES.json",
+      "sha256": "5b703bdff718b4872f961fbcebeaf996e59c1267e3e694f542854d0871e126e5"
+    },
+    {
+      "path": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json",
+      "sha256": "8a14cf93987c69f7fa0f0aa65035f48c8e25e124944e2c6d87abefbdb589a157"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "SelectCombatStance",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Aggressive",
+        "Guarded",
+        "Mobile",
+        "Focused",
+        "Carrying: native NoApplicableCargoPenalty"
+      ],
+      "variants": [
+        {
+          "variantKey": "stance.aggressive",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0/variants/0"
+        },
+        {
+          "variantKey": "stance.guarded",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0/variants/1"
+        },
+        {
+          "variantKey": "stance.mobile",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0/variants/2"
+        },
+        {
+          "variantKey": "stance.focused",
+          "variantOrdinal": 3,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0/variants/3"
+        },
+        {
+          "variantKey": "stance.carrying",
+          "variantOrdinal": 4,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0/variants/4"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/0",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackClub",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned/custodied visible-target club",
+        "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+        "ArmOrReplace/KeepExisting",
+        "regular attack vs Sanctuary gate"
+      ],
+      "variants": [
+        {
+          "variantKey": "attack.club",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/1/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/1",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Ferry feature/actual creature seat",
+        "same explicit knockout/Press payload disposition",
+        "Sanctuary admission"
+      ],
+      "variants": [
+        {
+          "variantKey": "attack.ferry-claw",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/2/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/2",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TacticalStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "native direction/geometry/movement domain",
+        "ordinary completion/OA suspension/Press continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "move.tactical-step",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/3/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/3",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndRegularTurn",
+      "operatorOnly": false,
+      "exactAxes": [
+        "aware stance required",
+        "life/conditions/due events and next slot"
+      ],
+      "variants": [
+        {
+          "variantKey": "turn.end",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/4/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/4",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EncounterDash",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Ferry current party turn",
+        "Action and movement allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "ferry.dash",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/5/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/5",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "operatorOnly": false,
+      "exactAxes": [
+        "RecoveryOpponent seat selected target subsets",
+        "separate LaterDefender grant",
+        "actual cooldown/turn/visibility"
+      ],
+      "variants": [
+        {
+          "variantKey": "presence.recovery-source",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/6/variants/0"
+        },
+        {
+          "variantKey": "presence.later-defender",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/6/variants/1"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/6",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TearExposedSeal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual observed seal",
+        "tactical vs ordinary activity where admitted",
+        "original suppression endpoint and repeated use"
+      ],
+      "variants": [
+        {
+          "variantKey": "seal.tear-tactical",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/7/variants/0"
+        },
+        {
+          "variantKey": "seal.tear-ordinary",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/7/variants/1"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/7",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "operatorOnly": false,
+      "exactAxes": [
+        "decline",
+        "take with owned weapon",
+        "knockout/Press elections",
+        "ordered reactor and continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "oa.decline",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/8/variants/0"
+        },
+        {
+          "variantKey": "oa.take-club",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/8/variants/1"
+        },
+        {
+          "variantKey": "oa.take-ferry-feature",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/8/variants/2"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/8",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveKnockout",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary outcome",
+        "knock out",
+        "existing attack identity; original Press instruction immutable"
+      ],
+      "variants": [
+        {
+          "variantKey": "ko.ordinary",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/9/variants/0"
+        },
+        {
+          "variantKey": "ko.knockout",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/9/variants/1"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/9",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondPress",
+      "operatorOnly": false,
+      "exactAxes": [
+        "decline",
+        "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+        "nested continuation without speculative execution"
+      ],
+      "variants": [
+        {
+          "variantKey": "press.decline",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/10/variants/0"
+        },
+        {
+          "variantKey": "press.follow",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/10/variants/1"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/10",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondSanctuary",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Forgo",
+        "regular attack Retarget to each visible legal native target",
+        "Opportunity retarget denied outside original source",
+        "native no-free-loop/continuation rules"
+      ],
+      "variants": [
+        {
+          "variantKey": "sanctuary.forgo",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/11/variants/0"
+        },
+        {
+          "variantKey": "sanctuary.retarget-regular",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/11/variants/1"
+        },
+        {
+          "variantKey": "sanctuary.retarget-opportunity",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/11/variants/2"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/11",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "walk",
+        "run only where host selected",
+        "scheduled/off-calendar activity",
+        "partial progress/encounter admission"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.walk",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/12/variants/0"
+        },
+        {
+          "variantKey": "world.run-declared",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/12/variants/1"
+        },
+        {
+          "variantKey": "world.run-predeclared",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/12/variants/2"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/12",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending traversal",
+        "partial pose/paid budget preserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.suspend",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/13/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/13",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "suspended/waiting traversal",
+        "run/Dash revalidation",
+        "actual geometry/fear/access"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.resume-suspended",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/14/variants/0"
+        },
+        {
+          "variantKey": "world.resume-waiting-running-activity",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/14/variants/1"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/14",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual selected approach",
+        "consent/director parameters",
+        "source entry timing/allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "reinforcement.begin",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/15/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/15",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Hide",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary Hero start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "variants": [
+        {
+          "variantKey": "hide.ordinary",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/16/variants/0"
+        },
+        {
+          "variantKey": "hide.tactical-decline",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/16/variants/1"
+        },
+        {
+          "variantKey": "hide.tactical-guidance",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/16/variants/2"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/16",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Search",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary Companion start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "variants": [
+        {
+          "variantKey": "search.ordinary",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/17/variants/0"
+        },
+        {
+          "variantKey": "search.tactical-decline",
+          "variantOrdinal": 1,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/17/variants/1"
+        },
+        {
+          "variantKey": "search.tactical-guidance",
+          "variantOrdinal": 2,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/17/variants/2"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/17",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationHide",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending hide identity"
+      ],
+      "variants": [
+        {
+          "variantKey": "hide.cancel",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/18/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/18",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationSearch",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending search identity"
+      ],
+      "variants": [
+        {
+          "variantKey": "search.cancel",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/19/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/19",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Interact",
+      "operatorOnly": false,
+      "exactAxes": [
+        "cache PickWithTools/Open/Interrupt",
+        "trap Set/Pause/Resume/Cancel",
+        "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+        "retrieve explicit receiver/handling request",
+        "trap Abandon exists natively but is not admitted by the session"
+      ],
+      "variants": [
+        {
+          "variantKey": "cache.pick",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/0"
+        },
+        {
+          "variantKey": "cache.open",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/1"
+        },
+        {
+          "variantKey": "cache.interrupt",
+          "variantOrdinal": 2,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/2"
+        },
+        {
+          "variantKey": "trap.set",
+          "variantOrdinal": 3,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/3"
+        },
+        {
+          "variantKey": "trap.pause",
+          "variantOrdinal": 4,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/4"
+        },
+        {
+          "variantKey": "trap.resume",
+          "variantOrdinal": 5,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/5"
+        },
+        {
+          "variantKey": "trap.cancel",
+          "variantOrdinal": 6,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/6"
+        },
+        {
+          "variantKey": "trap.retrieve",
+          "variantOrdinal": 7,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/7"
+        },
+        {
+          "variantKey": "trap.pause-retrieval",
+          "variantOrdinal": 8,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/8"
+        },
+        {
+          "variantKey": "trap.resume-retrieval",
+          "variantOrdinal": 9,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/9"
+        },
+        {
+          "variantKey": "trap.abandon",
+          "variantOrdinal": 10,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/10"
+        },
+        {
+          "variantKey": "cache.key",
+          "variantOrdinal": 11,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0/variants/11"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/0",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Pickup/Drop/Retrieve",
+        "selected vial Stow in pack",
+        "selected focus Handover consent",
+        "companion Club physical adapter",
+        "ordinary vs tactical allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "portable.pickup",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/0"
+        },
+        {
+          "variantKey": "portable.drop",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/1"
+        },
+        {
+          "variantKey": "portable.retrieve",
+          "variantOrdinal": 2,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/2"
+        },
+        {
+          "variantKey": "vial.stow",
+          "variantOrdinal": 3,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/3"
+        },
+        {
+          "variantKey": "focus.handover",
+          "variantOrdinal": 4,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/4"
+        },
+        {
+          "variantKey": "cleric.club-pickup",
+          "variantOrdinal": 5,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1/variants/5"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/1",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned accessible actual closure",
+        "selected packed vial",
+        "protected specimen opening consequences"
+      ],
+      "variants": [
+        {
+          "variantKey": "container.open",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/2/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/2",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned accessible actual closure",
+        "protected contents"
+      ],
+      "variants": [
+        {
+          "variantKey": "container.close",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/3/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/3",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleInventory",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero cache ration Pickup only at host",
+        "rational available amount",
+        "no generic transfer expansion"
+      ],
+      "variants": [
+        {
+          "variantKey": "cache.ration-pickup",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/4/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/4",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PortionInventory",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact rational amount",
+        "actual eligible source/unit",
+        "reserved/whole-tender/contaminated exclusions",
+        "age/provenance conserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "inventory.portion-nutrition",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/5/variants/0"
+        },
+        {
+          "variantKey": "inventory.portion-counted",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/5/variants/1"
+        },
+        {
+          "variantKey": "inventory.portion-generic-harvest-mass",
+          "variantOrdinal": 2,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/5/variants/2"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/5",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EquipPortableItem",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected holy symbol and placement/body constraints"
+      ],
+      "variants": [
+        {
+          "variantKey": "focus.wear",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/6/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/6",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RemovePortableItem",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected holy symbol and current state"
+      ],
+      "variants": [
+        {
+          "variantKey": "focus.remove",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/7/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/7",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleVessel",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected flask Pickup/Drop/Retrieve/Stow disposition",
+        "willing party Handover",
+        "opening/contents/custody constraints"
+      ],
+      "variants": [
+        {
+          "variantKey": "flask.pickup",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8/variants/0"
+        },
+        {
+          "variantKey": "flask.drop",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8/variants/1"
+        },
+        {
+          "variantKey": "flask.handover",
+          "variantOrdinal": 2,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8/variants/2"
+        },
+        {
+          "variantKey": "flask.retrieve",
+          "variantOrdinal": 3,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8/variants/3"
+        },
+        {
+          "variantKey": "flask.stow",
+          "variantOrdinal": 4,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8/variants/4"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/8",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartIntake",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary food/water rational amounts",
+        "reservations and exact proportional time",
+        "tactical/unsafe intake unsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "intake.food",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/9/variants/0"
+        },
+        {
+          "variantKey": "intake.water",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/9/variants/1"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/9",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptIntake",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own intake",
+        "consumed credit retained and untouched quantity released"
+      ],
+      "variants": [
+        {
+          "variantKey": "intake.interrupt",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/10/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/10",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned actual dose/recipient",
+        "ground/carried/stowed/tactical/Companion selected variants",
+        "actual HP caps/blockers and spent dose"
+      ],
+      "variants": [
+        {
+          "variantKey": "dose.bench",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/11/variants/0"
+        },
+        {
+          "variantKey": "dose.selected-held",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/11/variants/1"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/11",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "authorized accessible source/destination",
+        "positive rational amount/unit/capacity",
+        "two hands and 60 active seconds"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.start",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/9/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/9",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active own fill",
+        "retain progress/amount/capacity; release worker/opening"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.pause",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/10/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/10",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "paused own fill",
+        "remaining active labor and current access/hands"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.resume",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/11/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/11",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active/paused own fill",
+        "no liquid transfer; release claims"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.cancel",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/12/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/12",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual version/category subsets",
+        "Strength/Wisdom",
+        "hurried false/true",
+        "finite source selection and setup",
+        "conditional failure-victim and critical-recovery preferences",
+        "nonempty AssistantId rejected: requires schema77 unavailable in these factories"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.start",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/13/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/13",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "setup endpoint",
+        "first-positive removal commitment",
+        "productive removal stage"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.pause.working",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/14/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/14",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.resume.paused",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/15/variants/0"
+        },
+        {
+          "variantKey": "mining.resume.awaitingcheck",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/15/variants/1"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/15",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartFormulaResearch",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual guild notes/recipe4",
+        "new attempt after cancellation has zero inherited progress"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.start",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/16/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/16",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active research retains labor/progress/claims"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.pause.working",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/17/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/17",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused retained research",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.resume.paused",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/18/variants/0"
+        },
+        {
+          "variantKey": "research.resume.awaitingcheck",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/18/variants/1"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/18",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "zero labor",
+        "positive labor",
+        "native AwaitingCheck cancellation disposition"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.cancel.working",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/19/variants/0"
+        },
+        {
+          "variantKey": "research.cancel.paused",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/19/variants/1"
+        },
+        {
+          "variantKey": "research.cancel.awaitingcheck",
+          "variantOrdinal": 2,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/19/variants/2"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/19",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "one actual recipe4 order",
+        "ingredients/age/packaging/known formula and actual work window"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.recipe4.start",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/20/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/20",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "unfinished phase loses retained phase labor",
+        "completed phase retained and actual labor preserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.pause.working",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/21/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/21",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused remaining phases",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.resume.paused",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/22/variants/0"
+        },
+        {
+          "variantKey": "manufacture.resume.awaitingcheck",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/22/variants/1"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/22",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "zero labor releases ingredients",
+        "positive labor consumes ingredients",
+        "packaging released and batch permanently closed",
+        "AwaitingChoice disallows cancellation"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.cancel.working",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/23/variants/0"
+        },
+        {
+          "variantKey": "manufacture.cancel.paused",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/23/variants/1"
+        },
+        {
+          "variantKey": "manufacture.cancel.awaitingcheck",
+          "variantOrdinal": 2,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/23/variants/2"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/23",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveManufacturingQuality",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Exceptional FullYield/Durability",
+        "StandardQuantity native applicability disposition",
+        "suspended clock continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.quality.exceptional.fullyield",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/24/variants/0"
+        },
+        {
+          "variantKey": "manufacture.quality.exceptional.durability",
+          "variantOrdinal": 1,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/24/variants/1"
+        },
+        {
+          "variantKey": "manufacture.quality.masterwork.fullyield",
+          "variantOrdinal": 2,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/24/variants/2"
+        },
+        {
+          "variantKey": "manufacture.quality.masterwork.durability",
+          "variantOrdinal": 3,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/24/variants/3"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/24",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual unspoiled selected specimen",
+        "stabilization vs spoilage endpoint",
+        "real preservative/time/access"
+      ],
+      "variants": [
+        {
+          "variantKey": "blood.preserve",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/12/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/12",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenAppraisal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact desk/seller/stock",
+        "actual appraisal completion/knowledge"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartHavenAppraisal",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/0/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/0",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenSale",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "actual sale inventory/price/payment and custody"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartHavenSale",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/1/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/1",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "whole tender/one-use serving and native consumption"
+      ],
+      "variants": [
+        {
+          "variantKey": "PurchaseHavenMeal",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/2/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/2",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact bill and actual prior contributions/results"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartExpeditionBill",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/3/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/3",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact episode and native settlement readiness"
+      ],
+      "variants": [
+        {
+          "variantKey": "CloseExpeditionEpisode",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/4/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/4",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact plan and current resource/readiness assessment"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartNextCharterPlan",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/5/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/5",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer and actual bill/plan agreement"
+      ],
+      "variants": [
+        {
+          "variantKey": "AcceptNextCharter",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/6/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/6",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact accepted charter and departure readiness"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartCharterAttempt",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/7/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/7",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual attempt identity and approach state"
+      ],
+      "variants": [
+        {
+          "variantKey": "ObserveCharterApproach",
+          "variantOrdinal": 0,
+          "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/8/variants/0"
+        }
+      ],
+      "recipe": "MANAGEMENT_EXAMPLE_RECIPES.json#/operations/8",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StabilizeCompanion",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero Medicine on actual Companion",
+        "casting Guidance election/decline",
+        "genuine stable/dying life gates"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.stabilize-plain",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/13/variants/0"
+        },
+        {
+          "variantKey": "care.stabilize-guidance",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/13/variants/1"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/13",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWoundTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero treats selected Companion Wound",
+        "sealed kit/Supply basket",
+        "source choice and eight-hour attempt"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.wound-start",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/14/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/14",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero/Companion target binding",
+        "active attempt and spent start costs"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.wound-interrupt",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/15/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/15",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ConsumeDecay",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Hero/fixed significant decaying-organic bed at (1,3); no corpse-selection procedure",
+        "actual once-only use and source feature eligibility"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.consume-decay",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/16/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/16",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero exact berth",
+        "explicit zero Hit Dice",
+        "beneficial/nonbeneficial attempts",
+        "Cleric ClassRecoveryUnsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.short",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/17/variants/0"
+        },
+        {
+          "variantKey": "rest.short-cleric-candidate",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/17/variants/1"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/17",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Hero interval",
+        "native interrupted reward/occupancy"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.short-interrupt",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/18/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/18",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected FleshWarden mutation identity",
+        "actual completed-rest equip",
+        "no invented activation/serum route"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.mutation-flesh-warden",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/19/variants/0"
+        },
+        {
+          "variantKey": "rest.mutation-spinal-buffer",
+          "variantOrdinal": 1,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/19/variants/1"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/19",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginLongRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion exact berth",
+        "eight-hour interval/cadence/source-specific recovery"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.long",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/20/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/20",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptLongRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own interval",
+        "native damage/explicit interruption"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.long-interrupt",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/21/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/21",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveExpeditionStrainRecovery",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual pending offer point IDs",
+        "native source namespace/priority",
+        "clock continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.strain-point",
+          "variantOrdinal": 0,
+          "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/22/variants/0"
+        }
+      ],
+      "recipe": "PHYSICAL_CARE_EXAMPLE_RECIPES.json#/operations/22",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Cleric milestone",
+        "Bishop selected later milestone",
+        "narrow world-modification grant"
+      ],
+      "variants": [
+        {
+          "variantKey": "AwardCharacterMilestone.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/0/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/0",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact Cleric2 settlement selection",
+        "exact Bishop3 declaration/training/source choices",
+        "earned repertoire atomic transaction"
+      ],
+      "variants": [
+        {
+          "variantKey": "advance.cleric2",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/1/variants/0"
+        },
+        {
+          "variantKey": "advance.bishop3",
+          "variantOrdinal": 1,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/1/variants/1"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/1",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "operatorOnly": false,
+      "exactAxes": [
+        "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+        "ClericEarnedAdvancementUnavailable; no new acquisition route"
+      ],
+      "variants": [
+        {
+          "variantKey": "AcquireEarnedSpell.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/4/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/4",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CastKnownSpell",
+      "operatorOnly": false,
+      "exactAxes": [
+        "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+        "earned detect-magic",
+        "earned Bishop dispel",
+        "actual target/shape/payload",
+        "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+        "tactical vs admitted OMA calendar",
+        "repertoire-only OrdinarySpellcastingUnsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "cast.arcane-ward",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/0"
+        },
+        {
+          "variantKey": "cast.guidance",
+          "variantOrdinal": 1,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/1"
+        },
+        {
+          "variantKey": "cast.purify-food-and-drink",
+          "variantOrdinal": 2,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/2"
+        },
+        {
+          "variantKey": "cast.sanctuary",
+          "variantOrdinal": 3,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/3"
+        },
+        {
+          "variantKey": "cast.spare-the-dying",
+          "variantOrdinal": 4,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/4"
+        },
+        {
+          "variantKey": "cast.detect-magic",
+          "variantOrdinal": 5,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/5"
+        },
+        {
+          "variantKey": "cast.dispel-magic-lesser",
+          "variantOrdinal": 6,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/6"
+        },
+        {
+          "variantKey": "cast.legacy-repertoire-denial",
+          "variantOrdinal": 7,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/7"
+        },
+        {
+          "variantKey": "cast.native-source-boundary-control",
+          "variantOrdinal": 8,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3/variants/8"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/3",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion native Dissonance/context/action"
+      ],
+      "variants": [
+        {
+          "variantKey": "GroundCastingStrain.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/5/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/5",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own present concentration effect",
+        "native ending/carry semantics"
+      ],
+      "variants": [
+        {
+          "variantKey": "EndSpellConcentration.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/6/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/6",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "operatorOnly": false,
+      "exactAxes": [
+        "opaque authorized aura observation",
+        "native detection/focus/school disclosure"
+      ],
+      "variants": [
+        {
+          "variantKey": "FocusDetectedAura.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/7/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/7",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseHealingRite",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion/party recipient",
+        "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+        "native cure preference and actual HP/condition gates"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseHealingRite.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/2/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/2",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Bishop feature entitlement",
+        "1–3 authorized targets and at most one selected cure recipient",
+        "native Conviction/RP/action/recharge"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseDivineInvocation.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/8/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/8",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseConsecrate",
+      "operatorOnly": false,
+      "exactAxes": [
+        "admitted center geometry",
+        "native terrain/allegiance/life/healing behavior",
+        "tactical vs admitted ordinary calendar"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseConsecrate.native",
+          "variantOrdinal": 0,
+          "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/9/variants/0"
+        }
+      ],
+      "recipe": "MAGIC_EXAMPLE_RECIPES.json#/operations/9",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AdvanceClock",
+      "operatorOnly": true,
+      "exactAxes": [],
+      "variants": [
+        {
+          "variantKey": "operator.clock",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/20/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/20",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndFixedEncounter",
+      "operatorOnly": true,
+      "exactAxes": [],
+      "variants": [
+        {
+          "variantKey": "operator.end-fixed",
+          "variantOrdinal": 0,
+          "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/21/variants/0"
+        }
+      ],
+      "recipe": "TACTICAL_OPERATOR_EXAMPLE_RECIPES.json#/operations/21",
+      "runtimeQualified": false
+    }
+  ],
+  "effectiveOrder": "Actual GPT06: native numeric CommandKind, frozen variantOrdinal, then Core-owned StringComparer.Ordinal on existing internal Command.Fingerprint for authorized candidate payloads; identical canonical payloads coalesced with associations, differing effective payload ties block qualification. Public ordinal assigned after filtering; no hidden/private index or generated-ID tie break.",
+  "effectiveRepresentation": "REPRESENTATION_DECISIONS_07.md and VALUE_NORMALIZATION_CORRECTIONS.md override only exact pending wording in frozen recipes/audits.",
+  "limits": [
+    "Finite example recipes are not exhaustive constrained rational domains or actual gameplay witnesses.",
+    "Descriptions preserve lawful domains when no currently authorized concrete example exists.",
+    "Management single-preference mining sampling proposal, exact owned-lot unit bindings and differing portable/lot identity joins still need their precise dispositions.",
+    "All recipe output, derived-ID/current-principal collision handling, native order/purity and five-path parity remain to be executed after full HC agreement."
+  ],
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false
+}

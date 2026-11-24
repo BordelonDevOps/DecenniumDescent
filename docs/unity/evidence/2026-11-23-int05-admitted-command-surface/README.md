@@ -2,6 +2,20 @@
 
 **Selected for source/API design. Runtime implementation and acceptance remain open.**
 
+Current checkpoint: [actual GPT08](GPT_ARCHITECTURE_REVIEW_08.json) and [effective decisions](ADMISSION_DECISIONS_08.md) settle the five-unit table, exact admission/freshness order, finite mining samples, distinct target identities and narrowed condition materialization. [GPT07](GPT_ARCHITECTURE_REVIEW_07.json) and [its exact representations](REPRESENTATION_DECISIONS_07.md) remain controlling. This is eight bounded reviews, not full HC acceptance.
+
+- [All80-kind value normalization](VALUE_NORMALIZATION_INDEX.json):1,097 definitions/2,850 references/23 fixed List definitions, with frozen audits and independent corrections.
+- [Finite example index](EXAMPLE_RECIPE_INDEX.json):78 candidates +2 operators,204 axes and145 variants. Examples are not exhaustive domains or permissions.
+- [Exact five-unit field bindings](OWNED_LOT_UNIT_BINDINGS.json) and [independent unit review](OWNED_LOT_UNIT_CROSS_REVIEW_01.json) preserve source roots, current rights and excluded unlinked stock. GPT08 supersedes the table's earlier pending-review label.
+- [Complete branch-plan allocation](BRANCH_QUALIFICATION_INDEX.json) and [profile/checkpoint plan](PROFILE_AND_CHECKPOINT_QUALIFICATION_PLAN.json) retain genuine, prospective, denial, model-only and producer-gap classifications. All new V1 execution remains unperformed.
+- [Outer admission extraction](OUTER_ADMISSION_EXTRACTION_PLAN.json) and [independent review](OUTER_ADMISSION_CROSS_REVIEW_01.json); [all-profile condition/copy closure](ALL_PROFILE_READ_COPY_AUDIT.json); [spatial/speed/pressure source plan](SPATIAL_SPEED_PRESSURE_READ_PLAN.json); [management helper closure](MANAGEMENT_HELPER_CLOSURE.json).
+- [Independent parent-plan review](CHECKPOINT_06_PARENT_PLAN_REVIEW.json) found the same-wire input and immediate-first-contact wording defects; both are corrected and [original inputs retained](INPUT_VERSION_RECONCILIATION_06.json).
+- [Safe diagnostic vocabulary proposal](PUBLIC_DENIAL_VOCABULARY_PROPOSAL.json) has its finite origin/disclosure closure joined below; actual full GPT agreement remains required. A missing mapping is a qualification defect, not a generic-redaction waiver.
+
+[Complete HC-01–05 review candidate](FULL_HC_REVIEW_PACKET.md) now consolidates the exact contract, [diagnostic origin index](DIAGNOSTIC_ORIGIN_INDEX.json), [diagnostic DTO proposal](SAFE_DIAGNOSTIC_CONTRACT_PROPOSAL.md), and [final source/branch corrections](SOURCE_AND_BRANCH_CORRECTIONS_06.json). The finite origin audit joins1,421 exact origins/1,495 bindings and dispositions the74 original candidates/all35 named missing roots. Full actual GPT agreement and all runtime qualification remain open.
+
+The older checkpoint bullets below retain their historical progress wording; the effective decision order and current OPEN_DESIGN_WORK govern remaining work. Complete the current INT-05 through actual acceptance and accepted push, then stop.
+
 Actual GPT successor recommendation `e5e0261e-f693-5c9c-92f3-1be2225d25bf` follows accepted MGT-02. Codex agrees with the dependency order and full current-admission scope. This packet retains the concrete proposal and source audit; it does not authorize coding before the inventory and HC-01–05 are agreed.
 
 - [Current decision precedence](CONTRACT_DECISION_ORDER.json) and [actual sixth review](GPT_ARCHITECTURE_REVIEW_06.json) with [exact agreed list/request-scalar/example-order rules](REPRESENTATION_DECISIONS_06.md). These override only their precise earlier proposal wording; full HC and runtime remain open.

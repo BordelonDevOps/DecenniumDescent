@@ -1,0 +1,358 @@
+{
+  "schemaVersion": 1,
+  "status": "INDEPENDENT_BOUNDED_REVIEW_ONE_AVAILABILITY_CORRECTION_REQUIRED",
+  "reviewer": "/root/review_consecration",
+  "scope": "Magic normalization only against frozen67c5041e bytes, original fact/parameter registries, native declarations and GPT05/06. No implementation, source/API or module acceptance.",
+  "inspectedInputs": [
+    {
+      "path": "engine/artifacts/admitted-command-surface/magic-value-normalization.json",
+      "sha256": "67c5041e2b38386ae8a2bc8877da220f877dbaf65a4c611af1c9ffa38753e965",
+      "bytes": 536345
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_ADVANCEMENT_FACT_REGISTRY_PROPOSAL.json",
+      "sha256": "60dc042088db1ee54418d385377926ecb3b1d71cf35d0af400097617bc192d4c",
+      "bytes": 259038
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "ab729a0ab00697c93219a2160116397c9ba200fe8576d8292d87e43e12e3bc78",
+      "bytes": 129429
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+      "sha256": "f84d17af88512341ea2f2e7b10a77d08b0b7856a8834aae92a445d02b7f075a8",
+      "bytes": 13196
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DETAILED_RESULT_CONTRACT.md",
+      "sha256": "b15572ebe080084d218dff9eb57b708e34da9071b74bba15568fc90134d15166",
+      "bytes": 16404
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/FIELD_POLICY_DECISIONS_05.md",
+      "sha256": "e8d022a87e6d70544625076236773d0ca72506ae12967ccead64c8d8c211a17d",
+      "bytes": 5900
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652
+    }
+  ],
+  "findings": [
+    {
+      "id": "MAGIC-VN-CROSS-01",
+      "severity": "ContractCorrection",
+      "jsonPointers": [
+        "/exactGlobalRules/unavailable",
+        "/factDefinitions/*/valuePresenceRule"
+      ],
+      "problem": "Unrepresented is listed as an unavailable Availability state. The agreed closed DTO has Immediate,Retained,NotRetained,NotApplicable,Withheld,ProjectionUnavailable,ObservedCurrent only. GPT05 uses Unrepresented as an authorized knowledge Code, not an eighth Availability.",
+      "correction": "Remove Unrepresented from the unavailable-state lists and shared valuePresenceRule. Preserve actual Knowledge Code semantics separately where an explicit registry key defines them. Do not add an Availability enum member or discard an available knowledge Code value.",
+      "evidence": [
+        "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md:37-46",
+        "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md:17",
+        "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json"
+      ],
+      "counterexample": "A report Knowledge field may have an available Code value Unrepresented while its absent numeric companion is NotRetained. Treating the code as availability would omit the knowledge value or invent a state outside the closed DTO.",
+      "runtimeDefect": false
+    }
+  ],
+  "dispositions": {
+    "closedTypesAndWidths": "All262 facts use the seven agreed scalar kinds; four fact Lists keep fixed Code/Identity elements.91 integer definitions resolve directly in the static declaration locator without mismatch; remaining34 nested/helper properties were checked against SpellTurnIdentity Int64 origin markers, HealingRiteRecord Int32RP/Int64HP, RadianceUseRecord.PreRadianceHp Int64, Aura qualification Int64revision, CharacterFeatureGrantRecord Int32level/Int64revision and KnownSpellRecord Int32level/rank/Int64revision. CommandCost.Amount remainsInt64 distinct from native Int32pool/payment facts.",
+    "fixedLists": "cast.purify.removals and consecrate.attack-contributions remain fixed Withheld even when no native rows exist; omit Values rather than[] and expose no hidden count/filtered flag. Selected-feature and current-owned-card Lists preserve native sorted order under own/recipient authority. Parameter Lists are actual constructor input collections, not filtered result lists; native order and selected domain remain unchanged.",
+    "sourceRevisionAndProcedureSha": "PublicSourceRevision40/PublicSourceSha256 aliases are consistently mapped to Identity with explicit40/64hex source role. KnownSpellRecord/ExpeditionKnownSpellView expose these public source identifiers. They are neither runtime/snapshot fingerprints nor authority tokens; no case conversion or newentityownership. Native ValidId bounds are not incorrectly treated as sufficient source authority.",
+    "groundSettlementStatus": "GroundSettlementStatus is explicitly derived symbolic Code PendingAsObserved|Settled with no fictitious enum width. It requires the exact existing J_GROUND_SETTLE causal row and current N_ACTIVITY gate. Pending describes current absence of a matching settled row, not promised reduction. Tactical CastingTurnEndRecord and OMA MagicalSettlementRecord retain their own actual time/cause/Int32before-after semantics.",
+    "nullZeroEmpty": "Initial spell acquisition revision0 and noncarried admission revision0 remain real documented sentinels; optional focus/effect/last-spell strings never become empty Identity. Active effect end sentinels are not terminal history. Owned Invocation view legitimately returns0 without a recharge row; direct Consecrate recharge field stays absent without its row, as proposed. Unsupported Conviction is not0. Unfocused school absence is NotApplicable; withheld school/owner identity remains Withheld.",
+    "purifyUnit": "The sole Quantity fact retains native RuleQuantity and actual whole-lot UnitId. Existing ProjectItems membership does not independently disclose UnitId and food admission does not universally impose FoodUnit. MVD01 correctly keeps exact source/unit authority unresolved. No CommandScalar or blanket food-unit substitution is allowed.",
+    "constructorFields": "Atomic read-only receipt flags and FeatureOne/FeatureTwo aliases are not new caller-settable inputs. Advancement AsiAbilityIncreases is an actual enum collection, empty at selected levels; generic constructor acceptance creates no ASI opportunity. Corrected advancement milestone Target remains exact selected source target.",
+    "limits": "Missing Consecration terminal causes, immediate carrier capture, transitive purity, parser/roundtrip execution and all-profile qualification remain open. The one correction above and existing MVD decisions must be resolved in final contract; this review supplies no fullHC acceptance."
+  },
+  "staticVerification": {
+    "factDefinitions": 262,
+    "originalPointersAndKeysMatch": true,
+    "factKinds": {
+      "Identity": 55,
+      "Integer": 125,
+      "Time": 18,
+      "Boolean": 38,
+      "Code": 22,
+      "Quantity": 1,
+      "GridCell": 3
+    },
+    "listFacts": 4,
+    "quantityFacts": 1,
+    "parameterDefinitions": 26,
+    "commonEnvelopeDefinitions": 7,
+    "nativeSourcePinsVerified": 42,
+    "directIntegerDeclarationMismatches": 0,
+    "nativeIntegerDefinitionCount": 125,
+    "runtimeEdits": false,
+    "builds": false,
+    "tests": false,
+    "gameplay": false
+  },
+  "inspectedNativeSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "bytes": 14572,
+      "lines": 213
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "bytes": 14418,
+      "lines": 234
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+      "sha256": "de82d3fbc64d985c1128f6360c0bf45bcec9da4fec2396009f72032e398499d1",
+      "bytes": 7232,
+      "lines": 111
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415,
+      "lines": 193
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopDispelRecord.cs",
+      "sha256": "0e4b1850b6987b3b20802c0bd75dc96a3e3f17cda0ccb5c06c481735da896b28",
+      "bytes": 4190,
+      "lines": 59
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+      "sha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+      "bytes": 9313,
+      "lines": 142
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicRecords.cs",
+      "sha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "bytes": 12738,
+      "lines": 216
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedCastingView.cs",
+      "sha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "bytes": 4298,
+      "lines": 73
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "sha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "bytes": 16049,
+      "lines": 218
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "sha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "bytes": 23443,
+      "lines": 337
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "bytes": 12340,
+      "lines": 194
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "sha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "bytes": 8110,
+      "lines": 120
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "bytes": 12139,
+      "lines": 162
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "sha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "bytes": 23652,
+      "lines": 316
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ExpeditionBishopView.cs",
+      "sha256": "cec0ac7f7759936c63abce3be18db81a8d9f40f5d5f27bbd189ca54710781da7",
+      "bytes": 2487,
+      "lines": 36
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "bytes": 17403,
+      "lines": 250
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524",
+      "bytes": 64875,
+      "lines": 782
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749,
+      "lines": 1673
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727,
+      "lines": 717
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "bytes": 12519,
+      "lines": 185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedRepertoireView.cs",
+      "sha256": "57f89dc9a7aec4676b43924064b4e1a6b2a70ed037a7401c44f1025aa6cc98bd",
+      "bytes": 2844,
+      "lines": 51
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "bytes": 37055,
+      "lines": 457
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "bytes": 15326,
+      "lines": 193
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "sha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "bytes": 12702,
+      "lines": 158
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "sha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3",
+      "bytes": 13057,
+      "lines": 143
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e",
+      "bytes": 13178,
+      "lines": 162
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303,
+      "lines": 839
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+      "sha256": "31b38166dd615ce735a3f37cae9931abaf7971ae9aeb37470a57c7e530ec207a",
+      "bytes": 5093,
+      "lines": 72
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_ADVANCEMENT_FACT_REGISTRY_PROPOSAL.json",
+      "sha256": "60dc042088db1ee54418d385377926ecb3b1d71cf35d0af400097617bc192d4c",
+      "bytes": 259038,
+      "lines": 4984
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "ab729a0ab00697c93219a2160116397c9ba200fe8576d8292d87e43e12e3bc78",
+      "bytes": 129429,
+      "lines": 2968
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "sha256": "99cd9d044dbd6857cefb5cdb1591f9b5e432dac3844fe8e803f39c683f9c6d3e",
+      "bytes": 4414,
+      "lines": 15
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md",
+      "sha256": "d73751aa61dff01360a927638777273b83b5d68f7991b30f0f8c51df13b2cc9c",
+      "bytes": 4915,
+      "lines": 27
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/REPRESENTATION_DECISIONS_06.md",
+      "sha256": "064a4ef044e263a31f8f84d8268d58bef565674ea755a13ae3dcd4d8f267a57d",
+      "bytes": 4082,
+      "lines": 31
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652,
+      "lines": 14
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652,
+      "lines": 14
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DETAILED_RESULT_CONTRACT.md",
+      "sha256": "b15572ebe080084d218dff9eb57b708e34da9071b74bba15568fc90134d15166",
+      "bytes": 16404,
+      "lines": 87
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+      "sha256": "f84d17af88512341ea2f2e7b10a77d08b0b7856a8834aae92a445d02b7f075a8",
+      "bytes": 13196,
+      "lines": 70
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "bytes": 2785,
+      "lines": 46
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541,
+      "lines": 53
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+      "sha256": "b342fbdbe85f97e48841f88a7574299846cba8f2790afe8003ed9039c9f4f1cd",
+      "bytes": 7990,
+      "lines": 98
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopSpellSource.cs",
+      "sha256": "39b53aff869a84de1327f54d40acf87c33db6e80639240404058b7d528fc096a",
+      "bytes": 1292,
+      "lines": 19
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "bytes": 10988,
+      "lines": 137
+    }
+  ],
+  "sourceApiAccepted": false,
+  "fullHcAccepted": false,
+  "runtimeAuthorized": false
+}

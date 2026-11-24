@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_SPATIAL_SPEED_PRESSURE_READ_SOURCE_PLAN",
+  "reviewer": "Codex parent self-review",
+  "entries": [
+    {
+      "id": "S01",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "reviewedRanges": [
+        [
+          108,
+          137
+        ]
+      ],
+      "methods": "WalkingSpeed/RemainingMovement",
+      "finding": "Native flat modifiers -> life/condition speed -> Snare -> suppression slow -> burden -> outside slow-travel, exactly in this order. Replace only condition lookup with established context; preserve current life/strain/gear/stance joins and integer halving. No payment or ledger refresh.",
+      "privacy": "Movement resource/current result; each actor current predicate independently required."
+    },
+    {
+      "id": "S02",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "reviewedRanges": [
+        [
+          91,
+          159
+        ]
+      ],
+      "methods": "CarriedBurden/IsCarriedBy/IsBurdened",
+      "finding": "Existing Mass and native Total are read arithmetic/local collections; no SynchronizeLinks or PortableEquipmentValidation.Validate. Preserve both fallback directions, inclusive totals/unknowns, legacy unlinked vessels/default pouch and exact owner/custody/parent interpretation. Existing incomplete-burden exception is not a zero burden.",
+      "privacy": "Does not grant per-item inventory disclosure; aggregate report authority stays separate."
+    },
+    {
+      "id": "S03",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+      "reviewedRanges": [
+        [
+          159,
+          201
+        ]
+      ],
+      "methods": "WorldSpatialQueries",
+      "finding": "Exact current integer geometry, destination occupancy including pending traversal endpoint, optional diagonal/corner rules. No path advancement, occupancy repair or moving actor.",
+      "privacy": "Native occupancy reason may be protected. Do not export hidden occupant identity, count or raw protected reason; exact V1 denial allowlist still must be frozen."
+    },
+    {
+      "id": "S04",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "reviewedRanges": [
+        [
+          8,
+          15
+        ]
+      ],
+      "methods": "SupportsAnchorAt/TerrainAt",
+      "finding": "Original selected declared/legacy branches and observation opt-in remain. Declared malformed layout fails closed; never fallback to legacy. Local layout comparisons are not global validating restore.",
+      "privacy": "Only original public geometry projection; no hidden cell/token reveal."
+    },
+    {
+      "id": "S05",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "reviewedRanges": [
+        [
+          14,
+          71
+        ],
+        [
+          79,
+          101
+        ]
+      ],
+      "methods": "WillingStepFailure/Operative",
+      "finding": "Native exact BigInteger directional derivative arithmetic over current actor/source positions and materialized operative Fear sources. Replace ConditionsFor with explicit established context. Do not reuse actual movement resolver or source-history reconstruction.",
+      "privacy": "Current feared source can remain protected; private source identity or a source-ranked domain is not emitted."
+    },
+    {
+      "id": "S06",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreatPressure.cs",
+      "reviewedRanges": [
+        [
+          9,
+          12
+        ],
+        [
+          32,
+          54
+        ]
+      ],
+      "methods": "LocalRetreatExposure/OpeningBlocked/AssessLocalRetreatMovement/NextLocalRetreatPressureBoundary",
+      "finding": "Current committed exposure/checkpoint membership and next watch arithmetic only. Distinct from Activate/Record/Process methods which mutate and may draw.",
+      "privacy": "Do not disclose private pressure/cohort/checkpoint values through a movement parameter or reason."
+    },
+    {
+      "id": "S07",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionPressure.cs",
+      "reviewedRanges": [
+        [
+          561,
+          590
+        ]
+      ],
+      "methods": "AssessExpeditionPressureMovement",
+      "finding": "All24 selected factory enable chains lack expeditionPressureProfile/routeTravelFixture; this direct profile guard returns null for selected host compositions. Common local retreat pressure remains selected and separately audited. Keep original broader-policy method unchanged.",
+      "privacy": "Exclusion is exact immutable factory selection, not runtime absence of one exposure."
+    },
+    {
+      "id": "S08",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "reviewedRanges": [
+        [
+          28,
+          132
+        ],
+        [
+          141,
+          189
+        ]
+      ],
+      "methods": "AssessWorldStep/AssessTraversalControl",
+      "finding": "Pure extraction preserves all ordered gates and exact four-direction domain. Local immutable proposed traversal and mutable local WorldStepFacts builder do not append native state. Feed established context through permissions, speed, fear and contact/readiness dependencies. Start does not pay full distance; only exhausted allowance prevents initial edge.",
+      "privacy": "Do not conflate initial eligibility with a predicted contact/clock result. Actual BeginWorldStep may directly enter the first tactical encounter when StartsEncounter is true (SharedWorldCommandQueries98-132; ResolveCore1071-1076); no traversal edge or clock advancement is required for that branch. Later Ferry/Recovery/Later traversal contacts occur during their actual advancement paths. Pure reads perform neither transition."
+    },
+    {
+      "id": "S09",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "reviewedRanges": [
+        [
+          20,
+          20
+        ],
+        [
+          30,
+          80
+        ],
+        [
+          119,
+          126
+        ],
+        [
+          141,
+          196
+        ]
+      ],
+      "methods": "PendingMove/CurrentPressOffer/StepFailure/AssessTacticalMovementCommand",
+      "finding": "Existing pending selection is pure; retain real reactor/Press priority. Context-aware current permissions/sight/prone/speed required. Pressure assessment delegate must carry same explicit read context or use same context-aware pure predicate body; no ambient legacy fold. Preserve ordinary vs Press budgets and exact capacity checks.",
+      "privacy": "StepFailure effects/budget facts are private native inputs until exact actor/target disclosure. AdvanceTacticalFlow/BeginStep/QueuePress remain prohibited in reads."
+    },
+    {
+      "id": "S10",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "reviewedRanges": [
+        [
+          349,
+          356
+        ],
+        [
+          413,
+          424
+        ]
+      ],
+      "methods": "Remaining/CostPerFoot/AssessDashPayment",
+      "finding": "Same native speed multiplier and terrain/crawling arithmetic. Already-paid Dash still checks strain prohibition, but not a second Action payment; preserve early return. New reads never PayRun/PayActivityDash/RefreshIntervals.",
+      "privacy": "Known cost describes current required cost, not historical payment or later successful continuation."
+    },
+    {
+      "id": "S11",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "reviewedRanges": [
+        [
+          298,
+          302
+        ]
+      ],
+      "methods": "ArmorStrengthSpeedPenalty",
+      "finding": "Current worn/custodied root chain-mail plus native Strength threshold, without inventory mutation or inferred training.",
+      "privacy": "No item source disclosure merely from aggregate speed."
+    },
+    {
+      "id": "S12",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "reviewedRanges": [
+        [
+          80,
+          86
+        ]
+      ],
+      "methods": "EffectiveSpeed",
+      "finding": "Pure exact arithmetic on established immutable clauses; local input checks only. No ConditionLedger.Resolve/AdvanceTo.",
+      "privacy": "Current clauses must come from exact native cached mode; no guessed condition flags."
+    },
+    {
+      "id": "S13",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "reviewedRanges": [
+        [
+          109,
+          114
+        ]
+      ],
+      "methods": "AssessFerryWorldStep",
+      "finding": "Selected/admission/actor/actualapproach gate -> existing AssessFerryContact(false). Does not call ResolveFerryArrival, initiative or admission construction.",
+      "privacy": "Native contact participants/Director gates remain private unless separately permitted."
+    },
+    {
+      "id": "S14",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "reviewedRanges": [
+        [
+          115,
+          120
+        ]
+      ],
+      "methods": "AssessPostRecoveryWorldStep",
+      "finding": "Selected/admission/actor/actualapproach -> existing AssessPostRecoveryContact(false). No actual arrival or initiative.",
+      "privacy": "Keep source-selected consent/mandate and current participant predicates."
+    },
+    {
+      "id": "S15",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "reviewedRanges": [
+        [
+          107,
+          113
+        ]
+      ],
+      "methods": "AssessLaterWorldStep",
+      "finding": "Selected/entry/actor/actualapproach -> existing AssessLaterEngagement. No RollLaterInitiative/RollWorldInitiative/RecordActualCombatExit.",
+      "privacy": "Do not expose hidden defender through initial domain/assessment."
+    },
+    {
+      "id": "S16",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "reviewedRanges": [
+        [
+          55,
+          88
+        ]
+      ],
+      "methods": "AssessReengagementDeparture prefix",
+      "finding": "Native live controller/mandate/departure, contact capacity, consent/route/pressure/pending/rest/body predicates. Remaining body/condition/contact leaves use established context and retained record selection.",
+      "privacy": "No hypothetical contact/history/event construction."
+    },
+    {
+      "id": "S17",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "reviewedRanges": [
+        [
+          304,
+          318
+        ],
+        [
+          344,
+          349
+        ]
+      ],
+      "methods": "AssessCharterWorldStep/AssessCharterTraversalResume",
+      "finding": "Pure selected route/readiness/egress constraints with local output facts. Actual Attach/ResumeCharterTraversal/Continue/Stop remain execution-only; exact readiness helper closure reused from management plan.",
+      "privacy": "Current authorized report facts do not authorize hidden event history."
+    }
+  ],
+  "additionalBindings": [
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "reviewedRanges": [
+        [
+          90,
+          105
+        ]
+      ],
+      "finding": "Exact selected layout comparison/lookup; adjacent Validate107+ excluded."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "reviewedRanges": [
+        [
+          120,
+          139
+        ]
+      ],
+      "finding": "Native inclusive aggregation with nullable atomic pounds/load fallbacks; no new conversion."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/PrototypeTraversal.cs",
+      "reviewedRanges": [
+        [
+          53,
+          58
+        ]
+      ],
+      "finding": "Checked MovementCost arithmetic delegates existing budget rule."
+    }
+  ],
+  "profileEvidence": "PROFILE_ADMISSION_MATRIX commonBase/transitiveSelectedEnables; exact24 factory source chains; all-profile runtime parity still required.",
+  "conditionEvidence": "CONDITION_READ_BOUNDARY and CURRENT_PERMISSION_SIGHT_AUDIT apply to each transitive condition/sight/current-marker call. Calling an existing pure outer method alone does not bypass its lazy condition dependency.",
+  "prospectiveInstrumentedChecks": [
+    "No RNG draws/reconstruction/legacy conditionfold/deadline/advance/payment/record writes in new read roots",
+    "Exact mixed terrain/prone/guarded/strain/burden/current phase calculations against original native current projection at genuine checkpoints",
+    "Cardinal versus eight-direction tactical geometry, diagonal corners, occupied traversal destination and hidden-occupancy reason filtering",
+    "Already-paid Dash/action-spent/strain early-return precedence",
+    "Pending Press/OA no settlement or guessed actual choices"
+  ],
+  "limits": [
+    "This source plan covers named ranges; full compiled/transitive/runtime call graph and contact leaf parity are not yet executed.",
+    "Public denial vocabulary must separately bind safe diagnostics; pure calculation is not disclosure permission.",
+    "Unselected wider route/pressure policies are not newly admitted or qualified."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "sha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+      "bytes": 6251
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "bytes": 10620
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "bytes": 9996
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PrototypeTraversal.cs",
+      "sha256": "d6ca32ee951489d5356b13a90df0bf7a731078207f1c53974f9f8479f1d04512",
+      "bytes": 3552
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "bytes": 66331
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "bytes": 27175
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1",
+      "bytes": 2116
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionPressure.cs",
+      "sha256": "935d0a28ab75e19b12057f821bc23b2539690ac4271bf93a3069b37c6a31a318",
+      "bytes": 40226
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "sha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3",
+      "bytes": 11974
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "sha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+      "bytes": 16594
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "sha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24",
+      "bytes": 13784
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "sha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147",
+      "bytes": 8140
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreatPressure.cs",
+      "sha256": "2d192af8938ab05e654778373bc9b56f15c11ef0685d4d6bc23ee7f7345393af",
+      "bytes": 7185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "bytes": 59346
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+      "sha256": "d33512c0ad8876d3651decb0cf3ca2e296036d48d3bcb61df6c542cace060fd6",
+      "bytes": 20525
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "sha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+      "bytes": 25185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+      "bytes": 37856
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "sha256": "f297ee628a3be8104c630cdab93cae00fe97a3f1cf6b6355fd700447cb40765f",
+      "bytes": 7808
+    }
+  ],
+  "runtimeChanged": false,
+  "sourceApiAccepted": false,
+  "independentCorrection": "CHECKPOINT_06_PARENT_PLAN_REVIEW: S08 direct first-contact transition corrected; original reviewed input retained in INPUT_VERSION_RECONCILIATION_06.json."
+}

@@ -1,0 +1,3044 @@
+{
+  "schemaVersion": 1,
+  "status": "ALL_UNCHANGED_CANDIDATE_AXES_ALLOCATED_TO_FINITE_SOURCE_PLANS_NOT_EXECUTED",
+  "counts": {
+    "candidateKinds": 78,
+    "candidateAxes": 204,
+    "operatorKinds": 2,
+    "newApiQualifiedBranches": 0
+  },
+  "inputs": [
+    {
+      "path": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json",
+      "sha256": "4df80ca22361218fc17ef93cc2f87e1c1ee41871106b0095512b7c5f90c128d8"
+    },
+    {
+      "path": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json",
+      "sha256": "e2d4d521f92fc5bb8ae02a13e4c2d1405e7d3a41c5af5454b7bf4b45f03d6e82"
+    },
+    {
+      "path": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json",
+      "sha256": "2504176c2ecd3eb745775a8e72bc7a1667df00b37ebba1457934373126c4dcac"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "SelectCombatStance",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0",
+      "axes": [
+        {
+          "axis": "Aggressive",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/0",
+          "expectedBehavior": "Append actual Aggressive stance, no Action; original own-start expiry and modifiers apply.",
+          "routeIds": [
+            "FIRST",
+            "STANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "Guarded",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/1",
+          "expectedBehavior": "Append actual Guarded stance, no Action; native Speed/defense effects persist through own-start expiry.",
+          "routeIds": [
+            "FEAR",
+            "FERRY",
+            "STANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "Mobile",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/2",
+          "expectedBehavior": "Shared calendar rejects Mobile with SharedMobileDistanceNotImplemented before bodies stance append.",
+          "routeIds": [
+            "STANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS"
+        },
+        {
+          "axis": "Focused",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/3",
+          "expectedBehavior": "Append Focused; source spell DC/attack consumers and prohibition on reactions remain native.",
+          "routeIds": [
+            "STANCE",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "Carrying: native NoApplicableCargoPenalty",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/4",
+          "expectedBehavior": "NoApplicableCargoPenalty after stance shape/already-selected checks.",
+          "routeIds": [
+            "STANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AttackClub",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/1",
+      "axes": [
+        {
+          "axis": "owned/custodied visible-target club",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/1/axes/0",
+          "expectedBehavior": "Use actual held Club, owner/custodian rights, living nonself visible roster target, native reach/line/capacity; one real attack and source consumption.",
+          "routeIds": [
+            "FIRST",
+            "RECOVERY",
+            "FERRY_KO"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/1/axes/1",
+          "expectedBehavior": "Preserve all three instructions: ordinary result, automatic eligible KO, or real pending attacker choice when eligible; no invented eligibility.",
+          "routeIds": [
+            "FIRST",
+            "FERRY_KO"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "ArmOrReplace/KeepExisting",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/1/axes/2",
+          "expectedBehavior": "ArmOrReplace versus KeepExisting retains native hit/own-turn/remaining-entitlement conditions; a hit does not universally arm or replace.",
+          "routeIds": [
+            "FIRST",
+            "FERRY_KO",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "regular attack vs Sanctuary gate",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/1/axes/3",
+          "expectedBehavior": "Regular attack executes normally unless actual Sanctuary gate precedes it; failed gate retains save/choice without attack payment, resolved source remains original.",
+          "routeIds": [
+            "FIRST",
+            "CASTING_SANCTUARY",
+            "RECOVERY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/2",
+      "axes": [
+        {
+          "axis": "selected Ferry feature/actual creature seat",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/2/axes/0",
+          "expectedBehavior": "Resolve selected Hellfire Claw and native typed fire/life pipeline; no held Club or unarmed fallback.",
+          "routeIds": [
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "same explicit knockout/Press payload disposition",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/2/axes/1",
+          "expectedBehavior": "All three knockout and both Press elections survive source admission and continuation; ordinary/Ask are already genuine, automatic eligible KO must use actual Claw damage.",
+          "routeIds": [
+            "FERRY",
+            "FERRY_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "Sanctuary admission",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/2/axes/2",
+          "expectedBehavior": "Source Claw Sanctuary admission can persist failed-save pending; later retarget preserves FeatureId, KO and Press payload, and saved random continuation.",
+          "routeIds": [
+            "FERRY_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "TacticalStep",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/3",
+      "axes": [
+        {
+          "axis": "native direction/geometry/movement domain",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/3/axes/0",
+          "expectedBehavior": "Exact destination, native supported adjacency, occupancy/geometry/fear/Speed and movement budget; payment occurs upon real completion.",
+          "routeIds": [
+            "FIRST",
+            "GEOMETRY",
+            "RECOVERY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "ordinary completion/OA suspension/Press continuation",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/3/axes/1",
+          "expectedBehavior": "Announce original departure, await captured OA before displacement, complete/spend only if still legal, then offer actual armed Press; KO can interrupt continuation.",
+          "routeIds": [
+            "FIRST",
+            "FERRY",
+            "FERRY_GUIDANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "EndRegularTurn",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/4",
+      "axes": [
+        {
+          "axis": "aware stance required",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/4/axes/0",
+          "expectedBehavior": "Aware actor requires already-selected stance; unaware body follows existing exemption. End never manufactures a stance.",
+          "routeIds": [
+            "STANCE",
+            "FIRST"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "life/conditions/due events and next slot",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/4/axes/1",
+          "expectedBehavior": "Actual outgoing slot advances common clock and due work/life/conditions/reinforcement; next Start refreshes original interval resources.",
+          "routeIds": [
+            "FIRST",
+            "FEAR",
+            "REINFORCE",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "EncounterDash",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/5",
+      "axes": [
+        {
+          "axis": "selected Ferry current party turn",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/5/axes/0",
+          "expectedBehavior": "Requires selected active Ferry combat and current party turn, exact turn token and empty unrelated payload.",
+          "routeIds": [
+            "FERRY",
+            "FERRY_GUIDANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "Action and movement allowance",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/5/axes/1",
+          "expectedBehavior": "Pay actual Action/Dash once and retain native extra movement allowance; exact retry does not pay again and fresh spent-Action request fails.",
+          "routeIds": [
+            "FERRY",
+            "FERRY_GUIDANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/6",
+      "axes": [
+        {
+          "axis": "RecoveryOpponent seat selected target subsets",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/0",
+          "expectedBehavior": "Accept only selected legal targets, 1-3 native request capacity, real Action then actual source saves and recharge.",
+          "routeIds": [
+            "RECOVERY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "separate LaterDefender grant",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/1",
+          "expectedBehavior": "Same source rules via actual LaterDefender grant; source actor and current selection remain binding.",
+          "routeIds": [
+            "FEAR"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "actual cooldown/turn/visibility",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/2",
+          "expectedBehavior": "Own turn, unspent Action, stationary eligible source/targets, mutual sight and source recharge precede actual saves; no hearing fallback.",
+          "routeIds": [
+            "FEAR",
+            "RECOVERY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "TearExposedSeal",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/7",
+      "axes": [
+        {
+          "axis": "actual observed seal",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/0",
+          "expectedBehavior": "Requires actual visible untorn seal, supported body/hand, reach/line and unused owned action; only physical torn state is public.",
+          "routeIds": [
+            "FERRY_SEAL"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "tactical vs ordinary activity where admitted",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/1",
+          "expectedBehavior": "Scheduled combat or ordinary scheduled/off-calendar activity pays the correct original Action ledger.",
+          "routeIds": [
+            "FERRY_SEAL"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "original suppression endpoint and repeated use",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/2",
+          "expectedBehavior": "Rupture keeps original suppression endpoint across entry/restore; physical torn state persists after suppression expires. Exact retry Duplicate; fresh repeat remains denied.",
+          "routeIds": [
+            "FERRY_SEAL"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/8",
+      "axes": [
+        {
+          "axis": "decline",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/0",
+          "expectedBehavior": "Decline original next captured reactor without spending Reaction; advance real continuation.",
+          "routeIds": [
+            "FIRST",
+            "RECOVERY",
+            "FERRY_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "take with owned weapon",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/1",
+          "expectedBehavior": "Taking pays actual Reaction, not Action, and attacks original provoker from pre-exit position using owned held source.",
+          "routeIds": [
+            "FIRST",
+            "RECOVERY",
+            "FERRY_GUIDANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "knockout/Press elections",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/2",
+          "expectedBehavior": "Original explicit KO and Press elections flow into generated actual attack; pending KO has priority before movement resumes.",
+          "routeIds": [
+            "FIRST",
+            "FERRY",
+            "FERRY_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "ordered reactor and continuation",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/3",
+          "expectedBehavior": "Captured reactor order is native initiative order; ineligible later reactors are skipped without payment; fatal/KO interruption can stop movement.",
+          "routeIds": [
+            "FIRST",
+            "MULTI_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResolveKnockout",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/9",
+      "axes": [
+        {
+          "axis": "ordinary outcome",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/9/axes/0",
+          "expectedBehavior": "Choice false resolves the already-rolled original attack as ordinary damage/life outcome; no attack/damage reroll.",
+          "routeIds": [
+            "FIRST",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "knock out",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/9/axes/1",
+          "expectedBehavior": "Choice true applies the original eligible KO outcome, including only the native new Stable recovery die if required.",
+          "routeIds": [
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "existing attack identity; original Press instruction immutable",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/9/axes/2",
+          "expectedBehavior": "Original attack identity, damage packet and Press instruction are immutable; response cannot retarget or replace its Press election.",
+          "routeIds": [
+            "FIRST",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "RespondPress",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/10",
+      "axes": [
+        {
+          "axis": "decline",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/0",
+          "expectedBehavior": "Decline real offer; preserve unused interval follow entitlement per source rules.",
+          "routeIds": [
+            "FIRST",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/1",
+          "expectedBehavior": "Accepted follow spends separate follow entitlement and uses original departure From cell; completion is not promised by acceptance.",
+          "routeIds": [
+            "FIRST",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "nested continuation without speculative execution",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/2",
+          "expectedBehavior": "Follow may await its own OA and KO or cause a later Press; entitlement is consumed once and chain is bounded by actual state.",
+          "routeIds": [
+            "FIRST",
+            "FERRY",
+            "MULTI_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "RespondSanctuary",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/11",
+      "axes": [
+        {
+          "axis": "Forgo",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/0",
+          "expectedBehavior": "Forgo regular attack preserves unused Action and RNG; forgo OA declines its pending reaction/parent continuation according to original source.",
+          "routeIds": [
+            "FERRY_SANCTUARY",
+            "CASTING_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "regular attack Retarget to each visible legal native target",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/1",
+          "expectedBehavior": "Retarget regular melee/creature source to each other currently visible legal native target; exclude original failed target and preserve original source payload/interval.",
+          "routeIds": [
+            "FERRY_SANCTUARY",
+            "CASTING_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "Opportunity retarget denied outside original source",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/2",
+          "expectedBehavior": "Pending Opportunity source cannot retarget another creature; native SanctuaryRetargetOutsideOriginalSource must survive.",
+          "routeIds": [
+            "CASTING_SANCTUARY",
+            "FERRY_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS"
+        },
+        {
+          "axis": "native no-free-loop/continuation rules",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/3",
+          "expectedBehavior": "Same failed target remains prohibited in original attacker interval; repeated attempt does not redraw/pay; next actual source Start permits fresh gate. Continuation retains original attack options and budget.",
+          "routeIds": [
+            "FERRY_SANCTUARY",
+            "CASTING_SANCTUARY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "BeginWorldStep",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/12",
+      "axes": [
+        {
+          "axis": "walk",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/0",
+          "expectedBehavior": "Walk uses cardinal relative neighbor delta, actual geometry, calendar/body/busy/path/cost and encounter guards; create edge without instantly spending distance.",
+          "routeIds": [
+            "LOCAL",
+            "FIRST",
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "run only where host selected",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/1",
+          "expectedBehavior": "Run pays native scheduled/off-calendar Dash eligibility and Action commitment, exact Speed/strain/remaining movement.",
+          "routeIds": [
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "scheduled/off-calendar activity",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/2",
+          "expectedBehavior": "Scheduled and off-calendar activity use separate actual intervals; unsupported off-calendar running without a selected activity ledger remains denied.",
+          "routeIds": [
+            "LOCAL",
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "partial progress/encounter admission",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/3",
+          "expectedBehavior": "Fractional travel accrues exact paid progress; contact can occur at source boundary, with due events before entry and resulting admission or failed contact. Early transition gates remain distinct.",
+          "routeIds": [
+            "LOCAL",
+            "FIRST",
+            "RECOVERY",
+            "FERRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/13",
+      "axes": [
+        {
+          "axis": "actual own pending traversal",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/13/axes/0",
+          "expectedBehavior": "Requires actual owned pending edge, correct empty payload and not already Suspended; reinforcement wrapper retains pending-choice precedence.",
+          "routeIds": [
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "partial pose/paid budget preserved",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/13/axes/1",
+          "expectedBehavior": "Suspension preserves exact current partial pose, paid movement, Dash and elapsed clock; no refund.",
+          "routeIds": [
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/14",
+      "axes": [
+        {
+          "axis": "suspended/waiting traversal",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/0",
+          "expectedBehavior": "Resume Suspended edge or native off-calendar running WaitingForRefresh only; statuses are not interchangeable for other edges.",
+          "routeIds": [
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        },
+        {
+          "axis": "run/Dash revalidation",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/1",
+          "expectedBehavior": "Revalidate run/Dash against current interval, Speed and source strain lock; same-interval paid Dash need not be paid twice; fresh interval rules remain.",
+          "routeIds": [
+            "GEOMETRY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "actual geometry/fear/access",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/2",
+          "expectedBehavior": "Current fear/contact obstruction, body/Speed and charter/passage checks may deny; actual later movement reconciles geometry and completion.",
+          "routeIds": [
+            "GEOMETRY",
+            "RECOVERY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/15",
+      "axes": [
+        {
+          "axis": "actual selected approach",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/15/axes/0",
+          "expectedBehavior": "Begin fixed walking approach from (2,3) to (1,3) during actual unresolved later fight; real staged Companion and selected definition required.",
+          "routeIds": [
+            "REINFORCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "consent/director parameters",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/15/axes/1",
+          "expectedBehavior": "Original reinforcement requires participation mandate, allied side, player tie binding and director tie binding; missing native bindings deny.",
+          "routeIds": [
+            "REINFORCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS"
+        },
+        {
+          "axis": "source entry timing/allowance",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/15/axes/2",
+          "expectedBehavior": "Physical arrival precedes eligible End-round admission; then actual initiative draw/new roster and carried resources; no immediate bonus turn or refresh of already spent resources.",
+          "routeIds": [
+            "REINFORCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "Hide",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/16",
+      "axes": [
+        {
+          "axis": "ordinary Hero start token",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/0",
+          "expectedBehavior": "Ordinary Hero spends scheduled own-start Action at authored recess/alternate; resolve at original due start, no immediate tactical roll; native cancellation/interruption remains.",
+          "routeIds": [
+            "ORDINARY_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "tactical party turn",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/1",
+          "expectedBehavior": "Tactical Hide pays Action, requires current turn/grid anchor and no clear observer; eligible observers yield native check; unchanged failed retry is denied.",
+          "routeIds": [
+            "CASTING",
+            "FERRY_GUIDANCE",
+            "FEAR"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "eligible Guidance election/decline",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/2",
+          "expectedBehavior": "Optional actual eligible Guidance effect is consumed only if real check occurs; decline preserves it, rejected/no-check action does not consume it.",
+          "routeIds": [
+            "CASTING",
+            "FERRY_GUIDANCE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "Search",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/17",
+      "axes": [
+        {
+          "axis": "ordinary Companion start token",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/17/axes/0",
+          "expectedBehavior": "Ordinary Companion pays its real activity Action at (3,2) and actual interval-start token; candidate cell domain/range validated without finding hidden content; result occurs at original end.",
+          "routeIds": [
+            "ORDINARY_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "tactical party turn",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/17/axes/1",
+          "expectedBehavior": "Tactical Search spends current Action; pure request validation does not inspect hidden targets; actual check only for native eligible hidden target, otherwise no-check paid record.",
+          "routeIds": [
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED"
+        },
+        {
+          "axis": "eligible Guidance election/decline",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/17/axes/2",
+          "expectedBehavior": "Chosen eligible Guidance d4 precedes actual Search d20 exactly once; no-check Search preserves benefit; absent election leaves benefit and unmodified real check.",
+          "routeIds": [
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CancelExplorationHide",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/18",
+      "axes": [
+        {
+          "axis": "actual own pending hide identity",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/18/axes/0",
+          "expectedBehavior": "Cancel only actual Hero pending attempt identity with native ordinary-observation pending precedence; no Action/time refund and no new hide roll.",
+          "routeIds": [
+            "ORDINARY_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CancelExplorationSearch",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/19",
+      "axes": [
+        {
+          "axis": "actual own pending search identity",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/19/axes/0",
+          "expectedBehavior": "Cancel only actual Companion pending Search identity; preserve spent activity/time, native manufacturing/tactical pending gates and no hidden result disclosure.",
+          "routeIds": [
+            "ORDINARY_FUTURE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "Interact",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20",
+      "axes": [
+        {
+          "axis": "cache PickWithTools/Open/Interrupt",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20/axes/0",
+          "expectedBehavior": "Cache and trap remain distinct native operations; preserve interrupted labor and source-check timing. Open does not duplicate stock. Retrieval yields only actual completed result once; zero request sentinel remains0/1.",
+          "routeIds": [
+            "CACHE",
+            "TRAP"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "trap Set/Pause/Resume/Cancel",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20/axes/1",
+          "expectedBehavior": "Cache and trap remain distinct native operations; preserve interrupted labor and source-check timing. Open does not duplicate stock. Retrieval yields only actual completed result once; zero request sentinel remains0/1.",
+          "routeIds": [
+            "CACHE",
+            "TRAP"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_ROUTE_PLUS_ARCHIVED_BRANCH"
+        },
+        {
+          "axis": "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20/axes/2",
+          "expectedBehavior": "Cache and trap remain distinct native operations; preserve interrupted labor and source-check timing. Open does not duplicate stock. Retrieval yields only actual completed result once; zero request sentinel remains0/1.",
+          "routeIds": [
+            "CACHE",
+            "TRAP"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_RETRIEVAL_WITH_CONTROL_GAP"
+        },
+        {
+          "axis": "retrieve explicit receiver/handling request",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20/axes/3",
+          "expectedBehavior": "Cache and trap remain distinct native operations; preserve interrupted labor and source-check timing. Open does not duplicate stock. Retrieval yields only actual completed result once; zero request sentinel remains0/1.",
+          "routeIds": [
+            "CACHE",
+            "TRAP"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SUPPORTED_EXACT_DOMAIN"
+        },
+        {
+          "axis": "trap Abandon exists natively but is not admitted by the session",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/20/axes/4",
+          "expectedBehavior": "Cache and trap remain distinct native operations; preserve interrupted labor and source-check timing. Open does not duplicate stock. Retrieval yields only actual completed result once; zero request sentinel remains0/1.",
+          "routeIds": [
+            "CACHE",
+            "TRAP"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "ACTUALLY_HOST_UNAVAILABLE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21",
+      "axes": [
+        {
+          "axis": "Pickup/Drop/Retrieve",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21/axes/0",
+          "expectedBehavior": "Actual title/custody/link/placement/hand state changes once, preserving one physical body; ordinary payment is actual1sec, tactical first interaction/second Action preserve native order and zero tactical time.",
+          "routeIds": [
+            "QUALITY",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "VIAL_TACTICAL",
+            "FOCUS",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "selected vial Stow in pack",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21/axes/1",
+          "expectedBehavior": "Actual title/custody/link/placement/hand state changes once, preserving one physical body; ordinary payment is actual1sec, tactical first interaction/second Action preserve native order and zero tactical time.",
+          "routeIds": [
+            "QUALITY",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "VIAL_TACTICAL",
+            "FOCUS",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "selected focus Handover consent",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21/axes/2",
+          "expectedBehavior": "Actual title/custody/link/placement/hand state changes once, preserving one physical body; ordinary payment is actual1sec, tactical first interaction/second Action preserve native order and zero tactical time.",
+          "routeIds": [
+            "QUALITY",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "VIAL_TACTICAL",
+            "FOCUS",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_AND_DENIAL"
+        },
+        {
+          "axis": "companion Club physical adapter",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21/axes/3",
+          "expectedBehavior": "Actual title/custody/link/placement/hand state changes once, preserving one physical body; ordinary payment is actual1sec, tactical first interaction/second Action preserve native order and zero tactical time.",
+          "routeIds": [
+            "QUALITY",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "VIAL_TACTICAL",
+            "FOCUS",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SUPPORTED_GENUINE_HELPER"
+        },
+        {
+          "axis": "ordinary vs tactical allowance",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/21/axes/4",
+          "expectedBehavior": "Actual title/custody/link/placement/hand state changes once, preserving one physical body; ordinary payment is actual1sec, tactical first interaction/second Action preserve native order and zero tactical time.",
+          "routeIds": [
+            "QUALITY",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "VIAL_TACTICAL",
+            "FOCUS",
+            "CASTING"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/22",
+      "axes": [
+        {
+          "axis": "owned accessible actual closure",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/22/axes/0",
+          "expectedBehavior": "Only authorized current actual closure changes. Protected specimen exposure begins at the real opening boundary; opening does not reveal private contamination or grant arbitrary child access.",
+          "routeIds": [
+            "VIAL_STOW",
+            "VIAL_TACTICAL",
+            "BLOOD"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "selected packed vial",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/22/axes/1",
+          "expectedBehavior": "Only authorized current actual closure changes. Protected specimen exposure begins at the real opening boundary; opening does not reveal private contamination or grant arbitrary child access.",
+          "routeIds": [
+            "VIAL_STOW",
+            "VIAL_TACTICAL",
+            "BLOOD"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "protected specimen opening consequences",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/22/axes/2",
+          "expectedBehavior": "Only authorized current actual closure changes. Protected specimen exposure begins at the real opening boundary; opening does not reveal private contamination or grant arbitrary child access.",
+          "routeIds": [
+            "VIAL_STOW",
+            "VIAL_TACTICAL",
+            "BLOOD"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_NATIVE_AND_CONNECTED_PREFIX"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/23",
+      "axes": [
+        {
+          "axis": "owned accessible actual closure",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/23/axes/0",
+          "expectedBehavior": "Actual container becomes closed only after current guards; pending inputs/closure and protected-material exposure deadlines keep their original failures and order.",
+          "routeIds": [
+            "VIAL_STOW",
+            "BLOOD"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "protected contents",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/23/axes/1",
+          "expectedBehavior": "Actual container becomes closed only after current guards; pending inputs/closure and protected-material exposure deadlines keep their original failures and order.",
+          "routeIds": [
+            "VIAL_STOW",
+            "BLOOD"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_NATIVE_BRANCHES"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "HandleInventory",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/24",
+      "axes": [
+        {
+          "axis": "Hero cache ration Pickup only at host",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/24/axes/0",
+          "expectedBehavior": "Only admitted Hero cache ration Pickup; transfer exact available rational amount, create actual traced child with original unit/age/title/custody, and preserve total resources.",
+          "routeIds": [
+            "CACHE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "rational available amount",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/24/axes/1",
+          "expectedBehavior": "Only admitted Hero cache ration Pickup; transfer exact available rational amount, create actual traced child with original unit/age/title/custody, and preserve total resources.",
+          "routeIds": [
+            "CACHE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PARTIAL_PICKUP"
+        },
+        {
+          "axis": "no generic transfer expansion",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/24/axes/2",
+          "expectedBehavior": "Only admitted Hero cache ration Pickup; transfer exact available rational amount, create actual traced child with original unit/age/title/custody, and preserve total resources.",
+          "routeIds": [
+            "CACHE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "ACTUALLY_HOST_UNAVAILABLE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PortionInventory",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/25",
+      "axes": [
+        {
+          "axis": "exact rational amount",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/25/axes/0",
+          "expectedBehavior": "Actual eligible quantity splits exactly with no new time; parent-child amounts sum to original, native age/owner/provenance retained; reservations/whole tender/unsafe stock deny under original guard order.",
+          "routeIds": [
+            "QUALITY",
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "actual eligible source/unit",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/25/axes/1",
+          "expectedBehavior": "Actual eligible quantity splits exactly with no new time; parent-child amounts sum to original, native age/owner/provenance retained; reservations/whole tender/unsafe stock deny under original guard order.",
+          "routeIds": [
+            "QUALITY",
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_NUTRITION_AND_EXACT_NATIVE_LIMIT"
+        },
+        {
+          "axis": "reserved/whole-tender/contaminated exclusions",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/25/axes/2",
+          "expectedBehavior": "Actual eligible quantity splits exactly with no new time; parent-child amounts sum to original, native age/owner/provenance retained; reservations/whole tender/unsafe stock deny under original guard order.",
+          "routeIds": [
+            "QUALITY",
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "NATIVE_DENIALS_AND_EXISTING_CONTROL"
+        },
+        {
+          "axis": "age/provenance conserved",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/25/axes/3",
+          "expectedBehavior": "Actual eligible quantity splits exactly with no new time; parent-child amounts sum to original, native age/owner/provenance retained; reservations/whole tender/unsafe stock deny under original guard order.",
+          "routeIds": [
+            "QUALITY",
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PORTION_ROUTE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "EquipPortableItem",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/26",
+      "axes": [
+        {
+          "axis": "selected holy symbol and placement/body constraints",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/26/axes/0",
+          "expectedBehavior": "Only actual selected holy symbol and authorized placement/body route; native paid handling and hand/body occupancy, no general equipment admission.",
+          "routeIds": [
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "RemovePortableItem",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/27",
+      "axes": [
+        {
+          "axis": "selected holy symbol and current state",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/27/axes/0",
+          "expectedBehavior": "Actual selected worn holy symbol removal pays original1sec and occupies real available hand; casting component rights depend on resulting actual placement.",
+          "routeIds": [
+            "FOCUS"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "HandleVessel",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/28",
+      "axes": [
+        {
+          "axis": "selected flask Pickup/Drop/Retrieve/Stow disposition",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/28/axes/0",
+          "expectedBehavior": "Actual flask moves with all contained lot custody/access synchronized once, no liquid manufacture or title rewrite. Ordinary move pays1sec; pending-use/hands/range/capacity remain current; storage stays unsupported.",
+          "routeIds": [
+            "WATER",
+            "VESSEL_BRANCHES"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "PICKUP_GENUINE_DROP_SUPPORTED_STORAGE_UNAVAILABLE"
+        },
+        {
+          "axis": "willing party Handover",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/28/axes/1",
+          "expectedBehavior": "Actual flask moves with all contained lot custody/access synchronized once, no liquid manufacture or title rewrite. Ordinary move pays1sec; pending-use/hands/range/capacity remain current; storage stays unsupported.",
+          "routeIds": [
+            "WATER",
+            "VESSEL_BRANCHES"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "SUPPORTED_ROUTE_TO_EXECUTE"
+        },
+        {
+          "axis": "opening/contents/custody constraints",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/28/axes/2",
+          "expectedBehavior": "Actual flask moves with all contained lot custody/access synchronized once, no liquid manufacture or title rewrite. Ordinary move pays1sec; pending-use/hands/range/capacity remain current; storage stays unsupported.",
+          "routeIds": [
+            "WATER",
+            "VESSEL_BRANCHES"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "NATIVE_FACTS_AND_CONTROLS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartIntake",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/29",
+      "axes": [
+        {
+          "axis": "ordinary food/water rational amounts",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/29/axes/0",
+          "expectedBehavior": "Only safe ordinary eligible food/water; reserve exact quantity, consume in proportion to actual paid clock, preserve nutrition freshness and current title; no tactical intake expansion.",
+          "routeIds": [
+            "QUALITY",
+            "WATER"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "reservations and exact proportional time",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/29/axes/1",
+          "expectedBehavior": "Only safe ordinary eligible food/water; reserve exact quantity, consume in proportion to actual paid clock, preserve nutrition freshness and current title; no tactical intake expansion.",
+          "routeIds": [
+            "QUALITY",
+            "WATER"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PARTIAL_AND_COMPLETE"
+        },
+        {
+          "axis": "tactical/unsafe intake unsupported",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/29/axes/2",
+          "expectedBehavior": "Only safe ordinary eligible food/water; reserve exact quantity, consume in proportion to actual paid clock, preserve nutrition freshness and current title; no tactical intake expansion.",
+          "routeIds": [
+            "QUALITY",
+            "WATER"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "NATIVE_UNAVAILABLE_AND_GENUINE_UNSAFE_CONTROL"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "InterruptIntake",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/30",
+      "axes": [
+        {
+          "axis": "actual own intake",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/30/axes/0",
+          "expectedBehavior": "Only own actual active intake stops, preserves actual consumed amount and earned nutrition, releases untouched reservation; no refund or invented completion.",
+          "routeIds": [
+            "QUALITY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "consumed credit retained and untouched quantity released",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/30/axes/1",
+          "expectedBehavior": "Only own actual active intake stops, preserves actual consumed amount and earned nutrition, releases untouched reservation; no refund or invented completion.",
+          "routeIds": [
+            "QUALITY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/31",
+      "axes": [
+        {
+          "axis": "owned actual dose/recipient",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/31/axes/0",
+          "expectedBehavior": "Whole-dose1/1 actual current permitted user/recipient; spend once, real capped healing under native life/blocker rules. Stowed/ordinary misuse remains unavailable; spent dose retry is exact duplicate only.",
+          "routeIds": [
+            "VIAL_COMPANION",
+            "VIAL_TACTICAL",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "WORK_SPINE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_PREDECESSOR"
+        },
+        {
+          "axis": "ground/carried/stowed/tactical/Companion selected variants",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/31/axes/1",
+          "expectedBehavior": "Whole-dose1/1 actual current permitted user/recipient; spend once, real capped healing under native life/blocker rules. Stowed/ordinary misuse remains unavailable; spent dose retry is exact duplicate only.",
+          "routeIds": [
+            "VIAL_COMPANION",
+            "VIAL_TACTICAL",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "WORK_SPINE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_VARIANTS_AND_PRECISE_DENIALS"
+        },
+        {
+          "axis": "actual HP caps/blockers and spent dose",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/31/axes/2",
+          "expectedBehavior": "Whole-dose1/1 actual current permitted user/recipient; spend once, real capped healing under native life/blocker rules. Stowed/ordinary misuse remains unavailable; spent dose retry is exact duplicate only.",
+          "routeIds": [
+            "VIAL_COMPANION",
+            "VIAL_TACTICAL",
+            "VIAL_STOW",
+            "VIAL_CARRIED",
+            "WORK_SPINE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_HEALING_PLUS_SEPARATE_CONTROLS"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartWaterFill",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/9",
+      "axes": [
+        {
+          "axis": "authorized accessible source/destination",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/12",
+          "expectedBehavior": "KnownWorkControlTarget174-179 + FillParameters55-69 and native title/access.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-FillingCancel",
+            "MW-FillRangeRetry"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "positive rational amount/unit/capacity",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/13",
+          "expectedBehavior": "Any representable positive rational within current source/capacity; halfpint isexample, notstep.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-FillingCancel"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "two hands and 60 active seconds",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/14",
+          "expectedBehavior": "Twoactualusablehands/exclusivelabor; startbooks, doesnotadvance.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PauseWaterFill",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/10",
+      "axes": [
+        {
+          "axis": "active own fill",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/15",
+          "expectedBehavior": "Working ownjob only; no transfer/time.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "retain progress/amount/capacity; release worker/opening",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/16",
+          "expectedBehavior": "Future worker booking released; openings held only by Working jobs36-40. Pending capacity remains.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResumeWaterFill",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/11",
+      "axes": [
+        {
+          "axis": "paused own fill",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/17",
+          "expectedBehavior": "OnlyPaused; Complete/Cancelledcannotrestart.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "remaining active labor and current access/hands",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/18",
+          "expectedBehavior": "Fresh access/openings/carrying/hands; retainamount/capacity/progress.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-FillRangeRetry"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CancelWaterFill",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/12",
+      "axes": [
+        {
+          "axis": "active/paused own fill",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/19",
+          "expectedBehavior": "WorkingandPaused bothaccepted; terminalfreshcancelrejects.",
+          "routeIds": [
+            "MW-FillingCancel",
+            "MW-FillCancelPaused"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "no liquid transfer; release claims",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/20",
+          "expectedBehavior": "Actualearnedprogressretained; source and capacity released, zero liquid movement.",
+          "routeIds": [
+            "MW-FillingCancel",
+            "MW-FillCancelPaused"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartMining",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/13",
+      "axes": [
+        {
+          "axis": "actual version/category subsets",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/21",
+          "expectedBehavior": "Actual version and subsets A, B, A+B. Old singleton+all discovery happens to cover this two-category domain.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-MiningFiniteChoices",
+            "MW-MiningDeniedVariants"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "Strength/Wisdom",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/22",
+          "expectedBehavior": "Strength or Wisdom chosen before work changes actual check basis.",
+          "routeIds": [
+            "MW-MiningFiniteChoices"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "hurried false/true",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/23",
+          "expectedBehavior": "False admitted; true returns MiningHurryNotFeasible1126 in all default24 factories.",
+          "routeIds": [
+            "MW-MiningFiniteChoices",
+            "MW-MiningDeniedVariants"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "finite source selection and setup",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/24",
+          "expectedBehavior": "Finite selected claim. First positive removal commits/forfeits actual unselected accessible units; exact setup endpoint does not.",
+          "routeIds": [
+            "MW-MiningBoundary",
+            "MW-MiningFiniteChoices"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "conditional failure-victim and critical-recovery preferences",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/25",
+          "expectedBehavior": "Default known distinct values admit empty or the unique highest selected failure preference. Wrong ID: InvalidMiningFailurePreference. No damaged units: critical preference must be empty, otherwise InvalidMiningCriticalRecoveryPreference. Equal-highest tie, unknown-value neutral order and positive damaged-recovery branches unavailable in these24 factories.",
+          "routeIds": [
+            "MW-MiningFiniteChoices",
+            "MW-MiningDeniedVariants"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "nonempty AssistantId rejected: requires schema77 unavailable in these factories",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/26",
+          "expectedBehavior": "After earlier guards, nonempty AssistantId -> MiningAssistantRequiresSchema77 at1130. All24 selected factories are base90 wrappers, not77.",
+          "routeIds": [
+            "MW-MiningDeniedVariants"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PauseMining",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/14",
+      "axes": [
+        {
+          "axis": "setup endpoint",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/27",
+          "expectedBehavior": "WorkDone==Setup remains uncommitted; no forfeiture.",
+          "routeIds": [
+            "MW-MiningBoundary"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "first-positive removal commitment",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/28",
+          "expectedBehavior": "First positive removal stores actual CommittedAt and forfeits unselected units once.",
+          "routeIds": [
+            "MW-MiningBoundary"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "productive removal stage",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/29",
+          "expectedBehavior": "Pause productive work retains progress/finite claims; releases worker booking.",
+          "routeIds": [
+            "MW-MiningBoundary"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResumeMining",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/15",
+      "axes": [
+        {
+          "axis": "Paused",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/30",
+          "expectedBehavior": "Same selected units/claims/commit/progress; book remaining labor only.",
+          "routeIds": [
+            "MW-MiningBoundary"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "AwaitingCheck native model branch; genuine producer remains OPEN",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/31",
+          "expectedBehavior": "Fully worked but currently ineligible attempt remains AwaitingCheck. Resume revalidates then resolves once, no extra time. Native advance892-900 can also resolve when eligible.",
+          "routeIds": [
+            "MW-PendingMining"
+          ],
+          "disposition": "GENUINE_PRODUCER_OPEN_MODEL_ONLY"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartFormulaResearch",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/16",
+      "axes": [
+        {
+          "axis": "actual guild notes/recipe4",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/32",
+          "expectedBehavior": "Actual notes/workshop/tool/stage eligibility, no invented evidence.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "new attempt after cancellation has zero inherited progress",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/33",
+          "expectedBehavior": "Cancelled record/labor retained; new project starts0/full28800. PreviousAttemptId links actual failed attempt only where native logic supplies it.",
+          "routeIds": [
+            "MW-ResearchCancelZero",
+            "MW-ResearchCancelPositive"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PauseFormulaWork",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/17",
+      "axes": [
+        {
+          "axis": "active research retains labor/progress/claims",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/34",
+          "expectedBehavior": "Knowledge labor/feasible progress retained, worker booking released. Research has no material claims; do not invent ingredient reservations.",
+          "routeIds": [
+            "MW-ResearchResume",
+            "MW-ResearchCancelTactical"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResumeFormulaWork",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/18",
+      "axes": [
+        {
+          "axis": "Paused retained research",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/35",
+          "expectedBehavior": "Retained progress, remaining labor and current source/tool/capability/window.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ResearchResume"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "AwaitingCheck native model branch; genuine producer remains OPEN",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/36",
+          "expectedBehavior": "Fully worked research checks once after due effects with current eligibility/modifiers. No additional labor window needed.",
+          "routeIds": [
+            "MW-PendingResearch"
+          ],
+          "disposition": "GENUINE_PRODUCER_OPEN_MODEL_ONLY"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CancelFormulaWork",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/19",
+      "axes": [
+        {
+          "axis": "zero labor",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/37",
+          "expectedBehavior": "Zero-labor research closes with no spend, preserves original zero record.",
+          "routeIds": [
+            "MW-ResearchCancelZero"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "positive labor",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/38",
+          "expectedBehavior": "Positive labor remains historical, no transfer to new attempt and no copying debit/material refund.",
+          "routeIds": [
+            "MW-ResearchCancelPositive",
+            "MW-ResearchCancelTactical"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "native AwaitingCheck cancellation disposition",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/39",
+          "expectedBehavior": "FormulaOpen admits AwaitingCheck cancel without roll/new labor; complete work retained but no knowledge.",
+          "routeIds": [
+            "MW-PendingResearch"
+          ],
+          "disposition": "GENUINE_PRODUCER_OPEN_MODEL_ONLY"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartManufacturing",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/20",
+      "axes": [
+        {
+          "axis": "one actual recipe4 order",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/40",
+          "expectedBehavior": "Only actual recipe4/set0, authoritative specimenLotId, closed intact apparatus.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "ingredients/age/packaging/known formula and actual work window",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/41",
+          "expectedBehavior": "Actual ingredients/packaging reserved; original blood age/current knowledge/window; no post-roll packaging.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-QualityUnfunded"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PauseManufacturing",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/21",
+      "axes": [
+        {
+          "axis": "unfinished phase loses retained phase labor",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/42",
+          "expectedBehavior": "Only unfinished retained phase progress lost; elapsed labor, blood age and clock remain.",
+          "routeIds": [
+            "MW-ManufacturingResume",
+            "MW-ManufacturingCancelPositive"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "completed phase retained and actual labor preserved",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/43",
+          "expectedBehavior": "Completed900sec stabilization phase retained; later partial phase lost, actual Labor kept.",
+          "routeIds": [
+            "MW-ManufacturingCompletedPhasePause"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResumeManufacturing",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/22",
+      "axes": [
+        {
+          "axis": "Paused remaining phases",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/44",
+          "expectedBehavior": "Same stock/stabilization/age; remaining retained phase labor and current access/window.",
+          "routeIds": [
+            "MW-ManufacturingResume",
+            "MW-ManufacturingCompletedPhasePause"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "AwaitingCheck native model branch; genuine producer remains OPEN",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/45",
+          "expectedBehavior": "Fullyworked ineligible order remainsAwaitingCheck; current eligibility then one check, no new work.",
+          "routeIds": [
+            "MW-PendingManufacturing"
+          ],
+          "disposition": "GENUINE_PRODUCER_OPEN_MODEL_ONLY"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CancelManufacturing",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/23",
+      "axes": [
+        {
+          "axis": "zero labor releases ingredients",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/46",
+          "expectedBehavior": "Labor0 releases ingredients; actual whole blood returns with original accumulatedage/custody.",
+          "routeIds": [
+            "MW-ManufacturingCancelZero"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "positive labor consumes ingredients",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/47",
+          "expectedBehavior": "Any positive actual Labor consumes all ingredients, regardless lost retained phase. No failure recovery/check.",
+          "routeIds": [
+            "MW-ManufacturingCancelPositive"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "packaging released and batch permanently closed",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/48",
+          "expectedBehavior": "Supplementary packaging released; terminal one-batch lifecycle even after zero cancellation.",
+          "routeIds": [
+            "MW-ManufacturingCancelZero",
+            "MW-ManufacturingCancelPositive"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "AwaitingChoice disallows cancellation",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/49",
+          "expectedBehavior": "AssessManufacturingControl204 returnsManufacturingChoicePending before mutation.",
+          "routeIds": [
+            "MW-ExistingAuthorityAndRetryControls"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResolveManufacturingQuality",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/24",
+      "axes": [
+        {
+          "axis": "actual Exceptional FullYield/Durability",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/50",
+          "expectedBehavior": "Exceptional FullYield6doses/HP1 onlywith sufficient pre-reserved packaging; Durability5doses/HP2. UnfundedFullYield denied/omitted. No potencygain.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-QualityDurability",
+            "MW-QualityUnfunded"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "StandardQuantity native applicability disposition",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/51",
+          "expectedBehavior": "X0 StandardQuantity rejectedNoManufacturingQualityChoice at180. Automatic applicable lowerquality settlement mayrecordStandardQuantity, never a thirdExceptional option.",
+          "routeIds": [
+            "MW-QualityStandardDenied"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "suspended clock continuation",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/52",
+          "expectedBehavior": "Actual settlement once then original persistedManufacturingAdvance; response and suspended principal are distinct actual receipts.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManufacturingResume",
+            "MW-QualityContinuation"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "operationPlan": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/32",
+      "axes": [
+        {
+          "axis": "actual unspoiled selected specimen",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/32/axes/0",
+          "expectedBehavior": "Exact existing specimen and real half-pound preservative; original1800sec work/check, freshness and access, delayed protection only on actual eligible successful completion. Spoiled endpoint and opening exposure remain distinct; no new donor/harvest authority.",
+          "routeIds": [
+            "BLOOD",
+            "QUALITY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_NATIVE_AND_CONNECTED_PREFIX"
+        },
+        {
+          "axis": "stabilization vs spoilage endpoint",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/32/axes/1",
+          "expectedBehavior": "Exact existing specimen and real half-pound preservative; original1800sec work/check, freshness and access, delayed protection only on actual eligible successful completion. Spoiled endpoint and opening exposure remain distinct; no new donor/harvest authority.",
+          "routeIds": [
+            "BLOOD",
+            "QUALITY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "REALCLOCK_BRANCHES_WITH_DISTINCTION"
+        },
+        {
+          "axis": "real preservative/time/access",
+          "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operations/32/axes/2",
+          "expectedBehavior": "Exact existing specimen and real half-pound preservative; original1800sec work/check, freshness and access, delayed protection only on actual eligible successful completion. Spoiled endpoint and opening exposure remain distinct; no new donor/harvest authority.",
+          "routeIds": [
+            "BLOOD",
+            "QUALITY"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "GENUINE_NATIVE_AND_CONNECTED_PREFIX"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartHavenAppraisal",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/0",
+      "axes": [
+        {
+          "axis": "exact desk/seller/stock",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/0",
+          "expectedBehavior": "SharedHavenAppraisal153-191: Companion, exact desk and actual whole iron extraction/title/ground placement; no arbitrary seller/lot.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "actual appraisal completion/knowledge",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/1",
+          "expectedBehavior": "SharedHavenAppraisal225-242 then credit/finalize267-283;1800 active seconds, no RNG; ResultCopper15/2 retained only at completed job.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartHavenSale",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/1",
+      "axes": [
+        {
+          "axis": "exact offer/Companion transaction grant",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/2",
+          "expectedBehavior": "ConnectedExpeditionSession244-247 selects narrow seller+buyer inventory grant; only Companion/exact offer. Legacy helper378-381 onlyWorkControl.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ExistingAuthorityAndRetryControls"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "actual sale inventory/price/payment and custody",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/3",
+          "expectedBehavior": "SharedHavenSale287-333 exact parties/assets/quote/expiry/bilateral capacity; Book384 preserves both lots until actual settlement367-372.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ExistingAuthorityAndRetryControls"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/2",
+      "axes": [
+        {
+          "axis": "exact offer/Companion transaction grant",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/4",
+          "expectedBehavior": "ConnectedExpeditionSession244-247 exact Companion/meal offer narrow inventory grant; SharedHavenMeal173-195 independent vendor/spending/current stock.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        },
+        {
+          "axis": "whole tender/one-use serving and native consumption",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/5",
+          "expectedBehavior": "SharedHavenMeal181 one purchase;203-218 one-second actual bilateral delivery;234-260 serving lineage/ready counter/no takeaway; StartIntake separately consumes600sec for2/3lb.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/3",
+      "axes": [
+        {
+          "axis": "exact bill and actual prior contributions/results",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/6",
+          "expectedBehavior": "SharedExpeditionBill162-197 and Inputs113-140 bind real paid sale/meal/appraisal; job has separate labor and report-time tender observation224-230.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/4",
+      "axes": [
+        {
+          "axis": "exact episode and native settlement readiness",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/7",
+          "expectedBehavior": "SharedExpeditionEpisodeClose60-116 requires exact episode/leader mandate/resolved encounter exit/reconciled bill/complete meal lineage/terminal mining/no open commitments;136 assigns zero-time captured state.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/5",
+      "axes": [
+        {
+          "axis": "exact plan and current resource/readiness assessment",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/8",
+          "expectedBehavior": "SharedNextCharterPlan163-211 checks exact terms+historic crossing proof+desk/labor; ObserveNextCharterPlan318-344 separately records current access/occupancy/carriage/ready food+water; planning may complete conditionally with deficits.",
+          "routeIds": [
+            "MW-PRINCIPAL"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/6",
+      "axes": [
+        {
+          "axis": "exact offer and actual bill/plan agreement",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/9",
+          "expectedBehavior": "SharedNextCharterAgreement171-186 exactoffer/independentpermission/priorclose/completed matchingplan/current ready resources;199 records assent with fixed observation.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/7",
+      "axes": [
+        {
+          "axis": "exact accepted charter and departure readiness",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/10",
+          "expectedBehavior": "SharedCharterAttempt199-203 exactactual agreement;143-164 fresh in-force authority/fatigue/stationarycapacity/directsight/ready support;270 records admission only.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "operationPlan": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/operations/8",
+      "axes": [
+        {
+          "axis": "actual attempt identity and approach state",
+          "allocation": "MANAGEMENT_BRANCH_QUALIFICATION_PLAN.json#/axes/11",
+          "expectedBehavior": "ConnectedExpeditionSession796-797 exactcurrentattemptId; SharedCharterAttempt205-229 noobserved/realoutboundarrived/no return/stationaryapproach+freshreadiness;278/283 may append Continued then Observed.",
+          "routeIds": [
+            "MW-PRINCIPAL",
+            "MW-ManagementExactDenials"
+          ],
+          "disposition": "SOURCE_BRANCH_AND_FIVE_PATH_EXECUTION_ALLOCATED_NOT_RUN"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StabilizeCompanion",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/10",
+      "axes": [
+        {
+          "axis": "Hero Medicine on actual Companion",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/0",
+          "expectedBehavior": "Hero actual Medicine check on dying Companion spends the native Action and rolls in original order; genuine failed and successful checks preserve absolute recovery semantics.",
+          "routeIds": [
+            "C-STABILIZE"
+          ],
+          "controlIds": [
+            "CC-STABILIZE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "casting Guidance election/decline",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/1",
+          "expectedBehavior": "Active eligible Guidance selection consumes its actual d4 before the Medicine d20; explicit decline keeps native default behavior. These are embedded elections, not pending offer IDs.",
+          "routeIds": [
+            "M-GUIDANCE-MEDICINE",
+            "C-GUIDANCE-DECLINE-PROPOSED"
+          ],
+          "controlIds": [],
+          "gapIds": [
+            "G-GUIDANCE-DECLINE"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "genuine stable/dying life gates",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/10/axes/2",
+          "expectedBehavior": "Actual dying patient succeeds/fails then stable patient gates subsequent checks; dead/body-condition candidates remain detached controls and cannot become claimed genuine resurrection.",
+          "routeIds": [
+            "C-STABILIZE",
+            "M-GUIDANCE-MEDICINE"
+          ],
+          "controlIds": [
+            "CC-STABILIZE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "StartWoundTreatment",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/11",
+      "axes": [
+        {
+          "axis": "Hero treats selected Companion Wound",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/0",
+          "expectedBehavior": "Only selected Hero treats actual Companion Wound at original station; positive route begins from genuine stablezeroHP patient after real combat, not an injected Wound.",
+          "routeIds": [
+            "C-WOUND"
+          ],
+          "controlIds": [
+            "CC-WOUND"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "sealed kit/Supply basket",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/1",
+          "expectedBehavior": "Selected sealed kit and Supply basket are consumed/reserved exactly once at start; vessel tare/capacity and stock retained. No custom basket, kit, free supply or amount.",
+          "routeIds": [
+            "C-WOUND"
+          ],
+          "controlIds": [
+            "CC-WOUND"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "source choice and eight-hour attempt",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/11/axes/2",
+          "expectedBehavior": "Fixed native8h attempt/TierI DC12 and accepted provisional Supply rule; completion check may heal Wound or actual critical failure adds patient Strain. Start receipt and later clock completion cause are separate.",
+          "routeIds": [
+            "C-WOUND"
+          ],
+          "controlIds": [
+            "CC-WOUND"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/12",
+      "axes": [
+        {
+          "axis": "Hero/Companion target binding",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/0",
+          "expectedBehavior": "Hero action targets Companion, not treatment/job ID; exact selected pair and active attempt required. Native interrupt occurs before fresh start access/stock checks.",
+          "routeIds": [
+            "C-WOUND"
+          ],
+          "controlIds": [
+            "CC-WOUND"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "active attempt and spent start costs",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/12/axes/1",
+          "expectedBehavior": "Interrupt active attempt retains spentstart costs, performs no endcheck/reward/refund, releases occupancy; restart uses second real basket and full new8h.",
+          "routeIds": [
+            "C-WOUND"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ConsumeDecay",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/13",
+      "axes": [
+        {
+          "axis": "selected Hero/fixed significant decaying-organic bed at (1,3); no corpse-selection procedure",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/13/axes/0",
+          "expectedBehavior": "Actual selected Hero consumes the fixed significant organic bed(1,3) once from admitted adjacent square in actual encounter; no corpse selection, generic organic inventory or invented target.",
+          "routeIds": [
+            "C-DECAY"
+          ],
+          "controlIds": [
+            "CC-DECAY"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "actual once-only use and source feature eligibility",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/13/axes/1",
+          "expectedBehavior": "Native once-only feature grants totallevel temporaryHP, not currentHP healing or reusable regeneration. Actual damage depletion/expiry remain later causes; selected eligibility and repeated use denial retained.",
+          "routeIds": [
+            "C-DECAY"
+          ],
+          "controlIds": [
+            "CC-DECAY"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "BeginShortRest",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/14",
+      "axes": [
+        {
+          "axis": "Hero exact berth",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/0",
+          "expectedBehavior": "Hero uses exact berth(0,1) after actual closure/arrival and native occupancy/body/access checks; no arbitrary camp.",
+          "routeIds": [
+            "C-SHORT"
+          ],
+          "controlIds": [
+            "CC-SHORT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "explicit zero Hit Dice",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/1",
+          "expectedBehavior": "Existing zero HitDice declaration is exact; no dice selection, healing or payload quantity invented. Invalid dice/payload remains native rejection.",
+          "routeIds": [
+            "C-SHORT"
+          ],
+          "controlIds": [
+            "CC-SHORT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "beneficial/nonbeneficial attempts",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/2",
+          "expectedBehavior": "Complete first/second eligible onehour rests and actual thirdnonbeneficial attempt; interrupted rest is NotCompleted and cannot claim benefit. Source status does not imply positive Strain delta when initial0.",
+          "routeIds": [
+            "C-SHORT"
+          ],
+          "controlIds": [
+            "CC-SHORT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "Cleric ClassRecoveryUnsupported",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/14/axes/3",
+          "expectedBehavior": "Selected ClericRP Hero at exact berth reaches native ClassRecoveryUnsupported; Companion request fails earlier host known-target binding. This is a denial control, not positive recovery.",
+          "routeIds": [],
+          "controlIds": [
+            "CC-CLERIC-SHORT"
+          ],
+          "gapIds": [],
+          "disposition": "DENIAL_OR_MODEL_ONLY_NO_POSITIVE_ROUTE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "InterruptShortRest",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/15",
+      "axes": [
+        {
+          "axis": "actual Hero interval",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/15/axes/0",
+          "expectedBehavior": "Interrupt requires Hero and actual recorded active interval ID, unlike Begin's berth ID; unknown target host-denied, historical inactive target native-denied.",
+          "routeIds": [
+            "C-SHORT",
+            "C-MUTATION-CHOICE"
+          ],
+          "controlIds": [
+            "CC-SHORT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native interrupted reward/occupancy",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/15/axes/1",
+          "expectedBehavior": "Explicit interrupt truncates occupancy/NotCompleted with no reward; subsequent start requires full newhour and actual eligibility.",
+          "routeIds": [
+            "C-SHORT",
+            "C-MUTATION-CHOICE"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/16",
+      "axes": [
+        {
+          "axis": "selected FleshWarden mutation identity",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/0",
+          "expectedBehavior": "Only selected FleshWarden and SpinalBuffer identities/feature entitlement; native embedded target election, no response-choice ID.",
+          "routeIds": [
+            "C-MUTATION-REPLACE",
+            "C-MUTATION-CHOICE"
+          ],
+          "controlIds": [
+            "CC-MUTATION"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "actual completed-rest equip",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/1",
+          "expectedBehavior": "Equip/capacity Change occurs only at actual rest completion. Interrupted attempt preserves equipped mutation; same-card completion preserves application identity. Capacity edges detached.",
+          "routeIds": [
+            "C-MUTATION-REPLACE",
+            "C-MUTATION-CHOICE"
+          ],
+          "controlIds": [
+            "CC-MUTATION"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "no invented activation/serum route",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/16/axes/2",
+          "expectedBehavior": "No activation, serum, acquisition or arbitrary mutation route; third beneficial mutation rest unsupported. Domain remains exact selected native choices.",
+          "routeIds": [
+            "C-MUTATION-CHOICE"
+          ],
+          "controlIds": [
+            "CC-MUTATION"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "BeginLongRest",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/17",
+      "axes": [
+        {
+          "axis": "Companion exact berth",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/17/axes/0",
+          "expectedBehavior": "Only actual earned Companion at exact berth(1,3) with native current access, life and settled encounter. Unearned denial remains genuine guard control.",
+          "routeIds": [
+            "C-LONG"
+          ],
+          "controlIds": [
+            "CC-LONG"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "eight-hour interval/cadence/source-specific recovery",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/17/axes/1",
+          "expectedBehavior": "Full8h and actual86400s beneficial cadence; source-specific HP/RP/Conviction/refrain recovery. First Conviction funding retains null-before, not zero. Point recovery requires actual separate pending offer, currently only prospective route.",
+          "routeIds": [
+            "C-LONG",
+            "C-STRAIN-PROPOSED"
+          ],
+          "controlIds": [
+            "CC-LONG"
+          ],
+          "gapIds": [
+            "G-STRAIN"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "InterruptLongRest",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/18",
+      "axes": [
+        {
+          "axis": "actual own interval",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/18/axes/0",
+          "expectedBehavior": "Companion targets own actual active interval; explicit interrupt before fresh-start access. Partial rest cannot fund or finish; restart full8h.",
+          "routeIds": [
+            "C-LONG"
+          ],
+          "controlIds": [
+            "CC-LONG"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native damage/explicit interruption",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/18/axes/1",
+          "expectedBehavior": "Explicit/genuine lethal boundary separated from detached direct damage helpers. Positive actual damage, including full tempHP absorption, interrupts; fully prevented0 does not. Automatic interruption joins actual damage/clock cause, never fabricated InterruptLongRest receipt.",
+          "routeIds": [
+            "C-LONG"
+          ],
+          "controlIds": [
+            "CC-LONG"
+          ],
+          "gapIds": [
+            "G-LONG-DAMAGE-HOST"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "ResolveExpeditionStrainRecovery",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/19",
+      "axes": [
+        {
+          "axis": "actual pending offer point IDs",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/19/axes/0",
+          "expectedBehavior": "Target is actual pending offered PointId; never offerId or fabricated point. Player Companion current authorization/known-target gate precedes native offer checks.",
+          "routeIds": [
+            "C-STRAIN-PROPOSED"
+          ],
+          "controlIds": [
+            "CC-STRAIN-MODEL"
+          ],
+          "gapIds": [
+            "G-STRAIN"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native source namespace/priority",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/19/axes/1",
+          "expectedBehavior": "Only actual ordinary-removable active expedition Strain point with open source gate/offer priority. Preserve source namespace and legacyRest recovery priority; no automatic firstpoint selection or WarriorStrain substitution.",
+          "routeIds": [
+            "C-STRAIN-PROPOSED"
+          ],
+          "controlIds": [
+            "CC-STRAIN-MODEL"
+          ],
+          "gapIds": [
+            "G-STRAIN"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "clock continuation",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/19/axes/2",
+          "expectedBehavior": "Genuine pending offer must stop requested clock172806 at172800; strictrestore pending offer; chosen actualpoint removed once and continuation resumes only if no remaining legacy/other offers/manufacturing choice. Prospective outcome is not execution evidence.",
+          "routeIds": [
+            "C-STRAIN-PROPOSED"
+          ],
+          "controlIds": [
+            "CC-STRAIN-MODEL"
+          ],
+          "gapIds": [
+            "G-STRAIN"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/7",
+      "axes": [
+        {
+          "axis": "actual Cleric milestone",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/0",
+          "expectedBehavior": "Only actual completed original Cleric objective awards the fixed milestone once; early award denies. No HP/RP funding, Action, time or RNG side effect.",
+          "routeIds": [
+            "M-CLERIC2"
+          ],
+          "controlIds": [
+            "MC-ADVANCEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "Bishop selected later milestone",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/1",
+          "expectedBehavior": "Bishop's announced declaration, actual positive care and completed paid departure precede later one-time award; partial departure is insufficient.",
+          "routeIds": [
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-BISHOP-ENTITLEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "narrow world-modification grant",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/7/axes/2",
+          "expectedBehavior": "Retain exact current seat/actor and narrow world-modification grant checks; revocation blocks even duplicate disclosure. Willingness payload cannot replace grant. Keep session and native rejection layers separate.",
+          "routeIds": [
+            "M-CLERIC2",
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-ADVANCEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/8",
+      "axes": [
+        {
+          "axis": "exact Cleric2 settlement selection",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/0",
+          "expectedBehavior": "Exact selected Cleric2 cards/path/earnedDetect and automatic Attunement settle atomically; fixed baseHP5/unspent d8, HPmax8->13/RPmax2->4 preserve current values and create Conviction capacity without fictional funded balance.",
+          "routeIds": [
+            "M-CLERIC2",
+            "M-RADIANCE",
+            "M-DETECT"
+          ],
+          "controlIds": [
+            "MC-ADVANCEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "exact Bishop3 declaration/training/source choices",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/1",
+          "expectedBehavior": "Exact announced/trained Bishop3 Aura+Invocation selection, empty path retaining Radiance and earnedDispel; HPmax13->18/RPmax4->7 preserve current values and actual funded balance.",
+          "routeIds": [
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-ADVANCEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "earned repertoire atomic transaction",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/8/axes/2",
+          "expectedBehavior": "EarnedDetect/Dispel acquisition is the same advancement transaction with original advancement receipt provenance, not standalone AcquireEarnedSpell. Rejected malformed choices roll back completely; injected post-resolution rollback is a model control only.",
+          "routeIds": [
+            "M-CLERIC2",
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-ADVANCEMENT",
+            "MC-REPERTOIRE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/9",
+      "axes": [
+        {
+          "axis": "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/9/axes/0",
+          "expectedBehavior": "Selected earned-advancement profiles108-116 deny standalone acquisition with EarnedSpellAcquisitionRequiresAdvancementTransaction; no positive command, acquisition, cost, RNG or fabricated receipt.",
+          "routeIds": [],
+          "controlIds": [
+            "MC-REPERTOIRE"
+          ],
+          "gapIds": [],
+          "disposition": "DENIAL_OR_MODEL_ONLY_NO_POSITIVE_ROUTE"
+        },
+        {
+          "axis": "ClericEarnedAdvancementUnavailable; no new acquisition route",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/9/axes/1",
+          "expectedBehavior": "Repertoire106-107 returns ClericEarnedAdvancementUnavailable; older host-unavailable kinds stay earlier denials. No new standalone acquisition route. Positive earned acquisition is qualified only under AdvanceCharacterLevel.",
+          "routeIds": [],
+          "controlIds": [
+            "MC-REPERTOIRE"
+          ],
+          "gapIds": [],
+          "disposition": "DENIAL_OR_MODEL_ONLY_NO_POSITIVE_ROUTE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "CastKnownSpell",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0",
+      "axes": [
+        {
+          "axis": "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/0",
+          "expectedBehavior": "Selected five initial spells preserve each distinct native effect: Ward to next caster Start; Guidance single chosen check; Purify actual finite lot; Sanctuary admission/concentration; Spare stabilization without HP healing.",
+          "routeIds": [
+            "M-WARD",
+            "M-GUIDANCE-SEARCH",
+            "M-GUIDANCE-MEDICINE",
+            "M-GUIDANCE-HIDE",
+            "M-PURIFY",
+            "M-SANCTUARY",
+            "M-SPARE"
+          ],
+          "controlIds": [
+            "MC-PURIFY",
+            "MC-SPELL-LIFE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "earned detect-magic",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/1",
+          "expectedBehavior": "Detect requires actual Cleric2 acquisition, paid Action/RP and own concentration; actual aura outline then later paid focus exposes only authorized broad school.",
+          "routeIds": [
+            "M-DETECT"
+          ],
+          "controlIds": [
+            "MC-DETECT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "earned Bishop dispel",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/2",
+          "expectedBehavior": "Dispel requires actual Bishop3 acquisition; selected observed own rank0 Guidance is genuine; no general rank<=2 host producer is implied.",
+          "routeIds": [
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-DISPEL"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "actual target/shape/payload",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/3",
+          "expectedBehavior": "Keep each spell's actual target, shape, branch payload and source restrictions. Invalid shape or authority fails at its existing earlier layer without costs/RNG/state changes.",
+          "routeIds": [
+            "M-WARD",
+            "M-GUIDANCE-MEDICINE",
+            "M-PURIFY",
+            "M-SANCTUARY",
+            "M-SPARE",
+            "M-DETECT",
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-CAST-AUTHORITY",
+            "MC-PURIFY"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/4",
+          "expectedBehavior": "Actual carried/worn focus and native available hands apply; WillingTarget is an election, never a grant. Focused DC election retains native stance/reaction restrictions. Unconscious and Incapacitated focus effects remain distinct.",
+          "routeIds": [
+            "M-FOCUSED-SANCTUARY",
+            "M-SANCTUARY"
+          ],
+          "controlIds": [
+            "MC-CAST-AUTHORITY",
+            "MC-COMPONENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "tactical vs admitted OMA calendar",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/5",
+          "expectedBehavior": "Tactical and actual admitted ordinary contexts use their real owner timing and allowances; late own-origin116 consumption does not prove carried-before-first-new-Start outside use.",
+          "routeIds": [
+            "M-WARD",
+            "M-CADENCE",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-OMA-CARRY"
+          ],
+          "gapIds": [
+            "G-OMA-CARRY"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "repertoire-only OrdinarySpellcastingUnsupported",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/0/axes/6",
+          "expectedBehavior": "Repertoire-only106-108 exposes truthful OrdinarySpellcastingUnsupported rather than executable costs;105/pre-repertoire may reject at earlier host admission.",
+          "routeIds": [],
+          "controlIds": [
+            "MC-REPERTOIRE"
+          ],
+          "gapIds": [],
+          "disposition": "DENIAL_OR_MODEL_ONLY_NO_POSITIVE_ROUTE"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/1",
+      "axes": [
+        {
+          "axis": "Companion native Dissonance/context/action",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/1/axes/0",
+          "expectedBehavior": "Companion spends one native Action, no RP. Ground is current activity; later actual settlement reduces Dissonance by PB only if native magic cadence permits. Idle reduction remains separate; refrain is preserved. Save before and after actual settlement.",
+          "routeIds": [
+            "M-CADENCE",
+            "M-OMA"
+          ],
+          "controlIds": [],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/2",
+      "axes": [
+        {
+          "axis": "actual own present concentration effect",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/2/axes/0",
+          "expectedBehavior": "Only the actor's actual present concentration effect may end; retain exact voluntary EndCause/revision joined to ending command, separately from original cast.",
+          "routeIds": [
+            "M-CADENCE",
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-CAST-AUTHORITY"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native ending/carry semantics",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/2/axes/1",
+          "expectedBehavior": "Native early end branch costs no Action/RP/time/RNG and does not invent own-turn/focus requirements. Earlier pending-choice, LongRest and Sanctuary gates remain; carried context must not be replaced by assumed new Start.",
+          "routeIds": [
+            "M-CADENCE",
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-OMA-CARRY"
+          ],
+          "gapIds": [
+            "G-OMA-CARRY"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/3",
+      "axes": [
+        {
+          "axis": "opaque authorized aura observation",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/3/axes/0",
+          "expectedBehavior": "Require own active Detect and actual authorized opaque observation ID; fabricated prefix or another principal's hidden identity fails. Never return underlying effect/source spell/rank/ownership.",
+          "routeIds": [
+            "M-DETECT",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-DETECT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native detection/focus/school disclosure",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/3/axes/1",
+          "expectedBehavior": "Paid focus spends actual Action and reveals authorized broad school; later expired observation is unavailable. Antidivination-withheld school control is detached unless a genuine source producer is retained.",
+          "routeIds": [
+            "M-DETECT",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-DETECT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "UseHealingRite",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/4",
+      "axes": [
+        {
+          "axis": "Companion/party recipient",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/4/axes/0",
+          "expectedBehavior": "Companion heals a currently authorized party recipient under actual alive/HP/access gates; no general recipient/corpse resurrection route is admitted.",
+          "routeIds": [
+            "M-RITE-INITIAL",
+            "M-RADIANCE",
+            "M-BISHOP",
+            "M-CONSECRATE"
+          ],
+          "controlIds": [
+            "MC-RITE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/4/axes/1",
+          "expectedBehavior": "One Action/2RP and native history/context. Rite has no recharge. Conditional Radiance cadence is separate; actual base then Ground then Radiance then Aura must each retain actual contribution/cause and no fabricated positive delta.",
+          "routeIds": [
+            "M-RITE-INITIAL",
+            "M-RADIANCE",
+            "M-BISHOP",
+            "M-CONSECRATE",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-RITE",
+            "MC-RADIANCE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native cure preference and actual HP/condition gates",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/4/axes/2",
+          "expectedBehavior": "Cure preference None/Frightened/Poisoned follows native condition/HP/rider gates. Positive base gain and caps must be tested by actual records; genuine fear cure and detached cap/cure allocation stay separate.",
+          "routeIds": [
+            "M-BISHOP",
+            "M-RADIANCE",
+            "M-CONSECRATE"
+          ],
+          "controlIds": [
+            "MC-RADIANCE",
+            "MC-CONSECRATE"
+          ],
+          "gapIds": [
+            "G-CAP-CURE"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/5",
+      "axes": [
+        {
+          "axis": "actual Bishop feature entitlement",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/5/axes/0",
+          "expectedBehavior": "Require actual announced then earned Bishop entitlement and funded resources; unearned feature or old profile denies without mutation.",
+          "routeIds": [
+            "M-BISHOP"
+          ],
+          "controlIds": [
+            "MC-BISHOP-ENTITLEMENT"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "1–3 authorized targets and at most one selected cure recipient",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/5/axes/1",
+          "expectedBehavior": "Native ordered recipient list1-3 remains unchanged; current host authorizes only Hero/Companion, so legal singleton and pair branches exist while third-recipient positive example is host-unavailable. At most one selected cure recipient must be in recipients; preserve native cure-independent-of-positive-healing semantics.",
+          "routeIds": [
+            "M-BISHOP",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-INVOCATION"
+          ],
+          "gapIds": [
+            "G-INVOCATION-SINGLETON-AND-CURE-ALTERNATIVES"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native Conviction/RP/action/recharge",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/5/axes/2",
+          "expectedBehavior": "Action/3RP/2Conviction, shared d8+2 independently capped per recipient; actual3-Start recharge/epoch transfer and once-per-own-turn Dissonance vent. It does not reuse Rite riders or reset spell cadence.",
+          "routeIds": [
+            "M-BISHOP",
+            "M-BISHOP-RECHARGE",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-INVOCATION"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    },
+    {
+      "kind": "UseConsecrate",
+      "operationPlan": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/6",
+      "axes": [
+        {
+          "axis": "admitted center geometry",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/0",
+          "expectedBehavior": "Full native admitted integer center domain remains; actual(8,2) genuine center plus source geometry/range/line-of-effect controls. Illustrative example cells do not limit command domain.",
+          "routeIds": [
+            "M-CONSECRATE"
+          ],
+          "controlIds": [
+            "MC-CONSECRATE"
+          ],
+          "gapIds": [],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "native terrain/allegiance/life/healing behavior",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/1",
+          "expectedBehavior": "Action/2RP creates/replaces own zone;15ft Chebyshev geometry. Actual native allegiance/life and positive base-healing checks determine Ground; hostile Undead effects are later actual causes. Preserve ordered healing and cap/cure limits.",
+          "routeIds": [
+            "M-CONSECRATE"
+          ],
+          "controlIds": [
+            "MC-CONSECRATE"
+          ],
+          "gapIds": [
+            "G-CAP-CURE"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        },
+        {
+          "axis": "tactical vs admitted ordinary calendar",
+          "allocation": "MAGIC_AND_CARE_BRANCH_QUALIFICATION_PLAN.json#/operations/6/axes/2",
+          "expectedBehavior": "115 initiative lifetime follows actual owner slots; admitted116 ordinary lifetime18s and3 actual Start recharge are separate. Late own-origin OMA positive is genuine, carried-before-first-Start intersection remains separate.",
+          "routeIds": [
+            "M-CONSECRATE",
+            "M-OMA"
+          ],
+          "controlIds": [
+            "MC-OMA-CARRY"
+          ],
+          "gapIds": [
+            "G-OMA-CARRY"
+          ],
+          "disposition": "ALLOCATED_PLAN_NOT_EXECUTED"
+        }
+      ],
+      "executed": false
+    }
+  ],
+  "operatorKinds": [
+    {
+      "kind": "AdvanceClock",
+      "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operatorOperations/0",
+      "executed": false
+    },
+    {
+      "kind": "EndFixedEncounter",
+      "allocation": "PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json#/operatorOperations/1",
+      "executed": false
+    }
+  ],
+  "profileAndCheckpointPlan": "PROFILE_AND_CHECKPOINT_QUALIFICATION_PLAN.json",
+  "preservedLimits": [
+    "Each state-changing route/alternative requires all five complete paths under original factory/arguments.",
+    "Genuine producer gaps and model/detached controls stay explicit in each plan; allocation is not acceptance or observed reachability.",
+    "Use frozen source expectations and exact current field predicates; no expected value is generated by the new projection under test.",
+    "Current native constructor canonicalization controls request identity; reversed caller lists that canonicalize equally are not separate gameplay branches."
+  ],
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false
+}

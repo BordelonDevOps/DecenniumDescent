@@ -1,0 +1,424 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_INDEPENDENT_REVIEW_NO_NATIVE_TYPE_OR_PRIVACY_BLOCKER_WITH_ONE_WORDING_CORRECTION_AND_EXISTING_OPEN_DECISIONS",
+  "reviewer": "/root/review_consecration",
+  "scope": "Independent tactical/operator and management value normalization review only; physical/care normalization was not independently reviewed by its author. No engine execution or full HC acceptance.",
+  "reviewedInputs": [
+    {
+      "path": "engine/artifacts/admitted-command-surface/tactical-operator-value-normalization.json",
+      "sha256": "72524d120bbd1b341b2202318b2e1cf121b9fa1838bd4201af30541d1768bf83",
+      "bytes": 236606
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/management-value-normalization.json",
+      "sha256": "71a96ae33f051d454ea991065dc981eb49273766252caa4539631540c1bdcf58",
+      "bytes": 271740
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/TACTICAL_OPERATOR_FACT_REGISTRY_PROPOSAL.json",
+      "sha256": "c486bb6964dd3059eb7a22aad7ec96cc50beeea3394392e3da6a12447985e8f6",
+      "bytes": 531111
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/management-work-fact-registry-proposal.json",
+      "sha256": "c005a0c8be09ac40adc7b30150a45bce142fd5c2a6665e9cf40bce09be6935b5",
+      "bytes": 487793
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/FIELD_POLICY_DECISIONS_05.md",
+      "sha256": "e8d022a87e6d70544625076236773d0ca72506ae12967ccead64c8d8c211a17d",
+      "bytes": 5900
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md",
+      "sha256": "d73751aa61dff01360a927638777273b83b5d68f7991b30f0f8c51df13b2cc9c",
+      "bytes": 4915
+    }
+  ],
+  "finding": {
+    "id": "VN-CROSS-01",
+    "severity": "DocumentationCorrection",
+    "path": "engine/artifacts/admitted-command-surface/management-value-normalization.json",
+    "jsonPointer": "/branchBindings/5/rule",
+    "definition": "MW-F156",
+    "problem": "MW-B-LEGITIMATE-ZERO calls the field actual free capacity after completion. This key is fill.reserved_capacity.current. Native code returns Pending ? Amount : default(RuleQuantity), not the vessel free capacity.",
+    "requiredCorrection": "Replace that phrase with actual zero reserved destination capacity after completion/cancellation. Preserve the separate amount binding and current destination ownership predicate.",
+    "nativeEvidence": [
+      "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs:147-153",
+      "engine/com.decennium.foundation/Runtime/Core/WaterVesselRecords.cs:41-48"
+    ],
+    "counterexample": "A completed fill can leave the vessel full while this reservation value is0. Describing it as free capacity would imply space that does not exist.",
+    "runtimeDefect": false
+  },
+  "tacticalDisposition": {
+    "definitionsReviewed": 253,
+    "fieldIdAndKeySetMatchesOriginal": true,
+    "integerWidths": "All21 specified Int32 overrides agree with actual ordinal/grid/remaining/Command.X-Y declarations. Retained revisions, interval indices, HP/temporaryHP, incoming damage and CostPaid remainInt64. Actual payment-count DTOs and historical placeholders are explicitly not invented retained journal properties.",
+    "quantity": "18 scalar native RuleQuantity fields retain Int64 rational components. DistanceFeet/GridCoordinate are named technical proposals without fake ResourceLot units and remain OPEN. Native movement distance versus exact grid coordinate semantics are distinct.",
+    "lists": "TO-F018 uses actual ConditionClause enum projection,14closed codes and the own-character condition context gate; native ConditionClauses.Active order is fixed by its source. TO-F124 retains independently visible supplied Presence targets only. Both fixed List kinds obey GPT06 authorized-subset/empty/no-filter-flag rules. No raw condition object export.",
+    "unavailableCodePlaceholders": {
+      "definitions": [
+        "TO-F046",
+        "TO-F170",
+        "TO-F249"
+      ],
+      "disposition": "No availableValue permitted, empty allowlist, no invented family, Value/Values omitted. This is a fixed typed unavailable placeholder, not arbitrary Code output. Must not later manufacture historical payment/terminal facts."
+    },
+    "operatorClockContact": {
+      "definition": "TO-F241",
+      "disposition": "Proposed two-code mapping is source-grounded and coarse, but exact concurrence remains OPEN as labeled. Reengagement.Entered is Failure==empty; Recovery/Ferry failure-null path creates actual admission and failure path records contact without admission. Later.Entry is actual admission. All are exact receipt-bound committed endpoints, not candidate rollback effects.",
+      "sources": [
+        "Runtime/Core/ReengagementRecords.cs:48-66",
+        "Laboratory/Model/SharedReengagement.cs:110-125",
+        "Laboratory/Model/SharedPostRecoveryEncounter.cs:122-155",
+        "Laboratory/Model/SharedFerryWraith.cs:115-142",
+        "Laboratory/Model/SharedLaterEncounter.cs:160-187",
+        "Laboratory/Model/TestOnlySharedWorldPolicy.cs:807-829"
+      ],
+      "limits": "Do not export raw Failure, family, participant or hidden event counts. P_OPERATOR_EVENT and GPT05 fixed coarse envelope remain required. The original registry explicitly acknowledges current Core AcceptedResult omits Recovery/Ferry contact-specific output; the new mapping must be accepted as the proposed narrow projection, not falsely described as already returned by Core. LaterEncounter.Interruption is covered as stopped-time evidence; its status mapping is not claimed in the named contact mapping."
+    },
+    "fixedPolicy": "FIELD_POLICY_DECISIONS_05 overrides historical family proposals. In particular Hide Guidance linkage remains fixed Withheld and operator authorization does not authorize pending work/participant/private cause fields. Generic type availability is never an authority grant.",
+    "noFinalDisposition": "Full pure getter, carrier, source/API and qualification checks remain open."
+  },
+  "managementDisposition": {
+    "definitionsReviewed": 369,
+    "fieldIdAndKeySetMatchesOriginal": true,
+    "operationKinds": 25,
+    "widths": "26Int32/28Int64 mappings preserve native distinctions: dice/modifiers/phases/material/vial/catalyst/mishap/XP/dose structuralHP areInt32; monetary amounts/revisions/actorHP/damage areInt64. Monetary Int64 is not recast as Quantity.",
+    "quantity": "41 quantities resolve through their named native source bindings. CopperValue is the bounded GPT05 appraisal valuation dimension; tender count uses native TEST_ONLY.genuine-copper-piece; sale mass requires mass-pound; meal/water units are actual native IDs. Claim quantities use exact joined ResourceLot.UnitId and current inventory-owner predicate; closing stock uses frozen stock.UnitId. Plan supply roles have exact ration/water unit branches, including zero aggregate, with all-contributor authorization retained.",
+    "openQuantityTags": [
+      "MW-F096 actual carrying pounds: MassPounds or explicitly agreed existing mass-pound reuse remainsOPEN; no claim documented mass",
+      "MW-F098 printed load: PrintedLoad remainsOPEN; no CommandScalar or invented native unit"
+    ],
+    "lists": "16IdentityList and1CodeList become fixed closed kind+List. Claim/booking/unit/output/coverage source selection and current element predicates remain exact; no hidden total, native index gap or dynamic filtered flag. Current claim projection deliberately requires an InventoryLot owner binding, not worker/custodian control as ownership.",
+    "codeFamiliesVerifiedFromNative": [
+      "HavenAppraisalStatus",
+      "HavenSaleStatus",
+      "ExpeditionBillStatus",
+      "ExpeditionCloseField",
+      "ExpeditionCloseMetric",
+      "ExpeditionCloseKnowledge",
+      "ConditionKind",
+      "MiningUnitStatus",
+      "NextCharterPlanStatus",
+      "NextCharterAgreementStatus",
+      "CharterAttemptOutcome",
+      "CharterAttemptEventKind",
+      "WaterFillStatus",
+      "ReservationStatus",
+      "MiningAttemptStatus",
+      "MiningWorkStage",
+      "MiningCheckDegree",
+      "FormulaWorkStatus",
+      "ManufacturingStatus",
+      "CraftQuality",
+      "CraftQualityChoice",
+      "ConnectedSpecimenDisposition"
+    ],
+    "sentinels": "Specific second-die0, catalyst-1, optional identity/time and plan nullable gates preserve absence versus actualzero; no changed save/native command validation. Pending checks cannot produce synthetic dice. Immediate research/manufacturing modifier remains actual-transaction-only.",
+    "predicateLimits": "Original exact joins/predicates plus GPT05 remain controlling. Retained authorized reports survive sale/consumption; current inventory and subject quantities retain independent current gates. Normalization does not authorize private mining value/rank/DC/RNG."
+  },
+  "staticChecks": {
+    "inputAndSourcePinErrors": [],
+    "tacticalDefinitions": 253,
+    "managementDefinitions": 369,
+    "managementQuantityBindings": 41,
+    "managementListBindings": 17,
+    "codeEnumsCompared": 22,
+    "sourcePinsRetained": 55,
+    "runtimeTests": false,
+    "builds": false,
+    "gameplay": false,
+    "runtimeEdits": false
+  },
+  "inspectedSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+      "sha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+      "bytes": 8775
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+      "sha256": "ad12a333d1a36d4ffbab8ab054edde1342fd5cef20151f0b853410f40df40f21",
+      "bytes": 14754
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlViews.cs",
+      "sha256": "dc8c2a8927898ccecca6e1ccdef7ddf1bd24c0acea7a1941d348ff1405cade57",
+      "bytes": 7919
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+      "sha256": "97de2c4084b634e8faf4bbbc34ae93547b3d286be1ae3ac6e1e67e6c90ad635d",
+      "bytes": 10909
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "bytes": 10620
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "bytes": 9996
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+      "sha256": "aea01683f9a46a642c9d6022578f3fd7101320f1d94affe5a08b2d9c2b84652d",
+      "bytes": 14573
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a",
+      "bytes": 16911
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "sha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3",
+      "bytes": 11974
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "75bb1479d75f1193ad93611432f386420a8d2cc6aadea3455bfb5d7a77aab256",
+      "bytes": 24355
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "bytes": 19267
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "sha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+      "bytes": 16594
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339",
+      "bytes": 114333
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "bytes": 26565
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "sha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24",
+      "bytes": 13784
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "sha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147",
+      "bytes": 8140
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "bytes": 22104
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "sha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447",
+      "bytes": 13276
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "bytes": 3160
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+      "sha256": "de82d3fbc64d985c1128f6360c0bf45bcec9da4fec2396009f72032e398499d1",
+      "bytes": 7232
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "sha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "bytes": 18396
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "sha256": "f3c0c1e2abc697be2688e9957c431dcd53679fec6cd30189fd381764705ea23d",
+      "bytes": 13636
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs",
+      "sha256": "4be39af72db53c5226715dc9203e9c3cc5b5fce82af44ad0c5f1086ea2cae05c",
+      "bytes": 8976
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedRecipe4Batch.cs",
+      "sha256": "35d492fb2703db283f5fd461fb88a2b849e126519ba6b0b21000cb16efaeecc0",
+      "bytes": 12145
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "bytes": 19032
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "bytes": 16250
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "sha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "bytes": 25749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "sha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+      "bytes": 10130
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FormulaWorkRecord.cs",
+      "sha256": "ab6acc5f26d8b14ea71d586cbccb515ad813e814c4dc761f7010adc9ffd7307d",
+      "bytes": 4099
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "sha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "bytes": 23652
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "bytes": 9932
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenMealPurchaseRecords.cs",
+      "sha256": "a0b749e94ecfb840e2583e925281d2e92bfada286fc9b239e5efaae3a89072cc",
+      "bytes": 7856
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "sha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "bytes": 11298
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "sha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc",
+      "bytes": 18977
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "bytes": 10073
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "sha256": "c188872251f0ec336396dffd0e8873e663b21492659ecd5e49264dc37d552a49",
+      "bytes": 92997
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "sha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "bytes": 13973
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "bytes": 21112
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ObservationRecords.cs",
+      "sha256": "649ee3459cf5281a5da598d66acdd0a17080ded8bb56951a8ded167128457ed6",
+      "bytes": 20330
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "sha256": "6efa8d4acd1710180ed4fe63dfc84dad0b9cc0bb36e9a2117bfb76cf6e23533d",
+      "bytes": 10535
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+      "sha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+      "bytes": 4758
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "bytes": 2785
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/TacticalMovementRecords.cs",
+      "sha256": "5c8f02df3e9e513ca4c6707838a2430edb947a0dc1c25685b89bfa8db5835b69",
+      "bytes": 20972
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WaterVesselRecords.cs",
+      "sha256": "53ccad179ac816bbd019ef516c0a47c91fe269972e5914d06f5918d85de490d1",
+      "bytes": 6726
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "bytes": 42556
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+      "sha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+      "bytes": 1688
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+      "sha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+      "bytes": 9313
+    }
+  ],
+  "sourceApiAccepted": false,
+  "fullHcAccepted": false,
+  "runtimeAuthorized": false
+}

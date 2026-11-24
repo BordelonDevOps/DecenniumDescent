@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "status": "FINITE_OUTER_BOUNDARY_EXTRACTION_PROPOSAL_NOT_IMPLEMENTED",
+  "reviewer": "Codex parent source self-review; independent review pending",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedToolRepair.cs",
+      "sha256": "7a37c7a9cffb671ef7dc390a35997744cb605c90bf33ec5d343cf974dd5d376a",
+      "bytes": 24541
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs",
+      "sha256": "b5d6a4f57a8d1d3b459c668486829f23c6e557a8a88051f1d37b5829c1d32d64",
+      "bytes": 16217
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FerryWraithController.cs",
+      "sha256": "426d20a068718bfebec576df11386b14fd0e9d7895b6cc0868955fd00e28e927",
+      "bytes": 11483
+    }
+  ],
+  "hostStages": [
+    {
+      "id": "H01",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "ranges": [
+        [
+          232,
+          253
+        ],
+        [
+          361,
+          390
+        ]
+      ],
+      "order": [
+        "Capture under existing session gate",
+        "SeatCommandGrant including revoked seat and original work-control/Bishop/handover exceptions",
+        "null grant/command or actor not controlled => legacy NotAuthorized",
+        "ExposedCommand => legacy Unavailable",
+        "existing all-profile companion exact Haven offer override",
+        "existing pre-Bishop cleric milestone override"
+      ],
+      "rule": "Share helpers at these same two selection points; never widen a catalog-wide grant. New assessment matches actual Submit selection, not legacy QueryCastingCommand omission."
+    },
+    {
+      "id": "H02",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "ranges": [
+        [
+          393,
+          412
+        ],
+        [
+          467,
+          529
+        ]
+      ],
+      "order": [
+        "Valid command Id/Target and original ExposedPayload",
+        "principal+Id lookup; mismatched exact receipt => CommandIdConflict",
+        "if no prior receipt: original ExpectedRevision then exact KnownTarget",
+        "existing Simulation.Execute once",
+        "map native outcome to unchanged legacy response"
+      ],
+      "rule": "Exact matching retry skips fresh KnownTarget but still enters current Core authority/inventory preflight. Rich submission carrier captures native result at this actual call, not by assessment/re-execution."
+    },
+    {
+      "id": "H03",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "ranges": [
+        [
+          287,
+          301
+        ],
+        [
+          337,
+          357
+        ]
+      ],
+      "order": [
+        "Session actor Hero then only AdvanceClock/EndFixedEncounter grants",
+        "Explicit defender HasGrant+actual actor then source-profile+kind",
+        "same host execution prefix with original route-specific target predicate"
+      ],
+      "rule": "No seat DTO constructs operator/defender privilege. Session closure needs current turn only on fresh admission; exact receipt uses original bypass."
+    },
+    {
+      "id": "H04",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "ranges": [
+        [
+          637,
+          835
+        ]
+      ],
+      "rule": "Retain exact KnownTarget branches. New read variant passes established condition context into CanObserveTrap/Aware/ConditionsFor and visibility paths. Never call legacy lazy condition folds through a reused host helper. Host service identity is not native usability or a discovery entitlement."
+    }
+  ],
+  "coreStages": [
+    {
+      "id": "C01",
+      "source": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "ranges": [
+        [
+          1308,
+          1520
+        ]
+      ],
+      "rule": "Reuse ValidateCommandAndAuthority body and exact order: common shape, combat/extras,512 fingerprint bound, Consecrate/Invocation/spell/cure controls, remaining payload families, actor/world/clock grant, controller requirements, claims and inventory/consent checks. Local payload constructors/shape checks are not full snapshot validation."
+    },
+    {
+      "id": "C02",
+      "source": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "ranges": [
+        [
+          1557,
+          1568
+        ]
+      ],
+      "order": [
+        "ValidateCommandAndAuthority",
+        "same-principal Id receipt lookup/exact fingerprint",
+        "fresh original ExpectedRevision",
+        "fresh actor existence",
+        "fresh revision/receipt capacity"
+      ],
+      "rule": "No current eligibility before duplicate; no identity lookup before current Core inventory authority. Reuse RequiredInventoryOwners current selectors without policy resolve/validation."
+    },
+    {
+      "id": "C03",
+      "source": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "ranges": [
+        [
+          1585,
+          1624
+        ]
+      ],
+      "rule": "Legacy authoritative execution/candidate validation/checkpoint/revision/receipt publication unchanged in ordering. Read assessment is a new capability after preflight, never Execute, QueryCommand, AssessCommandAdmission or ResolveCore wrappers."
+    }
+  ],
+  "worldSegments": [
+    {
+      "id": "W00",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 866,
+      "endLine": 879,
+      "orderedResponsibility": "Unknown actor; Ferry Dash shape/context/turn; SealTear off-calendar conflict; long-rest own-command dispatch; active-long-rest interruption exclusion",
+      "dispatchGroup": "LongRest"
+    },
+    {
+      "id": "W01",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 880,
+      "endLine": 887,
+      "orderedResponsibility": "Sanctuary special boundary: pending/response dispatch or qualifying attack gate before any later global guard",
+      "dispatchGroup": "Sanctuary"
+    },
+    {
+      "id": "W02",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 888,
+      "endLine": 906,
+      "orderedResponsibility": "Guidance shape; contamination physical gate; casting/utility/repertoire/RP-short-rest; Consecrate/Invocation/Rite/Presence/ShortRest dispatch; active short-rest exclusion",
+      "dispatchGroup": "MagicAndShortRest"
+    },
+    {
+      "id": "W03",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 907,
+      "endLine": 921,
+      "orderedResponsibility": "ConsumeDecay and wound dispatch; sealed wound stock; active wound participant; search then hide activity conflicts; ordinary observation/cancel dispatch",
+      "dispatchGroup": "CareAndOrdinaryObservation"
+    },
+    {
+      "id": "W04",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 922,
+      "endLine": 945,
+      "orderedResponsibility": "Retreat instruction/hostile conflict; harvest exposure/transition and camp; pending strain-recovery then recovery/rest-debt/morale/care branches; active care/morale/rest conflicts",
+      "dispatchGroup": "RecoveryAndRest"
+    },
+    {
+      "id": "W05",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 946,
+      "endLine": 960,
+      "orderedResponsibility": "Appraisal/episode close/reinforcement/stabilization/charter/plan/bill/sale/meal dispatch; meal-serving restrictions; whole tender restriction",
+      "dispatchGroup": "ManagementServices"
+    },
+    {
+      "id": "W06",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 961,
+      "endLine": 979,
+      "orderedResponsibility": "Camp/routes and attached fractional position/moving route guards; tactical observation dispatch",
+      "dispatchGroup": "RouteAndObservation"
+    },
+    {
+      "id": "W07",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 980,
+      "endLine": 1007,
+      "orderedResponsibility": "Trap handover; blood handling; off-calendar work; Overwatch context; advancement/periodic; content manifest; recipe watch; manufacturing pending; assignment/Ferry seal/cache excavation",
+      "dispatchGroup": "ActivitiesAndAdvancement"
+    },
+    {
+      "id": "W08",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1008,
+      "endLine": 1036,
+      "orderedResponsibility": "Portable handling with preservation precondition; hunting/receptacle/prospecting/assay/mineral/mining/recipe347/preservation/harvest/mfg/fishing/cache/repair/crafting/formula dispatch",
+      "dispatchGroup": "PhysicalAndWork"
+    },
+    {
+      "id": "W09",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1037,
+      "endLine": 1064,
+      "orderedResponsibility": "Calendar combat dispatch (execution-only pressure recording); outside-combat native denials; ordinary clock payload before AdvanceTo",
+      "dispatchGroup": "CombatAndClock"
+    },
+    {
+      "id": "W10",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1065,
+      "endLine": 1107,
+      "orderedResponsibility": "World step/traversal control guard extraction including encounter transition restrictions and original run payment point",
+      "dispatchGroup": "Traversal"
+    },
+    {
+      "id": "W11",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1108,
+      "endLine": 1127,
+      "orderedResponsibility": "Nonadmitted condition event branch remains authoritative-only; Move/Interact fallback; management-kind membership; stationary, release/capability and hands gates",
+      "dispatchGroup": "InventoryPrelude"
+    },
+    {
+      "id": "W12",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1128,
+      "endLine": 1184,
+      "orderedResponsibility": "Handling concurrent traversal and exact ordered one-second deadline exclusions",
+      "dispatchGroup": "HandlingDeadlinePrelude"
+    },
+    {
+      "id": "W13",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "startLine": 1185,
+      "endLine": 1225,
+      "orderedResponsibility": "Select family pure inventory/fill/vessel assessment; preserve authoritative opening evidence/time credit and condition advancement after real resolution",
+      "dispatchGroup": "InventoryDispatch"
+    }
+  ],
+  "sharedExtractionDesign": {
+    "host": "EvaluateHostCommandPrefixV1(snapshot,seat,command,purpose) privately returns selected actual grant, exact host disposition/stage and receipt classification. Legacy submission calls its equivalent shared prefix without observation-revision logic. Callbacks to KnownTarget preserve fresh-only timing.",
+    "observation": "Read APIs capture current snapshot plus matching read context/current grant under one existing session gate. Proposed additive freshness order: original host current-grant/control/kind/payload checks, then expectedObservationRevision; only a fresh observation proceeds to prior-ID/fresh-command/target/Core preflight. Explain requires exact matching receipt and current Core authorization, never fresh eligibility. Submission has no additional observation argument/check.",
+    "world": "Extract ordered shared selector/guard segments at the listed original dispatch boundaries; each returns native failure or selected existing branch, without invoking its resolver. Both actual ResolveCore and new pure assessment consume the same predicates. Execution dispatches original mutating routines at original return positions; new read dispatches family pure assessors. Do not maintain a second presentation eligibility switch.",
+    "sanctuary": "W01 is an explicit boundary, not a skipped global guard. Shared pure assessment uses pending-response/continuation facts and original gate order; actual BeginSanctuaryGate/FinishSanctuary remain authoritative only. No hypothetical completed gate/retarget candidate or future roll is constructed.",
+    "conditions": "Every new read call explicitly carries NativeReadContextV1 to all condition consumers; absent/mismatched context is technical unavailability, never legacy fold fallback. Shared predicates consume immutable current facts; legacy execution supplies its actual native current facts at original candidate stage. A post-time execution recheck cannot reuse a stale pre-command read projection.",
+    "capacity": "Assessment may report separately typed predictable commit feasibility, while execution keeps original enforcement stage/code/rollback. No new early rejection for a richer preview.",
+    "nonadmittedBranches": "Keep original selectors and legacy behavior for broader policy commands; the new session surface never expands admission simply because a shared branch exists. Source exclusions follow selected immutable factory flags, not absence guessed from one fixture snapshot."
+  },
+  "automaticDispatch": [
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs",
+      "ranges": [
+        [
+          139,
+          199
+        ]
+      ],
+      "rule": "HasGrant+decision owner then no-primary Waiting. Primary admission; execute if admitted/duplicate. On stale primary, examine fallback for duplicate only. Non-RuleDenied uses primary rejection. RuleDenied+MayFallback assesses fallback and returns its native status. Preserve internal DefenderAuthority selection. Actual ordered assessments/terminal candidate/executed candidate are distinct."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/FerryWraithController.cs",
+      "ranges": [
+        [
+          97,
+          132
+        ]
+      ],
+      "rule": "HasGrant+decision owner then no-primary Waiting. Primary admission then fallback only stale or eligible RuleDenied. Execute fallback on duplicate or first RuleDenied+second admitted. Otherwise status comes from FIRST assessment even if fallback examined. Use actual incoming creature grant; do not replace with LaterDefenderAuthority."
+    }
+  ],
+  "prospectiveChecks": [
+    "Competing host malformed/conflicting/stale/unknown-target and revoked-authority cases retain legacy output; V1 safe redaction does not reorder execution.",
+    "Exact retry after target disappearance uses receipt path and current inventory revocation still rejects; no additional payment/time/receipt.",
+    "Current-observation stale versus command-ExpectedRevision stale are separately named and tested.",
+    "At all24 selected profiles/context variants, new reads log zero ResolveCore/Execute/legacy lazy conditions/validation/replay/RNG/deadline/choice/checkpoint mutations.",
+    "Automatic primary/fallback source branches have exact trace attribution and at most one authoritative Execute; Waiting has no fake command/receipt.",
+    "Rich projection failure retains actual committed/duplicate disposition and current generation unavailable projection; legacy result independent.",
+    "Runtime source call graph and instrumentation must establish every path; this finite selector plan is not compiled purity proof."
+  ],
+  "remainingConcreteDesignWork": [
+    "Independently review exact source/ordering and proposed freshness placement",
+    "Complete selected capacity/spatial/speed/deadline helper closure and all-profile copy inputs",
+    "Freeze branch/profile/five-path source expectations and obtain full HC review"
+  ],
+  "runtimeChanged": false,
+  "buildsTestsGameplay": false,
+  "sourceApiAccepted": false
+}

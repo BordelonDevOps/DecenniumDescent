@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "status": "FINITE_NATIVE_UNIT_DISCLOSURE_PROPOSAL_REQUIRES_ACTUAL_GPT_CONCURRENCE",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "scope": "Only current P_OWNED_LOT_UNIT proposal for physical.portable.currentQuantity and actual immediate Purify batch amount; does not replace existing specific claim/treatment/report predicates.",
+  "units": [
+    {
+      "unit": "TEST_ONLY.ration-pound",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "line": 18
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "line": 40
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+          "line": 94
+        }
+      ],
+      "subject": "Existing own ordinary food lot/authorized acquired cache portion/current acquired meal, including actual native descendants",
+      "selectedProfileBinding": "Common inventory/portable/cache and selected Haven sources",
+      "limits": "Purify food branch additionally requires actual NutritionKind.FoodPounds; no substitution for a different UnitId"
+    },
+    {
+      "unit": "prototype.potable-water.pint",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "line": 18
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+          "line": 55
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "line": 39
+        }
+      ],
+      "subject": "Existing own ordinary water lot/contents/fill output, including actual native descendants",
+      "selectedProfileBinding": "Common filling/portable plus selected casting water source",
+      "limits": "Purify water must already require exact native WaterUnit"
+    },
+    {
+      "unit": "mass-pound",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+          "line": 544
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+          "line": 57
+        }
+      ],
+      "subject": "Actual authorized mining inventory subject or selected specimen preservative lot",
+      "selectedProfileBinding": "Common mining and blood specimen",
+      "limits": "Native resource unit only; not carried report MassPounds or generic item mass"
+    },
+    {
+      "unit": "TEST_ONLY.genuine-copper-piece",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "line": 25
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "line": 112
+        }
+      ],
+      "subject": "Actual currently owned/custodied tender lot after lawful transfer",
+      "selectedProfileBinding": "Common selected Haven sale",
+      "limits": "Seller payment proceeds only under current title/custody; no permission to inspect buyer stock"
+    },
+    {
+      "unit": "writing-allotment-1sp",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+          "line": 130
+        }
+      ],
+      "subject": "Actual own named research/copy supply lot",
+      "selectedProfileBinding": "Common connected formula research",
+      "limits": "Unit identity does not admit StartFormulaCopy or new material use"
+    },
+    {
+      "unit": "ing-4-0-alchemical_catalyst",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+          "line": 79
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "line": 66
+        }
+      ],
+      "subject": "Actual selected recipe4 component0 lot",
+      "selectedProfileBinding": "Common connected manufacturing initialization",
+      "limits": "Exact public recipe occurrence; no hidden yield/quality/material effectiveness disclosure"
+    },
+    {
+      "unit": "ing-4-1-crystal_vial",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+          "line": 80
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "line": 66
+        }
+      ],
+      "subject": "Actual selected recipe4 component1 lot",
+      "selectedProfileBinding": "Common connected manufacturing initialization",
+      "limits": "Distinct from supplementary ordinary.glass-vial-1gp"
+    },
+    {
+      "unit": "ing-4-2-alchemical_base",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+          "line": 81
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "line": 66
+        }
+      ],
+      "subject": "Actual selected recipe4 component2 lot",
+      "selectedProfileBinding": "Common connected manufacturing initialization",
+      "limits": "Exact public recipe occurrence only"
+    },
+    {
+      "unit": "drop-black_blood_sample",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+          "line": 82
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs",
+          "line": 13
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+          "line": 56
+        }
+      ],
+      "subject": "Actual selected recipe4 component3 lot or source-bound connected specimen lot",
+      "selectedProfileBinding": "Common recipe4/blood specimen",
+      "limits": "One native counted material unit; mass19/50lb separate; no new specimen acquisition authority"
+    },
+    {
+      "unit": "ordinary.glass-vial-1gp",
+      "nativeBindings": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "line": 70
+        }
+      ],
+      "subject": "Actual selected recipe4 supplementary packaging lot",
+      "selectedProfileBinding": "Common connected manufacturing initialization",
+      "limits": "Native packaging count, not inferred physical volume or abstract command amount"
+    }
+  ],
+  "predicate": [
+    "Current authorized endpoint and exact selected profile, actor/principal and applicable fact receipt/temporal binding",
+    "Same lot shown by exact existing P_ITEM or explicit P_CACHE_STOCK/source target route; any portable-to-lot identity join separately authorized, not guessed from display Id",
+    "Actual InventoryLotRecord.OwnerId passes MayUseInventory and actual ResourceLot.CustodianId passes Controls; matching portable owner/custodian predicates where that is the public branch",
+    "Selected cache requires current P_CACHE_STOCK; trap exclusion stays; WoundTreatmentStation identities excluded from this general predicate",
+    "Actual unit equals one listed literal AND its selected source producer/lineage matches; no allowlisting by unit text alone",
+    "No private stock count, hidden lot identity, Director source, unopened cache contents or foreign-owner information is released"
+  ],
+  "lineage": {
+    "source": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs:22-40",
+    "rule": "Native descendant preserves exact source UnitId; child current rights independently required. A parent identity is not disclosed unless its current predicate also permits it."
+  },
+  "purify": {
+    "source": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs:165-195",
+    "rule": "Actual pre-command amount plus same actual UnitId only after original spell/target/current owner unit predicates; full available whole lot, water/food/enclosure/range/line restrictions unchanged. Later missing historical amount is NotRetained, never current substituted. Protected contamination remains fixed Withheld."
+  },
+  "explicitExclusions": [
+    {
+      "units": [
+        "medical-kit",
+        "dry-ration-pounds",
+        "clean-water-pints",
+        "lamp-oil-pints",
+        "sundries-pounds"
+      ],
+      "reason": "Real native wound-treatment units; only exact dedicated care/claim predicates, not general own inventory unit permission. Sealed treatment stock is not command inventory."
+    },
+    {
+      "units": [
+        "ordinary-angling-bait-0.10lb"
+      ],
+      "reason": "Real selected trap bait unit, but generic ProjectItems excludes selected trap inventory; remote/local trap facts retain their independent permitted fields."
+    },
+    {
+      "units": [
+        "ing-14-0-stabilizing_salts",
+        "ing-14-1-distilled_spirits"
+      ],
+      "reason": "No selected connected factory initializes recipe14 manufacturing lots; source-bound specimen occurrence does not select that whole recipe. Keep wider native source without adding public units."
+    }
+  ],
+  "unsupportedBinding": "Fixed quantity placeholder Withheld, no untyped number, guessed unit, null Value or hidden-unit reason. A missing required admitted-unit binding remains a qualification defect, not blanket permitted withholding.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ManufacturingRules.cs",
+      "sha256": "97de2c4084b634e8faf4bbbc34ae93547b3d286be1ae3ac6e1e67e6c90ad635d",
+      "bytes": 10909
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b",
+      "bytes": 17891
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs",
+      "sha256": "33b320645df1b51537f0da1f9dccaa46e149cf0ba24c1887a37bd07aee106e11",
+      "bytes": 9464
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "a7c6848af175dd7e0939febe7c067fed525bb15b1a45e41da881509860f5d52b",
+      "bytes": 67264
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "sha256": "75bb1479d75f1193ad93611432f386420a8d2cc6aadea3455bfb5d7a77aab256",
+      "bytes": 24355
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "bytes": 17595
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "sha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339",
+      "bytes": 114333
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "bytes": 37055
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+      "sha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27",
+      "bytes": 11581
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "bytes": 22104
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs",
+      "sha256": "4be39af72db53c5226715dc9203e9c3cc5b5fce82af44ad0c5f1086ea2cae05c",
+      "bytes": 8976
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "bytes": 16491
+    }
+  ],
+  "sourceApiAccepted": false,
+  "runtimeChanged": false
+}

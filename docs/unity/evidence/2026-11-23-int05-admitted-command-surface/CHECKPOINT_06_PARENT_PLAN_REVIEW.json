@@ -1,0 +1,1443 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_PARENT_PLAN_REVIEW_TWO_CONCRETE_CORRECTIONS_REQUIRED",
+  "reviewer": "independent subagent /root/review_consecration",
+  "createdAtUtc": "2026-11-24T02:04:02.113675+00:00",
+  "inputs": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_TACTICAL_BRANCH_QUALIFICATION_PLAN.json",
+      "sha256": "4df80ca22361218fc17ef93cc2f87e1c1ee41871106b0095512b7c5f90c128d8",
+      "bytes": 200544
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROFILE_AND_CHECKPOINT_QUALIFICATION_PLAN.json",
+      "sha256": "2dc80f05ed8debe9683be5bfe155e2ad0b94d91273821116df450b8455ec844d",
+      "bytes": 229206
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SPATIAL_SPEED_PRESSURE_READ_PLAN.json",
+      "sha256": "25842b817790fc0360e755e4c80517e45e4e64c694661ad9fdcbec6659ffc632",
+      "bytes": 17441
+    }
+  ],
+  "scope": "Read-only parent-plan source/binding review. Complete static branch/count/pointer/factory/save/checkpoint binding comparison; bounded source reread for physical route constraints and nine relevant tactical/spatial entries. No new V1 execution, no predecessor rerun and no full HC acceptance.",
+  "findings": [
+    {
+      "id": "PQ-01",
+      "severity": "concrete structured input binding defect",
+      "document": "PROFILE_AND_CHECKPOINT_QUALIFICATION_PLAN.json",
+      "pointers": [
+        "/factoryRows/1/historicalInput",
+        "/factoryRows/13/historicalInput"
+      ],
+      "problem": "StartWithFishingTrap incorrectly names the plain Start95 historicalInput; StartWithConnectedWorkControl names OMA116. sameWireException prose and additionalOriginalProfileInputs correctly reject transferring those proofs, but the per-factory machine binding still points at the wrong original policy.",
+      "impact": "A future runner that consumes factoryRows.historicalInput can attempt wrong-profile adoption or count the wrong save as this factory’s compatibility evidence.",
+      "requiredCorrection": "Set these two historicalInput entries null/not-applicable; add explicit own-profile route/save bindings. Keep original Start95 and OMA116 rows intact and preserve exact cross-profile rejection. No old qualification rerun is required for this documentation correction.",
+      "parentAcknowledged": true,
+      "correctedBytesReviewed": false
+    },
+    {
+      "id": "PQ-02",
+      "severity": "concrete source-timing overstatement",
+      "document": "SPATIAL_SPEED_PRESSURE_READ_PLAN.json",
+      "pointer": "/entries/7/privacy",
+      "problem": "S08 says required real contact occurs only during actual advancement. The existing local first-encounter branch can enter immediately during BeginWorldStep submission, before an edge is appended or clock advanced.",
+      "source": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs:98-132",
+        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs:1071-1076"
+      ],
+      "requiredCorrection": "Distinguish immediate StartsEncounter execution from later Ferry/Recovery/Later/Reengagement contact during paid traversal/clock advancement. New pure reads do neither actual transition. Retain exact native trigger and source timing.",
+      "correctedBytesReviewed": false
+    }
+  ],
+  "verified": {
+    "candidateKinds": 33,
+    "exactCandidateAxes": 96,
+    "operatorKinds": 2,
+    "allAxesMatchOriginalInventory": true,
+    "all96SourceAuditPointersResolveAndMatchAxes": true,
+    "allRouteIdsResolve": true,
+    "factoryDeclarations": 24,
+    "allDeclarationsMatchActualSource": true,
+    "allProfileMatrixSelectionSchemaWireAndKindGateRowsMatch": true,
+    "authenticInputs": 22,
+    "wires": [
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116
+    ],
+    "allLocalAuthenticSaveHashesMatch": true,
+    "originalArchiveMemberHashes95Through115Match": true,
+    "principalCommands": 244,
+    "principalCheckpoints": 28,
+    "allCheckpointHashesAndNeighborCommandsMatch": true,
+    "allDeclaredSourcePinHashesMatch": true
+  },
+  "branchDispositions": [
+    {
+      "scope": "13 physical kinds/38 axes",
+      "conclusion": "Matches exact independent physical inventory and keeps genuine public-host, genuine native/direct-Core, detached controls, prospective lawful branches and unsupported variants distinct. Five new V1 paths remain required for actual state-changing alternatives; no positive claim is transferred to a detached branch."
+    },
+    {
+      "scope": "20 tactical kinds/58 axes plus2operators",
+      "conclusion": "Matches exact inventory/source-audit references. MULTI_FUTURE and ordinary observation remain explicitly unexecuted reachability gaps; model fixtures do not satisfy genuine multi-reactor/nested Press or public ordinary observation producers."
+    },
+    {
+      "scope": "Vessel branches",
+      "source": "VesselHandling.cs:33-85; ConnectedExpeditionSession.cs:387-389",
+      "conclusion": "Prospective Drop/Pickup and willing Handover preserve native one-second cost, Amount1, current pool placement, Manhattan<=1 recipient, usable hands/current capacity and contained-lot custody synchronization. Retrieve/Stow remain denied; no manufactured container state or owner rewrite."
+    },
+    {
+      "scope": "Blood preservation",
+      "source": "ConnectedBloodSpecimenCases.cs:49-178; independent physical audit",
+      "conclusion": "Plan explicitly separates old wire94 genuine native reference from fresh Quality host prefix and detached forgeries. Real600+1200 treatment and exclusive60-second clean-opening boundary are source-grounded; new V1 host branches remain required."
+    },
+    {
+      "scope": "Vial/Focus/Water/Cache",
+      "conclusion": "Frozen earlier independently audited routes retained; proposed plan keeps stowed dose unavailable until actual retrieval, target/recipient authority independent, no-consent direct Simulation control separate, and contained water intake separate from possession. No new gameplay evidence inferred."
+    }
+  ],
+  "spatialSourceReview": {
+    "directlyRereadEntries": [
+      "S01",
+      "S03",
+      "S05",
+      "S06",
+      "S07",
+      "S08",
+      "S09",
+      "S10",
+      "S12"
+    ],
+    "otherEntries": "S02/S04/S11/S13-S17 and additionalBindings hashes checked and wording read; no fresh full transitive audit of their delegates/property graphs in this bounded task.",
+    "conclusions": [
+      "WalkingSpeed order matches flat/life/condition then Snare/suppression then burden then ordinary slow-travel; no budget refresh/payment is permitted.",
+      "WorldSpatialQueries includes actual other-body and pending-destination occupancy; computational purity does not make occupant identity/cause public.",
+      "Frightened exact directional arithmetic is source-grounded; Operative uses ConditionsFor and requires explicit owning read context.",
+      "Local retreat pressure selectors use committed records/watch arithmetic; broader expeditionPressureProfile is absent from selected factory chains, not inferred from one state.",
+      "CurrentPressOffer is pure sorting/selection. AdvanceTacticalFlow/BeginStep/QueuePress remain excluded.",
+      "S09 broad reviewed range141-196 contains mutating BeginCommandStep/BeginDefensiveFormationShift at161-192. Named pure assessment ends159; destination checks173-176 and194-196 are separate. The plan’s explicit mutation prohibition is controlling; do not label the whole textual interval pure.",
+      "Dash paid early return still checks current Strain prohibition; source early order preserved.",
+      "Current source reads are not compiled instrumentation or full transitive closure. PQ-02 must correct immediate-entry timing."
+    ]
+  },
+  "saveChecks": [
+    {
+      "wire": 95,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire95.ddsave",
+      "sha256": "90d28e236200e017267f367f20d244f3df2223a355f09b1ebec5ac35ae491e41",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 96,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire96.ddsave",
+      "sha256": "042c0caa28427aad82b5cb1c2e5c3320e1a2741fd3ace0d87c7a30393222759d",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 97,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire97.ddsave",
+      "sha256": "fdf7bab24a6f25818394f7b1847cf714b2e609a8f30d8c67c8e9128ce18ce120",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 98,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire98.ddsave",
+      "sha256": "0b52ac97ddf15eaf534576f6debc92674a03f86ea81616ad75b52f19dc745a8e",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 99,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire99.ddsave",
+      "sha256": "11629bdf819eefb685b36bad9e9a90b83977b4e2b982751040796b148f8f1e71",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 100,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire100.ddsave",
+      "sha256": "f724bdb7b863bf9bc79f71558f0105ba31bf4cd63a9e9004dc297a3be11e4d69",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 101,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire101.ddsave",
+      "sha256": "aaeba88c2956c98813e4e2d49af796a927bb2e31bd6bda98935042ef2cdad381",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 102,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire102.ddsave",
+      "sha256": "55f0e891f00ff99faf8ddcff518c638aabd9f22354bf74720b2c1f9feef78463",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 103,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire103.ddsave",
+      "sha256": "34d6911c2405702bf8594c2b87075fad2b9cbd5a2399442da52d19cbb686d452",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 104,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire104.ddsave",
+      "sha256": "59fb06027d562fb319896bc8c41a9778423af293e5f0db5325361f1904389f21",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 105,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire105.ddsave",
+      "sha256": "3e5cb9dff0a93c0e6a053b60a65c69c47b3b02268ebf3e4206e76c6887b43838",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 106,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire106.ddsave",
+      "sha256": "955c0d6ffb41a1196098b36bb92d452b7f85683b36802137de3f127a48b8974c",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 107,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire107.ddsave",
+      "sha256": "c74285d52c6beb0d3516f89953c77e0092c3cf94da00f046f77fd52a26c22cc2",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 108,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire108.ddsave",
+      "sha256": "32aebbdf8f074389f6f5ce6eec21905d6c3cba5a96e241fa3fafa76bcde0efb8",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 109,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire109.ddsave",
+      "sha256": "b1726911f23f7663c4dc5000aa5ad13b75342610330f2e388849d3c031269b84",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 110,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire110.ddsave",
+      "sha256": "4affc9ff54a7a1399489171b603744c65565f1ad2cd1fe97c1df59d88fb3d7bd",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 111,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire111.ddsave",
+      "sha256": "48e3467e400d91390e1ba09d2f983b2deee0afca2b9077ebde832fbc12782d9c",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 112,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire112.ddsave",
+      "sha256": "ca097c7eb9606b9f1ae5cac3f11a9acba3fc849c3073d6d99ee6b675debff61a",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 113,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire113.ddsave",
+      "sha256": "6b04814da9d9f6a19e9dedcd241717d27d066b9069e3eb844b81057420b428b4",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 114,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire114.ddsave",
+      "sha256": "71420605e7a45a2168fac7f1c2dd7a6bacf142242261a6aab5f91d827b185dd8",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 115,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-01/authentic-legacy/wire115.ddsave",
+      "sha256": "e43d6c68034e3bd94f5523fc08a1045f4d043f66cce923183e49bd7f55656149",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": true,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    },
+    {
+      "wire": 116,
+      "path": "engine/artifacts/ordinary-magic-qualification/candidate-02/five-paths-01/TypedUninterrupted/r440.ddsave",
+      "sha256": "139e0eab1ae12ec1b076e293101da5030a9b19c2131cb704e55bc2305a5ea4e4",
+      "localHashMatches": true,
+      "originalArchiveMemberHashMatches": null,
+      "source": "Original bound archive member checked for95-115;116 is retained accepted OMA440 path."
+    }
+  ],
+  "checkpointChecks": [
+    {
+      "revision": 0,
+      "sha256": "8927d6a720e20e596baf97a2206dab09e96f6df66041b1ccd9a7b53977500203",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 15,
+      "sha256": "070a9665da1dd14b42e6510ecdc277c32b836cca3963132838cf1d338e355596",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 16,
+      "sha256": "84587e676176e20006a81281b1436ec3ee95f8b89460fba85926e0616cd9a7a9",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 17,
+      "sha256": "6c0fddde1819d4350da3976ec80329490843692c909d9e4e30bd5c28fe62da6b",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 26,
+      "sha256": "62032438950cd384fb26fcea3d9a5f7663f5aa85dee471bc25e9bb00ce3c6983",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 27,
+      "sha256": "9642060263f7aedf423ba2b1208fac8eb531d8cb6b75bd6134f7ffd706c16a6e",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 30,
+      "sha256": "925ebe48bfc3b86623efd9383da6f73057a632b5073443aff3d9a8a20ba27f42",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 94,
+      "sha256": "fa5bf5a434f9b6347b258ea2c7e13f84ae465d48d1121532da0c184a723c60f9",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 95,
+      "sha256": "1e3e18bf33e43f692f90fe5469542f701cc0133fde9423506ada86791a07d7e2",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 96,
+      "sha256": "748df1690de0058b0d8d4e290a974d9e1baee02ed57085feb3002cb4d844ed35",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 97,
+      "sha256": "ad96931155810739d90117e6beae49981b5f4024d39c8fd78d5d0fee90cb81b4",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 104,
+      "sha256": "7f75034f3935423dc8e153285ce84a14342ba796aea580d6d0618c4c71220943",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 105,
+      "sha256": "7868a6954dd79014fdb36ac8d4e348bf0c86d1bacc9961bd05deff754b6b31c4",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 106,
+      "sha256": "4d7fc70cd789bf1913d9acbe65a760ddc9b886901baaf9285249f7d495a38d27",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 107,
+      "sha256": "078b48eb0bad17e02e6a7a64559f8be67d82db7e1d569057dcbc690d11a0021c",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 108,
+      "sha256": "a56447ace3b2efa3c1e82aab042046a70eaa99e36956b74d6626bfea5ad10769",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 117,
+      "sha256": "2a8cf8142adb8e4a8fce69c82d6b6c339e6722ffcee88dd1650379d51968d305",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 128,
+      "sha256": "7596f7315fbaebf0973354de5b269d916c95726402cc11ce9453def9a59c52bc",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 129,
+      "sha256": "d38d2060dc4bcc9c915de510b69c97caa8934965f282451dac3d88169569d552",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 136,
+      "sha256": "a9a1eec7468588b30bd58287975f835503b8875cd9f927c251727ffaf146932b",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 138,
+      "sha256": "bdfd9c33a434ef610153f55dfbace0d42afa4653112ef8b97dd3e309631a42c0",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 232,
+      "sha256": "9e11c997fcbb9749d44e9dbf317145ef120f1e0f773b79715ccc75b3a56ac6c9",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 234,
+      "sha256": "ca31c17d656eb09b00ac2a4a3dc2a40585a41e5edd1c0519799c7077196a6da2",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 237,
+      "sha256": "d6bbdb35566901ae71fe577e71d20c2c2d7de36987182927cd5c62ebb0bdf528",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 239,
+      "sha256": "a4a6507122fc745f445fcd24b2fd14801d0d25119dd3f2c02d0b7547f32dc844",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 241,
+      "sha256": "cd4a3d9da2c7b25e10b4ac03cd2e0882fffeb4d5c36b895d3475cc8717e491bf",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 242,
+      "sha256": "9f9ce42216934c6636c2443116553a7fbb03560e1262961fbe25978b61a74126",
+      "hashAndPreviousNextCommandsMatch": true
+    },
+    {
+      "revision": 244,
+      "sha256": "5aa7069569e7a18d29fa6bb3f2292707f2061dce0babe3a29cf1cf643076fa86",
+      "hashAndPreviousNextCommandsMatch": true
+    }
+  ],
+  "axisPointerChecks": [
+    {
+      "kind": "SelectCombatStance",
+      "axis": "Aggressive",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SelectCombatStance",
+      "axis": "Guarded",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SelectCombatStance",
+      "axis": "Mobile",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SelectCombatStance",
+      "axis": "Focused",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SelectCombatStance",
+      "axis": "Carrying: native NoApplicableCargoPenalty",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/4",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackClub",
+      "axis": "owned/custodied visible-target club",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackClub",
+      "axis": "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackClub",
+      "axis": "ArmOrReplace/KeepExisting",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackClub",
+      "axis": "regular attack vs Sanctuary gate",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "axis": "selected Ferry feature/actual creature seat",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "axis": "same explicit knockout/Press payload disposition",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "axis": "Sanctuary admission",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "TacticalStep",
+      "axis": "native direction/geometry/movement domain",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/3/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "TacticalStep",
+      "axis": "ordinary completion/OA suspension/Press continuation",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/3/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "EndRegularTurn",
+      "axis": "aware stance required",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/4/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "EndRegularTurn",
+      "axis": "life/conditions/due events and next slot",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/4/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "EncounterDash",
+      "axis": "selected Ferry current party turn",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/5/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "EncounterDash",
+      "axis": "Action and movement allowance",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/5/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "axis": "RecoveryOpponent seat selected target subsets",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "axis": "separate LaterDefender grant",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "axis": "actual cooldown/turn/visibility",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "TearExposedSeal",
+      "axis": "actual observed seal",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "TearExposedSeal",
+      "axis": "tactical vs ordinary activity where admitted",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "TearExposedSeal",
+      "axis": "original suppression endpoint and repeated use",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "axis": "decline",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "axis": "take with owned weapon",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "axis": "knockout/Press elections",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "axis": "ordered reactor and continuation",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResolveKnockout",
+      "axis": "ordinary outcome",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResolveKnockout",
+      "axis": "knock out",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResolveKnockout",
+      "axis": "existing attack identity; original Press instruction immutable",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondPress",
+      "axis": "decline",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondPress",
+      "axis": "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondPress",
+      "axis": "nested continuation without speculative execution",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondSanctuary",
+      "axis": "Forgo",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondSanctuary",
+      "axis": "regular attack Retarget to each visible legal native target",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondSanctuary",
+      "axis": "Opportunity retarget denied outside original source",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RespondSanctuary",
+      "axis": "native no-free-loop/continuation rules",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginWorldStep",
+      "axis": "walk",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginWorldStep",
+      "axis": "run only where host selected",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginWorldStep",
+      "axis": "scheduled/off-calendar activity",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginWorldStep",
+      "axis": "partial progress/encounter admission",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "axis": "actual own pending traversal",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/13/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "axis": "partial pose/paid budget preserved",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/13/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "axis": "suspended/waiting traversal",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "axis": "run/Dash revalidation",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "axis": "actual geometry/fear/access",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "axis": "actual selected approach",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "axis": "consent/director parameters",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "axis": "source entry timing/allowance",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Hide",
+      "axis": "ordinary Hero start token",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Hide",
+      "axis": "tactical party turn",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Hide",
+      "axis": "eligible Guidance election/decline",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Search",
+      "axis": "ordinary Companion start token",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Search",
+      "axis": "tactical party turn",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Search",
+      "axis": "eligible Guidance election/decline",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "CancelExplorationHide",
+      "axis": "actual own pending hide identity",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/18/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "CancelExplorationSearch",
+      "axis": "actual own pending search identity",
+      "pointer": "INDEPENDENT_TACTICAL_AXES.json#/operations/19/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Interact",
+      "axis": "cache PickWithTools/Open/Interrupt",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/0/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Interact",
+      "axis": "trap Set/Pause/Resume/Cancel",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/0/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Interact",
+      "axis": "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/0/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Interact",
+      "axis": "retrieve explicit receiver/handling request",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/0/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "Interact",
+      "axis": "trap Abandon exists natively but is not admitted by the session",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/0/axes/4",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "axis": "Pickup/Drop/Retrieve",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/1/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "axis": "selected vial Stow in pack",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/1/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "axis": "selected focus Handover consent",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/1/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "axis": "companion Club physical adapter",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/1/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "axis": "ordinary vs tactical allowance",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/1/axes/4",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "axis": "owned accessible actual closure",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/2/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "axis": "selected packed vial",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/2/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "axis": "protected specimen opening consequences",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/2/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "axis": "owned accessible actual closure",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/3/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "axis": "protected contents",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/3/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleInventory",
+      "axis": "Hero cache ration Pickup only at host",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/4/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleInventory",
+      "axis": "rational available amount",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/4/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleInventory",
+      "axis": "no generic transfer expansion",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/4/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "PortionInventory",
+      "axis": "exact rational amount",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/5/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "PortionInventory",
+      "axis": "actual eligible source/unit",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/5/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "PortionInventory",
+      "axis": "reserved/whole-tender/contaminated exclusions",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/5/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "PortionInventory",
+      "axis": "age/provenance conserved",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/5/axes/3",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "EquipPortableItem",
+      "axis": "selected holy symbol and placement/body constraints",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/6/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "RemovePortableItem",
+      "axis": "selected holy symbol and current state",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/7/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleVessel",
+      "axis": "selected flask Pickup/Drop/Retrieve/Stow disposition",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/8/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleVessel",
+      "axis": "willing party Handover",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/8/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "HandleVessel",
+      "axis": "opening/contents/custody constraints",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/8/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartIntake",
+      "axis": "ordinary food/water rational amounts",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/9/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartIntake",
+      "axis": "reservations and exact proportional time",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/9/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartIntake",
+      "axis": "tactical/unsafe intake unsupported",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/9/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "InterruptIntake",
+      "axis": "actual own intake",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/10/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "InterruptIntake",
+      "axis": "consumed credit retained and untouched quantity released",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/10/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "axis": "owned actual dose/recipient",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/11/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "axis": "ground/carried/stowed/tactical/Companion selected variants",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/11/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "axis": "actual HP caps/blockers and spent dose",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/11/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "axis": "actual unspoiled selected specimen",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/12/axes/0",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "axis": "stabilization vs spoilage endpoint",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/12/axes/1",
+      "resolved": true,
+      "axisMatches": true
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "axis": "real preservative/time/access",
+      "pointer": "INDEPENDENT_PHYSICAL_AUDIT.json#/operations/12/axes/2",
+      "resolved": true,
+      "axisMatches": true
+    }
+  ],
+  "declaredSourcePins": [
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerryCreatureKnockout.ps1",
+      "sha256": "090a08435e74d8da9446e62bf851e5fd7c079cac11310f56bb353309d5e880ea",
+      "bytes": 8833
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerryGuidancePublic.ps1",
+      "sha256": "2e99a7d976dee6b1586fcdd9f3f6bf9f71ed2d9ef5b1f2f5b112778400f0fd01",
+      "bytes": 13532
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerryPressKnockout.ps1",
+      "sha256": "3c1a017d0613c55c0c493b867f4ab8e5cb6f22bf1061de309b6ebcbfc5df8d99",
+      "bytes": 15800
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerrySanctuary.ps1",
+      "sha256": "77b35c5f44a454a30563199225ab06bb2f284dec97a41d6f87275bb9806c7694",
+      "bytes": 14798
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerrySanctuaryOpportunity.ps1",
+      "sha256": "bb9dae8c86bb08b2bea65565c843d58cf65120941c3eb0807ded2b81855e4fbf",
+      "bytes": 10491
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerrySeal.ps1",
+      "sha256": "5e33421ea7fc2c1ef46a06a239d55fe85a4b5ff55c625bf85e5d8898f9ca9a59",
+      "bytes": 9948
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-tac10-ferry-wraith-runtime/support/Probe-FerryWorldSeal.ps1",
+      "sha256": "0f463632f2d98a0aadcf8e5005da52cd1d10e7568ef90ac44a6e9080dbf778e3",
+      "bytes": 12502
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/INDEPENDENT_PHYSICAL_AUDIT.json",
+      "sha256": "ab1d789f81d9be6833d0d3fff488cdc0fa9106a536702f909c4a15c2c765f55d",
+      "bytes": 40766
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/INDEPENDENT_TACTICAL_AXES.json",
+      "sha256": "ea7c1a6d6ae7083d04fc810fdc6a1e0745ae3025b146fd9bc282d6e2ecffa7df",
+      "bytes": 89624
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_INDEX.json",
+      "sha256": "a2e589b840dd80051385dfc2cefb04e0bb1b96a42fa0a46777f9243c849cb8b7",
+      "bytes": 130464
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PRINCIPAL_ROUTE_ALLOCATION.json",
+      "sha256": "ae03260af2cf79e645a25b9cbb23c7aa5ed6e34a89c8dbf13ce64bae211322c2",
+      "bytes": 95443
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROFILE_ADMISSION_MATRIX.json",
+      "sha256": "0782e63fed9dec751dde828abf04bf738aa0c2c61ff93e29336d1c3666e22825",
+      "bytes": 151274
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "sha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+      "bytes": 18206
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "sha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+      "bytes": 12721
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryDecision.cs",
+      "sha256": "8ffb9bb7eaab339b5c54c9b6e7ab0f7985c3023f54abc8cf4f0f5670b562570f",
+      "bytes": 5987
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerrySeal.cs",
+      "sha256": "0d2a47f24082142c271334416673fccbda4554efc1bd4969b91584f6315b3b53",
+      "bytes": 6010
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "a7c6848af175dd7e0939febe7c067fed525bb15b1a45e41da881509860f5d52b",
+      "bytes": 67264
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "sha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0",
+      "bytes": 16836
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "sha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a",
+      "bytes": 2120
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff",
+      "bytes": 21975
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "sha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "bytes": 21826
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "sha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "bytes": 9358
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "bytes": 36082
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "bytes": 59346
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "sha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+      "bytes": 25185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+      "bytes": 37856
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+      "sha256": "d4021bbf88c23b8faa4167bdea32b982b46f871bba807129a29bbb5a8261f23f",
+      "bytes": 11608
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedExplorationObservation.cs",
+      "sha256": "b68818f5755e18323e8104998bafdcb26fd573dcb065e861e854e143611c793c",
+      "bytes": 4979
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "sha256": "f297ee628a3be8104c630cdab93cae00fe97a3f1cf6b6355fd700447cb40765f",
+      "bytes": 7808
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedBloodSpecimenCases.cs",
+      "sha256": "99be3e0fbacfa9f9fd1b1c4f54af304545f0b314159d689ec6859d709d75a868",
+      "bytes": 24951
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionCacheCases.cs",
+      "sha256": "9db62b0216e72d7767ca6b3bd2bde1ee5f7069f7e671fd57a54b9839db0ad774",
+      "bytes": 12756
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionQualityCases.cs",
+      "sha256": "43aa7a98898f3f06c010a284097c81173d60db6b2351fd7c166f9993386dab57",
+      "bytes": 32328
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionSessionCases.cs",
+      "sha256": "b1533b437348f5ae85c3f1f8744a45a7d35f29a0f39c98eba41108adedf55b3f",
+      "bytes": 43017
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExplorationObservationCases.cs",
+      "sha256": "0aff9058cfbac465382f0d1b60ca83abb2ac2bd36a935a65d2fc85cce842c19a",
+      "bytes": 38782
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedVialCases.cs",
+      "sha256": "485cbb1ef9c9dddf5dc8a5391df7e0bc10e56b1326a2b0899710f2fd97a0f69a",
+      "bytes": 64087
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/DeclaredGeometryCases.cs",
+      "sha256": "f5577ccab2ad1114c5dcce2e2306fe828ab028fbcbec1487d3b6b7415de2ad75",
+      "bytes": 29513
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FerryWraithCases.cs",
+      "sha256": "6e1dd1d7502a42648ec05dd8131ac07760b94d8e320c9468cd2bae72d556f085",
+      "bytes": 49543
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FrightenedLifecycleCases.cs",
+      "sha256": "1ddb0d7a436917ccade93f35e564fe9b4c365c2ada451e43d8ef996cd99c8c0b",
+      "bytes": 49483
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/PostRecoveryEncounterCases.cs",
+      "sha256": "c23534b8d974e87424eb92a9cd14cc61d40a28177f55aa849810442c5c88ea15",
+      "bytes": 66057
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs",
+      "sha256": "fc9b5af629dedd224e8d1455344b7a351a5358897a5321c220516c5bbeb57aed",
+      "bytes": 148822
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-mgt02-connected-work-control/support/compatibility-sources.json",
+      "sha256": "44e3b924e8f1f7e3c8a40096413abc116242be471754054288208ad19069c4fe",
+      "bytes": 9769
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-mgt02-connected-work-control/support/WorkCompatibility.cs",
+      "sha256": "df1fb732ea37f2293a3ad1ba10425aa159d70185b7e6948971d1c9c0cab76464",
+      "bytes": 6927
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "sha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+      "bytes": 6251
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "bytes": 10620
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "bytes": 9996
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PrototypeTraversal.cs",
+      "sha256": "d6ca32ee951489d5356b13a90df0bf7a731078207f1c53974f9f8479f1d04512",
+      "bytes": 3552
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "bytes": 66331
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "bytes": 27175
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1",
+      "bytes": 2116
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionPressure.cs",
+      "sha256": "935d0a28ab75e19b12057f821bc23b2539690ac4271bf93a3069b37c6a31a318",
+      "bytes": 40226
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerryWraith.cs",
+      "sha256": "dfb2febf7997a7794ccead86ed050d601785740b38c0fb0d5677ffdd06aaa4b3",
+      "bytes": 11974
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+      "sha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+      "bytes": 16594
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPostRecoveryEncounter.cs",
+      "sha256": "bbf8ef13bf6406ee918abd75d9c7123b7c86b5d6ef4143ab10a45c308d596f24",
+      "bytes": 13784
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReengagement.cs",
+      "sha256": "441a97ad3599819481d7e1abee690e3fe4bece7b918eec8a15bd707d3e487147",
+      "bytes": 8140
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreatPressure.cs",
+      "sha256": "2d192af8938ab05e654778373bc9b56f15c11ef0685d4d6bc23ee7f7345393af",
+      "bytes": 7185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldDefinitions.cs",
+      "sha256": "d33512c0ad8876d3651decb0cf3ca2e296036d48d3bcb61df6c542cace060fd6",
+      "bytes": 20525
+    }
+  ],
+  "limits": [
+    "No runtime, gameplay, tests, replay or builds executed.",
+    "No accepted predecessor qualification reopened.",
+    "No proof of yet-unexecuted V1 routes, privacy, explanation, no-side-effect behavior or source/API acceptance.",
+    "Parent will apply corrections; this artifact binds the frozen before bytes only."
+  ],
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false,
+  "runtimeChanged": false
+}
