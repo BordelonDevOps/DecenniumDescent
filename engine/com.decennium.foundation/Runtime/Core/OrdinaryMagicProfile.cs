@@ -43,29 +43,32 @@ namespace Decennium.Foundation
         /// condition, component, work and authority checks. Paid cure factories may call this
         /// after expenditure without falsely requiring a second unspent Action.</summary>
         public static string ContextFailure(Snapshot s, string actor)
+            => ContextConstraintV1(s, actor)?.NativeCode;
+
+        public static NativeCommandConstraintV1 ContextConstraintV1(Snapshot s, string actor)
         {
-            if (s.OrdinaryMagic == null || actor != ClericRpProfile.Actor) return "OrdinaryMagicalActivityUnsupported";
+            if (s.OrdinaryMagic == null || actor != ClericRpProfile.Actor) return new NativeCommandConstraintV1("OrdinaryMagicalActivityUnsupported", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 47);
             var current = s.OrdinaryMagic.Current;
             var epoch = WorldTiming.ForActor(s, actor);
-            if (current?.Origin == null || epoch == null || !SupportedEpoch(s, epoch.Id)) return "MagicalAllowanceUnavailable";
-            if (current.ContextEpoch != epoch.Id || current.InInitiative != s.InventoryCombat) return "MagicalContextBoundaryPending";
+            if (current?.Origin == null || epoch == null || !SupportedEpoch(s, epoch.Id)) return new NativeCommandConstraintV1("MagicalAllowanceUnavailable", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 50);
+            if (current.ContextEpoch != epoch.Id || current.InInitiative != s.InventoryCombat) return new NativeCommandConstraintV1("MagicalContextBoundaryPending", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 51);
             var interval = s.WorldIntervals.SingleOrDefault(x => x.ActorId == actor);
             if (interval == null || interval.LastStart != (current.Origin.EpochId == epoch.Id ? current.Origin.GlobalStart : -1))
-                return "MagicalAllowanceBoundaryPending";
+                return new NativeCommandConstraintV1("MagicalAllowanceBoundaryPending", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 54);
             long slot = epoch.SlotAt(s.RuleClock);
-            if (slot != epoch.ProcessedSlot) return "MagicalContextBoundaryPending";
+            if (slot != epoch.ProcessedSlot) return new NativeCommandConstraintV1("MagicalContextBoundaryPending", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 56);
             if (s.InventoryCombat) {
                 if (s.Encounter == null || WorldTiming.ForEncounter(s)?.Id != epoch.Id || s.Encounter.CurrentActor != actor
                     || s.InventoryTurnActor != actor || current.Origin.EpochId != epoch.Id || current.Origin.LocalStart != slot)
-                    return "WrongRegularTurn";
+                    return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 60);
             } else {
                 string encounter = FerryWraithProfile.IsEpoch(s, epoch.Id) ? FerryWraithProfile.Encounter
                     : PostRecoveryProfile.IsEpoch(s, epoch.Id) ? PostRecoveryEncounterDefinition.Encounter : s.Reinforcement.Definition.EncounterId;
                 if (s.Encounter != null || !s.ClosedEncounters.Any(x => x.Encounter.Id == encounter
                     || epoch.Id == s.Reinforcement?.Admission?.Phase.Epoch.Id && s.Reengagement?.IsSegment(x.Encounter.Id) == true))
-                    return "MagicalActivityContextUnsupported";
+                    return new NativeCommandConstraintV1("MagicalActivityContextUnsupported", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 66);
             }
-            if (!current.Consumed && current.Deadline <= s.RuleClock) return "MagicalAccountingBoundaryPending";
+            if (!current.Consumed && current.Deadline <= s.RuleClock) return new NativeCommandConstraintV1("MagicalAccountingBoundaryPending", "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs", 68);
             return null;
         }
         public static MagicalActivityContextRecord Activity(Snapshot s, string command)

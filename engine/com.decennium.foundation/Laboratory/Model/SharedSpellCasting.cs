@@ -73,34 +73,37 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string CastingActionFailure(Snapshot s,Command c)
+            => CastingActionConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 CastingActionConstraintV1(Snapshot s,Command c)
         {
-            if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return "OrdinarySpellcastingUnsupported";
+            if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return new NativeCommandConstraintV1("OrdinarySpellcastingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 77);
             if(s.OrdinaryMagic!=null) {
-                string context=AssessMagicalActivityContext(s,c.Actor); if(context!=null)return context;
+                var context=MagicalActivityContextConstraintV1(s,c.Actor); if(context!=null)return context;
             } else {
                 var epoch=WorldTiming.ForActor(s,c.Actor); var phase=s.Reinforcement?.Admission?.Phase;
                 bool recovery=PostRecoveryProfile.IsEpoch(s,epoch?.Id),ferry=FerryWraithProfile.IsEpoch(s,epoch?.Id);
-                if(epoch==null || !recovery && !ferry && epoch.Id!=phase?.Epoch.Id)return "SpellcastingCalendarUnsupported";
+                if(epoch==null || !recovery && !ferry && epoch.Id!=phase?.Epoch.Id)return new NativeCommandConstraintV1("SpellcastingCalendarUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 83);
                 string encounter=ferry?FerryWraithProfile.Encounter:recovery?PostRecoveryEncounterDefinition.Encounter:s.Reinforcement.Definition.EncounterId;
                 if(s.InventoryCombat ? s.Encounter?.Id!=encounter
                     :s.Encounter!=null || !s.ClosedEncounters.Any(x=>x.Encounter.Id==encounter))
-                    return "SpellcastingContextUnsupported";
+                    return new NativeCommandConstraintV1("SpellcastingContextUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 87);
                 long local=epoch.SlotAt(s.RuleClock);
                 if(local!=epoch.ProcessedSlot || epoch.LatestStart(c.Actor,local)!=local
                     || Interval(s,c.Actor).LastStart!=WorldTiming.TurnOrdinal(s,epoch.Id,local)
-                    || s.InventoryCombat && (s.Encounter.CurrentActor!=c.Actor || s.InventoryTurnActor!=c.Actor))return "WrongRegularTurn";
+                    || s.InventoryCombat && (s.Encounter.CurrentActor!=c.Actor || s.InventoryTurnActor!=c.Actor))return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 91);
             }
             if(PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s) || s.ManufacturingAdvance!=null)
-                return "TacticalChoicePending";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 94);
             if(TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)
                 || s.FrightenedTimings.Any(x=>x.RepeatAt.Time<=s.RuleClock && !s.FrightenedSaves.Any(y=>y.Repeat&&y.ApplicationId==x.ApplicationId)
-                    && !ClericSettlementProfile.CuredBeforeRepeat(s,x)))return "ConditionBoundaryPending";
-            if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
-            if(!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action)return "ConditionPreventsAction";
+                    && !ClericSettlementProfile.CuredBeforeRepeat(s,x)))return new NativeCommandConstraintV1("ConditionBoundaryPending", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 97);
+            if(Interval(s,c.Actor).ActionSpent)return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 98);
+            if(!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action)return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 99);
             if(OrdinaryInventory.Busy(s,c.Actor) || CharacterAdvancementRules.Busy(s,c.Actor)
-                || s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return "SpellcastingRequiresStationaryAccess";
-            if(s.InventoryCombat && !TestOnlyClubAttackPolicy.HasStance(s))return "StanceRequired";
-            return s.CastingActivities.Length>=SpellCastingProfile.MaxActivities?"CastingHistoryFull":null;
+                || s.WorldTraversals.Any(x=>x.ActorId==c.Actor))return new NativeCommandConstraintV1("SpellcastingRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 101);
+            if(s.InventoryCombat && !TestOnlyClubAttackPolicy.HasStance(s))return new NativeCommandConstraintV1("StanceRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 102);
+            return s.CastingActivities.Length>=SpellCastingProfile.MaxActivities?new NativeCommandConstraintV1("CastingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 103):null;
         }
 
         private static bool UsesSpellFocus(string spell)=>spell!="guidance" && spell!="spare-the-dying";
@@ -355,22 +358,25 @@ namespace Decennium.Foundation.Laboratory
             return SpellCastingProfile.AuraOutlinePermitted(true,source.Id==actor || ObservationRules.CanSee(s,actor,source.Id),true,true,false);
         }
         private string AssessCastingUtility(Snapshot s,Command c)
+            => CastingUtilityConstraintV1(s,c)?.NativeCode;
+        private NativeCommandConstraintV1 CastingUtilityConstraintV1(Snapshot s,Command c)
         {
-            string shape=SpellCastingProfile.PayloadFailure(s,c);if(shape!=null)return shape;
-            var selection = CastingUtilitySelectionConstraintV1(s,c); if(selection!=null)return selection.NativeCode;
-            if(c.Kind==CommandKind.EndSpellConcentration)return EndConcentrationConstraintV1(s,c)?.NativeCode;
-            if(c.Kind==CommandKind.RespondSanctuary)return "SanctuaryAdmissionUnavailable";
-            string action=CastingActionFailure(s,c); if(action!=null)return action;
+            const string source = "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs";
+            var shape=SpellCastingProfile.PayloadConstraintV1(s,c);if(shape!=null)return shape;
+            var selection = CastingUtilitySelectionConstraintV1(s,c); if(selection!=null)return selection;
+            if(c.Kind==CommandKind.EndSpellConcentration)return EndConcentrationConstraintV1(s,c);
+            if(c.Kind==CommandKind.RespondSanctuary)return new NativeCommandConstraintV1("SanctuaryAdmissionUnavailable",source,366);
+            var action=CastingActionConstraintV1(s,c); if(action!=null)return action;
             if(c.Kind==CommandKind.GroundCastingStrain) {
-                if(s.OrdinaryMagic?.Current?.Consumed==true)return "GroundingSettlementAlreadyConsumed";
-                return c.Target==""?null:"UnexpectedGroundingTarget";
+                if(s.OrdinaryMagic?.Current?.Consumed==true)return new NativeCommandConstraintV1("GroundingSettlementAlreadyConsumed",source,369);
+                return c.Target==""?null:new NativeCommandConstraintV1("UnexpectedGroundingTarget",source,370);
             }
-            if(c.Kind!=CommandKind.FocusDetectedAura)return "OrdinarySpellUtilityUnsupported";
+            if(c.Kind!=CommandKind.FocusDetectedAura)return new NativeCommandConstraintV1("OrdinarySpellUtilityUnsupported",source,372);
             var detection=ActiveDetection(s,c.Actor);
-            if(detection==null)return "DetectMagicNotActive";
+            if(detection==null)return new NativeCommandConstraintV1("DetectMagicNotActive",source,374);
             if(!s.SpellEffects.Any(x=>AuraPerceived(s,c.Actor,x)&&AuraObservationId(s,c.Actor,detection,x)==c.Target))
-                return "AuraObservationUnavailable";
-            return s.DetectMagicFocuses.Length>=SpellCastingProfile.MaxFocuses?"CastingHistoryFull":null;
+                return new NativeCommandConstraintV1("AuraObservationUnavailable",source,376);
+            return s.DetectMagicFocuses.Length>=SpellCastingProfile.MaxFocuses?new NativeCommandConstraintV1("CastingHistoryFull",source,377):null;
         }
         private string ResolveCastingUtility(Snapshot s,Command c,bool schoolWithheldForDetachedControl=false)
         {

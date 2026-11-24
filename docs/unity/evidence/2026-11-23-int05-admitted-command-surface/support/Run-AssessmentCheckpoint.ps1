@@ -1,5 +1,6 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks)
+param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks)
 $ErrorActionPreference = 'Stop'
+if ($LegacyChecks -and $UtilityChecks) { throw 'Choose one checkpoint case group.' }
 $AssemblyRoot = (Resolve-Path -LiteralPath $AssemblyRoot).Path
 $ResultsDirectory = [IO.Path]::GetFullPath($ResultsDirectory)
 if (Test-Path -LiteralPath $ResultsDirectory) { throw 'Use a new results directory.' }
@@ -20,8 +21,15 @@ if ($LegacyChecks) {
         'chr03_bishop_request_cardinality_and_old_profile_denial',
         'tac08_actual_cast_authority_payload_and_source_denials')
 }
+if ($UtilityChecks) {
+    $names = @('int05_genuine_aura_focus_assessment_ordinary_context',
+        'int05_genuine_concentration_assessment_execution_restore',
+        'tac01_ordinary_magic_consumed_strain_sparse_partition_regression',
+        'tac08_genuine_earned_detect_guidance_aura_and_paid_focus')
+}
 $report = [ordered]@{status='RUNNING'; sourceRun=$AssemblyRoot; startedUtc=[DateTime]::UtcNow.ToString('o');
     legacyChecks=[bool]$LegacyChecks;
+    utilityChecks=[bool]$UtilityChecks;
     sourceHashes=$compiled.sourceHashes; assemblyHashes=@(Get-ChildItem -LiteralPath $AssemblyRoot -Filter '*.dll' | ForEach-Object {
         @{name=$_.Name;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant()}
     }); cases=@(); unityCompilation='NOT RUN'; moduleAcceptance='OPEN'}

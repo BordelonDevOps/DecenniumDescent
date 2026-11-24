@@ -26,29 +26,30 @@ def extract(path, start, end, name, signature, wrapper, edits=()):
     target.write_bytes(current.replace(method,wrapper+updated,1).encode('utf8'))
     print(path,name)
 
-core='engine/com.decennium.foundation/Runtime/Core/'
-extract(core+'SpellCastingProfile.cs',
-    '        public static string PayloadFailure(Snapshot s, Command c)', '\n    }\n}',
-    'PayloadConstraintV1','        internal static NativeCommandConstraintV1 PayloadConstraintV1(Snapshot s, Command c)',
-    '        public static string PayloadFailure(Snapshot s, Command c)\n            => PayloadConstraintV1(s, c)?.NativeCode;\n\n')
-extract(core+'DivineInvocationRecords.cs',
-    '        public static string InvocationPayloadFailure(Snapshot s,Command c)',
-    '        public static bool QualifiesInvocationCure(',
-    'InvocationPayloadConstraintV1','        internal static NativeCommandConstraintV1 InvocationPayloadConstraintV1(Snapshot s,Command c)',
-    '        public static string InvocationPayloadFailure(Snapshot s,Command c)\n            => InvocationPayloadConstraintV1(s,c)?.NativeCode;\n\n',
-    [('?"InvocationSelectionRequired":null','?new NativeCommandConstraintV1("InvocationSelectionRequired", "'+core+'DivineInvocationRecords.cs", 99):null'),
-     ('?"UnexpectedInvocationPayload":null','?new NativeCommandConstraintV1("UnexpectedInvocationPayload", "'+core+'DivineInvocationRecords.cs", 105):null')])
-extract(core+'Simulation.cs',
-    '        private string ValidateCommandAndAuthority(Authority authority, Command command)',
-    '        private bool AcceptedClockAwaitingChoice(',
-    'AssessCommandAndAuthorityV1','        private NativeCommandConstraintV1 AssessCommandAndAuthorityV1(Authority authority, Command command)',
-    '        private string ValidateCommandAndAuthority(Authority authority, Command command)\n            => AssessCommandAndAuthorityV1(authority, command)?.NativeCode;\n\n',
-    [('string invocationShape = BishopProfile.InvocationPayloadFailure(state,command);','var invocationShape = BishopProfile.InvocationPayloadConstraintV1(state,command);'),
-     ('string spellShape = SpellCastingProfile.PayloadFailure(state, command);','var spellShape = SpellCastingProfile.PayloadConstraintV1(state, command);')])
-extract(core+'Simulation.cs',
-    '        private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)',
-    '        public CommandAdmission AssessCommandAdmission(',
-    'AssessCommandAfterAuthorityV1','        private NativeCommandConstraintV1 AssessCommandAfterAuthorityV1(Authority authority, Command command, out CommandReceipt previous)',
-    '        private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)\n        {\n            previous = null;\n            return (AssessCommandAndAuthorityV1(authority, command)\n                ?? AssessCommandAfterAuthorityV1(authority, command, out previous))?.NativeCode;\n        }\n\n',
-    [('            string failure = ValidateCommandAndAuthority(authority, command);\n            if (failure != null) return failure;\n',''),
-     ('? null : "CommandIdConflict"','? null : new NativeCommandConstraintV1("CommandIdConflict", "'+core+'Simulation.cs", 1563)')])
+if __name__ == '__main__':
+    core='engine/com.decennium.foundation/Runtime/Core/'
+    extract(core+'SpellCastingProfile.cs',
+        '        public static string PayloadFailure(Snapshot s, Command c)', '\n    }\n}',
+        'PayloadConstraintV1','        internal static NativeCommandConstraintV1 PayloadConstraintV1(Snapshot s, Command c)',
+        '        public static string PayloadFailure(Snapshot s, Command c)\n            => PayloadConstraintV1(s, c)?.NativeCode;\n\n')
+    extract(core+'DivineInvocationRecords.cs',
+        '        public static string InvocationPayloadFailure(Snapshot s,Command c)',
+        '        public static bool QualifiesInvocationCure(',
+        'InvocationPayloadConstraintV1','        internal static NativeCommandConstraintV1 InvocationPayloadConstraintV1(Snapshot s,Command c)',
+        '        public static string InvocationPayloadFailure(Snapshot s,Command c)\n            => InvocationPayloadConstraintV1(s,c)?.NativeCode;\n\n',
+        [('?"InvocationSelectionRequired":null','?new NativeCommandConstraintV1("InvocationSelectionRequired", "'+core+'DivineInvocationRecords.cs", 99):null'),
+         ('?"UnexpectedInvocationPayload":null','?new NativeCommandConstraintV1("UnexpectedInvocationPayload", "'+core+'DivineInvocationRecords.cs", 105):null')])
+    extract(core+'Simulation.cs',
+        '        private string ValidateCommandAndAuthority(Authority authority, Command command)',
+        '        private bool AcceptedClockAwaitingChoice(',
+        'AssessCommandAndAuthorityV1','        private NativeCommandConstraintV1 AssessCommandAndAuthorityV1(Authority authority, Command command)',
+        '        private string ValidateCommandAndAuthority(Authority authority, Command command)\n            => AssessCommandAndAuthorityV1(authority, command)?.NativeCode;\n\n',
+        [('string invocationShape = BishopProfile.InvocationPayloadFailure(state,command);','var invocationShape = BishopProfile.InvocationPayloadConstraintV1(state,command);'),
+         ('string spellShape = SpellCastingProfile.PayloadFailure(state, command);','var spellShape = SpellCastingProfile.PayloadConstraintV1(state, command);')])
+    extract(core+'Simulation.cs',
+        '        private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)',
+        '        public CommandAdmission AssessCommandAdmission(',
+        'AssessCommandAfterAuthorityV1','        private NativeCommandConstraintV1 AssessCommandAfterAuthorityV1(Authority authority, Command command, out CommandReceipt previous)',
+        '        private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)\n        {\n            previous = null;\n            return (AssessCommandAndAuthorityV1(authority, command)\n                ?? AssessCommandAfterAuthorityV1(authority, command, out previous))?.NativeCode;\n        }\n\n',
+        [('            string failure = ValidateCommandAndAuthority(authority, command);\n            if (failure != null) return failure;\n',''),
+         ('? null : "CommandIdConflict"','? null : new NativeCommandConstraintV1("CommandIdConflict", "'+core+'Simulation.cs", 1563)')])

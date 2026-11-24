@@ -1,0 +1,233 @@
+{
+  "reviewId": "INT05-ground-focus-native-assessment-cross-review-01",
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "comparisonBase": "d2742031a",
+  "originBaseline": "67f3d201b",
+  "operations": [
+    "GroundCastingStrain",
+    "FocusDetectedAura"
+  ],
+  "scope": "Only the current native assessment expansion and shared extractions in SharedCommandAssessmentV1.cs, SharedSpellCasting.cs, SharedOrdinaryMagic.cs, and OrdinaryMagicProfile.cs, plus source inspection of the new AdmittedUtilityCases.cs. Reused prior finite helper audits for unchanged leaves. No runtime/test/build execution, no runtime edits, no public API/disclosure or module acceptance.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "b805c465545acf990606a75a7baee9e8c60270f9be32b424f38e5436b5c20d87"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "c32a12fb1e12afc8cc64c627deca3c8cf7147461324c127b733d0a506e7520a2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "sha256": "c3b8a3d247842529999bc304a55f452ee7cde8be969e6abef3b214b9b0926048"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+      "sha256": "70dbab1629c32b5d0e4ff0151a005e7e898f7b39755a9c5c3e757197ecd1ef5c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "sha256": "4bffcd85aebbb5b2ef4ff0e3cd30d5cc2bd93e57de277ee89c35f68eab1c9760"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "sha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "1af861a9f11a2e4e02b28772b87bc3c7301906988f6304222e4a285c22afe0c9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f6abddaa0f4ad56d97a8e1fcc9b8e8d55138bc42d10c9baeaf71ff24bdc00178"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "sha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "sha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71"
+    }
+  ],
+  "guardComparison": {
+    "result": "The changed guards preserve their original conditions, short-circuit ordering, and native denial codes; string wrappers now return the shared constraint's NativeCode.",
+    "precedingGates": "The previously reviewed WorldOpening, active-long-rest, pending-Sanctuary, Guidance, and physical-contamination sequence is unchanged. CastingUtilityConstraintV1 now owns the same payload/selected-caster checks and operation dispatch previously duplicated for End. End still returns before action/context checks.",
+    "castingActionOrder": [
+      "Connected casting and exact cleric actor.",
+      "If OrdinaryMagic exists: exact ContextConstraintV1, then original magical-accounting row limits.",
+      "Otherwise: selected epoch, admitted encounter/closed-encounter context, exact local slot/processed slot/latest actor Start/world interval/regular-turn checks.",
+      "Pending calendar choice, manufacturing choice, recovery offer, or ManufacturingAdvance.",
+      "Unprocessed journal-time condition deadline, or uncleared due Frightened repeat.",
+      "ActionSpent.",
+      "CapableWorker and current Action permission.",
+      "OrdinaryInventory.Busy, CharacterAdvancementRules.Busy, or world traversal.",
+      "Combat stance when InventoryCombat.",
+      "CastingActivities native capacity."
+    ],
+    "groundSpecificOrder": [
+      "OrdinaryMagic current allowance already Consumed.",
+      "Target must be the native empty string."
+    ],
+    "focusSpecificOrder": [
+      "Active unexpired Detect Magic effect by this caster.",
+      "A currently perceived registered source effect whose existing opaque AuraObservationId equals the requested target.",
+      "DetectMagicFocuses native capacity."
+    ],
+    "ordinaryContextOrder": [
+      "Selected OrdinaryMagic record and cleric actor.",
+      "Current real origin, selected actor epoch, SupportedEpoch.",
+      "Exact context epoch and initiative mode.",
+      "Matching WorldInterval LastStart, including existing carried-origin -1 branch.",
+      "Current epoch SlotAt clock equals ProcessedSlot.",
+      "Tactical: matching encounter epoch/current actor/inventory turn/origin local start; ordinary: no live encounter and the required closed encounter or reengagement segment.",
+      "An unconsumed current allowance deadline must be after current RuleClock."
+    ]
+  },
+  "originCoordinatesVerified": {
+    "method": "Direct git show 67f3d201b comparisons; each coordinate identifies the original guard, not its shifted present file line.",
+    "count": 27,
+    "files": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+        "lines": [
+          77,
+          83,
+          87,
+          91,
+          94,
+          97,
+          98,
+          99,
+          101,
+          102,
+          103,
+          366,
+          369,
+          370,
+          372,
+          374,
+          376,
+          377
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+        "lines": [
+          32
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+        "lines": [
+          47,
+          50,
+          51,
+          54,
+          56,
+          60,
+          66,
+          68
+        ]
+      }
+    ]
+  },
+  "conditionAndContextPurity": {
+    "journalTime": "HasUnprocessedConditionDeadline at ConditionCombatPolicy.cs:123-130 calls ConditionResolutionScope.Read(journal).Ledger. Under the owning strict scope this returns the established journal-time ledger. It must not be replaced by the current projected ledger, because that could conceal an unsettled deadline.",
+    "currentMode": "CapableWorker, Permissions, and Bishop aura restrictions use ConditionsFor -> Project with the original schema threshold and exact current RuleClock marker. The previously materialized projection supplies the ledger; no Restore or AdvanceTo is invoked by these reads.",
+    "fearCureChecks": "ClericSettlementProfile.CuredBeforeRepeat/CuredBefore and BishopProfile.InvocationCuredBefore/QualifiesInvocationCure use retained receipt/application IDs, timestamp comparisons, and Any/Contains joins. They do not replay condition operations or settle a cure.",
+    "ordinaryContext": "ContextConstraintV1 and MagicalActivityContextConstraintV1 select current immutable calendar data, perform native clock/ordinal arithmetic, and count existing rows. They do not RecordMagicalActivityContext, close segments, settle allowances, or synchronize calendars.",
+    "permissionLeaves": "Current life, strain, permission, and work membership predicates reuse the finite CURRENT_FACT_HELPER_AUDIT, CURRENT_PERMISSION_SIGHT_AUDIT, and PROCEDURE_INVENTORY_READ_AUDIT closures; this review does not expand those reports into an all-engine purity claim.",
+    "auraPath": "ActiveDetection is a present/unexpired record selector. AuraPerceived retains the Bishop sight/unawareness condition, admitted effect/cast provenance, actor/traversal/range/line-of-effect predicates, and native self-or-CanSee rule. AuraObservationId retains the existing SHA256-based deterministic digest of content fingerprint, actor, detection ID, and effect ID. The hash is not an RNG draw and no raw effect identity is newly exported.",
+    "prohibitedPathsExcluded": [
+      "ResolveCastingUtility",
+      "ResolveCore",
+      "RecordCastingActivity",
+      "RecordMagicalActivityContext",
+      "condition Restore/Append/AdvanceTo",
+      "ordinary magic settlement or calendar synchronization",
+      "ObservationRules.Refresh",
+      "candidate validation/checkpoint",
+      "RNG or resource reservation"
+    ]
+  },
+  "preservedSemantics": [
+    "No positive-strain prerequisite was introduced for GroundCastingStrain; a zero-strain request retains its native eligibility.",
+    "Ground's consumed-settlement guard remains after action/context admission. The extraction does not infer a fresh allowance or change the carried/current origin rules.",
+    "The assessment pays no Action, advances no clock, spends no RP, and applies no immediate strain reduction. Authoritative action payment and later grounding settlement remain in the original resolver/calendar paths.",
+    "Focus retains its existing opaque observation identity and currently perceived aura requirements. Previously focused auras are not newly rejected; the native history-capacity guard remains.",
+    "No new spell components, target consent, private inventory rights, selected-profile behavior, or unconditional sight exception was added.",
+    "CommitFeasibility remains null. Initial eligibility does not certify post-resolution reconciliation or candidate validation."
+  ],
+  "testSourceReview": {
+    "executedByThisReviewer": false,
+    "cases": [
+      {
+        "name": "int05_genuine_grounding_assessment_pays_action_once",
+        "classification": "GENUINE_SELECTED_SESSION_ROUTE_SOURCE_REVIEW",
+        "details": "Starts at the existing connected own-turn factory, actually casts Sanctuary to produce strain, advances ordinary native turns, assesses Ground repeatedly, saves/restores before payment, submits Ground, checks duplicate/ActionAlreadySpent behavior, performs the real end-turn settlement, and saves/restores the settled state."
+      },
+      {
+        "name": "int05_genuine_aura_focus_assessment_ordinary_context",
+        "classification": "GENUINE_SELECTED_OMA_SESSION_ROUTE_SOURCE_REVIEW",
+        "details": "Uses the actual OMA expedition/objective/advancement route, casts Guidance and Detect Magic, obtains the exposed aura ID from the legacy filtered session view, assesses an unknown target and the genuine aura, saves/restores before payment, submits Focus, and checks current school disclosure/payment and post-payment restore."
+      }
+    ],
+    "assertionBoundary": "AssertPureUtility checks repeated current native assessments, initial eligibility, null feasibility, zero prohibited-call attempts, and unchanged canonical state. The positive routes use connected submission. Direct Simulation.Execute on the fresh negative requests establishes native denial parity, not an additional connected-host authorization witness.",
+    "limitations": "These two cases are useful incremental routes, not all semantic axes or all five qualification paths. No test result, compilation outcome, or authenticated replay result is independently claimed here."
+  },
+  "remainingQualification": [
+    "Retain actual run evidence and corrected source hashes for these cases separately.",
+    "Complete the accepted operation-axis allocation, including relevant OMA consumed/carried-origin and deadline branches, unavailable action/context/condition/work variants, aura provenance/perception/history variants, and genuine pending choices. Existing historical qualification remains evidence and need not be restarted.",
+    "Retain the unresolved genuine OMA carried-before-first-Start qualification gap unless an actual command route supplies it; the ordinary successful Focus route is not that gap's witness.",
+    "Demonstrate journal-time overdue-deadline denial separately from current projected condition permissions, including legacy mode and no-rewind phase behavior where applicable.",
+    "Post-resolution accounting additions, shared reconciliation, terminal capacity/validation, final public disclosure, and five complete connected paths remain outside this initial-eligibility review."
+  ],
+  "concreteFindings": [],
+  "acceptanceBoundary": "No concrete extraction defect found in this bounded source review. This is not acceptance of the full operation, final V1 APIs, full purity matrix, INT-05, production authority, or Unity integration."
+}

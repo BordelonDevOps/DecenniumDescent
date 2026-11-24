@@ -21,15 +21,18 @@ namespace Decennium.Foundation.Laboratory
                 : actor == ClericRpProfile.Actor ? s.OrdinaryMagic.Current?.Origin : null;
 
         private static string AssessMagicalActivityContext(Snapshot s, string actor)
+            => MagicalActivityContextConstraintV1(s, actor)?.NativeCode;
+
+        private static NativeCommandConstraintV1 MagicalActivityContextConstraintV1(Snapshot s, string actor)
         {
-            string failure = OrdinaryMagicProfile.ContextFailure(s, actor);
+            var failure = OrdinaryMagicProfile.ContextConstraintV1(s, actor);
             if (failure != null) return failure;
             var record = s.OrdinaryMagic;
             return record.Activities.Count >= SpellCastingProfile.MaxActivities
                 || record.Segments.Count >= MagicalActivityCalendarRecord.MaxRows - 4
                 || record.Settlements.Count >= MagicalActivityCalendarRecord.MaxRows - 4
                 || record.Transitions.Count >= MagicalActivityCalendarRecord.MaxRows - 4
-                || record.ZeroIdleRanges.Count >= MagicalActivityCalendarRecord.MaxRows - 4 ? "MagicalAccountingHistoryFull" : null;
+                || record.ZeroIdleRanges.Count >= MagicalActivityCalendarRecord.MaxRows - 4 ? new NativeCommandConstraintV1("MagicalAccountingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs", 32) : null;
         }
         private static void CloseMagicalSegment(Snapshot s, Command cause, RuleTime at)
         {

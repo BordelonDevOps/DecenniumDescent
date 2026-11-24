@@ -8,7 +8,8 @@ namespace Decennium.Foundation.Laboratory
     {
         // Incremental implementation inventory, not the final INT-05 operation catalog.
         bool ICommandAssessmentFactsPolicyV1.SupportsAssessment(CommandKind kind)
-            => connectedClericCasting && kind == CommandKind.EndSpellConcentration;
+            => connectedClericCasting && (kind == CommandKind.EndSpellConcentration
+                || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura);
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
 
@@ -18,7 +19,7 @@ namespace Decennium.Foundation.Laboratory
             using var conditions = ConditionResolutionScope.EnterRead(context, current);
             if (((ICommandAssessmentFactsPolicyV1)this).RequiresVerifiedAssessment(command.Kind))
                 throw new InvalidOperationException("This operation requires its owning verified checkpoint.");
-            if (command.Kind != CommandKind.EndSpellConcentration || !connectedClericCasting)
+            if (!((ICommandAssessmentFactsPolicyV1)this).SupportsAssessment(command.Kind))
                 throw new InvalidOperationException("Native assessment extraction is incomplete for this operation.");
             var failure = WorldOpeningConstraintV1(current, command)
                 ?? ActiveLongRestInterruptionV1(current, command);
@@ -26,9 +27,7 @@ namespace Decennium.Foundation.Laboratory
                 failure = NonSanctuaryResponseConstraintV1(command);
             failure = failure ?? GuidanceChoiceConstraintV1(current, command)
                 ?? SpellCastingProfile.PhysicalConstraintV1(current, command)
-                ?? SpellCastingProfile.PayloadConstraintV1(current, command)
-                ?? CastingUtilitySelectionConstraintV1(current, command)
-                ?? EndConcentrationConstraintV1(current, command);
+                ?? CastingUtilityConstraintV1(current, command);
             // Initial utility admission does not certify the shared post-resolution tail or
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);
