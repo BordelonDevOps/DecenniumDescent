@@ -17,7 +17,7 @@ namespace Decennium.Foundation.Tests
                 Require(result.Supported && result.Admissible==(expected==null) && result.Constraint?.NativeCode==expected
                     && result.InitialEligibility==(expected==null) && result.CommitFeasibility==null
                     && result.ProhibitedCallAttempts.All(x=>x==0) && before.SequenceEqual(Bytes(sim)),
-                    "Utility assessment changed state or disagreed with expected native admission: "+command.Kind+" / "+result.Status+" / "+result.Constraint?.NativeCode);
+                    "Native assessment changed state or disagreed with expected admission: "+command.Kind+" / "+result.Status+" / "+result.Constraint?.NativeCode);
             }
         }
 
@@ -66,11 +66,13 @@ namespace Decennium.Foundation.Tests
                 CommitVialRoute(session,new Command("int05.focus.advance",actor,ShortRestCapture(session).Revision,
                     CommandKind.AdvanceCharacterLevel,ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices()));
                 ReachClericOwnSlot(session);
-                CommitVialRoute(session,new Command("int05.focus.aura",actor,ShortRestCapture(session).Revision,
-                    CommandKind.CastKnownSpell,hero,spellCast:new SpellCastRequest("guidance",willingTarget:true)));
+                var guidance=new Command("int05.focus.aura",actor,ShortRestCapture(session).Revision,
+                    CommandKind.CastKnownSpell,hero,spellCast:new SpellCastRequest("guidance",willingTarget:true));
+                AssertPureUtility(session,guidance);CommitVialRoute(session,guidance);
                 ClericCommit(session,hero,CommandKind.AdvanceClock,x:6,y:1);
-                CommitVialRoute(session,new Command("int05.focus.detect",actor,ShortRestCapture(session).Revision,
-                    CommandKind.CastKnownSpell,actor,spellCast:new SpellCastRequest("detect-magic",SpellCastingProfile.FocusId)));
+                var detect=new Command("int05.focus.detect",actor,ShortRestCapture(session).Revision,
+                    CommandKind.CastKnownSpell,actor,spellCast:new SpellCastRequest("detect-magic",SpellCastingProfile.FocusId));
+                AssertPureUtility(session,detect);CommitVialRoute(session,detect);
                 var view=session.View(ExpeditionSeat.Player);var recipient=view.Actors.Single(x=>x.Position.Id==hero);
                 var aura=view.Actors.Single(x=>x.Position.Id==actor).Casting.Auras.Single(x=>x.X==recipient.Position.X&&x.Y==recipient.Position.Y);
                 ClericCommit(session,hero,CommandKind.AdvanceClock,x:6,y:1);var before=ShortRestCapture(session);

@@ -128,17 +128,20 @@ namespace Decennium.Foundation
         }
 
         public static string AssessChoice(string spell, int actualClericLevel, bool bishop = false)
+            => ChoiceConstraintV1(spell, actualClericLevel, bishop)?.NativeCode;
+
+        public static NativeCommandConstraintV1 ChoiceConstraintV1(string spell, int actualClericLevel, bool bishop = false)
         {
-            if (actualClericLevel < 1 || actualClericLevel > (bishop?3:2)) return "ClericRepertoireLevelUnsupported";
+            if (actualClericLevel < 1 || actualClericLevel > (bishop?3:2)) return new NativeCommandConstraintV1("ClericRepertoireLevelUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 132);
             // Retain the distinct source boundaries, without admitting these controls into the supported catalog.
-            if (spell == "flare-spark") return "SpellClassAccessDenied";
-            if (spell == BishopProfile.Dispel && (!bishop || actualClericLevel<3)) return "SpellClassLevelDenied";
-            if (spell == "light") return "SpellSourceAdmissionUnsupported";
+            if (spell == "flare-spark") return new NativeCommandConstraintV1("SpellClassAccessDenied", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 134);
+            if (spell == BishopProfile.Dispel && (!bishop || actualClericLevel<3)) return new NativeCommandConstraintV1("SpellClassLevelDenied", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 135);
+            if (spell == "light") return new NativeCommandConstraintV1("SpellSourceAdmissionUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 136);
             var definition = SpellSourceCatalog.Get(spell);
-            if (definition == null) return "SpellSourceAdmissionUnsupported";
+            if (definition == null) return new NativeCommandConstraintV1("SpellSourceAdmissionUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 138);
             var access = definition.AccessFor("Cleric");
-            if (access == null) return "SpellClassAccessDenied";
-            return access.MinimumClassLevel > actualClericLevel || access.Rank > (bishop?2:1) ? "SpellClassLevelDenied" : null;
+            if (access == null) return new NativeCommandConstraintV1("SpellClassAccessDenied", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 140);
+            return access.MinimumClassLevel > actualClericLevel || access.Rank > (bishop?2:1) ? new NativeCommandConstraintV1("SpellClassLevelDenied", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 141) : null;
         }
 
         public static string ValidateInitialChoices(IEnumerable<string> choices)

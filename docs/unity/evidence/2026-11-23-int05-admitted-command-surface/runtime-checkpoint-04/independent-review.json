@@ -1,0 +1,298 @@
+{
+  "reviewId": "INT05-spell-cast-native-assessment-cross-review-01",
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "comparisonHead": "589fe8601",
+  "nativeOriginBaseline": "67f3d201b",
+  "operation": "CastKnownSpell",
+  "scope": "Independent static review of the current cast/Purify/Bishop/repertoire guard extraction and its new assessment test assertions, per engine/AGENTS.md separate-review instruction. No runtime/test/build execution; no runtime/test edits. Existing reports preserved. This is initial native eligibility only, not public API/disclosure or module acceptance.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "ebc5eca09710254f9aa3a9f96fe5b08cb632499e6f7cdc5b872f34ff680509d8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "fba1260f72f8bdda2535ff63a64573f5e5c85aecd52bb6632a4f83bc1bf4c233"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+      "sha256": "f1fdb6511bb6f79eb6a5775ad56c6c3baee95876c71a79ec9f61b5e291ab1e1b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "d306fb16a377d633ac827191efe7d4e5d1171c439c7d66597f8e981c8d7d76cc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedSpellCases.cs",
+      "sha256": "d2b38808d820b5f972c7fc1c241d5cca2d8ef2d21c1732ad2dadc673a7376420"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "sha256": "9874f2459123418c5e097183b97540374b237526c260cec9941a9f33508b7251"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs",
+      "sha256": "20e1a9ce8f629a948bc1052c759afbaa680ee72e591be5d57aae1e82f076eb77"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/BishopEntryCases.cs",
+      "sha256": "7b4b58bf5e7232fdc5c83b8db56778a7ed4dcbfdcf11e476b8b467100c43eff0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+      "sha256": "b342fbdbe85f97e48841f88a7574299846cba8f2790afe8003ed9039c9f4f1cd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "sha256": "b8cef6dd743524ed3c17f06c642b036452c8028497bb5752d9ae8475eb4740fc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "c3eb5a420f8f10ff9511a522ad24a5a2ac943a5e70f1491e2fb1496ad88dc51b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacterBuild.cs",
+      "sha256": "46d2a893e3c45ea175ba373a7d8c469129ddb79b951f90cc86c92937ef625ce6"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f6abddaa0f4ad56d97a8e1fcc9b8e8d55138bc42d10c9baeaf71ff24bdc00178"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/ground-focus-assessment-cross-review-01.json",
+      "sha256": "f7c33df8f5ec6cc5b599aa2562d896da9f317992a554ad6c94657aa9580fde0f"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/end-concentration-assessment-cross-review-01.json",
+      "sha256": "379bf73af5f4d3be3ec54865c2358241af7b8d9ec6ae19cf56e9707e7180c410"
+    }
+  ],
+  "reviewedMethods": [
+    "TestOnlySharedWorldPolicy.ICommandAssessmentFactsPolicyV1.SupportsAssessment and AssessFacts",
+    "AssessSpellCast / SpellCastConstraintV1",
+    "PurifyBatchFailure / PurifyBatchConstraintV1",
+    "BishopDispelFailure / BishopDispelConstraintV1",
+    "ClericRepertoireProfile.AssessChoice / ChoiceConstraintV1"
+  ],
+  "guardComparison": {
+    "result": "The changed guard expressions, native branch order, and short-circuit operators are unchanged. String-returning legacy entry points delegate to the same constraint-producing method used by the new assessor.",
+    "globalRoute": "The previously reviewed WorldOpening -> active-long-rest -> pending-Sanctuary -> Guidance -> physical-contamination sequence is retained. CastKnownSpell selects SpellCastConstraintV1 where native ResolveCore selects AssessSpellCast/ResolveSpellCast. Cast is not a SanctuaryAttackCommand; this extraction does not run the Sanctuary attack resolver/probe.",
+    "orderedCastGuards": [
+      "Shared spell payload shape.",
+      "CastKnownSpell kind and non-null SpellCast selection.",
+      "The exact previously reviewed CastingActionConstraintV1 sequence.",
+      "Actual Cleric level and Bishop earned status, then original repertoire choice/source/class/rank access.",
+      "Known spell record, acquisition revision, and exact source binding.",
+      "Current audible/verbal capability.",
+      "Native focus selection and current physical held/worn placement, or empty focus sentinel for the two no-focus spells.",
+      "Actual available hand count, with the existing held-focus exception.",
+      "Focused DC election limited to eligible Sanctuary/Focused stance and unused stance revision.",
+      "Exact native WillingTarget election.",
+      "Branch-specific Bishop Dispel, Purify, or ordinary actor-target predicates.",
+      "Current character facts and ranked dissonance restriction/surcharge.",
+      "Current RP pool and derived maximum, then available RP against the native base cost plus surcharge.",
+      "Native cast/effect/turn-end row limits, dissonance bound, and derived command ID .effect validity."
+    ],
+    "ordinaryTargetOrder": "Target existence/party-willing restriction/Detect self-only -> no target traversal -> living target within 30 feet and line of effect -> native sight rule including Arcane Ward blindness -> actual dying/unstable requirement for Spare the Dying.",
+    "purifyOrder": "Exact Work.Lot/InventoryLot metadata and native unit/amount limits -> whole available amount and no conflicting fill -> separated vessel contents -> actual linked portable physical item and open enclosing parents -> actual vessel/carrier/ground placement, no carrier traversal, or native crop-plot location -> 30-foot/line-of-effect check -> blindness and geometric sight.",
+    "bishopOrder": "Earned Bishop/cleric/Dispel selection -> active Detect Magic -> exact currently perceived opaque aura identity -> the existing own prior Guidance cast, rank-zero source/known acquisition provenance -> Dispel history capacity.",
+    "repertoireOrder": "Supported actual class level -> explicit flare-spark class denial -> unearned/too-low-level Dispel denial -> explicit light source denial -> source row existence -> Cleric access -> native minimum level/rank bounds.",
+    "unchangedEarlyMasking": "DispelSourceUnsupported remains a native guard shared with execution, although the earlier actual cast/action/repertoire guards prevent its first failure for the admitted CastKnownSpell route. This extraction does not turn that native origin into a new publicly reachable diagnostic."
+  },
+  "originalGuardCoordinates": {
+    "verifiedCount": 37,
+    "verification": "Compared every newly attached coordinate directly with git show 67f3d201b; each identifies the original corresponding guard. Coordinates intentionally remain baseline coordinates after current line shifts.",
+    "files": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+        "lines": [
+          113,
+          119,
+          122,
+          128,
+          129,
+          130,
+          133,
+          135,
+          143,
+          144,
+          147,
+          149,
+          150,
+          154,
+          157,
+          158,
+          161,
+          170,
+          172,
+          175,
+          184,
+          191,
+          193,
+          196,
+          198
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+        "lines": [
+          13,
+          14,
+          16,
+          22,
+          23
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+        "lines": [
+          132,
+          134,
+          135,
+          136,
+          138,
+          140,
+          141
+        ]
+      }
+    ]
+  },
+  "purityFindings": [
+    {
+      "path": "Existing action/context and current-condition reads",
+      "finding": "Reuses the finite ground/focus review: journal-time deadline detection stays separate from current projected capability/sight. No condition ledger reconstruction or deadline settlement is added."
+    },
+    {
+      "path": "Spell source and repertoire",
+      "finding": "SpellSourceCatalog.Get and SpellSourceDefinition.AccessFor select immutable source rows. KnownSpellRecord.MatchesSource compares retained acquisition/source fields; it does not create knowledge, call FromSource, or execute a snapshot validator."
+    },
+    {
+      "path": "BishopProfile.Earned/Advancement",
+      "finding": "Selects an existing matching CharacterAdvancementRecord. BishopDispelConstraintV1 only selects retained detection/effect/cast/known-spell records and counts prior dispels; it does not end an effect or append a dispel."
+    },
+    {
+      "path": "AvailableHands and stance",
+      "finding": "Counts existing held equipment/grips and the worn-shield predicate; ActiveStance selects the current unexpired stance. No equipment or Action mutation occurs."
+    },
+    {
+      "path": "Purify",
+      "finding": "Work.AvailableAmount sums remaining retained reservations and subtracts that exact rational total from the existing lot amount. It does not Reserve, release, split, consume, or construct a replacement WorkLedger. Parent-chain traversal and physical placement joins read the already validated current portable graph."
+    },
+    {
+      "path": "RP capacity",
+      "finding": "DeriveResonanceMaximum groups current class levels and uses MergedRp -> ValidateClassLevels. The exact local class-list argument checks, fixed ClassProfile/HitDie access, local sorting, and immutable capacity-result construction are explicitly distinguished from forbidden snapshot/policy/history validation in MAGIC_READ_EXTRACTION_PLAN.json:300 and :1738. This path does not replay advancement or reconcile the live pool."
+    },
+    {
+      "path": "Casting strain",
+      "finding": "RankedBlocked and RankedSurcharge perform the unchanged checked threshold arithmetic over current Dissonance/proficiency/modifier. BeginAdmittedCast, settlement and refrain updates remain execution-only."
+    },
+    {
+      "path": "Geometry and aura",
+      "finding": "Reuses the audited current-materialized-condition sight and geometry selectors. No ObservationRules.Refresh, reveal, aura-focus mutation, or raw private identity export is introduced."
+    },
+    {
+      "path": "Authoritative exclusions",
+      "finding": "AssessFacts calls no ResolveSpellCast, ResolveBishopDispel, EndSpellEffect, PayAction, RecordCastingActivity, RNG, Reserve, condition Restore/AdvanceTo, policy/snapshot validation, or replay. InitialEligibility is reported with CommitFeasibility=null."
+    }
+  ],
+  "testSourceReview": {
+    "executionClaim": "Source inspection only; parent candidate09 execution is not independently asserted.",
+    "newCase": {
+      "name": "int05_genuine_cast_assessment_denials_payment_and_retry",
+      "producer": "Existing CastingFirstOwnTurn connected reinforcement route; no detached insertion of knowledge, resources, target life, or effect state.",
+      "negativeRequests": [
+        "SpellNotKnown/detect-magic",
+        "SpellClassAccessDenied/flare-spark",
+        "SpellClassLevelDenied/unearned Dispel",
+        "SpellSourceAdmissionUnsupported/light",
+        "SpellFocusUnavailable/Arcane Ward",
+        "UnexpectedSpellFocusSelection/Guidance",
+        "SpellWillingTargetSelectionRequired/Guidance",
+        "FocusedSpellBenefitUnavailable/Sanctuary",
+        "StabilizationTargetNotDying/Spare the Dying"
+      ],
+      "positiveRequest": "Actual Sanctuary cast after repeated native reads and pre-cast save/restore, then payment/effect assertions, duplicate native read and connected retry, fresh spent-Action denial, and post-cast strict restore.",
+      "classification": "Genuine route and retained native negative requests by test source; exact execution outcomes remain run evidence, not this review."
+    },
+    "extensions": [
+      {
+        "case": "int05_genuine_aura_focus_assessment_ordinary_context",
+        "newAssertions": "AssertPureUtility before the existing genuine Guidance and Detect Magic casts."
+      },
+      {
+        "case": "tac08_genuine_spare_stabilizes_actual_combat_patient",
+        "newAssertions": "AssertPureUtility immediately before the existing actual patient cast after its genuine combat/save prefix."
+      },
+      {
+        "case": "tac08_genuine_purify_finite_water_and_measured_intake",
+        "newAssertions": "AssertPureUtility before the existing finite contaminated-water cast."
+      },
+      {
+        "case": "chr03_bishop_connected_earned_funded_cure_aura_dispel_continue",
+        "newAssertions": "AssertPureUtility before the actual own-Guidance aura Dispel in RunBishopTypedCampaign."
+      }
+    ],
+    "helper": "AssertPureUtility performs three repeated native assessments and checks expected initial eligibility/native constraint, null feasibility, zero prohibited-call counters, and canonical state equality. Negative direct Execute calls establish native denial parity; they are not new connected-host authorization evidence.",
+    "coverageLimit": "The added assertions span positive Sanctuary, Guidance, Detect Magic, Spare the Dying, finite-water Purify, and own-Guidance Dispel routes. Arcane Ward has a new focus-denial assertion here, not a new positive assessment witness. Food/linked-container Purify branches, additional focus/consent/Focussed-DC/perception/deadline/capacity variants, and complete five-path coverage are not established by these additions."
+  },
+  "preservedAuthority": [
+    "Core command/authority and spell willing-target control checks still precede policy assessment. No new target consent or inventory authority is granted by a successful guard result.",
+    "Purify retains actual LotId-to-linked physical joins; no itemId==LotId equivalence or invented resource quantum is added.",
+    "Unknown or unsupported source branches retain distinct native guard origins. Their eventual public diagnostic requires the accepted per-origin disclosure mapping.",
+    "All reviewed implementations remain within the existing TEST_ONLY LabModel authority boundary. Source catalogue lookup is not production casting authority."
+  ],
+  "remainingObligations": [
+    "Retain candidate09 compiler/test output and exact run source hashes separately. A static review does not certify that it passed.",
+    "Complete each accepted CastKnownSpell semantic-axis disposition and all five required connected paths using genuine routes or accurately labelled controls/gaps; preserve previously accepted evidence rather than restarting qualification.",
+    "Preserve pure initial eligibility separately from conditional/end-stage capacity, downstream shared reconciliation, actual roll/deadline consequences, and final candidate validation. CommitFeasibility must remain unset until a source-derived proof justifies a stronger result.",
+    "Final public DTO facts, actor/target authorization, redaction and per-origin denial projection remain outside this incremental native extraction review.",
+    "Static catalogue startup checks and local scalar invariants are not a waiver for whole-state validation during a read; retain that exact distinction in instrumentation and future extraction."
+  ],
+  "concreteBlockers": [],
+  "acceptanceBoundary": "No concrete defect found in the reviewed extraction. No full operation, all-module purity, final DTO, INT-05, production, or Unity acceptance is claimed."
+}

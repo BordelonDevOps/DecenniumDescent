@@ -1,6 +1,6 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks)
+param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks, [switch]$SpellChecks, [switch]$BishopChecks)
 $ErrorActionPreference = 'Stop'
-if ($LegacyChecks -and $UtilityChecks) { throw 'Choose one checkpoint case group.' }
+if (([int][bool]$LegacyChecks+[int][bool]$UtilityChecks+[int][bool]$SpellChecks+[int][bool]$BishopChecks) -gt 1) { throw 'Choose one checkpoint case group.' }
 $AssemblyRoot = (Resolve-Path -LiteralPath $AssemblyRoot).Path
 $ResultsDirectory = [IO.Path]::GetFullPath($ResultsDirectory)
 if (Test-Path -LiteralPath $ResultsDirectory) { throw 'Use a new results directory.' }
@@ -27,9 +27,21 @@ if ($UtilityChecks) {
         'tac01_ordinary_magic_consumed_strain_sparse_partition_regression',
         'tac08_genuine_earned_detect_guidance_aura_and_paid_focus')
 }
+if ($SpellChecks) {
+    $names = @('int05_genuine_aura_focus_assessment_ordinary_context',
+        'tac08_genuine_spare_stabilizes_actual_combat_patient',
+        'tac08_genuine_purify_finite_water_and_measured_intake',
+        'tac08_actual_cast_authority_payload_and_source_denials',
+        'tac08_genuine_first_cast_spends_real_action_and_replays')
+}
+if ($BishopChecks) {
+    $names = @('chr03_bishop_connected_earned_funded_cure_aura_dispel_continue')
+}
 $report = [ordered]@{status='RUNNING'; sourceRun=$AssemblyRoot; startedUtc=[DateTime]::UtcNow.ToString('o');
     legacyChecks=[bool]$LegacyChecks;
     utilityChecks=[bool]$UtilityChecks;
+    spellChecks=[bool]$SpellChecks;
+    bishopChecks=[bool]$BishopChecks;
     sourceHashes=$compiled.sourceHashes; assemblyHashes=@(Get-ChildItem -LiteralPath $AssemblyRoot -Filter '*.dll' | ForEach-Object {
         @{name=$_.Name;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant()}
     }); cases=@(); unityCompilation='NOT RUN'; moduleAcceptance='OPEN'}

@@ -111,71 +111,77 @@ namespace Decennium.Foundation.Laboratory
         private static bool PersistentSpell(string spell)=>spell=="arcane-ward" || spell=="guidance" || ConcentratingSpell(spell);
 
         private string AssessSpellCast(Snapshot s,Command c)
+            => SpellCastConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 SpellCastConstraintV1(Snapshot s,Command c)
         {
-            string shape=SpellCastingProfile.PayloadFailure(s,c); if(shape!=null)return shape;
-            if(c.Kind!=CommandKind.CastKnownSpell || c.SpellCast==null)return "SpellCastSelectionRequired";
-            string action=CastingActionFailure(s,c); if(action!=null)return action;
+            var shape=SpellCastingProfile.PayloadConstraintV1(s,c); if(shape!=null)return shape;
+            if(c.Kind!=CommandKind.CastKnownSpell || c.SpellCast==null)return new NativeCommandConstraintV1("SpellCastSelectionRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 113);
+            var action=CastingActionConstraintV1(s,c); if(action!=null)return action;
             string spell=c.SpellCast.SpellId;
             var character=s.Characters.Single(x=>x.ActorId==c.Actor); int level=character.Levels.Count(x=>x.ClassName=="Cleric");
-            string access=ClericRepertoireProfile.AssessChoice(spell,level,BishopProfile.Earned(s)); if(access!=null)return access;
+            var access=ClericRepertoireProfile.ChoiceConstraintV1(spell,level,BishopProfile.Earned(s)); if(access!=null)return access;
             var known=s.KnownSpells.SingleOrDefault(x=>x.ActorId==c.Actor && x.SpellId==spell && x.ClassName=="Cleric");
-            if(known==null || known.AcquiredRevision>s.Revision || !known.MatchesSource())return "SpellNotKnown";
+            if(known==null || known.AcquiredRevision>s.Revision || !known.MatchesSource())return new NativeCommandConstraintV1("SpellNotKnown", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 119);
             // Every admitted spell has V. Use the shared active condition projection;
             // hearing loss is separate from the inability to provide a verbal component.
-            if(View(s,c.Actor).BlocksAudibleFeatures)return "SpellVerbalComponentUnavailable";
+            if(View(s,c.Actor).BlocksAudibleFeatures)return new NativeCommandConstraintV1("SpellVerbalComponentUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 122);
             bool needsFocus=UsesSpellFocus(spell);
             var focus=s.PortableEquipment.SingleOrDefault(x=>x.Id==c.SpellCast.FocusItemId);
             bool held=focus?.HeldHands==1 && focus.CustodianId==c.Actor && focus.Placement==PortablePlacement.Carried;
             if(needsFocus) {
                 if(!SpellCastingProfile.IsFocus(s,focus) || focus.CustodianId!=c.Actor || focus.ParentId!=""
-                    || focus.Placement!=PortablePlacement.Worn && !held)return "SpellFocusUnavailable";
-            } else if(c.SpellCast.FocusItemId!="")return "UnexpectedSpellFocusSelection";
-            if(AvailableHands(s,c.Actor)<1 && !(needsFocus&&held))return "SpellSomaticHandUnavailable";
+                    || focus.Placement!=PortablePlacement.Worn && !held)return new NativeCommandConstraintV1("SpellFocusUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 128);
+            } else if(c.SpellCast.FocusItemId!="")return new NativeCommandConstraintV1("UnexpectedSpellFocusSelection", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 129);
+            if(AvailableHands(s,c.Actor)<1 && !(needsFocus&&held))return new NativeCommandConstraintV1("SpellSomaticHandUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 130);
             var stance=TestOnlyClubAttackPolicy.ActiveStance(s,c.Actor);
             if(c.SpellCast.ElectFocusedDc && (spell!="sanctuary" || stance?.Kind!=CombatStance.Focused
-                || s.SpellCasts.Any(x=>x.FocusedDcElected&&x.StanceRevision==stance.Revision)))return "FocusedSpellBenefitUnavailable";
+                || s.SpellCasts.Any(x=>x.FocusedDcElected&&x.StanceRevision==stance.Revision)))return new NativeCommandConstraintV1("FocusedSpellBenefitUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 133);
             bool willing=spell=="arcane-ward" || spell=="guidance" || spell=="sanctuary";
-            if(c.SpellCast.WillingTarget!=willing)return "SpellWillingTargetSelectionRequired";
+            if(c.SpellCast.WillingTarget!=willing)return new NativeCommandConstraintV1("SpellWillingTargetSelectionRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 135);
             if(spell==BishopProfile.Dispel) {
-                string dispel=BishopDispelFailure(s,c,out _);if(dispel!=null)return dispel;
+                var dispel=BishopDispelConstraintV1(s,c,out _);if(dispel!=null)return dispel;
             } else if(spell=="purify-food-and-drink") {
-                string batch=PurifyBatchFailure(s,c); if(batch!=null)return batch;
+                var batch=PurifyBatchConstraintV1(s,c); if(batch!=null)return batch;
             } else {
                 var target=s.Actors.SingleOrDefault(x=>x.Id==c.Target);
                 if(target==null || willing && c.Target!=TestOnlyPolicy.ActorId && c.Target!=ClericRpProfile.Actor
-                    || spell=="detect-magic" && c.Target!=c.Actor)return "SpellTargetUnavailable";
-                if(s.WorldTraversals.Any(x=>x.ActorId==c.Target))return "SpellTargetTraversalUnsupported";
+                    || spell=="detect-magic" && c.Target!=c.Actor)return new NativeCommandConstraintV1("SpellTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 143);
+                if(s.WorldTraversals.Any(x=>x.ActorId==c.Target))return new NativeCommandConstraintV1("SpellTargetTraversalUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 144);
                 var actor=s.Actors.Single(x=>x.Id==c.Actor); var life=s.Lives.Single(x=>x.ActorId==c.Target);
                 if(life.Dead || PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(target.X,target.Y))>30
-                    || !ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return "SpellTargetUnavailable";
+                    || !ObservationGeometry.LineOfEffectClear(s,c.Actor,c.Target))return new NativeCommandConstraintV1("SpellTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 147);
                 if(c.Target!=c.Actor && !ObservationRules.CanSee(s,c.Actor,c.Target)
-                    || spell=="arcane-ward" && View(s,c.Actor).Has(ConditionKind.Blinded))return "SpellTargetNotPerceived";
-                if(spell=="spare-the-dying" && (life.Hp!=0 || life.Stable))return "StabilizationTargetNotDying";
+                    || spell=="arcane-ward" && View(s,c.Actor).Has(ConditionKind.Blinded))return new NativeCommandConstraintV1("SpellTargetNotPerceived", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 149);
+                if(spell=="spare-the-dying" && (life.Hp!=0 || life.Stable))return new NativeCommandConstraintV1("StabilizationTargetNotDying", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 150);
             }
             var facts=CharacterRuleFacts.ForActor(s,c.Actor); var strain=s.CastingStrain.Single(x=>x.ActorId==c.Actor);
             var source=SpellSourceCatalog.Get(spell).AccessFor("Cleric"); int modifier=facts.AbilityModifier(CharacterAbility.Wisdom);
-            if(source.Rank>0 && strain.RankedBlocked(facts.ProficiencyBonus,modifier))return "RankedCastingBlockedByDissonance";
+            if(source.Rank>0 && strain.RankedBlocked(facts.ProficiencyBonus,modifier))return new NativeCommandConstraintV1("RankedCastingBlockedByDissonance", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 154);
             int surcharge=source.Rank==0?0:strain.RankedSurcharge(facts.ProficiencyBonus,modifier);
             var pool=s.ResonancePools.SingleOrDefault(x=>x.ActorId==c.Actor);
-            if(pool==null || pool.Maximum!=DeriveResonanceMaximum(character))return "ResonancePoolUnavailable";
-            if(pool.Current<source.BaseRpCost+surcharge)return "InsufficientResonance";
+            if(pool==null || pool.Maximum!=DeriveResonanceMaximum(character))return new NativeCommandConstraintV1("ResonancePoolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 157);
+            if(pool.Current<source.BaseRpCost+surcharge)return new NativeCommandConstraintV1("InsufficientResonance", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 158);
             if(s.SpellCasts.Length>=SpellCastingProfile.MaxCasts || PersistentSpell(spell)&&s.SpellEffects.Length>=SpellCastingProfile.MaxEffects
                 || s.CastingTurnEnds.Length>=SpellCastingProfile.MaxTurnEnds || strain.Dissonance>int.MaxValue-4
-                || !Validation.ValidId(c.Id+".effect"))return "CastingHistoryFull";
+                || !Validation.ValidId(c.Id+".effect"))return new NativeCommandConstraintV1("CastingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 161);
             return null;
         }
 
         private static string PurifyBatchFailure(Snapshot s,Command c)
+            => PurifyBatchConstraintV1(s,c)?.NativeCode;
+
+        private static NativeCommandConstraintV1 PurifyBatchConstraintV1(Snapshot s,Command c)
         {
             var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==c.Target); var meta=s.InventoryLots.SingleOrDefault(x=>x.LotId==c.Target);
             if(lot==null || meta==null || lot.Amount==default || (meta.Nutrition==NutritionKind.WaterPints
                 ?lot.UnitId!=TestOnlyInventoryPolicy.WaterUnit || lot.Amount>new RuleQuantity(8)
-                :meta.Nutrition!=NutritionKind.FoodPounds || lot.Amount>new RuleQuantity(5)))return "PurifyBatchUnsupported";
+                :meta.Nutrition!=NutritionKind.FoodPounds || lot.Amount>new RuleQuantity(5)))return new NativeCommandConstraintV1("PurifyBatchUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 170);
             if(s.Work.AvailableAmount(lot.Id)!=lot.Amount || s.WaterFills.Any(x=>x.Pending&&(x.SourceLotId==lot.Id||x.DestinationId==lot.LocationId)))
-                return "PurifyBatchBusy";
+                return new NativeCommandConstraintV1("PurifyBatchBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 172);
             string location=lot.LocationId; var vessel=s.Vessels.SingleOrDefault(x=>x.Id==location);
             if(vessel!=null && s.VesselContents.Any(x=>x.VesselId==vessel.Id&&x.LotId!=lot.Id
-                &&s.Work.Lots.Single(l=>l.Id==x.LotId).Amount!=default))return "PurifyBatchNotSeparated";
+                &&s.Work.Lots.Single(l=>l.Id==x.LotId).Amount!=default))return new NativeCommandConstraintV1("PurifyBatchNotSeparated", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 175);
             // Target the whole physical vessel for drink, or the actual food item. Handling
             // reach/ownership is not a spell-range rule; closed enclosing containers still
             // block access to that target. Follow its real placement instead of stale lot labels.
@@ -184,21 +190,21 @@ namespace Decennium.Foundation.Laboratory
                 :x.LinkKind==PortableLinkKind.InventoryLot&&x.LinkedId==lot.Id);
             while(physical!=null&&physical.ParentId!="") {
                 var parent=s.PortableEquipment.Single(x=>x.Id==physical.ParentId);
-                if(physical.Placement==PortablePlacement.Contained&&!parent.Open)return "PurifyBatchEnclosed";
+                if(physical.Placement==PortablePlacement.Contained&&!parent.Open)return new NativeCommandConstraintV1("PurifyBatchEnclosed", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 184);
                 physical=parent;
             }
             if(vessel!=null)location=vessel.LocationId;
             if(physical!=null&&physical.Placement!=PortablePlacement.Ground)location=physical.CustodianId;
             var body=s.Actors.SingleOrDefault(x=>x.Id==location); int x,y;
             if(physical?.Placement==PortablePlacement.Ground){x=physical.GroundX;y=physical.GroundY;}
-            else if(body!=null) {x=body.X;y=body.Y;if(s.WorldTraversals.Any(t=>t.ActorId==body.Id))return "SpellTargetTraversalUnsupported";}
+            else if(body!=null) {x=body.X;y=body.Y;if(s.WorldTraversals.Any(t=>t.ActorId==body.Id))return new NativeCommandConstraintV1("SpellTargetTraversalUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 191);}
             else if(location==TestOnlyCropPolicy.PlotId){x=3;y=3;}
-            else return "PurifyBatchLocationUnsupported";
+            else return new NativeCommandConstraintV1("PurifyBatchLocationUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 193);
             var actor=s.Actors.Single(a=>a.Id==c.Actor);
             if(PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(x,y))>30
-                || !ObservationGeometry.LineOfEffectClearToCell(s,c.Actor,x,y))return "SpellTargetUnavailable";
+                || !ObservationGeometry.LineOfEffectClearToCell(s,c.Actor,x,y))return new NativeCommandConstraintV1("SpellTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 196);
             if(View(s,c.Actor).Has(ConditionKind.Blinded) || !ObservationGeometry.GeometricSight(s,c.Actor,ObservationGeometry.Position(s,c.Actor),
-                new ObservationPoint(new RuleQuantity(x),new RuleQuantity(y))))return "SpellTargetNotPerceived";
+                new ObservationPoint(new RuleQuantity(x),new RuleQuantity(y))))return new NativeCommandConstraintV1("SpellTargetNotPerceived", "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs", 198);
             return null;
         }
 

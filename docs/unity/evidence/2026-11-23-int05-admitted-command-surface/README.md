@@ -1,5 +1,7 @@
 # INT-05 admitted command and choice surface
 
+Runtime implementation is in progress: [checkpoint04](IMPLEMENTATION_CHECKPOINT_04.json) adds shared initial spell-casting assessment. Seven selected checks and compilation/package validation pass on the frozen candidate; four native kinds are covered. Public V1 APIs, remaining kinds, complete qualification and actual final GPT acceptance remain open. Earlier design entries below retain their historical scope.
+
 **HC-01–05 and the complete finite implementation/qualification plan are accepted for implementation.** Actual GPT09 `271baf94-22dd-57cb-a2ab-5f728e989b4d` and Codex concur at candidate `67f3d201b`. [Acceptance and limits](HC_ACCEPTANCE.md). Final runtime/module acceptance remains open. Earlier proposal/open labels below retain their checkpoint history.
 
 **Selected for source/API design. Runtime implementation and acceptance remain open.**

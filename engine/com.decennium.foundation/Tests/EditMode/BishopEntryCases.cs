@@ -348,6 +348,7 @@ namespace Decennium.Foundation.Tests
             RetainClericDenial(BishopSimulation(session),authority,Make(CommandKind.CastKnownSpell,target:"aura.unknown",
                 spell:new SpellCastRequest(BishopProfile.Dispel,"TEST_ONLY.cleric-casting.holy-symbol")),"AuraObservationUnavailable",directory);
             var dispel=Make(CommandKind.CastKnownSpell,target:observation,spell:new SpellCastRequest(BishopProfile.Dispel,"TEST_ONLY.cleric-casting.holy-symbol"));
+            AssertPureUtility(session,dispel);
             BishopCommit(session,dispel);var dispelled=ShortRestCapture(session);
             Require(dispelled.BishopEntry.Dispels.Count==1&&!dispelled.SpellEffects.Any(x=>x.Present&&x.SpellId=="guidance")
                 &&dispelled.SpellEffects.Any(x=>x.Present&&x.SpellId=="detect-magic")&&dispelled.RandomState==beforeDispel.RandomState

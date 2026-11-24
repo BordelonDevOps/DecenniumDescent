@@ -8,7 +8,7 @@ namespace Decennium.Foundation.Laboratory
     {
         // Incremental implementation inventory, not the final INT-05 operation catalog.
         bool ICommandAssessmentFactsPolicyV1.SupportsAssessment(CommandKind kind)
-            => connectedClericCasting && (kind == CommandKind.EndSpellConcentration
+            => connectedClericCasting && (kind == CommandKind.CastKnownSpell || kind == CommandKind.EndSpellConcentration
                 || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura);
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
@@ -27,8 +27,9 @@ namespace Decennium.Foundation.Laboratory
                 failure = NonSanctuaryResponseConstraintV1(command);
             failure = failure ?? GuidanceChoiceConstraintV1(current, command)
                 ?? SpellCastingProfile.PhysicalConstraintV1(current, command)
-                ?? CastingUtilityConstraintV1(current, command);
-            // Initial utility admission does not certify the shared post-resolution tail or
+                ?? (command.Kind == CommandKind.CastKnownSpell
+                    ? SpellCastConstraintV1(current, command) : CastingUtilityConstraintV1(current, command));
+            // Initial admission does not certify the shared post-resolution tail or
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);
         }

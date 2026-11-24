@@ -874,6 +874,7 @@ namespace Decennium.Foundation.Tests
                 string path=Path.Combine(directory,"tac08-spare-before-cast.ddsave");session.Save(path);session.Restore(path);
                 var cast=new Command("tac08.spare.actual-patient",actor,dying.Revision,CommandKind.CastKnownSpell,hero,
                     spellCast:new SpellCastRequest("spare-the-dying"));
+                AssertPureUtility(session,cast);
                 byte[] bytes=codec.Encode(dying);
                 Require(CastingSimulation(session).QueryCommand(CastingAuthority(),cast).Admissible
                     &&bytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),"Spare preflight must neither heal nor roll the Stable deadline.");
@@ -896,6 +897,7 @@ namespace Decennium.Foundation.Tests
                     beforeCast=ShortRestCapture(campaign);campaign.Save(Path.Combine(directory,"tac08-before-purify.ddsave"));
                     var command=new Command("tac08.purify.water",actor,beforeCast.Revision,CommandKind.CastKnownSpell,
                         SpellCastingProfile.ContaminatedWaterId,spellCast:new SpellCastRequest("purify-food-and-drink",SpellCastingProfile.FocusId));
+                    AssertPureUtility(campaign,command);
                     var query=CastingSimulation(campaign).QueryCommand(CastingAuthority(),command);
                     Require(query.Admissible,"The actual finite flask must be perceived and in range: "+query.Code);
                     CommitVialRoute(campaign,command);purified=ShortRestCapture(campaign);
