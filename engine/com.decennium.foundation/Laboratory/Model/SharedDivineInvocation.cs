@@ -26,39 +26,42 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private string AssessDivineInvocation(Snapshot s,Command c)
+            => DivineInvocationConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 DivineInvocationConstraintV1(Snapshot s,Command c)
         {
-            string shape=BishopProfile.InvocationPayloadFailure(s,c);if(shape!=null)return shape;
+            var shape=BishopProfile.InvocationPayloadConstraintV1(s,c);if(shape!=null)return shape;
             if(s.BishopEntry==null||c.Actor!=ClericRpProfile.Actor||!BishopProfile.Earned(s)
                 ||!s.CharacterFeatureGrants.Any(x=>x.FeatureId==BishopProfile.Invocation&&BishopProfile.ValidGrant(s,x))
-                ||!RadianceRules.Owns(s,c.Actor))return "DivineInvocationNotOwned";
+                ||!RadianceRules.Owns(s,c.Actor))return new NativeCommandConstraintV1("DivineInvocationNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 33);
             var pool=s.ResonancePools.SingleOrDefault(x=>x.ActorId==c.Actor);
-            if(pool==null||pool.Maximum!=DeriveResonanceMaximum(s.Characters.Single(x=>x.ActorId==c.Actor)))return "ResonancePoolUnavailable";
-            if(pool.Current<3)return "InsufficientResonance";
-            if(s.ConvictionBalance==null)return "ConvictionBalanceUnavailable";
-            if(s.ConvictionBalance.Current<2)return "InsufficientConviction";
-            string context=RadianceRules.OwnTurnFailure(s,c.Actor);if(context!=null)return context;
-            string action=CastingActionFailure(s,c);if(action!=null)return action;
-            if(s.AbilityRecharges.Any(x=>x.ActorId==c.Actor&&x.AbilityId==BishopProfile.Invocation&&x.Remaining>0))return "DivineInvocationRecharging";
-            if(s.BishopEntry.Invocations.Count>=128)return "InvocationHistoryFull";
+            if(pool==null||pool.Maximum!=DeriveResonanceMaximum(s.Characters.Single(x=>x.ActorId==c.Actor)))return new NativeCommandConstraintV1("ResonancePoolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 35);
+            if(pool.Current<3)return new NativeCommandConstraintV1("InsufficientResonance", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 36);
+            if(s.ConvictionBalance==null)return new NativeCommandConstraintV1("ConvictionBalanceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 37);
+            if(s.ConvictionBalance.Current<2)return new NativeCommandConstraintV1("InsufficientConviction", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 38);
+            var context=RadianceRules.OwnTurnConstraintV1(s,c.Actor);if(context!=null)return context;
+            var action=CastingActionConstraintV1(s,c);if(action!=null)return action;
+            if(s.AbilityRecharges.Any(x=>x.ActorId==c.Actor&&x.AbilityId==BishopProfile.Invocation&&x.Remaining>0))return new NativeCommandConstraintV1("DivineInvocationRecharging", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 41);
+            if(s.BishopEntry.Invocations.Count>=128)return new NativeCommandConstraintV1("InvocationHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 42);
             var turn=CurrentMagicalActionOrigin(s,c.Actor);
-            if(s.BishopEntry.Invocations.Any(x=>x.Turn.SameAs(turn)))return "InvocationAlreadyUsedThisTurn";
+            if(s.BishopEntry.Invocations.Any(x=>x.Turn.SameAs(turn)))return new NativeCommandConstraintV1("InvocationAlreadyUsedThisTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 44);
             foreach(string id in c.DivineInvocation.TargetIds) {
                 var target=s.Actors.SingleOrDefault(x=>x.Id==id);var life=s.Lives.SingleOrDefault(x=>x.ActorId==id);
-                if(target==null||life==null||life.Dead||!SoldierTacticalFeatures.IsAlly(s,c.Actor,id))return "InvocationTargetUnavailable";
+                if(target==null||life==null||life.Dead||!SoldierTacticalFeatures.IsAlly(s,c.Actor,id))return new NativeCommandConstraintV1("InvocationTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 47);
                 // This active producer uses the existing stationary spell/healing access envelope.
-                if(s.WorldTraversals.Any(x=>x.ActorId==id))return "InvocationRequiresStationaryAccess";
+                if(s.WorldTraversals.Any(x=>x.ActorId==id))return new NativeCommandConstraintV1("InvocationRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 49);
                 var actor=s.Actors.Single(x=>x.Id==c.Actor);
                 if(PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X,actor.Y),new CombatCell(target.X,target.Y))>30
                     ||!ObservationGeometry.LineOfEffectClear(s,c.Actor,id)
-                    ||id!=c.Actor&&!ObservationRules.CanSee(s,c.Actor,id))return "InvocationTargetUnavailable";
-                if(s.PeriodicRiders.Any(x=>x.TargetId==id&&x.Present))return "InvocationSourceInteractionUnsupported";
+                    ||id!=c.Actor&&!ObservationRules.CanSee(s,c.Actor,id))return new NativeCommandConstraintV1("InvocationTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 53);
+                if(s.PeriodicRiders.Any(x=>x.TargetId==id&&x.Present))return new NativeCommandConstraintV1("InvocationSourceInteractionUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 54);
             }
             if(c.DivineInvocation.CurePreference!=RadianceCurePreference.None) {
-                if(!Validation.ValidId(c.Id+".invocation.cure")||!Validation.ValidId(c.Id+".invocation.sync"))return "InvocationIdentityCapacityReached";
+                if(!Validation.ValidId(c.Id+".invocation.cure")||!Validation.ValidId(c.Id+".invocation.sync"))return new NativeCommandConstraintV1("InvocationIdentityCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 57);
                 var journal=s.Conditions.Single(x=>x.Target==c.DivineInvocation.CureTargetId);
-                if(journal.Now.Time>s.RuleClock)return "ConditionCalendarMismatch";
+                if(journal.Now.Time>s.RuleClock)return new NativeCommandConstraintV1("ConditionCalendarMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 59);
                 int count=journal.Now.Equals(RadianceRules.TargetStamp(s,journal.Target))?1:2;
-                if(journal.Operations.Count+count>ConditionJournal.MaxOperations)return "ConditionHistoryCapacityReached";
+                if(journal.Operations.Count+count>ConditionJournal.MaxOperations)return new NativeCommandConstraintV1("ConditionHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs", 61);
             }
             return null;
         }

@@ -43,54 +43,60 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ClericLongRestAccess(Snapshot s, ClericLongRestRecord active)
+            => ClericLongRestAccessConstraintV1(s, active)?.NativeCode;
+
+        private NativeCommandConstraintV1 ClericLongRestAccessConstraintV1(Snapshot s, ClericLongRestRecord active)
         {
             const string actor = ClericRpProfile.Actor;
             if (!s.ConnectedClericLongRest || s.ConvictionCapacity?.PoolAcquiredRevision == 0
-                || s.ClericInvocationPath == null) return "LongRestRequiresEarnedCleric2";
+                || s.ClericInvocationPath == null) return new NativeCommandConstraintV1("LongRestRequiresEarnedCleric2", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 49);
             if (s.InventoryCombat || s.ClericObjective == null
                 || !s.ClosedEncounters.Any(x => x.Encounter.Id == s.ClericMilestone.LaterEncounterId))
-                return "LongRestRequiresSettledEncounterClosure";
+                return new NativeCommandConstraintV1("LongRestRequiresSettledEncounterClosure", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 52);
             var body = s.Actors.Single(x => x.Id == actor);
             if (body.X != ClericLongRestProfile.X || body.Y != ClericLongRestProfile.Y
                 || !WorldWalkable(s,body.X,body.Y) || s.WorldTraversals.Any(x => x.ActorId == actor))
-                return "LongRestRequiresStationaryBerthAccess";
-            if (s.Actors.Any(x => x.Id != actor && x.X == body.X && x.Y == body.Y)) return "LongRestBerthOccupied";
+                return new NativeCommandConstraintV1("LongRestRequiresStationaryBerthAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 56);
+            if (s.Actors.Any(x => x.Id != actor && x.X == body.X && x.Y == body.Y)) return new NativeCommandConstraintV1("LongRestBerthOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 57);
             var life = s.Lives.Single(x => x.ActorId == actor);
             var conditions = View(s,actor);
             if (life.Dead || life.Hp <= 0 || life.Stable || life.StableUntil.HasValue
                 || conditions.Has(ConditionKind.Unconscious) || conditions.Has(ConditionKind.Petrified)
-                || ExpeditionStrainRules.Current(s,actor).Level >= 6) return "LongRestBodyUnsupported";
+                || ExpeditionStrainRules.Current(s,actor).Level >= 6) return new NativeCommandConstraintV1("LongRestBodyUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 62);
             if (s.SpellEffects.Any(x => x.CasterId == actor && x.Present && x.RequiresConcentration))
-                return "LongRestRequiresConcentrationEnded";
+                return new NativeCommandConstraintV1("LongRestRequiresConcentrationEnded", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 64);
             var end = active?.DueAt ?? s.RuleClock.AddSeconds(ClericLongRestProfile.DurationSeconds);
             if (s.Work.WorkerIntervals.Any(x => x.WorkerId == actor && x.JobId != active?.Id
                     && x.Start < end && x.End > s.RuleClock)
                 || WorldActivityProjection.CurrentWork(s).Any(x => x.ActorId == actor && x.Id != active?.Id)
                 || s.ExpeditionAssignments.Any(x => x.WorkerId == actor && x.Open)
                 || s.RouteTravels.Any(x => x.TravelerId == actor && (x.Status == ExpeditionRouteTravelStatus.Moving || x.Status == ExpeditionRouteTravelStatus.Paused)))
-                return "LongRestActorOccupied";
-            if (s.CharacterHitDice.Any(x => x.ActorId == actor && x.Spent)) return "LongRestSpentDicePathUnsupported";
+                return new NativeCommandConstraintV1("LongRestActorOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 71);
+            if (s.CharacterHitDice.Any(x => x.ActorId == actor && x.Spent)) return new NativeCommandConstraintV1("LongRestSpentDicePathUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 72);
             return null;
         }
 
         private string AssessClericLongRest(Snapshot s, Command c)
+            => ClericLongRestConstraintV1(s, c)?.NativeCode;
+
+        private NativeCommandConstraintV1 ClericLongRestConstraintV1(Snapshot s, Command c)
         {
-            if (!s.ConnectedClericLongRest || c.Actor != ClericRpProfile.Actor) return "LongRestUnavailable";
+            if (!s.ConnectedClericLongRest || c.Actor != ClericRpProfile.Actor) return new NativeCommandConstraintV1("LongRestUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 78);
             if (c.X != 0 || c.Y != 0 || c.Inventory != null || c.Combat != null || c.Advancement != null
                 || c.Ranged != null || c.OverwatchRider != OverwatchRider.None || c.SuppressionFire != null
                 || c.DefensiveFormation != null || c.ExpeditionAssignment != null || c.HarvestSelection != null
                 || c.MiningSelection != null || c.ProspectingExposure != null || c.RouteMappingWork != null
                 || c.IntimidatingPresence != null || c.HealingRite != null || c.SpellCast != null
-                || c.Guidance != null || c.SanctuaryResponse != null) return "UnexpectedLongRestPayload";
+                || c.Guidance != null || c.SanctuaryResponse != null) return new NativeCommandConstraintV1("UnexpectedLongRestPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 84);
             var active = ClericLongRestProfile.Active(s);
             if (c.Kind == CommandKind.InterruptLongRest)
-                return active == null || c.Target != active.Id ? "NoMatchingActiveLongRest" : null;
-            if (c.Kind != CommandKind.BeginLongRest || c.Target != ClericLongRestProfile.SiteId) return "LongRestSiteUnavailable";
-            if (active != null) return "LongRestAlreadyActive";
+                return active == null || c.Target != active.Id ? new NativeCommandConstraintV1("NoMatchingActiveLongRest", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 87) : null;
+            if (c.Kind != CommandKind.BeginLongRest || c.Target != ClericLongRestProfile.SiteId) return new NativeCommandConstraintV1("LongRestSiteUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 88);
+            if (active != null) return new NativeCommandConstraintV1("LongRestAlreadyActive", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 89);
             if (PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s)
-                || s.ManufacturingAdvance != null) return "LongRestPendingChoice";
-            if (s.ClericLongRests.Length >= ClericLongRestProfile.MaxAttempts) return "LongRestHistoryCapacityReached";
-            return ClericLongRestAccess(s,null);
+                || s.ManufacturingAdvance != null) return new NativeCommandConstraintV1("LongRestPendingChoice", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 91);
+            if (s.ClericLongRests.Length >= ClericLongRestProfile.MaxAttempts) return new NativeCommandConstraintV1("LongRestHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs", 92);
+            return ClericLongRestAccessConstraintV1(s,null);
         }
 
         private System.Collections.Generic.IEnumerable<Command> DiscoverClericLongRest(Snapshot s, string actor)

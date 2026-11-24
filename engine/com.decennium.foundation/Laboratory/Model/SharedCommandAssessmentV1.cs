@@ -9,7 +9,9 @@ namespace Decennium.Foundation.Laboratory
         // Incremental implementation inventory, not the final INT-05 operation catalog.
         bool ICommandAssessmentFactsPolicyV1.SupportsAssessment(CommandKind kind)
             => connectedClericCasting && (kind == CommandKind.CastKnownSpell || kind == CommandKind.EndSpellConcentration
-                || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura);
+                || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura)
+                || ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.UseHealingRite
+                || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate;
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
 
@@ -21,14 +23,33 @@ namespace Decennium.Foundation.Laboratory
                 throw new InvalidOperationException("This operation requires its owning verified checkpoint.");
             if (!((ICommandAssessmentFactsPolicyV1)this).SupportsAssessment(command.Kind))
                 throw new InvalidOperationException("Native assessment extraction is incomplete for this operation.");
-            var failure = WorldOpeningConstraintV1(current, command)
-                ?? ActiveLongRestInterruptionV1(current, command);
+            var failure = WorldOpeningConstraintV1(current, command);
+            // Native long-rest requests return before the active-rest interruption gate,
+            // Sanctuary, Guidance and physical checks. Preserve this early branch exactly.
+            if (ClericLongRestProfile.IsCommand(command.Kind))
+                return InitialAssessmentV1(current, failure ?? ClericLongRestConstraintV1(current, command));
+            failure = failure ?? ActiveLongRestInterruptionV1(current, command);
             if (failure == null && current.ConnectedClericCasting && PendingSanctuary(current) != null)
                 failure = NonSanctuaryResponseConstraintV1(command);
             failure = failure ?? GuidanceChoiceConstraintV1(current, command)
                 ?? SpellCastingProfile.PhysicalConstraintV1(current, command)
-                ?? (command.Kind == CommandKind.CastKnownSpell
-                    ? SpellCastConstraintV1(current, command) : CastingUtilityConstraintV1(current, command));
+                ?? SelectedMagicConstraintV1(current, command);
+            return InitialAssessmentV1(current, failure);
+        }
+
+        private NativeCommandConstraintV1 SelectedMagicConstraintV1(Snapshot current, Command command)
+        {
+            switch (command.Kind) {
+                case CommandKind.CastKnownSpell: return SpellCastConstraintV1(current, command);
+                case CommandKind.UseConsecrate: return ConsecrateConstraintV1(current, command);
+                case CommandKind.UseDivineInvocation: return DivineInvocationConstraintV1(current, command);
+                case CommandKind.UseHealingRite: return HealingRiteConstraintV1(current, command);
+                default: return CastingUtilityConstraintV1(current, command);
+            }
+        }
+
+        private static NativeCommandAssessmentV1 InitialAssessmentV1(Snapshot current, NativeCommandConstraintV1 failure)
+        {
             // Initial admission does not certify the shared post-resolution tail or
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);

@@ -318,6 +318,7 @@ namespace Decennium.Foundation.Tests
                 session.Save(path);session.Restore(path);
                 var command=new Command("chr03.actual-radiance",ClericRpProfile.Actor,before.Revision,CommandKind.UseHealingRite,ConnectedExpeditionSession.Hero,
                     healingRite:new HealingRiteRequest(RadianceCurePreference.Poisoned));
+                AssertPureUtility(session,command);
                 var activeSimulation=(Simulation)typeof(ConnectedExpeditionSession).GetField("simulation",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(session);
                 var casterAuthority=new Authority("TEST_ONLY.host",new[]{ConnectedExpeditionSession.Hero,ClericRpProfile.Actor},
                     inventoryOwners:new[]{ConnectedExpeditionSession.Hero,ClericRpProfile.Actor});

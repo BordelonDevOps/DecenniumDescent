@@ -1,6 +1,6 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks, [switch]$SpellChecks, [switch]$BishopChecks)
+param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks, [switch]$SpellChecks, [switch]$BishopChecks, [switch]$RecoveryChecks, [switch]$ConsecrationChecks)
 $ErrorActionPreference = 'Stop'
-if (([int][bool]$LegacyChecks+[int][bool]$UtilityChecks+[int][bool]$SpellChecks+[int][bool]$BishopChecks) -gt 1) { throw 'Choose one checkpoint case group.' }
+if (([int][bool]$LegacyChecks+[int][bool]$UtilityChecks+[int][bool]$SpellChecks+[int][bool]$BishopChecks+[int][bool]$RecoveryChecks+[int][bool]$ConsecrationChecks) -gt 1) { throw 'Choose one checkpoint case group.' }
 $AssemblyRoot = (Resolve-Path -LiteralPath $AssemblyRoot).Path
 $ResultsDirectory = [IO.Path]::GetFullPath($ResultsDirectory)
 if (Test-Path -LiteralPath $ResultsDirectory) { throw 'Use a new results directory.' }
@@ -37,11 +37,22 @@ if ($SpellChecks) {
 if ($BishopChecks) {
     $names = @('chr03_bishop_connected_earned_funded_cure_aura_dispel_continue')
 }
+if ($RecoveryChecks) {
+    $names = @('chr02_cleric_connected_injury_payment_restore_and_continuation',
+        'chr03_alternate_genuine_paid_radiance_and_continuation',
+        'mgt03_long_rest_genuine_first_funding_and_paid_continuation',
+        'int05_genuine_cast_assessment_denials_payment_and_retry')
+}
+if ($ConsecrationChecks) {
+    $names = @('chr05_consecration_genuine_paid_zone_rite_and_expiry')
+}
 $report = [ordered]@{status='RUNNING'; sourceRun=$AssemblyRoot; startedUtc=[DateTime]::UtcNow.ToString('o');
     legacyChecks=[bool]$LegacyChecks;
     utilityChecks=[bool]$UtilityChecks;
     spellChecks=[bool]$SpellChecks;
     bishopChecks=[bool]$BishopChecks;
+    recoveryChecks=[bool]$RecoveryChecks;
+    consecrationChecks=[bool]$ConsecrationChecks;
     sourceHashes=$compiled.sourceHashes; assemblyHashes=@(Get-ChildItem -LiteralPath $AssemblyRoot -Filter '*.dll' | ForEach-Object {
         @{name=$_.Name;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant()}
     }); cases=@(); unityCompilation='NOT RUN'; moduleAcceptance='OPEN'}

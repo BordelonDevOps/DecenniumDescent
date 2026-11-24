@@ -1,0 +1,353 @@
+{
+  "reviewId": "INT05-recovery-abilities-native-assessment-cross-review-01",
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "comparisonHead": "dd9a8baea",
+  "nativeOriginBaseline": "67f3d201b",
+  "operations": [
+    "UseHealingRite",
+    "UseDivineInvocation",
+    "UseConsecrate"
+  ],
+  "scope": "Independent static review of SharedResonance, SharedRadiance, SharedDivineInvocation, SharedConsecration, their SharedCommandAssessmentV1 routes, and the accessibility-only Core InvocationPayloadConstraintV1 change. Includes source review of the four requested test-file additions. Long-rest assessor bodies are separately reviewed by audit_management and excluded here. No runtime/test/build execution or runtime/test edits.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "e17b2945bc0d8d71ee11e9fdafdba18d9d9855ca54447fce988d6fa7fd55bac1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "f0fe6386c466c47d2a3b6b4a4ece1b5025c9dbd9a3b61077f53bef0fbf055757"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "13b00eb6bac31cb46ce402ff8e334471b083b8617d4432adbb3bd08b4b115497"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "f625460d49503c23fa4ce2c2472e53c08e1814dbe8ff04c1f9d4c78c7571c774"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "ea9412fea1435c0512a00e272d7a9dafd3e8700b5f3cfc5dc49210aaca6d82d8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "5e0307039db2c111b6bc86467979a36f8487e25f7810c8323050285595374b9f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRpCases.cs",
+      "sha256": "1f091c6005ad37f6ccb28b56e47a4021e6d595cbffdecc9a7d3f365cdaabe00e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericSettlementCases.cs",
+      "sha256": "85b288e67d74032097494e4958b65620863b3a0ac38dec4b697e0b737eca429f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/BishopEntryCases.cs",
+      "sha256": "b391d5dd08f7b50522617ea56185c3aa46899aefe9a6bd9b361a95a5c8fd2788"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConsecrationCases.cs",
+      "sha256": "ad3445eedfb04a00cba1c4080d0e0ef7c9805d53fddb7b8bcdea95b53c91005f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "sha256": "9874f2459123418c5e097183b97540374b237526c260cec9941a9f33508b7251"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "sha256": "c3b8a3d247842529999bc304a55f452ee7cde8be969e6abef3b214b9b0926048"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "fba1260f72f8bdda2535ff63a64573f5e5c85aecd52bb6632a4f83bc1bf4c233"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+      "sha256": "70dbab1629c32b5d0e4ff0151a005e7e898f7b39755a9c5c3e757197ecd1ef5c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "sha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SoldierTacticalFeatures.cs",
+      "sha256": "6f237a1205dc83bd863ccb149bf79fceb295aa0320ce737b1dd0a843b94918ca"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/ground-focus-assessment-cross-review-01.json",
+      "sha256": "f7c33df8f5ec6cc5b599aa2562d896da9f317992a554ad6c94657aa9580fde0f"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/spell-cast-assessment-cross-review-01.json",
+      "sha256": "529f5ebebf79062e65e31f47d0a34d72de45232886feb0632429db1a6abb40e8"
+    }
+  ],
+  "extractionResult": "The original guard bodies, branching, short-circuit order and native codes are preserved. Legacy string methods delegate to the same native constraint methods consumed by the assessor. InitialAssessmentV1 retains CommitFeasibility=null.",
+  "globalRoute": {
+    "review": "WorldOpening remains first. These three kinds are not long-rest requests, so they retain active-long-rest interruption, pending Sanctuary, Guidance and physical checks before their selected native assessment. The native earlier repertoire/short-rest dispatches are kind-inapplicable. No skipped global gate was found for these three routes.",
+    "authority": "Core command/payload and authority checks remain ahead of this policy route. The new methods do not themselves grant recipient control, inventory access, consent, or selected-source authority.",
+    "supports": "The new native assessment implementation can return the original not-selected/not-owned failure on profiles lacking an ability; that is not a grant that the profile supports executing it."
+  },
+  "guardOrder": {
+    "UseHealingRite": [
+      "Connected cleric RP profile and exact actor, then original request shape.",
+      "Native OMA context, else selected post-closure/PostRecovery/Ferry Radiance own-turn context, else the original reinforcement combat context.",
+      "Pending calendar/manufacturing/recovery choices, then original current regular-turn condition.",
+      "Original initial Healing Rite grant and exact selected class-level rule.",
+      "CapableWorker/current Action permission before explicit ActionSpent.",
+      "Original work/actor-or-target traversal exclusion.",
+      "Living recipient qualification, original party/encounter recipient domain, actual life, distance/line of effect/sight, then unsupported periodic-source interaction.",
+      "Derived RP maximum/current amount; HealingRites, Ground-healing, and casting-activity limits.",
+      "Only for ConnectedClericSettlement: Radiance preference/ownership, own-turn/deadline, once-per-origin usage, Radiance row limit, and optional cure identity/clock/journal-capacity checks."
+    ],
+    "UseDivineInvocation": [
+      "Shared Core Invocation payload constraint.",
+      "Earned Bishop, valid Invocation grant, and Radiance ownership.",
+      "RP pool/maximum and 3 RP, then Conviction balance and 2 Conviction before calendar/action checks.",
+      "Radiance own-turn/deadline check, then the original casting-action sequence.",
+      "Recharge, Invocation row limit, and same exact CurrentMagicalActionOrigin usage exclusion.",
+      "Recipient list in original request order: actor/life/allegiance, traversal, distance/line of effect/sight, then unsupported periodic rider.",
+      "Only for a non-None cure: both existing derived ID limits, target journal time, and original 1-or-2-operation capacity calculation."
+    ],
+    "UseConsecrate": [
+      "Consecration record, exact GetConsecrateRequest-based payload, initial grant, and actual Cleric level.",
+      "Native OMA context; otherwise exact selected calendar/current casting turn/open owner slot/current turn/encounter context.",
+      "Pending calendar/manufacturing/recovery choices and ManufacturingAdvance.",
+      "Original unprocessed condition deadline check only.",
+      "CapableWorker/current Action permission before explicit ActionSpent.",
+      "Original inventory/advancement work or traversal exclusion, then recharge.",
+      "Current perceived declared center, original coordinate-distance bound and line of effect.",
+      "Derived RP pool maximum, 2 RP, zone limit, and casting-activity limit."
+    ],
+    "preservedDifferences": "Consecrate does not acquire the extra Frightened-repeat guard used by Radiance/CastingAction. Healing Rite does not acquire unrelated spell components, stance, target elections, or casting-action rules. Invocation keeps resource denials before own-turn/action checks. These differences are native semantics, not opportunities to merge gates."
+  },
+  "originCoordinateCheck": {
+    "method": "Every typed native constraint literal in the four extraction files and the reused Core Invocation payload helper was checked against the exact quoted code on git show 67f3d201b at its declared coordinate.",
+    "newExtractionGuards": 65,
+    "existingCoreBridgeGuards": 3,
+    "totalVerified": 68,
+    "files": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+        "lines": [
+          110,
+          115,
+          122,
+          123,
+          124,
+          126,
+          130,
+          131,
+          132,
+          134,
+          136,
+          138,
+          141,
+          144,
+          145,
+          147,
+          148,
+          149,
+          150,
+          151
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+        "lines": [
+          19,
+          25,
+          27,
+          32,
+          37,
+          82,
+          85,
+          86,
+          89,
+          91,
+          93
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+        "lines": [
+          33,
+          35,
+          36,
+          37,
+          38,
+          41,
+          42,
+          44,
+          47,
+          49,
+          53,
+          54,
+          57,
+          59,
+          61
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+        "lines": [
+          108,
+          109,
+          110,
+          113,
+          119,
+          124,
+          125,
+          126,
+          129,
+          130,
+          131,
+          132,
+          134,
+          136,
+          141,
+          143,
+          144,
+          145,
+          146
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+        "lines": [
+          99,
+          100,
+          105
+        ]
+      }
+    ]
+  },
+  "pureReadBoundary": [
+    {
+      "subject": "Journal deadlines versus current conditions",
+      "finding": "Radiance OwnTurnConstraintV1 uses HasUnprocessedConditionDeadline, whose strict-scope Read returns the cached journal-time ledger. CuredBeforeRepeat is the already reviewed finite retained-cure provenance join. Capability and sight use ConditionsFor's exact current projection. No projected expiry is substituted for pending journal work."
+    },
+    {
+      "subject": "Target cure stamp and capacity",
+      "finding": "RadianceRules.TargetStamp reads the target journal's Now and retains that marker when its Time equals RuleClock, preserving its phase; otherwise it creates the phase-zero marker at RuleClock. The assessments count retained operations and prospective 1-or-2 additions only. They never append, synchronize, cure, settle, or run a target journal replay."
+    },
+    {
+      "subject": "CurrentMagicalActionOrigin",
+      "finding": "For OMA it returns the existing current Origin. Otherwise CurrentCastingTurn constructs immutable SpellTurnIdentity metadata from the selected epoch/latest Start or original carried admission. It does not normalize a calendar or invent a new Start. SpellTurnIdentity is getter-only; SameAs compares actor/epoch/local/global/carried-admission fields."
+    },
+    {
+      "subject": "Radiance Owns and Used",
+      "finding": "Owns joins existing source grants, invocation-path acquisition, and source-owned earned records. Used selects retained RadianceUses by exact current originating epoch/local Start. Neither reconstructs a paid trigger or predicts future benefit."
+    },
+    {
+      "subject": "Source grant helpers",
+      "finding": "ValidInitialGrant, ValidEarnedGrant and BishopProfile.ValidGrant are finite source/receipt/level/feature predicates. Their adjacent full validators are not called. SoldierTacticalFeatures.IsAlly is self-or-retained ally membership."
+    },
+    {
+      "subject": "Consecrate center",
+      "finding": "PayloadValid reads the exact command getter/empty sentinels. PerceivesCenter uses declared anchor support, actual actor membership, the current condition view and audited geometric sight. No zone/effect creation or stored knowledge refresh is involved."
+    },
+    {
+      "subject": "RP/life/work/geometry",
+      "finding": "Reuses the pinned finite cast/utility reviews and CURRENT_FACT_HELPER_AUDIT, CURRENT_PERMISSION_SIGHT_AUDIT, PROCEDURE_INVENTORY_READ_AUDIT, and MAGIC_READ_EXTRACTION_PLAN leaves. DeriveResonanceMaximum's local class-list checks remain distinct from forbidden whole-state validation."
+    },
+    {
+      "subject": "Execution-only exclusions",
+      "finding": "No path from these new assessors to RadianceRules.ValidateCureTrigger, ConsecrationRules.ValidatePaidTrigger, DiceStream.Draw, Radiance cure settlement, Ground/Aura healing, PlaytestLife.Heal, recharges, RecordMagicalActivityContext, Resolve*, condition Restore/Append/AdvanceTo, Reserve, candidate validation, or replay was found."
+    }
+  ],
+  "coreInvocationAccessibility": {
+    "change": "internal -> public for InvocationPayloadConstraintV1 only",
+    "finding": "Allows the separate Lab assembly to call the exact same immutable native guard helper already used by Core. Its body and three original guard origins are unchanged. The helper performs no command execution, creates no current read context, and supplies no authority."
+  },
+  "testSourceReview": {
+    "executedByReviewer": false,
+    "candidate10Outcome": "Not asserted by this review.",
+    "sharedAssertion": "AssertPureUtility repeats the native read three times, checks expected native initial eligibility and constraint, null feasibility, zero prohibited-call counters and canonical state equality. These checks are source-reviewed here, not independently run.",
+    "extensions": [
+      {
+        "case": "chr02_cleric_connected_injury_payment_restore_and_continuation",
+        "assertions": "Before the actual base Healing Rite and the later InsufficientResonance denial after actual expenditure. The original connected injury/funding/Action route is preserved."
+      },
+      {
+        "case": "chr03_alternate_genuine_paid_radiance_and_continuation",
+        "assertions": "Before the actual earned-Radiance Healing Rite with Poisoned cure election after its existing pre-rite save/restore. The election alone is not labelled a positive cure witness here."
+      },
+      {
+        "case": "chr03_bishop_connected_earned_funded_cure_aura_dispel_continue",
+        "assertions": "Before the existing two-recipient Invocation with an actual Frightened cure and before the later base/Radiance/Aura Healing Rite. Existing supplemental detached controls remain distinct from these actual command-bound assertions."
+      },
+      {
+        "case": "chr05_consecration_genuine_paid_zone_rite_and_expiry",
+        "assertions": "Before the actual paid Consecrate at the existing Ferry first-owner-Start route, and before the later Healing Rite in the live terrain interval."
+      }
+    ],
+    "oracleBoundary": "Existing tests may draw/reconstruct expected dice after actual execution as test oracles. That is not a call made by the new assessor and is not read-time dice qualification.",
+    "coverageLimit": "The additions strengthen selected genuine routes. They do not cover every recipient/cure/preference/profile/current-origin/capacity/perception/conditional-settlement branch or all five required paths."
+  },
+  "remainingQualification": [
+    "Retain actual candidate10 compile/test evidence and exact corresponding source pins separately.",
+    "Keep CommitFeasibility unset: initial affordability and declared history limits do not certify actual base healing, Ground/Radiance/Aura stages, cure results, conditional accounting, shared reconciliation, or final validation.",
+    "Complete accepted per-axis and five-path qualification with actual saved pending choices where required. Do not relabel prospective or detached model controls as genuine API path evidence.",
+    "Preserve native Invocation request cardinality 1-3 and request ordering. Current two-party host reachability and the unavailable third-recipient branch remain distinct; this two-recipient test does not invent or prove a third actor.",
+    "Keep the genuine OMA carried-before-first-Start gap and other accepted route gaps explicit until actual producers cover them.",
+    "Final safe facts, conditional-obligation DTOs, per-origin public denial/redaction, endpoint authorization, and full INT-05 acceptance remain separate work.",
+    "No accepted TAC-10 or Consecration qualification is restarted or declared replaced by these new assertion additions."
+  ],
+  "concreteBlockers": [],
+  "acceptanceBoundary": "No concrete defect found in this bounded source review of three native initial assessments. No full operation/module, final public APIs, runtime purity matrix, production authority, or Unity acceptance."
+}

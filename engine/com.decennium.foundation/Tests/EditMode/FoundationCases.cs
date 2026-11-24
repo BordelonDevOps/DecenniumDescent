@@ -308,6 +308,7 @@ namespace Decennium.Foundation.Tests
             AddAdmittedAssessmentCases(cases, directory);
             AddAdmittedUtilityCases(cases, directory);
             AddAdmittedSpellCases(cases, directory);
+            AddAdmittedRecoveryCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

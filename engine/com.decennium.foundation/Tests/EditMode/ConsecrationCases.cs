@@ -98,6 +98,7 @@ namespace Decennium.Foundation.Tests
                 Require(State().Encounter.CurrentActor==companion,"Missing first genuine companion Start.");
                 var before=State(); var request=new Command("consecrate.first",companion,before.Revision,CommandKind.UseConsecrate,
                     consecrate:new ConsecrateRequest(8,2));
+                AssertPureUtility(session,request);
                 Require(session.QueryCastingCommand(ExpeditionSeat.Player,request).Admissible,"Genuine funded Consecrate unavailable.");
                 BishopCommit(session,request); var created=State(); var zone=created.Consecration.Zones.Single();
                 Require(before.ResonancePools.Single().Current==7 && created.ResonancePools.Single().Current==5
@@ -112,6 +113,7 @@ namespace Decennium.Foundation.Tests
                 End(); Guard(); End(); Auto();
                 Require(State().Encounter.CurrentActor==companion && State().RuleClock<zone.ExpiresAt,"Rite missed the live terrain interval.");
                 var riteState=State(); var riteCommand=new Command("consecrate.rite",companion,riteState.Revision,CommandKind.UseHealingRite,hero);
+                AssertPureUtility(session,riteCommand);
                 BishopCommit(session,riteCommand); var after=State();
                 var rite=after.HealingRites.Single(x=>x.CommandId==riteCommand.Id);
                 var ground=after.Consecration.Healing.Single(x=>x.RiteCommandId==riteCommand.Id);

@@ -97,7 +97,7 @@ namespace Decennium.Foundation
         public static string InvocationPayloadFailure(Snapshot s,Command c)
             => InvocationPayloadConstraintV1(s,c)?.NativeCode;
 
-        internal static NativeCommandConstraintV1 InvocationPayloadConstraintV1(Snapshot s,Command c)
+        public static NativeCommandConstraintV1 InvocationPayloadConstraintV1(Snapshot s,Command c)
         {
             if(c.DivineInvocation==null)return c.Kind==CommandKind.UseDivineInvocation?new NativeCommandConstraintV1("InvocationSelectionRequired", "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs", 99):null;
             if(s.BishopEntry==null||c.Kind!=CommandKind.UseDivineInvocation)return new NativeCommandConstraintV1("InvocationUnsupported", "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs", 100);

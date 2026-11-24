@@ -14,27 +14,30 @@ namespace Decennium.Foundation.Laboratory
                     && x.Origin == CharacterFeatureGrantOrigin.EarnedAutomaticClassFeature && ClericSettlementProfile.ValidEarnedGrant(s,x)) == 2;
 
         internal static string OwnTurnFailure(Snapshot s, string actor)
+            => OwnTurnConstraintV1(s, actor)?.NativeCode;
+
+        internal static NativeCommandConstraintV1 OwnTurnConstraintV1(Snapshot s, string actor)
         {
             if(s.OrdinaryMagic!=null) {
-                if(!Owns(s,actor))return "RadianceNotOwned";
-                string context=OrdinaryMagicProfile.ContextFailure(s,actor); if(context!=null)return context;
+                if(!Owns(s,actor))return new NativeCommandConstraintV1("RadianceNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 19);
+                var context=OrdinaryMagicProfile.ContextConstraintV1(s,actor); if(context!=null)return context;
             } else {
                 if (!Owns(s,actor) || s.ClericObjective == null || s.ClericInvocationPath.AcquiredRevision <= s.ClericObjective.Revision
                     || !PostRecoveryProfile.Active(s) && !FerryWraithProfile.Active(s) && (s.InventoryCombat || s.Encounter != null)
                     || !s.ClosedEncounters.Any(x => x.Encounter.Id == s.ClericMilestone.LaterEncounterId))
-                    return "HealingRiteContextUnsupported";
+                    return new NativeCommandConstraintV1("HealingRiteContextUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 25);
                 var epoch = WorldTiming.ForActor(s,actor); var phase = s.Reinforcement?.Admission?.Phase;
-                if (epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id != phase?.Epoch.Id) return "HealingRiteCalendarUnavailable";
+                if (epoch == null || !FerryWraithProfile.IsEpoch(s,epoch.Id) && !PostRecoveryProfile.IsEpoch(s,epoch.Id) && epoch.Id != phase?.Epoch.Id) return new NativeCommandConstraintV1("HealingRiteCalendarUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 27);
                 long slot = epoch.SlotAt(s.RuleClock);
                 if (slot != epoch.ProcessedSlot || slot < 0 || epoch.Order[(int)(slot % epoch.Order.Count)] != actor
                     || epoch.LatestStart(actor,slot) != slot
                     || s.WorldIntervals.Single(x => x.ActorId == actor).LastStart != WorldTiming.TurnOrdinal(s,epoch.Id,slot)
-                    || s.InventoryCombat && (s.Encounter.CurrentActor != actor || s.InventoryTurnActor != actor)) return "WrongRegularTurn";
+                    || s.InventoryCombat && (s.Encounter.CurrentActor != actor || s.InventoryTurnActor != actor)) return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 32);
             }
             if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)
                 || s.FrightenedTimings.Any(x => x.RepeatAt.Time <= s.RuleClock
                     && !s.FrightenedSaves.Any(save => save.Repeat && save.ApplicationId == x.ApplicationId)
-                    && !ClericSettlementProfile.CuredBeforeRepeat(s,x))) return "ConditionBoundaryPending";
+                    && !ClericSettlementProfile.CuredBeforeRepeat(s,x))) return new NativeCommandConstraintV1("ConditionBoundaryPending", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 37);
             return null;
         }
 
@@ -76,21 +79,24 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private static string RadiancePreflight(Snapshot state, Command command)
+            => RadianceConstraintV1(state, command)?.NativeCode;
+
+        private static NativeCommandConstraintV1 RadianceConstraintV1(Snapshot state, Command command)
         {
             var preference = command.HealingRite?.CurePreference ?? RadianceCurePreference.None;
             bool owns = RadianceRules.Owns(state,command.Actor);
-            if (preference != RadianceCurePreference.None && !owns) return "RadianceNotOwned";
+            if (preference != RadianceCurePreference.None && !owns) return new NativeCommandConstraintV1("RadianceNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 82);
             if (!owns) return null;
-            string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;
-            if (RadianceRules.Used(state,command.Actor)) return "RadianceAlreadyUsedThisTurn";
-            if (state.RadianceUses.Length >= 128) return "RadianceHistoryFull";
+            var context = RadianceRules.OwnTurnConstraintV1(state,command.Actor); if (context != null) return context;
+            if (RadianceRules.Used(state,command.Actor)) return new NativeCommandConstraintV1("RadianceAlreadyUsedThisTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 85);
+            if (state.RadianceUses.Length >= 128) return new NativeCommandConstraintV1("RadianceHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 86);
             if (preference != RadianceCurePreference.None) {
                 if (!Validation.ValidId(command.Id + ".radiance.cure") || !Validation.ValidId(command.Id + ".radiance.sync"))
-                    return "RadianceIdentityCapacityReached";
+                    return new NativeCommandConstraintV1("RadianceIdentityCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 89);
                 var journal = state.Conditions.Single(x => x.Target == command.Target);
-                if (journal.Now.Time > state.RuleClock) return "ConditionCalendarMismatch";
+                if (journal.Now.Time > state.RuleClock) return new NativeCommandConstraintV1("ConditionCalendarMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 91);
                 int worstCase = journal.Now.Equals(RadianceRules.TargetStamp(state,command.Target)) ? 1 : 2;
-                if (journal.Operations.Count + worstCase > ConditionJournal.MaxOperations) return "ConditionHistoryCapacityReached";
+                if (journal.Operations.Count + worstCase > ConditionJournal.MaxOperations) return new NativeCommandConstraintV1("ConditionHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs", 93);
             }
             return null;
         }

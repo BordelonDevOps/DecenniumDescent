@@ -309,6 +309,7 @@ namespace Decennium.Foundation.Tests
                         else if(!invoked&&h.Hp<heroHp&&a.Hp<clericHp&&cure!=null) {
                             var ready=ShortRestCapture(session);BishopSupplementalInvocation(session,ready,directory);BishopSupplementalAura(ready,directory);
                             var command=Make(CommandKind.UseDivineInvocation,invocation:new DivineInvocationRequest(new[]{hero,cleric},cure,RadianceCurePreference.Frightened));
+                            AssertPureUtility(session,command);
                             BishopCommit(session,command);invoked=true;var paid=ShortRestCapture(session);var use=paid.BishopEntry.Invocations.Single();
                             Require(use.Recipients.Count(x=>x.ActualGain>0)==2&&use.EndedApplicationIds.Count>0&&use.ActualVent==0,"Genuine two-target healing, positive cure or zero-floor vent missing.");
                             BishopCheckpoint(session,directory,"invocation-cure");
@@ -318,7 +319,8 @@ namespace Decennium.Foundation.Tests
                             RetainClericDenial(BishopSimulation(session),restricted,command,"NotAuthorized",directory);
                             Require(paid.SpellEffects.Any(x=>x.Present&&x.SpellId=="detect-magic"),"Invocation replaced concentration.");
                         } else if(invoked&&!cared&&h.Hp<=13) {
-                            BishopCommit(session,Make(CommandKind.UseHealingRite,target:hero,rite:new HealingRiteRequest(RadianceCurePreference.None)));cared=true;
+                            var rite=Make(CommandKind.UseHealingRite,target:hero,rite:new HealingRiteRequest(RadianceCurePreference.None));
+                            AssertPureUtility(session,rite);BishopCommit(session,rite);cared=true;
                             var care=ShortRestCapture(session);Require(care.HealingRites.Last().ActualGain>0&&care.RadianceUses.Last().AdditionalGain>0
                                 &&care.BishopEntry.AuraHealing.Last().ActualGain>0,"Positive base, Radiance and Aura healing not reached.");BishopCheckpoint(session,directory,"rite-radiance-aura");
                         }

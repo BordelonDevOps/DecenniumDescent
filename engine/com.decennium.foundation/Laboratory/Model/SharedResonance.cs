@@ -106,50 +106,53 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessHealingRite(Snapshot state, Command command)
+            => HealingRiteConstraintV1(state, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 HealingRiteConstraintV1(Snapshot state, Command command)
         {
-            if (!state.ConnectedClericRp || command.Actor != ClericRpProfile.Actor) return "HealingRiteUnavailable";
+            if (!state.ConnectedClericRp || command.Actor != ClericRpProfile.Actor) return new NativeCommandConstraintV1("HealingRiteUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 110);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null || command.Advancement != null
                 || command.Ranged != null || command.OverwatchRider != OverwatchRider.None || command.SuppressionFire != null
                 || command.DefensiveFormation != null || command.ExpeditionAssignment != null || command.HarvestSelection != null
                 || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
-                return "InvalidHealingRiteRequest";
+                return new NativeCommandConstraintV1("InvalidHealingRiteRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 115);
             bool postClosure = state.ConnectedClericSettlement && !state.InventoryCombat;
             if(state.OrdinaryMagic!=null) {
-                string context=AssessMagicalActivityContext(state,command.Actor); if(context!=null)return context;
+                var context=MagicalActivityContextConstraintV1(state,command.Actor); if(context!=null)return context;
             } else if (postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state)) {
-                string context = RadianceRules.OwnTurnFailure(state,command.Actor); if (context != null) return context;
+                var context = RadianceRules.OwnTurnConstraintV1(state,command.Actor); if (context != null) return context;
             } else if (!state.InventoryCombat || state.Reinforcement?.Admission == null
-                || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return "HealingRiteContextUnsupported";
-            if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return "TacticalChoicePending";
-            if (!postClosure && (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor)) return "WrongRegularTurn";
+                || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId) return new NativeCommandConstraintV1("HealingRiteContextUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 122);
+            if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 123);
+            if (!postClosure && (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor)) return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 124);
             if (!state.CharacterFeatureGrants.Any(x => x.FeatureId == ClericRpProfile.HealingRite && ClericRpProfile.ValidInitialGrant(state, x)))
-                return "HealingRiteNotOwned";
+                return new NativeCommandConstraintV1("HealingRiteNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 126);
             var character = state.Characters.Single(x => x.ActorId == command.Actor);
             int clericLevel=character.Levels.Count(x=>x.ClassName=="Cleric");
             if(state.OrdinaryMagic!=null ? clericLevel<1 || clericLevel>3 || clericLevel==3 && !BishopProfile.Earned(state)
-                : clericLevel != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state) ? 2 : 1)) return "HealingRiteClassUnsupported";
-            if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
-            if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
+                : clericLevel != (BishopProfile.Earned(state)?3:postClosure || PostRecoveryProfile.Active(state) || FerryWraithProfile.Active(state) ? 2 : 1)) return new NativeCommandConstraintV1("HealingRiteClassUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 130);
+            if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 131);
+            if (Interval(state, command.Actor).ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 132);
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
-                return "HealingRiteRequiresStationaryAccess";
+                return new NativeCommandConstraintV1("HealingRiteRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 134);
             if(state.Creatures.Any(x=>x.ActorId==command.Target&&x.LivingRecipient!=LivingRecipientQualification.Living))
-                return "HealingRiteTargetUnavailable";
+                return new NativeCommandConstraintV1("HealingRiteTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 136);
             if (command.Target != TestOnlyPolicy.ActorId && command.Target != TestOnlyPolicy.CompanionId
-                || !postClosure && !state.Encounter.Order.Contains(command.Target)) return "HealingRiteTargetUnavailable";
+                || !postClosure && !state.Encounter.Order.Contains(command.Target)) return new NativeCommandConstraintV1("HealingRiteTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 138);
             var actor = state.Actors.Single(x => x.Id == command.Actor);
             var target = state.Actors.Single(x => x.Id == command.Target);
-            if (state.Lives.Single(x => x.ActorId == command.Target).Dead) return "HealingRiteTargetUnavailable";
+            if (state.Lives.Single(x => x.ActorId == command.Target).Dead) return new NativeCommandConstraintV1("HealingRiteTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 141);
             if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(target.X, target.Y)) > 30
                 || !ObservationGeometry.LineOfEffectClear(state, actor.Id, target.Id)
-                || actor.Id != target.Id && !ObservationRules.CanSee(state, actor.Id, target.Id)) return "HealingRiteTargetUnavailable";
-            if (state.PeriodicRiders.Any(x => x.TargetId == target.Id && x.Present)) return "HealingRiteSourceInteractionUnsupported";
+                || actor.Id != target.Id && !ObservationRules.CanSee(state, actor.Id, target.Id)) return new NativeCommandConstraintV1("HealingRiteTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 144);
+            if (state.PeriodicRiders.Any(x => x.TargetId == target.Id && x.Present)) return new NativeCommandConstraintV1("HealingRiteSourceInteractionUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 145);
             var pool = state.ResonancePools.SingleOrDefault(x => x.ActorId == command.Actor);
-            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return "ResonancePoolUnavailable";
-            if (pool.Current < 2) return "InsufficientResonance";
-            if (state.HealingRites.Length >= 128) return "HealingRiteHistoryFull";
-            if (state.Consecration?.Healing.Count >= ConsecrationRecord.MaxHealing) return "GroundHealingHistoryFull";
-            if (state.ConnectedClericCasting && state.CastingActivities.Length >= SpellCastingProfile.MaxActivities) return "CastingHistoryFull";
-            return state.ConnectedClericSettlement ? RadiancePreflight(state,command) : null;
+            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return new NativeCommandConstraintV1("ResonancePoolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 147);
+            if (pool.Current < 2) return new NativeCommandConstraintV1("InsufficientResonance", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 148);
+            if (state.HealingRites.Length >= 128) return new NativeCommandConstraintV1("HealingRiteHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 149);
+            if (state.Consecration?.Healing.Count >= ConsecrationRecord.MaxHealing) return new NativeCommandConstraintV1("GroundHealingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 150);
+            if (state.ConnectedClericCasting && state.CastingActivities.Length >= SpellCastingProfile.MaxActivities) return new NativeCommandConstraintV1("CastingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs", 151);
+            return state.ConnectedClericSettlement ? RadianceConstraintV1(state,command) : null;
         }
 
         private string ResolveHealingRite(Snapshot state, Command command)

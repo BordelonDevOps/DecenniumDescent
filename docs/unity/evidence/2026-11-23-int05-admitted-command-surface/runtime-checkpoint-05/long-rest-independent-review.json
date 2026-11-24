@@ -1,0 +1,768 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "independent /root/audit_management",
+  "createdAtUtc": "2026-11-24T04:09:48.615966+00:00",
+  "status": "NO_CONCRETE_BLOCKERS_FOUND_IN_BOUNDED_STATIC_REVIEW",
+  "reviewedHead": "dd9a8baeafcec57f92fc7d56f8778fa5514cad35",
+  "acceptedSourceBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "scope": [
+    "BeginLongRest and InterruptLongRest typed native assessment extraction.",
+    "Exact original guard identity/order, pure current selectors and strict owning condition-read path.",
+    "Static source review of the new genuine rest regression; no execution."
+  ],
+  "sourceApiContractAccepted": true,
+  "runtimeModuleAccepted": false,
+  "commitFeasibilityCertified": false,
+  "runtimeOrTestEditsByReviewer": false,
+  "buildsTestsGameplayReplayRunByReviewer": false,
+  "findings": [],
+  "mechanicalGuardComparison": [
+    {
+      "acceptedMethod": "ClericLongRestAccess",
+      "currentTypedMethod": "ClericLongRestAccessConstraintV1",
+      "orderedBodyIdenticalAfterOnlyTypedReturnAndHelperRenameRemoval": true,
+      "normalization": "Whitespace removed; NativeCommandConstraintV1(code,exact source,line) replaced with original code literal; Access helper renamed back. No guard predicate, order, constant or short-circuit alteration removed by comparison."
+    },
+    {
+      "acceptedMethod": "AssessClericLongRest",
+      "currentTypedMethod": "ClericLongRestConstraintV1",
+      "orderedBodyIdenticalAfterOnlyTypedReturnAndHelperRenameRemoval": true,
+      "normalization": "Whitespace removed; NativeCommandConstraintV1(code,exact source,line) replaced with original code literal; Access helper renamed back. No guard predicate, order, constant or short-circuit alteration removed by comparison."
+    }
+  ],
+  "exactGuardOrigins": [
+    {
+      "code": "LongRestRequiresEarnedCleric2",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 49,
+      "currentLine": 52,
+      "acceptedStatement": "|| s.ClericInvocationPath == null) return \"LongRestRequiresEarnedCleric2\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestRequiresSettledEncounterClosure",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 52,
+      "currentLine": 55,
+      "acceptedStatement": "return \"LongRestRequiresSettledEncounterClosure\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestRequiresStationaryBerthAccess",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 56,
+      "currentLine": 59,
+      "acceptedStatement": "return \"LongRestRequiresStationaryBerthAccess\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestBerthOccupied",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 57,
+      "currentLine": 60,
+      "acceptedStatement": "if (s.Actors.Any(x => x.Id != actor && x.X == body.X && x.Y == body.Y)) return \"LongRestBerthOccupied\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestBodyUnsupported",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 62,
+      "currentLine": 65,
+      "acceptedStatement": "|| ExpeditionStrainRules.Current(s,actor).Level >= 6) return \"LongRestBodyUnsupported\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestRequiresConcentrationEnded",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 64,
+      "currentLine": 67,
+      "acceptedStatement": "return \"LongRestRequiresConcentrationEnded\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestActorOccupied",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 71,
+      "currentLine": 74,
+      "acceptedStatement": "return \"LongRestActorOccupied\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestSpentDicePathUnsupported",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 72,
+      "currentLine": 75,
+      "acceptedStatement": "if (s.CharacterHitDice.Any(x => x.ActorId == actor && x.Spent)) return \"LongRestSpentDicePathUnsupported\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 78,
+      "currentLine": 84,
+      "acceptedStatement": "if (!s.ConnectedClericLongRest || c.Actor != ClericRpProfile.Actor) return \"LongRestUnavailable\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "UnexpectedLongRestPayload",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 84,
+      "currentLine": 90,
+      "acceptedStatement": "|| c.Guidance != null || c.SanctuaryResponse != null) return \"UnexpectedLongRestPayload\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "NoMatchingActiveLongRest",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 87,
+      "currentLine": 93,
+      "acceptedStatement": "return active == null || c.Target != active.Id ? \"NoMatchingActiveLongRest\" : null;",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestSiteUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 88,
+      "currentLine": 94,
+      "acceptedStatement": "if (c.Kind != CommandKind.BeginLongRest || c.Target != ClericLongRestProfile.SiteId) return \"LongRestSiteUnavailable\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestAlreadyActive",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 89,
+      "currentLine": 95,
+      "acceptedStatement": "if (active != null) return \"LongRestAlreadyActive\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestPendingChoice",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 91,
+      "currentLine": 97,
+      "acceptedStatement": "|| s.ManufacturingAdvance != null) return \"LongRestPendingChoice\";",
+      "matchingBaselineOrigin": true
+    },
+    {
+      "code": "LongRestHistoryCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "acceptedLine": 92,
+      "currentLine": 98,
+      "acceptedStatement": "if (s.ClericLongRests.Length >= ClericLongRestProfile.MaxAttempts) return \"LongRestHistoryCapacityReached\";",
+      "matchingBaselineOrigin": true
+    }
+  ],
+  "baselinePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "gitRevision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 15459,
+      "sha256": "890399199e4c7ee47e9d1f01327cf6fa6535829dd7acbb29afd30bb0d87ea38a",
+      "gitBlob": "404585902d1a1b1fb48fc13b837b89ed451dc614"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "gitRevision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 130619,
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "gitBlob": "396e10ebaacba5453028ad1eed5a9750f39ea612"
+    }
+  ],
+  "currentPins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "bytes": 17479,
+      "sha256": "1fece952dbd79dc65e11c358b9254a2318950edadb9816b0efc69547f4ee25ec"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "bytes": 6993,
+      "sha256": "ea9412fea1435c0512a00e272d7a9dafd3e8700b5f3cfc5dc49210aaca6d82d8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedRecoveryCases.cs",
+      "bytes": 6305,
+      "sha256": "37f4b98ae7aec579f2a27b419c813e4a15dd746564cdf6f8bef868ce379f247c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedRecoveryCases.cs.meta",
+      "bytes": 240,
+      "sha256": "5697a22e8fbd50412b268d5616a67ea66a685af50e7d5f10127c34b5c6ab05d8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "bytes": 8974,
+      "sha256": "9874f2459123418c5e097183b97540374b237526c260cec9941a9f33508b7251"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "bytes": 25955,
+      "sha256": "390ae5f2efe0ce35f8f01a5a6e062ffc1d15a9c704939db7df57c4f85d0cb259"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericLongRestCases.cs",
+      "bytes": 25820,
+      "sha256": "c1e9007e7005b3d72fd98c6bef14c77bde5a5e2d780a2da0aa1de69c08cf52c3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericSettlementCases.cs",
+      "bytes": 34025,
+      "sha256": "85b288e67d74032097494e4958b65620863b3a0ac38dec4b697e0b737eca429f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "bytes": 130257,
+      "sha256": "f6abddaa0f4ad56d97a8e1fcc9b8e8d55138bc42d10c9baeaf71ff24bdc00178"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "bytes": 12337,
+      "sha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "bytes": 11431,
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "bytes": 3554,
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "bytes": 15647,
+      "sha256": "4ebc469701d3e11ec9e27ab52a14f3b06ee8f655b1bb44338b4f6aeeb15520e5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "bytes": 32835,
+      "sha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "bytes": 59346,
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "bytes": 2116,
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "bytes": 25335,
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyPolicy.cs",
+      "bytes": 4017,
+      "sha256": "c9395f32c069f2d7298dfbe55484dcf1b61d7f5ced395c2eaaba83eeacd7707f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "bytes": 36082,
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "bytes": 46202,
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "bytes": 29850,
+      "sha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "bytes": 9407,
+      "sha256": "70935f9773043559276bd9525088794f79cf729c5a46919ec83931f54d936540"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandStep.cs",
+      "bytes": 8597,
+      "sha256": "c477a5e8a84bc2b407ec33a2f9b20f0bb3cb71de106481a981ee9bc9a9211dc3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "bytes": 25185,
+      "sha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "bytes": 42556,
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "bytes": 12489,
+      "sha256": "595a7276d7ae6c6b2f2845f8edd261381380c55ce61cf3d9037ab08ddb6872b3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "bytes": 11137,
+      "sha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "bytes": 7211,
+      "sha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "bytes": 1717,
+      "sha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReadStateProjectionV1.cs",
+      "bytes": 5825,
+      "sha256": "60361c58533616536a987ad228050ed44722bb3ef6dd6af15a4428091c5b1ed2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "bytes": 7808,
+      "sha256": "f297ee628a3be8104c630cdab93cae00fe97a3f1cf6b6355fd700447cb40765f"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "bytes": 2408,
+      "sha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c"
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "bytes": 9800,
+      "sha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557"
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "bytes": 40248,
+      "sha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7"
+    }
+  ],
+  "conclusions": [
+    {
+      "id": "LR-ORDER",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+          "lines": [
+            26,
+            37
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "acceptedLines": [
+            866,
+            890
+          ],
+          "gitRevision": "67f3d201b202ab2f815ab69940682f04e78c511c"
+        }
+      ],
+      "detail": "WorldOpeningConstraintV1 runs first. Both rest kinds then return before ActiveLongRestInterruption, Sanctuary, Guidance and physical checks, matching accepted ResolveCore876. Null-coalescing preserves the first opening failure and avoids evaluating Long Rest guards after it."
+    },
+    {
+      "id": "LR-INTERRUPT",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            83,
+            100
+          ]
+        }
+      ],
+      "detail": "Selection and exact unexpected-payload guard run first, then Active is selected. InterruptLongRest returns only active-null/target-ID matching. It never runs Begin site identity, AlreadyActive, pending choice, retained attempt capacity, access/life/concentration/occupancy/spent-dice gates. Matching explicit interruption does not accidentally require a fresh valid start."
+    },
+    {
+      "id": "LR-ACCESS",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            45,
+            79
+          ]
+        }
+      ],
+      "detail": "Earned Cleric2, settled closure, stationary supported berth, occupied berth, body/strain, concentration, worker/activity occupancy and spent-dice order is unchanged. active?.DueAt handling and exclusion of active.Id in native ongoing access checks are unchanged."
+    },
+    {
+      "id": "LR-LEGACY",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            45,
+            100
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            112,
+            157
+          ]
+        }
+      ],
+      "detail": "Original string assessors delegate to the typed shared guard and return NativeCode. Resolver, rest record construction, Work.Reserve, CancelFutureWork and reconciliation remain outside the new assessment path; old returned string identity/order is preserved. No new persisted record or gameplay cost."
+    },
+    {
+      "id": "LR-FEASIBILITY",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+          "lines": [
+            51,
+            55
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+          "lines": [
+            41,
+            63
+          ]
+        }
+      ],
+      "detail": "InitialAssessmentV1 supplies CommitFeasibility=null. Initial eligibility is not a promise that Work.Reserve, later tail, snapshot validation or future completion succeeds. No future recovery benefit, paid time or committed occupancy is fabricated by assessment."
+    },
+    {
+      "id": "LR-READ-ORDER",
+      "result": "PASS_STATIC",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+          "lines": [
+            84,
+            118
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+          "lines": [
+            18,
+            30
+          ]
+        }
+      ],
+      "detail": "Existing authority/observation revision/original receipt/native revision preflight is unchanged. Matching old receipt returns AlreadyCommitted before current Long Rest eligibility. New scope consumes the owning current projection and fails closed on unavailable/mismatched context instead of reconstructing conditions."
+    }
+  ],
+  "transitiveReadAudit": [
+    {
+      "selector": "ClericLongRestProfile.IsCommand/Active",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+          "lines": [
+            8,
+            11
+          ]
+        }
+      ],
+      "purity": "Finite kind comparison and SingleOrDefault over actual active rest records; no validation or replay from the rest-validation file is called."
+    },
+    {
+      "selector": "CurrentWork identity-only overload",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "lines": [
+            31,
+            52
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "lines": [
+            84,
+            102
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "lines": [
+            123,
+            262
+          ]
+        }
+      ],
+      "purity": "Calls CurrentWorkCore(s,null,false,false), preserving original family/status membership. includeOpen=false bypasses Open property alternatives; includeDetails=false bypasses progress/interval/reservation/discovery enrichment. Create returns a detached immutable identity row. Constructor ValidId/enum/null argument checks are not Snapshot.Validate, policy validation, reservation or replay."
+    },
+    {
+      "selector": "WorkerIntervals and other occupancy selectors",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            67,
+            77
+          ]
+        }
+      ],
+      "purity": "Read-only Any over exact current WorkerIntervals, selected CurrentWork identities, open expedition assignments and moving/paused route records. No Reserve, CancelFutureWork, interval rewrite, booking or candidate validation."
+    },
+    {
+      "selector": "Own body and strain",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "lines": [
+            59,
+            65
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+          "lines": [
+            89,
+            110
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+          "lines": [
+            155,
+            178
+          ]
+        }
+      ],
+      "purity": "Life/condition/HitDice/SpellEffects are current selectors. Strain Current performs bounded ordered scalar projection of recorded gains/removals at native RuleClock and checked Revision+1; it does not apply mutations, replay commands, reconstruct condition journals or change the accepted revision semantics."
+    },
+    {
+      "selector": "ConditionsFor -> ConditionResolutionScope.Project -> precomputed projection -> Ledger.View",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+          "lines": [
+            10,
+            15
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+          "lines": [
+            105,
+            137
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+          "lines": [
+            150,
+            176
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+          "lines": [
+            35,
+            56
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+          "lines": [
+            101,
+            128
+          ]
+        }
+      ],
+      "purity": "EnterRead verifies owning context and immutable journal coverage. The strict branch returns existing projected ledger before any Restore/At/AdvanceTo fallback. Ledger.View computes current components from immutable applications/immunities only. Preparation-time Restore/AdvanceTo in CurrentConditionProjectionV1 constructor20-32 is not called by this read. Missing coverage throws, never lazily repairs."
+    },
+    {
+      "selector": "PendingCalendarChoice",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+          "lines": [
+            286,
+            292
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+          "lines": [
+            10,
+            11
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+          "lines": [
+            31,
+            33
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandStep.cs",
+          "lines": [
+            13,
+            14
+          ]
+        }
+      ],
+      "purity": "Any/SingleOrDefault/ordered Pending selectors only. CurrentPressOffer is pure; AdvanceTacticalFlow/invalidation and response resolution are not called."
+    },
+    {
+      "selector": "ManufacturingChoicePending / HasPendingRecoveryOffer",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+          "lines": [
+            114,
+            115
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+          "lines": [
+            120,
+            125
+          ]
+        }
+      ],
+      "purity": "Finite status/profile Any selectors; no quality/recovery resolution, continuation or deadline advance."
+    },
+    {
+      "selector": "WorldWalkable -> declared/legacy anchor support",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+          "lines": [
+            11,
+            12
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+          "lines": [
+            10,
+            12
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+          "lines": [
+            90,
+            100
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+          "lines": [
+            237,
+            240
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyPolicy.cs",
+          "lines": [
+            22,
+            22
+          ]
+        }
+      ],
+      "purity": "Static bounds and cell flags/layout equality. Does not call geometry Validate, movement, occupancy reservation or observation discovery."
+    },
+    {
+      "selector": "WorldOpening inherited activity prefix",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+          "lines": [
+            58,
+            73
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "lines": [
+            261,
+            262
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "lines": [
+            304,
+            339
+          ]
+        }
+      ],
+      "purity": "Preserved accepted actor/activity guard prefix. Begin/Interrupt are not StartsOrResumesActivityWork. No SetActivityInterval or refresh call is introduced."
+    },
+    {
+      "selector": "Core read inspection and current publication",
+      "evidence": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+          "lines": [
+            6,
+            29
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ReadStateProjectionV1.cs",
+          "lines": [
+            116,
+            125
+          ]
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+          "lines": [
+            89,
+            118
+          ]
+        }
+      ],
+      "purity": "Read consumes existing stamp/projection; does not call PrepareReadStateV1. Prohibited operation attempts are counted and rejected. This static review finds no reachable prohibited operation in the new rest branch; runtime zero-counter proof remains parent evidence."
+    }
+  ],
+  "newCaseSourceReview": {
+    "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedRecoveryCases.cs",
+    "caseName": "int05_genuine_rest_assessment_occupancy_interrupt_and_retry",
+    "registeredAt": {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FoundationCases.cs",
+      "lines": [
+        311,
+        311
+      ]
+    },
+    "factory": "NewClericLongRestExpedition -> StartWithClericLongRest with authored initial/repertoire/milestone selections; EnableConnectedClericLongRest14 inherits connected casting, so the active-rest CastKnownSpell control is supported by current assessor inventory.",
+    "genuinePrefix": "Fresh original factory, real EarnClericObjective(true,...selected session), then actual AwardAndAdvanceCleric. No detached state injection or terminal-save adoption.",
+    "coveredAssertions": [
+      "Unearned begin first failure agrees with actual native execution and preserves bytes.",
+      "Repeated pure initial assessment checks initial eligibility, null commit feasibility, all prohibited counters zero and unchanged serialized state.",
+      "Save/restore before start; actual start creates one exact28800-second worker interval without advancing time/RNG or restoring RP/Conviction.",
+      "Already-active begin and non-rest casting while active return correct first constraints.",
+      "Actual100-second clock advance; wrong interruption target rejects and matching active ID is available.",
+      "Save/restore while active; actual explicit interruption ends rest and future occupancy without time/RNG/resource recovery.",
+      "Exact original begin/interrupt retries return AlreadyCommitted before current-state rest eligibility and remain host duplicates.",
+      "Fresh post-interruption request returns NoMatchingActiveLongRest; authenticated restore preserves exact bytes."
+    ],
+    "assertionHelper": {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "lines": [
+        12,
+        21
+      ]
+    },
+    "executionStatus": "NOT_RUN_BY_REVIEWER; candidate10 parent results are separate",
+    "qualificationLimit": "No claim of completion benefit/cadence, damage interruption, each denial origin, all24 profiles, all five paths or full regression from this one added case."
+  },
+  "limits": [
+    "Independent source/static review only. Parent owns candidate10 compilation, test execution and retained outputs.",
+    "The new case covers one genuine initial-factory route plus named denial/retry branches; it does not execute all 15 origins, all profiles, all five complete paths or public V1 disclosure qualification.",
+    "Magic ability internals are assigned to the separate reviewer; this report reviews only shared dispatch ordering relevant to Long Rest.",
+    "No source, test, packet, save or history file was edited by this reviewer; only this ignored report was written."
+  ]
+}

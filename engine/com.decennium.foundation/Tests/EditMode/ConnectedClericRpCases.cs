@@ -110,6 +110,7 @@ namespace Decennium.Foundation.Tests
                     && beforeBytes.SequenceEqual(codec.Encode(ShortRestCapture(session))), "Wrong seat cannot issue a shared RP payment.");
                 ClericGuard(session, ally);
                 command = new Command(command.Id, ally, session.View(player).Revision, CommandKind.UseHealingRite, ally);
+                AssertPureUtility(session,command);
                 CommitVialRoute(session, command);
                 var paid = ShortRestCapture(session); var healing = paid.HealingRites.Single();
                 Require(healing.RpBefore == 3 && healing.RpPaid == 2 && healing.RpAfter == 1 && healing.ActualGain > 0
@@ -137,6 +138,7 @@ namespace Decennium.Foundation.Tests
                 ClericCommit(session, hero, CommandKind.TacticalStep, session.View(player).TurnId, y: 2);
                 ClericEnd(session, hero); ClericDefender(session); ClericGuard(session, ally);
                 var denied = ShortRestCapture(session); var retry = new Command("cleric.insufficient", ally, denied.Revision, CommandKind.UseHealingRite, ally);
+                AssertPureUtility(session,retry,"InsufficientResonance");
                 Require(!denied.WorldIntervals.Single(x => x.ActorId == ally).ActionSpent
                     && policy.Resolve(denied.Copy(), retry) == "InsufficientResonance", "Later available Action must reach the finite RP gate.");
                 Require(session.Submit(player, retry).Response == ExpeditionResponse.Unavailable

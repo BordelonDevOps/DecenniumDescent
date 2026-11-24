@@ -104,46 +104,49 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
         private string AssessConsecrate(Snapshot s, Command c)
+            => ConsecrateConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 ConsecrateConstraintV1(Snapshot s, Command c)
         {
-            if (s.Consecration == null) return "ConsecrationUnavailable";
-            if (!ConsecrationRules.PayloadValid(c)) return "InvalidConsecrateRequest";
-            if (!ConsecrationRules.Owns(s,c.Actor,ConsecrationProfile.Consecrate)) return "ConsecrateNotOwned";
+            if (s.Consecration == null) return new NativeCommandConstraintV1("ConsecrationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 108);
+            if (!ConsecrationRules.PayloadValid(c)) return new NativeCommandConstraintV1("InvalidConsecrateRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 109);
+            if (!ConsecrationRules.Owns(s,c.Actor,ConsecrationProfile.Consecrate)) return new NativeCommandConstraintV1("ConsecrateNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 110);
             var character = s.Characters.Single(x => x.ActorId == c.Actor);
             int level = character.Levels.Count(x => x.ClassName == "Cleric");
-            if (level < 1 || level > 3) return "ConsecrateClassUnsupported";
+            if (level < 1 || level > 3) return new NativeCommandConstraintV1("ConsecrateClassUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 113);
             if(s.OrdinaryMagic!=null) {
-                string context=AssessMagicalActivityContext(s,c.Actor); if(context!=null)return context;
+                var context=MagicalActivityContextConstraintV1(s,c.Actor); if(context!=null)return context;
             } else {
                 var epoch = WorldTiming.ForActor(s,c.Actor);
                 var turn = CurrentCastingTurn(s,c.Actor);
-                if (epoch == null || turn == null || turn.LocalStart < 0) return "ConsecrateCalendarUnavailable";
+                if (epoch == null || turn == null || turn.LocalStart < 0) return new NativeCommandConstraintV1("ConsecrateCalendarUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 119);
                 long slot = epoch.SlotAt(s.RuleClock);
                 if (slot != epoch.ProcessedSlot || epoch.LatestStart(c.Actor,slot) != slot
                     || s.RuleClock >= epoch.Start(checked(slot+1))
                     || Interval(s,c.Actor).LastStart != WorldTiming.TurnOrdinal(s,epoch.Id,slot)
-                    || s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return "ConsecrateOpenOwnerSlotRequired";
-                if (s.InventoryCombat && (s.Encounter?.CurrentActor != c.Actor || s.InventoryTurnActor != c.Actor)) return "WrongRegularTurn";
-                if (!s.InventoryCombat && s.Encounter != null) return "ConsecrateContextUnsupported";
+                    || s.CastingTurnEnds.Any(x => x.Turn.SameAs(turn))) return new NativeCommandConstraintV1("ConsecrateOpenOwnerSlotRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 124);
+                if (s.InventoryCombat && (s.Encounter?.CurrentActor != c.Actor || s.InventoryTurnActor != c.Actor)) return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 125);
+                if (!s.InventoryCombat && s.Encounter != null) return new NativeCommandConstraintV1("ConsecrateContextUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 126);
             }
             if (PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s) || s.ManufacturingAdvance != null)
-                return "TacticalChoicePending";
-            if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)) return "ConditionBoundaryPending";
-            if (!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action) return "ConditionPreventsAction";
-            if (Interval(s,c.Actor).ActionSpent) return "ActionAlreadySpent";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 129);
+            if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(s)) return new NativeCommandConstraintV1("ConditionBoundaryPending", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 130);
+            if (!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action) return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 131);
+            if (Interval(s,c.Actor).ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 132);
             if (OrdinaryInventory.Busy(s,c.Actor) || CharacterAdvancementRules.Busy(s,c.Actor)
-                || s.WorldTraversals.Any(x => x.ActorId == c.Actor)) return "ConsecrateRequiresStationaryAccess";
+                || s.WorldTraversals.Any(x => x.ActorId == c.Actor)) return new NativeCommandConstraintV1("ConsecrateRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 134);
             if (s.AbilityRecharges.Any(x => x.ActorId == c.Actor && x.AbilityId == ConsecrationProfile.Consecrate && x.Remaining > 0))
-                return "ConsecrateRecharging";
+                return new NativeCommandConstraintV1("ConsecrateRecharging", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 136);
             int x = c.GetConsecrateRequest().X, y = c.GetConsecrateRequest().Y;
             var body = s.Actors.Single(a => a.Id == c.Actor);
             if (!ConsecrationRules.PerceivesCenter(s,c.Actor,x,y)
                 || Math.Max(Math.Abs((long)body.X-x),Math.Abs((long)body.Y-y)) > 6
-                || !ObservationGeometry.LineOfEffectClearToCell(s,c.Actor,x,y)) return "ConsecratePointUnavailable";
+                || !ObservationGeometry.LineOfEffectClearToCell(s,c.Actor,x,y)) return new NativeCommandConstraintV1("ConsecratePointUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 141);
             var pool = s.ResonancePools.SingleOrDefault(p => p.ActorId == c.Actor);
-            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return "ResonancePoolUnavailable";
-            if (pool.Current < 2) return "InsufficientResonance";
-            if (s.Consecration.Zones.Count >= ConsecrationRecord.MaxZones) return "ConsecrationHistoryFull";
-            if (s.CastingActivities.Length >= SpellCastingProfile.MaxActivities) return "CastingHistoryFull";
+            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return new NativeCommandConstraintV1("ResonancePoolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 143);
+            if (pool.Current < 2) return new NativeCommandConstraintV1("InsufficientResonance", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 144);
+            if (s.Consecration.Zones.Count >= ConsecrationRecord.MaxZones) return new NativeCommandConstraintV1("ConsecrationHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 145);
+            if (s.CastingActivities.Length >= SpellCastingProfile.MaxActivities) return new NativeCommandConstraintV1("CastingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs", 146);
             return null;
         }
         private string ResolveConsecrate(Snapshot s, Command c)
