@@ -1,0 +1,2805 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSED_EXACT_PHYSICAL_FACT_REGISTRY_NOT_APPROVED_OR_IMPLEMENTED",
+  "baseline": "6e70f4491b967fa71917544a606f7e2985664818",
+  "scope": {
+    "operations": 13,
+    "sourceAuditOnly": true,
+    "runtime": false,
+    "builds": false,
+    "tests": false,
+    "fullAcceptance": false
+  },
+  "contracts": [
+    "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+    "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DETAILED_RESULT_CONTRACT.md",
+    "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/RESULT_FACTS_COMBAT_CLOCK_REST.md",
+    "engine/artifacts/admitted-command-surface/physical-independent-audit.json"
+  ],
+  "commonAttemptFields": "Reference the shared submission/explanation contract for version, exact legacy/native outcome, stage/code, original/matching/native/current revisions, core reached and clock suspension. Do not duplicate or replace these keys. Common metadata alone grants no physical fact disclosure.",
+  "types": {
+    "Identity": "String restricted to existing valid public identity; empty native optional identity becomes explicit absent only after disclosure succeeds; never expose raw fingerprint/command payload.",
+    "Boolean": "System.Boolean.",
+    "Integer32": "System.Int32 signed, for native grid coordinates/hand counts only if explicitly registered.",
+    "Integer64:hit-point": "System.Int64 signed, native HP/potential/actual values; HP difference may be negative.",
+    "Code:<enum>": "Allowlisted enum name, native enum backed by Int32; no unregistered diagnostic string or arbitrary object.",
+    "Time": "Original normalized RuleTime with Int64 numerator and positive Int64 denominator; unit second; optional suffix ? retains absence.",
+    "Quantity:ration-pound": "RuleQuantity Int64 numerator/positive Int64 denominator, unit TEST_ONLY.ration-pound.",
+    "Quantity:native-lot-unit": "RuleQuantity Int64/Int64 and exact current/native source lot.UnitId. Only already admitted public unit IDs; retain prototype.potable-water.pint, TEST_ONLY.ration-pound or registered count/material unit; no implicit conversion.",
+    "Quantity:native-supply-unit": "Exact reservation RuleQuantity and its actual supply ResourceLot.UnitId; never equate to ration pounds or abstract currency.",
+    "Quantity:owned-item-unit": "Exact RuleQuantity Int64/Int64; linked InventoryLot uses native ResourceLot.UnitId; AlchemyDose uses item-count (the existing native one-or-zero quantity); no value/unit when legacy Available is absent.",
+    "Code:PortablePublicPlacement": "Allowlisted exact strings of PortablePlacement (native Int32 enum) plus existing Club Held/Ground view labels; preserve string labels without pretending Held is a PortablePlacement value."
+  },
+  "availabilityRules": [
+    "All keys in the selected publicly known operation/variant registry have fixed order and shape, whether records exist or are hidden. Evaluate predicate before revealing applicability, record existence, record count, cause, optional absence or value. Failed predicate => Withheld with no value/causes.",
+    "Every N_ predicate is UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL. Until actual review approves it, affected details stay Withheld; Retained metadata in this document describes native retention, not approved access.",
+    "Authorized absence or genuinely irrelevant fields => NotApplicable; a historical field not natively stored => NotRetained. Never use NotRetained to conceal an unresolved disclosure proposal.",
+    "Fresh rejected attempt contains no committed operation facts; common actual safe failure remains Immediate. Duplicate creates no new payment/time/healing and uses historical original facts or explicitly current observations.",
+    "Current fields on fresh submission are the actual post-attempt observation; retained earlier-job fields cannot be relabelled as this attempt's new effects. On interrupt/continuation operations, original start fields still reference their original job receipt.",
+    "ProjectionUnavailable remains truthful fault containment after outcome capture. It neither changes authoritative outcome nor closes missing required fields.",
+    "Null values and safe unavailable facts must not expose hidden target existence; no arbitrary effect/claim/body arrays or count fields are proposed."
+  ],
+  "predicates": {
+    "A": {
+      "status": "EXISTING_AUTHORITY_SEMANTICS",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:233-253,393-412; engine/com.decennium.foundation/Runtime/Core/Simulation.cs:1449",
+      "definition": "Exact current enabled seat/trusted route, exact principal, actor and native inventory-owner claims before exact receipt match. Existing narrow transaction exceptions only. Not target visibility."
+    },
+    "O": {
+      "status": "EXISTING_CHARACTER_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:492-505,585-588,91-122",
+      "definition": "A plus actual enabled Player seat own actor projection, current grant.Controls(subject), and subject returned by ExpeditionOwnActor route. Operator ClockGrant and observer-only visible opponent do not qualify."
+    },
+    "P_ITEM": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:654-682",
+      "definition": "A plus the exact current ProjectItems branch for the item: MayUseInventory(actual owner) AND controlled actual custodian; plain lot must satisfy same inventory-owner/controlled lot-custodian branch, no selected-cache/trap exclusion bypass. Linked dose uses its existing portable branch. ProjectItems can show stowed items; this is not permission to use them as held."
+    },
+    "P_DOSE_ITEM": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:659-663,680-682",
+      "definition": "A plus actual dose currently representable by the existing ProjectItems branch. Unlinked spent doses are not newly revealed; linked selected spent vial can show quantity zero. No current-custody inference of ownership."
+    },
+    "P_CACHE": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:587-591; engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:643-651,592",
+      "definition": "A + enabled Player View + actual ReachableCache: selected Hero-owned cache, nonburied, native NearCache, no Hero traversal and exact combat/profile condition. Fixed current cache fields only."
+    },
+    "P_CACHE_STOCK": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:629-634; engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:470-481",
+      "definition": "P_CACHE plus actual open cache, retained stock in selected cache, Hero custody, Hero inventory ownership and Ground access. Preserve existing no-stock null/empty convention; no private unopened stock disclosure."
+    },
+    "P_TRAP_REMOTE": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:602-612,365-384,594",
+      "definition": "A + enabled Player route + grant.Controls(Companion) + grant.MayUseInventory(Companion) + actual selected trap. Only selected/latest own setup timing, restricted setup status and retrieval work/status already shown remotely."
+    },
+    "P_TRAP_LOCAL": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:623-627; engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:384-387",
+      "definition": "P_TRAP_REMOTE + CanObserveTrap: outside combat, Companion stationary, aware, not sight-blocked, native FishingAccessFrom actual trap location. Only actual current physical status/check outcome/captured identity; never hidden opportunity or candidate-body data."
+    },
+    "P_INTAKE_JOB": {
+      "status": "EXISTING_CURRENT_FIELD_VIEW",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:583,700-701",
+      "definition": "A + enabled Player work projection + actual current grant.Controls(job.ActorId), returning only existing job Id/actor/kind/status. Does not authorize lot or reservation details."
+    },
+    "N_CACHE_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "P_CACHE + O(Hero) + exact principal receipt/job binding",
+      "reason": "Native attempt method/start/end/status exists; existing cache view shows only current active pick, not historical attempts. Propose bounded facts for the exact requested own attempt while cache is currently reachable; no list, dice/modifier/DC/equipment secrets."
+    },
+    "N_TRAP_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "P_TRAP_REMOTE + exact own set/retrieval receipt + fixed selected trap and authorized receiver identity",
+      "reason": "Extend remote own work bookkeeping only; terminal retrieval time/identity is not currently a public field. Does not reveal catch outcome/body."
+    },
+    "N_TRAP_HISTORY_LOCAL": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_TRAP_HISTORY + P_TRAP_LOCAL",
+      "reason": "Historical check terminal time/outcome only while actual local observation is allowed. No hidden eligibility/DC, opportunity identity, allocation, candidate species or body count."
+    },
+    "N_PORTABLE_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + P_ITEM for actual current subject item + exact PortableHandlingRecord.Revision/actor/item match",
+      "reason": "Existing item view exposes current placement/owner/open/amount, not before/after history. Propose only exact requested handling event fields; current revocation hides history even after original ownership."
+    },
+    "N_PORTABLE_PARENT_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_PORTABLE_HISTORY + P_ITEM independently for every nonempty referenced parent",
+      "reason": "An own item's historic parent does not authorize identifying a now-hidden container."
+    },
+    "N_PORTABLE_RECIPIENT_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_PORTABLE_HISTORY + O for nonempty recipient, or exact existing permitted public participant observation if explicitly adopted",
+      "reason": "Actor control does not reveal a foreign historical recipient. Current module proposes own-party O only; any visible-opponent extension requires its exact V rule."
+    },
+    "N_INVENTORY_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + P_ITEM for exact child lot + native owner claims for exact requested source + immutable child provenance/receipt join",
+      "reason": "New original portion/handling quantity/provenance fields are retained but not all exposed by ProjectItems. Source must remain visible where identified; no hidden stock totals."
+    },
+    "N_INVENTORY_PARENT_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_INVENTORY_HISTORY + P_ITEM(source) OR exact P_CACHE_STOCK for selected cache source",
+      "reason": "Allow exact acquired cache portion parent only while present cache stock disclosure authorizes that identity; otherwise parent field Withheld independently."
+    },
+    "N_VESSEL_CURRENT": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + actual WaterVesselRecord owner MayUseInventory + controlled actual CustodianId + currently known selected host vessel (Session KnownTarget) or P_ITEM on its linked portable item",
+      "reason": "Legacy ProjectItems has no universal standalone vessel detail DTO. Propose current owner/custody only; no invented flask Open state. Exact vessel/source-owner claim checks remain required.",
+      "implementation": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:718-722; engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:654-682"
+    },
+    "N_VESSEL_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_VESSEL_CURRENT + exact VesselHandlingRecord.Sequence/actor/vessel receipt link",
+      "reason": "Retained movement history is not existing public view. It cannot grant rights to the contents."
+    },
+    "N_VESSEL_LOCATION_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_VESSEL_HISTORY + each nonactor location currently known through exact host target/current public location rule",
+      "reason": "Do not expose hidden containers/cache/source locations through a historic move. Unknown location field independently Withheld."
+    },
+    "N_VESSEL_PARTICIPANT_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_VESSEL_HISTORY + O for each nonempty custody participant",
+      "reason": "Proposed bounded own-party custody history; no generalized visible-observer entitlement."
+    },
+    "N_INTAKE_DETAILS": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "P_INTAKE_JOB + P_ITEM for actual lot + exact claim JobId/LotId/reservation binding",
+      "reason": "Existing work view exposes status, not current consumed/released amounts or original reservation facts. No other jobs/claims enumerated."
+    },
+    "N_DOSE_USE": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + P_DOSE_ITEM/current actual dose owner and custody authority + unique committed use receipt + O(user)",
+      "reason": "Retained use history is not public solely because dose quantity is visible. No stowed-to-held eligibility inference and no restoration of revoked inventory access."
+    },
+    "N_DOSE_HEALING": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_DOSE_USE + O(actual recipient)",
+      "reason": "Own-recipient actual healing history is source-retained and complements current HP observation; control of item/user alone does not reveal recipient HP. No raw dice/RNG."
+    },
+    "N_PROTECTION_HISTORY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + P_ITEM(current exact vessel) + N_TREATMENT for the exact linked treatment/lot + exact evidence command/revision/portable-handling link",
+      "reason": "Preservation evidence has no current host DTO predicate. Propose only exact selected specimen/vessel controlled-opening event, not hidden exposure history or clean-tool source ledger."
+    },
+    "N_TREATMENT": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + enabled Player + O(Companion worker) + selected connected BloodSpecimen + exact KnownTarget StartHarvestPreservationTreatment + current MayUseInventory of actual specimen owner + controlled actual specimen custody + authorized known actual bound vessel",
+      "reason": "No existing connected treatment-result view. Proposed local own selected treatment facts, anchored to native selected specimen/worker/source binding; do not adopt arbitrary fixture treatment or foreign harvest records. Current lot/vessel knowledge must use actual ProjectItems or exact selected host-authorized specimen/vessel route, never Controls alone.",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs:798-799; engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs:367-447"
+    },
+    "N_TREATMENT_TOOL": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_TREATMENT + current inventory/structure owner access and selected source binding of exact tool",
+      "reason": "Do not expose CleanToolFactId or unobserved owned tools merely from treatment history."
+    },
+    "N_TREATMENT_SUPPLY": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "N_TREATMENT + current MayUseInventory(actual SupplyLot owner) + exact controlled custody/native accessible selected stock + exact SupplyReservationId",
+      "reason": "Fixed supply role only, no reservation list or hidden stock count."
+    },
+    "N_PROTECTION_CURRENT": {
+      "status": "UNAPPROVED_NARROW_DISCLOSURE_PROPOSAL",
+      "base": "A + P_ITEM for exact current container + N_TREATMENT for actual linked treated lot and vessel; exact native current coverage query only",
+      "reason": "Existing item Open does not disclose preservation eligibility. New bounded own treated-lot coverage field requires approval; no inferred age reset, hidden exposure count or forecast."
+    }
+  },
+  "receiptJoins": {
+    "J_REQUEST": "A matches exact bound-principal receipt and exact command internally (or current attempted command for fresh submission); caller text alone never establishes authoritative target existence.",
+    "J_ATTEMPT": "The one actual authoritative invocation's captured pre/post snapshots under session gate and exact native result. Rejected rolled-back candidate changes excluded; no replay or assessment recomputation.",
+    "J_PORTABLE": "PortableHandlingRecord.Revision equals receipt.Revision; actor/item and operation match exact command semantics; native Id is inventory.<revision>.portable. Original command is also resolving command; fields record actual post-time result. Club-pickup special route uses same explicit revision record.",
+    "J_CACHE": "Pick attempt Id=inventory.<originRevision>.cache-attempt via OrdinaryInventory.Identity; check exact receipt kind Interact, target CacheId, PickWithTools, actor and principal. Open branch has no independent open event; original receipt plus actual immediate observation only.",
+    "J_CACHE_TERMINAL": "Retain J_CACHE. Native EndedAt/status/check facts have no explicit terminal CommandId/Revision. For an actual current interruption/completion carrier identify its true resolving command immediately; later explanation must not infer it from time/actor. Resolving receipt availability NotRetained where no separate explicit source exists.",
+    "J_TRAP": "FishingTrapAttemptRecord.Id=fishing.trap.<setReceiptRevision>; exact Interact Set/selected trap/Companion/principal. Existing remote current view selects latest own attempt; historical requested earlier attempt requires N_ predicate, not reuse of latest view.",
+    "J_TRAP_TERMINAL": "J_TRAP plus actual attempt's immutable terminal fields; no stored check-resolving receipt revision. Keep original set cause, later resolver identity NotRetained unless captured in actual submission.",
+    "J_TRAP_RETRIEVAL": "FishingTrapRetrievalRecord.Id=fishing.trap.retrieval.<retrieveReceiptRevision>; exact Interact Retrieve actor/trap/destination; AttemptId links original set and fixed physical trap. Pause/Resume target current retrieval via native linkage, not invented new set receipt.",
+    "J_TRAP_RETRIEVAL_TERMINAL": "J_TRAP_RETRIEVAL; CompletedAt retained, no explicit later resolver receipt. Do not use timestamp uniqueness as causal authentication.",
+    "J_CHILD": "For PortionInventory or HandleInventory, actual child LotId=inventory.<receipt.Revision>.lot plus exact ParentId==command.Target and CreatedAmount==actual requested committed amount; validated native lineage. Require relevant native lot unit, not caller's invented unit.",
+    "J_HANDLING": "HandlingRecord.Id=inventory.<receipt.Revision>.handling; ActorId/SourceId/ChildId/Kind must match exact committed command and J_CHILD. Record has no independent revision property; use canonical native identity relation.",
+    "J_VESSEL": "VesselHandlingRecord.Sequence==receipt.Revision and Id=inventory.<revision>.vessel-move; exact actor/vessel/kind and native destination binding. Retained same-attempt before/after custody/location, no content ownership transfer implied.",
+    "J_INTAKE": "IntakeRecord.Id=inventory.<startReceiptRevision>.intake, exact original StartIntake actor/lot/principal. InterruptIntake command.Target must equal that actual Id. No current working-status inference of original eligibility.",
+    "J_INTAKE_CLAIM": "J_INTAKE plus ReservationId==job.Id+'.stock', ResourceReservation.JobId==job.Id and LotId==job.LotId. Amount original, consumed/released/remaining current totals.",
+    "J_INTAKE_TERMINAL": "J_INTAKE. For explicit requested InterruptIntake the unique validated command targeting job proves that requested interrupt, with immediate result captured; automatic completion/interruption has no retained terminal revision on IntakeRecord. Do not manufacture a clock cause from EndedAt.",
+    "J_DOSE": "Exact committed UseAlchemyDose receipt, target dose.Id, actor==dose.UserId and exact native recipient selection matches dose.RecipientId; require unique once-only use receipt for this dose and native spent record. UsedAt is not a revision and does not authenticate a different nearby command. Native CommandHistory parsing for internal match is not replay and is never exported.",
+    "J_TREATMENT": "Attempt.Id=harvest.preservation.<startReceiptRevision>; exact StartHarvestPreservationTreatment command actor/target/amount and bound container/tool/supply from selected fixture. Separate from manufacturing order stabilization.",
+    "J_TREATMENT_TERMINAL": "J_TREATMENT plus immutable CompletedAt/SealedAt/check degree. Record has no explicit resolving revision; later resolver receipt unavailable without actual immediate carrier or another retained explicit causal record.",
+    "J_TREATMENT_CLAIMS": "J_TREATMENT plus exact TargetReservationId/SupplyReservationId, JobId and respective LotId; project fixed two role fields only.",
+    "J_OPENING": "HarvestPreservationEvidenceRecord.CommandId==exact command.Id, AppliedRevision==receipt.Revision; Kind ControlledOpening; PortableHandlingId matches J_PORTABLE and VesselId/treatment link match actual selected open. Do not match only time or vessel.",
+    "J_PROTECTION_CURRENT": "Exact currently authorized container/item and actual native treatment InventoryLotId/ContainerId linkage; current IsProtectedAt projection belongs to current observation, not an alleged original opening/closing effect. No requirement that the requested Close receipt itself be a ControlledOpening event."
+  },
+  "factGroups": [
+    {
+      "id": "cache",
+      "source": "engine/com.decennium.foundation/Runtime/Core/SupplyCacheRecords.cs:13-21,50-61",
+      "fields": [
+        {
+          "key": "physical.cache.id",
+          "type": "Identity",
+          "native": "SupplyCacheRecord.Id",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_CACHE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.locked",
+          "type": "Boolean",
+          "native": "SupplyCacheRecord.Locked",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_CACHE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.open",
+          "type": "Boolean",
+          "native": "SupplyCacheRecord.Open",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_CACHE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.pickAttemptId",
+          "type": "Identity?",
+          "native": "SupplyCacheAttemptRecord.Id",
+          "receiptJoin": "J_CACHE",
+          "predicate": "P_CACHE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Existing view shows active pick only. Do not expose old attempt existence through this current key."
+        },
+        {
+          "key": "physical.cache.pickDueAt",
+          "type": "Time?",
+          "native": "Work.WorkerIntervals.Single(JobId==attempt.Id && WorkerId==Hero).End",
+          "receiptJoin": "J_CACHE",
+          "predicate": "P_CACHE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Current active booking, not an original immutable due field; no forecast of success."
+        },
+        {
+          "key": "physical.cache.availableRations",
+          "type": "Quantity:ration-pound?",
+          "native": "AvailableCacheRations(state,cache), same null-at-zero as ExpeditionCacheView.AvailablePounds",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_CACHE_STOCK",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Preserve existing stock visibility/open/owner/custody gates and nullable zero convention."
+        },
+        {
+          "key": "physical.cache.attemptMethod",
+          "type": "Code:SupplyCacheUnlockMethod",
+          "native": "SupplyCacheAttemptRecord.Method",
+          "receiptJoin": "J_CACHE",
+          "predicate": "N_CACHE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.attemptStartedAt",
+          "type": "Time",
+          "native": "SupplyCacheAttemptRecord.StartedAt",
+          "receiptJoin": "J_CACHE",
+          "predicate": "N_CACHE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.attemptEndedAt",
+          "type": "Time?",
+          "native": "SupplyCacheAttemptRecord.EndedAt",
+          "receiptJoin": "J_CACHE_TERMINAL",
+          "predicate": "N_CACHE_HISTORY",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": "Later resolution time retained; original job link retained. No explicit later resolver revision; resolver cause NotRetained unless actual immediate carrier supplies it."
+        },
+        {
+          "key": "physical.cache.attemptStatus",
+          "type": "Code:SupplyCacheAttemptStatus",
+          "native": "SupplyCacheAttemptRecord.Status",
+          "receiptJoin": "J_CACHE",
+          "predicate": "N_CACHE_HISTORY",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.cache.automaticFailure",
+          "type": "Boolean",
+          "native": "SupplyCacheAttemptRecord.AutomaticFailure",
+          "receiptJoin": "J_CACHE_TERMINAL",
+          "predicate": "N_CACHE_HISTORY",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": "Only when terminal check actually recorded; no skill/DC/dice fields. Proposed historical access requires approval."
+        }
+      ]
+    },
+    {
+      "id": "trap",
+      "source": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs:19-51,319-354,398-418",
+      "fields": [
+        {
+          "key": "physical.trap.id",
+          "type": "Identity",
+          "native": "FishingTrapPhysicalRecord.TrapId",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.attemptId",
+          "type": "Identity?",
+          "native": "ExpeditionFishingTrapView.AttemptId",
+          "receiptJoin": "J_TRAP",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Latest own selected attempt only, as current view; no list of hidden candidates/attempts."
+        },
+        {
+          "key": "physical.trap.setupLabor",
+          "type": "Time?",
+          "native": "FishingTrapAttemptRecord.SetupLabor",
+          "receiptJoin": "J_TRAP",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.deployedAt",
+          "type": "Time?",
+          "native": "FishingTrapAttemptRecord.SetupCompletedAt",
+          "receiptJoin": "J_TRAP_TERMINAL",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Existing current view; do not invent setup-completion receipt."
+        },
+        {
+          "key": "physical.trap.checkDueAt",
+          "type": "Time?",
+          "native": "FishingTrapAttemptRecord.CheckDueAt",
+          "receiptJoin": "J_TRAP",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.setupStatus",
+          "type": "Code:FishingTrapAttemptStatus?",
+          "native": "ExpeditionFishingTrapView.SetupStatus",
+          "receiptJoin": "J_TRAP",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Expose only SettingUp/Paused/Cancelled here; resolved/soaking/capture states are not remotely revealed by this key."
+        },
+        {
+          "key": "physical.trap.retrievalLabor",
+          "type": "Time?",
+          "native": "FishingTrapRetrievalRecord.WorkDone",
+          "receiptJoin": "J_TRAP_RETRIEVAL",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.retrievalStatus",
+          "type": "Code:FishingTrapRetrievalStatus?",
+          "native": "FishingTrapRetrievalRecord.Status",
+          "receiptJoin": "J_TRAP_RETRIEVAL",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.observedLocally",
+          "type": "Boolean",
+          "native": "CanObserveTrap(state,trap.X,trap.Y)",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_TRAP_REMOTE",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.physicalStatus",
+          "type": "Code:FishingTrapPhysicalStatus?",
+          "native": "FishingTrapPhysicalRecord.Status",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_TRAP_LOCAL",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.checkOutcome",
+          "type": "Code:FishingTrapCheckOutcome?",
+          "native": "FishingTrapAttemptRecord.CheckOutcome",
+          "receiptJoin": "J_TRAP_TERMINAL",
+          "predicate": "P_TRAP_LOCAL",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.capturedBodyId",
+          "type": "Identity?",
+          "native": "FishingTrapAttemptRecord.CapturedCreatureId",
+          "receiptJoin": "J_TRAP_TERMINAL",
+          "predicate": "P_TRAP_LOCAL",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Only actual captured identity already exposed by local trap view. Never expose CandidateCreatureId/CreatureId before capture or private body details."
+        },
+        {
+          "key": "physical.trap.retrievalId",
+          "type": "Identity?",
+          "native": "FishingTrapRetrievalRecord.Id",
+          "receiptJoin": "J_TRAP_RETRIEVAL",
+          "predicate": "N_TRAP_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.retrievalDestinationId",
+          "type": "Identity?",
+          "native": "FishingTrapRetrievalRecord.DestinationId",
+          "receiptJoin": "J_TRAP_RETRIEVAL",
+          "predicate": "N_TRAP_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Fixed selected receiver; no arbitrary other receiver inventory or contents."
+        },
+        {
+          "key": "physical.trap.retrievalStartedAt",
+          "type": "Time?",
+          "native": "FishingTrapRetrievalRecord.StartedAt",
+          "receiptJoin": "J_TRAP_RETRIEVAL",
+          "predicate": "N_TRAP_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.trap.retrievalCompletedAt",
+          "type": "Time?",
+          "native": "FishingTrapRetrievalRecord.CompletedAt",
+          "receiptJoin": "J_TRAP_RETRIEVAL_TERMINAL",
+          "predicate": "N_TRAP_HISTORY",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": "Terminal time retained; later resolver identity is not retained on this record."
+        },
+        {
+          "key": "physical.trap.checkResolvedAt",
+          "type": "Time?",
+          "native": "FishingTrapAttemptRecord.CheckResolvedAt",
+          "receiptJoin": "J_TRAP_TERMINAL",
+          "predicate": "N_TRAP_HISTORY_LOCAL",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "portable",
+      "source": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs:88-100",
+      "fields": [
+        {
+          "key": "physical.portable.eventId",
+          "type": "Identity",
+          "native": "PortableHandlingRecord.Id",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.itemId",
+          "type": "Identity",
+          "native": "PortableHandlingRecord.ItemId",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.operation",
+          "type": "Code:PortableOperation",
+          "native": "PortableHandlingRecord.Operation",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.placementBefore",
+          "type": "Code:PortablePlacement",
+          "native": "PortableHandlingRecord.Before",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.placementAfter",
+          "type": "Code:PortablePlacement",
+          "native": "PortableHandlingRecord.After",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.parentBeforeId",
+          "type": "Identity?",
+          "native": "PortableHandlingRecord.FromParentId",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_PARENT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.parentAfterId",
+          "type": "Identity?",
+          "native": "PortableHandlingRecord.ToParentId",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_PARENT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.recipientId",
+          "type": "Identity?",
+          "native": "PortableHandlingRecord.RecipientId",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_RECIPIENT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.startedAt",
+          "type": "Time",
+          "native": "PortableHandlingRecord.StartedAt",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.endedAt",
+          "type": "Time",
+          "native": "PortableHandlingRecord.EndedAt",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.tactical",
+          "type": "Boolean",
+          "native": "PortableHandlingRecord.Tactical",
+          "receiptJoin": "J_PORTABLE",
+          "predicate": "N_PORTABLE_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.currentPlacement",
+          "type": "Code:PortablePublicPlacement",
+          "native": "ExpeditionOwnedItem.Placement from exact ProjectItems portable/Club branch",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Allowlist native PortablePlacement enum names plus existing Club Held/Ground labels; Held and Carried/Stowed/Contained are distinct. No current-held inference from custody."
+        },
+        {
+          "key": "physical.portable.currentOwnerId",
+          "type": "Identity",
+          "native": "ExpeditionOwnedItem.OwnerId",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.portable.currentQuantity",
+          "type": "Quantity:owned-item-unit?",
+          "native": "ExpeditionOwnedItem.Available from actual ProjectItems branch (ConnectedExpeditionView.cs:184,659-668)",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Exact existing availability: linked inventory uses its ResourceLot.UnitId; linked dose uses native one-or-zero count with item-count presentation unit; absent value stays absent. No mass/volume inference."
+        }
+      ]
+    },
+    {
+      "id": "container",
+      "source": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs:32; engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs:21-34",
+      "fields": [
+        {
+          "key": "physical.container.currentOpen",
+          "type": "Boolean?",
+          "native": "PortableEquipmentRecord.Open via ExpeditionOwnedItem.Open",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Actual portable container only; no Flask closure invented."
+        },
+        {
+          "key": "physical.container.controlledOpeningAt",
+          "type": "Time?",
+          "native": "HarvestPreservationEvidenceRecord.At where Kind=ControlledOpening",
+          "receiptJoin": "J_OPENING",
+          "predicate": "N_PROTECTION_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Opening proof does not reset age; lack of approved disclosure is Withheld, not NotRetained."
+        },
+        {
+          "key": "physical.container.openingEvidenceId",
+          "type": "Identity?",
+          "native": "HarvestPreservationEvidenceRecord.Id",
+          "receiptJoin": "J_OPENING",
+          "predicate": "N_PROTECTION_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.container.openingKind",
+          "type": "Code:HarvestPreservationEvidenceKind?",
+          "native": "HarvestPreservationEvidenceRecord.Kind",
+          "receiptJoin": "J_OPENING",
+          "predicate": "N_PROTECTION_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Only exact controlled opening tied to this operation; no variable exposure history enumeration."
+        },
+        {
+          "key": "physical.container.currentProtection",
+          "type": "Boolean",
+          "native": "HarvestPreservationRules.IsProtectedAt(state, exact linked inventoryLotId, state.RuleClock), HarvestPreservationRecords.cs:219-236",
+          "receiptJoin": "J_PROTECTION_CURRENT",
+          "predicate": "N_PROTECTION_CURRENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Native pure current coverage projection; never compute a new cutoff in host or predict future coverage. Opening/exposure/retrieval history may end protection; closing does not reset age. Registered only for actual linked treatment/lot under the proposed predicate."
+        }
+      ]
+    },
+    {
+      "id": "inventoryChild",
+      "source": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs:15-22",
+      "fields": [
+        {
+          "key": "physical.inventory.childId",
+          "type": "Identity",
+          "native": "InventoryLotRecord.LotId",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.parentId",
+          "type": "Identity",
+          "native": "InventoryLotRecord.ParentId",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_PARENT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.createdAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "InventoryLotRecord.CreatedAmount",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.createdAt",
+          "type": "Time",
+          "native": "InventoryLotRecord.CreatedAt",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.createdOwnerId",
+          "type": "Identity",
+          "native": "Actual new InventoryLotRecord.OwnerId captured immediately after this committed PortionInventory/HandleInventory transaction",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "attempt",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "NotApplicable",
+            "explanation": "NotRetained"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "InventoryLotRecord.OwnerId is replaceable by real title transfer (SharedHavenSale.cs:254-260), so present OwnerId is not original owner. No generic retained original-owner ledger is assumed; currentOwnerId remains separately available."
+        },
+        {
+          "key": "physical.inventory.currentOwnerId",
+          "type": "Identity",
+          "native": "InventoryLotRecord.OwnerId",
+          "receiptJoin": "J_CHILD",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.currentAvailable",
+          "type": "Quantity:native-lot-unit",
+          "native": "Work.AvailableAmount(child.LotId) through ProjectItems",
+          "receiptJoin": "J_CHILD",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Not a historical original debit or creation amount."
+        },
+        {
+          "key": "physical.inventory.currentAccess",
+          "type": "Code:InventoryAccess",
+          "native": "InventoryLotRecord.Access through ProjectItems",
+          "receiptJoin": "J_CHILD",
+          "predicate": "P_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.freshUntil",
+          "type": "Time?",
+          "native": "InventoryLotRecord.FreshUntil",
+          "receiptJoin": "J_CHILD",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Native inherited source endpoint; do not infer current eligibility solely from this date."
+        }
+      ]
+    },
+    {
+      "id": "inventoryHandling",
+      "source": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs:52-59",
+      "fields": [
+        {
+          "key": "physical.inventory.handlingId",
+          "type": "Identity",
+          "native": "HandlingRecord.Id",
+          "receiptJoin": "J_HANDLING",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.handlingKind",
+          "type": "Code:HandlingKind",
+          "native": "HandlingRecord.Kind",
+          "receiptJoin": "J_HANDLING",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.handlingStartedAt",
+          "type": "Time",
+          "native": "HandlingRecord.StartedAt",
+          "receiptJoin": "J_HANDLING",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.handlingEndedAt",
+          "type": "Time",
+          "native": "HandlingRecord.EndedAt",
+          "receiptJoin": "J_HANDLING",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.inventory.handlingTactical",
+          "type": "Boolean",
+          "native": "HandlingRecord.Tactical",
+          "receiptJoin": "J_HANDLING",
+          "predicate": "N_INVENTORY_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "vessel",
+      "source": "engine/com.decennium.foundation/Runtime/Core/VesselHandlingRecord.cs:10-21",
+      "fields": [
+        {
+          "key": "physical.vessel.eventId",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.Id",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.id",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.VesselId",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.handlingKind",
+          "type": "Code:HandlingKind",
+          "native": "VesselHandlingRecord.Kind",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.locationBeforeId",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.FromLocation",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_LOCATION_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.locationAfterId",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.ToLocation",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_LOCATION_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.custodianBeforeId",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.FromCustodian",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_PARTICIPANT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.custodianAfterId",
+          "type": "Identity",
+          "native": "VesselHandlingRecord.ToCustodian",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_PARTICIPANT_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.startedAt",
+          "type": "Time",
+          "native": "VesselHandlingRecord.StartedAt",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.endedAt",
+          "type": "Time",
+          "native": "VesselHandlingRecord.EndedAt",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.tactical",
+          "type": "Boolean",
+          "native": "VesselHandlingRecord.Tactical",
+          "receiptJoin": "J_VESSEL",
+          "predicate": "N_VESSEL_HISTORY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.vessel.currentOwnerId",
+          "type": "Identity",
+          "native": "WaterVesselRecord.OwnerId",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "N_VESSEL_CURRENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Handover transfers custody, not vessel/content ownership."
+        },
+        {
+          "key": "physical.vessel.currentCustodianId",
+          "type": "Identity",
+          "native": "WaterVesselRecord.CustodianId",
+          "receiptJoin": "J_REQUEST",
+          "predicate": "N_VESSEL_CURRENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "intake",
+      "source": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs:35-41; engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs:47-58",
+      "fields": [
+        {
+          "key": "physical.intake.id",
+          "type": "Identity",
+          "native": "IntakeRecord.Id",
+          "receiptJoin": "J_INTAKE",
+          "predicate": "P_INTAKE_JOB",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.status",
+          "type": "Code:IntakeStatus",
+          "native": "IntakeRecord.Status",
+          "receiptJoin": "J_INTAKE",
+          "predicate": "P_INTAKE_JOB",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.lotId",
+          "type": "Identity",
+          "native": "IntakeRecord.LotId",
+          "receiptJoin": "J_INTAKE",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.reservationId",
+          "type": "Identity",
+          "native": "IntakeRecord.ReservationId",
+          "receiptJoin": "J_INTAKE_CLAIM",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.reservedAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "ResourceReservation.Amount",
+          "receiptJoin": "J_INTAKE_CLAIM",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.startedAt",
+          "type": "Time",
+          "native": "IntakeRecord.StartedAt",
+          "receiptJoin": "J_INTAKE",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.endedAt",
+          "type": "Time?",
+          "native": "IntakeRecord.EndedAt",
+          "receiptJoin": "J_INTAKE_TERMINAL",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.consumedAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "ResourceReservation.ConsumedAmount",
+          "receiptJoin": "J_INTAKE_CLAIM",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.releasedAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "ResourceReservation.ReleasedAmount",
+          "receiptJoin": "J_INTAKE_CLAIM",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.intake.remainingClaimAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "ResourceReservation.RemainingAmount",
+          "receiptJoin": "J_INTAKE_CLAIM",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Remaining reservation, not unconsumed returned inventory; interruption never refunds consumed quantity."
+        },
+        {
+          "key": "physical.intake.attemptConsumedDelta",
+          "type": "Quantity:native-lot-unit",
+          "native": "Actual same-claim post.ConsumedAmount minus pre.ConsumedAmount under one submission gate",
+          "receiptJoin": "J_ATTEMPT",
+          "predicate": "N_INTAKE_DETAILS",
+          "mode": "attempt",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "NotApplicable",
+            "explanation": "NotRetained"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Only nonnegative actual settled interval change; no original-command attribution of unrelated later intake. Applies only when the exact claim existed before and after the actual attempt (for example InterruptIntake). StartIntake has no prior claim: this key is NotApplicable, not a fabricated zero pre-record."
+        }
+      ]
+    },
+    {
+      "id": "dose",
+      "source": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs:67-82",
+      "fields": [
+        {
+          "key": "physical.dose.id",
+          "type": "Identity",
+          "native": "AlchemyDoseRecord.Id",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_USE",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.usedAt",
+          "type": "Time?",
+          "native": "AlchemyDoseRecord.UsedAt",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_USE",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.userId",
+          "type": "Identity",
+          "native": "AlchemyDoseRecord.UserId",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_USE",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.recipientId",
+          "type": "Identity",
+          "native": "AlchemyDoseRecord.RecipientId",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.potentialHealing",
+          "type": "Integer64:hit-point",
+          "native": "AlchemyDoseRecord.PotentialHealing",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Already condition-adjusted native potential, not an invented raw dice formula."
+        },
+        {
+          "key": "physical.dose.actualHealing",
+          "type": "Integer64:hit-point",
+          "native": "AlchemyDoseRecord.ActualHealing",
+          "receiptJoin": "J_DOSE",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.currentSpent",
+          "type": "Boolean",
+          "native": "AlchemyDoseRecord.Spent",
+          "receiptJoin": "J_DOSE",
+          "predicate": "P_DOSE_ITEM",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.recipientHpBefore",
+          "type": "Integer64:hit-point",
+          "native": "Actual pre-attempt ActorLifeRecord.Hp of authorized recipient",
+          "receiptJoin": "J_ATTEMPT",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "attempt",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "NotApplicable",
+            "explanation": "NotRetained"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.dose.recipientHpAfter",
+          "type": "Integer64:hit-point",
+          "native": "Actual post-attempt ActorLifeRecord.Hp of same authorized recipient",
+          "receiptJoin": "J_ATTEMPT",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "attempt",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "NotApplicable",
+            "explanation": "NotRetained"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Attempt interval observation; do not reconstruct it later as current HP minus ActualHealing."
+        },
+        {
+          "key": "physical.dose.intervalHpChange",
+          "type": "Integer64:hit-point",
+          "native": "Actual post.Hp - pre.Hp for same authorized recipient",
+          "receiptJoin": "J_ATTEMPT",
+          "predicate": "N_DOSE_HEALING",
+          "mode": "attempt",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "NotApplicable",
+            "explanation": "NotRetained"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": "Signed actual transaction interval difference; not attributed to every possible due effect or computed from later state."
+        }
+      ]
+    },
+    {
+      "id": "preservation",
+      "source": "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs:443-466",
+      "fields": [
+        {
+          "key": "physical.preservation.attemptId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Id",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.workerId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.WorkerId",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.skillId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.SkillId",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.lotId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.InventoryLotId",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.treatedAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "HarvestPreservationTreatmentAttemptRecord.TreatedAmount",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.containerId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.ContainerId",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.toolId",
+          "type": "Identity",
+          "native": "HarvestPreservationTreatmentAttemptRecord.ToolId",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT_TOOL",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.startedAt",
+          "type": "Time",
+          "native": "HarvestPreservationTreatmentAttemptRecord.StartedAt",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.status",
+          "type": "Code:HarvestPreservationTreatmentStatus",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Status",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.labor",
+          "type": "Time",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Work.Labor",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.retainedProgress",
+          "type": "Time",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Work.Retained",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": "Use actual native retained work; do not rename Labor as retained."
+        },
+        {
+          "key": "physical.preservation.remainingWork",
+          "type": "Time",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Work.Remaining",
+          "receiptJoin": "J_TREATMENT",
+          "predicate": "N_TREATMENT",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.completedAt",
+          "type": "Time?",
+          "native": "HarvestPreservationTreatmentAttemptRecord.CompletedAt",
+          "receiptJoin": "J_TREATMENT_TERMINAL",
+          "predicate": "N_TREATMENT",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.sealedAt",
+          "type": "Time?",
+          "native": "HarvestPreservationTreatmentAttemptRecord.SealedAt",
+          "receiptJoin": "J_TREATMENT_TERMINAL",
+          "predicate": "N_TREATMENT",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": "Sealing/preservation is distinct from manufacturing first-phase stabilization."
+        },
+        {
+          "key": "physical.preservation.degree",
+          "type": "Code:HarvestPreservationTreatmentDegree",
+          "native": "HarvestPreservationTreatmentAttemptRecord.Degree",
+          "receiptJoin": "J_TREATMENT_TERMINAL",
+          "predicate": "N_TREATMENT",
+          "mode": "resolved",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "ResolvingCommit",
+            "duplicate": "ResolvingCommit",
+            "explanation": "ResolvingCommit"
+          },
+          "note": "Actual resulting degree only after check. Exclude DC, dice and RNG stream."
+        },
+        {
+          "key": "physical.preservation.targetClaimAmount",
+          "type": "Quantity:native-lot-unit",
+          "native": "Work.Reservations.Single(Id==attempt.TargetReservationId && JobId==attempt.Id && LotId==attempt.InventoryLotId).Amount",
+          "receiptJoin": "J_TREATMENT_CLAIMS",
+          "predicate": "N_TREATMENT",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.supplyClaimAmount",
+          "type": "Quantity:native-supply-unit",
+          "native": "Work.Reservations.Single(Id==attempt.SupplyReservationId && JobId==attempt.Id && LotId==attempt.SupplyLotId).Amount",
+          "receiptJoin": "J_TREATMENT_CLAIMS",
+          "predicate": "N_TREATMENT_SUPPLY",
+          "mode": "historical",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "Retained",
+            "explanation": "Retained"
+          },
+          "temporalMeaning": {
+            "fresh": "OriginalCommit",
+            "duplicate": "OriginalCommit",
+            "explanation": "OriginalCommit"
+          },
+          "note": ""
+        },
+        {
+          "key": "physical.preservation.supplyConsumed",
+          "type": "Quantity:native-supply-unit",
+          "native": "Same exact SupplyReservationId claim.ConsumedAmount",
+          "receiptJoin": "J_TREATMENT_CLAIMS",
+          "predicate": "N_TREATMENT_SUPPLY",
+          "mode": "current",
+          "availability": {
+            "fresh": "Immediate",
+            "duplicate": "ObservedCurrent",
+            "explanation": "ObservedCurrent"
+          },
+          "temporalMeaning": {
+            "fresh": "AttemptInterval",
+            "duplicate": "CurrentObservation",
+            "explanation": "CurrentObservation"
+          },
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "kind": "Interact",
+      "variants": [
+        {
+          "key": "cache",
+          "groups": [
+            "cache"
+          ],
+          "limits": "Only selected PickWithTools/Open/Interrupt; Open historical change has no independent event ledger. Safe immediate original open transition can be captured; later current Open is not historical open proof."
+        },
+        {
+          "key": "fishing-trap",
+          "groups": [
+            "trap"
+          ],
+          "limits": "Exactly seven admitted operations; Abandon not exposed. Remote work/status fields do not reveal catch outcome/body; local-only gate remains."
+        }
+      ]
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "groups": [
+        "portable"
+      ],
+      "limits": "Actual payload operation and native paid-time/post-time checks; rejected rollback emits no retained handling event. Do not predict one-second completion or claim stowed vial is held."
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "groups": [
+        "portable",
+        "container"
+      ],
+      "limits": "Only native Open event; controlled preservation opening evidence separate; no age reset."
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "groups": [
+        "portable",
+        "container"
+      ],
+      "limits": "Close event does not establish protected opening, preservation eligibility or a new historical protection period."
+    },
+    {
+      "kind": "HandleInventory",
+      "groups": [
+        "inventoryChild",
+        "inventoryHandling"
+      ],
+      "limits": "Host selected cache pickup only; no general source handover/retrieve/stow expansion."
+    },
+    {
+      "kind": "PortionInventory",
+      "groups": [
+        "inventoryChild"
+      ],
+      "limits": "Exact positive rational native amount; zero-time operation does not invent handling payment or a separate portion ledger."
+    },
+    {
+      "kind": "EquipPortableItem",
+      "groups": [
+        "portable"
+      ],
+      "limits": "Actual Wear/ShieldDon native operation, allowed selected payload only; no invented item activation."
+    },
+    {
+      "kind": "RemovePortableItem",
+      "groups": [
+        "portable"
+      ],
+      "limits": "Actual Remove/ShieldDoff native operation; retained event is distinct from current hands/load."
+    },
+    {
+      "kind": "HandleVessel",
+      "groups": [
+        "vessel"
+      ],
+      "limits": "Native selected flask Pickup/Drop/Handover only; no unsupported Retrieve/Stow or Open property. Contents keep ownership."
+    },
+    {
+      "kind": "StartIntake",
+      "groups": [
+        "intake"
+      ],
+      "limits": "Start reserves actual claim; completion later; exact consumed stock no instant full consumption invented."
+    },
+    {
+      "kind": "InterruptIntake",
+      "groups": [
+        "intake"
+      ],
+      "limits": "Actual own active job; keeps consumed amount, releases remainder; no refund of consumed intake."
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "groups": [
+        "dose"
+      ],
+      "limits": "Actual supported real worksite/held-vial pathways preserve profile selection, hands, recipient ingestion and Action; no stowed use or unsupported remote recipient."
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "groups": [
+        "preservation"
+      ],
+      "limits": "Current host selected Companion/blood specimen only; no general harvest fixture projection or invented failure/source scope."
+    }
+  ],
+  "excluded": [
+    "Raw record exports",
+    "Raw receipt fingerprints/payload history",
+    "RNG seed/state/word counts and new die-roll fields",
+    "Private DC/AC/creature-candidate/source associations",
+    "Hidden stock/reservation/attempt/body counts",
+    "Historical HP before/after inferred from current HP",
+    "Historical ownership inferred from present owner",
+    "Mass/contents/open state histories absent from native retained records",
+    "Generic recipient/body/harvest/source expansion",
+    "Future outcome predictions or a second command assessment/execution"
+  ],
+  "sourceGates": [],
+  "acceptanceLimits": "This is a source-bound proposal. N_ predicates need actual review, every required result field needs a concrete approved disclosure test, and all causal join/retention limitations must be retained. No runtime execution or full API/module acceptance is claimed.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 60303,
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 44727,
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 14240,
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 26051,
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 17891,
+      "sha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6953,
+      "sha256": "907501bc38fdebbc003cf89a31c15187bd511803f1e9bcf1117e9587fc37fb35",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 67264,
+      "sha256": "a7c6848af175dd7e0939febe7c067fed525bb15b1a45e41da881509860f5d52b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHarvestPreservationTreatment.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 36976,
+      "sha256": "eb1c261b7e11ea657fa2b9c1b80d067ca8bf64c55a38a931b2c218d600b95af0",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 29336,
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 46202,
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 35223,
+      "sha256": "e33422430672992975426f5ea4eaee5153e772c043a311883c41a5fd4f55cfdc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 19449,
+      "sha256": "b709840f4c171d80fba342ab28cce9e03fa517a2b364d9644e2ac1524e5def74",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 36082,
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 11581,
+      "sha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 22104,
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 130619,
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 11608,
+      "sha256": "d4021bbf88c23b8faa4167bdea32b982b46f871bba807129a29bbb5a8261f23f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 58130,
+      "sha256": "772f71a729ff890bc769b9d4703378d85cec1dd60e913eab854935c27ef98b83",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 58700,
+      "sha256": "004d9a8c476fa669b44a7f7078b77a087f915e6d7af3a02b934fe6693eb156e2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9318,
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10073,
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 37138,
+      "sha256": "670df6356d342dd5f7c4d5f263d06fecb894ab081b5338be694f38b94ddc90fc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 131749,
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SupplyCacheRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10736,
+      "sha256": "35c119c585d37dda2c47b286bc1e204119f8cd7766d7a23c6dbbe09503830aa2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/VesselHandlingRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2758,
+      "sha256": "86c3d43c0990c70470a257a0c126cf84f366e697245c2766d1a613c1636eec2d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13415,
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedBloodSpecimenCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 24951,
+      "sha256": "99be3e0fbacfa9f9fd1b1c4f54af304545f0b314159d689ec6859d709d75a868",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionCacheCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12756,
+      "sha256": "9db62b0216e72d7767ca6b3bd2bde1ee5f7069f7e671fd57a54b9839db0ad774",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionQualityCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 32328,
+      "sha256": "43aa7a98898f3f06c010a284097c81173d60db6b2351fd7c166f9993386dab57",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedExpeditionSessionCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 43017,
+      "sha256": "b1533b437348f5ae85c3f1f8744a45a7d35f29a0f39c98eba41108adedf55b3f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedVialCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 64087,
+      "sha256": "485cbb1ef9c9dddf5dc8a5391df7e0bc10e56b1326a2b0899710f2fd97a0f69a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 148822,
+      "sha256": "fc9b5af629dedd224e8d1455344b7a351a5358897a5321c220516c5bbeb57aed",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/VesselHandlingCases.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 20645,
+      "sha256": "62e5a19fd341dd3571b0ec0ead16e9e64d72d8b069c7c1d211d423fa7fde8554",
+      "checkoutRelation": "exact"
+    }
+  ],
+  "gpt03Alignment": {
+    "review": "f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07",
+    "retention": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+    "factsOnly": true,
+    "futureConditionalObligations": "Separate typed description/assessment descriptors; never actual facts. None of the keys predicts future completion, dice, payment or source settlement.",
+    "currentAvailability": "ObservedCurrent appears only with CurrentObservation/CurrentContinuation; fresh post-attempt capture is Immediate/AttemptInterval.",
+    "rollback": "Only actual committed captured before/after state and retained native events supply paid-time/quantity facts. Candidate time/action effects rolled back after a later check are not reported. Partial committed and suspended outcomes remain distinct.",
+    "capacity": "A deterministic capacity constraint may be described by initialEligibility/commitFeasibility/nativeEnforcementStage on the assessment descriptor, never by pretending a native failure already occurred. This result registry introduces no reordered check or predicted denial."
+  },
+  "protectedShape": {
+    "ordering": "Each public operation/known variant always returns the complete fixed ordered applicable registry key set. Gating occurs before record lookup reveals value, existence, optional absence, cause or count.",
+    "keysForUnknownVariant": "Use safe common attempt fields only; never select a hidden authoritative record family merely because caller target text resembles it.",
+    "arrays": "No public arrays of records, hidden bodies, sources, claims or effects. Each role is a fixed field; only individually authorized causal references.",
+    "unapprovedPredicates": "Withheld until approved, even if native source retention is certain."
+  },
+  "sourceEvidenceLimit": "All new historical or richer current disclosures use explicitly named N_ proposals until actual approval; P_ predicates only reuse fields already exposed by their exact existing view. No historical witness, result field or namespace is deemed approved by a type/key registration alone.",
+  "inputPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+      "bytes": 13083,
+      "sha256": "11e1f666557edac6b952ab66787c5cb459dc453f04df66c49c126395d00a702c"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DETAILED_RESULT_CONTRACT.md",
+      "bytes": 15227,
+      "sha256": "849cf5f08b56c5b705ac75ec88096240d647f9cdd119fbf314722096f6ab4416"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/RESULT_FACTS_COMBAT_CLOCK_REST.md",
+      "bytes": 11534,
+      "sha256": "bdbd96c79e9e28519981cc02a438a9657a225df6536c2829e778dd5a0bbea7fa"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/physical-independent-audit.json",
+      "bytes": 40766,
+      "sha256": "ab1d789f81d9be6833d0d3fff488cdc0fa9106a536702f909c4a15c2c765f55d"
+    }
+  ],
+  "counts": {
+    "operations": 13,
+    "factGroups": 10,
+    "factKeys": 112,
+    "explicitNewPredicates": 20,
+    "sourcePins": 33
+  },
+  "verification": "Unique keys; every predicate/join/group reference resolves; all 13 operation names/order equal independent source audit; ObservedCurrent temporal labels restricted; all source pins exact baseline. Static checks only, no runtime execution."
+}

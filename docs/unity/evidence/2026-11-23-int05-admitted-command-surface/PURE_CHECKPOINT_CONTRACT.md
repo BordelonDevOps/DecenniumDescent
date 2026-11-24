@@ -24,7 +24,7 @@ Propose a private `SnapshotCodec.EncodeCanonical` writer and an internal boolean
 
 Because the checkpoint is in LabModel, propose a narrowly declared friend assembly from Persistence to **Decennium.Foundation.LabModel**, with both the friend declaration and internal comparison member guarded by exact source condition `DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)`. The Unity asmdef keeps its existing editor/development constraints; the headless harness compiles the same source with HEADLESS_TESTS. No asmdef or dependency broadening is proposed. No friendship to the Unity presentation assembly or a general caller is proposed. The trusted private checkpoint is the sole non-test call site within the gated LabModel for the internal comparison; tests drive the actual owning checkpoint and may inspect internals only as labelled test evidence. Do not expose a caller-controlled comparison capability, predecessor array or PlanningPassage through the session/console.
 
-This exact assembly-access proposal is not yet reviewed. Freeze the optional Core assessment interface/result type alongside the complete native fact/parameter DTO design. If the existing compilation/access constraints require another arrangement, return it for actual review before coding; do not introduce an unchecked public shortcut.
+Actual GPT response `f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07` concurs with this exact architecture and access direction. `InternalsVisibleTo` grants assembly-wide internal access to the named gated assembly; it does not enforce a method-only privilege. The private checkpoint being the sole non-test comparator caller is an audited call-site restriction. Full interface fields, transitive purity and HC acceptance remain open. Any changed access arrangement must return for review; no unchecked public shortcut is authorized.
 
 ## Proposed concrete dispatch protocol
 
@@ -36,18 +36,20 @@ public interface ICommandAssessmentFactsPolicyV1
     bool SupportsAssessment(CommandKind kind);
     bool RequiresVerifiedAssessment(CommandKind kind);
     NativeCommandAssessmentV1 AssessFacts(
-        Snapshot current, Authority authority, Command command);
+        NativeReadContextV1 readContext, Snapshot current,
+        Authority authority, Command command);
 }
 
 public interface IVerifiedCommandAssessmentV1
 {
     NativeCommandAssessmentV1 AssessFacts(
-        VerifiedSimulationOrigin origin, Snapshot current,
+        VerifiedSimulationOrigin origin, NativeReadContextV1 readContext,
+        Snapshot current,
         Authority authority, Command command);
 }
 ```
 
-The proposed `NativeCommandAssessmentV1` is an immutable trusted policy result: supported/admissible flags, exact native failure stage/code, current revision, ordered rational cost/reservation/duration facts and conditional continuation facts. It is not a serialized public result or an authority token. The public DTO/disclosure matrix must define each allowed projection before implementation; introducing this carrier does not authorize raw record export.
+The proposed `NativeCommandAssessmentV1` is an immutable trusted policy result: supported/admissible flags, current initial eligibility, commit feasibility, native enforcement stage, safely classified assessment constraint, current revision, ordered rational cost/reservation/duration facts and separately typed conditional obligations. An assessed predictable capacity failure is not an actually returned native failure code. Preserve native guard precedence and do not predict its terminal code unless earlier paths are established. It is not a serialized public result or an authority token. The public DTO/disclosure matrix must define each allowed projection before implementation; introducing this carrier does not authorize raw record export.
 
 The new owning-Simulation assessment performs the original current command/authority/receipt preflight, separately enforces the requested observation revision, and returns an exact-retry disposition without fresh gameplay eligibility. For a fresh supported command it captures the current owned snapshot once. If the actual immutable selected policy requires verified assessment, Simulation must use its own current checkpoint implementing `IVerifiedCommandAssessmentV1`; missing capability returns a safe verification failure. It must never fall back to `AssessFacts`, existing QueryCommand or policy Resolve. Unrequired operations use the policy's pure assessor. This protocol adds no caller-selectable verification mode.
 
@@ -64,4 +66,6 @@ The policy's existing resolver/restore paths keep their own verified execution a
 5. Confirm successful execution replaces the checkpoint normally; rejection and reads leave it unchanged. Restore obtains its own checkpoint after full existing validation.
 6. Preserve public Encode and strict restore rejection of malformed/causally forged histories. Pure equality with a validated predecessor does not validate arbitrary new input.
 
-The current source census covers 284 writer-side method names in 85 persistence files after excluding BinaryReader overloads. It identifies Validation.Snapshot at the Encode entry. This lexical census is only an audit aid: instance calls, property getters, overload resolution and state consumed but not directly encoded still require verification. No pure writer implementation or runtime qualification is claimed.
+CODEC_TRANSITIVE_SOURCE_AUDIT.json retains the independent static audit of 155 unchanged source files, all85 census inputs,171 conservative non-auto getter candidates and249 direct Snapshot field-name references. It found no additional prohibited operation in inspected writer paths beyond the known public Validation.Snapshot entry; this is not compiler-resolved or runtime purity proof. Non-Ferry wires omit Creatures, which existing validation requires empty; roster-phase properties are reconstructed from separately encoded reinforcement/reengagement records. Therefore canonical equality only serves current owning validated state, never arbitrary Snapshot authentication.
+
+The remaining audit must classify every assessment-consumed input for each selected wire as serialized, fixed by existing validation, or deterministically derived from authenticated encoded state and selected policy. Check detached-copy invariants and mutable aliases. Any unencoded unconstrained mutable input blocks the design; do not repair it with RNG-reconstructing read validation. The separate condition-history dependency and its proposed resolution are retained in CONDITION_READ_BOUNDARY.md. No pure writer implementation or runtime qualification is claimed.

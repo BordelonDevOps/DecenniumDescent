@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSED_NARROW_CARE_FACT_SUPPLEMENT_NOT_APPROVED_OR_IMPLEMENTED",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+  "parentRegistry": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CARE_REST_FACT_REGISTRY_PROPOSAL.json",
+  "parentRegistryReviewedSha256": "11e98daf02080c9b50346f964a42f5c9718dc5d5ec90291e7bacbb82ebf516dd",
+  "scope": {
+    "newFactKeys": 11,
+    "existingOperationsOnly": [
+      "StartWoundTreatment",
+      "InterruptWoundTreatment",
+      "BeginShortRest",
+      "InterruptShortRest",
+      "BeginMutationShortRest"
+    ],
+    "runtimeChanged": false,
+    "builds": false,
+    "tests": false,
+    "gameplay": false,
+    "sourceApiAcceptance": false
+  },
+  "types": {
+    "RuleQuantity<Int64,Int64>": "Exact native normalized nonnegative RuleQuantity; Int64 numerator and positive Int64 denominator, no floating conversion. Fixed role unit is a separate registered field-metadata constant, not guessed from quantity.",
+    "Int32": "Signed System.Int32 native scalar.",
+    "zero": "An actual supported zero result/cost is numeric zero after applicability and disclosure, not absence or unsupported general recovery."
+  },
+  "inheritance": "Retain parent common attempt/receipt/fixed-shape rules and existing listed field order. Append these named groups in the proposed order below. Current lookup uses the owning read's one captured state. Rejected/candidate rollback effects are not emitted; no execution/replay is used to fill details.",
+  "disclosurePredicates": [
+    {
+      "id": "CARE-WOUND-STOCK-HISTORY",
+      "status": "UNAPPROVED_NARROW_EXTENSION",
+      "definition": "Require parent CARE-MEDICAL-HISTORY, current enabled Player grant, selected ConnectedWoundTreatment and exact fixed Hero/Companion job. For each fixed role additionally require the actual InventoryLotRecord.OwnerId is currently authorized by MayUseInventory and the actual ResourceLot.CustodianId is controlled, matching the existing plain-lot ProjectItems gate. Bind actual role to the selected station definition, same job and exact claim index. This authorizes only the listed operation-specific kit/Supply settlement scalars if approved; it does not authorize ordinary inventory handling, consumption, transfer, subdivision or other job histories.",
+      "existingViewSource": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:672-678",
+      "ownershipSource": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:27-30; engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:130-132,221-231",
+      "sealedAuthoritySource": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs:909",
+      "redaction": "Fixed eight resource keys; evaluate authority/role knowledge before revealing claim existence, absence, value, cause or applicability. Withheld when unapproved/unauthorized. No claim IDs, other basket inventory, hidden claim count or custody-as-ownership shortcut."
+    },
+    {
+      "id": "CARE-WOUND-STRAIN-HISTORY",
+      "status": "UNAPPROVED_NARROW_EXTENSION",
+      "definition": "Require parent CARE-MEDICAL-HISTORY, actual current own-actor view admission for fixed Companion patient, exact bound WoundTreatmentRecord and its actual ending receipt, then privately bind the one native WoundTreatmentCriticalFailure gain. Proposed field reveals only this clinical event's recorded AddedAmount. It does not reveal arbitrary Expedition Strain history, current total, point/gain/source IDs, gates or removability.",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:127-137; engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:207-217",
+      "redaction": "One fixed field. Gate before checking whether a gain exists. If authorized and wound outcome is not CriticalFailure, NotApplicable rather than a fabricated zero addition. Missing gain for an actual validated CriticalFailure is a projection defect, not a legitimate NotRetained result."
+    }
+  ],
+  "causalBindings": {
+    "WOUND_START_CLAIMS": "Exact job.StartCommandId + StartRevision -> current exact principal-bound StartWoundTreatment receipt, fixed Healer/Patient. job.Id comes from native Basket, not command ID. Claim Id must equal WoundTreatmentStation.ClaimId(job.Id,index), claim.JobId==job.Id, claim.LotId==actual selected role lot.Id, claim.Amount==source role amount, actual lot unit/owner/custody provenance matches selected station. Native Start reserves all six and consumes indices1..5 before commit. Strict native validation retains those five as fully Consumed for every active/ended job. Therefore their ConsumedAmount is causally original-start spend, not a current-stock difference. No receipt replay.",
+    "WOUND_END_KIT_RELEASE": "First satisfy WOUND_START_CLAIMS for index0. Actual non-Active job has exact EndCommandId + EndRevision resolving receipt; native EndWoundTreatment releases that exact first kit claim and writes the same end identity. Strict native validation requires its status Released. ReleasedAmount thus belongs to that actual ending command, not the Start. Do not attribute ending to InterruptWoundTreatment unless the actual resolving receipt is that kind; automatic access interruption/completion remains its own cause.",
+    "WOUND_CRITICAL_GAIN": "Exact job.Outcome==CriticalFailure and EndCommandId/EndRevision. Privately require gain.CauseKind==WoundTreatmentCriticalFailure, CauseId==job.Id, ActorId==WoundTreatmentStation.Patient, Revision==job.EndRevision and At==job.EndedAt; selected native validation further binds Id==job.Id+'.gain', PointId==Id+'.point', source/track and one actual addition. Publish only AddedAmount; current total is not inferred. No recovery-offer linkage is relevant.",
+    "SHORT_REST_ZERO_COST": "Exact supported ShortRestRecord start receipt and interval, parent CARE-SHORT-EXISTING. HitDiceSpent is the native fixed zero property. Zero is the supported cost of this bounded rest; it does not add a positive-HD domain.",
+    "SHORT_REST_ZERO_HEALING": "Exact supported ended ShortRestRecord plus its own EndCommandId/EndRevision, parent CARE-SHORT-EXISTING. Healing is the native fixed zero property. This is the rest's source contribution at its actual endpoint, not a claim that the character's HP never changed from another cause during elapsed time."
+  },
+  "fieldGroups": {
+    "woundStock": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "record": "ResourceReservation",
+      "currentDisclosurePredicate": "CARE-WOUND-STOCK-HISTORY",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.wound.stock.kitReserved",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.Amount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 0,
+          "role": "kit",
+          "unit": "medical-kit",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Kit",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.rationsConsumed",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ConsumedAmount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 1,
+          "role": "rations",
+          "unit": "dry-ration-pounds",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Stock(job.Basket).ElementAt(0)",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.waterAConsumed",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ConsumedAmount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 2,
+          "role": "water-a",
+          "unit": "clean-water-pints",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Stock(job.Basket).ElementAt(1)",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.waterBConsumed",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ConsumedAmount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 3,
+          "role": "water-b",
+          "unit": "clean-water-pints",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Stock(job.Basket).ElementAt(2)",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.lampOilConsumed",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ConsumedAmount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 4,
+          "role": "lamp-oil",
+          "unit": "lamp-oil-pints",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Stock(job.Basket).ElementAt(3)",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.sundriesConsumed",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ConsumedAmount",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 5,
+          "role": "sundries",
+          "unit": "sundries-pounds",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Stock(job.Basket).ElementAt(4)",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.kitReleased",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.ReleasedAmount",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual Outcome != Active with exact EndCommandId/EndRevision after disclosure",
+          "claimIndex": 0,
+          "role": "kit",
+          "unit": "medical-kit",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Kit",
+          "causalBinding": "WOUND_END_KIT_RELEASE",
+          "note": "Exact retained claim value, not a debit inferred from current lot stock or a future cost forecast."
+        },
+        {
+          "key": "care.wound.stock.kitReservationRemaining",
+          "valueType": "RuleQuantity<Int64,Int64>",
+          "nativeProperty": "ResourceReservation.RemainingAmount",
+          "temporalMeaning": "CurrentObservation",
+          "availability": "ObservedCurrent",
+          "applicability": "Actual causally bound committed treatment exists after disclosure",
+          "claimIndex": 0,
+          "role": "kit",
+          "unit": "medical-kit",
+          "unitSource": "The exact claim's ResourceLot.UnitId, equal to the existing selected station role unit; no unit conversion.",
+          "expectedSourceBinding": "WoundTreatmentStation.Kit",
+          "causalBinding": "WOUND_START_CLAIMS",
+          "note": "This job's outstanding kit reservation only; zero does not assert the shared kit is currently available, since another real job can reserve it."
+        }
+      ]
+    },
+    "woundStrain": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "record": "ExpeditionStrainGainRecord",
+      "currentDisclosurePredicate": "CARE-WOUND-STRAIN-HISTORY",
+      "causalBinding": "WOUND_CRITICAL_GAIN",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.wound.patientStrainAdded",
+          "valueType": "Int32",
+          "nativeProperty": "ExpeditionStrainGainRecord.AddedAmount",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound CriticalFailure gain exists after disclosure; otherwise NotApplicable",
+          "unit": "expedition-strain-point",
+          "note": "Use actual AddedAmount; do not infer it from Outcome, assert current total, substitute Warrior Strain, or expose private gain/source identities."
+        }
+      ]
+    },
+    "shortRestZero": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "record": "ShortRestRecord",
+      "currentDisclosurePredicate": "CARE-SHORT-EXISTING",
+      "status": "EXISTING_DISCLOSURE_SEMANTICS_NEW_V1_BINDING_UNIMPLEMENTED",
+      "fields": [
+        {
+          "key": "rest.short.hitDiceSpent",
+          "valueType": "Int32",
+          "nativeProperty": "ShortRestRecord.HitDiceSpent",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound supported rest interval exists after disclosure",
+          "unit": "hit-die-count",
+          "causalBinding": "SHORT_REST_ZERO_COST",
+          "nativeSelectedValue": 0,
+          "note": "Native selected zero; no general Hit Dice or class recovery expansion."
+        },
+        {
+          "key": "rest.short.healing",
+          "valueType": "Int32",
+          "nativeProperty": "ShortRestRecord.Healing",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual Outcome != Active and exact EndCommandId/EndRevision after disclosure; Active is NotApplicable",
+          "unit": "hit-point",
+          "causalBinding": "SHORT_REST_ZERO_HEALING",
+          "nativeSelectedValue": 0,
+          "note": "Both completed and interrupted endpoints award zero healing in this selected record. Numeric zero is not missing data, and Eligible benefit is not positive healing."
+        }
+      ]
+    }
+  },
+  "operationAdditions": [
+    {
+      "kind": "StartWoundTreatment",
+      "appendGroups": [
+        "woundStock",
+        "woundStrain"
+      ],
+      "note": "Start immediately retains spent stock; kit release/Strain are NotApplicable until an actual later end. Later explanation keeps original and resolving receipts separate."
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "appendGroups": [
+        "woundStock",
+        "woundStrain"
+      ],
+      "note": "Same exact ended job. Original stock remains consumed; actual kit release binds interruption EndCommand/Revision. Interrupted outcome has no CriticalFailure gain, so Strain addition is NotApplicable after disclosure."
+    },
+    {
+      "kind": "BeginShortRest",
+      "appendGroups": [
+        "shortRestZero"
+      ]
+    },
+    {
+      "kind": "InterruptShortRest",
+      "appendGroups": [
+        "shortRestZero"
+      ]
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "appendGroups": [
+        "shortRestZero"
+      ],
+      "note": "Uses the same actual selected ShortRestRecord. Mutation capacity change remains separate; zero rest healing must not be confused with capacity clamp or later real healing."
+    }
+  ],
+  "sourceReasoning": [
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:80-96",
+      "fact": "Six exact claims are built in stable order: kit then five basket resources. Only indices1..5 are consumed at Start."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:107-137",
+      "fact": "The existing fixed units/amounts are kit1 medical-kit, food2 dry-ration-pounds, water-a4 and water-b4 clean-water-pints, oil1 lamp-oil-pints, sundries1/4 sundries-pounds. These constants identify source roles; projections read actual retained claim values."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:179-191",
+      "fact": "Strict source validation binds exact starting receipt and claim identity/lot/amount/status; index0 Reserved while active and Released after ending, all five other claims Consumed."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:141-149",
+      "fact": "End releases only the kit reservation, and retains actual EndCommandId/EndRevision. There is no refund of the consumed basket."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:127-137; engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:207-217",
+      "fact": "A CriticalFailure appends one source-bound patient Expedition Strain gain. It is independently retained with matching actual end revision/time and job cause."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:28-33; engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:323-340,595",
+      "fact": "The existing permitted ShortRestRecord exposes fixed zero HitDiceSpent and Healing. The supplement registers those existing bounded facts, not a new mechanic."
+    }
+  ],
+  "safetyAndRetention": [
+    "All new resource/clinical-history predicates remain UNAPPROVED pending actual review; native retention alone does not authorize disclosure.",
+    "Sealed treatment stock retains native WoundTreatmentStockSealed rejection for ordinary requests. Current item visibility and this proposed receipt fact do not grant a new inventory action.",
+    "No new save fields, raw records, raw RNG, private DC, hidden gain/source/point IDs or stock/claim counts are exposed.",
+    "Do not query current total stock to reconstruct historical spend. A later job may reserve the same kit; only this job's exact reservation supplies its original reserve, release and current remainder facts.",
+    "Native missing expected claim/gain in a supposedly validated record is ProjectionUnavailable/defect; never synthesize expected constants or call it historical NotRetained.",
+    "The kit is released on both completion and actual interruption. Consumable claims are never refunded.",
+    "No recovery offer or removal group is changed; in particular there is no join to an empty secure-rest offer.RecoveryCompletionId."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "bytes": 10206,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "bytes": 16491,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "bytes": 76959,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "sha256": "9619a3488b3c730314630ca9a07d11bf15f7368087a0c620d6d1d28024b565ea",
+      "bytes": 10370,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "sha256": "c1a94b86e4fc80871f037142751f2d5ba593bc7822ac5e7f53f8d45b0d077fad",
+      "bytes": 30893,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619,
+      "equalsRuntimeBaseline": true,
+      "equalsSourceRevision": true
+    }
+  ]
+}

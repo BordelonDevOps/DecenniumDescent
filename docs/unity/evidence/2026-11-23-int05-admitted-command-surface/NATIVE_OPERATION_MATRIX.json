@@ -9,7 +9,7 @@
     "operatorKinds": 2,
     "supportedFactoryDeclarations": 24,
     "newApiQualifiedKinds": 0,
-    "exactBranchAllocationsStillOpenAfterTacticalAudit": 58
+    "exactBranchAllocationsStillOpenAfterTacticalAudit": 0
   },
   "inputs": [
     {
@@ -37,6 +37,10 @@
       "sha256": "731e5cc00100e2f7d0416ac5148618e574365fb5787ee082ce198ceef7897295"
     },
     {
+      "path": "INDEPENDENT_TACTICAL_AXES.json",
+      "sha256": "ea7c1a6d6ae7083d04fc810fdc6a1e0745ae3025b146fd9bc282d6e2ecffa7df"
+    },
+    {
       "path": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
       "sha256": "95b609e9255082e8ab1df84f9744139ef9a93f3a411462b3d0792b0f6aa5f91d"
     }
@@ -47,37 +51,37 @@
       "kind": "SelectCombatStance",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "Aggressive",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Guarded",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Mobile",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/2",
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Focused",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/3",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Carrying: native NoApplicableCargoPenalty",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/0/axes/4",
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS",
           "v1ExecutionQualified": false
         }
       ],
@@ -90,31 +94,31 @@
       "kind": "AttackClub",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/1",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "owned/custodied visible-target club",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/1",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "ArmOrReplace/KeepExisting",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "regular attack vs Sanctuary gate",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/1/axes/3",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -127,25 +131,25 @@
       "kind": "AttackCreatureFeature",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/2",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "selected Ferry feature/actual creature seat",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "same explicit knockout/Press payload disposition",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/1",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Sanctuary admission",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/2/axes/2",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -158,19 +162,19 @@
       "kind": "TacticalStep",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/3",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "native direction/geometry/movement domain",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/3/axes/0",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "ordinary completion/OA suspension/Press continuation",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/3/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -183,19 +187,19 @@
       "kind": "EndRegularTurn",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/4",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "aware stance required",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/4/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "life/conditions/due events and next slot",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/4/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -208,19 +212,19 @@
       "kind": "EncounterDash",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/5",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "selected Ferry current party turn",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/5/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Action and movement allowance",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/5/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -233,25 +237,25 @@
       "kind": "UseIntimidatingPresence",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/6",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "RecoveryOpponent seat selected target subsets",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/0",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "separate LaterDefender grant",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "actual cooldown/turn/visibility",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/6/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         }
       ],
@@ -264,25 +268,25 @@
       "kind": "TearExposedSeal",
       "family": "tactical",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/7",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "actual observed seal",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "tactical vs ordinary activity where admitted",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/1",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "original suppression endpoint and repeated use",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/7/axes/2",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -295,31 +299,31 @@
       "kind": "RespondOpportunityAttack",
       "family": "responses",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/8",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "decline",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "take with owned weapon",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "knockout/Press elections",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "ordered reactor and continuation",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/8/axes/3",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         }
       ],
@@ -332,25 +336,25 @@
       "kind": "ResolveKnockout",
       "family": "responses",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/9",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "ordinary outcome",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "knock out",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "existing attack identity; original Press instruction immutable",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/9/axes/2",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -363,25 +367,25 @@
       "kind": "RespondPress",
       "family": "responses",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/10",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "decline",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "nested continuation without speculative execution",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/10/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         }
       ],
@@ -394,31 +398,31 @@
       "kind": "RespondSanctuary",
       "family": "responses",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/11",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "Forgo",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "regular attack Retarget to each visible legal native target",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/1",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "Opportunity retarget denied outside original source",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/2",
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "native no-free-loop/continuation rules",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/11/axes/3",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -431,31 +435,31 @@
       "kind": "BeginWorldStep",
       "family": "travel",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/12",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "walk",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "run only where host selected",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "scheduled/off-calendar activity",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "partial progress/encounter admission",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/12/axes/3",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -468,19 +472,19 @@
       "kind": "SuspendWorldStep",
       "family": "travel",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/13",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "actual own pending traversal",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/13/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "partial pose/paid budget preserved",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/13/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -493,25 +497,25 @@
       "kind": "ResumeWorldStep",
       "family": "travel",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/14",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "suspended/waiting traversal",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/0",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "run/Dash revalidation",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "actual geometry/fear/access",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/14/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         }
       ],
@@ -524,25 +528,25 @@
       "kind": "BeginReinforcementApproach",
       "family": "travel",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/15",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "actual selected approach",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/0",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "consent/director parameters",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/1",
+          "disposition": "CURRENT_HOST_NATIVE_DENIAL_WITH_SEPARATE_MODEL_CONTROLS",
           "v1ExecutionQualified": false
         },
         {
           "axis": "source entry timing/allowance",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/15/axes/2",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -555,25 +559,25 @@
       "kind": "Hide",
       "family": "observation",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/16",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "ordinary Hero start token",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "tactical party turn",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "eligible Guidance election/decline",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/16/axes/2",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -586,25 +590,25 @@
       "kind": "Search",
       "family": "observation",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/17",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "ordinary Companion start token",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "tactical party turn",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/1",
+          "disposition": "EXISTING_GENUINE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         },
         {
           "axis": "eligible Guidance election/decline",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/17/axes/2",
+          "disposition": "EXISTING_ROUTE_PLUS_EXPLICIT_SUBBRANCH_GAPS",
           "v1ExecutionQualified": false
         }
       ],
@@ -617,13 +621,13 @@
       "kind": "CancelExplorationHide",
       "family": "observation",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/18",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "actual own pending hide identity",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/18/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -636,13 +640,13 @@
       "kind": "CancelExplorationSearch",
       "family": "observation",
       "profileBinding": "PROFILE_ADMISSION_MATRIX.json; exact host/native parameter predicates remain in the native audit",
-      "nativeAudit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-      "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
+      "nativeAudit": "INDEPENDENT_TACTICAL_AXES.json#/operations/19",
+      "reviewScope": "BOUNDED_INDEPENDENT_SOURCE_AUDIT_NOT_FULL_CONTRACT_OR_EXECUTION",
       "branches": [
         {
           "axis": "actual own pending search identity",
-          "audit": "TACTICAL_EXPLORATION_OPERATION_AUDIT.md",
-          "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
+          "audit": "INDEPENDENT_TACTICAL_AXES.json#/operations/19/axes/0",
+          "disposition": "SOURCE_FEASIBLE_FUTURE_ROUTE_ALLOCATED",
           "v1ExecutionQualified": false
         }
       ],
@@ -2300,7 +2304,7 @@
   "remaining": [
     "Finish exact public DTO field keys, native causal bindings and actual current-disclosure predicates",
     "Resolve conditional/post-time and deterministic capacity assessment mapping without legacy changes",
-    "Finish tactical/exploration exact branch witnesses; bind proposed genuine routes and preserved gaps",
+    "Execute allocated tactical/exploration genuine branches; preserve prospective/model-only reachability gaps",
     "Freeze supported-factory/selected-parameter equivalence witnesses and all five execution paths",
     "Complete transitive pure-read/checkpoint writer audit and instrumentation plan",
     "Obtain actual GPT and Codex full HC01-05 concurrence before runtime implementation"

@@ -1,0 +1,1160 @@
+{
+  "schemaVersion": 1,
+  "status": "PARENT_SOURCE_REVIEW_PROPOSED_CARE_REST_FIELDS_NOT_INDEPENDENTLY_REVIEWED_OR_ACCEPTED",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false,
+  "scope": {
+    "candidateKinds": 10,
+    "commonAttemptFactsByReference": true,
+    "conditionalFutureInFactCollection": false
+  },
+  "types": {
+    "Int32": "signed 32-bit native int",
+    "Int64": "signed 64-bit native long",
+    "RuleTime<Int64,Int64>": "native exact normalized nonnegative rational seconds; signed64 backing components, denominator positive",
+    "?": "Native nullable; do not replace absence with numeric zero",
+    "PublicIdentity": "Filtered native ID string; no authority or hidden existence implication"
+  },
+  "rules": [
+    "All predicates describe existing semantics or explicitly UNAPPROVED narrow extensions; do not call potentially replaying public views/helpers on V1 reads.",
+    "No operator ClockGrant or defender grant implies Player observation.",
+    "Re-evaluate current disclosure on every submission explanation, later read, duplicate and after restore/revocation.",
+    "Original command and later causal receipts are independent. Internal receipt matching never publishes fingerprints or raw history.",
+    "A group missing because of lawful non-applicability uses NotApplicable only after its disclosure predicate passes.",
+    "Actual authoritative pre/post own-life interval observations can use the shared immediate-fact contract; historical per-operation HP/temporary HP deltas are NotRetained unless an explicit native field above stores them.",
+    "Future costs/rechecks use separate ExpeditionConditionalObligationV1; never these observed fact rows.",
+    "Native current life/condition projections must use the reviewed pure-read capability; no lifecycle Restore/AdvanceTo fallback."
+  ],
+  "disclosurePredicates": [
+    {
+      "id": "CARE-MEDICAL-HISTORY",
+      "status": "UNAPPROVED_NARROW_EXTENSION",
+      "definition": "Current non-revoked enabled Player seat; exact principal-bound request receipt; selected stabilization/casting or wound profile for this kind; actual fixed Hero healer and Companion patient both admitted by the existing current own-actor view. Wound requires its selected station/interval binding. This permits only the listed actual owned medical results; no other patient's/source/DC/random history. Must be agreed with GPT before implementation.",
+      "source": "ConnectedExpeditionView.cs:492-505,527-535,585-597; SharedCompanionStabilization.cs:20-78; WoundTreatmentRecord.cs:33-52"
+    },
+    {
+      "id": "CARE-DECAY-HISTORY",
+      "status": "UNAPPROVED_NARROW_EXTENSION",
+      "definition": "Current enabled Player seat and exact principal-bound receipt, ConnectedConsumeDecay selected, command Actor==ConsumeDecaySite.Actor and target==selected site, current own-actor view admits that actor. Historical fixed-site offer/end scalars only; existing current TemporaryHp view does not itself authorize all history.",
+      "source": "ConnectedExpeditionView.cs:118-122,536-539,585-597; SharedConsumeDecay.cs:20-82"
+    },
+    {
+      "id": "CARE-SHORT-EXISTING",
+      "status": "EXISTING_DISCLOSURE_SEMANTICS_NEW_V1_BINDING_UNIMPLEMENTED",
+      "definition": "Exact receipt gate plus current enabled Player seat, ConnectedShortRest and grant.Controls(ShortRestBerth.Actor), matching the selected ShortRest view at ConnectedExpeditionView.cs:595. Project only bound intervals/scalars already in that view.",
+      "source": "ConnectedExpeditionView.cs:323-340,492-505,595"
+    },
+    {
+      "id": "CARE-MUTATION-EXISTING",
+      "status": "EXISTING_DISCLOSURE_SEMANTICS_NEW_V1_BINDING_UNIMPLEMENTED",
+      "definition": "Exact receipt gate plus current enabled Player seat, ConnectedFleshWarden and grant.Controls(FleshWardenProfile.Actor), matching the actual FleshWarden view. Bind choice and completed Change through its actual rest.",
+      "source": "ConnectedExpeditionView.cs:276-288,596; SharedFleshWarden.cs:42-68"
+    },
+    {
+      "id": "CARE-LONG-EXISTING",
+      "status": "EXISTING_DISCLOSURE_SEMANTICS_NEW_V1_BINDING_UNIMPLEMENTED",
+      "definition": "Exact receipt gate plus current enabled Player seat, ConnectedClericLongRest and grant.Controls(ClericRpProfile.Actor), matching LongRest view; per-actor recovery offers further require grant.Controls(offer.ActorId). No ClockGrant substitution.",
+      "source": "ConnectedExpeditionView.cs:291-320,492-505,597"
+    },
+    {
+      "id": "CARE-RECOVERY-REMOVAL-PROPOSED",
+      "status": "UNAPPROVED_NARROW_EXTENSION",
+      "definition": "CARE-LONG-EXISTING for the exact bound offer and current own controlled actor, plus exact recovery-response receipt and point/removal/benefit/offer causal chain. Existing LongRest offers permit selected-point explanation; proposed extension adds only recorded removal ID/point/kind/time, with no private gain/source IDs.",
+      "source": "SharedStrainRecovery.cs:292-329; ExpeditionStrainRecoveryRecords.cs:54-137"
+    }
+  ],
+  "fieldGroups": {
+    "stabilization": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "record": "CompanionStabilizationAttempt",
+      "causalBinding": "Exact request receipt revision AND CommandId AND ActorId/PatientId; no actor/time-only join.",
+      "currentDisclosurePredicate": "CARE-MEDICAL-HISTORY",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.stabilization.at",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "CompanionStabilizationAttempt.At",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.actionSpent",
+          "valueType": "Boolean",
+          "nativeProperty": "CompanionStabilizationAttempt.ActionSpent",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.first",
+          "valueType": "Int32",
+          "nativeProperty": "CompanionStabilizationAttempt.First",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.second",
+          "valueType": "Int32",
+          "nativeProperty": "CompanionStabilizationAttempt.Second",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Native Second > 0, meaning an actual second d20 was drawn; otherwise NotApplicable (native zero is a sentinel)"
+        },
+        {
+          "key": "care.stabilization.natural",
+          "valueType": "Int32",
+          "nativeProperty": "CompanionStabilizationAttempt.Natural",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.modifier",
+          "valueType": "Int32",
+          "nativeProperty": "CompanionStabilizationAttempt.Modifier",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.total",
+          "valueType": "Int64",
+          "nativeProperty": "CompanionStabilizationAttempt.Total",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.succeeded",
+          "valueType": "Boolean",
+          "nativeProperty": "CompanionStabilizationAttempt.Succeeded",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.stabilization.recoveryDie",
+          "valueType": "Int32",
+          "nativeProperty": "CompanionStabilizationAttempt.RecoveryDie",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Succeeded; otherwise NotApplicable (native zero means no recovery die)"
+        },
+        {
+          "key": "care.stabilization.recoveryAt",
+          "valueType": "RuleTime<Int64,Int64>?",
+          "nativeProperty": "CompanionStabilizationAttempt.RecoveryAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Succeeded; otherwise NotApplicable"
+        }
+      ],
+      "notes": [
+        "This is the actual Medicine check and scheduled stable recovery, not guaranteed future recovery.",
+        "RandomBefore/RandomAfter/WordsConsumed excluded. Recovery die is recorded, never reconstructed."
+      ]
+    },
+    "guidance": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "record": "GuidanceUseRecord",
+      "causalBinding": "Exact medicine CommandId+Revision, ActorId, CheckKind=MedicineStabilization and CheckId=command.Id+'.medicine'.",
+      "currentDisclosurePredicate": "CARE-MEDICAL-HISTORY",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.stabilization.guidanceD4",
+          "valueType": "Int32",
+          "nativeProperty": "GuidanceUseRecord.D4",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound Medicine Guidance use; otherwise NotApplicable"
+        }
+      ],
+      "notes": [
+        "No private effect/source identity or random-state fields. Embedded decline is not an offer."
+      ]
+    },
+    "wound": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "record": "WoundTreatmentRecord",
+      "causalBinding": "Start: StartCommandId+StartRevision. Interrupt: exact EndCommandId+EndRevision and selected interval. Later completion remains separately bound by EndRevision/EndCommandId; Id is station basket identity, not command ID.",
+      "currentDisclosurePredicate": "CARE-MEDICAL-HISTORY",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.wound.id",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "WoundTreatmentRecord.Id",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.wound.startedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "WoundTreatmentRecord.StartedAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.wound.dueAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "WoundTreatmentRecord.DueAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.wound.linkedInjury",
+          "valueType": "Int32",
+          "nativeProperty": "WoundTreatmentRecord.LinkedInjury",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.wound.outcome",
+          "valueType": "Code<WoundTreatmentOutcome>",
+          "nativeProperty": "WoundTreatmentRecord.Outcome",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.wound.endedAt",
+          "valueType": "RuleTime<Int64,Int64>?",
+          "nativeProperty": "WoundTreatmentRecord.EndedAt",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Outcome != Active"
+        },
+        {
+          "key": "care.wound.first",
+          "valueType": "Int32",
+          "nativeProperty": "WoundTreatmentRecord.First",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "A completed native check outcome, not Active/Interrupted"
+        },
+        {
+          "key": "care.wound.second",
+          "valueType": "Int32",
+          "nativeProperty": "WoundTreatmentRecord.Second",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "A completed native check and native Second > 0; otherwise NotApplicable (native zero is a sentinel)"
+        },
+        {
+          "key": "care.wound.natural",
+          "valueType": "Int32",
+          "nativeProperty": "WoundTreatmentRecord.Natural",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "A completed native check outcome, not Active/Interrupted"
+        },
+        {
+          "key": "care.wound.modifier",
+          "valueType": "Int32",
+          "nativeProperty": "WoundTreatmentRecord.Modifier",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "A completed native check outcome, not Active/Interrupted"
+        }
+      ],
+      "notes": [
+        "Fixed healer/patient are WoundTreatmentStation.Healer/Patient. No ordinary-inventory claim on sealed treatment supplies.",
+        "Late explain of start may show current status and separately labelled resolved facts, never claim completion happened at start.",
+        "Do not reconstruct rolls, publish private RNG or infer per-treatment HP delta."
+      ]
+    },
+    "decay": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+      "record": "ConsumeDecayRecord",
+      "causalBinding": "Exact original CommandId+Revision; any EndRevision is a separate later cause, never original effect time. Privately join later revision to receipt only; reveal that cause only if its own disclosure permits.",
+      "currentDisclosurePredicate": "CARE-DECAY-HISTORY",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "care.decay.startedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ConsumeDecayRecord.StartedAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.decay.deadline",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ConsumeDecayRecord.Deadline",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.decay.offer",
+          "valueType": "Int32",
+          "nativeProperty": "ConsumeDecayRecord.Offer",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.decay.accepted",
+          "valueType": "Boolean",
+          "nativeProperty": "ConsumeDecayRecord.Accepted",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.decay.end",
+          "valueType": "Code<TemporaryHpEnd>",
+          "nativeProperty": "ConsumeDecayRecord.End",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "care.decay.endedAt",
+          "valueType": "RuleTime<Int64,Int64>?",
+          "nativeProperty": "ConsumeDecayRecord.EndedAt",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "End != None"
+        },
+        {
+          "key": "care.decay.active",
+          "valueType": "Boolean",
+          "nativeProperty": "ConsumeDecayRecord.Active",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        }
+      ],
+      "notes": [
+        "Actual remaining temporary HP is current ActorLifeRecord.TemporaryHp, not Offer; compare actual interval observations only.",
+        "No corpse target, new refresh, healing or historical remaining balance is inferred."
+      ]
+    },
+    "shortRest": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "record": "ShortRestRecord",
+      "causalBinding": "StartCommandId+StartRevision for start; exact interval Id plus EndCommandId+EndRevision for interrupt/completion. Original versus resolving receipt remain distinct.",
+      "currentDisclosurePredicate": "CARE-SHORT-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.short.id",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ShortRestRecord.Id",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.actor",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ShortRestRecord.ActorId",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.site",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ShortRestRecord.SiteId",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.startedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ShortRestRecord.StartedAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.dueAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ShortRestRecord.DueAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.outcome",
+          "valueType": "Code<ShortRestOutcome>",
+          "nativeProperty": "ShortRestRecord.Outcome",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.benefit",
+          "valueType": "Code<ShortRestBenefit>",
+          "nativeProperty": "ShortRestRecord.Benefit",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.short.interruption",
+          "valueType": "Code<ShortRestInterruption>",
+          "nativeProperty": "ShortRestRecord.Interruption",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Outcome == Interrupted"
+        },
+        {
+          "key": "rest.short.endedAt",
+          "valueType": "RuleTime<Int64,Int64>?",
+          "nativeProperty": "ShortRestRecord.EndedAt",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Outcome != Active"
+        }
+      ],
+      "notes": [
+        "Source-selected no Hit Die spend/healing remains exact; do not imply a generic class recovery mechanic.",
+        "Current benefit allowance is a separate current view, not an earlier rest's reward."
+      ]
+    },
+    "mutationChoice": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "record": "MutationRestChoiceRecord",
+      "causalBinding": "Choice.RestId -> exact ShortRestRecord.Id -> StartCommandId/StartRevision; completed Change binds to that rest's EndCommandId/EndRevision, not its start.",
+      "currentDisclosurePredicate": "CARE-MUTATION-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.mutation.selected",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "MutationRestChoiceRecord.MutationId",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        }
+      ],
+      "notes": [
+        "Selection at start is not immediate activation."
+      ]
+    },
+    "mutationChange": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "record": "MutationCapacityChangeRecord",
+      "causalBinding": "MutationRestChoiceRecord.RestId -> completed exact ShortRestRecord.EndCommandId/EndRevision; Change must exist.",
+      "currentDisclosurePredicate": "CARE-MUTATION-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.mutation.previous",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "MutationCapacityChangeRecord.PreviousMutationId",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.baseMaximum",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.BaseMaximum",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.maximumBefore",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.MaximumBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.maximumAfter",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.MaximumAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.effectiveBefore",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.EffectiveBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.effectiveAfter",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.EffectiveAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.hpBefore",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.HpBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.hpAfter",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.HpAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        },
+        {
+          "key": "rest.mutation.capacityClamp",
+          "valueType": "Int64",
+          "nativeProperty": "MutationCapacityChangeRecord.CapacityClamp",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Rest completed and Change retained; otherwise NotApplicable"
+        }
+      ],
+      "notes": [
+        "CapacityClamp is not damage or healing. No application/source IDs are required to explain these owned values."
+      ]
+    },
+    "longRest": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "record": "ClericLongRestRecord",
+      "causalBinding": "StartCommandId+StartRevision; exact interval Id and distinct EndCommandId+EndRevision/CauseId on ending. Cause identity is additionally filtered if not already public.",
+      "currentDisclosurePredicate": "CARE-LONG-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.long.id",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ClericLongRestRecord.Id",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.long.startedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ClericLongRestRecord.StartedAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.long.dueAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ClericLongRestRecord.DueAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.long.outcome",
+          "valueType": "Code<ClericLongRestOutcome>",
+          "nativeProperty": "ClericLongRestRecord.Outcome",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.long.benefit",
+          "valueType": "Code<ClericLongRestBenefit>",
+          "nativeProperty": "ClericLongRestRecord.Benefit",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.long.interruption",
+          "valueType": "Code<ClericLongRestInterruption>",
+          "nativeProperty": "ClericLongRestRecord.Interruption",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Outcome == Interrupted"
+        },
+        {
+          "key": "rest.long.endedAt",
+          "valueType": "RuleTime<Int64,Int64>?",
+          "nativeProperty": "ClericLongRestRecord.EndedAt",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Outcome != Active"
+        }
+      ],
+      "notes": []
+    },
+    "longSettlement": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "record": "ClericLongRestSettlementRecord",
+      "causalBinding": "Settlement.RestId -> exact interval; its CommandId+Revision -> actual completion receipt, separately from rest StartCommandId/StartRevision.",
+      "currentDisclosurePredicate": "CARE-LONG-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.long.settlement.at",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ClericLongRestSettlementRecord.At",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.benefit",
+          "valueType": "Code<ClericLongRestBenefit>",
+          "nativeProperty": "ClericLongRestSettlementRecord.Benefit",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.hpBefore",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.HpBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.effectiveMaximum",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.EffectiveMaximumHp",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.healingRequested",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.HealingRequested",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.healingPotential",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.HealingPotential",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.hpAfter",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.HpAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.actualHealing",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.ActualHealing",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.temporaryHpBefore",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.TemporaryHpBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.temporaryHpAfter",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.TemporaryHpAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.wounds",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.Wounds",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.expendedHitDice",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.ExpendedHitDice",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.hitDiceAllowance",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.HitDiceAllowance",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.hitDiceRecovered",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.HitDiceRecovered",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.rpBefore",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.RpBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.rpMaximum",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.RpMaximum",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.rpAfter",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.RpAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.convictionBefore",
+          "valueType": "Int32?",
+          "nativeProperty": "ClericLongRestSettlementRecord.ConvictionBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.convictionAfter",
+          "valueType": "Int32?",
+          "nativeProperty": "ClericLongRestSettlementRecord.ConvictionAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.dissonanceBefore",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.DissonanceBefore",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.dissonanceAfter",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.DissonanceAfter",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.lastSpell",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ClericLongRestSettlementRecord.LastSpellId",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual settlement and LastSpellId != empty string; otherwise NotApplicable (no prior cast)"
+        },
+        {
+          "key": "rest.long.settlement.refrain",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.Refrain",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.lastCastRevision",
+          "valueType": "Int64",
+          "nativeProperty": "ClericLongRestSettlementRecord.LastCastRevision",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.resetsShortRestAllowance",
+          "valueType": "Boolean",
+          "nativeProperty": "ClericLongRestSettlementRecord.ResetsShortRestAllowance",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        },
+        {
+          "key": "rest.long.settlement.shortRestAllowance",
+          "valueType": "Int32",
+          "nativeProperty": "ClericLongRestSettlementRecord.ShortRestBenefitAllowance",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound settlement; nullable Conviction means native unavailable/not applicable, not zero"
+        }
+      ],
+      "notes": [
+        "Native settlement really stores these values; do not blanket-label NotRetained.",
+        "ActualHealing belongs to this settlement, not all HP movement in the whole command interval.",
+        "No repeated rest reward or inferred positive Hit Dice producer."
+      ]
+    },
+    "recoveryOffer": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "record": "ExpeditionStrainRecoveryOfferRecord",
+      "causalBinding": "Original offer InitiatingCommandId+Revision. Exact response command actor/PointId plus ChosenPointId and ResolvedRevision bind resolving receipt; original completion time remains CompletedAt.",
+      "currentDisclosurePredicate": "CARE-LONG-EXISTING",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.recovery.offer",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.Id",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.rest",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.RestIntervalId",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.kind",
+          "valueType": "Code<ExpeditionRecoveryKind>",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.RecoveryKind",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.completedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.CompletedAt",
+          "temporalMeaning": "OriginalCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.pending",
+          "valueType": "Boolean",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.Pending",
+          "temporalMeaning": "CurrentContinuation",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.chosenPoint",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ExpeditionStrainRecoveryOfferRecord.ChosenPointId",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "ResolvedRevision > 0"
+        }
+      ],
+      "notes": [
+        "Pending eligible point alternatives are separately real choice domains; not fake offers or a historical amount.",
+        "Keep native point IDs exactly, with no hidden source leakage."
+      ]
+    },
+    "recoveryRemoval": {
+      "nativePath": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "record": "ExpeditionStrainRemovalRecord",
+      "causalBinding": "Exact response revision + ActorId + selected PointId; removal.RecoveryCompletionId/BeneficialRestId -> benefit.RecoveryOfferId -> actual resolved offer. Never match only actor/time.",
+      "currentDisclosurePredicate": "CARE-RECOVERY-REMOVAL-PROPOSED",
+      "status": "PROPOSED_FIELD_REGISTRY_NOT_ACCEPTED",
+      "fields": [
+        {
+          "key": "rest.recovery.removal",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ExpeditionStrainRemovalRecord.Id",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.removedPoint",
+          "valueType": "PublicIdentity",
+          "nativeProperty": "ExpeditionStrainRemovalRecord.PointId",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.recordedAt",
+          "valueType": "RuleTime<Int64,Int64>",
+          "nativeProperty": "ExpeditionStrainRemovalRecord.At",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        },
+        {
+          "key": "rest.recovery.removalKind",
+          "valueType": "Code<ExpeditionRecoveryKind>",
+          "nativeProperty": "ExpeditionStrainRemovalRecord.RecoveryKind",
+          "temporalMeaning": "ResolvingCommit",
+          "availability": "Retained",
+          "applicability": "Actual causally bound record exists after disclosure"
+        }
+      ],
+      "notes": [
+        "Recorded At may precede response RuleClock; do not rewrite it as response time.",
+        "No removal-derived healing/revival or suppressed source identity. Native genuine positive route remains unexecuted."
+      ]
+    }
+  },
+  "operations": [
+    {
+      "kind": "StabilizeCompanion",
+      "fieldGroups": [
+        "stabilization",
+        "guidance"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "StartWoundTreatment",
+      "fieldGroups": [
+        "wound"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "fieldGroups": [
+        "wound"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "ConsumeDecay",
+      "fieldGroups": [
+        "decay"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "BeginShortRest",
+      "fieldGroups": [
+        "shortRest"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "InterruptShortRest",
+      "fieldGroups": [
+        "shortRest",
+        "mutationChoice",
+        "mutationChange"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "fieldGroups": [
+        "shortRest",
+        "mutationChoice",
+        "mutationChange"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "BeginLongRest",
+      "fieldGroups": [
+        "longRest",
+        "longSettlement"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "InterruptLongRest",
+      "fieldGroups": [
+        "longRest",
+        "longSettlement"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    },
+    {
+      "kind": "ResolveExpeditionStrainRecovery",
+      "fieldGroups": [
+        "recoveryOffer",
+        "recoveryRemoval"
+      ],
+      "commonFacts": "DETAILED_RESULT_CONTRACT.md actual attempt/receipt/current continuation; no authoritative execution receipt on rejection",
+      "fixedShape": "Expand these groups in listed order. Test disclosure before record existence or applicability. Unauthorized groups have their fixed registered keys Withheld, not omitted or variable cardinality.",
+      "newApiQualified": false
+    }
+  ],
+  "prospectiveChecks": [
+    "Exact source property/type and causal join review; no property named from inferred anatomy/authority.",
+    "Revoked/disabled/wrong-seat and operator-only callers produce fixed non-disclosing shapes before existence/cardinality.",
+    "Immediate actual result, duplicate, later explanation and strict-restored explanation preserve original/resolving/current distinctions.",
+    "Stabilization Guidance actual election and decline, failed/successful native check; no private random-state reconstruction.",
+    "Mutation completed capacity clamp is not damage/healing, interrupted selection has no Change.",
+    "Long-rest nullable Conviction and native real settlement values; no invented class/Hit Dice recovery.",
+    "Genuine recovery pending point + response + resumed clock, without replacing the source-feasible unexecuted route with schema64 fixture."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 60303,
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 44727,
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 15459,
+      "sha256": "890399199e4c7ee47e9d1f01327cf6fa6535829dd7acbb29afd30bb0d87ea38a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 5343,
+      "sha256": "32cbda7eef84f036e65eaa7826dc9cccdcf9a05bc234a099133b1a53ccbb83bc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 6555,
+      "sha256": "b8df69ff33439e0938f7807b023941d840c3894c67a06215248751cc1bffebdf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 6795,
+      "sha256": "2b0a79a986af68d3eaa58a2c28f18069c4fc83595032ba676adece61faf0c24b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 2120,
+      "sha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 6783,
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 29850,
+      "sha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 10370,
+      "sha256": "9619a3488b3c730314630ca9a07d11bf15f7368087a0c620d6d1d28024b565ea"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 12489,
+      "sha256": "595a7276d7ae6c6b2f2845f8edd261381380c55ce61cf3d9037ab08ddb6872b3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 5262,
+      "sha256": "4fe40edcd064e66a8492911b2d3cb604ff90cf19346a4d0a864a47dbadc74062"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 4982,
+      "sha256": "536587faee6023e0ac30469837c1ef470719fb5007a6d5c923e11442b801f396"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 8140,
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 3541,
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 2785,
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 14572,
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "revision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "bytes": 16491,
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9"
+    }
+  ],
+  "originalSourceBindings": "CARE_REST_SOURCE_PINS.json and CARE_REST_OPERATION_AUDIT.md; no original authority is replaced by this UI field proposal."
+}

@@ -83,3 +83,7 @@ Add explicit console operations for the versioned description/assessment/discove
 ## Required design closure
 
 Before runtime work: finish and pin the exact operation/profile/payload/source matrix, distinguish native supported branches from host restrictions and missing assessments, reconcile all resolver-on-copy paths within scope, and agree a finite semantic-witness plan. Independent source audit and actual GPT review must resolve HC-01–05 and every concrete blocker. A census or a list of intended tests does not close this gate.
+
+## Retained intermediate concurrence and complete-contract boundary
+
+GPT_ARCHITECTURE_REVIEW_03.json and GPT_ARCHITECTURE_REVIEW_04.json retain actual concrete architecture decisions with Codex concurrence. The shared writer/friend boundary, separate conditional descriptors, predictable capacity versus actual failure semantics and owning-state condition materialization are agreed architectural directions. The concrete condition carrier, exact fields/current predicates, parameter/choice domains, derived example-ID constraints and complete per-profile/branch/evidence allocations remain proposed. See V1_DTO_PROPOSAL.md, CONDITION_READ_BOUNDARY.md, FACT_REGISTRY_INDEX.json and CONNECTED_QUALIFICATION_PLAN.md. None of these intermediate decisions closes HC-01-05 or permits runtime implementation before the complete contract is accepted.

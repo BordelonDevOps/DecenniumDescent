@@ -1,0 +1,2960 @@
+{
+  "schemaVersion": 1,
+  "status": "READ_ONLY_TRANSITIVE_SOURCE_AUDIT_NOT_IMPLEMENTATION_OR_QUALIFICATION",
+  "runtimeBaseline": "6e70f4491b967fa71917544a606f7e2985664818",
+  "scope": {
+    "runtimeChanged": false,
+    "builds": false,
+    "gameplay": false,
+    "tests": false,
+    "contractAcceptance": false,
+    "publicEncoderValidationMustRemain": true
+  },
+  "inputs": [
+    "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+    "engine/artifacts/admitted-command-surface/codec-write-call-census.json",
+    "engine/artifacts/admitted-command-surface/audit_codec_calls.py"
+  ],
+  "method": "Read existing writer bodies and nested components; supplement the lexical census with chained instance-call extraction, a conservative Core getter-name candidate census, direct Snapshot field references, and manual high-risk getter/planning source traces. The aid script was evaluated only before its file-write statement, in memory. No codec or C# execution occurred.",
+  "conclusions": [
+    "The proposed single private writer extraction is source-feasible. No additional RNG draw, retained-dice reconstruction, authoritative resolver, command replay, deadline advancement or state mutation was found in the inspected writer-side call paths after the known Validation.Snapshot entry.",
+    "This is not a compiler-resolved full call-graph proof. Lexical overload merging, local functions, property receiver/type resolution and selected-wire conditional coverage remain explicit instrumentation/compiler-review obligations.",
+    "Preserve the exact existing public Encode validation, writer guards, optional branches, marker order, rational representation, component checksums, limit and final checksum. Do not replace the writer with object equality, JSON, fresh projection, canonical repair or a public unchecked encoder.",
+    "Canonical byte equality covers the selected save representation of an already validated owned snapshot. It is not equality or validation of every possible in-memory Snapshot. Validation-enforced omitted fields and derived/reconstructed metadata must remain inside the trusted owning-current-state boundary."
+  ],
+  "findings": [
+    {
+      "id": "CT-01",
+      "status": "CONFIRMED_VALIDATION_BOUNDARY",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs:17-20",
+        "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs:195-198"
+      ],
+      "fact": "Public Encode first calls Validation.Snapshot. The body after that writes into new local buffers and appends checksum. Extract that exact body, including payload limit based on WireSchemaVersion; public Encode still validates first.",
+      "obligation": "Instrument the extracted comparison to prove Validation.Snapshot and retained-dice/history validators are not reached, while ordinary public Encode/Decode/strict restore continue to reject all malformed causal histories."
+    },
+    {
+      "id": "CT-02",
+      "status": "INSPECTED_COMPONENT_WRITER",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/WorkLedgerCodec.cs:15-42",
+        "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs:25-58",
+        "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs:83-116"
+      ],
+      "fact": "WorkLedger Encode checks null/version and legacy representability, then enumerates constructor-owned read-only arrays. RequiresRationalSchema uses Any and immutable amount/settlement facts; legacy Quantity can throw on fractional values, and Status uses rational comparisons. No Reserve/Consume/Release/Cancel or ledger validation is called by writing.",
+      "obligation": "Keep v1 legacy representability, fractional exception and v2 exact consumed/released amounts unchanged; do not route through AvailableAmount or reconstruct a new WorkLedger for comparison."
+    },
+    {
+      "id": "CT-03",
+      "status": "INSPECTED_COMPONENT_WRITER",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/ConditionJournalCodec.cs:16-56",
+        "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs:38-80",
+        "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs:164-186"
+      ],
+      "fact": "Journal Encode writes immutable operations and application/immunity data. It checks selected component version, relationship payload support, named-immunity bound, operation kind and byte limit. Operations is constructor-owned Array.AsReadOnly. It does not call View, a condition interpreter, Append, Advance or history replay. StructuralKey and Now are not needed by this writer.",
+      "obligation": "Do not introduce journal interpretation/normalization into the shared writer. Preserve exact operation order, optional values, version and structural errors."
+    },
+    {
+      "id": "CT-04",
+      "status": "CONFIRMED_DERIVED_GETTER_CHAIN",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Core/Simulation.cs:386-410",
+        "engine/com.decennium.foundation/Runtime/Core/ConnectedExplorationObservation.cs:18-20",
+        "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs:66-67",
+        "engine/com.decennium.foundation/Runtime/Core/ConnectedRecipe4Batch.cs:63-71"
+      ],
+      "fact": "WireSchemaVersion is not an auto-property: it selects from optional profile state and calls ConnectedExplorationObservation.IsSelected, then the existing chained fingerprint selectors. Inspected branches are string/presence classification, not replay or mutation. The selectors eventually include descendant profile prefixes.",
+      "obligation": "Pin this transitive chain and exercise old and descendant envelopes. Do not replace it with SchemaVersion or bypass the same nested-root validation performed on authoritative state."
+    },
+    {
+      "id": "CT-05",
+      "status": "CONFIRMED_NON_PERSISTENCE_INSTANCE_CALL",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/ClericSettlementCodec.cs:28-35",
+        "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs:134"
+      ],
+      "fact": "RadianceUseRecord.PreRadianceHp() is the meaningful direct record-instance method omitted by an uppercase-receiver-only census; its body returns private backing field hpBefore.",
+      "obligation": "Retain the actual pre-Radiance field and conditional Consecration write; no projection or current HP reconstruction."
+    },
+    {
+      "id": "CT-06",
+      "status": "CONFIRMED_CATALOG_GETTER",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/SpellCastingCodec.cs:14",
+        "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs:13-14",
+        "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs:14-96",
+        "engine/com.decennium.foundation/Runtime/Core/BishopSpellSource.cs:6"
+      ],
+      "fact": "SpellCastRecord.ProcedureSha256 calls SpellSourceCatalog.Get. That performs a read-only SingleOrDefault over a static read-only catalog, with Bishop's static DispelSource fallback. Catalog initialization constructs immutable source definitions; this is distinct from retained gameplay validation/replay and uses no game RNG.",
+      "obligation": "Include catalog initialization/access in transitive instrumentation and pin source definitions. Do not flatten source-derived hashes or silently change behavior for invalid SpellId; actual current input is already validated."
+    },
+    {
+      "id": "CT-07",
+      "status": "DERIVED_VALUE_AND_COLLECTION_GETTERS",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs:15-44",
+        "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs:12-49",
+        "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs:17-19",
+        "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs:44-53",
+        "engine/com.decennium.foundation/Runtime/Core/HavenMealPurchaseRecords.cs:53"
+      ],
+      "fact": "Additional getter candidates consist of constants/aliases, invariant identity formatting, enum/status predicates, checked arithmetic and time/quantity comparisons, cloned string/value arrays, LINQ over immutable record collections, and derived exact rational values. RuleTime/RuleQuantity default denominator behavior is existing representation behavior, not a new comparison normalization. Progress Sum/Subtract creates values only. Collection clones allocate but do not mutate source state.",
+      "obligation": "Preserve arithmetic overflow/invalid-value behavior and exact ordering. The conservative getter table is a name-matched superset, not proof each candidate is reached by a given writer or wire."
+    },
+    {
+      "id": "CT-08",
+      "status": "CONCRETE_SELECTED_WIRE_OMISSION_TRUST_PRECONDITION",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs:365-368",
+        "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs:183-186",
+        "engine/com.decennium.foundation/Runtime/Persistence/FerryWraithCodec.cs:10-14",
+        "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs:199-201"
+      ],
+      "fact": "Planning AvailableHands consults Snapshot.Creatures, but pre-Ferry selected wires omit Creatures. Validation explicitly requires the array empty when Ferry is absent. An artificially altered pre-Ferry Snapshot with extra Creatures could compare equal under an unchecked writer despite affecting hand availability.",
+      "severity": "CONTRACT_BOUNDARY_MUST_BE_EXPLICIT_NOT_A_RUNTIME_BUG_IN_CURRENT_AUTHORIZED_STATE",
+      "obligation": "Only Simulation's freshly captured already validated current state may enter the owning checkpoint assessment. Do not accept caller snapshots or describe comparison as a general validator. Prove public/owning routes cannot inject such an omitted field; preserve public validation. No new save field or wire is proposed."
+    },
+    {
+      "id": "CT-09",
+      "status": "REDUNDANT_METADATA_RECONSTRUCTED_ELSEWHERE",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/FixedEncounterCodec.cs:23-28",
+        "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs:37-49",
+        "engine/com.decennium.foundation/Runtime/Persistence/ReinforcementCodec.cs:78-89",
+        "engine/com.decennium.foundation/Runtime/Persistence/ReengagementCodec.cs:40-42"
+      ],
+      "fact": "FixedEncounter WriteRecord writes ID/origin/initial order/start revisions/observed ordinals, not its RosterPhase or InheritedPhase references. The latter are bound during Decode from separately saved reinforcement/reengagement records and validated against them.",
+      "obligation": "Canonical comparison relies on validated consistency of these redundant references. Do not construct, repair or bind phases while reading; demonstrate capture does not expose mutable aliases that bypass the authoritative transition boundary."
+    },
+    {
+      "id": "CT-10",
+      "status": "PLANNING_DERIVED_PROGRESS_COVERED_BY_FIXED_RECORD_RULE",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Persistence/NextCharterPlanCodec.cs:13-36",
+        "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs:247-275"
+      ],
+      "fact": "Plan codec stores actual labor, status, terms, causal revisions/times and optional report. Its Work is reconstructed solely from fixed required duration plus labor in the immutable record constructor; Remaining/Retained are not separately saved. No arbitrary caller phase schedule exists on this record.",
+      "obligation": "Keep the fixed constructor-derived phases and accepted native remaining-work semantics; do not compare an invented duplicate progress representation."
+    },
+    {
+      "id": "CT-11",
+      "status": "PLANNING_PASSAGE_IS_INTENTIONALLY_NOT_SERIALIZED",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs:89-125",
+        "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs:130-171",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs:95-126"
+      ],
+      "fact": "PlanningPassage stores private owner-bound verified prefix evidence absent from Snapshot. Native replay currently supplies first-planning evidence when no passage is supplied. Exact canonical snapshot bytes alone cannot reproduce/authenticate this missing history witness.",
+      "obligation": "The actual owning checkpoint must supply existing immutable passage after identity/revision/policy/terms/current-bytes checks. Missing capability must fail safely without fallback; no read may build or advance the proof. Keep cutoff on completion revision, not just crossing start or current position."
+    },
+    {
+      "id": "CT-12",
+      "status": "PLANNING_PROJECTION_SEPARATE_FROM_WRITER",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs:142-212",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs:317-383",
+        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs:340-368"
+      ],
+      "fact": "Planning assessment consumes current condition permissions/life/hands, spatial and encounter facts, work occupancy, inventory/vessel/portable custody and amount, pressure/strain/rest debt and immutable selected policy terms. It is not satisfied solely by auditing the codec writer. Read-only condition projection is distinct from the writer and must be included in the complete assessment call graph.",
+      "obligation": "Instrument the full owning assessment/discovery/description route as well as the comparison. No hidden policy Resolve/Initial/ReplayReceipt, inventory settlement, future simulation or passage repair is permitted."
+    }
+  ],
+  "planningInputCoverage": [
+    {
+      "inputs": "ContentFingerprint, TestOnly, revision, clocks, current actor positions and receipts",
+      "encoding": "SnapshotCodec.cs:24-41",
+      "limit": "Selected base schema versus derived wire semantics and owner/policy identity must all be checked; serialized receipts are not permission to replay during reads."
+    },
+    {
+      "inputs": "ExpeditionEpisodeClose, NextCharterPlans terms/progress/report and immutable policy terms",
+      "encoding": "SnapshotCodec.cs:112-114; ExpeditionEpisodeCloseCodec; NextCharterPlanCodec",
+      "limit": "Policy fields MandateAuthorized/EvidenceAccessible/DeskPermitted/WritingFacilitiesAvailable/ApproachAccess are selected policy configuration bound by actual policy identity/fingerprint, not new snapshot fields."
+    },
+    {
+      "inputs": "Structures and station restrictions, current life/conditions, weapons/portable hands, shield/character state",
+      "encoding": "CraftingConsequenceCodec, ActorLifeCodec, ConditionJournalCodec, ClubAttackCodec, RangedCombatCodec, CharacterAdvancementCodec and PortableEquipmentCodec",
+      "limit": "Creature-derived hand denial has the explicit pre-Ferry omission in CT-08. Current condition projections must not be replaced with cached guesses."
+    },
+    {
+      "inputs": "InventoryCombat, encounter/pending actions and calendar facts",
+      "encoding": "InventoryRecordCodec.cs:26; FixedEncounterCodec; TacticalMovement/ClubAttack/ReadyAction/Overwatch and later optional spell/Ferry codecs",
+      "limit": "Selected-profile validation enforces absent feature arrays empty; roster bindings are reconstructed metadata as in CT-09."
+    },
+    {
+      "inputs": "World traversals/intervals/off-calendar activity, exclusive future bookings and plan work",
+      "encoding": "WorldScheduleCodec, WorldActivityCodec, WorkLedgerCodec, NextCharterPlanCodec",
+      "limit": "Whole future interval occupancy is current data, not permission to advance deadlines; passage proof is separate private checkpoint state."
+    },
+    {
+      "inputs": "Walkability, occupancy, reserved route path and later encounter admission",
+      "encoding": "ObservationCodec, route travel/spatial codecs, actor positions, inventory/encounter and later encounter records",
+      "limit": "Authored terrain and selected encounter/route policy are immutable policy configuration, not all independently serialized snapshot data."
+    },
+    {
+      "inputs": "Ration/water families, exact quantities/available claims, owner/custody/access/freshness/carrying",
+      "encoding": "InventoryRecordCodec, WorkLedgerCodec, WaterVesselCodec, PortableEquipmentCodec and selected crop/preservation histories",
+      "limit": "AvailableAmount and family/freshness projections are pure native read computations outside writer; keep source-specific gates and exact rational values."
+    },
+    {
+      "inputs": "Pressure, Expedition Strain, recovery gates/removals and rest debt",
+      "encoding": "ExpeditionPressureCodec, ExpeditionProvisioningCodec, StrainRecoveryStateCodec and RestDebtStateCodec",
+      "limit": "Do not substitute Warrior Strain, infer unsupported empty profile applicability, or settle pending recovery while reading."
+    }
+  ],
+  "instrumentationObligations": [
+    "Observe actual owning Simulation read entry across assess, discover, describe, cost and choice paths; instrument both comparison and downstream pure native assessment.",
+    "Count forbidden Validation.Snapshot and causal validator entry, DiceStream construction/draw/RandomV1 advancement, Initial, ReplayReceipt, ReconstructCanonicalHistory, Resolve/ResolveCore, deadline settlement and choice resolution; unchanged final RandomState is insufficient.",
+    "Track checkpoint object/passage/canonical buffer and complete current state before/after every read, including failed capability and duplicate-receipt reads; no proof repair, lazy passage creation or live mutation.",
+    "Compare extracted writer bytes against original validated encoder on genuine selected-wire corpus, old profiles, rational ledger v1/v2, journal v1/v2, pending states and all nested optional histories. Preserve raw exceptions/limits and byte equality.",
+    "Verify ownership isolation with byte-identical separate Simulations; stale revision/policy/terms/profile/checkpoint and exposed-copy mutation must not transfer proof.",
+    "Explicitly test trusted input boundary for omitted invalid fields such as pre-Ferry Creatures and inconsistent redundant roster metadata through actual public/owning routes. Such invalid data must still fail strict Encode/restore; do not claim the unchecked internal comparator alone validates it.",
+    "Verify successful execution/restore replaces or obtains the checkpoint only through existing validated routes; rejection, queries and observations leave it untouched.",
+    "Keep the internal comparison and friend declaration under the exact TEST_ONLY assembly condition, inspect every call site and ensure no public save/DTO/console path returns unchecked bytes or accepts caller-provided predecessor buffers.",
+    "Resolve candidate getter/overload entries against actual compiled symbols during later implementation review. Static 284-name/85-file and 249-field-name counts are coverage aids only."
+  ],
+  "residualUncertainty": [
+    "No pure writer or new Core assessment protocol exists yet; exact access arrangement, exception mapping and public DTO design are still proposed.",
+    "The conservative getter census uses member-name matching and intentionally includes false positives. It is not per-wire symbol resolution or a verified complete graph.",
+    "BCL serialization, hashing, UTF8 and immutable collection enumeration were treated as serialization infrastructure; no runtime instrumentation or performance measurement was performed.",
+    "No new planning gameplay witness or source-policy acceptance is asserted. The inspected source supports the design with the trusted-state limitation above."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 21382,
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 26565,
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 36082,
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 59346,
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 130619,
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13273,
+      "sha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3160,
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8110,
+      "sha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopDispelRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4190,
+      "sha256": "0e4b1850b6987b3b20802c0bd75dc96a3e3f17cda0ccb5c06c481735da896b28",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopSpellSource.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1292,
+      "sha256": "39b53aff869a84de1327f54d40acf87c33db6e80639240404058b7d528fc096a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 18396,
+      "sha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12489,
+      "sha256": "595a7276d7ae6c6b2f2845f8edd261381380c55ce61cf3d9037ab08ddb6872b3",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12340,
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13636,
+      "sha256": "f3c0c1e2abc697be2688e9957c431dcd53679fec6cd30189fd381764705ea23d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5262,
+      "sha256": "4fe40edcd064e66a8492911b2d3cb604ff90cf19346a4d0a864a47dbadc74062",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12374,
+      "sha256": "9fcf1af8f7e95fc31fd7a58cedea69b7882308d95caee817d5e525f77c9d31dc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedBloodSpecimen.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8976,
+      "sha256": "4be39af72db53c5226715dc9203e9c3cc5b5fce82af44ad0c5f1086ea2cae05c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedExplorationObservation.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4979,
+      "sha256": "b68818f5755e18323e8104998bafdcb26fd573dcb065e861e854e143611c793c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConnectedRecipe4Batch.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12145,
+      "sha256": "35d492fb2703db283f5fd461fb88a2b849e126519ba6b0b21000cb16efaeecc0",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 23443,
+      "sha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4982,
+      "sha256": "536587faee6023e0ac30469837c1ef470719fb5007a6d5c923e11442b801f396",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CraftingConsequenceRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10576,
+      "sha256": "e5dd467f477c339d6fd308566a669661743b871f3b2130dde5868c821420caeb",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 7808,
+      "sha256": "f297ee628a3be8104c630cdab93cae00fe97a3f1cf6b6355fd700447cb40765f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12139,
+      "sha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionAssignmentRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13726,
+      "sha256": "b5bf6ba29cf8c54c9da57e91e163d604ecb2918505fef6f7126d7b026d34fbd6",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 19032,
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 16250,
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionHavenCareRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5985,
+      "sha256": "ce84f3173af2553914ae51a78e4777f153e2b2f89eeca8080260cda52cd6481d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 76959,
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteMappingWorkRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10755,
+      "sha256": "3846d5ff34bafafe0e30555d0dc6289f4b7c0f9ebdea6131b1970cf9f8db1bf8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8140,
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10631,
+      "sha256": "9c3d2a555e1fe2c6f7427d7dc071067030de34079595ebccab03014f25317c5e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8534,
+      "sha256": "ee4f478ae2a26e45886fde2c444cb2ee8634853f9a6ef07a6501ca4bfeb35892",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 25749,
+      "sha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 58130,
+      "sha256": "772f71a729ff890bc769b9d4703378d85cec1dd60e913eab854935c27ef98b83",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10130,
+      "sha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 23652,
+      "sha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 38856,
+      "sha256": "881ce841a96cbff6947c3e749407a05087cd9d73a9ed6b0719c163124b42296f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9932,
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenMealPurchaseRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 7856,
+      "sha256": "a0b749e94ecfb840e2583e925281d2e92bfada286fc9b239e5efaae3a89072cc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 11298,
+      "sha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9318,
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 18977,
+      "sha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10073,
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 47456,
+      "sha256": "c9237d91fee4ca821a46a895d22113a463e921b0464afeac0c6ce9c0d804ddde",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 92997,
+      "sha256": "c188872251f0ec336396dffd0e8873e663b21492659ecd5e49264dc37d552a49",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13973,
+      "sha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 21112,
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10535,
+      "sha256": "6efa8d4acd1710180ed4fe63dfc84dad0b9cc0bb36e9a2117bfb76cf6e23533d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 27099,
+      "sha256": "dc0749e9f3dec8a26acb4104888a801842de33b92bff88c3ffef2af4df25aa7f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Recipe347Records.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 19096,
+      "sha256": "53c9c639de6b745caf8d3ce98d9e424d9608676b2ca2055d195741711cdc8e4f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4758,
+      "sha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 14747,
+      "sha256": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RepairWorkRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3578,
+      "sha256": "8a82b83734cedcbc71152744d4ae3a7da8a145ac0b114a395f28f2d3225ed484",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 11762,
+      "sha256": "72208e1f54bf7c49a4c69c1ea656b4c47a489b155d3bd1f6907df2b60fa064a5",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3541,
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2785,
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 131749,
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierDefensiveFormationRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 20064,
+      "sha256": "146d1459db11189772784ee6f4d6db94fe6fcaf32789eda4f3a8e050f24dd6f8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 37702,
+      "sha256": "426cf152eeeff1d19627a4b4373fd6142e9d46fa0e2d930a637367a05e4f1f2a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 14572,
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 14418,
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12519,
+      "sha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 7990,
+      "sha256": "b342fbdbe85f97e48841f88a7574299846cba8f2790afe8003ed9039c9f4f1cd",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/TypedDamageRecords.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5939,
+      "sha256": "979fb1819e5b3994fe46745b6d5561005d6c912f3daf5d33fd9979c174cb9278",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13415,
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 42556,
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 16491,
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ActorLifeCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4315,
+      "sha256": "652d846d945c4ad11b2818034052e60c78ea2a8cce7f418dd85abf4e67d48577",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ActorMovementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1254,
+      "sha256": "1ae0598154fcfc559bfe86694edf9cdecd3c3b576251839c487c8e7e54d44556",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/AuraOfFaithCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3139,
+      "sha256": "abdcd5b1381bf71bc2883a5520dc7059b4f626993c85201cd7415b80ec946504",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/BishopEntryCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4673,
+      "sha256": "2adeb09475a4aea3c6d3da5b6095bd80224f5d21940e537ee42e3eebfbbd7883",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CacheExcavationCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2636,
+      "sha256": "d1407170060d61122006d55d5af9ae222a1fe27fe9bdfea84fc9ed06917758db",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CharacterAdvancementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12723,
+      "sha256": "21f3e6f2f617afe84b0a1a89c3e968abd05fe72f17d878151baf76ea330044a4",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CharterAttemptCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5141,
+      "sha256": "cfbdf610ae4f33006eef71c8644051b9d707740e8508c92306768ed7acac8ffb",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClericLongRestCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5274,
+      "sha256": "c4becd0995755a475dc7e21bd49ed107db5474a26a4b8253154550c18d7955a2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClericSettlementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4614,
+      "sha256": "84587eee144189a0a8c62bb0438b7c2b5c048510511d08e00a6342678ed2dbaa",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ClubAttackCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5279,
+      "sha256": "2a3b523e1733f4b10fe283215d72a295db4a2be2fdf1483befdc47620ef59ea1",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CompanionStabilizationCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1924,
+      "sha256": "50665abe98d84bd7bc8df455ce5ec616b595e9cf9f26615b485d1de21b92c5ca",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConditionJournalCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10092,
+      "sha256": "34bbe1999232dc2899e575316ed97241ecc9c5e9967fd81e3a60cd08efaf6672",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConnectedBloodSpecimenCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1479,
+      "sha256": "3926b93cf941904c02a04d7dcff4dc5a83b050e810088cc7c6b734e1ee3d4ddb",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConnectedRecipe4BatchCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 995,
+      "sha256": "3bce401829ebf50d32041bbef2acfd5f5196c9496251e0d8e983e16f993230c9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConsecrationCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4938,
+      "sha256": "12925ccdb89ad27febebba3379548a8a0d224073edd116859505b9f1221fcf73",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConsumeDecayCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1739,
+      "sha256": "f298534543c04e4fd75406cb2108b2bf13eee61e0899daefe43e05d9e43ae0d8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CraftingConsequenceCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4604,
+      "sha256": "d6fcb0f3a0e4426ac56f0ff60cb9a63ce512ea4b1cc503abbc18dc4038b78f7b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/CropRecordCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5088,
+      "sha256": "9e77b0edd18e77de3de26f4afbe08c92ec1ede7d2c080b80111f63e787c44ce2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/DeclaredGeometryCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1063,
+      "sha256": "6dd0979e0e2c8bcb97eff2a4c9af56c5f2b167a2415ee733d309b4fa3376aab8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionAssignmentCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4603,
+      "sha256": "b5bffed8c5df99d921272e647d300d4873a80adec3d3f436eea86c44a6814d8a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionBillCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5131,
+      "sha256": "53f063014592f3128e24027dc540aaf6c13c45d64beec62aa74b87812fd6cc39",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionCampCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5159,
+      "sha256": "91bd05e373be1e2c5ab8f1b1afb30b2ef7d359ff4b15ee02fd66a24e2a0d8f7a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionEpisodeCloseCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8367,
+      "sha256": "d0c2858e8c962171c42400d1e5b22315788953c4f6fc5ddcd05d77321012434b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionPressureCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9195,
+      "sha256": "001c19ca62b111eb4fa513380c7d46c56aff9e5194c5e3f066a2244f24a67e6f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionProvisioningCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 26211,
+      "sha256": "7322d04c8cb536e685d9b479aff39500461f46fd53d4939f06adf9a0f0b0357e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionRouteMappingCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2713,
+      "sha256": "0f8d8f2cce7dfdec5d33d77adff9b410f1495f27723e542224490da6217d1623",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionRouteMappingWorkCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6203,
+      "sha256": "0728ad906059c018a25149c7c952843fc80b3c16699accb3ae7f91d45bdae9e4",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionRouteReconnaissanceCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5971,
+      "sha256": "681d37888b3ff3f17f0c8804143c4e06f85efb106a9f4e2a1986cf18a04cc809",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionRouteSpatialCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2484,
+      "sha256": "1ceff9c99b796bd77173b3511c5e2fd7bcab68ec325ad2e939d82cd350b90ad5",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExpeditionRouteTravelCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3118,
+      "sha256": "8cf238c80935b3ba78a231345a627a0d1d275acf859940a2011f173afb8f827f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExplorationHideCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4839,
+      "sha256": "6f17ab5b6307b2718c4e23c3c074d195bf9e598aa8129b4ba2941c68557b5b31",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ExplorationSearchCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3539,
+      "sha256": "19f085359b138d6fd521af1e9c67d8f7468ee81bbfe93a746afcfdab87e87f31",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FerryWraithCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8089,
+      "sha256": "31268bb29f4f7e9681aec107232ba41460fe0493c566b91a4f93d4bba20a36bd",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FishingTrapCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12352,
+      "sha256": "7d62601da0aa6e314f109293943cebc15918dc72389f8dc5825a18f0d0476058",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FixedEncounterCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2702,
+      "sha256": "f203cad1ac2ec29484666c127b74ec2865d143719902c0c2627780c94ef826a3",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FleshWardenCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3484,
+      "sha256": "ec7ad2f16fac7111e73e4e0f44f97eecea05720846bd44169c29e5a1e016779d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FormulaWorkCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2759,
+      "sha256": "47f77f1c610c6cc37a18c45602f9fbff9d4ecd747eedcb810d61b956305cc483",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FrightenedCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5197,
+      "sha256": "e55080183dd04e60003796d10efae170c741650c6c65586ffccb6a0ee490b6b5",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9486,
+      "sha256": "9edf4e6297cdeb3ac8fb5683f0b7d9cd1293424fe6e979678721c82ce49ef93a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestPreservationEvidenceCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2628,
+      "sha256": "dc986b63ea1690a9bdca32d15944a7e0bbd152570ac878efcf9308b874c2437e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestPreservationTreatmentCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4537,
+      "sha256": "2d792ed67b3e01028b82692eb76776272cc7c0ee906133c32a30d6ccb326b2b4",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HarvestRequirementWorkCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3295,
+      "sha256": "c70918bc0cf4479cd2447b70cc62878bb563118f084b21002314fb31c9b9fc5b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HavenAppraisalCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3570,
+      "sha256": "30da53411f8a515f56523a96f3b32702ed9b8ff39611911662a0cdac76c457ef",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HavenMealPurchaseCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2882,
+      "sha256": "cc863a1de9ce8553427ab22e397beaecff434473982cecbbf0828e546d524616",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HavenSaleCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3535,
+      "sha256": "228b3da3e139a8aa767142bb68fad87eb9986da947fb48c62a824cbe0d8cbe8c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/HuntingTrapCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6632,
+      "sha256": "7b33f5e9dc2d26276f360b2b91729e8f0138c667eba2fdf933f313f4693b838e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/InventoryRecordCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3527,
+      "sha256": "ab21b90878048d1f5cf46b8baa215438d8e5434167e30700eaf7ca9d84f2d330",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/LaterEncounterCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4616,
+      "sha256": "459c3936792d0611f1ad539ce7910e177eaa99b5e0fbb8471c6ca5245aa8a793",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ManufacturingCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5675,
+      "sha256": "430aeeb99b7d181197f5577397bbdf97943d971c7328df5fc1c269643ddb672d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/MiningAssayCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 12576,
+      "sha256": "138d9824c12056b52b28674a54c23cbb9152bd123d8e5480644816416a44a72c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/MiningCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 15549,
+      "sha256": "a5974d7127820ae510021cc9e7c1978c2aaecac871318c56876ecf0ce7ddf9d9",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/NextCharterAgreementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4380,
+      "sha256": "3340fcef6e9b9853d0a1055f05d4b362f4235b1577c7a672898ab1c410600ec0",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/NextCharterPlanCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 8120,
+      "sha256": "897271676f6c8c087f45d3f2eef3950e110ab46a8d3af7bea526aa7404ec9877",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ObservationCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 7248,
+      "sha256": "5acbbf5791f4d66081d297b20eeaa2d885da81a089ec04d8fe80ce326dc724aa",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/OrdinaryMagicCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 7013,
+      "sha256": "6fcf6808a27980a985d5923ca26a508ac7c0a0d4192dc32ccbb5611b2a99169c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/OrdinaryReceptacleCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3517,
+      "sha256": "00af7284614286b25bcd22f71b35f13531447446c64e6db3095a21dc847ca30b",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/OverwatchCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2165,
+      "sha256": "815025bbe33cdbf9105dace83aed8d51b5638b7e45cc7026b651439616cbad45",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/OverwatchExecutionCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3831,
+      "sha256": "2e11231740bda8a3b1c38eda96caf2dba67fbc86e4529e47234341e31fd020c8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/PeriodicRiderCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5517,
+      "sha256": "ccbcebc794ea7257690b6bd929786ab805e01bf4ccbcb3ddf4e8aac7c06321b3",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/PortableEquipmentCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6202,
+      "sha256": "b92dc814606b364319d83a2cbd07ad6bd21a09be658d054804fcdd68b712580f",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/PostRecoveryEncounterCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4376,
+      "sha256": "52fb203faff57c34bdef29788fccfad87a6e13d755d409b6e976f2669f826f03",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ProspectingCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 5632,
+      "sha256": "9d1383bf6fe24e3f6b714a279fcee4dd4da897e2e299a93f8b0be4643e9a0c1a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/RangedCombatCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4998,
+      "sha256": "6dfc0b0f3375a08579f93e67fa3046e18c0c0c238df1b7d2b6f0248c2812744d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ReadyActionCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2909,
+      "sha256": "bbb8541357e06542a8a85cd01623e117102a9d2c323fa39eb0282cf217cd6ff2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/Recipe347Codec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 10783,
+      "sha256": "27c316b592568348d22b35dc20a4cc9b68acb1fd129ce064999c31f192683a70",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ReengagementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2479,
+      "sha256": "8e7be6c21d5323e257a9c50bf6c3a60c18cb41709ee6ce836fac565b9a50d044",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ReinforcementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4895,
+      "sha256": "5c5974d2b2d6c4796a1f8f90f4622a8f47b2ff44c9366f5637a0eb81f980a6eb",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/RepairWorkCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2497,
+      "sha256": "e07a81fd27c8d2c1ff2269c666af1748ec902230e9ea71262e34ceab9c87e92d",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ResonanceCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3517,
+      "sha256": "7dd5df62fb212855e0aebfc4b604ffcf26c9566cc0ebf6271e405848ae91f04c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/RetreatCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 4153,
+      "sha256": "66a9d2a4eaf489692c795d367cf1f70f3552e1fb55400ed78f6752ad3761178a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ShortRestCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2930,
+      "sha256": "25a5153c3a04577adad1d4bbf9b5a203f9c2e9b3efd8c371e185bb83e6f2bcbe",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 47972,
+      "sha256": "45a4ba347df663816cb78287379b4314fde5b4b7fa0a061e91838962910ba52e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SoldierTacticalFeatureCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 13567,
+      "sha256": "6c9788fe26a3d97d7f5f642d2f89aa5ab845517455570c6f26cc1a1f265937ca",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SpellCastingCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 9362,
+      "sha256": "c6565f07057ea6412995644aad14b48a76915c0b43fe6c45af2b4fff71070386",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SpellRepertoireCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1856,
+      "sha256": "e421253bfbf99fc5ba0bdb74bc887700c4587984be6d6f40035b9d52450ed211",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SupplyCacheCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3450,
+      "sha256": "40e0dc94c455f8708222127bb7c751fd11d2f408be372569dc91e3a57132355a",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SurpriseEntryCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2505,
+      "sha256": "de936f3623906a1436803c483ec153783f7f7b01f572cb2305e8acbf77afd1a8",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/TacticalMovementCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3868,
+      "sha256": "f2b5e437791d85d69f9619feda9badbb0cee6b3b467ad35c7a885301f0ed76a2",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/TemporaryCampConstructionCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6138,
+      "sha256": "a76d9d42f0fddbdd435605f4bb353abdd28ba4abd15a44a22f055d3d98ec79da",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/VesselHandlingCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2080,
+      "sha256": "b10968b204c95038e071f5a5d6d00204fb13e0b2f6970616d88efe7c6368d464",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/WaterVesselCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 2968,
+      "sha256": "cb5e480873e3c718cc18a72d389dd413ed8111d327fa0f0f7994880870148a64",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/WorkLedgerCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 6242,
+      "sha256": "a0776281efeeeaee538d9fe97adfadf97ac2d7752b721d4806c3d9386458909e",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/WorldActivityCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 1969,
+      "sha256": "7d9ee2643662ce43f25e30297bf225088fa13f4ab63c458468c7cee243db73c4",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/WorldScheduleCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3248,
+      "sha256": "55f776670ee55d45cdc34098f53ad47503d70d6c783bc2b39d9c0477735f2e1c",
+      "checkoutRelation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/WoundTreatmentCodec.cs",
+      "revision": "6e70f4491b967fa71917544a606f7e2985664818",
+      "bytes": 3104,
+      "sha256": "42462263b5755fc9d10ea7e2276dc1043d3e0f81504dfb07eb9cd786792edf24",
+      "checkoutRelation": "exact"
+    }
+  ],
+  "conservativeGetterCandidates": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "line": 18,
+      "member": "Required",
+      "body": "=> Sum(Phases);",
+      "bodySha256": "2bb543ec9999f3db092775eae4aa83d7980ac7cd9a4c5d39a98001bbd5320c0a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "line": 19,
+      "member": "Remaining",
+      "body": "=> Subtract(Required, Retained);",
+      "bodySha256": "e8bba32d6facab376e4293509e4b3e03b40676a3943751ff27efeb58d4413e04",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 9,
+      "member": "OwnerId",
+      "body": "=> ClericRpProfile.Actor;",
+      "bodySha256": "14f800e319837ea590c5bc143bb8dfb4cbb96217f14ac5f98da30dc07e3b5ba5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 10,
+      "member": "SourceId",
+      "body": "=> BishopProfile.Aura;",
+      "bodySha256": "2c8276ba8ce9edd28480c8e42f6fda3451bf22c1be6e048e6a04fb5216471980",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 11,
+      "member": "SourceRevision",
+      "body": "=> ClericRpProfile.SourceRevision;",
+      "bodySha256": "b63de800a902346c137731b03eab8c8304caf293c102ceca8e4ee9676d159269",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 24,
+      "member": "Bonus",
+      "body": "=> Qualified?1:0;",
+      "bodySha256": "abae76a2d23813554fa9273e2fc927643b6dc7bc7e70659117ae077f537f2fb5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 48,
+      "member": "Modifier",
+      "body": "=> checked(BaseModifier+EffectiveTemporaryBonus);",
+      "bodySha256": "e48fab109a7c2e88802b35f7e93b0db60f5029fbdb03bdfcd15e27bcb8978ce1",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "line": 51,
+      "member": "Total",
+      "body": "=> AutomaticFailure?0:(long)Natural+Modifier;",
+      "bodySha256": "8df054aa9d21fff0d6ef31742fa4a7a153e36a660c70ae3631e2d74c604b8f11",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopDispelRecord.cs",
+      "line": 12,
+      "member": "ActorId",
+      "body": "=> ClericRpProfile.Actor;",
+      "bodySha256": "14f800e319837ea590c5bc143bb8dfb4cbb96217f14ac5f98da30dc07e3b5ba5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "line": 140,
+      "member": "MethodId",
+      "body": "=> DirectVisibleSurface;",
+      "bodySha256": "b53910fa504facefae87dd16ce356d23e5b3a6ef17b19b4c5d8e86fe4e92fe09",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "line": 184,
+      "member": "Interrupted",
+      "body": "=> Events.LastOrDefault(x => x.Kind == CharterAttemptEventKind.Suspended\n            || x.Kind == CharterAttemptEventKind.Continued)?.Kind == CharterAttemptEventKind.Suspended;",
+      "bodySha256": "8d2d58e5e2e538da1c6a8bf052d28ffc745792800d6b8eb6a6c7dbc8ac478d67",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "line": 188,
+      "member": "Outcome",
+      "body": "=> Returned != null\n            ? Stop == null && Observed != null ? CharterAttemptOutcome.ReturnedComplete : CharterAttemptOutcome.ReturnedIncomplete\n            : Stop == null ? CharterAttemptOutcome.Open : OutboundStarted == null\n                ? CharterAttemptOutcome.EndedAtStaging : CharterAttemptOutcome.AwaitingLawfulReturn;",
+      "bodySha256": "01805bb66feeed709b57256d456daccf2b9201b497b992ddee2c833575a775f8",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 14,
+      "member": "Id",
+      "body": "=> ClericLongRestProfile.IntervalPrefix + Sequence.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "6306eb9d627248c25629b7941df8bf4dfdea0c2547ef14c4edca5777cccfce59",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 15,
+      "member": "ActorId",
+      "body": "=> ClericRpProfile.Actor;",
+      "bodySha256": "14f800e319837ea590c5bc143bb8dfb4cbb96217f14ac5f98da30dc07e3b5ba5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 16,
+      "member": "SiteId",
+      "body": "=> ClericLongRestProfile.SiteId;",
+      "bodySha256": "4db873f2f871b62cba6b8574a3686468b89a78b0380c26e0972c353245aea307",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 20,
+      "member": "DueAt",
+      "body": "=> StartedAt.AddSeconds(ClericLongRestProfile.DurationSeconds);",
+      "bodySha256": "ab26150b5fe15bd349713aca262ece7275ecd4b1ab9c8b96a8bf096dcfa5a616",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 61,
+      "member": "ActorId",
+      "body": "=> ClericRpProfile.Actor;",
+      "bodySha256": "14f800e319837ea590c5bc143bb8dfb4cbb96217f14ac5f98da30dc07e3b5ba5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "line": 90,
+      "member": "ActualHealing",
+      "body": "=> HpAfter - HpBefore;",
+      "bodySha256": "e909696f3495118c96d535b72c401e162e9a46411c7f73465c4944c047e6e676",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 27,
+      "member": "MilestoneId",
+      "body": "=> FixedId;",
+      "bodySha256": "bdaba1ed00018c902bbe81c1394bb37b25acedcc291f1e746c13242f032a8da0",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 28,
+      "member": "ActorId",
+      "body": "=> ClericRpProfile.Actor;",
+      "bodySha256": "14f800e319837ea590c5bc143bb8dfb4cbb96217f14ac5f98da30dc07e3b5ba5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 29,
+      "member": "ObjectiveId",
+      "body": "=> FixedObjective;",
+      "bodySha256": "3c36238b5be14aa562158c89e12d5f96bcc956dd9cc1a8650d64c036ee64cea4",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 30,
+      "member": "SourceRevision",
+      "body": "=> ClericRpProfile.SourceRevision;",
+      "bodySha256": "b63de800a902346c137731b03eab8c8304caf293c102ceca8e4ee9676d159269",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 31,
+      "member": "DeclaredRevision",
+      "body": "=> 0;",
+      "bodySha256": "6ca55063b9374488bb4199d99173587c85383ab38a869a0c6f5b1088d4d1034e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 32,
+      "member": "FirstEncounterId",
+      "body": "=> \"world.fixed-conflict\";",
+      "bodySha256": "4a56371f66a1868b635207c90204e14f70f53b159f9990e5efa0570b9e94ff5e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 33,
+      "member": "LaterEncounterId",
+      "body": "=> \"TEST_ONLY.later-conflict\";",
+      "bodySha256": "6e89601d9746a5aedcf3876f6c53d07b239df09761a78b3e0283318e958e3406",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 34,
+      "member": "SpecimenId",
+      "body": "=> ConnectedBloodSpecimen.SpecimenId;",
+      "bodySha256": "4b85015ce13e11cb41ddd3319b94c10f6e14b0c6b10961d0d1870c80fb159181",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 35,
+      "member": "RecipeId",
+      "body": "=> ConnectedRecipe4Batch.RecipeId;",
+      "bodySha256": "2987156536b7463ce48125e6aff499385bc12b7942fbf81361a3131bf625ecde",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 36,
+      "member": "Binding",
+      "body": "=> string.Join(\"|\", ObjectiveId, MilestoneId, ActorId, SourceRevision, \"0\",\n            FirstEncounterId, LaterEncounterId, SpecimenId, RecipeId, \"actual-normal-closure|consumed-settled-batch|alive-not-positive-hp\");",
+      "bodySha256": "68d83098c2b26ba982b33c0b25a28bd1fc44367687cf9791ee7502638abc4750",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 107,
+      "member": "Maximum",
+      "body": "=> PoolAcquiredRevision == 0 ? 3 : 5;",
+      "bodySha256": "f814310dff673bda1059955d72fa1c41f99b6545f779e4e44865bc11eb91630f",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 108,
+      "member": "Current",
+      "body": "=> null;",
+      "bodySha256": "0c6833b883c07f4b5df30b8ad40333b4b9683dbdf676132c098a1c070801b408",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "line": 109,
+      "member": "CurrentAvailable",
+      "body": "=> false;",
+      "bodySha256": "eb9395a87117bb0aa73cc71874c4b47f585728e644fd6c15a751fce228240e30",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "line": 25,
+      "member": "Fingerprint",
+      "body": "=>TurnId+\"|\"+WeaponId+\"|\"+AmmoLotId+\"|\"+Amount.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "c73c7102ffe32a4a69db3eb9fd92e0a15ff1660860e22932ab2ca40e1017c114",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "line": 44,
+      "member": "Fingerprint",
+      "body": "=>TurnId+\"|\"+WeaponId+\"|\"+Stance.ToString(CultureInfo.InvariantCulture)+\"|\"+((int)Knockout).ToString(CultureInfo.InvariantCulture)+\"|\"+(Choice?\"1\":\"0\")\n            +(FeatureId!=\"\"?\"|\"+((int)PressInstruction).ToString(CultureInfo.InvariantCulture)+\"|\"+FeatureId:PressInstruction==PressHitInstruction.ArmOrReplace?\"\":\"|1\");",
+      "bodySha256": "9f19eb9e9a2343677738b30edffe12592a295d38679de19193468a596982334c",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "line": 20,
+      "member": "Total",
+      "body": "=> (long)Natural + Modifier;",
+      "bodySha256": "18a16dd3bce794302b55743a9f6089bc41d74c23279897c160d1e17e18b59506",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "line": 21,
+      "member": "ActionSpent",
+      "body": "=> true;",
+      "bodySha256": "111230bdfaeb125bdfde91dc66e8fb21d11ecdd7660c1fe806dc0485fbb995ee",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 15,
+      "member": "Fingerprint",
+      "body": "=> X.ToString(CultureInfo.InvariantCulture) + \"|\" + Y.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "0a078efc04348b093f6dd7e5a61865cb5d3a1fc5fb936767b02ab365a2d5546a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 26,
+      "member": "SourceId",
+      "body": "=> ConsecrationProfile.Consecrate;",
+      "bodySha256": "250b70e74e4253cbe8731aba4e78cfe9e4fd1fb6a42b393ceaad6b4dda7d0789",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 27,
+      "member": "SourceRevision",
+      "body": "=> ClericRpProfile.SourceRevision;",
+      "bodySha256": "b63de800a902346c137731b03eab8c8304caf293c102ceca8e4ee9676d159269",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 28,
+      "member": "AreaId",
+      "body": "=> ConsecrationProfile.Area;",
+      "bodySha256": "04ea11b15fd26a166a7abf33f0c22aef4098a367ebcf9b15fb7837cc7073728e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 37,
+      "member": "RpAfter",
+      "body": "=> RpBefore - 2;",
+      "bodySha256": "b28a23f8e057779ee76d9325e7a8e51698a444940fd7372d6f4fd20bb17af50a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 108,
+      "member": "TypeSource",
+      "body": "=> Undead ? FerryWraithProfile.SourceRevision : ConsecrationProfile.RosterSource;",
+      "bodySha256": "3d53b66a41a836c8c044ed06faaa9de042b91c23db7f2f6f195267fde2787d5a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 110,
+      "member": "Disposition",
+      "body": "=> !Undead ? \"KnownNonUndead\" : ZoneCommandId == \"\" ? \"NoQualifyingZone\" : \"UndeadInsideZone\";",
+      "bodySha256": "3e66fd6af3e10653ddd04147ac4f5844eaf9c797107169eaf5ad5f967410b951",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 111,
+      "member": "Contribution",
+      "body": "=> ZoneCommandId == \"\" ? 0 : -1;",
+      "bodySha256": "5ad1c487e960c16df68bee38b5789ba97b34cdac888dd8a9c89b1cd107e478c7",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "line": 130,
+      "member": "RosterSource",
+      "body": "=> ConsecrationProfile.RosterSource;",
+      "bodySha256": "1f888206ca9dded24ec33e62431e0fe0bab87d111e06bdf46091e03152d10ff4",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+      "line": 15,
+      "member": "Deadline",
+      "body": "=> StartedAt.AddSeconds(3600);",
+      "bodySha256": "62533f6c82743e5c8757fdd8edf1d1cc88eb4ccfd5e537d9c2b1f92c3eedd19a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CraftingConsequenceRecords.cs",
+      "line": 75,
+      "member": "Participants",
+      "body": "=> ParticipantIds.Count;",
+      "bodySha256": "34b4ee67bab6a9afd0d38f8241aef1c8442a63d7ce99c6c4b0ad68991f5933da",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DeclaredGeometryRecords.cs",
+      "line": 24,
+      "member": "Binding",
+      "body": "=> string.Join(\",\", new[] { X, Y, CostPerFoot }.Select(x => x.ToString(CultureInfo.InvariantCulture)));",
+      "bodySha256": "9e6b7f2ded8517a7ba337ce5ac62e462a2820d0e3907864940b426734aae4d28",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 14,
+      "member": "Fingerprint",
+      "body": "=> string.Join(\",\",TargetIds)+\"|\"+CureTargetId+\"|\"\n            +((int)CurePreference).ToString(System.Globalization.CultureInfo.InvariantCulture);",
+      "bodySha256": "0283c44ccb4f1b820fb2fa3f1cc12add39a85b29a4061157bfd501248bf4d16b",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 48,
+      "member": "ActorId",
+      "body": "=> Turn.ActorId;",
+      "bodySha256": "f9ae39e43b3ebffccece8d42719099112493e32b0ea89a6a24ff481f9937f7a7",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 49,
+      "member": "SourceId",
+      "body": "=> BishopProfile.Invocation;",
+      "bodySha256": "c6dd74670b6e072544e3da2d28e96ae15db62e00a99849750ec6f6ce15e33d74",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 50,
+      "member": "SourceRevision",
+      "body": "=> ClericRpProfile.SourceRevision;",
+      "bodySha256": "b63de800a902346c137731b03eab8c8304caf293c102ceca8e4ee9676d159269",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 53,
+      "member": "RpPaid",
+      "body": "=> 3;",
+      "bodySha256": "f7dea5f64ff586531903107299bcaf636232bc0f33ad1d5b0f89aab469efb376",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 54,
+      "member": "RpAfter",
+      "body": "=> RpBefore-RpPaid;",
+      "bodySha256": "59ee5adf3ffd6523d17da636f26973ed989fbfcf04dcfe87b9c4325f57f17ac3",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 57,
+      "member": "ConvictionAfter",
+      "body": "=> ConvictionBefore-ConvictionPaid;",
+      "bodySha256": "35fd776657842e4848e5e3abb62bad4ea2389cfc7840a4a582b4b885bb7a8e27",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 59,
+      "member": "DissonanceAfter",
+      "body": "=> Math.Max(0,DissonanceBefore-1);",
+      "bodySha256": "ca223bac8315cb61c0b7d28942dd29c344b22b6888b85f12ce867a779c94d463",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "line": 62,
+      "member": "Modifier",
+      "body": "=> 2;",
+      "bodySha256": "9804479bca4ac3c76be6c618f830c596924175a94e3b946eba2ca286ea379303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionAssignmentRecords.cs",
+      "line": 35,
+      "member": "Fingerprint",
+      "body": "=> ((int)Procedure).ToString(System.Globalization.CultureInfo.InvariantCulture)\n            + \"|\" + TargetId + \"|\" + DestinationId;",
+      "bodySha256": "b1b0506dc68e278be5e9157336148416a5712ce73ff2f7a5769419239ebcb48a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionAssignmentRecords.cs",
+      "line": 67,
+      "member": "Open",
+      "body": "=> Status == ExpeditionAssignmentStatus.Travelling || Status == ExpeditionAssignmentStatus.Ready;",
+      "bodySha256": "846ee00716a4b4b5ac1235bf08d6d2e4896dd064396067b07cf9d55513977d7e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "line": 25,
+      "member": "BeneficiaryId",
+      "body": "=> RepresentativeId;",
+      "bodySha256": "ccf101310578050b932d0ab9fdab7046fdd412eb0e9a07c62b7eddf2d57282d0",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "line": 183,
+      "member": "StartedAt",
+      "body": "=> Basis.AccountingCutoff;",
+      "bodySha256": "5a25c3efb8d6c9b3d1a113211102c0094f2d30008d134456fdfc8b2f51fa0835",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "line": 189,
+      "member": "Open",
+      "body": "=> Status == ExpeditionBillStatus.Working || Status == ExpeditionBillStatus.Paused\n            || Status == ExpeditionBillStatus.PendingCompletion;",
+      "bodySha256": "fc54fc20737bfffee6a45646d5c65db5ab92ff7a601eb29525644eeb65632f13",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "line": 57,
+      "member": "ActorId",
+      "body": "=> Life.ActorId;",
+      "bodySha256": "0feaff7784690d69689ee7c4462b5882bd2d3e7e84b06fe877775399b14ccc43",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "line": 148,
+      "member": "CloseRevision",
+      "body": "=> SourceRevision + 1;",
+      "bodySha256": "c3a1c02ad04a50b0ec723f71e0eabe745c9051527368375e73a976431ca79077",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionHavenCareRecords.cs",
+      "line": 71,
+      "member": "IntakeIds",
+      "body": "=> (string[])intakeIds.Clone();",
+      "bodySha256": "7cb96c3928bda1b72c6cf176850f79b59d5fcb2ddb1c8b588b6f4c49adc26cec",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionHavenCareRecords.cs",
+      "line": 72,
+      "member": "EligiblePointIds",
+      "body": "=> (string[])eligiblePointIds.Clone();",
+      "bodySha256": "e7cc15e46255163638a7516cd19761591387cf8d221511b34d2bf61f9e0e6d8e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "line": 80,
+      "member": "SettlementId",
+      "body": "=> CauseKind == ExpeditionStrainCauseKind.DailyProvisioning ? CauseId : \"\";",
+      "bodySha256": "8ecacbbb7aade10ff4ecf84a06cf9effc670ce41dfe9a2aa42f7b2dcac139be1",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteMappingWorkRecord.cs",
+      "line": 11,
+      "member": "AssistantIds",
+      "body": "=> (string[])assistantIds.Clone();",
+      "bodySha256": "2101452bbdf7d177d76852b1577d6692defca523362e74c4b71f1eade20b3e39",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteMappingWorkRecord.cs",
+      "line": 12,
+      "member": "Fingerprint",
+      "body": "=> string.Join(\",\", assistantIds);",
+      "bodySha256": "a5af41dd18648cb1aa51249e4957afbcbd234c231a449a9d6296f8eaae53059e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionRouteMappingWorkRecord.cs",
+      "line": 96,
+      "member": "AssistantIds",
+      "body": "=> (string[])assistantIds.Clone();",
+      "bodySha256": "2101452bbdf7d177d76852b1577d6692defca523362e74c4b71f1eade20b3e39",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "line": 66,
+      "member": "PointIds",
+      "body": "=> (string[])pointIds.Clone();",
+      "bodySha256": "cc5e08bc215e7ff30070d4723fa4bee266dcc7551abc93b54df58b07e6cff14b",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs",
+      "line": 123,
+      "member": "Id",
+      "body": "=> \"exploration.hide.\" + Revision.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "38a2db3a01f524e5031855da2f0660682b718276900baa1439070f60bb865bf6",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationHideRecords.cs",
+      "line": 133,
+      "member": "Status",
+      "body": "=> End?.Status ?? ExplorationHideStatus.Pending;",
+      "bodySha256": "efd1778a59a9c21af613a4e760e8bad6fd7b4dfab65b70bd2ebb82fd4a74d486",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchRecords.cs",
+      "line": 108,
+      "member": "Id",
+      "body": "=> \"exploration.search.\" + Revision.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "5053df978e4be5eed3a209806de6e11a0207a8f6130de811049518e0285d18d3",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExplorationSearchRecords.cs",
+      "line": 116,
+      "member": "Status",
+      "body": "=> End?.Status ?? ExplorationSearchStatus.Pending;",
+      "bodySha256": "5b704302f8d60f5ec0358c9e4c762539762e5b3eb393d68122722bc53216c044",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs",
+      "line": 201,
+      "member": "PhysicalMemberIds",
+      "body": "=>(string[])physicalMemberIds.Clone();",
+      "bodySha256": "62bb5c843ff53db922a1bdcb5e3573656cac6d4b7aa14727fc44b0710e26ad8e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FishingTrapRecords.cs",
+      "line": 229,
+      "member": "PhysicalMemberIds",
+      "body": "=>(string[])physicalMemberIds.Clone();",
+      "bodySha256": "62bb5c843ff53db922a1bdcb5e3573656cac6d4b7aa14727fc44b0710e26ad8e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "line": 40,
+      "member": "Order",
+      "body": "=> OrderAt(TurnOrdinal);",
+      "bodySha256": "76a8f80294412172a9f5188a277fbae93748ed539d64e70e8111b758e87b9f4e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "line": 46,
+      "member": "TurnOrdinal",
+      "body": "=>ObservedOrdinals[ObservedOrdinals.Count-1];",
+      "bodySha256": "6069d999b5e9d2206b1ebccd183d2e10973d2f85df6c58d2bbe24c22d6c2bf7b",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "line": 42,
+      "member": "Damage",
+      "body": "=> 0;",
+      "bodySha256": "6ca55063b9374488bb4199d99173587c85383ab38a869a0c6f5b1088d4d1034e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "line": 43,
+      "member": "Healing",
+      "body": "=> 0;",
+      "bodySha256": "6ca55063b9374488bb4199d99173587c85383ab38a869a0c6f5b1088d4d1034e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "line": 82,
+      "member": "Amount",
+      "body": "=> checked(2L * WarriorLevel);",
+      "bodySha256": "761ef572466c763d9d597cb0439df9ee50d7b18929bc0e87888b8338222d9484",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "line": 13,
+      "member": "Fingerprint",
+      "body": "=> string.Join(\",\", TargetIds);",
+      "bodySha256": "0b2ee0fa36b319d8aa21c4a151415ca27b38237d5a5e613f99e492715a574a19",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+      "line": 130,
+      "member": "BaseYieldDice",
+      "body": "=>baseYieldDice.ToArray();",
+      "bodySha256": "db7d5e226e3de87eddc31bcd4b7aa26d04e3631ba4cdd24a6288b4236a4ad33b",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+      "line": 169,
+      "member": "UnitIds",
+      "body": "=>unitIds.ToArray();",
+      "bodySha256": "6dfc73dd0742d52beb29b8653e54f5ea4701602fff5b7540686edaa1649ac5da",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+      "line": 253,
+      "member": "SelectedCategoryIds",
+      "body": "=>selectedCategoryIds.ToArray();",
+      "bodySha256": "c5904e4d827707893585db54713101ee67320ddc002634899957fb53876132db",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestRecords.cs",
+      "line": 254,
+      "member": "SelectedUnitIds",
+      "body": "=>selectedUnitIds.ToArray();",
+      "bodySha256": "9468d37699186cacfb6c625b6aa58bd46f9c61c1127f7eaa6a2f2b30e4717439",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "line": 89,
+      "member": "ReservationId",
+      "body": "=>Id+\".subject\";",
+      "bodySha256": "706cbdfdf6416272ed7494bc745ff85027e8b737fd73f9203f00c12c506bac37",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "line": 90,
+      "member": "Open",
+      "body": "=>Status==HavenAppraisalStatus.Working||Status==HavenAppraisalStatus.Paused||Status==HavenAppraisalStatus.PendingCompletion;",
+      "bodySha256": "e407342d6381c7c50c64be0b83515b16151fb27250e0e8419d809626b0fa89f9",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenMealPurchaseRecords.cs",
+      "line": 53,
+      "member": "PaymentCopper",
+      "body": "=> checked(ExactQuoteCopper.Numerator / ExactQuoteCopper.Denominator\n            + (ExactQuoteCopper.Numerator % ExactQuoteCopper.Denominator == 0 ? 0 : 1));",
+      "bodySha256": "97345b3c4627bcb502616a9296bbfb66b998ae8462e7b3516ba3218ec8c3e6c5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "line": 82,
+      "member": "Open",
+      "body": "=> Status == HavenSaleStatus.Working || Status == HavenSaleStatus.Paused\n            || Status == HavenSaleStatus.PendingSettlement;",
+      "bodySha256": "43fbc4321892b85503fd396802176949431a72f21da9e9437d062bbb1ab93166",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "line": 79,
+      "member": "Fingerprint",
+      "body": "=>Amount+\"|\"+Destination+\"|\"+((int)Handling).ToString(System.Globalization.CultureInfo.InvariantCulture);",
+      "bodySha256": "182bfa2792571080aa3ec1683642e3d16ae88dd065e8613efc610a5b8afe36dd",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "line": 17,
+      "member": "FromX",
+      "body": "=> 1;",
+      "bodySha256": "cd1b1bd7be3656dd33a73644901b7a57be88f4f1166c47f0993c7ae3c7f35041",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "line": 18,
+      "member": "FromY",
+      "body": "=> 3;",
+      "bodySha256": "f7dea5f64ff586531903107299bcaf636232bc0f33ad1d5b0f89aab469efb376",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "line": 54,
+      "member": "Total",
+      "body": "=> checked(Natural + DexterityModifier + Bonus);",
+      "bodySha256": "fbf4e64beee32488ac623f9eb393dc0bef09c5d337223ad528dc4b8343d780cd",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "line": 18,
+      "member": "NextPhase",
+      "body": "=> 1;",
+      "bodySha256": "cd1b1bd7be3656dd33a73644901b7a57be88f4f1166c47f0993c7ae3c7f35041",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "line": 36,
+      "member": "Open",
+      "body": "=> Status != ManufacturingStatus.Complete && Status != ManufacturingStatus.Cancelled;",
+      "bodySha256": "7c789310c8bf3fa0f4373ed942a45ac1499de0e55f4aa52c27744aecf4f84f19",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "line": 72,
+      "member": "Spent",
+      "body": "=> UsedAt.HasValue;",
+      "bodySha256": "89107adbdaf4a04bed21d2a06c4cd8065c393dc0b7bf8c7d4594bef7bcf10c3d",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "line": 82,
+      "member": "MassPounds",
+      "body": "=> new RuleQuantity(Spent?1:2,10);",
+      "bodySha256": "977303bbe10534151268127fd0b32e2410355ed4196dd48f34b7284ba9e82a2c",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 42,
+      "member": "AssessedCategoryIds",
+      "body": "=> assessedCategoryIds.ToArray();",
+      "bodySha256": "21f676931b24d52b8ddb502c4d53f8d4039ec050f08f2a6b4ceb0d1ec90abcff",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 43,
+      "member": "RequiredImplementIds",
+      "body": "=> requiredImplementIds.ToArray();",
+      "bodySha256": "00ea85f597e9b881886be96a39ba32f57c03f91e8cffb01877cad71b16dd1849",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 44,
+      "member": "Findings",
+      "body": "=> findings.Select(x => x).ToArray();",
+      "bodySha256": "f05f4854323847d65fa6ddc6e663ca8c7d12326ab75f9570f965e59bbf7058d2",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 114,
+      "member": "FindingIds",
+      "body": "=> findingIds.ToArray();",
+      "bodySha256": "6aa5a6259dd84e5c8a2de1a0d8e4e701d451e651ccde9020b9ddd78ba0578303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 312,
+      "member": "CompatibleMethodProfileIds",
+      "body": "=> compatibleMethodProfileIds.ToArray();",
+      "bodySha256": "8c9eb02d1fcc965c3dba925b76c90a2afe9efdba6302ee1f568b2044b71a3fdd",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningAssayRecords.cs",
+      "line": 383,
+      "member": "FindingIds",
+      "body": "=> findingIds.ToArray();",
+      "bodySha256": "6aa5a6259dd84e5c8a2de1a0d8e4e701d451e651ccde9020b9ddd78ba0578303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "line": 52,
+      "member": "UnitIds",
+      "body": "=>unitIds.ToArray();",
+      "bodySha256": "6dfc73dd0742d52beb29b8653e54f5ea4701602fff5b7540686edaa1649ac5da",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "line": 108,
+      "member": "SelectedCategoryIds",
+      "body": "=>selectedCategoryIds.ToArray();",
+      "bodySha256": "c5904e4d827707893585db54713101ee67320ddc002634899957fb53876132db",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "line": 109,
+      "member": "SelectedUnitIds",
+      "body": "=>selectedUnitIds.ToArray();",
+      "bodySha256": "9468d37699186cacfb6c625b6aa58bd46f9c61c1127f7eaa6a2f2b30e4717439",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "line": 820,
+      "member": "MissingMemberIds",
+      "body": "=>missingMemberIds.ToArray();",
+      "bodySha256": "4253155191c7c800df2cff35c62dda20cf9c45db8345699645a776ac8c06f56e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "line": 87,
+      "member": "ParticipantId",
+      "body": "=> PlanTerms.PlannerId;",
+      "bodySha256": "719e2a4b8bc4e337b9e2be51d3e1f25081e0a4fbe9acb52cf156b1ee0fbfd59f",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "line": 149,
+      "member": "ActorId",
+      "body": "=> Terms.ParticipantId;",
+      "bodySha256": "15037f59f46456ee5cd9d648c661c4f4d6d9a5a7b4dd16c520c31d5e87f626de",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "line": 150,
+      "member": "SourceRevision",
+      "body": "=> AcceptedRevision - 1;",
+      "bodySha256": "3a99ee709f0187f075572166dfcb60c1fca48525a599dea3b2a6753f171458ce",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "line": 152,
+      "member": "AcceptedAt",
+      "body": "=> Observation.At;",
+      "bodySha256": "2a7b3beeac897b77da0829caf3783f3c31a4195d9f526b19515fcc12003147fb",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "line": 200,
+      "member": "Status",
+      "body": "=> Agreement?.StatusAt(At) ?? NextCharterAgreementStatus.Offered;",
+      "bodySha256": "5469c3ac29aba6c6d63197275de122df1311fddcb71f29ccc5c6905bc325ad8f",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "line": 232,
+      "member": "WorkerId",
+      "body": "=> Terms.PlannerId;",
+      "bodySha256": "bf0a918dbb464c3e461ff5015476dec11408384c0ccc25ba0fbdb2c0fd89e6d9",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "line": 244,
+      "member": "Open",
+      "body": "=> Status == NextCharterPlanStatus.Working || Status == NextCharterPlanStatus.Paused\n            || Status == NextCharterPlanStatus.PendingCompletion;",
+      "bodySha256": "19074d22ed30d1a4dfe72fa5cb06013fbbb469534dd47b15c39e09f42dcdcc9b",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "line": 28,
+      "member": "FromX",
+      "body": "=> 3;",
+      "bodySha256": "f7dea5f64ff586531903107299bcaf636232bc0f33ad1d5b0f89aab469efb376",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "line": 29,
+      "member": "FromY",
+      "body": "=> 2;",
+      "bodySha256": "9804479bca4ac3c76be6c618f830c596924175a94e3b946eba2ca286ea379303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "line": 38,
+      "member": "Binding",
+      "body": "=> string.Join(\"|\", Actor, Club, Encounter, Calendar, Hero, Companion, PriorDefender,\n            Controller, Entitlement, Engagement, PlayerTie, DirectorTie, CompanionConsents ? Consent : \"\",\n            DirectorAuthorizes ? Hold : \"\", \"26/26hp|10abilities|Warrior12,7,7|30speed|4,4|3,2-to-3,3|companion3,4\");",
+      "bodySha256": "80ecf55ddeb9e60c053f3e39fa6e45bfbce4211603a089f5f65928f8eb738e11",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "line": 25,
+      "member": "RequiredImplementIds",
+      "body": "=> requiredImplementIds.ToArray();",
+      "bodySha256": "00ea85f597e9b881886be96a39ba32f57c03f91e8cffb01877cad71b16dd1849",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "line": 26,
+      "member": "FindingIds",
+      "body": "=> findingIds.ToArray();",
+      "bodySha256": "6aa5a6259dd84e5c8a2de1a0d8e4e701d451e651ccde9020b9ddd78ba0578303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "line": 106,
+      "member": "RequiredImplementIds",
+      "body": "=> requiredImplementIds.ToArray();",
+      "bodySha256": "00ea85f597e9b881886be96a39ba32f57c03f91e8cffb01877cad71b16dd1849",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "line": 107,
+      "member": "FindingIds",
+      "body": "=> findingIds.ToArray();",
+      "bodySha256": "6aa5a6259dd84e5c8a2de1a0d8e4e701d451e651ccde9020b9ddd78ba0578303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ProspectingRecords.cs",
+      "line": 166,
+      "member": "FindingIds",
+      "body": "=> findingIds.ToArray();",
+      "bodySha256": "6aa5a6259dd84e5c8a2de1a0d8e4e701d451e651ccde9020b9ddd78ba0578303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Recipe347Records.cs",
+      "line": 105,
+      "member": "Open",
+      "body": "=>Status==Recipe347OrderStatus.Working||Status==Recipe347OrderStatus.Paused\n            ||Status==Recipe347OrderStatus.AwaitingCheck||Status==Recipe347OrderStatus.AwaitingSettlement\n            ||Status==Recipe347OrderStatus.AwaitingChoice;",
+      "bodySha256": "68d9303b25ce6dfee1e6677b91796cec959bed1e5ccc0a8a026ea56644800287",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Recipe347Records.cs",
+      "line": 215,
+      "member": "StructuralAc",
+      "body": "=>15;",
+      "bodySha256": "18838c5ecf08a07538ae0f434fccd0fb09ac9e8656a8a2267ca8cac475d0e1f3",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Recipe347Records.cs",
+      "line": 217,
+      "member": "MassPounds",
+      "body": "=>new RuleQuantity(3);",
+      "bodySha256": "a512d04bb3acde5321d4357c62c175fadc17acb58736e16c0656e7b99d855c2f",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+      "line": 81,
+      "member": "Entry",
+      "body": "=> Contacts.LastOrDefault()?.Entered == true ? Contacts.Last() : null;",
+      "bodySha256": "a4d98b6a476e62ac686ed2aa7e903b7b866171af2345ab0194ef63049afa662c",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "line": 22,
+      "member": "FromX",
+      "body": "=> 2;",
+      "bodySha256": "9804479bca4ac3c76be6c618f830c596924175a94e3b946eba2ca286ea379303",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "line": 23,
+      "member": "FromY",
+      "body": "=> 3;",
+      "bodySha256": "f7dea5f64ff586531903107299bcaf636232bc0f33ad1d5b0f89aab469efb376",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RepairWorkRecord.cs",
+      "line": 21,
+      "member": "Open",
+      "body": "=> Status == RepairWorkStatus.Working || Status == RepairWorkStatus.Paused || Status == RepairWorkStatus.AwaitingCheck;",
+      "bodySha256": "c08082ca808586931a05186484bb3014d4ffc0c892118ef11404d206d06b64e1",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs",
+      "line": 27,
+      "member": "Quality",
+      "body": "=> ExpeditionRouteQuality.Known;",
+      "bodySha256": "e39303d3bc0be031134fd38dad2539689a48dd00a0490930d42b27ddc83d5eca",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs",
+      "line": 29,
+      "member": "InitialPressure",
+      "body": "=> 1;",
+      "bodySha256": "cd1b1bd7be3656dd33a73644901b7a57be88f4f1166c47f0993c7ae3c7f35041",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatRecords.cs",
+      "line": 87,
+      "member": "Natural",
+      "body": "=> Second == 0 ? First : Math.Min(First, Second);",
+      "bodySha256": "cc05756dd58bac163b481cf2ebd13c4867dac601a97e3c12ffe095a274a383da",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "line": 12,
+      "member": "Numerator",
+      "body": "=>numerator;",
+      "bodySha256": "54b4a88f540a3e06c722491fe5b3841c3f0dfb3272e4d7db4fb8637ec6c6a37d",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "line": 13,
+      "member": "Denominator",
+      "body": "=>denominator==0?1:denominator;",
+      "bodySha256": "8c10c9c6f80c45e68d700d0c5076f88a6907e282cf4e7c882d8bf1b47f34fa68",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "line": 15,
+      "member": "Numerator",
+      "body": "=> numerator;",
+      "bodySha256": "1cec8d0abd34084d3b42ce25f71331351404a0236c80dc1e3ad657f587d56a1a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "line": 16,
+      "member": "Denominator",
+      "body": "=> denominator == 0 ? 1 : denominator;",
+      "bodySha256": "a11958e144f24aa4ed8219ac33e38274969694d8432bb50e8bcd8204d3196491",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "line": 15,
+      "member": "Id",
+      "body": "=> ShortRestBerth.IntervalPrefix + Sequence.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "1ab81b86dae0e91a071f0a86e3e8ed3ecb997eea5c2660f88cf98951b46bfe71",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "line": 16,
+      "member": "ActorId",
+      "body": "=> ShortRestBerth.Actor;",
+      "bodySha256": "20df3ce4ae653d5b02d0b70228cb24bf116e9e993bf0d3a686145aa880c65f12",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "line": 17,
+      "member": "SiteId",
+      "body": "=> ShortRestBerth.Id;",
+      "bodySha256": "094dfd76fa7a70a143e9db8491dcd5466ca3f3984b8e61c9a4d0213d3c3e90e5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "line": 21,
+      "member": "DueAt",
+      "body": "=> StartedAt.AddSeconds(ShortRestBerth.DurationSeconds);",
+      "bodySha256": "b92fe7c8284b06db4559273c474380bdfd411969cd967b7fb56e2fe8e21a7738",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "line": 29,
+      "member": "Healing",
+      "body": "=> 0;",
+      "bodySha256": "6ca55063b9374488bb4199d99173587c85383ab38a869a0c6f5b1088d4d1034e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 386,
+      "member": "WireSchemaVersion",
+      "body": "=> OrdinaryMagic != null ? OrdinaryMagicSchema\n            : Consecration != null ? ConsecrationSchema\n            : FerryWraith != null ? FerryWraithSchema\n            : DeclaredGeometry != null ? DeclaredGeometrySchema\n            : BishopEntry != null ? BishopEntrySchema\n            : PostRecoveryEncounter != null ? PostRecoveryEncounterSchema\n            : ConnectedClericLongRest ? ConnectedClericLongRestSchema\n            : ConnectedClericCasting ? ConnectedClericCastingSchema\n            : ConnectedClericSettlement ? ConnectedClericSettlementSchema\n            : ConnectedFrightened ? ConnectedFrightenedSchema\n            : ConnectedClericRepertoire ? ConnectedClericRepertoireSchema\n            : ConnectedClericRp ? ConnectedClericRpSchema\n            : ConnectedFleshWarden ? ConnectedFleshWardenSchema\n            : ConnectedShortRest ? ConnectedShortRestSchema\n            : ConnectedConsumeDecay ? ConnectedConsumeDecaySchema\n            : ConnectedWoundTreatment ? ConnectedWoundTreatmentSchema\n            : ConnectedCompanionStabilization ? ConnectedCompanionStabilizationSchema\n            : ConnectedCompanionDose ? ConnectedCompanionDoseSchema\n            : ConnectedTacticalVial ? ConnectedTacticalVialSchema\n            : ConnectedStowedVial ? ConnectedStowedVialSchema\n            : ConnectedCarriedVial ? ConnectedCarriedVialSchema\n            : ConnectedBatch != null ? ConnectedRecipe4BatchSchema\n            : BloodSpecimen != null ? ConnectedBloodSpecimenSchema : ExplorationHide != null\n            ? ConnectedExplorationObservation.IsSelected(this) ? ConnectedExplorationObservationSchema : ExplorationHideSchema\n            : ExplorationSearch != null ? ExplorationSearchSchema : SchemaVersion;",
+      "bodySha256": "f1decdd9669cdb945eaa30e366c5591182ee243aacdd1cea5e96805212346f09",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 629,
+      "member": "TargetIds",
+      "body": "=> (string[])targetIds.Clone();",
+      "bodySha256": "58c0663b07932a062dc1dd16893d597b52238f677733a725f4f4f1e3587a9437",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 630,
+      "member": "Fingerprint",
+      "body": "=> TurnId + \"|\" + WeaponId + \"|\" + string.Join(\",\",targetIds);",
+      "bodySha256": "732a895661ee1cdaa5e39c7c4882f371b4c00e9f36cfe66da6359cf8bd766a77",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 646,
+      "member": "Fingerprint",
+      "body": "=>TurnId+\"|\"+string.Join(\",\",recipientIds);",
+      "bodySha256": "aacaa1b8e83b29b7f36c6a7474265c25169d867cd92b7513a68023ba4e8e13d5",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 668,
+      "member": "CategoryIds",
+      "body": "=> (string[])categoryIds.Clone();",
+      "bodySha256": "78435c5787a462f7b2dee5f41d26ce65afeee3a1863645b27f79e0df861cbf71",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 669,
+      "member": "Fingerprint",
+      "body": "=> ManifestVersionId + \"|\" + string.Join(\",\", categoryIds) + \"|\"\n            + FailureVictimPreference + \"|\" + CriticalRecoveryPreference;",
+      "bodySha256": "7d26fbd5436eb7338a2f139da10420eb3a519a36f2755ddc0d6332df4abbfb68",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 706,
+      "member": "CategoryIds",
+      "body": "=>(string[])categoryIds.Clone();",
+      "bodySha256": "b21290217d05484eff3f632755c05fd600077bea5ab7347f3155a47a9ea29e4e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 708,
+      "member": "Fingerprint",
+      "body": "=>DepositVersionId+\"|\"+((int)Ability).ToString(System.Globalization.CultureInfo.InvariantCulture)\n            +\"|\"+(Hurried?\"1\":\"0\")+\"|\"+string.Join(\",\",categoryIds)+\"|\"+FailureVictimPreference\n            +\"|\"+CriticalRecoveryPreference+(AssistantId==\"\"?\"\":\"|\"+AssistantId);",
+      "bodySha256": "d4b16415bf79d9d93b09438bf24cf7d7233e3121c0d5526d0556d132f13de943",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 738,
+      "member": "Fingerprint",
+      "body": "=> ExposureId + \"|\" + CauseId;",
+      "bodySha256": "5e5ce3f7985500d108fb4035bcf169f8831ca8db7bfb4ce6caa3b02d6015f66e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "line": 788,
+      "member": "Fingerprint",
+      "body": "=> ((int)Kind).ToString(System.Globalization.CultureInfo.InvariantCulture)\n            + \"|\" + Actor + \"|\" + Target + \"|\" + ExpectedRevision.ToString(System.Globalization.CultureInfo.InvariantCulture)\n            + \"|\" + X.ToString(System.Globalization.CultureInfo.InvariantCulture)\n            + \"|\" + Y.ToString(System.Globalization.CultureInfo.InvariantCulture)\n            + (Inventory == null ? \"\" : \"|inventory-v1|\" + Inventory.Fingerprint)\n            + (Combat == null ? \"\" : \"|\" + Combat.FingerprintVersion + \"|\" + Combat.Fingerprint)\n            + (Advancement == null ? \"\" : Advancement.UsesClericSettlementReceipt\n                ? \"|character-level-v4|\" + string.Join(\",\",Advancement.FeatureIds) + \"|\" + Advancement.InvocationPath + \"|\" + Advancement.EarnedSpell\n                : Advancement.UsesLegacyPairReceipt\n                ? \"|character-level-v1|\" + Advancement.FeatureOne + \"|\" + Advancement.FeatureTwo\n                : Advancement.AsiAbilityIncreases.Count != 0 || Advancement.FeatId != \"\"\n                    ? \"|character-level-v3|\" + string.Join(\",\",Advancement.FeatureIds) + \"|\"\n                        + string.Join(\",\",Advancement.AsiAbilityIncreases.Select(x=>((int)x).ToString(System.Globalization.CultureInfo.InvariantCulture)))\n                        + \"|\" + Advancement.FeatId\n                    : \"|character-level-v2|\" + string.Join(\",\",Advancement.FeatureIds))\n            + (Ranged == null ? \"\" : \"|ranged-v1|\" + Ranged.Fingerprint)\n            + (OverwatchRider == OverwatchRider.None ? \"\" : \"|overwatch-rider-v1|\" + ((int)OverwatchRider).ToString(System.Globalization.CultureInfo.InvariantCulture))\n            + (SuppressionFire == null ? \"\" : \"|suppression-fire-v1|\" + SuppressionFire.Fingerprint)\n            + (DefensiveFormation == null ? \"\" : \"|defensive-formation-v1|\" + DefensiveFormation.Fingerprint)\n            + (ExpeditionAssignment == null ? \"\" : ExpeditionAssignment.MiningSelection == null\n                ? \"|expedition-assignment-v1|\" + ExpeditionAssignment.Fingerprint\n                : \"|expedition-mining-assignment-v1|\" + ExpeditionAssignment.Fingerprint + \"|\" + ExpeditionAssignment.MiningSelection.Fingerprint)\n            + (HarvestSelection == null ? \"\" : \"|harvest-selection-v1|\" + HarvestSelection.Fingerprint)\n            + (MiningSelection == null ? \"\" : \"|\" + MiningSelection.FingerprintVersion + \"|\" + MiningSelection.Fingerprint)\n            + (ProspectingExposure == null ? \"\" : \"|prospecting-exposure-v1|\" + ProspectingExposure.Fingerprint)\n            + (RouteMappingWork == null ? \"\" : \"|route-map-team-v1|\" + RouteMappingWork.Fingerprint)\n            + (IntimidatingPresence == null ? \"\" : \"|intimidating-presence-v1|\" + IntimidatingPresence.Fingerprint)\n            + (consecrateRequest == null ? \"\" : \"|consecrate-v1|\" + consecrateRequest.Fingerprint)\n            + (DivineInvocation == null ? \"\" : \"|divine-invocation-v1|\" + DivineInvocation.Fingerprint)\n            + (HealingRite == null ? \"\" : \"|healing-rite-v1|\" + ((int)HealingRite.CurePreference).ToString(System.Globalization.CultureInfo.InvariantCulture))\n            + (SpellCast == null ? \"\" : \"|spell-cast-v1|\" + SpellCast.Fingerprint)\n            + (SanctuaryResponse == null ? \"\" : \"|sanctuary-response-v1|\" + SanctuaryResponse.Fingerprint)\n            + (Guidance == null ? \"\" : \"|guidance-v1|\" + Guidance.EffectId);",
+      "bodySha256": "728d89713e846d8f8f5f05a78b9b7a5b3ca575f0ea11154d53e41af092b0ac58",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierDefensiveFormationRecords.cs",
+      "line": 101,
+      "member": "Shifts",
+      "body": "=>shifts.ToArray();",
+      "bodySha256": "dfa9ca5748d1d810fe68148a5c685980b07c82cda680ce5d009dc4abd72731ae",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "line": 128,
+      "member": "ConsumedEffectIds",
+      "body": "=>consumedEffectIds.ToArray();",
+      "bodySha256": "7a60f38325a64ed6848a192dc1ab4d7902ee9ff2083c6e756945a136aad2893e",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "line": 189,
+      "member": "AmmunitionLotIds",
+      "body": "=>(string[])ammunitionLotIds.Clone();",
+      "bodySha256": "33b6fa96c00457f965da4bd67509e488a740d331533b1f816d7a72528a9c2510",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "line": 195,
+      "member": "DamageDice",
+      "body": "=>(int[])damageDice.Clone();",
+      "bodySha256": "ea6b0d647ee233a0859f8700546ba9ef1b9721dc880ddacf4674384aa825b612",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SoldierTacticalFeatureRecords.cs",
+      "line": 200,
+      "member": "Targets",
+      "body": "=>targets.ToArray();",
+      "bodySha256": "c9730d2ec1602d3af24d40a62adb50d4193de62502db27193521dccbbbcd357c",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "line": 13,
+      "member": "SourceRevision",
+      "body": "=> SpellSourceCatalog.SourceRevision;",
+      "bodySha256": "3cbee9f113e9aaa9f553b248740ff275995b911f58256ff445c64aea6025d91a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "line": 14,
+      "member": "ProcedureSha256",
+      "body": "=> SpellSourceCatalog.Get(SpellId).ProcedureSha256;",
+      "bodySha256": "a1736607f95cb6b9686a1ea3ccbc95dfaa1d316aaa3981013a5740f3569a7228",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "line": 19,
+      "member": "Fingerprint",
+      "body": "=> string.Join(\"|\", SpellId, FocusItemId, WillingTarget ? \"1\" : \"0\", ElectFocusedDc ? \"1\" : \"0\");",
+      "bodySha256": "95b501d3e0c769939e930dd2d973a348228e2915e1100e661ef5cfcf6e5c33d2",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "line": 46,
+      "member": "Fingerprint",
+      "body": "=> ((int)Kind).ToString(CultureInfo.InvariantCulture) + \"|\" + TargetId;",
+      "bodySha256": "abad96c0e421ebf011f9579e8afe22068e95522fa6e503bd50127904b10a73f3",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "line": 70,
+      "member": "Binding",
+      "body": "=> string.Join(\"|\", ActorId, EpochId, LocalStart.ToString(CultureInfo.InvariantCulture),\n            GlobalStart.ToString(CultureInfo.InvariantCulture), CarriedAdmissionRevision.ToString(CultureInfo.InvariantCulture));",
+      "bodySha256": "e38f01af6d29ead53931ddd47d6ce72ccebf6b07414c0b1efb388b6ec7ce19ca",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "line": 39,
+      "member": "SourceRevision",
+      "body": "=> SpellSourceCatalog.SourceRevision;",
+      "bodySha256": "3cbee9f113e9aaa9f553b248740ff275995b911f58256ff445c64aea6025d91a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/TypedDamageRecords.cs",
+      "line": 31,
+      "member": "Effective",
+      "body": "=> ImmunitySource!=\"\"?0:ResistanceApplies?AfterFlatReduction/2:AfterFlatReduction;",
+      "bodySha256": "1ab2cccdc61901037e03f4435ac092507f2b72b7d8ab00ebeef109b24c8dd812",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "line": 32,
+      "member": "Quantity",
+      "body": "=>Amount.Denominator==1?Amount.Numerator:throw new InvalidOperationException(\"Fractional amount requires the exact quantity API.\");",
+      "bodySha256": "ab99f04f2f7e5a706315050169f53a24c7ecd728d97e93f11b9ae2b7513329a9",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "line": 54,
+      "member": "Quantity",
+      "body": "=>Amount.Denominator==1?Amount.Numerator:throw new InvalidOperationException(\"Fractional reservation requires the exact quantity API.\");",
+      "bodySha256": "7d7799738fbd9ddd215dda21e5f998482ee5da36576479fb2e81537687b68556",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "line": 55,
+      "member": "Status",
+      "body": "=>RemainingAmount>default(RuleQuantity)?ReservationStatus.Reserved\n            :ConsumedAmount==Amount?ReservationStatus.Consumed:ReleasedAmount==Amount?ReservationStatus.Released:ReservationStatus.Mixed;",
+      "bodySha256": "43273cd820b515454dfda87329ee7a709ea0b77d4ac06db405db2a6640ce8f38",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "line": 87,
+      "member": "RequiresRationalSchema",
+      "body": "=>Lots.Any(l=>l.Amount.Denominator!=1)||Reservations.Any(r=>!r.LegacyRepresentable);",
+      "bodySha256": "c8fcdf0603bb7b924a04ddab98ef667f9e13df6b34a96627b96d0fc8d15677be",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "line": 337,
+      "member": "DashPaid",
+      "body": "=> Action == WorldActionCommitment.Dash;",
+      "bodySha256": "a9ed5984bd201dc23740f78e7f3609badf3ab762f89c688f64bc988b21e7d465",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "line": 35,
+      "member": "Id",
+      "body": "=> WoundTreatmentStation.Prefix + Basket.ToString(CultureInfo.InvariantCulture);",
+      "bodySha256": "8284d1292ab42b5873bc415938838c10aa3fa48de6e616785d952e1cdede30dc",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "line": 40,
+      "member": "DueAt",
+      "body": "=> StartedAt.AddSeconds(WoundTreatmentStation.DurationSeconds);",
+      "bodySha256": "d8f9b3a643daf0b634a6f2601e4e713c79119ad4a3ba4033994726c3c8560e7a",
+      "bindingStatus": "MEMBER_NAME_SUPERSET_NOT_RESOLVED_RECEIVER_OR_WIRE"
+    }
+  ],
+  "snapshotDirectReferenceCensus": {
+    "declaredFields": 249,
+    "allFieldsMentioned": true,
+    "missingNames": [],
+    "fieldNames": [
+      "SchemaVersion",
+      "ContentFingerprint",
+      "TestOnly",
+      "RandomState",
+      "Actors",
+      "Objects",
+      "Receipts",
+      "RuleClock",
+      "Work",
+      "Crops",
+      "CropPlots",
+      "CropFood",
+      "InventoryLots",
+      "Intakes",
+      "Handling",
+      "InventoryCombat",
+      "InventoryTurnActor",
+      "InventoryInteractions",
+      "Vessels",
+      "VesselContents",
+      "WaterFills",
+      "VesselMoves",
+      "Characters",
+      "Creatures",
+      "TypedDamage",
+      "Lives",
+      "LifeEvents",
+      "ActorMovement",
+      "Clubs",
+      "Stances",
+      "Dodges",
+      "ReadyActions",
+      "ReadyOccurrences",
+      "MeleeAttacks",
+      "Presses",
+      "TacticalActors",
+      "TacticalMoves",
+      "PressOffers",
+      "Conditions",
+      "Encounter",
+      "ClosedEncounters",
+      "WorldSchedule",
+      "WorldIntervals",
+      "WorldTraversals",
+      "FormulaWork",
+      "DyingCadences",
+      "WorldLifeMarkers",
+      "Structures",
+      "CraftingIncidents",
+      "RepairWork",
+      "ManufacturingOrders",
+      "Trades",
+      "AlchemyDoses",
+      "ManufacturingAdvance",
+      "SupplyCaches",
+      "SupplyCacheAttempts",
+      "SupplyCacheEquipment",
+      "BuriedCacheSites",
+      "CacheExcavations",
+      "PortableEquipment",
+      "PortableHandling",
+      "PortableStorageProfiles",
+      "EncounterDashes",
+      "CharacterMilestones",
+      "CharacterHitDice",
+      "CharacterFeatureGrants",
+      "CharacterAdvancements",
+      "CharacterFeatureRuntime",
+      "TacticalCovers",
+      "RepeatingCrossbows",
+      "AmmunitionLots",
+      "RangedCombatants",
+      "RangedAttacks",
+      "PeriodicRiders",
+      "PeriodicRiderEvents",
+      "PeriodicImmunities",
+      "SkillTraining",
+      "BonusActions",
+      "InitialClassSelections",
+      "InitialCharacterLoadouts",
+      "ShieldStationarity",
+      "OverwatchIntervals",
+      "OverwatchDesignations",
+      "OverwatchOffers",
+      "OverwatchRiderChoices",
+      "TacticalAllies",
+      "SoldierTacticalEffects",
+      "TacticalAttackAudits",
+      "TacticalAssessments",
+      "CommandStepOffers",
+      "SuppressionFireVolleys",
+      "SuppressionSlows",
+      "DefensiveFormations",
+      "FishingTrapAttempts",
+      "FishingOpportunities",
+      "FishingStockManifests",
+      "FishingStockAllocations",
+      "FishingCreatures",
+      "FishingTraps",
+      "FishingReceiveLocations",
+      "FishingTrapRetrievals",
+      "ExpeditionAssignments",
+      "WorldActivityIntervals",
+      "HarvestDonors",
+      "HarvestManifests",
+      "HarvestCategories",
+      "HarvestUnits",
+      "HarvestAttempts",
+      "HarvestRequirementWorks",
+      "HarvestPreservationTreatmentAttempts",
+      "HarvestPreservationEvidence",
+      "MiningDeposits",
+      "MiningCategories",
+      "MiningUnits",
+      "MiningAttempts",
+      "HavenAppraisals",
+      "HavenSales",
+      "HavenMealPurchases",
+      "ExpeditionBillCharter",
+      "ExpeditionBills",
+      "ExpeditionEpisodeClose",
+      "NextCharterPlans",
+      "NextCharterAgreement",
+      "CharterAttempt",
+      "LaterEncounter",
+      "Reinforcement",
+      "Retreat",
+      "Reengagement",
+      "SurpriseEntry",
+      "ExplorationSearch",
+      "ExplorationHide",
+      "BloodSpecimen",
+      "ConnectedBatch",
+      "ConnectedCarriedVial",
+      "ConnectedStowedVial",
+      "ConnectedTacticalVial",
+      "ConnectedCompanionDose",
+      "ConnectedCompanionStabilization",
+      "CompanionStabilizations",
+      "ConnectedWoundTreatment",
+      "WoundTreatments",
+      "ConnectedConsumeDecay",
+      "ConsumeDecay",
+      "ConnectedShortRest",
+      "ShortRests",
+      "ConnectedFleshWarden",
+      "FleshWarden",
+      "ConnectedClericRp",
+      "ConnectedClericRepertoire",
+      "ConnectedFrightened",
+      "ConnectedClericSettlement",
+      "ConnectedClericCasting",
+      "ConnectedClericLongRest",
+      "PostRecoveryEncounter",
+      "BishopEntry",
+      "DeclaredGeometry",
+      "FerryWraith",
+      "Consecration",
+      "OrdinaryMagic",
+      "ClericLongRests",
+      "ClericLongRestSettlements",
+      "ConvictionBalance",
+      "CastingStrain",
+      "SpellCasts",
+      "CastingActivities",
+      "CastingTurnEnds",
+      "SpellEffects",
+      "GuidanceUses",
+      "SpellSaves",
+      "SanctuaryAdmissions",
+      "DetectMagicFocuses",
+      "ConsumableContamination",
+      "ClericMilestone",
+      "ClericObjective",
+      "ClericInvocationPath",
+      "ConvictionCapacity",
+      "RadianceUses",
+      "WarriorAbilityChoices",
+      "AbilityRecharges",
+      "FrightenedUses",
+      "FrightenedSaves",
+      "FrightenedTimings",
+      "KnownSpells",
+      "ClericEntry",
+      "ResonancePools",
+      "HealingRites",
+      "WireSchemaVersion",
+      "ProspectingPatches",
+      "ProspectingExposures",
+      "ProspectingAttempts",
+      "MiningAssayProfiles",
+      "MiningAssayAttempts",
+      "MiningAssaySamples",
+      "DestructiveMiningAssayProfiles",
+      "DestructiveMiningAssayAttempts",
+      "MineralPreparationProfiles",
+      "MineralPreparationAttempts",
+      "MiningToolCandidateProfiles",
+      "MiningToolInstanceStates",
+      "MiningToolUses",
+      "Recipe347FormulaAccess",
+      "Recipe347TradeSpecialties",
+      "Recipe347Workshops",
+      "Recipe347WorkOrders",
+      "Recipe347Outputs",
+      "Recipe347MiningToolProfiles",
+      "Recipe347MiningToolUseEvidence",
+      "Recipe347MiningToolWorkSegments",
+      "OrdinaryReceptacleLocks",
+      "OrdinaryReceptacleAttempts",
+      "ObservationCells",
+      "ObservationProfiles",
+      "ObservationActions",
+      "ObservationHideResults",
+      "ObserverKnowledge",
+      "RouteTravels",
+      "RouteTravelSpatial",
+      "RouteMappingResults",
+      "RouteMappingWorkAttempts",
+      "RouteSegments",
+      "RouteReconnaissanceAttempts",
+      "DailyProvisioningSettlements",
+      "DailyProvisioningConsumption",
+      "ExpeditionStrainGains",
+      "ExpeditionDashLocks",
+      "RestWatchSchedules",
+      "RestIntervals",
+      "RestWatchOutcomes",
+      "RestDebtEvents",
+      "ExpeditionStrainRecoveryGateUpdates",
+      "ExpeditionBeneficialRests",
+      "ExpeditionStrainRecoveryOffers",
+      "ExpeditionStrainRemovals",
+      "ExpeditionMoraleRestIntervals",
+      "ExpeditionMoraleRestBenefits",
+      "ExpeditionHavenCareIntervals",
+      "ExpeditionHavenCareAssessments",
+      "ExpeditionPressureCohorts",
+      "ExpeditionPressureExposures",
+      "ExpeditionPressureChanges",
+      "ExpeditionPressureCheckpoints",
+      "ExpeditionCampSites",
+      "ExpeditionCampActivities",
+      "TemporaryCampConstructionAttempts",
+      "TemporaryCampInstallations",
+      "HuntingTrapDeployments",
+      "HuntingTrapActions",
+      "HuntingTrapTriggers",
+      "HuntingTrapTethers"
+    ],
+    "limits": "Mentions include guards and may be gated off for selected wire; this is not serialized-value or semantic coverage proof."
+  },
+  "disposition": "No additional source blocker to the bounded private writer extraction was found. CT-08/09 and the nonserialized private passage must be explicit trusted-state limitations in the full contract; instrumented complete-read purity and historical-byte preservation remain required before implementation acceptance.",
+  "inputPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "bytes": 9989,
+      "sha256": "15a131ecbadf71707ce874adcdac306ec808ae4a0d6781674f7f4c0b4f1bff42"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/codec-write-call-census.json",
+      "bytes": 135575,
+      "sha256": "340862e9d429710c0544a987a7bc32c54d254dbe29ef9ed0ec94d1ebc85b01b9"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/audit_codec_calls.py",
+      "bytes": 4515,
+      "sha256": "d41d1af001585dd2aec968ed60778a4d39987c3a32dd4c97cd1a449028f1fcb5"
+    }
+  ],
+  "verifiedCensus": {
+    "methodNames": 284,
+    "persistenceFiles": 85,
+    "censusSourcePinsVerified": 85,
+    "conservativeNonAutoGetterCandidates": 171
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_INDEPENDENT_REVIEW_LISTED_FIELDS_CONCUR_AFTER_CORRECTIONS",
+  "reviewedDocument": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CARE_REST_FACT_REGISTRY_PROPOSAL.json",
+  "reviewedSha256": "11e98daf02080c9b50346f964a42f5c9718dc5d5ec90291e7bacbb82ebf516dd",
+  "originalReviewedSha256": "fc56bf4d2a66ff50374757cc4d8c948090fa2823fecb2872b42ec8923aecfe4c",
+  "initialUnpinnedDraftSha256": "3f12800b18ed22970b47177a8c0a5248b477d066f969a187ad67026ec6d3684c",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "sourcePinRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+  "scope": {
+    "operations": 10,
+    "fieldGroups": 11,
+    "fieldKeys": 90,
+    "builds": false,
+    "tests": false,
+    "gameplay": false,
+    "runtimeChanged": false,
+    "parentDocumentEdited": false,
+    "fullHcAcceptance": false
+  },
+  "disposition": "The corrected 90 listed fields have matching native property names/types and sound original/resolving/current distinctions within their explicitly bounded predicates. No further concrete error was found in those rows. New care-history predicates remain UNAPPROVED; this review does not authorize disclosure, implementation, runtime qualification or full field-completeness acceptance.",
+  "correctedFindings": [
+    {
+      "id": "CARE-FR-01",
+      "jsonPointers": [
+        "/fieldGroups/stabilization/fields/3"
+      ],
+      "key": "care.stabilization.second",
+      "originalIssue": "Native Second=0 is the absent-second-d20 sentinel, not an actual die outcome.",
+      "source": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs:17-18; Laboratory/Model/SharedCompanionStabilization.cs:76-78",
+      "correctionObserved": "Native Second > 0 required; otherwise NotApplicable.",
+      "status": "RESOLVED_IN_REVIEWED_HASH"
+    },
+    {
+      "id": "CARE-FR-02",
+      "key": "care.wound.second",
+      "originalIssue": "A completed normal single-d20 check retains Second=0; completed-check applicability alone could present a nonexistent second roll.",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:147-149",
+      "correctionObserved": "Completed native check AND Second > 0; otherwise NotApplicable.",
+      "status": "RESOLVED_IN_REVIEWED_HASH"
+    },
+    {
+      "id": "CARE-FR-03",
+      "key": "care.stabilization.recoveryDie",
+      "originalIssue": "Failed stabilization retains zero because no recovery die is drawn.",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs:64-71; Runtime/Core/CompanionStabilizationAttempt.cs:22-24",
+      "correctionObserved": "Succeeded required; otherwise NotApplicable.",
+      "status": "RESOLVED_IN_REVIEWED_HASH"
+    },
+    {
+      "id": "CARE-FR-04",
+      "key": "rest.long.settlement.lastSpell",
+      "originalIssue": "Valid pre-first-cast native LastSpellId may be empty; it must not become a fabricated PublicIdentity.",
+      "source": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs:106-108; Laboratory/Model/SharedClericLongRest.cs:203-204",
+      "correctionObserved": "Actual settlement and nonempty LastSpellId required; otherwise NotApplicable.",
+      "status": "RESOLVED_IN_REVIEWED_HASH"
+    }
+  ],
+  "confirmedBindings": [
+    {
+      "id": "CB-MEDICINE",
+      "detail": "CompanionStabilizationAttempt has exact CommandId+Revision+ActorId+PatientId; GuidanceUse additionally requires actual MedicineStabilization CheckKind and command.Id+'.medicine'. RecoveryAt is a retained scheduled endpoint from the successful stabilization, not proof later natural recovery occurred.",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs:10-27",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs:54-78",
+        "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs:75-95"
+      ]
+    },
+    {
+      "id": "CB-WOUND-END",
+      "detail": "EndWoundTreatment preserves original basket/start identities and writes the actual ending command.Id, state.Revision+1 and RuleClock. Explicit interruption and later automatic completion therefore have real separate end receipt bindings; this is stronger than a guessed actor/time join. Completed-check applicability correctly excludes Active/Interrupted.",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs:35-52",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs:100-149"
+      ]
+    },
+    {
+      "id": "CB-DECAY",
+      "detail": "Original CommandId/Revision and optional later EndRevision are distinct. Current Active and End status do not imply remaining temporary HP; remaining bank remains current ActorLife state. Later cause identity must be independently disclosable.",
+      "paths": [
+        "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs:12-21"
+      ]
+    },
+    {
+      "id": "CB-SHORT-VIEW",
+      "detail": "Existing enabled Player short-rest view exposes actual ShortRestRecord intervals, under ConnectedShortRest + control of the selected Hero. Its existing full interval semantics support the registered scalars; current benefit/outcome is not falsely labeled original-start benefit.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:323-340,492-505,595",
+        "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:12-33"
+      ]
+    },
+    {
+      "id": "CB-MUTATION-COMPLETION",
+      "detail": "Choice.RestId points to the actual started rest. CompleteMutationRest returns unless the rest really Completed; Change is assigned only at that completion, including same-card rests. Bind change to that rest's EndCommandId/EndRevision, not to selection/start. CapacityClamp remains capacity change, not damage/healing.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs:42-68",
+        "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs:27-69",
+        "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:276-288,596"
+      ]
+    },
+    {
+      "id": "CB-LONG-SETTLEMENT",
+      "detail": "Actual native CompleteClericLongRest creates settlement with rest.Id, completing command.Id, state.Revision+1 and RuleClock. Native nullable Conviction is preserved; no numeric zero is substituted. Historical requested/potential/actual healing and HP/RP/temp-HP are explicit retained fields, not current-state reconstruction.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs:173-204",
+        "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs:75-111",
+        "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:291-320,597"
+      ]
+    },
+    {
+      "id": "CB-RECOVERY-OFFER",
+      "detail": "OpenStrainRecoveryOffers writes the actual passed initiating command.Id and current next revision, separately from completed interval time. ResumeManufacturingAdvance passes its actual responding command as initiating when further clock work resumes. Do not replace that with an older held-clock receipt.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:190-244",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs:487-494",
+        "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs:54-102"
+      ]
+    },
+    {
+      "id": "CB-RECOVERY-REMOVAL",
+      "detail": "Within this connected secure-long-rest scope, removal.Revision/ActorId/PointId bind the exact response; RecoveryCompletionId and BeneficialRestId are the beneficial-rest ID; its RecoveryOfferId links the actual offer whose ChosenPointId and ResolvedRevision identify the same response. The secure-rest offer's own RecoveryCompletionId can be empty, so do not incorrectly equate that offer property to the removal completion ID. Scope must not be generalized to morale/haven recovery branches.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:292-329",
+        "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs:71-75,108-139"
+      ]
+    },
+    {
+      "id": "CB-DISCLOSURE",
+      "detail": "Medical/Decay/new removal history is explicitly unapproved. Existing rest and mutation gates are tied to concrete enabled Player view routes, not ClockGrant/Controls alone. Fixed field shape is specified before applicability/record existence. No raw RNG seeds/words or raw native record export is introduced by these rows.",
+      "paths": [
+        "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs:492-505,585-597"
+      ]
+    }
+  ],
+  "completenessNotes": [
+    {
+      "id": "COVER-WOUND-COST",
+      "classification": "EXPLICIT_DISPOSITION_NEEDED_BEFORE_FULL_FIELD_COMPLETENESS_NOT_A_FALSE_LISTED_FIELD",
+      "detail": "The current wound group contains interval and check facts but no actual consumed start stock or kit reservation/release facts. Accepted source-axis scope includes spent start Supply and interruption without refund. Either reference an exact approved common resource-result group for this operation or explicitly disposition the omission; do not imply the ten wound rows alone explain that consequence.",
+      "nativeEvidence": "SharedWoundTreatment.cs:90-94 reserves the fixed basket and consumes claims after the first; :144 releases the retained first kit claim. WoundTreatmentStation.Stock/ClaimId and exact WorkLedger reservations retain fixed-role amounts.",
+      "privacyLimit": "Any new stock-history field needs a narrow reviewed station/resource predicate; CARE-MEDICAL-HISTORY is not automatically a grant to inspect arbitrary inventory or claims."
+    },
+    {
+      "id": "COVER-WOUND-STRAIN",
+      "classification": "EXPLICIT_DISPOSITION_NEEDED_BEFORE_FULL_FIELD_COMPLETENESS_NOT_A_FALSE_LISTED_FIELD",
+      "detail": "CriticalFailure outcome alone does not explicitly expose the native patient Expedition Strain consequence. The actual addition is retained, so it should not be called NotRetained if a result requirement includes it. A bounded added-amount field can be proposed from the existing gain, with independent disclosure approval.",
+      "nativeEvidence": "SharedWoundTreatment.cs:127-135 creates ExpeditionStrainGainRecord with CauseKind=WoundTreatmentCriticalFailure, CauseId=job.Id, patient ActorId and completion Revision; the gain records AddedAmount/LevelBefore/LevelAfter.",
+      "privacyLimit": "Do not export hidden gain IDs/source associations or infer patient current Strain from this historical gain; do not equate Expedition Strain with Warrior Strain."
+    },
+    {
+      "id": "COVER-SHORT-BOUNDED-BENEFIT",
+      "classification": "OPTIONAL_EXPLICIT_DISPOSITION",
+      "detail": "ShortRestRecord natively fixes HitDiceSpent=0 and Healing=0 and retains the selected zero Warrior-Strain facts. If UI/result acceptance requires explicit recovery accounting, these are already source-retained under the existing short-rest view. Otherwise cross-reference the bounded zero-HD descriptor and avoid implying Eligible means positive healing.",
+      "nativeEvidence": "Runtime/Core/ShortRestRecord.cs:28-33; existing view exposes Intervals."
+    },
+    {
+      "id": "COVER-CHOICE-CATALOG",
+      "classification": "SEPARATE_CONTRACT_SCOPE",
+      "detail": "The recovery fact group intentionally need not duplicate PointIds/native priority in a variable fact list. Actual pending point alternatives belong to the separately authorized choice catalog. Genuine current-host positive recovery remains the unexecuted source-grounded route; existing schema64 model case is not substituted as host evidence."
+    }
+  ],
+  "verification": {
+    "propertiesChecked": 90,
+    "pinCount": 20,
+    "pinsMatchCurrentAndBothRevisions": true,
+    "correctedApplicabilitiesRechecked": true,
+    "independentSourcePins": 23
+  },
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "bytes": 60303,
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "bytes": 44727,
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "bytes": 15459,
+      "sha256": "890399199e4c7ee47e9d1f01327cf6fa6535829dd7acbb29afd30bb0d87ea38a",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+      "bytes": 5343,
+      "sha256": "32cbda7eef84f036e65eaa7826dc9cccdcf9a05bc234a099133b1a53ccbb83bc",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+      "bytes": 6555,
+      "sha256": "b8df69ff33439e0938f7807b023941d840c3894c67a06215248751cc1bffebdf",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "bytes": 6795,
+      "sha256": "2b0a79a986af68d3eaa58a2c28f18069c4fc83595032ba676adece61faf0c24b",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "bytes": 2120,
+      "sha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "bytes": 46202,
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "bytes": 6783,
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "bytes": 29850,
+      "sha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "bytes": 10370,
+      "sha256": "9619a3488b3c730314630ca9a07d11bf15f7368087a0c620d6d1d28024b565ea",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestRecords.cs",
+      "bytes": 12489,
+      "sha256": "595a7276d7ae6c6b2f2845f8edd261381380c55ce61cf3d9037ab08ddb6872b3",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CompanionStabilizationAttempt.cs",
+      "bytes": 5262,
+      "sha256": "4fe40edcd064e66a8492911b2d3cb604ff90cf19346a4d0a864a47dbadc74062",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsumeDecayRecord.cs",
+      "bytes": 4982,
+      "sha256": "536587faee6023e0ac30469837c1ef470719fb5007a6d5c923e11442b801f396",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "bytes": 76959,
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "bytes": 8140,
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "bytes": 3541,
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "bytes": 2785,
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "bytes": 14572,
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "bytes": 13415,
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "bytes": 16491,
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+      "sourceRevision": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+      "relation": "exact"
+    }
+  ]
+}

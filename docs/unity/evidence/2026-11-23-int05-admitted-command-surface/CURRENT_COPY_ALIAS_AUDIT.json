@@ -1,0 +1,682 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_CURRENT_COPY_ALIAS_AND_PLANNING_INPUT_SOURCE_AUDIT_NOT_FULL_HC_ACCEPTANCE",
+  "reviewedHead": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+  "scope": {
+    "selectedPlanningAndConditionPathOnly": true,
+    "runtimeChanges": false,
+    "buildsTestsOrGameplayRun": false,
+    "all78TransitiveProof": false,
+    "runtimeImplementationAuthorized": false
+  },
+  "summary": "No actual mutable alias or newly discovered unencoded unconstrained planning/condition field was found in the inspected closures. The existing pre-Ferry Creatures omission is constrained by validation; roster references are immutable validated derived metadata. This does not certify all Snapshot child types, all policy configurations or every transitive helper across 78 kinds.",
+  "reusedCodecAudit": {
+    "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CODEC_TRANSITIVE_SOURCE_AUDIT.json",
+    "sha256": "71c303ebc24bfd5a5aa1961e75ec8502348bbb9fde4eb29fcbda0f1ebc488711",
+    "sourcePinCount": 155,
+    "sourcePinMismatches": [],
+    "scope": "Reuse CT-01 through CT-12 and planningInputCoverage; all inherited source hashes rechecked, 155-file semantic audit not repeated."
+  },
+  "classificationLegend": {
+    "SERIALIZED": "Exact gameplay input encoded by relevant selected wire/component.",
+    "FIXED_BY_EXISTING_VALIDATION": "Omitted/redundant value constrained by original validation at trusted boundaries; no validation on new reads.",
+    "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY": "Deterministically derived from encoded immutable fields and actual selected immutable policy; derivation is not automatically permitted on V1 reads.",
+    "TRUSTED_PRIVATE_CAPABILITY_DERIVED_AT_VERIFIED_BOUNDARIES": "Private owner-bound passage/projection evidence outside Snapshot; established only at existing trusted boundaries, not reconstructed by reads.",
+    "TRUSTED_CURRENT_HOST_CONTEXT_NOT_A_SAVED_GAMEPLAY_FIELD": "Current authority/request/owner binding supplied by trusted host, never authorized by save equality."
+  },
+  "aliasClosures": [
+    {
+      "closure": "Snapshot top-level mutable holders",
+      "result": "NO_MUTABLE_ALIAS_FOUND_IN_INSPECTED_CLOSURE",
+      "detail": "Copy creates new Snapshot, clones every specifically inspected relevant outer array, and clones mutable ActorState/ObjectState/CommandReceipt elements. Scalars/strings/value times copied. Snapshot.Copy is not a general recursive serializer or validator."
+    },
+    {
+      "closure": "Condition journal and payload closure",
+      "result": "IMMUTABLE_PUBLIC_API_CLOSURE_CONFIRMED",
+      "detail": "Journal/Operation/ApplicationData/ImmunityData/Fear all sealed/get-only. Operations and immunity kinds constructor-copy input enumerables into read-only collections. Origin/At/Expires include exact RuleTime and Int32 phase; StructuralKey and SameAs cover policy/target/origin and all semantic operation payload fields. Valid IDs exclude separator ambiguity. Read comparison is structural, not lifecycle reconstruction."
+    },
+    {
+      "closure": "Materialized condition ledger closure",
+      "result": "IMMUTABLE_PUBLIC_API_CLOSURE_CONFIRMED",
+      "detail": "Ledger copies/wraps Applications and Immunities. ConditionInstance/ImmunityInstance/Application/Immunity hold immutable values and immutable Fear. With/End/Advance methods construct replacements rather than mutate prior objects; invoking lifecycle methods on V1 reads is still prohibited. Legacy ConditionResolutionScope.Entry is mutable and expressly excluded from the proposed carrier."
+    },
+    {
+      "closure": "Life/character/equipment/work/planning",
+      "result": "NO_MUTABLE_ALIAS_FOUND_IN_INSPECTED_CLOSURE",
+      "detail": "Inspected nested collections copied/read-only, shared records sealed/get-only, replacement methods return new records. Other families named only through prior codec mapping are separately scoped and do not inherit this deep-alias conclusion."
+    },
+    {
+      "closure": "Encounter roster/calendar metadata",
+      "result": "IMMUTABLE_SHARED_REFERENCE_AND_VALIDATED_DERIVATION_CONFIRMED",
+      "detail": "Copy retains record references; constructors own read-only arrays. Decode reconstructs phase bindings from separately encoded data; validation checks consistency. Copy/comparison must not silently rebuild or normalize phases."
+    },
+    {
+      "closure": "Private checkpoint passage/buffers",
+      "result": "SAFE_BY_INSPECTED_PRIVATE_CALL_SITE_CONFINEMENT_NOT_DEFENSIVE_CONSTRUCTOR_COPY",
+      "detail": "Current private checkpoint constructor stores supplied canonical array directly. All inspected callers supply fresh local trusted codec output, never public arrays. Passage stores copied receipts privately. Future writer/comparator extraction must preserve this confinement or copy at the ownership boundary."
+    }
+  ],
+  "planningInputClassification": [
+    {
+      "id": "P01",
+      "inputs": [
+        "ContentFingerprint",
+        "TestOnly",
+        "Revision",
+        "Clock",
+        "RuleClock",
+        "Actors[].Id/X/Y/Tokens",
+        "Objects[].Id/X/Y/Opened",
+        "Receipts[].Principal/Id/Fingerprint/Revision"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "SnapshotCodec.cs:24-41; Simulation.cs:54-76,612-619.",
+      "copyAndAliasDisposition": "Scalars/strings copied by value/reference to immutable strings. ActorState, ObjectState and CommandReceipt arrays AND mutable element objects are separately cloned; element MemberwiseClone contains only value fields and strings.",
+      "limits": "Public Capture is detached; no caller-supplied Snapshot may replace the actual owner capture. Serialized receipt bytes grant no read-time replay permission or public fingerprint access."
+    },
+    {
+      "id": "P02",
+      "inputs": [
+        "SchemaVersion",
+        "WireSchemaVersion",
+        "selected optional connected profile flags/records"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "FIXED_BY_EXISTING_VALIDATION",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SnapshotCodec.cs:24,215-249; Simulation.cs:386-410; prior codec audit CT-04.",
+      "copyAndAliasDisposition": "Schema/flags copied by value; relevant immutable profile records retained. WireSchema is encoded; descendant base schema is reconstructed by explicit wire-to-root mapping, not independently encoded as a second value.",
+      "limits": "Selected root/optional profiles must remain validated. A raw unvalidated combination of base schema and flags is not authenticated merely by unchecked byte equality."
+    },
+    {
+      "id": "P03",
+      "inputs": [
+        "Conditions[].PolicyId/Target/Origin",
+        "Conditions[].Operations[].Id/At/Kind/Subject/Reason/Suppressed",
+        "Operation.Application fields incl Expires/InheritedCureAllowed/ApplyingDc/Magnitude/Fear",
+        "Operation.Immunity fields incl Kinds/Expires"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "Simulation.cs:605; ConditionJournal.cs:8-192; SnapshotCodec.cs:51-56; ConditionJournalCodec.cs:16-56.",
+      "copyAndAliasDisposition": "Condition array cloned. Every retained Journal/Operation/ApplicationData/ImmunityData/FrightenedRelationshipData class is sealed with get-only state. Journal operations and immunity kinds are copied to owned arrays exposed through ReadOnlyCollection; all remaining children are strings, enums, booleans, nullable values or readonly RuleTime/ConditionStamp structs.",
+      "limits": "Reference equality can identify an immutable journal within one owner generation, but cannot replace owner/policy/revision/schema/profile/clock/mode binding. No reflection/unsafe mutation threat is claimed covered."
+    },
+    {
+      "id": "P04",
+      "inputs": [
+        "current journal-time ConditionLedger",
+        "projected ledger at exact RuleClock marker/phase",
+        "ConditionApplication/Immunity/Instance/ImmunityInstance state",
+        "active/inherited/suppressed/ended components"
+      ],
+      "classification": [
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "ConditionHistory.cs:29-37,104-122; ConditionCombatPolicy.cs:10-14; ConditionApplications.cs:18-136; ConditionLedger.cs:78-98,215-231; CONDITION_READ_BOUNDARY.md.",
+      "copyAndAliasDisposition": "Materialized ledgers own read-only copied arrays. Application/immunity/instance children have immutable get-only values; operations produce new objects. Mutable legacy ConditionResolutionScope dictionary/Entry is NOT this immutable capability and is not retained in Snapshot.",
+      "limits": "Derivation is allowed only at trusted construction/restore/successful transition boundaries. Before ExpeditionRouteSchema use journal-time; later request phase-0 RuleClock marker and never rewind later-phase journal. No Restore/Resolve/AdvanceTo/repair on new reads; current cache cannot answer historical-prefix facts."
+    },
+    {
+      "id": "P05",
+      "inputs": [
+        "Lives[].Hp/MaximumHp/TemporaryHp/Stable/Dead/UsesDeathSaves/DeathSuccesses/DeathFailures/StableUntil/LastDeathTurn/Prone/HeldItems/LinkedInjuries",
+        "Characters[].Abilities/Levels/ProfileId"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "ActorLifeRecords.cs:10-67; Simulation.cs:608; prior codec audit ActorLifeCodec mapping.",
+      "copyAndAliasDisposition": "Lives and Characters arrays cloned; records sealed/get-only. Abilities, Levels, HeldItems, LinkedInjuries constructor inputs copied and wrapped read-only; CharacterLevelFact children immutable.",
+      "limits": "Life/capability/maximum-HP/condition/character rule projections must still use same current state and selected policy. A condition projection is not a cached life or permission grant."
+    },
+    {
+      "id": "P06",
+      "inputs": [
+        "AvailableHands: Creatures[].ActorId"
+      ],
+      "classification": [
+        "FIXED_BY_EXISTING_VALIDATION",
+        "SERIALIZED"
+      ],
+      "evidence": "TestOnlySharedWorldPolicy.cs:365-368; FerryWraithRecords.cs:197-208; FerryWraithCodec.cs:10-14; prior audit CT-08.",
+      "copyAndAliasDisposition": "Creatures array cloned; CreatureActorRecord sealed/get-only, ability/type/resistance/immunity arrays defensively copied and wrapped. Before Ferry the omitted field is required empty by existing validation; Ferry explicitly serializes and validates the exact source creature.",
+      "limits": "Known counterexample remains: arbitrary pre-Ferry snapshot with added creature can change hand eligibility while unchecked canonical bytes match. This is constrained for actual owning validated state, not a new unconstrained input found here; never advertise comparator as arbitrary snapshot authentication."
+    },
+    {
+      "id": "P07",
+      "inputs": [
+        "AvailableHands: Clubs.HeldBy",
+        "RepeatingCrossbows.HeldBy/GripHands",
+        "PortableEquipment.CustodianId/ParentId/Placement/HeldHands/ProfileId"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "TestOnlySharedWorldPolicy.cs:365-368; SharedCharacterAdvancement.cs:304-307; ClubAttackRecords.cs; RangedCombatRecords.cs:8-30; PortableEquipmentRecords.cs:12-91; existing codec audit ClubAttack/RangedCombat/PortableEquipment writers.",
+      "copyAndAliasDisposition": "All arrays cloned; inspected equipment records sealed/get-only. RepeatingCrossbow loaded lots and portable fit members are copied then read-only wrapped; With methods construct replacement objects. ShieldOccupiesHand reads current worn root shield placement, not mutable class grant state.",
+      "limits": "Item visibility/control and inventory permission remain independent of copy safety. No cached hand total or permission is proposed."
+    },
+    {
+      "id": "P08",
+      "inputs": [
+        "Encounter.Id/Origin/InitialOrder/StartRevisions/ObservedOrdinals",
+        "ClosedEncounters[].Encounter",
+        "WorldSchedule.Id/Origin/Order/ProcessedSlot",
+        "WorldIntervals",
+        "WorldTraversals"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "FixedEncounterRecord.cs:32-109; WorldScheduleRecord.cs:11-89; Simulation.cs:602-608; FixedEncounterCodec.cs:23-35; prior WorldSchedule/WorldTraversal coverage.",
+      "copyAndAliasDisposition": "Encounter/WorldSchedule references retained because immutable; their order/start/ordinal arrays copied and wrapped by constructors. WorldIntervals/WorldTraversals outer arrays cloned; schedule At and encounter Observe/Bind produce new objects.",
+      "limits": "Derived CurrentActor/Order/Round/StartAt also consume validated phase metadata described separately in P09."
+    },
+    {
+      "id": "P09",
+      "inputs": [
+        "Encounter.RosterPhase",
+        "Encounter.InheritedPhase",
+        "TimingPhase/Epoch.Order/Origin/FirstTurn/FirstRound"
+      ],
+      "classification": [
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY",
+        "FIXED_BY_EXISTING_VALIDATION"
+      ],
+      "evidence": "FixedEncounterRecord.cs:8-28,83-109; ReinforcementCodec.cs:78-89; ReengagementCodec.cs:39-45; ReinforcementRecords.cs:221-228; ReengagementValidation.cs:39-52; prior codec audit CT-09.",
+      "copyAndAliasDisposition": "Snapshot.Copy keeps immutable FixedEncounterRecord and phase references unchanged; no binding or reconstruction occurs in Copy. Phase holds immutable WorldScheduleRecord. Constructor stores normalized phase definitions using new epoch At(0), where required.",
+      "limits": "FixedEncounterCodec does not encode phase references inline. Decode reconstructs them from separately encoded reinforcement/reengagement records, and validators enforce exact phase identity/origin/order/first turn/round. Do not bind or repair phases during reads."
+    },
+    {
+      "id": "P10",
+      "inputs": [
+        "ExpeditionEpisodeClose.EpisodeId/CharterVersionId/SourceRevision/CloseRevision/Members.ActorId",
+        "NextCharterPlans[].Terms/PriorCloseRevision/PassageRevision/StartRevision/UpdatedRevision/Status/Reason/Report",
+        "NextCharterPlans[].Work"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:95-113,163-212; NextCharterPlanRecords.cs:17-88,91-275; ExpeditionEpisodeCloseRecords.cs:19-225; ActiveWorkProgress.cs:9-42; SnapshotCodec.cs:112-114; prior codec audit CT-10.",
+      "copyAndAliasDisposition": "Plan array cloned; close/plan/terms/report records sealed/get-only. Nested member/condition/supply/lot lists copied and read-only wrapped. Work phases owned read-only values; plan constructor derives fixed 3600-second progress solely from encoded labor/status/terms.",
+      "limits": "Some close record subfamilies not consumed by planning were not independently deep-audited here. Current observations must not replace retained report facts. Work Credit is a new-object mutation operation and remains prohibited for reads."
+    },
+    {
+      "id": "P11",
+      "inputs": [
+        "nextCharterPlanProfile.Terms",
+        "MandateAuthorized",
+        "EvidenceAccessible",
+        "DeskPermitted",
+        "WritingFacilitiesAvailable",
+        "ApproachAccess",
+        "ReserveWaterStartsCarried"
+      ],
+      "classification": [
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:11-62; constructor Terms and Key; EnableNextCharterPlan guarded by initializationStarted.",
+      "copyAndAliasDisposition": "Selected profile and terms are sealed/get-only; configuration is frozen before initialization and fingerprinted. Actual owning policy object identity must also match, not just caller-provided fingerprint.",
+      "limits": "Policy configuration is intentionally not an independent mutable Snapshot field. Full mutability audit of every optional policy configuration across all78 commands remains outside scope."
+    },
+    {
+      "id": "P12",
+      "inputs": [
+        "Structures[].Id/ProfileId/LocationId/Broken",
+        "CraftingIncidents[].StationId/Result/Remedied"
+      ],
+      "classification": [
+        "SERIALIZED"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:142-154; SharedCraftingConsequences.cs:82; CraftingConsequenceRecords.cs; prior CraftingConsequenceCodec coverage.",
+      "copyAndAliasDisposition": "Outer arrays cloned. Inspected structure/incident values are get-only immutable records; participant/worker collection inputs are copied/read-only wrapped.",
+      "limits": "Station use restrictions are current source facts, not future projected settlement."
+    },
+    {
+      "id": "P13",
+      "inputs": [
+        "WorldActivityIntervals",
+        "ExpeditionAssignments.WorkerId/Open",
+        "Work.WorkerIntervals/Reservations/Lots",
+        "working procedure identity/actor/status and assistant membership in CurrentWork"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:201-211; SharedExpeditionBill.cs:201-204; OrdinaryInventory.cs:18-20; WorldActivityRecord.cs:82-123,123-259,461-468; WorkLedger.cs:9-116; existing codec audit work/world-activity/procedure families.",
+      "copyAndAliasDisposition": "WorkLedger retained shared reference is immutable: copied sorted read-only lots/intervals/reservations; children sealed/get-only. Relevant outer procedure arrays are copied. CurrentWork(s) selects includeDetails=false/includeOpen=false and creates fresh WorldProcedureActivity values; it does not take the rich-discovery branch or mutate work.",
+      "limits": "This check identifies the procedure membership dependency, not a second full deep-alias audit of every nested payload in all procedure record families. Per-family alias closure outside fields actually consumed still remains in all78 proof. No Reserve/CancelFutureWork/settlement may be used in assessment."
+    },
+    {
+      "id": "P14",
+      "inputs": [
+        "Actors current positions",
+        "ObservationMapWidth/Height/Cells",
+        "DeclaredGeometry",
+        "RouteTravels/RouteTravelSpatial",
+        "LaterEncounter.FirstExit",
+        "InventoryCombat",
+        "WorldSchedule.Order",
+        "TacticalAllies and selected ally facts"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:317-330; SharedWorldCommandQueries.cs:11-12,144-162; SharedDeclaredGeometry.cs:10-16; existing codec audit spatial/observation/route/later encounter mapping.",
+      "copyAndAliasDisposition": "Mutable actor objects cloned; named outer arrays copied. Authored TacticalCombatFixture owns sorted read-only immutable terrain cells. Selected declared geometry and route/encounter policy source must remain the exact owning configuration.",
+      "limits": "RoutePathReserved additionally consults immutable selected route positions; that helper-family whole payload alias proof is inherited as an outstanding per-family obligation, not re-proven by writer purity. No current walkability or passage is inferred from position alone."
+    },
+    {
+      "id": "P15",
+      "inputs": [
+        "InventoryLots[].ParentId/CreatedAt/FreshUntil/Nutrition/OwnerId/Access",
+        "Work.Lots/Reservations quantities and custodian/location",
+        "Vessels/VesselContents/WaterFills",
+        "PortableEquipment carrying/access/weight/capacity/parents"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:345-383; InventoryRecords.cs:13-49; WaterVesselRecords.cs:10-55; WorkLedger.cs:25-116; PortableEquipmentRecords.cs:12-91; existing codec audit inventory/work/water/portable families.",
+      "copyAndAliasDisposition": "Outer arrays cloned. Inspected inventory/vessel/content/lot/reservation/equipment records sealed/get-only; exact rational quantities are readonly values. FamilyAt, AvailableAmount, burden and access are derived selections/aggregations over authenticated current fields and selected source constants.",
+      "limits": "No second quantity ledger, inferred ownership, other-actor inventory access, reservation mutation or time advancement. Complete helper purity still needs instrumentation; field representation classification alone does not prove purity."
+    },
+    {
+      "id": "P16",
+      "inputs": [
+        "ExpeditionPressureCohorts/Members and Pressure events",
+        "ExpeditionStrainGains/recovery gates/removals/daily provisioning",
+        "RestDebtEvents and selected daily/rest-debt profiles"
+      ],
+      "classification": [
+        "SERIALIZED",
+        "DERIVED_FROM_AUTHENTICATED_ENCODED_STATE_AND_POLICY"
+      ],
+      "evidence": "SharedNextCharterPlan.cs:331-340; existing codec audit CT-12 and planningInputCoverage pressure/strain/rest-debt row.",
+      "copyAndAliasDisposition": "Named outer arrays are copied; immutable event/profile projections are covered as encoded inputs by prior codec audit. This bounded audit did not independently reconstruct every nested pressure/rest/strain record implementation.",
+      "limits": "Do not use this row as full transitive alias/purity acceptance for these projections. Exact helper dependencies and field-by-field witnesses remain in final all78 audit; no pending recovery/rest settlement on reads."
+    },
+    {
+      "id": "P17",
+      "inputs": [
+        "PlanningPassage fingerprint/termsBinding/throughRevision/start/completion",
+        "checkpoint owner/policy/revision/canonicalPredecessor"
+      ],
+      "classification": [
+        "TRUSTED_PRIVATE_CAPABILITY_DERIVED_AT_VERIFIED_BOUNDARIES"
+      ],
+      "evidence": "VerifiedSharedWorldCheckpoint.cs:48-85,89-125,130-171,174-218; prior codec audit CT-11.",
+      "copyAndAliasDisposition": "Private readonly passage struct retains mutable CommandReceipt instances only after copying them in Advance; no receipt escapes and later structs merely reuse private immutable-by-encapsulation copies. canonicalPredecessor byte array is private, produced locally by trusted codec path and never returned; constructor assignment does not itself clone it, so call-site confinement is essential.",
+      "limits": "This is not a Snapshot field and not derivable by a new read from current position. Only authenticated construction/restore/transition history establishes it. Proposed assessment must require actual owner checkpoint and no replay fallback. New comparator/provider call sites must preserve private-buffer confinement."
+    },
+    {
+      "id": "P18",
+      "inputs": [
+        "current Authority/seat/consent/inventory claims",
+        "Command and expected observation revision",
+        "owner/generation/read-projection stamp"
+      ],
+      "classification": [
+        "TRUSTED_CURRENT_HOST_CONTEXT_NOT_A_SAVED_GAMEPLAY_FIELD"
+      ],
+      "evidence": "Simulation.cs:1234-1273,1296-1568; ConnectedExpeditionSession.cs grant/preflight rules; PURE_CHECKPOINT_CONTRACT.md; CONDITION_READ_BOUNDARY.md.",
+      "copyAndAliasDisposition": "These are separately bound current authority/request/capability inputs, not state data authenticated by a save. New context is proposed, not implemented; owner/generation and exact journal/marker/mode checks are required.",
+      "limits": "Do not force external authority into the serialized/fixed/derived Snapshot-field trichotomy or treat canonical equality as permission. Full new carrier/access implementation remains unapproved."
+    }
+  ],
+  "actualBlockersFound": [],
+  "existingBoundaryCounterexamples": [
+    {
+      "id": "COPY-CT08",
+      "fact": "An arbitrary caller snapshot can add pre-Ferry Creatures, affect AvailableHands, and retain the same unchecked encoded bytes.",
+      "disposition": "Original validation rejects it and actual Copy cannot mutate owned creature array through alias. Owner-only validated current capture remains mandatory; no new runtime bug claimed."
+    },
+    {
+      "id": "COPY-CT09",
+      "fact": "Inline FixedEncounter encoding omits redundant roster references. An arbitrary inconsistent replacement must not be treated as authenticated just by this component encoding.",
+      "disposition": "Authenticated full state carries separately encoded phases and original validators enforce consistency. Copy retains immutable values; no read-time phase rebinding."
+    },
+    {
+      "id": "COPY-PRIVATEBUFFER",
+      "fact": "Current private checkpoint constructor does not clone the byte[] parameter.",
+      "disposition": "All inspected producers create fresh locally confined trusted arrays; no externally accessible mutable alias found. Future extraction must not add caller-controlled/shared mutable array input."
+    }
+  ],
+  "remainingRequiredWork": [
+    "Complete per-family deep-alias and helper closure for procedure membership, spatial/route, pressure/strain/rest projections and all other admitted operations. Encoding coverage is not automatic immutability or purity proof.",
+    "Implement no proposed carrier yet. Freeze exact owner/generation/stamp/member access and copy-validation/failure boundary only after full actual GPT/Codex contract review.",
+    "Instrument every new read for zero lifecycle fold/replay/expiry/consequence/RNG/resolver/validation/repair calls. Static immutability does not permit resolution on a copied ledger.",
+    "Keep original construction/full validation/strict restore/checkpoint transition authenticity unchanged, including canonical checks and supported save profile distinctions.",
+    "Add prospective wrong-owner/current-revision/clock/phase/mode/policy/journal replacement and exposed-copy mutation controls after authorization; no such runtime tests were executed here."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "inspectedLines": [
+        "54-76",
+        "386-410",
+        "474-619",
+        "1234-1273",
+        "1590-1625"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs",
+      "sha256": "9fcf1af8f7e95fc31fd7a58cedea69b7882308d95caee817d5e525f77c9d31dc",
+      "inspectedLines": [
+        "8-192"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+      "sha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+      "inspectedLines": [
+        "18-136"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "sha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+      "inspectedLines": [
+        "8-98",
+        "215-231"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e",
+      "inspectedLines": [
+        "29-37",
+        "80-144"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+      "inspectedLines": [
+        "10-36"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ConditionJournalCodec.cs",
+      "sha256": "34bbe1999232dc2899e575316ed97241ecc9c5e9967fd81e3a60cd08efaf6672",
+      "inspectedLines": [
+        "16-56"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "45a4ba347df663816cb78287379b4314fde5b4b7fa0a061e91838962910ba52e",
+      "inspectedLines": [
+        "24-56",
+        "112-114",
+        "183-186",
+        "215-249"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActorLifeRecords.cs",
+      "sha256": "de82d3fbc64d985c1128f6360c0bf45bcec9da4fec2396009f72032e398499d1",
+      "inspectedLines": [
+        "10-67"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CreatureActorRecords.cs",
+      "sha256": "494eacf05e34d93c40688c8f14575dc7b7102845b6119892f8d7bcaae803700c",
+      "inspectedLines": [
+        "11-64"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "sha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "inspectedLines": [
+        "197-208"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FerryWraithCodec.cs",
+      "sha256": "31268bb29f4f7e9681aec107232ba41460fe0493c566b91a4f93d4bba20a36bd",
+      "inspectedLines": [
+        "10-14",
+        "85"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "sha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+      "inspectedLines": [
+        "8-109",
+        "124-136"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+      "sha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+      "inspectedLines": [
+        "11-89"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/FixedEncounterCodec.cs",
+      "sha256": "f203cad1ac2ec29484666c127b74ec2865d143719902c0c2627780c94ef826a3",
+      "inspectedLines": [
+        "23-35"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ReinforcementCodec.cs",
+      "sha256": "5c5974d2b2d6c4796a1f8f90f4622a8f47b2ff44c9366f5637a0eb81f980a6eb",
+      "inspectedLines": [
+        "78-89"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/ReengagementCodec.cs",
+      "sha256": "8e7be6c21d5323e257a9c50bf6c3a60c18cb41709ee6ce836fac565b9a50d044",
+      "inspectedLines": [
+        "39-45"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "sha256": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+      "inspectedLines": [
+        "221-228"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementValidation.cs",
+      "sha256": "1355d0b7f5b455aa401fec0b5b7b5eef5207f84acc7095fc5eb0f2aa35a9deb0",
+      "inspectedLines": [
+        "39-52"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "inspectedLines": [
+        "9-116"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "inspectedLines": [
+        "9-42"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "sha256": "670df6356d342dd5f7c4d5f263d06fecb894ab081b5338be694f38b94ddc90fc",
+      "inspectedLines": [
+        "12-91"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RangedCombatRecords.cs",
+      "sha256": "5b5768e7e9a39598e42c54282c05364e4b89853e5f03c6d9b223afea34138c2f",
+      "inspectedLines": [
+        "8-30"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "inspectedLines": [
+        "13-49"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WaterVesselRecords.cs",
+      "sha256": "53ccad179ac816bbd019ef516c0a47c91fe269972e5914d06f5918d85de490d1",
+      "inspectedLines": [
+        "10-55"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "inspectedLines": [
+        "11-62",
+        "95-135",
+        "142-212",
+        "317-383"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "inspectedLines": [
+        "17-88",
+        "91-275"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "inspectedLines": [
+        "19-225"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "sha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a",
+      "inspectedLines": [
+        "48-218"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "inspectedLines": [
+        "14-90",
+        "335-368"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "inspectedLines": [
+        "304-307"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "inspectedLines": [
+        "201-204"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "503378500d5263f969329cd19f06ec019d222b6611b7d66bb11634bdab13d187",
+      "inspectedLines": [
+        "82"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CraftingConsequenceRecords.cs",
+      "sha256": "e5dd467f477c339d6fd308566a669661743b871f3b2130dde5868c821420caeb",
+      "inspectedLines": [
+        "32-104"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "inspectedLines": [
+        "18-23"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "inspectedLines": [
+        "82-123",
+        "123-259",
+        "461-468"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "inspectedLines": [
+        "11-12",
+        "144-162"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1",
+      "inspectedLines": [
+        "10-16"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalCombatFixture.cs",
+      "sha256": "b20f25bb1433949388465d15e690187201170f5754bc5b581bac55f416eee90f",
+      "inspectedLines": [
+        "9-48"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClubAttackRecords.cs",
+      "sha256": "f3c0c1e2abc697be2688e9957c431dcd53679fec6cd30189fd381764705ea23d",
+      "inspectedLines": [
+        "47-62"
+      ]
+    }
+  ],
+  "contractPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+      "sha256": "08fd9dc93f636e3481aa39b5811ed9ee2034b708787f1a4f96a4e1df1491dd99"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_04.json",
+      "sha256": "c77f3fd4cea3296e9a1b767163d4a9ec148849e316f26550ad1db09e265003df"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "4859c11467cfd6ffc64949322f9d0094937b18287bcfefa65133bca63964a651"
+    }
+  ]
+}

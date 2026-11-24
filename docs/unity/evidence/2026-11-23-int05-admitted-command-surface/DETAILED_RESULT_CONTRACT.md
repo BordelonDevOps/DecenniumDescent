@@ -68,7 +68,7 @@ Each entry in the result matrix must specify all of: operation/semantic branch, 
 | `NotApplicable` | The field has no meaning for this operation/disposition (for example, no payment on a rejected or duplicate attempt). |
 | `Withheld` | A fact may exist but current authorization/visibility does not permit disclosure; do not reveal its private existence/value. |
 | `ProjectionUnavailable` | A rich projection failed after the authoritative result was captured. Preserve that truthful result, retain the defect and fail required explanation acceptance until corrected. |
-| `ObservedCurrent` (proposed) | Obtained from one current authorized read snapshot; valid only with CurrentObservation/CurrentContinuation. It is not an actual submission interval or a retained historical event. This representation requires the full contract review. |
+| `ObservedCurrent` | Obtained from one current authorized read snapshot; valid only with CurrentObservation/CurrentContinuation. It is not an actual submission interval or a retained historical event. Actual GPT03 concurs with this structural distinction; exact field predicates remain subject to full contract review. |
 
 Temporal meaning is separately `OriginalCommit`, `ResolvingCommit`, `AttemptInterval`, `CurrentObservation` or `CurrentContinuation`. A retained record can change status after its originating command; label that status as current unless the record retains the historical event separately. `AcceptedClockAwaitingChoice` is a current-pending predicate. A later lack of pending state cannot prove the original clock never suspended. Likewise, a knockout response can resolve an earlier attack without becoming that attack's origin.
 
@@ -79,3 +79,9 @@ Authority is evaluated per fact, not just per endpoint. ClockGrant authorizes th
 Specific projection constraints from the independent native audit: a melee attack's ID is derived from revision, so bind its Revision to the receipt and its ResolvedRevision separately to a later knockout response. Its effective Damage.Total is not an actual-HP-loss ledger. A Press move's CostPaid is not universally ordinary movement spent; preserve move kind and its separate entitlement/resource semantics. Press-offer Accepted is not proof of completed travel: the linked child movement may still await reactions or be interrupted. None of these constraints changes the accepted mechanic.
 
 The complete operation matrix and disclosure tests remain required before source/API acceptance. This document does not close HC-D6 or HC-D7 by itself.
+
+## Conditional obligations and assessed capacity
+
+Actual GPT response `f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07` concurs with the result architecture and requires future conditions to live in separate typed descriptors, never the observed-result fact collection. V1_DTO_PROPOSAL.md freezes the allowed availability/temporal pairs. An assessment distinguishes current initial eligibility, pure commit feasibility and native enforcement stage; it must not report a predicted capacity constraint as an actual PolicyFailure/InvalidResult. Execution guards remain at their original stages. Candidate time advancement may roll back on rejection; only actual committed partial/suspended outcomes can report payment or elapsed effects.
+
+Actual GPT response `c36c4641-a600-5d3c-91eb-043cc9347da5` additionally requires established current condition projections for new read paths. Their failure isolation follows the same truthful-commit rule as rich result projection. CONDITION_READ_BOUNDARY.md retains the exact agreed semantics and still-proposed concrete access carrier. No journal-fold exception or read-time repair is authorized.

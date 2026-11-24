@@ -31,6 +31,7 @@ reports = [
     ("INDEPENDENT_PHYSICAL_AUDIT.json", "axes"),
     ("INDEPENDENT_WORK_AUDIT.json", "semanticBranchDisposition"),
     ("INDEPENDENT_CARE_REST_AXES.json", "axes"),
+    ("INDEPENDENT_TACTICAL_AXES.json", "axes"),
 ]
 bindings = {}
 inputs = [{"path": "OPERATION_INVENTORY.json", "sha256": digest("OPERATION_INVENTORY.json")}]
@@ -59,24 +60,7 @@ for name, axis_key in reports:
 tactical_name = "TACTICAL_EXPLORATION_OPERATION_AUDIT.md"
 tactical = (PACKET / tactical_name).read_text(encoding="utf-8-sig")
 inputs.append({"path": tactical_name, "sha256": digest(tactical_name)})
-for kind, operation in indexed.items():
-    if kind in bindings:
-        continue
-    assert operation["family"] in {"tactical", "responses", "travel", "observation"}, kind
-    assert "| " + kind + " |" in tactical, kind
-    bindings[kind] = {
-        "nativeAudit": tactical_name,
-        "reviewScope": "NATIVE_GUARD_DOMAIN_AUDIT_WITH_INDEPENDENT_CORRECTIONS_RETAINED",
-        "branches": [
-            {
-                "axis": axis,
-                "audit": tactical_name,
-                "disposition": "EXACT_BRANCH_WITNESS_ALLOCATION_OPEN_AFTER_NATIVE_GUARD_AUDIT",
-                "v1ExecutionQualified": False,
-            }
-            for axis in operation["semanticBranchesToDisposition"]
-        ],
-    }
+assert set(bindings) == set(indexed), "Every candidate needs its exact independent branch allocation"
 
 rows = []
 for operation in inventory["operations"]:
@@ -119,7 +103,7 @@ result = {
     "remaining": [
         "Finish exact public DTO field keys, native causal bindings and actual current-disclosure predicates",
         "Resolve conditional/post-time and deterministic capacity assessment mapping without legacy changes",
-        "Finish tactical/exploration exact branch witnesses; bind proposed genuine routes and preserved gaps",
+        "Execute allocated tactical/exploration genuine branches; preserve prospective/model-only reachability gaps",
         "Freeze supported-factory/selected-parameter equivalence witnesses and all five execution paths",
         "Complete transitive pure-read/checkpoint writer audit and instrumentation plan",
         "Obtain actual GPT and Codex full HC01-05 concurrence before runtime implementation",

@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_INDEPENDENT_STRUCTURAL_REVIEW_CORRECTIONS_RESOLVED_FULL_CONTRACT_OPEN",
+  "reviewedHead": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+  "scope": {
+    "documents": [
+      "V1_DTO_PROPOSAL.md",
+      "PURE_CHECKPOINT_CONTRACT.md",
+      "CONDITION_READ_BOUNDARY.md",
+      "DISCOVERY_EXAMPLE_ID_CONTRACT.md",
+      "CONNECTED_QUALIFICATION_PLAN.md"
+    ],
+    "readOnlySourceReview": true,
+    "runtimeChanges": false,
+    "buildsTestsOrGameplayRun": false,
+    "historicalQualificationRepeated": false,
+    "fullHCApproval": false,
+    "runtimeImplementationAuthorized": false
+  },
+  "actualReviewAnchors": [
+    {
+      "file": "GPT_ARCHITECTURE_REVIEW_03.json",
+      "responseId": "f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07",
+      "meaning": "Architecture concurrence with separate conditional obligations and assessed-capacity/native-execution separation; full HC open."
+    },
+    {
+      "file": "GPT_ARCHITECTURE_REVIEW_04.json",
+      "responseId": "c36c4641-a600-5d3c-91eb-043cc9347da5",
+      "meaning": "Owning current condition materialization at trusted final validated boundaries; no V1 journal fold/Restore/AdvanceTo exception; carrier/access/transitive coverage open."
+    }
+  ],
+  "disposition": "After the listed corrections, no additional concrete contradiction with the inspected GPT03/GPT04 structural directions was found in these five documents. This is bounded documentary concurrence only. It does not prove complete member access, copy alias safety, canonical coverage, read-path purity, field disclosure, all semantic axes or five-path evidence, and grants no runtime permission.",
+  "resolvedCorrections": [
+    {
+      "id": "R1",
+      "file": "PURE_CHECKPOINT_CONTRACT.md",
+      "finding": "Both printed assessment signatures initially omitted the NativeReadContextV1 required by CONDITION_READ_BOUNDARY.",
+      "resolution": "Both policy and verified-checkpoint signatures now explicitly receive the trusted read context."
+    },
+    {
+      "id": "R2",
+      "file": "CONDITION_READ_BOUNDARY.md",
+      "finding": "Projection builder snapshot detachment and invalid-return isolation needed an explicit boundary.",
+      "resolution": "CreateReadProjection now receives detachedValidatedCurrent, never authoritative Simulation.state; mutation/throw/invalid projection may not mutate committed state or publish a prior stamp. Copy alias proof remains required."
+    },
+    {
+      "id": "R3",
+      "file": "CONDITION_READ_BOUNDARY.md",
+      "finding": "Simulation has no internal lock; initial session construction itself is not locked. A generic existing-gate claim was inaccurate.",
+      "resolution": "Construction establishes state before publication; subsequent connected operations share session gate. Direct Core use retains synchronous single-owner contract. State/generation/projection capture and publication are one owner-bound observation; no new concurrency guarantee."
+    },
+    {
+      "id": "R4",
+      "file": "V1_DTO_PROPOSAL.md",
+      "finding": "Assessment table could be read as reporting an actually executed native stage/code and future effects as observed facts.",
+      "resolution": "Assessment row now specifies assessed constraint/stage, initial eligibility and commit feasibility; descriptions/assessments use separate conditional-obligation descriptors. Actual submission stage/code remains separate."
+    },
+    {
+      "id": "R5",
+      "file": "DISCOVERY_EXAMPLE_ID_CONTRACT.md",
+      "finding": "The original 81-character decimal envelope fit Command.Id but did not alone prove derived identities fit: adding .invocation.sync would be 97. This was a type-envelope counterexample, not an asserted reachable current-enum failure.",
+      "resolution": "Exact lowercase integer base36 produces a 57-character declared-type maximum and 73 with this native 16-character suffix. Contract explicitly requires each variant derived-ID/payload proof and does not claim envelope length closes it."
+    },
+    {
+      "id": "R6",
+      "file": "CONNECTED_QUALIFICATION_PLAN.md",
+      "finding": "Additional state-changing branch restore language was ambiguous about typed versus console restored paths.",
+      "resolution": "Now explicitly names all five paths for each additional state-changing branch: TypedUninterrupted, TypedRestored, ConsoleUninterrupted, ConsoleRestored, ReceiptReplay."
+    },
+    {
+      "id": "R7",
+      "file": "CONNECTED_QUALIFICATION_PLAN.md",
+      "finding": "During review the principal route import was completed; retaining the earlier unimported-28 finding would be stale.",
+      "resolution": "Plan now says PRINCIPAL_ROUTE_ALLOCATION freezes 244 command payloads/28 checkpoints only. New API expected outputs, added lifecycle checkpoints and other branch/profile allocations remain OPEN. This review checked counts/status flags only, not a second archive import audit."
+    },
+    {
+      "id": "R8",
+      "file": "CONNECTED_QUALIFICATION_PLAN.md and PURE_CHECKPOINT_CONTRACT.md",
+      "finding": "Intermediate edits contained mojibake in schema range/arrows.",
+      "resolution": "Final UTF-8 documents were re-read; schema range uses ASCII 95 through 116 and reviewed documents have no suspect encoding markers. No semantic change is inferred from encoding repair."
+    }
+  ],
+  "boundedChecks": {
+    "ownerAndGeneration": "Stamp is created internally by owning Simulation for final validated state, not serialized/caller supplied. Owner/policy/generation/revision/schema/profile/clock plus exact journal policy/target/origin/content and requested marker/mode are required. Context keeps current stamp/projection together; cross-owner equal bytes or journal reference alone does not authenticate it.",
+    "modeAndPhase": "Matches ConditionCombatPolicy.ConditionsFor and ConditionHistory.At: pre-ExpeditionRouteSchema uses journal-time ledger; later mode requests RuleClock phase marker and only advances when later, never rewinds a ledger at a later phase. Both journal-time and needed projected ledgers must exist.",
+    "allProfiles": "Separate optional Core read-projection capability covers ordinary-full-validation and verified-checkpoint profiles; it is not conditional on PlanningPassage. Missing projection is technical unavailable, not empty conditions or gameplay denial.",
+    "finalStateAndFailures": "Projection preparation/publication is for final validated state after condition/life/concentration/clock processing. Rejected candidates and duplicates retain prior authoritative state/projection. Successful execution or authenticated restore remains successful even if derived projection creation fails: publish explicit unavailable for the new state, never old projection; no retry/replay/corrupt-save relabel.",
+    "candidateVersusCommitted": "DTO capacity constraints preserve initial eligibility/commit feasibility/native enforcement distinction. No Reserve, clone mutation, candidate validation or time advance occurs in reads. Actual rolled-back candidate effects are not Immediate facts or committed paid time. Legacy enforcement stage/order/codes remain unchanged.",
+    "transitiveConsumers": "Source inspection confirms direct current journal readers as well as ConditionsFor and historical-prefix reconstruction. Known examples include HasUnprocessedConditionDeadline, NextConditionDeadline, Radiance/Invocation cure processing, route-mapping/camp historical checks and typed-damage prefix validation. Existing sources are not presumed safe merely because immutable or discarded. New reads require approved strict lookup/context route; historical event-time facts cannot use current cache.",
+    "opaqueCarrier": "Core holds stamp/projection privately; LabModel returns opaque Core interface, no reversed assembly dependency. Actual C# member/access details remain unimplemented and unapproved. Assembly-wide friend access is described accurately and canonical writer restriction remains an audited call-site rule.",
+    "discovery": "Catalog order remains native numeric kind/registered ordinal while only ID number encoding changes to base36. Same-principal receipt collisions and already-emitted IDs determine nonce; unrelated principals cannot influence it. IDs are examples, not reservations/pending choices/proofs. Native command fingerprint excludes Id; no new fingerprint-content claim was made.",
+    "qualification": "Five complete principal paths and five additional state-changing branch paths are prospective. Old genuine routes support sources, not new V1 passes. All 24 factory entries and 22 schema snapshots remain distinct compatibility allocations. No new runtime evidence or predecessor qualification was performed."
+  },
+  "staticArithmeticOnly": {
+    "engineExecution": false,
+    "maximumId": "hc1.r1y2p0ij32e8e7.kzik0zj.vzik0zj.ezik0zj.n1y2p0ij32e8e7",
+    "declaredEnvelopeLength": 57,
+    "invocationSyncSuffixLength": 16,
+    "withInvocationSync": 73,
+    "nativeValidIdLimit": 96,
+    "nonceOtherPrincipalIndependentBySpecification": true,
+    "allDerivedIdentityProofComplete": false
+  },
+  "principalAllocationLimitedCheck": {
+    "commands": 244,
+    "checkpointRevisions": 28,
+    "checkpoints": 28,
+    "sourceApiAccepted": false,
+    "newApiQualified": false,
+    "archiveAndPayloadEqualityReaudited": false
+  },
+  "remainingExplicitContractWork": [
+    "Freeze actual Core stamp/context/opaque-projection member visibility, generation identity and validation protocol; no new interface declarations have been reviewed as implemented code.",
+    "Prove detached input/copy and immutable ledger/application aliases cannot mutate owned state; classify every assessment-consumed input as encoded, validation-fixed or derived from authenticated state/policy.",
+    "Complete transitive helper route mapping and forbidden-call instrumentation, including direct Read and historical-prefix consumers. No lazy fallback, semantic journal fold, expiry settlement or consequence reconstruction in V1 reads.",
+    "Specify per-operation technical unavailable/failure projection and exact final-state publication exception boundaries, including invalid provider return and restoration. Isolation does not waive successful supported V1 qualification.",
+    "Freeze per-variant example ordinals, derived IDs/payload bounds, field-key/type/instance/disclosure matrices and all genuine branch witnesses; fixed count/shape privacy remains mandatory.",
+    "Freeze new API expected outputs at all imported/added checkpoints and exact additional branch/profile/five-path allocations. Run no implementation or qualification before actual full GPT/Codex contract concurrence."
+  ],
+  "openNewConcreteCorrections": [],
+  "reviewedDocuments": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+      "sha256": "f84d17af88512341ea2f2e7b10a77d08b0b7856a8834aae92a445d02b7f075a8"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "4859c11467cfd6ffc64949322f9d0094937b18287bcfefa65133bca63964a651"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DISCOVERY_EXAMPLE_ID_CONTRACT.md",
+      "sha256": "8e1bfc54c6676f5a6ba8eef85c3395f961625eb4b84183a6511eed393ecfe969"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONNECTED_QUALIFICATION_PLAN.md",
+      "sha256": "f3193d3155564a1df0f3ffe0c3419a3a64144086b11dbb865ae736dcc7217cb7"
+    }
+  ],
+  "referencePins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+      "sha256": "08fd9dc93f636e3481aa39b5811ed9ee2034b708787f1a4f96a4e1df1491dd99"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_04.json",
+      "sha256": "c77f3fd4cea3296e9a1b767163d4a9ec148849e316f26550ad1db09e265003df"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PRINCIPAL_ROUTE_ALLOCATION.json",
+      "sha256": "ae03260af2cf79e645a25b9cbb23c7aa5ed6e34a89c8dbf13ce64bae211322c2"
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "inspectedLines": [
+        "67-71",
+        "788-811",
+        "1032-1037",
+        "1227-1273",
+        "1296-1316",
+        "1449-1452",
+        "1557-1625"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e",
+      "inspectedLines": [
+        "29-37",
+        "54-75",
+        "80-144"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+      "inspectedLines": [
+        "10-36",
+        "105-130"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "sha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+      "inspectedLines": [
+        "78-98",
+        "215-231"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConditionJournal.cs",
+      "sha256": "9fcf1af8f7e95fc31fd7a58cedea69b7882308d95caee817d5e525f77c9d31dc",
+      "inspectedLines": [
+        "8-18",
+        "164-192"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "inspectedLines": [
+        "74-78",
+        "193-213",
+        "233-253"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "inspectedLines": [
+        "26-64",
+        "94-107"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "inspectedLines": [
+        "88-89",
+        "109-119"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTemporaryCampConstruction.cs",
+      "sha256": "26dc6756a141aa3816fdc497dd72a955517db001fd3d0bdd0b20ba0c75989423",
+      "inspectedLines": [
+        "203-216",
+        "453-475"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "sha256": "afb6c8c0ac659f4439f1652a7128f39716fd554e756ce5782e2320f272eed1f9",
+      "inspectedLines": [
+        "360-377"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTypedDamage.cs",
+      "sha256": "735ce0ab6ee5de76a7f5bb89576ae663e1d6fd9ef2043473f48f73709b9c482a",
+      "inspectedLines": [
+        "35-49"
+      ]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "inspectedLines": [
+        "486-495"
+      ]
+    }
+  ],
+  "runtimeWorkingDiff": "git diff --name-only for Runtime/Laboratory/Tests returned no paths during this bounded review."
+}
