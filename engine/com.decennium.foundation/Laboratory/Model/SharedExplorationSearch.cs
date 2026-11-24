@@ -185,6 +185,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string SearchActivityConflict(Snapshot state, Command command)
+            => SearchActivityConstraintV1(state, command)?.NativeCode;
+
+        private static NativeCommandConstraintV1 SearchActivityConstraintV1(Snapshot state, Command command)
         {
             var search = state.ExplorationSearch;
             if (search?.Definition.SearcherId != command.Actor) return null;
@@ -192,10 +195,10 @@ namespace Decennium.Foundation.Laboratory
             if (search.Pending != null && (activeWork || command.Kind == CommandKind.BeginWorldStep
                 || command.Kind == CommandKind.ResumeWorldStep || command.Kind == CommandKind.HandleInventory
                 || command.Kind == CommandKind.HandleVessel || command.Kind == CommandKind.StartIntake))
-                return "OrdinarySearchInProgress";
+                return new NativeCommandConstraintV1("OrdinarySearchInProgress", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 195);
             if (activeWork && IsOffCalendarActivity(state, command.Actor)
                 && ActivityInterval(state, command.Actor).Action == WorldActionCommitment.Search)
-                return "OffCalendarActionAlreadySpent";
+                return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 198);
             return null;
         }
     }

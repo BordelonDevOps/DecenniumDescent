@@ -122,8 +122,11 @@ namespace Decennium.Foundation.Laboratory
             => restDebtProfile != null && s.RestIntervals.Any(x => x.ActorId == actor && x.Status == RestIntervalStatus.Active);
 
         private string RestingActorCommandFailure(Snapshot s, Command c)
+            => RestingActorConstraintV1(s, c)?.NativeCode;
+
+        private NativeCommandConstraintV1 RestingActorConstraintV1(Snapshot s, Command c)
             => IsActorResting(s, c.Actor) && c.Kind != CommandKind.AdvanceClock && !IsRestDebtCommand(c.Kind)
-                ? "ActorCurrentlyResting" : null;
+                ? new NativeCommandConstraintV1("ActorCurrentlyResting", "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs", 126) : null;
 
         private RuleTime WatchStart(long day, RestWatchSlot slot)
             => new RuleTime(checked(day * 86400 + (long)slot * RestWatchSeconds));

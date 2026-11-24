@@ -15,7 +15,7 @@ namespace Decennium.Foundation.Laboratory
                 || ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.UseHealingRite
                 || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate
                 || ShortRestBerth.IsCommand(kind) || kind == CommandKind.ConsumeDecay
-                || WoundTreatmentStation.IsCommand(kind);
+                || WoundTreatmentStation.IsCommand(kind) || kind == CommandKind.StabilizeCompanion;
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
 
@@ -60,6 +60,15 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StartWoundTreatment:
                 case CommandKind.InterruptWoundTreatment:
                     return ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentConstraintV1(current, command);
+                case CommandKind.StabilizeCompanion:
+                    // This native branch occurs after these guards, but before reinforcement control,
+                    // charter, meal, route, advancement and later command families.
+                    return ActiveShortRestInterruptionV1(current, command)
+                        ?? WoundTreatmentOuterConstraintV1(current, command)
+                        ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command)
+                        ?? RetreatHostileAttackConstraintV1(current, command) ?? PendingRecoveryChoiceConstraintV1(current, command)
+                        ?? HavenCareActorConstraintV1(current, command) ?? MoraleRestingActorConstraintV1(current, command)
+                        ?? RestingActorConstraintV1(current, command) ?? CompanionStabilizationConstraintV1(current, command);
                 default: return CastingUtilityConstraintV1(current, command);
             }
         }
@@ -69,6 +78,15 @@ namespace Decennium.Foundation.Laboratory
             // Initial admission does not certify the shared post-resolution tail or
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);
+        }
+
+        private static NativeCommandConstraintV1 WoundTreatmentOuterConstraintV1(Snapshot s, Command c)
+        {
+            if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return new NativeCommandConstraintV1("WoundTreatmentStockSealed", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 909);
+            if (WoundTreatmentStation.Active(s) != null && (c.Actor == WoundTreatmentStation.Healer || c.Actor == WoundTreatmentStation.Patient)
+                && c.Kind != CommandKind.AdvanceClock)
+                return new NativeCommandConstraintV1("WoundTreatmentParticipantOccupied", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 912);
+            return null;
         }
 
         private static NativeCommandConstraintV1 ClassRecoveryConstraintV1(Snapshot s, Command c)

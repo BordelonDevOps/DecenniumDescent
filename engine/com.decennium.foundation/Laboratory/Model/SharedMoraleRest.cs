@@ -134,8 +134,11 @@ namespace Decennium.Foundation.Laboratory
             => moraleRestProfile != null && s.ExpeditionMoraleRestIntervals.Any(x => x.Status == MoraleRestIntervalStatus.Active);
 
         private string MoraleRestingActorCommandFailure(Snapshot s, Command c)
+            => MoraleRestingActorConstraintV1(s, c)?.NativeCode;
+
+        private NativeCommandConstraintV1 MoraleRestingActorConstraintV1(Snapshot s, Command c)
             => ActiveMoraleRest(s, c.Actor) != null && c.Kind != CommandKind.AdvanceClock
-                && c.Kind != CommandKind.InterruptMoraleRest ? "ActorCurrentlyInMoraleRest" : null;
+                && c.Kind != CommandKind.InterruptMoraleRest ? new NativeCommandConstraintV1("ActorCurrentlyInMoraleRest", "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs", 138) : null;
 
         private string AssessMoraleRestCommand(Snapshot s, Command c, out TestOnlyMoraleRestSiteFact site,
             out ExpeditionMoraleRestIntervalRecord active)

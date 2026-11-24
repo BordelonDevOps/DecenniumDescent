@@ -164,18 +164,21 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string RetreatHostileAttackFailure(Snapshot s, Command c)
+            => RetreatHostileAttackConstraintV1(s, c)?.NativeCode;
+
+        private static NativeCommandConstraintV1 RetreatHostileAttackConstraintV1(Snapshot s, Command c)
         {
             var retreat = s.Retreat;
             if (retreat?.Active != true || c.Actor != retreat.Definition.DefenderId) return null;
             var d = retreat.Definition;
             if (c.Kind == CommandKind.RespondOpportunityAttack && c.Combat?.Choice == true)
-                return "RetreatAdditionalHostileAttackUnsupported";
+                return new NativeCommandConstraintV1("RetreatAdditionalHostileAttackUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs", 172);
             if (c.Kind != CommandKind.AttackClub && c.Kind != CommandKind.AttackUnarmed
                 && c.Kind != CommandKind.AttackRepeatingCrossbow && c.Kind != CommandKind.RespondOverwatch
                 && c.Kind != CommandKind.RespondReady) return null;
             if (PendingCalendarChoice(s)) return null;
             return c.Kind == CommandKind.AttackClub && c.Target == d.LeadId && c.Combat?.WeaponId == d.ClubId
-                && retreat.Round.ThreatId == "" ? null : "RetreatAdditionalHostileAttackUnsupported";
+                && retreat.Round.ThreatId == "" ? null : new NativeCommandConstraintV1("RetreatAdditionalHostileAttackUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs", 178);
         }
 
         private static void ReconcileRetreat(Snapshot s, Command cause)

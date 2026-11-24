@@ -17,39 +17,50 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
 
-        private string ResolveCompanionStabilization(Snapshot state, Command command,bool assessOnly=false)
+        private NativeCommandConstraintV1 CompanionStabilizationConstraintV1(Snapshot state, Command command)
         {
             if (!state.ConnectedCompanionStabilization && !state.ConnectedClericCasting || !state.InventoryCombat
                 || state.Reinforcement?.Admission == null
                 || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId
                 || command.Actor != ConnectedVialRules.CarrierId || command.Target != ConnectedVialRules.CompanionRecipientId
                 || !state.Encounter.Order.Contains(command.Target))
-                return "CompanionStabilizationUnavailable";
+                return new NativeCommandConstraintV1("CompanionStabilizationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 27);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
                 || command.RouteMappingWork != null)
-                return "InvalidCompanionStabilizationRequest";
+                return new NativeCommandConstraintV1("InvalidCompanionStabilizationRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 33);
             if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state))
-                return "TacticalChoicePending";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 35);
             if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor)
-                return "WrongRegularTurn";
+                return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 37);
             var interval = Interval(state, command.Actor);
-            if (interval.ActionSpent) return "ActionAlreadySpent";
+            if (interval.ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 39);
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action)
-                return "ConditionPreventsAction";
+                return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 41);
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor || x.ActorId == command.Target))
-                return "StabilizationRequiresStationaryAccess";
-            if (AvailableHands(state, command.Actor) < 1) return "UsableHandRequired";
+                return new NativeCommandConstraintV1("StabilizationRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 43);
+            if (AvailableHands(state, command.Actor) < 1) return new NativeCommandConstraintV1("UsableHandRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 44);
             var actor = state.Actors.Single(x => x.Id == command.Actor);
             var patient = state.Actors.Single(x => x.Id == command.Target);
             if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(patient.X, patient.Y)) > 5
                 || !ObservationGeometry.LineOfEffectClear(state, actor.Id, patient.Id))
-                return "StabilizationTargetOutOfReach";
+                return new NativeCommandConstraintV1("StabilizationTargetOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 49);
             var before = state.Lives.Single(x => x.ActorId == patient.Id);
-            if (!Dying(before)) return "StabilizationTargetNotDying";
+            if (!Dying(before)) return new NativeCommandConstraintV1("StabilizationTargetNotDying", "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs", 51);
+            return null;
+        }
+
+        private string ResolveCompanionStabilization(Snapshot state, Command command,bool assessOnly=false)
+        {
+            var failure = CompanionStabilizationConstraintV1(state, command);
+            if (failure != null) return failure.NativeCode;
             if(assessOnly)return null;
+            var interval = Interval(state, command.Actor);
+            var actor = state.Actors.Single(x => x.Id == command.Actor);
+            var patient = state.Actors.Single(x => x.Id == command.Target);
+            var before = state.Lives.Single(x => x.ActorId == patient.Id);
 
             var facts = CharacterStateFacts.ForActor(state, actor.Id, "medicine");
             int modifier = checked(facts.TotalWithInjury(CharacterAbility.Wisdom)

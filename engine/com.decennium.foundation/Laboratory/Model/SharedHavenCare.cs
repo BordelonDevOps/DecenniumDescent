@@ -146,9 +146,12 @@ namespace Decennium.Foundation.Laboratory
                 || kind == CommandKind.ClosePortableContainer;
 
         private string HavenCareActorCommandFailure(Snapshot s, Command c)
+            => HavenCareActorConstraintV1(s, c)?.NativeCode;
+
+        private NativeCommandConstraintV1 HavenCareActorConstraintV1(Snapshot s, Command c)
         {
             if (ActiveHavenCare(s, c.Actor) != null && !HavenCareAllowsPatientCommand(c.Kind))
-                return "ActorCurrentlyInHavenCare";
+                return new NativeCommandConstraintV1("ActorCurrentlyInHavenCare", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs", 151);
             return null;
         }
 

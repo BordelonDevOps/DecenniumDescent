@@ -139,6 +139,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string HideActivityConflict(Snapshot state, Command command)
+            => HideActivityConstraintV1(state, command)?.NativeCode;
+
+        private static NativeCommandConstraintV1 HideActivityConstraintV1(Snapshot state, Command command)
         {
             var hide = state.ExplorationHide;
             if (hide?.Pending == null || command.Actor != hide.Definition.HiderId) return null;
@@ -146,7 +149,7 @@ namespace Decennium.Foundation.Laboratory
                 || command.Kind == CommandKind.ResumeWorldStep || command.Kind == CommandKind.Move
                 || command.Kind == CommandKind.Interact || command.Kind == CommandKind.BeginRest
                 || command.Kind == CommandKind.BeginMoraleRest || command.Kind == CommandKind.BeginHavenCare
-                ? "OrdinaryHideInProgress" : null;
+                ? new NativeCommandConstraintV1("OrdinaryHideInProgress", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 149) : null;
         }
 
         private static void RecordHideRelocation(Snapshot state, WorldTraversalRecord edge, RuleTime at, Command cause)

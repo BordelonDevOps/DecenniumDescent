@@ -125,8 +125,11 @@ namespace Decennium.Foundation.Laboratory
             => strainRecoveryProfile != null && s.ExpeditionStrainRecoveryOffers.Any(x => x.Pending);
 
         private string PendingRecoveryChoiceFailure(Snapshot s, Command c)
+            => PendingRecoveryChoiceConstraintV1(s, c)?.NativeCode;
+
+        private NativeCommandConstraintV1 PendingRecoveryChoiceConstraintV1(Snapshot s, Command c)
             => HasPendingRecoveryOffer(s) && !IsStrainRecoveryCommand(c.Kind)
-                ? "ExpeditionStrainRecoveryChoicePending" : null;
+                ? new NativeCommandConstraintV1("ExpeditionStrainRecoveryChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 129) : null;
 
         private string RecordProvisioningGateUpdates(Snapshot s, DailyProvisioningSettlementRecord settlement)
         {

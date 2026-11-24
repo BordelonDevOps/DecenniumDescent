@@ -176,6 +176,7 @@ namespace Decennium.Foundation.Tests
                     Require(Assess(blocked) == "StabilizationTargetOutOfReach", "Adjacent Medicine still requires clear delivery.");
 
                     var attempt = Stabilize("stable.attempt", ready.Revision);
+                    AssertPureUtility(active,attempt);
                     Require(active.Submit(ExpeditionSeat.FirstOpponent, attempt).Response == ExpeditionResponse.NotAuthorized,
                         "Another seat cannot stabilize with the hero.");
                     CommitVialRoute(active, attempt);

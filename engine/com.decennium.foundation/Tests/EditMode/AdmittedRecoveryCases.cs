@@ -11,6 +11,28 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddAdmittedRecoveryCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("int05_stabilization_profile_and_sealed_stock_order_are_pure",()=> {
+                var rows=new[] {
+                    (ConnectedExpeditionSession.StartWithCompanionDose(),ConnectedExpeditionSession.Companion,"CompanionStabilizationUnavailable"),
+                    (ConnectedExpeditionSession.StartWithCompanionStabilization(),ConnectedExpeditionSession.Companion,"CompanionStabilizationUnavailable"),
+                    (ConnectedExpeditionSession.StartWithWoundTreatment(),WoundTreatmentStation.Kit.Id,"WoundTreatmentStockSealed")
+                };
+                var facts=new List<object>();int i=0;
+                foreach(var row in rows) {
+                    var sim=CastingSimulation(row.Item1);var state=sim.Capture();var before=Bytes(sim);
+                    var command=new Command("int05.stabilize.profile."+(++i),ConnectedExpeditionSession.Hero,state.Revision,
+                        CommandKind.StabilizeCompanion,row.Item2);
+                    AssertPureUtility(row.Item1,command,row.Item3);
+                    var read=sim.AssessCommandFactsV1(CastingAuthority(),command,state.Revision);
+                    var actual=sim.Execute(CastingAuthority(),command);
+                    Require(actual.Outcome==Outcome.Rejected&&actual.Code==row.Item3&&before.SequenceEqual(Bytes(sim)),
+                        "Stabilization assessment changed state or moved the sealed-stock guard after family admission.");
+                    facts.Add(new {state.WireSchemaVersion,code=actual.Code,read.Constraint.SourcePath,read.Constraint.SourceLine});
+                }
+                File.WriteAllText(Path.Combine(directory,"int05-stabilization-denials.json"),
+                    System.Text.Json.JsonSerializer.Serialize(new {scope="Three authentic native profile/outer-order denials",facts}));
+            });
+
             cases.Add("int05_care_profile_denials_share_native_order",()=> {
                 const string hero=ConnectedExpeditionSession.Hero,patient=ConnectedExpeditionSession.Companion;
                 var rows=new[] {

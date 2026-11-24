@@ -899,10 +899,8 @@ namespace Decennium.Foundation.Laboratory
             if (shortRestInterruption != null) return shortRestInterruption.NativeCode;
             if (c.Kind == CommandKind.ConsumeDecay) return ResolveConsumeDecay(s, c);
             if (WoundTreatmentStation.IsCommand(c.Kind)) return ResolveWoundTreatment(s, c);
-            if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return "WoundTreatmentStockSealed";
-            if (WoundTreatmentStation.Active(s) != null && (c.Actor == WoundTreatmentStation.Healer || c.Actor == WoundTreatmentStation.Patient)
-                && c.Kind != CommandKind.AdvanceClock)
-                return "WoundTreatmentParticipantOccupied";
+            var woundOuter = WoundTreatmentOuterConstraintV1(s, c);
+            if (woundOuter != null) return woundOuter.NativeCode;
             var searchActivityConflict = SearchActivityConflict(s, c);
             if (searchActivityConflict != null) return searchActivityConflict;
             var hideActivityConflict = HideActivityConflict(s, c);

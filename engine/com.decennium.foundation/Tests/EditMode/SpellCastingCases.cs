@@ -755,6 +755,7 @@ namespace Decennium.Foundation.Tests
                 ClericCommit(session,hero,CommandKind.TacticalStep,session.View(ExpeditionSeat.Player).TurnId,1,2);ClericDefender(session);
                 var before=ShortRestCapture(session);string path=Path.Combine(directory,"tac08-guidance-before-medicine.ddsave");session.Save(path);
                 var command=new Command("tac08.medicine.actual-check",hero,before.Revision,CommandKind.StabilizeCompanion,actor,guidance:new GuidanceChoice(benefit));
+                AssertPureUtility(session,command);
                 var query=CastingSimulation(session).QueryCommand(CastingAuthority(),command);
                 Require(query.Admissible,"Real guided Medicine must be in reach with an available Action: "+query.Code);
                 CommitVialRoute(session,command);var after=ShortRestCapture(session);var use=after.GuidanceUses.Single();var check=after.CompanionStabilizations.Single();
