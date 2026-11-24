@@ -1,5 +1,7 @@
 # Current C# implementation map and Unity entry checklist
 
+**Current INT-05 status: contract accepted; implementation may proceed.** Actual GPT09 `271baf94-22dd-57cb-a2ab-5f728e989b4d` and Codex agree on HC-01–05 at `67f3d201b`. [Acceptance](evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md). Runtime qualification, final module review and accepted push remain required; stop after that push. Earlier design-progress entries are historical.
+
 As of **2026-11-23**, the full reusable C# engine goal is active. **Connected work control is accepted as a bounded module; the engine is not ready for Unity gameplay integration.**
 
 **Last accepted module:** MGT-02-CONNECTED-WORK-CONTROL, runtime `748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb`, evidence candidate `a14994004df392b37b011b6eb794724705e370e2`. Actual GPT response `090f7d7d-ea51-5cc9-bfd4-90c5bbfa76dd` and Codex concurrence accept WC-A1–A10 within the unchanged contract and recorded allocations. [Final acceptance](evidence/2026-11-23-mgt02-connected-work-control/FINAL_ACCEPTANCE.md).

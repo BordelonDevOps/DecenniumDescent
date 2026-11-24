@@ -1,5 +1,7 @@
 # INT-05 admitted command and choice surface
 
+**HC-01–05 and the complete finite implementation/qualification plan are accepted for implementation.** Actual GPT09 `271baf94-22dd-57cb-a2ab-5f728e989b4d` and Codex concur at candidate `67f3d201b`. [Acceptance and limits](HC_ACCEPTANCE.md). Final runtime/module acceptance remains open. Earlier proposal/open labels below retain their checkpoint history.
+
 **Selected for source/API design. Runtime implementation and acceptance remain open.**
 
 Current checkpoint: [actual GPT08](GPT_ARCHITECTURE_REVIEW_08.json) and [effective decisions](ADMISSION_DECISIONS_08.md) settle the five-unit table, exact admission/freshness order, finite mining samples, distinct target identities and narrowed condition materialization. [GPT07](GPT_ARCHITECTURE_REVIEW_07.json) and [its exact representations](REPRESENTATION_DECISIONS_07.md) remain controlling. This is eight bounded reviews, not full HC acceptance.
