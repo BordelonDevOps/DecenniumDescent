@@ -9,6 +9,8 @@ BASE = '67f3d201b202ab2f815ab69940682f04e78c511c'
 def extract(path, start, end, name, signature, wrapper, edits=()):
     target=ROOT/path
     old=subprocess.check_output(['git','show',BASE+':'+path],cwd=ROOT).decode('utf8').replace('\r\n','\n')
+    raw_current=target.read_bytes()
+    eol='\r\n' if raw_current.count(b'\r\n')==raw_current.count(b'\n') and b'\n' in raw_current else '\n'
     current=target.read_text(encoding='utf8')
     a=old.index(start); b=old.index(end,a)
     method=old[a:b]
@@ -23,7 +25,7 @@ def extract(path, start, end, name, signature, wrapper, edits=()):
     for before,after in edits:
         assert before in updated, (path,before)
         updated=updated.replace(before,after,1)
-    target.write_bytes(current.replace(method,wrapper+updated,1).encode('utf8'))
+    target.write_bytes(current.replace(method,wrapper+updated,1).replace('\n',eol).encode('utf8'))
     print(path,name)
 
 if __name__ == '__main__':

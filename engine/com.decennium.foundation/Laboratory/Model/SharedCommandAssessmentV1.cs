@@ -11,7 +11,9 @@ namespace Decennium.Foundation.Laboratory
             => connectedClericCasting && (kind == CommandKind.CastKnownSpell || kind == CommandKind.EndSpellConcentration
                 || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura)
                 || ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.UseHealingRite
-                || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate;
+                || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate
+                || ShortRestBerth.IsCommand(kind) || kind == CommandKind.ConsumeDecay
+                || WoundTreatmentStation.IsCommand(kind);
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
 
@@ -33,17 +35,26 @@ namespace Decennium.Foundation.Laboratory
                 failure = NonSanctuaryResponseConstraintV1(command);
             failure = failure ?? GuidanceChoiceConstraintV1(current, command)
                 ?? SpellCastingProfile.PhysicalConstraintV1(current, command)
-                ?? SelectedMagicConstraintV1(current, command);
+                ?? SelectedInitialConstraintV1(current, command);
             return InitialAssessmentV1(current, failure);
         }
 
-        private NativeCommandConstraintV1 SelectedMagicConstraintV1(Snapshot current, Command command)
+        private NativeCommandConstraintV1 SelectedInitialConstraintV1(Snapshot current, Command command)
         {
             switch (command.Kind) {
                 case CommandKind.CastKnownSpell: return SpellCastConstraintV1(current, command);
                 case CommandKind.UseConsecrate: return ConsecrateConstraintV1(current, command);
                 case CommandKind.UseDivineInvocation: return DivineInvocationConstraintV1(current, command);
                 case CommandKind.UseHealingRite: return HealingRiteConstraintV1(current, command);
+                case CommandKind.BeginShortRest:
+                case CommandKind.InterruptShortRest:
+                case CommandKind.BeginMutationShortRest:
+                    return ClassRecoveryConstraintV1(current, command) ?? ShortRestConstraintV1(current, command);
+                case CommandKind.ConsumeDecay:
+                    return ActiveShortRestInterruptionV1(current, command) ?? ConsumeDecayConstraintV1(current, command);
+                case CommandKind.StartWoundTreatment:
+                case CommandKind.InterruptWoundTreatment:
+                    return ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentConstraintV1(current, command);
                 default: return CastingUtilityConstraintV1(current, command);
             }
         }
@@ -54,6 +65,18 @@ namespace Decennium.Foundation.Laboratory
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);
         }
+
+        private static NativeCommandConstraintV1 ClassRecoveryConstraintV1(Snapshot s, Command c)
+            => s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)
+                ? new NativeCommandConstraintV1("ClassRecoveryUnsupported",
+                    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 896) : null;
+
+        private static NativeCommandConstraintV1 ActiveShortRestInterruptionV1(Snapshot s, Command c)
+            => ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor
+                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
+                && c.Kind != CommandKind.EnterInventoryCombat
+                    ? new NativeCommandConstraintV1("ShortRestRequiresInterruption",
+                        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 906) : null;
 
         private NativeCommandConstraintV1 WorldOpeningConstraintV1(Snapshot s, Command c)
         {

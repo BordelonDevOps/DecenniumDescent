@@ -1,0 +1,571 @@
+{
+  "schemaVersion": 1,
+  "status": "NO_CONCRETE_BLOCKERS_FOUND_IN_BOUNDED_STATIC_REVIEW",
+  "reviewer": "independent /root/audit_management",
+  "createdAtUtc": "2026-11-24T04:27:28.251139+00:00",
+  "acceptedBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "comparisonHead": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+  "observedHead": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+  "scope": [
+    "Only BeginShortRest, InterruptShortRest, BeginMutationShortRest helpers and shared native routing.",
+    "Original guard/order identities, lazy due arithmetic and constructor stage, finite pure selectors, and new hooks in existing genuine Short Rest/Flesh Warden cases."
+  ],
+  "findings": [],
+  "sourceApiContractAccepted": true,
+  "runtimeModuleAcceptance": "OPEN",
+  "commitFeasibility": "UNSET_NULL",
+  "reviewerRuntimeOrTestEdits": false,
+  "reviewerBuildTestsGameplayReplay": false,
+  "mechanicalComparisons": [
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "originalMethod": "ShortRestAccess",
+      "typedMethod": "ShortRestAccessConstraintV1",
+      "guardBodyUnchangedAfterTypedReturnUnwrapping": true
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "originalMethod": "MutationRestAccess",
+      "typedMethod": "MutationRestConstraintV1",
+      "guardBodyUnchangedAfterTypedReturnUnwrapping": true
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "originalMethod": "ResolveShortRest guard prefix through baseline66",
+      "typedMethod": "ShortRestOpeningConstraintV1",
+      "guardBodyUnchangedAfterTypedReturnUnwrapping": true,
+      "normalization": "Remove only old execution-side EndShortRest call from interrupt branch; normalize typed return/helper names and var/string local type; omit new pure helper terminal return null. Original interrupt side effect remains in actual resolver after this prefix."
+    }
+  ],
+  "originCount": 19,
+  "origins": [
+    {
+      "nativeCode": "ShortRestRequiresOrdinaryExploration",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 25,
+      "reviewedCurrentLine": 28,
+      "baselineStatement": "return \"ShortRestRequiresOrdinaryExploration\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestRequiresStationaryBerthAccess",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 30,
+      "reviewedCurrentLine": 33,
+      "baselineStatement": "return \"ShortRestRequiresStationaryBerthAccess\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestBerthOccupied",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 32,
+      "reviewedCurrentLine": 35,
+      "baselineStatement": "return \"ShortRestBerthOccupied\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestActorDead",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 33,
+      "reviewedCurrentLine": 36,
+      "baselineStatement": "if (state.Lives.Single(x => x.ActorId == actor).Dead) return \"ShortRestActorDead\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestActorOccupied",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 37,
+      "reviewedCurrentLine": 40,
+      "baselineStatement": "return \"ShortRestActorOccupied\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestUnavailable",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 43,
+      "reviewedCurrentLine": 46,
+      "baselineStatement": "if (!state.ConnectedShortRest || command.Actor != ShortRestBerth.Actor) return \"ShortRestUnavailable\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "UnsupportedShortRestSelection",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 49,
+      "reviewedCurrentLine": 52,
+      "baselineStatement": "return \"UnsupportedShortRestSelection\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestPendingChoice",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 51,
+      "reviewedCurrentLine": 54,
+      "baselineStatement": "|| state.ManufacturingAdvance != null) return \"ShortRestPendingChoice\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "NoMatchingActiveShortRest",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 54,
+      "reviewedCurrentLine": 57,
+      "baselineStatement": "if (active == null || command.Target != active.Id) return \"NoMatchingActiveShortRest\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestSiteUnavailable",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 62,
+      "reviewedCurrentLine": 64,
+      "baselineStatement": "} else if (command.Target != ShortRestBerth.Id) return \"ShortRestSiteUnavailable\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestAlreadyActive",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 63,
+      "reviewedCurrentLine": 65,
+      "baselineStatement": "if (active != null) return \"ShortRestAlreadyActive\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestHistoryCapacityReached",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 66,
+      "reviewedCurrentLine": 68,
+      "baselineStatement": "if (state.ShortRests.Length == ShortRestBerth.MaxAttempts) return \"ShortRestHistoryCapacityReached\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestActorOccupied",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "baselineLine": 69,
+      "reviewedCurrentLine": 77,
+      "baselineStatement": "return \"ShortRestActorOccupied\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "MutationRestUnavailable",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "baselineLine": 35,
+      "reviewedCurrentLine": 38,
+      "baselineStatement": "if (!state.ConnectedFleshWarden) return \"MutationRestUnavailable\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "UnsupportedMutationRestSelection",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "baselineLine": 36,
+      "reviewedCurrentLine": 39,
+      "baselineStatement": "if (!FleshWardenProfile.IsMutation(mutation)) return \"UnsupportedMutationRestSelection\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "MutationRestQualificationUnavailable",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "baselineLine": 37,
+      "reviewedCurrentLine": 40,
+      "baselineStatement": "if (!FleshWardenProfile.HasEntitlements(state)) return \"MutationRestQualificationUnavailable\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "MutationRestCadenceUnsupported",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "baselineLine": 38,
+      "reviewedCurrentLine": 41,
+      "baselineStatement": "if (ShortRestBerth.BenefitsUsed(state) >= ShortRestBerth.InitialBenefits) return \"MutationRestCadenceUnsupported\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ClassRecoveryUnsupported",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLine": 896,
+      "typedHelperPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedHelperCurrentLine": 71,
+      "baselineStatement": "if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return \"ClassRecoveryUnsupported\";",
+      "originMatches": true
+    },
+    {
+      "nativeCode": "ShortRestRequiresInterruption",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLine": 906,
+      "typedHelperPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedHelperCurrentLine": 78,
+      "baselineStatement": "return \"ShortRestRequiresInterruption\";",
+      "originMatches": true
+    }
+  ],
+  "currentSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "bytes": 9664,
+      "sha256": "b3a66a416bfcec7fc59577f0d7fb8be352f2d85a658b27b5cc87eeee88dbf133"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "bytes": 7408,
+      "sha256": "fda86735c54a08790829e761081940fef0923d03de8a0ceb315eaac02c88b82e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "bytes": 8729,
+      "sha256": "b9694464d26a3d532fa692fb63065957be6ebadec48ce9869dee7c57570ae349"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "bytes": 130170,
+      "sha256": "2377c0355b6e2f92fbf6df60b05a733e991fb14681d05c9ca91b00f0d9d3004a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "bytes": 42556,
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "bytes": 7211,
+      "sha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "bytes": 59346,
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+      "bytes": 2116,
+      "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "bytes": 36082,
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "bytes": 46202,
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "bytes": 29850,
+      "sha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "bytes": 11431,
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "bytes": 3554,
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedShortRestCases.cs",
+      "bytes": 23152,
+      "sha256": "944268c87c7abe408fa43d69cacac345ada125b49772677e863f996f01675bea"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedFleshWardenCases.cs",
+      "bytes": 19102,
+      "sha256": "2b0034f3c6e004686edbf6a85b679464504c5c3045392129508bdf3a1fd6b9e2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "bytes": 8974,
+      "sha256": "9874f2459123418c5e097183b97540374b237526c260cec9941a9f33508b7251"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json",
+      "bytes": 202582,
+      "sha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "bytes": 2408,
+      "sha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c"
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "bytes": 9800,
+      "sha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557"
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "bytes": 40248,
+      "sha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7"
+    }
+  ],
+  "baselineSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 6783,
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357",
+      "gitBlob": "0a58106a6eafe38c43c19db705d5789d5a508048"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 6795,
+      "sha256": "2b0a79a986af68d3eaa58a2c28f18069c4fc83595032ba676adece61faf0c24b",
+      "gitBlob": "822775e440cef17c283759207b12b62546a43901"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 130619,
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "gitBlob": "396e10ebaacba5453028ad1eed5a9750f39ea612"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "gitBlob": "3867fe6017d959e6d128e7b433552e21d4ee14b9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b",
+      "gitBlob": "5a7c31aa8d70add2442b7fe8dbf795ff62fbc5e1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedShortRestCases.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 22839,
+      "sha256": "f03148145c4ed8e93684c3480e990358e8bacfe3b1c5b2cc5ad3a7473a5853ac",
+      "gitBlob": "0a440d820084a563c336f4eed293405bb8e246c8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedFleshWardenCases.cs",
+      "revision": "67f3d201b202ab2f815ab69940682f04e78c511c",
+      "bytes": 18615,
+      "sha256": "7a1fe410d14743d3bae128c386f10696277b98854488e4c22f092d5d1275da95",
+      "gitBlob": "79af494526824f3fe15fd9172313b3f3b8ec7150"
+    }
+  ],
+  "headSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 6783,
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357",
+      "gitBlob": "0a58106a6eafe38c43c19db705d5789d5a508048"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 6795,
+      "sha256": "2b0a79a986af68d3eaa58a2c28f18069c4fc83595032ba676adece61faf0c24b",
+      "gitBlob": "822775e440cef17c283759207b12b62546a43901"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 130257,
+      "sha256": "f6abddaa0f4ad56d97a8e1fcc9b8e8d55138bc42d10c9baeaf71ff24bdc00178",
+      "gitBlob": "5083766820e3da91136baf6b48991e5af97a6e13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 10206,
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "gitBlob": "3867fe6017d959e6d128e7b433552e21d4ee14b9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 14665,
+      "sha256": "7b866e3e8157c1a6373e9ef6c58d5b78d0aaed546b489d0a874f0b2265bf368b",
+      "gitBlob": "5a7c31aa8d70add2442b7fe8dbf795ff62fbc5e1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedShortRestCases.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 22839,
+      "sha256": "f03148145c4ed8e93684c3480e990358e8bacfe3b1c5b2cc5ad3a7473a5853ac",
+      "gitBlob": "0a440d820084a563c336f4eed293405bb8e246c8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedFleshWardenCases.cs",
+      "revision": "621c2821a85bbb3f32eb949cb5c094b27d3f673b",
+      "bytes": 18615,
+      "sha256": "7a1fe410d14743d3bae128c386f10696277b98854488e4c22f092d5d1275da95",
+      "gitBlob": "79af494526824f3fe15fd9172313b3f3b8ec7150"
+    }
+  ],
+  "checks": [
+    {
+      "id": "SR-01-ORDER",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs:28-57",
+        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs:869-901",
+        "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs@67f3d201b:876-908"
+      ],
+      "detail": "World opening and active Long Rest gates remain before Sanctuary/Guidance/physical checks. For the three ShortRest kinds, ClassRecoveryUnsupported precedes their selected family guard. The original ShortRest dispatch is before ActiveShortRestInterruption; new assessment likewise does not send rest controls through that gate. Matching legacy exclusions are preserved. Other abilities remain outside this review."
+    },
+    {
+      "id": "SR-02-PREFIX",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:44-69",
+        "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json:788-845"
+      ],
+      "detail": "Selected Hero/profile and exact existing payload guard precede pending calendar/manufacturing/recovery/ManufacturingAdvance. Unlike Long Rest, pending gates precede InterruptShortRest. A matching interruption then returns without mutation selection, berth access, active-start, history capacity or future-overlap checks. No additional global payload rejection was introduced."
+    },
+    {
+      "id": "SR-03-MUTATION",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:60-68",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs:33-43",
+        "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs:135-157",
+        "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:83-86"
+      ],
+      "detail": "Mutation profile, two exact source card IDs, actual fixture entitlement and BenefitsUsed<2 run before AlreadyActive and berth/access. Static profile/qualification/grant/benefit selectors do not grant new source acquisition, reconstruction or mechanics. Ordinary third rest remains allowed but nonbeneficial; mutation after two benefits remains denied. MaxAttempts retains exact ==1024, not a new gameplay-use ceiling."
+    },
+    {
+      "id": "SR-04-ACCESS",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:24-41",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:120-122",
+        "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs:84-87,123-262"
+      ],
+      "detail": "Native ordinary-exploration expression, position/anchor/traversal, other-actor occupancy, Dead-only body gate and active work membership retain order and active.Id exclusion. No Long Rest positive-HP/Stable/Unconscious/Petrified/strain/concentration/CapableWorker gate is added. CurrentWork uses identity-only false/false projection, not discovery or settlement."
+    },
+    {
+      "id": "SR-05-LAZY-WINDOW",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:72-84",
+        "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:20-21",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs@67f3d201b:67-69"
+      ],
+      "detail": "Native overlap still tests WorkerId first, then Start<due, then End>started. Due is evaluated lazily inside Any using startedAt.AddSeconds(3600); it is not hoisted before the collection scan or before the worker predicate. Empty/no-matching-worker rows therefore do not newly evaluate due arithmetic. Ordering relative to the end comparison is unchanged."
+    },
+    {
+      "id": "SR-06-CONSTRUCTOR-STAGE",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:87-104",
+        "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:35-62",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs@67f3d201b:67-74"
+      ],
+      "detail": "Actual execution still constructs ShortRestRecord after all opening/history guards and before the future-window check. It then constructs WorkerInterval with rest.DueAt and invokes Reserve before appending the rest/mutation choice. The active ShortRestRecord constructor does not eagerly compute DueAt. Pure assessment constructs neither rest nor worker interval/candidate ledger; it only assesses the scalar window. Actual constructor/global validation failure stage is not hoisted or replaced by a predicted code."
+    },
+    {
+      "id": "SR-07-INTERRUPTION-EXECUTION",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:55-58,89-93",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs@67f3d201b:52-56"
+      ],
+      "detail": "After the unchanged prefix passes, resolver reselects the same active rest and calls EndShortRest exactly once. No state mutation or callbacks occur between the two selectors, so the second selector introduces no new eligibility or transition. Pure assessment never calls EndShortRest, ReconcileShortRest, CompleteMutationRest or ApplyMutationCapacity."
+    },
+    {
+      "id": "SR-08-READ-PURITY",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs:20-38",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs:24-84",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs:36-43",
+        "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs:83-86",
+        "engine/com.decennium.foundation/Runtime/Core/FleshWardenRecords.cs:135-157"
+      ],
+      "detail": "Family helpers use exact immutable fields, Any/Count/Single selectors, static geometry and scalar time arithmetic. No condition reconstruction, Reserve/Consume/CancelFutureWork, resolver, lifecycle, RNG, snapshot/policy validation, command replay or candidate rest occurs. Shared outer reads remain under the owning condition projection; no family-specific condition gate was introduced. Scalar/constructor argument checks in immutable projections are not Snapshot.Validate."
+    },
+    {
+      "id": "SR-09-FEASIBILITY",
+      "result": "PASS_STATIC",
+      "sourceReferences": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs:62-66",
+        "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json:817-825,843-844"
+      ],
+      "detail": "Initial eligibility remains separate from commit feasibility, which is null. Capacity/history and future-window checks do not promise booking success, completion, mutation capacity, reward, time advancement or full module completion. Future commitments and actual resulting facts remain separate."
+    }
+  ],
+  "testHookReview": {
+    "reviewedFiles": [
+      "engine/com.decennium.foundation/Tests/EditMode/ConnectedShortRestCases.cs",
+      "engine/com.decennium.foundation/Tests/EditMode/ConnectedFleshWardenCases.cs"
+    ],
+    "changes": "Hooks construct the same exact command, call existing AssertPureUtility before actual accepted rest dispatch, then call the unchanged CommitVialRoute. Direct mutation start/restart/same-card paths gain the same preflight assertion. Existing outcome, reward, HP, capacity, source, rollback, restore and counterfeiting assertions remain in place.",
+    "helper": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs:12-21",
+    "helperAssertions": "Three repeated reads compare expected native admission, InitialEligibility, null CommitFeasibility, all prohibited-call counters zero and unchanged canonical bytes.",
+    "genuineBindings": [
+      "ShortRestArrival starts from the supplied original selected factory or StartWithShortRest, then genuine StartVialScenario/encounter/healing/closure/walk sequence.",
+      "Flesh Warden replacement case uses original StartWithFleshWarden through genuine ShortRestArrival with its real first mutation rest.",
+      "Flesh Warden choice case starts directly from original StartWithFleshWarden; actual berth step, interrupted start, full restart, same-card completion and nonbeneficial plain third rest are preserved."
+    ],
+    "rename": "The later same-state local remains `same`; new command local is `sameCommand`, avoiding a duplicate in the reviewed current Flesh Warden source. This is a static observation, not compilation proof.",
+    "notClaimed": "Hooks are source additions, not execution results. The mutation Deny helper still tests original host rejection/duplicate/conflict paths; it is not claimed to assess every negative new-V1 branch. ConsumeDecay hook mechanics and wound-treatment implementation are outside this bounded family review."
+  },
+  "scopeLimits": [
+    "No runtime or test source was edited and no compilation, package validation, gameplay, replay, or tests were run by this reviewer.",
+    "No concrete blocker was found in reviewed ShortRest/MutationRest scope. Parent compilation/test evidence and all required branch/profile/five-path qualification remain separate.",
+    "No proof of full public API disclosure, global deterministic capacity feasibility, performance or full module acceptance from this static review.",
+    "Existing exact purity-source audit for CurrentWork/pending/geometry/owning projection is reused only where its source hashes still match; the new rest guards and selected mutation leaves were directly inspected."
+  ],
+  "priorPureSelectorReview": {
+    "path": "engine/artifacts/admitted-command-surface/long-rest-assessment-cross-review-01.json",
+    "sha256": "b530ae62bd8fe6a10860cf8cdb7e624e1c154f7ae4790b9fb7803f55692f26eb",
+    "exactSourceReuse": [
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+        "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+        "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDeclaredGeometry.cs",
+        "sha256": "67c2073e9807247bf1fefdcf80f47e05b5387a1876ba34e26633a2a4a631ded1",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+        "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+        "sha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+        "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b",
+        "exactEarlierAuditSourceMatch": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+        "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd",
+        "exactEarlierAuditSourceMatch": true
+      }
+    ]
+  }
+}

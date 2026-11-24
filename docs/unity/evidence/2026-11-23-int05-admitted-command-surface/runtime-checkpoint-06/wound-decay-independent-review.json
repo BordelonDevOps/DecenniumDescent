@@ -1,0 +1,288 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_BLOCKER_FOUND",
+  "reviewer": "independent agent /root/review_consecration",
+  "createdAtUtc": "2026-11-24T04:27:20.306851+00:00",
+  "acceptedBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "comparisonHead": "621c2821a",
+  "scope": [
+    "Only SharedWoundTreatment.cs and SharedConsumeDecay.cs changes plus their routing in SharedCommandAssessmentV1.cs.",
+    "Direct dependency reads for WoundTreatmentStation/Record, WorkLedger immutable quantities and WorldActivityProjection current selectors; no all-family purity audit.",
+    "Test source hooks inspected narrowly, not executed or accepted as passing evidence."
+  ],
+  "reviewedSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "sha256": "2e763c65f230aff6fddd58751767fa322a18a926f777e4896f526dea71f9987f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+      "sha256": "e0babd4e9fff5ce18298706524e36a3827946f13ab1bc46b6e9fda2641d7ecf0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "b9694464d26a3d532fa692fb63065957be6ebadec48ce9869dee7c57570ae349"
+    }
+  ],
+  "concreteFindings": [],
+  "dispositions": [
+    {
+      "id": "WOUND-ORDER",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "Opening retains selected fixed healer/patient then exact payload guards, followed by actual Active selector.",
+        "Interrupt returns after NoActiveWoundTreatment check and never enters fresh access, stock/kit, future window, candidate constructor or reserve path. Actual Resolve calls EndWoundTreatment only after the opening result.",
+        "Fresh Start retains AlreadyActive -> native access -> basket/history/expiry -> expected supplies -> future participant overlap."
+      ]
+    },
+    {
+      "id": "WOUND-ACCESS",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "Exact ordinary station and closed reinforcement context; stationary participants and line; healer capability/Action/hand; living stable-or-positive patient with exactly one injury; immediate occupancy remain in native order.",
+        "WorldActivityProjection.CurrentWork uses CurrentWorkCore with details/open modes false; Create then returns lightweight current activity descriptors, not command discovery or work reservation. Read-specific condition context continues to own CapableWorker/Permissions."
+      ]
+    },
+    {
+      "id": "WOUND-IMMUTABLE-STOCK",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "WoundTreatmentStation.Kit is a static readonly immutable ResourceLot. Stock(basket) enumerates immutable fixed fixture ResourceLot/Vessel descriptions derived from the basket; these are expected sealed supply definitions, not candidate treatment/claims or authoritative inventory mutation.",
+        "Exact supply identity/custodian/location/unit and AvailableAmount comparison remains native; sealed stock is not promoted to ordinary inventory."
+      ]
+    },
+    {
+      "id": "WOUND-CONSTRUCTOR-STAGE",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "Actual resolver still constructs WoundTreatmentRecord after ordinary access/basket/expiry and before supplies/window. No earlier constructor or candidate validation was introduced.",
+        "Read path does not create WoundTreatmentRecord, WorkerInterval, ResourceReservation or WorkLedger and does not call Reserve/Consume.",
+        "Window predicate replaces job.DueAt with StartedAt.AddSeconds(DurationSeconds) in the same Any short-circuit position after actor/target match, then tests x.End>StartedAt. DueAt native property has exactly this AddSeconds expression. No eager precomputation before supply checks or unmatched-worker filtering."
+      ]
+    },
+    {
+      "id": "DECAY-GUARDS",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "Exact selected actor/bed/later-combat, payload, pending, own turn, once-only record, Action spent, capability/permission and exposed adjacent stationary geometry order is unchanged.",
+        "Read returns before level/offer creation, PayAction, ConsumeDecayRecord, TemporaryHpRules.Select or ReplaceTemporaryHp.",
+        "Actual resolver reselects the same interval/actor after the nonmutating initial helper, then preserves original actual tail including strongest-only arbitration."
+      ]
+    },
+    {
+      "id": "OUTER-ROUTING",
+      "status": "CONCUR_WITHIN_STATIC_SCOPE",
+      "evidence": [
+        "New care kinds are included in the incremental native support inventory; this does not claim completed78-kind coverage or host exposure.",
+        "For these care kinds WorldOpening -> active LongRest -> pending Sanctuary -> Guidance -> physical constraints remain before family dispatch.",
+        "ActiveShortRestInterruptionV1 precedes ConsumeDecay/Wound family guards as original ResolveCore903-908 requires. Wound operations still return before the later generic station-stock/participant occupied gates.",
+        "RequiresVerifiedAssessment remains unrelated to these care commands; no legacy resolver fallback is introduced."
+      ]
+    },
+    {
+      "id": "INITIAL-VS-COMMIT",
+      "status": "BOUNDED_LIMIT",
+      "evidence": [
+        "InitialAssessmentV1 returns initial eligibility with commit feasibility null. This review does not treat a passing initial assessment as successful future construction/reservation/completion or full later-capacity projection.",
+        "Original actual constructor, global ledger capacity and future access/Medicine completion stages remain execution-owned. Full INT-05 facts/conditional obligations and qualification remain open."
+      ]
+    }
+  ],
+  "staticComparisons": [
+    "Both family files at621c2821a match accepted67f3d201b before this patch.",
+    "Consume Decay complete native initial guards equal after reversing metadata wrappers; actual life/offer/pay/arbitration/replacement and all later helper tail is byte-identical.",
+    "Wound access guards equal after reversing metadata wrappers; actual intervals/claims/Reserve/Consume and all completion/interrupt/RNG tail is byte-identical."
+  ],
+  "exactOriginChecks": {
+    "familyNativeGuards": 20,
+    "routingLiteralGuardsChecked": 5,
+    "allAcceptedBaselineTokenMatches": true,
+    "origins": [
+      {
+        "code": "WoundTreatmentRequiresOrdinaryStation",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 38
+      },
+      {
+        "code": "WoundTreatmentRequiresStationaryAccess",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 44
+      },
+      {
+        "code": "WoundTreatmentHealerIncapable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 46
+      },
+      {
+        "code": "WoundTreatmentPatientIneligible",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 50
+      },
+      {
+        "code": "WoundTreatmentParticipantOccupied",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 54
+      },
+      {
+        "code": "WoundTreatmentUnavailable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 61
+      },
+      {
+        "code": "InvalidWoundTreatmentRequest",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 67
+      },
+      {
+        "code": "NoActiveWoundTreatment",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 70
+      },
+      {
+        "code": "WoundTreatmentAlreadyActive",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 74
+      },
+      {
+        "code": "WoundTreatmentSupplyUnavailable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 78
+      },
+      {
+        "code": "WoundTreatmentSupplyOrKitUnavailable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 85
+      },
+      {
+        "code": "WoundTreatmentParticipantOccupied",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+        "line": 88
+      },
+      {
+        "code": "ConsumeDecayUnavailable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 24
+      },
+      {
+        "code": "InvalidConsumeDecayRequest",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 30
+      },
+      {
+        "code": "TacticalChoicePending",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 32
+      },
+      {
+        "code": "WrongRegularTurn",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 34
+      },
+      {
+        "code": "ConsumeDecayUseSpent",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 35
+      },
+      {
+        "code": "ActionAlreadySpent",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 37
+      },
+      {
+        "code": "ConsumeDecayActorIncapable",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 39
+      },
+      {
+        "code": "ConsumeDecaySubstrateOutOfReach",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs",
+        "line": 46
+      },
+      {
+        "code": "ClassRecoveryUnsupported",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "line": 896
+      },
+      {
+        "code": "ShortRestRequiresInterruption",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "line": 906
+      },
+      {
+        "code": "LongRestRequiresInterruption",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "line": 879
+      },
+      {
+        "code": "SanctuaryChoicePending",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+        "line": 91
+      },
+      {
+        "code": "OrdinarySpellcastingUnsupported",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+        "line": 360
+      }
+    ]
+  },
+  "dependencyPins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "c3eb5a420f8f10ff9511a522ad24a5a2ac943a5e70f1491e2fb1496ad88dc51b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    }
+  ],
+  "testSourceReview": {
+    "status": "SOURCE_ONLY_NO_EXECUTION",
+    "cases": [
+      "int05_care_profile_denials_share_native_order: seven authentic factory-genesis native/Core denials explicitly labeled not public V1 admission.",
+      "ConnectedWoundTreatmentCases: pure assessment inserted before genuine start, active interrupt and second-basket restart. Existing active interrupt has already consumed basket and reserved kit, so the hook meaningfully exercises interrupt bypass of fresh supply checks.",
+      "ConnectedShortRestCases ShortRestArrival: ConsumeDecay command hook assesses before actual connected command; it does not replace actual HP arbitration or claim full decay qualification."
+    ],
+    "pins": [
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedRecoveryCases.cs",
+        "sha256": "142d1a684cf447d565640bea9d86a479ad639c85accca57d551cf8ae7e4b3186"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedWoundTreatmentCases.cs",
+        "sha256": "88dade200a177f0c5f490a7b08632aae3de8b77bfe2e7306f7077c031f50c405"
+      },
+      {
+        "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedShortRestCases.cs",
+        "sha256": "944268c87c7abe408fa43d69cacac345ada125b49772677e863f996f01675bea"
+      }
+    ]
+  },
+  "contractPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json",
+      "sha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_HC_ACCEPTANCE_REVIEW_09.json",
+      "sha256": "3f997117342e37ad2b6ce5aa12a359f1219c6855feac01b1ea8dc6f05a292b5a"
+    }
+  ],
+  "testExecutionByReviewer": false,
+  "buildExecutionByReviewer": false,
+  "gameplayOrReplayByReviewer": false,
+  "runtimeEditsByReviewer": false,
+  "wholeModuleAcceptance": false,
+  "limits": [
+    "Static review of this incremental care patch only. No complete DTO/diagnostic/disclosure or all-family purity claim.",
+    "No new mechanics, clinical authority, reachability allocation or successor.",
+    "No passing test results inferred from test source or parent-run status. Final actual GPT/Codex module acceptance remains open."
+  ]
+}

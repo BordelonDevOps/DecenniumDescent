@@ -887,17 +887,16 @@ namespace Decennium.Foundation.Laboratory
             if (s.ConnectedClericCasting && SpellCastingProfile.IsUtilityCommand(c.Kind))
                 return assessTactical?AssessCastingUtility(s,c):ResolveCastingUtility(s,c);
             if (ClericRepertoireProfile.IsCommand(c.Kind)) return ClericRepertoireProfile.CommandFailure(s, c);
-            if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return "ClassRecoveryUnsupported";
+            var classRecoveryFailure = ClassRecoveryConstraintV1(s, c);
+            if (classRecoveryFailure != null) return classRecoveryFailure.NativeCode;
             if (c.Kind == CommandKind.UseConsecrate) return ResolveConsecrate(s,c);
             if (c.Kind == CommandKind.UseDivineInvocation) return ResolveDivineInvocation(s,c);
             if (c.Kind == CommandKind.UseHealingRite) return ResolveHealingRite(s, c);
             if (c.Kind == CommandKind.UseIntimidatingPresence) return assessTactical
                 ? AssessIntimidatingPresence(s, c) : ResolveIntimidatingPresence(s, c);
             if (ShortRestBerth.IsCommand(c.Kind)) return ResolveShortRest(s, c);
-            if (ShortRestBerth.Active(s) != null && c.Actor == ShortRestBerth.Actor
-                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
-                && c.Kind != CommandKind.EnterInventoryCombat)
-                return "ShortRestRequiresInterruption";
+            var shortRestInterruption = ActiveShortRestInterruptionV1(s, c);
+            if (shortRestInterruption != null) return shortRestInterruption.NativeCode;
             if (c.Kind == CommandKind.ConsumeDecay) return ResolveConsumeDecay(s, c);
             if (WoundTreatmentStation.IsCommand(c.Kind)) return ResolveWoundTreatment(s, c);
             if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return "WoundTreatmentStockSealed";

@@ -31,11 +31,14 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string MutationRestAccess(Snapshot state, string mutation)
+            => MutationRestConstraintV1(state, mutation)?.NativeCode;
+
+        private static NativeCommandConstraintV1 MutationRestConstraintV1(Snapshot state, string mutation)
         {
-            if (!state.ConnectedFleshWarden) return "MutationRestUnavailable";
-            if (!FleshWardenProfile.IsMutation(mutation)) return "UnsupportedMutationRestSelection";
-            if (!FleshWardenProfile.HasEntitlements(state)) return "MutationRestQualificationUnavailable";
-            if (ShortRestBerth.BenefitsUsed(state) >= ShortRestBerth.InitialBenefits) return "MutationRestCadenceUnsupported";
+            if (!state.ConnectedFleshWarden) return new NativeCommandConstraintV1("MutationRestUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs", 35);
+            if (!FleshWardenProfile.IsMutation(mutation)) return new NativeCommandConstraintV1("UnsupportedMutationRestSelection", "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs", 36);
+            if (!FleshWardenProfile.HasEntitlements(state)) return new NativeCommandConstraintV1("MutationRestQualificationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs", 37);
+            if (ShortRestBerth.BenefitsUsed(state) >= ShortRestBerth.InitialBenefits) return new NativeCommandConstraintV1("MutationRestCadenceUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedFleshWarden.cs", 38);
             return null;
         }
 

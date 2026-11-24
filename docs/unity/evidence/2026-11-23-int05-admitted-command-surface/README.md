@@ -1,6 +1,6 @@
 # INT-05 admitted command and choice surface
 
-Runtime implementation is in progress: [checkpoint05](IMPLEMENTATION_CHECKPOINT_05.json) adds shared initial long-rest and recovery-ability assessment. Seven selected checks and compilation/package validation pass on the frozen candidate; nine native kinds are covered. Public V1 APIs, remaining kinds, complete qualification and actual final GPT acceptance remain open. Earlier design entries below retain their historical scope.
+Runtime implementation is in progress: [checkpoint06](IMPLEMENTATION_CHECKPOINT_06.json) adds shared initial short-rest, mutation, decay and wound-treatment assessments. Six selected cases and compilation/package validation pass on the frozen candidate; fifteen native kinds are covered. Raw failed compilation and its correction are retained. Public V1 APIs, remaining kinds, complete qualification and actual final GPT acceptance remain open. Earlier design entries below retain their historical scope.
 
 **HC-01–05 and the complete finite implementation/qualification plan are accepted for implementation.** Actual GPT09 `271baf94-22dd-57cb-a2ab-5f728e989b4d` and Codex concur at candidate `67f3d201b`. [Acceptance and limits](HC_ACCEPTANCE.md). Final runtime/module acceptance remains open. Earlier proposal/open labels below retain their checkpoint history.
 

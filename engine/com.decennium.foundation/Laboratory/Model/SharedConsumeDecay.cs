@@ -17,34 +17,43 @@ namespace Decennium.Foundation.Laboratory
             return this;
         }
 
-        private string ResolveConsumeDecay(Snapshot state, Command command)
+        private NativeCommandConstraintV1 ConsumeDecayConstraintV1(Snapshot state, Command command)
         {
             if (!state.ConnectedConsumeDecay || command.Actor != ConsumeDecaySite.Actor || command.Target != ConsumeDecaySite.Id
                 || !state.InventoryCombat || !WorldTiming.IsLaterActive(state))
-                return "ConsumeDecayUnavailable";
+                return new NativeCommandConstraintV1("ConsumeDecayUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 24);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
                 || command.RouteMappingWork != null)
-                return "InvalidConsumeDecayRequest";
+                return new NativeCommandConstraintV1("InvalidConsumeDecayRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 30);
             if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state))
-                return "TacticalChoicePending";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 32);
             if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor)
-                return "WrongRegularTurn";
-            if (state.ConsumeDecay != null) return "ConsumeDecayUseSpent";
+                return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 34);
+            if (state.ConsumeDecay != null) return new NativeCommandConstraintV1("ConsumeDecayUseSpent", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 35);
             var interval = Interval(state, command.Actor);
-            if (interval.ActionSpent) return "ActionAlreadySpent";
+            if (interval.ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 37);
             if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action)
-                return "ConsumeDecayActorIncapable";
+                return new NativeCommandConstraintV1("ConsumeDecayActorIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 39);
             var actor = state.Actors.Single(x => x.Id == command.Actor);
             var bed = new CombatCell(ConsumeDecaySite.X, ConsumeDecaySite.Y);
             if (actor.X != 0 || (actor.Y != 2 && actor.Y != 3)
                 || PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), bed) != 5
                 || state.WorldTraversals.Any(x => x.ActorId == actor.Id)
                 || !ObservationGeometry.LineOfEffectClearToCell(state, actor.Id, bed.X, bed.Y))
-                return "ConsumeDecaySubstrateOutOfReach";
+                return new NativeCommandConstraintV1("ConsumeDecaySubstrateOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedConsumeDecay.cs", 46);
 
+            return null;
+        }
+
+        private string ResolveConsumeDecay(Snapshot state, Command command)
+        {
+            var failure = ConsumeDecayConstraintV1(state, command);
+            if (failure != null) return failure.NativeCode;
+            var interval = Interval(state, command.Actor);
+            var actor = state.Actors.Single(x => x.Id == command.Actor);
             var life = state.Lives.Single(x => x.ActorId == actor.Id);
             int offer = state.Characters.Single(x => x.ActorId == actor.Id).Levels.Count;
             SetInterval(state, interval.PayAction());

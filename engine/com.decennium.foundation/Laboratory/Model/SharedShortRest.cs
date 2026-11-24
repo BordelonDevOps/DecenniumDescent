@@ -19,54 +19,83 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ShortRestAccess(Snapshot state, ShortRestRecord active)
+            => ShortRestAccessConstraintV1(state, active)?.NativeCode;
+
+        private NativeCommandConstraintV1 ShortRestAccessConstraintV1(Snapshot state, ShortRestRecord active)
         {
             const string actor = ShortRestBerth.Actor;
             if (active == null && state.InventoryCombat || ShortRestEncounter(state))
-                return "ShortRestRequiresOrdinaryExploration";
+                return new NativeCommandConstraintV1("ShortRestRequiresOrdinaryExploration", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 25);
             var body = state.Actors.Single(x => x.Id == actor);
             if (body.X != ShortRestBerth.X || body.Y != ShortRestBerth.Y
                 || !WorldWalkable(state, ShortRestBerth.X, ShortRestBerth.Y)
                 || state.WorldTraversals.Any(x => x.ActorId == actor))
-                return "ShortRestRequiresStationaryBerthAccess";
+                return new NativeCommandConstraintV1("ShortRestRequiresStationaryBerthAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 30);
             if (state.Actors.Any(x => x.Id != actor && x.X == ShortRestBerth.X && x.Y == ShortRestBerth.Y))
-                return "ShortRestBerthOccupied";
-            if (state.Lives.Single(x => x.ActorId == actor).Dead) return "ShortRestActorDead";
+                return new NativeCommandConstraintV1("ShortRestBerthOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 32);
+            if (state.Lives.Single(x => x.ActorId == actor).Dead) return new NativeCommandConstraintV1("ShortRestActorDead", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 33);
             if (state.Work.WorkerIntervals.Any(x => x.JobId != active?.Id && x.WorkerId == actor
                     && x.Start <= state.RuleClock && x.End > state.RuleClock)
                 || WorldActivityProjection.CurrentWork(state).Any(x => x.ActorId == actor && x.Id != active?.Id))
-                return "ShortRestActorOccupied";
+                return new NativeCommandConstraintV1("ShortRestActorOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 37);
             return null;
         }
 
-        private string ResolveShortRest(Snapshot state, Command command)
+        private NativeCommandConstraintV1 ShortRestOpeningConstraintV1(Snapshot state, Command command)
         {
-            if (!state.ConnectedShortRest || command.Actor != ShortRestBerth.Actor) return "ShortRestUnavailable";
+            if (!state.ConnectedShortRest || command.Actor != ShortRestBerth.Actor) return new NativeCommandConstraintV1("ShortRestUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 43);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
                 || command.RouteMappingWork != null)
-                return "UnsupportedShortRestSelection";
+                return new NativeCommandConstraintV1("UnsupportedShortRestSelection", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 49);
             if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)
-                || state.ManufacturingAdvance != null) return "ShortRestPendingChoice";
+                || state.ManufacturingAdvance != null) return new NativeCommandConstraintV1("ShortRestPendingChoice", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 51);
             var active = ShortRestBerth.Active(state);
             if (command.Kind == CommandKind.InterruptShortRest) {
-                if (active == null || command.Target != active.Id) return "NoMatchingActiveShortRest";
-                EndShortRest(state, active, command, ShortRestInterruption.Explicit);
+                if (active == null || command.Target != active.Id) return new NativeCommandConstraintV1("NoMatchingActiveShortRest", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 54);
                 return null;
             }
             bool mutation = command.Kind == CommandKind.BeginMutationShortRest;
             if (mutation) {
-                string failure = MutationRestAccess(state, command.Target);
+                var failure = MutationRestConstraintV1(state, command.Target);
                 if (failure != null) return failure;
-            } else if (command.Target != ShortRestBerth.Id) return "ShortRestSiteUnavailable";
-            if (active != null) return "ShortRestAlreadyActive";
-            string access = ShortRestAccess(state, null);
+            } else if (command.Target != ShortRestBerth.Id) return new NativeCommandConstraintV1("ShortRestSiteUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 62);
+            if (active != null) return new NativeCommandConstraintV1("ShortRestAlreadyActive", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 63);
+            var access = ShortRestAccessConstraintV1(state, null);
             if (access != null) return access;
-            if (state.ShortRests.Length == ShortRestBerth.MaxAttempts) return "ShortRestHistoryCapacityReached";
+            if (state.ShortRests.Length == ShortRestBerth.MaxAttempts) return new NativeCommandConstraintV1("ShortRestHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 66);
+            return null;
+        }
+
+        private static NativeCommandConstraintV1 ShortRestWindowConstraintV1(Snapshot state, string actor, RuleTime startedAt)
+        {
+            // Same lazy arithmetic as ShortRestRecord.DueAt inside the native overlap predicate.
+            return state.Work.WorkerIntervals.Any(x => x.WorkerId == actor
+                && x.Start < startedAt.AddSeconds(ShortRestBerth.DurationSeconds) && x.End > startedAt)
+                ? new NativeCommandConstraintV1("ShortRestActorOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs", 69) : null;
+        }
+
+        private NativeCommandConstraintV1 ShortRestConstraintV1(Snapshot state, Command command)
+        {
+            var failure = ShortRestOpeningConstraintV1(state, command);
+            return failure != null || command.Kind == CommandKind.InterruptShortRest ? failure
+                : ShortRestWindowConstraintV1(state, command.Actor, state.RuleClock);
+        }
+
+        private string ResolveShortRest(Snapshot state, Command command)
+        {
+            var failure = ShortRestOpeningConstraintV1(state, command);
+            if (failure != null) return failure.NativeCode;
+            if (command.Kind == CommandKind.InterruptShortRest) {
+                EndShortRest(state, ShortRestBerth.Active(state), command, ShortRestInterruption.Explicit);
+                return null;
+            }
+            bool mutation = command.Kind == CommandKind.BeginMutationShortRest;
             var rest = new ShortRestRecord(state.ShortRests.Length, command.Id, state.Revision + 1, state.RuleClock);
-            if (state.Work.WorkerIntervals.Any(x => x.WorkerId == command.Actor && x.Start < rest.DueAt && x.End > rest.StartedAt))
-                return "ShortRestActorOccupied";
+            var window = ShortRestWindowConstraintV1(state, command.Actor, rest.StartedAt);
+            if (window != null) return window.NativeCode;
             state.Work = state.Work.Reserve(rest.Id, new[] {
                 new WorkerInterval(ShortRestBerth.OccupancyId(rest.Id), rest.Id, command.Actor, rest.StartedAt, rest.DueAt)
             }, Array.Empty<ResourceReservation>());

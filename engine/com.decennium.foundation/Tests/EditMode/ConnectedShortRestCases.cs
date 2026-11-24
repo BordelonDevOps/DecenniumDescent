@@ -17,7 +17,11 @@ namespace Decennium.Foundation.Tests
             const ExpeditionSeat player = ExpeditionSeat.Player;
             void Commit(string id, string actor, CommandKind kind, string target = "", int x = 0, int y = 0,
                 InventoryRequest inventory = null, CombatRequest combat = null)
-                => CommitVialRoute(session, new Command(id, actor, session.View(player).Revision, kind, target, x, y, inventory, combat));
+            {
+                var command=new Command(id, actor, session.View(player).Revision, kind, target, x, y, inventory, combat);
+                if(ShortRestBerth.IsCommand(kind)||kind==CommandKind.ConsumeDecay)AssertPureUtility(session,command);
+                CommitVialRoute(session,command);
+            }
             void Guard(string actor) => Commit("rest.guard." + session.View(player).Revision, actor, CommandKind.SelectCombatStance,
                 combat: new CombatRequest(session.View(player).TurnId, stance: 1));
             void End(string actor) => Commit("rest.end." + session.View(player).Revision, actor, CommandKind.EndRegularTurn, session.View(player).TurnId);
@@ -101,7 +105,10 @@ namespace Decennium.Foundation.Tests
                 string FileAt(string label) => Path.Combine(directory, "short-rest-" + label + ".ddsave");
                 Snapshot Save(string label) { session.Save(FileAt(label)); return store.Load(FileAt(label)); }
                 Command Begin(string id) => new Command(id, hero, session.View(player).Revision, CommandKind.BeginShortRest, ShortRestBerth.Id);
-                void Commit(Command command) => CommitVialRoute(session, command);
+                void Commit(Command command) {
+                    if(ShortRestBerth.IsCommand(command.Kind))AssertPureUtility(session,command);
+                    CommitVialRoute(session,command);
+                }
                 void Advance(string id, int seconds) => Commit(new Command(id, hero, session.View(player).Revision, CommandKind.AdvanceClock, x: seconds, y: 1));
                 void Deny(Command command, ExpeditionResponse response = ExpeditionResponse.Unavailable, ExpeditionSeat seat = player)
                 {

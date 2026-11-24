@@ -11,6 +11,33 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddAdmittedRecoveryCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("int05_care_profile_denials_share_native_order",()=> {
+                const string hero=ConnectedExpeditionSession.Hero,patient=ConnectedExpeditionSession.Companion;
+                var rows=new[] {
+                    (NewClericExpedition(),CommandKind.BeginShortRest,ShortRestBerth.Id,"ClassRecoveryUnsupported"),
+                    (ConnectedExpeditionSession.StartWithConsumeDecay(),CommandKind.BeginShortRest,ShortRestBerth.Id,"ShortRestUnavailable"),
+                    (ConnectedExpeditionSession.StartWithWoundTreatment(),CommandKind.ConsumeDecay,ConsumeDecaySite.Id,"ConsumeDecayUnavailable"),
+                    (ConnectedExpeditionSession.StartWithShortRest(),CommandKind.BeginMutationShortRest,FleshWardenProfile.FleshWarden,"MutationRestUnavailable"),
+                    (ConnectedExpeditionSession.StartWithFleshWarden(),CommandKind.BeginMutationShortRest,"mutation.unknown","UnsupportedMutationRestSelection"),
+                    (ConnectedExpeditionSession.StartWithWoundTreatment(),CommandKind.InterruptWoundTreatment,patient,"NoActiveWoundTreatment"),
+                    (ConnectedExpeditionSession.StartWithShortRest(),CommandKind.InterruptShortRest,"rest.missing","NoMatchingActiveShortRest")
+                };
+                var facts=new List<object>();int index=0;
+                foreach(var row in rows) {
+                    var session=row.Item1;var sim=CastingSimulation(session);var state=sim.Capture();var bytes=Bytes(sim);
+                    var command=new Command("int05.care.profile."+(++index),hero,state.Revision,row.Item2,row.Item3);
+                    AssertPureUtility(session,command,row.Item4);
+                    var read=sim.AssessCommandFactsV1(CastingAuthority(),command,state.Revision);
+                    var actual=sim.Execute(CastingAuthority(),command);
+                    Require(actual.Outcome==Outcome.Rejected&&actual.Code==row.Item4&&bytes.SequenceEqual(Bytes(sim)),
+                        "Native profile/cancellation denial differed from actual execution.");
+                    facts.Add(new {state.WireSchemaVersion,kind=command.Kind.ToString(),code=actual.Code,
+                        read.Constraint.SourcePath,read.Constraint.SourceLine});
+                }
+                File.WriteAllText(Path.Combine(directory,"int05-care-profile-denials.json"),System.Text.Json.JsonSerializer.Serialize(new {
+                    scope="Seven authentic factory-genesis native denials; current profile selection and early branch ordering, not public V1 admission",facts }));
+            });
+
             cases.Add("int05_genuine_rest_assessment_occupancy_interrupt_and_retry",()=> {
                 const string actor=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero;
                 var session=NewClericLongRestExpedition();

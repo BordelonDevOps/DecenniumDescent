@@ -31,61 +31,96 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string WoundTreatmentAccess(Snapshot state, WoundTreatmentRecord active)
+            => WoundTreatmentAccessConstraintV1(state, active)?.NativeCode;
+
+        private NativeCommandConstraintV1 WoundTreatmentAccessConstraintV1(Snapshot state, WoundTreatmentRecord active)
         {
             const string healer = WoundTreatmentStation.Healer;
             const string patient = WoundTreatmentStation.Patient;
             if (state.InventoryCombat || state.Encounter != null || !state.ClosedEncounters.Any(x => x.Encounter.Id == state.Reinforcement?.Definition.EncounterId))
-                return "WoundTreatmentRequiresOrdinaryStation";
+                return new NativeCommandConstraintV1("WoundTreatmentRequiresOrdinaryStation", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 38);
             var worker = state.Actors.Single(x => x.Id == healer);
             var recipient = state.Actors.Single(x => x.Id == patient);
             if (worker.X != 1 || worker.Y != 2 || recipient.X != 1 || recipient.Y != 3
                 || state.WorldTraversals.Any(x => x.ActorId == healer || x.ActorId == patient)
                 || !ObservationGeometry.LineOfEffectClear(state, healer, patient))
-                return "WoundTreatmentRequiresStationaryAccess";
+                return new NativeCommandConstraintV1("WoundTreatmentRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 44);
             if (!CapableWorker(state, healer) || !Permissions(state, healer).Action || AvailableHands(state, healer) < 1)
-                return "WoundTreatmentHealerIncapable";
+                return new NativeCommandConstraintV1("WoundTreatmentHealerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 46);
             var life = state.Lives.Single(x => x.ActorId == patient);
             if (life.Dead || (life.Hp == 0 && !life.Stable) || life.LinkedInjuries.Count != 1
                 || active != null && life.LinkedInjuries[0] != active.LinkedInjury)
-                return "WoundTreatmentPatientIneligible";
+                return new NativeCommandConstraintV1("WoundTreatmentPatientIneligible", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 50);
             if (state.Work.WorkerIntervals.Any(x => x.JobId != active?.Id && (x.WorkerId == healer || x.WorkerId == patient)
                     && x.Start <= state.RuleClock && x.End > state.RuleClock)
                 || WorldActivityProjection.CurrentWork(state).Any(x => (x.ActorId == healer || x.ActorId == patient) && x.Id != active?.Id))
-                return "WoundTreatmentParticipantOccupied";
+                return new NativeCommandConstraintV1("WoundTreatmentParticipantOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 54);
             return null;
         }
 
-        private string ResolveWoundTreatment(Snapshot state, Command command)
+        private NativeCommandConstraintV1 WoundTreatmentOpeningConstraintV1(Snapshot state, Command command)
         {
             if (!state.ConnectedWoundTreatment || command.Actor != WoundTreatmentStation.Healer || command.Target != WoundTreatmentStation.Patient)
-                return "WoundTreatmentUnavailable";
+                return new NativeCommandConstraintV1("WoundTreatmentUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 61);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
                 || command.RouteMappingWork != null)
-                return "InvalidWoundTreatmentRequest";
+                return new NativeCommandConstraintV1("InvalidWoundTreatmentRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 67);
             var active = WoundTreatmentStation.Active(state);
             if (command.Kind == CommandKind.InterruptWoundTreatment) {
-                if (active == null) return "NoActiveWoundTreatment";
-                EndWoundTreatment(state, active, command, WoundTreatmentOutcome.Interrupted);
+                if (active == null) return new NativeCommandConstraintV1("NoActiveWoundTreatment", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 70);
                 return null;
             }
-            if (active != null) return "WoundTreatmentAlreadyActive";
-            var access = WoundTreatmentAccess(state, null);
+            if (active != null) return new NativeCommandConstraintV1("WoundTreatmentAlreadyActive", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 74);
+            var access = WoundTreatmentAccessConstraintV1(state, null);
             if (access != null) return access;
             if (state.WoundTreatments.Length == WoundTreatmentStation.BasketCount || state.RuleClock >= WoundTreatmentStation.ExpiresAt)
-                return "WoundTreatmentSupplyUnavailable";
+                return new NativeCommandConstraintV1("WoundTreatmentSupplyUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 78);
+            return null;
+        }
+
+        private static NativeCommandConstraintV1 WoundTreatmentSupplyConstraintV1(Snapshot state, int basket, out ResourceLot[] inputs)
+        {
+            inputs = new[] { WoundTreatmentStation.Kit }.Concat(WoundTreatmentStation.Stock(basket)).ToArray();
+            if (inputs.Any(x => !state.Work.Lots.Any(lot => lot.Id == x.Id && lot.CustodianId == x.CustodianId
+                && lot.LocationId == x.LocationId && lot.UnitId == x.UnitId) || state.Work.AvailableAmount(x.Id) != x.Amount))
+                return new NativeCommandConstraintV1("WoundTreatmentSupplyOrKitUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 85);
+            return null;
+        }
+
+        private static NativeCommandConstraintV1 WoundTreatmentWindowConstraintV1(Snapshot state, Command command, RuleTime startedAt)
+        {
+            // Same lazy arithmetic as WoundTreatmentRecord.DueAt; no candidate job or claims.
+            return state.Work.WorkerIntervals.Any(x => (x.WorkerId == command.Actor || x.WorkerId == command.Target)
+                && x.Start < startedAt.AddSeconds(WoundTreatmentStation.DurationSeconds) && x.End > startedAt)
+                ? new NativeCommandConstraintV1("WoundTreatmentParticipantOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs", 88) : null;
+        }
+
+        private NativeCommandConstraintV1 WoundTreatmentConstraintV1(Snapshot state, Command command)
+        {
+            var failure = WoundTreatmentOpeningConstraintV1(state, command);
+            if (failure != null || command.Kind == CommandKind.InterruptWoundTreatment) return failure;
+            return WoundTreatmentSupplyConstraintV1(state, state.WoundTreatments.Length, out _)
+                ?? WoundTreatmentWindowConstraintV1(state, command, state.RuleClock);
+        }
+
+        private string ResolveWoundTreatment(Snapshot state, Command command)
+        {
+            var failure = WoundTreatmentOpeningConstraintV1(state, command);
+            if (failure != null) return failure.NativeCode;
+            if (command.Kind == CommandKind.InterruptWoundTreatment) {
+                EndWoundTreatment(state, WoundTreatmentStation.Active(state), command, WoundTreatmentOutcome.Interrupted);
+                return null;
+            }
             var patient = state.Lives.Single(x => x.ActorId == WoundTreatmentStation.Patient);
             var job = new WoundTreatmentRecord(state.WoundTreatments.Length, command.Id, state.Revision + 1,
                 state.RuleClock, patient.LinkedInjuries[0]);
-            var inputs = new[] { WoundTreatmentStation.Kit }.Concat(WoundTreatmentStation.Stock(job.Basket)).ToArray();
-            if (inputs.Any(x => !state.Work.Lots.Any(lot => lot.Id == x.Id && lot.CustodianId == x.CustodianId
-                && lot.LocationId == x.LocationId && lot.UnitId == x.UnitId) || state.Work.AvailableAmount(x.Id) != x.Amount))
-                return "WoundTreatmentSupplyOrKitUnavailable";
-            if (state.Work.WorkerIntervals.Any(x => (x.WorkerId == command.Actor || x.WorkerId == command.Target)
-                && x.Start < job.DueAt && x.End > job.StartedAt))
-                return "WoundTreatmentParticipantOccupied";
+            var supply = WoundTreatmentSupplyConstraintV1(state, job.Basket, out var inputs);
+            if (supply != null) return supply.NativeCode;
+            var window = WoundTreatmentWindowConstraintV1(state, command, job.StartedAt);
+            if (window != null) return window.NativeCode;
             var intervals = new[] { command.Actor, command.Target }.Select(actor => new WorkerInterval(
                 WoundTreatmentStation.IntervalId(job.Id, actor), job.Id, actor, job.StartedAt, job.DueAt));
             var claims = inputs.Select((lot, index) => new ResourceReservation(

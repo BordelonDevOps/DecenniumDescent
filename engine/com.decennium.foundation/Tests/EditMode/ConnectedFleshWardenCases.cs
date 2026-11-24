@@ -21,7 +21,11 @@ namespace Decennium.Foundation.Tests
                 Snapshot Capture() => ShortRestCapture(session);
                 ActorLifeRecord Hero() => Capture().Lives.Single(x => x.ActorId == hero);
                 void Commit(string id, CommandKind kind, string target = "", int x = 0, int y = 0)
-                    => CommitVialRoute(session, new Command(id, hero, session.View(player).Revision, kind, target, x, y));
+                {
+                    var command=new Command(id, hero, session.View(player).Revision, kind, target, x, y);
+                    if(ShortRestBerth.IsCommand(kind))AssertPureUtility(session,command);
+                    CommitVialRoute(session,command);
+                }
                 string FileAt(string label) => Path.Combine(directory, "flesh-connected-" + label + ".ddsave");
                 var arrival = Capture();
                 var dose = arrival.AlchemyDoses.Single(x => x.Id == VialId);
@@ -72,7 +76,11 @@ namespace Decennium.Foundation.Tests
                 var policy = (TestOnlySharedWorldPolicy)typeof(ConnectedExpeditionSession).GetField("policy", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(session);
                 Snapshot Capture() => ShortRestCapture(session);
                 void Commit(string id, CommandKind kind, string target = "", int x = 0, int y = 0)
-                    => CommitVialRoute(session, new Command(id, hero, session.View(player).Revision, kind, target, x, y));
+                {
+                    var command=new Command(id, hero, session.View(player).Revision, kind, target, x, y);
+                    if(ShortRestBerth.IsCommand(kind))AssertPureUtility(session,command);
+                    CommitVialRoute(session,command);
+                }
                 Command Begin(string id, string target = FleshWardenProfile.FleshWarden)
                     => new Command(id, hero, session.View(player).Revision, CommandKind.BeginMutationShortRest, target);
                 void Deny(Command c, ExpeditionResponse expected = ExpeditionResponse.Unavailable, ExpeditionSeat seat = player)
@@ -103,7 +111,7 @@ namespace Decennium.Foundation.Tests
                 Deny(new Command("flesh.dice", hero, Capture().Revision, CommandKind.BeginMutationShortRest, FleshWardenProfile.FleshWarden, 1));
                 Deny(new Command("flesh.foreign", ConnectedExpeditionSession.Companion, Capture().Revision, CommandKind.BeginMutationShortRest, FleshWardenProfile.FleshWarden));
                 Deny(new Command("flesh.stale", hero, Capture().Revision-1, CommandKind.BeginMutationShortRest, FleshWardenProfile.FleshWarden), ExpeditionResponse.StaleRevision);
-                var begin = Begin("flesh.interrupted"); CommitVialRoute(session, begin);
+                var begin = Begin("flesh.interrupted"); AssertPureUtility(session,begin);CommitVialRoute(session, begin);
                 Deny(begin, ExpeditionResponse.Duplicate);
                 session.SetSeatEnabled(player, false); Deny(begin, ExpeditionResponse.NotAuthorized); session.SetSeatEnabled(player, true);
                 Deny(new Command(begin.Id, hero, begin.ExpectedRevision, begin.Kind, FleshWardenProfile.SpinalBuffer), ExpeditionResponse.CommandIdConflict);
@@ -114,13 +122,13 @@ namespace Decennium.Foundation.Tests
                 Require(Capture().FleshWarden.Choices.Single().Change == null && Capture().FleshWarden.Applications.Count == 0
                     && ShortRestBerth.BenefitsUsed(Capture()) == 0 && Capture().Lives.Single(x => x.ActorId == hero).MaximumHp == 26,
                     "Interrupted choice cannot apply capacity or spend a benefit.");
-                CommitVialRoute(session, Begin("flesh.restart"));
+                var restart=Begin("flesh.restart");AssertPureUtility(session,restart);CommitVialRoute(session,restart);
                 string path = Path.Combine(directory, "flesh-choice-pending.ddsave"); session.Save(path); session.Restore(path);
                 Commit("flesh.restart-before", CommandKind.AdvanceClock, x: 3599, y: 1);
                 Require(Capture().FleshWarden.ApplicationId == "", "Restart cannot retain the interrupted attempt's progress.");
                 Commit("flesh.restart-end", CommandKind.AdvanceClock, x: 1, y: 1);
                 var applied = Capture(); var effect = applied.FleshWarden.Applications.Single();
-                CommitVialRoute(session, Begin("flesh.same")); Commit("flesh.same-hour", CommandKind.AdvanceClock, x: 3600, y: 1);
+                var sameCommand=Begin("flesh.same");AssertPureUtility(session,sameCommand);CommitVialRoute(session,sameCommand); Commit("flesh.same-hour", CommandKind.AdvanceClock, x: 3600, y: 1);
                 var same = Capture();
                 Require(same.FleshWarden.ApplicationId == effect.Id && same.FleshWarden.Applications.Single().StartedAt == effect.StartedAt
                     && same.Lives.Single(x => x.ActorId == hero).Hp == 26 && same.Lives.Single(x => x.ActorId == hero).MaximumHp == 32

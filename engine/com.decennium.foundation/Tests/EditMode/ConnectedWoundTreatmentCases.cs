@@ -138,7 +138,7 @@ namespace Decennium.Foundation.Tests
                 Deny(Treatment("wound.wrong-actor", CommandKind.StartWoundTreatment, actor: patient));
                 Deny(Treatment("wound.wrong-target", CommandKind.StartWoundTreatment, target: hero));
                 Deny(Treatment("wound.no-active", CommandKind.InterruptWoundTreatment));
-                CommitVialRoute(session, start);
+                AssertPureUtility(session,start);CommitVialRoute(session, start);
                 var active = Save("active");
                 Require(active.RuleClock == exit.RuleClock && active.RandomState == exit.RandomState
                     && Life(active).SameAs(Life(exit)) && active.WoundTreatments.Single().DueAt == new RuleTime(171273, 2)
@@ -194,7 +194,7 @@ namespace Decennium.Foundation.Tests
 
                 session.Restore(PathAt("recovered"));
                 var interrupt = Treatment("wound.interrupt", CommandKind.InterruptWoundTreatment);
-                CommitVialRoute(session, interrupt);
+                AssertPureUtility(session,interrupt);CommitVialRoute(session, interrupt);
                 var interrupted = Save("interrupted");
                 Require(interrupted.WoundTreatments.Single().Outcome == WoundTreatmentOutcome.Interrupted
                     && interrupted.WoundTreatments.Single().WordsConsumed == 0 && interrupted.RandomState == recovered.RandomState
@@ -205,7 +205,8 @@ namespace Decennium.Foundation.Tests
                 RequireStock(interrupted, 1, false);
                 Deny(interrupt, ExpeditionResponse.Duplicate);
                 Clock("wound.intermission", 204767, 2);
-                CommitVialRoute(session, Treatment("wound.restart", CommandKind.StartWoundTreatment));
+                var restart=Treatment("wound.restart", CommandKind.StartWoundTreatment);
+                AssertPureUtility(session,restart);CommitVialRoute(session,restart);
                 var restarted = Save("restarted");
                 Require(restarted.WoundTreatments[1].StartedAt == new RuleTime(166400)
                     && restarted.WoundTreatments[1].DueAt == new RuleTime(195200), "Restart requires its own full eight hours.");
