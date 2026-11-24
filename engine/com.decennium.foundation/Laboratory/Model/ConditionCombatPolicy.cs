@@ -9,6 +9,7 @@ namespace Decennium.Foundation.Laboratory
         private readonly ConditionCombatFixture conditions;
         public static ConditionLedger ConditionsFor(Snapshot s, string actor)
         {
+            ConditionResolutionScope.RequireReadSnapshot(s);
             var journal = s.Conditions.Single(x => x.Target == actor);
             return ConditionResolutionScope.Project(journal, s.SchemaVersion >= Snapshot.ExpeditionRouteSchema,
                 new EffectClockMarker(s.RuleClock));

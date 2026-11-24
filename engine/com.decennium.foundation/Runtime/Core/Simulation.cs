@@ -1224,7 +1224,7 @@ namespace Decennium.Foundation
     }
 
     // Single-threaded host owner. Network transport, cadence and production rules are outside this increment.
-    public sealed class Simulation
+    public sealed partial class Simulation
     {
         private Snapshot state;
         private readonly ICommandPolicy policy;
@@ -1268,13 +1268,16 @@ namespace Decennium.Foundation
                 }
             }
             state = verificationOrigin == null ? owned.Copy() : owned;
+            readStateV1 = PrepareReadStateV1(state);
+            readStateOwnerV1.Current = readStateV1.Stamp;
         }
         /// <summary>Authoritative snapshot for trusted simulation and persistence callers.</summary>
-        public Snapshot Capture() => state.Copy();
+        public Snapshot Capture() { RequireOwnerEntryV1(); return state.Copy(); }
 
         /// <summary>Player-facing Search history for the controlled observer, without private roll or cue evidence.</summary>
         public ExplorationSearchView ObserveExplorationSearch(Authority authority, string attemptId)
         {
+            RequireOwnerEntryV1();
             var search = state.ExplorationSearch;
             if (search == null || authority?.Controls(search.Definition.SearcherId) != true) return null;
             var attempt = search.Attempts.SingleOrDefault(x => x.Id == attemptId);
@@ -1286,6 +1289,7 @@ namespace Decennium.Foundation
         /// <summary>Player-facing ordinary Hide lifecycle for its controlled hider.</summary>
         public ExplorationHideView ObserveExplorationHide(Authority authority, string attemptId)
         {
+            RequireOwnerEntryV1();
             var hide = state.ExplorationHide;
             if (hide == null || authority?.Controls(hide.Definition.HiderId) != true) return null;
             var attempt = hide.Attempts.SingleOrDefault(x => x.Id == attemptId);
@@ -1570,6 +1574,7 @@ namespace Decennium.Foundation
 
         public CommandAdmission AssessCommandAdmission(Authority authority, Command command)
         {
+            RequireOwnerEntryV1();
             if (!(policy is ICommandAdmissionPolicy admission) || command == null || !admission.SupportsAdmission(command.Kind))
                 return new CommandAdmission(CommandAdmissionStatus.Rejected, "UnsupportedOperation");
             string failure = PreflightCommand(authority, command, out var previous);
@@ -1584,6 +1589,7 @@ namespace Decennium.Foundation
 
         public CommandResult Execute(Authority authority, Command command)
         {
+            RequireOwnerEntryV1();
             string preflightFailure = PreflightCommand(authority, command, out var previous);
             if (preflightFailure != null) return Reject(preflightFailure);
             if (previous != null) return AcceptedResult(previous, Outcome.Duplicate);
@@ -1619,12 +1625,16 @@ namespace Decennium.Foundation
             catch (ArgumentException) { return Reject("InvalidResult"); }
             var committed = candidate.Copy();
             var acceptedReceipt = committed.Receipts.Single(r => r.Principal == authority.Principal && r.Id == command.Id);
+            var nextReadState = PrepareReadStateV1(committed);
             state = committed;
             checkpoint = nextCheckpoint;
+            readStateV1 = nextReadState;
+            readStateOwnerV1.Current = nextReadState.Stamp;
             return AcceptedResult(acceptedReceipt, Outcome.Committed);
         }
         public CommandQueryResult QueryCommand(Authority authority, Command command)
         {
+            RequireOwnerEntryV1();
             long observedRevision=state.Revision;
             var queryPolicy=policy as ICommandQueryPolicy;
             if(queryPolicy==null||command==null||!Enum.IsDefined(typeof(CommandKind),command.Kind)||!queryPolicy.SupportsCommand(command.Kind))
@@ -1643,6 +1653,7 @@ namespace Decennium.Foundation
         }
         public IReadOnlyList<CommandOption> DiscoverCommands(Authority authority, string actor)
         {
+            RequireOwnerEntryV1();
             var queryPolicy=policy as ICommandQueryPolicy;
             if(queryPolicy==null||authority==null||!Validation.ValidId(actor)||!authority.Controls(actor))
                 return Array.AsReadOnly(Array.Empty<CommandOption>());

@@ -1,0 +1,43 @@
+{
+  "reviewId": "INT05-condition-scope-disposal-cross-review-01",
+  "status": "BOUNDED_SOURCE_REVIEW_NO_REMAINING_DEFECT_IN_CORRECTION",
+  "reviewer": "/root/audit_magic",
+  "baseHead": "79afcf51f18bdfb84fa8aa1cd26ac0725f2bc7dc",
+  "scope": "Only the strict ConditionResolutionScope disposal correction and its focused regression assertions. No edits to runtime or tests; no runtime execution; no general condition, owner-publication, purity, or module acceptance.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "35bdc39067b1faf4bc7f15d3f45ff18b23d335556d1124ea92663968c34fedd3",
+      "reviewedLines": [91, 139, 147]
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedReadContextCases.cs",
+      "sha256": "c52a74ec1a00d25fb9b0fde1a4fbe5854ade2c6bc0d2b82270d0bf4eed8e6676",
+      "reviewedLines": [117, 129],
+      "case": "int05_materialized_conditions_strict_lookup_and_scope_cleanup"
+    }
+  ],
+  "resolvedFinding": {
+    "description": "Previously, out-of-order disposal could disable an inner strict guard, and repeated disposal of a retired inner strict scope could reinstall its retired parent.",
+    "correction": "A retired strict scope returns before any ambient-state change. When either the disposed frame or active frame is strict, a non-current frame throws before setting readDisposed, replacing current, or clearing entries. A valid strict disposal marks the frame retired and restores its previous frame exactly once.",
+    "legacyBoundary": "For legacy-only scopes, both strict predicates remain false and the original current = previous; entries?.Clear() behavior is retained. Disposing a legacy frame under an active strict frame is deliberately rejected to preserve the new read guard.",
+    "result": "RESOLVED_BY_SOURCE_INSPECTION"
+  },
+  "regressionReview": [
+    {
+      "lines": [117, 121],
+      "assertion": "Entering nested strict frames and disposing the outer first throws; an immediate Restore still throws, demonstrating that the active read guard was not removed."
+    },
+    {
+      "lines": [122, 124],
+      "assertion": "Disposing the inner normally retains the outer lifecycle guard; disposing the outer then unwinds normally."
+    },
+    {
+      "lines": [125, 129],
+      "assertion": "Disposing the retired inner again does not reinstall its retired parent, so legacy Restore succeeds; final cleanup repeats both disposals safely."
+    }
+  ],
+  "remainingFindings": [],
+  "validationClaim": "Static review only. Parent-reported compilation and execution were not independently executed or adopted as runtime evidence in this record.",
+  "acceptanceBoundary": "The bounded disposal defect is resolved. No assertion that other proposed semantic tests, the complete condition read path, all profiles, or INT-05 qualification are complete."
+}

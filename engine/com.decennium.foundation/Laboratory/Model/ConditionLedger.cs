@@ -137,6 +137,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionTransition Apply(ConditionApplication application, string proneConsequenceId = "")
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             if (application == null) throw new ArgumentNullException(nameof(application));
             if (application.Target != Target || !application.Starts.Equals(Now))
                 throw new ArgumentException("Apply only to this target at the current marker.");
@@ -169,6 +170,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionTransition GrantImmunity(ConditionImmunity immunity)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             if (immunity == null) throw new ArgumentNullException(nameof(immunity));
             if (immunity.Target != Target || !immunity.Starts.Equals(Now))
                 throw new ArgumentException("Grant immunity only to this target at the current marker.");
@@ -184,16 +186,19 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionTransition SuppressApplication(string id, bool suppressed)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             var instance = PresentInstance(id);
             return Transition(Copy(applications: Applications.Select(x => x == instance ? x.WithSuppression(suppressed) : x)), id);
         }
         public ConditionTransition EndApplication(string id, string reason)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             ConditionIdentity.Require(reason); var instance = PresentInstance(id);
             return Transition(Copy(applications: Applications.Select(x => x == instance ? x.End(Now, reason) : x)), id);
         }
         public ConditionTransition EndImmunity(string id, string reason)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             ConditionIdentity.Require(id); ConditionIdentity.Require(reason);
             var instance = Immunities.SingleOrDefault(x => x.Grant.Id == id && x.Present(Now))
                 ?? throw new ArgumentException("A present immunity grant is required.");
@@ -201,6 +206,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionTransition Cure(ConditionKind kind)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             ConditionIdentity.Kind(kind);
             var next = Applications.Select(instance => {
                 if (!instance.Present(Now)) return instance;
@@ -214,6 +220,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionTransition AdvanceTo(EffectClockMarker destination)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             if (destination.CompareTo(Now) < 0) throw new ArgumentException("The condition clock cannot move backward.");
             var deadlines = Applications.Where(x => !x.EndedAt.HasValue).Select(x => x.Application.Expires)
                 .Concat(Immunities.Where(x => !x.EndedAt.HasValue).Select(x => x.Grant.Expires))

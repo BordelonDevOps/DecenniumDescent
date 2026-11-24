@@ -28,6 +28,7 @@ namespace Decennium.Foundation.Laboratory
                   new ConditionLedger(target, origin)) { }
         public static ConditionHistory Restore(ConditionJournal journal)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             if (journal == null) throw new ArgumentNullException(nameof(journal));
             bool relationships = journal.PolicyId == ConditionJournal.RelationshipPolicyId;
             if (journal.PolicyId != PolicyId && !relationships) throw new ArgumentException("Unsupported condition interpretation policy.");
@@ -37,6 +38,7 @@ namespace Decennium.Foundation.Laboratory
         }
         public ConditionHistoryTransition Append(ConditionOperation operation)
         {
+            ConditionResolutionScope.RequireLifecycleAllowed();
             // Validate chronology, identity and capacity before returning any new state.
             var journal = Journal.Append(operation);
             var transition = Resolve(Ledger, operation, Journal.PolicyId == ConditionJournal.RelationshipPolicyId);
@@ -83,9 +85,15 @@ namespace Decennium.Foundation.Laboratory
         [ThreadStatic] private static ConditionResolutionScope current;
         private readonly ConditionResolutionScope previous;
         private readonly Dictionary<ConditionJournal, Entry> entries;
+        private readonly NativeReadContextV1 readContext;
+        private readonly Snapshot readSnapshot;
+        private readonly CurrentConditionProjectionV1 readProjection;
+        private bool readDisposed;
 
         private ConditionResolutionScope(bool reuse)
         {
+            if (current?.readContext != null)
+                throw new InvalidOperationException("A V1 condition read cannot enter a lifecycle resolution scope.");
             previous = current;
             if (reuse) entries = new Dictionary<ConditionJournal, Entry>(JournalIdentity.Instance);
             current = reuse ? this : null;
@@ -94,17 +102,65 @@ namespace Decennium.Foundation.Laboratory
         internal static ConditionResolutionScope Enter(bool reuse)
             => reuse || current != null ? new ConditionResolutionScope(reuse) : null;
 
+        private ConditionResolutionScope(NativeReadContextV1 context, Snapshot snapshot)
+        {
+            if (context?.IsBoundTo(snapshot) != true || !(context.Projection is CurrentConditionProjectionV1 projection)
+                || !projection.Covers(snapshot))
+                throw new InvalidOperationException("A current owning condition projection is required.");
+            previous = current;
+            readContext = context;
+            readSnapshot = snapshot;
+            readProjection = projection;
+            current = this;
+        }
+
+        internal static ConditionResolutionScope EnterRead(NativeReadContextV1 context, Snapshot snapshot)
+            => new ConditionResolutionScope(context, snapshot);
+
+        internal static void RequireReadSnapshot(Snapshot snapshot)
+        {
+            if (current?.readContext != null && (current.readContext.IsBoundTo(snapshot) != true
+                || !current.readProjection.Covers(snapshot)))
+                throw new InvalidOperationException("A condition read belongs to a different snapshot or generation.");
+        }
+
+        internal static void RequireLifecycleAllowed()
+        {
+            if (current?.readContext != null)
+                throw new InvalidOperationException("Condition lifecycle execution is forbidden during a V1 read.");
+        }
+
+        private void RequireCurrentRead()
+        {
+            if (!readContext.IsBoundTo(readSnapshot) || !readProjection.Covers(readSnapshot))
+                throw new InvalidOperationException("The owning condition read context is unavailable.");
+        }
+
         public void Dispose()
         {
+            if (readContext != null && readDisposed) return;
+            if ((readContext != null || current?.readContext != null) && !ReferenceEquals(current, this))
+                throw new InvalidOperationException("V1 condition scopes must be disposed in nesting order.");
+            if (readContext != null) readDisposed = true;
             current = previous;
             entries?.Clear();
         }
 
         internal static ConditionHistory Read(ConditionJournal journal)
-            => current == null || journal == null ? ConditionHistory.Restore(journal) : current.Get(journal).History;
+        {
+            if (current?.readContext != null) {
+                current.RequireCurrentRead();
+                return current.readProjection.Read(journal);
+            }
+            return current == null || journal == null ? ConditionHistory.Restore(journal) : current.Get(journal).History;
+        }
 
         internal static ConditionLedger Project(ConditionJournal journal, bool project, EffectClockMarker marker)
         {
+            if (current?.readContext != null) {
+                current.RequireCurrentRead();
+                return current.readProjection.Project(journal, project, marker);
+            }
             if (!project) return Read(journal).Ledger;
             if (current == null || journal == null) return At(ConditionHistory.Restore(journal).Ledger, marker);
             var entry = current.Get(journal);

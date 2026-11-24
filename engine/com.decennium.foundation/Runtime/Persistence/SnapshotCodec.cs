@@ -17,6 +17,18 @@ namespace Decennium.Foundation
         public byte[] Encode(Snapshot state)
         {
             Validation.Snapshot(state);
+            return EncodeCanonical(state);
+        }
+
+#if DECENNIUM_TEST_ONLY && (UNITY_EDITOR || DEVELOPMENT_BUILD || HEADLESS_TESTS)
+        // The private owning checkpoint is the only non-test caller in the gated friend assembly.
+        // This compares existing validated state; it does not authenticate arbitrary input.
+        internal bool MatchesValidatedPredecessor(Snapshot current, byte[] expectedCanonical)
+            => current != null && expectedCanonical != null && EncodeCanonical(current).SequenceEqual(expectedCanonical);
+#endif
+
+        private byte[] EncodeCanonical(Snapshot state)
+        {
             byte[] payload;
             using (var stream = new MemoryStream())
             using (var writer = new BinaryWriter(stream, Utf8, true))

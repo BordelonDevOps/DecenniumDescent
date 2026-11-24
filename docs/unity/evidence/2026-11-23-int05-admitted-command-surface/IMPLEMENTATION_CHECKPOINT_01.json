@@ -1,0 +1,112 @@
+{
+  "status": "BOUNDED_READ_INFRASTRUCTURE_CHECKPOINT_NOT_MODULE_ACCEPTANCE",
+  "contractCandidate": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "actualContractAcceptance": "271baf94-22dd-57cb-a2ab-5f728e989b4d",
+  "acceptanceRecordCommit": "79afcf51f18bdfb84fa8aa1cd26ac0725f2bc7dc",
+  "implemented": [
+    "Core-owned unforgeable stamp/context and immutable accepted projection pair; current owner generation invalidates stale context.",
+    "Construction/validated-commit projection publication; rejection/duplicate retention; guarded nonreentrant provider with current-generation unavailable detail on failure.",
+    "Narrow immutable condition journal-time/current-marker materialization and strict lookup; guarded lifecycle entry points and disposal lifetime.",
+    "One private canonical writer reused by public validated Encode and internal comparison, with exact gated LabModel friend access."
+  ],
+  "candidateSourceArchive": {
+    "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/source-candidate03.zip",
+    "sha256": "557e68a3fd7224a94272cdf36933e8a3f09ad4b31da6f936615eb8528dda2795",
+    "compiledInputs": 490
+  },
+  "candidateDlls": [
+    {
+      "name": "Decennium.Foundation.Core.dll",
+      "sha256": "e41efecf4d745ede4fbf67572bbc226016918ed7227e8f0a6189d6b44c2f4bbf"
+    },
+    {
+      "name": "Decennium.Foundation.HeadlessTests.dll",
+      "sha256": "91a8e8fc0937ea23e1ffcaebaf9f333288bedecfea3d2188243a1dd01b0a0eeb"
+    },
+    {
+      "name": "Decennium.Foundation.LabModel.dll",
+      "sha256": "80cd8ecbacf220c3d58b28ecf4317618edd42436b532371f651b5b0fc42f2915"
+    },
+    {
+      "name": "Decennium.Foundation.Persistence.dll",
+      "sha256": "8484c459e5933ca8e1130dfe8ca816f0e65aec423356cb315c27a10ed4b4ba09"
+    }
+  ],
+  "rawEvidence": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/development01-test.json",
+      "original": "engine/artifacts/admitted-command-surface/development-01/run-20261124T025853902Z-ab54d1a0/results.json",
+      "sha256": "5e04e934412e2505f06c4a8301193185021f49b66a8c06e1c6964aa0f9a919d5"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/development02-test.json",
+      "original": "engine/artifacts/admitted-command-surface/development-02/run-20261124T030034512Z-ffbf150e/results.json",
+      "sha256": "c9f2d5e0eef370717cb4f6c83c58ebdcce1b1ccc9dca32e7547ccf7949e3172e"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/development02-focused.json",
+      "original": "engine/artifacts/admitted-command-surface/development-02/focused-read-context/results.json",
+      "sha256": "e54a6517be032d8fcbf68e2dd483de57f729eee830bae787c3756ffaf86e9849"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/development02-package.json",
+      "original": "engine/artifacts/admitted-command-surface/development-02/static-20261124T030206432Z-e11b3c52/results.json",
+      "sha256": "f777e0b60c92bb3eea68e684e2f9c93347244b75053932469f7942a832e017c3"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/candidate03-test.json",
+      "original": "engine/artifacts/admitted-command-surface/development-03/run-20261124T030556431Z-b2790313/results.json",
+      "sha256": "6903cae2e267ec7ee076c4ae38c9c36b146ba4f602312add738f2ea22a86b60c"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/candidate03-focused.json",
+      "original": "engine/artifacts/admitted-command-surface/development-03/focused-read-context/results.json",
+      "sha256": "9451adbd8b1b4c02c122abf8372485e724ab0656c07a072dcf885023363d31f4"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/candidate03-package.json",
+      "original": "engine/artifacts/admitted-command-surface/development-03/static-20261124T030657201Z-2214be34/results.json",
+      "sha256": "a5831e551cfcbd461bd1083ec2a3b1f36f28d503d7441260ef96ca2753961c59"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/condition-disposal-independent-review.json",
+      "original": "engine/artifacts/admitted-command-surface/condition-scope-disposal-cross-review-01.json",
+      "sha256": "2aa1c7122bbcf78994475687ea5143afa4fbca8eaa811a8632ee112a22874c02"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/runtime-checkpoint-01/core-read-context-independent-review.json",
+      "original": "engine/artifacts/admitted-command-surface/core-read-context-cross-review-01.json",
+      "sha256": "6dbb08ac1c90074511b9544023f4315f26a1526b8f98ed16062fbbf2ae654a77"
+    }
+  ],
+  "commandsAndActualExits": [
+    {
+      "command": "pwsh -NoProfile -File engine/tools/Test-Foundation.ps1 -ResultsRoot engine/artifacts/admitted-command-surface/development-03 -CaseName int05_read_context_owner_generation_and_failure_isolation",
+      "exitCode": 0
+    },
+    {
+      "command": "pwsh -NoProfile -File docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/Run-FocusedReadContext.ps1 -AssemblyRoot engine/artifacts/admitted-command-surface/development-03/run-20261124T030556431Z-b2790313 -ResultsDirectory engine/artifacts/admitted-command-surface/development-03/focused-read-context",
+      "exitCode": 0
+    },
+    {
+      "command": "pwsh -NoProfile -File engine/tools/Validate-Package.ps1 -ResultsRoot engine/artifacts/admitted-command-surface/development-03",
+      "exitCode": 0
+    }
+  ],
+  "tests": {
+    "focusedNewCases": 3,
+    "passed": 3,
+    "fullPredecessorRegression": "NOT RUN",
+    "newConnectedFivePaths": "NOT RUN"
+  },
+  "remaining": [
+    "Actual Core/policy assessment dispatch, pure family extraction, all admitted command/choice/domain/fact/result surfaces and console adapters.",
+    "Strict read instrumentation across all forbidden call paths, full alias/copy/consumer qualification and materializer phase/expiry/current-versus-journal cases.",
+    "All required gameplay/branch/profile/pending/authority/privacy/save/replay qualification on one final frozen candidate.",
+    "1601 predecessor reconciliation plus meaningful new cases; actual final GPT review and Codex acceptance; accepted push then stop."
+  ],
+  "sourceApiAccepted": true,
+  "finalRuntimeAccepted": false,
+  "unityIntegration": false,
+  "successorStarted": false
+}
