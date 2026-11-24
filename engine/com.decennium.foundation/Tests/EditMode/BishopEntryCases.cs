@@ -16,6 +16,9 @@ namespace Decennium.Foundation.Tests
             .GetField("simulation",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(session);
         private static void BishopCommit(ConnectedExpeditionSession session,Command command)
         {
+            if(command.Kind==CommandKind.AwardCharacterMilestone||command.Kind==CommandKind.AdvanceCharacterLevel)
+                AssertPureUtility(session,command,authority:new Authority("TEST_ONLY.host",new[]{command.Actor},
+                    canModifyWorld:true,inventoryOwners:new[]{command.Actor}));
             var seat=command.Actor==PostRecoveryEncounterDefinition.Actor?ExpeditionSeat.RecoveryOpponent:ExpeditionSeat.Player;
             var result=command.Kind==CommandKind.AdvanceClock||command.Kind==CommandKind.EndFixedEncounter
                 ?session.SubmitSessionCommand(command):session.Submit(seat,command);

@@ -1,0 +1,310 @@
+{
+  "schema": "INT05_BOUNDED_INDEPENDENT_STATIC_REVIEW_V1",
+  "reviewer": "Codex independent audit_magic agent",
+  "reviewedHead": "73c87084dda44bc59a4316fd6230b07a3471955f",
+  "originalGuardCoordinateCommit": "67f3d201b",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "scope": {
+    "primary": [
+      "SharedClericSettlement.cs:48-109",
+      "SharedBishopEntry.cs:49-97",
+      "SharedCharacterAdvancement.cs:397-549"
+    ],
+    "supporting": [
+      "SharedCommandAssessmentV1.cs:11-109 advancement routing and initial-only carrier",
+      "TestOnlySharedWorldPolicy.cs:865-976 dispatch order",
+      "SharedHavenMeal.cs:234-266 null-by-kind advancement path",
+      "SharedExpeditionRouteTravel.cs:322-332 current travel/position selectors"
+    ],
+    "method": "Read current source and working diff against 73c87084d; verify typed guards against original 67f3d201b; inspect finite current-state helper paths and reuse pinned prior condition/procedure audits.",
+    "notPerformed": [
+      "No runtime or test edits",
+      "No compile, tests, gameplay, save/restore, replay or performance runs by this reviewer",
+      "No full public API, authority/redaction, module or final GPT acceptance",
+      "No new generic classbuilder, selected host profile or public entitlement approved"
+    ],
+    "candidate15": "Parent reported compilation, six selected checks and package validation passing with input hash 142fb3f44dcac6339c72cf00aefa4be5c41d17faf39c5deb4055b95bd9da91d6. This report does not substitute for or independently certify those execution artifacts."
+  },
+  "findings": [],
+  "guardIdentityVerification": {
+    "status": "All 85 typed guard constructions in the three primary files match the native code at their declared original source path/line.",
+    "byFile": [
+      {
+        "path": "SharedClericSettlement.cs",
+        "count": 26,
+        "distinctOriginalCoordinates": 26,
+        "originalLines": [
+          50,
+          55,
+          57,
+          58,
+          60,
+          61,
+          62,
+          64,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          75,
+          76,
+          79,
+          84,
+          87,
+          88,
+          90,
+          93,
+          95,
+          97,
+          98,
+          105
+        ]
+      },
+      {
+        "path": "SharedBishopEntry.cs",
+        "count": 22,
+        "distinctOriginalCoordinates": 22,
+        "originalLines": [
+          51,
+          52,
+          54,
+          55,
+          56,
+          58,
+          60,
+          61,
+          62,
+          64,
+          65,
+          66,
+          70,
+          71,
+          74,
+          78,
+          79,
+          82,
+          84,
+          87,
+          90,
+          93
+        ]
+      },
+      {
+        "path": "SharedCharacterAdvancement.cs",
+        "count": 37,
+        "distinctOriginalCoordinates": 36,
+        "originalLines": [
+          402,
+          403,
+          405,
+          408,
+          409,
+          412,
+          417,
+          418,
+          420,
+          421,
+          422,
+          424,
+          424,
+          425,
+          426,
+          427,
+          448,
+          455,
+          456,
+          458,
+          461,
+          462,
+          464,
+          465,
+          466,
+          470,
+          472,
+          473,
+          474,
+          475,
+          476,
+          477,
+          483,
+          486,
+          491,
+          497,
+          503
+        ]
+      }
+    ],
+    "bodyComparisons": [
+      {
+        "method": "ClericAdvancementConstraintV1",
+        "comparison": "Body matches original after typed-code wrapper substitution and direct shared Bishop delegate rename."
+      },
+      {
+        "method": "BishopAdvancementConstraintV1",
+        "comparison": "Body matches original after typed-code wrapper substitution and direct shared Bishop delegate rename."
+      }
+    ],
+    "qualification": "Coordinate checks establish origin identity; semantic order was also inspected. The two line-424 constructors preserve the native conditional return's distinct codes."
+  },
+  "conclusions": [
+    {
+      "id": "ADV-R01",
+      "topic": "Cleric and Bishop ordered semantics",
+      "details": "Exact original guard bodies retained after typed-wrapper substitutions. Cleric dispatches Bishop target only after original ancillary-payload check. Declared objective/departure and award validity precede award early success; award does not acquire a new condition/capability gate. For actual advancement, milestone and consumed state precede tactical/pending/busy, fixed build/choice/source/capacity/repertoire checks. Bishop retains its current capability and Action permission gate after Busy; Cleric level 2 retains no added capability gate. InventoryCombat-only Cleric versus InventoryCombat-or-Encounter Bishop distinction remains."
+    },
+    {
+      "id": "ADV-R02",
+      "topic": "Generic native fallback, not a new host grant",
+      "details": "Shared dispatch selects the same IsClericAdvancement condition as ResolveCharacterAdvancement. All other native cases call CharacterAdvancementRules.InitialConstraintV1 rather than unconditionally inventing UnsupportedAdvancementPath. Original Soldier profile/schema/level gates remain. RowChoices retains schedule, automatic-operation, shape, candidate/prerequisite, active quota, previously owned, handler, feat/ASI and exact implemented-row guard order. No native irrelevant-field rejection or general class content was added."
+    },
+    {
+      "id": "ADV-R03",
+      "topic": "Current opening and local ASI legality",
+      "details": "AdvancementOpeningConstraintV1 retains original schema/payload/current character/profile/levels, award early branch, entitlement/tactical/pending/busy, row choice, capacity and hit-die sequence. Local arrays copy current ability scores; ordered requested ASI increments reproduce the original per-increment cap guard, including repeated selection of the same ability. They do not mutate character state or construct a future authoritative character. Request constructor already restricts ability enum values. The out variables are definitely initialized; lambdas do not capture out parameters (features/character used as receivers outside lambda bodies; lambdas capture ordinary request/prior-selection inputs). No C# out-capture defect found statically."
+    },
+    {
+      "id": "ADV-R04",
+      "topic": "M09 boundary and retained legacy behavior",
+      "details": "InitialConstraintV1 constructs CharacterLevelRecord values for already attained levels only, derives the current prior HP basis, checks current life maximum, selects current feature runtime and compares its last regular start. It does not append the proposed Soldier level, calculate future maximum/current HP, clamp/reconcile capacity, construct AdvancementAssessment, call AtRevision/ValidateHistorical or create a substitute ActorCharacterRecord. Legacy Assess still constructs the fixed-average next level, computes future HP and clamp, then performs the original runtime-start check and constructs the unchanged execution carrier. The repeated read-only life selector does not change valid-state semantics. This respects M09's prohibition on trial character construction and historical replay; current attained-level arithmetic is not historical command replay."
+    },
+    {
+      "id": "ADV-R05",
+      "topic": "Skipped future arithmetic does not certify commit",
+      "details": "Native initial result continues CommitFeasibility=null. InitialConstraintV1 reaches current runtime-start comparison without evaluating the legacy future-capacity work. The skipped work is not claimed qualified by this review. On valid admitted current records, the original future HP calculation has already validated attained bases, adds Soldier base 6 within d10, keeps total level at most 20, and uses constructor-bounded/guarded ability scores; no changed native guard ordering found. Malformed detached snapshots and transaction/candidate failures are not new initial-success guarantees."
+    },
+    {
+      "id": "ADV-R06",
+      "topic": "Shared preceding native gates",
+      "details": "Assessor retains WorldOpening, active long rest, pending Sanctuary, Guidance and physical constraints before family routing. Advancement then uses active short rest, wound outer, search/hide activity, hostile retreat, pending recovery and care/rest actor gates in ResolveCore order. Haven meal serving's default branch returns null for both advancement kinds. The newly shared route outer gate preserves paused fractional attached-position denial before moving-route denial and uses pure current route/spatial selection. Intervening native dispatches are other command kinds. StartsOrResumesActivityWork returns false for both advancement kinds; reinforcement control is only suspend/resume world step. No omitted reachable off-calendar work guard was found for advancement."
+    },
+    {
+      "id": "ADV-R07",
+      "topic": "Finite purity dependencies",
+      "details": "Busy helpers, milestone/award/build/grant/repertoire/hit-die/runtime selectors and schedule/catalog candidate queries perform immutable selection or arithmetic. ValidChoices and ValidateInitialChoices are local request/source checks, not snapshot validation. DeriveResonanceMaximum groups actual current levels and uses previously audited local source capacity arithmetic. Bishop capability/permissions use the current condition projection within strict EnterRead; no direct journal Restore/AdvanceTo or settlement is added. PlaytestCharacters.BaseMaximumHp checks local level invariants and builds detached scalar calculation results without authoritative mutation, recovery or RNG. Current route helpers are SingleOrDefault selectors. Adjacent Resolve/Settle/ValidateHistorical and resource/capacity mutations remain outside the new read route."
+    }
+  ],
+  "retainedLimits": [
+    "Initial eligibility only. Shared post-resolution tail, candidate validation, concrete commits and all five execution paths remain separately evidenced obligations.",
+    "Public discovery, parameter/result DTOs, authority and disclosure predicates are outside this source review; native fallback support creates no public host admission.",
+    "Condition ownership/generation, codec/copy closure and prior helper audits are reused rather than fully re-audited here.",
+    "Candidate15 test coverage and actual GPT final INT-05 acceptance remain separate records; this review approves neither the entire module nor Unity integration."
+  ],
+  "focusedVerificationExpectations": [
+    "Authentic Cleric objective/award/settlement and Bishop departure/award/advancement initial results should preserve execution's first failure and final state, with read checkpoints and counters unchanged.",
+    "Generic Soldier fixed-average and repeated Constitution ASI paths should preserve native cap/row/capacity order without future character construction in reads.",
+    "Guard precedence should retain stabilization-before-advancement branch handling, current route gates and award early branches.",
+    "Each assessed result should retain null commit feasibility, no resolver/validation/replay/RNG/settlement entry, unchanged owning checkpoint and current condition scope cleanup."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "sha256": "ccdd15c75097e764d22706944c43f8df85dbcf2d40d3aac384e68d76299d39d7"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+      "sha256": "19321b81cffa58b0f3797f58e7b66adbf26e228af79c691cc822c1119809a9f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "3c976fdc0c10b26c5a38dbe79fcc4184156759687e1210699843b460efab0b5d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "99b78ba014a7f5cbfa581b8a70fed07355be26dd0fc78b0cbe36d28645351b5d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "72a0e11a9ed34f300ad073f9d85bc0e934ef065643f099f6027a6cd80c146741"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "sha256": "b70612fa6c1eef89758f14a25dce16ddc92b93ab1b460bf769975957d0d2e012"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "sha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacters.cs",
+      "sha256": "65d3d84483547d09afa4fc9764154416900924ab0e34c5bf21e501cd49892b8c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ClassAdvancementOptionCatalog.cs",
+      "sha256": "e9a0fa3ed8b63fda1c5938827f95424bdcf7b7e391d613d51112f500bdba19a1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ClassAdvancementScheduleCatalog.cs",
+      "sha256": "3b050ddf7f6e94b715405b837be7f89be67b2f539e02a49bc5271d52fc2424d1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "e17b2945bc0d8d71ee11e9fdafdba18d9d9855ca54447fce988d6fa7fd55bac1"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "sha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "bd7a659ca3a90901fbbf5ac38dbb4b5cbf0b2226d2efce85dcd4ee3074a6521b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "sha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81"
+    }
+  ]
+}

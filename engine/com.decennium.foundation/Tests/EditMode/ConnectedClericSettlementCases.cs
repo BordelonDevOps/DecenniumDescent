@@ -103,7 +103,9 @@ namespace Decennium.Foundation.Tests
             Require(before.CharacterMilestones.Length == 0 && before.CharacterAdvancements.Length == 0
                 && before.Characters.Single(x => x.ActorId == ally).Levels.Count == 1,"Objective completion must not award or advance automatically.");
             string path=Path.Combine(directory,"cleric-objective.ddsave"); session.Save(path); session.Restore(path);
-            CommitVialRoute(session,new Command("chr03.award",ally,before.Revision,CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId));
+            var awardCommand=new Command("chr03.award",ally,before.Revision,CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId);
+            AssertPureUtility(session,awardCommand,authority:new Authority("TEST_ONLY.host",new[]{ally},canModifyWorld:true,inventoryOwners:new[]{ally}));
+            CommitVialRoute(session,awardCommand);
             var awarded = ShortRestCapture(session);
             Require(awarded.CharacterMilestones.Single().ConsumedRevision == 0,"Trusted award must remain a separate unconsumed entitlement.");
             path=Path.Combine(directory,"cleric-awarded.ddsave"); session.Save(path); session.Restore(path);
@@ -125,6 +127,7 @@ namespace Decennium.Foundation.Tests
                 ClericMilestoneDeclaration.FixedId),"MilestoneAlreadyAwarded",directory);
             var command = new Command("chr03.advance",ally,awarded.Revision,CommandKind.AdvanceCharacterLevel,
                 ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices());
+            AssertPureUtility(session,command,authority:authority);
             RetainClericDenial(simulation,authority,new Command("chr03.stale-advance",ally,awarded.Revision-1,
                 CommandKind.AdvanceCharacterLevel,ClericMilestoneDeclaration.FixedId,advancement:ClericEarnedChoices()),"StaleRevision",directory);
             RetainClericDenial(simulation,authority,new Command("chr03.award",ally,awarded.Revision,

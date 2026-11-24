@@ -15,7 +15,8 @@ namespace Decennium.Foundation.Laboratory
                 || ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.UseHealingRite
                 || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate
                 || ShortRestBerth.IsCommand(kind) || kind == CommandKind.ConsumeDecay
-                || WoundTreatmentStation.IsCommand(kind) || kind == CommandKind.StabilizeCompanion;
+                || WoundTreatmentStation.IsCommand(kind) || kind == CommandKind.StabilizeCompanion
+                || kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel;
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
 
@@ -61,23 +62,48 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.InterruptWoundTreatment:
                     return ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentConstraintV1(current, command);
                 case CommandKind.StabilizeCompanion:
-                    // This native branch occurs after these guards, but before reinforcement control,
-                    // charter, meal, route, advancement and later command families.
-                    return ActiveShortRestInterruptionV1(current, command)
-                        ?? WoundTreatmentOuterConstraintV1(current, command)
-                        ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command)
-                        ?? RetreatHostileAttackConstraintV1(current, command) ?? PendingRecoveryChoiceConstraintV1(current, command)
-                        ?? HavenCareActorConstraintV1(current, command) ?? MoraleRestingActorConstraintV1(current, command)
-                        ?? RestingActorConstraintV1(current, command) ?? CompanionStabilizationConstraintV1(current, command);
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? CompanionStabilizationConstraintV1(current, command);
+                case CommandKind.AwardCharacterMilestone:
+                case CommandKind.AdvanceCharacterLevel:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? HavenMealServingConstraintV1(current, command) ?? RouteTravelOuterConstraintV1(current, command)
+                        ?? (IsClericAdvancement(current, command) ? ClericAdvancementConstraintV1(current, command)
+                            : CharacterAdvancementRules.InitialConstraintV1(current, command));
                 default: return CastingUtilityConstraintV1(current, command);
             }
         }
+
+        // Used only for stabilization and advancement. Intervening native dispatches and
+        // transition-only guards cannot match these three kinds; this is not a universal prefix.
+        private NativeCommandConstraintV1 BeforeStabilizationBranchConstraintV1(Snapshot current, Command command)
+            => ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentOuterConstraintV1(current, command)
+                ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command)
+                ?? RetreatHostileAttackConstraintV1(current, command) ?? PendingRecoveryChoiceConstraintV1(current, command)
+                ?? HavenCareActorConstraintV1(current, command) ?? MoraleRestingActorConstraintV1(current, command)
+                ?? RestingActorConstraintV1(current, command);
 
         private static NativeCommandAssessmentV1 InitialAssessmentV1(Snapshot current, NativeCommandConstraintV1 failure)
         {
             // Initial admission does not certify the shared post-resolution tail or
             // candidate validation. Those stages must not be predicted by running them here.
             return new NativeCommandAssessmentV1(current.Revision, failure == null, null, failure);
+        }
+
+        private NativeCommandConstraintV1 RouteTravelOuterConstraintV1(Snapshot s, Command c)
+        {
+            var openRoute = routeTravelFixture == null ? null : OpenRouteTravel(s, c.Actor);
+            var attachedRoutePosition = routeMotionFixture == null ? null : RouteSpatial(s, c.Actor);
+            if (openRoute?.Status == ExpeditionRouteTravelStatus.Paused && attachedRoutePosition != null
+                && !attachedRoutePosition.Detached
+                && (attachedRoutePosition.X.Denominator != 1 || attachedRoutePosition.Y.Denominator != 1)
+                && c.Kind != CommandKind.BeginWorldStep && c.Kind != CommandKind.AdvanceClock
+                && c.Kind != CommandKind.DispatchConditionEvent && c.Kind != CommandKind.BeginFixedEncounter)
+                return new NativeCommandConstraintV1("RouteTravelerMustDetachBeforeStationaryAction", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 975);
+            if (openRoute?.Status == ExpeditionRouteTravelStatus.Moving
+                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.DispatchConditionEvent
+                && c.Kind != CommandKind.BeginFixedEncounter) return new NativeCommandConstraintV1("RouteTravelMustPauseFirst", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 978);
+            return null;
         }
 
         private static NativeCommandConstraintV1 WoundTreatmentOuterConstraintV1(Snapshot s, Command c)

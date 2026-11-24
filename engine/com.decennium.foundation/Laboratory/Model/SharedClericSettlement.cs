@@ -46,63 +46,66 @@ namespace Decennium.Foundation.Laboratory
             => s.ConnectedClericSettlement && c.Actor == ClericRpProfile.Actor;
 
         private string AssessClericAdvancement(Snapshot s, Command c)
+            => ClericAdvancementConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 ClericAdvancementConstraintV1(Snapshot s, Command c)
         {
-            if (!IsClericAdvancement(s,c)) return "UnsupportedAdvancementPath";
+            if (!IsClericAdvancement(s,c)) return new NativeCommandConstraintV1("UnsupportedAdvancementPath", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 50);
             if (c.X != 0 || c.Y != 0 || c.Inventory != null || c.Combat != null || c.Ranged != null
                 || c.OverwatchRider != OverwatchRider.None || c.SuppressionFire != null || c.DefensiveFormation != null
                 || c.ExpeditionAssignment != null || c.HarvestSelection != null || c.MiningSelection != null
                 || c.ProspectingExposure != null || c.RouteMappingWork != null || c.IntimidatingPresence != null || c.HealingRite != null)
-                return "InvalidAdvancementCommand";
-            if (c.Target == BishopProfile.Milestone) return AssessBishopAdvancement(s,c);
-            if (c.Target != s.ClericMilestone.MilestoneId) return "UndeclaredMilestone";
-            if (s.ClericObjective == null) return "MilestoneObjectiveIncomplete";
+                return new NativeCommandConstraintV1("InvalidAdvancementCommand", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 55);
+            if (c.Target == BishopProfile.Milestone) return BishopAdvancementConstraintV1(s,c);
+            if (c.Target != s.ClericMilestone.MilestoneId) return new NativeCommandConstraintV1("UndeclaredMilestone", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 57);
+            if (s.ClericObjective == null) return new NativeCommandConstraintV1("MilestoneObjectiveIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 58);
             if (c.Kind == CommandKind.AwardCharacterMilestone) {
-                if (c.Advancement != null) return "InvalidMilestoneAward";
-                if (s.CharacterMilestones.Any(x => x.ActorId == c.Actor && x.MilestoneId == c.Target)) return "MilestoneAlreadyAwarded";
-                return s.CharacterMilestones.Length >= 256 ? "MilestoneCapacityReached" : null;
+                if (c.Advancement != null) return new NativeCommandConstraintV1("InvalidMilestoneAward", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 60);
+                if (s.CharacterMilestones.Any(x => x.ActorId == c.Actor && x.MilestoneId == c.Target)) return new NativeCommandConstraintV1("MilestoneAlreadyAwarded", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 61);
+                return s.CharacterMilestones.Length >= 256 ? new NativeCommandConstraintV1("MilestoneCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 62) : null;
             }
-            if (c.Kind != CommandKind.AdvanceCharacterLevel || c.Advancement == null) return "CharacterAdvancementCommandNotImplemented";
+            if (c.Kind != CommandKind.AdvanceCharacterLevel || c.Advancement == null) return new NativeCommandConstraintV1("CharacterAdvancementCommandNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 64);
             var milestone = s.CharacterMilestones.SingleOrDefault(x => x.ActorId == c.Actor && x.MilestoneId == c.Target);
-            if (milestone == null) return "MilestoneNotAvailable";
-            if (milestone.ConsumedRevision != 0) return "MilestoneAlreadyConsumed";
-            if (s.InventoryCombat) return "TacticalControlActive";
-            if (PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s)) return "TacticalChoicePending";
-            if (s.ManufacturingAdvance != null) return "ManufacturingChoicePending";
-            if (CharacterAdvancementRules.Busy(s,c.Actor) || OrdinaryInventory.Busy(s,c.Actor)) return "CharacterBusy";
+            if (milestone == null) return new NativeCommandConstraintV1("MilestoneNotAvailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 66);
+            if (milestone.ConsumedRevision != 0) return new NativeCommandConstraintV1("MilestoneAlreadyConsumed", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 67);
+            if (s.InventoryCombat) return new NativeCommandConstraintV1("TacticalControlActive", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 68);
+            if (PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s)) return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 69);
+            if (s.ManufacturingAdvance != null) return new NativeCommandConstraintV1("ManufacturingChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 70);
+            if (CharacterAdvancementRules.Busy(s,c.Actor) || OrdinaryInventory.Busy(s,c.Actor)) return new NativeCommandConstraintV1("CharacterBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 71);
             var character = s.Characters.Single(x => x.ActorId == c.Actor);
             if (character.ProfileId != ClericRpProfile.CharacterProfile || character.Levels.Count != 1
                 || character.Levels[0].ClassName != "Cleric" || character.Levels[0].BaseHp != 8
-                || !character.Abilities.SequenceEqual(new[] {10,10,10,10,14,10})) return "UnsupportedAdvancementPath";
-            if (!ClericSettlementProfile.ValidChoices(c.Advancement)) return "ClericSettlementChoiceUnsupported";
+                || !character.Abilities.SequenceEqual(new[] {10,10,10,10,14,10})) return new NativeCommandConstraintV1("UnsupportedAdvancementPath", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 75);
+            if (!ClericSettlementProfile.ValidChoices(c.Advancement)) return new NativeCommandConstraintV1("ClericSettlementChoiceUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 76);
             var row = ClassAdvancementScheduleCatalog.Get("Cleric",2);
             if (row == null || row.RequiredSelections != 2 || row.MinimumActiveSelections != 0 || row.HasAsiOrFeatOpportunity != false
-                || !row.Bands.SequenceEqual(new[] {"Base"},StringComparer.Ordinal)) return "ClassScheduleNeedsBinding";
+                || !row.Bands.SequenceEqual(new[] {"Base"},StringComparer.Ordinal)) return new NativeCommandConstraintV1("ClassScheduleNeedsBinding", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 79);
             var candidates = ClassAdvancementOptionCatalog.Candidates(row);
             foreach (string feature in c.Advancement.FeatureIds) {
                 var option = ClassAdvancementOptionCatalog.Get("Cleric",feature);
                 if (option == null || !candidates.Contains(option) || option.HasPathConstraint || option.HasDeclaredPrerequisite)
-                    return "FeatureOutsideClassSchedule";
+                    return new NativeCommandConstraintV1("FeatureOutsideClassSchedule", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 84);
             }
             if (s.CharacterFeatureGrants.Any(x => x.ActorId == c.Actor && (ClericSettlementProfile.SelectedCards.Contains(x.FeatureId)
-                || x.FeatureId == ClericSettlementProfile.Attunement || x.FeatureId == ClericSettlementProfile.Radiance))) return "FeatureAlreadyOwned";
-            if (s.ClericInvocationPath != null || s.CharacterAdvancements.Any(x => x.ActorId == c.Actor)) return "UnsupportedAdvancementPath";
+                || x.FeatureId == ClericSettlementProfile.Attunement || x.FeatureId == ClericSettlementProfile.Radiance))) return new NativeCommandConstraintV1("FeatureAlreadyOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 87);
+            if (s.ClericInvocationPath != null || s.CharacterAdvancements.Any(x => x.ActorId == c.Actor)) return new NativeCommandConstraintV1("UnsupportedAdvancementPath", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 88);
             if (s.CharacterAdvancements.Length >= 128 || s.CharacterFeatureGrants.Length + 4 > 256 || s.CharacterHitDice.Length >= 1280)
-                return "AdvancementCapacityReached";
+                return new NativeCommandConstraintV1("AdvancementCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 90);
             var dice = s.CharacterHitDice.Where(x => x.ActorId == c.Actor).ToArray();
             if (dice.Length != 1 || dice[0].LevelOrdinal != 1 || dice[0].ClassName != "Cleric" || dice[0].DieSize != 8)
-                return "HitDieLedgerMismatch";
+                return new NativeCommandConstraintV1("HitDieLedgerMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 93);
             var life = s.Lives.Single(x => x.ActorId == c.Actor);
-            if (life.MaximumHp != 8) return "AdvancementHealthBasisMismatch";
+            if (life.MaximumHp != 8) return new NativeCommandConstraintV1("AdvancementHealthBasisMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 95);
             var pool = s.ResonancePools.SingleOrDefault(x => x.ActorId == c.Actor);
-            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return "ResonancePoolUnavailable";
-            if (s.ConvictionCapacity?.PoolAcquiredRevision != 0) return "ConvictionCapacityUnavailable";
+            if (pool == null || pool.Maximum != DeriveResonanceMaximum(character)) return new NativeCommandConstraintV1("ResonancePoolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 97);
+            if (s.ConvictionCapacity?.PoolAcquiredRevision != 0) return new NativeCommandConstraintV1("ConvictionCapacityUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 98);
             if (ClericRepertoireProfile.ValidateInitialChoices(s.KnownSpells.Select(x => x.SpellId)) != null
                 || s.KnownSpells.Any(x => !x.MatchesSource() || x.ActorId != c.Actor || x.ClassName != "Cleric"
                     || x.Origin != SpellAcquisitionOrigin.InitialClassRepertoire || x.ClassLevel != 1 || x.LevelOrdinal != 1
                     || x.EntitlementId != ClericRepertoireProfile.InitialEntitlement || x.MilestoneId != "" || x.AcquiredRevision != 0)
                 || s.InitialClassSelections.Count(x => ClericRpProfile.ValidInitialSelection(s,x)) != 1
                 || s.CharacterFeatureGrants.Count(x => ClericRpProfile.ValidInitialGrant(s,x)) != 4)
-                return "ClericEarnedRepertoireChoiceUnavailable";
+                return new NativeCommandConstraintV1("ClericEarnedRepertoireChoiceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs", 105);
             return null;
         }
 

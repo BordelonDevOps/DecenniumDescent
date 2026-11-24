@@ -1,0 +1,1576 @@
+{
+  "schemaVersion": 1,
+  "report": "INT-05 advancement routing independent static cross-review 01",
+  "reviewer": "/root/audit_management",
+  "createdUtc": "2026-11-24T05:30:15.784570+00:00",
+  "reviewedHead": "73c87084dda44bc59a4316fd6230b07a3471955f",
+  "acceptedSourceApiBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "status": "NO_BLOCKERS_FOUND_IN_BOUNDED_STATIC_ROUTING_REVIEW",
+  "runtimeModuleAcceptance": "OPEN; no runtime, test, build, replay or connected qualification execution by reviewer",
+  "actualContractStatus": "HC-01 through HC-05 accepted per HC_ACCEPTANCE.md; implementation review does not reopen that contract.",
+  "scope": {
+    "operations": [
+      "AwardCharacterMilestone",
+      "AdvanceCharacterLevel"
+    ],
+    "principalFiles": [
+      "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs"
+    ],
+    "included": "Every native outer dispatch/guard through advancement; HavenMeal typed wrapper, route helper, shared pre-stabilization prefix and selectors; Cleric/generic dispatch.",
+    "excluded": "Detailed advancement leaf audit, tests/fixture execution, final module acceptance, successor and Unity. Leaf files are pinned for dispatch/interface inspection; separate reviewer owns leaf details.",
+    "writes": [
+      "engine/artifacts/admitted-command-surface/advancement-routing-cross-review-01.json"
+    ]
+  },
+  "findings": [],
+  "guardOrder": {
+    "sharedRoot": [
+      "ConditionResolutionScope.EnterRead(context,current) at owning valid boundary",
+      "WorldOpeningConstraintV1",
+      "ActiveLongRestInterruptionV1",
+      "pending Sanctuary -> NonSanctuaryResponseConstraintV1",
+      "GuidanceChoiceConstraintV1",
+      "SpellCastingProfile.PhysicalConstraintV1"
+    ],
+    "advancementInitial": [
+      "ActiveShortRestInterruptionV1",
+      "WoundTreatmentOuterConstraintV1: sealed stock, then active healer/patient",
+      "SearchActivityConstraintV1",
+      "HideActivityConstraintV1",
+      "RetreatHostileAttackConstraintV1",
+      "PendingRecoveryChoiceConstraintV1",
+      "HavenCareActorConstraintV1",
+      "MoraleRestingActorConstraintV1",
+      "RestingActorConstraintV1",
+      "HavenMealServingConstraintV1",
+      "RouteTravelOuterConstraintV1: paused fractional, then Moving",
+      "IsClericAdvancement ? ClericAdvancementConstraintV1 : CharacterAdvancementRules.InitialConstraintV1"
+    ],
+    "evaluation": "Null coalescing preserves short-circuit first-failure order. Every intervening branch is reconciled below. No periodic/content/procedure/candidate checks after baseline994 were hoisted."
+  },
+  "allNativeDispatchDispositions": [
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        866,
+        866
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "UnknownWorldActor first, via WorldOpeningConstraintV1."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        867,
+        872
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Ferry EncounterDash dispatch is disjoint; retained in WorldOpening."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        873,
+        875
+      ],
+      "dispositionForBothAdvancementKinds": "shared-kind-impossible",
+      "reason": "SealTear off-calendar guard retained; StartsOrResumesActivityWork is false for both advancement kinds."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        876,
+        876
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "LongRest selector only BeginLongRest/InterruptLongRest."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        877,
+        879
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "ActiveLongRestInterruptionV1 preserves active Cleric actor and three excluded kinds."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        880,
+        882
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "Pending Sanctuary returns SanctuaryChoicePending before Guidance; no response continuation reconstruction."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        883,
+        887
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "SanctuaryAttackCommand only melee/unarmed/creature attack and affirmative opportunity response."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        888,
+        888
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "GuidanceChoiceConstraintV1 retains GuidanceConsumerUnsupported for any non-null Guidance on advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        889,
+        890
+      ],
+      "dispositionForBothAdvancementKinds": "shared-kind-impossible",
+      "reason": "PhysicalConstraintV1 remains ordered; its guarded kinds exclude advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        891,
+        892
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "CastKnownSpell only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        893,
+        894
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Utility selector only GroundCastingStrain, EndSpellConcentration, FocusDetectedAura, RespondSanctuary."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        895,
+        895
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "ClericRepertoire.IsCommand only CastKnownSpell/AcquireEarnedSpell."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        896,
+        896
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "ClassRecoveryUnsupported requires ShortRestBerth.IsCommand."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        897,
+        897
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "UseConsecrate only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        898,
+        898
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "UseDivineInvocation only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        899,
+        899
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "UseHealingRite only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        900,
+        901
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "UseIntimidatingPresence only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        902,
+        902
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "ShortRest selector only BeginShortRest/InterruptShortRest/BeginMutationShortRest."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        903,
+        906
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "ActiveShortRestInterruptionV1 is first in BeforeStabilizationBranchConstraintV1; actor and exclusions unchanged."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        907,
+        907
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "ConsumeDecay only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        908,
+        908
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Wound command selector only StartWoundTreatment/InterruptWoundTreatment."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        909,
+        909
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "WoundTreatmentOuterConstraintV1 retains sealed-station target denial, including malformed advancement target."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        910,
+        912
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "Same helper retains active healer/patient occupation after sealed-stock denial."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        913,
+        914
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "SearchActivityConstraintV1 exact predicates; activeWork false and neither advancement kind is a named conflicting kind."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        915,
+        916
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "HideActivityConstraintV1 exact predicates; neither advancement kind is a conflicting named kind or activity work."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        917,
+        918
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "CancelExplorationHide only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        919,
+        919
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Ordinary Hide only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        920,
+        920
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "CancelExplorationSearch only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        921,
+        921
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Ordinary Search only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        922,
+        922
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Retreat selector only DeclareRetreat/AttemptRetreatEscape/AbandonRetreat."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        923,
+        924
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "RetreatHostileAttackConstraintV1 retained; advancement exits nonattack-kind guard before PendingCalendarChoice."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        925,
+        925
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "RecordHarvestPreservationExposure only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        926,
+        929
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Harvest preservation tactical transition requires EnterInventoryCombat/BeginFixedEncounter."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        930,
+        930
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Camp use selector only Begin/EndCampUse and Begin/EndLyingLow."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        931,
+        932
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "PendingRecoveryChoiceConstraintV1 preserves global pending-offer block before actor care/rest restrictions."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        933,
+        933
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Strain recovery selector only ResolveExpeditionStrainRecovery."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        934,
+        934
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Rest-debt selector only ScheduleRestWatch/BeginRest/InterruptRest."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        935,
+        935
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Morale rest selector only BeginMoraleRest/InterruptMoraleRest."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        936,
+        936
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Haven care selector only BeginHavenCare/InterruptHavenCare."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        937,
+        939
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "HavenCareCombatTransitionUnsupported requires EnterInventoryCombat/BeginFixedEncounter."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        940,
+        941
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "HavenCareActorConstraintV1 preserves active actor and exact allowlist; both advancement kinds blocked during care."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        942,
+        943
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "MoraleRestingActorConstraintV1 preserves active actor and only AdvanceClock/InterruptMoraleRest exclusions."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        944,
+        945
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "RestingActorConstraintV1 preserves active rest and AdvanceClock/rest-debt-kind exclusions."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        946,
+        946
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Haven appraisal selector excludes advancement; exact selector pinned below."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        947,
+        947
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "CloseExpeditionEpisode only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        948,
+        948
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Reinforcement instruction selector only BeginReinforcementApproach/CancelReinforcementApproach."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        949,
+        949
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "StabilizeCompanion only; its previous prefix factored without guard reordering."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        950,
+        950
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Reinforcement control requires SuspendWorldStep/ResumeWorldStep plus InventoryCombat, selected companion and owned approach; no actor-only advancement interception."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        951,
+        951
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Charter attempt selector excludes advancement; exact selector pinned below."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        952,
+        952
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Next charter agreement selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        953,
+        953
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Next charter plan selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        954,
+        954
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Expedition bill selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        955,
+        955
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Haven sale selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        956,
+        956
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "PurchaseHavenMeal only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        957,
+        958
+      ],
+      "dispositionForBothAdvancementKinds": "shared-kind-impossible",
+      "reason": "HavenMealServingConstraintV1 retained in order; advancement hits default null; all seven other-kind failure branches unchanged."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        959,
+        960
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "WholeTenderOnly requires PortionInventory and exact tender target."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        961,
+        961
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Temporary camp construction selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        962,
+        963
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Morale rest combat transition requires EnterInventoryCombat."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        964,
+        964
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Route mapping result only ConsumeTestOnlyRouteMappingResult."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        965,
+        965
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Route mapping work selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        966,
+        966
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Route reconnaissance selector excludes advancement."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        967,
+        967
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Route travel selector only StartRouteTravel/PauseRouteTravel/ResumeRouteTravel."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        968,
+        975
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "RouteTravelOuterConstraintV1 preserves profile-gated selectors, paused/attached/non-detached fractional position and four exclusions; both advancement kinds denied while attached at fractional position."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        976,
+        978
+      ],
+      "dispositionForBothAdvancementKinds": "shared",
+      "reason": "Same helper then preserves Moving and three exclusions; both advancement kinds require route pause."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        979,
+        979
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Hide/Search observation dispatch only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        980,
+        981
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "HandoverFishingTrapResponsibility only."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        982,
+        985
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Blood handling gate requires HandleInventory/PortionInventory."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        986,
+        991
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Off-calendar labor/Dash guard requires StartsOrResumesActivityWork, false for advancement; no IsConnectedRecipe4Check/CanContinueActivityLabor extraction needed for these kinds."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        992,
+        993
+      ],
+      "dispositionForBothAdvancementKinds": "kind-impossible",
+      "reason": "Overwatch context guard requires RespondOverwatch/ResolveOverwatchRider."
+    },
+    {
+      "baselinePath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "baselineLines": [
+        994,
+        994
+      ],
+      "dispositionForBothAdvancementKinds": "terminal-dispatch",
+      "reason": "Same IsClericAdvancement selector chooses ClericAdvancementConstraintV1, else real CharacterAdvancementRules.InitialConstraintV1; no blanket unsupported fallback."
+    }
+  ],
+  "nativeCoverage": {
+    "firstBaselineLine": 866,
+    "lastBaselineLine": 994,
+    "contiguousCoverageExactlyOnce": true,
+    "rows": 70
+  },
+  "kindSelectorBindings": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "method": "IsCommand",
+      "currentDeclarationLine": 8,
+      "body": "=> kind == CommandKind.BeginLongRest || kind == CommandKind.InterruptLongRest;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "method": "IsUtilityCommand",
+      "currentDeclarationLine": 49,
+      "body": "=> kind == CommandKind.GroundCastingStrain\n            || kind == CommandKind.EndSpellConcentration || kind == CommandKind.FocusDetectedAura || kind == CommandKind.RespondSanctuary;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "method": "IsCommand",
+      "currentDeclarationLine": 120,
+      "body": "=> kind == CommandKind.CastKnownSpell || kind == CommandKind.AcquireEarnedSpell;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "method": "IsCommand",
+      "currentDeclarationLine": 83,
+      "body": "=> kind == CommandKind.BeginShortRest || kind == CommandKind.InterruptShortRest || kind == CommandKind.BeginMutationShortRest;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "method": "IsCommand",
+      "currentDeclarationLine": 146,
+      "body": "=> kind == CommandKind.StartWoundTreatment || kind == CommandKind.InterruptWoundTreatment;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatValidation.cs",
+      "method": "IsCommand",
+      "currentDeclarationLine": 8,
+      "body": "=> kind == CommandKind.DeclareRetreat || kind == CommandKind.AttemptRetreatEscape || kind == CommandKind.AbandonRetreat;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "method": "IsInstruction",
+      "currentDeclarationLine": 153,
+      "body": "=> kind == CommandKind.BeginReinforcementApproach\n            || kind == CommandKind.CancelReinforcementApproach;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "method": "SanctuaryAttackCommand",
+      "currentDeclarationLine": 12,
+      "body": "=>c.Kind==CommandKind.AttackClub || c.Kind==CommandKind.AttackUnarmed\n            || c.Kind==CommandKind.AttackCreatureFeature\n            || c.Kind==CommandKind.RespondOpportunityAttack&&c.Combat?.Choice==true;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "method": "IsReinforcementControl",
+      "currentDeclarationLine": 87,
+      "body": "=> state.InventoryCombat && state.Reinforcement?.Definition.CompanionId == command.Actor\n                && (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)\n                && state.WorldTraversals.Any(edge => state.Reinforcement.OwnsApproach(edge));",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+      "method": "IsExpeditionCampUseCommand",
+      "currentDeclarationLine": 136,
+      "body": "=> kind == CommandKind.BeginCampUse || kind == CommandKind.EndCampUse\n                || kind == CommandKind.BeginLyingLow || kind == CommandKind.EndLyingLow;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "method": "IsStrainRecoveryCommand",
+      "currentDeclarationLine": 116,
+      "body": "=> kind == CommandKind.ResolveExpeditionStrainRecovery;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "method": "IsRestDebtCommand",
+      "currentDeclarationLine": 117,
+      "body": "=> kind == CommandKind.ScheduleRestWatch || kind == CommandKind.BeginRest || kind == CommandKind.InterruptRest;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "method": "IsMoraleRestCommand",
+      "currentDeclarationLine": 125,
+      "body": "=> kind == CommandKind.BeginMoraleRest || kind == CommandKind.InterruptMoraleRest;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+      "method": "IsHavenCareCommand",
+      "currentDeclarationLine": 125,
+      "body": "=> kind == CommandKind.BeginHavenCare || kind == CommandKind.InterruptHavenCare;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "method": "IsHavenAppraisalCommand",
+      "currentDeclarationLine": 72,
+      "body": "=>kind==CommandKind.StartHavenAppraisal\n            ||kind==CommandKind.PauseHavenAppraisal||kind==CommandKind.ResumeHavenAppraisal||kind==CommandKind.CancelHavenAppraisal;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "method": "IsCharterAttemptCommand",
+      "currentDeclarationLine": 74,
+      "body": "=> kind == CommandKind.StartCharterAttempt\n            || kind == CommandKind.ObserveCharterApproach || kind == CommandKind.AbortCharterAttempt || kind == CommandKind.InspectCharterAttempt;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "method": "IsNextCharterAgreementCommand",
+      "currentDeclarationLine": 82,
+      "body": "=> kind == CommandKind.AcceptNextCharter || kind == CommandKind.WithdrawNextCharter || kind == CommandKind.InspectNextCharterAgreement;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "method": "IsNextCharterPlanCommand",
+      "currentDeclarationLine": 64,
+      "body": "=> kind == CommandKind.StartNextCharterPlan || kind == CommandKind.PauseNextCharterPlan || kind == CommandKind.ResumeNextCharterPlan\n                || kind == CommandKind.CancelNextCharterPlan || kind == CommandKind.FinalizeNextCharterPlan || kind == CommandKind.InspectNextCharterPlan;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "method": "IsExpeditionBillCommand",
+      "currentDeclarationLine": 75,
+      "body": "=> kind == CommandKind.StartExpeditionBill || kind == CommandKind.PauseExpeditionBill\n                || kind == CommandKind.ResumeExpeditionBill || kind == CommandKind.FinalizeExpeditionBill || kind == CommandKind.CancelExpeditionBill;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "method": "IsHavenSaleCommand",
+      "currentDeclarationLine": 143,
+      "body": "=> kind == CommandKind.StartHavenSale || kind == CommandKind.PauseHavenSale || kind == CommandKind.ResumeHavenSale\n                || kind == CommandKind.FinalizeHavenSale || kind == CommandKind.CancelHavenSale;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTemporaryCampConstruction.cs",
+      "method": "IsTemporaryCampConstructionCommand",
+      "currentDeclarationLine": 237,
+      "body": "=> kind == CommandKind.StartTemporaryCampConstruction || kind == CommandKind.PauseTemporaryCampConstruction\n                || kind == CommandKind.ResumeTemporaryCampConstruction || kind == CommandKind.ResolveTemporaryCampConstruction;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMapping.cs",
+      "method": "RouteMappingResultCommand",
+      "currentDeclarationLine": 93,
+      "body": "=> kind == CommandKind.ConsumeTestOnlyRouteMappingResult;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "method": "RouteMappingWorkCommand",
+      "currentDeclarationLine": 145,
+      "body": "=> kind == CommandKind.StartRouteMappingWork || kind == CommandKind.PauseRouteMappingWork\n                || kind == CommandKind.ResumeRouteMappingWork;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+      "method": "RouteReconnaissanceCommand",
+      "currentDeclarationLine": 208,
+      "body": "=> kind == CommandKind.StartRouteReconnaissance || kind == CommandKind.PauseRouteReconnaissance\n                || kind == CommandKind.ResumeRouteReconnaissance;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "method": "RouteTravelCommand",
+      "currentDeclarationLine": 318,
+      "body": "=> kind == CommandKind.StartRouteTravel || kind == CommandKind.PauseRouteTravel || kind == CommandKind.ResumeRouteTravel;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "method": "StartsOrResumesActivityWork",
+      "currentDeclarationLine": 304,
+      "body": "{\n            switch (c.Kind) {\n                case CommandKind.PlantCrop: case CommandKind.TendCrop: case CommandKind.HarvestCrop:\n                case CommandKind.HandleInventory: case CommandKind.StartIntake: case CommandKind.StartWaterFill:\n                case CommandKind.ResumeWaterFill: case CommandKind.HandleVessel:\n                case CommandKind.StartFormulaResearch: case CommandKind.StartFormulaCopy: case CommandKind.ResumeFormulaWork:\n                case CommandKind.StartHarvestPreservationTreatment:\n                case CommandKind.StartCraftRemedy: case CommandKind.StartToolRepair: case CommandKind.ResumeToolRepair:\n                case CommandKind.StartManufacturing: case CommandKind.ResumeManufacturing: case CommandKind.UseAlchemyDose:\n                case CommandKind.StartRecipe347: case CommandKind.ResumeRecipe347:\n                case CommandKind.StartExpeditionWork: case CommandKind.HandlePortableEquipment: case CommandKind.EquipPortableItem:\n                case CommandKind.ResumeCacheExcavation:\n                case CommandKind.RemovePortableItem: case CommandKind.OpenPortableContainer: case CommandKind.ClosePortableContainer:\n                case CommandKind.StartHarvest: case CommandKind.ResumeHarvest:\n                case CommandKind.StartHarvestRequirementWork: case CommandKind.ResumeHarvestRequirementWork:\n                case CommandKind.StartMining: case CommandKind.ResumeMining:\n                case CommandKind.StartHavenAppraisal: case CommandKind.ResumeHavenAppraisal:\n                case CommandKind.StartExpeditionBill: case CommandKind.ResumeExpeditionBill:\n                case CommandKind.StartNextCharterPlan: case CommandKind.ResumeNextCharterPlan:\n                case CommandKind.StartHavenSale: case CommandKind.ResumeHavenSale:\n                case CommandKind.StartProspecting: case CommandKind.ResumeProspecting:\n                case CommandKind.StartMiningAssay: case CommandKind.ResumeMiningAssay:\n                case CommandKind.StartMineralPreparation: case CommandKind.ResumeMineralPreparation:\n                    return true;\n                case CommandKind.Interact:\n                    return c.X == (int)FishingTrapInteraction.Set || c.X == (int)FishingTrapInteraction.Resume\n                        || c.X == (int)FishingTrapInteraction.Retrieve || c.X == (int)FishingTrapInteraction.ResumeRetrieval\n                        || c.X == (int)OrdinaryReceptacleInteraction.UnlockWithKey || c.X == (int)OrdinaryReceptacleInteraction.PickWithTools;\n                default: return false;\n            }\n        }",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "method": "IsClericAdvancement",
+      "currentDeclarationLine": 44,
+      "body": "=> s.ConnectedClericSettlement && c.Actor == ClericRpProfile.Actor;",
+      "bodyMatchesAcceptedBaseline": true,
+      "advancementKindNamesAbsent": true
+    }
+  ],
+  "typedWrapperComparisons": {
+    "method": "Remove only typed constraint construction around original literal and unused source constant; ignore whitespace; compare full method bodies. Route uses exact accepted968-978, removing only helper braces/final null. Static source comparison, not gameplay execution.",
+    "results": [
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+        "nativeMethod": "HavenMealServingCommandFailure",
+        "typedMethod": "HavenMealServingConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+        "nativeMethod": "SearchActivityConflict",
+        "typedMethod": "SearchActivityConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+        "nativeMethod": "HideActivityConflict",
+        "typedMethod": "HideActivityConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+        "nativeMethod": "RetreatHostileAttackFailure",
+        "typedMethod": "RetreatHostileAttackConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+        "nativeMethod": "PendingRecoveryChoiceFailure",
+        "typedMethod": "PendingRecoveryChoiceConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+        "nativeMethod": "HavenCareActorCommandFailure",
+        "typedMethod": "HavenCareActorConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+        "nativeMethod": "MoraleRestingActorCommandFailure",
+        "typedMethod": "MoraleRestingActorConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+        "nativeMethod": "RestingActorCommandFailure",
+        "typedMethod": "RestingActorConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+        "nativeMethod": "GuidanceChoiceFailure",
+        "typedMethod": "GuidanceChoiceConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+        "nativeMethod": "PhysicalFailure",
+        "typedMethod": "PhysicalConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      },
+      {
+        "source": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "nativeLines": [
+          968,
+          978
+        ],
+        "typedMethod": "RouteTravelOuterConstraintV1",
+        "equalAfterTypedResultWrapping": true
+      }
+    ]
+  },
+  "typedOriginChecks": [
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 102,
+      "code": "RouteTravelerMustDetachBeforeStationaryAction",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 975,
+      "acceptedLine": "return \"RouteTravelerMustDetachBeforeStationaryAction\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 105,
+      "code": "RouteTravelMustPauseFirst",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 978,
+      "acceptedLine": "&& c.Kind != CommandKind.BeginFixedEncounter) return \"RouteTravelMustPauseFirst\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 111,
+      "code": "WoundTreatmentStockSealed",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 909,
+      "acceptedLine": "if (s.ConnectedWoundTreatment && WoundTreatmentStation.IsStationId(c.Target)) return \"WoundTreatmentStockSealed\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 114,
+      "code": "WoundTreatmentParticipantOccupied",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 912,
+      "acceptedLine": "return \"WoundTreatmentParticipantOccupied\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 120,
+      "code": "ClassRecoveryUnsupported",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 896,
+      "acceptedLine": "if (s.ConnectedClericRp && ShortRestBerth.IsCommand(c.Kind)) return \"ClassRecoveryUnsupported\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 127,
+      "code": "ShortRestRequiresInterruption",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 906,
+      "acceptedLine": "return \"ShortRestRequiresInterruption\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 133,
+      "code": "UnknownWorldActor",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 866,
+      "acceptedLine": "if (!s.Actors.Any(a => a.Id == c.Actor)) return \"UnknownWorldActor\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 135,
+      "code": "InvalidFerryDashPayload",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 868,
+      "acceptedLine": "if(!FerryWraithProfile.DashPayloadValid(c))return \"InvalidFerryDashPayload\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 138,
+      "code": "FerryDashRequiresPartyCombat",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 870,
+      "acceptedLine": "||c.Actor!=FerryWraithProfile.Hero&&c.Actor!=FerryWraithProfile.Companion)return \"FerryDashRequiresPartyCombat\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 140,
+      "code": "WrongRegularTurn",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 871,
+      "acceptedLine": "if(c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return \"WrongRegularTurn\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 144,
+      "code": "OffCalendarActionAlreadySpent",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 875,
+      "acceptedLine": "return \"OffCalendarActionAlreadySpent\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 152,
+      "code": "LongRestRequiresInterruption",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedOriginLine": 879,
+      "acceptedLine": "&& c.Kind != CommandKind.EnterInventoryCombat) return \"LongRestRequiresInterruption\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 157,
+      "code": "SanctuaryChoicePending",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "acceptedOriginLine": 91,
+      "acceptedLine": "if(c.Kind!=CommandKind.RespondSanctuary)return \"SanctuaryChoicePending\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 162,
+      "code": "OrdinarySpellcastingUnsupported",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedOriginLine": 360,
+      "acceptedLine": "if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return \"OrdinarySpellcastingUnsupported\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 169,
+      "code": "TacticalChoicePending",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedOriginLine": 362,
+      "acceptedLine": "if(PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s))return \"TacticalChoicePending\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 171,
+      "code": "ConcentrationUnavailable",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedOriginLine": 364,
+      "acceptedLine": "?null:\"ConcentrationUnavailable\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 248,
+      "code": "HavenMealUnpackedTakeawayUnsupported",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 245,
+      "acceptedLine": "? \"HavenMealUnpackedTakeawayUnsupported\" : null;",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 252,
+      "code": "HavenMealServingNotAuthorized",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 249,
+      "acceptedLine": "if (!purchased || command.Actor != customer) return \"HavenMealServingNotAuthorized\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 254,
+      "code": "HavenMealServingRequiresCounter",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 251,
+      "acceptedLine": "return \"HavenMealServingRequiresCounter\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 257,
+      "code": "HavenMealPackingUnsupported",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 254,
+      "acceptedLine": "return \"HavenMealPackingUnsupported\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 258,
+      "code": "HavenMealServingSurfaceUnavailable",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 255,
+      "acceptedLine": "return UsableMealSurface(s) ? null : \"HavenMealServingSurfaceUnavailable\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 262,
+      "code": "HavenMealServingRequiresReadyCustody",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 259,
+      "acceptedLine": "? null : \"HavenMealServingRequiresReadyCustody\";",
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "typedLine": 263,
+      "code": "HavenMealPackingUnsupported",
+      "acceptedOriginPath": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "acceptedOriginLine": 260,
+      "acceptedLine": "return \"HavenMealPackingUnsupported\";",
+      "matches": true
+    }
+  ],
+  "meal": {
+    "wrapper": "HavenMealServingCommandFailure => HavenMealServingConstraintV1?.NativeCode",
+    "acceptedFailureOrigins": [
+      245,
+      249,
+      251,
+      254,
+      255,
+      259,
+      260
+    ],
+    "allSevenOriginalBranchesPreserved": true,
+    "advancementPath": "Profile null exits; otherwise reads constant customer and purchase-array length, then default null. No lineage, AtSalePosition, UsableMealSurface, inventory-access or custody helper called for advancement. No new inventory permission/payload rejection.",
+    "otherKinds": "Exact body equality preserves movement carry-away, authorized lineage, counter, pickup/drop, surface, ready-custody and packing failures. Full downstream helper closure for other kinds not requalified here."
+  },
+  "route": {
+    "nativeExecutionPositionPreserved": "Current ResolveWorld invokes shared helper after RouteTravelCommand dispatch and before Hide/Search, exactly the original accepted968-978 position.",
+    "selectors": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+        "lines": [
+          322,
+          325
+        ],
+        "meaning": "OpenRouteTravel: read-only Where/SingleOrDefault for actor Moving/Paused."
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+        "lines": [
+          331,
+          332
+        ],
+        "meaning": "RouteSpatial: read-only actor SingleOrDefault."
+      }
+    ],
+    "semantics": "Paused attached fractional guard first, Moving guard second; profile gating and distinct exclusion sets unchanged. No resume/detach/progress/duration/validation/transition in helper."
+  },
+  "purityAssessment": {
+    "mode": "STATIC inspection only; reviewer executed no runtime/tests",
+    "conditionContext": "AssessFacts enters owner-supplied ConditionResolutionScope.EnterRead. Added outer routing and meal/default/route path use existing record selectors. No Restore, replay or lifecycle fold added. Existing strict read context/projection boundary retained.",
+    "readOnlySelectors": [
+      "ClericLongRestProfile.Active: connected gate and active SingleOrDefault",
+      "ShortRestBerth.Active: connected gate and active SingleOrDefault",
+      "WoundTreatmentStation.Active: connected gate and active SingleOrDefault",
+      "HasPendingRecoveryOffer: selected profile and Any(Pending)",
+      "ActiveHavenCare: selected profile and actor/Active SingleOrDefault",
+      "ActiveMoraleRest: selected profile and actor/Active SingleOrDefault",
+      "IsActorResting: selected profile and actor/Active Any",
+      "OpenRouteTravel and RouteSpatial as above"
+    ],
+    "unreachedForTheseKinds": [
+      "Retreat guard exits nonattack kind before PendingCalendarChoice; CurrentPressOffer remains pure, not mutation-capable.",
+      "Search/Hide guard does not start/cancel/advance activities.",
+      "Meal branch does not enter lineage/surface/inventory helper.",
+      "Off-calendar CanContinueActivityLabor/Recipe4 helpers excluded by kind.",
+      "Pending Sanctuary fails incompatible kind before CommandHistory.Read/continuation construction."
+    ],
+    "prohibitedOperations": "No resolver, Reserve, candidate rest/work construction, snapshot/policy validation, history replay, RNG or deadline/progress advancement in reviewed outer prefix. Detailed advancement leaf purity belongs to separate review.",
+    "currentWork": "No CurrentWork or reservation helper introduced by root/meal/route patch."
+  },
+  "stageAndCompatibility": {
+    "initialEligibility": "Native first failure followed by actual selected initial assessor. Generic branch is real, not blanket UnsupportedAdvancementPath.",
+    "commitFeasibility": null,
+    "commitMeaning": "InitialAssessmentV1 returns null; no claim that candidate construction, shared post-resolution validation or final commit succeeds.",
+    "stabilization": "Factored nine prefix calls retain order and leave CompanionStabilizationConstraintV1 last; no meal/route/advancement guards added to stabilization.",
+    "authority": "No source/fixture authority promotion or new global payload/permission gate identified."
+  },
+  "requiredParentFollowThrough": [
+    "Resolve separate advancement leaf review findings if any.",
+    "Retain parent-owned compilation/tests/strict-read/connected evidence.",
+    "Bind review to exact final hashes; this report covers retained inputs.",
+    "Overall INT-05 acceptance remains open pending required qualification and actual GPT review."
+  ],
+  "sourcePins": [
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "currentSha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7",
+      "currentByteLength": 40248,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md",
+      "currentSha256": "fa84fec6920955a751c19c8fad37d353c434bb70dbe0f8f11d71d49dd77ab96d",
+      "currentByteLength": 277841,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "currentSha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c",
+      "currentByteLength": 2408,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "currentSha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71",
+      "currentByteLength": 84416,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OUTER_ADMISSION_EXTRACTION_PLAN.json",
+      "currentSha256": "dc78017d9a4405a3302d0837cc839872811180624287799270dc78851a85cacd",
+      "currentByteLength": 16775,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "currentSha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557",
+      "currentByteLength": 9800,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "currentSha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b",
+      "currentByteLength": 11431,
+      "acceptedBaselineGitBlobSha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "currentSha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd",
+      "currentByteLength": 3554,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "currentSha256": "3c976fdc0c10b26c5a38dbe79fcc4184156759687e1210699843b460efab0b5d",
+      "currentByteLength": 73513,
+      "acceptedBaselineGitBlobSha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "currentSha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "currentByteLength": 27175,
+      "acceptedBaselineGitBlobSha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "currentSha256": "ccdd15c75097e764d22706944c43f8df85dbcf2d40d3aac384e68d76299d39d7",
+      "currentByteLength": 15806,
+      "acceptedBaselineGitBlobSha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "currentSha256": "99b78ba014a7f5cbfa581b8a70fed07355be26dd0fc78b0cbe36d28645351b5d",
+      "currentByteLength": 13090,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "currentSha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "currentByteLength": 21382,
+      "acceptedBaselineGitBlobSha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+      "currentSha256": "c5eaf62cde7c7ee79651cf7f7e574f3cce3cfe500166bd316439fefa3200e8b9",
+      "currentByteLength": 26236,
+      "acceptedBaselineGitBlobSha256": "c5eaf62cde7c7ee79651cf7f7e574f3cce3cfe500166bd316439fefa3200e8b9",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMapping.cs",
+      "currentSha256": "20256de7c68009a594475ba4a53bd28c492c166858743ee665da68288eeb8f58",
+      "currentByteLength": 12074,
+      "acceptedBaselineGitBlobSha256": "20256de7c68009a594475ba4a53bd28c492c166858743ee665da68288eeb8f58",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteMappingWork.cs",
+      "currentSha256": "afb6c8c0ac659f4439f1652a7128f39716fd554e756ce5782e2320f272eed1f9",
+      "currentByteLength": 38007,
+      "acceptedBaselineGitBlobSha256": "afb6c8c0ac659f4439f1652a7128f39716fd554e756ce5782e2320f272eed1f9",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteReconnaissance.cs",
+      "currentSha256": "6cc2525dc31be0308317d16ec3a892d4931dbf3618d89337fe381ca97a59964c",
+      "currentByteLength": 41661,
+      "acceptedBaselineGitBlobSha256": "6cc2525dc31be0308317d16ec3a892d4931dbf3618d89337fe381ca97a59964c",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionRouteTravel.cs",
+      "currentSha256": "b70612fa6c1eef89758f14a25dce16ddc92b93ab1b460bf769975957d0d2e012",
+      "currentByteLength": 53126,
+      "acceptedBaselineGitBlobSha256": "b70612fa6c1eef89758f14a25dce16ddc92b93ab1b460bf769975957d0d2e012",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "currentSha256": "5e747b61b33a0e01cd924127b64705138aa24db5a3785151118d41f5aa602e74",
+      "currentByteLength": 18496,
+      "acceptedBaselineGitBlobSha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "currentSha256": "a36c22b045ea0fdbc7a5373ff48096ec911ead026971996cecafafff908de639",
+      "currentByteLength": 13131,
+      "acceptedBaselineGitBlobSha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "currentSha256": "58089f34b4ef6dc63fb8ff51d01e2928580412d71e3848f850bc75c9f9dacc16",
+      "currentByteLength": 2528,
+      "acceptedBaselineGitBlobSha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "currentSha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "currentByteLength": 19267,
+      "acceptedBaselineGitBlobSha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+      "currentSha256": "795b35d8327b2b09e930edb4d7a73cbe478122a0d89ebb7a3f4aaad6bc0ccf9e",
+      "currentByteLength": 31085,
+      "acceptedBaselineGitBlobSha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "currentSha256": "72a0e11a9ed34f300ad073f9d85bc0e934ef065643f099f6027a6cd80c146741",
+      "currentByteLength": 18514,
+      "acceptedBaselineGitBlobSha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "currentSha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "currentByteLength": 29336,
+      "acceptedBaselineGitBlobSha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "currentSha256": "b080a570372ec25740ab71c68291e1a6655a098562cef02aba41d0e7427d8337",
+      "currentByteLength": 47314,
+      "acceptedBaselineGitBlobSha256": "7abae37780357e9794691048860710bbce31d99b0443a58c5bbb6877af091e66",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "currentSha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e",
+      "currentByteLength": 13738,
+      "acceptedBaselineGitBlobSha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "currentSha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "currentByteLength": 26565,
+      "acceptedBaselineGitBlobSha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "currentSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "currentByteLength": 21826,
+      "acceptedBaselineGitBlobSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "currentSha256": "905239a0938e7023473088bd16e5aaa23f5984c11ed8ad5787959baaf4558ec5",
+      "currentByteLength": 31149,
+      "acceptedBaselineGitBlobSha256": "c1a94b86e4fc80871f037142751f2d5ba593bc7822ac5e7f53f8d45b0d077fad",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "currentSha256": "4285e29bb286c16e5132324d9d9e5a0edea577d0a40300af682f245661b57721",
+      "currentByteLength": 15536,
+      "acceptedBaselineGitBlobSha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "currentSha256": "70935f9773043559276bd9525088794f79cf729c5a46919ec83931f54d936540",
+      "currentByteLength": 9407,
+      "acceptedBaselineGitBlobSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "currentSha256": "ac4733dc9db3fa67043bcd1ed35c9959bd2b1a65c07d323c5bc4cd4e7445f4d4",
+      "currentByteLength": 30130,
+      "acceptedBaselineGitBlobSha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedTemporaryCampConstruction.cs",
+      "currentSha256": "26dc6756a141aa3816fdc497dd72a955517db001fd3d0bdd0b20ba0c75989423",
+      "currentByteLength": 41507,
+      "acceptedBaselineGitBlobSha256": "26dc6756a141aa3816fdc497dd72a955517db001fd3d0bdd0b20ba0c75989423",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "currentSha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "currentByteLength": 129062,
+      "acceptedBaselineGitBlobSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "currentSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "currentByteLength": 11137,
+      "acceptedBaselineGitBlobSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "currentSha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345",
+      "currentByteLength": 7211,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "currentSha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058",
+      "currentByteLength": 1717,
+      "acceptedBaselineGitBlobSha256": null,
+      "acceptedBaselineAbsent": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReinforcementRecords.cs",
+      "currentSha256": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+      "currentByteLength": 14747,
+      "acceptedBaselineGitBlobSha256": "1290f1fa07581016af5062588eb970d51c61256a62548f91f4b4c164e0efc95b",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RetreatValidation.cs",
+      "currentSha256": "43fbffe7fa13fb9ac0cdea0fd10f222fda0c2a36622b4b357f1eb94f1a4c19b3",
+      "currentByteLength": 8685,
+      "acceptedBaselineGitBlobSha256": "43fbffe7fa13fb9ac0cdea0fd10f222fda0c2a36622b4b357f1eb94f1a4c19b3",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "currentSha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "currentByteLength": 10206,
+      "acceptedBaselineGitBlobSha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "currentSha256": "b8cef6dd743524ed3c17f06c642b036452c8028497bb5752d9ae8475eb4740fc",
+      "currentByteLength": 8579,
+      "acceptedBaselineGitBlobSha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "currentSha256": "bd7a659ca3a90901fbbf5ac38dbb4b5cbf0b2226d2efce85dcd4ee3074a6521b",
+      "currentByteLength": 14102,
+      "acceptedBaselineGitBlobSha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "acceptedBaselineAbsent": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "currentSha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "currentByteLength": 16491,
+      "acceptedBaselineGitBlobSha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "acceptedBaselineAbsent": false
+    }
+  ],
+  "hashSemantics": "currentSha256 is exact working-tree bytes; acceptedBaselineGitBlobSha256 is exact git show bytes at accepted commit. Native origin lines intentionally refer to accepted baseline, not shifted current source."
+}

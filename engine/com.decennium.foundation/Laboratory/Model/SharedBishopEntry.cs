@@ -47,50 +47,53 @@ namespace Decennium.Foundation.Laboratory
             s.BishopEntry=s.BishopEntry.WithDeparture(proof.Finish(initiating.Id,s.Revision+1,s.RuleClock));
         }
         private string AssessBishopAdvancement(Snapshot s,Command c)
+            => BishopAdvancementConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 BishopAdvancementConstraintV1(Snapshot s,Command c)
         {
-            if(s.BishopEntry==null || c.Actor!=ClericRpProfile.Actor || c.Target!=BishopProfile.Milestone)return "UndeclaredMilestone";
-            if(s.BishopEntry.Departure?.Complete!=true)return "MilestoneObjectiveIncomplete";
+            if(s.BishopEntry==null || c.Actor!=ClericRpProfile.Actor || c.Target!=BishopProfile.Milestone)return new NativeCommandConstraintV1("UndeclaredMilestone", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 51);
+            if(s.BishopEntry.Departure?.Complete!=true)return new NativeCommandConstraintV1("MilestoneObjectiveIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 52);
             if(c.Kind==CommandKind.AwardCharacterMilestone) {
-                if(c.Advancement!=null)return "InvalidMilestoneAward";
-                if(s.CharacterMilestones.Any(x=>x.ActorId==c.Actor && x.MilestoneId==c.Target))return "MilestoneAlreadyAwarded";
-                return s.CharacterMilestones.Length>=256?"MilestoneCapacityReached":null;
+                if(c.Advancement!=null)return new NativeCommandConstraintV1("InvalidMilestoneAward", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 54);
+                if(s.CharacterMilestones.Any(x=>x.ActorId==c.Actor && x.MilestoneId==c.Target))return new NativeCommandConstraintV1("MilestoneAlreadyAwarded", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 55);
+                return s.CharacterMilestones.Length>=256?new NativeCommandConstraintV1("MilestoneCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 56):null;
             }
-            if(c.Kind!=CommandKind.AdvanceCharacterLevel || c.Advancement==null)return "CharacterAdvancementCommandNotImplemented";
+            if(c.Kind!=CommandKind.AdvanceCharacterLevel || c.Advancement==null)return new NativeCommandConstraintV1("CharacterAdvancementCommandNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 58);
             var award=s.CharacterMilestones.SingleOrDefault(x=>x.ActorId==c.Actor && x.MilestoneId==c.Target);
-            if(award==null)return "MilestoneNotAvailable";
-            if(award.ConsumedRevision!=0)return "MilestoneAlreadyConsumed";
-            if(s.InventoryCombat || s.Encounter!=null)return "TacticalControlActive";
+            if(award==null)return new NativeCommandConstraintV1("MilestoneNotAvailable", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 60);
+            if(award.ConsumedRevision!=0)return new NativeCommandConstraintV1("MilestoneAlreadyConsumed", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 61);
+            if(s.InventoryCombat || s.Encounter!=null)return new NativeCommandConstraintV1("TacticalControlActive", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 62);
             if(PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s) || s.ManufacturingAdvance!=null)
-                return "TacticalChoicePending";
-            if(CharacterAdvancementRules.Busy(s,c.Actor) || OrdinaryInventory.Busy(s,c.Actor))return "CharacterBusy";
-            if(!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action)return "ConditionPreventsAdvancement";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 64);
+            if(CharacterAdvancementRules.Busy(s,c.Actor) || OrdinaryInventory.Busy(s,c.Actor))return new NativeCommandConstraintV1("CharacterBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 65);
+            if(!CapableWorker(s,c.Actor) || !Permissions(s,c.Actor).Action)return new NativeCommandConstraintV1("ConditionPreventsAdvancement", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 66);
             var character=s.Characters.Single(x=>x.ActorId==c.Actor);
             if(character.ProfileId!=ClericRpProfile.CharacterProfile || character.Levels.Count!=2
                 || character.Levels.Any(x=>x.ClassName!="Cleric") || character.Levels[0].BaseHp!=8 || character.Levels[1].BaseHp!=5
-                || !character.Abilities.SequenceEqual(new[]{10,10,10,10,14,10}))return "UnsupportedAdvancementPath";
-            if(!BishopProfile.ValidChoices(c.Advancement))return "BishopAdvancementChoiceUnsupported";
+                || !character.Abilities.SequenceEqual(new[]{10,10,10,10,14,10}))return new NativeCommandConstraintV1("UnsupportedAdvancementPath", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 70);
+            if(!BishopProfile.ValidChoices(c.Advancement))return new NativeCommandConstraintV1("BishopAdvancementChoiceUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 71);
             var row=ClassAdvancementScheduleCatalog.Get("Cleric",3);
             if(row==null || row.RequiredSelections!=2 || row.MinimumActiveSelections!=1 || row.HasAsiOrFeatOpportunity!=false
-                || !row.Bands.SequenceEqual(new[]{"Arch"}))return "ClassScheduleNeedsBinding";
+                || !row.Bands.SequenceEqual(new[]{"Arch"}))return new NativeCommandConstraintV1("ClassScheduleNeedsBinding", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 74);
             var options=ClassAdvancementOptionCatalog.Candidates(row);
             foreach(string id in c.Advancement.FeatureIds) {
                 var card=ClassAdvancementOptionCatalog.Get("Cleric",id);
-                if(card==null || !options.Contains(card) || card.HasPathConstraint || card.HasDeclaredPrerequisite)return "FeatureOutsideClassSchedule";
-                if(s.CharacterFeatureGrants.Any(x=>x.ActorId==c.Actor && x.FeatureId==id))return "FeatureAlreadyOwned";
+                if(card==null || !options.Contains(card) || card.HasPathConstraint || card.HasDeclaredPrerequisite)return new NativeCommandConstraintV1("FeatureOutsideClassSchedule", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 78);
+                if(s.CharacterFeatureGrants.Any(x=>x.ActorId==c.Actor && x.FeatureId==id))return new NativeCommandConstraintV1("FeatureAlreadyOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 79);
             }
             if(s.CharacterAdvancements.Count(x=>x.ActorId==c.Actor)!=1 || s.ClericInvocationPath?.PathId!=ClericSettlementProfile.Radiance
-                || s.ConvictionCapacity?.PoolAcquiredRevision==0 || s.ConvictionBalance==null)return "PriorClericSettlementRequired";
+                || s.ConvictionCapacity?.PoolAcquiredRevision==0 || s.ConvictionBalance==null)return new NativeCommandConstraintV1("PriorClericSettlementRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 82);
             if(s.CharacterAdvancements.Length>=128 || s.CharacterFeatureGrants.Length+2>256 || s.CharacterHitDice.Length>=1280)
-                return "AdvancementCapacityReached";
+                return new NativeCommandConstraintV1("AdvancementCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 84);
             var dice=s.CharacterHitDice.Where(x=>x.ActorId==c.Actor).OrderBy(x=>x.LevelOrdinal).ToArray();
             if(dice.Length!=2 || dice.Any(x=>x.ClassName!="Cleric" || x.DieSize!=8) || dice[0].LevelOrdinal!=1 || dice[1].LevelOrdinal!=2)
-                return "HitDieLedgerMismatch";
+                return new NativeCommandConstraintV1("HitDieLedgerMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 87);
             var life=s.Lives.Single(x=>x.ActorId==c.Actor);
             var pool=s.ResonancePools.SingleOrDefault(x=>x.ActorId==c.Actor);
-            if(life.MaximumHp!=13 || pool==null || pool.Maximum!=4)return "AdvancementCapacityBasisMismatch";
+            if(life.MaximumHp!=13 || pool==null || pool.Maximum!=4)return new NativeCommandConstraintV1("AdvancementCapacityBasisMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 90);
             var known=s.KnownSpells.Where(x=>x.ActorId==c.Actor).ToArray();
             if(known.Length!=6 || known.Any(x=>!x.MatchesSource()) || known.Any(x=>x.SpellId==BishopProfile.Dispel)
-                || BishopProfile.DispelSource.AccessFor("Cleric").MinimumClassLevel!=3)return "ClericEarnedRepertoireChoiceUnavailable";
+                || BishopProfile.DispelSource.AccessFor("Cleric").MinimumClassLevel!=3)return new NativeCommandConstraintV1("ClericEarnedRepertoireChoiceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs", 93);
             return null;
         }
         private static void SettleBishopAdvancement(Snapshot s,Command c)

@@ -232,6 +232,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string HavenMealServingCommandFailure(Snapshot s, Command command)
+            => HavenMealServingConstraintV1(s, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 HavenMealServingConstraintV1(Snapshot s, Command command)
         {
             if (havenMealProfile == null) return null;
             const string customer = TestOnlyHavenMealProfile.CustomerId;
@@ -242,22 +245,22 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.Move:
                     return purchased && command.Actor == customer && s.Work.Lots.Any(x => x.CustodianId == customer
                         && x.LocationId == customer && x.Amount > default(RuleQuantity) && IsMealLineage(s, x.Id))
-                        ? "HavenMealUnpackedTakeawayUnsupported" : null;
+                        ? new NativeCommandConstraintV1("HavenMealUnpackedTakeawayUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 245) : null;
                 case CommandKind.PortionInventory: case CommandKind.StartIntake: case CommandKind.HandleInventory:
                 case CommandKind.HandlePortableEquipment: case CommandKind.EquipPortableItem: case CommandKind.RemovePortableItem:
                     if (!IsMealLineage(s, command.Target)) return null;
-                    if (!purchased || command.Actor != customer) return "HavenMealServingNotAuthorized";
+                    if (!purchased || command.Actor != customer) return new NativeCommandConstraintV1("HavenMealServingNotAuthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 249);
                     if (!AtSalePosition(s, customer, TestOnlyHavenAppraisalProfile.SiteX, TestOnlyHavenAppraisalProfile.SiteY))
-                        return "HavenMealServingRequiresCounter";
+                        return new NativeCommandConstraintV1("HavenMealServingRequiresCounter", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 251);
                     if (command.Kind == CommandKind.HandlePortableEquipment) {
                         if (command.Inventory?.Handling != HandlingKind.Pickup && command.Inventory?.Handling != HandlingKind.Drop)
-                            return "HavenMealPackingUnsupported";
-                        return UsableMealSurface(s) ? null : "HavenMealServingSurfaceUnavailable";
+                            return new NativeCommandConstraintV1("HavenMealPackingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 254);
+                        return UsableMealSurface(s) ? null : new NativeCommandConstraintV1("HavenMealServingSurfaceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 255);
                     }
                     if (command.Kind == CommandKind.StartIntake || command.Kind == CommandKind.PortionInventory)
                         return s.InventoryLots.Single(x => x.LotId == command.Target).Access == InventoryAccess.Ready
-                            ? null : "HavenMealServingRequiresReadyCustody";
-                    return "HavenMealPackingUnsupported";
+                            ? null : new NativeCommandConstraintV1("HavenMealServingRequiresReadyCustody", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 259);
+                    return new NativeCommandConstraintV1("HavenMealPackingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs", 260);
                 default:
                     return null;
             }

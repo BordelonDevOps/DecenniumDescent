@@ -956,17 +956,8 @@ namespace Decennium.Foundation.Laboratory
             if (RouteMappingWorkCommand(c.Kind)) return ResolveRouteMappingWork(s, c);
             if (RouteReconnaissanceCommand(c.Kind)) return ResolveRouteReconnaissance(s, c);
             if (RouteTravelCommand(c.Kind)) return ResolveRouteTravelCommand(s, c);
-            var openRoute = routeTravelFixture == null ? null : OpenRouteTravel(s, c.Actor);
-            var attachedRoutePosition = routeMotionFixture == null ? null : RouteSpatial(s, c.Actor);
-            if (openRoute?.Status == ExpeditionRouteTravelStatus.Paused && attachedRoutePosition != null
-                && !attachedRoutePosition.Detached
-                && (attachedRoutePosition.X.Denominator != 1 || attachedRoutePosition.Y.Denominator != 1)
-                && c.Kind != CommandKind.BeginWorldStep && c.Kind != CommandKind.AdvanceClock
-                && c.Kind != CommandKind.DispatchConditionEvent && c.Kind != CommandKind.BeginFixedEncounter)
-                return "RouteTravelerMustDetachBeforeStationaryAction";
-            if (openRoute?.Status == ExpeditionRouteTravelStatus.Moving
-                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.DispatchConditionEvent
-                && c.Kind != CommandKind.BeginFixedEncounter) return "RouteTravelMustPauseFirst";
+            var routeTravelOuter = RouteTravelOuterConstraintV1(s, c);
+            if (routeTravelOuter != null) return routeTravelOuter.NativeCode;
             if (c.Kind == CommandKind.Hide || c.Kind == CommandKind.Search) return ResolveObservationAction(s, c);
             if(c.Kind==CommandKind.HandoverFishingTrapResponsibility)
                 return ResolveFishingTrapResponsibilityHandover(s,c);

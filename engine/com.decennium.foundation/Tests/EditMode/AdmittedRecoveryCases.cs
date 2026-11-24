@@ -11,6 +11,45 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddAdmittedRecoveryCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("int05_advancement_denials_and_native_fallback_are_pure",()=> {
+                var authority=new Authority("TEST_ONLY.host",new[]{ClericRpProfile.Actor},canModifyWorld:true,
+                    inventoryOwners:new[]{ClericRpProfile.Actor});
+                var rows=new[] {
+                    (NewClericSettlement(),CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId,"MilestoneObjectiveIncomplete"),
+                    (NewClericSettlement(),CommandKind.AdvanceCharacterLevel,ClericMilestoneDeclaration.FixedId,"MilestoneObjectiveIncomplete"),
+                    (NewClericSettlement(),CommandKind.AwardCharacterMilestone,BishopProfile.Milestone,"UndeclaredMilestone"),
+                    (NewClericExpedition(),CommandKind.AwardCharacterMilestone,ClericMilestoneDeclaration.FixedId,"UnsupportedAdvancementPath")
+                };
+                int n=0;
+                foreach(var row in rows) {
+                    var command=new Command("int05.advancement.denial."+(++n),ClericRpProfile.Actor,0,row.Item2,row.Item3,
+                        advancement:row.Item2==CommandKind.AdvanceCharacterLevel?ClericEarnedChoices():null);
+                    var sim=CastingSimulation(row.Item1);var before=Bytes(sim);
+                    AssertPureUtility(row.Item1,command,row.Item4,authority);
+                    Require(sim.Execute(authority,command).Code==row.Item4&&before.SequenceEqual(Bytes(sim)),
+                        "Advancement source denial disagreed with execution or changed state.");
+                }
+                // Existing native Soldier fixture: compatibility evidence, not an admitted connected profile.
+                var policy=AdvancementPolicy();var native=World(policy);var host=TestOnlySharedWorldPolicy.Host();
+                foreach(bool award in new[]{true,false}) {
+                    var command=award?AwardMilestone(native):AdvanceLevel(native);var before=Bytes(native);
+                    for(int i=0;i<3;i++) {
+                        var read=native.AssessCommandFactsV1(host,command,native.Capture().Revision);
+                        Require(read.Supported&&read.Admissible&&read.InitialEligibility==true&&read.CommitFeasibility==null
+                            &&read.ProhibitedCallAttempts.All(x=>x==0)&&before.SequenceEqual(Bytes(native)),
+                            "Native fallback assessment mutated or constructed progression instead of checking it.");
+                    }
+                    WorldCommit(native,command);
+                }
+                var advanced=native.Capture();
+                Require(advanced.Characters.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Levels.Count==2
+                    &&advanced.Lives.Single(x=>x.ActorId==TestOnlyPolicy.ActorId).Hp==4,
+                    "The existing native fallback did not advance exactly or manufactured healing.");
+                var bytes=Bytes(native);File.WriteAllBytes(Path.Combine(directory,"int05-native-soldier-advanced.ddsave"),bytes);
+                Require(bytes.SequenceEqual(Bytes(new Simulation(policy,new SnapshotCodec().Decode(bytes),ExecutionProfile.Laboratory))),
+                    "Native fallback advancement failed strict restoration.");
+            });
+
             cases.Add("int05_stabilization_profile_and_sealed_stock_order_are_pure",()=> {
                 var rows=new[] {
                     (ConnectedExpeditionSession.StartWithCompanionDose(),ConnectedExpeditionSession.Companion,"CompanionStabilizationUnavailable"),
