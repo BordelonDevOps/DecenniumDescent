@@ -60,16 +60,19 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessConnectedRecipe4Start(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe)
+            => AssessConnectedRecipe4StartConstraintV1(s,c,out recipe)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessConnectedRecipe4StartConstraintV1(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe)
         {
             recipe = null;
             if (c.Target != ConnectedRecipe4Batch.RecipeId || c.X != 0 || c.Y < 0 || c.Y > 2)
-                return "ConnectedRecipe4RequestNotSelected";
+                return new NativeCommandConstraintV1("ConnectedRecipe4RequestNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs", 66);
             if (s.ConnectedBatch.Disposition != ConnectedSpecimenDisposition.Uncharged)
-                return "ConnectedRecipe4BatchAlreadyDeclared";
+                return new NativeCommandConstraintV1("ConnectedRecipe4BatchAlreadyDeclared", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs", 68);
             var apparatus = s.PortableEquipment.Single(x => x.Id == s.ConnectedBatch.ApparatusId);
             if (!ConnectedRecipe4Batch.OnBench(apparatus) || apparatus.Open || !PortableEquipmentRules.Accessible(s, c.Actor, apparatus))
-                return "ConnectedRecipe4ApparatusUnavailable";
-            return AssessManufacturingStart(s, c, out recipe, s.BloodSpecimen.LotId);
+                return new NativeCommandConstraintV1("ConnectedRecipe4ApparatusUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs", 71);
+            return AssessManufacturingStartConstraintV1(s, c, out recipe, s.BloodSpecimen.LotId);
         }
 
         private bool IsConnectedRecipe4InjuryDispatch(Snapshot s, Command c)
@@ -167,7 +170,10 @@ namespace Decennium.Foundation.Laboratory
             var batch = s.ConnectedBatch;
             if (batch == null) return null;
             var order = s.ManufacturingOrders.SingleOrDefault();
-            if (s.ManufacturingAdvance != null && order?.Status != ManufacturingStatus.AwaitingChoice)
+            // This shared clock continuation also retains an actual pending Strain
+            // recovery choice. Core validation still requires its complete causal links.
+            if (s.ManufacturingAdvance != null && order?.Status != ManufacturingStatus.AwaitingChoice
+                && !(s.ConnectedClericLongRest && s.ExpeditionStrainRecoveryOffers.Any(x => x.Pending)))
                 return "ConnectedRecipe4ContinuationMismatch";
             if (order == null) return null;
             var returned = s.CharterAttempt?.Returned;

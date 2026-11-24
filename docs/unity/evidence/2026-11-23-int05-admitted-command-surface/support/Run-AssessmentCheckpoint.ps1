@@ -1,6 +1,6 @@
-param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks, [switch]$SpellChecks, [switch]$BishopChecks, [switch]$RecoveryChecks, [switch]$ConsecrationChecks, [switch]$CareChecks, [switch]$FearRepertoireChecks, [switch]$StabilizationChecks, [switch]$AdvancementChecks)
+param([Parameter(Mandatory)][string]$AssemblyRoot, [Parameter(Mandatory)][string]$ResultsDirectory, [switch]$LegacyChecks, [switch]$UtilityChecks, [switch]$SpellChecks, [switch]$BishopChecks, [switch]$RecoveryChecks, [switch]$ConsecrationChecks, [switch]$CareChecks, [switch]$FearRepertoireChecks, [switch]$StabilizationChecks, [switch]$AdvancementChecks, [switch]$ObservationChecks, [string]$NamedCasesFile = '')
 $ErrorActionPreference = 'Stop'
-if (([int][bool]$LegacyChecks+[int][bool]$UtilityChecks+[int][bool]$SpellChecks+[int][bool]$BishopChecks+[int][bool]$RecoveryChecks+[int][bool]$ConsecrationChecks+[int][bool]$CareChecks+[int][bool]$FearRepertoireChecks+[int][bool]$StabilizationChecks+[int][bool]$AdvancementChecks) -gt 1) { throw 'Choose one checkpoint case group.' }
+if (([int][bool]$LegacyChecks+[int][bool]$UtilityChecks+[int][bool]$SpellChecks+[int][bool]$BishopChecks+[int][bool]$RecoveryChecks+[int][bool]$ConsecrationChecks+[int][bool]$CareChecks+[int][bool]$FearRepertoireChecks+[int][bool]$StabilizationChecks+[int][bool]$AdvancementChecks+[int][bool]$ObservationChecks+[int][bool]$NamedCasesFile) -gt 1) { throw 'Choose one checkpoint case group.' }
 $AssemblyRoot = (Resolve-Path -LiteralPath $AssemblyRoot).Path
 $ResultsDirectory = [IO.Path]::GetFullPath($ResultsDirectory)
 if (Test-Path -LiteralPath $ResultsDirectory) { throw 'Use a new results directory.' }
@@ -69,6 +69,19 @@ if ($AdvancementChecks) {
         'soldier_level_four_constitution_asi_recomputes_all_level_hp_without_healing_or_spending_dice',
         'int05_stabilization_profile_and_sealed_stock_order_are_pure')
 }
+if ($ObservationChecks) {
+    $names = @('observation_shared_hide_search_save_replay_and_observer_isolation',
+        'exp04_exploration_search_query_payment_cancel_and_conflicts',
+        'exp04_exploration_hide_genuine_roll_and_scheduled_payment',
+        'exp04_connected_observation_paid_hide_search_combat_and_byte_replay')
+}
+if ($NamedCasesFile) {
+    $names = @(Get-Content -LiteralPath $NamedCasesFile -Raw | ConvertFrom-Json)
+    if ($names.Count -eq 0 -or @($names | Where-Object { $_ -isnot [string] -or $_ -notmatch '^[a-z0-9_]+$' }).Count -ne 0) {
+        throw 'Named cases must be a nonempty JSON array of exact case names.'
+    }
+    if (@($names | Select-Object -Unique).Count -ne $names.Count) { throw 'Named cases must be unique.' }
+}
 $report = [ordered]@{status='RUNNING'; sourceRun=$AssemblyRoot; startedUtc=[DateTime]::UtcNow.ToString('o');
     legacyChecks=[bool]$LegacyChecks;
     utilityChecks=[bool]$UtilityChecks;
@@ -80,6 +93,8 @@ $report = [ordered]@{status='RUNNING'; sourceRun=$AssemblyRoot; startedUtc=[Date
     fearRepertoireChecks=[bool]$FearRepertoireChecks;
     stabilizationChecks=[bool]$StabilizationChecks;
     advancementChecks=[bool]$AdvancementChecks;
+    observationChecks=[bool]$ObservationChecks;
+    requestedCaseNames=@($names);
     sourceHashes=$compiled.sourceHashes; assemblyHashes=@(Get-ChildItem -LiteralPath $AssemblyRoot -Filter '*.dll' | ForEach-Object {
         @{name=$_.Name;sha256=(Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant()}
     }); cases=@(); unityCompilation='NOT RUN'; moduleAcceptance='OPEN'}

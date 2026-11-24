@@ -29,6 +29,10 @@ namespace Decennium.Foundation.Tests
 
         private static void SaleCommit(Simulation s, Command command)
         {
+            if(command.Kind==CommandKind.StartExpeditionBill || command.Kind==CommandKind.AcceptNextCharter
+                || command.Kind==CommandKind.StartCharterAttempt || command.Kind==CommandKind.ObserveCharterApproach
+                || command.Kind==CommandKind.CloseExpeditionEpisode)
+                AssertNativeInitialAssessmentV1(s,command,HavenSaleHost());
             var result = s.Execute(HavenSaleHost(), command);
             Require(result.Outcome == Outcome.Committed, command.Kind + " rejected: " + result.Code);
         }

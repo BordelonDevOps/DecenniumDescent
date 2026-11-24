@@ -16,6 +16,8 @@ namespace Decennium.Foundation.Tests
 
         private static void FormulaDenial(Simulation sim, Authority host, Command command, string code)
         {
+            if(IsAdmittedFormulaKindV1(command.Kind) || IsAdmittedManufacturingKindV1(command.Kind))
+                AssertNativeInitialAssessmentV1(sim,command,host,code);
             byte[] before = Bytes(sim);
             var query = sim.QueryCommand(host, command);
             Require(query.Supported && !query.Admissible && query.Code == code,
@@ -30,6 +32,7 @@ namespace Decennium.Foundation.Tests
             var result = sim.DiscoverCommands(host, FormulaCompanion).Single(x => x.Command.Kind == kind);
             Require(result.Query.Admissible && Bytes(sim).SequenceEqual(before),
                 "Formula discovery changed live state or disagreed with admission.");
+            AssertNativeInitialAssessmentV1(sim,result.Command,host);
             return result.Command;
         }
 

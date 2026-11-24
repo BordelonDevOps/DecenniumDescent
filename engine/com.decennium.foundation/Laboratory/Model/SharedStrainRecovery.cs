@@ -240,8 +240,13 @@ namespace Decennium.Foundation.Laboratory
                 s.ExpeditionBeneficialRests = s.ExpeditionBeneficialRests.Concat(new[] { benefit }).ToArray();
                 if (offerId != "")
                 {
-                    var offer = new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId, interval.Id,
-                        initiating.Id, interval.EndedAt.Value, s.Revision + 1, points);
+                    // High-schema connected Long Rest uses the generic recovery policy,
+                    // but its persisted offer still requires the exact completed benefit link.
+                    var offer = s.SchemaVersion >= Snapshot.MoraleRestSchema
+                        ? new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId, ExpeditionRecoveryKind.SecureLongRest,
+                            benefit.Id, interval.Id, initiating.Id, interval.EndedAt.Value, s.Revision + 1, points)
+                        : new ExpeditionStrainRecoveryOfferRecord(offerId, interval.ActorId, interval.Id,
+                            initiating.Id, interval.EndedAt.Value, s.Revision + 1, points);
                     s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Concat(new[] { offer }).ToArray();
                 }
             }
@@ -250,47 +255,73 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessStrainRecoveryChoice(Snapshot s, Command c, out ExpeditionStrainRecoveryOfferRecord offer,
             out ExpeditionStrainGainRecord gain)
+            => StrainRecoveryChoiceConstraintV1(s,c,out offer,out gain)?.NativeCode;
+
+        private NativeCommandConstraintV1 StrainRecoveryChoiceConstraintV1(Snapshot s, Command c, out ExpeditionStrainRecoveryOfferRecord offer,
+            out ExpeditionStrainGainRecord gain)
         {
             offer = null; gain = null;
             if (moraleRestProfile != null && s.SchemaVersion >= Snapshot.MoraleRestSchema)
-                return AssessSchema65RecoveryChoice(s, c, out offer, out gain);
+                return Schema65RecoveryChoiceConstraintV1(s, c, out offer, out gain);
             if (strainRecoveryProfile == null || s.SchemaVersion != (connectedClericLongRest ? Snapshot.SurpriseEntrySchema : Snapshot.ExpeditionStrainRecoverySchema))
-                return "StrainRecoveryNotSelected";
+                return new NativeCommandConstraintV1("StrainRecoveryNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 255);
             if (c.X != 0 || c.Y != 0 || c.Target == "" || c.Inventory != null || c.Combat != null
                 || c.Advancement != null || c.Ranged != null || c.OverwatchRider != OverwatchRider.None
                 || c.SuppressionFire != null || c.DefensiveFormation != null || c.ExpeditionAssignment != null
                 || c.HarvestSelection != null || c.MiningSelection != null || c.ProspectingExposure != null
                 || c.RouteMappingWork != null)
-                return "InvalidStrainRecoveryChoicePayload";
+                return new NativeCommandConstraintV1("InvalidStrainRecoveryChoicePayload", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 261);
             var selectedOffer = PendingRecoveryOffer(s, c.Actor);
             offer = selectedOffer;
-            if (selectedOffer == null) return "NoPendingStrainRecoveryChoice";
-            if (!selectedOffer.PointIds.Contains(c.Target, StringComparer.Ordinal)) return "StrainRecoveryPointNotOffered";
+            if (selectedOffer == null) return new NativeCommandConstraintV1("NoPendingStrainRecoveryChoice", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 264);
+            if (!selectedOffer.PointIds.Contains(c.Target, StringComparer.Ordinal)) return new NativeCommandConstraintV1("StrainRecoveryPointNotOffered", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 265);
             var interval = s.RestIntervals.SingleOrDefault(x => x.Id == selectedOffer.RestIntervalId && x.ActorId == c.Actor
                 && x.Status == RestIntervalStatus.Completed && x.EndedAt == selectedOffer.CompletedAt);
             if (interval == null || !strainRecoveryProfile.IsSecure(interval.SiteId)
                 || !restDebtProfile.Site(interval.SiteId).SafeBerth || !restDebtProfile.Site(interval.SiteId).QualifyingRestEligible)
-                return "StrainRecoveryRestNoLongerSecure";
-            if (s.RuleClock != selectedOffer.CompletedAt) return "StrainRecoveryOfferClockChanged";
-            if (RestDebtOwedAt(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1)) return "RestDebtPreventsStrainRecovery";
-            if (ProvisioningBlockActive(s, c.Actor, selectedOffer.CompletedAt)) return "ProvisioningBlockPreventsStrainRecovery";
+                return new NativeCommandConstraintV1("StrainRecoveryRestNoLongerSecure", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 270);
+            if (s.RuleClock != selectedOffer.CompletedAt) return new NativeCommandConstraintV1("StrainRecoveryOfferClockChanged", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 271);
+            if (RestDebtOwedAt(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1)) return new NativeCommandConstraintV1("RestDebtPreventsStrainRecovery", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 272);
+            if (ProvisioningBlockActive(s, c.Actor, selectedOffer.CompletedAt)) return new NativeCommandConstraintV1("ProvisioningBlockPreventsStrainRecovery", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 273);
             var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == selectedOffer.RestIntervalId
                 && x.ActorId == c.Actor && x.CompletedAt == selectedOffer.CompletedAt
                 && x.RecoveryOfferId == selectedOffer.Id);
             // Older schema64 pending-choice saves recorded a benefit only when the player
             // resolved the offer. Keep those already-supported saves playable.
-            if (benefit == null && !selectedOffer.Pending) return "StrainRecoveryBenefitMissing";
+            if (benefit == null && !selectedOffer.Pending) return new NativeCommandConstraintV1("StrainRecoveryBenefitMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 279);
             var last = LastBeneficialRest(s, c.Actor, selectedOffer.CompletedAt, s.Revision + 1,
                 selectedOffer.RestIntervalId);
             if (last.HasValue && selectedOffer.CompletedAt < last.Value.AddSeconds(24 * 60 * 60))
-                return "BeneficialLongRestLimitNotElapsed";
+                return new NativeCommandConstraintV1("BeneficialLongRestLimitNotElapsed", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 283);
             gain = s.ExpeditionStrainGains.SingleOrDefault(x => x.ActorId == c.Actor && x.PointId == c.Target);
             if (gain == null || gain.AddedAmount != 1 || gain.OrdinaryRemovable != true
                 || !ExpeditionStrainRules.RecoveryGateMet(s, gain, selectedOffer.CompletedAt, s.Revision + 1)
                 || !ExpeditionStrainRules.IsActivePoint(s, c.Actor, c.Target, selectedOffer.CompletedAt, s.Revision + 1))
-                return "StrainRecoveryPointNotEligible";
+                return new NativeCommandConstraintV1("StrainRecoveryPointNotEligible", "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 288);
             return null;
         }
+
+        private static NativeCommandConstraintV1 StrainBenefitCapacityV1(Snapshot s)
+            => s.ExpeditionBeneficialRests.Length >= ExpeditionProvisioningValidation.MaxBeneficialRests
+                ? new NativeCommandConstraintV1("ExpeditionBeneficialRestHistoryCapacityReached",
+                    "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 306) : null;
+
+        private NativeCommandConstraintV1 StrainRecoveryInitialConstraintV1(Snapshot s, Command c)
+        {
+            if(moraleRestProfile!=null && s.SchemaVersion>=Snapshot.MoraleRestSchema)
+                return Schema65RecoveryChoiceConstraintV1(s,c,out _,out _) ?? Schema65StrainRemovalCapacityV1(s);
+            var failure=StrainRecoveryChoiceConstraintV1(s,c,out var offer,out _)
+                ?? GenericStrainRemovalCapacityV1(s);
+            if(failure!=null)return failure;
+            var benefit=s.ExpeditionBeneficialRests.SingleOrDefault(x=>x.RestIntervalId==offer.RestIntervalId
+                &&x.ActorId==c.Actor&&x.RecoveryOfferId==offer.Id);
+            return benefit==null?StrainBenefitCapacityV1(s):null;
+        }
+
+        private static NativeCommandConstraintV1 GenericStrainRemovalCapacityV1(Snapshot s)
+            => s.ExpeditionStrainRemovals.Length >= ExpeditionProvisioningValidation.MaxStrainRemovals
+                ? new NativeCommandConstraintV1("ExpeditionStrainRecoveryHistoryCapacityReached",
+                    "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs", 299) : null;
 
         private string ResolveStrainRecoveryChoice(Snapshot s, Command c)
         {
@@ -298,15 +329,15 @@ namespace Decennium.Foundation.Laboratory
                 return ResolveSchema65RecoveryChoice(s, c);
             string failure = AssessStrainRecoveryChoice(s, c, out var offer, out var gain);
             if (failure != null) return failure;
-            if (s.ExpeditionStrainRemovals.Length >= ExpeditionProvisioningValidation.MaxStrainRemovals)
-                return "ExpeditionStrainRecoveryHistoryCapacityReached";
+            var capacityFailure=GenericStrainRemovalCapacityV1(s);
+            if(capacityFailure!=null)return capacityFailure.NativeCode;
             long revision = s.Revision + 1;
             var benefit = s.ExpeditionBeneficialRests.SingleOrDefault(x => x.RestIntervalId == offer.RestIntervalId
                 && x.ActorId == c.Actor && x.RecoveryOfferId == offer.Id);
             if (benefit == null)
             {
-                if (s.ExpeditionBeneficialRests.Length >= ExpeditionProvisioningValidation.MaxBeneficialRests)
-                    return "ExpeditionBeneficialRestHistoryCapacityReached";
+                var benefitCapacity=StrainBenefitCapacityV1(s);
+                if(benefitCapacity!=null)return benefitCapacity.NativeCode;
                 string benefitId = "strain.benefit.r" + revision.ToString(CultureInfo.InvariantCulture)
                     + ".n" + s.ExpeditionBeneficialRests.Length.ToString(CultureInfo.InvariantCulture);
                 benefit = new ExpeditionBeneficialRestRecord(benefitId, c.Actor, offer.Id,
@@ -321,7 +352,8 @@ namespace Decennium.Foundation.Laboratory
             var previous = ExpeditionStrainRules.Current(s, c.Actor);
             s.ExpeditionStrainRemovals = s.ExpeditionStrainRemovals.Concat(new[] { removal }).ToArray();
             s.ExpeditionStrainRecoveryOffers = s.ExpeditionStrainRecoveryOffers.Select(x => x.Id == offer.Id
-                ? new ExpeditionStrainRecoveryOfferRecord(x.Id, x.ActorId, x.RestIntervalId, x.InitiatingCommandId,
+                ? new ExpeditionStrainRecoveryOfferRecord(x.Id, x.ActorId, x.RecoveryKind, x.RecoveryCompletionId,
+                    x.ActivityIntervalId, x.InitiatingCommandId,
                     x.CompletedAt, x.Revision, x.PointIds, c.Target, revision) : x).ToArray();
             var current = ExpeditionStrainRules.Project(s, c.Actor, s.RuleClock, revision);
             if (current.Level != previous.Level - 1) return "StrainRecoveryProjectionMismatch";

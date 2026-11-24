@@ -616,58 +616,64 @@ namespace Decennium.Foundation.Laboratory
             =>!s.Work.WorkerIntervals.Any(x=>x.WorkerId==actor&&x.JobId!=exceptJob&&x.Start<end&&x.End>start);
 
         private string MiningAccess(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="",string[] selectedUnitIds=null)
+            => MiningAccessConstraintV1(s,actor,deposit,exceptJob,selectedUnitIds)?.NativeCode;
+
+        private NativeCommandConstraintV1 MiningAccessConstraintV1(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="",string[] selectedUnitIds=null)
         {
-            if(miningFixture==null)return "MiningNotSelected";
-            if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return "MiningRequiresExploration";
-            if(!IsMiningWorker(actor))return "MiningWorkerUnsupported";
-            if(!CapableWorker(s,actor))return "MiningWorkerIncapable";
-            if(s.WorldTraversals.Any(x=>x.ActorId==actor))return "MiningWorkerMoving";
-            if(MiningWorkerBusy(s,actor,exceptJob))return "WorkerBusy";
-            if(AvailableHands(s,actor)<2)return "TwoHandsRequired";
+            if(miningFixture==null)return new NativeCommandConstraintV1("MiningNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 620);
+            if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return new NativeCommandConstraintV1("MiningRequiresExploration", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 621);
+            if(!IsMiningWorker(actor))return new NativeCommandConstraintV1("MiningWorkerUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 622);
+            if(!CapableWorker(s,actor))return new NativeCommandConstraintV1("MiningWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 623);
+            if(s.WorldTraversals.Any(x=>x.ActorId==actor))return new NativeCommandConstraintV1("MiningWorkerMoving", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 624);
+            if(MiningWorkerBusy(s,actor,exceptJob))return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 625);
+            if(AvailableHands(s,actor)<2)return new NativeCommandConstraintV1("TwoHandsRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 626);
             var worker=s.Actors.Single(x=>x.Id==actor);
-            if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return "MiningWorksiteOutOfReach";
+            if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return new NativeCommandConstraintV1("MiningWorksiteOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 628);
             PortableEquipmentRecord accessible(string id)=>s.PortableEquipment.SingleOrDefault(x=>x.Id==id
                 &&x.CustodianId==deposit.OwnerId&&x.Placement==PortablePlacement.Ground&&x.GroundX==deposit.SiteX&&x.GroundY==deposit.SiteY
                 &&PortableEquipmentRules.Accessible(s,actor,x));
-            if(accessible(deposit.MiningToolsId)==null)return "MiningToolsUnavailable";
-            if(accessible(deposit.PickId)==null)return "MiningPickUnavailable";
+            if(accessible(deposit.MiningToolsId)==null)return new NativeCommandConstraintV1("MiningToolsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 632);
+            if(accessible(deposit.PickId)==null)return new NativeCommandConstraintV1("MiningPickUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 633);
             var surface=s.Structures.SingleOrDefault(x=>x.Id==deposit.WorkSurfaceId&&x.LocationId==deposit.SiteId&&!x.Broken);
-            if(surface==null)return "MiningWorkSurfaceUnavailable";
+            if(surface==null)return new NativeCommandConstraintV1("MiningWorkSurfaceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 635);
             var receiver=accessible(deposit.ReceiverId);
             if(receiver==null||!receiver.Open||!receiver.CapacityPounds.HasValue||!receiver.CapacityCubicFeet.HasValue
-                ||receiver.FitRuleId=="")return "MiningReceiverUnavailable";
+                ||receiver.FitRuleId=="")return new NativeCommandConstraintV1("MiningReceiverUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 638);
             string[] selected=selectedUnitIds??Array.Empty<string>();
             if(exceptJob!=""&&s.SchemaVersion>=Snapshot.MiningToolCandidateSchema) {
                 var use=s.MiningToolUses.SingleOrDefault(x=>x.MiningAttemptId==exceptJob);
                 if(use!=null&&use.ReservedUnitId!="")selected=selected.Concat(new[]{use.ReservedUnitId}).Distinct(StringComparer.Ordinal).ToArray();
             }
             var units=s.MiningUnits.Where(x=>x.DepositId==deposit.Id&&selected.Contains(x.Id,StringComparer.Ordinal)).ToArray();
-            if(units.Length!=selected.Distinct(StringComparer.Ordinal).Count())return "MiningSelectionInvalid";
+            if(units.Length!=selected.Distinct(StringComparer.Ordinal).Count())return new NativeCommandConstraintV1("MiningSelectionInvalid", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 645);
             foreach(var unit in units) {
                 var body=s.PortableEquipment.SingleOrDefault(x=>x.Id==unit.Id);
                 if(body==null||body.OwnerId!=deposit.OwnerId||body.CustodianId!=deposit.OwnerId
-                    ||!PortableEquipmentValidation.FitsAuthoredMember(s,receiver,body))return "MiningReceiverFitUnavailable";
+                    ||!PortableEquipmentValidation.FitsAuthoredMember(s,receiver,body))return new NativeCommandConstraintV1("MiningReceiverFitUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 649);
             }
             var existing=s.MiningUnits.Where(x=>x.Status==MiningUnitStatus.Extracted&&x.ReceivedContainerId==receiver.Id).ToArray();
             if(RuleQuantity.Sum(existing.Select(x=>x.MassPounds).Concat(units.Select(x=>x.MassPounds)))>receiver.CapacityPounds.Value)
-                return "MiningReceiverCapacityInsufficient";
+                return new NativeCommandConstraintV1("MiningReceiverCapacityInsufficient", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 653);
             if(RuleQuantity.Sum(existing.Select(x=>x.VolumeCubicFeet).Concat(units.Select(x=>x.VolumeCubicFeet)))>receiver.CapacityCubicFeet.Value)
-                return "MiningReceiverVolumeInsufficient";
-            if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,actor))return "MiningConsequenceCapacityReached";
+                return new NativeCommandConstraintV1("MiningReceiverVolumeInsufficient", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 655);
+            if(!TestOnlyClubAttackPolicy.DamageConditionCapacity(s,actor))return new NativeCommandConstraintV1("MiningConsequenceCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 656);
             return null;
         }
 
         private string MiningAssistantAccess(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="")
+            => MiningAssistantAccessConstraintV1(s,actor,deposit,exceptJob)?.NativeCode;
+
+        private NativeCommandConstraintV1 MiningAssistantAccessConstraintV1(Snapshot s,string actor,MiningDepositRecord deposit,string exceptJob="")
         {
-            if(!miningAssistanceEnabled||!miningFixture.AssistantWorkerIds.Contains(actor,StringComparer.Ordinal))return "MiningAssistantUnsupported";
-            if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return "MiningRequiresExploration";
-            if(!CharacterSkillTrainingFacts.IsTrained(s,actor,"mining-tools"))return "MiningAssistantUntrained";
-            if(!CapableWorker(s,actor))return "MiningWorkerIncapable";
-            if(s.WorldTraversals.Any(x=>x.ActorId==actor))return "MiningWorkerMoving";
-            if(MiningWorkerBusy(s,actor,exceptJob))return "WorkerBusy";
-            if(AvailableHands(s,actor)<2)return "TwoHandsRequired";
+            if(!miningAssistanceEnabled||!miningFixture.AssistantWorkerIds.Contains(actor,StringComparer.Ordinal))return new NativeCommandConstraintV1("MiningAssistantUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 662);
+            if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return new NativeCommandConstraintV1("MiningRequiresExploration", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 663);
+            if(!CharacterSkillTrainingFacts.IsTrained(s,actor,"mining-tools"))return new NativeCommandConstraintV1("MiningAssistantUntrained", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 664);
+            if(!CapableWorker(s,actor))return new NativeCommandConstraintV1("MiningWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 665);
+            if(s.WorldTraversals.Any(x=>x.ActorId==actor))return new NativeCommandConstraintV1("MiningWorkerMoving", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 666);
+            if(MiningWorkerBusy(s,actor,exceptJob))return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 667);
+            if(AvailableHands(s,actor)<2)return new NativeCommandConstraintV1("TwoHandsRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 668);
             var worker=s.Actors.Single(x=>x.Id==actor);
-            if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return "MiningWorksiteOutOfReach";
+            if(!WorldSpatialQueries.WithinCardinalRange(worker.X,worker.Y,deposit.SiteX,deposit.SiteY,1))return new NativeCommandConstraintV1("MiningWorksiteOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 670);
             // The lead's MiningAccess validates the one shared tool set, work surface, receiver,
             // and selected material. The helper contributes support labor without a second claim
             // on the lead's pick or tools.
@@ -1081,66 +1087,69 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessMiningCommand(Snapshot s,Command c,out MiningAssessment facts)
+            => AssessMiningCommandConstraintV1(s,c,out facts)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessMiningCommandConstraintV1(Snapshot s,Command c,out MiningAssessment facts)
         {
             facts=null;
             // Mining's records are carried forward unchanged by later snapshot schemas.
             // Expedition assignment (schema47) delegates into this resolver, so equality
             // with schema43 would incorrectly disable the shared extraction transaction.
-            if(miningFixture==null||s.SchemaVersion<Snapshot.MiningSchema)return "MiningNotSelected";
+            if(miningFixture==null||s.SchemaVersion<Snapshot.MiningSchema)return new NativeCommandConstraintV1("MiningNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1089);
             if(c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null||c.OverwatchRider!=OverwatchRider.None
                 ||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null||c.HarvestSelection!=null||c.X!=0||c.Y!=0)
-                return "InvalidMiningCommand";
+                return new NativeCommandConstraintV1("InvalidMiningCommand", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1092);
             if(IsOffCalendarActivity(s,c.Actor)&&StartsOrResumesActivityWork(c)) {
                 var activity=ActivityInterval(s,c.Actor);
                 if(activity.Action==WorldActionCommitment.Dash
-                    ||activity.Action==WorldActionCommitment.ActiveLabor&&!CanContinueActivityLabor(s,c.Actor))return "OffCalendarActionAlreadySpent";
+                    ||activity.Action==WorldActionCommitment.ActiveLabor&&!CanContinueActivityLabor(s,c.Actor))return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1096);
             }
-            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(PendingCalendarChoice(s))return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1098);
             if(c.Kind==CommandKind.StartMining) {
-                if(c.MiningSelection==null)return "MiningSelectionRequired";
+                if(c.MiningSelection==null)return new NativeCommandConstraintV1("MiningSelectionRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1100);
                 var deposit=s.MiningDeposits.SingleOrDefault(x=>x.Id==c.Target);
-                if(deposit==null)return "UnknownMiningDeposit";
-                if(c.MiningSelection.DepositVersionId!=deposit.VersionId)return "MiningDepositVersionMismatch";
+                if(deposit==null)return new NativeCommandConstraintV1("UnknownMiningDeposit", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1102);
+                if(c.MiningSelection.DepositVersionId!=deposit.VersionId)return new NativeCommandConstraintV1("MiningDepositVersionMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1103);
                 string[] requested=c.MiningSelection.CategoryIds;
                 var categories=s.MiningCategories.Where(x=>x.DepositId==deposit.Id&&requested.Contains(x.Id,StringComparer.Ordinal)).ToArray();
-                if(categories.Length!=requested.Length)return "UnknownMiningCategory";
+                if(categories.Length!=requested.Length)return new NativeCommandConstraintV1("UnknownMiningCategory", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1106);
                 var accessible=s.MiningCategories.Where(x=>x.DepositId==deposit.Id&&x.Accessible).ToArray();
-                if(categories.Any(x=>!x.Accessible))return "MiningCategoryInaccessible";
-                if(s.MiningAttempts.Any(x=>x.DepositId==deposit.Id))return "MiningDepositClaimClosed";
+                if(categories.Any(x=>!x.Accessible))return new NativeCommandConstraintV1("MiningCategoryInaccessible", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1108);
+                if(s.MiningAttempts.Any(x=>x.DepositId==deposit.Id))return new NativeCommandConstraintV1("MiningDepositClaimClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1109);
                 var units=categories.SelectMany(x=>x.UnitIds).Select(id=>s.MiningUnits.Single(x=>x.Id==id)).ToArray();
-                if(units.Length==0||units.Any(x=>x.Status!=MiningUnitStatus.Available))return "MiningSelectionUnavailable";
+                if(units.Length==0||units.Any(x=>x.Status!=MiningUnitStatus.Available))return new NativeCommandConstraintV1("MiningSelectionUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1111);
                 string[] categoryIds=categories.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
                 string[] unitIds=units.Select(x=>x.Id).OrderBy(x=>x,StringComparer.Ordinal).ToArray();
                 var damaged=units.Where(x=>x.Condition==MiningUnitCondition.DamagedPotentiallyRecoverable).ToArray();
                 string failurePreference=c.MiningSelection.FailureVictimPreference;
                 if(units.Any(x=>!x.ValueCopper.HasValue)) {
-                    if(failurePreference!="")return "MiningUnknownValueUsesNeutralOrder";
+                    if(failurePreference!="")return new NativeCommandConstraintV1("MiningUnknownValueUsesNeutralOrder", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1117);
                 } else {
                     long highest=units.Max(x=>x.ValueCopper.Value);var top=units.Where(x=>x.ValueCopper.Value==highest).ToArray();
-                    if(top.Length>1&&(failurePreference==""||!top.Any(x=>x.Id==failurePreference)))return "MiningFailureTieChoiceRequired";
-                    if(failurePreference!=""&&!top.Any(x=>x.Id==failurePreference))return "InvalidMiningFailurePreference";
+                    if(top.Length>1&&(failurePreference==""||!top.Any(x=>x.Id==failurePreference)))return new NativeCommandConstraintV1("MiningFailureTieChoiceRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1120);
+                    if(failurePreference!=""&&!top.Any(x=>x.Id==failurePreference))return new NativeCommandConstraintV1("InvalidMiningFailurePreference", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1121);
                 }
                 string criticalPreference=c.MiningSelection.CriticalRecoveryPreference;
-                if(damaged.Length>1&&(criticalPreference==""||!damaged.Any(x=>x.Id==criticalPreference)))return "MiningCriticalRecoveryChoiceRequired";
-                if(criticalPreference!=""&&!damaged.Any(x=>x.Id==criticalPreference))return "InvalidMiningCriticalRecoveryPreference";
-                if(c.MiningSelection.Hurried&&!deposit.HurryFeasible)return "MiningHurryNotFeasible";
-                string access=MiningAccess(s,c.Actor,deposit,selectedUnitIds:unitIds);if(access!=null)return access;
+                if(damaged.Length>1&&(criticalPreference==""||!damaged.Any(x=>x.Id==criticalPreference)))return new NativeCommandConstraintV1("MiningCriticalRecoveryChoiceRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1124);
+                if(criticalPreference!=""&&!damaged.Any(x=>x.Id==criticalPreference))return new NativeCommandConstraintV1("InvalidMiningCriticalRecoveryPreference", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1125);
+                if(c.MiningSelection.Hurried&&!deposit.HurryFeasible)return new NativeCommandConstraintV1("MiningHurryNotFeasible", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1126);
+                var access=MiningAccessConstraintV1(s,c.Actor,deposit,selectedUnitIds:unitIds);if(access!=null)return access;
                 string assistantId=c.MiningSelection.AssistantId;
                 if(assistantId!="") {
-                    if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return "MiningAssistantRequiresSchema77";
-                    if(assistantId==c.Actor)return "MiningAssistantMustDiffer";
-                    string assistantAccess=MiningAssistantAccess(s,assistantId,deposit);if(assistantAccess!=null)return assistantAccess;
+                    if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return new NativeCommandConstraintV1("MiningAssistantRequiresSchema77", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1130);
+                    if(assistantId==c.Actor)return new NativeCommandConstraintV1("MiningAssistantMustDiffer", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1131);
+                    var assistantAccess=MiningAssistantAccessConstraintV1(s,assistantId,deposit);if(assistantAccess!=null)return assistantAccess;
                 }
                 CharacterAbility ability=c.MiningSelection.Ability==MiningAbilityChoice.Strength?CharacterAbility.Strength:CharacterAbility.Wisdom;
                 var check=AbilityCheckRules.Derive(s,c.Actor,"mining-tools",ability);
                 int dc;
                 if(deposit.ExactCheckDc.HasValue)dc=deposit.ExactCheckDc.Value;
-                else if(categories.Any(x=>x.Tier==0))return "MiningUnknownTierRequiresExactDc";
+                else if(categories.Any(x=>x.Tier==0))return new NativeCommandConstraintV1("MiningUnknownTierRequiresExactDc", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1138);
                 else dc=MiningExtractionRules.TierDc(categories.Max(x=>x.Tier));
                 int duration=MiningExtractionRules.DurationSeconds(accessible.Length,categories.Length,c.MiningSelection.Hurried);
                 RuleTime end=AddMiningTime(s.RuleClock,new RuleTime(duration));
                 if(s.SchemaVersion==Snapshot.MiningAssistantSchema&&(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,end)
-                    ||assistantId!=""&&!MiningIntervalAvailable(s,assistantId,s.RuleClock,end)))return "MiningWorkerIntervalConflict";
+                    ||assistantId!=""&&!MiningIntervalAvailable(s,assistantId,s.RuleClock,end)))return new NativeCommandConstraintV1("MiningWorkerIntervalConflict", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1143);
                 MiningToolCandidateProfileRecord toolProfile=null;string preparedUnitId="",reservedUnitId="";
                 if(s.SchemaVersion>=Snapshot.MiningToolCandidateSchema) {
                     toolProfile=s.MiningToolCandidateProfiles.SingleOrDefault(x=>x.DepositId==deposit.Id);
@@ -1157,7 +1166,7 @@ namespace Decennium.Foundation.Laboratory
                             string[] allocation=unitIds.Concat(new[]{reserve}).ToArray();
                             if(reserveUnit.Status==MiningUnitStatus.Available&&s.Work.AvailableAmount(reserve)==reserveUnit.MassPounds
                                 &&MiningToolCandidateRules.PhysicallyEligible(s,toolProfile,instance,c.Actor,allocation)
-                                &&MiningAccess(s,c.Actor,deposit,selectedUnitIds:allocation)==null)
+                                &&MiningAccessConstraintV1(s,c.Actor,deposit,selectedUnitIds:allocation)==null)
                                 reservedUnitId=reserve;
                         }
                     }
@@ -1176,27 +1185,27 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
             var current=s.MiningAttempts.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-            if(current==null)return "UnknownMiningAttempt";
-            if(c.MiningSelection!=null)return "InvalidMiningCommand";
+            if(current==null)return new NativeCommandConstraintV1("UnknownMiningAttempt", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1179);
+            if(c.MiningSelection!=null)return new NativeCommandConstraintV1("InvalidMiningCommand", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1180);
             if(c.Kind==CommandKind.PauseMining) {
-                if(current.Status!=MiningAttemptStatus.Working)return "MiningNotWorking";
+                if(current.Status!=MiningAttemptStatus.Working)return new NativeCommandConstraintV1("MiningNotWorking", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1182);
                 facts=new MiningAssessment { Current=current };return null;
             }
-            if(c.Kind!=CommandKind.ResumeMining)return "InvalidMiningCommand";
-            if(current.Status!=MiningAttemptStatus.Paused&&current.Status!=MiningAttemptStatus.AwaitingCheck)return "MiningNotPaused";
+            if(c.Kind!=CommandKind.ResumeMining)return new NativeCommandConstraintV1("InvalidMiningCommand", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1185);
+            if(current.Status!=MiningAttemptStatus.Paused&&current.Status!=MiningAttemptStatus.AwaitingCheck)return new NativeCommandConstraintV1("MiningNotPaused", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1186);
             var depositToResume=s.MiningDeposits.Single(x=>x.Id==current.DepositId);
-            string resumeAccess=MiningAccess(s,c.Actor,depositToResume,current.Id,current.SelectedUnitIds);if(resumeAccess!=null)return resumeAccess;
+            var resumeAccess=MiningAccessConstraintV1(s,c.Actor,depositToResume,current.Id,current.SelectedUnitIds);if(resumeAccess!=null)return resumeAccess;
             if(current.Status==MiningAttemptStatus.Paused&&current.AssistantId!="") {
-                if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return "MiningAssistantRequiresSchema77";
-                string assistantAccess=MiningAssistantAccess(s,current.AssistantId,depositToResume,current.Id);
+                if(s.SchemaVersion!=Snapshot.MiningAssistantSchema)return new NativeCommandConstraintV1("MiningAssistantRequiresSchema77", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1190);
+                var assistantAccess=MiningAssistantAccessConstraintV1(s,current.AssistantId,depositToResume,current.Id);
                 if(assistantAccess!=null)return assistantAccess;
                 RuleTime remaining=SubtractMiningTime(new RuleTime(current.DurationSeconds),current.WorkDone);
                 RuleTime end=AddMiningTime(s.RuleClock,remaining);
                 if(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,end,current.Id)
-                    ||!MiningIntervalAvailable(s,current.AssistantId,s.RuleClock,end,current.Id))return "MiningWorkerIntervalConflict";
+                    ||!MiningIntervalAvailable(s,current.AssistantId,s.RuleClock,end,current.Id))return new NativeCommandConstraintV1("MiningWorkerIntervalConflict", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1196);
             } else if(current.Status==MiningAttemptStatus.Paused&&s.SchemaVersion==Snapshot.MiningAssistantSchema) {
                 RuleTime remaining=SubtractMiningTime(new RuleTime(current.DurationSeconds),current.WorkDone);
-                if(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,AddMiningTime(s.RuleClock,remaining),current.Id))return "MiningWorkerIntervalConflict";
+                if(!MiningIntervalAvailable(s,c.Actor,s.RuleClock,AddMiningTime(s.RuleClock,remaining),current.Id))return new NativeCommandConstraintV1("MiningWorkerIntervalConflict", "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs", 1199);
             }
             facts=new MiningAssessment { Current=current,Deposit=depositToResume };
             return null;

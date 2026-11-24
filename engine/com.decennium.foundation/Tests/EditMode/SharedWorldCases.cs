@@ -10,7 +10,20 @@ namespace Decennium.Foundation.Tests
     public static partial class FoundationCases
     {
         private static Simulation World(TestOnlySharedWorldPolicy p = null) { p = p ?? new TestOnlySharedWorldPolicy(); return new Simulation(p, p.Initial(), ExecutionProfile.Laboratory); }
-        private static void WorldCommit(Simulation s, Command c) { var result = s.Execute(TestOnlySharedWorldPolicy.Host(), c); Require(result.Outcome == Outcome.Committed, c.Id + " (" + c.Kind + "): " + result.Code); }
+        private static void WorldCommit(Simulation s, Command c) {
+            if (IsAdmittedFormulaKindV1(c.Kind) || IsAdmittedManufacturingKindV1(c.Kind))
+                AssertNativeInitialAssessmentV1(s,c,TestOnlySharedWorldPolicy.Host());
+            var result = s.Execute(TestOnlySharedWorldPolicy.Host(), c);
+            Require(result.Outcome == Outcome.Committed, c.Id + " (" + c.Kind + "): " + result.Code);
+        }
+        private static bool IsAdmittedFormulaKindV1(CommandKind kind)
+            => kind==CommandKind.StartFormulaResearch || kind==CommandKind.StartFormulaCopy
+                || kind==CommandKind.PauseFormulaWork || kind==CommandKind.ResumeFormulaWork
+                || kind==CommandKind.CancelFormulaWork;
+        private static bool IsAdmittedManufacturingKindV1(CommandKind kind)
+            => kind==CommandKind.StartManufacturing || kind==CommandKind.PauseManufacturing
+                || kind==CommandKind.ResumeManufacturing || kind==CommandKind.CancelManufacturing
+                || kind==CommandKind.ResolveManufacturingQuality || kind==CommandKind.UseAlchemyDose;
         private static void WorldStep(Simulation s, int x, int y, bool run = false, string actor = TestOnlyPolicy.ActorId)
             => WorldCommit(s, IC(s, CommandKind.BeginWorldStep, run ? "run" : "walk", actor: actor, x: x, y: y));
         private static void WorldAdvance(Simulation s, int seconds, int denominator = 1) => WorldCommit(s, IC(s, CommandKind.AdvanceClock, x: seconds, y: denominator));

@@ -28,6 +28,8 @@ namespace Decennium.Foundation.Tests
 
         private static void CommitVialRoute(ConnectedExpeditionSession session, Command command)
         {
+            if(IsAdmittedFormulaKindV1(command.Kind) || IsAdmittedManufacturingKindV1(command.Kind))
+                AssertNativeInitialAssessmentV1(CastingSimulation(session),command,HavenSaleHost());
             var seat = command.Actor == ConnectedExpeditionSession.FirstOpponent ? ExpeditionSeat.FirstOpponent : ExpeditionSeat.Player;
             var result = command.Kind == CommandKind.AdvanceClock || command.Kind == CommandKind.EndFixedEncounter
                 ? session.SubmitSessionCommand(command) : session.Submit(seat, command);

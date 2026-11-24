@@ -99,25 +99,31 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ExpeditionBillAuthorityFailure(Snapshot state)
+            => ExpeditionBillAuthorityFailureConstraintV1(state)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExpeditionBillAuthorityFailureConstraintV1(Snapshot state)
         {
             if (state.ExpeditionBillCharter?.BindingKey != expeditionBillProfile.Charter.BindingKey
-                || !expeditionBillProfile.RepresentativeAuthorized) return "ExpeditionBillRepresentativeUnauthorized";
-            if (!expeditionBillProfile.RecordsAccessible) return "ExpeditionBillRecordsUnavailable";
+                || !expeditionBillProfile.RepresentativeAuthorized) return new NativeCommandConstraintV1("ExpeditionBillRepresentativeUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 104);
+            if (!expeditionBillProfile.RecordsAccessible) return new NativeCommandConstraintV1("ExpeditionBillRecordsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 105);
             if (!state.ExpeditionBillCharter.Coverage.HasFlag(ExpeditionBillCoverage.NoConflictingSuperiorClaim))
-                return "ExpeditionBillSuperiorClaimUncleared";
+                return new NativeCommandConstraintV1("ExpeditionBillSuperiorClaimUncleared", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 107);
             if (state.ExpeditionBillCharter.Coverage != ExpeditionBillCoverage.Required)
-                return "ExpeditionBillScopeIncomplete";
+                return new NativeCommandConstraintV1("ExpeditionBillScopeIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 109);
             return null;
         }
 
         private string ExpeditionBillInputs(Snapshot state, ExpeditionBillBasis previous, out ExpeditionBillBasis basis)
+            => ExpeditionBillInputsConstraintV1(state, previous, out basis)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExpeditionBillInputsConstraintV1(Snapshot state, ExpeditionBillBasis previous, out ExpeditionBillBasis basis)
         {
             basis = previous;
-            string authorityFailure = ExpeditionBillAuthorityFailure(state);
+            var authorityFailure= ExpeditionBillAuthorityFailureConstraintV1(state);
             if (authorityFailure != null) return authorityFailure;
             var sale = state.HavenSales.SingleOrDefault(x => x.Status == HavenSaleStatus.Paid);
             var meal = state.HavenMealPurchases.SingleOrDefault();
-            if (sale == null || meal == null) return "ExpeditionBillPaidRecordsMissing";
+            if (sale == null || meal == null) return new NativeCommandConstraintV1("ExpeditionBillPaidRecordsMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 120);
             if (sale.Basis.OfferVersionId != TestOnlyHavenSaleProfile.OfferVersionId || !havenSaleProfile.WrittenExemption
                 || !havenSaleProfile.DispositionCleared || sale.Basis.ClearanceId != TestOnlyHavenSaleProfile.ClearanceId
                 || sale.Basis.ExemptionId != TestOnlyHavenSaleProfile.ExemptionId || sale.Basis.ExemptionIssuerId != TestOnlyHavenSaleProfile.IssuerId
@@ -128,73 +134,79 @@ namespace Decennium.Foundation.Laboratory
                 || meal.Offer.ExactQuoteCopper != havenMealProfile.Offer.ExactQuoteCopper || meal.PaymentCopper != sale.PaymentCopper
                 || meal.Offer.VersionId != TestOnlyHavenMealProfile.OfferVersionId
                 || meal.Offer.SpendingClearanceId != TestOnlyHavenMealProfile.SpendingClearanceId)
-                return "ExpeditionBillDispositionAuthorityMismatch";
+                return new NativeCommandConstraintV1("ExpeditionBillDispositionAuthorityMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 131);
             var appraisal = state.HavenAppraisals.SingleOrDefault(x => x.Id == sale.Basis.AppraisalId);
             if (appraisal?.Status != HavenAppraisalStatus.Completed || appraisal.Basis.ClearanceId != TestOnlyHavenAppraisalProfile.ClearanceId
                 || appraisal.Basis.EvidenceId != TestOnlyHavenAppraisalProfile.EvidenceId)
-                return "ExpeditionBillAppraisalEvidenceMismatch";
+                return new NativeCommandConstraintV1("ExpeditionBillAppraisalEvidenceMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 135);
             var charter = state.ExpeditionBillCharter;
             basis ??= new ExpeditionBillBasis(charter.VersionId, charter.BillVersionId, sale.Id, sale.UpdatedRevision,
                 meal.Id, meal.Revision, appraisal.Id, sale.Basis.ClearanceId, sale.Basis.ExemptionId, meal.Offer.SpendingClearanceId,
                 sale.Basis.TenderLotId, state.Revision, state.RuleClock, sale.PaymentCopper.Value, meal.PaymentCopper);
-            return basis.MatchesReceipts(state, charter) ? null : "ExpeditionBillPaidRecordsChanged";
+            return basis.MatchesReceipts(state, charter) ? null : new NativeCommandConstraintV1("ExpeditionBillPaidRecordsChanged", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 140);
         }
 
         private string ExpeditionBillWorkerFailure(Snapshot state, string worker)
+            => ExpeditionBillWorkerFailureConstraintV1(state, worker)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExpeditionBillWorkerFailureConstraintV1(Snapshot state, string worker)
         {
             var desk = state.Structures.SingleOrDefault(x => x.Id == TestOnlyExpeditionBillProfile.DeskId);
             if (desk == null || desk.ProfileId != AppraisalDeskStructure || desk.LocationId != AppraisalGround || desk.Broken
-                || !expeditionBillProfile.WritingFacilitiesAvailable) return "ExpeditionBillDeskUnavailable";
-            if (CraftingRestrictions.StationUseBlocked(state, desk.Id)) return "ExpeditionBillDeskUseBlocked";
+                || !expeditionBillProfile.WritingFacilitiesAvailable) return new NativeCommandConstraintV1("ExpeditionBillDeskUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 147);
+            if (CraftingRestrictions.StationUseBlocked(state, desk.Id)) return new NativeCommandConstraintV1("ExpeditionBillDeskUseBlocked", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 148);
             if (state.InventoryCombat || state.Encounter != null && !ResolvedConflict(state) || PendingCalendarChoice(state))
-                return "ExpeditionBillCombatUnavailable";
+                return new NativeCommandConstraintV1("ExpeditionBillCombatUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 150);
             if (!CapableWorker(state, worker) || View(state, worker).BlocksSight || AvailableHands(state, worker) < 1)
-                return "ExpeditionBillWorkerIncapable";
+                return new NativeCommandConstraintV1("ExpeditionBillWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 152);
             if (!AtSalePosition(state, worker, TestOnlyHavenAppraisalProfile.SiteX, TestOnlyHavenAppraisalProfile.SiteY))
-                return "ExpeditionBillWorkerNotAtDesk";
+                return new NativeCommandConstraintV1("ExpeditionBillWorkerNotAtDesk", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 154);
             return null;
         }
 
         private string AssessExpeditionBill(Snapshot state, Command command, out ExpeditionBillRecord job, out ExpeditionBillBasis basis)
+            => AssessExpeditionBillConstraintV1(state, command, out job, out basis)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessExpeditionBillConstraintV1(Snapshot state, Command command, out ExpeditionBillRecord job, out ExpeditionBillBasis basis)
         {
             job = null;
             basis = null;
-            if (expeditionBillProfile == null || state.SchemaVersion < Snapshot.ExpeditionBillSchema) return "ExpeditionBillNotSelected";
-            if (state.ExpeditionEpisodeClose != null) return "ExpeditionEpisodeAlreadyClosed";
-            if (command.Actor != TestOnlyExpeditionBillProfile.WorkerId) return "ExpeditionBillRepresentativeUnauthorized";
+            if (expeditionBillProfile == null || state.SchemaVersion < Snapshot.ExpeditionBillSchema) return new NativeCommandConstraintV1("ExpeditionBillNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 162);
+            if (state.ExpeditionEpisodeClose != null) return new NativeCommandConstraintV1("ExpeditionEpisodeAlreadyClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 163);
+            if (command.Actor != TestOnlyExpeditionBillProfile.WorkerId) return new NativeCommandConstraintV1("ExpeditionBillRepresentativeUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 164);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null
                 || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
-                || command.RouteMappingWork != null) return "InvalidExpeditionBillPayload";
+                || command.RouteMappingWork != null) return new NativeCommandConstraintV1("InvalidExpeditionBillPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 169);
             job = OpenExpeditionBill(state);
             if (command.Kind == CommandKind.StartExpeditionBill) {
-                if (command.Target != TestOnlyExpeditionBillProfile.BillVersionId) return "ExpeditionBillVersionUnknown";
-                if (job != null) return "ExpeditionBillServiceSlotOccupied";
-                if (state.ExpeditionBills.Any(x => x.Report != null)) return "ExpeditionBillAlreadyReconciled";
-                if (state.ExpeditionBills.Length >= ExpeditionBillValidation.MaxAttempts) return "ExpeditionBillHistoryCapacityReached";
+                if (command.Target != TestOnlyExpeditionBillProfile.BillVersionId) return new NativeCommandConstraintV1("ExpeditionBillVersionUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 172);
+                if (job != null) return new NativeCommandConstraintV1("ExpeditionBillServiceSlotOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 173);
+                if (state.ExpeditionBills.Any(x => x.Report != null)) return new NativeCommandConstraintV1("ExpeditionBillAlreadyReconciled", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 174);
+                if (state.ExpeditionBills.Length >= ExpeditionBillValidation.MaxAttempts) return new NativeCommandConstraintV1("ExpeditionBillHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 175);
             } else {
-                if (job == null || command.Target != job.Id) return "ExpeditionBillWorkNotOpen";
+                if (job == null || command.Target != job.Id) return new NativeCommandConstraintV1("ExpeditionBillWorkNotOpen", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 177);
                 if (command.Kind == CommandKind.CancelExpeditionBill) return null;
                 if (command.Kind == CommandKind.PauseExpeditionBill)
-                    return job.Status == ExpeditionBillStatus.Working ? null : "ExpeditionBillWorkNotRunning";
+                    return job.Status == ExpeditionBillStatus.Working ? null : new NativeCommandConstraintV1("ExpeditionBillWorkNotRunning", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 180);
                 if (command.Kind == CommandKind.ResumeExpeditionBill && job.Status != ExpeditionBillStatus.Paused)
-                    return "ExpeditionBillWorkNotPaused";
+                    return new NativeCommandConstraintV1("ExpeditionBillWorkNotPaused", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 182);
                 if (command.Kind == CommandKind.FinalizeExpeditionBill && job.Status != ExpeditionBillStatus.PendingCompletion)
-                    return "ExpeditionBillWorkIncomplete";
+                    return new NativeCommandConstraintV1("ExpeditionBillWorkIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 184);
             }
             var end = CampGreens.Add(state.RuleClock, job?.Work.Remaining ?? new RuleTime(ExpeditionBillRecord.RequiredSeconds));
             var charter = state.ExpeditionBillCharter;
-            if (!charter.AuthorizedAt(state.RuleClock) || end >= charter.AuthorizationUntil) return "ExpeditionBillAuthorizationWindow";
-            string failure = ExpeditionBillInputs(state, job?.Basis, out basis) ?? ExpeditionBillWorkerFailure(state, command.Actor);
+            if (!charter.AuthorizedAt(state.RuleClock) || end >= charter.AuthorizationUntil) return new NativeCommandConstraintV1("ExpeditionBillAuthorizationWindow", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 188);
+            var failure= ExpeditionBillInputsConstraintV1(state, job?.Basis, out basis) ?? ExpeditionBillWorkerFailureConstraintV1(state, command.Actor);
             if (failure != null) return failure;
             if (end > state.RuleClock && IsOffCalendarActivity(state, command.Actor)) {
                 var activity = ActivityInterval(state, command.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
                     || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(state, command.Actor))
-                    return "OffCalendarActionAlreadySpent";
+                    return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 195);
             }
-            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return "ExpeditionBillWorkerBusy";
+            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return new NativeCommandConstraintV1("ExpeditionBillWorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs", 197);
             return null;
         }
 

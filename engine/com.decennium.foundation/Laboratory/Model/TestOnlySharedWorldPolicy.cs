@@ -965,12 +965,8 @@ namespace Decennium.Foundation.Laboratory
                 string bloodHandling = BloodSpecimenHandlingFailure(s,c);
                 if (bloodHandling != null) return bloodHandling;
             }
-            if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c) && !IsConnectedRecipe4Check(s, c)) {
-                var activity = ActivityInterval(s, c.Actor);
-                if (activity.Action == WorldActionCommitment.Dash
-                    || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(s, c.Actor))
-                    return "OffCalendarActionAlreadySpent";
-            }
+            var activityWorkFailure = OffCalendarWorkConstraintV1(s,c);
+            if(activityWorkFailure!=null)return activityWorkFailure.NativeCode;
             if((c.Kind==CommandKind.RespondOverwatch||c.Kind==CommandKind.ResolveOverwatchRider)&&(connectedCombat==null||!s.InventoryCombat))
                 return "OverwatchRequiresTacticalCombat";
             if(c.Kind==CommandKind.AwardCharacterMilestone||c.Kind==CommandKind.AdvanceCharacterLevel)return ResolveCharacterAdvancement(s,c);
@@ -1039,7 +1035,7 @@ namespace Decennium.Foundation.Laboratory
             if(c.Kind==CommandKind.AttackRepeatingCrossbow||c.Kind==CommandKind.ReloadRepeatingCrossbow
                 ||c.Kind==CommandKind.WarningShot||c.Kind==CommandKind.CoveringFire)
                 return rangedCombat==null?"RangedCommandNotImplemented":"RangedCombatRequiresEncounter";
-            if (c.Combat != null) return "SharedCombatHandoffNotImplemented";
+            if (c.Combat != null) return SharedUnimplementedConstraintV1(c).NativeCode;
             if (c.Kind == CommandKind.AdvanceClock) {
                 string clockPayloadFailure = WorldAdvancePayloadFailure(c); if (clockPayloadFailure != null) return clockPayloadFailure;
                 return AdvanceTo(s, CampGreens.Add(s.RuleClock, new RuleTime(c.X, c.Y)),initiating:c);
@@ -1101,12 +1097,9 @@ namespace Decennium.Foundation.Laboratory
             bool management = c.Kind == CommandKind.PlantCrop || c.Kind == CommandKind.TendCrop || c.Kind == CommandKind.HarvestCrop || c.Kind == CommandKind.PauseCrop || c.Kind == CommandKind.SetCropConditions
                 || c.Kind == CommandKind.PortionInventory || c.Kind == CommandKind.HandleInventory || c.Kind == CommandKind.StartIntake || c.Kind == CommandKind.InterruptIntake
                 || c.Kind == CommandKind.StartWaterFill || c.Kind == CommandKind.PauseWaterFill || c.Kind == CommandKind.ResumeWaterFill || c.Kind == CommandKind.CancelWaterFill || c.Kind == CommandKind.HandleVessel;
-            if (!management) return "SharedCommandNotImplemented";
-            // None of these procedures may authorize access using a stale integer grid anchor.
-            if (s.WorldTraversals.Any(x => x.ActorId == c.Actor || c.Inventory?.Destination == x.ActorId)) return "TraversalRequiresStationaryInteraction";
-            bool release = c.Kind == CommandKind.PauseCrop || c.Kind == CommandKind.PauseWaterFill || c.Kind == CommandKind.CancelWaterFill || c.Kind == CommandKind.InterruptIntake || c.Kind == CommandKind.SetCropConditions;
-            if (!release && !CapableWorker(s, c.Actor)) return "WorkerCannotPerformTask";
-            if ((c.Kind == CommandKind.StartWaterFill || c.Kind == CommandKind.ResumeWaterFill) && AvailableHands(s, c.Actor) < 2) return "TwoHandsRequired";
+            if (!management) return SharedUnimplementedConstraintV1(c).NativeCode;
+            var managementFailure=OrdinaryManagementConstraintV1(s,c);
+            if(managementFailure!=null)return managementFailure.NativeCode;
             // Handling has its own one-second synchronous cost. Its existing stationary procedure
             // cannot observe an intervening capability change or another body's exact partial
             // position. Keep those combinations explicitly gated until that procedure is resumable.

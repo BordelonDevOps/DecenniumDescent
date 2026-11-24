@@ -1,0 +1,306 @@
+{
+  "schema": "INT05_PLANNING_PATCH_STATIC_REVIEW_V1",
+  "reviewer": "Codex independent audit_magic agent",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "originalGuardCoordinateCommit": "67f3d201b",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "scope": {
+    "reviewed": [
+      "SharedNextCharterPlan: three typed guard methods and string wrappers; execution-only fallback instrumentation",
+      "SharedCommandAssessmentV1: private AssessInitialFactsV1 factoring and StartNextCharterPlan registration/routing",
+      "VerifiedSharedWorldCheckpoint: IVerifiedCommandAssessmentV1 implementation",
+      "ReadStateProjectionV1: NativeReadContextV1 origin field/constructor binding and new IsBoundTo overload",
+      "NativeCommandAssessmentV1: VerificationUnavailableAt factory",
+      "AdmittedPlanningCases: source-only witness intent"
+    ],
+    "notPerformed": [
+      "No runtime or test changes",
+      "No builds, tests, gameplay, save/restore or replay executed by reviewer",
+      "No separate repeated codec/transitive audit",
+      "No full public entitlement/disclosure, INT-05 acceptance or Unity-readiness claim"
+    ],
+    "comparison": "Current patch against b9556593; typed guards additionally normalized and compared to original67f3d201b. Existing approved management, condition, current-fact and pure-codec audits reused.",
+    "executionEvidence": "Parent stated build21/quick protocol in progress. This report does not independently certify execution results."
+  },
+  "findings": [],
+  "guardComparison": {
+    "sameNormalizedBodiesAndWrappers": [
+      "NextCharterPlanBasisFailure",
+      "NextCharterPlannerFailure",
+      "AssessNextCharterPlanCommand"
+    ],
+    "guardCount": 27,
+    "guards": [
+      {
+        "code": "NextCharterPlanningMandateMissing",
+        "line": 100
+      },
+      {
+        "code": "NextCharterPlanningEvidenceUnavailable",
+        "line": 101
+      },
+      {
+        "code": "NextCharterPlanningWaterSourcesNotDistinct",
+        "line": 102
+      },
+      {
+        "code": "NextCharterPlanningCloseRequired",
+        "line": 105
+      },
+      {
+        "code": "NextCharterPlanningPassageEvidenceMissing",
+        "line": 106
+      },
+      {
+        "code": "NextCharterPlanningBasisChanged",
+        "line": 108
+      },
+      {
+        "code": "NextCharterPlanningPassageEvidenceMissing",
+        "line": 113
+      },
+      {
+        "code": "NextCharterPlanningDeskUnavailable",
+        "line": 148
+      },
+      {
+        "code": "NextCharterPlanningDeskUseBlocked",
+        "line": 149
+      },
+      {
+        "code": "NextCharterPlanningCombatUnavailable",
+        "line": 151
+      },
+      {
+        "code": "NextCharterPlanningWorkerIncapable",
+        "line": 153
+      },
+      {
+        "code": "NextCharterPlanningWorkerNotAtDesk",
+        "line": 154
+      },
+      {
+        "code": "NextCharterPlanningNotSelected",
+        "line": 169
+      },
+      {
+        "code": "NextCharterPlanningWorkerUnauthorized",
+        "line": 170
+      },
+      {
+        "code": "InvalidNextCharterPlanningPayload",
+        "line": 171
+      },
+      {
+        "code": "NextCharterPlanningReportMissing",
+        "line": 174
+      },
+      {
+        "code": "NextCharterPlanningDefinitionUnknown",
+        "line": 183
+      },
+      {
+        "code": "NextCharterPlanningSlotOccupied",
+        "line": 184
+      },
+      {
+        "code": "NextCharterPlanningAlreadyCompleted",
+        "line": 185
+      },
+      {
+        "code": "NextCharterPlanningHistoryCapacityReached",
+        "line": 186
+      },
+      {
+        "code": "NextCharterPlanningWorkNotOpen",
+        "line": 188
+      },
+      {
+        "code": "NextCharterPlanningWorkNotRunning",
+        "line": 191
+      },
+      {
+        "code": "NextCharterPlanningWorkNotPaused",
+        "line": 193
+      },
+      {
+        "code": "NextCharterPlanningWorkIncomplete",
+        "line": 195
+      },
+      {
+        "code": "NextCharterPlanningAuthorizationWindow",
+        "line": 201
+      },
+      {
+        "code": "OffCalendarActionAlreadySpent",
+        "line": 208
+      },
+      {
+        "code": "NextCharterPlanningWorkerBusy",
+        "line": 210
+      }
+    ]
+  },
+  "observations": [
+    {
+      "id": "PLAN01",
+      "topic": "Three complete typed guard bodies preserve native source",
+      "result": "NextCharterPlanBasisFailureConstraintV1, NextCharterPlannerFailureConstraintV1 and AssessNextCharterPlanCommandConstraintV1 exactly match original bodies after replacing typed constraints with their code literals, typed helper names with originals and string-to-var locals. All 27 origin path/line/code triples match original67f. Legacy signatures/default optional argument and out initialization remain; wrappers return NativeCode. Start, inspect, pause/cancel/resume/finalize branches retain source order."
+    },
+    {
+      "id": "PLAN02",
+      "topic": "Exact owner/current-context binding",
+      "source": [
+        "ReadStateProjectionV1.cs:55-80,122-132",
+        "VerifiedSharedWorldCheckpoint.cs:154-162,178-183"
+      ],
+      "result": "NativeReadContextV1 now stores the Simulation's exact verificationOrigin privately. IsBoundTo(origin,candidate) first rejects null/foreign origin by reference and then delegates to unchanged exact-snapshot/current-stamp/schema/wire-schema/clock/fingerprint/TestOnly checks. CurrentReadContext still validates current owner/policy/generation against both authoritative state and captured snapshot before construction. The constructor remains internal, not public; the new overload returns only a comparison result. Equal content bytes from another Simulation cannot transfer its context to this owner."
+    },
+    {
+      "id": "PLAN03",
+      "topic": "Checkpoint assessment admission",
+      "result": "The private sealed checkpoint accepts only StartNextCharterPlan with selected verifiedPlanningPassage, actual retained passage, exact origin-bound context, VerifyOwner success and full pure canonical predecessor equality. VerifyOwner checks exact retained owner, policy/content fingerprint, current revision/TestOnly/wire schema and passage.Covers for the current revision. An old checkpoint or changed captured state fails before native planning guards. A native read context alone does not grant this proof."
+    },
+    {
+      "id": "PLAN04",
+      "topic": "Pure canonical comparison and callback boundary",
+      "source": [
+        "SnapshotCodec.cs:23-30",
+        "ReadStateProjectionV1.cs:71-80,122-132"
+      ],
+      "result": "MatchesValidatedPredecessor invokes the existing private EncodeCanonical writer and byte equality; it does not call public validating Encode, Decode, Validation.Snapshot, policy.ValidateState, Seal or VerifyNext. Reused CODEC_TRANSITIVE_SOURCE_AUDIT supplies the broader writer closure; this review did not repeat it. Origin/context checks use concrete private fields and sealed/owning stamp values, not a policy projection Stamp getter or callback. No new external callback or owner reentry route was introduced."
+    },
+    {
+      "id": "PLAN05",
+      "topic": "Proof absence versus genuine no-crossing",
+      "result": "Checkpoint missing/mismatch returns VerificationUnavailableAt. AssessInitialFactsV1 additionally requires a present passage covering the full current revision whenever a planning profile exists, before calling shared initial guards. A valid proof with no qualifying completion remains present and Covers succeeds; basis then uses StartThrough(close.SourceRevision)==0 and returns the original native NextCharterPlanningPassageEvidenceMissing at113. The earlier missing-member case at106 remains distinct. Missing technical proof is not relabelled as native missing evidence."
+    },
+    {
+      "id": "PLAN06",
+      "topic": "Legacy fallback cannot execute from checked read path",
+      "source": [
+        "SharedNextCharterPlan.cs:98-130",
+        "VerifiedSharedWorldCheckpoint.cs:107-126"
+      ],
+      "result": "The shared basis still contains its original optional legacy FindPlanningPassage fallback for execution behavior. In the new Start read route, mandatory owner/current proof has already passed Covers at current.Revision; on validated current close records its SourceRevision is within that cutoff, so the basis follows StartThrough and cannot reach fallback. Previous job passage is used only in original non-Start paths. FindPlanningPassage now calls RequireExecution(HistoryReplay) before Initial or receipt replay, catching any future accidental read entry. Its behavior outside a read inspection remains unchanged. No read constructs, repairs, extends or advances passage evidence."
+    },
+    {
+      "id": "PLAN07",
+      "topic": "Root ordering and existing nonplanning behavior",
+      "result": "Factoring AssessInitialFactsV1 retains the existing strict condition EnterRead and initial WorldOpening/long-rest/Sanctuary/Guidance/physical sequence. Planning joins BeforeStabilizationBranchConstraintV1 at its actual native dispatch stage, before later meal/route/general work gates. Native planner-specific source, window, capability and off-calendar checks retain order. The public policy interface still rejects direct use for RequiresVerifiedAssessment; ordinary nonplanning routing uses the same private helper with null passage and unchanged guard sequence. Planning without a selected profile can return its native not-selected guard; a selected profile without owned proof fails closed."
+    },
+    {
+      "id": "PLAN08",
+      "topic": "No new public gameplay authority",
+      "result": "The checkpoint class remains private and sealed; NativeReadContext construction remains internal. The new public context overload compares identity without exposing origin or constructing authority. VerificationUnavailableAt only creates an immutable native diagnostic with null eligibility/commit/constraint/receipt and default audit counters; it authenticates no state and grants no permission. Core AssessCommandFactsV1 still performs command/authority/revision/idempotency checks before invoking the verified checkpoint and attaches the active read audit afterward."
+    },
+    {
+      "id": "PLAN09",
+      "topic": "Current observation and execution boundary",
+      "result": "After pure source guards, ObserveNextCharterPlan remains a current readiness/supply projection over actual records and existing source helpers; no future movement or resource reservation is added. Prior spatial/speed/pressure/procedure/current-condition plans and audits are referenced without claiming a fresh full closure. BookNextCharterPlan, job append, active labor, timed progress/report creation and checkpoint advancement remain execution-only. InitialAssessmentV1 still uses CommitFeasibility=null."
+    }
+  ],
+  "sourceOnlyTestReview": {
+    "caseName": "int05_owned_planning_read_proof_and_genuine_restore",
+    "observedCoverageIntent": [
+      "Authentic pre-close NextCharterPlanningCloseRequired native denial",
+      "Foreign Simulation context with equal bytes rejected",
+      "Changed RandomState caught by canonical equality",
+      "Actual QualityWalkthrough reaches a planning start",
+      "Earlier checkpoint rejected at later revision",
+      "Before-planning save/restore retains read eligibility",
+      "Actual plan/time advance and completed-report save/restore"
+    ],
+    "classification": "Source inspection only. Tampered context/bytes and old-checkpoint checks are deliberate detached protocol controls, not new gameplay witnesses. QualityWalkthrough sequence is the intended genuine gameplay route; no execution outcome is inferred here.",
+    "remaining": "This case does not independently show a completed-close, valid-owner proof with no qualifying crossing reaching original113. That behavior is verified statically here; any runtime claim for that branch needs its own retained genuine or explicitly classified control evidence. It also does not qualify every profile/payload/five-path branch."
+  },
+  "retainedLimits": [
+    "No concrete source defect found in this bounded patch. Source equivalence is not complete runtime purity or performance evidence.",
+    "Read-time full canonical equality is allowed only via the existing pure writer; no general validation/replay exception was added.",
+    "Final constructor/work/candidate/shared-tail feasibility remains unclaimed; commit feasibility is null.",
+    "Actual build21/protocol/genuine planning outcomes, supported saves, deterministic replay and final GPT/module acceptance remain separate evidence.",
+    "Other uncommitted command registrations and family implementations are outside this consolidated planning review."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "aade834a488032d4d88aec4d460ba98b21206b2ad0054eb1a1bb0b53c505ceba"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "3239b7669646d108606d31d16c71a0f35826d3253d63a4baf0d5d8fb45dc9d1e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "sha256": "d570f21b4882e52175f378e0091a5a7d96c8f83ad7df5710228151394b745241"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReadStateProjectionV1.cs",
+      "sha256": "a72bebba30cee8dcb0e235550dfcc573176c192fff7a629c48bd62023b0ecfc3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "sha256": "709e66c49becf1db16abf17b2d6e360f6b317cd34d1106f600db7d6ac168df02"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "sha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "ca1db38f4a6c4c9970cb54064d15edab2d7bfce34b551c230512c78423e8f830"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedPlanningCases.cs",
+      "sha256": "3d6525af64304b04337fa5edb37dd16e961c970df781da8346081d0e79274839"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CODEC_TRANSITIVE_SOURCE_AUDIT.json",
+      "sha256": "71c303ebc24bfd5a5aa1961e75ec8502348bbb9fde4eb29fcbda0f1ebc488711"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SPATIAL_SPEED_PRESSURE_READ_PLAN.json",
+      "sha256": "f84421b846fd4797f651535377176cccde46837e7b8884ef2d89b9535052b171"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/reviews/management-extraction-source-review-02.json",
+      "sha256": "0cd6041f6175da639a3da82ec6acdcdafda78eb805c15b7e6a4d674adb6c4b3d"
+    }
+  ]
+}

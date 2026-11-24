@@ -62,45 +62,51 @@ namespace Decennium.Foundation.Laboratory
         // The same pure family assessment serves execution and connected host queries.
         // Outer authority, world context and dynamic hand checks remain at their existing boundaries.
         internal string AssessWaterFill(Snapshot s, Command c, out WaterFillRecord job)
+            => AssessWaterFillConstraintV1(s,c,out job)?.NativeCode;
+
+        internal NativeCommandConstraintV1 AssessWaterFillConstraintV1(Snapshot s, Command c, out WaterFillRecord job)
         {
             job = null;
             if(c.Kind==CommandKind.StartWaterFill) {
-                if(s.InventoryCombat)return "TacticalFillingUnsupported";
-                if(c.Inventory==null||c.Inventory.Amount==default||c.Inventory.Destination==""||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return "InvalidFillRequest";
-                if(Hands(c.Actor)<2)return "TwoHandsRequired";
-                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-                string error=WaterFilling.Prerequisite(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);if(error!=null)return error;
-                if(c.Inventory.Amount>s.Work.AvailableAmount(c.Target))return "FillSourceReservedOrInsufficient";
-                if(c.Inventory.Amount>WaterFilling.FreeCapacity(s,c.Inventory.Destination))return "FillCapacityUnavailable";
-                return FillRecordCapacity(s, starting: true);
+                if(s.InventoryCombat)return new NativeCommandConstraintV1("TacticalFillingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 68);
+                if(c.Inventory==null||c.Inventory.Amount==default||c.Inventory.Destination==""||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return new NativeCommandConstraintV1("InvalidFillRequest", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 69);
+                if(Hands(c.Actor)<2)return new NativeCommandConstraintV1("TwoHandsRequired", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 70);
+                if(OrdinaryInventory.Busy(s,c.Actor))return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 71);
+                var error=WaterFilling.PrerequisiteConstraintV1(s,c.Actor,c.Target,c.Inventory.Destination,c.Inventory.Amount);if(error!=null)return error;
+                if(c.Inventory.Amount>s.Work.AvailableAmount(c.Target))return new NativeCommandConstraintV1("FillSourceReservedOrInsufficient", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 73);
+                if(c.Inventory.Amount>WaterFilling.FreeCapacity(s,c.Inventory.Destination))return new NativeCommandConstraintV1("FillCapacityUnavailable", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 74);
+                return FillRecordCapacityConstraintV1(s, starting: true);
             }
             if(c.Kind==CommandKind.PauseWaterFill||c.Kind==CommandKind.ResumeWaterFill||c.Kind==CommandKind.CancelWaterFill) {
-                if(c.Inventory!=null||c.X!=0||c.Y!=0)return "InvalidFillRequest";
-                job=s.WaterFills.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(job==null)return "UnknownWorkerFill";
+                if(c.Inventory!=null||c.X!=0||c.Y!=0)return new NativeCommandConstraintV1("InvalidFillRequest", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 78);
+                job=s.WaterFills.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(job==null)return new NativeCommandConstraintV1("UnknownWorkerFill", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 79);
                 if(c.Kind==CommandKind.PauseWaterFill) {
-                    if(job.Status!=WaterFillStatus.Working)return "FillNotWorking";return null;
+                    if(job.Status!=WaterFillStatus.Working)return new NativeCommandConstraintV1("FillNotWorking", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 81);return null;
                 }
                 if(c.Kind==CommandKind.CancelWaterFill) {
-                    if(!job.Pending)return "FillAlreadyTerminal";return null;
+                    if(!job.Pending)return new NativeCommandConstraintV1("FillAlreadyTerminal", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 84);return null;
                 }
-                if(s.InventoryCombat)return "TacticalFillingUnsupported";
-                if(job.Status!=WaterFillStatus.Paused)return "FillNotPaused";
-                if(Hands(c.Actor)<2)return "TwoHandsRequired";
-                if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-                string error=WaterFilling.Prerequisite(s,c.Actor,job.SourceLotId,job.DestinationId,job.Amount,job.Id);if(error!=null)return error;
-                return FillRecordCapacity(s, starting: false);
+                if(s.InventoryCombat)return new NativeCommandConstraintV1("TacticalFillingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 86);
+                if(job.Status!=WaterFillStatus.Paused)return new NativeCommandConstraintV1("FillNotPaused", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 87);
+                if(Hands(c.Actor)<2)return new NativeCommandConstraintV1("TwoHandsRequired", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 88);
+                if(OrdinaryInventory.Busy(s,c.Actor))return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 89);
+                var error=WaterFilling.PrerequisiteConstraintV1(s,c.Actor,job.SourceLotId,job.DestinationId,job.Amount,job.Id);if(error!=null)return error;
+                return FillRecordCapacityConstraintV1(s, starting: false);
             }
-            return "UnsupportedFillCommand";
+            return new NativeCommandConstraintV1("UnsupportedFillCommand", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 93);
         }
 
         private static string FillRecordCapacity(Snapshot s, bool starting)
+            => FillRecordCapacityConstraintV1(s,starting)?.NativeCode;
+
+        private static NativeCommandConstraintV1 FillRecordCapacityConstraintV1(Snapshot s, bool starting)
         {
             // Preserve historical profile admission. This opt-in query/execution surface uses
             // the effective snapshot limits, not WorkLedger's larger construction bound.
             if(!ConnectedWorkControlProfile.SelectedFingerprint(s.ContentFingerprint))return null;
-            if(starting&&s.WaterFills.Length>=32)return "FillRecordCapacityReached";
-            if(starting&&s.Work.Reservations.Count>=Snapshot.MaxCropWorkRecords)return "WorkReservationCapacityReached";
-            if(s.Work.WorkerIntervals.Count>=Snapshot.MaxCropWorkRecords)return "WorkBookingCapacityReached";
+            if(starting&&s.WaterFills.Length>=32)return new NativeCommandConstraintV1("FillRecordCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 101);
+            if(starting&&s.Work.Reservations.Count>=Snapshot.MaxCropWorkRecords)return new NativeCommandConstraintV1("WorkReservationCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 102);
+            if(s.Work.WorkerIntervals.Count>=Snapshot.MaxCropWorkRecords)return new NativeCommandConstraintV1("WorkBookingCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs", 103);
             return null;
         }
 

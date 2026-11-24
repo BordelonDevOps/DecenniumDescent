@@ -39,7 +39,8 @@ try {
             & (Join-Path $PSScriptRoot 'Invoke-IsolatedCSharp.ps1') -Sources $files -References $referenceAssemblies `
                 -CompilerOptions $options -OutputAssembly $assembly -CompilerPath $CompilerPath -DotNetHost $DotNetHost
         } else {
-            Add-Type -Path $files -OutputAssembly $assembly -ReferencedAssemblies $referenceAssemblies -CompilerOptions $options
+            & (Join-Path $PSScriptRoot 'Invoke-NamedCSharp.ps1') -Sources $files -References $referenceAssemblies `
+                -CompilerOptions $options -OutputAssembly $assembly
         }
         Add-Type -Path $assembly
         $referenceAssemblies += $assembly

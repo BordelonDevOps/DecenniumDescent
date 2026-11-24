@@ -43,17 +43,20 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ConnectedResearchAdmission(Snapshot state, Command command)
+            => ConnectedResearchAdmissionConstraintV1(state, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 ConnectedResearchAdmissionConstraintV1(Snapshot state, Command command)
         {
             if (command.Kind == CommandKind.StartFormulaCopy
                 || command.Kind == CommandKind.StartFormulaResearch
                     && (command.X != 0 || command.Y != 0 || command.Target != SharedResearchFixture.Evidence))
-                return "ConnectedFormulaOperationNotSelected";
+                return new NativeCommandConstraintV1("ConnectedFormulaOperationNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 50);
             if (command.Kind != CommandKind.StartFormulaResearch && command.Kind != CommandKind.ResumeFormulaWork)
                 return null;
-            if (command.Actor != research.WorkerId) return "ResearchCredentialMissing";
-            if (ResearchParticipantInCombat(state, command.Actor)) return "ResearchParticipantInCombat";
+            if (command.Actor != research.WorkerId) return new NativeCommandConstraintV1("ResearchCredentialMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 53);
+            if (ResearchParticipantInCombat(state, command.Actor)) return new NativeCommandConstraintV1("ResearchParticipantInCombat", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 54);
             return !state.InventoryCombat && IsOffCalendarActivity(state, command.Actor)
-                && ConnectedExplorationObservation.StageOpen(state) ? null : "ConnectedResearchStageClosed";
+                && ConnectedExplorationObservation.StageOpen(state) ? null : new NativeCommandConstraintV1("ConnectedResearchStageClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 56);
         }
 
         private bool ConnectedResearchWorkshopAvailable(Snapshot state)
@@ -67,9 +70,12 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessConnectedManufacturing(Snapshot state, Command command)
+            => AssessConnectedManufacturingConstraintV1(state,command)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessConnectedManufacturingConstraintV1(Snapshot state, Command command)
         {
-            if (command.Kind != CommandKind.StartManufacturing) return "ConnectedManufacturingNotSelected";
-            return AssessManufacturingStart(state, command, out _) ?? "ConnectedManufacturingNotSelected";
+            if (command.Kind != CommandKind.StartManufacturing) return new NativeCommandConstraintV1("ConnectedManufacturingNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 71);
+            return AssessManufacturingStartConstraintV1(state, command, out _) ?? new NativeCommandConstraintV1("ConnectedManufacturingNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs", 72);
         }
 
         private IEnumerable<Command> DiscoverConnectedFormulaWork(Snapshot state, string actor)

@@ -1,0 +1,1180 @@
+{
+  "schemaVersion": 1,
+  "report": "Observation routing independent review 01",
+  "reviewer": "/root/audit_management",
+  "createdUtc": "2026-11-24T13:01:36.813750+00:00",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "acceptedBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "status": "NO_UNRESOLVED_BLOCKER_FOR_CURRENT_INCREMENTAL_PATCH; missing-profile CancelExplorationSearch remains explicit coverage gap",
+  "scope": "Independent static review of Search, Hide, CancelExplorationSearch and CancelExplorationHide root routing, typed guards and pure dependencies. No runtime/test/build/replay execution, no runtime edits, no successor, no GPT acceptance claim.",
+  "actualContractStatus": "INT-05 HC source/API accepted previously. This review does not establish complete runtime/module acceptance.",
+  "findings": [
+    {
+      "id": "OBS-R1",
+      "severity": "P1",
+      "status": "RESOLVED_IN_REVIEWED_PATCH",
+      "problem": "Initial tactical Search extraction omitted native SearchCandidateAmbiguous before the first side effect. A public cell-only request assessment could return initial eligibility true although native private cardinality guard rejected.",
+      "acceptedOrigin": {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "line": 273
+      },
+      "correction": "SearchCandidateConstraintV1 privately shares exact candidate selection and >1 guard; root assessment calls it after SearchRequestConstraintV1; ResolveSearch uses the same selected targets. ActiveSearchHide/retained Stealth inspection and RecordSearchResult remain execution-only.",
+      "verification": "Exact extracted prefix comparison is true; current source pins retained. No targets, counts, DCs or observer facts added to public output."
+    }
+  ],
+  "openCoverage": [
+    {
+      "id": "OBS-G1",
+      "operation": "CancelExplorationSearch",
+      "case": "Selected policy has no explorationSearchDefinition",
+      "status": "UNSUPPORTED_BY_INCREMENTAL_ASSESSMENT; full INT-05 completion remains open",
+      "currentHandling": "SupportsAssessment includes this kind only when explorationSearchDefinition != null. The omitted path is not misclassified as OrdinarySearchUnavailable or NoPendingOrdinarySearch.",
+      "bindingAssumption": "Owning valid selected-policy snapshot binding ensures selected definition and ExplorationSearch presence agree; native ValidatePolicy retains this check. Assessment must not run validation or repair a missing record.",
+      "requiredLaterExtraction": "Implement native later-root/tactical fallback below before claiming full command coverage. No successor module authorized."
+    }
+  ],
+  "rootRouting": {
+    "acceptedRoot": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "commonPrefix": [
+      {
+        "lines": [
+          866,
+          875
+        ],
+        "route": "WorldOpeningConstraintV1: actor first; FerryDash unrelated; SealTear activity guard retains source predicate, all four observation kinds are not StartsOrResumesActivityWork."
+      },
+      {
+        "lines": [
+          876,
+          879
+        ],
+        "route": "LongRest early dispatch disjoint; ActiveLongRestInterruptionV1 applies before observation."
+      },
+      {
+        "lines": [
+          880,
+          887
+        ],
+        "route": "Pending Sanctuary returns SanctuaryChoicePending for these nonresponse kinds. SanctuaryAttackCommand is disjoint."
+      },
+      {
+        "lines": [
+          888,
+          890
+        ],
+        "route": "GuidanceChoiceConstraintV1 then PhysicalConstraintV1. Guidance is supported only for tactical Hide/Search among these four; arbitrary cancellation Guidance retains early native failure."
+      },
+      {
+        "lines": [
+          891,
+          902
+        ],
+        "route": "Cast/utility/repertoire/ClassRecovery/Consecrate/Invocation/Rite/Presence/ShortRest dispatches disjoint by exact native kind sets."
+      },
+      {
+        "lines": [
+          903,
+          912
+        ],
+        "route": "ActiveShortRestInterruptionV1, then WoundTreatmentOuterConstraintV1: sealed target before active healer/patient. ConsumeDecay and wound-command dispatches disjoint."
+      },
+      {
+        "lines": [
+          913,
+          916
+        ],
+        "route": "SearchActivityConstraintV1 then HideActivityConstraintV1. Both predicates preserved; these four kinds are neither activity-work nor named movement/rest conflicts."
+      }
+    ],
+    "earlyDispatches": [
+      {
+        "lines": [
+          917,
+          918
+        ],
+        "operation": "CancelExplorationHide",
+        "predicate": "Always dispatch this kind after common prefix.",
+        "result": "Missing ExplorationHide -> OrdinaryHideUnavailable at918; otherwise CancelExplorationHideConstraintV1. No fresh-start capability or inventory gate."
+      },
+      {
+        "lines": [
+          919,
+          919
+        ],
+        "operation": "Hide",
+        "predicate": "ExplorationHide present AND not InventoryCombat",
+        "result": "ExplorationHideConstraintV1; return before later global recovery/care/rest/meal/route guards."
+      },
+      {
+        "lines": [
+          920,
+          920
+        ],
+        "operation": "CancelExplorationSearch",
+        "predicate": "ExplorationSearch present",
+        "result": "CancelExplorationSearchConstraintV1 even if InventoryCombat; otherwise native falls through (current explicit gap). No invented unavailable failure."
+      },
+      {
+        "lines": [
+          921,
+          921
+        ],
+        "operation": "Search",
+        "predicate": "ExplorationSearch present AND not InventoryCombat",
+        "result": "ExplorationSearchConstraintV1; return before later global recovery/care/rest/meal/route guards."
+      }
+    ],
+    "lateHideSearchPrefix": [
+      {
+        "lines": [
+          922,
+          924
+        ],
+        "route": "Retreat instruction disjoint; RetreatHostileAttackConstraintV1 returns null at nonattack-kind guard, before PendingCalendarChoice."
+      },
+      {
+        "lines": [
+          925,
+          930
+        ],
+        "route": "Harvest exposure/transition and camp-use dispatches disjoint."
+      },
+      {
+        "lines": [
+          931,
+          945
+        ],
+        "route": "PendingRecoveryChoiceConstraintV1, HavenCareActorConstraintV1, MoraleRestingActorConstraintV1, RestingActorConstraintV1 in that order. Strain/rest/care own commands and tactical transition gates are disjoint."
+      },
+      {
+        "lines": [
+          946,
+          956
+        ],
+        "route": "Appraisal, close, reinforcement instruction/control, stabilization, charter/plan/bill/sale and meal purchase dispatches disjoint. Reinforcement control specifically requires SuspendWorldStep/ResumeWorldStep."
+      },
+      {
+        "lines": [
+          957,
+          960
+        ],
+        "route": "HavenMealServingConstraintV1 is retained but all four observation kinds take default null; whole-tender guard requires PortionInventory."
+      },
+      {
+        "lines": [
+          961,
+          967
+        ],
+        "route": "Temporary camp, morale tactical transition, route mapping/recon/travel dispatches disjoint."
+      },
+      {
+        "lines": [
+          968,
+          978
+        ],
+        "route": "RouteTravelOuterConstraintV1 retains paused attached fractional-position guard before moving-route guard, exact exclusions; Hide/Search are not exempt."
+      },
+      {
+        "lines": [
+          979,
+          979
+        ],
+        "route": "Hide/Search terminal dispatch to ObservationActionConstraintV1, then HideConstraintV1 or SearchRequestConstraintV1 followed by SearchCandidateConstraintV1."
+      }
+    ],
+    "nonHoisting": "Early exploration and cancellation branches must not acquire the later recovery/rest/route/tactical-observation gates. Current implementation respects this. CommitFeasibility stays null; no post-resolution reconciliation or candidate validation is forecast as executed."
+  },
+  "missingSearchProfileFallback": {
+    "kind": "CancelExplorationSearch",
+    "requiredOrderedStages": [
+      "The common prefix through accepted916, then all applicable shared later guards through978, with no observation dispatch at979.",
+      "Trap handover and blood-handling dispatches disjoint. Off-calendar work guard false by exact kind set. Overwatch/advancement/periodic/medicine dispatches disjoint.",
+      "contentManifest.ValidateCommand returns null for this kind (SourceContentResolution250); preserve position rather than calling a validation engine during read.",
+      "Recipe347WorkWatchCommandFailure returns null because Recipe347WorkStartCommand excludes this kind (SharedRecipe347304-318).",
+      "ManufacturingChoicePending is next applicable denial; pure Any over ManufacturingOrders/Recipe347WorkOrders AwaitingChoice.",
+      "Expedition assignment, Ferry seal, cache/portable/trap/prospecting/mining/recipe/harvest/manufacture/repair/craft/formula dispatches exclude this kind.",
+      "If connectedCombat != null AND InventoryCombat, follow native tactical selector path below; otherwise continue.",
+      "No later named tactical command gate matches. Non-null c.Combat yields SharedCombatHandoffNotImplemented.",
+      "AdvanceClock/traversal/condition-event/Move/Interact dispatches and management kind set are disjoint; final result SharedCommandNotImplemented."
+    ],
+    "connectedTacticalOrderedDenials": [
+      "PendingDefensiveFormationShift -> DefensiveFormationChoicePending",
+      "PendingCommandStepOffer -> CommandStepChoicePending",
+      "Pending OverwatchRiderChoice -> OverwatchRiderChoicePending",
+      "If PendingMove is null, NextPostStepChoice Ready -> ReadyActionChoicePending; Overwatch -> OverwatchChoicePending. Press/HuntingTrap selection does not create a generic pending failure here.",
+      "HasMovingDefensiveFormation -> DefensiveFormationContinuationPending",
+      "Actor outside Encounter.Order -> ActorOutsideEncounter",
+      "All later kind-specific branches disjoint; bodies.Resolve first rejects !Admitted(kind) -> ClubCommandNotImplemented before payload/KO/movement/stance/action gates."
+    ],
+    "exactAcceptedFailureOrigins": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "nativeCode": "ManufacturingChoicePending",
+        "acceptedLines": [
+          1003
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "nativeCode": "SharedCombatHandoffNotImplemented",
+        "acceptedLines": [
+          1060
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "nativeCode": "SharedCommandNotImplemented",
+        "acceptedLines": [
+          1122
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "DefensiveFormationChoicePending",
+        "acceptedLines": [
+          303
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "CommandStepChoicePending",
+        "acceptedLines": [
+          314
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "OverwatchRiderChoicePending",
+        "acceptedLines": [
+          323
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "ReadyActionChoicePending",
+        "acceptedLines": [
+          335
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "OverwatchChoicePending",
+        "acceptedLines": [
+          346
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "DefensiveFormationContinuationPending",
+        "acceptedLines": [
+          363
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "nativeCode": "ActorOutsideEncounter",
+        "acceptedLines": [
+          407
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "nativeCode": "ClubCommandNotImplemented",
+        "acceptedLines": [
+          158
+        ]
+      }
+    ],
+    "purityRequirement": "Extract pure native selector/guard predicates; do not invoke ResolveCore, ResolveCalendarCombat or bodies.Resolve under read even to obtain the same failure. Do not replace exact priority with broad PendingCalendarChoice."
+  },
+  "leafAndPurity": {
+    "bodyComparisons": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+        "acceptedMethod": "AssessExplorationSearch",
+        "currentMethod": "ExplorationSearchConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+        "acceptedMethod": "AssessCancelExplorationSearch",
+        "currentMethod": "CancelExplorationSearchConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+        "acceptedMethod": "AssessExplorationHide",
+        "currentMethod": "ExplorationHideConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+        "acceptedMethod": "AssessCancelExplorationHide",
+        "currentMethod": "CancelExplorationHideConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "acceptedMethod": "AssessObservationAction",
+        "currentMethod": "ObservationActionConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "acceptedMethod": "AssessSearchRequest",
+        "currentMethod": "SearchRequestConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "comparison": "Hide pre-observer and observer guards, excluding out initialization/assignment",
+        "matches": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "comparison": "Hide modifier, disadvantage, private observer facts, prior-result and HistoricalGuidance repeat guard",
+        "matches": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "comparison": "Exact native hidden candidate filter/order and cardinality guard extracted; execution retains ActiveSearchHide and recording",
+        "matches": true
+      }
+    ],
+    "comparisonMethod": "Full native assessor body compared after removing only typed NativeCommandConstraintV1 wrappers and whitespace; Hide split and Search candidate prefix compared separately. This static textual check supports, not substitutes for, manual routing/call review.",
+    "ordinarySearch": "Availability/stage/actor/payload/pending/capability/stationary/marker/start/action/busy/capacity/range order unchanged. HasActiveLabor and Busy read worker/procedure records; WorldActivityProjection.CurrentWork routes to CurrentWorkCore(s,null,false,false), no discovery, reservations or validation. No candidate attempt constructor in read.",
+    "ordinaryHide": "Exact start/action/due/busy/capacity order unchanged. checked LastStart+Order.Count and schedule.Start due calculation remain at original native position; no attempt construction or payment in read. Capacity reserves room conceptually for both native procedures using counts only; no Reserve call or private qualification exposed.",
+    "cancellations": "Identity and payload guards retain source order. Search cancellation checks ManufacturingAdvance or PendingCalendarChoice only. Hide cancellation uses OrdinaryObservationChoicePending, additionally ManufacturingChoicePending and pending recovery. No new inventory, capability, fresh rest or start gate.",
+    "HistoricalGuidance": {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "lines": [
+        36,
+        37
+      ],
+      "behavior": "ConnectedClericCasting ? GuidanceUses.SingleOrDefault(CheckId)?.D4 ?? 0 : 0. This is an exact retained lookup, not replay, RNG or reconstruction. Hide repeats compare prior.Modifier minus this retained guidance amount to current base modifier, preserving native semantics. No historical modifier is synthesized for a public result."
+    },
+    "privateHideSelectors": "Current actor position; eligible observer actor/life/unaware/range filters; DirectSightAt; exact history-capacity counts; current stealth/injury modifier and disadvantage; PassivePerception via current CharacterStateFacts; prior Hide/relevant observer results sorted ordinally. All are private trusted reads; selected out values are consumed by execution, not exported. Zero observers exits before modifier/DC/prior-repeat work, as native.",
+    "conditionDependencies": "ConditionsFor checks bound snapshot then ConditionResolutionScope.Project. EnterRead requires owning CurrentConditionProjectionV1.Covers; strict branch returns precomputed projection before Restore/At fallback. Observer and target condition views, Frightened sight and ordinary actor permissions must use this owning context. No condition lifecycle/clock update may occur in read.",
+    "geometry": "ObservationGeometry.Position delegates to WorldPositionResolver.Position: read current ordinary traversal distance, attached route pose or actor anchor; it does not advance movement. DirectSightAt reads current conditions/geometry only.",
+    "SearchCandidate": "HiddenTo reads current knowledge and direct sight; exact grid/cell/cardinality guard shared. No ActiveSearchHide, target Stealth, random draw or result construction under assessment.",
+    "pendingSelectors": "PendingCalendarChoice and CurrentPressOffer are pure selectors, not AdvanceTacticalFlow. NextPostStepChoice only orders current pending records; mutation/normalization routines remain excluded.",
+    "firstEffectsExcluded": [
+      "BeginExplorationSearch attempt construction/payment/Start",
+      "BeginExplorationHide attempt construction/payment/Start",
+      "FinishExplorationSearch/FinishExplorationHide cancellation state changes",
+      "ConsumeGuidance, RecordHideRoll, RecordSearchResult",
+      "SetInterval(PayAction), PauseIncompatibleWork, ObservationRules.Refresh and outer Resolve reconciliation"
+    ],
+    "privacy": "Current trusted native constraints carry no public record/observer/target/DC/cardinality fields. A later public projection must use accepted fixed-shape/Withheld classification; no raw native reason or helper out value receives new disclosure authority from this review."
+  },
+  "originChecks": [
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 90,
+      "nativeCode": "OrdinaryHideUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 918,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 136,
+      "nativeCode": "RouteTravelerMustDetachBeforeStationaryAction",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 975,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 139,
+      "nativeCode": "RouteTravelMustPauseFirst",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 978,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 145,
+      "nativeCode": "WoundTreatmentStockSealed",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 909,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 148,
+      "nativeCode": "WoundTreatmentParticipantOccupied",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 912,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 154,
+      "nativeCode": "ClassRecoveryUnsupported",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 896,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 161,
+      "nativeCode": "ShortRestRequiresInterruption",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 906,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 167,
+      "nativeCode": "UnknownWorldActor",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 866,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 169,
+      "nativeCode": "InvalidFerryDashPayload",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 868,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 172,
+      "nativeCode": "FerryDashRequiresPartyCombat",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 870,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 174,
+      "nativeCode": "WrongRegularTurn",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 871,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 178,
+      "nativeCode": "OffCalendarActionAlreadySpent",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 875,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 186,
+      "nativeCode": "LongRestRequiresInterruption",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "acceptedLine": 879,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 191,
+      "nativeCode": "SanctuaryChoicePending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "acceptedLine": 91,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 196,
+      "nativeCode": "OrdinarySpellcastingUnsupported",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedLine": 360,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 203,
+      "nativeCode": "TacticalChoicePending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedLine": 362,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "typedLine": 205,
+      "nativeCode": "ConcentrationUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "acceptedLine": 364,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 66,
+      "nativeCode": "OrdinarySearchUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 63,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 67,
+      "nativeCode": "ConnectedObservationStageClosed",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 64,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 69,
+      "nativeCode": "OrdinarySearchActorUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 66,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 72,
+      "nativeCode": "InvalidOrdinarySearchRequest",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 69,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 74,
+      "nativeCode": "OrdinarySearchDecisionPending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 71,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 75,
+      "nativeCode": "OrdinarySearchVisualCapabilityUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 72,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 77,
+      "nativeCode": "OrdinarySearchRequiresStationaryAnchor",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 74,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 81,
+      "nativeCode": "WrongOrdinaryActivityInterval",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 78,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 84,
+      "nativeCode": "OrdinarySearchRequiresIntervalStart",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 81,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 85,
+      "nativeCode": "OffCalendarActionAlreadySpent",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 82,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 89,
+      "nativeCode": "OrdinarySearchActorBusy",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 86,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 91,
+      "nativeCode": "ObservationHistoryCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 88,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 94,
+      "nativeCode": "SearchCellOutOfRange",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 91,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 116,
+      "nativeCode": "NoPendingOrdinarySearch",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 110,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 117,
+      "nativeCode": "InvalidOrdinarySearchCancellation",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 111,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 118,
+      "nativeCode": "OrdinarySearchDecisionPending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 112,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 204,
+      "nativeCode": "OrdinarySearchInProgress",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 195,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "typedLine": 207,
+      "nativeCode": "OffCalendarActionAlreadySpent",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "acceptedLine": 198,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 54,
+      "nativeCode": "OrdinaryHideUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 50,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 55,
+      "nativeCode": "ConnectedObservationStageClosed",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 51,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 58,
+      "nativeCode": "OrdinaryHideActorUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 54,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 59,
+      "nativeCode": "InvalidOrdinaryHideRequest",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 55,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 61,
+      "nativeCode": "OrdinaryHideDecisionPending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 57,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 62,
+      "nativeCode": "OrdinaryHideActionCapabilityUnavailable",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 58,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 65,
+      "nativeCode": "OrdinaryHideRequiresStationaryAnchor",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 61,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 70,
+      "nativeCode": "WrongOrdinaryHideStart",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 66,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 71,
+      "nativeCode": "OrdinaryHideRequiresOwnStart",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 67,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 72,
+      "nativeCode": "ActionAlreadySpent",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 68,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 77,
+      "nativeCode": "OrdinaryHideActorBusy",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 73,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 83,
+      "nativeCode": "ObservationHistoryCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 79,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 107,
+      "nativeCode": "NoPendingOrdinaryHide",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 100,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 108,
+      "nativeCode": "InvalidOrdinaryHideCancellation",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 101,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 109,
+      "nativeCode": "OrdinaryHideDecisionPending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 102,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "typedLine": 159,
+      "nativeCode": "OrdinaryHideInProgress",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "acceptedLine": 149,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 87,
+      "nativeCode": "ObservationActionNotImplemented",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 83,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 88,
+      "nativeCode": "ObservationActionRequiresTacticalCombat",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 84,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 89,
+      "nativeCode": "TacticalChoicePending",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 85,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 91,
+      "nativeCode": "WrongRegularTurn",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 87,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 95,
+      "nativeCode": "InvalidObservationActionPayload",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 91,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 96,
+      "nativeCode": "ActorCannotAct",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 92,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 97,
+      "nativeCode": "ConditionPreventsAction",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 93,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 99,
+      "nativeCode": "ActionAlreadySpent",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 95,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 101,
+      "nativeCode": "ObservationHistoryCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 97,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 114,
+      "nativeCode": "InvalidSearchRequest",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 107,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 118,
+      "nativeCode": "SearchCellOutOfRange",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 111,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 185,
+      "nativeCode": "InvalidHideRequest",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 175,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 188,
+      "nativeCode": "HideRequiresAuthoredGridCell",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 178,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 196,
+      "nativeCode": "HideWhileClearlyObserved",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 186,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 198,
+      "nativeCode": "ObservationHideHistoryCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 188,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 200,
+      "nativeCode": "ObservationKnowledgeCapacityReached",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 190,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 221,
+      "nativeCode": "HideAttemptUnchanged",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 220,
+      "matches": true
+    },
+    {
+      "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "typedLine": 295,
+      "nativeCode": "SearchCandidateAmbiguous",
+      "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "acceptedLine": 273,
+      "matches": true
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "workingTreeSha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7",
+      "bytes": 40248,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md",
+      "workingTreeSha256": "bd59317e298a81a877bf84f86d331088e85ff389bffbff9633c2d1d077fc7110",
+      "bytes": 277787,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "workingTreeSha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c",
+      "bytes": 2408,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OUTER_ADMISSION_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "dc78017d9a4405a3302d0837cc839872811180624287799270dc78851a85cacd",
+      "bytes": 16775,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "4f80c245e7938df42ffbc6ac43921a69482a00a4b7ea4a163e166596427a1c06",
+      "bytes": 27685,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_DTO_PROPOSAL.md",
+      "workingTreeSha256": "f84d17af88512341ea2f2e7b10a77d08b0b7856a8834aae92a445d02b7f075a8",
+      "bytes": 13196,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "workingTreeSha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557",
+      "bytes": 9800,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "workingTreeSha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239",
+      "bytes": 5297,
+      "acceptedBaselineGitBlobSha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "workingTreeSha256": "e7ce21c902fe6aeb1c2101cb0f2c918f9819b8348d0b7d817506eeb65b7b3aa0",
+      "bytes": 7389,
+      "acceptedBaselineGitBlobSha256": "e7ce21c902fe6aeb1c2101cb0f2c918f9819b8348d0b7d817506eeb65b7b3aa0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "workingTreeSha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13",
+      "bytes": 12337,
+      "acceptedBaselineGitBlobSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "workingTreeSha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b",
+      "bytes": 11431,
+      "acceptedBaselineGitBlobSha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "workingTreeSha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd",
+      "bytes": 3554,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "workingTreeSha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5",
+      "bytes": 25335,
+      "acceptedBaselineGitBlobSha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "workingTreeSha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+      "bytes": 22868,
+      "acceptedBaselineGitBlobSha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "workingTreeSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240,
+      "acceptedBaselineGitBlobSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "workingTreeSha256": "a2f3b7a69fefdf79149a9bd97807c04032b320b4f291af51bb3b95617afd9234",
+      "bytes": 15802,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedExplorationObservation.cs",
+      "workingTreeSha256": "bdf960cfcea0f11e9b8f8222cd13aaf33d420b96d0a633b1ccec7de868e1ebdf",
+      "bytes": 3165,
+      "acceptedBaselineGitBlobSha256": "bdf960cfcea0f11e9b8f8222cd13aaf33d420b96d0a633b1ccec7de868e1ebdf"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "workingTreeSha256": "918e83377e0a9f9a16f67ed9c0e3cde8f6e6939e58b5180ec6bbf071976f5e68",
+      "bytes": 20676,
+      "acceptedBaselineGitBlobSha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "workingTreeSha256": "2b280ea52cbefae2dd7436467fbdd628ee0fb96a3b4586306357373305406ac8",
+      "bytes": 15393,
+      "acceptedBaselineGitBlobSha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "workingTreeSha256": "58089f34b4ef6dc63fb8ff51d01e2928580412d71e3848f850bc75c9f9dacc16",
+      "bytes": 2528,
+      "acceptedBaselineGitBlobSha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+      "workingTreeSha256": "795b35d8327b2b09e930edb4d7a73cbe478122a0d89ebb7a3f4aaad6bc0ccf9e",
+      "bytes": 31085,
+      "acceptedBaselineGitBlobSha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "workingTreeSha256": "72a0e11a9ed34f300ad073f9d85bc0e934ef065643f099f6027a6cd80c146741",
+      "bytes": 18514,
+      "acceptedBaselineGitBlobSha256": "34ab0f5274af892117102256d185c1adf6ff0dbe0c175396e669d5c99c6cb9ad"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "workingTreeSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202,
+      "acceptedBaselineGitBlobSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "workingTreeSha256": "b080a570372ec25740ab71c68291e1a6655a098562cef02aba41d0e7427d8337",
+      "bytes": 47314,
+      "acceptedBaselineGitBlobSha256": "7abae37780357e9794691048860710bbce31d99b0443a58c5bbb6877af091e66"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "workingTreeSha256": "b3f19fa618aebb8470505b7c44d955cfd719dac46854c7dc6d67374ffd3ecc05",
+      "bytes": 25904,
+      "acceptedBaselineGitBlobSha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "workingTreeSha256": "9a667c23d440ce051ba7132b1aa85d261e49fd495d22da20be1afcda76112918",
+      "bytes": 27779,
+      "acceptedBaselineGitBlobSha256": "9a667c23d440ce051ba7132b1aa85d261e49fd495d22da20be1afcda76112918"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs",
+      "workingTreeSha256": "356548f672a7b23a8042e6061fe9e157b42420dce9d8b5b50ef3c94457c7556c",
+      "bytes": 45327,
+      "acceptedBaselineGitBlobSha256": "356548f672a7b23a8042e6061fe9e157b42420dce9d8b5b50ef3c94457c7556c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "workingTreeSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "bytes": 21826,
+      "acceptedBaselineGitBlobSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "workingTreeSha256": "905239a0938e7023473088bd16e5aaa23f5984c11ed8ad5787959baaf4558ec5",
+      "bytes": 31149,
+      "acceptedBaselineGitBlobSha256": "c1a94b86e4fc80871f037142751f2d5ba593bc7822ac5e7f53f8d45b0d077fad"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "workingTreeSha256": "4285e29bb286c16e5132324d9d9e5a0edea577d0a40300af682f245661b57721",
+      "bytes": 15536,
+      "acceptedBaselineGitBlobSha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "workingTreeSha256": "ac4733dc9db3fa67043bcd1ed35c9959bd2b1a65c07d323c5bc4cd4e7445f4d4",
+      "bytes": 30130,
+      "acceptedBaselineGitBlobSha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "workingTreeSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "bytes": 36082,
+      "acceptedBaselineGitBlobSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs",
+      "workingTreeSha256": "24b44bdaed13de69fb1114474ff3cdcb9e2e67322afe322f632e2d3ca42ea3b9",
+      "bytes": 37475,
+      "acceptedBaselineGitBlobSha256": "24b44bdaed13de69fb1114474ff3cdcb9e2e67322afe322f632e2d3ca42ea3b9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "workingTreeSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+      "bytes": 37856,
+      "acceptedBaselineGitBlobSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "workingTreeSha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "bytes": 129062,
+      "acceptedBaselineGitBlobSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "workingTreeSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "bytes": 11137,
+      "acceptedBaselineGitBlobSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "workingTreeSha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345",
+      "bytes": 7211,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "workingTreeSha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058",
+      "bytes": 1717,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "workingTreeSha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "bytes": 10206,
+      "acceptedBaselineGitBlobSha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "workingTreeSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "bytes": 42556,
+      "acceptedBaselineGitBlobSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+      "workingTreeSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+      "bytes": 1688,
+      "acceptedBaselineGitBlobSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "workingTreeSha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "bytes": 16491,
+      "acceptedBaselineGitBlobSha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9"
+    }
+  ],
+  "pinSemantics": "Exact working-tree SHA256 bytes; accepted baseline pins are exact Git blob bytes. Source origin numbers refer to accepted67f3d201b, not shifted working tree.",
+  "remainingValidation": "Parent owns compile, focused/regression/strict-read/connected/replay qualification and actual GPT evidence review. This reviewer ran no gameplay or tests. Missing-profile CancelSearch coverage and full INT-05 acceptance remain open."
+}

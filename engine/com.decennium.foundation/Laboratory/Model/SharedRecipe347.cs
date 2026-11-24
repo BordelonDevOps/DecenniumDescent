@@ -292,13 +292,16 @@ namespace Decennium.Foundation.Laboratory
             return null;
         }
         private string Recipe347WatchAdmission(Snapshot s,string actor)
+            => Recipe347WatchConstraintV1(s,actor)?.NativeCode;
+
+        private NativeCommandConstraintV1 Recipe347WatchConstraintV1(Snapshot s,string actor)
         {
             if(recipe347Fixture==null)return null;
-            if(!Recipe347AtWatchStart(s.RuleClock))return "Recipe347WorkMustStartAtWatchBoundary";
+            if(!Recipe347AtWatchStart(s.RuleClock))return new NativeCommandConstraintV1("Recipe347WorkMustStartAtWatchBoundary", "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs", 297);
             long day=Recipe347Day(s.RuleClock);int watch=Recipe347WatchIndex(s.RuleClock);
-            if((int)Recipe347Watch(s,actor,day)==watch)return "Recipe347ScheduledRestWatch";
+            if((int)Recipe347Watch(s,actor,day)==watch)return new NativeCommandConstraintV1("Recipe347ScheduledRestWatch", "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs", 299);
             bool alreadyBooked=Recipe347SourceQualifiedWorkInWatch(s,actor,day,watch);
-            if(!alreadyBooked&&Recipe347UsedWatches(s,actor,day)>=2)return "Recipe347TwoWorkWatchesExceeded";
+            if(!alreadyBooked&&Recipe347UsedWatches(s,actor,day)>=2)return new NativeCommandConstraintV1("Recipe347TwoWorkWatchesExceeded", "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs", 301);
             return null;
         }
         private static bool Recipe347WorkStartCommand(Command c)
@@ -314,13 +317,16 @@ namespace Decennium.Foundation.Laboratory
             }
         }
         private string Recipe347WorkWatchCommandFailure(Snapshot s,Command c)
+            => Recipe347WorkWatchConstraintV1(s,c)?.NativeCode;
+
+        private NativeCommandConstraintV1 Recipe347WorkWatchConstraintV1(Snapshot s,Command c)
         {
             if(recipe347Fixture==null||!Recipe347WorkStartCommand(c))return null;
-            if(c.Kind==CommandKind.StartRecipe347)return Recipe347WatchAdmission(s,c.Actor);
+            if(c.Kind==CommandKind.StartRecipe347)return Recipe347WatchConstraintV1(s,c.Actor);
             if(c.Kind==CommandKind.ResumeRecipe347) {
                 var order=s.Recipe347WorkOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
                 return order!=null&&order.Status==Recipe347OrderStatus.Paused
-                    ?Recipe347WatchAdmission(s,c.Actor):null;
+                    ?Recipe347WatchConstraintV1(s,c.Actor):null;
             }
             // The exact-Watch-start rule belongs to this recipe profile only. Other source-bound
             // procedures are admitted at their own legal times, then their booked intervals are

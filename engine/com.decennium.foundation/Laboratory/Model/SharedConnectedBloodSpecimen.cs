@@ -214,28 +214,31 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string AssessBloodIngredient(Snapshot s, string actor, string lotId, ManufacturingRecipeDefinition recipe)
+            => AssessBloodIngredientConstraintV1(s,actor,lotId,recipe)?.NativeCode;
+
+        private static NativeCommandConstraintV1 AssessBloodIngredientConstraintV1(Snapshot s, string actor, string lotId, ManufacturingRecipeDefinition recipe)
         {
             var specimen = s.BloodSpecimen;
             if (specimen == null || lotId != specimen.LotId || recipe.Id != ManufacturingRules.Recipe4Id
                 || recipe.Components[3].Id != ConnectedBloodSpecimen.MaterialId)
-                return "BloodSpecimenBindingMismatch";
+                return new NativeCommandConstraintV1("BloodSpecimenBindingMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 221);
             var lot = s.InventoryLots.SingleOrDefault(x => x.LotId == lotId);
             var item = s.PortableEquipment.SingleOrDefault(x => x.Id == lotId && x.LinkedId == lotId);
             var vessel = s.PortableEquipment.SingleOrDefault(x => x.Id == specimen.VesselId);
             if (lot == null || item == null || vessel == null || !HarvestPreservationRules.TryProject(s, lotId, out var current))
-                return "BloodSpecimenMissing";
-            if (current.State == HarvestPreservationState.Spoiled) return "ManufacturingIngredientSpoiled";
+                return new NativeCommandConstraintV1("BloodSpecimenMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 226);
+            if (current.State == HarvestPreservationState.Spoiled) return new NativeCommandConstraintV1("ManufacturingIngredientSpoiled", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 227);
             if (s.Work.AvailableAmount(lotId) != new RuleQuantity(1) || PortableEquipmentRules.HasPendingClaim(s, item))
-                return "ManufacturingIngredientsUnavailable";
+                return new NativeCommandConstraintV1("ManufacturingIngredientsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 229);
             if (!vessel.Open || !BloodVesselAtWorkshop(vessel) || item.ParentId != vessel.Id
                 || lot.OwnerId != actor || item.CustodianId != actor || !PortableEquipmentRules.Accessible(s, actor, item)
                 || HarvestPreservationRules.IsProtectedAt(s, lotId, s.RuleClock))
-                return "BloodSpecimenWorkshopAccessUnavailable";
+                return new NativeCommandConstraintV1("BloodSpecimenWorkshopAccessUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 233);
             if (!s.HarvestPreservationTreatmentAttempts.Any(x => x.InventoryLotId == lotId
                     && x.Status == HarvestPreservationTreatmentStatus.Success))
-                return "BloodSpecimenTreatmentRequired";
+                return new NativeCommandConstraintV1("BloodSpecimenTreatmentRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 236);
             return HarvestPreservationRules.TryProjectAt(s, lotId, s.RuleClock.AddSeconds(recipe.FirstPhase.Numerator), out var phase)
-                && phase.State != HarvestPreservationState.Spoiled ? null : "BloodSpecimenSpoilsBeforeStabilization";
+                && phase.State != HarvestPreservationState.Spoiled ? null : new NativeCommandConstraintV1("BloodSpecimenSpoilsBeforeStabilization", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs", 238);
         }
 
         private IEnumerable<Command> DiscoverBloodTreatment(Snapshot s, Authority authority, string actor)

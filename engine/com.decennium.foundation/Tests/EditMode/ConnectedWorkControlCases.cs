@@ -214,6 +214,7 @@ namespace Decennium.Foundation.Tests
                 Snapshot Capture() { session.Save(path); return store.Load(path); }
                 void Commit(Command command)
                 {
+                    AssertNativeInitialAssessmentV1(CastingSimulation(session),command,HavenSaleHost());
                     var before = codec.Encode(Capture());
                     var query = session.QueryCommand(ExpeditionSeat.Player, command);
                     Require(query.Supported && query.Admissible && before.SequenceEqual(codec.Encode(Capture())),

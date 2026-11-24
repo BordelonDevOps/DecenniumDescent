@@ -16,6 +16,17 @@ namespace Decennium.Foundation.Laboratory
                 || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate
                 || ShortRestBerth.IsCommand(kind) || kind == CommandKind.ConsumeDecay
                 || WoundTreatmentStation.IsCommand(kind) || kind == CommandKind.StabilizeCompanion
+                || kind == CommandKind.Hide || kind == CommandKind.Search || kind == CommandKind.CancelExplorationHide
+                || kind == CommandKind.CancelExplorationSearch
+                || kind == CommandKind.ResolveExpeditionStrainRecovery
+                || kind == CommandKind.StartHavenAppraisal || kind == CommandKind.StartExpeditionBill
+                || kind == CommandKind.AcceptNextCharter || kind == CommandKind.StartCharterAttempt
+                || kind == CommandKind.ObserveCharterApproach
+                || TestOnlyFillingPolicy.IsWaterFillCommand(kind)
+                || kind==CommandKind.StartMining || kind==CommandKind.PauseMining || kind==CommandKind.ResumeMining
+                || ManufacturingCommand(kind) || FormulaCommand(kind)
+                || kind == CommandKind.CloseExpeditionEpisode
+                || kind == CommandKind.StartNextCharterPlan
                 || kind == CommandKind.AwardCharacterMilestone || kind == CommandKind.AdvanceCharacterLevel;
         bool ICommandAssessmentFactsPolicyV1.RequiresVerifiedAssessment(CommandKind kind)
             => kind == CommandKind.StartNextCharterPlan && verifiedPlanningPassage;
@@ -23,9 +34,18 @@ namespace Decennium.Foundation.Laboratory
         NativeCommandAssessmentV1 ICommandAssessmentFactsPolicyV1.AssessFacts(NativeReadContextV1 context,
             Snapshot current, Authority authority, Command command)
         {
-            using var conditions = ConditionResolutionScope.EnterRead(context, current);
             if (((ICommandAssessmentFactsPolicyV1)this).RequiresVerifiedAssessment(command.Kind))
                 throw new InvalidOperationException("This operation requires its owning verified checkpoint.");
+            return AssessInitialFactsV1(context,current,command);
+        }
+
+        private NativeCommandAssessmentV1 AssessInitialFactsV1(NativeReadContextV1 context,
+            Snapshot current, Command command, PlanningPassage? passage = null)
+        {
+            using var conditions = ConditionResolutionScope.EnterRead(context, current);
+            if(command.Kind==CommandKind.StartNextCharterPlan && nextCharterPlanProfile!=null
+                && (!passage.HasValue || !passage.Value.Covers(current,nextCharterPlanProfile.Terms,current.Revision)))
+                return NativeCommandAssessmentV1.VerificationUnavailableAt(current.Revision);
             if (!((ICommandAssessmentFactsPolicyV1)this).SupportsAssessment(command.Kind))
                 throw new InvalidOperationException("Native assessment extraction is incomplete for this operation.");
             var failure = WorldOpeningConstraintV1(current, command);
@@ -38,11 +58,11 @@ namespace Decennium.Foundation.Laboratory
                 failure = NonSanctuaryResponseConstraintV1(command);
             failure = failure ?? GuidanceChoiceConstraintV1(current, command)
                 ?? SpellCastingProfile.PhysicalConstraintV1(current, command)
-                ?? SelectedInitialConstraintV1(current, command);
+                ?? SelectedInitialConstraintV1(current, command, passage);
             return InitialAssessmentV1(current, failure);
         }
 
-        private NativeCommandConstraintV1 SelectedInitialConstraintV1(Snapshot current, Command command)
+        private NativeCommandConstraintV1 SelectedInitialConstraintV1(Snapshot current, Command command, PlanningPassage? passage = null)
         {
             switch (command.Kind) {
                 case CommandKind.CastKnownSpell: return current.ConnectedClericCasting
@@ -64,18 +84,102 @@ namespace Decennium.Foundation.Laboratory
                 case CommandKind.StabilizeCompanion:
                     return BeforeStabilizationBranchConstraintV1(current, command)
                         ?? CompanionStabilizationConstraintV1(current, command);
+                case CommandKind.StartHavenAppraisal:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? AssessHavenAppraisalConstraintV1(current, command, out _, out _);
+                case CommandKind.StartExpeditionBill:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? AssessExpeditionBillConstraintV1(current, command, out _, out _);
+                case CommandKind.StartWaterFill:
+                case CommandKind.PauseWaterFill:
+                case CommandKind.ResumeWaterFill:
+                case CommandKind.CancelWaterFill:
+                    return WaterFillBranchConstraintV1(current,command);
+                case CommandKind.StartMining:
+                case CommandKind.PauseMining:
+                case CommandKind.ResumeMining:
+                    return BeforeWorkBranchConstraintV1(current,command) ?? (IsMiningCommand(command)
+                        ?AssessMiningCommandConstraintV1(current,command,out _):UnimplementedBranchConstraintV1(current,command));
+                case CommandKind.StartManufacturing:
+                case CommandKind.PauseManufacturing:
+                case CommandKind.ResumeManufacturing:
+                case CommandKind.CancelManufacturing:
+                case CommandKind.ResolveManufacturingQuality:
+                case CommandKind.UseAlchemyDose:
+                    return BeforeWorkBranchConstraintV1(current,command) ?? ManufacturingInitialConstraintV1(current,command);
+                case CommandKind.StartFormulaResearch:
+                case CommandKind.StartFormulaCopy:
+                case CommandKind.PauseFormulaWork:
+                case CommandKind.ResumeFormulaWork:
+                case CommandKind.CancelFormulaWork:
+                    return BeforeWorkBranchConstraintV1(current,command)
+                        ?? (connectedCombat!=null && PendingCalendarChoice(current)
+                            ? new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1036)
+                            : FormulaWorkConstraintV1(current,command,out _,out _,out _,out _));
+                case CommandKind.CloseExpeditionEpisode:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? ExpeditionCloseConstraintV1(current, command, out _, false);
+                case CommandKind.StartNextCharterPlan:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? AssessNextCharterPlanCommandConstraintV1(current, command, out _, out _, out _, passage);
+                case CommandKind.AcceptNextCharter:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? AssessNextCharterAgreementCommandConstraintV1(current, command, out _, out _);
+                case CommandKind.StartCharterAttempt:
+                case CommandKind.ObserveCharterApproach:
+                    return BeforeStabilizationBranchConstraintV1(current, command)
+                        ?? AssessCharterAttemptConstraintV1(current, command, out _, out _);
+                case CommandKind.ResolveExpeditionStrainRecovery:
+                    return ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentOuterConstraintV1(current, command)
+                        ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command)
+                        ?? RetreatHostileAttackConstraintV1(current, command) ?? PendingRecoveryChoiceConstraintV1(current, command)
+                        ?? StrainRecoveryInitialConstraintV1(current, command);
                 case CommandKind.AwardCharacterMilestone:
                 case CommandKind.AdvanceCharacterLevel:
                     return BeforeStabilizationBranchConstraintV1(current, command)
                         ?? HavenMealServingConstraintV1(current, command) ?? RouteTravelOuterConstraintV1(current, command)
                         ?? (IsClericAdvancement(current, command) ? ClericAdvancementConstraintV1(current, command)
                             : CharacterAdvancementRules.InitialConstraintV1(current, command));
+                case CommandKind.Hide:
+                case CommandKind.Search:
+                case CommandKind.CancelExplorationHide:
+                case CommandKind.CancelExplorationSearch:
+                    return ObservationBranchConstraintV1(current, command);
                 default: return CastingUtilityConstraintV1(current, command);
             }
         }
 
-        // Used only for stabilization and advancement. Intervening native dispatches and
-        // transition-only guards cannot match these three kinds; this is not a universal prefix.
+        private NativeCommandConstraintV1 ObservationBranchConstraintV1(Snapshot current, Command command)
+        {
+            var failure = ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentOuterConstraintV1(current, command)
+                ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command);
+            if (failure != null) return failure;
+            if (command.Kind == CommandKind.CancelExplorationHide)
+                return current.ExplorationHide == null ? new NativeCommandConstraintV1("OrdinaryHideUnavailable",
+                    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 918)
+                    : CancelExplorationHideConstraintV1(current, command);
+            if (current.ExplorationHide != null && !current.InventoryCombat && command.Kind == CommandKind.Hide)
+                return ExplorationHideConstraintV1(current, command, out _, out _, out _);
+            if(current.ExplorationSearch==null && command.Kind==CommandKind.CancelExplorationSearch)
+                return BeforeWorkBranchConstraintV1(current,command) ?? UnimplementedBranchConstraintV1(current,command);
+            if (current.ExplorationSearch != null && command.Kind == CommandKind.CancelExplorationSearch)
+                return CancelExplorationSearchConstraintV1(current, command);
+            if (current.ExplorationSearch != null && !current.InventoryCombat && command.Kind == CommandKind.Search)
+                return ExplorationSearchConstraintV1(current, command, out _);
+            failure = RetreatHostileAttackConstraintV1(current, command) ?? PendingRecoveryChoiceConstraintV1(current, command)
+                ?? HavenCareActorConstraintV1(current, command) ?? MoraleRestingActorConstraintV1(current, command)
+                ?? RestingActorConstraintV1(current, command) ?? HavenMealServingConstraintV1(current, command)
+                ?? RouteTravelOuterConstraintV1(current, command) ?? ObservationActionConstraintV1(current, command, out _);
+            if(failure!=null)return failure;
+            if(command.Kind==CommandKind.Search) {
+                failure=SearchRequestConstraintV1(current,command,out var cell);
+                return failure ?? SearchCandidateConstraintV1(current,command,cell,out _);
+            }
+            return HideConstraintV1(current, command, out _, out _, out _, out _, out _, out _);
+        }
+
+        // Used only for stabilization, advancement, appraisal, billing and charter assent/attempts. Intervening native
+        // dispatches and transition-only guards cannot match these kinds; this is not a universal prefix.
         private NativeCommandConstraintV1 BeforeStabilizationBranchConstraintV1(Snapshot current, Command command)
             => ActiveShortRestInterruptionV1(current, command) ?? WoundTreatmentOuterConstraintV1(current, command)
                 ?? SearchActivityConstraintV1(current, command) ?? HideActivityConstraintV1(current, command)
@@ -126,6 +230,54 @@ namespace Decennium.Foundation.Laboratory
                 && c.Kind != CommandKind.EnterInventoryCombat
                     ? new NativeCommandConstraintV1("ShortRestRequiresInterruption",
                         "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 906) : null;
+
+        // Exact shared prefix for selected mining, formula and manufacturing commands; earlier dispatch families are excluded.
+        private NativeCommandConstraintV1 BeforeWorkBranchConstraintV1(Snapshot s, Command c)
+            => BeforeStabilizationBranchConstraintV1(s,c) ?? HavenMealServingConstraintV1(s,c)
+                ?? RouteTravelOuterConstraintV1(s,c) ?? OffCalendarWorkConstraintV1(s,c)
+                ?? contentManifest?.CommandConstraintV1(s,c) ?? Recipe347WorkWatchConstraintV1(s,c)
+                ?? (ManufacturingChoicePending(s) && c.Kind!=CommandKind.ResolveManufacturingQuality
+                    && c.Kind!=CommandKind.ResolveRecipe347Quality ? new NativeCommandConstraintV1("ManufacturingChoicePending",
+                    "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1003) : null);
+
+        private NativeCommandConstraintV1 OffCalendarWorkConstraintV1(Snapshot s, Command c)
+        {
+            if (IsOffCalendarActivity(s, c.Actor) && StartsOrResumesActivityWork(c) && !IsConnectedRecipe4Check(s, c)) {
+                var activity = ActivityInterval(s, c.Actor);
+                if (activity.Action == WorldActionCommitment.Dash
+                    || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(s, c.Actor))
+                    return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 990);
+            }
+            return null;
+        }
+
+        private NativeCommandConstraintV1 OrdinaryManagementConstraintV1(Snapshot s,Command c)
+        {
+            // None of these procedures may authorize access using a stale integer grid anchor.
+            if (s.WorldTraversals.Any(x => x.ActorId == c.Actor || c.Inventory?.Destination == x.ActorId)) return new NativeCommandConstraintV1("TraversalRequiresStationaryInteraction", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1124);
+            bool release = c.Kind == CommandKind.PauseCrop || c.Kind == CommandKind.PauseWaterFill || c.Kind == CommandKind.CancelWaterFill || c.Kind == CommandKind.InterruptIntake || c.Kind == CommandKind.SetCropConditions;
+            if (!release && !CapableWorker(s, c.Actor)) return new NativeCommandConstraintV1("WorkerCannotPerformTask", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1126);
+            if ((c.Kind == CommandKind.StartWaterFill || c.Kind == CommandKind.ResumeWaterFill) && AvailableHands(s, c.Actor) < 2) return new NativeCommandConstraintV1("TwoHandsRequired", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1127);
+            return null;
+        }
+
+        private static NativeCommandConstraintV1 SharedUnimplementedConstraintV1(Command c)
+            => c.Combat!=null
+                ?new NativeCommandConstraintV1("SharedCombatHandoffNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1060)
+                :new NativeCommandConstraintV1("SharedCommandNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs", 1122);
+
+        private NativeCommandConstraintV1 UnimplementedBranchConstraintV1(Snapshot s,Command c)
+            => connectedCombat!=null && s.InventoryCombat ? UnimplementedCalendarConstraintV1(s,c)
+                : SharedUnimplementedConstraintV1(c);
+
+        private NativeCommandConstraintV1 WaterFillBranchConstraintV1(Snapshot s,Command c)
+        {
+            var failure=BeforeWorkBranchConstraintV1(s,c);
+            if(failure!=null)return failure;
+            if(connectedCombat!=null && s.InventoryCombat)return UnimplementedCalendarConstraintV1(s,c);
+            if(c.Combat!=null)return SharedUnimplementedConstraintV1(c);
+            return OrdinaryManagementConstraintV1(s,c) ?? inventory.AssessWaterFillConstraintV1(s,c,out _);
+        }
 
         private NativeCommandConstraintV1 WorldOpeningConstraintV1(Snapshot s, Command c)
         {

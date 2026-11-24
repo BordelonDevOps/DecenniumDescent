@@ -78,38 +78,44 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessObservationAction(Snapshot s, Command c, out WorldIntervalRecord interval)
+            => ObservationActionConstraintV1(s, c, out interval)?.NativeCode;
+
+        private NativeCommandConstraintV1 ObservationActionConstraintV1(Snapshot s, Command c, out WorldIntervalRecord interval)
         {
             interval = null;
             if (observationFixture == null || s.SchemaVersion < Snapshot.ObservationSchema)
-                return "ObservationActionNotImplemented";
-            if (s.Encounter == null || !s.InventoryCombat) return "ObservationActionRequiresTacticalCombat";
-            if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+                return new NativeCommandConstraintV1("ObservationActionNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 83);
+            if (s.Encounter == null || !s.InventoryCombat) return new NativeCommandConstraintV1("ObservationActionRequiresTacticalCombat", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 84);
+            if (PendingCalendarChoice(s)) return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 85);
             if (c.Actor != s.Encounter.CurrentActor || c.Target != s.Encounter.CurrentTurnId)
-                return "WrongRegularTurn";
+                return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 87);
             if (c.Inventory != null || c.Combat != null || c.Advancement != null || c.Ranged != null
                 || c.SuppressionFire != null || c.ExpeditionAssignment != null || c.HarvestSelection != null
                 || c.MiningSelection != null || c.ProspectingExposure != null || c.OverwatchRider != OverwatchRider.None)
-                return "InvalidObservationActionPayload";
-            if (!ActorLifeRules.CanAct(s, c.Actor)) return "ActorCannotAct";
-            if (!Permissions(s, c.Actor).Action) return "ConditionPreventsAction";
+                return new NativeCommandConstraintV1("InvalidObservationActionPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 91);
+            if (!ActorLifeRules.CanAct(s, c.Actor)) return new NativeCommandConstraintV1("ActorCannotAct", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 92);
+            if (!Permissions(s, c.Actor).Action) return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 93);
             interval = Interval(s, c.Actor);
-            if (interval.ActionSpent) return "ActionAlreadySpent";
+            if (interval.ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 95);
             if (s.ObservationActions.Length >= ObservationValidation.MaxAttempts)
-                return "ObservationHistoryCapacityReached";
+                return new NativeCommandConstraintV1("ObservationHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 97);
             return null;
         }
 
         /// <summary>Pure public Search-request validation. Deliberately does not inspect Hidden
         /// targets, observer knowledge or a target's recorded Stealth result.</summary>
         private string AssessSearchRequest(Snapshot s, Command c, out ObservationPoint candidateCell)
+            => SearchRequestConstraintV1(s, c, out candidateCell)?.NativeCode;
+
+        private NativeCommandConstraintV1 SearchRequestConstraintV1(Snapshot s, Command c, out ObservationPoint candidateCell)
         {
             candidateCell = default;
             if (c.Target != s.Encounter.CurrentTurnId || c.X < 0 || c.Y < 0
-                || c.X >= s.ObservationMapWidth || c.Y >= s.ObservationMapHeight) return "InvalidSearchRequest";
+                || c.X >= s.ObservationMapWidth || c.Y >= s.ObservationMapHeight) return new NativeCommandConstraintV1("InvalidSearchRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 107);
             var profile = s.ObservationProfiles.Single(x => x.ActorId == c.Actor);
             var searcher = ObservationGeometry.Position(s, c.Actor);
             candidateCell = new ObservationPoint(new RuleQuantity(c.X), new RuleQuantity(c.Y));
-            return WithinRange(searcher, candidateCell, profile.SearchRangeFeet) ? null : "SearchCellOutOfRange";
+            return WithinRange(searcher, candidateCell, profile.SearchRangeFeet) ? null : new NativeCommandConstraintV1("SearchCellOutOfRange", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 111);
         }
 
         private CommandQueryResult QueryObservationSearchCommand(Snapshot s, Command c)
@@ -171,12 +177,15 @@ namespace Decennium.Foundation.Laboratory
             }
         }
 
-        private string ResolveHide(Snapshot s, Command c, bool assessOnly=false)
+        private NativeCommandConstraintV1 HideConstraintV1(Snapshot s, Command c, out ActorState selectedActor,
+            out ObservationPoint selectedPosition, out ActorState[] selectedObservers, out int selectedModifier, out int selectedDisadvantage,
+            out (string Actor, ObservationPoint Position, int Dc)[] selectedObserverFacts)
         {
-            if (c.Target != s.Encounter.CurrentTurnId || c.X != 0 || c.Y != 0) return "InvalidHideRequest";
+            selectedActor=null; selectedPosition=default; selectedObservers=null; selectedModifier=0; selectedDisadvantage=0; selectedObserverFacts=null;
+            if (c.Target != s.Encounter.CurrentTurnId || c.X != 0 || c.Y != 0) return new NativeCommandConstraintV1("InvalidHideRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 175);
             var actor = s.Actors.Single(x => x.Id == c.Actor);
             var position = ObservationGeometry.Position(s, actor.Id);
-            if (!IsGridCell(position.X) || !IsGridCell(position.Y)) return "HideRequiresAuthoredGridCell";
+            if (!IsGridCell(position.X) || !IsGridCell(position.Y)) return new NativeCommandConstraintV1("HideRequiresAuthoredGridCell", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 178);
 
             var observers = s.Actors.Where(x => x.Id != actor.Id && ActorLifeRules.CanAct(s, x.Id)
                     && !TestOnlyClubAttackPolicy.ConditionsFor(s, x.Id).View().Unaware
@@ -184,23 +193,14 @@ namespace Decennium.Foundation.Laboratory
                         s.ObservationProfiles.Single(p => p.ActorId == x.Id).SightRangeFeet))
                 .OrderBy(x => x.Id, StringComparer.Ordinal).ToArray();
             if (observers.Any(x => ObservationRules.DirectSightAt(s, x.Id, actor.Id,
-                    ObservationGeometry.Position(s, x.Id), position))) return "HideWhileClearlyObserved";
+                    ObservationGeometry.Position(s, x.Id), position))) return new NativeCommandConstraintV1("HideWhileClearlyObserved", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 186);
             if (s.ObservationHideResults.Length + observers.Length > ObservationValidation.MaxHideResults)
-                return "ObservationHideHistoryCapacityReached";
+                return new NativeCommandConstraintV1("ObservationHideHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 188);
             if (s.ObserverKnowledge.Length + observers.Count(x => !s.ObserverKnowledge.Any(k => k.ObserverId == x.Id && k.TargetId == actor.Id))
-                > ObservationValidation.MaxKnowledgePairs) return "ObservationKnowledgeCapacityReached";
+                > ObservationValidation.MaxKnowledgePairs) return new NativeCommandConstraintV1("ObservationKnowledgeCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 190);
 
-            long revision = s.Revision + 1;
-            string attemptId = "observation." + revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".hide";
-            RuleTime at = s.RuleClock;
-            if (observers.Length == 0)
-            {
-                if(assessOnly)return null;
-                s.ObservationActions = s.ObservationActions.Concat(new[] { new ObservationActionRecord(attemptId, actor.Id, "",
-                    ObservationActionKind.Hide, ObservationActionOutcome.NoEligibleObservers, at, revision, position.X, position.Y,
-                    0, 0, 0, 0, 0, ObservationDieSelection.None, s.RandomState, s.RandomState, 0) }).ToArray();
-                return null;
-            }
+            selectedActor=actor; selectedPosition=position; selectedObservers=observers;
+            if (observers.Length == 0) return null;
 
             int modifier = HideModifier(s, actor.Id);
             int disadvantage = HideDisadvantage(s, actor.Id);
@@ -218,9 +218,29 @@ namespace Decennium.Foundation.Laboratory
                     && observerFacts.OrderBy(x => x.Actor, StringComparer.Ordinal).Select((x, i) =>
                         priorResults[i].ObserverId == x.Actor && priorResults[i].Dc == x.Dc
                             && priorResults[i].ObserverX == x.Position.X && priorResults[i].ObserverY == x.Position.Y).All(x => x);
-                if (unchanged && priorResults.Any(x => !x.HiddenEstablished)) return "HideAttemptUnchanged";
+                if (unchanged && priorResults.Any(x => !x.HiddenEstablished)) return new NativeCommandConstraintV1("HideAttemptUnchanged", "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 220);
             }
+            selectedModifier=modifier; selectedDisadvantage=disadvantage; selectedObserverFacts=observerFacts;
+            return null;
+        }
+
+        private string ResolveHide(Snapshot s, Command c, bool assessOnly=false)
+        {
+            var failure=HideConstraintV1(s,c,out var actor,out var position,out var observers,
+                out var modifier,out var disadvantage,out var observerFacts);
+            if(failure!=null)return failure.NativeCode;
             if(assessOnly)return null;
+            long revision = s.Revision + 1;
+            string attemptId = "observation." + revision.ToString(System.Globalization.CultureInfo.InvariantCulture) + ".hide";
+            RuleTime at = s.RuleClock;
+            if (observers.Length == 0)
+            {
+                s.ObservationActions = s.ObservationActions.Concat(new[] { new ObservationActionRecord(attemptId, actor.Id, "",
+                    ObservationActionKind.Hide, ObservationActionOutcome.NoEligibleObservers, at, revision, position.X, position.Y,
+                    0, 0, 0, 0, 0, ObservationDieSelection.None, s.RandomState, s.RandomState, 0) }).ToArray();
+                return null;
+            }
+
             modifier=checked(modifier+ConsumeGuidance(s,c,attemptId,GuidanceCheckKind.Hide));
             RecordHideRoll(s, actor.Id, position, observerFacts, modifier, disadvantage);
             return null;
@@ -262,16 +282,25 @@ namespace Decennium.Foundation.Laboratory
             return action;
         }
 
-        private string ResolveSearch(Snapshot s, Command c, ObservationPoint candidateCell)
+        private NativeCommandConstraintV1 SearchCandidateConstraintV1(Snapshot s, Command c,
+            ObservationPoint candidateCell, out ActorState[] targets)
         {
-            var targets = s.Actors.Where(x => x.Id != c.Actor && s.WorldSchedule.Order.Contains(x.Id)
+            targets = s.Actors.Where(x => x.Id != c.Actor && s.WorldSchedule.Order.Contains(x.Id)
                     && ObservationRules.HiddenTo(s, c.Actor, x.Id))
                 .Where(x =>
                 {
                     var point = ObservationGeometry.Position(s, x.Id);
                     return IsGridCell(point.X) && IsGridCell(point.Y) && point.X == candidateCell.X && point.Y == candidateCell.Y;
                 }).OrderBy(x => x.Id, StringComparer.Ordinal).ToArray();
-            if (targets.Length > 1) return "SearchCandidateAmbiguous";
+            if (targets.Length > 1) return new NativeCommandConstraintV1("SearchCandidateAmbiguous",
+                "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs", 273);
+            return null;
+        }
+
+        private string ResolveSearch(Snapshot s, Command c, ObservationPoint candidateCell)
+        {
+            var failure=SearchCandidateConstraintV1(s,c,candidateCell,out var targets);
+            if(failure!=null)return failure.NativeCode;
             var hide = targets.Length == 0 ? null : ActiveSearchHide(s, c.Actor, targets[0].Id);
             RecordSearchResult(s, c.Actor, candidateCell, hide,c);
             return null;

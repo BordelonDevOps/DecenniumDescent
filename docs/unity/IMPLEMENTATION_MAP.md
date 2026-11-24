@@ -1,5 +1,7 @@
 # Current C# implementation map and Unity entry checklist
 
+Owner acceptance (2026-11-24): The owner accepts the current INT-05 deliverable and orders immediate GitHub push and GPT handoff, superseding the prior GPT-before-push gate. Remaining implementation and qualification stay visible. Stop after delivery/handoff; no successor or Unity. [Acceptance, evidence and remaining work](evidence/2026-11-23-int05-admitted-command-surface/OWNER_ACCEPTANCE_AND_GPT_HANDOFF.md). Earlier entries are historical.
+
 INT-05 remains in progress. Twenty native command kinds now have shared initial assessment. The latest advancement batch preserves exact Cleric2/Bishop3 objectives, awards, choices and source/resource requirements, and the existing native fallback. Six selected checks plus compilation/package validation pass; two independent static reviews found no blockers. Reads grant no level, spell, health, funding or entitlement. Commit feasibility remains unset. Remaining native families, public V1 descriptions/assessment/discovery/choices/results, console, complete qualification and actual final GPT acceptance remain open. Finish INT-05 only, obtain actual acceptance, push accepted work, then stop; no successor. [Current source and evidence](evidence/2026-11-23-int05-admitted-command-surface/IMPLEMENTATION_CHECKPOINT_09.json). Earlier entries are historical.
 
 As of **2026-11-23**, the full reusable C# engine goal is active. **Connected work control is accepted as a bounded module; the engine is not ready for Unity gameplay integration.**

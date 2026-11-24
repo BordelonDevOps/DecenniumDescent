@@ -127,7 +127,8 @@ namespace Decennium.Foundation.Laboratory
             }
         }
 
-        private sealed class VerifiedSharedWorldCheckpoint : IVerifiedCommandCheckpoint, IVerifiedCommandResolution
+        private sealed class VerifiedSharedWorldCheckpoint : IVerifiedCommandCheckpoint, IVerifiedCommandResolution,
+            IVerifiedCommandAssessmentV1
         {
             private readonly TestOnlySharedWorldPolicy policy;
             private readonly VerifiedSimulationOrigin owner;
@@ -149,6 +150,17 @@ namespace Decennium.Foundation.Laboratory
 
             public bool Resolves(Command command)
                 => passage.HasValue && (command.Kind == CommandKind.StartNextCharterPlan || command.Kind == CommandKind.AdvanceClock);
+
+            public NativeCommandAssessmentV1 AssessFacts(VerifiedSimulationOrigin origin, NativeReadContextV1 context,
+                Snapshot current, Authority authority, Command command)
+            {
+                if(command?.Kind!=CommandKind.StartNextCharterPlan || !policy.verifiedPlanningPassage
+                    || !passage.HasValue || context==null || !context.IsBoundTo(origin,current)
+                    || VerifyOwner(origin,current)!=null
+                    || !new SnapshotCodec().MatchesValidatedPredecessor(current,canonicalPredecessor))
+                    return NativeCommandAssessmentV1.VerificationUnavailableAt(current.Revision);
+                return policy.AssessInitialFactsV1(context,current,command,passage);
+            }
 
             public string ResolveNext(VerifiedSimulationOrigin origin, Snapshot predecessor, Snapshot candidate, Command command)
             {

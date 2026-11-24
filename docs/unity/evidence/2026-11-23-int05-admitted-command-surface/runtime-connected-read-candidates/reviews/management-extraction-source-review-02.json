@@ -1,0 +1,395 @@
+{
+  "schema": "INT05_MANAGEMENT_EXTRACTION_STATIC_REVIEW_V1",
+  "reviewer": "Codex independent audit_magic agent",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "originalGuardCoordinateCommit": "67f3d201b",
+  "status": "BOUNDED_SOURCE_EXTRACTION_GUIDANCE_NOT_RUNTIME_ACCEPTANCE",
+  "scope": {
+    "kinds": 9,
+    "sourceOnly": true,
+    "runtimeEdits": false,
+    "testsRun": false,
+    "buildsRun": false,
+    "successorWork": false,
+    "authority": "engine/AGENTS.md separate review; approved MANAGEMENT_READ_EXTRACTION_PLAN reused. Suggested private names/signatures are implementation guidance, not a new public contract.",
+    "limits": "Finite nine-command native initial-route review. This does not certify every transitive getter, constructor capacity, public disclosure, five-path evidence, final INT-05 acceptance or Unity readiness."
+  },
+  "baselineComparison": [
+    {
+      "file": "SharedHavenAppraisal.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedHavenSale.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedHavenMeal.cs",
+      "sameAs67": false
+    },
+    {
+      "file": "SharedExpeditionBill.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedExpeditionEpisodeClose.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedNextCharterPlan.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedNextCharterAgreement.cs",
+      "sameAs67": true
+    },
+    {
+      "file": "SharedCharterAttempt.cs",
+      "sameAs67": true
+    }
+  ],
+  "baselineNote": "Seven family files remain byte-for-text identical to 67f3d201b. SharedHavenMeal differs only in the previously shared serving-constraint wrapper below the reviewed purchase prefix; purchase lines 128-220 retain original coordinates.",
+  "rootRouting": {
+    "hostCore": "Simulation.AssessCommandFactsV1 keeps command/authority, expected observation revision, native post-authority guards and idempotent receipt checks before capturing current read context. Do not reuse legacy QueryCommand for new assessment.",
+    "orderedPrefix": [
+      "WorldOpeningConstraintV1",
+      "ActiveLongRestInterruptionV1",
+      "if current.ConnectedClericCasting and PendingSanctuary(current)!=null: NonSanctuaryResponseConstraintV1",
+      "GuidanceChoiceConstraintV1",
+      "SpellCastingProfile.PhysicalConstraintV1",
+      "ActiveShortRestInterruptionV1",
+      "WoundTreatmentOuterConstraintV1",
+      "SearchActivityConstraintV1",
+      "HideActivityConstraintV1",
+      "RetreatHostileAttackConstraintV1",
+      "PendingRecoveryChoiceConstraintV1",
+      "HavenCareActorConstraintV1",
+      "MoraleRestingActorConstraintV1",
+      "RestingActorConstraintV1"
+    ],
+    "reuse": "After the already-shared AssessFacts opening/long-rest/Sanctuary/Guidance/physical gates, all nine kinds can reuse the exact current BeforeStabilizationBranchConstraintV1 body. Rename its comment/scope if generalized; the body is not a universal command prefix.",
+    "dispatchCoordinates": [
+      {
+        "dispatch": "if(IsHavenAppraisalCommand(c.Kind))return ResolveHavenAppraisal",
+        "originalLine": 946,
+        "currentLine": 937
+      },
+      {
+        "dispatch": "if(c.Kind==CommandKind.CloseExpeditionEpisode)return ResolveExpeditionClose",
+        "originalLine": 947,
+        "currentLine": 938
+      },
+      {
+        "dispatch": "if(IsCharterAttemptCommand(c.Kind))return ResolveCharterAttempt",
+        "originalLine": 951,
+        "currentLine": 942
+      },
+      {
+        "dispatch": "if(IsNextCharterAgreementCommand(c.Kind))return ResolveNextCharterAgreement",
+        "originalLine": 952,
+        "currentLine": 943
+      },
+      {
+        "dispatch": "if(IsNextCharterPlanCommand(c.Kind))return ResolveNextCharterPlan",
+        "originalLine": 953,
+        "currentLine": 944
+      },
+      {
+        "dispatch": "if(IsExpeditionBillCommand(c.Kind))return ResolveExpeditionBill",
+        "originalLine": 954,
+        "currentLine": 945
+      },
+      {
+        "dispatch": "if(IsHavenSaleCommand(c.Kind))return ResolveHavenSale",
+        "originalLine": 955,
+        "currentLine": 946
+      },
+      {
+        "dispatch": "if(c.Kind==CommandKind.PurchaseHavenMeal)return ResolveHavenMealPurchase",
+        "originalLine": 956,
+        "currentLine": 947
+      }
+    ],
+    "excludedLaterGates": "All nine dispatch before HavenMealServingCommandFailure, RouteTravelOuterConstraintV1 and the general off-calendar StartsOrResumesActivityWork gate. Do not copy the advancement continuation prefix. The family-specific appraisal/bill/plan/sale/meal labor checks retain their own original positions.",
+    "skippedBranches": "Intervening casting/recovery/observation/retreat/camp/rest/transition/stabilization/reinforcement dispatches do not match these nine command kinds. Do not enter their resolvers. Native global care/rest actor and pending recovery constraints still apply.",
+    "wrapperTail": "SharedObservationActions.Resolve lines 15-52 enters an execution condition scope, invokes ResolveCore, then reconciles long/short rest and active blood-treatment access. Charter-attempt commands return at 28 and agreement commands at 29-32; other requested kinds continue through appraisal/sale/bill/plan and later shared reconciliation. Initial family success does not prove these stages; retain CommitFeasibility=null.",
+    "originRule": "Typed constraints must identify the actual original return in each helper, not merely a caller such as SharedHavenSale:333. Preserve short-circuit order and native conditional branches."
+  },
+  "operations": [
+    {
+      "kind": "StartHavenAppraisal",
+      "signature": "private NativeCommandConstraintV1 HavenAppraisalConstraintV1(Snapshot s, Command c, out HavenAppraisalRecord current, out HavenAppraisalBasis basis)",
+      "segments": [
+        "SharedHavenAppraisal.cs:153-193 entire existing assessor as shared typed guard",
+        "76-116 terms and current subject/source-basis helpers",
+        "119-134 worker checks",
+        "195-198 booking-end arithmetic"
+      ],
+      "orderedStart": "selected schema/profile -> worker -> existing payload -> desk target -> open slot -> completed report -> history cap -> terms -> exact extracted whole subject/provenance/title/custody -> available whole quantity -> worker desk/appointment/combat/capability/sight/hands/location -> off-calendar labor -> min(full remaining end, appointment end) -> assignment/inventory/interval busy.",
+      "pureOutputs": "Current immutable HavenAppraisalBasis; local calculation of the existing booking end. No job, reservation or knowledge report.",
+      "executionBoundary": "Resolve228-233 constructs job, BookAppraisal201-207 reserves whole subject plus one interval, appends job, commits activity labor.",
+      "traps": "Do not replace min(remaining end, appointment end) with an invented requirement that the full 1800 seconds fit. Full-duration expiry checks belong to other families. Existing local worker/basis checks are distinct from completion reconciliation.",
+      "remaining": "Shared context-taking condition/access helpers; WorkLedger capacity/ID/overlap enforcement remains separately staged. Initial null does not certify booking or later report."
+    },
+    {
+      "kind": "StartHavenSale",
+      "signature": "private NativeCommandConstraintV1 HavenSaleOpeningConstraintV1(Snapshot s, Command command, out HavenSaleRecord sale, out HavenSaleBasis basis, out RuleTime end)",
+      "segments": [
+        "SharedHavenSale.cs:287-332 opening guard/selection body",
+        "333 SaleCounterFailure then SaleLaborFailure only",
+        "171-244 terms/assets/current counter helpers",
+        "263-269 immutable current sale basis",
+        "271-284 ordered seller/buyer labor checks"
+      ],
+      "orderedStart": "selected profile/schema -> seller/allowed control actor rules -> existing payload -> offer version -> already paid -> open agreement -> history cap -> terms current -> full remaining end strictly before offer expiry -> terms consent/clearance/exemption/currency -> exact current assets -> completed appraisal basis -> whole-asset available amounts -> counter -> seller then buyer labor/off-calendar checks -> native projected delivery terminal.",
+      "pureOutputs": "Current sale/appraisal basis and source-duration end, without transferring goods/tender.",
+      "terminalRequired": "PrepareSaleDelivery245-251 is currently a native initial terminal check. It copies snapshot, transfers two whole titles, synchronizes links, then invokes CheckPortableProjectedState. Preserve a separate pending pure equivalent, e.g. WholeLotExchangeConstraintV1 using current records and exact algebraic deltas. Prefix success alone must not become full initial eligibility.",
+      "executionBoundary": "Legacy Assess must still obtain execution delivery at its original terminal; Start then constructs sale381-383, books two claims/two intervals384 and appends385. Actual payment is later finalization.",
+      "traps": "CheckPortableProjectedState performs full PortableEquipmentValidation.Validate and ValidateFixture, then every actor FitsCarrier, with ArgumentException classification. Bilateral carry arithmetic alone is not yet a demonstrated equivalent. Preserve unknown values and ContainerFitNotEstablished/ContainerCapacityExceeded/InvalidPortableTransition versus CarryingCapacityExceeded stages.",
+      "remaining": "G-DELIVERY exact invariant proof/extraction is substantive and not closed by this review; G-CAPACITY booking stages likewise."
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "signature": "private NativeCommandConstraintV1 HavenMealOpeningConstraintV1(Snapshot s, Command command, out HavenMealOffer terms, out RuleTime start, out RuleTime end)",
+      "segments": [
+        "SharedHavenMeal.cs:172-193 opening through MealClockFailure, excluding ProjectMealDelivery at194",
+        "128-149 current surface/prior-paid-sale/assets",
+        "163-167 conservative deadline fence"
+      ],
+      "orderedStart": "selected profile/schema -> customer -> offer -> existing payload -> already purchased -> now+1 second -> offer window -> freshness -> terms -> prior paid tender/assets -> whole quantities available -> usable surface -> sale counter -> seller/buyer labor -> deadline fence -> native projected delivery terminal.",
+      "terminalRequired": "ProjectMealDelivery152-160 is an initial terminal guard at194 and a second post-AdvanceTo check at213. The initial instance needs the same exact pure exchange invariant work as sale. Keep the later instance a conditional execution obligation; do not run a copied purchase.",
+      "executionBoundary": "197-203 generated ID, intervals, claims and Reserve;204 AdvanceTo;206 clock/expiry/freshness;207 terms/counter/labor;209 surface;210 assets;212 purchase record;213 projected delivery;215-218 atomic final installation. Preserve this sequence.",
+      "traps": "Legacy QueryCommand calls ResolveHavenMealPurchase(s.Copy(),...) at SharedWorldRangedCombat403: prohibited read entry. NextConditionDeadline reads journal-time unended application/immunity expiries, not current-condition projection; preserve >current and <=end fences. Do not change legacy out offer behavior: it remains null until successful delivery219, even if a new private guard exposes current terms.",
+      "remaining": "G-DELIVERY plus post-time-advance conditional stages. Initial eligibility and commit feasibility remain distinct; no purchase implies meal intake/consumption."
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "signature": "private NativeCommandConstraintV1 ExpeditionBillConstraintV1(Snapshot state, Command command, out ExpeditionBillRecord job, out ExpeditionBillBasis basis)",
+      "segments": [
+        "SharedExpeditionBill.cs:158-198 assessor",
+        "101-140 authority/current paid-record basis",
+        "143-155 worker eligibility",
+        "201-204 incompatible current labor"
+      ],
+      "orderedStart": "selected profile/schema -> already closed episode -> representative -> existing payload -> current open job -> bill version -> slot -> prior report -> history cap -> full 1800-second end before authorization end -> authority and actual paid sale/meal/appraisal basis -> current worker -> off-calendar labor -> incompatible labor.",
+      "pureOutputs": "Immutable ExpeditionBillBasis from actual retained records; MatchesReceipts remains direct joins, not transaction replay.",
+      "executionBoundary": "Resolve238-243 constructs/appends job then BookExpeditionBill206-212 reserves one worker interval and commits activity; no stock claim/payment.",
+      "traps": "Preserve append-before-book execution order; no fabricated reserve amount. A report is produced at actual finish, not by reading basis.",
+      "remaining": "Condition/access helper context and separate work/ID/capacity enforcement; no new mechanical blocker identified in this finite assessor segment."
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "signature": "private NativeCommandConstraintV1 ExpeditionCloseEligibilityConstraintV1(Snapshot state, Command command, out ExpeditionCloseEligibilityInputsV1 inputs)",
+      "privateCarrier": "Suggested new private carrier only: existing charter, exit CommandReceipt, reconciled ExpeditionBillRecord, meal/sale, MiningAttemptRecord, MiningMaterialUnitRecord[] units, actual intake IDs, member/related ID sets and scoped ExpeditionCloseStock[]. It must not construct/install an ExpeditionEpisodeCloseRecord or supply public entitlement.",
+      "segments": [
+        "SharedExpeditionEpisodeClose.cs:62-116 guard sequence/current joins",
+        "140-156 current open-commitment/coverage predicates",
+        "Runtime/Core/ExpeditionEpisodeCloseRecords.cs:232-255 meal-intake lineage/retained claim sums"
+      ],
+      "orderedStart": "selected profile/schema -> leader/mandate -> evidence -> payload -> episode/charter binding -> already closed -> tactical boundary -> actual resolved encounter and exit receipt -> reconciled bill/current basis -> bill after exit -> leader current capability -> unprocessed journal deadline -> member facts -> no unresolved member movement -> actual paid meal/intakes -> extraction -> completed mining dispositions -> scoped stock -> open commitments -> coverage contradiction.",
+      "executionBoundary": "118-129 captures current members/hostile/outcome/private record;136 installs actual close. Separate this record construction from the typed eligibility guard. CaptureClosingMember158-178 uses current condition projection and actual movement receipt selection only.",
+      "traps": "CommandHistory.Read here parses actual retained receipts; do not replace it with ReplayReceipt or FindPlanningPassage. TryReadMealIntakes sums actual consumed reservation amounts and existing lineage; does not settle intake. Constructor/capture limits stay at their original later stage and are not invented earlier gameplay denials. Captured member conditions are not automatically public.",
+      "remaining": "Finite parser/constructor/current-capture closure must be recorded for implementation. Prior procedure audit covers OpenProcedures; this report does not certify every close constructor or expose private capture output."
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "signature": "private NativeCommandConstraintV1 NextCharterPlanConstraintV1(Snapshot state, Command command, PlanningPassage verified, out NextCharterPlanRecord job, out long passageRevision, out NextCharterPlanObservation observation)",
+      "segments": [
+        "SharedNextCharterPlan.cs:169-211 exact Start branch, shared typed helpers",
+        "95-113 basis gates with read-specific verified proof consumption replacing fallback",
+        "142-161 planner and payload predicates",
+        "317-383 current readiness/supply facts only"
+      ],
+      "orderedStart": "selected profile/schema -> planner -> existing payload -> version -> occupied slot -> report -> history cap -> mandate/evidence/distinct water/actual close/member witness/basis -> owned passage result -> full 3600-second authorization window -> desk/current planner -> off-calendar labor -> current incompatible labor -> current observation.",
+      "verifiedRestriction": "Only owning checkpoint IVerifiedCommandAssessmentV1 path may supply verified evidence. Check exact owner, current generation/revision/content/canonical equality and bound conditions using the accepted pure writer; do not call public validating Encode or verification/construction methods. PlanningPassage.Covers107-109 and StartThrough111-112 are pure once owner proof is established.",
+      "proofOutcomes": "Missing/mismatched proof remains VerificationUnavailable/technical unavailable. A valid current proof whose StartThrough(close.SourceRevision)==0 retains native NextCharterPlanningPassageEvidenceMissing. Current proof may legitimately carry no crossing. Preserve first qualifying completed crossing and source-cutoff semantics.",
+      "executionBoundary": "Keep legacy execution basis fallback FindPlanningPassage116-126 outside reads; new read route must never fall back on absent/mismatched nullable proof. Resolve241-247 constructs/appends plan and reserves one interval; actual hour/report and checkpoint passage updates are execution-only.",
+      "traps": "Passing an arbitrary non-null PlanningPassage is insufficient ownership verification; Covers only compares fingerprint, terms binding, current throughRevision and cutoff. Current checkpoint class does not yet implement IVerifiedCommandAssessmentV1. Do not bypass current RequiresVerifiedAssessment guard or manufacture a proof from receipts.",
+      "remaining": "G-PASSAGE verified read implementation and full current spatial/speed/supply leaf closure. SupportsAssessment must not advertise a pure successful route before these are supplied."
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "signature": "private NativeCommandConstraintV1 NextCharterAgreementConstraintV1(Snapshot state, Command command, out NextCharterPlanRecord plan, out NextCharterAgreementAssessment assessment)",
+      "segments": [
+        "SharedNextCharterAgreement.cs:150-155 shared opening and171-186 Accept branch",
+        "102-119 trusted source/assent authority",
+        "122-142 current capability/readiness checks",
+        "SharedNextCharterPlan.cs:317-383 existing current observation"
+      ],
+      "orderedStart": "selected profile/schema -> actor -> payload -> offer -> already accepted -> authority/records/resource owner/permission issuer/scope/restriction -> offer window -> actual prior close -> actual completed matching plan -> current observation -> stable boundary -> carry -> capability -> staging -> busy -> explicit access contradiction -> passage -> cumulative ready supplies.",
+      "pureOutputs": "Existing immutable current readiness assessment; it is not assent and cannot grant resource/item authority. No planning crossing replay is needed for an existing completed plan.",
+      "executionBoundary": "Resolve199-200 installs NextCharterAgreementRecord with actual command/revision/current observation; no movement/time/material reservation.",
+      "traps": "ApproachAccess==false denies; null must not be silently turned into false. Current CanCarry must equal true. Preserve different unknown predicates. Accept is not proof that future departure will remain possible.",
+      "remaining": "Shared current observation transitive closure and native record-constructor bounds; post-core long/short-rest/blood checks remain commit-stage obligations."
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "signature": "private NativeCommandConstraintV1 CharterAttemptConstraintV1(Snapshot state, Command command, out CharterAttemptReadiness readiness, out CharterAttemptAssessment assessment)",
+      "segments": [
+        "SharedCharterAttempt.cs:191-203 Start branch",
+        "95-164 local scope, fatigue, authority and readiness",
+        "SharedNextCharterPlan.cs:317-383 current observation"
+      ],
+      "orderedStart": "selected profile/schema -> actor -> payload -> accepted agreement exists -> target charter -> no existing attempt -> accepted agreement currently in force -> departure/egress authority -> local scope/restrictions -> assent authority -> exact current fatigue/debt basis -> current readiness -> stable tactical boundary -> carry -> capability -> stationary stage -> busy -> access -> passage -> direct view -> sufficient ready supply.",
+      "pureOutputs": "Current immutable CharterAttemptReadiness, with source-authorized opening fatigue plus current recorded gains/debt. No admitted event or movement.",
+      "executionBoundary": "Resolve267-272 creates Admitted event and actual CharterAttemptRecord; no outward step or supply spend.",
+      "traps": "Use requireStaging=true. Do not substitute already-accepted agreement for current objective authority/readiness. Fatigue helper must select actual latest debt/current strain without settling a deadline.",
+      "remaining": "Current spatial/speed/readiness and event/record numeric/ID limits; no initial guarantee of future movement/return."
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "signature": "Reuse CharterAttemptConstraintV1(Snapshot state, Command command, out CharterAttemptReadiness readiness, out CharterAttemptAssessment assessment) with exact Observe branch",
+      "segments": [
+        "SharedCharterAttempt.cs:191-198 opening,205 actual attempt,222-229 Observe branch",
+        "143-164 readiness with requireStaging=false"
+      ],
+      "orderedStart": "selected profile/schema -> actor -> payload -> exact actual attempt target -> objective open -> not already observed -> actual outbound arrival/no return started/current stationary approach -> objective authority/fatigue/readiness (staging not required).",
+      "pureOutputs": "Actual current approach eligibility/readiness only. No new observed fact or event is appended.",
+      "executionBoundary": "Resolve278 may append Continued first when interrupted, then280-282 builds actual surface observation and283-284 appends Observed. Both can share causing command/revision; never call ContinueCharterAttempt in a read.",
+      "traps": "An interrupted open attempt can be explicitly continued by this actual command. Do not introduce a rejection merely because Interrupted is true or emit the execution Continued/Observed events during assessment. InspectCharterAttempt's egress-assessment branch is not this command's initial route.",
+      "remaining": "Shared current observation transitive closure and exact append/record bounds remain separate from pure initial guard extraction."
+    }
+  ],
+  "crossCuttingRequirements": [
+    "All current condition consumers run under existing strict ConditionResolutionScope.EnterRead bound to this captured snapshot. The meal/close deadline consumers require journal-time materialization; capability/sight use current materialization. No Restore, AdvanceTo, Cure, journal fold or resolver fallback.",
+    "Local immutable basis/readiness output construction is not gameplay settlement. Preserve private records as internal values; no public disclosure follows from a native selector.",
+    "Keep source-authorized fields, flags, units, source durations, native profile checks and existing payload rejection domain exactly. Constructor defaults do not authorize new global payload bans.",
+    "Return original helper failure coordinates. Reuse a single typed guard implementation from legacy string wrappers and new reads; do not mirror a second family implementation.",
+    "Keep first native enforcement stage for derived IDs, record counts, worker intervals/reservations and constructor checks. WORK_CAPACITY requires pure arithmetic/identity extraction, not constructing trial WorkerInterval/ResourceReservation/WorkLedger or calling Reserve.",
+    "InitialAssessmentV1 retains CommitFeasibility=null. Incomplete native initial terminal feasibility must be reported as incomplete/technical unavailable, not a fabricated success or new gameplay denial.",
+    "Do not call legacy QueryCommand, Resolve, ResolveCore, reconciliation, candidate delivery, full validation or planning replay to obtain a read result."
+  ],
+  "concreteOpenWork": [
+    {
+      "key": "DELIVERY_TERMINAL",
+      "kinds": [
+        "StartHavenSale",
+        "PurchaseHavenMeal"
+      ],
+      "detail": "Pure exact equivalent of current title/link/containment/carry invariants and original exception-classification order. No projection copies or global validator allowed; a final carry inequality alone is insufficient proof."
+    },
+    {
+      "key": "VERIFIED_PLANNING_READ",
+      "kinds": [
+        "StartNextCharterPlan"
+      ],
+      "detail": "Add checkpoint-owned facts assessment via the existing Core interface, preserving owner/current canonical/condition binding and no-crossing evidence. Do not weaken RequiresVerifiedAssessment or use nullable fallback."
+    },
+    {
+      "key": "CURRENT_FACT_CLOSURE",
+      "kinds": [
+        "StartNextCharterPlan",
+        "AcceptNextCharter",
+        "StartCharterAttempt",
+        "ObserveCharterApproach"
+      ],
+      "detail": "Use approved SPATIAL_SPEED_PRESSURE_READ_PLAN and prior procedure/condition/current-fact audits; instrument the actual extracted graph. This source review does not re-prove all transitive leaves."
+    },
+    {
+      "key": "CLOSE_CAPTURE_STAGES",
+      "kinds": [
+        "CloseExpeditionEpisode"
+      ],
+      "detail": "Keep eligibility/current joins apart from actual close capture/install; finalize bounded parser/constructor proof without receipt replay or private-result leakage."
+    },
+    {
+      "key": "POST_INITIAL_ENFORCEMENT",
+      "kinds": "all nine",
+      "detail": "Work/ID/capacity/constructor and shared wrapper/candidate validation stages remain separate obligations; no full acceptance from guard extraction alone."
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "8445fac5956092556eac9a64980090c708c7c1b081d3f53fdc6d612058237497"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenMeal.cs",
+      "sha256": "72a0e11a9ed34f300ad073f9d85bc0e934ef065643f099f6027a6cd80c146741"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "sha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "sha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "sha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "sha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "4bbcd80ce86f2957ca54bdb9434b48f6b43f2b65e9977a7c614c66f4af4001fb"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "b3f19fa618aebb8470505b7c44d955cfd719dac46854c7dc6d67374ffd3ecc05"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VerifiedSharedWorldCheckpoint.cs",
+      "sha256": "9793d32c842d51670a716d8df5926e435879c758cf610067ac6dd7634c71577a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldRangedCombat.cs",
+      "sha256": "42cf0f850e6ab67f1c3bc25175a3a676859e941704111c1e281bec40d748021e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "sha256": "e33422430672992975426f5ea4eaee5153e772c043a311883c41a5fd4f55cfdc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "sha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "sha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SPATIAL_SPEED_PRESSURE_READ_PLAN.json",
+      "sha256": "f84421b846fd4797f651535377176cccde46837e7b8884ef2d89b9535052b171"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81"
+    }
+  ]
+}

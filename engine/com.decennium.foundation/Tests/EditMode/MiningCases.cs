@@ -21,6 +21,9 @@ namespace Decennium.Foundation.Tests
 
         private static void MiningCommit(Simulation simulation,Command command)
         {
+            if(command.Kind==CommandKind.StartHavenAppraisal || command.Kind==CommandKind.StartMining
+                || command.Kind==CommandKind.PauseMining || command.Kind==CommandKind.ResumeMining)
+                AssertNativeInitialAssessmentV1(simulation,command,TestOnlySharedWorldPolicy.Host());
             var result=simulation.Execute(TestOnlySharedWorldPolicy.Host(),command);
             Require(result.Outcome==Outcome.Committed,command.Kind+" rejected: "+result.Code);
         }

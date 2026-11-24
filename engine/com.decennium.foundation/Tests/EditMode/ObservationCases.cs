@@ -505,6 +505,7 @@ namespace Decennium.Foundation.Tests
             RejectUnchanged(simulation, host, ObservationCommand(simulation, CommandKind.Search, hero, 7, 7), "SearchCellOutOfRange");
 
             var hide = ObservationCommand(simulation, CommandKind.Hide, hero);
+            AssertObservationInitialV1(simulation,hide);
             WorldCommit(simulation, hide);
             var hidden = simulation.Capture();
             var hideAction = hidden.ObservationActions.Single(x => x.Kind == ObservationActionKind.Hide);
@@ -543,6 +544,7 @@ namespace Decennium.Foundation.Tests
                 "Search discovery exposed hidden occupancy or varied candidate availability/cost by hidden contents.");
 
             var search = ObservationCommand(simulation, CommandKind.Search, enemy, 0, 0);
+            AssertObservationInitialV1(simulation,search);
             WorldCommit(simulation, search);
             var found = simulation.Capture();
             var searchAction = found.ObservationActions.Single(x => x.Kind == ObservationActionKind.Search);

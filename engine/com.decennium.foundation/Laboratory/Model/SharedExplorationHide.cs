@@ -42,41 +42,45 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessExplorationHide(Snapshot state, Command command, out WorldIntervalRecord interval,
             out ExplorationSearchCell anchor, out RuleTime due)
+            => ExplorationHideConstraintV1(state, command, out interval, out anchor, out due)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExplorationHideConstraintV1(Snapshot state, Command command, out WorldIntervalRecord interval,
+            out ExplorationSearchCell anchor, out RuleTime due)
         {
             interval = null;
             anchor = default;
             due = default;
             var hide = state.ExplorationHide;
-            if (hide == null || state.InventoryCombat) return "OrdinaryHideUnavailable";
-            if (ConnectedObservationStageClosed(state)) return "ConnectedObservationStageClosed";
+            if (hide == null || state.InventoryCombat) return new NativeCommandConstraintV1("OrdinaryHideUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 50);
+            if (ConnectedObservationStageClosed(state)) return new NativeCommandConstraintV1("ConnectedObservationStageClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 51);
             var d = hide.Definition;
             if (command.Actor != d.HiderId || WorldTiming.ForActor(state, command.Actor)?.Id != state.WorldSchedule.Id)
-                return "OrdinaryHideActorUnavailable";
-            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return "InvalidOrdinaryHideRequest";
+                return new NativeCommandConstraintV1("OrdinaryHideActorUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 54);
+            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return new NativeCommandConstraintV1("InvalidOrdinaryHideRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 55);
             if (hide.Pending != null || PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state))
-                return "OrdinaryHideDecisionPending";
-            if (!HiderCapable(state, d.HiderId)) return "OrdinaryHideActionCapabilityUnavailable";
+                return new NativeCommandConstraintV1("OrdinaryHideDecisionPending", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 57);
+            if (!HiderCapable(state, d.HiderId)) return new NativeCommandConstraintV1("OrdinaryHideActionCapabilityUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 58);
             anchor = AtSearchPoint(state, d.HiderId, d.Recess) ? d.Recess : d.Alternate;
             if (!AtSearchPoint(state, d.HiderId, anchor) || state.WorldTraversals.Any(x => x.ActorId == d.HiderId))
-                return "OrdinaryHideRequiresStationaryAnchor";
+                return new NativeCommandConstraintV1("OrdinaryHideRequiresStationaryAnchor", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 61);
 
             interval = Interval(state, d.HiderId);
             var schedule = state.WorldSchedule;
             if (interval.LastStart < 0 || command.Target != schedule.MarkerId(interval.LastStart))
-                return "WrongOrdinaryHideStart";
-            if (state.RuleClock != schedule.Start(interval.LastStart)) return "OrdinaryHideRequiresOwnStart";
-            if (interval.ActionSpent) return "ActionAlreadySpent";
+                return new NativeCommandConstraintV1("WrongOrdinaryHideStart", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 66);
+            if (state.RuleClock != schedule.Start(interval.LastStart)) return new NativeCommandConstraintV1("OrdinaryHideRequiresOwnStart", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 67);
+            if (interval.ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 68);
             due = schedule.Start(checked(interval.LastStart + schedule.Order.Count));
             if (WorldActivityValidation.HasActiveLabor(state, d.HiderId, state.RuleClock, due)
                 || state.RestIntervals.Any(x => x.ActorId == d.HiderId && x.Status == RestIntervalStatus.Active)
                 || OrdinaryInventory.Busy(state, d.HiderId))
-                return "OrdinaryHideActorBusy";
+                return new NativeCommandConstraintV1("OrdinaryHideActorBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 73);
             // Reserve capacity for both selected procedures without exposing their private qualification.
             if (hide.Attempts.Count >= ExplorationHideRecord.MaxAttempts
                 || state.ObservationActions.Length > ObservationValidation.MaxAttempts - 2
                 || state.ObservationHideResults.Length > ObservationValidation.MaxHideResults - 2
                 || state.ObserverKnowledge.Length > ObservationValidation.MaxKnowledgePairs - 2)
-                return "ObservationHistoryCapacityReached";
+                return new NativeCommandConstraintV1("ObservationHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 79);
             return null;
         }
 
@@ -94,12 +98,15 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessCancelExplorationHide(Snapshot state, Command command)
+            => CancelExplorationHideConstraintV1(state, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 CancelExplorationHideConstraintV1(Snapshot state, Command command)
         {
             var hide = state.ExplorationHide;
             if (hide?.Pending == null || command.Actor != hide.Definition.HiderId || command.Target != hide.Pending.Id)
-                return "NoPendingOrdinaryHide";
-            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return "InvalidOrdinaryHideCancellation";
-            return OrdinaryObservationChoicePending(state) ? "OrdinaryHideDecisionPending" : null;
+                return new NativeCommandConstraintV1("NoPendingOrdinaryHide", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 100);
+            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return new NativeCommandConstraintV1("InvalidOrdinaryHideCancellation", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 101);
+            return OrdinaryObservationChoicePending(state) ? new NativeCommandConstraintV1("OrdinaryHideDecisionPending", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs", 102) : null;
         }
 
         private string CancelExplorationHide(Snapshot state, Command command)

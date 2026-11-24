@@ -169,21 +169,25 @@ namespace Decennium.Foundation.Laboratory
         }
         private string AssessManufacturingQualityChoice(Snapshot s,Command c,out ManufacturingOrderRecord current,
             out CraftQualityChoice choice,out int catalyst)
+            => AssessManufacturingQualityChoiceConstraintV1(s,c,out current,out choice,out catalyst)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessManufacturingQualityChoiceConstraintV1(Snapshot s,Command c,out ManufacturingOrderRecord current,
+            out CraftQualityChoice choice,out int catalyst)
         {
             current=null;choice=default(CraftQualityChoice);catalyst=-1;
-            if(manufacturing==null)return "ManufacturingNotSelected";
-            if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
-            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(manufacturing==null)return new NativeCommandConstraintV1("ManufacturingNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 174);
+            if(c.Inventory!=null||c.Combat!=null)return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 175);
+            if(PendingCalendarChoice(s))return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 176);
             current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-            if(current==null)return "UnknownManufacturingOrder";
-            if(!current.Open)return "ManufacturingOrderClosed";
-            if(current.Status!=ManufacturingStatus.AwaitingChoice||c.X<1||c.X>2)return "NoManufacturingQualityChoice";
+            if(current==null)return new NativeCommandConstraintV1("UnknownManufacturingOrder", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 178);
+            if(!current.Open)return new NativeCommandConstraintV1("ManufacturingOrderClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 179);
+            if(current.Status!=ManufacturingStatus.AwaitingChoice||c.X<1||c.X>2)return new NativeCommandConstraintV1("NoManufacturingQualityChoice", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 180);
             choice=(CraftQualityChoice)c.X;catalyst=c.Y-1;
             var profile=ManufacturingRules.Recipe(current.RecipeId);
-            if(profile==null)return "ManufacturingRecipeUnavailable";
-            if(current.Quality==CraftQuality.Masterwork?!profile.CatalystIndexes.Contains(catalyst):catalyst!=-1)return "InvalidRetainedCatalyst";
+            if(profile==null)return new NativeCommandConstraintV1("ManufacturingRecipeUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 183);
+            if(current.Quality==CraftQuality.Masterwork?!profile.CatalystIndexes.Contains(catalyst):catalyst!=-1)return new NativeCommandConstraintV1("InvalidRetainedCatalyst", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 184);
             if(choice==CraftQualityChoice.FullYield&&!profile.CanYield(current.Quality,current.ExtraVials,catalyst))
-                return "ManufacturingFullYieldUnavailable";
+                return new NativeCommandConstraintV1("ManufacturingFullYieldUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 186);
             return null;
         }
         private CommandQueryResult QueryManufacturingControl(Snapshot s,Command c)
@@ -192,26 +196,29 @@ namespace Decennium.Foundation.Laboratory
             return new CommandQueryResult(true,failure==null,failure??"Available",s.Revision,Array.Empty<CommandCost>());
         }
         private string AssessManufacturingControl(Snapshot s,Command c,out ManufacturingOrderRecord current)
+            => AssessManufacturingControlConstraintV1(s,c,out current)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessManufacturingControlConstraintV1(Snapshot s,Command c,out ManufacturingOrderRecord current)
         {
             current=null;
-            if(manufacturing==null)return "ManufacturingNotSelected";
-            if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
-            if(PendingCalendarChoice(s))return "TacticalChoicePending";
+            if(manufacturing==null)return new NativeCommandConstraintV1("ManufacturingNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 197);
+            if(c.Inventory!=null||c.Combat!=null)return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 198);
+            if(PendingCalendarChoice(s))return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 199);
             current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);
-            if(current==null)return "UnknownManufacturingOrder";
-            if(!current.Open)return "ManufacturingOrderClosed";
-            if(c.X!=0||c.Y!=0)return "InvalidManufacturingRequest";
-            if(current.Status==ManufacturingStatus.AwaitingChoice)return "ManufacturingChoicePending";
+            if(current==null)return new NativeCommandConstraintV1("UnknownManufacturingOrder", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 201);
+            if(!current.Open)return new NativeCommandConstraintV1("ManufacturingOrderClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 202);
+            if(c.X!=0||c.Y!=0)return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 203);
+            if(current.Status==ManufacturingStatus.AwaitingChoice)return new NativeCommandConstraintV1("ManufacturingChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 204);
             if(c.Kind==CommandKind.PauseManufacturing)
-                return current.Status==ManufacturingStatus.Working?null:"ManufacturingNotWorking";
+                return current.Status==ManufacturingStatus.Working?null:new NativeCommandConstraintV1("ManufacturingNotWorking", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 206);
             if(c.Kind==CommandKind.CancelManufacturing)return null;
-            if(c.Kind!=CommandKind.ResumeManufacturing)return "InvalidManufacturingRequest";
-            if(current.Status==ManufacturingStatus.Working)return "ManufacturingAlreadyWorking";
-            string access=ManufacturingAccess(s,c.Actor,current.Status!=ManufacturingStatus.AwaitingCheck,
+            if(c.Kind!=CommandKind.ResumeManufacturing)return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 208);
+            if(current.Status==ManufacturingStatus.Working)return new NativeCommandConstraintV1("ManufacturingAlreadyWorking", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 209);
+            var access=ManufacturingAccessConstraintV1(s,c.Actor,current.Status!=ManufacturingStatus.AwaitingCheck,
                 current.Status==ManufacturingStatus.AwaitingCheck,current.RecipeId);
             if(access!=null)return access;
-            if(OrdinaryInventory.Busy(s,c.Actor))return "WorkerBusy";
-            if(!current.StabilizedAt.HasValue&&ManufacturingBloodAge(s,current)>=BloodSpoils)return "ManufacturingIngredientSpoiled";
+            if(OrdinaryInventory.Busy(s,c.Actor))return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 213);
+            if(!current.StabilizedAt.HasValue&&ManufacturingBloodAge(s,current)>=BloodSpoils)return new NativeCommandConstraintV1("ManufacturingIngredientSpoiled", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 214);
             return null;
         }
         private IEnumerable<string> ManufacturingOwners(Snapshot s,Command c)
@@ -252,26 +259,29 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string ManufacturingAccess(Snapshot s,string actor,bool window,bool checking=false,string recipeId=ManufacturingRules.Recipe4Id)
+            => ManufacturingAccessConstraintV1(s,actor,window,checking,recipeId)?.NativeCode;
+
+        private NativeCommandConstraintV1 ManufacturingAccessConstraintV1(Snapshot s,string actor,bool window,bool checking=false,string recipeId=ManufacturingRules.Recipe4Id)
         {
-            var recipe=ManufacturingRules.Recipe(recipeId);if(recipe==null||!manufacturing.SupportsRecipe(recipeId))return "ManufacturingRecipeUnavailable";
-            if(actor!=TestOnlyPolicy.CompanionId)return "ManufacturingCredentialMissing";
+            var recipe=ManufacturingRules.Recipe(recipeId);if(recipe==null||!manufacturing.SupportsRecipe(recipeId))return new NativeCommandConstraintV1("ManufacturingRecipeUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 256);
+            if(actor!=TestOnlyPolicy.CompanionId)return new NativeCommandConstraintV1("ManufacturingCredentialMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 257);
             var trade=ManufacturingTrade(s,actor);
-            if(trade.Level>=10)return "ManufacturingSpecialtyNotImplemented";
-            if(!ManufacturingRules.Eligible(trade.Level,recipe.SkillLevel,manufacturing.ToolTrained,FormulaResearchRules.Knows(s,actor,recipeId),true))return "ManufacturingCredentialMissing";
-            if(!manufacturing.StationReady||CraftingRestrictions.OrderWorkBlocked(s,TestOnlyCropPolicy.PlotId))return "ManufacturingStationUnavailable";
-            if(s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken||TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return "ManufacturingToolUnavailable";
-            if(checking&&CraftingRestrictions.CraftingCheckBlocked(s,SharedCraftingFixture.ToolId))return "ManufacturingCalibrationRequired";
-            if(s.CraftingIncidents.Any(x=>x.Result==2&&x.Workers.Count!=0))return "ManufacturingToolInCalibration";
-            if(!CapableWorker(s,actor)||View(s,actor).BlocksSight||AvailableHands(s,actor)<1)return "ManufacturingWorkerIncapable";
+            if(trade.Level>=10)return new NativeCommandConstraintV1("ManufacturingSpecialtyNotImplemented", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 259);
+            if(!ManufacturingRules.Eligible(trade.Level,recipe.SkillLevel,manufacturing.ToolTrained,FormulaResearchRules.Knows(s,actor,recipeId),true))return new NativeCommandConstraintV1("ManufacturingCredentialMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 260);
+            if(!manufacturing.StationReady||CraftingRestrictions.OrderWorkBlocked(s,TestOnlyCropPolicy.PlotId))return new NativeCommandConstraintV1("ManufacturingStationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 261);
+            if(s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken||TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return new NativeCommandConstraintV1("ManufacturingToolUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 262);
+            if(checking&&CraftingRestrictions.CraftingCheckBlocked(s,SharedCraftingFixture.ToolId))return new NativeCommandConstraintV1("ManufacturingCalibrationRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 263);
+            if(s.CraftingIncidents.Any(x=>x.Result==2&&x.Workers.Count!=0))return new NativeCommandConstraintV1("ManufacturingToolInCalibration", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 264);
+            if(!CapableWorker(s,actor)||View(s,actor).BlocksSight||AvailableHands(s,actor)<1)return new NativeCommandConstraintV1("ManufacturingWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 265);
             var body=s.Actors.Single(x=>x.Id==actor);
-            if(s.WorldTraversals.Any(x=>x.ActorId==actor)||Math.Max(Math.Abs(body.X-3),Math.Abs(body.Y-3))>1)return "ManufacturingStationOutOfReach";
+            if(s.WorldTraversals.Any(x=>x.ActorId==actor)||Math.Max(Math.Abs(body.X-3),Math.Abs(body.Y-3))>1)return new NativeCommandConstraintV1("ManufacturingStationOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 267);
             if(s.ConnectedBatch!=null) {
-                if(ResearchParticipantInCombat(s,actor))return "ManufacturingParticipantInCombat";
+                if(ResearchParticipantInCombat(s,actor))return new NativeCommandConstraintV1("ManufacturingParticipantInCombat", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 269);
                 if(s.InventoryCombat||!IsOffCalendarActivity(s,actor)||!ConnectedExplorationObservation.StageOpen(s))
-                    return "ConnectedRecipe4StageClosed";
-                if(!ConnectedResearchWorkshopAvailable(s))return "ManufacturingStationUnavailable";
-            } else if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return "ManufacturingParticipantInCombat";
-            if(window&&!ResearchWindowEnd(s.RuleClock).HasValue)return "ManufacturingWindowClosed";
+                    return new NativeCommandConstraintV1("ConnectedRecipe4StageClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 271);
+                if(!ConnectedResearchWorkshopAvailable(s))return new NativeCommandConstraintV1("ManufacturingStationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 272);
+            } else if(s.InventoryCombat&&s.WorldSchedule.Order.Contains(actor))return new NativeCommandConstraintV1("ManufacturingParticipantInCombat", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 273);
+            if(window&&!ResearchWindowEnd(s.RuleClock).HasValue)return new NativeCommandConstraintV1("ManufacturingWindowClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 274);
             return null;
         }
         private static void BookManufacturing(Snapshot s,ManufacturingOrderRecord j)
@@ -415,39 +425,73 @@ namespace Decennium.Foundation.Laboratory
             }else SettleManufacturing(s,j,CraftQualityChoice.StandardQuantity,-1);
         }
         private string AssessManufacturingStart(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe, string specimenLotId = null)
+            => AssessManufacturingStartConstraintV1(s,c,out recipe,specimenLotId)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessManufacturingStartConstraintV1(Snapshot s, Command c, out ManufacturingRecipeDefinition recipe, string specimenLotId = null)
         {
             recipe = ManufacturingRules.Recipe(c.Target);
-            if (c.Inventory != null || c.Combat != null) return "InvalidManufacturingRequest";
-            if (PendingCalendarChoice(s)) return "TacticalChoicePending";
+            if (c.Inventory != null || c.Combat != null) return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 420);
+            if (PendingCalendarChoice(s)) return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 421);
             if (recipe == null || !manufacturing.SupportsRecipe(c.Target) || c.X < 0 || c.X > 1
-                || c.Y < recipe.MinimumSupplementaryVials || c.Y > recipe.MaximumSupplementaryVials) return "InvalidManufacturingRequest";
-            string access = ManufacturingAccess(s, c.Actor, true, recipeId: recipe.Id);
+                || c.Y < recipe.MinimumSupplementaryVials || c.Y > recipe.MaximumSupplementaryVials) return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 423);
+            var access = ManufacturingAccessConstraintV1(s, c.Actor, true, recipeId: recipe.Id);
             if (access != null) return access;
-            if (CraftingRestrictions.NewOrderBlocked(s, c.Actor, TestOnlyCropPolicy.PlotId, SharedCraftingFixture.TradeId)) return "ManufacturingLogRequired";
-            if (s.ManufacturingOrders.Any(x => x.Open)) return "ManufacturingApparatusClaimed";
-            if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
+            if (CraftingRestrictions.NewOrderBlocked(s, c.Actor, TestOnlyCropPolicy.PlotId, SharedCraftingFixture.TradeId)) return new NativeCommandConstraintV1("ManufacturingLogRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 426);
+            if (s.ManufacturingOrders.Any(x => x.Open)) return new NativeCommandConstraintV1("ManufacturingApparatusClaimed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 427);
+            if (OrdinaryInventory.Busy(s, c.Actor)) return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 428);
             if (specimenLotId == null) {
-                if (BloodUnprotectedAge(s, recipe.Id, c.X) >= BloodSpoils) return "ManufacturingIngredientSpoiled";
+                if (BloodUnprotectedAge(s, recipe.Id, c.X) >= BloodSpoils) return new NativeCommandConstraintV1("ManufacturingIngredientSpoiled", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 430);
             } else {
-                string specimenFailure = AssessBloodIngredient(s, c.Actor, specimenLotId, recipe);
+                var specimenFailure = AssessBloodIngredientConstraintV1(s, c.Actor, specimenLotId, recipe);
                 if (specimenFailure != null) return specimenFailure;
             }
-            if (s.ManufacturingOrders.Length == ManufacturingValidation.MaxOrders) return "ManufacturingHistoryFull";
+            if (s.ManufacturingOrders.Length == ManufacturingValidation.MaxOrders) return new NativeCommandConstraintV1("ManufacturingHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 435);
             for (int i = 0; i < recipe.Components.Count; i++) {
                 string lotId = specimenLotId != null && i == 3 ? specimenLotId : SharedManufacturingFixture.Lot(recipe.Id, c.X, i);
                 if (s.Work.AvailableAmount(lotId) < new RuleQuantity(recipe.Components[i].Quantity))
-                    return "ManufacturingIngredientsUnavailable";
+                    return new NativeCommandConstraintV1("ManufacturingIngredientsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 439);
             }
             return s.Work.AvailableAmount(SharedManufacturingFixture.PackagingFor(recipe.Id)) < new RuleQuantity(c.Y)
-                ? "ManufacturingPackagingUnavailable" : null;
+                ? new NativeCommandConstraintV1("ManufacturingPackagingUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 442) : null;
+        }
+
+        private NativeCommandConstraintV1 ManufacturingQualityRouteConstraintV1(Snapshot s,Command c,
+            out ManufacturingOrderRecord current,out CraftQualityChoice choice,out int catalyst)
+        {
+            choice=default;catalyst=-1;
+                current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(current==null)return new NativeCommandConstraintV1("UnknownManufacturingOrder", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 464);
+                if(!current.Open)return new NativeCommandConstraintV1("ManufacturingOrderClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 465);
+                return AssessManufacturingQualityChoiceConstraintV1(s,c,out current,out choice,out catalyst);
+        }
+
+        private NativeCommandConstraintV1 ManufacturingInitialConstraintV1(Snapshot s,Command c)
+        {
+            if (!connectedRecipe4Batch && connectedFormulaResearch)
+                return AssessConnectedManufacturingConstraintV1(s,c);
+            var prefix=ManufacturingPrefixConstraintV1(s,c);
+            if(prefix!=null)return prefix;
+            if(c.Kind==CommandKind.UseAlchemyDose)return AlchemyUseConstraintV1(s,c,out _,out _,out _);
+            if(c.Kind==CommandKind.StartManufacturing)return s.ConnectedBatch==null
+                ?AssessManufacturingStartConstraintV1(s,c,out _):AssessConnectedRecipe4StartConstraintV1(s,c,out _);
+            if(c.Kind==CommandKind.ResolveManufacturingQuality)
+                return ManufacturingQualityRouteConstraintV1(s,c,out _,out _,out _);
+            return AssessManufacturingControlConstraintV1(s,c,out _);
+        }
+
+        private NativeCommandConstraintV1 ManufacturingPrefixConstraintV1(Snapshot s,Command c)
+        {
+            if(manufacturing==null)return new NativeCommandConstraintV1("ManufacturingNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 447);
+            if(c.Kind==CommandKind.UseAlchemyDose)return null;
+            if(c.Inventory!=null||c.Combat!=null)return new NativeCommandConstraintV1("InvalidManufacturingRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 449);
+            if(PendingCalendarChoice(s))return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 450);
+            return null;
         }
 
         private string ResolveManufacturing(Snapshot s,Command c,bool assessOnly=false)
         {
-            if(manufacturing==null)return "ManufacturingNotSelected";
+            var initial=ManufacturingPrefixConstraintV1(s,c);
+            if(initial!=null)return initial.NativeCode;
             if(c.Kind==CommandKind.UseAlchemyDose)return UseAlchemy(s,c,assessOnly);
-            if(c.Inventory!=null||c.Combat!=null)return "InvalidManufacturingRequest";
-            if(PendingCalendarChoice(s))return "TacticalChoicePending";
             if(c.Kind==CommandKind.StartManufacturing){
                 string failure = s.ConnectedBatch == null ? AssessManufacturingStart(s, c, out var recipe)
                     : AssessConnectedRecipe4Start(s, c, out recipe);
@@ -461,9 +505,7 @@ namespace Decennium.Foundation.Laboratory
                 ChargeConnectedRecipe4(s,j);return null;
             }
             if(c.Kind==CommandKind.ResolveManufacturingQuality){
-                var current=s.ManufacturingOrders.SingleOrDefault(x=>x.Id==c.Target&&x.WorkerId==c.Actor);if(current==null)return "UnknownManufacturingOrder";
-                if(!current.Open)return "ManufacturingOrderClosed";
-                string choiceFailure=AssessManufacturingQualityChoice(s,c,out current,out var choice,out int catalyst);
+                string choiceFailure=ManufacturingQualityRouteConstraintV1(s,c,out var current,out var choice,out int catalyst)?.NativeCode;
                 if(choiceFailure!=null||assessOnly)return choiceFailure;
                 SettleManufacturing(s,current,choice,catalyst);return ResumeManufacturingAdvance(s,c);
             }
@@ -493,32 +535,40 @@ namespace Decennium.Foundation.Laboratory
             }
             return null;
         }
-        private string UseAlchemy(Snapshot s,Command c,bool assessOnly=false)
+        private NativeCommandConstraintV1 AlchemyUseConstraintV1(Snapshot s,Command c,out AlchemyDoseRecord validatedDose,out ActorState validatedRecipient,out ActorLifeRecord beforeLife)
         {
-            if(c.Combat!=null||c.Inventory==null||c.Inventory.Amount!=new RuleQuantity(1)||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return "InvalidAlchemyUse";
+            validatedDose=null;validatedRecipient=null;beforeLife=null;
+            if(c.Combat!=null||c.Inventory==null||c.Inventory.Amount!=new RuleQuantity(1)||c.Inventory.Handling!=HandlingKind.Pickup||c.X!=0||c.Y!=0)return new NativeCommandConstraintV1("InvalidAlchemyUse", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 498);
             if (PendingCalendarChoice(s) || s.ConnectedCompanionDose && HasPendingRecoveryOffer(s))
-                return "TacticalChoicePending";
-            if(!s.InventoryCombat||s.Encounter.CurrentActor!=c.Actor)return "AlchemyOwnTacticalTurnRequired";
-            if(Interval(s,c.Actor).ActionSpent)return "ActionAlreadySpent";
+                return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 500);
+            if(!s.InventoryCombat||s.Encounter.CurrentActor!=c.Actor)return new NativeCommandConstraintV1("AlchemyOwnTacticalTurnRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 501);
+            if(Interval(s,c.Actor).ActionSpent)return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 502);
             bool linked = c.Target == ConnectedVialRules.SelectedId(s);
-            if (!Permissions(s,c.Actor).Action || (!linked && AvailableHands(s,c.Actor)<1)) return "AlchemyUserIncapable";
-            var dose=s.AlchemyDoses.SingleOrDefault(x=>x.Id==c.Target);if(dose==null||dose.Spent||dose.Hp==0)return "AlchemyDoseUnavailable";
+            if (!Permissions(s,c.Actor).Action || (!linked && AvailableHands(s,c.Actor)<1)) return new NativeCommandConstraintV1("AlchemyUserIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 504);
+            var dose=s.AlchemyDoses.SingleOrDefault(x=>x.Id==c.Target);if(dose==null||dose.Spent||dose.Hp==0)return new NativeCommandConstraintV1("AlchemyDoseUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 505);
             var user=s.Actors.Single(x=>x.Id==c.Actor);var recipient=s.Actors.SingleOrDefault(x=>x.Id==c.Inventory.Destination);
             bool companionDelivery = s.ConnectedCompanionDose && linked && c.Inventory.Destination != c.Actor;
             if(s.WorldTraversals.Any(x=>x.ActorId==c.Actor||x.ActorId==c.Inventory.Destination)
                 || (linked ? !ConnectedVialIsHeldBy(s, dose.Id, c.Actor) || c.Inventory.Destination != c.Actor && !companionDelivery
                     : dose.LocationId != TestOnlyCropPolicy.PlotId || Math.Max(Math.Abs(user.X-3),Math.Abs(user.Y-3))>1))
-                return "AlchemyDoseOutOfReach";
+                return new NativeCommandConstraintV1("AlchemyDoseOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 511);
             if (companionDelivery) {
-                string failure = CompanionDoseDeliveryFailure(s, user, recipient);
+                var failure = CompanionDoseDeliveryFailureConstraintV1(s, user, recipient);
                 if (failure != null) return failure;
             }
-            if(recipient==null||Math.Max(Math.Abs(user.X-recipient.X),Math.Abs(user.Y-recipient.Y))>1)return "AlchemyRecipientOutOfReach";
+            if(recipient==null||Math.Max(Math.Abs(user.X-recipient.X),Math.Abs(user.Y-recipient.Y))>1)return new NativeCommandConstraintV1("AlchemyRecipientOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 516);
             var before=s.Lives.Single(x=>x.ActorId==recipient.Id);
-            if(before.Dead||!manufacturing.CompatibleIngestion)return "AlchemyRecipientCannotIngest";
+            if(before.Dead||!manufacturing.CompatibleIngestion)return new NativeCommandConstraintV1("AlchemyRecipientCannotIngest", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 518);
             if(recipient.Id!=c.Actor&&recipient.Id!=TestOnlyPolicy.ActorId&&recipient.Id!=TestOnlyPolicy.CompanionId
-                &&!View(s,recipient.Id).Clauses.Incapacitated&&!ActorLifeRules.ZeroHpUnconscious(s,recipient.Id))return "AlchemyRecipientUnwilling";
-            if(assessOnly)return null;
+                &&!View(s,recipient.Id).Clauses.Incapacitated&&!ActorLifeRules.ZeroHpUnconscious(s,recipient.Id))return new NativeCommandConstraintV1("AlchemyRecipientUnwilling", "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs", 520);
+            validatedDose=dose;validatedRecipient=recipient;beforeLife=before;
+            return null;
+        }
+
+        private string UseAlchemy(Snapshot s,Command c,bool assessOnly=false)
+        {
+            var failure=AlchemyUseConstraintV1(s,c,out var dose,out var recipient,out var before);
+            if(failure!=null||assessOnly)return failure?.NativeCode;
             SetInterval(s,Interval(s,c.Actor).PayAction());
             var first=DiceStream.Draw(s.RandomState,4);var second=DiceStream.Draw(first.NextState,4);s.RandomState=second.NextState;
             long potential=View(s,recipient.Id).HealingPotential(first.Value+second.Value+4);

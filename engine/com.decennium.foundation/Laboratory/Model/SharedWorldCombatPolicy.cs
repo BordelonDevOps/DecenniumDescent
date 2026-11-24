@@ -295,8 +295,31 @@ namespace Decennium.Foundation.Laboratory
             string opponent = FerryWraithProfile.Active(s) ? FerryWraithProfile.Actor : PostRecoveryProfile.Active(s) ? PostRecoveryEncounterDefinition.Actor : WorldTiming.IsLaterActive(s) ? s.LaterEncounter.Definition.DefenderId : AdditionalTacticalActor.Id;
             return s.Lives.Single(x => x.ActorId == opponent).Dead;
         }
+        private static bool UsesUnimplementedCalendarRouteV1(CommandKind kind)
+            => TestOnlyFillingPolicy.IsWaterFillCommand(kind) || kind==CommandKind.CancelExplorationSearch
+                || kind==CommandKind.StartMining || kind==CommandKind.PauseMining || kind==CommandKind.ResumeMining;
+
+        // These kinds have no tactical leaf. All intervening response branches reject them
+        // before effects. Share that exact native rejection path with current-state reads.
+        private NativeCommandConstraintV1 UnimplementedCalendarConstraintV1(Snapshot s,Command c)
+        {
+            if(PendingDefensiveFormationShift(s)!=null)return new NativeCommandConstraintV1("DefensiveFormationChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 303);
+            if(PendingCommandStepOffer(s)!=null)return new NativeCommandConstraintV1("CommandStepChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 314);
+            if(s.OverwatchRiderChoices.Any(x=>x.Status==OverwatchRiderChoiceStatus.Pending))return new NativeCommandConstraintV1("OverwatchRiderChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 323);
+            if(TestOnlyClubAttackPolicy.PendingMove(s)==null) {
+                var postStep=NextPostStepChoice(s);
+                if(postStep==PostStepChoiceKind.Ready)return new NativeCommandConstraintV1("ReadyActionChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 335);
+                if(postStep==PostStepChoiceKind.Overwatch)return new NativeCommandConstraintV1("OverwatchChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 346);
+            }
+            if(HasMovingDefensiveFormation(s))return new NativeCommandConstraintV1("DefensiveFormationContinuationPending", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 363);
+            if(!s.Encounter.Order.Contains(c.Actor))return new NativeCommandConstraintV1("ActorOutsideEncounter", "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs", 407);
+            return new NativeCommandConstraintV1("ClubCommandNotImplemented",
+                "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",158);
+        }
+
         private string ResolveCalendarCombat(Snapshot s, Command c, bool assessTactical = false)
         {
+            if(UsesUnimplementedCalendarRouteV1(c.Kind))return UnimplementedCalendarConstraintV1(s,c).NativeCode;
             if(c.Kind==CommandKind.AdvanceClock)return "TacticalDecisionClockPaused";
             var formationResponse=PendingDefensiveFormationShift(s);
             if(formationResponse!=null) {

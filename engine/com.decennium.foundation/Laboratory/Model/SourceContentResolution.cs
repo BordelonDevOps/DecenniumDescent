@@ -196,8 +196,11 @@ namespace Decennium.Foundation.Laboratory
         }
 
         public string ValidateCommand(Snapshot state, Command command)
+            => CommandConstraintV1(state, command)?.NativeCode;
+
+        internal NativeCommandConstraintV1 CommandConstraintV1(Snapshot state, Command command)
         {
-            if (state == null || command == null) return "ContentResolutionUnavailable";
+            if (state == null || command == null) return new NativeCommandConstraintV1("ContentResolutionUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 200);
             ContentOperation operation;
             ContentDefinitionBinding binding = null;
             if (IsPortableCommand(command.Kind)) {
@@ -240,16 +243,16 @@ namespace Decennium.Foundation.Laboratory
                 binding = ResolveSemantic("crafting",recipeId);
                 if (command.Kind == CommandKind.StartManufacturing && state.SchemaVersion >= Snapshot.ManufacturingSchema) {
                     string[] components=ComponentsFor(recipeId);
-                    if(components==null)return "ContentRequiredReferenceUnresolved";
+                    if(components==null)return new NativeCommandConstraintV1("ContentRequiredReferenceUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 243);
                     foreach (string component in components)
-                        if (!Supports(ResolveSemantic("crafting-component", component), ContentOperation.Manufacture)) return "ContentRequiredReferenceUnresolved";
-                    if (!Supports(ResolveSemantic("equipment", "alchemical-containers.glass-vial"), ContentOperation.Manufacture)) return "ContentRequiredReferenceUnresolved";
-                    if (!Supports(ResolveSemantic("recipe-result",ResultFor(recipeId)), ContentOperation.UseProducedItem)) return "ContentRequiredReferenceUnresolved";
+                        if (!Supports(ResolveSemantic("crafting-component", component), ContentOperation.Manufacture)) return new NativeCommandConstraintV1("ContentRequiredReferenceUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 245);
+                    if (!Supports(ResolveSemantic("equipment", "alchemical-containers.glass-vial"), ContentOperation.Manufacture)) return new NativeCommandConstraintV1("ContentRequiredReferenceUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 246);
+                    if (!Supports(ResolveSemantic("recipe-result",ResultFor(recipeId)), ContentOperation.UseProducedItem)) return new NativeCommandConstraintV1("ContentRequiredReferenceUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 247);
                 }
             }
             else return null;
-            if (binding == null) return "ContentIdentityUnknown";
-            if (!Supports(binding, operation)) return "ContentOperationUnsupported";
+            if (binding == null) return new NativeCommandConstraintV1("ContentIdentityUnknown", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 251);
+            if (!Supports(binding, operation)) return new NativeCommandConstraintV1("ContentOperationUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs", 252);
             return null;
         }
 

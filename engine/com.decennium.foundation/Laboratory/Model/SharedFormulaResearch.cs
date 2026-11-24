@@ -151,21 +151,24 @@ namespace Decennium.Foundation.Laboratory
         private bool ResearchParticipantInCombat(Snapshot s, string actor) => s.InventoryCombat
             && (connectedFormulaResearch ? WorldTiming.ForEncounter(s).Order : s.WorldSchedule.Order).Contains(actor);
         private string ResearchAccess(Snapshot s, string actor, bool requireWindow = true, bool requiresPrimaryTool = true)
+            => ResearchAccessConstraintV1(s, actor, requireWindow, requiresPrimaryTool)?.NativeCode;
+
+        private NativeCommandConstraintV1 ResearchAccessConstraintV1(Snapshot s, string actor, bool requireWindow = true, bool requiresPrimaryTool = true)
         {
             if (actor != research.WorkerId || !research.Qualified
                 || connectedFormulaResearch && !s.Trades.Any(x => x.WorkerId == actor
-                    && x.TradeId == SharedCraftingFixture.TradeId && x.Level >= 5)) return "ResearchCredentialMissing";
-            if (!research.Accessible || !research.Sufficient) return "ResearchEvidenceUnavailable";
-            if (!research.StationSuitable) return "ResearchStationUnavailable";
-            if(requiresPrimaryTool && TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return "ResearchToolInRepair";
+                    && x.TradeId == SharedCraftingFixture.TradeId && x.Level >= 5)) return new NativeCommandConstraintV1("ResearchCredentialMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 157);
+            if (!research.Accessible || !research.Sufficient) return new NativeCommandConstraintV1("ResearchEvidenceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 158);
+            if (!research.StationSuitable) return new NativeCommandConstraintV1("ResearchStationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 159);
+            if(requiresPrimaryTool && TargetInActiveRepair(s,SharedCraftingFixture.ToolId))return new NativeCommandConstraintV1("ResearchToolInRepair", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 160);
             if (connectedFormulaResearch) {
-                if (!ConnectedResearchWorkshopAvailable(s)) return "ResearchToolsOrStationUnavailable";
-            } else if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||requiresPrimaryTool && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return "ResearchToolsOrStationUnavailable";
-            if (!ResearchCapable(s, actor)) return "ResearchWorkerIncapable";
+                if (!ConnectedResearchWorkshopAvailable(s)) return new NativeCommandConstraintV1("ResearchToolsOrStationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 162);
+            } else if(crafting!=null&&(CraftingRestrictions.StationUseBlocked(s,SharedCraftingFixture.StationId)||requiresPrimaryTool && s.Structures.Single(x=>x.Id==SharedCraftingFixture.ToolId).Broken))return new NativeCommandConstraintV1("ResearchToolsOrStationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 163);
+            if (!ResearchCapable(s, actor)) return new NativeCommandConstraintV1("ResearchWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 164);
             var body = s.Actors.Single(x => x.Id == actor);
-            if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return "ResearchStationOutOfReach";
-            if (ResearchParticipantInCombat(s, actor)) return "ResearchParticipantInCombat";
-            if (requireWindow && !ResearchWindowEnd(s.RuleClock).HasValue) return "ResearchWorkWindowClosed";
+            if (s.WorldTraversals.Any(x => x.ActorId == actor) || Math.Max(Math.Abs(body.X - 3), Math.Abs(body.Y - 3)) > 1) return new NativeCommandConstraintV1("ResearchStationOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 166);
+            if (ResearchParticipantInCombat(s, actor)) return new NativeCommandConstraintV1("ResearchParticipantInCombat", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 167);
+            if (requireWindow && !ResearchWindowEnd(s.RuleClock).HasValue) return new NativeCommandConstraintV1("ResearchWorkWindowClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 168);
             return null;
         }
         private static void BookFormula(Snapshot s, FormulaWorkRecord job)
@@ -241,30 +244,57 @@ namespace Decennium.Foundation.Laboratory
             if(station.Broken)return "ResearchStationBroken";
             return CraftingRestrictions.StationUseBlocked(s,station.Id)?"ResearchStationUseBlocked":null;
         }
-        private string ResolveFormulaWork(Snapshot s, Command c, bool assessOnly = false)
+        private NativeCommandConstraintV1 FormulaWorkConstraintV1(Snapshot s, Command c, out string recipeId, out bool copy, out string method, out FormulaWorkRecord current)
         {
-            if (research == null) return "FormulaWorkNotSelected";
-            if (c.Inventory != null || c.Combat != null) return "InvalidFormulaRequest";
+            recipeId = null; copy = false; method = null; current = null;
+            if (research == null) return new NativeCommandConstraintV1("FormulaWorkNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 246);
+            if (c.Inventory != null || c.Combat != null) return new NativeCommandConstraintV1("InvalidFormulaRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 247);
             if (connectedFormulaResearch) {
-                string failure = ConnectedResearchAdmission(s, c);
+                var failure = ConnectedResearchAdmissionConstraintV1(s, c);
                 if (failure != null) return failure;
             }
             bool start = c.Kind == CommandKind.StartFormulaResearch || c.Kind == CommandKind.StartFormulaCopy;
             if (start) {
-                if (c.X < 0 || c.X > 1 || c.Kind == CommandKind.StartFormulaCopy && c.X != 0) return "UnknownResearchMethod";
-                string recipeId=SharedResearchFixture.RecipeForSelector(c.Y);
-                if(!research.SupportsRecipe(recipeId))return "FormulaNotSelected";
-                bool copy = c.Kind == CommandKind.StartFormulaCopy;
+                if (c.X < 0 || c.X > 1 || c.Kind == CommandKind.StartFormulaCopy && c.X != 0) return new NativeCommandConstraintV1("UnknownResearchMethod", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 254);
+                recipeId=SharedResearchFixture.RecipeForSelector(c.Y);
+                string selectedRecipeId=recipeId;
+                if(!research.SupportsRecipe(recipeId))return new NativeCommandConstraintV1("FormulaNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 256);
+                copy = c.Kind == CommandKind.StartFormulaCopy;
                 if (copy ? c.Target != SharedResearchFixture.EvidenceFor(recipeId,copy:true)
-                    : c.Target != SharedResearchFixture.EvidenceFor(recipeId) && c.Target != SharedResearchFixture.EvidenceFor(recipeId,fresh:true)) return "UnknownResearchEvidence";
-                string access = ResearchAccess(s, c.Actor, requiresPrimaryTool: !copy || s.SchemaVersion < 17); if (access != null) return access;
-                if (FormulaResearchRules.Knows(s, c.Actor, recipeId)) return "FormulaAlreadyKnown";
-                if (s.FormulaWork.Any(x => x.WorkerId == c.Actor && FormulaOpen(x)) || OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
-                if (copy && s.Work.AvailableAmount(SharedResearchFixture.Supplies) < new RuleQuantity(1)) return "WritingSuppliesUnavailable";
-                string method = copy ? "method.transcription" : c.X == 0 ? "method.sequence-analysis" : "method.independent-comparison";
-                if (!copy && s.FormulaWork.Any(x => x.WorkerId == c.Actor && x.RecipeId==recipeId&&x.EvidenceId == c.Target && x.MethodId == method && x.Status == FormulaWorkStatus.Failure)) return "UnchangedResearchEvidence";
-                if (s.FormulaWork.Length == FormulaWorkValidation.MaxRecords) return "FormulaHistoryCapacityReached";
-                if (assessOnly) return null;
+                    : c.Target != SharedResearchFixture.EvidenceFor(recipeId) && c.Target != SharedResearchFixture.EvidenceFor(recipeId,fresh:true)) return new NativeCommandConstraintV1("UnknownResearchEvidence", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 259);
+                var access = ResearchAccessConstraintV1(s, c.Actor, requiresPrimaryTool: !copy || s.SchemaVersion < 17); if (access != null) return access;
+                if (FormulaResearchRules.Knows(s, c.Actor, recipeId)) return new NativeCommandConstraintV1("FormulaAlreadyKnown", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 261);
+                if (s.FormulaWork.Any(x => x.WorkerId == c.Actor && FormulaOpen(x)) || OrdinaryInventory.Busy(s, c.Actor)) return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 262);
+                if (copy && s.Work.AvailableAmount(SharedResearchFixture.Supplies) < new RuleQuantity(1)) return new NativeCommandConstraintV1("WritingSuppliesUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 263);
+                method = copy ? "method.transcription" : c.X == 0 ? "method.sequence-analysis" : "method.independent-comparison";
+                if (!copy && s.FormulaWork.Any(x => x.WorkerId == c.Actor && x.RecipeId==selectedRecipeId&&x.EvidenceId == c.Target && x.MethodId == (c.Kind == CommandKind.StartFormulaCopy ? "method.transcription" : c.X == 0 ? "method.sequence-analysis" : "method.independent-comparison") && x.Status == FormulaWorkStatus.Failure)) return new NativeCommandConstraintV1("UnchangedResearchEvidence", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 265);
+                if (s.FormulaWork.Length == FormulaWorkValidation.MaxRecords) return new NativeCommandConstraintV1("FormulaHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 266);
+                return null;
+            }
+            if (c.X != 0||c.Y!=0) return new NativeCommandConstraintV1("InvalidFormulaRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 276);
+            current = s.FormulaWork.SingleOrDefault(x => x.Id == c.Target && x.WorkerId == c.Actor); if (current == null) return new NativeCommandConstraintV1("UnknownFormulaWork", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 277);
+            if(!research.SupportsRecipe(current.RecipeId))return new NativeCommandConstraintV1("FormulaNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 278);
+            if (!FormulaOpen(current)) return new NativeCommandConstraintV1("FormulaWorkClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 279);
+            if (c.Kind == CommandKind.PauseFormulaWork) {
+                if (current.Status != FormulaWorkStatus.Working) return new NativeCommandConstraintV1("FormulaNotWorking", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 281);
+                return null;
+            }
+            if (c.Kind == CommandKind.CancelFormulaWork) {
+                return null;
+            }
+            if (c.Kind == CommandKind.ResumeFormulaWork) {
+                if (current.Status == FormulaWorkStatus.Working) return new NativeCommandConstraintV1("FormulaAlreadyWorking", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 292);
+                var access = ResearchAccessConstraintV1(s, c.Actor, current.Status != FormulaWorkStatus.AwaitingCheck, current.Kind == FormulaWorkKind.Research || s.SchemaVersion < 17); if (access != null) return access;
+                if (OrdinaryInventory.Busy(s, c.Actor)) return new NativeCommandConstraintV1("WorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 294);
+                return null;
+            }
+            return new NativeCommandConstraintV1("InvalidFormulaRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs", 299);
+        }
+        private string ResolveFormulaWork(Snapshot s, Command c, bool assessOnly = false)
+        {
+            var failure = FormulaWorkConstraintV1(s, c, out var recipeId, out bool copy, out var method, out var current);
+            if (failure != null || assessOnly) return failure?.NativeCode;
+            if (c.Kind == CommandKind.StartFormulaResearch || c.Kind == CommandKind.StartFormulaCopy) {
                 var prior = s.FormulaWork.Where(x => x.WorkerId == c.Actor && x.RecipeId == recipeId && x.Status == FormulaWorkStatus.Failure)
                     .OrderByDescending(x=>x.UpdatedAt).ThenBy(x=>x.Id,StringComparer.Ordinal).FirstOrDefault();
                 string id = "formula." + (s.Revision + 1).ToString(CultureInfo.InvariantCulture);
@@ -273,31 +303,19 @@ namespace Decennium.Foundation.Laboratory
                 if (copy) s.Work = s.Work.Reserve(id, Array.Empty<WorkerInterval>(), new[] { new ResourceReservation(id + ".supplies", id, SharedResearchFixture.Supplies, 1) });
                 BookFormula(s, job); s.FormulaWork = s.FormulaWork.Concat(new[] { job }).ToArray(); return null;
             }
-            if (c.X != 0||c.Y!=0) return "InvalidFormulaRequest";
-            var current = s.FormulaWork.SingleOrDefault(x => x.Id == c.Target && x.WorkerId == c.Actor); if (current == null) return "UnknownFormulaWork";
-            if(!research.SupportsRecipe(current.RecipeId))return "FormulaNotSelected";
-            if (!FormulaOpen(current)) return "FormulaWorkClosed";
-            if (c.Kind == CommandKind.PauseFormulaWork) {
-                if (current.Status != FormulaWorkStatus.Working) return "FormulaNotWorking";
-                if (!assessOnly) PauseFormula(s, current);
-                return null;
-            }
+            if (c.Kind == CommandKind.PauseFormulaWork) { PauseFormula(s, current); return null; }
             if (c.Kind == CommandKind.CancelFormulaWork) {
-                if (assessOnly) return null;
                 s.Work = s.Work.CancelFutureWork(current.Id, s.RuleClock);
                 if (current.Kind == FormulaWorkKind.Copy && current.Work.Labor == default) s.Work = s.Work.Release(current.Id, current.Id + ".supplies");
                 PutFormula(s, ChangeFormula(s, current, FormulaWorkStatus.Cancelled)); return null;
             }
             if (c.Kind == CommandKind.ResumeFormulaWork) {
-                if (current.Status == FormulaWorkStatus.Working) return "FormulaAlreadyWorking";
-                string access = ResearchAccess(s, c.Actor, current.Status != FormulaWorkStatus.AwaitingCheck, current.Kind == FormulaWorkKind.Research || s.SchemaVersion < 17); if (access != null) return access;
-                if (OrdinaryInventory.Busy(s, c.Actor)) return "WorkerBusy";
-                if (assessOnly) return null;
                 if (current.Status == FormulaWorkStatus.AwaitingCheck) { FinishFormulaCheck(s, current); return null; }
                 BookFormula(s, current); PutFormula(s, ChangeFormula(s, current, FormulaWorkStatus.Working)); return null;
             }
-            return "InvalidFormulaRequest";
+            throw new InvalidOperationException("Formula admission did not select an execution branch.");
         }
+
     }
 }
 #endif

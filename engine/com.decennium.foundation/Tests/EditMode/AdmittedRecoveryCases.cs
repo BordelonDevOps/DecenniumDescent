@@ -11,6 +11,79 @@ namespace Decennium.Foundation.Tests
     {
         private static void AddAdmittedRecoveryCases(Dictionary<string,Action> cases,string directory)
         {
+            AddAdmittedObservationCases(cases,directory);
+            AddAdmittedPlanningCases(cases,directory);
+            cases.Add("int05_genuine_provisioning_strain_offer_recovery_and_continuation",()=> {
+                var session=EarnClericObjective(true,directory,NewWorkControlExpedition());
+                AwardAndAdvanceCleric(session,directory);
+                string actor=ClericRpProfile.Actor,hero=ConnectedExpeditionSession.Hero;
+                Snapshot State()=>ShortRestCapture(session);
+                void Save(string name)=>session.Save(Path.Combine(directory,"int05-strain-"+name+".ddsave"));
+                void Wait(int seconds)=>ClericCommit(session,hero,CommandKind.AdvanceClock,x:seconds,y:1);
+                void Inventory(string owner,CommandKind kind,string target,RuleQuantity amount,
+                    string destination="",HandlingKind handling=HandlingKind.Pickup) {
+                    var state=State();var command=new Command("int05.provision."+state.Revision,owner,state.Revision,
+                        kind,target,inventory:new InventoryRequest(amount,destination,handling));
+                    var query=session.QueryCommand(ExpeditionSeat.Player,command);
+                    Require(query.Admissible,"Provisioning source guard: "+kind+"/"+query.Code);
+                    CommitVialRoute(session,command);
+                }
+                LongRestAdvanceTo(session,57600);
+                ClericCommit(session,actor,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
+                LongRestAdvanceTo(session,86400);Save("first-rest");
+                var first=State();
+                Require(first.ExpeditionStrainGains.Any(x=>x.ActorId==actor&&x.AddedAmount==1)
+                    &&!first.ExpeditionStrainRecoveryOffers.Any(x=>x.ActorId==actor&&x.Pending),
+                    "The first genuine underprovisioned day must earn Strain without inventing recovery.");
+                ClericCommit(session,hero,CommandKind.BeginWorldStep,"walk",x:1);Wait(6);
+                Inventory(hero,CommandKind.PortionInventory,"TEST_ONLY.pack-rations",new RuleQuantity(2));
+                var portion=State().InventoryLots.Single(x=>x.ParentId=="TEST_ONLY.pack-rations").LotId;
+                Inventory(hero,CommandKind.HandlePortableEquipment,portion,new RuleQuantity(1),handling:HandlingKind.Drop);
+                Wait(6);
+                Inventory(actor,CommandKind.HandlePortableEquipment,portion,new RuleQuantity(1));Wait(6);
+                Inventory(actor,CommandKind.StartIntake,portion,new RuleQuantity(2));Wait(1800);Save("food-consumed");
+                ClericCommit(session,actor,CommandKind.BeginWorldStep,"walk",x:1);Wait(6);
+                for(int i=0;i<2;i++) {
+                    Inventory(actor,CommandKind.StartWaterFill,TestOnlyFillingPolicy.SupplyId,new RuleQuantity(4),
+                        TestOnlyFillingPolicy.CompanionSkinId);
+                    Wait(60);
+                    var current=State();
+                    var water=current.VesselContents.Where(x=>x.VesselId==TestOnlyFillingPolicy.CompanionSkinId)
+                        .Select(x=>x.LotId).Single(x=>current.Work.AvailableAmount(x)>new RuleQuantity(0));
+                    Inventory(actor,CommandKind.StartIntake,water,new RuleQuantity(4));Wait(240);
+                }
+                Save("water-consumed");
+                ClericCommit(session,actor,CommandKind.BeginWorldStep,"walk",x:-1);Wait(6);
+                LongRestAdvanceTo(session,144000);
+                ClericCommit(session,actor,CommandKind.BeginLongRest,ClericLongRestProfile.SiteId);
+                LongRestAdvanceTo(session,172806);
+                var offered=State();Save("pending-offer");
+                Require(offered.RuleClock==new RuleTime(172800),"Recovery offer did not suspend the actual requested clock.");
+                var offer=offered.ExpeditionStrainRecoveryOffers.Single(x=>x.ActorId==actor&&x.Pending);
+                var forged=offered.Copy();
+                forged.ExpeditionStrainRecoveryOffers=offered.ExpeditionStrainRecoveryOffers.Select(x=>x.Id==offer.Id
+                    ?new ExpeditionStrainRecoveryOfferRecord(x.Id,x.ActorId,x.ActivityIntervalId,x.InitiatingCommandId,
+                        x.CompletedAt,x.Revision,x.PointIds):x).ToArray();
+                Throws<ArgumentException>(()=>new SnapshotCodec().Encode(forged));
+                var unbacked=first.Copy();
+                unbacked.ManufacturingAdvance=new ManufacturingAdvanceRecord(first.RuleClock.AddSeconds(6),false,
+                    first.Receipts.Last().Id,first.Revision,string.Empty);
+                Throws<ArgumentException>(()=>new SnapshotCodec().Encode(unbacked));
+                var selected=offer.PointIds.First();
+                var command=new Command("int05.strain.resolve",actor,offered.Revision,
+                    CommandKind.ResolveExpeditionStrainRecovery,selected);
+                AssertPureUtility(session,command);
+                string path=Path.Combine(directory,"int05-strain-pending-offer.ddsave");session.Restore(path);
+                AssertPureUtility(session,command);CommitVialRoute(session,command);
+                var after=State();Save("resolved-continued");
+                Require(after.RuleClock==new RuleTime(172806)
+                    &&after.ExpeditionStrainRemovals.Count(x=>x.ActorId==actor&&x.PointId==selected)==1
+                    &&!after.ExpeditionStrainRecoveryOffers.Single(x=>x.Id==offer.Id).Pending,
+                    "Actual recovery did not remove one offered point and resume the suspended clock.");
+                var bytes=Bytes(CastingSimulation(session));
+                Require(session.Submit(ExpeditionSeat.Player,command).Response==ExpeditionResponse.Duplicate
+                    &&bytes.SequenceEqual(Bytes(CastingSimulation(session))),"Recovery retry removed a second point.");
+            });
             cases.Add("int05_advancement_denials_and_native_fallback_are_pure",()=> {
                 var authority=new Authority("TEST_ONLY.host",new[]{ClericRpProfile.Actor},canModifyWorld:true,
                     inventoryOwners:new[]{ClericRpProfile.Actor});

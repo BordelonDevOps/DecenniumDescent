@@ -74,29 +74,35 @@ namespace Decennium.Foundation.Laboratory
             ||kind==CommandKind.PauseHavenAppraisal||kind==CommandKind.ResumeHavenAppraisal||kind==CommandKind.CancelHavenAppraisal;
 
         private string AppraisalTermsFailure()
+            => AppraisalTermsFailureConstraintV1()?.NativeCode;
+
+        private NativeCommandConstraintV1 AppraisalTermsFailureConstraintV1()
         {
-            if(!havenAppraisalProfile.Cleared)return "AppraisalClearanceMissing";
-            if(!havenAppraisalProfile.EvidenceAccessible)return "AppraisalEvidenceUnavailable";
-            if(!havenAppraisalProfile.TermsAuthorized)return "AppraisalTermsUnauthorized";
+            if(!havenAppraisalProfile.Cleared)return new NativeCommandConstraintV1("AppraisalClearanceMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 78);
+            if(!havenAppraisalProfile.EvidenceAccessible)return new NativeCommandConstraintV1("AppraisalEvidenceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 79);
+            if(!havenAppraisalProfile.TermsAuthorized)return new NativeCommandConstraintV1("AppraisalTermsUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 80);
             return null;
         }
 
         private string AppraisalSubject(Snapshot s,out HavenAppraisalBasis basis)
+            => AppraisalSubjectConstraintV1(s, out basis)?.NativeCode;
+
+        private NativeCommandConstraintV1 AppraisalSubjectConstraintV1(Snapshot s,out HavenAppraisalBasis basis)
         {
             basis=null;
             var unit=s.MiningUnits.SingleOrDefault(x=>x.Id==SharedMiningFixture.UnitA);
             if(unit==null||unit.Status!=MiningUnitStatus.Extracted||unit.Condition!=MiningUnitCondition.Intact
                 ||unit.ReceivedLotId!=unit.Id||unit.CategoryId!=SharedMiningFixture.CategoryA
                 ||unit.MassPounds!=TestOnlyHavenAppraisalProfile.WholeUnitMass
-                ||unit.ValueCopper!=TestOnlyHavenAppraisalProfile.WholeUnitBaseCopper)return "AppraisalSubjectUnsupported";
+                ||unit.ValueCopper!=TestOnlyHavenAppraisalProfile.WholeUnitBaseCopper)return new NativeCommandConstraintV1("AppraisalSubjectUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 91);
             var deposit=s.MiningDeposits.Single(x=>x.Id==unit.DepositId);
             var category=s.MiningCategories.Single(x=>x.Id==unit.CategoryId);
             if(deposit.VersionId!=SharedMiningFixture.DepositVersionId||category.MaterialId!=TestOnlyHavenAppraisalProfile.SubjectMaterialId)
-                return "AppraisalEvidenceSubjectMismatch";
+                return new NativeCommandConstraintV1("AppraisalEvidenceSubjectMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 95);
             if(!s.MiningAttempts.Any(x=>x.DepositId==deposit.Id&&x.DepositVersionId==deposit.VersionId
                 &&x.SelectedUnitIds.Contains(unit.Id,StringComparer.Ordinal)
                 &&(x.Status==MiningAttemptStatus.Success||x.Status==MiningAttemptStatus.CriticalSuccess)))
-                return "AppraisalExtractionHistoryMissing";
+                return new NativeCommandConstraintV1("AppraisalExtractionHistoryMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 99);
             var physical=s.PortableEquipment.SingleOrDefault(x=>x.Id==unit.Id);
             var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==unit.Id);
             var inventory=s.InventoryLots.SingleOrDefault(x=>x.LotId==unit.Id);
@@ -107,7 +113,7 @@ namespace Decennium.Foundation.Laboratory
                 ||lot.Amount!=unit.MassPounds||inventory.CreatedAmount!=unit.MassPounds
                 ||inventory.Access!=InventoryAccess.Ground||physical.Placement!=PortablePlacement.Ground||physical.ParentId!=""
                 ||physical.GroundX!=TestOnlyHavenAppraisalProfile.SiteX||physical.GroundY!=TestOnlyHavenAppraisalProfile.SiteY
-                ||lot.LocationId!=AppraisalGround)return "AppraisalWholeSubjectNotAtDesk";
+                ||lot.LocationId!=AppraisalGround)return new NativeCommandConstraintV1("AppraisalWholeSubjectNotAtDesk", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 110);
             basis=new HavenAppraisalBasis(TestOnlyHavenAppraisalProfile.DeskId,TestOnlyHavenAppraisalProfile.ProviderId,
                 unit.Id,deposit.VersionId,inventory.OwnerId,physical.CustodianId,TestOnlyHavenAppraisalProfile.EvidenceId,
                 TestOnlyHavenAppraisalProfile.ClearanceId,TestOnlyHavenAppraisalProfile.ServiceTermsId,
@@ -117,20 +123,23 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AppraisalWorkerFailure(Snapshot s,string worker,bool finishing)
+            => AppraisalWorkerFailureConstraintV1(s, worker, finishing)?.NativeCode;
+
+        private NativeCommandConstraintV1 AppraisalWorkerFailureConstraintV1(Snapshot s,string worker,bool finishing)
         {
             var desk=s.Structures.SingleOrDefault(x=>x.Id==TestOnlyHavenAppraisalProfile.DeskId);
             if(desk==null||desk.ProfileId!=AppraisalDeskStructure||desk.LocationId!=AppraisalGround||desk.Broken
-                ||!havenAppraisalProfile.InstrumentsAvailable)return "AppraisalDeskUnavailable";
-            if(CraftingRestrictions.StationUseBlocked(s,desk.Id))return "AppraisalDeskUseBlocked";
+                ||!havenAppraisalProfile.InstrumentsAvailable)return new NativeCommandConstraintV1("AppraisalDeskUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 123);
+            if(CraftingRestrictions.StationUseBlocked(s,desk.Id))return new NativeCommandConstraintV1("AppraisalDeskUseBlocked", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 124);
             if(s.RuleClock<havenAppraisalProfile.AvailableFrom||s.RuleClock>havenAppraisalProfile.AvailableUntil
-                ||!finishing&&s.RuleClock==havenAppraisalProfile.AvailableUntil)return "AppraisalAppointmentClosed";
-            if(s.InventoryCombat||s.Encounter!=null&&!ResolvedConflict(s)||PendingCalendarChoice(s))return "AppraisalCombatUnavailable";
-            if(!CapableWorker(s,worker)||View(s,worker).BlocksSight||AvailableHands(s,worker)<1)return "AppraisalWorkerIncapable";
+                ||!finishing&&s.RuleClock==havenAppraisalProfile.AvailableUntil)return new NativeCommandConstraintV1("AppraisalAppointmentClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 126);
+            if(s.InventoryCombat||s.Encounter!=null&&!ResolvedConflict(s)||PendingCalendarChoice(s))return new NativeCommandConstraintV1("AppraisalCombatUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 127);
+            if(!CapableWorker(s,worker)||View(s,worker).BlocksSight||AvailableHands(s,worker)<1)return new NativeCommandConstraintV1("AppraisalWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 128);
             var position=WorldPositionResolver.Position(s,worker);
             if(position.X!=new RuleQuantity(TestOnlyHavenAppraisalProfile.SiteX)
                 ||position.Y!=new RuleQuantity(TestOnlyHavenAppraisalProfile.SiteY)||s.WorldTraversals.Any(x=>x.ActorId==worker)
                 ||s.RouteTravels.Any(x=>x.TravelerId==worker&&x.Status==ExpeditionRouteTravelStatus.Moving))
-                return "AppraisalWorkerNotAtDesk";
+                return new NativeCommandConstraintV1("AppraisalWorkerNotAtDesk", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 133);
             return null;
         }
 
@@ -143,52 +152,58 @@ namespace Decennium.Foundation.Laboratory
                 &&first.Demand==second.Demand&&first.Condition==second.Condition&&first.Urgency==second.Urgency;
 
         private string AppraisalBasisFailure(Snapshot s,HavenAppraisalRecord job)
+            => AppraisalBasisFailureConstraintV1(s, job)?.NativeCode;
+
+        private NativeCommandConstraintV1 AppraisalBasisFailureConstraintV1(Snapshot s,HavenAppraisalRecord job)
         {
-            string failure=AppraisalTermsFailure();if(failure!=null)return failure;
-            failure=AppraisalSubject(s,out var basis);
+            var failure=AppraisalTermsFailureConstraintV1();if(failure!=null)return failure;
+            failure=AppraisalSubjectConstraintV1(s,out var basis);
             if(failure!=null)return failure;
-            return SameAppraisalBasis(job.Basis,basis)?null:"AppraisalBasisChanged";
+            return SameAppraisalBasis(job.Basis,basis)?null:new NativeCommandConstraintV1("AppraisalBasisChanged", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 150);
         }
 
         private string AssessHavenAppraisal(Snapshot s,Command c,out HavenAppraisalRecord current,out HavenAppraisalBasis basis)
+            => AssessHavenAppraisalConstraintV1(s, c, out current, out basis)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessHavenAppraisalConstraintV1(Snapshot s,Command c,out HavenAppraisalRecord current,out HavenAppraisalBasis basis)
         {
             current=null;basis=null;
-            if(havenAppraisalProfile==null||s.SchemaVersion<Snapshot.HavenAppraisalSchema)return "HavenAppraisalNotSelected";
-            if(c.Actor!=TestOnlyHavenAppraisalProfile.WorkerId)return "AppraisalWorkerUnauthorized";
+            if(havenAppraisalProfile==null||s.SchemaVersion<Snapshot.HavenAppraisalSchema)return new NativeCommandConstraintV1("HavenAppraisalNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 156);
+            if(c.Actor!=TestOnlyHavenAppraisalProfile.WorkerId)return new NativeCommandConstraintV1("AppraisalWorkerUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 157);
             if(c.X!=0||c.Y!=0||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
                 ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null
                 ||c.HarvestSelection!=null||c.MiningSelection!=null||c.ProspectingExposure!=null||c.RouteMappingWork!=null)
-                return "InvalidAppraisalPayload";
+                return new NativeCommandConstraintV1("InvalidAppraisalPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 161);
             bool start=c.Kind==CommandKind.StartHavenAppraisal;
             if(start) {
-                if(c.Target!=TestOnlyHavenAppraisalProfile.DeskId)return "AppraisalDeskNotRegistered";
-                if(s.HavenAppraisals.Any(x=>x.Open))return "AppraisalServiceSlotOccupied";
-                if(s.HavenAppraisals.Any(x=>x.Status==HavenAppraisalStatus.Completed))return "AppraisalBasisAlreadyReported";
-                if(s.HavenAppraisals.Length>=HavenAppraisalValidation.MaxRecords)return "AppraisalHistoryCapacityReached";
-                string terms=AppraisalTermsFailure();if(terms!=null)return terms;
-                string subject=AppraisalSubject(s,out basis);if(subject!=null)return subject;
-                if(s.Work.AvailableAmount(basis.UnitId)!=basis.Quantity)return "AppraisalSubjectReserved";
+                if(c.Target!=TestOnlyHavenAppraisalProfile.DeskId)return new NativeCommandConstraintV1("AppraisalDeskNotRegistered", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 164);
+                if(s.HavenAppraisals.Any(x=>x.Open))return new NativeCommandConstraintV1("AppraisalServiceSlotOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 165);
+                if(s.HavenAppraisals.Any(x=>x.Status==HavenAppraisalStatus.Completed))return new NativeCommandConstraintV1("AppraisalBasisAlreadyReported", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 166);
+                if(s.HavenAppraisals.Length>=HavenAppraisalValidation.MaxRecords)return new NativeCommandConstraintV1("AppraisalHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 167);
+                var terms=AppraisalTermsFailureConstraintV1();if(terms!=null)return terms;
+                var subject=AppraisalSubjectConstraintV1(s,out basis);if(subject!=null)return subject;
+                if(s.Work.AvailableAmount(basis.UnitId)!=basis.Quantity)return new NativeCommandConstraintV1("AppraisalSubjectReserved", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 170);
             } else {
                 current=s.HavenAppraisals.SingleOrDefault(x=>x.Id==c.Target&&x.Open&&x.WorkerId==c.Actor);
-                if(current==null)return "AppraisalWorkNotOpen";
+                if(current==null)return new NativeCommandConstraintV1("AppraisalWorkNotOpen", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 173);
                 if(c.Kind==CommandKind.CancelHavenAppraisal)return null;
                 if(c.Kind==CommandKind.PauseHavenAppraisal)
-                    return current.Status==HavenAppraisalStatus.Working?null:"AppraisalWorkNotRunning";
-                if(current.Status==HavenAppraisalStatus.Working)return "AppraisalWorkAlreadyRunning";
-                string invalid=AppraisalBasisFailure(s,current);if(invalid!=null)return invalid;
+                    return current.Status==HavenAppraisalStatus.Working?null:new NativeCommandConstraintV1("AppraisalWorkNotRunning", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 176);
+                if(current.Status==HavenAppraisalStatus.Working)return new NativeCommandConstraintV1("AppraisalWorkAlreadyRunning", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 177);
+                var invalid=AppraisalBasisFailureConstraintV1(s,current);if(invalid!=null)return invalid;
             }
             bool finishing=current?.Work.Complete==true;
-            string eligibility=AppraisalWorkerFailure(s,c.Actor,finishing);if(eligibility!=null)return eligibility;
+            var eligibility=AppraisalWorkerFailureConstraintV1(s,c.Actor,finishing);if(eligibility!=null)return eligibility;
             if(!finishing&&IsOffCalendarActivity(s,c.Actor)) {
                 var activity=ActivityInterval(s,c.Actor);
                 if(activity.Action==WorldActionCommitment.Dash
                     ||activity.Action==WorldActionCommitment.ActiveLabor&&!CanContinueActivityLabor(s,c.Actor))
-                    return "OffCalendarActionAlreadySpent";
+                    return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 186);
             }
             RuleTime remaining=current?.Work.Remaining??new RuleTime(HavenAppraisalRecord.RequiredSeconds);
             RuleTime end=AppraisalBookingEnd(s,remaining);
             if(s.ExpeditionAssignments.Any(x=>x.WorkerId==c.Actor&&x.Open)||OrdinaryInventory.Busy(s,c.Actor)
-                ||end>s.RuleClock&&WorldActivityValidation.HasActiveLabor(s,c.Actor,s.RuleClock,end))return "AppraisalWorkerBusy";
+                ||end>s.RuleClock&&WorldActivityValidation.HasActiveLabor(s,c.Actor,s.RuleClock,end))return new NativeCommandConstraintV1("AppraisalWorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs", 191);
             return null;
         }
 

@@ -1,0 +1,419 @@
+{
+  "formatVersion": 1,
+  "reviewId": "INT05-STRAIN-SOURCE-REVIEW-01",
+  "reviewer": "independent subagent /root/review_consecration",
+  "reviewedAtUtc": "2026-11-24T13:08:23.193628+00:00",
+  "acceptedSourceApiBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "observedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "scope": "Read-only static audit of ResolveExpeditionStrainRecovery generic and selected schema65 initial constraints, exact capacities, and transitive scalar/selectors. Current uncommitted source only as pinned. No module acceptance.",
+  "disposition": "NO_CONCRETE_BLOCKER_FOUND_IN_BOUNDED_SOURCE_SCOPE",
+  "executionLimits": {
+    "buildsRun": false,
+    "testsRun": false,
+    "gameplayRun": false,
+    "replayRun": false,
+    "runtimeModified": false,
+    "wholeModuleAccepted": false,
+    "actualGptFinalAcceptanceClaimed": false,
+    "artifactOnlyWrite": true
+  },
+  "approvedBoundary": {
+    "planPointer": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json /seams[id=STRAIN]",
+    "planFacts": [
+      "Explicitly includes RestDebtOwedAt, ProvisioningBlockActive, LastBeneficialRest, RecoveryGateMet, IsActivePoint, NextGainSequence and current retained-fact arithmetic as pure current selectors.",
+      "Selected schema65 branch explicitly requires retained Strain level <6 and its distinct secure/morale source joins; generic branch does not add this schema65-only check.",
+      "CONDITION_READ_BOUNDARY.md:29 allows audited selection/aggregation over already materialized immutable facts. Condition journal Restore/AdvanceTo/semantic lifecycle replay is prohibited. These helpers do not call that machinery."
+    ],
+    "inferenceLimit": "This disposition applies to exact inspected pure arithmetic and selectors, not permission to call arbitrary history/project/restore methods or to materialize new authoritative state."
+  },
+  "helperGuidance": [
+    {
+      "helper": "ExpeditionStrainRules.Project",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs:89",
+      "disposition": "REUSE_UNCHANGED_IS_WITHIN_EXACT_APPROVED_AGGREGATION_SCOPE",
+      "facts": "After input/schema checks, selects actor retained gain/removal facts bounded by both At<=at and Revision<=revision. For schema64+ it sums AddedAmount or -1 over immutable temporary StrainMutation descriptors; earlier schemas sum AddedAmount. Validates final 0..6 and returns a readonly scalar effect struct. No producer, life clamp, RNG, validation/replay callback, condition lifecycle or writes. OrderedMutations only constructs readonly private selector descriptors and sorts; it does not execute events.",
+      "guidance": "Keep Project(s,actor,at,revision).Level in ExpeditionStrainRulesEligible. An active-point count is not the same rule: immutable gain records permit AddedAmount 0..6, and older schemas differ. Do not replace requested at/revision by Current, which uses RuleClock and checked Revision+1; historical validators also call Eligible. No new owner materialization is required for this inspected aggregation.",
+      "distinction": "PriorLevel at112–129 is a different prefix walk; neither recovery assessor calls it. ClampLife/RecordDash/CreateDashLock and actual recovery mutation remain execution-only."
+    },
+    {
+      "helper": "RecoveryGateMet",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs:143",
+      "disposition": "REUSE_EXACT_PURE_MEMBERSHIP",
+      "guidance": "Preserve gain.RemovalGateMet==true OR any retained gate update with matching PointId and At/Revision bounds. Do not add actor/source/settlement/current-clock filters absent from this native helper; authenticity remains the existing strict validation boundary."
+    },
+    {
+      "helper": "IsActivePoint",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs:147",
+      "disposition": "REUSE_EXACT_PURE_MEMBERSHIP",
+      "guidance": "Select exactly one gain by actor+point; require AddedAmount==1 and creation bounds; reject any same actor+point removal within both bounds. Preserve SingleOrDefault semantics rather than silently choose a duplicate. No producer or new removal."
+    },
+    {
+      "helper": "RestDebtOwedAt",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:162",
+      "disposition": "REUSE_EXACT_APPROVED_RETAINED_EVENT_STATE_SELECTION",
+      "guidance": "Its local bool fold over immutable records is explicitly listed by accepted STRAIN plan. Filter actor and both bounds, order At then Revision then EventSequence, Opened/MissedWhileIndebted set true, Cleared false, UnpaidDeadline no-op. It runs no deadline/open/clear producer and generates no gain. Do not replace with current RestDebtStates for historical at/revision.",
+      "optionalEquivalentNotRequired": "If a selector-only form is desired, retain exact filters; keep only three state-setting kinds, ascending stable At/Revision/EventSequence ordering, take LastOrDefault, and return true only for Opened/MissedWhileIndebted. Empty false. This is source-equivalent selection, not new mechanics, but changing it is unnecessary for current patch."
+    },
+    {
+      "helper": "ProvisioningBlockActive/LastBeneficialRest/PendingRecoveryOffer/NextGainSequence",
+      "sources": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:120",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:158",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs:174",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs:132"
+      ],
+      "disposition": "REUSE_WITH_EXACT_NATIVE_FILTERS",
+      "guidance": "Provisioning selects latest End<=at without added revision filter. Benefit selection uses actor/time/revision/excluded interval. Pending offer retains Pending+actor. Sequence uses actor/revision Max over gains and, schema64+, removals, then +1. Do not turn any selector into record construction or repair."
+    }
+  ],
+  "orderedBranches": [
+    {
+      "branch": "Generic64 / native connectedClericLongRest fallback",
+      "order": [
+        "Native schema65 dispatch first; otherwise exact profile/schema guard.",
+        "Exact payload.",
+        "Own pending offer then actually offered point.",
+        "Completed rest interval/site secure/safe/qualifying.",
+        "Current clock equals completion.",
+        "Rest debt before provisioning.",
+        "Native existing benefit lookup and preserved pending compatibility guard.",
+        "Prior beneficial rest excluded current interval then 24h limit.",
+        "Actual gain/removability/gate/active point.",
+        "Removal count >=8192.",
+        "Resolver-equivalent existing benefit lookup by interval/actor/offer, without adding CompletedAt.",
+        "Only if benefit absent: beneficial-rest count >=4096."
+      ],
+      "notes": "Generic legacy offer may have empty RecoveryCompletionId and benefit deferred until resolve. Do not impose schema65 completion join. StrainRecoveryBenefitMissing is unreachable after this exact PendingRecoveryOffer selector; preserved compatibility guard, not evidence of a genuine positive branch."
+    },
+    {
+      "branch": "Selected schema65 secure",
+      "order": [
+        "Payload, own pending offer, actually offered point, clock, provisioning.",
+        "Completed source rest interval matches ActivityIntervalId, actor, EndedAt and ScheduledEnd.",
+        "Actual site and exact RecoveryCompletionId benefit joined to interval/actor/time/offer; secure safe qualifying and no debt.",
+        "24h cadence excluding same interval.",
+        "Eligible selected actor/profile, provisioning, requireNoDebt=true, scalar level<6, actual removable gate-met active points.",
+        "Target membership then removal count >=8192."
+      ],
+      "notes": "No generic missing-benefit capacity/creation. Combined secure guard retains native StrainRecoveryRestNoLongerSecure."
+    },
+    {
+      "branch": "Selected schema65 morale",
+      "order": [
+        "Same schema65 payload/offer/clock/provisioning prefix.",
+        "Actual completed morale interval, safe eligible recreation site, exact activity and retained source benefit.",
+        "24h morale cadence with native time-only previous benefit filter.",
+        "Eligible selection requireNoDebt=false, still provisioning and level<6.",
+        "Target membership then removal count >=8192."
+      ],
+      "notes": "Unknown RecoveryKind retains UnknownStrainRecoveryKind. Do not graft secure-rest no-debt or generic benefit capacity into this branch. This does not claim current public host produces a morale offer."
+    }
+  ],
+  "rootBoundaryCheck": {
+    "currentReadRoute": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs:70",
+    "result": "The inspected new route keeps active short-rest interruption, sealed wound stock/participant, Search, Hide, hostile-retreat and pending-recovery gates before strain family. Native skipped kind dispatches in the adjacent root segment do not select ResolveExpeditionStrainRecovery. Haven/morale/resting actor gates after native strain dispatch must not be moved ahead.",
+    "limit": "Only recovery-adjacent root order inspected here; prior Core protocol and whole-family routing reviews remain separate."
+  },
+  "staticComparisons": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "baselineMethod": "AssessStrainRecoveryChoice",
+      "currentMethod": "StrainRecoveryChoiceConstraintV1",
+      "result": "EXACT_BODY_AFTER_WRAPPER_AND_WHITESPACE_NORMALIZATION",
+      "normalization": "Only NativeCommandConstraintV1(code,path,line) replaced by literal code; schema65 delegate renamed to original accessor; whitespace removed. No guard/order/expression normalization."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "method": "ResolveStrainRecoveryChoice",
+      "result": "EXACT_MUTATION_TAIL",
+      "startsAt": "string benefitId",
+      "normalization": "Git/Python text CRLF normalization only; entire remainder of method exact."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "baselineMethod": "AssessSchema65RecoveryChoice",
+      "currentMethod": "Schema65RecoveryChoiceConstraintV1",
+      "result": "EXACT_BODY_AFTER_WRAPPER_AND_WHITESPACE_NORMALIZATION",
+      "normalization": "Only NativeCommandConstraintV1(code,path,line) replaced by literal code; schema65 delegate renamed to original accessor; whitespace removed. No guard/order/expression normalization."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "method": "ResolveSchema65RecoveryChoice",
+      "result": "EXACT_MUTATION_TAIL",
+      "startsAt": "long revision",
+      "normalization": "Git/Python text CRLF normalization only; entire remainder of method exact."
+    }
+  ],
+  "exactNativeOriginChecks": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "ExpeditionStrainRecoveryChoicePending",
+      "acceptedBaselineLine": 129,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryNotSelected",
+      "acceptedBaselineLine": 255,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "InvalidStrainRecoveryChoicePayload",
+      "acceptedBaselineLine": 261,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "NoPendingStrainRecoveryChoice",
+      "acceptedBaselineLine": 264,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryPointNotOffered",
+      "acceptedBaselineLine": 265,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryRestNoLongerSecure",
+      "acceptedBaselineLine": 270,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryOfferClockChanged",
+      "acceptedBaselineLine": 271,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "RestDebtPreventsStrainRecovery",
+      "acceptedBaselineLine": 272,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "ProvisioningBlockPreventsStrainRecovery",
+      "acceptedBaselineLine": 273,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryBenefitMissing",
+      "acceptedBaselineLine": 279,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "BeneficialLongRestLimitNotElapsed",
+      "acceptedBaselineLine": 283,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "StrainRecoveryPointNotEligible",
+      "acceptedBaselineLine": 288,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "ExpeditionBeneficialRestHistoryCapacityReached",
+      "acceptedBaselineLine": 306,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "nativeCode": "ExpeditionStrainRecoveryHistoryCapacityReached",
+      "acceptedBaselineLine": 299,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "ActorCurrentlyInMoraleRest",
+      "acceptedBaselineLine": 138,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "InvalidStrainRecoveryChoicePayload",
+      "acceptedBaselineLine": 512,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "NoPendingStrainRecoveryChoice",
+      "acceptedBaselineLine": 514,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "StrainRecoveryPointNotOffered",
+      "acceptedBaselineLine": 515,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "StrainRecoveryOfferClockChanged",
+      "acceptedBaselineLine": 516,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "ProvisioningBlockPreventsStrainRecovery",
+      "acceptedBaselineLine": 517,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "StrainRecoveryRestNoLongerSecure",
+      "acceptedBaselineLine": 533,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "BeneficialLongRestLimitNotElapsed",
+      "acceptedBaselineLine": 536,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "MoraleRestCompletionNoLongerEligible",
+      "acceptedBaselineLine": 550,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "MoraleRestLimitNotElapsed",
+      "acceptedBaselineLine": 555,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "UnknownStrainRecoveryKind",
+      "acceptedBaselineLine": 558,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "StrainRecoveryPointNotEligible",
+      "acceptedBaselineLine": 560,
+      "literalAtExactLine": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "nativeCode": "ExpeditionStrainRecoveryHistoryCapacityReached",
+      "acceptedBaselineLine": 585,
+      "literalAtExactLine": true
+    }
+  ],
+  "capacityAndMutationLimits": {
+    "constants": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs:276-289",
+    "review": "Current StrainRecoveryInitialConstraintV1 preserves assessor then capacity order with short-circuit null coalescing. Schema65 uses only its removal guard. Generic removal capacity wins over conditional benefit capacity when both full. Existing benefit bypasses missing-benefit capacity.",
+    "excluded": "No benefit/removal/offer construction; no ClampLife, dash-lock mutation, projection mismatch write check, OpenStrainRecoveryOffers, ResumeManufacturingAdvance or AdvanceTo in read.",
+    "future": "Actual removal, later continuation and tied boundaries remain authoritative execution obligations. Projection/retained facts do not grant disclosure, authority, an offered choice or a receipt."
+  },
+  "recommendedFocusedProofsNotExecuted": [
+    "Repeated assessment of a genuine supported-profile actual pending point: identical result and no RNG/clock/receipts/records changes; submit once, strict restore, and duplicate without a second removal.",
+    "Explicitly labeled technical capacity controls for both histories full (removal guard wins), only missing benefit full (benefit guard), existing benefit with full history (no false benefit guard), and selected schema65 with full beneficial history (no generic capacity injection).",
+    "Helper equivalence controls at exact at/revision cutoffs for gate update/removal and RestDebt Opened/Cleared tie sequences; UnpaidDeadline must not clear debt.",
+    "Schema65 source-specific secure versus morale debt behavior and retained level6 check. Genuine host coverage must use actual producer routes; model fixtures do not establish host reachability.",
+    "Legacy supported pending schema64 save with deferred benefit and empty completion ID remains resolvable; no added join or new policy grant."
+  ],
+  "findings": [],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "sha256": "36ae0a8121b00b8110d3bf0fd79f1e66d7c5c260de7cdbad78fe92e2539fb119",
+      "bytes": 33107,
+      "acceptedBaselineGitBlobSha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "sha256": "330b9d2f80b7cff5a8a9272eec29386846d19318a28fb3dad54968295a67f589",
+      "bytes": 49148,
+      "acceptedBaselineGitBlobSha256": "7abae37780357e9794691048860710bbce31d99b0443a58c5bbb6877af091e66",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "sha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+      "bytes": 32835,
+      "acceptedBaselineGitBlobSha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "4bbcd80ce86f2957ca54bdb9434b48f6b43f2b65e9977a7c614c66f4af4001fb",
+      "bytes": 16398,
+      "acceptedBaselineGitBlobSha256": null,
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "bytes": 129062,
+      "acceptedBaselineGitBlobSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionCampUse.cs",
+      "sha256": "c5eaf62cde7c7ee79651cf7f7e574f3cce3cfe500166bd316439fefa3200e8b9",
+      "bytes": 26236,
+      "acceptedBaselineGitBlobSha256": "c5eaf62cde7c7ee79651cf7f7e574f3cce3cfe500166bd316439fefa3200e8b9",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "bytes": 76959,
+      "acceptedBaselineGitBlobSha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "bytes": 8140,
+      "acceptedBaselineGitBlobSha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "bytes": 2785,
+      "acceptedBaselineGitBlobSha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json",
+      "sha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3",
+      "bytes": 202582,
+      "acceptedBaselineGitBlobSha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81",
+      "bytes": 10288,
+      "acceptedBaselineGitBlobSha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SOURCE_API_CONTRACT.md",
+      "sha256": "1e11572d1c751588a234fe140e46e463ba5fd5e812b02be131ddaf706837a0ec",
+      "bytes": 19209,
+      "acceptedBaselineGitBlobSha256": "1e11572d1c751588a234fe140e46e463ba5fd5e812b02be131ddaf706837a0ec",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/STRAIN_PLAYTEST.md",
+      "sha256": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+      "bytes": 14612,
+      "acceptedBaselineGitBlobSha256": "32ca16894c29ba2906f8d510ef9781951bc8780e4a91ee84671f250f4de62b5f",
+      "textEqualToAcceptedBaselineAfterCrLfNormalization": true
+    }
+  ],
+  "authorityLimits": "Source-bound TEST_ONLY behavior unchanged; no production rule promotion, no new save/profile authority, no successor or Unity work. Final INT05 review remains actual GPT plus Codex agreement."
+}

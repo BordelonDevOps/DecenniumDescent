@@ -58,63 +58,67 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessExpeditionClose(Snapshot state, Command command, out ExpeditionEpisodeCloseRecord close)
+            => ExpeditionCloseConstraintV1(state, command, out close, true)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExpeditionCloseConstraintV1(Snapshot state, Command command, out ExpeditionEpisodeCloseRecord close, bool capture)
         {
             close = null;
             if (expeditionCloseProfile == null || state.SchemaVersion < Snapshot.ExpeditionEpisodeCloseSchema)
-                return "ExpeditionCloseNotSelected";
+                return new NativeCommandConstraintV1("ExpeditionCloseNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 64);
             if (command.Actor != TestOnlyExpeditionCloseProfile.LeaderId || !expeditionCloseProfile.MandateAuthorized)
-                return "ExpeditionCloseLeaderUnauthorized";
-            if (!expeditionCloseProfile.EvidenceAccessible) return "ExpeditionCloseEvidenceUnavailable";
+                return new NativeCommandConstraintV1("ExpeditionCloseLeaderUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 66);
+            if (!expeditionCloseProfile.EvidenceAccessible) return new NativeCommandConstraintV1("ExpeditionCloseEvidenceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 67);
             if (command.X != 0 || command.Y != 0 || command.Inventory != null || command.Combat != null || command.Advancement != null
                 || command.Ranged != null || command.OverwatchRider != OverwatchRider.None || command.SuppressionFire != null
                 || command.DefensiveFormation != null || command.ExpeditionAssignment != null || command.HarvestSelection != null
                 || command.MiningSelection != null || command.ProspectingExposure != null || command.RouteMappingWork != null)
-                return "InvalidExpeditionClosePayload";
+                return new NativeCommandConstraintV1("InvalidExpeditionClosePayload", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 72);
             var charter = state.ExpeditionBillCharter;
             if (command.Target != TestOnlyExpeditionBillProfile.EpisodeId || charter?.EpisodeId != command.Target
-                || charter.BindingKey != expeditionBillProfile.Charter.BindingKey) return "ExpeditionCloseEpisodeMismatch";
-            if (state.ExpeditionEpisodeClose != null) return "ExpeditionEpisodeAlreadyClosed";
-            if (state.InventoryCombat || PendingCalendarChoice(state)) return "ExpeditionCloseTacticalBoundary";
-            if (state.Encounter?.Id != "world.fixed-conflict" || !ResolvedConflict(state)) return "ExpeditionCloseEncounterUnresolved";
+                || charter.BindingKey != expeditionBillProfile.Charter.BindingKey) return new NativeCommandConstraintV1("ExpeditionCloseEpisodeMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 75);
+            if (state.ExpeditionEpisodeClose != null) return new NativeCommandConstraintV1("ExpeditionEpisodeAlreadyClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 76);
+            if (state.InventoryCombat || PendingCalendarChoice(state)) return new NativeCommandConstraintV1("ExpeditionCloseTacticalBoundary", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 77);
+            if (state.Encounter?.Id != "world.fixed-conflict" || !ResolvedConflict(state)) return new NativeCommandConstraintV1("ExpeditionCloseEncounterUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 78);
             var exit = state.Receipts.LastOrDefault(x => CommandHistory.Read(x).Kind == CommandKind.EndFixedEncounter);
-            if (exit == null || exit.Revision < state.Encounter.StartRevisions[0]) return "ExpeditionCloseEncounterUnresolved";
+            if (exit == null || exit.Revision < state.Encounter.StartRevisions[0]) return new NativeCommandConstraintV1("ExpeditionCloseEncounterUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 80);
 
             var bill = state.ExpeditionBills.SingleOrDefault(x => x.Status == ExpeditionBillStatus.Reconciled);
-            if (bill == null || ExpeditionBillInputs(state, bill.Basis, out _) != null) return "ExpeditionCloseReconciledBillRequired";
-            if (bill.StartRevision <= exit.Revision) return "ExpeditionCloseHistoryMismatch";
+            if (bill == null || ExpeditionBillInputs(state, bill.Basis, out _) != null) return new NativeCommandConstraintV1("ExpeditionCloseReconciledBillRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 83);
+            if (bill.StartRevision <= exit.Revision) return new NativeCommandConstraintV1("ExpeditionCloseHistoryMismatch", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 84);
             var view = View(state, command.Actor);
             if (!ActorLifeRules.CanAct(state, command.Actor) || view.Unaware || view.Clauses.Incapacitated)
-                return "ExpeditionCloseLeaderIncapable";
-            if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(state)) return "ExpeditionCloseUnprocessedConditionDeadline";
+                return new NativeCommandConstraintV1("ExpeditionCloseLeaderIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 87);
+            if (TestOnlyClubAttackPolicy.HasUnprocessedConditionDeadline(state)) return new NativeCommandConstraintV1("ExpeditionCloseUnprocessedConditionDeadline", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 88);
             if (charter.MemberIds.Any(id => !state.Actors.Any(x => x.Id == id) || !state.Lives.Any(x => x.ActorId == id)
                 || !state.Characters.Any(x => x.ActorId == id) || !state.Conditions.Any(x => x.Target == id)))
-                return "ExpeditionCloseMemberFactsMissing";
+                return new NativeCommandConstraintV1("ExpeditionCloseMemberFactsMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 91);
             var members = new HashSet<string>(charter.MemberIds, StringComparer.Ordinal);
             if (state.WorldTraversals.Any(x => members.Contains(x.ActorId))
                 || state.RouteTravels.Any(x => members.Contains(x.TravelerId) && x.Status == ExpeditionRouteTravelStatus.Moving))
-                return "ExpeditionCloseUnresolvedTraversal";
+                return new NativeCommandConstraintV1("ExpeditionCloseUnresolvedTraversal", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 95);
 
             var meal = state.HavenMealPurchases.Single();
             var sale = state.HavenSales.Single(x => x.Id == bill.Basis.SaleId);
             if (!ExpeditionEpisodeCloseValidation.TryReadMealIntakes(state, meal, state.RuleClock, out var intakeIds))
-                return "ExpeditionCloseMealIntakeRequired";
+                return new NativeCommandConstraintV1("ExpeditionCloseMealIntakeRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 100);
             var attempt = state.MiningAttempts.SingleOrDefault(x => x.SelectedUnitIds.Contains(sale.Basis.GoodsLotId)
                 && (x.Status == MiningAttemptStatus.Success || x.Status == MiningAttemptStatus.CriticalSuccess)
                 && x.ClosedAt.HasValue && x.ClosedAt.Value <= sale.StartedAt);
-            if (attempt == null) return "ExpeditionCloseExtractionRequired";
+            if (attempt == null) return new NativeCommandConstraintV1("ExpeditionCloseExtractionRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 104);
             var units = state.MiningUnits.Where(x => x.DepositId == attempt.DepositId).ToArray();
             if (!units.Any(x => x.Id == sale.Basis.GoodsLotId && x.Status == MiningUnitStatus.Extracted && x.ReceivedLotId == sale.Basis.GoodsLotId)
                 || !units.Any(x => x.Id == SharedMiningFixture.UnitB && x.Status == MiningUnitStatus.Forfeited)
                 || units.Any(x => x.Status == MiningUnitStatus.Available))
-                return "ExpeditionCloseMiningDispositionsIncomplete";
+                return new NativeCommandConstraintV1("ExpeditionCloseMiningDispositionsIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 109);
 
             var related = new HashSet<string>(new[] { sale.Basis.GoodsLotId, sale.Basis.TenderLotId, meal.Offer.MealLotId }, StringComparer.Ordinal);
             var scopedStock = state.InventoryLots.Where(x => members.Contains(x.OwnerId) || related.Contains(x.LotId)
                     || state.Work.Lots.Any(y => y.Id == x.LotId && members.Contains(y.CustodianId)))
                 .Select(x => new ExpeditionCloseStock(x, state.Work.Lots.Single(y => y.Id == x.LotId))).ToArray();
-            if (HasOpenExpeditionCloseCommitments(state, members, scopedStock)) return "ExpeditionCloseOpenCommitments";
-            if (ClosureCoverageContradicted(state, members)) return "ExpeditionCloseCoverageContradicted";
+            if (HasOpenExpeditionCloseCommitments(state, members, scopedStock)) return new NativeCommandConstraintV1("ExpeditionCloseOpenCommitments", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 115);
+            if (ClosureCoverageContradicted(state, members)) return new NativeCommandConstraintV1("ExpeditionCloseCoverageContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs", 116);
 
+            if (!capture) return null;
             var capturedMembers = charter.MemberIds.Select(id => CaptureClosingMember(state, id)).ToArray();
             var hostile = WorldPositionResolver.Position(state, AdditionalTacticalActor.Id);
             var outcome = new ExpeditionCloseOutcome(TestOnlyExpeditionCloseProfile.PrimaryMetric,

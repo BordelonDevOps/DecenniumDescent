@@ -1,0 +1,916 @@
+{
+  "schemaVersion": 1,
+  "report": "INT-05 expedition closure patch and work-family routing independent static review",
+  "reviewer": "/root/audit_management",
+  "createdUtc": "2026-11-24T13:47:58.828501+00:00",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "acceptedBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "scope": "One consolidated static review of close constraint/capture split and CloseExpeditionEpisode routing; exact source routing and read/execution boundaries for16 admitted filling/mining/research/manufacturing kinds. No runtime implementation, tests, build, gameplay or replay execution; no successor or full module acceptance.",
+  "status": "NO_CLOSURE_PATCH_BLOCKER_FOUND; WORK_FAMILY_EXTRACTION_REQUIREMENTS_RETAINED",
+  "findings": [],
+  "expeditionCloseReview": {
+    "fullCaptureBodyMatchesAccepted": true,
+    "comparisonMethod": "Complete old AssessExpeditionClose body equals current ExpeditionCloseConstraintV1 after removing only typed string wrappers, whitespace and the single capture=false early return. Thus capture=true preserves all guards, capture construction and out values.",
+    "stringWrapper": "AssessExpeditionClose -> ExpeditionCloseConstraintV1(state,command,out close,true)?.NativeCode. Existing execution/query callers retain original capture behavior.",
+    "readRoute": "CloseExpeditionEpisode -> BeforeStabilizationBranchConstraintV1 ?? ExpeditionCloseConstraintV1(...,false). Source terminal dispatch is accepted ResolveCore947, after appraisal946 and before reinforcement/charter/meal/route.",
+    "rootGuardOrder": [
+      "WorldOpening: actor/Ferry work restrictions",
+      "ActiveLongRestInterruption",
+      "pending Sanctuary incompatible command",
+      "GuidanceChoice then Physical",
+      "ActiveShortRestInterruption",
+      "Wound sealed target then active participant",
+      "SearchActivity then HideActivity",
+      "RetreatHostileAttack (nonattack kind returns null)",
+      "PendingRecoveryChoice",
+      "HavenCareActor",
+      "MoraleRestingActor",
+      "RestingActor",
+      "ExpeditionCloseConstraintV1"
+    ],
+    "noHoisting": "Later reinforcement/charter/meal/route/content/manufacturing guards do not precede native closure. Close is absent from StartsOrResumesActivityWork.",
+    "guardOrder": [
+      "Selected profile/schema",
+      "Leader identity/mandate",
+      "Evidence access",
+      "Exact existing payload predicate",
+      "Episode/charter binding",
+      "No existing close",
+      "Tactical/pending choice boundary",
+      "Exact resolved fixed encounter",
+      "Retained EndFixedEncounter receipt after encounter start",
+      "Reconciled bill and current input consistency",
+      "Bill starts after encounter exit",
+      "Current leader life/condition capability",
+      "Unprocessed original condition deadline guard",
+      "Complete member facts",
+      "No member ordinary traversal or moving route",
+      "Actual completed meal intake lineage/reservation evidence",
+      "Actual successful mining attempt preceding sale",
+      "Required extracted/forfeited/no-available unit dispositions",
+      "Scoped current stock",
+      "No open commitments",
+      "Coverage not contradicted",
+      "capture=false returns null with close still null; capture=true continues legacy capture"
+    ],
+    "originChecks": [
+      {
+        "nativeCode": "ExpeditionCloseNotSelected",
+        "typedLine": 67,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 64,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseLeaderUnauthorized",
+        "typedLine": 69,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 66,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseEvidenceUnavailable",
+        "typedLine": 70,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 67,
+        "matches": true
+      },
+      {
+        "nativeCode": "InvalidExpeditionClosePayload",
+        "typedLine": 75,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 72,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseEpisodeMismatch",
+        "typedLine": 78,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 75,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionEpisodeAlreadyClosed",
+        "typedLine": 79,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 76,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseTacticalBoundary",
+        "typedLine": 80,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 77,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseEncounterUnresolved",
+        "typedLine": 81,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 78,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseEncounterUnresolved",
+        "typedLine": 83,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 80,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseReconciledBillRequired",
+        "typedLine": 86,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 83,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseHistoryMismatch",
+        "typedLine": 87,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 84,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseLeaderIncapable",
+        "typedLine": 90,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 87,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseUnprocessedConditionDeadline",
+        "typedLine": 91,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 88,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseMemberFactsMissing",
+        "typedLine": 94,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 91,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseUnresolvedTraversal",
+        "typedLine": 98,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 95,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseMealIntakeRequired",
+        "typedLine": 103,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 100,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseExtractionRequired",
+        "typedLine": 107,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 104,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseMiningDispositionsIncomplete",
+        "typedLine": 112,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 109,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseOpenCommitments",
+        "typedLine": 118,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 115,
+        "matches": true
+      },
+      {
+        "nativeCode": "ExpeditionCloseCoverageContradicted",
+        "typedLine": 119,
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+        "acceptedLine": 116,
+        "matches": true
+      }
+    ],
+    "captureBoundary": "Read exits before CaptureClosingMember, hostile outcome capture, ExpeditionCloseOutcome, ExpeditionEpisodeCloseRecord, mining-disposition capture and coverage array construction. ResolveExpeditionClose alone assigns the captured record after the legacy assessment returns null.",
+    "pureDependencies": [
+      {
+        "helper": "CommandHistory.Read",
+        "source": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs:11",
+        "finding": "Decodes/validates immutable retained receipt payload only; no Simulation replay, source eligibility, snapshot validation or resolution. The exact native LastOrDefault EndFixedEncounter receipt scan remains."
+      },
+      {
+        "helper": "ExpeditionBillInputs",
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs:119",
+        "finding": "Shared typed current bill inputs; closure passes existing bill.Basis, so basis ??= capture does not run. Reads current sale/meal/appraisal/charter and MatchesReceipts; no settlement/replay."
+      },
+      {
+        "helper": "HasUnprocessedConditionDeadline",
+        "source": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs:123",
+        "finding": "Uses ConditionResolutionScope.Read(journal).Ledger. In strict scope this reads the precomputed retained history, not Restore or lifecycle advancement. Do not replace this native unprocessed-ledger check with projected current conditions."
+      },
+      {
+        "helper": "TryReadMealIntakes",
+        "source": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs:232",
+        "finding": "Read-only family lineage, intake statuses/times and actual consumed reservation totals; no intake completion or resource mutation."
+      },
+      {
+        "helper": "HasOpenExpeditionCloseCommitments",
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs:144",
+        "finding": "OpenProcedures(state,empty options), worker intervals, open assignments and remaining reservation amounts. OpenProcedures uses existing records and empty controls; it does not discover/assess/resolve commands."
+      },
+      {
+        "helper": "WorldActivityProjection.Project",
+        "source": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs:264",
+        "finding": "Reads worker/reservation arrays and minimum future recorded boundary, filters supplied empty options, constructs immutable current activity values. No booking or progress advancement."
+      },
+      {
+        "helper": "scopedStock / ClosureCoverageContradicted",
+        "source": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs:114",
+        "finding": "Current ExpeditionCloseStock wrappers are required for the existing commitments guard. Local set/array construction and current coverage predicates are not future close/event construction."
+      }
+    ],
+    "commitFeasibility": null
+  },
+  "workFamilyRootPlan": {
+    "operationCount": 16,
+    "semanticAxisCount": 41,
+    "operations": [
+      {
+        "kind": "StartWaterFill",
+        "family": "filling",
+        "semanticBranchesToDisposition": [
+          "authorized accessible source/destination",
+          "positive rational amount/unit/capacity",
+          "two hands and 60 active seconds"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1185
+      },
+      {
+        "kind": "PauseWaterFill",
+        "family": "filling",
+        "semanticBranchesToDisposition": [
+          "active own fill",
+          "retain progress/amount/capacity; release worker/opening"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1185
+      },
+      {
+        "kind": "ResumeWaterFill",
+        "family": "filling",
+        "semanticBranchesToDisposition": [
+          "paused own fill",
+          "remaining active labor and current access/hands"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1185
+      },
+      {
+        "kind": "CancelWaterFill",
+        "family": "filling",
+        "semanticBranchesToDisposition": [
+          "active/paused own fill",
+          "no liquid transfer; release claims"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1185
+      },
+      {
+        "kind": "StartMining",
+        "family": "mining",
+        "semanticBranchesToDisposition": [
+          "actual version/category subsets",
+          "Strength/Wisdom",
+          "hurried false/true",
+          "finite source selection and setup",
+          "conditional failure-victim and critical-recovery preferences",
+          "nonempty AssistantId rejected: requires schema77 unavailable in these factories"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1023
+      },
+      {
+        "kind": "PauseMining",
+        "family": "mining",
+        "semanticBranchesToDisposition": [
+          "setup endpoint",
+          "first-positive removal commitment",
+          "productive removal stage"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1023
+      },
+      {
+        "kind": "ResumeMining",
+        "family": "mining",
+        "semanticBranchesToDisposition": [
+          "Paused",
+          "AwaitingCheck native model branch; genuine producer remains OPEN"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1023
+      },
+      {
+        "kind": "StartFormulaResearch",
+        "family": "research",
+        "semanticBranchesToDisposition": [
+          "actual guild notes/recipe4",
+          "new attempt after cancellation has zero inherited progress"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1036
+      },
+      {
+        "kind": "PauseFormulaWork",
+        "family": "research",
+        "semanticBranchesToDisposition": [
+          "active research retains labor/progress/claims"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1036
+      },
+      {
+        "kind": "ResumeFormulaWork",
+        "family": "research",
+        "semanticBranchesToDisposition": [
+          "Paused retained research",
+          "AwaitingCheck native model branch; genuine producer remains OPEN"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1036
+      },
+      {
+        "kind": "CancelFormulaWork",
+        "family": "research",
+        "semanticBranchesToDisposition": [
+          "zero labor",
+          "positive labor",
+          "native AwaitingCheck cancellation disposition"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1036
+      },
+      {
+        "kind": "StartManufacturing",
+        "family": "manufacture",
+        "semanticBranchesToDisposition": [
+          "one actual recipe4 order",
+          "ingredients/age/packaging/known formula and actual work window"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1029
+      },
+      {
+        "kind": "PauseManufacturing",
+        "family": "manufacture",
+        "semanticBranchesToDisposition": [
+          "unfinished phase loses retained phase labor",
+          "completed phase retained and actual labor preserved"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1029
+      },
+      {
+        "kind": "ResumeManufacturing",
+        "family": "manufacture",
+        "semanticBranchesToDisposition": [
+          "Paused remaining phases",
+          "AwaitingCheck native model branch; genuine producer remains OPEN"
+        ],
+        "startsOrResumesActivityWork": true,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1029
+      },
+      {
+        "kind": "CancelManufacturing",
+        "family": "manufacture",
+        "semanticBranchesToDisposition": [
+          "zero labor releases ingredients",
+          "positive labor consumes ingredients",
+          "packaging released and batch permanently closed",
+          "AwaitingChoice disallows cancellation"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": true,
+        "nativeTerminalDispatchLine": 1029
+      },
+      {
+        "kind": "ResolveManufacturingQuality",
+        "family": "manufacture",
+        "semanticBranchesToDisposition": [
+          "actual Exceptional FullYield/Durability",
+          "StandardQuantity native applicability disposition",
+          "suspended clock continuation"
+        ],
+        "startsOrResumesActivityWork": false,
+        "globalManufacturingChoiceBlocks": false,
+        "nativeTerminalDispatchLine": 1029
+      }
+    ],
+    "commonOrderedPrefix": [
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          866,
+          875
+        ],
+        "orderedDisposition": "WorldOpeningConstraintV1: unknown actor first; Ferry EncounterDash disjoint; SealTear off-calendar action guard applies to the eight Start/Resume work kinds listed per operation."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          876,
+          890
+        ],
+        "orderedDisposition": "LongRest own dispatch disjoint; ActiveLongRestInterruption; pending Sanctuary incompatible-kind failure; GuidanceChoice; Physical contamination. StartWaterFill can receive the native contamination guard before all later work guards."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          891,
+          902
+        ],
+        "orderedDisposition": "Cast/utility/repertoire/ClassRecovery/Consecrate/Invocation/Rite/Presence/ShortRest own dispatches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          903,
+          912
+        ],
+        "orderedDisposition": "ActiveShortRestInterruption, then sealed wound-station target, then active healer/patient restriction. ConsumeDecay/wound-own commands disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          913,
+          921
+        ],
+        "orderedDisposition": "SearchActivity then HideActivity conflicts apply to Start/Resume activity work; early observation/cancellation dispatches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          922,
+          930
+        ],
+        "orderedDisposition": "Retreat instruction disjoint; RetreatHostileAttack returns at nonattack kind; harvest exposure/transition/camp commands disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          931,
+          945
+        ],
+        "orderedDisposition": "PendingRecoveryChoice then HavenCareActor, MoraleRestingActor, RestingActor in exact order. Haven-care patient allowlist admits all four filling kinds; it does not admit mining/research/manufacturing. Own recovery/rest/care and transition-only dispatches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          946,
+          956
+        ],
+        "orderedDisposition": "Appraisal, close, reinforcement instruction/control, stabilization, charter/plan/bill/sale/meal purchase dispatches disjoint. Reinforcement control is limited to SuspendWorldStep/ResumeWorldStep."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          957,
+          967
+        ],
+        "orderedDisposition": "HavenMealServing is retained but these16 kinds take default null; whole-tender guard and temporary camp/morale transition/route own dispatches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          968,
+          978
+        ],
+        "orderedDisposition": "RouteTravelOuter: paused attached fractional restriction first, moving-route restriction second. None of these16 kinds is exempt."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          979,
+          985
+        ],
+        "orderedDisposition": "Hide/Search, trap handover and blood ordinary-handling dispatches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          986,
+          991
+        ],
+        "orderedDisposition": "Off-calendar Dash/ActiveLabor restriction applies to listed Start/Resume kinds. Native IsConnectedRecipe4Check exception bypasses this gate only for connected ResumeManufacturing with actual AwaitingCheck. Do not remove that exception."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          992,
+          996
+        ],
+        "orderedDisposition": "Overwatch-context, advancement, periodic-event and periodic-medicine branches disjoint."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          997,
+          1000
+        ],
+        "orderedDisposition": "contentManifest.ValidateCommand in original position. Mining/filling take its default null. Research/manufacturing can return their native content binding/support errors before family preflight, including before unknown-target or not-selected family errors."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          1001,
+          1001
+        ],
+        "orderedDisposition": "Recipe347WorkWatchCommandFailure retains native position; its Start/ResumeRecipe347-only actual watch admission is disjoint from these16 kinds, even though its broader work-start selector may recognize some."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          1002,
+          1003
+        ],
+        "orderedDisposition": "ManufacturingChoicePending blocks all requested kinds except ResolveManufacturingQuality. Pause/cancel in other families are not globally exempt."
+      },
+      {
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "acceptedLines": [
+          1004,
+          1022
+        ],
+        "orderedDisposition": "Expedition assignment, Ferry seal, cache/portable/hunting/receptacle/prospecting/assay/mineral-preparation dispatches disjoint. No resolve/normalization call is needed to skip them."
+      }
+    ],
+    "familySuffixes": {
+      "mining": {
+        "acceptedDispatch": 1023,
+        "required": "IsMiningCommand -> AssessMiningCommand/current shared extraction. Do not add later manufacturing/formula/tactical/ordinary-management gates. Native mining assessment repeats off-calendar/PendingCalendarChoice and preserves exact start/private-preference/access/resume branches.",
+        "nonselected": "The native IsMiningCommand selector includes profile conditions; retain its selection behavior or explicit unsupported coverage instead of assuming every global kind reaches mining."
+      },
+      "manufacture": {
+        "acceptedDispatch": [
+          1029,
+          1030
+        ],
+        "required": "Exact outer branch: connectedRecipe4Batch -> manufacturing assessment; else connectedFormulaResearch -> AssessConnectedManufacturing; else general manufacturing. The connected-research-only branch returns ConnectedManufacturingNotSelected for controls, and for Start returns first ordinary start failure or ConnectedManufacturingNotSelected. Never silently enable manufacturing there.",
+        "entryOrder": "Manufacturing selected -> UseAlchemyDose branch (outside these five) -> payload -> PendingCalendarChoice -> Start, quality or control native branch.",
+        "quality": "Outer global ManufacturingChoicePending exception belongs to ResolveManufacturingQuality. Keep actual AwaitingChoice/choice/catalyst/FullYield guards; settlement and suspended AdvanceTo continuation remain execution-only.",
+        "cancelCaution": "ResolveManufacturing checks ManufacturingRules.Recipe(controlled.RecipeId) null after AssessManufacturingControl succeeds and before CancelFutureWork. Preserve this pre-effect guard in complete extraction; assessOnly legacy shortcut does not include it. No defect is asserted for the currently admitted valid recipe4 producer; the source guard is still required for faithful coverage."
+      },
+      "research": {
+        "acceptedDispatch": 1036,
+        "required": "connectedCombat != null && PendingCalendarChoice -> TacticalChoicePending before FormulaWorkConstraintV1. Current BeforeFormulaBranchConstraintV1 preserves common prefix through global manufacturing-choice gate; do not reuse it for quality resolution without that exception.",
+        "legacy": "StartFormulaCopy exists in native helper/source but is not one of the four admitted research kinds in this inventory. This review does not broaden that catalog."
+      },
+      "filling": {
+        "acceptedDispatch": 1185,
+        "required": "After other family dispatches, connectedCombat && InventoryCombat routes through native tactical rejection selectors first. Outside that route, non-null Combat payload returns SharedCombatHandoffNotImplemented at1060. After unrelated clock/traversal/condition/movement branches, management gate1119-1122 admits all four fills; traversal stationarity1124 applies to all four. Pause/Cancel are release kinds1125 and skip CapableWorker; Start/Resume require CapableWorker1126 and dynamic two hands1127. Handling-only timed-boundary branches1128-1184 are disjoint. Then call TestOnlyFillingPolicy.AssessWaterFill directly.",
+        "tacticalFallback": "Preserve ordered DefensiveFormationChoicePending, CommandStepChoicePending, OverwatchRiderChoicePending; when no PendingMove, NextPostStepChoice Ready/Overwatch specific failures; then DefensiveFormationContinuationPending; ActorOutsideEncounter; finally bodies.Admitted rejects fill -> ClubCommandNotImplemented. Do not replace with broad TacticalChoicePending or TacticalFillingUnsupported. Native family TacticalFillingUnsupported is only reached when earlier routing allows it.",
+        "reusedIndependentReview": "engine/artifacts/admitted-command-surface/reviews/observation-routing-review-01.json",
+        "reusedSourcePins": [
+          {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+            "matchesPriorIndependentReviewedSource": true,
+            "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+          },
+          {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+            "matchesPriorIndependentReviewedSource": true,
+            "sha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee"
+          },
+          {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+            "matchesPriorIndependentReviewedSource": true,
+            "sha256": "9a667c23d440ce051ba7132b1aa85d261e49fd495d22da20be1afcda76112918"
+          }
+        ],
+        "hands": "Family Hands uses selected readonly actorHands/companionHands capability; preserve both outer dynamic AvailableHands and native family hand checks."
+      }
+    }
+  },
+  "pureAssessmentBoundaryAudit": {
+    "conclusion": "No direct snapshot mutation, reservation, RNG draw or receipt replay found in the reviewed admitted leaf guard paths under a correctly bound strict read scope. Legacy Query/Discover/Resolve wrappers are not safe V1 read entry points merely because a bool is named assessOnly.",
+    "mining": {
+      "entry": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs:1083 AssessMiningCommand",
+      "pureClosure": [
+        "MiningAccess / MiningWorkerBusy / MiningIntervalAvailable",
+        "AvailableHands/current ConditionsFor/CapableWorker",
+        "PortableEquipmentRules.Accessible and FitsAuthoredMember",
+        "DamageConditionCapacity: journal/application counts via current owning projection",
+        "AbilityCheckRules.Derive",
+        "MiningToolCandidateRules.PhysicallyEligible: finite current source instances and capacity sums",
+        "Recipe347MiningToolPhysicallyEligible: current item/structure/evidence eligibility",
+        "Local arrays and MiningAssessment values, not MiningAttemptRecord"
+      ],
+      "privateData": "Failure-value ranks, damaged recovery shortlist, selected units and DC remain trusted internals; no public detail or cardinality authorized by this audit. Schema77 assistant branches remain unavailable for the selected factories.",
+      "excludedExecution": "ResolveMining constructs attempt/tool-use evidence, BookMining reserves work/materials, PauseMining changes progress/claims, FinishMiningCheck draws/settles. None may be reached by V1 read.",
+      "resumeDistinction": "Paused requires current access and relevant interval availability; AwaitingCheck has distinct native check path. Genuine AwaitingCheck producer remains OPEN, as existing accepted evidence records."
+    },
+    "research": {
+      "entry": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs:247 FormulaWorkConstraintV1",
+      "pureClosure": [
+        "ResearchAccessConstraintV1 and ConnectedResearchAdmissionConstraintV1",
+        "Current workshop/trade/known-formula/evidence/busy/history/window checks",
+        "Retained current job lookup with Paused/AwaitingCheck distinctions"
+      ],
+      "excludedExecution": "ResolveFormulaWork is a resolver and must not be a V1 read call even with assessOnly. Job/ActiveWorkProgress construction, BookFormula/Reserve, PauseFormula, CancelFutureWork/Release and FinishFormulaCheck remain execution-only. Legacy DiscoverConnectedFormulaWork explicitly calls ResolveCore(...assessFormula:true), a prohibited resolver entry in strict V1.",
+      "history": "No historical research modifier reconstructed. Local current method/evidence selection is not replay."
+    },
+    "manufacture": {
+      "entries": [
+        "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs:417 AssessManufacturingStart",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs:194 AssessManufacturingControl",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs:170 AssessManufacturingQualityChoice",
+        "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs:62 AssessConnectedRecipe4Start"
+      ],
+      "pureClosure": [
+        "ManufacturingAccess/current qualification, station/tool/repair/conditions/reach/work-window checks",
+        "Actual available component/package quantities and native order limits",
+        "Connected batch/apparatus/current specimen checks",
+        "ManufacturingBloodAge and HarvestPreservationRules.TryProject/TryProjectAt compute retained/current age; they do not run time advancement"
+      ],
+      "futureConstraint": "AssessBloodIngredient237-238 evaluates native spoil-before-first-phase constraint using RuleClock+FirstPhase and pure age projection. Preserve that exact native initial guard; never publish it as an already occurred spoilage or time advance.",
+      "excludedExecution": "ResolveManufacturing must not be called during V1 read; Start constructs order/claims and reserves/books; Pause/Cancel mutate retained work/materials; ResolveManufacturingQuality settles product/quality/XP and ResumeManufacturingAdvance can clear continuation, AdvanceTo and exit combat; AwaitingCheck Resume draws/settles. Legacy discovery calls ResolveCore(...assessFormula:true), also prohibited.",
+      "counts": "Do not replace native history/ledger limits with constructor limits or move future settlement capacity failure into initial native error order."
+    },
+    "filling": {
+      "entry": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs:64 AssessWaterFill",
+      "pureClosure": [
+        "Selected readonly Hands capability",
+        "OrdinaryInventory.Busy identity-only CurrentWork",
+        "WaterFilling.Prerequisite and current accessibility/unit/source/destination/opening checks",
+        "AvailableAmount, FreeCapacity, current worker/fill lookup",
+        "FillRecordCapacity only at existing ConnectedWorkControlProfile opt-in, preserving32 fill and effective Snapshot.MaxCropWorkRecords constraints"
+      ],
+      "releaseSemantics": "Pause and Cancel retain native identity/status/payload behavior and do not acquire new ready-inventory or fresh worker/hand requirements. Existing outer traversal restriction still applies.",
+      "excludedExecution": "TestOnlyFillingPolicy.Resolve and WaterFilling.Start/Book/Resume/Pause/Cancel reserve/release/update procedures. Do not call ResolveCore(...assessFilling:true), whose entry is explicitly Resolver-prohibited. Pure family helper must follow extracted native outer prefix."
+    },
+    "conditions": "ConditionsFor and HasUnprocessedConditionDeadline require owning precomputed ConditionResolutionScope.EnterRead. Outside it legacy ConditionResolutionScope.Read/Project can Restore/At history/lifecycle; that transitive legacy fallback is excluded by strict read, not proof that the helper is globally pure in arbitrary context.",
+    "capacityAndFuture": "Actual initial selectors/quantities/counts are read. No Reserve, candidate validation, SnapshotCodec public Encode/Decode, Simulation replay, lifecycle folding, AdvanceTo or proposed future event creation is permitted to assess feasibility. Initial eligibility is separate from commit feasibility."
+  },
+  "requiredFollowThrough": [
+    "Bind final implementation/test evidence to exact source hashes; this review ran no runtime.",
+    "When wiring remaining work families, preserve the ordered routes and exception-specific source guards above.",
+    "Retain three genuine AwaitingCheck producer gaps for mining/research/manufacturing; model-only evidence is not a genuine route.",
+    "Keep INT-05 runtime and actual GPT acceptance open; no successor authorized."
+  ],
+  "sourcePins": [
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "workingTreeSha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7",
+      "bytes": 40248,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "workingTreeSha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c",
+      "bytes": 2408,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125",
+      "bytes": 99100,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OPERATION_INVENTORY.json",
+      "workingTreeSha256": "9bce656517d0b811a3f4ac62036b5ad148a0d3973c0f2b86274ab4d9421806d8",
+      "bytes": 282658,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OUTER_ADMISSION_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "dc78017d9a4405a3302d0837cc839872811180624287799270dc78851a85cacd",
+      "bytes": 16775,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "workingTreeSha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557",
+      "bytes": 9800,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/reviews/observation-routing-review-01.json",
+      "workingTreeSha256": "5d13ee9f2ff9553676a84972115e0af8108dc1a933e3a420828ff70434791bed",
+      "bytes": 57318,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "workingTreeSha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13",
+      "bytes": 12337,
+      "acceptedBaselineGitBlobSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "workingTreeSha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b",
+      "bytes": 11431,
+      "acceptedBaselineGitBlobSha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "workingTreeSha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd",
+      "bytes": 3554,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "workingTreeSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240,
+      "acceptedBaselineGitBlobSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "workingTreeSha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051,
+      "acceptedBaselineGitBlobSha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "workingTreeSha256": "77dc6d6ef952489e1418302ae1d430150a6269773fb17b2362c44c4d200e69de",
+      "bytes": 21644,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedBloodSpecimen.cs",
+      "workingTreeSha256": "916f1c463ccdc443c1a2612de5f27380c2c91c894c74e81df40992136220caf9",
+      "bytes": 18977,
+      "acceptedBaselineGitBlobSha256": "b15398cc43ed88c57164c2d835a4c75f1d7ca844754cff20a36492db3304165b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedFormulaResearch.cs",
+      "workingTreeSha256": "68833b0159d864c21db4a659c25c786cc922fb8abc9f46b74c9343d9c93ce10b",
+      "bytes": 10601,
+      "acceptedBaselineGitBlobSha256": "33b320645df1b51537f0da1f9dccaa46e149cf0ba24c1887a37bd07aee106e11"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+      "workingTreeSha256": "c1672136502d81b5c0524a5fa9fe755340c5fd6e369b0c81fd6a4ecadf82370d",
+      "bytes": 15449,
+      "acceptedBaselineGitBlobSha256": "aea01683f9a46a642c9d6022578f3fd7101320f1d94affe5a08b2d9c2b84652d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "workingTreeSha256": "566d48c8d3892dcbbd387b43d4426033a05e5bace9bf3adc257b1e5b400ee711",
+      "bytes": 25432,
+      "acceptedBaselineGitBlobSha256": "0a70ff3eeca39cfcc36f82814c1f0ee95f21fdcea74c6fc36f07d9da18a474db"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionEpisodeClose.cs",
+      "workingTreeSha256": "942492a545373055380fcfc222c866c9a77f205ccff680704c09d4ad16bc4b43",
+      "bytes": 19582,
+      "acceptedBaselineGitBlobSha256": "f7ddf5bbc30b67a17e0fd892b8ed9a2596853ebbf199cdb1eb1555526d18bc2a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFormulaResearch.cs",
+      "workingTreeSha256": "9037f184206e8e4e70834bd7fc911154e4d538907dc9af19f18edf29aeb7601a",
+      "bytes": 28801,
+      "acceptedBaselineGitBlobSha256": "75bb1479d75f1193ad93611432f386420a8d2cc6aadea3455bfb5d7a77aab256"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "workingTreeSha256": "ad8b5144d93b722edde4c73a9f81848a6e9cb0accd1ecd51adb60de8983a9e9b",
+      "bytes": 56203,
+      "acceptedBaselineGitBlobSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMining.cs",
+      "workingTreeSha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339",
+      "bytes": 114333,
+      "acceptedBaselineGitBlobSha256": "7f6cabe70b41757946bb226584231647bdbb9c10d82bec8753e6eb0293d09339"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOverwatchExecution.cs",
+      "workingTreeSha256": "9a667c23d440ce051ba7132b1aa85d261e49fd495d22da20be1afcda76112918",
+      "bytes": 27779,
+      "acceptedBaselineGitBlobSha256": "9a667c23d440ce051ba7132b1aa85d261e49fd495d22da20be1afcda76112918"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRecipe347.cs",
+      "workingTreeSha256": "8eb3e88d0fbb1c7b35bc6d69cfb5e395ec07ec7f18e7e2be96b1d4136d2742c5",
+      "bytes": 45973,
+      "acceptedBaselineGitBlobSha256": "356548f672a7b23a8042e6061fe9e157b42420dce9d8b5b50ef3c94457c7556c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "workingTreeSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "bytes": 36082,
+      "acceptedBaselineGitBlobSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "workingTreeSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "bytes": 59346,
+      "acceptedBaselineGitBlobSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceContentResolution.cs",
+      "workingTreeSha256": "acb56108d6def61fdbcd1cbc5db58bffcb62afc3fe6834e8d69483a9fbde6a44",
+      "bytes": 38441,
+      "acceptedBaselineGitBlobSha256": "24b44bdaed13de69fb1114474ff3cdcb9e2e67322afe322f632e2d3ca42ea3b9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "workingTreeSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+      "bytes": 37856,
+      "acceptedBaselineGitBlobSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+      "workingTreeSha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27",
+      "bytes": 11581,
+      "acceptedBaselineGitBlobSha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "workingTreeSha256": "2790d1c773552a9d826d94aaca2e9b8b4a5e248747dd1a8f870c226353a35e38",
+      "bytes": 128774,
+      "acceptedBaselineGitBlobSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "workingTreeSha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447",
+      "bytes": 13276,
+      "acceptedBaselineGitBlobSha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CommandHistory.cs",
+      "workingTreeSha256": "6484e6890286c03cdc54698bb5a5335b9bf9b3112d0e66e18c5e891d9530f747",
+      "bytes": 14225,
+      "acceptedBaselineGitBlobSha256": "6484e6890286c03cdc54698bb5a5335b9bf9b3112d0e66e18c5e891d9530f747"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionEpisodeCloseRecords.cs",
+      "workingTreeSha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f",
+      "bytes": 16250,
+      "acceptedBaselineGitBlobSha256": "8747bdd9d35eba241f3c28163b540f1f0c70a399663495aeb5f135fee88ef17f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HarvestPreservationRecords.cs",
+      "workingTreeSha256": "004d9a8c476fa669b44a7f7078b77a087f915e6d7af3a02b934fe6693eb156e2",
+      "bytes": 58700,
+      "acceptedBaselineGitBlobSha256": "004d9a8c476fa669b44a7f7078b77a087f915e6d7af3a02b934fe6693eb156e2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "workingTreeSha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "bytes": 9318,
+      "acceptedBaselineGitBlobSha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/MiningRecords.cs",
+      "workingTreeSha256": "c188872251f0ec336396dffd0e8873e663b21492659ecd5e49264dc37d552a49",
+      "bytes": 92997,
+      "acceptedBaselineGitBlobSha256": "c188872251f0ec336396dffd0e8873e663b21492659ecd5e49264dc37d552a49"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "workingTreeSha256": "709e66c49becf1db16abf17b2d6e360f6b317cd34d1106f600db7d6ac168df02",
+      "bytes": 7407,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "workingTreeSha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058",
+      "bytes": 1717,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "workingTreeSha256": "c3eb5a420f8f10ff9511a522ad24a5a2ac943a5e70f1491e2fb1496ad88dc51b",
+      "bytes": 13511,
+      "acceptedBaselineGitBlobSha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "workingTreeSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "bytes": 42556,
+      "acceptedBaselineGitBlobSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    }
+  ],
+  "hashSemantics": "Exact working-tree byte SHA256, plus exact accepted Git blob SHA256 where available. Native line numbers refer to accepted67f3d201b. Current method locations are bounded review pointers; later edits require rebinding."
+}

@@ -100,23 +100,26 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string NextCharterAgreementAuthorityFailure()
+            => NextCharterAgreementAuthorityFailureConstraintV1()?.NativeCode;
+
+        private NativeCommandConstraintV1 NextCharterAgreementAuthorityFailureConstraintV1()
         {
             var profile = nextCharterAgreementProfile;
             var terms = nextCharterAgreementTerms;
-            if (!profile.AssentAuthorized) return "NextCharterAssentMandateMissing";
-            if (!profile.RecordsAccessible) return "NextCharterAssentRecordsUnavailable";
+            if (!profile.AssentAuthorized) return new NativeCommandConstraintV1("NextCharterAssentMandateMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 106);
+            if (!profile.RecordsAccessible) return new NativeCommandConstraintV1("NextCharterAssentRecordsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 107);
             if (!profile.ResourceUseAuthorized || terms.ResourceOwnerId != terms.ParticipantId)
-                return "NextCharterAssentResourceUseUnauthorized";
+                return new NativeCommandConstraintV1("NextCharterAssentResourceUseUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 109);
             var permission = terms.AccessPermission;
-            if (permission == null) return "NextCharterAssentPermissionMissing";
+            if (permission == null) return new NativeCommandConstraintV1("NextCharterAssentPermissionMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 111);
             if (permission.VersionId != TestOnlyNextCharterAgreementProfile.PermissionId
                 || permission.EvidenceId != TestOnlyNextCharterAgreementProfile.PermissionEvidenceId
                 || permission.IssuerId != TestOnlyNextCharterAgreementProfile.SiteControllerId
                 || permission.IssuerAuthorityId != TestOnlyNextCharterAgreementProfile.SiteControlAuthorityId
                 || permission.RestrictionsId != TestOnlyNextCharterAgreementProfile.RestrictionsId)
-                return "NextCharterAssentPermissionIssuerUnestablished";
-            if (!terms.PermissionCoversWindow) return "NextCharterAssentPermissionScopeOrValidity";
-            return profile.ConflictingRestriction ? "NextCharterAssentApplicableRestriction" : null;
+                return new NativeCommandConstraintV1("NextCharterAssentPermissionIssuerUnestablished", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 117);
+            if (!terms.PermissionCoversWindow) return new NativeCommandConstraintV1("NextCharterAssentPermissionScopeOrValidity", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 118);
+            return profile.ConflictingRestriction ? new NativeCommandConstraintV1("NextCharterAssentApplicableRestriction", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 119) : null;
         }
 
         private static bool CanDecideNextCharter(Snapshot state, string actor)
@@ -127,40 +130,47 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string NextCharterAgreementPhysicalFailure(Snapshot state, NextCharterPlanObservation current)
+            => NextCharterAgreementPhysicalFailureConstraintV1(state, current)?.NativeCode;
+
+        private NativeCommandConstraintV1 NextCharterAgreementPhysicalFailureConstraintV1(Snapshot state, NextCharterPlanObservation current)
         {
             string actor = nextCharterAgreementTerms.ParticipantId;
             if (state.InventoryCombat || PendingCalendarChoice(state) || ManufacturingChoicePending(state)
                 || state.Encounter != null && !ResolvedConflict(state))
-                return "NextCharterAssentStableBoundaryRequired";
-            if (current.CanCarry != true) return "NextCharterAssentCarryingCapacity";
-            if (!current.ScoutCapable || !CanDecideNextCharter(state, actor)) return "NextCharterAssentActorIncapable";
-            if (!current.ScoutAtStage) return "NextCharterAssentStationaryStagingRequired";
-            if (OrdinaryInventory.Busy(state, actor)) return "NextCharterAssentWorkerBusy";
-            if (current.ApproachAccess == false) return "NextCharterAssentPermissionContradicted";
+                return new NativeCommandConstraintV1("NextCharterAssentStableBoundaryRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 134);
+            if (current.CanCarry != true) return new NativeCommandConstraintV1("NextCharterAssentCarryingCapacity", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 135);
+            if (!current.ScoutCapable || !CanDecideNextCharter(state, actor)) return new NativeCommandConstraintV1("NextCharterAssentActorIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 136);
+            if (!current.ScoutAtStage) return new NativeCommandConstraintV1("NextCharterAssentStationaryStagingRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 137);
+            if (OrdinaryInventory.Busy(state, actor)) return new NativeCommandConstraintV1("NextCharterAssentWorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 138);
+            if (current.ApproachAccess == false) return new NativeCommandConstraintV1("NextCharterAssentPermissionContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 139);
             if (!current.Walkable || current.Occupied || current.PathReserved || current.TacticalTransition)
-                return "NextCharterAssentPassageUnavailable";
-            return current.Supplies.All(x => x.ReadyAvailable >= x.Required) ? null : "NextCharterAssentReadyReservesInsufficient";
+                return new NativeCommandConstraintV1("NextCharterAssentPassageUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 141);
+            return current.Supplies.All(x => x.ReadyAvailable >= x.Required) ? null : new NativeCommandConstraintV1("NextCharterAssentReadyReservesInsufficient", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 142);
         }
 
         private string AssessNextCharterAgreementCommand(Snapshot state, Command command, out NextCharterPlanRecord plan,
+            out NextCharterAgreementAssessment assessment)
+            => AssessNextCharterAgreementCommandConstraintV1(state, command, out plan, out assessment)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessNextCharterAgreementCommandConstraintV1(Snapshot state, Command command, out NextCharterPlanRecord plan,
             out NextCharterAgreementAssessment assessment)
         {
             plan = null;
             assessment = null;
             var terms = nextCharterAgreementTerms;
             if (nextCharterAgreementProfile == null || state.SchemaVersion < Snapshot.NextCharterAgreementSchema)
-                return "NextCharterAssentNotSelected";
-            if (command.Actor != terms.ParticipantId) return "NextCharterAssentActorUnauthorized";
-            if (!NextCharterCommandPayloadValid(command)) return "InvalidNextCharterAssentPayload";
+                return new NativeCommandConstraintV1("NextCharterAssentNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 152);
+            if (command.Actor != terms.ParticipantId) return new NativeCommandConstraintV1("NextCharterAssentActorUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 153);
+            if (!NextCharterCommandPayloadValid(command)) return new NativeCommandConstraintV1("InvalidNextCharterAssentPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 154);
             var agreement = state.NextCharterAgreement;
             if (command.Kind != CommandKind.AcceptNextCharter) {
-                if (agreement == null || command.Target != agreement.Terms.CharterId) return "NextCharterAgreementUnknown";
-                if (!nextCharterAgreementProfile.RecordsAccessible) return "NextCharterAssentRecordsUnavailable";
+                if (agreement == null || command.Target != agreement.Terms.CharterId) return new NativeCommandConstraintV1("NextCharterAgreementUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 157);
+                if (!nextCharterAgreementProfile.RecordsAccessible) return new NativeCommandConstraintV1("NextCharterAssentRecordsUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 158);
                 if (command.Kind == CommandKind.WithdrawNextCharter) {
-                    if (agreement.Withdrawal != null) return "NextCharterAlreadyWithdrawn";
-                    if (!terms.InWindow(state.RuleClock)) return "NextCharterAgreementExpired";
-                    if (PendingCalendarChoice(state) || ManufacturingChoicePending(state)) return "NextCharterAssentStableBoundaryRequired";
-                    return CanDecideNextCharter(state, command.Actor) ? null : "NextCharterAssentActorIncapable";
+                    if (agreement.Withdrawal != null) return new NativeCommandConstraintV1("NextCharterAlreadyWithdrawn", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 160);
+                    if (!terms.InWindow(state.RuleClock)) return new NativeCommandConstraintV1("NextCharterAgreementExpired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 161);
+                    if (PendingCalendarChoice(state) || ManufacturingChoicePending(state)) return new NativeCommandConstraintV1("NextCharterAssentStableBoundaryRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 162);
+                    return CanDecideNextCharter(state, command.Actor) ? null : new NativeCommandConstraintV1("NextCharterAssentActorIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 163);
                 }
                 var current = ObserveNextCharterPlan(state, state.Revision);
                 assessment = new NextCharterAgreementAssessment(terms, agreement, current, state.RuleClock, state.Revision,
@@ -168,21 +178,21 @@ namespace Decennium.Foundation.Laboratory
                 return null;
             }
 
-            if (command.Target != terms.OfferId) return "NextCharterOfferUnknown";
-            if (agreement != null) return "NextCharterOfferAlreadyAccepted";
-            string authorityFailure = NextCharterAgreementAuthorityFailure();
+            if (command.Target != terms.OfferId) return new NativeCommandConstraintV1("NextCharterOfferUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 171);
+            if (agreement != null) return new NativeCommandConstraintV1("NextCharterOfferAlreadyAccepted", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 172);
+            var authorityFailure= NextCharterAgreementAuthorityFailureConstraintV1();
             if (authorityFailure != null) return authorityFailure;
-            if (!terms.InWindow(state.RuleClock)) return "NextCharterAssentOfferOutsideWindow";
+            if (!terms.InWindow(state.RuleClock)) return new NativeCommandConstraintV1("NextCharterAssentOfferOutsideWindow", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 175);
             var close = state.ExpeditionEpisodeClose;
             if (close == null || close.EpisodeId != terms.PlanTerms.EpisodeId || close.CharterVersionId != terms.PlanTerms.CharterVersionId)
-                return "NextCharterAssentPriorCloseRequired";
+                return new NativeCommandConstraintV1("NextCharterAssentPriorCloseRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 178);
             plan = state.NextCharterPlans.SingleOrDefault(x => x.Report != null);
             if (plan == null || plan.Terms.BindingKey != terms.PlanTerms.BindingKey || plan.PriorCloseRevision != close.CloseRevision)
-                return "NextCharterAssentCompletedPlanRequired";
+                return new NativeCommandConstraintV1("NextCharterAssentCompletedPlanRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs", 181);
 
             var observation = ObserveNextCharterPlan(state, state.Revision);
-            string physicalFailure = NextCharterAgreementPhysicalFailure(state, observation);
-            assessment = new NextCharterAgreementAssessment(terms, null, observation, state.RuleClock, state.Revision, physicalFailure);
+            var physicalFailure= NextCharterAgreementPhysicalFailureConstraintV1(state, observation);
+            assessment = new NextCharterAgreementAssessment(terms, null, observation, state.RuleClock, state.Revision, physicalFailure?.NativeCode);
             return physicalFailure;
         }
 

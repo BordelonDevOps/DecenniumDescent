@@ -38,6 +38,9 @@ namespace Decennium.Foundation
         public NativeCommandConstraintV1 Constraint { get; }
         public IReadOnlyList<int> ProhibitedCallAttempts { get; }
 
+        public static NativeCommandAssessmentV1 VerificationUnavailableAt(long revision)
+            => new NativeCommandAssessmentV1(NativeAssessmentStatusV1.VerificationUnavailable, revision);
+
         public NativeCommandAssessmentV1(long revision, bool initialEligibility, bool? commitFeasibility,
             NativeCommandConstraintV1 constraint = null)
             : this(initialEligibility && commitFeasibility != false ? NativeAssessmentStatusV1.Available

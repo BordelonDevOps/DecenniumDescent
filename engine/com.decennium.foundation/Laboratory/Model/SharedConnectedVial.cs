@@ -61,6 +61,9 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string CompanionDoseDeliveryFailure(Snapshot state, ActorState user, ActorState recipient)
+            => CompanionDoseDeliveryFailureConstraintV1(state,user,recipient)?.NativeCode;
+
+        private static NativeCommandConstraintV1 CompanionDoseDeliveryFailureConstraintV1(Snapshot state, ActorState user, ActorState recipient)
         {
             var reinforcement = state.Reinforcement;
             if (!state.ConnectedCompanionDose || user.Id != ConnectedVialRules.CarrierId
@@ -69,17 +72,17 @@ namespace Decennium.Foundation.Laboratory
                 || state.Encounter.Id != reinforcement.Definition.EncounterId
                 || !state.Encounter.Order.Contains(recipient.Id)
                 || !SoldierTacticalFeatures.IsAlly(state, user.Id, recipient.Id))
-                return "CompanionDoseRecipientUnavailable";
+                return new NativeCommandConstraintV1("CompanionDoseRecipientUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs", 72);
             if (PlanarCombatGeometry.DistanceFeet(new CombatCell(user.X, user.Y), new CombatCell(recipient.X, recipient.Y)) > 5)
-                return "AlchemyRecipientOutOfReach";
+                return new NativeCommandConstraintV1("AlchemyRecipientOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs", 74);
             if (!ObservationGeometry.LineOfEffectClear(state, user.Id, recipient.Id))
-                return "CompanionDoseDeliveryBlocked";
+                return new NativeCommandConstraintV1("CompanionDoseDeliveryBlocked", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs", 76);
             var life = state.Lives.Single(x => x.ActorId == recipient.Id);
             var conditions = View(state, recipient.Id);
             if (life.Dead || life.Hp == 0 || conditions.Unaware || conditions.Has(ConditionKind.Paralyzed))
-                return "AlchemyRecipientCannotIngest";
+                return new NativeCommandConstraintV1("AlchemyRecipientCannotIngest", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs", 80);
             if (state.PeriodicRiders.Any(x => x.TargetId == recipient.Id && x.Present))
-                return "CompanionDoseEndpointUnsupported";
+                return new NativeCommandConstraintV1("CompanionDoseEndpointUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedVial.cs", 82);
             return null;
         }
 

@@ -1,0 +1,404 @@
+{
+  "schema": "INT05_BOUNDED_PATCH_STATIC_REVIEW_V1",
+  "reviewer": "Codex independent audit_magic agent",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "sourceAuthorityCommit": "67f3d201b",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "scope": {
+    "kinds": [
+      "StartHavenAppraisal",
+      "StartExpeditionBill"
+    ],
+    "reviewed": "All five extracted appraisal methods and four extracted bill methods, their legacy NativeCode wrappers, and only these two registrations/routes in SharedCommandAssessmentV1.",
+    "notReviewed": "Unrelated observation, strain-recovery and newly added charter-assent/attempt registrations in the same working file are outside this patch review. Parent added the charter registrations while this report was being finalized; the appraisal/bill registrations, shared prefix and initial-only carrier were re-read unchanged, and the final current file hash is pinned below. No complete native API/catalog, public disclosure, all-profile/five-path coverage, final GPT acceptance or module completion claim.",
+    "actions": "Read source, compared full bodies and original guard coordinates, inspected finite helper leaves and reused pinned prior audits. No runtime/test edits, compilation or test execution.",
+    "buildEvidence": "Parent reported build18 running during review; its eventual results are separate evidence and are not independently certified here."
+  },
+  "findings": [],
+  "mechanicalComparison": {
+    "method": "Replace each new NativeCommandConstraintV1 constructor with its original code literal, rename same-family typed helper calls to legacy names, and normalize only whitespace and changed string-to-var locals. Compare entire extracted body with original67f body. Separately verify each legacy signature delegates to its corresponding typed method and returns NativeCode.",
+    "results": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+        "normalizedBodiesAndWrappersMatch": [
+          "AppraisalTermsFailure",
+          "AppraisalSubject",
+          "AppraisalWorkerFailure",
+          "AppraisalBasisFailure",
+          "AssessHavenAppraisal"
+        ],
+        "guardCount": 27,
+        "guards": [
+          {
+            "code": "AppraisalClearanceMissing",
+            "line": 78
+          },
+          {
+            "code": "AppraisalEvidenceUnavailable",
+            "line": 79
+          },
+          {
+            "code": "AppraisalTermsUnauthorized",
+            "line": 80
+          },
+          {
+            "code": "AppraisalSubjectUnsupported",
+            "line": 91
+          },
+          {
+            "code": "AppraisalEvidenceSubjectMismatch",
+            "line": 95
+          },
+          {
+            "code": "AppraisalExtractionHistoryMissing",
+            "line": 99
+          },
+          {
+            "code": "AppraisalWholeSubjectNotAtDesk",
+            "line": 110
+          },
+          {
+            "code": "AppraisalDeskUnavailable",
+            "line": 123
+          },
+          {
+            "code": "AppraisalDeskUseBlocked",
+            "line": 124
+          },
+          {
+            "code": "AppraisalAppointmentClosed",
+            "line": 126
+          },
+          {
+            "code": "AppraisalCombatUnavailable",
+            "line": 127
+          },
+          {
+            "code": "AppraisalWorkerIncapable",
+            "line": 128
+          },
+          {
+            "code": "AppraisalWorkerNotAtDesk",
+            "line": 133
+          },
+          {
+            "code": "AppraisalBasisChanged",
+            "line": 150
+          },
+          {
+            "code": "HavenAppraisalNotSelected",
+            "line": 156
+          },
+          {
+            "code": "AppraisalWorkerUnauthorized",
+            "line": 157
+          },
+          {
+            "code": "InvalidAppraisalPayload",
+            "line": 161
+          },
+          {
+            "code": "AppraisalDeskNotRegistered",
+            "line": 164
+          },
+          {
+            "code": "AppraisalServiceSlotOccupied",
+            "line": 165
+          },
+          {
+            "code": "AppraisalBasisAlreadyReported",
+            "line": 166
+          },
+          {
+            "code": "AppraisalHistoryCapacityReached",
+            "line": 167
+          },
+          {
+            "code": "AppraisalSubjectReserved",
+            "line": 170
+          },
+          {
+            "code": "AppraisalWorkNotOpen",
+            "line": 173
+          },
+          {
+            "code": "AppraisalWorkNotRunning",
+            "line": 176
+          },
+          {
+            "code": "AppraisalWorkAlreadyRunning",
+            "line": 177
+          },
+          {
+            "code": "OffCalendarActionAlreadySpent",
+            "line": 186
+          },
+          {
+            "code": "AppraisalWorkerBusy",
+            "line": 191
+          }
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+        "normalizedBodiesAndWrappersMatch": [
+          "ExpeditionBillAuthorityFailure",
+          "ExpeditionBillInputs",
+          "ExpeditionBillWorkerFailure",
+          "AssessExpeditionBill"
+        ],
+        "guardCount": 28,
+        "guards": [
+          {
+            "code": "ExpeditionBillRepresentativeUnauthorized",
+            "line": 104
+          },
+          {
+            "code": "ExpeditionBillRecordsUnavailable",
+            "line": 105
+          },
+          {
+            "code": "ExpeditionBillSuperiorClaimUncleared",
+            "line": 107
+          },
+          {
+            "code": "ExpeditionBillScopeIncomplete",
+            "line": 109
+          },
+          {
+            "code": "ExpeditionBillPaidRecordsMissing",
+            "line": 120
+          },
+          {
+            "code": "ExpeditionBillDispositionAuthorityMismatch",
+            "line": 131
+          },
+          {
+            "code": "ExpeditionBillAppraisalEvidenceMismatch",
+            "line": 135
+          },
+          {
+            "code": "ExpeditionBillPaidRecordsChanged",
+            "line": 140
+          },
+          {
+            "code": "ExpeditionBillDeskUnavailable",
+            "line": 147
+          },
+          {
+            "code": "ExpeditionBillDeskUseBlocked",
+            "line": 148
+          },
+          {
+            "code": "ExpeditionBillCombatUnavailable",
+            "line": 150
+          },
+          {
+            "code": "ExpeditionBillWorkerIncapable",
+            "line": 152
+          },
+          {
+            "code": "ExpeditionBillWorkerNotAtDesk",
+            "line": 154
+          },
+          {
+            "code": "ExpeditionBillNotSelected",
+            "line": 162
+          },
+          {
+            "code": "ExpeditionEpisodeAlreadyClosed",
+            "line": 163
+          },
+          {
+            "code": "ExpeditionBillRepresentativeUnauthorized",
+            "line": 164
+          },
+          {
+            "code": "InvalidExpeditionBillPayload",
+            "line": 169
+          },
+          {
+            "code": "ExpeditionBillVersionUnknown",
+            "line": 172
+          },
+          {
+            "code": "ExpeditionBillServiceSlotOccupied",
+            "line": 173
+          },
+          {
+            "code": "ExpeditionBillAlreadyReconciled",
+            "line": 174
+          },
+          {
+            "code": "ExpeditionBillHistoryCapacityReached",
+            "line": 175
+          },
+          {
+            "code": "ExpeditionBillWorkNotOpen",
+            "line": 177
+          },
+          {
+            "code": "ExpeditionBillWorkNotRunning",
+            "line": 180
+          },
+          {
+            "code": "ExpeditionBillWorkNotPaused",
+            "line": 182
+          },
+          {
+            "code": "ExpeditionBillWorkIncomplete",
+            "line": 184
+          },
+          {
+            "code": "ExpeditionBillAuthorizationWindow",
+            "line": 188
+          },
+          {
+            "code": "OffCalendarActionAlreadySpent",
+            "line": 195
+          },
+          {
+            "code": "ExpeditionBillWorkerBusy",
+            "line": 197
+          }
+        ]
+      }
+    ],
+    "totalBodies": 9,
+    "totalGuardOrigins": 55,
+    "result": "All nine whole bodies and wrappers match; all 55 guard source paths, line numbers and codes agree with original67f."
+  },
+  "observations": [
+    {
+      "id": "AB01",
+      "subject": "Native call and guard order preservation",
+      "result": "The legacy methods remain wrappers over the exact shared guard body, including non-Start control paths used by existing execution/query/reconciliation. Original out-value initialization and assignment, start/control branching, cancel/pause early returns, and source helper short-circuit order remain. Only the two Start kinds are newly registered for native read assessment. No broad payload-shape or new prerequisite was introduced."
+    },
+    {
+      "id": "AB02",
+      "subject": "Appraisal source/appointment/work semantics",
+      "result": "Selected schema/profile, actor/payload/desk, open/completed/history checks still precede terms, subject basis, whole-unit availability, current worker and off-calendar/labor checks. Subject preserves extracted intact unit, actual extraction history, original title/custody/access/location and source numeric facts. SameAppraisalBasis compares current immutable fields; no report is installed. AppraisalBookingEnd still takes min(now+remaining, appointment end); no full-duration admission requirement was invented. Resume/finalize finishing behavior and equality-at-appointment-end distinction remain unchanged."
+    },
+    {
+      "id": "AB03",
+      "subject": "Bill source/history/window semantics",
+      "result": "Selected profile/schema, already-closed episode, actor/payload, current open job/version/report/history checks remain before authorization end, actual paid-record basis, worker, off-calendar and incompatible-labor checks. The full remaining 1800-second start interval must finish strictly before authorization expiry as originally. ExpeditionBillInputs retains exact authority, paid sale/meal/appraisal and amount/source joins. No report or current stock/payment state is recomputed by replay."
+    },
+    {
+      "id": "AB04",
+      "subject": "Local basis calculations are pure",
+      "source": [
+        "HavenAppraisalRecords.cs:14-35,59-72",
+        "ExpeditionBillRecords.cs:112-155"
+      ],
+      "result": "HavenAppraisalBasis constructor checks local IDs/quantity and calls ExactCopper, which is a finite source-factor switch followed by BigInteger/rational multiplication. It has no RNG, settlement or snapshot validation. ExpeditionBillBasis checks local causal IDs/revisions/amounts, then MatchesReceipts selects the actual paid sale and meal records and compares their fields; despite the name it does not parse or replay the command ledger. These remain internal current-source bases, not actual report completion or public entitlement."
+    },
+    {
+      "id": "AB05",
+      "subject": "Finite current helper and condition boundary",
+      "source": [
+        "SharedCraftingConsequences.cs:80-82",
+        "SharedWorldCombatPolicy.cs:293-296",
+        "WorldActivityRecord.cs:461-467",
+        "TestOnlySharedWorldPolicy.cs:289-296",
+        "SharedHavenSale.cs:217-222"
+      ],
+      "result": "StationUseBlocked selects current unresolved incident flags. ResolvedConflict selects the appropriate current opponent and Dead flag. CanContinueActivityLabor selects the existing activity action and actual just-ended worker interval. HasActiveLabor combines current overlapping worker intervals excluding care/rest occupancy and current procedure membership; no record normalization or booking occurs. AtSalePosition reads current position and traversal status. Prior procedure/current-fact/permission audits are reused for their known leaf closures. Both new routes execute under existing strict EnterRead, so capability, sight and hands use the owning materialized current condition projection without Restore/AdvanceTo fallback."
+    },
+    {
+      "id": "AB06",
+      "subject": "Exact root prefix and later-gate exclusion",
+      "source": [
+        "SharedCommandAssessmentV1.cs:29-48,73-78,133-146",
+        "TestOnlySharedWorldPolicy.cs:865-947"
+      ],
+      "result": "WorldOpening, active long rest, pending Sanctuary, Guidance and physical guards precede the shared pre-management prefix. Then active short rest, wound outer, search/hide, hostile retreat, pending recovery and care/rest actor guards retain order. Both starts dispatch before the general HavenMealServing/RouteTravelOuter/off-calendar work gates, and the new routes correctly omit those later gates. Their original family-specific off-calendar labor checks remain inside the assessor."
+    },
+    {
+      "id": "AB07",
+      "subject": "Execution remains outside reads",
+      "result": "No Resolve, BookAppraisal/BookExpeditionBill, Work.Reserve, CommitActivityLabor, clock advancement, RNG, candidate copy/validation or reconciliation was introduced into the extracted graph. Appraisal still books/appends/commits only in execution. Bill still appends its job before booking/commit in execution. InitialAssessmentV1 retains CommitFeasibility=null; later booking IDs/capacities, shared reconciliation and candidate validation are not certified by initial success."
+    }
+  ],
+  "remainingQualification": [
+    "Build18 and focused authentic appraisal/bill execution results must be retained separately; this reviewer ran no tests.",
+    "Meaningful checks should compare the exact initial guard origin and native execution result on authentic starts/denials, verify unchanged read checkpoint/counters, and retain save/restore/replay evidence according to the approved plan.",
+    "Pause/resume/cancel/finalize legacy branches were compared statically because their wrappers changed; their runtime behavior is not newly qualified here.",
+    "WORK_CAPACITY and later transaction/constructor/validation stages retain their native stage. This review neither hoists new caps into initial admission nor grants full commit feasibility.",
+    "Public DTO/result/disclosure mappings and final INT-05 GPT acceptance remain separate."
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenAppraisal.cs",
+      "sha256": "489f6261a06ef1e23f43ef4bfdecf99c7ab90d7985b2949d1f9a2fbfe98a57f2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExpeditionBill.cs",
+      "sha256": "566d48c8d3892dcbbd387b43d4426033a05e5bace9bf3adc257b1e5b400ee711"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "9521f847a3bfa8801d41d03d6987f55bdcfaa143a153c225af04b3768ac5de6a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCraftingConsequences.cs",
+      "sha256": "503378500d5263f969329cd19f06ec019d222b6611b7d66bb11634bdab13d187"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/reviews/management-extraction-source-review-02.json",
+      "sha256": "0cd6041f6175da639a3da82ec6acdcdafda78eb805c15b7e6a4d674adb6c4b3d"
+    }
+  ]
+}

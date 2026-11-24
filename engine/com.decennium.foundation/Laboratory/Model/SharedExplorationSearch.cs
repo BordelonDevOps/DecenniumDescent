@@ -57,38 +57,41 @@ namespace Decennium.Foundation.Laboratory
                 || command.RouteMappingWork != null || command.OverwatchRider != OverwatchRider.None;
 
         private string AssessExplorationSearch(Snapshot state, Command command, out WorldActivityIntervalRecord activity)
+            => ExplorationSearchConstraintV1(state, command, out activity)?.NativeCode;
+
+        private NativeCommandConstraintV1 ExplorationSearchConstraintV1(Snapshot state, Command command, out WorldActivityIntervalRecord activity)
         {
             activity = null;
             var search = state.ExplorationSearch;
-            if (search == null || state.InventoryCombat) return "OrdinarySearchUnavailable";
-            if (ConnectedObservationStageClosed(state)) return "ConnectedObservationStageClosed";
+            if (search == null || state.InventoryCombat) return new NativeCommandConstraintV1("OrdinarySearchUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 63);
+            if (ConnectedObservationStageClosed(state)) return new NativeCommandConstraintV1("ConnectedObservationStageClosed", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 64);
             var d = search.Definition;
-            if (command.Actor != d.SearcherId || !IsOffCalendarActivity(state, command.Actor)) return "OrdinarySearchActorUnavailable";
+            if (command.Actor != d.SearcherId || !IsOffCalendarActivity(state, command.Actor)) return new NativeCommandConstraintV1("OrdinarySearchActorUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 66);
             if (InvalidExplorationSearchPayload(command) || command.X < 0 || command.Y < 0
                 || command.X >= state.ObservationMapWidth || command.Y >= state.ObservationMapHeight)
-                return "InvalidOrdinarySearchRequest";
+                return new NativeCommandConstraintV1("InvalidOrdinarySearchRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 69);
             if (search.Pending != null || PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state))
-                return "OrdinarySearchDecisionPending";
-            if (!SearcherCapable(state, d.SearcherId)) return "OrdinarySearchVisualCapabilityUnavailable";
+                return new NativeCommandConstraintV1("OrdinarySearchDecisionPending", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 71);
+            if (!SearcherCapable(state, d.SearcherId)) return new NativeCommandConstraintV1("OrdinarySearchVisualCapabilityUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 72);
             if (!AtSearchPoint(state, d.SearcherId, d.Anchor) || state.WorldTraversals.Any(x => x.ActorId == d.SearcherId))
-                return "OrdinarySearchRequiresStationaryAnchor";
+                return new NativeCommandConstraintV1("OrdinarySearchRequiresStationaryAnchor", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 74);
 
             activity = ActivityInterval(state, d.SearcherId);
             if (command.Target != ExplorationSearchRecord.Marker(activity.CalendarId, activity.IntervalIndex))
-                return "WrongOrdinaryActivityInterval";
+                return new NativeCommandConstraintV1("WrongOrdinaryActivityInterval", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 78);
             var start = WorldActivityIntervalRecord.StartAt(state.WorldSchedule, activity.IntervalIndex);
             var end = WorldActivityIntervalRecord.EndAt(state.WorldSchedule, activity.IntervalIndex);
-            if (state.RuleClock != start) return "OrdinarySearchRequiresIntervalStart";
-            if (activity.Action != WorldActionCommitment.None) return "OffCalendarActionAlreadySpent";
+            if (state.RuleClock != start) return new NativeCommandConstraintV1("OrdinarySearchRequiresIntervalStart", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 81);
+            if (activity.Action != WorldActionCommitment.None) return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 82);
             if (WorldActivityValidation.HasActiveLabor(state, d.SearcherId, start, end)
                 || state.RestIntervals.Any(x => x.ActorId == d.SearcherId && x.Status == RestIntervalStatus.Active)
                 || OrdinaryInventory.Busy(state, d.SearcherId))
-                return "OrdinarySearchActorBusy";
+                return new NativeCommandConstraintV1("OrdinarySearchActorBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 86);
             if (search.Attempts.Count == ExplorationSearchRecord.MaxAttempts || state.ObservationActions.Length >= ObservationValidation.MaxAttempts)
-                return "ObservationHistoryCapacityReached";
+                return new NativeCommandConstraintV1("ObservationHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 88);
             var profile = state.ObservationProfiles.Single(x => x.ActorId == d.SearcherId);
             return WithinRange(SearchPoint(d.Anchor), SearchPoint(new ExplorationSearchCell(command.X, command.Y)), profile.SearchRangeFeet)
-                ? null : "SearchCellOutOfRange";
+                ? null : new NativeCommandConstraintV1("SearchCellOutOfRange", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 91);
         }
 
         private string BeginExplorationSearch(Snapshot state, Command command)
@@ -104,12 +107,15 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private static string AssessCancelExplorationSearch(Snapshot state, Command command)
+            => CancelExplorationSearchConstraintV1(state, command)?.NativeCode;
+
+        private static NativeCommandConstraintV1 CancelExplorationSearchConstraintV1(Snapshot state, Command command)
         {
             var search = state.ExplorationSearch;
             if (search?.Pending == null || command.Actor != search.Definition.SearcherId || command.Target != search.Pending.Id)
-                return "NoPendingOrdinarySearch";
-            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return "InvalidOrdinarySearchCancellation";
-            if (state.ManufacturingAdvance != null || PendingCalendarChoice(state)) return "OrdinarySearchDecisionPending";
+                return new NativeCommandConstraintV1("NoPendingOrdinarySearch", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 110);
+            if (command.X != 0 || command.Y != 0 || InvalidExplorationSearchPayload(command)) return new NativeCommandConstraintV1("InvalidOrdinarySearchCancellation", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 111);
+            if (state.ManufacturingAdvance != null || PendingCalendarChoice(state)) return new NativeCommandConstraintV1("OrdinarySearchDecisionPending", "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs", 112);
             return null;
         }
 

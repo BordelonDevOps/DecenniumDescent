@@ -93,9 +93,12 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string CharterLocalScopeFailure(Snapshot state)
+            => CharterLocalScopeFailureConstraintV1(state)?.NativeCode;
+
+        private NativeCommandConstraintV1 CharterLocalScopeFailureConstraintV1(Snapshot state)
         {
             var authority = charterAttemptAuthority;
-            if (!charterAttemptProfile.ControlledLocalSite) return "CharterLocalSiteScopeMissing";
+            if (!charterAttemptProfile.ControlledLocalSite) return new NativeCommandConstraintV1("CharterLocalSiteScopeMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 98);
             var cohorts = state.ExpeditionPressureCohorts.Where(x => x.Members.Contains(authority.HeroId))
                 .Select(x => x.Id).ToHashSet(StringComparer.Ordinal);
             if (charterAttemptProfile.ConflictingLocalRestriction
@@ -103,11 +106,14 @@ namespace Decennium.Foundation.Laboratory
                 || state.ExpeditionCampActivities.Any(x => cohorts.Contains(x.CohortId) && x.Active)
                 || state.RouteTravels.Any(x => x.TravelerId == authority.HeroId
                     && (x.Status == ExpeditionRouteTravelStatus.Moving || x.Status == ExpeditionRouteTravelStatus.Paused)))
-                return "CharterLocalSiteScopeContradicted";
+                return new NativeCommandConstraintV1("CharterLocalSiteScopeContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 106);
             return null;
         }
 
         private string CharterFatigueFailure(Snapshot state, out int strain, out bool debt)
+            => CharterFatigueFailureConstraintV1(state, out strain, out debt)?.NativeCode;
+
+        private NativeCommandConstraintV1 CharterFatigueFailureConstraintV1(Snapshot state, out int strain, out bool debt)
         {
             strain = default;
             debt = default;
@@ -115,37 +121,43 @@ namespace Decennium.Foundation.Laboratory
             var actor = authority.HeroId;
             if (!charterAttemptProfile.CurrentFatigueHistoryEstablished || state.WorldSchedule.Origin != authority.Epoch
                 || state.RuleClock < authority.Epoch || state.RuleClock >= authority.FatigueUntil)
-                return "CharterCurrentFatigueBasisUnavailable";
+                return new NativeCommandConstraintV1("CharterCurrentFatigueBasisUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 118);
             if (state.RestWatchOutcomes.Any(x => x.ActorId == actor) && restDebtProfile == null)
-                return "CharterCurrentFatigueBasisContradicted";
+                return new NativeCommandConstraintV1("CharterCurrentFatigueBasisContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 120);
             if (restDebtProfile != null || state.RestDebtEvents.Any(x => x.ActorId == actor)) {
                 var represented = DebtFor(state, actor);
                 if (represented.Owed && represented.Deadline <= state.RuleClock)
-                    return "CharterCurrentDebtDeadlineUnresolved";
+                    return new NativeCommandConstraintV1("CharterCurrentDebtDeadlineUnresolved", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 124);
                 debt = represented.Owed;
             } else debt = authority.OpeningRestDebt;
             strain = authority.OpeningStrain + ExpeditionStrainRules.Current(state, actor).Level;
-            return strain <= 6 ? null : "CharterCurrentFatigueBasisContradicted";
+            return strain <= 6 ? null : new NativeCommandConstraintV1("CharterCurrentFatigueBasisContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 128);
         }
 
         private string CharterObjectiveAuthorityFailure(Snapshot state)
+            => CharterObjectiveAuthorityFailureConstraintV1(state)?.NativeCode;
+
+        private NativeCommandConstraintV1 CharterObjectiveAuthorityFailureConstraintV1(Snapshot state)
         {
             var agreement = state.NextCharterAgreement;
-            if (agreement == null) return "CharterAcceptedAgreementRequired";
+            if (agreement == null) return new NativeCommandConstraintV1("CharterAcceptedAgreementRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 134);
             if (agreement.StatusAt(state.RuleClock) != NextCharterAgreementStatus.AcceptedConditional)
-                return "CharterAgreementOutOfForce";
-            if (!charterAttemptProfile.DepartureAuthorized) return "CharterDepartureMandateMissing";
+                return new NativeCommandConstraintV1("CharterAgreementOutOfForce", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 136);
+            if (!charterAttemptProfile.DepartureAuthorized) return new NativeCommandConstraintV1("CharterDepartureMandateMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 137);
             if (!charterAttemptProfile.EgressIssued || !charterAttemptAuthority.Matches(agreement.Terms))
-                return "CharterEgressAuthorityMissing";
-            return CharterLocalScopeFailure(state) ?? NextCharterAgreementAuthorityFailure();
+                return new NativeCommandConstraintV1("CharterEgressAuthorityMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 139);
+            return CharterLocalScopeFailureConstraintV1(state) ?? NextCharterAgreementAuthorityFailureConstraintV1();
         }
 
         private string CharterObjectiveReadiness(Snapshot state, bool requireStaging, out CharterAttemptReadiness readiness)
+            => CharterObjectiveReadinessConstraintV1(state, requireStaging, out readiness)?.NativeCode;
+
+        private NativeCommandConstraintV1 CharterObjectiveReadinessConstraintV1(Snapshot state, bool requireStaging, out CharterAttemptReadiness readiness)
         {
             readiness = null;
-            string failure = CharterObjectiveAuthorityFailure(state);
+            var failure= CharterObjectiveAuthorityFailureConstraintV1(state);
             if (failure != null) return failure;
-            failure = CharterFatigueFailure(state, out int strain, out bool debt);
+            failure = CharterFatigueFailureConstraintV1(state, out int strain, out bool debt);
             if (failure != null) return failure;
             var authority = charterAttemptAuthority;
             string actor = authority.HeroId;
@@ -153,15 +165,15 @@ namespace Decennium.Foundation.Laboratory
             readiness = new CharterAttemptReadiness(current, strain, debt);
             if (state.InventoryCombat || PendingCalendarChoice(state) || ManufacturingChoicePending(state)
                 || state.Encounter != null && !ResolvedConflict(state) || current.TacticalTransition)
-                return "CharterTacticalTransitionRequired";
-            if (current.CanCarry != true) return "CharterHardCarryingLimit";
-            if (!current.ScoutCapable || !CanDecideNextCharter(state, actor)) return "CharterActorIncapable";
-            if (requireStaging && !current.ScoutAtStage) return "CharterStationaryStagingRequired";
-            if (OrdinaryInventory.Busy(state, actor)) return "CharterActorBusy";
-            if (current.ApproachAccess == false) return "CharterAccessContradicted";
-            if (!current.Walkable || current.Occupied || current.PathReserved) return "CharterPassageObstructed";
-            if (!charterAttemptProfile.DirectViewEstablished || View(state, actor).BlocksSight) return "CharterDirectObservationUnavailable";
-            return current.Supplies.All(x => x.ReadyAvailable >= x.Required) ? null : "CharterReadySupportInsufficient";
+                return new NativeCommandConstraintV1("CharterTacticalTransitionRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 156);
+            if (current.CanCarry != true) return new NativeCommandConstraintV1("CharterHardCarryingLimit", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 157);
+            if (!current.ScoutCapable || !CanDecideNextCharter(state, actor)) return new NativeCommandConstraintV1("CharterActorIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 158);
+            if (requireStaging && !current.ScoutAtStage) return new NativeCommandConstraintV1("CharterStationaryStagingRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 159);
+            if (OrdinaryInventory.Busy(state, actor)) return new NativeCommandConstraintV1("CharterActorBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 160);
+            if (current.ApproachAccess == false) return new NativeCommandConstraintV1("CharterAccessContradicted", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 161);
+            if (!current.Walkable || current.Occupied || current.PathReserved) return new NativeCommandConstraintV1("CharterPassageObstructed", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 162);
+            if (!charterAttemptProfile.DirectViewEstablished || View(state, actor).BlocksSight) return new NativeCommandConstraintV1("CharterDirectObservationUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 163);
+            return current.Supplies.All(x => x.ReadyAvailable >= x.Required) ? null : new NativeCommandConstraintV1("CharterReadySupportInsufficient", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 164);
         }
 
         private string CharterEgressFailure(Snapshot state, int fromX, int fromY, int toX, int toY)
@@ -187,22 +199,26 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessCharterAttempt(Snapshot state, Command command, out CharterAttemptReadiness readiness,
             out CharterAttemptAssessment assessment)
+            => AssessCharterAttemptConstraintV1(state, command, out readiness, out assessment)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessCharterAttemptConstraintV1(Snapshot state, Command command, out CharterAttemptReadiness readiness,
+            out CharterAttemptAssessment assessment)
         {
             readiness = null;
             assessment = null;
             if (charterAttemptProfile == null || state.SchemaVersion < Snapshot.CharterAttemptSchema)
-                return "CharterAttemptNotSelected";
+                return new NativeCommandConstraintV1("CharterAttemptNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 194);
             string actor = charterAttemptAuthority.HeroId;
-            if (command.Actor != actor) return "CharterAttemptActorUnauthorized";
-            if (!NextCharterCommandPayloadValid(command)) return "InvalidCharterAttemptPayload";
+            if (command.Actor != actor) return new NativeCommandConstraintV1("CharterAttemptActorUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 196);
+            if (!NextCharterCommandPayloadValid(command)) return new NativeCommandConstraintV1("InvalidCharterAttemptPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 197);
             var attempt = state.CharterAttempt;
             if (command.Kind == CommandKind.StartCharterAttempt) {
-                if (state.NextCharterAgreement == null) return "CharterAcceptedAgreementRequired";
-                if (command.Target != state.NextCharterAgreement.Terms.CharterId) return "CharterAttemptAgreementUnknown";
-                if (attempt != null) return "CharterAttemptAlreadyAdmitted";
-                return CharterObjectiveReadiness(state, true, out readiness);
+                if (state.NextCharterAgreement == null) return new NativeCommandConstraintV1("CharterAcceptedAgreementRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 200);
+                if (command.Target != state.NextCharterAgreement.Terms.CharterId) return new NativeCommandConstraintV1("CharterAttemptAgreementUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 201);
+                if (attempt != null) return new NativeCommandConstraintV1("CharterAttemptAlreadyAdmitted", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 202);
+                return CharterObjectiveReadinessConstraintV1(state, true, out readiness);
             }
-            if (attempt == null || command.Target != attempt.Id) return "CharterAttemptUnknown";
+            if (attempt == null || command.Target != attempt.Id) return new NativeCommandConstraintV1("CharterAttemptUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 205);
             if (command.Kind == CommandKind.InspectCharterAttempt) {
                 var position = WorldPositionResolver.Position(state, actor);
                 var edge = state.WorldTraversals.SingleOrDefault(x => x.ActorId == actor);
@@ -219,14 +235,14 @@ namespace Decennium.Foundation.Laboratory
                 assessment = new CharterAttemptAssessment(attempt, state.RuleClock, state.Revision, position.X, position.Y, edge, objective, egress);
                 return null;
             }
-            if (!attempt.ObjectiveOpen) return "CharterObjectiveEnded";
+            if (!attempt.ObjectiveOpen) return new NativeCommandConstraintV1("CharterObjectiveEnded", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 222);
             if (command.Kind == CommandKind.AbortCharterAttempt)
-                return CanDecideNextCharter(state, actor) ? null : "CharterActorIncapable";
-            if (attempt.Observed != null) return "CharterApproachAlreadyObserved";
+                return CanDecideNextCharter(state, actor) ? null : new NativeCommandConstraintV1("CharterActorIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 224);
+            if (attempt.Observed != null) return new NativeCommandConstraintV1("CharterApproachAlreadyObserved", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 225);
             if (attempt.OutboundArrived == null || attempt.ReturnStarted != null
                 || !AtSalePosition(state, actor, attempt.Authority.ApproachX, attempt.Authority.ApproachY))
-                return "CharterObservationRequiresStationaryArrival";
-            return CharterObjectiveReadiness(state, false, out readiness);
+                return new NativeCommandConstraintV1("CharterObservationRequiresStationaryArrival", "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs", 228);
+            return CharterObjectiveReadinessConstraintV1(state, false, out readiness);
         }
 
         private static CharterAttemptEvent AttemptEvent(Snapshot state, Command cause, CharterAttemptEventKind kind, string reason)

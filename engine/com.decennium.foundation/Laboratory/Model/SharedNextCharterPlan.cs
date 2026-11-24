@@ -94,27 +94,32 @@ namespace Decennium.Foundation.Laboratory
 
         private string NextCharterPlanBasisFailure(Snapshot state, NextCharterPlanRecord previous, out long passageRevision,
             PlanningPassage? verified = null)
+            => NextCharterPlanBasisFailureConstraintV1(state, previous, out passageRevision, verified)?.NativeCode;
+
+        private NativeCommandConstraintV1 NextCharterPlanBasisFailureConstraintV1(Snapshot state, NextCharterPlanRecord previous, out long passageRevision,
+            PlanningPassage? verified = null)
         {
             passageRevision = 0;
             var terms = nextCharterPlanProfile.Terms;
-            if (!nextCharterPlanProfile.MandateAuthorized) return "NextCharterPlanningMandateMissing";
-            if (!nextCharterPlanProfile.EvidenceAccessible) return "NextCharterPlanningEvidenceUnavailable";
-            if (!terms.DistinctWaterSources) return "NextCharterPlanningWaterSourcesNotDistinct";
+            if (!nextCharterPlanProfile.MandateAuthorized) return new NativeCommandConstraintV1("NextCharterPlanningMandateMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 100);
+            if (!nextCharterPlanProfile.EvidenceAccessible) return new NativeCommandConstraintV1("NextCharterPlanningEvidenceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 101);
+            if (!terms.DistinctWaterSources) return new NativeCommandConstraintV1("NextCharterPlanningWaterSourcesNotDistinct", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 102);
             var close = state.ExpeditionEpisodeClose;
             if (close == null || close.EpisodeId != terms.EpisodeId || close.CharterVersionId != terms.CharterVersionId)
-                return "NextCharterPlanningCloseRequired";
-            if (!close.Members.Any(x => x.ActorId == terms.PassageWitnessId)) return "NextCharterPlanningPassageEvidenceMissing";
+                return new NativeCommandConstraintV1("NextCharterPlanningCloseRequired", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 105);
+            if (!close.Members.Any(x => x.ActorId == terms.PassageWitnessId)) return new NativeCommandConstraintV1("NextCharterPlanningPassageEvidenceMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 106);
             if (previous != null && (previous.Terms.BindingKey != terms.BindingKey || previous.PriorCloseRevision != close.CloseRevision))
-                return "NextCharterPlanningBasisChanged";
+                return new NativeCommandConstraintV1("NextCharterPlanningBasisChanged", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 108);
             passageRevision = previous?.PassageRevision
                 ?? (verified.HasValue && verified.Value.Covers(state, terms, close.SourceRevision)
                     ? verified.Value.StartThrough(close.SourceRevision)
                     : FindPlanningPassage(state, terms, close.SourceRevision));
-            return passageRevision == 0 ? "NextCharterPlanningPassageEvidenceMissing" : null;
+            return passageRevision == 0 ? new NativeCommandConstraintV1("NextCharterPlanningPassageEvidenceMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 113) : null;
         }
 
         private long FindPlanningPassage(Snapshot state, NextCharterPlanTerms terms, long throughRevision)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.HistoryReplay);
             // Verify a completed prior crossing from the traversal itself, since the close may occur elsewhere.
             var replay = Initial();
             foreach (var receipt in state.Receipts.Where(x => x.Revision <= throughRevision).OrderBy(x => x.Revision)) {
@@ -140,18 +145,21 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string NextCharterPlannerFailure(Snapshot state)
+            => NextCharterPlannerFailureConstraintV1(state)?.NativeCode;
+
+        private NativeCommandConstraintV1 NextCharterPlannerFailureConstraintV1(Snapshot state)
         {
             var terms = nextCharterPlanProfile.Terms;
             var desk = state.Structures.SingleOrDefault(x => x.Id == terms.DeskId);
             if (!nextCharterPlanProfile.DeskPermitted || !nextCharterPlanProfile.WritingFacilitiesAvailable || desk == null
                 || desk.ProfileId != AppraisalDeskStructure || desk.LocationId != AppraisalGround || desk.Broken)
-                return "NextCharterPlanningDeskUnavailable";
-            if (CraftingRestrictions.StationUseBlocked(state, desk.Id)) return "NextCharterPlanningDeskUseBlocked";
+                return new NativeCommandConstraintV1("NextCharterPlanningDeskUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 148);
+            if (CraftingRestrictions.StationUseBlocked(state, desk.Id)) return new NativeCommandConstraintV1("NextCharterPlanningDeskUseBlocked", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 149);
             if (state.InventoryCombat || state.Encounter != null && !ResolvedConflict(state) || PendingCalendarChoice(state))
-                return "NextCharterPlanningCombatUnavailable";
+                return new NativeCommandConstraintV1("NextCharterPlanningCombatUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 151);
             if (!CapableWorker(state, terms.PlannerId) || View(state, terms.PlannerId).BlocksSight || AvailableHands(state, terms.PlannerId) < 1)
-                return "NextCharterPlanningWorkerIncapable";
-            return AtSalePosition(state, terms.PlannerId, terms.StageX, terms.StageY) ? null : "NextCharterPlanningWorkerNotAtDesk";
+                return new NativeCommandConstraintV1("NextCharterPlanningWorkerIncapable", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 153);
+            return AtSalePosition(state, terms.PlannerId, terms.StageX, terms.StageY) ? null : new NativeCommandConstraintV1("NextCharterPlanningWorkerNotAtDesk", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 154);
         }
 
         private static bool NextCharterCommandPayloadValid(Command command)
@@ -162,17 +170,21 @@ namespace Decennium.Foundation.Laboratory
 
         private string AssessNextCharterPlanCommand(Snapshot state, Command command, out NextCharterPlanRecord job, out long passageRevision,
             out NextCharterPlanObservation observation, PlanningPassage? verified = null)
+            => AssessNextCharterPlanCommandConstraintV1(state, command, out job, out passageRevision, out observation, verified)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessNextCharterPlanCommandConstraintV1(Snapshot state, Command command, out NextCharterPlanRecord job, out long passageRevision,
+            out NextCharterPlanObservation observation, PlanningPassage? verified = null)
         {
             job = null;
             passageRevision = 0;
             observation = null;
-            if (nextCharterPlanProfile == null || state.SchemaVersion < Snapshot.NextCharterPlanSchema) return "NextCharterPlanningNotSelected";
-            if (command.Actor != TestOnlyNextCharterPlanProfile.PlannerId) return "NextCharterPlanningWorkerUnauthorized";
-            if (!NextCharterCommandPayloadValid(command)) return "InvalidNextCharterPlanningPayload";
+            if (nextCharterPlanProfile == null || state.SchemaVersion < Snapshot.NextCharterPlanSchema) return new NativeCommandConstraintV1("NextCharterPlanningNotSelected", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 169);
+            if (command.Actor != TestOnlyNextCharterPlanProfile.PlannerId) return new NativeCommandConstraintV1("NextCharterPlanningWorkerUnauthorized", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 170);
+            if (!NextCharterCommandPayloadValid(command)) return new NativeCommandConstraintV1("InvalidNextCharterPlanningPayload", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 171);
             if (command.Kind == CommandKind.InspectNextCharterPlan) {
                 job = state.NextCharterPlans.SingleOrDefault(x => x.Id == command.Target && x.Report != null);
-                if (job == null) return "NextCharterPlanningReportMissing";
-                string invalid = NextCharterPlanBasisFailure(state, job, out passageRevision);
+                if (job == null) return new NativeCommandConstraintV1("NextCharterPlanningReportMissing", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 174);
+                var invalid = NextCharterPlanBasisFailureConstraintV1(state, job, out passageRevision);
                 if (invalid == null) observation = ObserveNextCharterPlan(state, state.Revision);
                 return invalid;
             }
@@ -180,34 +192,34 @@ namespace Decennium.Foundation.Laboratory
             var terms = nextCharterPlanProfile.Terms;
             job = OpenNextCharterPlan(state);
             if (command.Kind == CommandKind.StartNextCharterPlan) {
-                if (command.Target != terms.VersionId) return "NextCharterPlanningDefinitionUnknown";
-                if (job != null) return "NextCharterPlanningSlotOccupied";
-                if (state.NextCharterPlans.Any(x => x.Report != null)) return "NextCharterPlanningAlreadyCompleted";
-                if (state.NextCharterPlans.Length >= NextCharterPlanValidation.MaxAttempts) return "NextCharterPlanningHistoryCapacityReached";
+                if (command.Target != terms.VersionId) return new NativeCommandConstraintV1("NextCharterPlanningDefinitionUnknown", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 183);
+                if (job != null) return new NativeCommandConstraintV1("NextCharterPlanningSlotOccupied", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 184);
+                if (state.NextCharterPlans.Any(x => x.Report != null)) return new NativeCommandConstraintV1("NextCharterPlanningAlreadyCompleted", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 185);
+                if (state.NextCharterPlans.Length >= NextCharterPlanValidation.MaxAttempts) return new NativeCommandConstraintV1("NextCharterPlanningHistoryCapacityReached", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 186);
             } else {
-                if (job == null || command.Target != job.Id) return "NextCharterPlanningWorkNotOpen";
+                if (job == null || command.Target != job.Id) return new NativeCommandConstraintV1("NextCharterPlanningWorkNotOpen", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 188);
                 if (command.Kind == CommandKind.CancelNextCharterPlan) return null;
                 if (command.Kind == CommandKind.PauseNextCharterPlan)
-                    return job.Status == NextCharterPlanStatus.Working ? null : "NextCharterPlanningWorkNotRunning";
+                    return job.Status == NextCharterPlanStatus.Working ? null : new NativeCommandConstraintV1("NextCharterPlanningWorkNotRunning", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 191);
                 if (command.Kind == CommandKind.ResumeNextCharterPlan && job.Status != NextCharterPlanStatus.Paused)
-                    return "NextCharterPlanningWorkNotPaused";
+                    return new NativeCommandConstraintV1("NextCharterPlanningWorkNotPaused", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 193);
                 if (command.Kind == CommandKind.FinalizeNextCharterPlan && job.Status != NextCharterPlanStatus.PendingCompletion)
-                    return "NextCharterPlanningWorkIncomplete";
+                    return new NativeCommandConstraintV1("NextCharterPlanningWorkIncomplete", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 195);
             }
 
-            string failure = NextCharterPlanBasisFailure(state, job, out passageRevision, verified);
+            var failure = NextCharterPlanBasisFailureConstraintV1(state, job, out passageRevision, verified);
             if (failure != null) return failure;
             var end = CampGreens.Add(state.RuleClock, job?.Work.Remaining ?? new RuleTime(NextCharterPlanRecord.RequiredSeconds));
-            if (!terms.AuthorizedAt(state.RuleClock) || end >= terms.AuthorizationUntil) return "NextCharterPlanningAuthorizationWindow";
-            failure = NextCharterPlannerFailure(state);
+            if (!terms.AuthorizedAt(state.RuleClock) || end >= terms.AuthorizationUntil) return new NativeCommandConstraintV1("NextCharterPlanningAuthorizationWindow", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 201);
+            failure = NextCharterPlannerFailureConstraintV1(state);
             if (failure != null) return failure;
             if (end > state.RuleClock && IsOffCalendarActivity(state, command.Actor)) {
                 var activity = ActivityInterval(state, command.Actor);
                 if (activity.Action == WorldActionCommitment.Dash
                     || activity.Action == WorldActionCommitment.ActiveLabor && !CanContinueActivityLabor(state, command.Actor))
-                    return "OffCalendarActionAlreadySpent";
+                    return new NativeCommandConstraintV1("OffCalendarActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 208);
             }
-            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return "NextCharterPlanningWorkerBusy";
+            if (WorkerHasIncompatibleLabor(state, command.Actor, end)) return new NativeCommandConstraintV1("NextCharterPlanningWorkerBusy", "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs", 210);
             observation = ObserveNextCharterPlan(state, state.Revision);
             return null;
         }

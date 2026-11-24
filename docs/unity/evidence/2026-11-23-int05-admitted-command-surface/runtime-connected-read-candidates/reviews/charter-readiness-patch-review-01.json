@@ -1,0 +1,1077 @@
+{
+  "schemaVersion": 1,
+  "report": "INT-05 charter readiness patch independent static review 01",
+  "reviewer": "/root/audit_management",
+  "createdUtc": "2026-11-24T13:27:22.333886+00:00",
+  "reviewedHead": "b95565939615523bcf91870d1193b21beea52e12",
+  "acceptedBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "status": "NO_BLOCKERS_FOUND_IN_BOUNDED_STATIC_REVIEW",
+  "findings": [],
+  "scope": {
+    "admittedAssessmentKinds": [
+      "AcceptNextCharter",
+      "StartCharterAttempt",
+      "ObserveCharterApproach"
+    ],
+    "principalFiles": [
+      "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs"
+    ],
+    "includes": "Exact typed guard extraction/source origins; native common-prefix position; legacy string wrappers including Inspect/Withdraw/Abort branches; current readiness helper purity and first execution-only consequences.",
+    "excludes": "Appraisal/billing leaf review, tests/build/gameplay/replay execution, complete INT-05 coverage/acceptance, successor work and Unity. Existing root changes for other kinds are pinned context, not newly accepted by this report.",
+    "writes": [
+      "engine/artifacts/admitted-command-surface/reviews/charter-readiness-patch-review-01.json"
+    ]
+  },
+  "contractStatus": "Previously accepted HC source/API remains accepted. Runtime INT-05 module acceptance is OPEN. This report is not actual GPT review or acceptance.",
+  "comparisonEvidence": {
+    "normalization": "Compare complete method bodies including nonadmitted branches after replacing only typed NativeCommandConstraintV1 literal wrappers, paired typed helper names, var/string failure locals and physicalFailure?.NativeCode at the legacy string assessment field. Whitespace ignored. Manual routing/purity review remains separate.",
+    "results": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "nativeMethod": "NextCharterAgreementAuthorityFailure",
+        "typedMethod": "NextCharterAgreementAuthorityFailureConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "nativeMethod": "NextCharterAgreementPhysicalFailure",
+        "typedMethod": "NextCharterAgreementPhysicalFailureConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "nativeMethod": "AssessNextCharterAgreementCommand",
+        "typedMethod": "AssessNextCharterAgreementCommandConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "nativeMethod": "CharterLocalScopeFailure",
+        "typedMethod": "CharterLocalScopeFailureConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "nativeMethod": "CharterFatigueFailure",
+        "typedMethod": "CharterFatigueFailureConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "nativeMethod": "CharterObjectiveAuthorityFailure",
+        "typedMethod": "CharterObjectiveAuthorityFailureConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "nativeMethod": "CharterObjectiveReadiness",
+        "typedMethod": "CharterObjectiveReadinessConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "nativeMethod": "AssessCharterAttempt",
+        "typedMethod": "AssessCharterAttemptConstraintV1",
+        "completeBodyMatchesAfterTypedWrapping": true
+      }
+    ],
+    "originChecks": [
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 101,
+        "nativeCode": "CharterLocalSiteScopeMissing",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 98,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 109,
+        "nativeCode": "CharterLocalSiteScopeContradicted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 106,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 124,
+        "nativeCode": "CharterCurrentFatigueBasisUnavailable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 118,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 126,
+        "nativeCode": "CharterCurrentFatigueBasisContradicted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 120,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 130,
+        "nativeCode": "CharterCurrentDebtDeadlineUnresolved",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 124,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 134,
+        "nativeCode": "CharterCurrentFatigueBasisContradicted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 128,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 143,
+        "nativeCode": "CharterAcceptedAgreementRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 134,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 145,
+        "nativeCode": "CharterAgreementOutOfForce",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 136,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 146,
+        "nativeCode": "CharterDepartureMandateMissing",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 137,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 148,
+        "nativeCode": "CharterEgressAuthorityMissing",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 139,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 168,
+        "nativeCode": "CharterTacticalTransitionRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 156,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 169,
+        "nativeCode": "CharterHardCarryingLimit",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 157,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 170,
+        "nativeCode": "CharterActorIncapable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 158,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 171,
+        "nativeCode": "CharterStationaryStagingRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 159,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 172,
+        "nativeCode": "CharterActorBusy",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 160,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 173,
+        "nativeCode": "CharterAccessContradicted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 161,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 174,
+        "nativeCode": "CharterPassageObstructed",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 162,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 175,
+        "nativeCode": "CharterDirectObservationUnavailable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 163,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 176,
+        "nativeCode": "CharterReadySupportInsufficient",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 164,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 210,
+        "nativeCode": "CharterAttemptNotSelected",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 194,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 212,
+        "nativeCode": "CharterAttemptActorUnauthorized",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 196,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 213,
+        "nativeCode": "InvalidCharterAttemptPayload",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 197,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 216,
+        "nativeCode": "CharterAcceptedAgreementRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 200,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 217,
+        "nativeCode": "CharterAttemptAgreementUnknown",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 201,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 218,
+        "nativeCode": "CharterAttemptAlreadyAdmitted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 202,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 221,
+        "nativeCode": "CharterAttemptUnknown",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 205,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 238,
+        "nativeCode": "CharterObjectiveEnded",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 222,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 240,
+        "nativeCode": "CharterActorIncapable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 224,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 241,
+        "nativeCode": "CharterApproachAlreadyObserved",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 225,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "typedLine": 244,
+        "nativeCode": "CharterObservationRequiresStationaryArrival",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+        "acceptedLine": 228,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 109,
+        "nativeCode": "NextCharterAssentMandateMissing",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 106,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 110,
+        "nativeCode": "NextCharterAssentRecordsUnavailable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 107,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 112,
+        "nativeCode": "NextCharterAssentResourceUseUnauthorized",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 109,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 114,
+        "nativeCode": "NextCharterAssentPermissionMissing",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 111,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 120,
+        "nativeCode": "NextCharterAssentPermissionIssuerUnestablished",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 117,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 121,
+        "nativeCode": "NextCharterAssentPermissionScopeOrValidity",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 118,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 122,
+        "nativeCode": "NextCharterAssentApplicableRestriction",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 119,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 140,
+        "nativeCode": "NextCharterAssentStableBoundaryRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 134,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 141,
+        "nativeCode": "NextCharterAssentCarryingCapacity",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 135,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 142,
+        "nativeCode": "NextCharterAssentActorIncapable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 136,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 143,
+        "nativeCode": "NextCharterAssentStationaryStagingRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 137,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 144,
+        "nativeCode": "NextCharterAssentWorkerBusy",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 138,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 145,
+        "nativeCode": "NextCharterAssentPermissionContradicted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 139,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 147,
+        "nativeCode": "NextCharterAssentPassageUnavailable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 141,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 148,
+        "nativeCode": "NextCharterAssentReadyReservesInsufficient",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 142,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 162,
+        "nativeCode": "NextCharterAssentNotSelected",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 152,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 163,
+        "nativeCode": "NextCharterAssentActorUnauthorized",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 153,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 164,
+        "nativeCode": "InvalidNextCharterAssentPayload",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 154,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 167,
+        "nativeCode": "NextCharterAgreementUnknown",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 157,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 168,
+        "nativeCode": "NextCharterAssentRecordsUnavailable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 158,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 170,
+        "nativeCode": "NextCharterAlreadyWithdrawn",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 160,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 171,
+        "nativeCode": "NextCharterAgreementExpired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 161,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 172,
+        "nativeCode": "NextCharterAssentStableBoundaryRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 162,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 173,
+        "nativeCode": "NextCharterAssentActorIncapable",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 163,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 181,
+        "nativeCode": "NextCharterOfferUnknown",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 171,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 182,
+        "nativeCode": "NextCharterOfferAlreadyAccepted",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 172,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 185,
+        "nativeCode": "NextCharterAssentOfferOutsideWindow",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 175,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 188,
+        "nativeCode": "NextCharterAssentPriorCloseRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 178,
+        "originMatches": true
+      },
+      {
+        "typedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "typedLine": 191,
+        "nativeCode": "NextCharterAssentCompletedPlanRequired",
+        "acceptedPath": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+        "acceptedLine": 181,
+        "originMatches": true
+      }
+    ]
+  },
+  "rootRouting": {
+    "acceptedRoot": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+    "commonPrefix": [
+      {
+        "lines": [
+          866,
+          875
+        ],
+        "handling": "WorldOpeningConstraintV1 actor first; EncounterDash dispatch disjoint; SealTear guard retains source predicate but these three kinds are absent from StartsOrResumesActivityWork."
+      },
+      {
+        "lines": [
+          876,
+          890
+        ],
+        "handling": "LongRest dispatch disjoint; ActiveLongRestInterruption, pending Sanctuary incompatible-kind failure, GuidanceChoice, then PhysicalConstraint. Non-null Guidance retains native unsupported-consumer failure. Physical-specific kinds are disjoint."
+      },
+      {
+        "lines": [
+          891,
+          902
+        ],
+        "handling": "Casting/utility/repertoire/ClassRecovery/Consecrate/Invocation/Rite/Presence/ShortRest dispatches disjoint."
+      },
+      {
+        "lines": [
+          903,
+          912
+        ],
+        "handling": "ActiveShortRestInterruption then WoundTreatmentOuter: sealed station target before active healer/patient. ConsumeDecay and wound-own-command dispatches disjoint."
+      },
+      {
+        "lines": [
+          913,
+          924
+        ],
+        "handling": "SearchActivity then HideActivity retained; early exploration/cancel and Retreat instruction dispatches disjoint; RetreatHostileAttack returns null for these nonattack kinds."
+      },
+      {
+        "lines": [
+          925,
+          930
+        ],
+        "handling": "Harvest exposure/tactical transition and camp-use dispatches disjoint."
+      },
+      {
+        "lines": [
+          931,
+          945
+        ],
+        "handling": "PendingRecoveryChoice, HavenCareActor, MoraleRestingActor, RestingActor in exact order; rest/recovery/care own commands and transition-only gates disjoint."
+      },
+      {
+        "lines": [
+          946,
+          950
+        ],
+        "handling": "Appraisal, expedition close, reinforcement instruction, stabilization and reinforcement control disjoint. Reinforcement control requires SuspendWorldStep/ResumeWorldStep, not merely companion actor."
+      }
+    ],
+    "dispatches": [
+      {
+        "kinds": [
+          "StartCharterAttempt",
+          "ObserveCharterApproach"
+        ],
+        "acceptedLine": 951,
+        "currentRootCall": "BeforeStabilizationBranchConstraintV1 ?? AssessCharterAttemptConstraintV1"
+      },
+      {
+        "kinds": [
+          "AcceptNextCharter"
+        ],
+        "acceptedLine": 952,
+        "currentRootCall": "BeforeStabilizationBranchConstraintV1 ?? AssessNextCharterAgreementCommandConstraintV1"
+      }
+    ],
+    "noHoisting": "These native branches return before plan, bill, sale, meal and route guards at953 onward. The new assessment correctly does not add HavenMealServingConstraintV1 or RouteTravelOuterConstraintV1. Existing current-readiness helpers still enforce their own native physical/path facts.",
+    "supportBoundary": "Only AcceptNextCharter, StartCharterAttempt and ObserveCharterApproach are newly supported here; InspectNextCharterAgreement, WithdrawNextCharter, InspectCharterAttempt and AbortCharterAttempt are not newly admitted by SupportsAssessment.",
+    "commitFeasibility": null
+  },
+  "guardOrders": {
+    "AcceptNextCharter": [
+      "Selected profile/schema",
+      "Exact participant actor",
+      "Existing NextCharterCommandPayloadValid predicate",
+      "Exact offer target",
+      "Agreement absent",
+      "Assent mandate, records, resource use/owner, permission presence/issuer/scope/restriction in native authority order",
+      "Offer time window",
+      "Prior episode close and charter version",
+      "Completed plan/report with exact terms binding/prior close revision",
+      "ObserveNextCharterPlan(state,state.Revision)",
+      "Physical order: stable boundary, hard carrying, capability, stationary staging, busy, explicit access contradiction, passage/tactical flags, ready supplies",
+      "Construct current assessment retaining physical failure native string; return that physical constraint"
+    ],
+    "StartCharterAttempt": [
+      "Selected profile/schema",
+      "Exact hero",
+      "Existing payload predicate",
+      "Accepted agreement exists",
+      "Exact charter target",
+      "No attempt already admitted",
+      "Objective authority: accepted agreement/in-force/departure mandate/egress terms, then local scope and agreement authority",
+      "Current fatigue basis, rest-history/debt deadline, opening strain plus current strain and bound",
+      "ObserveNextCharterPlan at current revision; construct current readiness value",
+      "Tactical transition, carrying, capability, required staging, busy, access contradiction, walkable/occupied/reserved passage, direct view, ready supplies"
+    ],
+    "ObserveCharterApproach": [
+      "Selected profile/schema, actor, payload",
+      "Existing attempt/exact target",
+      "Inspect branch skipped for this admitted kind",
+      "ObjectiveOpen",
+      "Abort branch skipped",
+      "No prior observation",
+      "Outbound arrival exists, no return begun, exact stationary approach position",
+      "Same objective authority/fatigue/current-readiness chain with requireStaging=false"
+    ]
+  },
+  "legacyWrappers": {
+    "allEight": "Each old string-returning method delegates to its paired typed helper and returns ?.NativeCode; whole-body comparisons retain previous failure order, locals and out values.",
+    "InspectNextCharterAgreement": "After profile/actor/payload and agreement target/records guards, computes a current observation and constructs NextCharterAgreementAssessment with the first authority-or-physical blocker string, then returns null. A blocker remains report data, not a command rejection. Resolve still returns NextCharterAgreementReadOnly after assessment.",
+    "WithdrawNextCharter": "Still checks withdrawal absent, offer window, pending choices, then current decision capability; no new start/physical/current supply prerequisites.",
+    "InspectCharterAttempt": "After common preflight and exact attempt target, computes current exact position/traversal, objective blocker and conditional egress blocker; constructs CharterAttemptAssessment then returns null. It remains before ObjectiveOpen/Abort/observed/arrival guards. Existing string wrappers ensure blocker fields remain strings. Resolve default still returns CharterAttemptReadOnly.",
+    "AbortCharterAttempt": "Still requires ObjectiveOpen and CanDecideNextCharter; does not gain fresh staging/supply/direct-view prerequisites.",
+    "compatibility": "No legacy query or execution call is redirected to a new unsupported guessed result; no new permission or payload rejection added."
+  },
+  "pureReadClosure": [
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "lines": [
+        317,
+        383
+      ],
+      "helper": "ObserveNextCharterPlan / ObserveNextCharterSupply",
+      "finding": "Current clock/revision only; reads current walkability, occupancy, native path reservations and encounter-contact geometry, current capability, carried burden, pressure/strain/rest debt and exact selected supply families. Constructs immutable current observation values. No Start/Finalize/ReconcileNextCharterPlan, PlanningPassage replay, reservation or future report/event construction."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "lines": [
+        144,
+        164
+      ],
+      "helper": "WorldStepWouldStartEncounter / RoutePathReserved",
+      "finding": "Pure current geometry/actor/life/ally checks and retained Moving-route progress/path selection. Evaluates prospective path constraints without entering an encounter, advancing travel or reserving a path."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "lines": [
+        217,
+        222
+      ],
+      "helper": "AtSalePosition",
+      "finding": "Reads exact WorldPositionResolver point and requires no current ordinary traversal/Moving route. No position mutation or detachment."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "lines": [
+        152,
+        158
+      ],
+      "helper": "DebtFor",
+      "finding": "Reads last retained event ordered by At/revision/sequence/ordinal Id; creates local projection only. It neither settles overdue debt nor appends events. CharterFatigueFailure retains explicit unresolved deadline rejection."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "lines": [
+        174,
+        178
+      ],
+      "helper": "ExpeditionStrainRules.Current",
+      "finding": "Preserves native current projection cutoff checked(state.Revision+1), which reads retained gains/removals. No new event construction or forward time advancement; does not invent settled future fatigue."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs",
+      "lines": [
+        266,
+        330
+      ],
+      "helper": "ExpeditionPressureRules.Current/At/AfterCheckpoint",
+      "finding": "Read-only calculation from retained current cutoff/checkpoints/changes. Does not run a receipt replay, replace checkpoints or append pressure events."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "lines": [
+        91,
+        153
+      ],
+      "helper": "CarriedBurden / IsCarriedBy",
+      "finding": "Bounded current container/custody, equipment/lot/vessel/ammunition reads and local BurdenItem calculations; existing unknown mass/load and approved conversion behavior retained. No inventory movement or reservation."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "lines": [
+        83,
+        93
+      ],
+      "helper": "InventoryValidation.FamilyAt",
+      "finding": "Despite class name, this helper only walks current lot lineage with CreatedAt cutoff using local set/queue; it does not call snapshot validation or reconstruct an old inventory."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "lines": [
+        132,
+        137
+      ],
+      "helper": "AvailableAmount",
+      "finding": "Reads lot amount minus currently Reserved reservations. No Reserve/Release/Consume call."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "lines": [
+        11,
+        40
+      ],
+      "helper": "Capacity / Contents / SourceVessel / OpeningsAvailable / ReadyForIntake / Accessible",
+      "finding": "Current vessel profile/contents/opening work/custody/access selectors, with native container/cache access helpers; no fill start/completion or liquid movement."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "lines": [
+        125,
+        129
+      ],
+      "helper": "CanDecideNextCharter",
+      "finding": "Current actor life, current condition view and current strain incapacity; no fresh history replay or lifecycle update."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "lines": [
+        18,
+        20
+      ],
+      "helper": "Busy",
+      "finding": "WorkerIntervals plus identity-only WorldActivityProjection.CurrentWork. Existing no-discovery/no-reservation helper closure retained."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "lines": [
+        105,
+        118
+      ],
+      "helper": "EnterRead / strict Project branch159-164",
+      "finding": "Owning bound precomputed current projection is mandatory for condition-dependent capability/sight/speed/permission reads. Strict branch precedes Restore/At lifecycle fallback. No read-time condition reconstruction added."
+    },
+    {
+      "source": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "lines": [
+        286,
+        296
+      ],
+      "helper": "PendingCalendarChoice / ResolvedConflict",
+      "finding": "Retained pending selectors and currently selected opponent life only. CurrentPressOffer remains pure; no AdvanceTacticalFlow, reconciliation or normalization invoked."
+    }
+  ],
+  "valueConstructors": {
+    "CharterAttemptReadiness": "Core CharterAttemptRecords107-114 validates current physical projection and strain bounds then stores values; not a CharterAttemptEvent.",
+    "NextCharterPlanObservation": "Core NextCharterPlanRecords192-216 freezes exactly three current supplies and stores current scalar facts; does not persist a report.",
+    "NextCharterAgreementAssessment": "Core NextCharterAgreementRecords205-214 stores terms/existing agreement/current observation/current clock/revision/current failure only.",
+    "CharterAttemptAssessment": "Core CharterAttemptRecords259-269 stores existing attempt/current position/traversal/blockers only.",
+    "prohibition": "No NextCharterAgreementRecord, NextCharterWithdrawal, CharterAttemptRecord, CharterAttemptEvent or CharterApproachObservation construction is reachable from the admitted assessment paths."
+  },
+  "executionBoundary": {
+    "AcceptNextCharter": "Current SharedNextCharterAgreement209-210 constructs/assigns new agreement only after string wrapper succeeds; not called by read.",
+    "StartCharterAttempt": "Current SharedCharterAttempt285-288 creates admission event and attempt record only in ResolveCharterAttempt.",
+    "ObserveCharterApproach": "Current SharedCharterAttempt294-300 may first ContinueCharterAttempt, then creates observed approach/event and appends it; all remain execution-only.",
+    "sharedPostTail": "Outer Resolve reconciliation, candidate validation, canonical/save handling and actual consequences are not certified by this initial assessment."
+  },
+  "validationEvidenceBoundary": {
+    "reviewer": "Static comparisons, guard/call review and source hashes only. No runtime/tests/build/replay executed.",
+    "parentReported": "Parent reports candidate19 four existing native cases passed with repeated pure checks. This report does not independently execute or certify those runs; parent must bind retained logs and hashes separately.",
+    "remaining": "Complete parent qualification and actual GPT module review remain required; this report is not full module acceptance."
+  },
+  "sourcePins": [
+    {
+      "path": "docs/unity/DEVELOPMENT_BRIEF.md",
+      "workingTreeSha256": "96ebb101fe2e6b3fbba6d727417f8dbbdf7ae494f3ea6eee9c68881f7c9b86a7",
+      "bytes": 40248,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md",
+      "workingTreeSha256": "bd59317e298a81a877bf84f86d331088e85ff389bffbff9633c2d1d077fc7110",
+      "bytes": 277787,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/HC_ACCEPTANCE.md",
+      "workingTreeSha256": "6532df17b705439f3bf8386e2b85bd83089af471130fe2126a84b712bb638a7c",
+      "bytes": 2408,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125",
+      "bytes": 99100,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OUTER_ADMISSION_EXTRACTION_PLAN.json",
+      "workingTreeSha256": "dc78017d9a4405a3302d0837cc839872811180624287799270dc78851a85cacd",
+      "bytes": 16775,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/AGENTS.md",
+      "workingTreeSha256": "a88e4dd8c3ed10bc03399d59dc992d4f96e0705d6afa17a530d2fe1e90fa4557",
+      "bytes": 9800,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "workingTreeSha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13",
+      "bytes": 12337,
+      "acceptedBaselineGitBlobSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "workingTreeSha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b",
+      "bytes": 11431,
+      "acceptedBaselineGitBlobSha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "workingTreeSha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd",
+      "bytes": 3554,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "workingTreeSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240,
+      "acceptedBaselineGitBlobSha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "workingTreeSha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051,
+      "acceptedBaselineGitBlobSha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+      "workingTreeSha256": "60e73acaf39c534985188de9a5d06b198ee1f2a704ea1252813a48a23bbb6a3b",
+      "bytes": 31736,
+      "acceptedBaselineGitBlobSha256": "d93363d85d4f337ab6ab9417edb15d11ca225a97a7388df9269eeeff484ec2c2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "workingTreeSha256": "9521f847a3bfa8801d41d03d6987f55bdcfaa143a153c225af04b3768ac5de6a",
+      "bytes": 17689,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "workingTreeSha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+      "bytes": 32835,
+      "acceptedBaselineGitBlobSha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "workingTreeSha256": "918e83377e0a9f9a16f67ed9c0e3cde8f6e6939e58b5180ec6bbf071976f5e68",
+      "bytes": 20676,
+      "acceptedBaselineGitBlobSha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "workingTreeSha256": "2b280ea52cbefae2dd7436467fbdd628ee0fb96a3b4586306357373305406ac8",
+      "bytes": 15393,
+      "acceptedBaselineGitBlobSha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs",
+      "workingTreeSha256": "58089f34b4ef6dc63fb8ff51d01e2928580412d71e3848f850bc75c9f9dacc16",
+      "bytes": 2528,
+      "acceptedBaselineGitBlobSha256": "aede3d50b2c5c45b5b54d6943d0032a65c1e12a4855a3e2b19d2a4ea5985448a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenCare.cs",
+      "workingTreeSha256": "795b35d8327b2b09e930edb4d7a73cbe478122a0d89ebb7a3f4aaad6bc0ccf9e",
+      "bytes": 31085,
+      "acceptedBaselineGitBlobSha256": "462e0a374fed5f658f1da9590269c8f99cc73fe708a4547c30ad2cf8a9ded242"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "workingTreeSha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336,
+      "acceptedBaselineGitBlobSha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "workingTreeSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202,
+      "acceptedBaselineGitBlobSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedMoraleRest.cs",
+      "workingTreeSha256": "330b9d2f80b7cff5a8a9272eec29386846d19318a28fb3dad54968295a67f589",
+      "bytes": 49148,
+      "acceptedBaselineGitBlobSha256": "7abae37780357e9794691048860710bbce31d99b0443a58c5bbb6877af091e66"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+      "workingTreeSha256": "111403686d479e4911ec729f08f4e5065313f762a9b2e4cea25e949695a3e7ef",
+      "bytes": 17924,
+      "acceptedBaselineGitBlobSha256": "e77e9a98b6a083315be98877901976a4b40f7342fac62a75024f74054f47508e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterPlan.cs",
+      "workingTreeSha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500",
+      "bytes": 26565,
+      "acceptedBaselineGitBlobSha256": "1f5f4748ccc308ef91f4f46b25b5018816a75bba1f7bd6fe22e3d7547560e500"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+      "workingTreeSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+      "bytes": 21826,
+      "acceptedBaselineGitBlobSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRestDebt.cs",
+      "workingTreeSha256": "905239a0938e7023473088bd16e5aaa23f5984c11ed8ad5787959baaf4558ec5",
+      "bytes": 31149,
+      "acceptedBaselineGitBlobSha256": "c1a94b86e4fc80871f037142751f2d5ba593bc7822ac5e7f53f8d45b0d077fad"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRetreat.cs",
+      "workingTreeSha256": "4285e29bb286c16e5132324d9d9e5a0edea577d0a40300af682f245661b57721",
+      "bytes": 15536,
+      "acceptedBaselineGitBlobSha256": "ec777fff453b5b2b3118287e21677597ea990f9cf370931f79a8699125d7a3bd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "workingTreeSha256": "4c49e9ab0ac46f64376fb35b6d82064ac1d214499d82ef2450f9a51339e4bc6e",
+      "bytes": 33679,
+      "acceptedBaselineGitBlobSha256": "c492442daba43ccf99b477ddbf7d31b6aa92bc44bd1d1e7df368e3b109f740a3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "workingTreeSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "bytes": 36082,
+      "acceptedBaselineGitBlobSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "workingTreeSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "bytes": 59346,
+      "acceptedBaselineGitBlobSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "workingTreeSha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "bytes": 129062,
+      "acceptedBaselineGitBlobSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "workingTreeSha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447",
+      "bytes": 13276,
+      "acceptedBaselineGitBlobSha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharterAttemptRecords.cs",
+      "workingTreeSha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34",
+      "bytes": 18396,
+      "acceptedBaselineGitBlobSha256": "7c30560577106b3e20fbb5f9c2a177e4c4b9ff9717bd2e8a86afeb22bb782f34"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionPressureRecords.cs",
+      "workingTreeSha256": "91f3ac0fb1589f4242774ed0c7377275d66f98fa6c30441d011fb4cb1a466873",
+      "bytes": 45068,
+      "acceptedBaselineGitBlobSha256": "91f3ac0fb1589f4242774ed0c7377275d66f98fa6c30441d011fb4cb1a466873"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "workingTreeSha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "bytes": 9318,
+      "acceptedBaselineGitBlobSha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "workingTreeSha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345",
+      "bytes": 7211,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "workingTreeSha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058",
+      "bytes": 1717,
+      "acceptedBaselineGitBlobSha256": null
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterAgreementRecords.cs",
+      "workingTreeSha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817",
+      "bytes": 13973,
+      "acceptedBaselineGitBlobSha256": "74d5e27dad0cf42e6a7e41a9bd68e2b006849c90663abe80830531c3268da817"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "workingTreeSha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "bytes": 21112,
+      "acceptedBaselineGitBlobSha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "workingTreeSha256": "c3eb5a420f8f10ff9511a522ad24a5a2ac943a5e70f1491e2fb1496ad88dc51b",
+      "bytes": 13511,
+      "acceptedBaselineGitBlobSha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "workingTreeSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "bytes": 42556,
+      "acceptedBaselineGitBlobSha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+      "workingTreeSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+      "bytes": 1688,
+      "acceptedBaselineGitBlobSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16"
+    }
+  ],
+  "pinSemantics": "workingTreeSha256 hashes exact bytes of reviewed current files; acceptedBaselineGitBlobSha256 hashes git show bytes at67f3d201b. Native origin lines intentionally refer to accepted baseline."
+}

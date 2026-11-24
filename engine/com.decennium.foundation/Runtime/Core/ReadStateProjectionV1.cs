@@ -55,15 +55,21 @@ namespace Decennium.Foundation
     public sealed class NativeReadContextV1
     {
         private readonly Snapshot snapshot;
+        private readonly VerifiedSimulationOrigin verificationOrigin;
         public ReadStateStampV1 Stamp { get; }
         public IReadStateProjectionV1 Projection { get; }
 
-        internal NativeReadContextV1(ReadStateStampV1 stamp, IReadStateProjectionV1 projection, Snapshot snapshot)
+        internal NativeReadContextV1(ReadStateStampV1 stamp, IReadStateProjectionV1 projection, Snapshot snapshot,
+            VerifiedSimulationOrigin verificationOrigin)
         {
             Stamp = stamp;
             Projection = projection;
             this.snapshot = snapshot;
+            this.verificationOrigin = verificationOrigin;
         }
+
+        public bool IsBoundTo(VerifiedSimulationOrigin origin, Snapshot candidate)
+            => origin != null && ReferenceEquals(verificationOrigin, origin) && IsBoundTo(candidate);
 
         public bool IsBoundTo(Snapshot candidate)
             => ReferenceEquals(snapshot, candidate) && Stamp != null && Stamp.IsCurrent && Projection != null
@@ -122,7 +128,7 @@ namespace Decennium.Foundation
                 || !current.Stamp.Matches(readStateOwnerV1, policy, captured)) return null;
             // The stamp/projection pair was accepted once inside guarded preparation. Never
             // execute a policy-defined property getter again merely to inspect that pair.
-            return new NativeReadContextV1(current.Stamp, current.Projection, captured);
+            return new NativeReadContextV1(current.Stamp, current.Projection, captured, verificationOrigin);
         }
     }
 }

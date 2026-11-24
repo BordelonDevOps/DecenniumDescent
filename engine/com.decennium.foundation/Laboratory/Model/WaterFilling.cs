@@ -40,29 +40,35 @@ namespace Decennium.Foundation.Laboratory
                 &&(Involves(s,j,destination)||(sourceVessel!=null&&Involves(s,j,sourceVessel))));
         }
         internal static string CarryAfterTransfer(Snapshot s,string actor,string source,string destination,RuleQuantity amount)
+            => CarryAfterTransferConstraintV1(s,actor,source,destination,amount)?.NativeCode;
+
+        internal static NativeCommandConstraintV1 CarryAfterTransferConstraintV1(Snapshot s,string actor,string source,string destination,RuleQuantity amount)
         {
             var burden=TestOnlyInventoryPolicy.CarriedBurden(s,actor);
-            if(!burden.Pounds.HasValue||!burden.Load.HasValue)return "CarryingCapacityNotEstablished";
+            if(!burden.Pounds.HasValue||!burden.Load.HasValue)return new NativeCommandConstraintV1("CarryingCapacityNotEstablished", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 45);
             var pounds=burden.Pounds.Value;
             var sourceVessel=s.Vessels.SingleOrDefault(v=>v.Id==SourceVessel(s,source));var dest=s.Vessels.Single(v=>v.Id==destination);
             if(sourceVessel!=null&&sourceVessel.LocationId==actor)pounds-=amount;
             if(dest.LocationId==actor)pounds+=amount;
             return PlaytestCarrying.CanCarry(PlaytestCarrying.Limits(CarrierSize.Medium,10),new BurdenTotals(pounds,pounds.Scale(1,10),true))==true
-                ?null:"CarryingCapacityExceeded";
+                ?null:new NativeCommandConstraintV1("CarryingCapacityExceeded", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 51);
         }
         internal static string Prerequisite(Snapshot s,string actor,string source,string destination,RuleQuantity amount,string existingJob=null)
+            => PrerequisiteConstraintV1(s,actor,source,destination,amount,existingJob)?.NativeCode;
+
+        internal static NativeCommandConstraintV1 PrerequisiteConstraintV1(Snapshot s,string actor,string source,string destination,RuleQuantity amount,string existingJob=null)
         {
             if(SpellCastingProfile.HasUnsafeContamination(s,source)
                 ||s.VesselContents.Any(x=>x.VesselId==destination&&SpellCastingProfile.HasUnsafeContamination(s,x.LotId)))
-                return "ContaminationPropagationUnsupported";
+                return new NativeCommandConstraintV1("ContaminationPropagationUnsupported", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 57);
             var lot=s.Work.Lots.SingleOrDefault(x=>x.Id==source);var vessel=s.Vessels.SingleOrDefault(x=>x.Id==destination);
             var meta=s.InventoryLots.SingleOrDefault(x=>x.LotId==source);
-            if(lot==null||vessel==null||meta==null)return "UnknownFillReference";
-            if(meta.Nutrition!=NutritionKind.WaterPints||lot.UnitId!=TestOnlyInventoryPolicy.WaterUnit||meta.FreshUntil.HasValue)return "UnsupportedFillLiquid";
-            if(SourceVessel(s,source)==destination)return "SameVesselFill";
-            if(!Accessible(s,actor,lot)||!Accessible(s,actor,vessel))return "FillOutOfReach";
-            if(!OpeningsAvailable(s,source,destination,existingJob))return "VesselOpeningBusy";
-            string carrying=CarryAfterTransfer(s,actor,source,destination,amount);if(carrying!=null)return carrying;
+            if(lot==null||vessel==null||meta==null)return new NativeCommandConstraintV1("UnknownFillReference", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 60);
+            if(meta.Nutrition!=NutritionKind.WaterPints||lot.UnitId!=TestOnlyInventoryPolicy.WaterUnit||meta.FreshUntil.HasValue)return new NativeCommandConstraintV1("UnsupportedFillLiquid", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 61);
+            if(SourceVessel(s,source)==destination)return new NativeCommandConstraintV1("SameVesselFill", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 62);
+            if(!Accessible(s,actor,lot)||!Accessible(s,actor,vessel))return new NativeCommandConstraintV1("FillOutOfReach", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 63);
+            if(!OpeningsAvailable(s,source,destination,existingJob))return new NativeCommandConstraintV1("VesselOpeningBusy", "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs", 64);
+            var carrying=CarryAfterTransferConstraintV1(s,actor,source,destination,amount);if(carrying!=null)return carrying;
             return null;
         }
         private static void Replace(Snapshot s,WaterFillRecord job)=>s.WaterFills=s.WaterFills.Select(x=>x.Id==job.Id?job:x).ToArray();

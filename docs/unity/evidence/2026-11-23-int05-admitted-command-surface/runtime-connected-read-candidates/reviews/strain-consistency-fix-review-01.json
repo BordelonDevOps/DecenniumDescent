@@ -1,0 +1,202 @@
+{
+  "reviewId": "INT05-STRAIN-CONSISTENCY-FIX-REVIEW-01",
+  "reviewer": "independent subagent /root/review_consecration",
+  "reviewedAtUtc": "2026-11-24T13:25:02.393141+00:00",
+  "scope": "Only the three correction hunks in SharedStrainRecovery and SharedConnectedRecipe4Batch, compared frozen18 to frozen20, and unchanged transitive constructors/core shape/long-rest/continuation validation relevant to them.",
+  "disposition": "NO_CONCRETE_BLOCKER_FOUND_IN_BOUNDED_STATIC_PATCH_REVIEW",
+  "separateFrom": "reviews/strain-source-review-01.json; that earlier artifact reviewed pure assessment extraction, not these producer/continuation corrections.",
+  "sourceBoundary": [
+    {
+      "archive": "engine/artifacts/admitted-command-surface/development-18/run-20261124T131114760Z-93961e80/source-frozen.zip",
+      "sha256": "f002a15731c84ac94c7069ea964930f2ff17f063b7d7822d2afeec0fa7818b92",
+      "role": "Original failing genuine-route candidate18 source, not accepted runtime"
+    },
+    {
+      "archive": "engine/artifacts/admitted-command-surface/development-20/run-20261124T132117998Z-46d9055a/source-frozen.zip",
+      "sha256": "c43186a0cc97e14e4583b9af7712212117927989d83b952794447084531633ad",
+      "role": "Corrected candidate20 frozen source; only specified scope reviewed"
+    }
+  ],
+  "corrections": [
+    {
+      "id": "SCF-01",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "sourceLines": "243-249",
+      "failure": "ConnectedClericLongRest selects generic recovery without moraleRestProfile. Generic nonlegacy offer creation previously used short constructor on high schema, leaving RecoveryCompletionId empty, inconsistent with strict typed reference validation.",
+      "review": "The correction chooses typed SecureLongRest only when schema>=MoraleRestSchema and passes the actual newly appended benefit.Id, same actor/interval/initiating command/completion/revision/point set. It does not invent a benefit or offer, change eligibility or timing, or enable an unselected profile.",
+      "preserved": [
+        "Legacy branch earlier in method unchanged.",
+        "Schema64 nonlegacy still calls exact original short constructor.",
+        "Previously successful connected rests without offered points are unchanged.",
+        "Selected morale profile still routes through OpenSchema65SecureRestOffers before this generic branch."
+      ]
+    },
+    {
+      "id": "SCF-02",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "sourceLines": "354-358",
+      "failure": "Original generic resolution reconstructed selected offer using short constructor, which would erase the new high-schema completion identity.",
+      "review": "Resolved replacement copies RecoveryKind, RecoveryCompletionId and ActivityIntervalId from the existing selected offer and changes only the pre-existing chosen point/resolved revision fields. Existing benefit, removal and clock continuation logic is unchanged.",
+      "schema64Proof": "The old short constructor delegates to typed constructor with SecureLongRest, empty RecoveryCompletionId and ActivityIntervalId=RestIntervalId (ExpeditionStrainRecoveryRecords71-75). Valid old64 offers therefore produce identical field values through the new typed call, including empty completion identity. Legacy deferred benefit semantics remain unchanged; no backfill, migration or invented completion join."
+    },
+    {
+      "id": "SCF-03",
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+      "sourceLines": "170-174",
+      "failure": "Connected Recipe4 validator assumed ManufacturingAdvance always means its order is AwaitingChoice, despite shared native clock code retaining the same continuation for pending Strain recovery.",
+      "review": "Additional exception requires BOTH s.ConnectedClericLongRest and an actual pending ExpeditionStrainRecoveryOffer. It does not change any batch/order settlement or grant a continuation by itself. No selected flag or no pending offer preserves exact old rejection when the manufacturing order is not awaiting choice.",
+      "authoritativeSupport": [
+        "ManufacturingRecords14-17 documents shared continuation semantics.",
+        "ManufacturingRecords96-104 validates non-past target, valid revision and actual pending choice.",
+        "TestOnlySharedWorldPolicy847-852 already creates the same continuation for nonlegacy actual pending Strain offer after completion boundaries.",
+        "SharedManufacturing487-494 clears/resumes the retained authorized target using the current resolving command and retains original continuation on any subsequent stop."
+      ]
+    }
+  ],
+  "strictValidationPreserved": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "sourceLines": "741-747,818-845,862-879",
+      "fact": "Core still requires reciprocal offer/benefit link with exact completion ID, actor, interval and time; valid nonempty typed IDs; actual initiating receipt/revision; pending offer at current clock; exact real eligible active point and provisioning block checks. Byte-identical frozen18/frozen20/current."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "sourceLines": "71-103",
+      "fact": "Original overload delegation and immutable typed constructor are unchanged; no save-schema or constructor relaxation."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "sourceLines": "47-118",
+      "fact": "Exact selected profile, earned access, shared interval, occupancy, receipt, completion chronology and benefit settlement validation are unchanged."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sourceLines": "847-852",
+      "fact": "Actual continuation producer unchanged."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sourceLines": "487-494",
+      "fact": "Actual resume semantics unchanged."
+    }
+  ],
+  "historicalCompatibilityReasoning": [
+    "Both schema64 creation branches remain exact; generic resolution preserves their original constructor-derived values.",
+    "A previously accepted high-schema pending offer cannot depend on empty RecoveryCompletionId because existing strict shape already rejects that value. The correction creates a previously blocked legitimate result rather than repairing imported invalid saves.",
+    "The selected flag and actual pending offer exception preserves absence-case rejection; Core and profile validation remain mandatory and must not be bypassed by host/pure reads."
+  ],
+  "retainedFailureEvidence": {
+    "path": "engine/artifacts/admitted-command-surface/development-18/strain-validation-diagnostic.json",
+    "sha256": "173c311f0877ad3379f2e59fa5bc1292030243769faaeef4b33b089703c29cff",
+    "observedRecord": "Parent-retained diagnostic records resolve=null, candidate clock172800, shape exception Beneficial Long Rest offer link is invalid, independent checkpoint verification ConnectedRecipe4ContinuationMismatch.",
+    "limit": "Reviewer read retained diagnostic and source; did not construct, execute, validate or adopt a campaign."
+  },
+  "frozen18To20ChangesOutsideReview": [
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCharterAttempt.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+    "engine/com.decennium.foundation/Laboratory/Model/SharedNextCharterAgreement.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/AdmittedObservationCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/HavenSaleCases.cs",
+    "engine/com.decennium.foundation/Tests/EditMode/MiningCases.cs"
+  ],
+  "requiredRemainingEvidenceNotExecutedByReviewer": [
+    "Actual candidate20 genuine route terminal outcome, with pending state at172800 and original continuation target172806.",
+    "Strict save/restore of genuine pending offer and resolved result; pure assessment observational purity; exact once-only removal/continuation and retry.",
+    "Negative malformed RecoveryCompletionId/benefit linkage remains rejected; unbacked continuation remains rejected.",
+    "Appropriate supported64/legacy compatibility regressions; this source reasoning is not an execution claim."
+  ],
+  "findings": [],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedStrainRecovery.cs",
+      "sha256": "4c49e9ab0ac46f64376fb35b6d82064ac1d214499d82ef2450f9a51339e4bc6e",
+      "bytes": 33679,
+      "frozenCandidate20MemberSha256": "4c49e9ab0ac46f64376fb35b6d82064ac1d214499d82ef2450f9a51339e4bc6e",
+      "frozenCandidate18MemberSha256": "36ae0a8121b00b8110d3bf0fd79f1e66d7c5c260de7cdbad78fe92e2539fb119",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedRecipe4Batch.cs",
+      "sha256": "9cac7122b2b45eb28fda4089842b715dfbd910588e60190e331ecbd3ec1d01be",
+      "bytes": 14851,
+      "frozenCandidate20MemberSha256": "9cac7122b2b45eb28fda4089842b715dfbd910588e60190e331ecbd3ec1d01be",
+      "frozenCandidate18MemberSha256": "aea01683f9a46a642c9d6022578f3fd7101320f1d94affe5a08b2d9c2b84652d",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": false
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "sha256": "1fece952dbd79dc65e11c358b9254a2318950edadb9816b0efc69547f4ee25ec",
+      "bytes": 17479,
+      "frozenCandidate20MemberSha256": "1fece952dbd79dc65e11c358b9254a2318950edadb9816b0efc69547f4ee25ec",
+      "frozenCandidate18MemberSha256": "1fece952dbd79dc65e11c358b9254a2318950edadb9816b0efc69547f4ee25ec",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202,
+      "frozenCandidate20MemberSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "frozenCandidate18MemberSha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "bytes": 129062,
+      "frozenCandidate20MemberSha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "frozenCandidate18MemberSha256": "f7ca8cb0288e2a9d6d83f7469f115c7caee6561732f1d37f8754396ec06dc495",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionProvisioningRecords.cs",
+      "sha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "bytes": 76959,
+      "frozenCandidate20MemberSha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "frozenCandidate18MemberSha256": "4e25f212f387a3d5cfed6d30c5cefb345979667082971834403e911f48e7cd38",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionStrainRecoveryRecords.cs",
+      "sha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "bytes": 8140,
+      "frozenCandidate20MemberSha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "frozenCandidate18MemberSha256": "3d321bba89e44974858fb7c2b5dfb9384b0d75695cca1213a7955bd3e583076d",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "sha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "bytes": 11137,
+      "frozenCandidate20MemberSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "frozenCandidate18MemberSha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "bytes": 10073,
+      "frozenCandidate20MemberSha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "frozenCandidate18MemberSha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "matchesCandidate20Exactly": true,
+      "unchangedFromCandidate18": true
+    }
+  ],
+  "executionLimits": {
+    "testsRun": false,
+    "buildRun": false,
+    "gameplayRun": false,
+    "runtimeEdits": false,
+    "candidate20PassClaimed": false,
+    "moduleAccepted": false,
+    "actualGptFinalReviewClaimed": false
+  },
+  "ownerBoundary": "Finish INT05 only through actual review/accepted push, then stop; no successor or Unity integration."
+}
