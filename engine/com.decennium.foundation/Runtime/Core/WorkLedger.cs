@@ -139,6 +139,7 @@ namespace Decennium.Foundation
         /// <summary>Atomically book one job's intervals/materials. Source procedure decides when to consume.</summary>
         public WorkLedger Reserve(string jobId,IEnumerable<WorkerInterval> intervals,IEnumerable<ResourceReservation> reservations)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.ResourceReservation);
             if(!Validation.ValidId(jobId)||intervals==null||reservations==null) throw new ArgumentException("Invalid job reservation request.");
             var workers=intervals.ToArray();var claims=reservations.ToArray();
             if(workers.Any(x=>x==null||x.JobId!=jobId)||claims.Any(x=>x==null||x.JobId!=jobId||x.ConsumedAmount!=default||x.ReleasedAmount!=default))

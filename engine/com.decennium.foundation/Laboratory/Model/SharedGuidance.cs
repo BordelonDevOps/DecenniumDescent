@@ -7,14 +7,18 @@ namespace Decennium.Foundation.Laboratory
     public sealed partial class TestOnlySharedWorldPolicy
     {
         private static string GuidanceChoiceFailure(Snapshot s,Command c)
+            => GuidanceChoiceConstraintV1(s,c)?.NativeCode;
+        private static NativeCommandConstraintV1 GuidanceChoiceConstraintV1(Snapshot s,Command c)
         {
+            const string source = "engine/com.decennium.foundation/Laboratory/Model/SharedGuidance.cs";
             if(c.Guidance==null)return null;
             if(!s.ConnectedClericCasting || !s.InventoryCombat || (c.Kind!=CommandKind.Hide&&c.Kind!=CommandKind.Search&&c.Kind!=CommandKind.StabilizeCompanion))
-                return "GuidanceConsumerUnsupported";
+                return new NativeCommandConstraintV1("GuidanceConsumerUnsupported", source, 13);
             var effect=s.SpellEffects.SingleOrDefault(x=>x.Id==c.Guidance.EffectId);
             if(effect==null || !effect.Present || effect.SpellId!="guidance" || effect.TargetId!=c.Actor || effect.ExpiresAt<=s.RuleClock)
-                return "GuidanceBenefitUnavailable";
-            if(s.GuidanceUses.Length>=SpellCastingProfile.MaxGuidanceUses || !Validation.ValidId(c.Id+".medicine"))return "CastingHistoryFull";
+                return new NativeCommandConstraintV1("GuidanceBenefitUnavailable", source, 16);
+            if(s.GuidanceUses.Length>=SpellCastingProfile.MaxGuidanceUses || !Validation.ValidId(c.Id+".medicine"))
+                return new NativeCommandConstraintV1("CastingHistoryFull", source, 17);
             return null;
         }
         // Invoke only after every actual check prerequisite has passed, immediately before its d20.

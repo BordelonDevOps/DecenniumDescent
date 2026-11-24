@@ -157,6 +157,7 @@ namespace Decennium.Foundation.Laboratory
             new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId, AdditionalTacticalActor.Id }, new[] { TestOnlyPolicy.ActorId, TestOnlyPolicy.CompanionId });
         public Snapshot Initial()
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.HistoryReplay);
             initializationStarted = true;
             if(contentManifest!=null&&contentManifest.ValidateBindings()!=null)throw new InvalidOperationException("ContentManifestBuildMismatch");
             var s = bodies.Initial(); s.SchemaVersion = SelectedSchema; s.ContentFingerprint = ContentFingerprint;
@@ -493,6 +494,7 @@ namespace Decennium.Foundation.Laboratory
         }
         private string AdvanceTo(Snapshot s, RuleTime target, bool exitAfterSlot=false, Command initiating=null, ManufacturingAdvanceRecord continuation=null)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.DeadlineAdvancement);
             if (target <= s.RuleClock) throw new ArgumentException("Positive shared advance required.");
             if (s.InventoryCombat && s.Reinforcement?.Pending == true && ReinforcementEdge(s) != null
                 && initiating?.Kind != CommandKind.EndRegularTurn && initiating?.Kind != CommandKind.EndFixedEncounter)
@@ -863,20 +865,12 @@ namespace Decennium.Foundation.Laboratory
         private string ResolveCore(Snapshot s, Command c, bool assessFormula = false, bool assessTactical = false,
             PlanningPassage? passage = null, bool sanctuaryChecked=false, bool assessFilling=false)
         {
-            if (!s.Actors.Any(a => a.Id == c.Actor)) return "UnknownWorldActor";
-            if(s.FerryWraith!=null&&c.Kind==CommandKind.EncounterDash) {
-                if(!FerryWraithProfile.DashPayloadValid(c))return "InvalidFerryDashPayload";
-                if(!s.InventoryCombat||!FerryWraithProfile.Active(s)
-                    ||c.Actor!=FerryWraithProfile.Hero&&c.Actor!=FerryWraithProfile.Companion)return "FerryDashRequiresPartyCombat";
-                if(c.Actor!=s.Encounter.CurrentActor||c.Target!=s.Encounter.CurrentTurnId)return "WrongRegularTurn";
-            }
-            if(s.FerryWraith!=null&&IsOffCalendarActivity(s,c.Actor)
-                &&ActivityInterval(s,c.Actor).Action==WorldActionCommitment.SealTear&&StartsOrResumesActivityWork(c))
-                return "OffCalendarActionAlreadySpent";
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.Resolver);
+            var openingFailure = WorldOpeningConstraintV1(s, c);
+            if (openingFailure != null) return openingFailure.NativeCode;
             if (ClericLongRestProfile.IsCommand(c.Kind)) return assessTactical ? AssessClericLongRest(s,c) : ResolveClericLongRest(s,c);
-            if (ClericLongRestProfile.Active(s) != null && c.Actor == ClericRpProfile.Actor
-                && c.Kind != CommandKind.AdvanceClock && c.Kind != CommandKind.BeginFixedEncounter
-                && c.Kind != CommandKind.EnterInventoryCombat) return "LongRestRequiresInterruption";
+            var longRestInterruption = ActiveLongRestInterruptionV1(s, c);
+            if (longRestInterruption != null) return longRestInterruption.NativeCode;
             if(s.ConnectedClericCasting&&!sanctuaryChecked) {
                 if(PendingSanctuary(s)!=null || c.Kind==CommandKind.RespondSanctuary)
                     return ResolveSanctuaryResponse(s,c,assessTactical);
@@ -1237,6 +1231,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string ValidateState(Snapshot s, Func<string> verifyHistory)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.PolicyValidation);
             try {
                 if ((s.SchemaVersion != SelectedSchema
                     && !(expeditionPressureProfile != null && s.SchemaVersion == Snapshot.ExpeditionPressureSchema))
@@ -1509,6 +1504,7 @@ namespace Decennium.Foundation.Laboratory
 
         private bool ReplayReceipt(Snapshot replay, CommandReceipt receipt, PlanningPassage? passage = null, bool verifiedExecution = false)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.HistoryReplay);
             var command = CommandHistory.Read(receipt);
             if (command.ExpectedRevision != replay.Revision || Resolve(replay, command, passage, verifiedExecution) != null) return false;
             replay.Revision = receipt.Revision;

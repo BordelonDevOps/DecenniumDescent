@@ -1038,6 +1038,7 @@ namespace Decennium.Foundation
         }
         public static void Snapshot(Snapshot s)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.SnapshotValidation);
             if (s == null || !ValidId(s.ContentFingerprint) || s.Revision < 0 || s.Clock < 0 || s.RandomState == 0)
                 throw new ArgumentException("Invalid snapshot header.");
             if (s.SchemaVersion == Foundation.Snapshot.ReadyActionSchema
@@ -1310,66 +1311,69 @@ namespace Decennium.Foundation
             if (error != null) throw new ArgumentException(error);
         }
         private string ValidateCommandAndAuthority(Authority authority, Command command)
+            => AssessCommandAndAuthorityV1(authority, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 AssessCommandAndAuthorityV1(Authority authority, Command command)
         {
             if (authority == null || command == null || !Validation.ValidId(command.Id)
                 || !Validation.ValidId(command.Actor) || command.Target == null || command.Target.Length > 96
                 || (command.Target.Length != 0 && !Validation.ValidId(command.Target)) || command.ExpectedRevision < 0
-                || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return "InvalidCommand";
+                || !Enum.IsDefined(typeof(CommandKind), command.Kind)) return new NativeCommandConstraintV1("InvalidCommand", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1313);
             bool combatKind=command.Kind==CommandKind.SelectCombatStance||command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.ResolveKnockout||command.Kind==CommandKind.Dodge
                 ||command.Kind==CommandKind.AttackCreatureFeature
                 ||command.Kind==CommandKind.AttackUnarmed||command.Kind==CommandKind.RespondOpportunityAttack||command.Kind==CommandKind.RespondPress
                 ||command.Kind==CommandKind.RespondOverwatch||command.Kind==CommandKind.Ready||command.Kind==CommandKind.RespondReady
                 ||command.Kind==CommandKind.TacticalAssessment
                 ||command.Kind==CommandKind.OfferCommandStep||command.Kind==CommandKind.RespondCommandStep||command.Kind==CommandKind.RespondDefensiveFormation;
-            if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return "UnexpectedCombatPayload";
-            if(command.Kind==CommandKind.AttackCreatureFeature&&command.Combat?.FeatureId=="")return "CreatureAttackSourceRequired";
+            if(combatKind!=(command.Combat!=null)||command.Combat!=null&&command.Inventory!=null)return new NativeCommandConstraintV1("UnexpectedCombatPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1320);
+            if(command.Kind==CommandKind.AttackCreatureFeature&&command.Combat?.FeatureId=="")return new NativeCommandConstraintV1("CreatureAttackSourceRequired", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1321);
             if(command.Combat!=null&&command.Combat.FeatureId!=""&&(state.FerryWraith==null||command.Actor!=FerryWraithProfile.Actor
                 ||command.Combat.FeatureId!=FerryWraithProfile.Feature
                 ||command.Kind!=CommandKind.AttackCreatureFeature&&(command.Kind!=CommandKind.RespondOpportunityAttack||!command.Combat.Choice)))
-                return "CreatureAttackSourceUnavailable";
+                return new NativeCommandConstraintV1("CreatureAttackSourceUnavailable", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1325);
             if((command.Kind==CommandKind.AdvanceCharacterLevel)!=(command.Advancement!=null)
-                ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return "UnexpectedCommandPayload";
-            if(command.Fingerprint.Length>512)return "CommandFingerprintTooLong";
-            if((command.Kind==CommandKind.UseConsecrate)!=(command.GetConsecrateRequest()!=null))return "UnexpectedConsecratePayload";
-            string invocationShape = BishopProfile.InvocationPayloadFailure(state,command);
+                ||command.Advancement!=null&&(command.Inventory!=null||command.Combat!=null))return new NativeCommandConstraintV1("UnexpectedCommandPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1327);
+            if(command.Fingerprint.Length>512)return new NativeCommandConstraintV1("CommandFingerprintTooLong", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1328);
+            if((command.Kind==CommandKind.UseConsecrate)!=(command.GetConsecrateRequest()!=null))return new NativeCommandConstraintV1("UnexpectedConsecratePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1329);
+            var invocationShape = BishopProfile.InvocationPayloadConstraintV1(state,command);
             if(invocationShape!=null)return invocationShape;
-            if(command.DivineInvocation!=null && command.DivineInvocation.TargetIds.Any(x=>!authority.Controls(x)))return "NotAuthorized";
-            string spellShape = SpellCastingProfile.PayloadFailure(state, command);
+            if(command.DivineInvocation!=null && command.DivineInvocation.TargetIds.Any(x=>!authority.Controls(x)))return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1332);
+            var spellShape = SpellCastingProfile.PayloadConstraintV1(state, command);
             if (spellShape != null) return spellShape;
-            if (command.SpellCast?.WillingTarget == true && !authority.Controls(command.Target)) return "NotAuthorized";
+            if (command.SpellCast?.WillingTarget == true && !authority.Controls(command.Target)) return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1335);
             if (command.HealingRite != null && (command.Kind != CommandKind.UseHealingRite || !state.ConnectedClericSettlement
                 || command.Inventory != null || command.Combat != null || command.Advancement != null || command.Ranged != null
                 || command.IntimidatingPresence != null || command.OverwatchRider != OverwatchRider.None
                 || command.SuppressionFire != null || command.DefensiveFormation != null || command.ExpeditionAssignment != null
                 || command.HarvestSelection != null || command.MiningSelection != null || command.ProspectingExposure != null
-                || command.RouteMappingWork != null)) return "UnexpectedHealingRitePayload";
+                || command.RouteMappingWork != null)) return new NativeCommandConstraintV1("UnexpectedHealingRitePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1341);
             if (command.Advancement?.UsesClericSettlementReceipt == true
-                && (!state.ConnectedClericSettlement || command.Actor != ClericRpProfile.Actor)) return "UnsupportedAdvancementPath";
+                && (!state.ConnectedClericSettlement || command.Actor != ClericRpProfile.Actor)) return new NativeCommandConstraintV1("UnsupportedAdvancementPath", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1343);
             if (command.HealingRite != null && command.HealingRite.CurePreference != RadianceCurePreference.None
-                && !authority.Controls(command.Target)) return "NotAuthorized";
+                && !authority.Controls(command.Target)) return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1345);
             if ((command.Kind == CommandKind.UseIntimidatingPresence) != (command.IntimidatingPresence != null)
                 || command.IntimidatingPresence != null && (command.Target != "" || command.X != 0 || command.Y != 0
                     || command.Inventory != null || command.Combat != null || command.Advancement != null || command.Ranged != null
                     || command.OverwatchRider != OverwatchRider.None || command.SuppressionFire != null || command.DefensiveFormation != null
                     || command.ExpeditionAssignment != null || command.HarvestSelection != null || command.MiningSelection != null
-                    || command.ProspectingExposure != null || command.RouteMappingWork != null)) return "UnexpectedIntimidatingPresencePayload";
+                    || command.ProspectingExposure != null || command.RouteMappingWork != null)) return new NativeCommandConstraintV1("UnexpectedIntimidatingPresencePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1351);
             if(command.Kind==CommandKind.ResolveExpeditionStrainRecovery
                 &&(command.Target==""||command.X!=0||command.Y!=0||command.Inventory!=null||command.Combat!=null
                     ||command.Advancement!=null||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None
                     ||command.SuppressionFire!=null||command.DefensiveFormation!=null||command.ExpeditionAssignment!=null
                     ||command.HarvestSelection!=null||command.MiningSelection!=null||command.ProspectingExposure!=null
-                    ||command.RouteMappingWork!=null))return "UnexpectedStrainRecoveryPayload";
+                    ||command.RouteMappingWork!=null))return new NativeCommandConstraintV1("UnexpectedStrainRecoveryPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1357);
             if ((command.Kind == CommandKind.RecordProspectingExposure) != (command.ProspectingExposure != null)
                 || command.ProspectingExposure != null && (command.Inventory != null || command.Combat != null
                     || command.Advancement != null || command.Ranged != null || command.HarvestSelection != null
                     || command.MiningSelection != null || command.Target == "" || command.X != 0 || command.Y != 0))
-                return "UnexpectedProspectingPayload";
+                return new NativeCommandConstraintV1("UnexpectedProspectingPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1362);
             if(command.Kind==CommandKind.RecordHarvestPreservationExposure
                 &&(command.Target==""||command.X!=0||command.Y!=0||command.Inventory!=null||command.Combat!=null
                     ||command.Advancement!=null||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None
                     ||command.SuppressionFire!=null||command.DefensiveFormation!=null||command.ExpeditionAssignment!=null
                     ||command.HarvestSelection!=null||command.MiningSelection!=null||command.ProspectingExposure!=null
-                    ||command.RouteMappingWork!=null))return "UnexpectedHarvestExposurePayload";
+                    ||command.RouteMappingWork!=null))return new NativeCommandConstraintV1("UnexpectedHarvestExposurePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1368);
             if ((command.Kind == CommandKind.StartRouteMappingWork) != (command.RouteMappingWork != null)
                 || command.RouteMappingWork != null && (command.Inventory != null || command.Combat != null
                     || command.Advancement != null || command.Ranged != null || command.OverwatchRider != OverwatchRider.None
@@ -1377,7 +1381,7 @@ namespace Decennium.Foundation
                     || command.ExpeditionAssignment != null || command.HarvestSelection != null
                     || command.MiningSelection != null || command.ProspectingExposure != null
                     || command.Target == "" || command.X != 0 || command.Y != 0))
-                return "UnexpectedRouteMappingWorkPayload";
+                return new NativeCommandConstraintV1("UnexpectedRouteMappingWorkPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1376);
             bool routeReconnaissanceCommand = command.Kind == CommandKind.StartRouteReconnaissance
                 || command.Kind == CommandKind.PauseRouteReconnaissance || command.Kind == CommandKind.ResumeRouteReconnaissance;
             if (routeReconnaissanceCommand && (command.Inventory != null || command.Combat != null
@@ -1386,17 +1390,17 @@ namespace Decennium.Foundation
                 || command.ExpeditionAssignment != null || command.HarvestSelection != null
                 || command.MiningSelection != null || command.ProspectingExposure != null
                 || command.RouteMappingWork != null || command.Target == "" || command.X != 0 || command.Y != 0))
-                return "UnexpectedRouteReconnaissancePayload";
+                return new NativeCommandConstraintV1("UnexpectedRouteReconnaissancePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1385);
             if((command.Kind==CommandKind.ResolveOverwatchRider)!=(command.OverwatchRider!=OverwatchRider.None)
                 ||command.OverwatchRider!=OverwatchRider.None&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null))
-                return "UnexpectedOverwatchPayload";
+                return new NativeCommandConstraintV1("UnexpectedOverwatchPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1388);
             if((command.Kind==CommandKind.SuppressionFire)!=(command.SuppressionFire!=null)
                 ||command.SuppressionFire!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
-                    ||command.OverwatchRider!=OverwatchRider.None||command.DefensiveFormation!=null||command.Target!=""))return "UnexpectedSuppressionFirePayload";
+                    ||command.OverwatchRider!=OverwatchRider.None||command.DefensiveFormation!=null||command.Target!=""))return new NativeCommandConstraintV1("UnexpectedSuppressionFirePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1391);
             if((command.Kind==CommandKind.ActivateDefensiveFormation)!=(command.DefensiveFormation!=null)
                 ||command.DefensiveFormation!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
                     ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.Target!=""||command.X!=0||command.Y!=0))
-                return "UnexpectedDefensiveFormationPayload";
+                return new NativeCommandConstraintV1("UnexpectedDefensiveFormationPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1395);
             bool assignmentKind=command.Kind==CommandKind.AssignExpeditionWork;
             if(assignmentKind!=(command.ExpeditionAssignment!=null)
                 ||command.ExpeditionAssignment!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null||command.Ranged!=null
@@ -1407,75 +1411,75 @@ namespace Decennium.Foundation
                     &&(command.ExpeditionAssignment!=null||command.Inventory!=null||command.Combat!=null||command.Advancement!=null
                         ||command.Ranged!=null||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null
                         ||command.DefensiveFormation!=null||command.Target==""||command.X!=0||command.Y!=0))
-                return "UnexpectedExpeditionAssignmentPayload";
+                return new NativeCommandConstraintV1("UnexpectedExpeditionAssignmentPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1406);
             if(!string.IsNullOrEmpty(command.ExpeditionAssignment?.MiningSelection?.AssistantId))
-                return "MiningAssistantAssignmentUnsupported";
+                return new NativeCommandConstraintV1("MiningAssistantAssignmentUnsupported", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1408);
             if(command.ExpeditionAssignment?.MiningSelection!=null&&state.SchemaVersion<Snapshot.MiningExpeditionAssignmentSchema)
-                return "MiningAssignmentRequiresSchema47";
+                return new NativeCommandConstraintV1("MiningAssignmentRequiresSchema47", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1410);
             if(command.Kind==CommandKind.RespondDefensiveFormation&&(command.Inventory!=null||command.Advancement!=null||command.Ranged!=null
                 ||command.OverwatchRider!=OverwatchRider.None||command.SuppressionFire!=null||command.DefensiveFormation!=null))
-                return "UnexpectedDefensiveFormationResponsePayload";
+                return new NativeCommandConstraintV1("UnexpectedDefensiveFormationResponsePayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1413);
             bool rangedKind=command.Kind==CommandKind.AttackRepeatingCrossbow||command.Kind==CommandKind.ReloadRepeatingCrossbow
                 ||command.Kind==CommandKind.WarningShot||command.Kind==CommandKind.CoveringFire;
-            if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return "UnexpectedRangedPayload";
+            if(rangedKind!=(command.Ranged!=null)||command.Ranged!=null&&(command.Inventory!=null||command.Combat!=null||command.Advancement!=null))return new NativeCommandConstraintV1("UnexpectedRangedPayload", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1416);
             if ((!authority.Controls(command.Actor) && !(command.Kind==CommandKind.AwardCharacterMilestone&&authority.CanModifyWorld)) || (command.Kind == CommandKind.AdvanceClock && !authority.CanAdvanceClock)
                 || ((command.Kind == CommandKind.SetCropConditions || command.Kind == CommandKind.EnterInventoryCombat || command.Kind == CommandKind.BeginFixedEncounter || command.Kind == CommandKind.EndFixedEncounter || command.Kind == CommandKind.DispatchConditionEvent || command.Kind == CommandKind.DispatchCraftingMishap || command.Kind==CommandKind.AwardCharacterMilestone
                     ||command.Kind==CommandKind.DispatchFixturePeriodicRider||command.Kind==CommandKind.SetPeriodicRiderSuppression||command.Kind==CommandKind.SetPeriodicFamilyImmunity||command.Kind==CommandKind.ApplyFixtureMagicalHealing
                     ||command.Kind==CommandKind.RecordProspectingExposure
                     ||command.Kind==CommandKind.RecordHarvestPreservationExposure) && !authority.CanModifyWorld))
-                return "NotAuthorized";
+                return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1422);
             var engagement = state.Reengagement?.Definition;
             if (engagement != null && (engagement.IsApproachCommand(state, command)
                 || (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)
                     && command.Actor == engagement.LeadId && state.Retreat.SuccessfulExit != null && state.Reengagement.Entry == null
                     && state.WorldTraversals.Any(engagement.IsApproach))
                 && (authority.Principal != engagement.ControllerId || !authority.Controls(engagement.CompanionId)))
-                return "ReengagementControllerUnauthorized";
+                return new NativeCommandConstraintV1("ReengagementControllerUnauthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1429);
             string requestedMiningAssistant=command.MiningSelection?.AssistantId??"";
             if (state.Retreat != null && RetreatValidation.IsCommand(command.Kind)
                 && (authority.Principal != state.Retreat.Definition.ControllerId
-                    || !authority.Controls(state.Retreat.Definition.CompanionId))) return "RetreatControllerUnauthorized";
+                    || !authority.Controls(state.Retreat.Definition.CompanionId))) return new NativeCommandConstraintV1("RetreatControllerUnauthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1433);
             if (state.Reinforcement != null && authority.Principal != state.Reinforcement.Definition.ControllerId
                 && (ReinforcementValidation.IsInstruction(command.Kind) || state.InventoryCombat
                     && (command.Kind == CommandKind.SuspendWorldStep || command.Kind == CommandKind.ResumeWorldStep)
                     && state.WorldTraversals.Any(edge => edge.ActorId == command.Actor && state.Reinforcement.OwnsApproach(edge))))
-                return "ReinforcementControllerUnauthorized";
-            if(requestedMiningAssistant!=""&&!authority.Controls(requestedMiningAssistant))return "NotAuthorized";
+                return new NativeCommandConstraintV1("ReinforcementControllerUnauthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1438);
+            if(requestedMiningAssistant!=""&&!authority.Controls(requestedMiningAssistant))return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1439);
             if(command.Kind==CommandKind.ResumeMining) {
                 var miningAttempt=state.MiningAttempts.FirstOrDefault(x=>x.Id==command.Target&&x.WorkerId==command.Actor);
                 if(miningAttempt?.Status==MiningAttemptStatus.Paused&&miningAttempt.AssistantId!=""
-                    &&!authority.Controls(miningAttempt.AssistantId))return "NotAuthorized";
+                    &&!authority.Controls(miningAttempt.AssistantId))return new NativeCommandConstraintV1("NotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1443);
             }
             if(command.Kind==CommandKind.HandoverFishingTrapResponsibility&&!authority.ConsentsToHandover(command.Target))
-                return "RecipientNotWilling";
+                return new NativeCommandConstraintV1("RecipientNotWilling", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1446);
             if (policy is ICommandInventoryClaims claims) {
                 try {
-                    if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return "InventoryNotAuthorized";
-                } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException) { return "InvalidInventoryClaims"; }
+                    if (claims.RequiredInventoryOwners(state.Copy(), command).Any(owner => !Validation.ValidId(owner) || !authority.MayUseInventory(owner))) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1449);
+                } catch (Exception ex) when (ex is ArgumentException || ex is InvalidOperationException || ex is OverflowException) { return new NativeCommandConstraintV1("InvalidInventoryClaims", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1450); }
             }
             if (command.Kind == CommandKind.PortionInventory || command.Kind == CommandKind.HandleInventory || command.Kind == CommandKind.StartIntake) {
                 var source = state.InventoryLots.FirstOrDefault(x => x.LotId == command.Target);
-                if (source != null && !authority.MayUseInventory(source.OwnerId)) return "InventoryNotAuthorized";
+                if (source != null && !authority.MayUseInventory(source.OwnerId)) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1454);
                 if (command.Kind == CommandKind.StartIntake && source != null && state.Vessels.Length != 0) {
                     var lot = state.Work.Lots.First(x => x.Id == source.LotId);
                     var vessel = state.Vessels.FirstOrDefault(x => x.Id == lot.LocationId);
-                    if (vessel != null && !authority.MayUseInventory(vessel.OwnerId)) return "InventoryNotAuthorized";
+                    if (vessel != null && !authority.MayUseInventory(vessel.OwnerId)) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1458);
                 }
                 if (command.Kind == CommandKind.HandleInventory && command.Inventory != null
                     && command.Inventory.Handling == HandlingKind.Handover && !authority.ConsentsToHandover(command.Inventory.Destination))
-                    return "RecipientNotWilling";
+                    return new NativeCommandConstraintV1("RecipientNotWilling", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1462);
             }
             if(command.Kind==CommandKind.HandlePortableEquipment||command.Kind==CommandKind.EquipPortableItem||command.Kind==CommandKind.RemovePortableItem
                 ||command.Kind==CommandKind.DoffPortableShield
                 ||command.Kind==CommandKind.OpenPortableContainer||command.Kind==CommandKind.ClosePortableContainer) {
                 var item=state.PortableEquipment.FirstOrDefault(x=>x.Id==command.Target);
-                if(item!=null&&!authority.MayUseInventory(item.OwnerId))return "InventoryNotAuthorized";
+                if(item!=null&&!authority.MayUseInventory(item.OwnerId))return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1468);
                 if(SpellCastingProfile.AdmitsCompanionClub(state,command.Target)) {
                     var club=state.Clubs.SingleOrDefault(x=>x.Id==command.Target);
-                    if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+                    if(club!=null&&!authority.MayUseInventory(club.OwnerId))return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1471);
                 }
                 if(command.Kind==CommandKind.HandlePortableEquipment&&command.Inventory!=null&&command.Inventory.Handling==HandlingKind.Handover
-                    &&!authority.ConsentsToHandover(command.Inventory.Destination))return "RecipientNotWilling";
+                    &&!authority.ConsentsToHandover(command.Inventory.Destination))return new NativeCommandConstraintV1("RecipientNotWilling", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1474);
             }
             if (command.Kind == CommandKind.StartWaterFill || command.Kind == CommandKind.ResumeWaterFill) {
                 var fill = command.Kind == CommandKind.ResumeWaterFill ? state.WaterFills.FirstOrDefault(x => x.Id == command.Target) : null;
@@ -1485,41 +1489,41 @@ namespace Decennium.Foundation
                 var sourceVessel = sourceLot == null ? null : state.Vessels.FirstOrDefault(x => x.Id == sourceLot.LocationId);
                 if ((source != null && !authority.MayUseInventory(source.OwnerId)) || (vessel != null && !authority.MayUseInventory(vessel.OwnerId))
                     || (sourceVessel != null && !authority.MayUseInventory(sourceVessel.OwnerId)))
-                    return "InventoryNotAuthorized";
+                    return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1484);
             }
             if (command.Kind == CommandKind.HandleVessel) {
                 var vessel = state.Vessels.FirstOrDefault(v => v.Id == command.Target);
                 if (vessel != null && (!authority.MayUseInventory(vessel.OwnerId) || state.VesselContents.Where(x => x.VesselId == vessel.Id)
                     .Any(x => state.Work.Lots.First(l => l.Id == x.LotId).Amount != default
-                        && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return "InventoryNotAuthorized";
+                        && !authority.MayUseInventory(state.InventoryLots.First(l => l.LotId == x.LotId).OwnerId)))) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1490);
                 if (command.Inventory != null && command.Inventory.Handling == HandlingKind.Handover
-                    && !authority.ConsentsToHandover(command.Inventory.Destination)) return "RecipientNotWilling";
+                    && !authority.ConsentsToHandover(command.Inventory.Destination)) return new NativeCommandConstraintV1("RecipientNotWilling", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1492);
             }
             // The admitted copying command uses its actor-owned writing allotment. Resume also
             // rechecks that owner's current grant before duplicate handling or deferred spending.
-            if (command.Kind == CommandKind.StartFormulaCopy && !authority.MayUseInventory(command.Actor)) return "InventoryNotAuthorized";
+            if (command.Kind == CommandKind.StartFormulaCopy && !authority.MayUseInventory(command.Actor)) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1496);
             if (command.Kind == CommandKind.StartCraftRemedy) {
                 var incident = state.CraftingIncidents.FirstOrDefault(x => x.Id == command.Target && x.Result == 2);
                 var tool = incident == null ? null : state.Structures.FirstOrDefault(x => x.Id == incident.ToolId);
-                if (tool != null && !authority.MayUseInventory(tool.OwnerId)) return "InventoryNotAuthorized";
+                if (tool != null && !authority.MayUseInventory(tool.OwnerId)) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1500);
             }
             if (command.Kind == CommandKind.ResumeFormulaWork) {
                 var job = state.FormulaWork.FirstOrDefault(x => x.Id == command.Target && x.Kind == FormulaWorkKind.Copy);
-                if (job != null && !authority.MayUseInventory(job.WorkerId)) return "InventoryNotAuthorized";
+                if (job != null && !authority.MayUseInventory(job.WorkerId)) return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1504);
             }
             if(command.Kind==CommandKind.AttackClub||command.Kind==CommandKind.RespondOpportunityAttack&&command.Combat.Choice) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
-                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1508);
             }
             if(command.Kind==CommandKind.Ready) {
                 var club=state.Clubs.FirstOrDefault(w=>w.Id==command.Combat.WeaponId);
-                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1512);
             }
             if(command.Kind==CommandKind.RespondReady&&command.Combat.Choice) {
                 var occurrence=state.ReadyOccurrences.FirstOrDefault(x=>x.Id==command.Target&&x.Pending);
                 var ready=occurrence==null?null:state.ReadyActions.FirstOrDefault(x=>x.Id==occurrence.ReadyActionId);
                 var club=ready==null?null:state.Clubs.FirstOrDefault(w=>w.Id==ready.WeaponId);
-                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return "InventoryNotAuthorized";
+                if(club!=null&&!authority.MayUseInventory(club.OwnerId))return new NativeCommandConstraintV1("InventoryNotAuthorized", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1518);
             }
             return null;
         }
@@ -1561,14 +1565,19 @@ namespace Decennium.Foundation
         private string PreflightCommand(Authority authority, Command command, out CommandReceipt previous)
         {
             previous = null;
-            string failure = ValidateCommandAndAuthority(authority, command);
-            if (failure != null) return failure;
+            return (AssessCommandAndAuthorityV1(authority, command)
+                ?? AssessCommandAfterAuthorityV1(authority, command, out previous))?.NativeCode;
+        }
+
+        private NativeCommandConstraintV1 AssessCommandAfterAuthorityV1(Authority authority, Command command, out CommandReceipt previous)
+        {
+            previous = null;
             previous = state.Receipts.FirstOrDefault(r => r.Principal == authority.Principal && r.Id == command.Id);
-            if (previous != null) return previous.Fingerprint == command.Fingerprint ? null : "CommandIdConflict";
-            if (command.ExpectedRevision != state.Revision) return "StaleRevision";
-            if (!state.Actors.Any(a => a.Id == command.Actor)) return "UnknownActor";
+            if (previous != null) return previous.Fingerprint == command.Fingerprint ? null : new NativeCommandConstraintV1("CommandIdConflict", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1563);
+            if (command.ExpectedRevision != state.Revision) return new NativeCommandConstraintV1("StaleRevision", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1564);
+            if (!state.Actors.Any(a => a.Id == command.Actor)) return new NativeCommandConstraintV1("UnknownActor", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1565);
             if (state.Revision == long.MaxValue || state.Receipts.Length == (state.SchemaVersion >= Snapshot.InventorySchema ? 512 : Validation.MaxReceipts))
-                return "SessionCapacityReached";
+                return new NativeCommandConstraintV1("SessionCapacityReached", "engine/com.decennium.foundation/Runtime/Core/Simulation.cs", 1567);
             return null;
         }
 
@@ -1590,6 +1599,7 @@ namespace Decennium.Foundation
         public CommandResult Execute(Authority authority, Command command)
         {
             RequireOwnerEntryV1();
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.Resolver);
             string preflightFailure = PreflightCommand(authority, command, out var previous);
             if (preflightFailure != null) return Reject(preflightFailure);
             if (previous != null) return AcceptedResult(previous, Outcome.Duplicate);
@@ -1676,6 +1686,7 @@ namespace Decennium.Foundation
         public const string Algorithm = "xorshift32-v1";
         public static uint Next(ref uint state)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.RandomDraw);
             if (state == 0) throw new ArgumentException("RNG state cannot be zero.");
             unchecked { state ^= state << 13; state ^= state >> 17; state ^= state << 5; }
             return state;

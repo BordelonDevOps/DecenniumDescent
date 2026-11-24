@@ -357,12 +357,8 @@ namespace Decennium.Foundation.Laboratory
         private string AssessCastingUtility(Snapshot s,Command c)
         {
             string shape=SpellCastingProfile.PayloadFailure(s,c);if(shape!=null)return shape;
-            if(!s.ConnectedClericCasting || c.Actor!=ClericRpProfile.Actor)return "OrdinarySpellcastingUnsupported";
-            if(c.Kind==CommandKind.EndSpellConcentration) {
-                if(PendingCalendarChoice(s) || ManufacturingChoicePending(s) || HasPendingRecoveryOffer(s))return "TacticalChoicePending";
-                return s.SpellEffects.Any(x=>x.Id==c.Target&&x.CasterId==c.Actor&&x.Present&&x.RequiresConcentration)
-                    ?null:"ConcentrationUnavailable";
-            }
+            var selection = CastingUtilitySelectionConstraintV1(s,c); if(selection!=null)return selection.NativeCode;
+            if(c.Kind==CommandKind.EndSpellConcentration)return EndConcentrationConstraintV1(s,c)?.NativeCode;
             if(c.Kind==CommandKind.RespondSanctuary)return "SanctuaryAdmissionUnavailable";
             string action=CastingActionFailure(s,c); if(action!=null)return action;
             if(c.Kind==CommandKind.GroundCastingStrain) {

@@ -305,6 +305,7 @@ namespace Decennium.Foundation.Tests
             AddOrdinaryMagicCases(cases,directory);
             AddConnectedWorkControlCases(cases,directory);
             AddAdmittedReadContextCases(cases);
+            AddAdmittedAssessmentCases(cases, directory);
             return cases;
         }
         private static void Resign(byte[] bytes)

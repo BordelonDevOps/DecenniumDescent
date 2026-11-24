@@ -126,6 +126,7 @@ namespace Decennium.Foundation.Laboratory
 
         internal static void RequireLifecycleAllowed()
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.ConditionLifecycle);
             if (current?.readContext != null)
                 throw new InvalidOperationException("Condition lifecycle execution is forbidden during a V1 read.");
         }

@@ -88,7 +88,8 @@ namespace Decennium.Foundation.Laboratory
         {
             continuation=null;var pending=PendingSanctuary(s);
             if(pending==null)return "NoPendingSanctuaryAdmission";
-            if(c.Kind!=CommandKind.RespondSanctuary)return "SanctuaryChoicePending";
+            var responseKind = NonSanctuaryResponseConstraintV1(c);
+            if(responseKind!=null)return responseKind.NativeCode;
             if(c.Actor!=pending.ActorId)return "WrongSanctuaryController";
             if(c.Target!=pending.Id || c.SanctuaryResponse==null || c.X!=0 || c.Y!=0 || c.Inventory!=null || c.Combat!=null
                 ||c.Ranged!=null || c.Advancement!=null || c.SpellCast!=null || c.Guidance!=null)return "InvalidSanctuaryResponse";

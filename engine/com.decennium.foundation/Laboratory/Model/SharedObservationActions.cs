@@ -12,6 +12,7 @@ namespace Decennium.Foundation.Laboratory
 
         private string Resolve(Snapshot s, Command c, PlanningPassage? passage, bool verifiedExecution = false)
         {
+            NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.Resolver);
             using var conditions = ConditionResolutionScope.Enter(verifiedExecution && ReuseAdvanceConditions(s, c));
             Snapshot workWatchBefore=recipe347Fixture!=null&&Recipe347WorkStartCommand(c)?s.Copy():null;
             var pendingAdvance = s.ManufacturingAdvance;

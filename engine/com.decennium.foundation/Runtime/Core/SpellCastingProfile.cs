@@ -29,16 +29,19 @@ namespace Decennium.Foundation
         public static bool HasUnsafeContamination(Snapshot s,string lotId) => s.ConnectedClericCasting
             && System.Linq.Enumerable.Any(s.ConsumableContamination,x=>x.LotId==lotId && x.Present);
         public static string PhysicalFailure(Snapshot s,Command c)
+            => PhysicalConstraintV1(s,c)?.NativeCode;
+        public static NativeCommandConstraintV1 PhysicalConstraintV1(Snapshot s,Command c)
         {
+            const string source = "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs";
             if(!s.ConnectedClericCasting)return null;
             if(HasUnsafeContamination(s,c.Target)) {
-                if(c.Kind==CommandKind.StartIntake)return "UnsafeConsumableIntakeUnsupported";
+                if(c.Kind==CommandKind.StartIntake)return new NativeCommandConstraintV1("UnsafeConsumableIntakeUnsupported", source, 35);
                 if(c.Kind==CommandKind.PortionInventory || c.Kind==CommandKind.HandleInventory || c.Kind==CommandKind.StartWaterFill)
-                    return "ContaminationPropagationUnsupported";
+                    return new NativeCommandConstraintV1("ContaminationPropagationUnsupported", source, 37);
             }
             if(c.Kind==CommandKind.StartWaterFill && c.Inventory!=null
                 && System.Linq.Enumerable.Any(s.VesselContents,x=>x.VesselId==c.Inventory.Destination && HasUnsafeContamination(s,x.LotId)))
-                return "ContaminationPropagationUnsupported";
+                return new NativeCommandConstraintV1("ContaminationPropagationUnsupported", source, 41);
             return null;
         }
         public static bool SelectedFingerprint(string value) => value != null && (value.StartsWith(FingerprintPrefix, StringComparison.Ordinal)
@@ -74,19 +77,22 @@ namespace Decennium.Foundation
 
         // Runs before query, execution and duplicate handling. Old profiles cannot silently ignore a new choice.
         public static string PayloadFailure(Snapshot s, Command c)
+            => PayloadConstraintV1(s, c)?.NativeCode;
+
+        public static NativeCommandConstraintV1 PayloadConstraintV1(Snapshot s, Command c)
         {
             bool cast = c.SpellCast != null, guidance = c.Guidance != null, response = c.SanctuaryResponse != null;
             if (!cast && !guidance && !response && !IsUtilityCommand(c.Kind)) return null;
-            if (!s.TestOnly || !SelectedFingerprint(s.ContentFingerprint)) return "OrdinarySpellcastingUnsupported";
+            if (!s.TestOnly || !SelectedFingerprint(s.ContentFingerprint)) return new NativeCommandConstraintV1("OrdinarySpellcastingUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 80);
             if ((cast ? 1 : 0) + (guidance ? 1 : 0) + (response ? 1 : 0) > 1 || LegacyPayload(c))
-                return "UnexpectedSpellPayload";
+                return new NativeCommandConstraintV1("UnexpectedSpellPayload", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 82);
             if (cast && (c.Kind != CommandKind.CastKnownSpell || c.Target == "" || c.X != 0 || c.Y != 0))
-                return "UnexpectedSpellCastPayload";
+                return new NativeCommandConstraintV1("UnexpectedSpellCastPayload", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 84);
             if (guidance && c.Kind != CommandKind.Hide && c.Kind != CommandKind.Search && c.Kind != CommandKind.StabilizeCompanion)
-                return "GuidanceConsumerUnsupported";
+                return new NativeCommandConstraintV1("GuidanceConsumerUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 86);
             if ((c.Kind == CommandKind.RespondSanctuary) != response
-                || response && (c.Target == "" || c.X != 0 || c.Y != 0)) return "UnexpectedSanctuaryPayload";
-            if (IsUtilityCommand(c.Kind) && (cast || guidance || c.X != 0 || c.Y != 0)) return "UnexpectedSpellUtilityPayload";
+                || response && (c.Target == "" || c.X != 0 || c.Y != 0)) return new NativeCommandConstraintV1("UnexpectedSanctuaryPayload", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 88);
+            if (IsUtilityCommand(c.Kind) && (cast || guidance || c.X != 0 || c.Y != 0)) return new NativeCommandConstraintV1("UnexpectedSpellUtilityPayload", "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs", 89);
             return null;
         }
     }

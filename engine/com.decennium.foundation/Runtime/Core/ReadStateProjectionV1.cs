@@ -86,10 +86,11 @@ namespace Decennium.Foundation
             { Stamp = stamp; Projection = projection; }
         }
 
-        private void RequireOwnerEntryV1()
+        private void RequireOwnerEntryV1(bool insideOwningRead = false)
         {
             if (preparingReadStateV1)
                 throw new InvalidOperationException("A read projection provider cannot reenter its owning simulation.");
+            if (!insideOwningRead) NativeReadInspectionV1.RequireExecution(NativeReadOperationV1.OwnerReentry);
         }
 
         private ReadStatePublicationV1 PrepareReadStateV1(Snapshot validatedCurrent)
@@ -114,7 +115,7 @@ namespace Decennium.Foundation
 
         private NativeReadContextV1 CurrentReadContextV1(Snapshot captured)
         {
-            RequireOwnerEntryV1();
+            RequireOwnerEntryV1(insideOwningRead: true);
             var current = readStateV1;
             if (current == null || current.Projection == null
                 || !current.Stamp.Matches(readStateOwnerV1, policy, state)

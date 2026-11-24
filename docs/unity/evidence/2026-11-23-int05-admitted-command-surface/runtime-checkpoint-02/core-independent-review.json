@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_INCREMENTAL_CORE_REVIEW_TWO_FINDINGS_CORRECTED_NO_FURTHER_CONCRETE_BLOCKER_FOUND",
+  "reviewer": "independent agent /root/review_consecration",
+  "createdAtUtc": "2026-11-24T03:27:55.026368+00:00",
+  "comparisonBaseline": "dba75cbf6",
+  "nativeOriginCoordinateBaseline": "67f3d201b202ab2f815ab69940682f04e78c511c",
+  "reviewedSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeCommandAssessmentV1.cs",
+      "sha256": "cc43c92eb1a3c020caa27f84dd6fb190df78619c6decdeeb0376a40ef5a0f345"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NativeReadInspectionV1.cs",
+      "sha256": "6b7893ea7035497bb980c730ca237a6c61362946971e960b0e426096db812058"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "35cafa69abe2c2bf249c796ac0ae8f683007688eca0540ad27673f4676345832"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "sha256": "b8cef6dd743524ed3c17f06c642b036452c8028497bb5752d9ae8475eb4740fc"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "1af861a9f11a2e4e02b28772b87bc3c7301906988f6304222e4a285c22afe0c9"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReadStateProjectionV1.cs",
+      "sha256": "60361c58533616536a987ad228050ed44722bb3ef6dd6af15a4428091c5b1ed2"
+    }
+  ],
+  "scope": [
+    "NativeCommandAssessmentV1.cs and NativeReadInspectionV1.cs; Simulation/SpellCastingProfile/DivineInvocationRecords changes against dba75cbf6.",
+    "ReadStateProjectionV1 private owner-entry guard inspected for the direct correction.",
+    "Exact legacy authority/preflight conditions and codes, new trusted Core observation/retry boundary, capability dispatch, per-call violation accounting, including caught exceptions."
+  ],
+  "findings": [
+    {
+      "id": "CORE-ASSESS-01",
+      "originalLocation": "NativeCommandAssessmentV1.cs:117-118",
+      "originalCondition": "Catch filter admitted only ArgumentException, InvalidOperationException and OverflowException.",
+      "concreteCounterexample": "ICommandAssessmentFactsPolicyV1.AssessFacts throws NotSupportedException or NullReferenceException. Original new V1 method propagates instead of returning technical ProjectionUnavailable. Source-derived counterexample; not executed by reviewer.",
+      "correction": "Catch any Exception inside the new assessment inspection boundary and return ProjectionUnavailable with current attempt audit. Existing legacy methods retain their prior catch behavior.",
+      "recheck": "VERIFIED_CURRENT_SOURCE: unfiltered catch(Exception) at117; using scope unwinds on returned technical result. No runtime pass claimed."
+    },
+    {
+      "id": "CORE-ASSESS-02",
+      "originalLocation": "NativeReadInspectionV1.cs:25-29 and public Simulation entry points",
+      "originalCondition": "Only Capture explicitly counted OwnerReentry, while Execute guarded Resolver; other public read entries and recursive AssessCommandFactsV1 lacked active-inspection owner-entry accounting.",
+      "concreteCounterexample": "A policy callback invokes a legacy QueryCommand/AssessCommandAdmission that returns without reaching an instrumented deeper operation, catches any errors, then returns eligible assessment. Original outer read could remain zero-attempt. Source-derived counterexample; not executed by reviewer.",
+      "correction": "RequireOwnerEntryV1 now calls RequireExecution(OwnerReentry) for ordinary public entries. Only the private CurrentReadContextV1 path passes insideOwningRead:true. The outer new assessment calls the entry guard before Enter, so first entry is permitted and nested public entry is rejected/counted.",
+      "recheck": "VERIFIED_CURRENT_SOURCE: all current public instance Simulation entries use RequireOwnerEntryV1; existing preparation nonreentrancy guard is preserved. Captured prohibited attempts remain counted even when callback catches the thrown exception."
+    }
+  ],
+  "preservedLegacyEvidence": {
+    "authorityBodyNormalization": "Exact byte equality to old ValidateCommandAndAuthority body after reversing typed-constraint allocation and renamed wrapper helper calls only.",
+    "spellAndInvocationNormalization": "Independent static normalization of whole files to old native string-return helpers was equal; all original guard expressions/order/codes preserved.",
+    "preflightOrder": "Current command/authority first; receipt identity/fingerprint branch next; fresh Command.ExpectedRevision, actor existence and capacity afterward. New typed wrapper preserves this legacy order and output NativeCode.",
+    "originCoordinateChecks": [
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+        "originCount": 54,
+        "allNativeTokensAtAcceptedSourceCoordinates": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+        "originCount": 9,
+        "allNativeTokensAtAcceptedSourceCoordinates": true
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+        "originCount": 3,
+        "allNativeTokensAtAcceptedSourceCoordinates": true
+      }
+    ],
+    "executionLimit": "These are source/static comparisons, not compilation or behavioral test execution."
+  },
+  "newBoundaryDispositions": [
+    {
+      "topic": "New observation and exact retry",
+      "finding": "Current trusted Core authority checks run before observation fence; stale observation returns before receipt details. Current Core authorization is rechecked before exact AlreadyCommitted, and original command revision is not reevaluated on exact retry. Fresh commands retain revision-before-actor/capacity sequence."
+    },
+    {
+      "topic": "Host ordering boundary",
+      "finding": "This Core method explicitly does not implement endpoint/seat/exposure/KnownTarget. Accepted GPT08 requires the connected host to apply its effective grant and outer freshness/receipt/fresh-target ordering before native preflight. This review does not certify that pending host integration or replace those stages with this Core method."
+    },
+    {
+      "topic": "Pure dispatch capability",
+      "finding": "Optional ICommandAssessmentFactsPolicyV1 only; no fallback to legacy QueryCommand/AssessAdmission/Resolve. RequiresVerifiedAssessment=true requires existing verification origin and checkpoint implementing IVerifiedCommandAssessmentV1, otherwise VerificationUnavailable. No fallback to ordinary assessor on missing verified capability."
+    },
+    {
+      "topic": "Owning context",
+      "finding": "Current captured snapshot/context is obtained once. Result must match observed revision, context must remain bound, and any tracked violation overrides eligibility. Source-specific verified proof and family pure helper correctness remain their own implementation obligations."
+    },
+    {
+      "topic": "Per-call attempt isolation",
+      "finding": "Thread-static stack is per synchronous call; RequireExecution increments current and enclosing scopes before throwing. Result() replaces supported/unsupported/rejected/receipt outputs when violation exists; final assessment path checks violation independently. Attempts are copied into a read-only array. Scope Dispose restores previous current scope in nesting order."
+    },
+    {
+      "topic": "Caught violations",
+      "finding": "A provider or InventoryClaims helper may catch instrumented exceptions, but the enclosing scope retains counts and returns ProjectionUnavailable rather than masking the forbidden call behind an ordinary native denial."
+    },
+    {
+      "topic": "Diagnostics/privacy",
+      "finding": "Native source paths/codes are intentionally trusted Core metadata, not safe player diagnostics. Registered per-origin disclosure remains a separate host obligation."
+    }
+  ],
+  "meaningfulFocusedTestsProposed": [
+    "Caught and uncaught public reentry from assessor: Capture, QueryCommand, AssessCommandAdmission, DiscoverCommands, ObserveSearch/Hide and recursive new assessment must reject/count before nested work; next independent call has fresh zero audit.",
+    "Assessor throws NotSupportedException and NullReferenceException: technical ProjectionUnavailable, correct revision and no escaped exception; subsequent normal read succeeds.",
+    "InventoryClaims catches a forbidden RNG draw then returns/throws a native claims failure: outer result remains ProjectionUnavailable with RandomDraw count and unchanged live state/RNG/receipts.",
+    "Malformed/authority denial and revoked inventory authority on exact retry retain original first native reason; stale observation contains no matching receipt; exact retry with current observation accepts original command revision.",
+    "Required verified capability missing: VerificationUnavailable and zero ordinary-assessor calls. Valid verified path invokes only that path; absent pure interface never calls legacy query/resolver.",
+    "Successful and unavailable native assessments with no violations preserve exact typed facts/constraints; wrong observed revision, null result or stale context returns ProjectionUnavailable.",
+    "Original legacy payload/preflight behavior comparison exercises overlapping malformed payload/authority/retry/freshness failures to substantiate static extraction parity."
+  ],
+  "contractPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/ADMISSION_DECISIONS_08.md",
+      "sha256": "b2abe9c86579f83578deb73f9b1edb8072a6d2bac9addf24b0af97d74d5d1432"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SOURCE_API_CONTRACT.md",
+      "sha256": "1e11572d1c751588a234fe140e46e463ba5fd5e812b02be131ddaf706837a0ec"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/SAFE_DIAGNOSTIC_CONTRACT_PROPOSAL.md",
+      "sha256": "3e7ede2d39ac6b7c7357ad12dd8d4d84844a560cfe3efb8ed24aa3e8c859becf"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_HC_ACCEPTANCE_REVIEW_09.json",
+      "sha256": "3f997117342e37ad2b6ce5aa12a359f1219c6855feac01b1ea8dc6f05a292b5a"
+    }
+  ],
+  "testExecutionByReviewer": false,
+  "buildExecutionByReviewer": false,
+  "gameplayOrReplayByReviewer": false,
+  "runtimeEditsByReviewer": false,
+  "wholeModuleAcceptance": false,
+  "limits": [
+    "Incremental source review only; no all-family pure call-graph closure, host DTO disclosure acceptance, replay/persistence qualification or Unity readiness.",
+    "Parent-reported candidate test runs were not independently rerun or incorporated as passing evidence here.",
+    "Source-only counterexamples and static equality checks are distinguished from executed gameplay/tests.",
+    "Trusted policy correctness, family-specific checkpoint proof and all-profile alias/condition parity remain separately qualified. No successor work."
+  ]
+}

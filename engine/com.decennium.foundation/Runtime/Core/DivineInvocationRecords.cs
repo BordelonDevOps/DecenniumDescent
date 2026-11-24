@@ -95,14 +95,17 @@ namespace Decennium.Foundation
         public static IEnumerable<DivineInvocationRecord> Invocations(Snapshot s)
             =>s.BishopEntry?.Invocations??(IEnumerable<DivineInvocationRecord>)Array.Empty<DivineInvocationRecord>();
         public static string InvocationPayloadFailure(Snapshot s,Command c)
+            => InvocationPayloadConstraintV1(s,c)?.NativeCode;
+
+        internal static NativeCommandConstraintV1 InvocationPayloadConstraintV1(Snapshot s,Command c)
         {
-            if(c.DivineInvocation==null)return c.Kind==CommandKind.UseDivineInvocation?"InvocationSelectionRequired":null;
-            if(s.BishopEntry==null||c.Kind!=CommandKind.UseDivineInvocation)return "InvocationUnsupported";
+            if(c.DivineInvocation==null)return c.Kind==CommandKind.UseDivineInvocation?new NativeCommandConstraintV1("InvocationSelectionRequired", "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs", 99):null;
+            if(s.BishopEntry==null||c.Kind!=CommandKind.UseDivineInvocation)return new NativeCommandConstraintV1("InvocationUnsupported", "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs", 100);
             return c.Target!=""||c.X!=0||c.Y!=0||c.Inventory!=null||c.Combat!=null||c.Advancement!=null||c.Ranged!=null
                 ||c.OverwatchRider!=OverwatchRider.None||c.SuppressionFire!=null||c.DefensiveFormation!=null||c.ExpeditionAssignment!=null
                 ||c.HarvestSelection!=null||c.MiningSelection!=null||c.ProspectingExposure!=null||c.RouteMappingWork!=null
                 ||c.IntimidatingPresence!=null||c.HealingRite!=null||c.SpellCast!=null||c.Guidance!=null||c.SanctuaryResponse!=null
-                ?"UnexpectedInvocationPayload":null;
+                ?new NativeCommandConstraintV1("UnexpectedInvocationPayload", "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs", 105):null;
         }
         public static bool QualifiesInvocationCure(Snapshot s,string target,ConditionOperation operation)
             =>operation.Kind==ConditionOperationKind.Cure&&Invocations(s).Any(x=>x.Choice.CureTargetId==target
