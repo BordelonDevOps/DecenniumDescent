@@ -8,7 +8,9 @@ namespace Decennium.Foundation.Laboratory
     {
         // Incremental implementation inventory, not the final INT-05 operation catalog.
         bool ICommandAssessmentFactsPolicyV1.SupportsAssessment(CommandKind kind)
-            => connectedClericCasting && (kind == CommandKind.CastKnownSpell || kind == CommandKind.EndSpellConcentration
+            => kind == CommandKind.CastKnownSpell || kind == CommandKind.AcquireEarnedSpell
+                || kind == CommandKind.UseIntimidatingPresence
+                || connectedClericCasting && (kind == CommandKind.EndSpellConcentration
                 || kind == CommandKind.GroundCastingStrain || kind == CommandKind.FocusDetectedAura)
                 || ClericLongRestProfile.IsCommand(kind) || kind == CommandKind.UseHealingRite
                 || kind == CommandKind.UseDivineInvocation || kind == CommandKind.UseConsecrate
@@ -42,7 +44,10 @@ namespace Decennium.Foundation.Laboratory
         private NativeCommandConstraintV1 SelectedInitialConstraintV1(Snapshot current, Command command)
         {
             switch (command.Kind) {
-                case CommandKind.CastKnownSpell: return SpellCastConstraintV1(current, command);
+                case CommandKind.CastKnownSpell: return current.ConnectedClericCasting
+                    ? SpellCastConstraintV1(current, command) : ClericRepertoireProfile.CommandConstraintV1(current, command);
+                case CommandKind.AcquireEarnedSpell: return ClericRepertoireProfile.CommandConstraintV1(current, command);
+                case CommandKind.UseIntimidatingPresence: return IntimidatingPresenceConstraintV1(current, command);
                 case CommandKind.UseConsecrate: return ConsecrateConstraintV1(current, command);
                 case CommandKind.UseDivineInvocation: return DivineInvocationConstraintV1(current, command);
                 case CommandKind.UseHealingRite: return HealingRiteConstraintV1(current, command);

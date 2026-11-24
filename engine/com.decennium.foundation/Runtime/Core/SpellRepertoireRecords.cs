@@ -121,10 +121,13 @@ namespace Decennium.Foundation
 
         // These denials are shared by the read-only query and actual command resolver, including rank-zero casts.
         public static string CommandFailure(Snapshot state, Command command)
+            => CommandConstraintV1(state, command)?.NativeCode;
+
+        public static NativeCommandConstraintV1 CommandConstraintV1(Snapshot state, Command command)
         {
-            if (!state.ConnectedClericRepertoire || command.Actor != ClericRpProfile.Actor) return "SpellRepertoireUnavailable";
-            return command.Kind == CommandKind.CastKnownSpell ? "OrdinarySpellcastingUnsupported"
-                : state.ConnectedClericSettlement ? "EarnedSpellAcquisitionRequiresAdvancementTransaction" : "ClericEarnedAdvancementUnavailable";
+            if (!state.ConnectedClericRepertoire || command.Actor != ClericRpProfile.Actor) return new NativeCommandConstraintV1("SpellRepertoireUnavailable", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 125);
+            return command.Kind == CommandKind.CastKnownSpell ? new NativeCommandConstraintV1("OrdinarySpellcastingUnsupported", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 126)
+                : state.ConnectedClericSettlement ? new NativeCommandConstraintV1("EarnedSpellAcquisitionRequiresAdvancementTransaction", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 127) : new NativeCommandConstraintV1("ClericEarnedAdvancementUnavailable", "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs", 127);
         }
 
         public static string AssessChoice(string spell, int actualClericLevel, bool bishop = false)

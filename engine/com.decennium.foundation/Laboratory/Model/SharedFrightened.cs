@@ -36,43 +36,46 @@ namespace Decennium.Foundation.Laboratory
         }
 
         private string AssessIntimidatingPresence(Snapshot state, Command command)
+            => IntimidatingPresenceConstraintV1(state, command)?.NativeCode;
+
+        private NativeCommandConstraintV1 IntimidatingPresenceConstraintV1(Snapshot state, Command command)
         {
-            if (!state.ConnectedFrightened || command.Actor != FrightenedProfile.Actor && !(state.PostRecoveryEncounter != null && command.Actor == PostRecoveryEncounterDefinition.Actor)) return "IntimidatingPresenceUnavailable";
-            if (command.IntimidatingPresence == null) return "InvalidIntimidatingPresenceRequest";
+            if (!state.ConnectedFrightened || command.Actor != FrightenedProfile.Actor && !(state.PostRecoveryEncounter != null && command.Actor == PostRecoveryEncounterDefinition.Actor)) return new NativeCommandConstraintV1("IntimidatingPresenceUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 40);
+            if (command.IntimidatingPresence == null) return new NativeCommandConstraintV1("InvalidIntimidatingPresenceRequest", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 41);
             bool recovery=command.Actor==PostRecoveryEncounterDefinition.Actor && PostRecoveryProfile.Active(state);
             if (!state.InventoryCombat || (!recovery && (command.Actor!=FrightenedProfile.Actor
-                || state.Reinforcement?.Admission == null || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId))) return "IntimidatingPresenceContextUnsupported";
-            if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return "TacticalChoicePending";
-            if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor) return "WrongRegularTurn";
-            if (!state.CharacterFeatureGrants.Any(x => x.ActorId==command.Actor && FrightenedProfile.ValidFixtureGrant(state, x))) return "IntimidatingPresenceNotOwned";
+                || state.Reinforcement?.Admission == null || state.Encounter?.Id != state.Reinforcement.Definition.EncounterId))) return new NativeCommandConstraintV1("IntimidatingPresenceContextUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 44);
+            if (PendingCalendarChoice(state) || ManufacturingChoicePending(state) || HasPendingRecoveryOffer(state)) return new NativeCommandConstraintV1("TacticalChoicePending", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 45);
+            if (state.Encounter.CurrentActor != command.Actor || state.InventoryTurnActor != command.Actor) return new NativeCommandConstraintV1("WrongRegularTurn", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 46);
+            if (!state.CharacterFeatureGrants.Any(x => x.ActorId==command.Actor && FrightenedProfile.ValidFixtureGrant(state, x))) return new NativeCommandConstraintV1("IntimidatingPresenceNotOwned", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 47);
             var choice = state.WarriorAbilityChoices.SingleOrDefault(x => x.ActorId == command.Actor);
             if (choice == null || state.Characters.Single(x => x.ActorId == command.Actor).Levels.Count(x => x.ClassName == "Warrior") < 2)
-                return "IntimidatingPresenceClassUnavailable";
-            if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return "ConditionPreventsAction";
-            if (Interval(state, command.Actor).ActionSpent) return "ActionAlreadySpent";
+                return new NativeCommandConstraintV1("IntimidatingPresenceClassUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 50);
+            if (!CapableWorker(state, command.Actor) || !Permissions(state, command.Actor).Action) return new NativeCommandConstraintV1("ConditionPreventsAction", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 51);
+            if (Interval(state, command.Actor).ActionSpent) return new NativeCommandConstraintV1("ActionAlreadySpent", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 52);
             if (OrdinaryInventory.Busy(state, command.Actor) || state.WorldTraversals.Any(x => x.ActorId == command.Actor))
-                return "IntimidatingPresenceRequiresStationaryAccess";
+                return new NativeCommandConstraintV1("IntimidatingPresenceRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 54);
             if (state.AbilityRecharges.Any(x => x.ActorId == command.Actor && x.AbilityId == FrightenedProfile.SourceId && x.Remaining > 0))
-                return "IntimidatingPresenceRecharging";
+                return new NativeCommandConstraintV1("IntimidatingPresenceRecharging", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 56);
             if (state.FrightenedUses.Length >= 128 || state.FrightenedSaves.Length + 6 > 768 || state.FrightenedTimings.Length + 3 > 384)
-                return "IntimidatingPresenceHistoryFull";
+                return new NativeCommandConstraintV1("IntimidatingPresenceHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 58);
             var actor = state.Actors.Single(x => x.Id == command.Actor);
             foreach (string id in command.IntimidatingPresence.TargetIds) {
                 if (id != TestOnlyPolicy.ActorId && id != TestOnlyPolicy.CompanionId || !state.Encounter.Order.Contains(id)
-                    || state.Lives.Single(x => x.ActorId == id).Dead) return "IntimidatingPresenceTargetUnavailable";
-                if (state.WorldTraversals.Any(x => x.ActorId == id)) return "IntimidatingPresenceRequiresStationaryAccess";
+                    || state.Lives.Single(x => x.ActorId == id).Dead) return new NativeCommandConstraintV1("IntimidatingPresenceTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 62);
+                if (state.WorldTraversals.Any(x => x.ActorId == id)) return new NativeCommandConstraintV1("IntimidatingPresenceRequiresStationaryAccess", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 63);
                 var target = state.Actors.Single(x => x.Id == id);
                 if (PlanarCombatGeometry.DistanceFeet(new CombatCell(actor.X, actor.Y), new CombatCell(target.X, target.Y)) > 15
-                    || !ObservationGeometry.LineOfEffectClear(state, actor.Id, target.Id)) return "IntimidatingPresenceTargetUnavailable";
+                    || !ObservationGeometry.LineOfEffectClear(state, actor.Id, target.Id)) return new NativeCommandConstraintV1("IntimidatingPresenceTargetUnavailable", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 66);
                 if (!ObservationRules.CanSee(state, target.Id, actor.Id))
-                    return "IntimidatingPresenceHearingTargetingUnsupported";
+                    return new NativeCommandConstraintV1("IntimidatingPresenceHearingTargetingUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 68);
                 if (!ObservationRules.CanSee(state, actor.Id, target.Id))
-                    return "IntimidatingPresenceAlternativePerceptionUnsupported";
+                    return new NativeCommandConstraintV1("IntimidatingPresenceAlternativePerceptionUnsupported", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 70);
                 var journal = state.Conditions.Single(x => x.Target == id);
                 var ledger = TestOnlyClubAttackPolicy.ConditionsFor(state, id);
                 // Reserve application, synchronization, repeat and final-expiry operations before any payment or draw.
                 if (journal.Operations.Count + 6 > ConditionJournal.MaxOperations || ledger.Applications.Count >= ConditionLedger.MaxApplications)
-                    return "IntimidatingPresenceConditionHistoryFull";
+                    return new NativeCommandConstraintV1("IntimidatingPresenceConditionHistoryFull", "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs", 75);
             }
             return null;
         }

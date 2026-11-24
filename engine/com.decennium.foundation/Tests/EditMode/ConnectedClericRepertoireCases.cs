@@ -32,6 +32,7 @@ namespace Decennium.Foundation.Tests
                     ? ClericRepertoireProfile.InitialSpells.Append(ClericRepertoireProfile.FutureChoice) : new[] { ClericRepertoireProfile.FutureChoice }) {
                     var command = new Command("repertoire.deny." + spell, ClericRpProfile.Actor, state.Revision, kind, spell);
                     string code = kind == CommandKind.CastKnownSpell ? "OrdinarySpellcastingUnsupported" : "ClericEarnedAdvancementUnavailable";
+                    AssertPureUtility(session,command,code,grant);
                     var query = simulation.QueryCommand(grant, command);
                     Require(!query.Admissible && query.Code == code && query.Costs.Count == 0, "Unsupported capability query must not quote executable costs.");
                     var result = simulation.Execute(grant, command);

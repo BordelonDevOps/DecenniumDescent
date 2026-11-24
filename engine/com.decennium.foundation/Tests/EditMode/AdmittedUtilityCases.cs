@@ -9,11 +9,12 @@ namespace Decennium.Foundation.Tests
 {
     public static partial class FoundationCases
     {
-        private static void AssertPureUtility(ConnectedExpeditionSession session, Command command, string expected = null)
+        private static void AssertPureUtility(ConnectedExpeditionSession session, Command command, string expected = null,
+            Authority authority = null)
         {
             var sim=CastingSimulation(session); var before=Bytes(sim); var state=sim.Capture();
             for(int i=0;i<3;i++) {
-                var result=sim.AssessCommandFactsV1(CastingAuthority(),command,state.Revision);
+                var result=sim.AssessCommandFactsV1(authority ?? CastingAuthority(),command,state.Revision);
                 Require(result.Supported && result.Admissible==(expected==null) && result.Constraint?.NativeCode==expected
                     && result.InitialEligibility==(expected==null) && result.CommitFeasibility==null
                     && result.ProhibitedCallAttempts.All(x=>x==0) && before.SequenceEqual(Bytes(sim)),
@@ -23,6 +24,39 @@ namespace Decennium.Foundation.Tests
 
         private static void AddAdmittedUtilityCases(Dictionary<string,Action> cases,string directory)
         {
+            cases.Add("int05_repertoire_and_fear_profile_denials_are_pure",()=> {
+                var rows=new[] {
+                    (NewClericExpedition(),CommandKind.AcquireEarnedSpell,"SpellRepertoireUnavailable"),
+                    (NewRepertoireExpedition(),CommandKind.AcquireEarnedSpell,"ClericEarnedAdvancementUnavailable"),
+                    (NewClericSettlement(),CommandKind.AcquireEarnedSpell,"EarnedSpellAcquisitionRequiresAdvancementTransaction"),
+                    (NewClericExpedition(),CommandKind.CastKnownSpell,"SpellRepertoireUnavailable"),
+                    (NewRepertoireExpedition(),CommandKind.CastKnownSpell,"OrdinarySpellcastingUnsupported")
+                };
+                var facts=new List<object>();int n=0;
+                void Check(ConnectedExpeditionSession session,Command command,string code,Authority authority) {
+                    var sim=CastingSimulation(session);var before=Bytes(sim);var state=sim.Capture();
+                    AssertPureUtility(session,command,code,authority);
+                    var read=sim.AssessCommandFactsV1(authority,command,state.Revision);
+                    var actual=sim.Execute(authority,command);
+                    Require(actual.Outcome==Outcome.Rejected&&actual.Code==code&&before.SequenceEqual(Bytes(sim)),
+                        "Source/profile denial changed state or differed from native execution.");
+                    facts.Add(new {state.WireSchemaVersion,kind=command.Kind.ToString(),code,
+                        read.Constraint.SourcePath,read.Constraint.SourceLine});
+                }
+                foreach(var row in rows) Check(row.Item1,new Command("int05.source.profile."+(++n),ClericRpProfile.Actor,
+                    0,row.Item2,ClericRepertoireProfile.FutureChoice),row.Item3,CastingAuthority());
+                var fear=NewFrightenedExpedition();
+                Check(fear,new Command("int05.fear.context",FrightenedProfile.Actor,0,CommandKind.UseIntimidatingPresence,
+                    intimidatingPresence:new IntimidatingPresenceRequest(new[]{ConnectedExpeditionSession.Hero})),
+                    "IntimidatingPresenceContextUnsupported",LaterDefenderController.DefenderAuthority());
+                var old=NewRepertoireExpedition();
+                Check(old,new Command("int05.fear.unselected",FrightenedProfile.Actor,0,CommandKind.UseIntimidatingPresence,
+                    intimidatingPresence:new IntimidatingPresenceRequest(new[]{ConnectedExpeditionSession.Hero})),
+                    "IntimidatingPresenceUnavailable",LaterDefenderController.DefenderAuthority());
+                File.WriteAllText(Path.Combine(directory,"int05-fear-repertoire-denials.json"),
+                    System.Text.Json.JsonSerializer.Serialize(new {scope="Seven authentic factory native denials; no public V1 or acquired entitlement claim",facts}));
+            });
+
             cases.Add("int05_genuine_grounding_assessment_pays_action_once",()=> {
                 const string actor=ClericRpProfile.Actor, hero=ConnectedExpeditionSession.Hero;
                 var session=CastingFirstOwnTurn();

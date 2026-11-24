@@ -293,9 +293,18 @@ namespace Decennium.Foundation.Tests
                     var ready = ShortRestCapture(session);
                     var command = new Command("fear.reuse." + reuse, FrightenedProfile.Actor, ready.Revision, CommandKind.UseIntimidatingPresence,
                         intimidatingPresence: new IntimidatingPresenceRequest(new[] { hero, ally }));
+                    AssertPureUtility(session,command,authority:LaterDefenderController.DefenderAuthority());
                     Require(session.SubmitDefenderIntimidatingPresence(LaterDefenderController.DefenderAuthority(), command).Response
                         == ExpeditionResponse.Committed, "Actual recharged use failed.");
                     var paidBytes = codec.Encode(ShortRestCapture(session));
+                    var paid=ShortRestCapture(session);var sim=CastingSimulation(session);
+                    var retry=sim.AssessCommandFactsV1(LaterDefenderController.DefenderAuthority(),command,paid.Revision);
+                    Require(retry.Status==NativeAssessmentStatusV1.AlreadyCommitted&&retry.InitialEligibility==null
+                        &&retry.ProhibitedCallAttempts.All(x=>x==0)&&paidBytes.SequenceEqual(Bytes(sim)),
+                        "A paid fear receipt must not rerun eligibility, saves or recharge.");
+                    var spent=new Command("int05.fear.spent."+reuse,command.Actor,paid.Revision,command.Kind,
+                        intimidatingPresence:command.IntimidatingPresence);
+                    AssertPureUtility(session,spent,"ActionAlreadySpent",LaterDefenderController.DefenderAuthority());
                     Require(session.SubmitDefenderIntimidatingPresence(LaterDefenderController.DefenderAuthority(), command).Response
                         == ExpeditionResponse.Duplicate && paidBytes.SequenceEqual(codec.Encode(ShortRestCapture(session))),
                         "Repeated source delivery consumed more Action or RNG.");

@@ -1,0 +1,267 @@
+{
+  "reviewId": "INT05-fear-repertoire-cross-review-01",
+  "reviewer": "/root/audit_magic",
+  "status": "BOUNDED_STATIC_REVIEW_NO_CONCRETE_DEFECT_FOUND",
+  "comparisonHead": "a2c2df976",
+  "nativeOriginBaseline": "67f3d201b",
+  "operations": [
+    "UseIntimidatingPresence",
+    "AcquireEarnedSpell",
+    "CastKnownSpell on profiles without connected cleric casting"
+  ],
+  "scope": "Independent source-only review of SharedFrightened.IntimidatingPresenceConstraintV1, ClericRepertoireProfile.CommandConstraintV1, their current native assessment routes, and the three requested test-file changes. No runtime/test edits or tests/builds executed. Previously reviewed care and selected-casting implementations are not requalified here.",
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "sha256": "e32bdc4005506ae24d8b79a83ae1c6e328a1a1966b3f8c80acb42dec6239c13f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "bd7a659ca3a90901fbbf5ac38dbb4b5cbf0b2226d2efce85dcd4ee3074a6521b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCommandAssessmentV1.cs",
+      "sha256": "e2e0c65ba8935f2fa7196cec7850d1597833e4467ade5149621465e1fbe5f61f"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/AdmittedUtilityCases.cs",
+      "sha256": "3dc8bf0ffc7fad16444119ac926c958f89e1e6b6a5391c887e25cef208c7d83c"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/FrightenedLifecycleCases.cs",
+      "sha256": "9304b7f7a9999b8e9c8d4db34e61b8d256fe94997e6d5e64f65d9542bd573a2a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRepertoireCases.cs",
+      "sha256": "96af9620cb8c498dbea5349eddf2853fa68d9c5c6b17be639c17f5774f31afef"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "2377c0355b6e2f92fbf6df60b05a733e991fb14681d05c9ca91b00f0d9d3004a"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FrightenedRecords.cs",
+      "sha256": "eca6ca8e1d44df15eb87a75fa97f140fd707164af07d228ef46f2740291f955e"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/LaterDefenderController.cs",
+      "sha256": "b5d6a4f57a8d1d3b459c668486829f23c6e557a8a88051f1d37b5829c1d32d64"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "cc1913b47593de4da0d352b6f1f4c090807eaef3e1bc7209284c44bb8d857b13"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "12c0fda5c0a0971d709f7c849f00ad01d88b3a792cc1f228cf00dd3f07c94b2b"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CurrentConditionProjectionV1.cs",
+      "sha256": "d115e06f1e276f281cddb83806b37b6dbf80bec1153fea54457e398660a083dd"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5"
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/ground-focus-assessment-cross-review-01.json",
+      "sha256": "f7c33df8f5ec6cc5b599aa2562d896da9f317992a554ad6c94657aa9580fde0f"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/spell-cast-assessment-cross-review-01.json",
+      "sha256": "529f5ebebf79062e65e31f47d0a34d72de45232886feb0632429db1a6abb40e8"
+    }
+  ],
+  "rootOrder": {
+    "finding": "The route preserves native ResolveCore ordering for these kinds.",
+    "sequence": "WorldOpening -> non-long-rest active-long-rest gate -> pending Sanctuary -> Guidance -> physical-contamination guards -> selected operation branch.",
+    "cast": "When current.ConnectedClericCasting is true, CastKnownSpell retains SpellCastConstraintV1. Otherwise it reaches the repertoire command denial, matching the original later ClericRepertoireProfile.IsCommand branch.",
+    "acquire": "AcquireEarnedSpell reaches the repertoire command denial even on selected casting profiles; it does not call cast choice, grant knowledge, or create an advancement transaction.",
+    "fear": "UseIntimidatingPresence reaches its native assessor after the earlier kind-inapplicable repertoire/class-recovery/other-ability dispatches. It returns before active short-rest interruption, as native ResolveCore does; no later global gate is invented.",
+    "coreBoundary": "The unchanged shared Core command/payload/authority/receipt/capacity checks still precede this native policy path. SupportsAssessment means that this implementation can assess the request, not that a selected profile grants the operation."
+  },
+  "fearGuardOrder": [
+    "Selected ConnectedFrightened profile and the original defender/PostRecovery actor envelope.",
+    "Non-null IntimidatingPresence request.",
+    "Native tactical/reinforcement or active PostRecovery context.",
+    "Pending calendar/manufacturing/recovery choices.",
+    "Exact current encounter actor and inventory turn actor.",
+    "Original TEST_ONLY fixture feature grant.",
+    "Existing Warrior ability choice and minimum actual Warrior level.",
+    "CapableWorker and current Action permission before explicit ActionSpent.",
+    "Existing inventory work or actor traversal exclusion.",
+    "Recharge remaining.",
+    "Original use/save/timing row budgets.",
+    "For each target in original request order: party/encounter/living recipient -> target traversal -> 15-foot range and line of effect -> target can see actor -> actor can see target -> condition journal and application capacity."
+  ],
+  "repertoireGuardOrder": [
+    "ConnectedClericRepertoire and the exact cleric actor, else SpellRepertoireUnavailable.",
+    "For CastKnownSpell on this branch: OrdinarySpellcastingUnsupported.",
+    "For standalone acquisition: EarnedSpellAcquisitionRequiresAdvancementTransaction when connected settlement is selected; otherwise ClericEarnedAdvancementUnavailable."
+  ],
+  "originCheck": {
+    "result": "All new typed guard identities match exact original quoted codes at accepted 67f3d201b coordinates.",
+    "guardIdentities": 22,
+    "distinctCoordinates": 21,
+    "files": [
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+        "guardCount": 18,
+        "lines": [
+          40,
+          41,
+          44,
+          45,
+          46,
+          47,
+          50,
+          51,
+          52,
+          54,
+          56,
+          58,
+          62,
+          63,
+          66,
+          68,
+          70,
+          75
+        ]
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+        "guardCount": 4,
+        "lines": [
+          125,
+          126,
+          127
+        ],
+        "note": "Both original acquisition denial outcomes occupy baseline line 127."
+      }
+    ]
+  },
+  "semanticsAndPurity": [
+    {
+      "subject": "Shared native guards",
+      "finding": "The original condition expressions, short-circuit operators, target enumeration order, thresholds, and return-code ordering are unchanged; legacy string entry points delegate to the same constraint helper."
+    },
+    {
+      "subject": "Fixture authority",
+      "finding": "FrightenedProfile.ValidFixtureGrant reads selected profile/actor/source/class/level/origin fields. It does not call the neighboring full validator or create a grant. Its TEST_ONLY entitlement remains distinct from production character ownership."
+    },
+    {
+      "subject": "Current capability",
+      "finding": "CapableWorker and Permissions use the existing current condition projection plus audited current life/strain facts; no snapshot validation, life settlement, or condition-history fold occurs."
+    },
+    {
+      "subject": "Visibility",
+      "finding": "The two native sight checks retain their direction and distinct failure origins: target-sees-actor first, actor-sees-target second. They use the previously audited current condition/sight/geometry leaves. No hearing-only or alternative-perception mechanic is invented."
+    },
+    {
+      "subject": "Condition capacity",
+      "finding": "The target ledger comes from ConditionsFor under the exact owning strict read scope. Journal.Operations.Count and the materialized ledger's retained Applications.Count supply the original conservative capacities. The comment about reserving capacity is implemented as counts only; no Reserve, append, expiry processing, or condition application occurs."
+    },
+    {
+      "subject": "No new deadline gate",
+      "finding": "The original fear assessor did not call the spell/Radiance unprocessed-deadline gate. The extraction does not add that gate or replace its existing current-mode consumers with journal-time semantics."
+    },
+    {
+      "subject": "Execution exclusions",
+      "finding": "ResolveIntimidatingPresence, DC construction, RollFrightenedSave, PayAction, BreakSanctuaryForHostileSave, recharge publication, relationship application, repeat/final marker processing, RNG, replay, and candidate validation are outside this assessment call path."
+    },
+    {
+      "subject": "Repertoire",
+      "finding": "CommandConstraintV1 performs only profile/actor/kind selection. No spell-source acquisition, repertoire reconstruction, source eligibility computation, or mutation occurs. It preserves unsupported standalone acquisition rather than inventing a successful path."
+    },
+    {
+      "subject": "Assessment meaning",
+      "finding": "InitialAssessmentV1 returns initial eligibility and the exact native constraint with CommitFeasibility=null. Actual future saves, immunity prevention, condition outcomes, recharge effects and terminal reconciliation are not forecast."
+    }
+  ],
+  "testSourceReview": {
+    "executedByReviewer": false,
+    "compileSession88332": "Not polled or claimed as successful by this static review.",
+    "newCase": {
+      "name": "int05_repertoire_and_fear_profile_denials_are_pure",
+      "intent": "Seven native denials on authentic selected factories, using actual host/defender authorities rather than forged state.",
+      "rows": [
+        {
+          "factory": "NewClericExpedition",
+          "kind": "AcquireEarnedSpell",
+          "expected": "SpellRepertoireUnavailable"
+        },
+        {
+          "factory": "NewRepertoireExpedition",
+          "kind": "AcquireEarnedSpell",
+          "expected": "ClericEarnedAdvancementUnavailable"
+        },
+        {
+          "factory": "NewClericSettlement",
+          "kind": "AcquireEarnedSpell",
+          "expected": "EarnedSpellAcquisitionRequiresAdvancementTransaction"
+        },
+        {
+          "factory": "NewClericExpedition",
+          "kind": "CastKnownSpell",
+          "expected": "SpellRepertoireUnavailable"
+        },
+        {
+          "factory": "NewRepertoireExpedition",
+          "kind": "CastKnownSpell",
+          "expected": "OrdinarySpellcastingUnsupported"
+        },
+        {
+          "factory": "NewFrightenedExpedition",
+          "kind": "UseIntimidatingPresence",
+          "expected": "IntimidatingPresenceContextUnsupported"
+        },
+        {
+          "factory": "NewRepertoireExpedition",
+          "kind": "UseIntimidatingPresence",
+          "expected": "IntimidatingPresenceUnavailable"
+        }
+      ],
+      "assertions": "Repeated native reads, null feasibility, zero prohibited-call counters, canonical equality, and actual native Execute rejection equality are present in the test source. The emitted facts include original guard origins. No successful acquired entitlement or new public V1 endpoint is claimed."
+    },
+    "helperChange": "AssertPureUtility now accepts an optional Authority, retaining CastingAuthority as default. Defender cases supply the actual LaterDefenderController authority; existing caller behavior is unchanged.",
+    "existingFearCase": {
+      "name": "tac05_frightened_connected_activation_restore_and_recharge",
+      "newAssertions": "Before each of two genuine recharged uses, run the pure initial assessment. After actual payment, require AlreadyCommitted without rerunning eligibility, check a fresh spent-Action request, and retain the existing duplicate connected delivery check.",
+      "producer": "The existing route restores the prior genuine use, performs actual owner Starts through the recharge countdown, submits the defender command through its actual endpoint, and later reaches two actual fear applications. Adjacent detached suppression/forgery controls remain separately classified."
+    },
+    "existingRepertoireHook": {
+      "method": "DenyRepertoireCommands",
+      "newAssertion": "Runs the native pure assessment before the existing legacy query, native execution and connected-session denials for current known and future-choice spell IDs. It uses the existing explicit cleric authority.",
+      "boundary": "These are negative capability witnesses; they do not turn old-profile casting or standalone acquisition into supported mechanics."
+    }
+  },
+  "remainingObligations": [
+    "Retain actual compiler/run output and matching source hashes separately; this review makes no runtime success claim.",
+    "Complete the accepted fear semantic branches and all five required connected paths, including relevant PostRecovery context, target/visibility/capability/capacity/recharge denials, actual conditional applications/repeats, and save/restore behavior.",
+    "Preserve exact native request target ordering and source/host target domains; the current party witness is not evidence for an invented third recipient.",
+    "Keep unsupported repertoire operations explicitly negative and distinguish atomic earned advancement from the standalone AcquireEarnedSpell request.",
+    "Public endpoint admission, private denial redaction, exact public facts/conditional obligations, terminal feasibility, and full module acceptance remain outside this incremental native review."
+  ],
+  "concreteFindings": [],
+  "acceptanceBoundary": "No concrete defect found in this bounded static review. No final operation/module, public API, all-profile purity, production authority, or Unity acceptance."
+}
