@@ -1,0 +1,971 @@
+{
+  "schemaVersion": 1,
+  "status": "COMPLETE_KIND_AXIS_ALLOCATION_BOUNDED_SOURCE_PLANS_FULL_HC_OPEN",
+  "counts": {
+    "candidateKinds": 78,
+    "operatorKinds": 2,
+    "candidateSemanticAxes": 204,
+    "unmappedKinds": 0,
+    "runtimeQualifiedKinds": 0
+  },
+  "inputs": [
+    {
+      "path": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json",
+      "sha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3"
+    },
+    {
+      "path": "MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71"
+    },
+    {
+      "path": "MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125"
+    },
+    {
+      "path": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "sha256": "4f80c245e7938df42ffbc6ac43921a69482a00a4b7ea4a163e166596427a1c06"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "SelectCombatStance",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Aggressive",
+        "Guarded",
+        "Mobile",
+        "Focused",
+        "Carrying: native NoApplicableCargoPenalty"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/0",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackClub",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned/custodied visible-target club",
+        "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+        "ArmOrReplace/KeepExisting",
+        "regular attack vs Sanctuary gate"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/1",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Ferry feature/actual creature seat",
+        "same explicit knockout/Press payload disposition",
+        "Sanctuary admission"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/2",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TacticalStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "native direction/geometry/movement domain",
+        "ordinary completion/OA suspension/Press continuation"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/3",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndRegularTurn",
+      "operatorOnly": false,
+      "exactAxes": [
+        "aware stance required",
+        "life/conditions/due events and next slot"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/4",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EncounterDash",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Ferry current party turn",
+        "Action and movement allowance"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/5",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "operatorOnly": false,
+      "exactAxes": [
+        "RecoveryOpponent seat selected target subsets",
+        "separate LaterDefender grant",
+        "actual cooldown/turn/visibility"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/6",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TearExposedSeal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual observed seal",
+        "tactical vs ordinary activity where admitted",
+        "original suppression endpoint and repeated use"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/7",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "operatorOnly": false,
+      "exactAxes": [
+        "decline",
+        "take with owned weapon",
+        "knockout/Press elections",
+        "ordered reactor and continuation"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/8",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveKnockout",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary outcome",
+        "knock out",
+        "existing attack identity; original Press instruction immutable"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/9",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondPress",
+      "operatorOnly": false,
+      "exactAxes": [
+        "decline",
+        "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+        "nested continuation without speculative execution"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/10",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondSanctuary",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Forgo",
+        "regular attack Retarget to each visible legal native target",
+        "Opportunity retarget denied outside original source",
+        "native no-free-loop/continuation rules"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/11",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "walk",
+        "run only where host selected",
+        "scheduled/off-calendar activity",
+        "partial progress/encounter admission"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/12",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending traversal",
+        "partial pose/paid budget preserved"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/13",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "operatorOnly": false,
+      "exactAxes": [
+        "suspended/waiting traversal",
+        "run/Dash revalidation",
+        "actual geometry/fear/access"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/14",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual selected approach",
+        "consent/director parameters",
+        "source entry timing/allowance"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/15",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Hide",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary Hero start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/16",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Search",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary Companion start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/17",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationHide",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending hide identity"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/18",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationSearch",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own pending search identity"
+      ],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/19",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Interact",
+      "operatorOnly": false,
+      "exactAxes": [
+        "cache PickWithTools/Open/Interrupt",
+        "trap Set/Pause/Resume/Cancel",
+        "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+        "retrieve explicit receiver/handling request",
+        "trap Abandon exists natively but is not admitted by the session"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/0",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Pickup/Drop/Retrieve",
+        "selected vial Stow in pack",
+        "selected focus Handover consent",
+        "companion Club physical adapter",
+        "ordinary vs tactical allowance"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/1",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned accessible actual closure",
+        "selected packed vial",
+        "protected specimen opening consequences"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/2",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned accessible actual closure",
+        "protected contents"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/3",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleInventory",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero cache ration Pickup only at host",
+        "rational available amount",
+        "no generic transfer expansion"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/4",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PortionInventory",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact rational amount",
+        "actual eligible source/unit",
+        "reserved/whole-tender/contaminated exclusions",
+        "age/provenance conserved"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/5",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EquipPortableItem",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected holy symbol and placement/body constraints"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/6",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RemovePortableItem",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected holy symbol and current state"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/7",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleVessel",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected flask Pickup/Drop/Retrieve/Stow disposition",
+        "willing party Handover",
+        "opening/contents/custody constraints"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/8",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartIntake",
+      "operatorOnly": false,
+      "exactAxes": [
+        "ordinary food/water rational amounts",
+        "reservations and exact proportional time",
+        "tactical/unsafe intake unsupported"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/9",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptIntake",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own intake",
+        "consumed credit retained and untouched quantity released"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/10",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "operatorOnly": false,
+      "exactAxes": [
+        "owned actual dose/recipient",
+        "ground/carried/stowed/tactical/Companion selected variants",
+        "actual HP caps/blockers and spent dose"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/11",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "authorized accessible source/destination",
+        "positive rational amount/unit/capacity",
+        "two hands and 60 active seconds"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/9",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active own fill",
+        "retain progress/amount/capacity; release worker/opening"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/10",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "paused own fill",
+        "remaining active labor and current access/hands"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/11",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelWaterFill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active/paused own fill",
+        "no liquid transfer; release claims"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/12",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual version/category subsets",
+        "Strength/Wisdom",
+        "hurried false/true",
+        "finite source selection and setup",
+        "conditional failure-victim and critical-recovery preferences",
+        "nonempty AssistantId rejected: requires schema77 unavailable in these factories"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/13",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "setup endpoint",
+        "first-positive removal commitment",
+        "productive removal stage"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/14",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeMining",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/15",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartFormulaResearch",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual guild notes/recipe4",
+        "new attempt after cancellation has zero inherited progress"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/16",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "active research retains labor/progress/claims"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/17",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused retained research",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/18",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelFormulaWork",
+      "operatorOnly": false,
+      "exactAxes": [
+        "zero labor",
+        "positive labor",
+        "native AwaitingCheck cancellation disposition"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/19",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "one actual recipe4 order",
+        "ingredients/age/packaging/known formula and actual work window"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/20",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "unfinished phase loses retained phase labor",
+        "completed phase retained and actual labor preserved"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/21",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Paused remaining phases",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/22",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelManufacturing",
+      "operatorOnly": false,
+      "exactAxes": [
+        "zero labor releases ingredients",
+        "positive labor consumes ingredients",
+        "packaging released and batch permanently closed",
+        "AwaitingChoice disallows cancellation"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/23",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveManufacturingQuality",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Exceptional FullYield/Durability",
+        "StandardQuantity native applicability disposition",
+        "suspended clock continuation"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/24",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual unspoiled selected specimen",
+        "stabilization vs spoilage endpoint",
+        "real preservative/time/access"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/12",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenAppraisal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact desk/seller/stock",
+        "actual appraisal completion/knowledge"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/0",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenSale",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "actual sale inventory/price/payment and custody"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/1",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "whole tender/one-use serving and native consumption"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/2",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact bill and actual prior contributions/results"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/3",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact episode and native settlement readiness"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/4",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact plan and current resource/readiness assessment"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/5",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact offer and actual bill/plan agreement"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/6",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact accepted charter and departure readiness"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/7",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual attempt identity and approach state"
+      ],
+      "plan": "MANAGEMENT_READ_EXTRACTION_PLAN.json#/operations/8",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StabilizeCompanion",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero Medicine on actual Companion",
+        "casting Guidance election/decline",
+        "genuine stable/dying life gates"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/13",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWoundTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero treats selected Companion Wound",
+        "sealed kit/Supply basket",
+        "source choice and eight-hour attempt"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/14",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero/Companion target binding",
+        "active attempt and spent start costs"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/15",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ConsumeDecay",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected Hero/fixed significant decaying-organic bed at (1,3); no corpse-selection procedure",
+        "actual once-only use and source feature eligibility"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/16",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Hero exact berth",
+        "explicit zero Hit Dice",
+        "beneficial/nonbeneficial attempts",
+        "Cleric ClassRecoveryUnsupported"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/17",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Hero interval",
+        "native interrupted reward/occupancy"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/18",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "selected FleshWarden mutation identity",
+        "actual completed-rest equip",
+        "no invented activation/serum route"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/19",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginLongRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion exact berth",
+        "eight-hour interval/cadence/source-specific recovery"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/20",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptLongRest",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own interval",
+        "native damage/explicit interruption"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/21",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveExpeditionStrainRecovery",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual pending offer point IDs",
+        "native source namespace/priority",
+        "clock continuation"
+      ],
+      "plan": "PHYSICAL_CARE_READ_EXTRACTION_PLAN.json#/operations/22",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Cleric milestone",
+        "Bishop selected later milestone",
+        "narrow world-modification grant"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/7",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "operatorOnly": false,
+      "exactAxes": [
+        "exact Cleric2 settlement selection",
+        "exact Bishop3 declaration/training/source choices",
+        "earned repertoire atomic transaction"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/8",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "operatorOnly": false,
+      "exactAxes": [
+        "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+        "ClericEarnedAdvancementUnavailable; no new acquisition route"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/9",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CastKnownSpell",
+      "operatorOnly": false,
+      "exactAxes": [
+        "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+        "earned detect-magic",
+        "earned Bishop dispel",
+        "actual target/shape/payload",
+        "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+        "tactical vs admitted OMA calendar",
+        "repertoire-only OrdinarySpellcastingUnsupported"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/0",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion native Dissonance/context/action"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/1",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual own present concentration effect",
+        "native ending/carry semantics"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/2",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "operatorOnly": false,
+      "exactAxes": [
+        "opaque authorized aura observation",
+        "native detection/focus/school disclosure"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/3",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseHealingRite",
+      "operatorOnly": false,
+      "exactAxes": [
+        "Companion/party recipient",
+        "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+        "native cure preference and actual HP/condition gates"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/4",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "operatorOnly": false,
+      "exactAxes": [
+        "actual Bishop feature entitlement",
+        "1–3 authorized targets and at most one selected cure recipient",
+        "native Conviction/RP/action/recharge"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/5",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseConsecrate",
+      "operatorOnly": false,
+      "exactAxes": [
+        "admitted center geometry",
+        "native terrain/allegiance/life/healing behavior",
+        "tactical vs admitted ordinary calendar"
+      ],
+      "plan": "MAGIC_READ_EXTRACTION_PLAN.json#/operations/6",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    }
+  ],
+  "operatorKinds": [
+    {
+      "kind": "AdvanceClock",
+      "operatorOnly": true,
+      "exactAxes": [],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/20",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndFixedEncounter",
+      "operatorOnly": true,
+      "exactAxes": [],
+      "plan": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json#/operations/21",
+      "status": "NATIVE_EXTRACTION_SEAM_ALLOCATED_NOT_IMPLEMENTED_OR_QUALIFIED",
+      "runtimeQualified": false
+    }
+  ],
+  "commonReadBoundary": [
+    "CONDITION_READ_BOUNDARY.md",
+    "PURE_CHECKPOINT_CONTRACT.md",
+    "CURRENT_FACT_HELPER_AUDIT.json",
+    "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+    "PROCEDURE_INVENTORY_READ_AUDIT.json"
+  ],
+  "remaining": [
+    "Exact shared API signatures and full outer host/Core/native branch precedence",
+    "Selected remaining spatial/pressure/speed, sale/meal pure capacity and episode closure helper dependencies",
+    "All-profile copy/policy/stamp binding and actual instrumentation/parity evidence",
+    "Full field/domain/example/choice and finite branch/profile/five-path expected-output agreement",
+    "Actual full GPT and Codex source/API concurrence before runtime"
+  ],
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false
+}

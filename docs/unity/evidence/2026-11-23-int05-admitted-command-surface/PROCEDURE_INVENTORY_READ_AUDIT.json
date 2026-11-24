@@ -1,0 +1,1097 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_SOURCE_PURITY_AUDIT_NOT_FULL_HC_ACCEPTANCE",
+  "reviewer": "Codex independent procedure/inventory audit",
+  "reviewedHead": "6bf494b716bf325271839ac11c4849cba26c91e7",
+  "runtimeChanges": false,
+  "buildsTestsOrGameplayRun": false,
+  "full78KindClosure": false,
+  "scope": "Selected current procedure membership, ordinary inventory/access, availability/capacity and connected work projection helpers. Existing155-file writer and40-pin copy audits referenced, not repeated.",
+  "classifications": [
+    {
+      "methods": [
+        "OrdinaryInventory.SecondsPerUnit",
+        "Duration",
+        "Quantity",
+        "Identity",
+        "Fresh",
+        "Consumed",
+        "EdibleFood"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+          "startLine": 13,
+          "endLine": 25
+        }
+      ],
+      "observedBehavior": "Selects recorded lots/intakes/reservations, exact rational sums and calendar comparisons. Identity formats revision+1 into a local string; no state update.",
+      "dependencies": "RuleTime/RuleQuantity exact arithmetic; InventoryLotRecord/ResourceReservation properties.",
+      "disposition": "Reusable internal read primitives on actual verified current state. EdibleFood is raw quantity over fresh food and does not itself remove reservations; do not substitute for AvailableAmount or expose unauthorized lots."
+    },
+    {
+      "methods": [
+        "OrdinaryInventory.Busy"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+          "startLine": 18,
+          "endLine": 20
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 84,
+          "endLine": 87
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 123,
+          "endLine": 262
+        }
+      ],
+      "observedBehavior": "Any worker interval where Start<=currentClock<End, OR actor has a CurrentWork row. No history fold, credit, pause, settlement or discovery.",
+      "dependencies": "WorldActivityProjection.CurrentWork identity-only branch.",
+      "disposition": "Reusable with exact existing membership. Do not replace with OpenProcedures: paused/awaiting records must not newly count as active work. Busy counts current rest/patient occupancy intervals; HasActiveLabor deliberately differs."
+    },
+    {
+      "methods": [
+        "WorldActivityProjection.CurrentWork(Snapshot)",
+        "CurrentWorkCore",
+        "Create identity-only branch"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 84,
+          "endLine": 102
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 123,
+          "endLine": 262
+        }
+      ],
+      "observedBehavior": "Enumerates persisted procedure status/participant identity in existing family and record order. includeDetails=false avoids progress detail arithmetic and options projection.",
+      "dependencies": "Simple status/Open getters; immutable record arrays.",
+      "disposition": "Pure membership closure in this bounded audit. Preserve family order and all participants, including sale buyer/seller, mining assistant and mapping assistants."
+    },
+    {
+      "methods": [
+        "WorldActivityProjection.CurrentWork(Snapshot,options)",
+        "OpenProcedures",
+        "Project",
+        "Traversals"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC_WITH_PRECOMPUTED_OPTIONS",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 89,
+          "endLine": 120
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 259,
+          "endLine": 287
+        }
+      ],
+      "observedBehavior": "Enriches retained status/work/interval/reservation rows; nearest future interval boundary is a comparison. Filters supplied options for same actor/target/revision and Supported/Admissible; does not discover, assess or execute.",
+      "dependencies": "Already authorized and purely computed options must be supplied; ActiveWorkProgress getters.",
+      "disposition": "Reusable projection semantics, not an authority boundary. Generic Project includes all reservations for JobId and must not be exported directly. Filter public claims by existing owner MayUseInventory predicate before publication."
+    },
+    {
+      "methods": [
+        "WorldActivityValidation.ActiveLaborReference",
+        "HasActiveLabor"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 447,
+          "endLine": 467
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+          "startLine": 138,
+          "endLine": 141
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+          "startLine": 87,
+          "endLine": 90
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+          "startLine": 10,
+          "endLine": 14
+        }
+      ],
+      "observedBehavior": "Selects overlapping interval provenance, excluding patient/rest occupancy. Otherwise counts CurrentWork claims that have no linked worker interval. Ordering chooses latest End/Start then ordinalId. No reconciliation.",
+      "dependencies": "Occupancy helper predicates are equality/status/identity checks only.",
+      "disposition": "Reusable exact helpers despite Validation class name. Do not replace either with Busy or move from interval overlap to current-clock-only semantics."
+    },
+    {
+      "methods": [
+        "WorldActivityValidation.KnownProcedure",
+        "HasReference",
+        "Validate"
+      ],
+      "classification": "HISTORICAL_VALIDATION_NOT_READ_PATH",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 419,
+          "endLine": 443
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+          "startLine": 470,
+          "endLine": 480
+        }
+      ],
+      "observedBehavior": "KnownProcedure and HasReference are historical identity membership used by Validate. They are not CurrentWork eligibility and have different family coverage.",
+      "dependencies": "Full historical validator remains construction/transition/restore work.",
+      "disposition": "Do not run full Validate or substitute KnownProcedure for current membership. No need to extract this historical checker for Busy."
+    },
+    {
+      "methods": [
+        "ActiveWorkProgress.Complete",
+        "Retained",
+        "Required",
+        "Remaining",
+        "Sum",
+        "Add",
+        "Subtract"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+          "startLine": 16,
+          "endLine": 19
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+          "startLine": 44,
+          "endLine": 54
+        }
+      ],
+      "observedBehavior": "Computes exact retained completed phases+partial and required-minus-retained; reads saved Labor. No elapsed-clock credit.",
+      "dependencies": "RuleQuantity.Sum and normalized RuleTime constructors.",
+      "disposition": "Reusable arithmetic. Work.Credit/Interrupt are separate immutable state-transition constructors and must not be called to forecast completion in reads."
+    },
+    {
+      "methods": [
+        "WorkLedger.Available",
+        "AvailableAmount",
+        "ReservedTotal",
+        "ResourceReservation.Status/RemainingAmount"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+          "startLine": 44,
+          "endLine": 73
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+          "startLine": 123,
+          "endLine": 138
+        }
+      ],
+      "observedBehavior": "Current lot amount minus exact sum of currently reserved RemainingAmount. Uses BigInteger fractions, no Reserve/Consume/constructor of ledger. Available rejects fractional result instead of rounding.",
+      "dependencies": "Validated immutable ledger from prior copy audit; exact RuleQuantity arithmetic.",
+      "disposition": "Reusable internal availability. Quantity does not imply actor access. Use exact rational API and current owner/custodian disclosure gates."
+    },
+    {
+      "methods": [
+        "WorkLedger.Reserve",
+        "Consume",
+        "ConsumeThrough",
+        "Release",
+        "CancelFutureWork",
+        "WorkLedger constructor"
+      ],
+      "classification": "FORBIDDEN_RESERVATION_SETTLEMENT_OR_GLOBAL_REVALIDATION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+          "startLine": 88,
+          "endLine": 117
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+          "startLine": 139,
+          "endLine": 185
+        }
+      ],
+      "observedBehavior": "Reserve builds another ledger and runs global uniqueness/stock/worker-overlap validation; Consume/Release rewrite claims and lots; CancelFutureWork rewrites intervals. Immutable returned objects do not make these permitted read helpers.",
+      "dependencies": "Existing native mutation/validation path.",
+      "disposition": "Extract exact count/identity/interval-overlap/material arithmetic for assessment as needed, retaining native guard precedence and native enforcement stage. Never trial Reserve on a copy."
+    },
+    {
+      "methods": [
+        "TestOnlySharedWorldPolicy.AvailableHands",
+        "RepeatingCrossbowAttackHands"
+      ],
+      "classification": "IMMUTABLE_SELECTION_WITH_BOUNDED_EXTERNAL_DEPENDENCY",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "startLine": 365,
+          "endLine": 370
+        }
+      ],
+      "observedBehavior": "Creatures return0; otherwise2 minus held clubs, crossbow GripHands, root carried portable HeldHands, and ShieldOccupiesHand. Attack helper adds weapon grip and trained shield exception.",
+      "dependencies": "CharacterAdvancementRules.ShieldOccupiesHand/ShieldTrainedCrossbowException are parent-owned Character facts closure; prior current-copy-alias-audit covers copied inputs.",
+      "disposition": "No ConditionsFor/clock/RNG in these local lines. Preserve exact life/actor/portable/loadout invariants from prior copy audit; external Character helper closure not re-certified here."
+    },
+    {
+      "methods": [
+        "TestOnlySharedWorldPolicy.View",
+        "CapableWorker"
+      ],
+      "classification": "KNOWN_CONDITION_PROJECTION_DEPENDENCY",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "startLine": 340,
+          "endLine": 340
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "startLine": 357,
+          "endLine": 363
+        }
+      ],
+      "observedBehavior": "View calls ConditionsFor(...).View. CapableWorker also uses ActorLifeRules.CanAct and ExpeditionStrainRules.Current.",
+      "dependencies": "Owner-bound materialized condition read proposal; ActorLife/strain closure parent-owned.",
+      "disposition": "Extract direct current-condition predicates via verified projection and bind all-profile context. No legacy ConditionsFor -> Restore/AdvanceTo read fallback. Do not duplicate parent life/strain audit."
+    },
+    {
+      "methods": [
+        "WaterFilling.Capacity",
+        "Tare",
+        "Contents",
+        "ReservedCapacity",
+        "FreeCapacity",
+        "ReadyForIntake",
+        "AtPlot",
+        "Accessible overloads",
+        "SourceVessel",
+        "Involves",
+        "OpeningsAvailable"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+          "startLine": 11,
+          "endLine": 40
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+          "startLine": 27,
+          "endLine": 35
+        }
+      ],
+      "observedBehavior": "Capacity/source-unit lookup, exact current sum/subtraction, current placement/owner/custodian/open cache/range checks; working fill opening exclusion and pending capacity reservations. No settlement.",
+      "dependencies": "SupplyCacheRules.Buried/IsCacheLocation/Accessible are saved selection plus integer Manhattan range.",
+      "disposition": "Reusable pure logic on existing validated state. Pending!=Working: paused fills retain reserved capacity but do not claim a working opening. No general spatial model or owner permission inferred."
+    },
+    {
+      "methods": [
+        "WaterFilling.CarryAfterTransfer",
+        "Prerequisite"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+          "startLine": 42,
+          "endLine": 66
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "startLine": 65,
+          "endLine": 85
+        }
+      ],
+      "observedBehavior": "Computes amount delta against actual burden; checks contamination, exact water profile, source/destination difference, access/openings and carrying in existing order. It does not transfer or reserve.",
+      "dependencies": "CarriedBurden -> PortableEquipmentRules.CarriedBurden -> Mass/PlaytestCarrying.Total; HasUnsafeContamination saved selection.",
+      "disposition": "Reusable current hypothetical scalar capacity calculation. Preserve unknown carrying failure and actual unit/custody semantics; no copy mutation required."
+    },
+    {
+      "methods": [
+        "TestOnlyFillingPolicy.AssessWaterFill",
+        "FillRecordCapacity"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC_WITH_FIXED_POLICY_INPUTS",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+          "startLine": 17,
+          "endLine": 25
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+          "startLine": 59,
+          "endLine": 104
+        }
+      ],
+      "observedBehavior": "Start/resume/pause/cancel family guards use saved status, Busy, Prerequisite, AvailableAmount/FreeCapacity and record counts. Hands(actor) is immutable selected policy constructor input; dynamic shared-world hands gate remains outside.",
+      "dependencies": "Water leaf closure above; policy actorHands/companionHands must remain bound to actual selected policy.",
+      "disposition": "Reusable family assessor after exact outer authority/context/condition guards. FillRecordCapacity applies only ConnectedWorkControl fingerprint and effective32fill/Snapshot.MaxCropWorkRecords limits; do not impose these earlier on other native profiles."
+    },
+    {
+      "methods": [
+        "QueryConnectedWaterFill -> ResolveCore(assessTactical:true,assessFilling:true)"
+      ],
+      "classification": "FORBIDDEN_RESOLVER_ENTRY_REQUIRES_EXTRACTION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedWorkControl.cs",
+          "startLine": 10,
+          "endLine": 18
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "startLine": 1119,
+          "endLine": 1127
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+          "startLine": 1185,
+          "endLine": 1194
+        }
+      ],
+      "observedBehavior": "Legacy query uses resolver entry flags to reach a pure fill branch. Shared context includes traversal/capability/dynamic hands and earlier gates before family assessor.",
+      "dependencies": "Entire earlier ResolveCore guard prefix has other family/deadline dependencies outside this bounded closure.",
+      "disposition": "New read route must call extracted pure guards+AssessWaterFill, never ResolveCore or existing QueryCommand. No assertion that this flag path presently mutates; blocker is forbidden resolver dependency and incomplete extracted closure."
+    },
+    {
+      "methods": [
+        "TestOnlyInventoryPolicy.Accessible",
+        "FitsSuppliedPouch",
+        "CarriedBurden",
+        "Capacity"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "startLine": 50,
+          "endLine": 85
+        }
+      ],
+      "observedBehavior": "Current reach/custodian/storage membership; follows retained ParentId to original supplied FoodId for exact pouch-fit fact. Burden uses portable path for selected schemas or fixed existing legacy weights with unknown key mass preserved.",
+      "dependencies": "Portable access/carrying helpers below; SupplyCache pure selection.",
+      "disposition": "Reusable under validated acyclic parent/reference invariants. Do not infer volume from mass, replace unknown by zero, or grant inventory access from geometric reach."
+    },
+    {
+      "methods": [
+        "PortableEquipmentRules.IsCarriedBy",
+        "Owners",
+        "Descendants",
+        "Accessible",
+        "InventoryAccessible",
+        "HasPendingClaim",
+        "FixtureFitValid"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "startLine": 145,
+          "endLine": 153
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "startLine": 161,
+          "endLine": 238
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "startLine": 272,
+          "endLine": 277
+        }
+      ],
+      "observedBehavior": "Parent/descendant traversal, current root custody/open enclosure/ground Manhattan range, reserved stock and pending procedure/tool dependency selection. Exact installed-camp exception and recipe-produced tool distinctions retained.",
+      "dependencies": "Known current immutable records; Descendants assumes validated acyclic tree; WaterFilling.SourceVessel selection.",
+      "disposition": "Reusable internal predicates. Owners collects actual descendants; HasPendingClaim is broader than active Busy and includes paused/awaiting claims. No state normalization or new visibility predicate."
+    },
+    {
+      "methods": [
+        "PortableEquipmentRules.CarriedBurden",
+        "IsBurdened",
+        "FitsCarrier",
+        "PortableEquipmentValidation.Mass",
+        "PortableStorageProfileValidation.Find",
+        "PlaytestCarrying.Total/Limits/CanCarry/IsBurdened"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC_WITH_LOCAL_INPUT_CHECKS",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "startLine": 91,
+          "endLine": 159
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+          "startLine": 279,
+          "endLine": 282
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+          "startLine": 163,
+          "endLine": 164
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+          "startLine": 463,
+          "endLine": 475
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+          "startLine": 53,
+          "endLine": 74
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+          "startLine": 91,
+          "endLine": 139
+        }
+      ],
+      "observedBehavior": "Builds local burden descriptors from current records and computes exact aggregate/inclusive mass and Load; includes clubs, crossbow/ammo, schema-selected legacy pouch/unlinked vessel/lot fallback. Mass reads source basis/lot/dose/profile; local Total checks tree/overlap and unknowns. No global Snapshot validation, RNG or transition.",
+      "dependencies": "Immutable source records and exact arithmetic; prior copy audit covers aliases. Parent Character facts does not change fixed Medium10 source policy here.",
+      "disposition": "Reusable pure computation; local input checks/typed output constructors are distinct from replay-capable/global validators. Keep unknown mass/load and schema-specific composition exactly."
+    },
+    {
+      "methods": [
+        "VesselHandling.PendingUse",
+        "Near"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+          "startLine": 33,
+          "endLine": 37
+        }
+      ],
+      "observedBehavior": "Current pending fill or nonzero reservation claim, and integer actor range.",
+      "dependencies": "WaterFilling.SourceVessel pure selection.",
+      "disposition": "Reusable after real owner/access gates."
+    },
+    {
+      "methods": [
+        "VesselHandling.Resolve"
+      ],
+      "classification": "FORBIDDEN_RESOLVER_RESERVATION_CLOCK_PATH",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+          "startLine": 38,
+          "endLine": 85
+        }
+      ],
+      "observedBehavior": "Guard prefix40-70 checks payload/selected vessel/hands/Busy/pending use/access/handling/interaction/current carry. At72 spends tactical interaction;75 Reserve;76 advances clock;79+ changes vessel/lot custody and history.",
+      "dependencies": "OrdinaryInventory.AdvanceTo and WorkLedger.Reserve; shared dynamic hands injected by caller.",
+      "disposition": "Extract prefix conditions and projected scalar carrying delta. Do not call Resolve on detached snapshot to get a failure code."
+    },
+    {
+      "methods": [
+        "OrdinaryInventory.Descendant",
+        "StartIntake",
+        "Interrupt",
+        "Replace",
+        "AdvanceTo",
+        "RegisterCropOutput",
+        "Handle",
+        "Validate"
+      ],
+      "classification": "FORBIDDEN_TRANSITION_CLOCK_HISTORY_VALIDATION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+          "startLine": 27,
+          "endLine": 164
+        }
+      ],
+      "observedBehavior": "Descendant rewrites ledger/metadata/portable links; StartIntake reserves; Interrupt releases/cancels; AdvanceTo runs life/crop/water credit/expiry loops; Handle spends interaction or Reserve+AdvanceTo; Validate traverses historical intake/handling attribution.",
+      "dependencies": "ActorLife/CampGreens/WaterFilling settlement paths remain execution-only.",
+      "disposition": "Reuse only listed read primitives, not this class wholesale. Extract existing guards from caller/resolver; no complete procedure simulation to predict outcome."
+    },
+    {
+      "methods": [
+        "WaterFilling.Book/Start/Pause/Resume/Cancel/CreditWork/CompleteDue/Validate"
+      ],
+      "classification": "FORBIDDEN_RESERVATION_CLOCK_SETTLEMENT_VALIDATION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+          "startLine": 68,
+          "endLine": 118
+        }
+      ],
+      "observedBehavior": "Mutates staged fills/reservations/work, credits progress or performs completion liquid transfer; Validate is historical consistency.",
+      "dependencies": "OrdinaryInventory.Descendant and WorkLedger changes.",
+      "disposition": "Execution/restore only. No call from new parameter/cost/current-observation helper."
+    },
+    {
+      "methods": [
+        "CheckPortableProjectedState",
+        "ResolvePortableEquipment trial projection",
+        "ResolveCastingClubPickup trial projection",
+        "PayOrdinaryPortableHandling"
+      ],
+      "classification": "FORBIDDEN_CANDIDATE_TRANSITION_VALIDATION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+          "startLine": 89,
+          "endLine": 100
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+          "startLine": 129,
+          "endLine": 142
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+          "startLine": 153,
+          "endLine": 181
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+          "startLine": 314,
+          "endLine": 353
+        }
+      ],
+      "observedBehavior": "Copies state, changes portable possession/grip/custody, SynchronizeLinks and global PortableEquipmentValidation.Validate/ValidateFixture; then action/interaction or Reserve+AdvanceTo. Casting club copy mutates held state before validation.",
+      "dependencies": "Pure local access/burden leaves identified above; capability condition dependency and deadlines external.",
+      "disposition": "Separate current eligibility and pure candidate constraints from physical transition/validation. Do not run trial SetPortable/SynchronizeLinks/full validation to discover admissibility. Preserve actual native pre-/post-paid-time guard distinctions."
+    },
+    {
+      "methods": [
+        "AssessHavenSale -> PrepareSaleDelivery",
+        "TransferWholePortableLotTitle"
+      ],
+      "classification": "FORBIDDEN_CANDIDATE_TRANSITION_VALIDATION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "startLine": 245,
+          "endLine": 261
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+          "startLine": 287,
+          "endLine": 333
+        }
+      ],
+      "observedBehavior": "Assessment ends by copying snapshot, transferring both goods/tender title, SynchronizeLinks and CheckPortableProjectedState. Thus the method named Assess is not pure under new contract.",
+      "dependencies": "SaleCounterFailure uses known condition/life/strain/hands and current spatial external deps; SaleLaborFailure uses Busy/HasActiveLabor.",
+      "disposition": "Extract exact scalar/containment/carrying feasibility and preserve failure ordering; candidate delivery is execution-only. No hypothetical title transfer in discovery/current observation."
+    },
+    {
+      "methods": [
+        "ConnectedWorkControlHost.FillParameters"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC_AND_EXISTING_VISIBILITY",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 51,
+          "endLine": 63
+        }
+      ],
+      "observedBehavior": "Owner MayUseInventory gates source and destination; source-vessel owner additionally checked; existing physical access then current AvailableAmount/FreeCapacity. No command query.",
+      "dependencies": "Pure water/inventory leaves above.",
+      "disposition": "Reusable pure selected parameter projection. Preserve owner permission checks in addition to physical access; no extra permission from actor control."
+    },
+    {
+      "methods": [
+        "ConnectedExpeditionSession.ProjectItems",
+        "ProjectWork"
+      ],
+      "classification": "IMMUTABLE_SELECTION_ARITHMETIC_AND_EXISTING_VISIBILITY",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "startLine": 654,
+          "endLine": 713
+        }
+      ],
+      "observedBehavior": "Items filter owner MayUseInventory and custodian Controls, excluding selected trap/cache-specific contents; quantities use current AvailableAmount. Work rows filter actual worker or sale seller Controls and current retained progress/deadline subtraction.",
+      "dependencies": "ActiveWorkProgress and CampGreens.Subtract exact arithmetic only; WorkControlSelected fixed fingerprint.",
+      "disposition": "Reusable read projection semantics. Do not export raw whole world procedures/reservations or buyer inventory from an actor-control check."
+    },
+    {
+      "methods": [
+        "ProjectMiningSite",
+        "MiningParameters",
+        "KnownWorkControlTarget StartMining branch"
+      ],
+      "classification": "KNOWN_CONDITION_PROJECTION_DEPENDENCY",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+          "startLine": 615,
+          "endLine": 629
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 66,
+          "endLine": 69
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 184,
+          "endLine": 186
+        }
+      ],
+      "observedBehavior": "Owner Controls+MayUseInventory first; current outside-combat/stationary/Aware/!ConditionsFor.BlocksSight/cardinal-range observation controls categories/units/closed-claim visibility.",
+      "dependencies": "Existing Aware/ConditionsFor condition projection; current spatial query parent dependency.",
+      "disposition": "Use materialized current conditions and exact spatial semantics, fail closed when unavailable. Do not expose categories before observed-local/private-right gate."
+    },
+    {
+      "methods": [
+        "ObserveWork",
+        "DiscoverWorkControlCommands",
+        "WorkControlCandidates"
+      ],
+      "classification": "FORBIDDEN_DISCOVERY_QUERY_WRAPPER_WITH_EXTRACTABLE_PROJECTION",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 39,
+          "endLine": 48
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 72,
+          "endLine": 118
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+          "startLine": 121,
+          "endLine": 165
+        }
+      ],
+      "observedBehavior": "ObserveWork invokes discovery before building work rows; discovery invokes policy.DiscoverCommands on copy and simulation.QueryCommand. Candidate generation itself uses pure selection/ID formatting plus MiningParameters condition dependency. Claims inside local Project filter MayUseInventory owner; destination ID/capacity/opening hidden without vessel owner permission.",
+      "dependencies": "Existing discovery/query transitive closure is not approved; some original query paths resolve. Precomputed options must be obtained through new pure route.",
+      "disposition": "Extract local immutable job/claim/booking projection and pass purely assessed authorized options. Do not call ObserveWork or existing DiscoverCommands as a convenient new pure observation."
+    }
+  ],
+  "membershipSemantics": {
+    "source": {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "startLine": 123,
+      "endLine": 255
+    },
+    "orderedFamilies": [
+      "Crop",
+      "WaterFill",
+      "Intake",
+      "FormulaWork",
+      "Repair",
+      "Manufacturing",
+      "FishingTrapRetrieval",
+      "SupplyCache",
+      "FishingTrapSetup",
+      "Harvest",
+      "HarvestRequirementWork",
+      "HavenAppraisal",
+      "HavenSale",
+      "NextCharterPlan",
+      "ExpeditionBill",
+      "Mining",
+      "Prospecting",
+      "MiningAssay",
+      "DestructiveMiningAssay",
+      "MineralPreparation",
+      "CacheExcavation",
+      "RouteMappingWork",
+      "RouteReconnaissance"
+    ],
+    "current": "CurrentWork accepts Working status, except FishingTrapSetup accepts SettingUp. Intake and SupplyCache have no added open-state variants. No status is recomputed by elapsed time.",
+    "open": "OpenProcedures adds exact saved Paused/AwaitingCheck/AwaitingCompletion/PendingCompletion/PendingSettlement predicates per record; Manufacturing.Open is nonComplete/nonCancelled. It does not advance those records.",
+    "participants": "Sale emits seller then buyer; Mining emits worker then optional assistant; Mapping emits lead then assistants; other families retain exact recorded actor/worker/setter/lead.",
+    "doNotConflate": [
+      "Busy current occupancy",
+      "HasActiveLabor interval overlap excluding patient/rest occupancy",
+      "CurrentWork working records",
+      "OpenProcedures paused/awaiting records",
+      "HasPendingClaim retained material/tool reservations"
+    ]
+  },
+  "concreteBlockers": [
+    {
+      "id": "PI01",
+      "route": "QueryConnectedWaterFill -> ResolveCore",
+      "needed": "Extract exact outer guard prefix and invoke pure AssessWaterFill directly; resolve entry prohibited, though selected flag branch presently intends no mutation."
+    },
+    {
+      "id": "PI02",
+      "route": "Portable item/club trial transition -> CheckPortableProjectedState",
+      "needed": "Pure current feasibility equations/constraints for carry/containment; no SetPortable/SynchronizeLinks/global validation on a copy."
+    },
+    {
+      "id": "PI03",
+      "route": "AssessHavenSale -> PrepareSaleDelivery",
+      "needed": "Separate delivery feasibility from title-transfer candidate construction/full validation."
+    },
+    {
+      "id": "PI04",
+      "route": "ObserveWork -> legacy discovery/query; mining observation -> condition fold",
+      "needed": "Read-only job projection with precomputed new pure options and owner-bound current materialized conditions."
+    }
+  ],
+  "externalDependencies": [
+    {
+      "owner": "Parent audit",
+      "paths": [
+        "SharedDailyProvisioning",
+        "ExpeditionStrainRules.Current",
+        "ActorLifeRules",
+        "WorldTiming",
+        "WorldPositionResolver",
+        "CharacterRuleFacts/CharacterAdvancementRules shield helpers"
+      ],
+      "status": "BOUNDED_EXTERNAL_NOT_REAUDITED"
+    },
+    {
+      "owner": "Previously reviewed architecture",
+      "paths": [
+        "ConditionCombatPolicy/ConditionsFor -> ConditionResolutionScope.Project -> ConditionHistory.Restore/AdvanceTo"
+      ],
+      "status": "NO_READ_FALLBACK; use owning current materialized projection per CONDITION_READ_BOUNDARY"
+    }
+  ],
+  "priorEvidence": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CODEC_TRANSITIVE_SOURCE_AUDIT.json",
+      "role": "155-file canonical writer source closure; referenced, not rerun."
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/current-copy-alias-audit.json",
+      "role": "40-source-pin selected copy/immutable-reference closure; referenced, not repeated."
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "role": "Current-condition architectural proposal and actual review constraint."
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "role": "No new reads through existing QueryCommand/resolver/global historical validation."
+    }
+  ],
+  "remaining": [
+    "All78 per-operation transitive assessment/description/discovery graphs and concrete extracted signatures remain open.",
+    "This audit does not close general formula/manufacturing/mining/prospecting/repair/harvest/camp/later planning guards; it closes only shared selected read leaves and identifies reached blockers.",
+    "Full prior global validators, historical vessel replay, all timing/deadline traversals and candidate post-paid-time paths are not read helpers and were not re-audited.",
+    "Public DTO field-level disclosure and new historical predicates remain UNAPPROVED; pure internals do not authorize data export.",
+    "No runtime instrumentation, compilation, tests, genuine five execution paths or acceptance demonstrated here."
+  ],
+  "sourcePins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CODEC_TRANSITIVE_SOURCE_AUDIT.json",
+      "sha256": "71c303ebc24bfd5a5aa1961e75ec8502348bbb9fde4eb29fcbda0f1ebc488711",
+      "bytes": 146127,
+      "lines": 2960
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "4859c11467cfd6ffc64949322f9d0094937b18287bcfefa65133bca63964a651",
+      "bytes": 8769,
+      "lines": 44
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703",
+      "bytes": 11380,
+      "lines": 71
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/current-copy-alias-audit.json",
+      "sha256": "8c7672d1624d578bee6f623a2371227c7bad62fac0fc3cacf67b9adc6e384ada",
+      "bytes": 37405,
+      "lines": 682
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CampGreens.cs",
+      "sha256": "e2f0b8cff76052d0154d0d69793249c5ed0656273dd8c35d39e700eaaa0fa5d5",
+      "bytes": 17772,
+      "lines": 233
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727,
+      "lines": 717
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedWorkControlHost.cs",
+      "sha256": "ad12a333d1a36d4ffbab8ab054edde1342fd5cef20151f0b853410f40df40f21",
+      "bytes": 14754,
+      "lines": 209
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240,
+      "lines": 164
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCarrying.cs",
+      "sha256": "b08b0ce6ea634fede3146fd4b9d853efdac301e1a44e699535d9ab2f0399b53b",
+      "bytes": 10620,
+      "lines": 143
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PortableEquipment.cs",
+      "sha256": "c19f00559af9d5e6ad934d396bd7bcf04008aa2a4ad02e4582a42954305e577c",
+      "bytes": 26051,
+      "lines": 319
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConnectedWorkControl.cs",
+      "sha256": "acf492ad33f102ebcfce1cc6f4dc55aa7cd68e75c68aae8e546eee7e1b01b621",
+      "bytes": 1620,
+      "lines": 33
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedHavenSale.cs",
+      "sha256": "a20dd7a901ebdabc59096cd7541fd7d60d65667292d4aba6abfea7d9c03fde5e",
+      "bytes": 29336,
+      "lines": 456
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "sha256": "e33422430672992975426f5ea4eaee5153e772c043a311883c41a5fd4f55cfdc",
+      "bytes": 35223,
+      "lines": 405
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSupplyCache.cs",
+      "sha256": "b709840f4c171d80fba342ab28cce9e03fa517a2b364d9644e2ac1524e5def74",
+      "bytes": 19449,
+      "lines": 257
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyFillingPolicy.cs",
+      "sha256": "5e9cecfa217e8d5efca14af33d3e19290313a33968b28c7aefc8e029464b2e27",
+      "bytes": 11581,
+      "lines": 151
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "bytes": 22104,
+      "lines": 260
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619,
+      "lines": 1520
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+      "sha256": "d4021bbf88c23b8faa4167bdea32b982b46f871bba807129a29bbb5a8261f23f",
+      "bytes": 11608,
+      "lines": 137
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/WaterFilling.cs",
+      "sha256": "59df88a2113c4b6d7c417590a0dfca959c79973ab9fb5d581b951400fcf1a447",
+      "bytes": 13276,
+      "lines": 163
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ActiveWorkProgress.cs",
+      "sha256": "72135d678686204b824eec5ddbc94f971f0f26b1e229e7842be88fd78424f9bd",
+      "bytes": 3160,
+      "lines": 56
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericLongRestValidation.cs",
+      "sha256": "b15c52d9279ac3d05724e725bc1432e698b37d1a2a01e97e8c9339f1186892e3",
+      "bytes": 11137,
+      "lines": 138
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "sha256": "aae75d577e78ba76c16ad348bff87337f02d34e2e5d9009f61b48bceb636fd49",
+      "bytes": 19032,
+      "lines": 304
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "sha256": "10ad421954ca3f7c78800c8a9cb37c026f2e13e83e76691206d670e9333a2b00",
+      "bytes": 9932,
+      "lines": 152
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "sha256": "68a6fb9d92ec572f8338fa7137f35e2b205ab7e6fc5378b39b3625c9feba3ea6",
+      "bytes": 11298,
+      "lines": 191
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "sha256": "0a86d1d96f844ae31ce60d2343b6a4762eb954ed99e25fecee4dfc6c2e907c6b",
+      "bytes": 10073,
+      "lines": 112
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "sha256": "447e59130260f2b224b8db02290266315df39540ea9f84a1c6717b4ccee7da57",
+      "bytes": 21112,
+      "lines": 360
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PortableEquipmentRecords.cs",
+      "sha256": "670df6356d342dd5f7c4d5f263d06fecb894ab081b5338be694f38b94ddc90fc",
+      "bytes": 37138,
+      "lines": 478
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RepairWorkRecord.cs",
+      "sha256": "8a82b83734cedcbc71152744d4ae3a7da8a145ac0b114a395f28f2d3225ed484",
+      "bytes": 3578,
+      "lines": 51
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541,
+      "lines": 53
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "bytes": 2785,
+      "lines": 46
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ShortRestRecord.cs",
+      "sha256": "10add867a36a11ab1bee5079b5012376ef741144260dc0ecd70023650c188700",
+      "bytes": 10206,
+      "lines": 152
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "sha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf",
+      "bytes": 7418,
+      "lines": 93
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WaterVesselRecords.cs",
+      "sha256": "53ccad179ac816bbd019ef516c0a47c91fe269972e5914d06f5918d85de490d1",
+      "bytes": 6726,
+      "lines": 94
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415,
+      "lines": 193
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldActivityRecord.cs",
+      "sha256": "5e227e728da9e5b1216121fbe81b13ce43b60bd8b7138a136f84ae709d8a1bf9",
+      "bytes": 42556,
+      "lines": 545
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WoundTreatmentRecord.cs",
+      "sha256": "155e24b10f60e98c924db7e4e43d8e3db8ca053e5f512e95c82e3345ba4b54a9",
+      "bytes": 16491,
+      "lines": 250
+    }
+  ],
+  "supportingPropertyClosure": [
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RepairWorkRecord.cs",
+      "startLine": 21,
+      "endLine": 21,
+      "meaning": "Open Working/Paused/AwaitingCheck."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ManufacturingRecords.cs",
+      "startLine": 36,
+      "endLine": 36,
+      "meaning": "Open nonComplete/nonCancelled; saved enum semantics unchanged."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenAppraisalRecords.cs",
+      "startLine": 90,
+      "endLine": 90,
+      "meaning": "Open Working/Paused/PendingCompletion."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/HavenSaleRecords.cs",
+      "startLine": 82,
+      "endLine": 83,
+      "meaning": "Open Working/Paused/PendingSettlement."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ExpeditionBillRecords.cs",
+      "startLine": 189,
+      "endLine": 190,
+      "meaning": "Open Working/Paused/PendingCompletion."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/NextCharterPlanRecords.cs",
+      "startLine": 244,
+      "endLine": 245,
+      "meaning": "Open Working/Paused/PendingCompletion."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WaterVesselRecords.cs",
+      "startLine": 47,
+      "endLine": 47,
+      "meaning": "Pending Working/Paused; retains paused reserved capacity."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "startLine": 29,
+      "endLine": 30,
+      "meaning": "HasUnsafeContamination selects current Present records only."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CampGreens.cs",
+      "startLine": 33,
+      "endLine": 36,
+      "meaning": "Add/Subtract are exact fraction arithmetic, distinct from Advance."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "startLine": 7,
+      "endLine": 27,
+      "meaning": "Exact rational value arithmetic; no clock advance."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "startLine": 8,
+      "endLine": 24,
+      "meaning": "Exact rational quantities; no ledger update."
+    }
+  ],
+  "staticVerification": {
+    "methodGroupCount": 28,
+    "concreteBlockerCount": 4,
+    "procedureMembershipFamilyCount": 23,
+    "sourcePinCount": 36,
+    "midAuditPinMismatchCount": 0,
+    "sourceRangesWithinFiles": true
+  }
+}

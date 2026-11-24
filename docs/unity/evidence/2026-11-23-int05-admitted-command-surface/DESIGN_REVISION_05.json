@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "status": "INTERMEDIATE_DESIGN_CHECKPOINT_NOT_MODULE_COMPLETION",
+  "module": "INT-05-ADMITTED-COMMAND-AND-CHOICE-SURFACE",
+  "branch": "Engine",
+  "parentCommit": "6bf494b716bf325271839ac11c4849cba26c91e7",
+  "runtimeCommit": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "latestAcceptedModule": "MGT-02-CONNECTED-WORK-CONTROL",
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false,
+  "runtimeChangesBuildsTestsOrGameplay": false,
+  "counts": {
+    "candidateKinds": 78,
+    "operatorKinds": 2,
+    "factories": 24,
+    "semanticAxes": 204,
+    "operationFieldReferences": 2850,
+    "parameterProposalKinds": 80,
+    "registeredVariants": 145,
+    "readExtractionKinds": 80,
+    "magicRecipeVariants": 19
+  },
+  "actualGptReviews": [
+    "e70be17d-6889-5e41-a22c-4a8dbe4b15b6",
+    "91c9d89f-6e42-5937-a56a-9744e3ec0d4d"
+  ],
+  "effectiveDecisionOrder": "CONTRACT_DECISION_ORDER.json",
+  "independentReview": "CHECKPOINT_REVIEW_05.json",
+  "verification": "CHECKPOINT_05_VERIFICATION.json",
+  "remaining": "OPEN_DESIGN_WORK.json; exact type/unit/domain/example/field normalization, selected outer/helper closure and full finite branch/profile/five-path expected outputs, followed by actual full HC review before implementation.",
+  "ownerStopBoundary": "Finish only current INT-05 through actual acceptance and accepted push; then stop before successor.",
+  "preserved": "All predecessor acceptances, supported saves, TEST_ONLY/production distinctions,49 workstreams/120edges/100obligations, genuine producer gaps and Unity/storage/Support deferral.",
+  "filesExcludingThisManifest": [
+    {
+      "path": "docs/unity/DEVELOPMENT_HANDOFF.md",
+      "sha256": "de2bae4283d48c1d99cbf716922e18b476b41901a442950d8637bf2363a72e86",
+      "bytes": 275584
+    },
+    {
+      "path": "docs/unity/IMPLEMENTATION_MAP.md",
+      "sha256": "bafbc162a3a5213b4845bf6127f8d9534c84939b460d3f915f68da18ceb8cc27",
+      "bytes": 80006
+    },
+    {
+      "path": "docs/unity/IMPLEMENTATION_STATUS.json",
+      "sha256": "fb2f5198189440950b1abaeebe00791deccb8f81f315e35dff5ddf5a6d17bc5b",
+      "bytes": 106462
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CHECKPOINT_05_VERIFICATION.json",
+      "sha256": "25e713e37d2fbe5c8d069b2a8f503f2fea308c4d9ac715817ed34c87c30b336b",
+      "bytes": 10450
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CHECKPOINT_REVIEW_05.json",
+      "sha256": "92f1cc6382dc3d6be049cff576e3f4992adc0f8852b370c9adfffbc875f881dd",
+      "bytes": 46816
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81",
+      "bytes": 10288
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONTRACT_DECISION_ORDER.json",
+      "sha256": "b9eff945c466cd0b50bcf4349f1a2ffcc6f516c6a017e8068fe1e6f3918099b5",
+      "bytes": 2863
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216",
+      "bytes": 15748
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634",
+      "bytes": 9904
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/EXAMPLE_DOMAIN_ORDER.md",
+      "sha256": "1e2622783f600966c448b31e6bc00ccfab913eec43e433aafab88199a2f9f9dd",
+      "bytes": 2630
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/FACT_REGISTRY_INDEX.json",
+      "sha256": "a8fb2a834b075185f62bae46304e5cf652421a9c693c7767f4d42936c4a10273",
+      "bytes": 500259
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/FIELD_POLICY_DECISIONS_05.md",
+      "sha256": "e8d022a87e6d70544625076236773d0ca72506ae12967ccead64c8d8c211a17d",
+      "bytes": 5900
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_06.json",
+      "sha256": "41c8bdafb84c647e83368084fdf94fef2021bf18dbe4cec58c79f5ad48a549bb",
+      "bytes": 5652
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/INPUT_VERSION_RECONCILIATION_05.json",
+      "sha256": "c53216fe10f46eda2bd4a9cc8657e2c0f4522f1756b30906b04b167d831efda9",
+      "bytes": 2360
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "ab729a0ab00697c93219a2160116397c9ba200fe8576d8292d87e43e12e3bc78",
+      "bytes": 129429
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_EXAMPLE_RECIPES.json",
+      "sha256": "a1249da0e095950e85c77cf9dc75995e11ac7684f2881616fe187dd251104db5",
+      "bytes": 95449
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MAGIC_READ_EXTRACTION_PLAN.json",
+      "sha256": "52b126bb69f4761c8e6f3018e42897c00bd87cb46d502c483a2cfca733f8ef71",
+      "bytes": 84416
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_READ_EXTRACTION_PLAN.json",
+      "sha256": "42bfdc57b55976db973d1932b65627e11f0362b92edc7856b7b20d0239572125",
+      "bytes": 99100
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "dceccb62b7c73726615d8767cc90840d590269818e7a3fb9d9e7837068e53d54",
+      "bytes": 407685
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OPEN_DESIGN_WORK.json",
+      "sha256": "58a222df67e653abb108f59d6145552815f6db81db5a9ce92bee50bc3c123812",
+      "bytes": 7434
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "sha256": "99cd9d044dbd6857cefb5cdb1591f9b5e432dac3844fe8e803f39c683f9c6d3e",
+      "bytes": 4414
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_INDEX.json",
+      "sha256": "a2e589b840dd80051385dfc2cefb04e0bb1b96a42fa0a46777f9243c849cb8b7",
+      "bytes": 130464
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CROSS_FAMILY_REVIEW_01.json",
+      "sha256": "0ee9dbd350e1adffe011d4efe6963ddd34b23e850340a090373d1e658da7f76b",
+      "bytes": 40562
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_READ_EXTRACTION_PLAN.json",
+      "sha256": "c5d863b1316bd5e720c2879a9d420e0e92a0d006d6773601d70fe3a1669d10c3",
+      "bytes": 202582
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PROCEDURE_INVENTORY_READ_AUDIT.json",
+      "sha256": "800e73b64fc60ced227e0229ebf00f709e1f13c0cb7660b0f86d04fcefa6dded",
+      "bytes": 48395
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/README.md",
+      "sha256": "8eae7bd82b275f0d701e757284e3b2e2185573ba8593cffc2bea1f0fcf358940",
+      "bytes": 9571
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/READ_EXTRACTION_INDEX.json",
+      "sha256": "cf045b04eb9a3b510dec4ccb4690186c5e2584270affbbb9ed488103fd24b0c4",
+      "bytes": 34452
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/REPRESENTATION_DECISIONS_06.md",
+      "sha256": "064a4ef044e263a31f8f84d8268d58bef565674ea755a13ae3dcd4d8f267a57d",
+      "bytes": 4082
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/RETAINED_INPUT_ALIASES_05.json",
+      "sha256": "3bcdd33de6d73851232520d42b721034cf8d8b4d434d0a9b291e7ef2ef3054ac",
+      "bytes": 5316
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "49173f195641d98b7393d5fa095ae906aa375833295b1433075c6b376aff8258",
+      "bytes": 314039
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "sha256": "4f80c245e7938df42ffbc6ac43921a69482a00a4b7ea4a163e166596427a1c06",
+      "bytes": 27685
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md",
+      "sha256": "d73751aa61dff01360a927638777273b83b5d68f7991b30f0f8c51df13b2cc9c",
+      "bytes": 4915
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/build_fact_registry_index.py",
+      "sha256": "bac2c6aed6c9890d3b1b00e272b504a75fa4ec88a5377c3358b1c8f95c58db11",
+      "bytes": 7140
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/build_parameter_contract_index.py",
+      "sha256": "f820bec599b1126ca2681ade6c9178cfffff0cfe363edbe744f49631a3787a49",
+      "bytes": 4898
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/build_read_extraction_index.py",
+      "sha256": "4bd07ce93c3d5e9cc91e1e28ddb8480b54e955f6f22aa615ca5057dddbb5af50",
+      "bytes": 2893
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/CONDITION_READ_BOUNDARY_AT_6bf494.md",
+      "sha256": "4859c11467cfd6ffc64949322f9d0094937b18287bcfefa65133bca63964a651",
+      "bytes": 8769
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/MANAGEMENT_READ_EXTRACTION_PLAN_BEFORE_REVIEW05_CORRECTIONS.json",
+      "sha256": "95dc023f849c9d21db9a725445222a2483f6d674f9576fd705d19dd18f9e4c7b",
+      "bytes": 100048
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/PARAMETER_CONTRACT_CORRECTIONS_05_BEFORE_REVIEW05_CORRECTIONS.md",
+      "sha256": "334eb327e14707d1d329e8dba3e0577471a9b6f0c5f9cd769cf8bf4272b8025a",
+      "bytes": 3831
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/V1_VALUE_ENCODING_PROPOSAL_AT_6bf494.md",
+      "sha256": "8efc021cba800acb77a1bf05bba02a020659d3742ec4b6dc7acb1d145b0d8dc0",
+      "bytes": 4610
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/audit_codec_calls.py",
+      "sha256": "d41d1af001585dd2aec968ed60778a4d39987c3a32dd4c97cd1a449028f1fcb5",
+      "bytes": 4515
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/support/review-inputs/codec-write-call-census.json",
+      "sha256": "340862e9d429710c0544a987a7bc32c54d254dbe29ef9ed0ec94d1ebc85b01b9",
+      "bytes": 135575
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/verify_design_checkpoint_05.py",
+      "sha256": "29fdacb8d9e429512424465ef1e85db83986b373ddd3f797771e2469b0e7ed98",
+      "bytes": 7944
+    }
+  ]
+}

@@ -1,0 +1,2968 @@
+{
+  "schemaVersion": 1,
+  "status": "PROPOSAL_UNAPPROVED_SOURCE_PARAMETER_CONTRACT",
+  "reviewer": "Codex independent magic/advancement source audit",
+  "reviewedHead": "86f092ffe9470fc1e01650ec08f6622c0df6cd21",
+  "runtimeChanges": false,
+  "buildsTestsOrGameplayRun": false,
+  "fullContractAcceptance": false,
+  "scope": "Exactly10 existing magic/advancement kinds, their29 ordered inventory axes and exact24 factory declarations. Source/API design only; no new gameplay route or production authority.",
+  "commonEnvelope": [
+    {
+      "nativePath": "Command.Id",
+      "nativeType": "System.String",
+      "sentinel": null,
+      "domain": "Validation.ValidId:1..96 ASCII A-Z/a-z/0-9/_/-/.; additional actual suffix bounds below. Canonical IDs follow separate discovery-ID proposal; no change to duplicate semantics."
+    },
+    {
+      "nativePath": "Command.Actor",
+      "nativeType": "System.String",
+      "sentinel": null,
+      "domain": "TEST_ONLY.companion",
+      "authority": "Player seat and actual trusted grant; not user-supplied authority."
+    },
+    {
+      "nativePath": "Command.ExpectedRevision",
+      "nativeType": "System.Int64",
+      "sentinel": null,
+      "domain": "Nonnegative. Fresh commit uses owner revision; retain native stale/duplicate semantics and exact fingerprint."
+    },
+    {
+      "nativePath": "Command.Kind",
+      "nativeType": "CommandKind (Int32 enum)",
+      "sentinel": null,
+      "domain": "Exact native per-operation enum below; no renumbering."
+    },
+    {
+      "nativePath": "Command.Target",
+      "nativeType": "System.String",
+      "sentinel": "",
+      "domain": "Never null, empty or ValidId<=96. Per-kind actual domain below."
+    },
+    {
+      "nativePath": "Command.X",
+      "nativeType": "System.Int32",
+      "sentinel": 0,
+      "domain": "Canonical examples0; native per-kind guard controls rejection. Constructor default is not global rejection."
+    },
+    {
+      "nativePath": "Command.Y",
+      "nativeType": "System.Int32",
+      "sentinel": 0,
+      "domain": "Canonical examples0; Consecrate center is separate getter payload."
+    }
+  ],
+  "commonPreflight": {
+    "source": {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "startLine": 1308,
+      "endLine": 1346
+    },
+    "rule": "Preserve ordered Core preflight and exact first reason: valid envelope; Combat-kind equivalence; Advance-kind equivalence; fingerprint<=512; Consecrate getter equivalence; Invocation shape/recipient Controls; Spell shape/willing recipient Controls; Rite shape/profile/conditional recipient Controls. Later existing field-specific checks remain authoritative.",
+    "canonicalOtherPayloads": "Every unrelated optional payload null and OverwatchRider.None in examples. This is canonical encoding, NOT a new blanket native rejection.",
+    "authority": "Current grant also applies to duplicates. Willingness/election/recipient lists never create authority or new consent permission."
+  },
+  "numericUnits": {
+    "requestInputs": "These10 operations have no amount/time/rank/DC/healing/cost parameters. Only Consecrate supplies Int32 center cells; use exact source grid metric5ft/cell and native geometry.",
+    "nativeRuleTime": "Exact nonnegative normalized Int64 Numerator/Denominator seconds; positive denominator, default0/1, overflow rejects; no float conversion.",
+    "nativeRuleQuantity": "Exact nonnegative normalized Int64 Numerator/Denominator; consuming record supplies units. Purify whole FoodPounds<=5 or WaterPints<=8; no implicit conversion.",
+    "source": [
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+        "startLine": 7,
+        "endLine": 27
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+        "startLine": 8,
+        "endLine": 24
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+        "startLine": 165,
+        "endLine": 199
+      }
+    ]
+  },
+  "selectedFactoryInputs": {
+    "initial": {
+      "nativeType": "ClericInitialSelection",
+      "abilitiesInNativeOrder": [
+        10,
+        10,
+        10,
+        10,
+        14,
+        10
+      ],
+      "skillsSorted": [
+        "medicine",
+        "religion"
+      ],
+      "cardsSorted": [
+        "cleric.base.consecrate",
+        "cleric.base.consecrated-ground",
+        "cleric.base.fervent-ritualist",
+        "cleric.base.healing-rite"
+      ],
+      "favoredWeapon": "simple-melee-weapons.club",
+      "rule": "Exact immutable constructor-validated selection; not a class builder or in-play replacement.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "startLine": 10,
+          "endLine": 40
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+          "startLine": 121,
+          "endLine": 134
+        }
+      ]
+    },
+    "repertoire": {
+      "nativeType": "ClericRepertoireSelection",
+      "spellIdsSorted": [
+        "arcane-ward",
+        "guidance",
+        "purify-food-and-drink",
+        "sanctuary",
+        "spare-the-dying"
+      ],
+      "rankCounts": "3rank0+2rank1",
+      "rule": "Exact5 distinct source-admitted choices; sorted Ordinal.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+          "startLine": 9,
+          "endLine": 19
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+          "startLine": 144,
+          "endLine": 153
+        }
+      ]
+    },
+    "opening": {
+      "nativeType": "ClericMilestoneDeclaration",
+      "milestoneId": "TEST_ONLY.cleric.opening-milestone",
+      "rule": "Exact fixed declaration/objective/source/digest at revision0; declaring supplies no award.",
+      "source": {
+        "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+        "startLine": 23,
+        "endLine": 56
+      }
+    },
+    "bishop": {
+      "nativeType": "BishopEntryRecord",
+      "milestoneId": "TEST_ONLY.cleric3-recovery-care-departure",
+      "rule": "Exact BishopProfile.DeclarationBinding/Digest; does not itself grant level3/Invocation/Dispel.",
+      "source": {
+        "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+        "startLine": 73,
+        "endLine": 103
+      }
+    }
+  },
+  "factoryMatrix": [
+    {
+      "id": "Start",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 80,
+      "exactDeclaration": "public static ConnectedExpeditionSession Start() => new ConnectedExpeditionSession(ExpeditionPolicy());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 80
+    },
+    {
+      "id": "StartWithFishingTrap",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 82,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFishingTrap()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFishingTrap(ConnectedTrapProfile));",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 82
+    },
+    {
+      "id": "StartWithCarriedVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 85,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCarriedVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCarriedVial());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 85
+    },
+    {
+      "id": "StartWithStowedVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 88,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithStowedVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedStowedVial());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 88
+    },
+    {
+      "id": "StartWithTacticalVial",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 91,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithTacticalVial()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedTacticalVial());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 91
+    },
+    {
+      "id": "StartWithCompanionDose",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 94,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCompanionDose()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionDose());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 94
+    },
+    {
+      "id": "StartWithConsumeDecay",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 97,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConsumeDecay()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedConsumeDecay());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 97
+    },
+    {
+      "id": "StartWithFleshWarden",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 100,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFleshWarden()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFleshWarden());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 100
+    },
+    {
+      "id": "StartWithClericSettlement",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 103,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericSettlement(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericSettlement(initial, repertoire, declaration));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "REPERTOIRE_ONLY_NATIVE_DENIAL",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 103
+    },
+    {
+      "id": "StartWithClericCasting",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 107,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericCasting(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericCasting(initial, repertoire, declaration));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 107
+    },
+    {
+      "id": "StartWithClericLongRest",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 111,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericLongRest(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericLongRest(initial, repertoire, declaration));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 111
+    },
+    {
+      "id": "StartWithPostRecoveryEncounter",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 115,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithPostRecoveryEncounter(ClericInitialSelection initial,\n            ClericRepertoireSelection repertoire, ClericMilestoneDeclaration declaration,\n            bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnablePostRecoveryEncounter(initial,repertoire,declaration,\n                companionConsents,directorAuthorizes));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnablePostRecoveryEncounter directly or via EnableBishopEntry"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 115
+    },
+    {
+      "id": "StartWithDeclaredGeometry",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 121,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithDeclaredGeometry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,\n                companionConsents,directorAuthorizes).EnableDeclaredGeometry());",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnablePostRecoveryEncounter directly or via EnableBishopEntry"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 121
+    },
+    {
+      "id": "StartWithConnectedWorkControl",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 126,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConnectedWorkControl(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents, directorAuthorizes).EnableConsecration()\n                .EnableOrdinaryMagicalActivity().EnableConnectedWorkControl());",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnableFerryWraith; omitted EnableBishopEntry/Recovery parameters retain defaults true,true"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_CANDIDATE_NATIVE_GATED"
+      },
+      "calendar": "Actual OMA plus inherited calendars; distinct factory identities despite same schema.",
+      "inventoryOriginalLine": 126
+    },
+    {
+      "id": "StartWithOrdinaryMagicalActivity",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 132,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithOrdinaryMagicalActivity(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial, repertoire, opening, declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents, directorAuthorizes).EnableConsecration().EnableOrdinaryMagicalActivity());",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnableFerryWraith; omitted EnableBishopEntry/Recovery parameters retain defaults true,true"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_CANDIDATE_NATIVE_GATED"
+      },
+      "calendar": "Actual OMA plus inherited calendars; distinct factory identities despite same schema.",
+      "inventoryOriginalLine": 132
+    },
+    {
+      "id": "StartWithConsecration",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 137,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithConsecration(ClericInitialSelection initial,ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes).EnableConsecration());",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnableFerryWraith; omitted EnableBishopEntry/Recovery parameters retain defaults true,true"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_CANDIDATE_NATIVE_GATED"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 137
+    },
+    {
+      "id": "StartWithFerryWraith",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 142,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFerryWraith(ClericInitialSelection initial,ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening,BishopEntryRecord declaration,bool companionConsents=true,bool directorAuthorizes=true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration)\n                .EnableDeclaredGeometry().EnableFerryWraith(companionConsents,directorAuthorizes));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnableFerryWraith; omitted EnableBishopEntry/Recovery parameters retain defaults true,true"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 142
+    },
+    {
+      "id": "StartWithBishopEntry",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 147,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithBishopEntry(ClericInitialSelection initial, ClericRepertoireSelection repertoire,\n            ClericMilestoneDeclaration opening, BishopEntryRecord declaration, bool companionConsents = true, bool directorAuthorizes = true)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableBishopEntry(initial,repertoire,opening,declaration,\n                companionConsents,directorAuthorizes));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": true,
+        "bishop": true
+      },
+      "originalConsent": {
+        "explicit": true,
+        "parameters": [
+          {
+            "name": "companionConsents",
+            "nativeType": "System.Boolean",
+            "default": true
+          },
+          {
+            "name": "directorAuthorizes",
+            "nativeType": "System.Boolean",
+            "default": true
+          }
+        ],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "EnablePostRecoveryEncounter directly or via EnableBishopEntry"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "TYPED_CAST_NATIVE_GATED",
+        "groundEndFocus": "HOST_CANDIDATE_NATIVE_GATED",
+        "awardAdvance": "HOST_CANDIDATE_NATIVE_GATED",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_CANDIDATE_EARNED_GATED",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 147
+    },
+    {
+      "id": "StartWithClericCompanion",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 152,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericCompanion(ClericInitialSelection selection)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCleric(selection));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 152
+    },
+    {
+      "id": "StartWithClericRepertoire",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 155,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithClericRepertoire(ClericInitialSelection initial, ClericRepertoireSelection repertoire)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedClericRepertoire(initial, repertoire));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "REPERTOIRE_ONLY_NATIVE_DENIAL",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 155
+    },
+    {
+      "id": "StartWithFrightened",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 158,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithFrightened(ClericInitialSelection initial, ClericRepertoireSelection repertoire)\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedFrightened(initial, repertoire));",
+      "selectedInputs": {
+        "initial": true,
+        "repertoire": true,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_CANDIDATE_NATIVE_GATED",
+        "cast": "REPERTOIRE_ONLY_NATIVE_DENIAL",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_ADMITTED_NATIVE_DENIAL_ONLY",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 158
+    },
+    {
+      "id": "StartWithShortRest",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 161,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithShortRest()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedShortRest());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 161
+    },
+    {
+      "id": "StartWithWoundTreatment",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 164,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithWoundTreatment()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedWoundTreatment());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 164
+    },
+    {
+      "id": "StartWithCompanionStabilization",
+      "source": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "line": 167,
+      "exactDeclaration": "public static ConnectedExpeditionSession StartWithCompanionStabilization()\n            => new ConnectedExpeditionSession(ExpeditionPolicy().EnableConnectedCompanionStabilization());",
+      "selectedInputs": {
+        "initial": false,
+        "repertoire": false,
+        "opening": false,
+        "bishop": false
+      },
+      "originalConsent": {
+        "explicit": false,
+        "parameters": [],
+        "allOriginalBooleanVariantsPreserved": true,
+        "forwarding": "No explicit factory consent parameters"
+      },
+      "routeFamilies": {
+        "rite": "HOST_UNAVAILABLE",
+        "cast": "HOST_UNAVAILABLE",
+        "groundEndFocus": "HOST_UNAVAILABLE",
+        "awardAdvance": "HOST_UNAVAILABLE",
+        "acquire": "HOST_UNAVAILABLE",
+        "invocation": "HOST_UNAVAILABLE",
+        "consecrate": "HOST_UNAVAILABLE"
+      },
+      "calendar": "Actual selected context only; do not synthesize OMA.",
+      "inventoryOriginalLine": 167
+    }
+  ],
+  "operations": [
+    {
+      "kind": "CastKnownSpell",
+      "nativeEnumValue": 193,
+      "payloadPath": "Command.SpellCast",
+      "hostDomain": {
+        "profile": "ConnectedClericCasting typed casts; ConnectedClericRepertoire preserves null-payload denial.",
+        "actor": "TEST_ONLY.companion",
+        "seat": "Player",
+        "targetUnion": "Typed Bishop Dispel: aura. prefix; other typed spells: Party/LaterDefender/selected RecoveryOpponent/InventoryLots whose OwnerId is Party. FerryWraith is not added. Null payload: SpellSourceCatalog.Get(Command.Target)!=null.",
+        "authority": "WillingTarget=true independently requires current authority.Controls(target)."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.SpellCast.SpellId",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "required",
+          "domain": "Seven positive source variants below. Constructor accepts any ValidId, not a source grant.",
+          "conditionalRequirement": "Actual source/known/class check.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+            "startLine": 7,
+            "endLine": 19
+          }
+        },
+        {
+          "nativePath": "Command.SpellCast.FocusItemId",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "TEST_ONLY.cleric-casting.holy-symbol required except Guidance/Spare require empty.",
+          "conditionalRequirement": "Actual root item, caster custodian, worn or carried HeldHands1; free somatic hand or this held focus. No claimed placement.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 123,
+            "endLine": 130
+          }
+        },
+        {
+          "nativePath": "Command.SpellCast.WillingTarget",
+          "nativeType": "System.Boolean",
+          "constructorDefaultOrSentinel": false,
+          "domain": "True exactly Ward/Guidance/Sanctuary; false otherwise.",
+          "conditionalRequirement": "Election supplies no authority. True does not override actual recipient Controls.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 134,
+            "endLine": 150
+          }
+        },
+        {
+          "nativePath": "Command.SpellCast.ElectFocusedDc",
+          "nativeType": "System.Boolean",
+          "constructorDefaultOrSentinel": false,
+          "domain": "True only Sanctuary, actual current Focused stance, unused at that StanceRevision.",
+          "conditionalRequirement": "No DC parameter/disclosure.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 131,
+            "endLine": 135
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Exact SpellCastingProfile legacy mask69-89: typed target nonempty, Command.X/Y0; no GuidanceChoice/response/legacy payload mixed in. Core additional kind-specific masks remain ordered.",
+        "Actual CastingActionFailure before known source/components/elections/target/strain/payment/capacity.",
+        "Purify water explicitly checks WaterUnit; food branch checks NutritionKind.FoodPounds/amount but no independent FoodUnit compare. Entire actual lot unreserved, not pending-fill source/destination, separated, actual physical placement/enclosing containers accessible, within30ft/LoE/perceived and stationary custodian.",
+        "Spare native target Hp0&&!Stable&&!Dead, not an invented extra creature-type rule."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": "source.BaseRpCost + (rank0?0:currentStrain.RankedSurcharge(actualPB,actualWisdomModifier)); ranked blocking first.",
+        "baseByRank": {
+          "0": 0,
+          "1": 2,
+          "2": 3
+        },
+        "explicitClockAdvanceCost": null,
+        "source": {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 152,
+          "endLine": 161
+        }
+      },
+      "futureConditionalObligations": [
+        "Persistent expiry and actual concentration replacement/ending use native clock and later events.",
+        "Guidance consumes only through a later eligible recipient check command selecting its actual benefit.",
+        "Sanctuary attack admission is a later real pending event, never created by this parameter descriptor.",
+        "Spare recovery and end-of-origin strain settlement are later causal outcomes, not guaranteed immediate facts."
+      ],
+      "choiceClassification": "Spell/focus/willing/Focused are embedded elections; no fabricated PendingChoiceId.",
+      "semanticBranchesToDisposition": [
+        "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+        "earned detect-magic",
+        "earned Bishop dispel",
+        "actual target/shape/payload",
+        "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+        "tactical vs admitted OMA calendar",
+        "repertoire-only OrdinarySpellcastingUnsupported"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation CastKnownSpell; source evidence only, not new runtime qualification.",
+      "spellVariants": [
+        {
+          "spellId": "arcane-ward",
+          "rank": 0,
+          "baseRpCost": 0,
+          "earnedClassLevel": null,
+          "requiredFocusItemId": "TEST_ONLY.cleric-casting.holy-symbol",
+          "requiredWillingTarget": true,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Actual nondead Party; caster Blinded also denies self.",
+          "duration": {
+            "kind": "NextActualCasterStart"
+          },
+          "requiresConcentration": false
+        },
+        {
+          "spellId": "guidance",
+          "rank": 0,
+          "baseRpCost": 0,
+          "earnedClassLevel": null,
+          "requiredFocusItemId": "",
+          "requiredWillingTarget": true,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Actual nondead Party.",
+          "duration": {
+            "kind": "RuleTimeSeconds",
+            "numerator": 60,
+            "denominator": 1
+          },
+          "requiresConcentration": false
+        },
+        {
+          "spellId": "purify-food-and-drink",
+          "rank": 1,
+          "baseRpCost": 2,
+          "earnedClassLevel": null,
+          "requiredFocusItemId": "TEST_ONLY.cleric-casting.holy-symbol",
+          "requiredWillingTarget": false,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Actual Party-owned whole positive unreserved FoodPounds<=5 or WaterPints<=8 with WaterUnit; actual current physical access.",
+          "duration": {
+            "kind": "NoPersistentSpellDurationParameter"
+          },
+          "requiresConcentration": false
+        },
+        {
+          "spellId": "sanctuary",
+          "rank": 1,
+          "baseRpCost": 2,
+          "earnedClassLevel": null,
+          "requiredFocusItemId": "TEST_ONLY.cleric-casting.holy-symbol",
+          "requiredWillingTarget": true,
+          "electFocusedDcDomain": [
+            false,
+            true
+          ],
+          "targetDomain": "Actual nondead Party.",
+          "duration": {
+            "kind": "RuleTimeSeconds",
+            "numerator": 60,
+            "denominator": 1
+          },
+          "requiresConcentration": true
+        },
+        {
+          "spellId": "spare-the-dying",
+          "rank": 0,
+          "baseRpCost": 0,
+          "earnedClassLevel": null,
+          "requiredFocusItemId": "",
+          "requiredWillingTarget": false,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Host Party/LaterDefender/selected RecoveryOpponent; native Hp0&&!Stable&&!Dead. Do not invent a LivingRecipient check absent from AssessSpellCast.",
+          "duration": {
+            "kind": "NoPersistentSpellDurationParameter"
+          },
+          "requiresConcentration": false
+        },
+        {
+          "spellId": "detect-magic",
+          "rank": 1,
+          "baseRpCost": 2,
+          "earnedClassLevel": 2,
+          "requiredFocusItemId": "TEST_ONLY.cleric-casting.holy-symbol",
+          "requiredWillingTarget": false,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Self exactly actor.",
+          "duration": {
+            "kind": "RuleTimeSeconds",
+            "numerator": 600,
+            "denominator": 1
+          },
+          "requiresConcentration": true
+        },
+        {
+          "spellId": "dispel-magic-lesser",
+          "rank": 2,
+          "baseRpCost": 3,
+          "earnedClassLevel": 3,
+          "requiredFocusItemId": "TEST_ONLY.cleric-casting.holy-symbol",
+          "requiredWillingTarget": false,
+          "electFocusedDcDomain": [
+            false
+          ],
+          "targetDomain": "Current opaque aura observation of own source-proven rank0 Guidance, actual active Detect and earned Bishop3.",
+          "duration": {
+            "kind": "NoPersistentSpellDurationParameter"
+          },
+          "requiresConcentration": false
+        }
+      ],
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+          "startLine": 14,
+          "endLine": 96
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 110,
+          "endLine": 199
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 215,
+          "endLine": 251
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+          "startLine": 9,
+          "endLine": 23
+        }
+      ],
+      "nativeOnlyAndDenialBoundaries": {
+        "repertoireOnly": "Null-payload catalog-target route retains OrdinarySpellcastingUnsupported; typed casting still needs SpellCast.",
+        "flareSparkAndLight": "Native source controls outside SpellSourceCatalog. Not host targets for Acquire/null-payload cast. Typed cast may reach native denial after actual host target identity gate.",
+        "dispel": "Host aura. prefix does not assert own Guidance provenance."
+      },
+      "axisBindings": [
+        {
+          "axis": "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+          "parameterContractLocation": "spellVariants initial5",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "earned detect-magic",
+          "parameterContractLocation": "spellVariants detect-magic",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "earned detect-magic",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "earned Bishop dispel",
+          "parameterContractLocation": "spellVariants dispel-magic-lesser",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "earned Bishop dispel",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "actual target/shape/payload",
+          "parameterContractLocation": "hostDomain + nativeShapeAndSemanticGuards",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "actual target/shape/payload",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+          "parameterContractLocation": "parameters focus/willing/Focused",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "tactical vs admitted OMA calendar",
+          "parameterContractLocation": "factoryMatrix + native casting context",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "tactical vs admitted OMA calendar",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "repertoire-only OrdinarySpellcastingUnsupported",
+          "parameterContractLocation": "nativeOnlyAndDenialBoundaries",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "CastKnownSpell",
+            "exactAxis": "repertoire-only OrdinarySpellcastingUnsupported",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "nativeEnumValue": 196,
+      "payloadPath": null,
+      "hostDomain": {
+        "profile": "ConnectedClericCasting",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "target": "empty"
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "empty",
+          "conditionalRequirement": "Existing current observation/own-effect domain only; no internal aura identity supplied.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 357,
+            "endLine": 377
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Spell utility exact payload mask; Command.X/Y0; no cast/guidance/response or legacy payload. Common Core kind-specific checks unchanged.",
+        "After CastingActionFailure, OMA current consumed origin denies; target must be empty."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": 0,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Grounding records intent/activity, no immediate reduction. At actual origin settlement no magical activity permits reduction by actual PB; paid grounding and later settled reduction remain separate."
+      ],
+      "choiceClassification": "No newly pending choice.",
+      "semanticBranchesToDisposition": [
+        "Companion native Dissonance/context/action"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation GroundCastingStrain; source evidence only, not new runtime qualification.",
+      "axisBindings": [
+        {
+          "axis": "Companion native Dissonance/context/action",
+          "parameterContractLocation": "nativeShapeAndSemanticGuards + currentSourceCost + futureConditionalObligations",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "GroundCastingStrain",
+            "exactAxis": "Companion native Dissonance/context/action",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "nativeEnumValue": 197,
+      "payloadPath": null,
+      "hostDomain": {
+        "profile": "ConnectedClericCasting",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "target": "own present RequiresConcentration SpellEffectRecord.Id"
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "own present RequiresConcentration SpellEffectRecord.Id",
+          "conditionalRequirement": "Existing current observation/own-effect domain only; no internal aura identity supplied.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 357,
+            "endLine": 377
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Spell utility exact payload mask; Command.X/Y0; no cast/guidance/response or legacy payload. Common Core kind-specific checks unchanged.",
+        "Early special branch after profile/shape/pending gates; no CastingActionFailure and no Action payment."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 0,
+        "resonancePoints": 0,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "No generic clock advance or new cadence implied; existing later expiry/ending consequences remain native."
+      ],
+      "choiceClassification": "No newly pending choice.",
+      "semanticBranchesToDisposition": [
+        "actual own present concentration effect",
+        "native ending/carry semantics"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation EndSpellConcentration; source evidence only, not new runtime qualification.",
+      "axisBindings": [
+        {
+          "axis": "actual own present concentration effect",
+          "parameterContractLocation": "parameters target",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "EndSpellConcentration",
+            "exactAxis": "actual own present concentration effect",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "native ending/carry semantics",
+          "parameterContractLocation": "nativeShapeAndSemanticGuards + currentSourceCost",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "EndSpellConcentration",
+            "exactAxis": "native ending/carry semantics",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "nativeEnumValue": 198,
+      "payloadPath": null,
+      "hostDomain": {
+        "profile": "ConnectedClericCasting",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "target": "current opaque aura ObservationId"
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "current opaque aura ObservationId",
+          "conditionalRequirement": "Existing current observation/own-effect domain only; no internal aura identity supplied.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+            "startLine": 357,
+            "endLine": 377
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Spell utility exact payload mask; Command.X/Y0; no cast/guidance/response or legacy payload. Common Core kind-specific checks unchanged.",
+        "After CastingActionFailure, requires actual active Detect, current AuraPerceived and exact opaque ObservationId, plus focus capacity."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": 0,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "A later change of detection/perception changes availability; no promise of future broad-school disclosure."
+      ],
+      "choiceClassification": "No newly pending choice.",
+      "semanticBranchesToDisposition": [
+        "opaque authorized aura observation",
+        "native detection/focus/school disclosure"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation FocusDetectedAura; source evidence only, not new runtime qualification.",
+      "axisBindings": [
+        {
+          "axis": "opaque authorized aura observation",
+          "parameterContractLocation": "parameters target + visibilityBoundary",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "FocusDetectedAura",
+            "exactAxis": "opaque authorized aura observation",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "native detection/focus/school disclosure",
+          "parameterContractLocation": "nativeShapeAndSemanticGuards + visibilityBoundary",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "FocusDetectedAura",
+            "exactAxis": "native detection/focus/school disclosure",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "UseHealingRite",
+      "nativeEnumValue": 192,
+      "payloadPath": "Command.HealingRite (nullable)",
+      "hostDomain": {
+        "profile": "ConnectedClericRp; explicit request additionally ConnectedClericSettlement.",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "targetIds": [
+          "TEST_ONLY.actor",
+          "TEST_ONLY.companion"
+        ],
+        "authority": "Non-None cure separately checks current recipient Controls; no new consent field."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": [
+            "TEST_ONLY.actor",
+            "TEST_ONLY.companion"
+          ],
+          "conditionalRequirement": "Actual stationary nondead Party; Creature LivingRecipient if present;30ft/LoE/perception; periodic rider source interaction denied.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+            "startLine": 133,
+            "endLine": 145
+          }
+        },
+        {
+          "nativePath": "Command.HealingRite.CurePreference",
+          "nativeType": "RadianceCurePreference (Int32 enum)",
+          "constructorDefaultOrSentinel": {
+            "nullPayload": "None semantics",
+            "explicitConstructorDefault": "None=0"
+          },
+          "domain": [
+            "None=0",
+            "Frightened=1",
+            "Poisoned=2"
+          ],
+          "conditionalRequirement": "Explicit payload only selected settlement; non-None actual Radiance ownership+recipient Controls. Null vs explicit None retains different receipt fingerprint.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+            "startLine": 8,
+            "endLine": 19
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Rite native X/Y0 and exact legacy mask SharedResonance111-115; Core optional-Rite profile/mask Simulation1336-1345 remains separate.",
+        "Owns Radiance causes actual own-turn/cadence/history gate even with None. Non-None adds identity/journal capacity.",
+        "Actual Action/RP/context/history/life gates; no new full-HP rejection. Actual positive base gain controls rider triggers."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": 2,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Subsequent Radiance availability follows actual owner cadence and existing clock/pending rules; no Healing Rite recharge introduced."
+      ],
+      "choiceClassification": "Optional cure election embedded; no pending offer.",
+      "semanticBranchesToDisposition": [
+        "Companion/party recipient",
+        "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+        "native cure preference and actual HP/condition gates"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation UseHealingRite; source evidence only, not new runtime qualification.",
+      "orderedRiderStages": [
+        "BaseHealingRite",
+        "ConsecratedGround",
+        "Radiance",
+        "AuraOfFaith"
+      ],
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+          "startLine": 108,
+          "endLine": 189
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+          "startLine": 78,
+          "endLine": 129
+        }
+      ],
+      "axisBindings": [
+        {
+          "axis": "Companion/party recipient",
+          "parameterContractLocation": "hostDomain + target",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseHealingRite",
+            "exactAxis": "Companion/party recipient",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+          "parameterContractLocation": "nativeShapeAndSemanticGuards + currentSourceCost",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseHealingRite",
+            "exactAxis": "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "native cure preference and actual HP/condition gates",
+          "parameterContractLocation": "curePreference + orderedRiderStages",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseHealingRite",
+            "exactAxis": "native cure preference and actual HP/condition gates",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ],
+      "sameTransactionConditionalEffects": [
+        "Ordered same-transaction stages base Rite -> Ground -> Radiance -> Aura, each with its actual source trigger.",
+        "Selected cure ends only selected-kind currently eligible GenericCureAllowed applications after qualifying positive base Rite; selection need not produce a cure."
+      ],
+      "sourceCadence": {
+        "healingRiteRecharge": null,
+        "radiance": "Actual source once-per-origin/turn rule and owns/context/capacity gates, including preference None."
+      }
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "nativeEnumValue": 202,
+      "payloadPath": "Command.DivineInvocation",
+      "hostDomain": {
+        "profile": "BishopEntry; actual earned feature+Radiance natively required.",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "target": "empty",
+        "nativeRecipientCapacity": [
+          1,
+          3
+        ],
+        "actualHostRecipientIds": [
+          "TEST_ONLY.actor",
+          "TEST_ONLY.companion"
+        ],
+        "actualHostDistinctCapacity": [
+          1,
+          2
+        ],
+        "authority": "Every recipient independently requires Controls. Third native target is host-unavailable; native1..3 request capacity is preserved."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.DivineInvocation.TargetIds",
+          "nativeType": "ReadOnlyCollection<System.String>",
+          "constructorDefaultOrSentinel": "required IEnumerable<string>",
+          "domain": "1..3 distinct ValidIds; reads Take4 to reject overflow, sorts Ordinal. Host subset of two Party IDs.",
+          "conditionalRequirement": "Each actual ally/nondead/stationary/30ft/LoE/perceived; periodic source interaction denied.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+            "startLine": 9,
+            "endLine": 25
+          }
+        },
+        {
+          "nativePath": "Command.DivineInvocation.CureTargetId",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "None => empty; non-None => one selected TargetIds member.",
+          "conditionalRequirement": "Cannot select multiple cure recipients or target outside selection; no permission field.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+            "startLine": 16,
+            "endLine": 25
+          }
+        },
+        {
+          "nativePath": "Command.DivineInvocation.CurePreference",
+          "nativeType": "RadianceCurePreference (Int32 enum)",
+          "constructorDefaultOrSentinel": "None=0",
+          "domain": [
+            "None=0",
+            "Frightened=1",
+            "Poisoned=2"
+          ],
+          "conditionalRequirement": "Constructor enum-defined paired target constraint; selection does not guarantee ended application.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+            "startLine": 16,
+            "endLine": 25
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Exact InvocationPayloadFailure97-105: selected Bishop/kind, targetempty, X/Y0, all listed other payloads null/OverwatchNone; Core separately excludes Consecrate.",
+        "Native entitlement -> RP -> Conviction -> own-turn/context/action -> recharge/history/origin -> recipients -> cure identity/journal capacity."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": 3,
+        "convictionPoints": 2,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Recharge3 actual own starts, not guaranteed18wall-clock seconds."
+      ],
+      "choiceClassification": "Recipient/cure election embedded; no pending offer.",
+      "semanticBranchesToDisposition": [
+        "actual Bishop feature entitlement",
+        "1–3 authorized targets and at most one selected cure recipient",
+        "native Conviction/RP/action/recharge"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation UseDivineInvocation; source evidence only, not new runtime qualification.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+          "startLine": 9,
+          "endLine": 25
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+          "startLine": 97,
+          "endLine": 105
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "startLine": 28,
+          "endLine": 110
+        }
+      ],
+      "axisBindings": [
+        {
+          "axis": "actual Bishop feature entitlement",
+          "parameterContractLocation": "hostDomain + nativeShapeAndSemanticGuards",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseDivineInvocation",
+            "exactAxis": "actual Bishop feature entitlement",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "1–3 authorized targets and at most one selected cure recipient",
+          "parameterContractLocation": "targetIds + cureTargetId + curePreference + hostDomain",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseDivineInvocation",
+            "exactAxis": "1–3 authorized targets and at most one selected cure recipient",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "native Conviction/RP/action/recharge",
+          "parameterContractLocation": "currentSourceCost + futureConditionalObligations",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseDivineInvocation",
+            "exactAxis": "native Conviction/RP/action/recharge",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ],
+      "sameTransactionConditionalEffects": [
+        "Actual commit vents at most1 Dissonance and applies its own recipient healing/cure; no Healing Rite rider pipeline."
+      ],
+      "sourceCadence": {
+        "rechargeOwnStarts": 3,
+        "wallClockDurationGuaranteed": false
+      }
+    },
+    {
+      "kind": "UseConsecrate",
+      "nativeEnumValue": 205,
+      "payloadPath": "Command.GetConsecrateRequest()",
+      "hostDomain": {
+        "profile": "Snapshot.Consecration!=null",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "target": "empty",
+        "centerDomain": "Current declared supported anchor/perceived point, Chebyshev<=6cells/30ft, current LoE; no arbitrary rectangle claim."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.GetConsecrateRequest().X",
+          "nativeType": "System.Int32",
+          "constructorDefaultOrSentinel": "required",
+          "domain": "Grid cell coordinate; constructor does not globally forbid negative.",
+          "conditionalRequirement": "Actual SupportsAnchorAt/PerceivesCenter/LoE. Command.X remains0.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+            "startLine": 10,
+            "endLine": 15
+          }
+        },
+        {
+          "nativePath": "Command.GetConsecrateRequest().Y",
+          "nativeType": "System.Int32",
+          "constructorDefaultOrSentinel": "required",
+          "domain": "Grid cell coordinate.",
+          "conditionalRequirement": "Same actual geometry. No radius/time/healing/allegiance parameter.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+            "startLine": 137,
+            "endLine": 158
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Exact PayloadValid87-92: getter/kind, emptytarget, Command.X/Y0, allotherpayloadnull/OverwatchNone.",
+        "Actual source ownership/class -> initiative/OMA/pending/deadline -> capability/action/busy/stationary/recharge -> geometry -> RP -> zone/activity capacity."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 1,
+        "resonancePoints": 2,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Later actual expiry or replacement terminates the fixed zone by native source rules.",
+        "Ground healing on later paid Rite and enemy-undead attack contributions require actual source/allegiance/life/geometry; no selected target list or consent field added.",
+        "Recharge advances only on actual owner starts, distinct from zone duration."
+      ],
+      "choiceClassification": "Center selection embedded; no pending offer.",
+      "semanticBranchesToDisposition": [
+        "admitted center geometry",
+        "native terrain/allegiance/life/healing behavior",
+        "tactical vs admitted ordinary calendar"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation UseConsecrate; source evidence only, not new runtime qualification.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+          "startLine": 87,
+          "endLine": 174
+        }
+      ],
+      "axisBindings": [
+        {
+          "axis": "admitted center geometry",
+          "parameterContractLocation": "center parameters + hostDomain",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseConsecrate",
+            "exactAxis": "admitted center geometry",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "native terrain/allegiance/life/healing behavior",
+          "parameterContractLocation": "futureConditionalObligations",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseConsecrate",
+            "exactAxis": "native terrain/allegiance/life/healing behavior",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "tactical vs admitted ordinary calendar",
+          "parameterContractLocation": "nativeShapeAndSemanticGuards + futureConditionalObligations",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "UseConsecrate",
+            "exactAxis": "tactical vs admitted ordinary calendar",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ],
+      "sourceDurationAndCadence": {
+        "fixedRadiusFeet": 15,
+        "initiativeExpiry": "epoch.Start(local+3*epoch.Order.Count)",
+        "outsideInitiativeDurationSeconds": {
+          "numerator": 18,
+          "denominator": 1
+        },
+        "rechargeOwnStarts": 3,
+        "requestSupplied": false,
+        "source": {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+          "startLine": 153,
+          "endLine": 167
+        }
+      }
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "nativeEnumValue": 62,
+      "payloadPath": null,
+      "hostDomain": {
+        "profile": "ConnectedClericSettlement; selected Bishop milestone also BishopEntry",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "targetIds": [
+          "TEST_ONLY.cleric.opening-milestone",
+          "TEST_ONLY.cleric3-recovery-care-departure"
+        ],
+        "authority": "Existing narrow ClericMilestoneGrant world-modification selection; preserve pre-Bishop and Bishop host routes. Command cannot supply grant."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": [
+            "TEST_ONLY.cleric.opening-milestone",
+            "TEST_ONLY.cleric3-recovery-care-departure"
+          ],
+          "conditionalRequirement": "Actual selected declaration/objective or Bishop departure proof; declaration alone supplies no award.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+            "startLine": 48,
+            "endLine": 63
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Cleric common X/Y0/legacy mask; Advancement must be null, also enforced by Core kind/payload equivalence.",
+        "Actual objective before opening award, actual selected recovery/care/departure proof before Bishop award; unawarded/historycapacity gates."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 0,
+        "resonancePoints": 0,
+        "convictionPoints": 0,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Award only enables later explicit advancement; does not grant level/feature/spell or funding."
+      ],
+      "choiceClassification": "No embedded selection beyond actual milestone; no pending choice.",
+      "semanticBranchesToDisposition": [
+        "actual Cleric milestone",
+        "Bishop selected later milestone",
+        "narrow world-modification grant"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation AwardCharacterMilestone; no new runtime evidence.",
+      "axisBindings": [
+        {
+          "axis": "actual Cleric milestone",
+          "parameterContractLocation": "target + objective guards",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AwardCharacterMilestone",
+            "exactAxis": "actual Cleric milestone",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "Bishop selected later milestone",
+          "parameterContractLocation": "Bishop target + proof guards",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AwardCharacterMilestone",
+            "exactAxis": "Bishop selected later milestone",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "narrow world-modification grant",
+          "parameterContractLocation": "hostDomain.authority",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AwardCharacterMilestone",
+            "exactAxis": "narrow world-modification grant",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "nativeEnumValue": 63,
+      "payloadPath": "Command.Advancement",
+      "hostDomain": {
+        "profile": "ConnectedClericSettlement; Bishop path additionally BishopEntry",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "targetIds": [
+          "TEST_ONLY.cleric.opening-milestone",
+          "TEST_ONLY.cleric3-recovery-care-departure"
+        ]
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Advancement.FeatureIds",
+          "nativeType": "ReadOnlyCollection<System.String>",
+          "constructorDefaultOrSentinel": "required array in admitted ctor",
+          "domain": "Exact level2/3 selected arrays below. List ctor accepts0..4 ValidIds, sorts Ordinal and does not itself reject duplicates.",
+          "conditionalRequirement": "Native exact ValidChoices handles unsupported selections; no new constructor restriction.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+            "startLine": 387,
+            "endLine": 436
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.InvocationPath",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "Cleric2: cleric.base.radiance.radiance; Bishop3: empty.",
+          "conditionalRequirement": "Empty is valid constructor sentinel but wrong for Cleric2; preserve rejectable incomplete request.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+            "startLine": 17,
+            "endLine": 21
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.EarnedSpell",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "Cleric2:detect-magic; Bishop3:dispel-magic-lesser.",
+          "conditionalRequirement": "Atomic acquisition through exact advancement; never independent AcquireEarnedSpell.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+            "startLine": 101,
+            "endLine": 103
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.UsesClericSettlementReceipt / Command.Advancement.UsesLegacyPairReceipt",
+          "nativeType": "System.Boolean",
+          "constructorDefaultOrSentinel": "constructor-derived",
+          "domain": "Admitted explicit (string[] selectedFeatureIds,string invocationPath,string earnedSpell) constructor gives true/false.",
+          "conditionalRequirement": "Not separately caller-settable. Preserve legacy ordered pair/list/ASI exact receipt variants; do not silently upgrade them.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+            "startLine": 397,
+            "endLine": 435
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.AsiAbilityIncreases",
+          "nativeType": "ReadOnlyCollection<CharacterAbility (Int32 enum)>",
+          "constructorDefaultOrSentinel": [],
+          "domain": "Empty at both selected levels. Generic ctor accepts up to4 enum-defined entries; no new duplicate rejection inferred.",
+          "conditionalRequirement": "No ASI opportunity admitted here.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+            "startLine": 414,
+            "endLine": 423
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.FeatId",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "Empty at both levels.",
+          "conditionalRequirement": "No feat opportunity admitted here.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+            "startLine": 101,
+            "endLine": 103
+          }
+        },
+        {
+          "nativePath": "Command.Advancement.FeatureOne / Command.Advancement.FeatureTwo",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "constructor-derived",
+          "domain": "Selected list aliases are sorted first2; legacy pair retains order/empty sentinels.",
+          "conditionalRequirement": "Read-only derived aliases, not independent mutable V1 inputs.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+            "startLine": 397,
+            "endLine": 435
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Core Advance iff Advancement nonnull; explicit settlement receipt requires selected profile+Companion; inventory/combat mixing denied.",
+        "Common X/Y0+legacy mask, actual objective/available unconsumed award, not tactical/pending/busy, exact prior character/schedule/source/feature/history/capacity/repertoire.",
+        "Bishop actual earned2/rest/care/departure, capability and Action permission and no active encounter; permission is not Action payment."
+      ],
+      "currentSourceCost": {
+        "actionUnits": 0,
+        "resonancePoints": 0,
+        "convictionPoints": 0,
+        "explicitClockAdvanceCost": null
+      },
+      "futureConditionalObligations": [
+        "Level/repertoire/features/HitDie/capacity update atomically. Later ability funding/action/context remains independent.",
+        "No caller class/level/HP roll/HP amount/RP/Conviction funding field; fixed-average grant stays native."
+      ],
+      "choiceClassification": "Feature/path/spell is embedded precommit selection; no pending ID.",
+      "semanticBranchesToDisposition": [
+        "exact Cleric2 settlement selection",
+        "exact Bishop3 declaration/training/source choices",
+        "earned repertoire atomic transaction"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation AdvanceCharacterLevel; no new runtime evidence.",
+      "admittedSelections": [
+        {
+          "milestone": "TEST_ONLY.cleric.opening-milestone",
+          "newClassLevel": 2,
+          "featureIds": [
+            "cleric.base.conviction-pool",
+            "cleric.base.judging-light"
+          ],
+          "invocationPath": "cleric.base.radiance.radiance",
+          "earnedSpell": "detect-magic",
+          "asiAbilityIncreases": [],
+          "featId": ""
+        },
+        {
+          "milestone": "TEST_ONLY.cleric3-recovery-care-departure",
+          "newClassLevel": 3,
+          "featureIds": [
+            "cleric.arch.aura-of-faith",
+            "cleric.arch.divine-invocation"
+          ],
+          "invocationPath": "",
+          "earnedSpell": "dispel-magic-lesser",
+          "asiAbilityIncreases": [],
+          "featId": ""
+        }
+      ],
+      "requiredConstructor": "CharacterAdvancementRequest(string[] selectedFeatureIds,string invocationPath,string earnedSpell)",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "startLine": 48,
+          "endLine": 106
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "startLine": 48,
+          "endLine": 120
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+          "startLine": 387,
+          "endLine": 436
+        }
+      ],
+      "axisBindings": [
+        {
+          "axis": "exact Cleric2 settlement selection",
+          "parameterContractLocation": "admittedSelections level2",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AdvanceCharacterLevel",
+            "exactAxis": "exact Cleric2 settlement selection",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "exact Bishop3 declaration/training/source choices",
+          "parameterContractLocation": "admittedSelections level3",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AdvanceCharacterLevel",
+            "exactAxis": "exact Bishop3 declaration/training/source choices",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "earned repertoire atomic transaction",
+          "parameterContractLocation": "futureConditionalObligations atomic grant",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AdvanceCharacterLevel",
+            "exactAxis": "earned repertoire atomic transaction",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "nativeEnumValue": 194,
+      "payloadPath": null,
+      "hostDomain": {
+        "profile": "ConnectedClericRepertoire",
+        "seat": "Player",
+        "actor": "TEST_ONLY.companion",
+        "targetIds": [
+          "arcane-ward",
+          "guidance",
+          "purify-food-and-drink",
+          "sanctuary",
+          "spare-the-dying",
+          "detect-magic",
+          "dispel-magic-lesser"
+        ],
+        "positiveRoute": "NONE; host-admitted native denial only."
+      },
+      "parameters": [
+        {
+          "nativePath": "Command.Target",
+          "nativeType": "System.String",
+          "constructorDefaultOrSentinel": "",
+          "domain": "SpellSourceCatalog.Get(target)!=null;7 catalog IDs.",
+          "conditionalRequirement": "No SpellCast/acquisition payload. flare-spark/light are outside catalog and fail host target gate.",
+          "source": {
+            "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+            "startLine": 770,
+            "endLine": 772
+          }
+        }
+      ],
+      "nativeShapeAndSemanticGuards": [
+        "Existing Core field/kind guards remain ordered. Canonical nopayload/X/Y0 is not a new global restriction: CommandFailure has no independent X/Y rejection.",
+        "CommandFailure: missing repertoire/wrong actor -> SpellRepertoireUnavailable; settlement -> EarnedSpellAcquisitionRequiresAdvancementTransaction; otherwise ClericEarnedAdvancementUnavailable.",
+        "No cost/acquisition result is attributed to an always-denied request."
+      ],
+      "currentSourceCost": {
+        "supported": false,
+        "reason": "No committing route; do not present a free acquisition."
+      },
+      "futureConditionalObligations": [
+        "Selected earned spell is granted only by real atomic AdvanceCharacterLevel."
+      ],
+      "choiceClassification": "No independent acquisition election or pending choice.",
+      "semanticBranchesToDisposition": [
+        "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+        "ClericEarnedAdvancementUnavailable; no new acquisition route"
+      ],
+      "nativeGuardOrderReference": "magic-independent-audit.json operation AcquireEarnedSpell; no new runtime evidence.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+          "startLine": 120,
+          "endLine": 141
+        }
+      ],
+      "axisBindings": [
+        {
+          "axis": "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+          "parameterContractLocation": "native settlement denial",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AcquireEarnedSpell",
+            "exactAxis": "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        },
+        {
+          "axis": "ClericEarnedAdvancementUnavailable; no new acquisition route",
+          "parameterContractLocation": "native repertoire denial + positiveRoute NONE",
+          "status": "SOURCE_MAPPED_PROPOSAL_UNAPPROVED",
+          "witnessReference": {
+            "artifact": "magic-independent-audit.json",
+            "operation": "AcquireEarnedSpell",
+            "exactAxis": "ClericEarnedAdvancementUnavailable; no new acquisition route",
+            "meaning": "Retain existing genuine/native-only/detached/gap classification; not newly executed API evidence."
+          }
+        }
+      ]
+    }
+  ],
+  "guidanceBoundary": {
+    "nativePath": "Command.Guidance.EffectId",
+    "nativeType": "System.String ValidId",
+    "constructor": "GuidanceChoice(string effectId)",
+    "sentinel": "Command.Guidance=null",
+    "allowedConsumerKinds": [
+      "Hide",
+      "Search",
+      "StabilizeCompanion"
+    ],
+    "allowedWithinThese10Kinds": false,
+    "domain": "Actual present unexpired recipient benefit; embedded election before eligible actual check. Casting Guidance uses SpellCastRequest and never consumes its own benefit.",
+    "source": [
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+        "startLine": 22,
+        "endLine": 30
+      },
+      {
+        "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+        "startLine": 75,
+        "endLine": 89
+      },
+      {
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+        "startLine": 313,
+        "endLine": 325
+      }
+    ]
+  },
+  "pendingVersusEmbedded": {
+    "embedded": [
+      "spell",
+      "focus",
+      "willingTarget",
+      "FocusedDc",
+      "Rite cure preference",
+      "Invocation recipients and cure",
+      "advancement feature/path/spell",
+      "Consecrate center"
+    ],
+    "rule": "No pending ID/ChoiceV1 fabricated for embedded elections. Existing real Sanctuary admission/calendar/manufacturing/recovery choices come only from native pending records and their existing authority. Sanctuary response is outside these10.",
+    "futureRequirements": "Separate typed conditional-obligation descriptors; no ObservedCurrent/Immediate/RetainedHistorical availability label on future conditions. Same-transaction riders remain conditional until actual result exists."
+  },
+  "visibilityBoundary": {
+    "rule": "Existing host membership is not a disclosure predicate. Use current native authorized subject/target and private-right semantics; other-actor inventory, condition history, provenance, DC/RNG never become visible through actor Controls alone.",
+    "aura": "Opaque aura.<32hex> observed identity; never disclose internal effect/caster/source merely to offer Focus/Dispel.",
+    "newPredicateStatus": "UNAPPROVED: no new visibility predicate is authorized here. Any proposed additional field/domain needs separate exact subject/source review.",
+    "pureRead": "Existing helper names identify semantics only. New reads must use owner/generation/mode/phase-bound current materialized condition projection, not legacy transitive Restore/Resolve/AdvanceTo folds; no resolver-on-copy, RNG, settlement, replay or lazy repair."
+  },
+  "derivedIdentityLimits": [
+    {
+      "kind": "CastKnownSpell",
+      "condition": "Checked by native assessor for every typed spell, even nonpersistent.",
+      "suffixes": [
+        {
+          "suffix": ".effect",
+          "asciiCharacters": 7,
+          "nativeMaximumCommandIdCharacters": 89,
+          "proposedHc1Maximum57PlusSuffix": 64,
+          "fitsNative96": true
+        }
+      ],
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 159,
+          "endLine": 161
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 231,
+          "endLine": 237
+        }
+      ]
+    },
+    {
+      "kind": "UseHealingRite",
+      "condition": "Actual Radiance plus non-None cure election; preflight capacity applies even if no eligible condition later ends.",
+      "suffixes": [
+        {
+          "suffix": ".radiance",
+          "asciiCharacters": 9,
+          "nativeMaximumCommandIdCharacters": 87,
+          "proposedHc1Maximum57PlusSuffix": 66,
+          "fitsNative96": true
+        },
+        {
+          "suffix": ".radiance.cure",
+          "asciiCharacters": 14,
+          "nativeMaximumCommandIdCharacters": 82,
+          "proposedHc1Maximum57PlusSuffix": 71,
+          "fitsNative96": true
+        },
+        {
+          "suffix": ".radiance.sync",
+          "asciiCharacters": 14,
+          "nativeMaximumCommandIdCharacters": 82,
+          "proposedHc1Maximum57PlusSuffix": 71,
+          "fitsNative96": true
+        }
+      ],
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+          "startLine": 87,
+          "endLine": 94
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+          "startLine": 36,
+          "endLine": 41
+        }
+      ]
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "condition": "Non-None cure election; preflight capacity applies even if no condition later ends.",
+      "suffixes": [
+        {
+          "suffix": ".invocation",
+          "asciiCharacters": 11,
+          "nativeMaximumCommandIdCharacters": 85,
+          "proposedHc1Maximum57PlusSuffix": 68,
+          "fitsNative96": true
+        },
+        {
+          "suffix": ".invocation.cure",
+          "asciiCharacters": 16,
+          "nativeMaximumCommandIdCharacters": 80,
+          "proposedHc1Maximum57PlusSuffix": 73,
+          "fitsNative96": true
+        },
+        {
+          "suffix": ".invocation.sync",
+          "asciiCharacters": 16,
+          "nativeMaximumCommandIdCharacters": 80,
+          "proposedHc1Maximum57PlusSuffix": 73,
+          "fitsNative96": true
+        }
+      ],
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+          "startLine": 56,
+          "endLine": 62
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+          "startLine": 44,
+          "endLine": 50
+        }
+      ]
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "UseConsecrate",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "suffixes": [],
+      "condition": "No additional c.Id suffix allocation found in this selected family resolver. Command.Id<=96 remains; this does not certify unrelated operation paths."
+    }
+  ],
+  "canonicalFingerprintStaticBounds": [
+    {
+      "kind": "CastKnownSpell",
+      "variants": [
+        {
+          "variant": "arcane-ward",
+          "asciiCharacters": 211,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "guidance",
+          "asciiCharacters": 172,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "purify-food-and-drink",
+          "asciiCharacters": 221,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "sanctuary",
+          "asciiCharacters": 209,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "spare-the-dying",
+          "asciiCharacters": 179,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "detect-magic",
+          "asciiCharacters": 135,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "dispel-magic-lesser",
+          "asciiCharacters": 160,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "variants": [
+        {
+          "variant": "emptyTarget",
+          "asciiCharacters": 48,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "variants": [
+        {
+          "variant": "nativeEffectIdMaximum",
+          "asciiCharacters": 144,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "variants": [
+        {
+          "variant": "opaqueAura",
+          "asciiCharacters": 85,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "UseHealingRite",
+      "variants": [
+        {
+          "variant": "explicitCure",
+          "asciiCharacters": 85,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "variants": [
+        {
+          "variant": "twoPartyRecipientsAndCure",
+          "asciiCharacters": 127,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "UseConsecrate",
+      "variants": [
+        {
+          "variant": "Int32CoordinateWidths",
+          "asciiCharacters": 86,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "variants": [
+        {
+          "variant": "longestSelectedMilestone",
+          "asciiCharacters": 88,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "variants": [
+        {
+          "variant": "level2",
+          "asciiCharacters": 197,
+          "nativeLimit": 512,
+          "withinLimit": true
+        },
+        {
+          "variant": "level3",
+          "asciiCharacters": 184,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "variants": [
+        {
+          "variant": "longestCatalogTarget",
+          "asciiCharacters": 69,
+          "nativeLimit": 512,
+          "withinLimit": true
+        }
+      ],
+      "meaning": "Pure conservative source envelope arithmetic, not an engine test or current eligibility proof. Target96/coordinate Int32 extrema are bounds, not fabricated valid targets."
+    }
+  ],
+  "originalAndSettledSourceIndex": {
+    "SPELLS": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "revision": "46a4d52728ee6956f0bebcb5d2103ffd5bc67ba4",
+      "pointers": {
+        "arcane-ward": "/spells/0/operational",
+        "guidance": "/spells/781/operational",
+        "spare-the-dying": "/spells/596/operational",
+        "sanctuary": "/spells/21/operational",
+        "purify-food-and-drink": "/spells/24/operational",
+        "detect-magic": "/spells/216/operational",
+        "dispel-magic-lesser": "/spells/33/operational"
+      },
+      "binding": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/SPELL_CANDIDATES.json",
+      "status": "Reviewed/provisional operational procedures, not older summary authority"
+    },
+    "CAST_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/APPROVED_CASTING_CONTRACT.md",
+      "sections": "3–8",
+      "review": "384b9c53-9d93-56f3-901b-cede1f7d3028",
+      "amendment": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/GPT_FOCUS_DROP_CLARIFICATION.md"
+    },
+    "CAST_STRAIN": {
+      "paths": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md:31-39",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md:43-55"
+      ]
+    },
+    "CLERIC_CARDS": {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "pointers": {
+        "ConvictionPool": "/cards/0",
+        "ConsecratedGround": "/cards/1",
+        "Attunement": "/cards/4",
+        "Radiance": "/cards/5",
+        "HealingRite": "/cards/12",
+        "Consecrate": "/cards/14",
+        "AuraOfFaith": "/cards/16",
+        "DivineInvocation": "/cards/23",
+        "protectedVent": "/engine/4"
+      },
+      "status": "provisional-playtest; original PlayerRulebookv6 lines1967/1968/1971/1974/1983/1985/1992/2001 preserved distinctly"
+    },
+    "ADVANCEMENT_SOURCE": {
+      "paths": [
+        "DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md:21,93",
+        "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md:55,57"
+      ]
+    },
+    "CLERIC_SETTLEMENT": {
+      "path": "docs/unity/evidence/2026-11-15-chr03-cleric-settlement/SETTLEMENT_CONTRACT.md",
+      "sections": "15source/choices,30objective,42atomic,65capacity,71Radiance,91context,105public"
+    },
+    "BISHOP_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md",
+      "sections": "2advancement,4Invocation,5Aura,6Dispel"
+    },
+    "CONSECRATION_CONTRACT": {
+      "path": "docs/unity/evidence/2026-11-17-chr05-consecration/SOURCE_API_CONTRACT.md",
+      "sections": "2API,3geometry,4lifetime/recharge,5healingchain,6attack",
+      "allocation": "docs/unity/evidence/2026-11-17-chr05-consecration/FINAL_ACCEPTANCE.md:9"
+    },
+    "MAGIC_CALENDAR": {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/SOURCE_API_CONTRACT.md",
+      "sections": "CAL01–05",
+      "acceptance": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/FINAL_ACCEPTANCE.md"
+    }
+  },
+  "sourcePins": [
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/class_playtests/cleric.json",
+      "sha256": "25387b0dcfae0d53d689486d4b05d8ef5b24bed1b70f0baab970a82dbd370f89",
+      "bytes": 81863
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/data/public/spell_playtests/catalog.json",
+      "sha256": "f52cf6a4a4673897615a74c7c67dcba798c431362d4357e71ee552cc7c5d31f8",
+      "bytes": 4945319
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/CLASS_PLAYTEST_RULES.md",
+      "sha256": "adb2f4752b45dc70ce792a675bb30dda362aab5056588061bcde3ba31c4c8a81",
+      "bytes": 17321
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/SPELL_INTEGRATION_RULES.md",
+      "sha256": "55f486de8d38a6734f8f0f2f62066401504f5b1311ebe66693175876b3f7aa6d",
+      "bytes": 67451
+    },
+    {
+      "path": "DescentReviewChanges/ReviewBible/docs/mechanics/XP_ADVANCEMENT_CANON.md",
+      "sha256": "f9c92adc2444f37bf0cabc0baabce4e37ab58781f0959bdce178c2266c8ebf01",
+      "bytes": 4235
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-15-chr03-cleric-settlement/SETTLEMENT_CONTRACT.md",
+      "sha256": "3cff3188cf6b61a976415e764c4fa41cd6ba9570096405c46ff104adcf3ff5a1",
+      "bytes": 30673
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-15-tac08-cleric-casting/APPROVED_CASTING_CONTRACT.md",
+      "sha256": "c861896f6f90e7e9aa036788cb5c589a9f158921c6e29eb9eedbb37b59b4433d",
+      "bytes": 41003
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-16-chr03-bishop-contract/SOURCE_API_CONTRACT.md",
+      "sha256": "129ebc88aa268dc14d5ff7e41ab4e1a06c5209377fd9fd146882a219152c5565",
+      "bytes": 29098
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-17-chr05-consecration/SOURCE_API_CONTRACT.md",
+      "sha256": "69bd33260cafbf82d629675c4655d93382c8994124edeeb939ca668268636b3c",
+      "bytes": 28686
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OPERATION_INVENTORY.json",
+      "sha256": "9bce656517d0b811a3f4ac62036b5ad148a0d3973c0f2b86274ab4d9421806d8",
+      "bytes": 282658
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-tac01-ordinary-magic/SOURCE_API_CONTRACT.md",
+      "sha256": "bf565dfce8661dae67df214a8b5fd736c845ad06074622ad758f82fa9faf239d",
+      "bytes": 25975
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/magic-independent-audit.json",
+      "sha256": "34eeacd09f1af25557a41380dfd1037f0494d34213bcf24e2ce5724b904d2eea",
+      "bytes": 57168
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedCastingView.cs",
+      "sha256": "f985d5124c2492b48c36d8a2f7a894c649ed54807b6d9db575312d3768315dae",
+      "bytes": 4298
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ExpeditionBishopView.cs",
+      "sha256": "cec0ac7f7759936c63abce3be18db81a8d9f40f5d5f27bbd189ca54710781da7",
+      "bytes": 2487
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopDispel.cs",
+      "sha256": "34556ced547f8f373792a59cec95468ab3f57bfda4e2035ee2236e1602ae2233",
+      "bytes": 2184
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+      "sha256": "30a363f5bc0b5d4ce215ce6a816fcbfd768c24d3a437ae254a715640fab86578",
+      "bytes": 10874
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCharacterAdvancement.cs",
+      "sha256": "296907a7cf1ab2169a7ac8e33f627eae0cf11de31013d0fe867a9f89666c5fbc",
+      "bytes": 66331
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "sha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "bytes": 12702
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "bytes": 17403
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDivineInvocation.cs",
+      "sha256": "ec42d8f5616e86a55df728866cd719f1cc73c9415257c6008f5d6eae6c2e541c",
+      "bytes": 10988
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedOrdinaryMagic.cs",
+      "sha256": "bc9422308d5a38152536fb59e1adda92065b84c5c333755d20191c135af0e11e",
+      "bytes": 13703
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "bytes": 9603
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedResonance.cs",
+      "sha256": "2f49f63a3f9d44df2f4bdb0d1e7559cc3ae6ba1b7cf95dd4a0eb017cdb5ea487",
+      "bytes": 15326
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "bytes": 37055
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellEffects.cs",
+      "sha256": "703ec61fa89f33f2ee5016ef5180cf16be083e755e400a233677ad1611fa1e9b",
+      "bytes": 5822
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellRepertoire.cs",
+      "sha256": "31b38166dd615ce735a3f37cae9931abaf7971ae9aeb37470a57c7e530ec207a",
+      "bytes": 5093
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+      "sha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+      "bytes": 59346
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+      "sha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "bytes": 6298
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+      "sha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+      "bytes": 130619
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/AuraOfFaithRecords.cs",
+      "sha256": "6a8988fdac4ce1f76e7b029194eccf5995e24beecbc1edb48b63600464c4995c",
+      "bytes": 8110
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopDispelRecord.cs",
+      "sha256": "0e4b1850b6987b3b20802c0bd75dc96a3e3f17cda0ccb5c06c481735da896b28",
+      "bytes": 4190
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopEntryRecords.cs",
+      "sha256": "a486d4d55589d42ca3ca9c76f51433e41fb4fb031684156a0977044ec4a8292e",
+      "bytes": 13178
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/BishopSpellSource.cs",
+      "sha256": "39b53aff869a84de1327f54d40acf87c33db6e80639240404058b7d528fc096a",
+      "bytes": 1292
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524",
+      "bytes": 64875
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementRecords.cs",
+      "sha256": "67546f29fe012147e5022d5ed34b3481c35b4c7fc03697a1b36cc914fd1f2c2f",
+      "bytes": 12340
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ClericSettlementValidation.cs",
+      "sha256": "e5b573954d0c847a60837ef674941336f908d437641880e2ef32fb6228c0e8f3",
+      "bytes": 13057
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "sha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "bytes": 23443
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "bytes": 12139
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicProfile.cs",
+      "sha256": "1f9adef9d4c32b589d53b19ddc1fba989e5d3e82a604e388273a809b2d9240ae",
+      "bytes": 8917
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/OrdinaryMagicRecords.cs",
+      "sha256": "27e3e1877a6c19a76a73806d7d391e7bf270df8b4caabda6a639cc77c8797753",
+      "bytes": 12738
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ResonanceRecords.cs",
+      "sha256": "4e5dbc06481e1298d7b5790455a31a1b10c5acae8c0cc29150d39a6144c26019",
+      "bytes": 16049
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleQuantity.cs",
+      "sha256": "53638b2d6187197a5fabfb61bce9c84cff3b7882aafcd1151373aca929b80c6b",
+      "bytes": 3541
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/RuleTime.cs",
+      "sha256": "0a78dc0dfca9412cc97af5f17709f9c9ccc4dca378c36e9644a3f6a0b66dad46",
+      "bytes": 2785
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingHistory.cs",
+      "sha256": "43b6d60be147c671491760ded72a4d89f606d6a48f4331bddfb50f3b3cc0a923",
+      "bytes": 14572
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingProfile.cs",
+      "sha256": "0913f40485ccfc301e59bb539f230052a6425357126751c01f9dff8710d3a6cf",
+      "bytes": 7418
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "bytes": 14418
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellRepertoireRecords.cs",
+      "sha256": "a353e5f617e4a71a112ea0c8119a23733de3436420246e6b750c7017a58a263a",
+      "bytes": 12519
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellSourceCatalog.cs",
+      "sha256": "b342fbdbe85f97e48841f88a7574299846cba8f2790afe8003ed9039c9f4f1cd",
+      "bytes": 7990
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/BishopEntryCases.cs",
+      "sha256": "b5c4bf81fa996660df22ffcd7fd9ab3237377829735bebf4e26de5eda32a77e4",
+      "bytes": 48014
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ClericRadianceCases.cs",
+      "sha256": "68ee16ad488ed475c23ddbdb0bec007bf7526c54f4d3ff86fdaaa0deb33aea97",
+      "bytes": 19132
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRepertoireCases.cs",
+      "sha256": "dbb7ff939e90595b4313d4cc1a1cadf323ddaacfb1ac1c1cf9118b256f02aafa",
+      "bytes": 17975
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericRpCases.cs",
+      "sha256": "50691c02c7ad5df3c1fdbc3a5dd84b2844fdfde30333c2b4b66c8a96a195bdae",
+      "bytes": 19696
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConnectedClericSettlementCases.cs",
+      "sha256": "1f67075a6ec3e6ee44181586ea2a99f1d0c3b94cc43fb581cb21334c9e558126",
+      "bytes": 33973
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/ConsecrationCases.cs",
+      "sha256": "6c887b45e5b49a20b79f864e983dfd547efc553f3889f910afef640713586ab7",
+      "bytes": 11961
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicCases.cs",
+      "sha256": "3ab525d3fad91c87cfb6bfe10f583343dd11722e6c65db67776ca7611a4979f0",
+      "bytes": 18840
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/OrdinaryMagicConsumerCases.cs",
+      "sha256": "dd29da72edfe5bf534aee95644b6c97ea57e13f57d215fdf21f7343156340c84",
+      "bytes": 13206
+    },
+    {
+      "path": "engine/com.decennium.foundation/Tests/EditMode/SpellCastingCases.cs",
+      "sha256": "fc9b5af629dedd224e8d1455344b7a351a5358897a5321c220516c5bbeb57aed",
+      "bytes": 148822
+    }
+  ],
+  "limitations": [
+    "No runtime/API/five-path evidence or full HC acceptance.",
+    "Native guard ordering and legacy receipts remain controlling; no global rejection invented for irrelevant fields.",
+    "Complete78-kind transitive closure and complete per-field disclosure remain parent work."
+  ],
+  "staticVerification": {
+    "kindCount": 10,
+    "axisCount": 29,
+    "factoryCount": 24,
+    "exactAxisStringsAndOrderFromInventory": true,
+    "derivedSuffixLengthsComputed": true,
+    "allCanonicalFingerprintBoundsWithin512": true
+  },
+  "reusedSourcePinVerification": {
+    "priorArtifact": "magic-independent-audit.json",
+    "priorPinCount": 53,
+    "mismatchCount": 0,
+    "meaning": "Prior source evidence reused and hashes compared; no old runtime tests rerun or reclassified."
+  }
+}

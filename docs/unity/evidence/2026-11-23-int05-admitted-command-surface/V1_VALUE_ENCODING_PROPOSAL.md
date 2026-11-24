@@ -1,6 +1,6 @@
 # Exact V1 value and console encoding proposal
 
-**PROPOSED technical representation, not implementation or a new game rule.** This normalizes the native widths named by the family field registries. The complete HC review must concur with it before code.
+**Bounded technical representation concurred by actual GPT05 and Codex; full HC acceptance remains open.** This normalizes the native widths named by the family field registries. No implementation or new game rule is claimed.
 
 The C# fact/parameter value is a closed immutable discriminated value. Its public kind is Boolean, Integer, Quantity, Time, Identity, Code or GridCell. A registry declares the exact native width and optionality; values cannot silently change type between fresh, duplicate, restored and later explanation.
 
@@ -18,9 +18,9 @@ Integer decimal strings use invariant canonical decimal: zero is0, no plus sign,
 
 Null is not zero, empty identity, missing optional die or a successful no-op. Fact availability determines whether a value exists. If Withheld, NotApplicable, NotRetained or ProjectionUnavailable, omit the value and protected cause data according to the fixed safe field schema. Native sentinel fields require the registry's applicability rule before value construction. Domain descriptors can expressly permit an empty request string/default payload, but must describe it as that parameter's native empty sentinel; it is not an existing entity identity.
 
-A quantity's unit must be the exact native unit identity when one exists. Human display labels do not replace prototype.potable-water.pint or TEST_ONLY.ration-pound. Monetary RuleQuantity values without a native physical unit ID need a separately agreed dimension representation; do not invent a currency lot or fabricate an existing unit identity. This remains an explicit management registry decision.
+A Quantity has exactly one registered representation: native `unit` or technical `dimension`. A unit is the exact native identity when one exists; display labels do not replace prototype.potable-water.pint or TEST_ONLY.ration-pound. Actual GPT05 approves `CopperValue` as the technical dimension for monetary RuleQuantity valuations without a physical currency-lot unit. For example `{"kind":"Quantity","numerator":"15","denominator":"2","dimension":"CopperValue"}` expresses valuation, not a physical coin count, conversion or reservation. Preserve native integer fields as Integer; no invented unit or lot.
 
-Repeated authorized recipients/effects need an agreed typed instance context and native ordering. A fact key alone must not conflate multiple Rite/Aura recipients. This proposal does not approve revealing instance count or identity: evaluate the field predicate before enumeration, with fixed protected family shapes. Magic/advancement's instance-context proposal remains part of the full review.
+Actual GPT05 approves typed repeated-instance context with native relative order and public ordinals assigned after authorization filtering. Never export raw native indices whose gaps reveal hidden rows. Each subject identity has its independent predicate. Fixed keys distinguish repeated authorized values through context; protected family placeholders have schema-defined presence independent of hidden records. Exact per-field normalization remains part of the full review.
 
 Console encoding of new V1 responses uses these exact public projections. Legacy response and command input encodings remain unchanged. New submission wrappers consume the existing native Command through the existing exact constructor/parser, preserving all payloads and embedded Consecrate request; no separate JSON rules implementation or caller-supplied Authority is allowed. Full payload round-trip checks must use an integer-preserving parser, retain original ExpectedRevision independently of observation revision, and compare exact Commands/fingerprints internally without exporting fingerprints.
 

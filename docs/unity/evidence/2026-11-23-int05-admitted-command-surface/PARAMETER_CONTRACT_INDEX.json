@@ -1,0 +1,2300 @@
+{
+  "schemaVersion": 1,
+  "status": "RECONCILED_PARAMETER_DESIGN_WITH_FROZEN_LOCAL_VARIANT_ORDINALS_FULL_HC_OPEN",
+  "sourceApiAccepted": false,
+  "runtimeAuthorized": false,
+  "counts": {
+    "candidateKinds": 78,
+    "operatorKinds": 2,
+    "exactSemanticAxes": 204,
+    "registeredVariants": 145,
+    "runtimeQualifiedKinds": 0
+  },
+  "inputs": [
+    {
+      "path": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "165003dc8417db417a7e2efaa6f37dc1331a80dcbc67ff60a38066d3df30f04d"
+    },
+    {
+      "path": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "ab729a0ab00697c93219a2160116397c9ba200fe8576d8292d87e43e12e3bc78"
+    },
+    {
+      "path": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "dceccb62b7c73726615d8767cc90840d590269818e7a3fb9d9e7837068e53d54"
+    },
+    {
+      "path": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "49173f195641d98b7393d5fa095ae906aa375833295b1433075c6b376aff8258"
+    }
+  ],
+  "operations": [
+    {
+      "kind": "SelectCombatStance",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0",
+      "exactAxes": [
+        "Aggressive",
+        "Guarded",
+        "Mobile",
+        "Focused",
+        "Carrying: native NoApplicableCargoPenalty"
+      ],
+      "variants": [
+        {
+          "variantKey": "stance.aggressive",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "stance.guarded",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "stance.mobile",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "stance.focused",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "stance.carrying",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/4",
+          "variantOrdinal": 4,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackClub",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1",
+      "exactAxes": [
+        "owned/custodied visible-target club",
+        "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+        "ArmOrReplace/KeepExisting",
+        "regular attack vs Sanctuary gate"
+      ],
+      "variants": [
+        {
+          "variantKey": "attack.club",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AttackCreatureFeature",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2",
+      "exactAxes": [
+        "selected Ferry feature/actual creature seat",
+        "same explicit knockout/Press payload disposition",
+        "Sanctuary admission"
+      ],
+      "variants": [
+        {
+          "variantKey": "attack.ferry-claw",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TacticalStep",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3",
+      "exactAxes": [
+        "native direction/geometry/movement domain",
+        "ordinary completion/OA suspension/Press continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "move.tactical-step",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndRegularTurn",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4",
+      "exactAxes": [
+        "aware stance required",
+        "life/conditions/due events and next slot"
+      ],
+      "variants": [
+        {
+          "variantKey": "turn.end",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EncounterDash",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5",
+      "exactAxes": [
+        "selected Ferry current party turn",
+        "Action and movement allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "ferry.dash",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseIntimidatingPresence",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6",
+      "exactAxes": [
+        "RecoveryOpponent seat selected target subsets",
+        "separate LaterDefender grant",
+        "actual cooldown/turn/visibility"
+      ],
+      "variants": [
+        {
+          "variantKey": "presence.recovery-source",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "presence.later-defender",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "TearExposedSeal",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7",
+      "exactAxes": [
+        "actual observed seal",
+        "tactical vs ordinary activity where admitted",
+        "original suppression endpoint and repeated use"
+      ],
+      "variants": [
+        {
+          "variantKey": "seal.tear-tactical",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "seal.tear-ordinary",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondOpportunityAttack",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8",
+      "exactAxes": [
+        "decline",
+        "take with owned weapon",
+        "knockout/Press elections",
+        "ordered reactor and continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "oa.decline",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "oa.take-club",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "oa.take-ferry-feature",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveKnockout",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9",
+      "exactAxes": [
+        "ordinary outcome",
+        "knock out",
+        "existing attack identity; original Press instruction immutable"
+      ],
+      "variants": [
+        {
+          "variantKey": "ko.ordinary",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "ko.knockout",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondPress",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10",
+      "exactAxes": [
+        "decline",
+        "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+        "nested continuation without speculative execution"
+      ],
+      "variants": [
+        {
+          "variantKey": "press.decline",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "press.follow",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RespondSanctuary",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11",
+      "exactAxes": [
+        "Forgo",
+        "regular attack Retarget to each visible legal native target",
+        "Opportunity retarget denied outside original source",
+        "native no-free-loop/continuation rules"
+      ],
+      "variants": [
+        {
+          "variantKey": "sanctuary.forgo",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "sanctuary.retarget-regular",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "sanctuary.retarget-opportunity",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginWorldStep",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12",
+      "exactAxes": [
+        "walk",
+        "run only where host selected",
+        "scheduled/off-calendar activity",
+        "partial progress/encounter admission"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.walk",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "world.run-declared",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "world.run-predeclared",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "SuspendWorldStep",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13",
+      "exactAxes": [
+        "actual own pending traversal",
+        "partial pose/paid budget preserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.suspend",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWorldStep",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14",
+      "exactAxes": [
+        "suspended/waiting traversal",
+        "run/Dash revalidation",
+        "actual geometry/fear/access"
+      ],
+      "variants": [
+        {
+          "variantKey": "world.resume-suspended",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "world.resume-waiting-running-activity",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginReinforcementApproach",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15",
+      "exactAxes": [
+        "actual selected approach",
+        "consent/director parameters",
+        "source entry timing/allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "reinforcement.begin",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Hide",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16",
+      "exactAxes": [
+        "ordinary Hero start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "variants": [
+        {
+          "variantKey": "hide.ordinary",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "hide.tactical-decline",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "hide.tactical-guidance",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Search",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17",
+      "exactAxes": [
+        "ordinary Companion start token",
+        "tactical party turn",
+        "eligible Guidance election/decline"
+      ],
+      "variants": [
+        {
+          "variantKey": "search.ordinary",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "search.tactical-decline",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "search.tactical-guidance",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationHide",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18",
+      "exactAxes": [
+        "actual own pending hide identity"
+      ],
+      "variants": [
+        {
+          "variantKey": "hide.cancel",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelExplorationSearch",
+      "operatorOnly": false,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19",
+      "exactAxes": [
+        "actual own pending search identity"
+      ],
+      "variants": [
+        {
+          "variantKey": "search.cancel",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "Interact",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0",
+      "exactAxes": [
+        "cache PickWithTools/Open/Interrupt",
+        "trap Set/Pause/Resume/Cancel",
+        "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+        "retrieve explicit receiver/handling request",
+        "trap Abandon exists natively but is not admitted by the session"
+      ],
+      "variants": [
+        {
+          "variantKey": "cache.pick",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "cache.open",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "cache.interrupt",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.set",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.pause",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/4",
+          "variantOrdinal": 4,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.resume",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/5",
+          "variantOrdinal": 5,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.cancel",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/6",
+          "variantOrdinal": 6,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.retrieve",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/7",
+          "variantOrdinal": 7,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.pause-retrieval",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/8",
+          "variantOrdinal": 8,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.resume-retrieval",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/9",
+          "variantOrdinal": 9,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "trap.abandon",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/10",
+          "variantOrdinal": 10,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "cache.key",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/11",
+          "variantOrdinal": 11,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandlePortableEquipment",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1",
+      "exactAxes": [
+        "Pickup/Drop/Retrieve",
+        "selected vial Stow in pack",
+        "selected focus Handover consent",
+        "companion Club physical adapter",
+        "ordinary vs tactical allowance"
+      ],
+      "variants": [
+        {
+          "variantKey": "portable.pickup",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "portable.drop",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "portable.retrieve",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "vial.stow",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "focus.handover",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/4",
+          "variantOrdinal": 4,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "cleric.club-pickup",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/5",
+          "variantOrdinal": 5,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "OpenPortableContainer",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2",
+      "exactAxes": [
+        "owned accessible actual closure",
+        "selected packed vial",
+        "protected specimen opening consequences"
+      ],
+      "variants": [
+        {
+          "variantKey": "container.open",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ClosePortableContainer",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3",
+      "exactAxes": [
+        "owned accessible actual closure",
+        "protected contents"
+      ],
+      "variants": [
+        {
+          "variantKey": "container.close",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleInventory",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4",
+      "exactAxes": [
+        "Hero cache ration Pickup only at host",
+        "rational available amount",
+        "no generic transfer expansion"
+      ],
+      "variants": [
+        {
+          "variantKey": "cache.ration-pickup",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PortionInventory",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5",
+      "exactAxes": [
+        "exact rational amount",
+        "actual eligible source/unit",
+        "reserved/whole-tender/contaminated exclusions",
+        "age/provenance conserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "inventory.portion-nutrition",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "inventory.portion-counted",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "inventory.portion-generic-harvest-mass",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EquipPortableItem",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6",
+      "exactAxes": [
+        "selected holy symbol and placement/body constraints"
+      ],
+      "variants": [
+        {
+          "variantKey": "focus.wear",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "RemovePortableItem",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7",
+      "exactAxes": [
+        "selected holy symbol and current state"
+      ],
+      "variants": [
+        {
+          "variantKey": "focus.remove",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "HandleVessel",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8",
+      "exactAxes": [
+        "selected flask Pickup/Drop/Retrieve/Stow disposition",
+        "willing party Handover",
+        "opening/contents/custody constraints"
+      ],
+      "variants": [
+        {
+          "variantKey": "flask.pickup",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "flask.drop",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "flask.handover",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "flask.retrieve",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "flask.stow",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/4",
+          "variantOrdinal": 4,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartIntake",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9",
+      "exactAxes": [
+        "ordinary food/water rational amounts",
+        "reservations and exact proportional time",
+        "tactical/unsafe intake unsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "intake.food",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "intake.water",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptIntake",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10",
+      "exactAxes": [
+        "actual own intake",
+        "consumed credit retained and untouched quantity released"
+      ],
+      "variants": [
+        {
+          "variantKey": "intake.interrupt",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseAlchemyDose",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11",
+      "exactAxes": [
+        "owned actual dose/recipient",
+        "ground/carried/stowed/tactical/Companion selected variants",
+        "actual HP caps/blockers and spent dose"
+      ],
+      "variants": [
+        {
+          "variantKey": "dose.bench",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "dose.selected-held",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWaterFill",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9",
+      "exactAxes": [
+        "authorized accessible source/destination",
+        "positive rational amount/unit/capacity",
+        "two hands and 60 active seconds"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.start",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseWaterFill",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10",
+      "exactAxes": [
+        "active own fill",
+        "retain progress/amount/capacity; release worker/opening"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.pause",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/10/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeWaterFill",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11",
+      "exactAxes": [
+        "paused own fill",
+        "remaining active labor and current access/hands"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.resume",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/11/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelWaterFill",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12",
+      "exactAxes": [
+        "active/paused own fill",
+        "no liquid transfer; release claims"
+      ],
+      "variants": [
+        {
+          "variantKey": "fill.cancel",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartMining",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13",
+      "exactAxes": [
+        "actual version/category subsets",
+        "Strength/Wisdom",
+        "hurried false/true",
+        "finite source selection and setup",
+        "conditional failure-victim and critical-recovery preferences",
+        "nonempty AssistantId rejected: requires schema77 unavailable in these factories"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.start",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseMining",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14",
+      "exactAxes": [
+        "setup endpoint",
+        "first-positive removal commitment",
+        "productive removal stage"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.pause.working",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeMining",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15",
+      "exactAxes": [
+        "Paused",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "mining.resume.paused",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "mining.resume.awaitingcheck",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartFormulaResearch",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16",
+      "exactAxes": [
+        "actual guild notes/recipe4",
+        "new attempt after cancellation has zero inherited progress"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.start",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseFormulaWork",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17",
+      "exactAxes": [
+        "active research retains labor/progress/claims"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.pause.working",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeFormulaWork",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18",
+      "exactAxes": [
+        "Paused retained research",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.resume.paused",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "research.resume.awaitingcheck",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelFormulaWork",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19",
+      "exactAxes": [
+        "zero labor",
+        "positive labor",
+        "native AwaitingCheck cancellation disposition"
+      ],
+      "variants": [
+        {
+          "variantKey": "research.cancel.working",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "research.cancel.paused",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "research.cancel.awaitingcheck",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartManufacturing",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20",
+      "exactAxes": [
+        "one actual recipe4 order",
+        "ingredients/age/packaging/known formula and actual work window"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.recipe4.start",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PauseManufacturing",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21",
+      "exactAxes": [
+        "unfinished phase loses retained phase labor",
+        "completed phase retained and actual labor preserved"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.pause.working",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResumeManufacturing",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/22",
+      "exactAxes": [
+        "Paused remaining phases",
+        "AwaitingCheck native model branch; genuine producer remains OPEN"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.resume.paused",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/22/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.resume.awaitingcheck",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/22/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CancelManufacturing",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/23",
+      "exactAxes": [
+        "zero labor releases ingredients",
+        "positive labor consumes ingredients",
+        "packaging released and batch permanently closed",
+        "AwaitingChoice disallows cancellation"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.cancel.working",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/23/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.cancel.paused",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/23/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.cancel.awaitingcheck",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/23/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveManufacturingQuality",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/24",
+      "exactAxes": [
+        "actual Exceptional FullYield/Durability",
+        "StandardQuantity native applicability disposition",
+        "suspended clock continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "manufacture.quality.exceptional.fullyield",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/24/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.quality.exceptional.durability",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/24/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.quality.masterwork.fullyield",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/24/variants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "manufacture.quality.masterwork.durability",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/24/variants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHarvestPreservationTreatment",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12",
+      "exactAxes": [
+        "actual unspoiled selected specimen",
+        "stabilization vs spoilage endpoint",
+        "real preservative/time/access"
+      ],
+      "variants": [
+        {
+          "variantKey": "blood.preserve",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/12/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenAppraisal",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0",
+      "exactAxes": [
+        "exact desk/seller/stock",
+        "actual appraisal completion/knowledge"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartHavenAppraisal",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartHavenSale",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1",
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "actual sale inventory/price/payment and custody"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartHavenSale",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "PurchaseHavenMeal",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2",
+      "exactAxes": [
+        "exact offer/Companion transaction grant",
+        "whole tender/one-use serving and native consumption"
+      ],
+      "variants": [
+        {
+          "variantKey": "PurchaseHavenMeal",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartExpeditionBill",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3",
+      "exactAxes": [
+        "exact bill and actual prior contributions/results"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartExpeditionBill",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CloseExpeditionEpisode",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4",
+      "exactAxes": [
+        "exact episode and native settlement readiness"
+      ],
+      "variants": [
+        {
+          "variantKey": "CloseExpeditionEpisode",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartNextCharterPlan",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5",
+      "exactAxes": [
+        "exact plan and current resource/readiness assessment"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartNextCharterPlan",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcceptNextCharter",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6",
+      "exactAxes": [
+        "exact offer and actual bill/plan agreement"
+      ],
+      "variants": [
+        {
+          "variantKey": "AcceptNextCharter",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartCharterAttempt",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7",
+      "exactAxes": [
+        "exact accepted charter and departure readiness"
+      ],
+      "variants": [
+        {
+          "variantKey": "StartCharterAttempt",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ObserveCharterApproach",
+      "operatorOnly": false,
+      "proposal": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8",
+      "exactAxes": [
+        "actual attempt identity and approach state"
+      ],
+      "variants": [
+        {
+          "variantKey": "ObserveCharterApproach",
+          "source": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MANAGEMENT_WORK_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StabilizeCompanion",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13",
+      "exactAxes": [
+        "Hero Medicine on actual Companion",
+        "casting Guidance election/decline",
+        "genuine stable/dying life gates"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.stabilize-plain",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "care.stabilize-guidance",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/13/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "StartWoundTreatment",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14",
+      "exactAxes": [
+        "Hero treats selected Companion Wound",
+        "sealed kit/Supply basket",
+        "source choice and eight-hour attempt"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.wound-start",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/14/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptWoundTreatment",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15",
+      "exactAxes": [
+        "Hero/Companion target binding",
+        "active attempt and spent start costs"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.wound-interrupt",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/15/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ConsumeDecay",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16",
+      "exactAxes": [
+        "selected Hero/fixed significant decaying-organic bed at (1,3); no corpse-selection procedure",
+        "actual once-only use and source feature eligibility"
+      ],
+      "variants": [
+        {
+          "variantKey": "care.consume-decay",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/16/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginShortRest",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17",
+      "exactAxes": [
+        "Hero exact berth",
+        "explicit zero Hit Dice",
+        "beneficial/nonbeneficial attempts",
+        "Cleric ClassRecoveryUnsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.short",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "rest.short-cleric-candidate",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/17/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptShortRest",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18",
+      "exactAxes": [
+        "actual Hero interval",
+        "native interrupted reward/occupancy"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.short-interrupt",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/18/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginMutationShortRest",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19",
+      "exactAxes": [
+        "selected FleshWarden mutation identity",
+        "actual completed-rest equip",
+        "no invented activation/serum route"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.mutation-flesh-warden",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        },
+        {
+          "variantKey": "rest.mutation-spinal-buffer",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/19/variants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "BeginLongRest",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20",
+      "exactAxes": [
+        "Companion exact berth",
+        "eight-hour interval/cadence/source-specific recovery"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.long",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "InterruptLongRest",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21",
+      "exactAxes": [
+        "actual own interval",
+        "native damage/explicit interruption"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.long-interrupt",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "ResolveExpeditionStrainRecovery",
+      "operatorOnly": false,
+      "proposal": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/22",
+      "exactAxes": [
+        "actual pending offer point IDs",
+        "native source namespace/priority",
+        "clock continuation"
+      ],
+      "variants": [
+        {
+          "variantKey": "rest.strain-point",
+          "source": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/operations/22/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AwardCharacterMilestone",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7",
+      "exactAxes": [
+        "actual Cleric milestone",
+        "Bishop selected later milestone",
+        "narrow world-modification grant"
+      ],
+      "variants": [
+        {
+          "variantKey": "AwardCharacterMilestone.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/7",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AdvanceCharacterLevel",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8",
+      "exactAxes": [
+        "exact Cleric2 settlement selection",
+        "exact Bishop3 declaration/training/source choices",
+        "earned repertoire atomic transaction"
+      ],
+      "variants": [
+        {
+          "variantKey": "advance.cleric2",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/admittedSelections/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "advance.bishop3",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/8/admittedSelections/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "AcquireEarnedSpell",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9",
+      "exactAxes": [
+        "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+        "ClericEarnedAdvancementUnavailable; no new acquisition route"
+      ],
+      "variants": [
+        {
+          "variantKey": "AcquireEarnedSpell.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/9",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "CastKnownSpell",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0",
+      "exactAxes": [
+        "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+        "earned detect-magic",
+        "earned Bishop dispel",
+        "actual target/shape/payload",
+        "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+        "tactical vs admitted OMA calendar",
+        "repertoire-only OrdinarySpellcastingUnsupported"
+      ],
+      "variants": [
+        {
+          "variantKey": "cast.arcane-ward",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.guidance",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/1",
+          "variantOrdinal": 1,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.purify-food-and-drink",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/2",
+          "variantOrdinal": 2,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.sanctuary",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/3",
+          "variantOrdinal": 3,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.spare-the-dying",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/4",
+          "variantOrdinal": 4,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.detect-magic",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/5",
+          "variantOrdinal": 5,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.dispel-magic-lesser",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/spellVariants/6",
+          "variantOrdinal": 6,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.legacy-repertoire-denial",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/nativeOnlyAndDenialBoundaries/repertoireOnly",
+          "positiveExamples": false,
+          "variantOrdinal": 7,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        },
+        {
+          "variantKey": "cast.native-source-boundary-control",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/0/nativeOnlyAndDenialBoundaries/flareSparkAndLight",
+          "positiveExamples": false,
+          "variantOrdinal": 8,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "GroundCastingStrain",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1",
+      "exactAxes": [
+        "Companion native Dissonance/context/action"
+      ],
+      "variants": [
+        {
+          "variantKey": "GroundCastingStrain.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/1",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndSpellConcentration",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2",
+      "exactAxes": [
+        "actual own present concentration effect",
+        "native ending/carry semantics"
+      ],
+      "variants": [
+        {
+          "variantKey": "EndSpellConcentration.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/2",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "FocusDetectedAura",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3",
+      "exactAxes": [
+        "opaque authorized aura observation",
+        "native detection/focus/school disclosure"
+      ],
+      "variants": [
+        {
+          "variantKey": "FocusDetectedAura.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/3",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseHealingRite",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4",
+      "exactAxes": [
+        "Companion/party recipient",
+        "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+        "native cure preference and actual HP/condition gates"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseHealingRite.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/4",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseDivineInvocation",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5",
+      "exactAxes": [
+        "actual Bishop feature entitlement",
+        "1–3 authorized targets and at most one selected cure recipient",
+        "native Conviction/RP/action/recharge"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseDivineInvocation.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/5",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "UseConsecrate",
+      "operatorOnly": false,
+      "proposal": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6",
+      "exactAxes": [
+        "admitted center geometry",
+        "native terrain/allegiance/life/healing behavior",
+        "tactical vs admitted ordinary calendar"
+      ],
+      "variants": [
+        {
+          "variantKey": "UseConsecrate.native",
+          "source": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/operations/6",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "MAGIC_ADVANCEMENT_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityLimits"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    }
+  ],
+  "operatorKinds": [
+    {
+      "kind": "AdvanceClock",
+      "operatorOnly": true,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20",
+      "exactAxes": [],
+      "variants": [
+        {
+          "variantKey": "operator.clock",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/20/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    },
+    {
+      "kind": "EndFixedEncounter",
+      "operatorOnly": true,
+      "proposal": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21",
+      "exactAxes": [],
+      "variants": [
+        {
+          "variantKey": "operator.end-fixed",
+          "source": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/operations/21/variants/0",
+          "variantOrdinal": 0,
+          "exampleOrdinalPolicy": "After current authorization filtering, sort exact candidate payloads by the explicit typed domain order in EXAMPLE_DOMAIN_ORDER.md; zero-based within this variant. No native/private index gaps.",
+          "actualDerivedIdentityConstraints": "TACTICAL_OPERATOR_PARAMETER_CONTRACT_PROPOSAL.json#/derivedIdentityRules"
+        }
+      ],
+      "conditionReadDependency": "CONDITION_READ_BOUNDARY.md, including actual GPT04/05 corrections; no legacy lazy journal fallback",
+      "effectiveCorrections": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "exampleConstructionQualified": false,
+      "runtimeQualified": false
+    }
+  ],
+  "remaining": [
+    "Per-variant current example construction and payload ordering must be proven against native bounds, including dynamic derived IDs",
+    "Normalize every exact parameter type/domain/choice with all selected profile variants",
+    "Complete full field/source/purity and genuine five-path expected-output allocation",
+    "Actual GPT and Codex full HC acceptance before runtime"
+  ]
+}

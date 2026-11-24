@@ -88,6 +88,15 @@ assert len(rows) == 78
 assert set(bindings) == {row["kind"] for row in rows} | set(inventory["operatorKinds"])
 operators = [{"kind": kind, **bindings[kind], "newApiQualified": False}
              for kind in inventory["operatorKinds"]]
+policy_name = "FIELD_POLICY_DECISIONS_05.md"
+inputs.append({"path": policy_name, "sha256": digest(policy_name)})
+for row in rows + operators:
+    row["effectiveDisclosurePolicy"] = policy_name
+    row["status"] = "EXACT_FIELD_PROPOSAL_WITH_GPT05_BOUNDED_POLICY_CORRECTIONS_FULL_CONTRACT_OPEN"
+    for field in row["orderedFields"]:
+        if row["kind"] == "Hide" and field["key"] == "guidance.consumed.actual":
+            field["effectiveDisposition"] = "Withheld"
+            field["policyCorrection"] = "GPT05: fixed presence, no per-Hide consumption/check linkage or equivalent effect-end/cause disclosure"
 result = {
     "schemaVersion": 1,
     "status": "SOURCE_DESIGN_INDEX_NOT_DISCLOSURE_AUTHORITY_OR_RUNTIME_COVERAGE",
@@ -103,12 +112,18 @@ result = {
         "newApiQualifiedKinds": 0,
     },
     "commonAttemptFacts": "DETAILED_RESULT_CONTRACT.md; actual result/receipt/continuation fields apply separately",
+    "effectivePolicy": {
+        "record": policy_name,
+        "actualGptResponse": "e70be17d-6889-5e41-a22c-4a8dbe4b15b6",
+        "codexConcurrence": True,
+        "precedence": "Exact GPT05 corrections override historical UNAPPROVED wording in unchanged reviewed family proposals; unreviewed individual joins and full HC remain open",
+    },
     "inputs": inputs,
     "operations": rows,
     "operatorKinds": operators,
     "remaining": [
         "Independently reconcile all proposed family fields and private/public boundaries as one contract",
-        "Concur on each explicitly new historical/current disclosure predicate and any withheld retained family",
+        "Apply the agreed GPT05 narrow predicates, spent-dose correction, Hide protection, Boolean grouping and protected family shapes to every normalized field",
         "Normalize exact DTO types, instance context, optional sentinel applicability and public vocabulary",
         "Freeze the full parameter/domain and per-profile/branch/five-path expected-output allocation",
         "Verify every V1 read dependency, exact state/copy invariants and concrete materialized-condition carrier",

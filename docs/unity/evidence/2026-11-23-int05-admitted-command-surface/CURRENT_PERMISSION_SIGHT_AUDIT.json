@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_CURRENT_PERMISSION_SIGHT_SOURCE_REVIEW_NOT_RUNTIME_PROOF",
+  "reviewer": "Codex parent self-review",
+  "entries": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "ranges": [
+        [
+          28,
+          60
+        ],
+        [
+          102,
+          128
+        ]
+      ],
+      "methods": "ConditionView/ConditionLedger.View, Sources, ImmunitySources",
+      "finding": "Once the correct current ledger is already materialized, these only select immutable instances/components and map clauses; immunity membership and existing suppression/end/admission flags are honored. View creates value objects but no ConditionTransition, consequences, lifecycle Resolve or AdvanceTo. ConditionView.PermissionsForLife uses current life separately."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+      "ranges": [
+        [
+          87,
+          132
+        ]
+      ],
+      "methods": "ConditionInstance/ConditionImmunityInstance.Present",
+      "finding": "Exact retained Starts/EndedAt/Expires comparisons against the supplied marker. This does not advance the ledger or create an expiry. Keep exact phase boundaries."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "ranges": [
+        [
+          17,
+          31
+        ],
+        [
+          80,
+          95
+        ]
+      ],
+      "methods": "FromResolved, EffectiveSpeed, Permissions",
+      "finding": "Immutable clause membership and exact arithmetic; FromResolved does not re-infer an inherited component prevented/ended by actual lifecycle authority. Pure permissions still require current actions/speed inputs."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "ranges": [
+        [
+          10,
+          50
+        ]
+      ],
+      "methods": "Aware, CombatConditions, CurrentPermissions, EffectiveProne, CanSee, DamageConditionCapacity",
+      "finding": "Each actual ConditionsFor call must use the V1 explicit context lookup instead of ConditionResolutionScope.Project. Remaining logic joins current life, interval/action/movement, stance, strain, surprise and selected observation facts. Damage capacity uses actual journal operations and materialized application counts, not trial damage."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+      "ranges": [
+        [
+          76,
+          92
+        ]
+      ],
+      "methods": "SurprisePermissions.Restrict",
+      "finding": "Reads retained surprise binding, first-start/current ordinal and current interval. ReactionClock value construction is not spending or advancing a reaction. No surprise entry/Start transition."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/EncounterHistory.cs",
+      "ranges": [
+        [
+          23,
+          34
+        ]
+      ],
+      "methods": "All, AtRevision, InCurrent",
+      "finding": "Retained encounter/start/closed-revision selection only; no historical replay. CurrentPermissions uses InCurrent to keep same-ordinal older encounters separate."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "ranges": [
+        [
+          98,
+          208
+        ],
+        [
+          360,
+          361
+        ]
+      ],
+      "methods": "KnownLocations, CanSee, LocationKnown, HiddenTo, InvisibleRevealed, CurrentInvisibleEpisodeId, DirectSightAt, InvisibleIsOnlySightBlocker, Knowledge",
+      "finding": "Require context-aware condition lookups. CurrentInvisibleEpisodeId unions connected intervals of already-materialized Invisible instances and retains native earliest-start/ordinal-ID choice; it does not replay journal events. KnownLocations preserves current direct sight versus exact retained known location and hidden semantics. No Refresh, Set, ApplyHide, DiscloseLocation or traversal processing."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "ranges": [
+        [
+          148,
+          178
+        ],
+        [
+          186,
+          299
+        ]
+      ],
+      "methods": "Position, GeometricSight, snapshot LoE/anchor/walkability, ClearLine, SegmentIntersects, ClipAxis",
+      "finding": "Pure WorldPositionResolver coordinates, retained sight profile and observation cells; exact BigInteger fractions and segment clipping. Ref locals enter/exit are temporary arithmetic values, not snapshot mutations. No path progression, encounter entry or observation refresh. Fixture overloads retain immutable fixture selectors."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "ranges": [
+        [
+          79,
+          103
+        ]
+      ],
+      "methods": "Operative, VisibleSource, WillingStepFailure",
+      "finding": "Condition application selection uses exact materialized ledger and relationship-policy binding, then current observation/position. Does not resolve saves, cure or expiry. FirstProhibitedFraction is a separate finite geometry helper and must retain its native result."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "ranges": [
+        [
+          31,
+          33
+        ],
+        [
+          212,
+          218
+        ],
+        [
+          227,
+          271
+        ]
+      ],
+      "methods": "CurrentPressOffer versus AdvanceTacticalFlow",
+      "finding": "CurrentPressOffer is a pure ordered pending selector, not normalization: CreatedRevision descending, ArmedRevision then Id ordinal. AdvanceTacticalFlow performs step/offer invalidation, payments and continuation and is prohibited. PressLegal reads current retained source/offer/move then context-aware StepFailure; decline still checks it."
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "sha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+      "bytes": 15199,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+      "sha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+      "bytes": 8775,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "bytes": 9996,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+      "bytes": 12276,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+      "sha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79",
+      "bytes": 5362,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/EncounterHistory.cs",
+      "sha256": "ac3c2210250b8a4bc064fb165df375e24937226e879c01d702729bc0e0f8040a",
+      "bytes": 4098,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+      "bytes": 22868,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5",
+      "bytes": 25335,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "sha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+      "bytes": 6251,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "sha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+      "bytes": 25185,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    }
+  ],
+  "conditionRequirement": "All legacy ConditionsFor calls in listed consumers require exact owner/current-state materialized V1 context with correct native journal-time or projected marker. No lazy scope fallback. Data availability is not current character/inventory/observer authority.",
+  "reuse": [
+    "CURRENT_FACT_HELPER_AUDIT.json for current life/character/strain/calendar/position",
+    "CONDITION_READ_BOUNDARY.md and actual GPT04/05"
+  ],
+  "remaining": [
+    "Complete selected spatial/pressure/speed helper closure and original policy binding for tactical/world steps",
+    "Independent review of this finite audit",
+    "Compiled instrumentation and native parity for every actual V1 consumer, including invisible-episode interval grouping and condition mode/phase"
+  ],
+  "runtimeChanged": false,
+  "buildsTestsGameplay": false,
+  "sourceApiAccepted": false
+}

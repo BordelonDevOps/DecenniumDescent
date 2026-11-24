@@ -1,0 +1,896 @@
+{
+  "schemaVersion": 1,
+  "status": "Bounded independent checkpoint-05 design review complete; no blocking discrepancy found in the six frozen parent inputs. Two exact prose clarifications retained below; neither is runtime or full HC acceptance.",
+  "reviewer": "/root/audit_management",
+  "reviewType": "Independent review of six parent-authored checkpoint inputs; explicit self-correction of own prior management extraction report is separately labeled.",
+  "scope": {
+    "inputs": [
+      "FIELD_POLICY_DECISIONS_05.md",
+      "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "CURRENT_FACT_HELPER_AUDIT.json",
+      "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "CONDITION_READ_BOUNDARY.md"
+    ],
+    "focus": [
+      "pure selectors versus prohibited lifecycle/settlement/replay transitions",
+      "GPT05 field predicate conjunctions, spent-dose history and Hide privacy",
+      "owner/current-generation context stamp, accessibility and coherent publication",
+      "required advancement target, domain and deterministic capacity distinctions"
+    ],
+    "excluded": [
+      "full 80-kind/source-call-graph audit",
+      "independent review of own management/work proposals",
+      "runtime source changes",
+      "builds, tests, gameplay, replay or restore execution",
+      "full HC01-HC05 acceptance",
+      "successor module or Unity integration"
+    ]
+  },
+  "decisionAuthority": {
+    "gpt05ResponseId": "e70be17d-6889-5e41-a22c-4a8dbe4b15b6",
+    "gpt05RequestId": "612973ea-0cf6-4927-b75d-129e5d4c3139",
+    "gpt05ReviewedCommit": "6bf494b716bf325271839ac11c4849cba26c91e7",
+    "gpt03ResponseId": "f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07",
+    "disposition": "Bounded architecture/field-policy/encoding/read-context concurrence with corrections; not full source/API, witness or runtime acceptance. GPT06 is outside these frozen inputs and not silently applied."
+  },
+  "inputPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/FIELD_POLICY_DECISIONS_05.md",
+      "sha256": "e8d022a87e6d70544625076236773d0ca72506ae12967ccead64c8d8c211a17d",
+      "bytes": 5900,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "sha256": "334eb327e14707d1d329e8dba3e0577471a9b6f0c5f9cd769cf8bf4272b8025a",
+      "bytes": 3831,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_FACT_HELPER_AUDIT.json",
+      "sha256": "033c0ec14e25ae4b99b7109d1b7ef4c1fe628842faacfc1e994c0d35324b2216",
+      "bytes": 15748,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "sha256": "066c948a1814658125ea801307072618f9f4e8f191d9570cb86b631b48c9a634",
+      "bytes": 9904,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "sha256": "4f80c245e7938df42ffbc6ac43921a69482a00a4b7ea4a163e166596427a1c06",
+      "bytes": 27685,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "e3579ca2bb15326cef64f7ecc6b3e028a484f769024ad5c5a20f71dc107d8c81",
+      "bytes": 10288,
+      "role": "independently reviewed current parent input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652,
+      "role": "controlling decision or exact reconciliation input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+      "sha256": "08fd9dc93f636e3481aa39b5811ed9ee2034b708787f1a4f96a4e1df1491dd99",
+      "bytes": 10666,
+      "role": "controlling decision or exact reconciliation input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PURE_CHECKPOINT_CONTRACT.md",
+      "sha256": "14de74d8af3e88444fe0250102faae602de2acad53ead93c9b010c115dcf5703",
+      "bytes": 11380,
+      "role": "controlling decision or exact reconciliation input"
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OPERATION_INVENTORY.json",
+      "sha256": "9bce656517d0b811a3f4ac62036b5ad148a0d3973c0f2b86274ab4d9421806d8",
+      "bytes": 282658,
+      "role": "controlling decision or exact reconciliation input"
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/management-read-extraction-plan.json",
+      "sha256": "95dc023f849c9d21db9a725445222a2483f6d674f9576fd705d19dd18f9e4c7b",
+      "bytes": 100048,
+      "role": "own prior report; self-correction only, not independently reviewed"
+    }
+  ],
+  "principalNativeSourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedManufacturing.cs",
+      "sha256": "b5ebd1492024907595d11a7fe6430cce6d5e21fba923bebc0cf8b1963133662d",
+      "bytes": 46202
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionView.cs",
+      "sha256": "fa0fba1369b8f7dcacfde9ce35a6b239cfa2767b14da10828974eef700de8c3e",
+      "bytes": 44727
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+      "sha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+      "bytes": 25185
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+      "sha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+      "bytes": 36082
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+      "sha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+      "bytes": 9358
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+      "sha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+      "bytes": 37856
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+      "sha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0",
+      "bytes": 16836
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerrySeal.cs",
+      "sha256": "0d2a47f24082142c271334416673fccbda4554efc1bd4969b91584f6315b3b53",
+      "bytes": 6010
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+      "sha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+      "bytes": 18206
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+      "sha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+      "bytes": 12721
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+      "sha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff",
+      "bytes": 21975
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+      "sha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+      "bytes": 15199
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+      "sha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+      "bytes": 8775
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+      "sha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+      "bytes": 9996
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+      "sha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+      "bytes": 22868
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+      "sha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5",
+      "bytes": 25335
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+      "sha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+      "bytes": 6251
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+      "sha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79",
+      "bytes": 5362
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Persistence/SnapshotCodec.cs",
+      "sha256": "45a4ba347df663816cb78287379b4314fde5b4b7fa0a061e91838962910ba52e",
+      "bytes": 47972
+    }
+  ],
+  "declaredSourcePinVerification": {
+    "entries": 41,
+    "matchingEntries": 41,
+    "uniquePaths": 38,
+    "checks": [
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+        "declaredSha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+        "actualSha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+        "declaredSha256": "c0f99c73ad1c3580be4734168fcb475a08c8513077da76d03bd3fd08e95b7f98",
+        "actualSha256": "c0f99c73ad1c3580be4734168fcb475a08c8513077da76d03bd3fd08e95b7f98",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+        "declaredSha256": "e7ce21c902fe6aeb1c2101cb0f2c918f9819b8348d0b7d817506eeb65b7b3aa0",
+        "actualSha256": "e7ce21c902fe6aeb1c2101cb0f2c918f9819b8348d0b7d817506eeb65b7b3aa0",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ActorNumericFacts.cs",
+        "declaredSha256": "726f257c2dcf812c0f953caf8316cd54d071eff95ec5af826e0dc8345c744b73",
+        "actualSha256": "726f257c2dcf812c0f953caf8316cd54d071eff95ec5af826e0dc8345c744b73",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterSkillTrainingFacts.cs",
+        "declaredSha256": "f1ff66d542a88901705ed6d70fedeb8be9a3af9415f1fb7cb2f4c8ae1244013f",
+        "actualSha256": "f1ff66d542a88901705ed6d70fedeb8be9a3af9415f1fb7cb2f4c8ae1244013f",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacters.cs",
+        "declaredSha256": "65d3d84483547d09afa4fc9764154416900924ab0e34c5bf21e501cd49892b8c",
+        "actualSha256": "65d3d84483547d09afa4fc9764154416900924ab0e34c5bf21e501cd49892b8c",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+        "declaredSha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239",
+        "actualSha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestLife.cs",
+        "declaredSha256": "2657098b9c3590409e113b9f46510d9ca13611bab353e2f390dc0a81f9c10dfe",
+        "actualSha256": "2657098b9c3590409e113b9f46510d9ca13611bab353e2f390dc0a81f9c10dfe",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestMaximumHp.cs",
+        "declaredSha256": "a0de283de78f404ff75aeb3116e740e341d3d85fa5f1c96f45d0ef75382a936b",
+        "actualSha256": "a0de283de78f404ff75aeb3116e740e341d3d85fa5f1c96f45d0ef75382a936b",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+        "declaredSha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc",
+        "actualSha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+        "declaredSha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+        "actualSha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+        "declaredSha256": "6efa8d4acd1710180ed4fe63dfc84dad0b9cc0bb36e9a2117bfb76cf6e23533d",
+        "actualSha256": "6efa8d4acd1710180ed4fe63dfc84dad0b9cc0bb36e9a2117bfb76cf6e23533d",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+        "declaredSha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+        "actualSha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+        "declaredSha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+        "actualSha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+        "declaredSha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+        "actualSha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_FACT_HELPER_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+        "declaredSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+        "actualSha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionLedger.cs",
+        "declaredSha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+        "actualSha256": "149f1fca123a7dc429866b56a9a2b01e41f5eefcc749d71cd9175ccd02733307",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionApplications.cs",
+        "declaredSha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+        "actualSha256": "08cdddc01e321b3d0592d42870cd33d1c536ad2eabb2a9f8c7afa24a7e4a34c5",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestConditions.cs",
+        "declaredSha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+        "actualSha256": "8b0775dc10fbd421f08e2d9cfb8a648e42253eeb9e21dafe0f3121fea1b5c1dc",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+        "declaredSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+        "actualSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSurpriseEntry.cs",
+        "declaredSha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79",
+        "actualSha256": "05584d5a586f75767d4f9e6e4bf479735c8c0d53d92942641336cae2c9c92b79",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Runtime/Core/EncounterHistory.cs",
+        "declaredSha256": "ac3c2210250b8a4bc064fb165df375e24937226e879c01d702729bc0e0f8040a",
+        "actualSha256": "ac3c2210250b8a4bc064fb165df375e24937226e879c01d702729bc0e0f8040a",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationRules.cs",
+        "declaredSha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+        "actualSha256": "c890147d6475ac82fe624dd18504c82ddcef12b003d0cc878c2607c3bdf6d2ff",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ObservationGeometry.cs",
+        "declaredSha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5",
+        "actualSha256": "0ba90d2a4f3d13c8ed7730fece34791d1b605c8009ab866f7805b2cc95c303a5",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+        "declaredSha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+        "actualSha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+        "matches": true
+      },
+      {
+        "declaringInput": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+        "declaredSha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+        "actualSha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlySharedWorldPolicy.cs",
+        "declaredSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+        "actualSha256": "4e86a5fb927af162ecdb06c941f7a00632c0c4cda4b07fc04f9e6e8a293d30e9",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedLaterEncounter.cs",
+        "declaredSha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+        "actualSha256": "b3c5add04d97df4745625312c4d39105f0780aba19f3deb4a67baae0119fc6ca",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TacticalMovementPolicy.cs",
+        "declaredSha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+        "actualSha256": "cd4a180b621563b3fff3b69d4b367cc508c8f64d8fb763c15588aae83c271e84",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSanctuary.cs",
+        "declaredSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+        "actualSha256": "aa4588be904870090060c078d0a5e9006abfc6406dd20e0367e6981d8bcfb561",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCombatPolicy.cs",
+        "declaredSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+        "actualSha256": "4331f03faa6de511610699b5a27d013e82f8c540484efb72d4fc9f01d3bb3bac",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyClubAttackPolicy.cs",
+        "declaredSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+        "actualSha256": "12b2047aa28d0cd46d2042f10a9b9e0fc757f3551f0d0f0d2d641de9323c02ee",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+        "declaredSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+        "actualSha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFrightened.cs",
+        "declaredSha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0",
+        "actualSha256": "a3cb8ddd47e7deaa07370b4cde0135107d6586ece5f9b25fab7b063fc413b4f0",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFerrySeal.cs",
+        "declaredSha256": "0d2a47f24082142c271334416673fccbda4554efc1bd4969b91584f6315b3b53",
+        "actualSha256": "0d2a47f24082142c271334416673fccbda4554efc1bd4969b91584f6315b3b53",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWorldCommandQueries.cs",
+        "declaredSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+        "actualSha256": "0ff37f9171234d9c73c9093e9ccbea09c209648813042c6a9f486991871250d2",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedReinforcement.cs",
+        "declaredSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+        "actualSha256": "6f82ec9793d94d02801e9cd5ce6c2406735f3f9ed8456cd438756c7c5338f2f0",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationHide.cs",
+        "declaredSha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+        "actualSha256": "63e77e8bf19409f94067cf9331c9d5ae54b84a52882dcc6846335f836901320e",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedExplorationSearch.cs",
+        "declaredSha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+        "actualSha256": "645f7862ee4367ee046704fc0b624cad1c46541401db5988c02d62c763c4b9c9",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/SharedObservationActions.cs",
+        "declaredSha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff",
+        "actualSha256": "dfead636107423a8484995312025df524c438a2e07ed1f0d1eff9bd68880bbff",
+        "matches": true
+      },
+      {
+        "declaringInput": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+        "path": "engine/com.decennium.foundation/Laboratory/Model/FrightenedRules.cs",
+        "declaredSha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+        "actualSha256": "5943715b3ff393907d19c7e410c63abd5c38c626bb0f3a8ec5569a32ef173426",
+        "matches": true
+      }
+    ],
+    "meaning": "Byte-pin comparison against current files only. It does not establish complete transitive purity or execution qualification."
+  },
+  "operationReconciliation": {
+    "candidateKinds": 20,
+    "operatorKinds": 2,
+    "candidateAxes": 58,
+    "missingKinds": [],
+    "addedKinds": [],
+    "axisMismatches": [],
+    "operators": [
+      "AdvanceClock",
+      "EndFixedEncounter"
+    ],
+    "exactCandidateAxes": [
+      {
+        "kind": "SelectCombatStance",
+        "axisCount": 5,
+        "exactOrderedMatch": true,
+        "axes": [
+          "Aggressive",
+          "Guarded",
+          "Mobile",
+          "Focused",
+          "Carrying: native NoApplicableCargoPenalty"
+        ]
+      },
+      {
+        "kind": "AttackClub",
+        "axisCount": 4,
+        "exactOrderedMatch": true,
+        "axes": [
+          "owned/custodied visible-target club",
+          "OrdinaryOutcome/KnockOutIfEligible/AskIfEligible",
+          "ArmOrReplace/KeepExisting",
+          "regular attack vs Sanctuary gate"
+        ]
+      },
+      {
+        "kind": "AttackCreatureFeature",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "selected Ferry feature/actual creature seat",
+          "same explicit knockout/Press payload disposition",
+          "Sanctuary admission"
+        ]
+      },
+      {
+        "kind": "TacticalStep",
+        "axisCount": 2,
+        "exactOrderedMatch": true,
+        "axes": [
+          "native direction/geometry/movement domain",
+          "ordinary completion/OA suspension/Press continuation"
+        ]
+      },
+      {
+        "kind": "EndRegularTurn",
+        "axisCount": 2,
+        "exactOrderedMatch": true,
+        "axes": [
+          "aware stance required",
+          "life/conditions/due events and next slot"
+        ]
+      },
+      {
+        "kind": "EncounterDash",
+        "axisCount": 2,
+        "exactOrderedMatch": true,
+        "axes": [
+          "selected Ferry current party turn",
+          "Action and movement allowance"
+        ]
+      },
+      {
+        "kind": "UseIntimidatingPresence",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "RecoveryOpponent seat selected target subsets",
+          "separate LaterDefender grant",
+          "actual cooldown/turn/visibility"
+        ]
+      },
+      {
+        "kind": "TearExposedSeal",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "actual observed seal",
+          "tactical vs ordinary activity where admitted",
+          "original suppression endpoint and repeated use"
+        ]
+      },
+      {
+        "kind": "RespondOpportunityAttack",
+        "axisCount": 4,
+        "exactOrderedMatch": true,
+        "axes": [
+          "decline",
+          "take with owned weapon",
+          "knockout/Press elections",
+          "ordered reactor and continuation"
+        ]
+      },
+      {
+        "kind": "ResolveKnockout",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "ordinary outcome",
+          "knock out",
+          "existing attack identity; original Press instruction immutable"
+        ]
+      },
+      {
+        "kind": "RespondPress",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "decline",
+          "follow the actual offer into the provoker's vacated square; no arbitrary destination election",
+          "nested continuation without speculative execution"
+        ]
+      },
+      {
+        "kind": "RespondSanctuary",
+        "axisCount": 4,
+        "exactOrderedMatch": true,
+        "axes": [
+          "Forgo",
+          "regular attack Retarget to each visible legal native target",
+          "Opportunity retarget denied outside original source",
+          "native no-free-loop/continuation rules"
+        ]
+      },
+      {
+        "kind": "BeginWorldStep",
+        "axisCount": 4,
+        "exactOrderedMatch": true,
+        "axes": [
+          "walk",
+          "run only where host selected",
+          "scheduled/off-calendar activity",
+          "partial progress/encounter admission"
+        ]
+      },
+      {
+        "kind": "SuspendWorldStep",
+        "axisCount": 2,
+        "exactOrderedMatch": true,
+        "axes": [
+          "actual own pending traversal",
+          "partial pose/paid budget preserved"
+        ]
+      },
+      {
+        "kind": "ResumeWorldStep",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "suspended/waiting traversal",
+          "run/Dash revalidation",
+          "actual geometry/fear/access"
+        ]
+      },
+      {
+        "kind": "BeginReinforcementApproach",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "actual selected approach",
+          "consent/director parameters",
+          "source entry timing/allowance"
+        ]
+      },
+      {
+        "kind": "Hide",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "ordinary Hero start token",
+          "tactical party turn",
+          "eligible Guidance election/decline"
+        ]
+      },
+      {
+        "kind": "Search",
+        "axisCount": 3,
+        "exactOrderedMatch": true,
+        "axes": [
+          "ordinary Companion start token",
+          "tactical party turn",
+          "eligible Guidance election/decline"
+        ]
+      },
+      {
+        "kind": "CancelExplorationHide",
+        "axisCount": 1,
+        "exactOrderedMatch": true,
+        "axes": [
+          "actual own pending hide identity"
+        ]
+      },
+      {
+        "kind": "CancelExplorationSearch",
+        "axisCount": 1,
+        "exactOrderedMatch": true,
+        "axes": [
+          "actual own pending search identity"
+        ]
+      }
+    ]
+  },
+  "inputReviews": [
+    {
+      "input": "FIELD_POLICY_DECISIONS_05.md",
+      "verdict": "Concur within bounded GPT05 scope",
+      "checks": [
+        {
+          "anchor": "lines 5, 11-24",
+          "finding": "Current endpoint/principal, selected profile, exact internal receipt/native causal binding and current field-specific rights remain conjunctive. Receipt ownership alone grants no historical access. Fixed protected shape and cross-principal identifier withholding remain intact."
+        },
+        {
+          "anchor": "lines 19-20",
+          "finding": "Inventory history stays outside the OR of source item/cache-stock predicates. Spent-dose history uses exact once-only J_DOSE plus current retained owner inventory authority, current custodian control and actual user ownership. Recipient identity/healing independently requires O(recipient); P_DOSE_ITEM is not incorrectly required for spent history.",
+          "native": "SharedManufacturing.cs:496-529 retains dose owner/custodian and actual user/recipient/healing at use; ConnectedExpeditionView.cs:654-682 separately filters present inventory, excluding spent unlinked doses."
+        },
+        {
+          "anchor": "lines 21-24",
+          "finding": "Hide Guidance consumption linkage remains Withheld independently of observer/request/use existence, including equivalent effect/cause/identifier/count/absence channels. Narrow Search/stabilization own-benefit history does not authorize dice/check totals/caster identities. Purify contamination and Consecrate enemy contribution remain Withheld rather than NotRetained; operator output stays coarse and list ordinals follow authorization filtering.",
+          "native": "SharedObservationActions.cs:173-224 has distinct no-eligible-observer and later Guidance-consuming paths; no historical privacy permission can be inferred from those native branches."
+        },
+        {
+          "anchor": "line 26",
+          "finding": "Actual immediate facts require a real execution carrier. Missing cause metadata does not erase an independently authorized actual outcome; proposal does not reconstruct private historical modifiers."
+        }
+      ]
+    },
+    {
+      "input": "PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "verdict": "Concur; nonblocking capacity wording precision C05-02 below",
+      "checks": [
+        {
+          "anchor": "line 7",
+          "finding": "Required AdvanceCharacterLevel.Command.Target is restored and bound to the same selected milestone; native earlier guards and Advancement request fields remain in force.",
+          "native": "SharedClericSettlement.cs:56-67; ConnectedExpeditionSession.cs:749-752, as independently checked by PARAMETER_CROSS_FAMILY_REVIEW_01."
+        },
+        {
+          "anchor": "line 8",
+          "finding": "Component WorkLedger 4096 versus owning Snapshot CropSchema-or-later 128 constraints remain separate. Capacity prediction cannot invoke copied transition/full validation or claim an executed failure; initial eligibility, commit feasibility and native enforcement stage remain separate.",
+          "native": "WorkLedger.cs:83,171-190; Simulation.cs:1090-1102."
+        },
+        {
+          "anchor": "lines 9-13",
+          "finding": "Correct materialized condition mode is required only on actual dependent branches, without adding early Action/inventory checks to free cancel/end. FiniteComplete and constrained domains are distinguished; exact fixed rational scalars gain no invented resource unit. CommandScalar is correctly pending at frozen GPT05 checkpoint; future GPT06 approval is a separate revision, not an error in these inputs. Variant ordinal/length bounds do not prove native request validity."
+        }
+      ]
+    },
+    {
+      "input": "CURRENT_FACT_HELPER_AUDIT.json",
+      "verdict": "Concur as bounded source-helper classification, not full read-path proof",
+      "checks": [
+        {
+          "anchor": "16 entries and boundary/open fields",
+          "finding": "Retained selection, aggregation, checked numeric arithmetic and local immutable value creation are separated from authoritative record append, life recovery/RNG, world-time advancement and validating replay. Native exceptions remain technical unavailable rather than invented gameplay denial."
+        },
+        {
+          "anchor": "ActorLifeRules, WorldTiming, WorldPositionResolver, WorldSchedule entries",
+          "finding": "Read/read-for-resolution and exact retained time/position helpers do not imply lifecycle settlement, elapsed-travel credit or candidate reconstruction. Same validated owner-state observation and correct supplied condition context remain prerequisites."
+        }
+      ]
+    },
+    {
+      "input": "CURRENT_PERMISSION_SIGHT_AUDIT.json",
+      "verdict": "Concur as bounded pure-helper/context classification",
+      "checks": [
+        {
+          "anchor": "ConditionLedger/ConditionApplications/PlaytestConditions entries",
+          "finding": "View/Present/Sources and clause construction read already-materialized application/component flags; they are not ConditionResolutionScope Restore/Project/AdvanceTo. Independent current life restrictions remain separate.",
+          "native": "ConditionLedger.cs:28-60,102-128; ConditionApplications.cs:87-132; PlaytestConditions.cs:17-31,80-95."
+        },
+        {
+          "anchor": "ObservationRules/ObservationGeometry/FrightenedRules entries",
+          "finding": "Current visibility, stable invisible-episode interval union, retained position and exact geometry calculations are pure under supplied materialized context. They do not authorize hidden information publication or refresh observations. Frightened spatial transitive extraction remains explicitly open.",
+          "native": "ObservationRules.cs:98-208,360-361; ObservationGeometry.cs:148-178,186-299; FrightenedRules.cs:79-103."
+        },
+        {
+          "anchor": "TacticalMovementPolicy entry",
+          "finding": "CurrentPressOffer is correctly classified as the ordered Pending selector, not a mutation. AdvanceTacticalFlow performs mutation/invalidation; PressLegal applies before acceptance/decline branches.",
+          "native": "TacticalMovementPolicy.cs:31-35,212-218,227-271,303-315."
+        }
+      ]
+    },
+    {
+      "input": "TACTICAL_OPERATOR_READ_EXTRACTION_PLAN.json",
+      "verdict": "Concur as finite extraction plan; fullCompiledCallGraphVerified remains false",
+      "checks": [
+        {
+          "anchor": "all 22 operations and sourceCorrection",
+          "finding": "20 candidate kinds, 2 operator kinds and 58 exact candidate axes reconcile with inventory. Native family-specific outer guard order remains required; no universal early condition/capacity check is introduced."
+        },
+        {
+          "anchor": "SelectCombatStance/AttackClub/AttackCreatureFeature/KO/OA/Press",
+          "finding": "Selectors and guard prefixes stop before append, consumable capture, RNG, response advancement and damage. KO pending-seed authenticity reconstruction remains outside read extraction. Press current selector is pure; resolving offer/movement progression is not.",
+          "native": "TestOnlyClubAttackPolicy.cs:156-211,237-281,322-342; TacticalMovementPolicy.cs:284-315."
+        },
+        {
+          "anchor": "Sanctuary/EndRegularTurn/Dash/operator rows",
+          "finding": "Sanctuary copy+Finish+Resolve is explicitly excluded; bounded continuation predicate is required instead. Outgoing-slot eligibility is distinct from actual future exit after time advancement. Dash assessment versus paid run/lock and operator initial guard versus future settlement remain separate.",
+          "native": "SharedSanctuary.cs:87-132; SharedWorldCombatPolicy.cs:384-416."
+        },
+        {
+          "anchor": "Hide/Search/CancelHide/CancelSearch/Seal/Presence rows",
+          "finding": "Private observer/DC material is excluded from public facts. Native Hide and Search cancel pending checks are not collapsed, no Action check is added to free cancellation, and public physical seal status does not disclose Wraith association/timer.",
+          "native": "SharedExplorationHide.cs:43-106; SharedExplorationSearch.cs:59-113; SharedObservationActions.cs:79-112,173-225; SharedFerrySeal.cs:29-78; SharedFrightened.cs:38-100."
+        }
+      ]
+    },
+    {
+      "input": "CONDITION_READ_BOUNDARY.md",
+      "verdict": "Concur with GPT05 additions",
+      "checks": [
+        {
+          "anchor": "lines 44-52",
+          "finding": "Cross-assembly signature types are public CLR-compatible with internal construction/minimal readonly access, while gameplay DTO/console/deserialization exposure remains excluded. Owner/generation are private; projection exposes readonly Stamp, checked by reference identity."
+        },
+        {
+          "anchor": "lines 46-50",
+          "finding": "Null, foreign or prior-generation projection yields current-generation unavailable; no public minting or read-time repair. Final state and matching projection/unavailable publish coherently; provider nonreentrancy is explicit. Trusted provider calculation correctness remains an independent proof obligation, not established by the stamp."
+        },
+        {
+          "anchor": "trusted construction/restore/transition boundary and full-alias open sections",
+          "finding": "Projection establishment at valid trusted boundaries is permitted. No saved projection, Core-to-Lab dependency, semantic read fold, public validating Encode or replay fallback is introduced. Complete profile alias coverage and runtime parity/purity remain open."
+        }
+      ]
+    }
+  ],
+  "clarifications": [
+    {
+      "id": "C05-01",
+      "kind": "Required self-correction of own prior prose; not an independent finding against the six parent inputs",
+      "severity": "Contract wording precision",
+      "targetPath": "engine/artifacts/admitted-command-surface/management-read-extraction-plan.json",
+      "targetJsonPointers": [
+        "/remainingGaps/3/needed",
+        "/notPermitted/0"
+      ],
+      "problem": "The blanket phrases \"No read-time checkpoint/canonicalization/replay\" and \"or canonical serialization in reads\" are broader than PURE_CHECKPOINT_CONTRACT/GPT03, which explicitly permits the private exact canonical equality comparison. The statement requiring completed-crossing proof also obscures valid proof whose history has no crossing.",
+      "replacementByPointer": {
+        "/remainingGaps/3/needed": "Owner-bound already-established planning-passage proof, including a valid no-crossing result, must be maintained for every supported selected construction/restore/successful-transition path. Read assessment may perform the agreed private full canonical equality comparison through the shared pure writer under PURE_CHECKPOINT_CONTRACT.md; it must not call public validating SnapshotCodec.Encode, Validation.Snapshot, Initial/ReplayReceipt/ReconstructCanonicalHistory, or create, repair or extend passage evidence. Missing or mismatched owner/current-state proof is technical unavailable. Valid owned evidence that contains no qualifying completed crossing retains the native gameplay evidence-missing result. Trusted boundaries may establish/update the proof and matching condition projection; reads may not.",
+        "/notPermitted/0": "No Initial, ReplayReceipt, ReconstructCanonicalHistory, public validating SnapshotCodec.Encode, Validation.Snapshot, or read-time checkpoint/proof construction, repair or extension. The agreed private pure canonical-writer equality check against the owning already-established checkpoint is allowed; it serializes existing values without replay, RNG draws or settlement."
+      },
+      "support": [
+        "PURE_CHECKPOINT_CONTRACT.md: owning Simulation checkpoint, pure writer seam and no-crossing/missing-proof distinction",
+        "actual GPT03 response f4e4a9c0-81a2-5ac1-9578-c8d8ef626d07",
+        "SnapshotCodec.cs:17-19 shows current public Encode invokes Validation.Snapshot; proposed extracted pure writer is not yet implemented"
+      ],
+      "applied": false,
+      "applicationOwner": "Parent will incorporate correction; this review does not modify prior reports or tracked packet."
+    },
+    {
+      "id": "C05-02",
+      "kind": "Nonblocking precision clarification",
+      "severity": "Prevent incorrect future row-count implementation",
+      "targetPath": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PARAMETER_CONTRACT_CORRECTIONS_05.md",
+      "line": 8,
+      "problem": "Counting \"removals/releases and additions\" must not be read as subtracting every released reservation from collection size. Release retains the reservation record and changes settlement amounts; only actual collection removals reduce record counts.",
+      "proposedSentence": "For installed compositions, calculate exact resulting collection counts from retained rows, actual removals and additions. Reservation release changes settlement amounts while retaining its row; CancelFutureWork removes future intervals or truncates an active interval without erasing prior work or reservation records. Count those effects separately, without invoking copied transitions or validation.",
+      "nativeEvidence": [
+        "Runtime/Core/WorkLedger.cs:171-179 Release returns a mapped Reservations collection of the same cardinality",
+        "Runtime/Core/WorkLedger.cs:182-190 CancelFutureWork retains past intervals, truncates active intervals, omits unused future intervals, and preserves Reservations",
+        "Runtime/Core/Simulation.cs:1090-1102 validates each owning snapshot Work collection count"
+      ],
+      "applied": false,
+      "doesNotChange": "Native capacity limits, exact native enforcement stage, reservation semantics or command guard precedence."
+    }
+  ],
+  "remainingAcceptanceLimits": [
+    "Complete transitive assessment-input/extraction and selected-profile alias coverage remain required; bounded helper reads do not prove every root or delegate.",
+    "Condition projection parity, atomic state/publication, foreign/prior stamp rejection and pure writer exactness still need implementation and runtime evidence.",
+    "Real immediate fact carriers, receipt/cause joins, post-filter ordinals and adversarial privacy tests are not executed or accepted here.",
+    "Required five complete connected execution paths, full regression reconciliation, deterministic replay and save/restore acceptance remain outside this design audit."
+  ],
+  "runtimeChanged": false,
+  "buildsRun": false,
+  "testsRun": false,
+  "gameplayOrReplayRun": false,
+  "sourceApiAccepted": false,
+  "fullHcAccepted": false,
+  "successorAuthorized": false
+}

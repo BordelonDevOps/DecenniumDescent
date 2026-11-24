@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "status": "BOUNDED_SOURCE_REVIEW_NOT_RUNTIME_QUALIFICATION",
+  "reviewer": "Codex parent self-review; independent family/procedure audit is separate",
+  "runtimeBaseline": "748c6debca56fd7d1a8b89e8b2ad7de12e8da5eb",
+  "scope": "Current strain/life/character/calendar/position helper subset. Exact methods and ranges only.",
+  "entries": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "reviewedRanges": [
+        [
+          67,
+          198
+        ]
+      ],
+      "methods": "ExpeditionStrainRules.Project/Current, ordered gains/removals, active-point and gate membership",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Sums retained committed gains/removals; does not resolve those events, grant recovery, advance time or write a ledger. Current deliberately passes checked Revision+1 for native candidate semantics. Preserve that exact bound in shared extraction; a validated committed read cannot acquire an uncommitted event. Do not substitute a separately cached level or silently change revision arithmetic. EffectiveMaximumHp delegates only SystemicMaximum.",
+      "excludedAdjacentBehavior": "RecordDash and ClampLife at200-218 write snapshot arrays; CreateDashLock constructs a prospective result and is outside this read audit. None is approved as a V1 read wrapper."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+      "reviewedRanges": [
+        [
+          12,
+          27
+        ],
+        [
+          39,
+          47
+        ]
+      ],
+      "methods": "Read, ReadForResolution, CanAct, ZeroHpUnconscious, NextDeadline",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Read constructs an immutable LifeState from persisted life facts; constructor checks local consistency only, not candidate validation/history replay. ReadForResolution applies current strain maximum and min HP without settling recovery. NextDeadline selects the earliest retained future stable deadline; it does not resolve it.",
+      "excludedAdjacentBehavior": "RecoverDue at49-56 and RegularStart at58-74 change life/events and the latter draws RNG. TestOnlyActorLifePolicy.ValidateState at124-155 replays receipts. All remain prohibited in V1 reads."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "reviewedRanges": [
+        [
+          12,
+          61
+        ],
+        [
+          70,
+          132
+        ]
+      ],
+      "methods": "CharacterRuleFacts and CharacterStateFacts",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Joins exact numeric origin, current character/life/training. Ability/proficiency/injury modifiers are pure checked arithmetic and membership over current records. ActorLifeRules.Read performs no lifecycle resolution. No default character or proficiency is manufactured for a creature.",
+      "excludedAdjacentBehavior": "Do not retain these joins across a state replacement or treat them as a current authority/visibility grant."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorNumericFacts.cs",
+      "reviewedRanges": [
+        [
+          9,
+          44
+        ]
+      ],
+      "methods": "ActorNumericFacts.ForActor, AbilityScore/Modifier, ProficiencyContribution",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Exactly one character or creature origin is required. Rank zero is zero; nonzero creature proficiency throws when unsupported. Character path delegates the audited arithmetic.",
+      "excludedAdjacentBehavior": "BaseArmorClass delegates PrototypeArmor and is not part of this bounded closure; no full ActorNumericFacts class approval is claimed."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterSkillTrainingFacts.cs",
+      "reviewedRanges": [
+        [
+          8,
+          29
+        ]
+      ],
+      "methods": "Find, ProficiencyRank, IsTrained",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Exact actor/skill join, duplicate rejection and native absent-training rank zero. Identity checks do not grant source or caller authority.",
+      "excludedAdjacentBehavior": ""
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacters.cs",
+      "reviewedRanges": [
+        [
+          54,
+          67
+        ]
+      ],
+      "methods": "AbilityModifier and ProficiencyBonus",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Exact floor of (score-10)/2 and native level1-20 proficiency arithmetic.",
+      "excludedAdjacentBehavior": "Other character build/advancement methods are outside this bounded audit."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "reviewedRanges": [
+        [
+          93,
+          98
+        ]
+      ],
+      "methods": "ProficiencyContribution",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Checks rank0-2 and multiplies the native proficiency bonus. Does not resolve or draw a check.",
+      "excludedAdjacentBehavior": "Check resolution methods elsewhere in this class are not included."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestLife.cs",
+      "reviewedRanges": [
+        [
+          12,
+          57
+        ],
+        [
+          85,
+          86
+        ],
+        [
+          263,
+          270
+        ]
+      ],
+      "methods": "LifeState construction and AbilityCheckInjuryPenalty",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Copies wounds to a read-only array, validates local input combinations, and selects native injury penalty. No death-save, damage or stable-recovery transition is called.",
+      "excludedAdjacentBehavior": "The rest of PlaytestLife includes transition methods and is not whitelisted."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestMaximumHp.cs",
+      "reviewedRanges": [
+        [
+          244,
+          252
+        ]
+      ],
+      "methods": "SystemicMaximum",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "BigInteger multiply/divide and clamp with native bounds; no application or removal of effects.",
+      "excludedAdjacentBehavior": "No use of Recompute/ApplyCapacity is approved by this entry."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "reviewedRanges": [
+        [
+          169,
+          240
+        ]
+      ],
+      "methods": "WorldTiming selectors, ordinals and LatestActorStart",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Chooses native Ferry/PostRecovery/reinforcement/later/original calendar precedence. LatestActorStart preserves retreat skip and carried-interval fallback with exact local/global ordinal translation. Reads processed cursor; never advances it.",
+      "excludedAdjacentBehavior": "Adjacent LaterEncounterValidation is not a read helper; no strict validation during new reads."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "reviewedRanges": [
+        [
+          171,
+          179
+        ]
+      ],
+      "methods": "IsParticipant, Active, OwnsCurrent and IsEpoch",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Native retained admission/identity predicates; no reconstruction.",
+      "excludedAdjacentBehavior": ""
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "reviewedRanges": [
+        [
+          45,
+          45
+        ],
+        [
+          151,
+          155
+        ]
+      ],
+      "methods": "IsParticipant, Active, OwnsCurrent and IsEpoch",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Native retained admission/identity predicates; no reconstruction.",
+      "excludedAdjacentBehavior": ""
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+      "reviewedRanges": [
+        [
+          94,
+          94
+        ]
+      ],
+      "methods": "IsSegment",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Entry presence and exact segment identity only.",
+      "excludedAdjacentBehavior": ""
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "reviewedRanges": [
+        [
+          23,
+          23
+        ]
+      ],
+      "methods": "EncounterRosterPhase.GlobalTurn",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Checked integer offset translation only.",
+      "excludedAdjacentBehavior": ""
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+      "reviewedRanges": [
+        [
+          26,
+          46
+        ]
+      ],
+      "methods": "Start, SlotAt, LatestStart and MarkerId",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Analytic rational time/ordinal arithmetic and exact retained roster selection; no clock cursor mutation or interval award.",
+      "excludedAdjacentBehavior": "At constructs a replacement schedule and is not used to advance a read."
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+      "reviewedRanges": [
+        [
+          12,
+          29
+        ]
+      ],
+      "methods": "Position",
+      "classification": "IMMUTABLE_SELECTION_AND_ARITHMETIC",
+      "finding": "Current ordinary traversal takes precedence; uses already-retained DistanceFeet for exact rational interpolation. Otherwise attached route pose then actor anchor. It does not calculate elapsed movement, advance travel, or resolve an encounter.",
+      "excludedAdjacentBehavior": "Coordinates remain native grid quantities; this audit supplies no independent visibility or new movement authority."
+    }
+  ],
+  "sourcePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedDailyProvisioning.cs",
+      "sha256": "69aa043c7f8b29ff6ee23325f223edcf366f5558de08ff8635ec30397c43786d",
+      "bytes": 32835,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorLifeRules.cs",
+      "sha256": "c0f99c73ad1c3580be4734168fcb475a08c8513077da76d03bd3fd08e95b7f98",
+      "bytes": 13102,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterRuleFacts.cs",
+      "sha256": "e7ce21c902fe6aeb1c2101cb0f2c918f9819b8348d0b7d817506eeb65b7b3aa0",
+      "bytes": 7389,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ActorNumericFacts.cs",
+      "sha256": "726f257c2dcf812c0f953caf8316cd54d071eff95ec5af826e0dc8345c744b73",
+      "bytes": 2924,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/CharacterSkillTrainingFacts.cs",
+      "sha256": "f1ff66d542a88901705ed6d70fedeb8be9a3af9415f1fb7cb2f4c8ae1244013f",
+      "bytes": 1552,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestCharacters.cs",
+      "sha256": "65d3d84483547d09afa4fc9764154416900924ab0e34c5bf21e501cd49892b8c",
+      "bytes": 6491,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/AbilityCheckRules.cs",
+      "sha256": "b10b40ce86c1ae1fc3800aabe9c0d186171a25eeacfad0917240c352b1cc3239",
+      "bytes": 5297,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestLife.cs",
+      "sha256": "2657098b9c3590409e113b9f46510d9ca13611bab353e2f390dc0a81f9c10dfe",
+      "bytes": 17189,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/PlaytestMaximumHp.cs",
+      "sha256": "a0de283de78f404ff75aeb3116e740e341d3d85fa5f1c96f45d0ef75382a936b",
+      "bytes": 19585,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/LaterEncounterRecords.cs",
+      "sha256": "490ccaf034a83c773751f5490dc8e3570a1ff7e479320173ce4734888a7701cc",
+      "bytes": 18977,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FerryWraithRecords.cs",
+      "sha256": "69f8d76956cff08a57fd55494bb6c9c8df921a7753568bf7fc988db62dda64c5",
+      "bytes": 25749,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/PostRecoveryEncounterRecords.cs",
+      "sha256": "6efa8d4acd1710180ed4fe63dfc84dad0b9cc0bb36e9a2117bfb76cf6e23533d",
+      "bytes": 10535,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ReengagementRecords.cs",
+      "sha256": "77e5d4f11041e21c16f936ed4f4ef2280cb958b2f5d1accfc04f3af167d3ba0e",
+      "bytes": 4758,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/FixedEncounterRecord.cs",
+      "sha256": "a86057c225f66162acf92e4664cb53cacb11aeae6a3adf3cb4c02def5161d13f",
+      "bytes": 10130,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldScheduleRecord.cs",
+      "sha256": "a2cb9acde071a683ca31655f750864fe7135216c4fbbe1a10cd3169e4d07ce4b",
+      "bytes": 9313,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorldPositionResolver.cs",
+      "sha256": "d3479d40e69f808633cc1f09711515f7def9f19aa43b01b582552eed8e57cf16",
+      "bytes": 1688,
+      "revision": "6bf494b716bf325271839ac11c4849cba26c91e7",
+      "equalsPinnedBlob": true
+    }
+  ],
+  "boundary": "Selection/aggregation of retained facts is distinguished from replaying their lifecycle. All inputs must belong to the same validated owner state and observation. Exceptions map to technical projection unavailability; no fallback revalidation or settlement. These helpers confer no disclosure authority.",
+  "open": [
+    "Complete per-family assessment call graph and extraction",
+    "Condition consumers use the agreed owning-state materialization, never legacy lazy scopes",
+    "Runtime instrumentation and adversarial repeated-read, rejection, restore, profile and privacy qualification"
+  ],
+  "runtimeChanged": false,
+  "testsOrGameplayRun": false,
+  "sourceApiAccepted": false
+}

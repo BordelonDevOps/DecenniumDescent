@@ -1,0 +1,873 @@
+{
+  "schemaVersion": 1,
+  "status": "INDEPENDENT_BOUNDED_DESIGN_REVIEW_WITH_CONCRETE_CORRECTIONS_NOT_FULL_HC_ACCEPTANCE",
+  "reviewer": "/root/audit_management",
+  "reviewedHead": "6bf494b716bf325271839ac11c4849cba26c91e7",
+  "runtimeBaseline": "6e70f4491b967fa71917544a606f7e2985664818",
+  "scope": {
+    "operationCount": 33,
+    "physicalCareKinds": 23,
+    "magicAdvancementKinds": 10,
+    "excludedOwnManagementWorkKinds": 25,
+    "purpose": "Independently review exact parameter shape/defaults, rational units/domain distinctions, native derived-ID obligations and GPT03/04 consistency. This is a finite source-check review, not an exhaustive new native guard audit.",
+    "runtimeEdits": false,
+    "engineBuildsTestsOrGameplay": false,
+    "externalReviewSent": false,
+    "fullHcAcceptance": false,
+    "successorWork": false
+  },
+  "inputPins": [
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/PHYSICAL_CARE_PARAMETER_CONTRACT_PROPOSAL.json",
+      "sha256": "165003dc8417db417a7e2efaa6f37dc1331a80dcbc67ff60a38066d3df30f04d",
+      "bytes": 207666
+    },
+    {
+      "path": "engine/artifacts/admitted-command-surface/magic-advancement-parameter-contract-proposal.json",
+      "sha256": "ab729a0ab00697c93219a2160116397c9ba200fe8576d8292d87e43e12e3bc78",
+      "bytes": 129429
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/OPERATION_INVENTORY.json",
+      "sha256": "9bce656517d0b811a3f4ac62036b5ad148a0d3973c0f2b86274ab4d9421806d8",
+      "bytes": 282658
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/COMMON_PARAMETER_CONTRACT_PROPOSAL.md",
+      "sha256": "705a51ae8bbbbed78bb2b5691d890ef2ecd2768bc0575c93e5a02a1cccbd5873",
+      "bytes": 5481
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/V1_VALUE_ENCODING_PROPOSAL.md",
+      "sha256": "8efc021cba800acb77a1bf05bba02a020659d3742ec4b6dc7acb1d145b0d8dc0",
+      "bytes": 4610
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DISCOVERY_EXAMPLE_ID_CONTRACT.md",
+      "sha256": "8e1bfc54c6676f5a6ba8eef85c3395f961625eb4b84183a6511eed393ecfe969",
+      "bytes": 4034
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/CONDITION_READ_BOUNDARY.md",
+      "sha256": "4859c11467cfd6ffc64949322f9d0094937b18287bcfefa65133bca63964a651",
+      "bytes": 8769
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_03.json",
+      "sha256": "08fd9dc93f636e3481aa39b5811ed9ee2034b708787f1a4f96a4e1df1491dd99",
+      "bytes": 10666
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_04.json",
+      "sha256": "c77f3fd4cea3296e9a1b767163d4a9ec148849e316f26550ad1db09e265003df",
+      "bytes": 8053
+    },
+    {
+      "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/GPT_ARCHITECTURE_REVIEW_05.json",
+      "sha256": "ff2b1f622af480a5af23fbd17eba558d705ecf4b7165aaf6bb3c5de1279c4fac",
+      "bytes": 10652
+    }
+  ],
+  "staticChecks": [
+    {
+      "family": "physicalCare",
+      "operationCount": 23,
+      "axisCount": 64,
+      "exactAxisReconciliation": [
+        {
+          "kind": "Interact",
+          "exactAxes": [
+            "cache PickWithTools/Open/Interrupt",
+            "trap Set/Pause/Resume/Cancel",
+            "trap Retrieve/PauseRetrieval/ResumeRetrieval",
+            "retrieve explicit receiver/handling request",
+            "trap Abandon exists natively but is not admitted by the session"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "HandlePortableEquipment",
+          "exactAxes": [
+            "Pickup/Drop/Retrieve",
+            "selected vial Stow in pack",
+            "selected focus Handover consent",
+            "companion Club physical adapter",
+            "ordinary vs tactical allowance"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "OpenPortableContainer",
+          "exactAxes": [
+            "owned accessible actual closure",
+            "selected packed vial",
+            "protected specimen opening consequences"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "ClosePortableContainer",
+          "exactAxes": [
+            "owned accessible actual closure",
+            "protected contents"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "HandleInventory",
+          "exactAxes": [
+            "Hero cache ration Pickup only at host",
+            "rational available amount",
+            "no generic transfer expansion"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "PortionInventory",
+          "exactAxes": [
+            "exact rational amount",
+            "actual eligible source/unit",
+            "reserved/whole-tender/contaminated exclusions",
+            "age/provenance conserved"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "EquipPortableItem",
+          "exactAxes": [
+            "selected holy symbol and placement/body constraints"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "RemovePortableItem",
+          "exactAxes": [
+            "selected holy symbol and current state"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "HandleVessel",
+          "exactAxes": [
+            "selected flask Pickup/Drop/Retrieve/Stow disposition",
+            "willing party Handover",
+            "opening/contents/custody constraints"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "StartIntake",
+          "exactAxes": [
+            "ordinary food/water rational amounts",
+            "reservations and exact proportional time",
+            "tactical/unsafe intake unsupported"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "InterruptIntake",
+          "exactAxes": [
+            "actual own intake",
+            "consumed credit retained and untouched quantity released"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "UseAlchemyDose",
+          "exactAxes": [
+            "owned actual dose/recipient",
+            "ground/carried/stowed/tactical/Companion selected variants",
+            "actual HP caps/blockers and spent dose"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "StartHarvestPreservationTreatment",
+          "exactAxes": [
+            "actual unspoiled selected specimen",
+            "stabilization vs spoilage endpoint",
+            "real preservative/time/access"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "StabilizeCompanion",
+          "exactAxes": [
+            "Hero Medicine on actual Companion",
+            "casting Guidance election/decline",
+            "genuine stable/dying life gates"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "StartWoundTreatment",
+          "exactAxes": [
+            "Hero treats selected Companion Wound",
+            "sealed kit/Supply basket",
+            "source choice and eight-hour attempt"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "InterruptWoundTreatment",
+          "exactAxes": [
+            "Hero/Companion target binding",
+            "active attempt and spent start costs"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "ConsumeDecay",
+          "exactAxes": [
+            "selected Hero/fixed significant decaying-organic bed at (1,3); no corpse-selection procedure",
+            "actual once-only use and source feature eligibility"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "BeginShortRest",
+          "exactAxes": [
+            "Hero exact berth",
+            "explicit zero Hit Dice",
+            "beneficial/nonbeneficial attempts",
+            "Cleric ClassRecoveryUnsupported"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "InterruptShortRest",
+          "exactAxes": [
+            "actual Hero interval",
+            "native interrupted reward/occupancy"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "BeginMutationShortRest",
+          "exactAxes": [
+            "selected FleshWarden mutation identity",
+            "actual completed-rest equip",
+            "no invented activation/serum route"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "BeginLongRest",
+          "exactAxes": [
+            "Companion exact berth",
+            "eight-hour interval/cadence/source-specific recovery"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "InterruptLongRest",
+          "exactAxes": [
+            "actual own interval",
+            "native damage/explicit interruption"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "ResolveExpeditionStrainRecovery",
+          "exactAxes": [
+            "actual pending offer point IDs",
+            "native source namespace/priority",
+            "clock continuation"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        }
+      ],
+      "declaredSourcePinCount": 80,
+      "sourcePinByteMismatches": [],
+      "scope": "Static descriptor/source pin reconciliation only; no gameplay or engine test."
+    },
+    {
+      "family": "magicAdvancement",
+      "operationCount": 10,
+      "axisCount": 29,
+      "exactAxisReconciliation": [
+        {
+          "kind": "CastKnownSpell",
+          "exactAxes": [
+            "arcane-ward/guidance/purify-food-and-drink/sanctuary/spare-the-dying",
+            "earned detect-magic",
+            "earned Bishop dispel",
+            "actual target/shape/payload",
+            "focus identity/WillingTarget/ElectFocusedDc; willingness payload supplies no authority",
+            "tactical vs admitted OMA calendar",
+            "repertoire-only OrdinarySpellcastingUnsupported"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "GroundCastingStrain",
+          "exactAxes": [
+            "Companion native Dissonance/context/action"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "EndSpellConcentration",
+          "exactAxes": [
+            "actual own present concentration effect",
+            "native ending/carry semantics"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "FocusDetectedAura",
+          "exactAxes": [
+            "opaque authorized aura observation",
+            "native detection/focus/school disclosure"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "UseHealingRite",
+          "exactAxes": [
+            "Companion/party recipient",
+            "current RP/Action/history/context and conditional Radiance cadence; no Rite recharge",
+            "native cure preference and actual HP/condition gates"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "UseDivineInvocation",
+          "exactAxes": [
+            "actual Bishop feature entitlement",
+            "1–3 authorized targets and at most one selected cure recipient",
+            "native Conviction/RP/action/recharge"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "UseConsecrate",
+          "exactAxes": [
+            "admitted center geometry",
+            "native terrain/allegiance/life/healing behavior",
+            "tactical vs admitted ordinary calendar"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "AwardCharacterMilestone",
+          "exactAxes": [
+            "actual Cleric milestone",
+            "Bishop selected later milestone",
+            "narrow world-modification grant"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "AdvanceCharacterLevel",
+          "exactAxes": [
+            "exact Cleric2 settlement selection",
+            "exact Bishop3 declaration/training/source choices",
+            "earned repertoire atomic transaction"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        },
+        {
+          "kind": "AcquireEarnedSpell",
+          "exactAxes": [
+            "EarnedSpellAcquisitionRequiresAdvancementTransaction",
+            "ClericEarnedAdvancementUnavailable; no new acquisition route"
+          ],
+          "matchesInventoryOrderAndStrings": true
+        }
+      ],
+      "declaredSourcePinCount": 60,
+      "sourcePinByteMismatches": [],
+      "scope": "Static descriptor/source pin reconciliation only; no gameplay or engine test."
+    }
+  ],
+  "concreteCorrections": [
+    {
+      "id": "PCR-01",
+      "severity": "REQUIRED_DESCRIPTOR_COMPLETENESS",
+      "affected": "magic AdvanceCharacterLevel.parameters",
+      "finding": "The required Command.Target binding is absent from the per-operation parameter list. admittedSelections contains a milestone member, but no nativePath explicitly binds it to Command.Target. An implementer following the parameter list could leave the common empty Target default and receive host or UndeclaredMilestone denial.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+          "startLine": 749,
+          "endLine": 752
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+          "startLine": 50,
+          "endLine": 67
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "startLine": 124,
+          "endLine": 129
+        }
+      ],
+      "proposedCorrection": {
+        "nativePath": "Command.Target",
+        "nativeType": "System.String",
+        "constructorDefaultOrSentinel": "Command constructor default empty exists but is not a valid selected advancement target",
+        "requirement": "Required for both admitted advancement variants",
+        "domainKind": "FiniteComplete",
+        "domain": [
+          "TEST_ONLY.cleric.opening-milestone",
+          "TEST_ONLY.cleric3-recovery-care-departure"
+        ],
+        "binding": "Each admittedSelections.milestone is the exact Command.Target; select only under the existing current selected-profile and milestone visibility route. Native award/objective/unconsumed milestone gates remain eligibility, not caller-settable facts.",
+        "doNotChange": "No new constructor restriction, no milestone creation, no auto-award, no extra actor/inventory privilege."
+      }
+    },
+    {
+      "id": "PCR-02",
+      "severity": "REQUIRED_DISCOVERY_ALLOCATION",
+      "affected": [
+        "physical all50 variantKey entries",
+        "magic10 operation descriptors and7 CastKnownSpell spellVariants"
+      ],
+      "finding": "Neither input freezes variant/example ordinals or the deterministic example-order allocation required by DISCOVERY_EXAMPLE_ID_CONTRACT.md:9-13. Physical array order and stable keys could support a registry, but the proposal does not explicitly adopt them as immutable ordinals; magic has no equivalent complete registry. Suffix length checks alone do not close this requirement.",
+      "sourceContract": {
+        "path": "docs/unity/evidence/2026-11-23-int05-admitted-command-surface/DISCOVERY_EXAMPLE_ID_CONTRACT.md",
+        "lines": [
+          9,
+          10,
+          13,
+          15
+        ]
+      },
+      "proposedCorrection": "Add a parent-owned master immutable allocation or explicit reference from each family. Physical may assign zero-based variantOrdinal using the current per-operation variants array order, retain variantKey as stable semantic key, and freeze example ordering. Magic must allocate the7 cast variants in current spellVariants order, utility kinds individually, actual Rite/Invocation embedded choices with stable native enum/recipient ordering, Consecrate visible-cell examples with explicit deterministic order, and distinct Cleric2/Bishop3 advancement variants. Constructor-valid but denied branches remain descriptors, not fabricated positive examples. The actual exact mapping must be reviewed; this review does not silently approve one.",
+      "noBlanketValidity": "Keep hc1 max57 as command-envelope arithmetic only; every actual example still passes pure native assessment, all derived IDs and arithmetic constraints. Real pending decisions retain their native IDs."
+    },
+    {
+      "id": "PCR-03",
+      "severity": "REQUIRED_CAPACITY_CLARIFICATION",
+      "affected": "physical capacityConstraintPolicy.boundedNativeExamples[0]",
+      "finding": "The physical capacity table lists WorkLedger component maximum4096 but omits the stricter owning Snapshot Work.Lots/WorkerIntervals/Reservations maximum128. This is not a wrong WorkLedger constant; it is an incomplete commit-feasibility descriptor for these installed shared profiles.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+          "startLine": 83,
+          "endLine": 100
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "startLine": 193,
+          "endLine": 193
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "startLine": 1100,
+          "endLine": 1103
+        }
+      ],
+      "proposedCorrection": {
+        "retainComponentMaximum": 4096,
+        "addOwnerSnapshotMaximum": 128,
+        "collections": [
+          "Snapshot.Work.Lots",
+          "Snapshot.Work.WorkerIntervals",
+          "Snapshot.Work.Reservations"
+        ],
+        "applicability": "SchemaVersion >= Snapshot.CropSchema, including these selected installed compositions",
+        "nativeEnforcementStage": "Owning snapshot validation; retain earlier family handler caps and WorkLedger constructor checks separately.",
+        "readAssessment": "Deterministic commitFeasibility constraint or Unavailable with initialEligibility and actual nativeEnforcementStage. Do not hoist execution validation, run candidate simulation, invent a smaller capacity, or report executed InvalidResult/PolicyFailure."
+      }
+    },
+    {
+      "id": "PCR-04",
+      "severity": "REQUIRED_DEPENDENCY_BINDING",
+      "affected": [
+        "physical common.initialVersusFuture and PC-PARAM-03",
+        "magic commonPreflight/limitations and condition-dependent guards"
+      ],
+      "finding": "Both proposals depend on helpers that may reconstruct condition journals and advance a temporary ledger. Their general read-only statements are insufficient as a callable purity contract. The parent CONDITION_READ_BOUNDARY.md already contains the right proposed restriction; family descriptors should reference it explicitly before extraction. This is not a claim that either proposal has implemented or approved a lazy read.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+          "startLine": 10,
+          "endLine": 34
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+          "startLine": 103,
+          "endLine": 128
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 95,
+          "endLine": 101
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 120,
+          "endLine": 150
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+          "startLine": 40,
+          "endLine": 49
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "startLine": 45,
+          "endLine": 50
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "startLine": 58,
+          "endLine": 64
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+          "startLine": 62,
+          "endLine": 66
+        }
+      ],
+      "proposedCorrection": "Add an explicit shared conditionReadDependency referencing CONDITION_READ_BOUNDARY.md and actual GPT04. New V1 assessment/discovery/domain/cost helpers require the exact owner/current-state NativeReadContextV1 (proposed name), consume already-materialized journal-time/current projections at the native marker/mode, and return technical unavailable if absent/mismatched. No legacy ConditionResolutionScope.Read/Project fallback, Restore, AdvanceTo, semantic fold, lifecycle repair or historical-event substitution. Do not add a new global condition/capability rejection to native interrupt/cancel paths that bypass such checks. Current actor/owner/consent permissions remain independently checked. Apply actual GPT05 public CLR/internal-constructor accessibility, explicit projection Stamp reference binding, private generation ownership, same-generation atomic publication and trusted non-reentrant provider corrections.",
+      "acceptanceStatus": "Actual GPT04 architecture and GPT05 bounded read-context direction concurred. GPT05 member/accessibility/stamp/publication corrections must be incorporated. Full transitive audit and HC remain OPEN; no runtime authorization."
+    }
+  ],
+  "representationDecisionsToRetainOpen": [
+    {
+      "id": "PCR-UNIT-01",
+      "scope": "Physical ONE_ITEM and TRAP_RETRIEVE Command.Inventory.Amount",
+      "finding": "Positive nutrition and counted-lot quantities correctly use the actual ResourceLot.UnitId, including TEST_ONLY.ration-pound and prototype.potable-water.pint. Fixed Amount=1 for a physical whole item and Amount=0 for trap retrieval are native request scalars, not automatically a ResourceLot mass unit. The current human labels one indivisible target item / one bound specimen are not registered native unit identities.",
+      "proposedDisposition": "When mapping these fixed parameter values to the proposed V1 Quantity response, explicitly register a nonphysical native command-scalar dimension or represent them under a precisely reviewed fixed-sentinel descriptor. Keep the raw existing InventoryRequest unchanged. Do not reinterpret specimen1 as1pound, trap0 as absent/positive quantity, or manufacture a native unit ID. This is a response-encoding decision, not a new rule. Actual GPT05 requires exactly one native unit or registered technical dimension. Its explicit CopperValue approval does not itself register the whole-item/trap-sentinel request dimension.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+          "startLine": 68,
+          "endLine": 79
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+          "startLine": 188,
+          "endLine": 188
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+          "startLine": 40,
+          "endLine": 40
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+          "startLine": 586,
+          "endLine": 590
+        }
+      ],
+      "status": "OPEN_TECHNICAL_DIMENSION_REGISTRATION_IF_NOT_ALREADY_COVERED_BY_PARENT_MASTER_REGISTRY"
+    },
+    {
+      "id": "PCR-DOMAIN-01",
+      "scope": "magic per-parameter domain metadata",
+      "finding": "The magic text distinguishes native constructor domains from selected positive/denied routes, but does not use the physical/common explicit domainKind vocabulary consistently.",
+      "proposedDisposition": "Normalize at the parent registry: source spell IDs, elected bool/enum values and selected level2/3 arrays are FiniteComplete; targets are current authorized finite sets if actually enumerated; Consecrate coordinate examples are illustrative constrained signed Int32 geometry unless the complete authorized cell domain is enumerated. Do not call broad ValidId or coordinate extrema a complete valid target set.",
+      "status": "DESCRIPTOR_NORMALIZATION_REQUIRED_BEFORE_API_SHAPE_FREEZE"
+    }
+  ],
+  "positiveChecks": [
+    {
+      "id": "PASS-SHAPE",
+      "finding": "Command defaults Target empty/X0/Y0/null optional requests, InventoryRequest required Amount with Destination empty/Handling Pickup defaults, typed SpellCast defaults, Consecrate getter payload and advancement constructor receipt distinctions match inspected source. Both proposals expressly forbid turning canonical null examples into a new global payload rejection.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "startLine": 747,
+          "endLine": 787
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+          "startLine": 68,
+          "endLine": 79
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+          "startLine": 7,
+          "endLine": 30
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+          "startLine": 10,
+          "endLine": 15
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+          "startLine": 387,
+          "endLine": 436
+        }
+      ]
+    },
+    {
+      "id": "PASS-RATIONAL",
+      "finding": "No invented food/water quantum: ordinary portion/intake are constrained positive exact rationals with current stock bound. Native counted inventory specifically requires denominator1. Whole-item and trap-zero sentinels are separate variants, not a global positive-amount constructor restriction.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "startLine": 114,
+          "endLine": 167
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+          "startLine": 13,
+          "endLine": 16
+        }
+      ]
+    },
+    {
+      "id": "PASS-INTERRUPTION",
+      "finding": "InterruptIntake uses actual own job identity without a new stock-owner permission; Wound interrupt uses patient target and returns before new-start access/material checks; ShortRest interruption retains native pending gate; LongRest interruption returns before new-start access/pending checks. The physical proposal preserves these distinctions.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+          "startLine": 102,
+          "endLine": 106
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+          "startLine": 60,
+          "endLine": 76
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+          "startLine": 43,
+          "endLine": 56
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "startLine": 78,
+          "endLine": 93
+        }
+      ]
+    },
+    {
+      "id": "PASS-TIME",
+      "finding": "Food900seconds/pound and water60seconds/pint are reservation duration rates; StartIntake does not instantly credit them. ShortRest3600 and LongRest28800 are work reservations with later actual completion; ordinary physical handling1second is distinct from tactical Action/interaction payment. Consecrate expiry18seconds outside initiative versus local+3*orderCount in initiative and3-own-start recharge are source cadence, not caller inputs or guaranteed future outcome.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+          "startLine": 40,
+          "endLine": 55
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+          "startLine": 64,
+          "endLine": 76
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+          "startLine": 67,
+          "endLine": 88
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+          "startLine": 65,
+          "endLine": 72
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+          "startLine": 153,
+          "endLine": 167
+        }
+      ]
+    },
+    {
+      "id": "PASS-IDENTITY",
+      "finding": "Stabilization elected Guidance alone derives .medicine (9chars,max87); typed spell casts check .effect even for nonpersistent spell; non-None Radiance/Invocation cure capacity checks longest .radiance.cure/.radiance.sync and .invocation.cure/.invocation.sync forms. Magic max57 arithmetic has adequate suffix room for those enumerated paths and does not certify other families.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+          "startLine": 54,
+          "endLine": 56
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+          "startLine": 159,
+          "endLine": 161
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+          "startLine": 87,
+          "endLine": 94
+        },
+        {
+          "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+          "startLine": 36,
+          "endLine": 50
+        }
+      ]
+    },
+    {
+      "id": "PASS-EMBEDDED-CHOICES",
+      "finding": "Invocation takes1..3 distinct constructor-valid IDs with paired cure target and sorted native order, while host limits targets to current Party. Rite null vs explicit None remain different fingerprints. Advancement legacy pair/list/ASI/settlement receipt types are not silently rewritten; exact selected level2/3 choices remain atomic earned advancement.",
+      "source": [
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+          "startLine": 16,
+          "endLine": 25
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+          "startLine": 397,
+          "endLine": 435
+        },
+        {
+          "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+          "startLine": 792,
+          "endLine": 800
+        }
+      ]
+    },
+    {
+      "id": "PASS-BOUNDARIES",
+      "finding": "AcquireEarnedSpell remains an exposed denial with no free acquisition; trap Abandon/cache key existence does not become host admission; vessel Retrieve/Stow retain denied native branch; class-recovery short-rest candidate is not upgraded; no pending offer, owner permission or supported save is invented."
+    }
+  ],
+  "reviewLimits": [
+    "This review grants no disclosure permission. Actual GPT05 bounded field/read-context/value decisions were read and retained above; they do not approve every field join, parameter mapping or HC acceptance.",
+    "No engine runtime/compilation/five-path/replay/purity evidence was produced; static pins and descriptor checks do not qualify runtime.",
+    "No own25 management/work parameter proposal was independently reviewed.",
+    "Existing native source/API and original accepted source authority remain controlling; inventory census and this review are indexes, not mechanic authority.",
+    "Only this assigned review artifact is written. Parent must incorporate concrete corrections and obtain actual GPT concurrence within the current user-authorized rule; no next module or Unity work."
+  ],
+  "independentlyInspectedNativePins": [
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionCombatPolicy.cs",
+      "sha256": "e0b7c6a64f739ef0efdbb9e1d1b4c8db3e324a1650989d69a6077725edfb0d44",
+      "bytes": 12276
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConditionHistory.cs",
+      "sha256": "e5a2e434b5a65fb2a008b07abeb973c262e81c3a383aadfb5ae0bd4e0dc69d9e",
+      "bytes": 8512
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/ConnectedExpeditionSession.cs",
+      "sha256": "636dd2b47b3bf1235a439158fc8088c4144337015b23ca7db64339861f28c89f",
+      "bytes": 60303
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/OrdinaryInventory.cs",
+      "sha256": "7415d65e79aec053d1c5d23c0dbbe46852f528c2c91aafe4c0512b89c98903e8",
+      "bytes": 14240
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedBishopEntry.cs",
+      "sha256": "30a363f5bc0b5d4ce215ce6a816fcbfd768c24d3a437ae254a715640fab86578",
+      "bytes": 10874
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericLongRest.cs",
+      "sha256": "890399199e4c7ee47e9d1f01327cf6fa6535829dd7acbb29afd30bb0d87ea38a",
+      "bytes": 15459
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedClericSettlement.cs",
+      "sha256": "445dbb4b957f01f31d4eb367e8c5a542e81bbe03495b3546298f4af7c734d5f8",
+      "bytes": 12702
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedCompanionStabilization.cs",
+      "sha256": "32cbda7eef84f036e65eaa7826dc9cccdcf9a05bc234a099133b1a53ccbb83bc",
+      "bytes": 5343
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedConsecration.cs",
+      "sha256": "3954ed65f2d2b6e318e2d061bf36262c5edad8ac4d84b25e1e195be5f932b340",
+      "bytes": 17403
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedFishingTrap.cs",
+      "sha256": "a7c6848af175dd7e0939febe7c067fed525bb15b1a45e41da881509860f5d52b",
+      "bytes": 67264
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedPortableEquipment.cs",
+      "sha256": "e33422430672992975426f5ea4eaee5153e772c043a311883c41a5fd4f55cfdc",
+      "bytes": 35223
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedRadiance.cs",
+      "sha256": "6eff87485d72a09a03ded067b2a6150d7364cb94b9c864ff34e5586d1260caea",
+      "bytes": 9603
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedShortRest.cs",
+      "sha256": "c4b537ae9b16d2764d61e1f54154fb77a9dcaeff40c1a43f9b610c5c65c1b357",
+      "bytes": 6783
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedSpellCasting.cs",
+      "sha256": "51a607b9e298bebbaac96c58b768e216b3911a5a4eb3bafc7d96d38eafee33a1",
+      "bytes": 37055
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SharedWoundTreatment.cs",
+      "sha256": "9619a3488b3c730314630ca9a07d11bf15f7368087a0c620d6d1d28024b565ea",
+      "bytes": 10370
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/SourceQualifiedConditionCure.cs",
+      "sha256": "2339bb3e7bad6a429114819d4d6eacfa92d2eb915b3f859d671fd3c28bfdac0b",
+      "bytes": 6298
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/TestOnlyInventoryPolicy.cs",
+      "sha256": "45615a356efdb4dc26a2dc9414c68326197fddd1100e7a7c0b321f4e6959817b",
+      "bytes": 22104
+    },
+    {
+      "path": "engine/com.decennium.foundation/Laboratory/Model/VesselHandling.cs",
+      "sha256": "d4021bbf88c23b8faa4167bdea32b982b46f871bba807129a29bbb5a8261f23f",
+      "bytes": 11608
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/CharacterAdvancementRecords.cs",
+      "sha256": "9936bbf7dc6f1391800d020876f0e12f2641276fe1b1d80b55b0ceceb0bdc524",
+      "bytes": 64875
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/ConsecrationRecords.cs",
+      "sha256": "aa617c9d83c5a967d0c2cbd17f9c8263066fe34ca6d60e829bdd50dcfafb8e4b",
+      "bytes": 23443
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/DivineInvocationRecords.cs",
+      "sha256": "44d4df8479ba2dc46bd08dce638bc8d9c9725f665a9c9fc5d5fbdca975c23b22",
+      "bytes": 12139
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/InventoryRecords.cs",
+      "sha256": "f8a52e5dea4117e6e9a73cba97c80334301722de76bdd26b7b10e1a241fb0a9d",
+      "bytes": 9318
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/Simulation.cs",
+      "sha256": "7f36fe83b4185f81e91e03e944b53f635f89668c4f5a730675e895f1870d6903",
+      "bytes": 131749
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/SpellCastingRecords.cs",
+      "sha256": "c4d31f841774f6b2ca586c80c863e8728c21d59865348b7912ed9e8613b11a96",
+      "bytes": 14418
+    },
+    {
+      "path": "engine/com.decennium.foundation/Runtime/Core/WorkLedger.cs",
+      "sha256": "60482c0b0c5387f0597ab8407eb1d1891882d029e7c91a51d0bd3b86ad3302c3",
+      "bytes": 13415
+    }
+  ],
+  "actualGpt05Update": {
+    "responseId": "e70be17d-6889-5e41-a22c-4a8dbe4b15b6",
+    "reviewedCommit": "6bf494b716bf325271839ac11c4849cba26c91e7",
+    "readDuringThisReview": true,
+    "disposition": "Bounded field-policy, read-context and exact-value concurrence with explicit corrections; full HC and parameter mapping remain open.",
+    "parameterRelevantCorrections": [
+      "Public cross-assembly types may be public CLR with internal constructors/minimal read-only accessors; no gameplay/console exposure or caller-created context.",
+      "Opaque projection has exact Stamp binding checked by reference identity; null/prior/foreign is unavailable. Final state and same-generation projection/unavailable publish together; trusted provider non-reentrant.",
+      "Quantity has exactly one registered native unit or technical dimension. CopperValue technical dimension is approved; no inferred coin count.",
+      "Public repeated-instance ordinals assigned after authorization filtering while preserving native relative order; no raw indices revealing hidden gaps.",
+      "hc1 max57 and .invocation.sync max73 are arithmetic only, not all-variant native validity."
+    ],
+    "privacyPreserved": "Spent-dose use history uses separate approved N_DOSE_USE with exact J_DOSE/current owner,custody,user rights; current available-item parameter domain still uses P_DOSE_ITEM. Hide per-command Guidance-consumption linkage is withheld. These are bounded actual GPT decisions, not new acceptance by this reviewer."
+  }
+}
